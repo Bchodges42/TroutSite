@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { POSTS } from '../../data/posts';
+
+const title = 'Launch notes — Trout';
+const description =
+  'Product notes from the Trout project: offline-first design, privacy decisions, hatch data, and honest changelogs.';
+---
+
+<Base title={title} description={description} path="/blog/">
+  <h1>Launch notes</h1>
+  <p class="lead">Short, honest notes on how this project is built and what changes.</p>
+  <ul>
+    {
+      POSTS.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>{post.title}</a> — <time datetime={post.date}>{post.date}</time>
+        </li>
+      ))
+    }
+  </ul>
+  <p style="color:var(--muted)">More posts land here as v1 ships.</p>
+</Base>

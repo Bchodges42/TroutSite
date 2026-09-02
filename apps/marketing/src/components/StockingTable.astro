@@ -1,0 +1,60 @@
+---
+/**
+ * Stocking table — ROLE 5. Renders agency-published stocking events with
+ * per-row attribution to the official source (attribution culture, §1.5).
+ */
+import type { StockingEvent } from '@trout/contracts';
+import { formatDate } from '../lib/format';
+
+export interface Props {
+  events: StockingEvent[];
+}
+
+const { events } = Astro.props;
+const speciesLabel: Record<string, string> = {
+  rainbow: 'Rainbow',
+  brown: 'Brown',
+  cutbow: 'Cutbow',
+  brook: 'Brook',
+  other: 'Other',
+};
+---
+
+{
+  events.length > 0 ? (
+    <table class="data-table">
+      <caption>Recent stocking events (sample data)</caption>
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Water</th>
+          <th scope="col">County</th>
+          <th scope="col">Species</th>
+          <th class="num" scope="col">Count</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        {events
+          .slice()
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .map((e) => (
+            <tr>
+              <td>{formatDate(e.date)}</td>
+              <td>{e.streamName}</td>
+              <td>{e.county ?? '—'}</td>
+              <td>{speciesLabel[e.species] ?? e.species}</td>
+              <td class="num">{e.count?.toLocaleString('en-US') ?? '—'}</td>
+              <td>
+                <a href={e.sourceUrl} rel="nofollow">
+                  official ↗
+                </a>
+              </td>
+            </tr>
+          ))}
+      </tbody>
+    </table>
+  ) : (
+    <p>No stocking events recorded yet.</p>
+  )
+}

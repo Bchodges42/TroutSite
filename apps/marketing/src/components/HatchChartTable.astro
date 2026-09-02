@@ -1,0 +1,58 @@
+---
+/**
+ * 12-month hatch chart table for one region — ROLE 5.
+ * Data comes from the validated hatch fixture (same shape the PWA precaches),
+ * so the page answers "what hatches in {region} in {month}?" on the first screen.
+ */
+import type { HatchChart } from '@trout/contracts';
+import { monthShort } from '../lib/format';
+
+export interface Props {
+  charts: HatchChart[];
+}
+
+const { charts } = Astro.props;
+const byMonth = new Map(charts.map((c) => [c.month, c]));
+const months = Array.from({ length: 12 }, (_, i) => i + 1);
+
+const abundanceLabel = ['', 'rare', 'light', 'steady', 'strong', 'peak'];
+---
+
+<table class="data-table">
+  <caption>Year-round hatch chart</caption>
+  <thead>
+    <tr>
+      <th scope="col">Month</th>
+      <th scope="col">What's active</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      months.map((m) => {
+        const chart = byMonth.get(m);
+        return (
+          <tr>
+            <th scope="row">{monthShort(m)}</th>
+            <td>
+              {chart && chart.entries.length > 0 ? (
+                <ul style="margin:0;padding-left:1.1rem">
+                  {chart.entries
+                    .slice()
+                    .sort((a, b) => b.abundance - a.abundance)
+                    .map((e) => (
+                      <li>
+                        <strong>{e.taxonId.replace(/-/g, ' ')}</strong> ({e.stage}, {e.timeOfDay}) —{' '}
+                        {abundanceLabel[e.abundance]}
+                      </li>
+                    ))}
+                </ul>
+              ) : (
+                <span style="color:var(--muted)">little to no insect activity</span>
+              )}
+            </td>
+          </tr>
+        );
+      })
+    }
+  </tbody>
+</table>

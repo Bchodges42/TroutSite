@@ -1,0 +1,85 @@
+---
+/**
+ * Base layout — ROLE 5. Zero JS ships from this site.
+ * Every page gets: canonical URL, meta/OG description, optional JSON-LD,
+ * and the shared header/footer with the "verify officially" footer note.
+ */
+import '@trout/ui/tokens.css';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Site path, e.g. /stocking/tn/ — used verbatim for the canonical link. */
+  path: string;
+  /** JSON-LD objects to embed (Dataset, FAQPage, BreadcrumbList, …). */
+  ld?: object[];
+}
+
+const { title, description, path, ld = [] } = Astro.props;
+const canonical = new URL(path, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Trout" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    {ld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <a class="brand" href="/">Trout</a>
+        <nav aria-label="Main">
+          <a href="/stocking/tn/">Stocking</a>
+          <a href="/streams/tn/south-holston-river/">Streams</a>
+          <a href="/hatch/tn/east-tailwaters/">Hatch charts</a>
+          <a href="/install/">Install</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/">About</a>
+          <a href="/privacy/">Privacy</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class:list={[{ wide: path.startsWith('/hatch/') }]}>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="inner">
+        <p>
+          <strong>Trout</strong> is the offline-first, privacy-first decision tool for trout
+          anglers — free, no accounts, no location tracking. The app works in airplane mode; this
+          site is its convenience mirror.
+        </p>
+        <p>
+          <strong>Always verify officially.</strong> Stocking details, regulations, fees, and dam
+          release schedules change without notice. We are a convenience layer, never authoritative —
+          every data page on this site links the official government source.
+        </p>
+        <ul>
+          <li><a href="/stocking/tn/">Tennessee stocking</a></li>
+          <li><a href="/install/">Add the app to your home screen</a></li>
+          <li><a href="/privacy/">Privacy, in plain English</a></li>
+        </ul>
+        <p>
+          No trackers, no third-party requests, no cookies on this site — see
+          <a href="/privacy/">why we can make that claim</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
