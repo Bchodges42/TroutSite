@@ -1,47 +1,31 @@
-// OWNER: ROLE 4. Stub created by ROLE 1 (Phase 0) so the CI "content-validate" gate exists.
-// ROLE 4: replace with the full gate from 00-SHARED-CONTEXT §7 —
-// schema validation + orphan references + gauge-ID lint + SVG well-formedness.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { parse } from 'yaml';
+// OWNER: ROLE 4. CI content gate (00-SHARED-CONTEXT §7): schema validation against the frozen
+// @trout/contracts schemas + orphan references + gauge-ID lint (offline via the USGS-verified
+// fixture) + SVG well-formedness + Definition-of-Done floors. Exit 1 on any issue.
+import { loadContent, FLOORS } from './lib.js';
 
-const CONTENT_ROOT = resolve(process.cwd());
-const ENTITY_DIRS = ['bugs', 'patterns', 'hatch', 'streams', 'shops'];
+const { bugs, patterns, streams, shops, hatch, issues, warnings } = loadContent();
 
-function collectYamlFiles(dir: string, out: string[] = []): string[] {
-  let entries: string[];
-  try {
-    entries = readdirSync(dir);
-  } catch {
-    return out; // entity dir not created yet — fine while the pack is empty
-  }
-  for (const entry of entries) {
-    const p = join(dir, entry);
-    if (statSync(p).isDirectory()) collectYamlFiles(p, out);
-    else if (entry.endsWith('.yaml') || entry.endsWith('.yml')) out.push(p);
-  }
-  return out;
-}
+for (const w of warnings) console.warn(`[content] WARN ${w.file}: ${w.message}`);
 
-const files = ENTITY_DIRS.flatMap((d) => collectYamlFiles(join(CONTENT_ROOT, d)));
-
-if (files.length === 0) {
-  console.log('[content] no YAML files yet — content pack is empty, validation skipped (OK)');
-  process.exit(0);
-}
-
-let errors = 0;
-for (const file of files) {
-  try {
-    parse(readFileSync(file, 'utf8'));
-  } catch (err) {
-    errors += 1;
-    console.error(`[content] invalid YAML: ${file}: ${(err as Error).message}`);
-  }
-}
-
-if (errors > 0) {
-  console.error(`[content] FAILED: ${errors} invalid file(s)`);
+if (issues.length > 0) {
+  for (const i of issues) console.error(`[content] FAIL ${i.file}: ${i.message}`);
+  console.error(`[content] FAILED: ${issues.length} issue(s)`);
   process.exit(1);
 }
-console.log(`[content] parsed ${files.length} YAML file(s) — no syntax errors (schema gate lands with ROLE 4)`);
+
+const floorFails: string[] = [];
+if (bugs.size < FLOORS.bugs) floorFails.push(`bugs ${bugs.size} < ${FLOORS.bugs}`);
+if (patterns.size < FLOORS.patterns) floorFails.push(`patterns ${patterns.size} < ${FLOORS.patterns}`);
+if (streams.size < FLOORS.streams) floorFails.push(`streams ${streams.size} < ${FLOORS.streams}`);
+if (shops.size < FLOORS.shops) floorFails.push(`shops ${shops.size} < ${FLOORS.shops}`);
+if (hatch.size === 0) floorFails.push('no hatch charts');
+if (floorFails.length > 0) {
+  for (const f of floorFails) console.error(`[content] FAIL floor: ${f}`);
+  process.exit(1);
+}
+
+console.log(
+  `[content] OK — ${bugs.size} taxa (+${[...bugs.values()].filter((b) => b.illustration).length} SVGs), ` +
+    `${patterns.size} patterns, ${hatch.size} regions × 12 months, ${streams.size} streams, ${shops.size} shops. ` +
+    `Warnings: ${warnings.length}.`,
+);
