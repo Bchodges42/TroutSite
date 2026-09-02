@@ -1,3 +1,5 @@
+import process from 'node:process';
+
 /**
  * Single source of truth for the canonical site origin (SEO non-negotiable #4).
  * astro.config.mjs reads the same env var; keep them in sync if it changes.

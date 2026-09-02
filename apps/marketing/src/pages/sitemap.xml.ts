@@ -3,7 +3,7 @@
  * so the page list is exactly what this template set generates.
  */
 import { SITE_URL } from '../site-config';
-import { LAUNCH_STATES } from '../data/states';
+import { LAUNCH_STATES, regionsForState } from '../data/states';
 import { getStreams } from '../data/load';
 import { POSTS } from '../data/posts';
 
@@ -22,6 +22,9 @@ export function GET() {
     const st = state.id.toLowerCase();
     urls.push({ loc: `/stocking/${st}/`, priority: '0.9' });
     urls.push({ loc: `/when-does-${state.slug}-stock-trout/`, priority: '0.9' });
+    for (const region of regionsForState(state.id)) {
+      urls.push({ loc: `/hatch/${st}/${region.slug}/`, priority: '0.8' });
+    }
     urls.push({ loc: `/streams/${st}/`, priority: '0.8' });
     for (const stream of getStreams(state.id)) {
       urls.push({ loc: `/streams/${st}/${stream.id}/`, priority: '0.8' });

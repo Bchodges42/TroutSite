@@ -1,3 +1,4 @@
+import process from 'node:process';
 import { defineConfig } from 'astro/config';
 
 // Canonical origin for SEO (canonical URLs, sitemap.xml, og:url).
