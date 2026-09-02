@@ -1,8 +1,15 @@
+import { resolve } from 'node:path';
 import { buildApp } from './app.js';
+import { openDb } from './db.js';
 import { loadEnv } from './env.js';
 
 const env = loadEnv();
-const app = buildApp({ logger: true });
+const db = openDb(resolve(env.TROUT_DB_PATH));
+const app = buildApp({
+  logger: true,
+  db,
+  portal: { secret: env.PORTAL_SECRET, snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public/data') },
+});
 
 app
   .listen({ port: env.PORT, host: env.HOST })
@@ -16,6 +23,8 @@ app
 
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.on(signal, () => {
-    app.close().finally(() => process.exit(0));
+    app.close()
+      .then(() => db.close())
+      .finally(() => process.exit(0));
   });
 }
