@@ -1,18 +1,52 @@
-import { Button, Card } from '@trout/ui';
+// OWNER: ROLE 4. Portal root: token boot → sign-in → signed-in portal.
+import { useEffect, useState } from 'react';
+import type { Shop } from '@trout/contracts';
+import { ApiError, clearToken, fetchMe, storedTokenState } from './api/client.js';
+import { LoginView } from './views/LoginView.js';
+import { PortalView } from './views/PortalView.js';
 
-/** Phase-0 shell only. ROLE 4 replaces this with the token-login shop portal. */
+type Boot = { state: 'boot' } | { state: 'login' } | { state: 'ready'; shop: Shop; tokenExpiresAtMs: number };
+
 export function App() {
+  const [boot, setBoot] = useState<Boot>({ state: 'boot' });
+
+  useEffect(() => {
+    const stored = storedTokenState();
+    if (!stored) {
+      setBoot({ state: 'login' });
+      return;
+    }
+    fetchMe()
+      .then((shop) => setBoot({ state: 'ready', shop, tokenExpiresAtMs: stored.expiresAtMs }))
+      .catch((err) => {
+        if (err instanceof ApiError && err.status === 401) clearToken();
+        setBoot({ state: 'login' });
+      });
+  }, []);
+
+  if (boot.state === 'boot') {
+    return <main className="portal-shell portal-muted">Checking your shop token…</main>;
+  }
+
+  if (boot.state === 'login') {
+    return (
+      <LoginView
+        onSignedIn={(shop) => {
+          const stored = storedTokenState();
+          setBoot({ state: 'ready', shop, tokenExpiresAtMs: stored?.expiresAtMs ?? Date.now() });
+        }}
+      />
+    );
+  }
+
   return (
-    <main className="mx-auto max-w-xl p-6" style={{ fontFamily: 'var(--trout-font-body)' }}>
-      <Card>
-        <h1 style={{ color: 'var(--trout-color-primary)' }}>Trout Shop Portal</h1>
-        <p style={{ color: 'var(--trout-color-text-muted)' }}>
-          Online-only SPA for attributed shop reports. Skeleton — owned by ROLE 4.
-        </p>
-        <Button variant="primary" size="sm">
-          Sign in with shop token
-        </Button>
-      </Card>
-    </main>
+    <PortalView
+      shop={boot.shop}
+      tokenExpiresAtMs={boot.tokenExpiresAtMs}
+      onSignOut={() => {
+        clearToken();
+        setBoot({ state: 'login' });
+      }}
+    />
   );
 }

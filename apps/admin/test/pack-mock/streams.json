@@ -1,0 +1,32 @@
+{
+  "streams": [
+    {
+      "id": "little-river",
+      "name": "Little River (Smokies / Blount County)",
+      "stateId": "TN",
+      "waterbodyType": "creek",
+      "regionId": "tn-east-smokies",
+      "gaugeIds": ["03497300"],
+      "stockingProgram": true,
+      "idealFlow": [{ "min": 50, "max": 350, "unit": "cfs" }],
+      "notes": "Test fixture.",
+      "officialSources": [
+        { "label": "USGS", "url": "https://waterdata.usgs.gov/monitoring-location/03497300/" }
+      ]
+    },
+    {
+      "id": "hiwassee-river",
+      "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+      "stateId": "TN",
+      "waterbodyType": "tailrace",
+      "regionId": "tn-se-hiwassee",
+      "gaugeIds": ["03556590"],
+      "stockingProgram": true,
+      "idealFlow": [{ "min": 500, "max": 3500, "unit": "cfs" }],
+      "notes": "Test fixture.",
+      "officialSources": [
+        { "label": "USGS", "url": "https://waterdata.usgs.gov/monitoring-location/03556590/" }
+      ]
+    }
+  ]
+}

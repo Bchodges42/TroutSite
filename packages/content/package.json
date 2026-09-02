@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./pack/*": "./dist/pack/*"
+  },
   "scripts": {
     "validate": "tsx scripts/validate.ts",
     "build": "tsx scripts/build.ts",
