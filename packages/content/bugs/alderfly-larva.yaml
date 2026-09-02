@@ -1,0 +1,65 @@
+id: alderfly-larva
+commonName: Alderfly Larva
+sciName: Sialis spp.
+order: Megaloptera
+family: Sialidae
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - brown
+    - olive-brown
+  mouthparts: predatory-grasping
+habitat:
+  - silt
+  - weedy margins
+  - tailwater flats
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/alderfly-larva.svg
+stages:
+  - larva
+notes: "Tailwater silt holds brown alderfly larvae with a single long tail filament. A #12 brown
+  sculpin-ish nymph on the swing covers them."
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

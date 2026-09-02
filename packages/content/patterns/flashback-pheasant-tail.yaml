@@ -1,0 +1,20 @@
+id: flashback-pheasant-tail
+name: Flashback Pheasant Tail
+type: nymph
+imitates:
+  - blue-winged-olive
+  - sulphur-dun
+  - little-spiny-crawler
+hookSizes:
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - pheasant tail fibers
+  - pearl Flashabou
+  - peacock herl
+  - copper wire
+notes: The pearl wingcase glint mimics the gas bubble of an emerging nymph — deadlier in slow flats.
+license: public-domain

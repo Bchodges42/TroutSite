@@ -1,0 +1,52 @@
+id: little-brown-stone
+commonName: Little Brown Stone
+sciName: Amphinemura / Nemoura spp.
+order: Plecoptera
+family: Nemouridae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - brown
+    - olive-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - leaf packs
+  - riffles
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/little-brown-stone.svg
+stages:
+  - nymph
+notes: Small spring stones concentrated in leaf litter. Their larvae wiggle conspicuously when
+  dislodged, drawing opportunistic takes from holding trout.
+sources:
+  - https://bugguide.net

@@ -1,0 +1,108 @@
+id: crane-fly
+commonName: Crane Fly
+sciName: Tipulidae (family)
+order: Diptera
+family: Tipulidae
+sizeRange:
+  - 6
+  - 12
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - tan
+    - brown
+    - olive-tan
+  mouthparts: shredding-detritivore
+habitat:
+  - banks
+  - riffles
+  - leaf packs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/crane-fly.svg
+stages:
+  - larva
+  - adult
+notes: Leathery "daddy longlegs" adults flop drunkenly onto the water in summer; big tan dries
+  draw savage takes. Cream fat larvae are also excellent drift food.
+sources:
+  - https://en.wikipedia.org/wiki/Tipulidae
+  - https://bugguide.net

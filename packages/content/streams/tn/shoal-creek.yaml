@@ -1,0 +1,21 @@
+id: shoal-creek
+name: Shoal Creek
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-duck-elk
+gaugeIds:
+  - "03588500"
+stockingProgram: true
+idealFlow:
+  - min: 60
+    max: 400
+    unit: cfs
+notes: Lawrence County’s spring-fed Shoal Creek with TWRA spring stocking — the southern
+  Highland Rim’s nicest surprise. Gauge at Iron City reads the groundwater mood.
+officialSources:
+  - label: USGS Water Data — monitoring location 03588500
+    url: https://waterdata.usgs.gov/monitoring-location/03588500/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

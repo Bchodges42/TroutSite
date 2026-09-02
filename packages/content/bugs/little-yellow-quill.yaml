@@ -1,0 +1,59 @@
+id: little-yellow-quill
+commonName: Little Yellow Quill
+sciName: Leucrocuta hebe
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - yellow-olive
+    - pale-olive
+    - cream
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/little-yellow-quill.svg
+stages:
+  - nymph
+  - dun
+notes: A small, straw-colored flathead common in Appalachian riffles. Duns have a distinct lemon
+  cast that pale-yellow dries match well.
+sources:
+  - https://bugguide.net

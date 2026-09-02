@@ -1,0 +1,67 @@
+id: wasp-bee
+commonName: Yellowjacket & Honey Bee
+sciName: Vespula spp. / Apis mellifera
+order: Hymenoptera
+family: Vespidae / Apidae
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - yellow-black
+    - amber
+  mouthparts: chewing-sucking
+habitat:
+  - banks
+  - picnic areas near rivers
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/wasp-bee.svg
+stages:
+  - adult
+notes: Yellowjackets at their worst in late summer — and at their best on the water, where
+  drowned individuals vanish fast. A yellow-and-black foam pattern earns its place in fall.
+sources:
+  - https://bugguide.net

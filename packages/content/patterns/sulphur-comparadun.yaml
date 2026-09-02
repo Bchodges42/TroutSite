@@ -1,0 +1,17 @@
+id: sulphur-comparadun
+name: Sulphur Comparadun
+type: dry
+imitates:
+  - sulphur-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 3
+materials:
+  - pale-yellow dubbing
+  - cream deer hair wing
+  - z-lon shuck
+notes: Deer-hair silhouette for flat-water sulphur feeders.
+license: attributed
+attribution: Comparadun style developed by Al Caucci & Bob Nastasi

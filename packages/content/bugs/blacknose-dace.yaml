@@ -1,0 +1,84 @@
+id: blacknose-dace
+commonName: Blacknose Dace
+sciName: Rhinichthys atratulus
+order: Cypriniformes
+family: Cyprinidae
+sizeRange:
+  - 10
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - gray-brown
+    - black-striped
+  mouthparts: omnivorous
+habitat:
+  - riffles
+  - runs
+  - creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/blacknose-dace.svg
+stages:
+  - adult
+notes: The black lateral stripe is unmistakable — a darting, nervous minnow of riffles. The
+  classic black-nose-dace streamer silhouette still earns its keep.
+sources:
+  - https://en.wikipedia.org/wiki/Rhinichthys_atratulus

@@ -1,0 +1,20 @@
+id: middle-prong-little-pigeon
+name: Middle Prong Little Pigeon River (Tremont)
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-smokies
+gaugeIds: []
+stockingProgram: true
+idealFlow:
+  - min: 15
+    max: 120
+    unit: cfs
+notes: Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking
+  noted by TWRA on the Middle Prong. No gauge; recent-rain judgment applies.
+officialSources:
+  - label: NPS — Great Smoky Mountains National Park fishing information
+    url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

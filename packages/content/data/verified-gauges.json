@@ -1,0 +1,210 @@
+{
+  "comment": "USGS monitoring locations referenced by packages/content streams. Verified live against waterservices.usgs.gov (site service, stateCd=TN) on 2026-09-02; realTimeIV = instantaneous-value data confirmed via the IV service the same day.",
+  "sourceUrl": "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteStatus=any&siteType=st",
+  "gauges": {
+    "03408500": {
+      "name": "NEW RIVER AT NEW RIVER, TN",
+      "realTimeIV": true
+    },
+    "03409500": {
+      "name": "CLEAR FORK NEAR ROBBINS, TN",
+      "realTimeIV": true
+    },
+    "03410210": {
+      "name": "SOUTH FK CUMBERLAND RIVER AT LEATHERWOOD FORD, TN",
+      "realTimeIV": true
+    },
+    "03417000": {
+      "name": "OBEY RIVER BELOW DALE HOLLOW DAM, TN",
+      "realTimeIV": true
+    },
+    "03419530": {
+      "name": "CALFKILLER RIVER AT HWY 70 AT SPARTA, TN",
+      "realTimeIV": true
+    },
+    "03421000": {
+      "name": "COLLINS RIVER NEAR MCMINNVILLE, TN",
+      "realTimeIV": true
+    },
+    "03424010": {
+      "name": "CANEY FORK AT CENTER HILL DAM (TAILWATER), TN",
+      "realTimeIV": true
+    },
+    "03424860": {
+      "name": "CANEY FORK AT STONEWALL",
+      "realTimeIV": true
+    },
+    "03427500": {
+      "name": "EAST FORK STONES RIVER NEAR LASCASSAS, TN",
+      "realTimeIV": true
+    },
+    "03428200": {
+      "name": "WEST FORK STONES RIVER AT MURFREESBORO, TN",
+      "realTimeIV": true
+    },
+    "03430200": {
+      "name": "STONES RIVER AT US HWY 70 NEAR DONELSON, TN",
+      "realTimeIV": true
+    },
+    "03432350": {
+      "name": "HARPETH RIVER AT FRANKLIN, TN",
+      "realTimeIV": true
+    },
+    "03433500": {
+      "name": "HARPETH RIVER AT BELLEVUE, TN",
+      "realTimeIV": true
+    },
+    "03436100": {
+      "name": "RED RIVER AT PORT ROYAL, TN",
+      "realTimeIV": true
+    },
+    "03461500": {
+      "name": "PIGEON RIVER AT NEWPORT, TN",
+      "realTimeIV": true
+    },
+    "03465500": {
+      "name": "NOLICHUCKY RIVER AT EMBREEVILLE, TN",
+      "realTimeIV": true
+    },
+    "03468510": {
+      "name": "FRENCH BROAD RIVER AT DOUGLAS DAM(TW), TN",
+      "realTimeIV": true
+    },
+    "03469000": {
+      "name": "FRENCH BROAD RIVER BELOW DOUGLAS DAM, TN",
+      "realTimeIV": true
+    },
+    "03469251": {
+      "name": "WEST PRONG LITTLE PIGEON R NR GATLINBURG, TN",
+      "realTimeIV": true
+    },
+    "03470000": {
+      "name": "LITTLE PIGEON RIVER AT SEVIERVILLE, TN",
+      "realTimeIV": true
+    },
+    "03476500": {
+      "name": "S F HOLSTON RIVER BELOW SOUTH HOLSTON DAM, TN",
+      "realTimeIV": true
+    },
+    "03483980": {
+      "name": "WATAUGA RIVER AT WILBUR DAM, TN (TAILWATER)",
+      "realTimeIV": true
+    },
+    "03484000": {
+      "name": "WATAUGA RIVER BELOW WILBUR DAM, TN",
+      "realTimeIV": true
+    },
+    "03485500": {
+      "name": "DOE RIVER AT ELIZABETHTON, TN",
+      "realTimeIV": true
+    },
+    "03486000": {
+      "name": "WATAUGA RIVER AT ELIZABETHTON, TN",
+      "realTimeIV": true
+    },
+    "03486810": {
+      "name": "SOUTH FORK HOLSTON RIVER AT BOONE DAM(TW), TN",
+      "realTimeIV": true
+    },
+    "03487010": {
+      "name": "S FORK HOLSTON RIVER AT FT. PATRICK HENRY DAM,TN",
+      "realTimeIV": true
+    },
+    "03487602": {
+      "name": "REEDY CREEK AB CLINCHFIELD RR ATKINGSPORT, TN",
+      "realTimeIV": true
+    },
+    "03497300": {
+      "name": "LITTLE RIVER ABOVE TOWNSEND, TN",
+      "realTimeIV": true
+    },
+    "03498500": {
+      "name": "LITTLE RIVER NEAR MARYVILLE, TN",
+      "realTimeIV": true
+    },
+    "03518500": {
+      "name": "TELLICO RIVER AT TELLICO PLAINS, TN",
+      "realTimeIV": true
+    },
+    "03532000": {
+      "name": "POWELL RIVER NEAR ARTHUR, TN",
+      "realTimeIV": true
+    },
+    "03533000": {
+      "name": "CLINCH RIVER BELOW NORRIS DAM, TN",
+      "realTimeIV": true
+    },
+    "03539600": {
+      "name": "DADDYS CREEK NEAR HEBBERTSBURG, TN",
+      "realTimeIV": true
+    },
+    "03539778": {
+      "name": "CLEAR CREEK AT LILLY BRIDGE NEAR LANCING, TN",
+      "realTimeIV": true
+    },
+    "03539800": {
+      "name": "OBED RIVER NEAR LANCING, TN",
+      "realTimeIV": true
+    },
+    "03540500": {
+      "name": "EMORY RIVER AT OAKDALE, TN",
+      "realTimeIV": true
+    },
+    "03556590": {
+      "name": "HIWASSEE RIVER ABOVE RELIANCE",
+      "realTimeIV": true
+    },
+    "03559500": {
+      "name": "OCOEE RIVER AT COPPERHILL, TN",
+      "realTimeIV": true
+    },
+    "03564500": {
+      "name": "OCOEE RIVER AT PARKSVILLE, TN",
+      "realTimeIV": true
+    },
+    "03566000": {
+      "name": "HIWASSEE RIVER AT CHARLESTON, TN",
+      "realTimeIV": true
+    },
+    "03566535": {
+      "name": "NORTH CHICKAMAUGA CR AT MILE STRAIGHT, TN",
+      "realTimeIV": true
+    },
+    "03571000": {
+      "name": "SEQUATCHIE RIVER NEAR WHITWELL, TN",
+      "realTimeIV": true
+    },
+    "03578000": {
+      "name": "ELK RIVER NEAR PELHAM, TN",
+      "realTimeIV": true
+    },
+    "03580750": {
+      "name": "ELK RIVER BELOW TIMS FORD DAM, TN",
+      "realTimeIV": true
+    },
+    "03584600": {
+      "name": "ELK RIVER AT PROSPECT, TN",
+      "realTimeIV": true
+    },
+    "03588500": {
+      "name": "SHOAL CREEK AT IRON CITY, TN",
+      "realTimeIV": true
+    },
+    "03596000": {
+      "name": "DUCK RIVER BELOW MANCHESTER, TN",
+      "realTimeIV": true
+    },
+    "03597860": {
+      "name": "DUCK RIVER AT SHELBYVILLE, TN",
+      "realTimeIV": true
+    },
+    "03598000": {
+      "name": "DUCK RIVER NEAR SHELBYVILLE, TN",
+      "realTimeIV": true
+    },
+    "03599500": {
+      "name": "DUCK RIVER AT COLUMBIA, TN",
+      "realTimeIV": true
+    }
+  }
+}

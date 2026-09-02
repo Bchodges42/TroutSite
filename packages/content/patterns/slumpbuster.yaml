@@ -1,0 +1,19 @@
+id: slumpbuster
+name: Slumpbuster
+type: streamer
+imitates:
+  - sculpin
+  - creek-chub
+  - leech
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - rabbit strip wing
+  - wired cone body
+  - diamond braid
+notes: John Barr’s one-material confidence streamer — the slump’s official cure.
+license: attributed
+attribution: Designed by John Barr

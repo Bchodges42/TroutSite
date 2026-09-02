@@ -1,0 +1,23 @@
+id: west-prong-little-pigeon
+name: West Prong Little Pigeon River
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-smokies
+gaugeIds:
+  - "03469251"
+stockingProgram: true
+idealFlow:
+  - min: 15
+    max: 150
+    unit: cfs
+notes: Wild rainbow and brook trout water in the park’s Chimneys/Tremont corridor, with TWRA
+  spring stocking on lower reaches. Steep, flashy watershed — check the gauge before committing.
+officialSources:
+  - label: USGS Water Data — monitoring location 03469251
+    url: https://waterdata.usgs.gov/monitoring-location/03469251/
+  - label: NPS — Great Smoky Mountains National Park fishing information
+    url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

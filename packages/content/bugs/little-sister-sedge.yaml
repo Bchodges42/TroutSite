@@ -1,0 +1,96 @@
+id: little-sister-sedge
+commonName: Little Sister Sedge
+sciName: Cheumatopsyche spp.
+order: Trichoptera
+family: Hydropsychidae
+sizeRange:
+  - 16
+  - 20
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - tan
+    - dark-olive
+    - brown-tan
+  mouthparts: filtering-net
+habitat:
+  - riffles
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-sister-sedge.svg
+stages:
+  - larva
+  - adult
+notes: "A half-size cousin of the spotted sedge that hatches in repeated summer broods. When #16
+  elkhairs get refused, drop to a #18 of the same profile."
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

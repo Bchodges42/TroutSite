@@ -1,0 +1,22 @@
+id: nolichucky-river
+name: Nolichucky River
+stateId: TN
+waterbodyType: river
+regionId: tn-east-pigeon-frenchbroad
+gaugeIds:
+  - "03465500"
+stockingProgram: false
+idealFlow:
+  - min: 300
+    max: 1500
+    unit: cfs
+notes: Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s
+  stocking dataset does not currently list it; upstream reaches hold scattered wild fish.
+  Rain-flashy; the Embreeville gauge matters.
+officialSources:
+  - label: USGS Water Data — monitoring location 03465500
+    url: https://waterdata.usgs.gov/monitoring-location/03465500/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

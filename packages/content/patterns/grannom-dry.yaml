@@ -1,0 +1,15 @@
+id: grannom-dry
+name: Grannom Dry (Black)
+type: dry
+imitates:
+  - grannom
+hookSizes:
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - black dubbing
+  - dark elk wing
+  - grizzly hackle
+notes: Fish it in the egg-laying swarm — imagine a black caddis with an attitude.
+license: public-domain

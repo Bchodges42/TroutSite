@@ -1,0 +1,59 @@
+id: micro-caddis
+commonName: Micro-Caddis
+sciName: Hydroptila spp.
+order: Trichoptera
+family: Hydroptilidae
+sizeRange:
+  - 20
+  - 24
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - olive-gray
+    - gray
+    - cream
+  mouthparts: piercing-collector
+habitat:
+  - tailwaters
+  - weed beds
+  - riffles
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/micro-caddis.svg
+stages:
+  - larva
+notes: Purse-case micro-caddis that appear as drifting gray specks — tailwater "aquatic dust"
+  that occasionally clusters into significant riser events.
+sources:
+  - https://bugguide.net

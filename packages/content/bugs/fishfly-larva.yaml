@@ -1,0 +1,58 @@
+id: fishfly-larva
+commonName: Fishfly Larva
+sciName: Nigronia serricornis
+order: Megaloptera
+family: Corydalidae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - reddish-brown
+    - dark-brown
+  mouthparts: predatory-grasping
+habitat:
+  - leaf packs
+  - small riffles
+  - creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/fishfly-larva.svg
+stages:
+  - larva
+notes: "A smaller, reddish cousin of the hellgrammite common in Appalachian creeks. Trout cannot
+  tell a #10 bushy brown nymph from one — which is convenient."
+sources:
+  - https://bugguide.net

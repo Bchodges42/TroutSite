@@ -1,0 +1,16 @@
+id: fur-ant
+name: Fur Ant
+type: terrestrial
+imitates:
+  - ant
+  - flying-ant
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - black squirrel dubbing
+  - round brown hackle
+notes: The traditional dubbing ant — slimmer profile, legendary on picky park fish.
+license: public-domain

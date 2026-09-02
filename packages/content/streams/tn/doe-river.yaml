@@ -1,0 +1,21 @@
+id: doe-river
+name: Doe River
+stateId: TN
+waterbodyType: creek
+regionId: tn-northeast-watauga
+gaugeIds:
+  - "03485500"
+stockingProgram: true
+idealFlow:
+  - min: 50
+    max: 250
+    unit: cfs
+notes: A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks
+  upper and lower sections in spring. Gentle gradient, easy wading, town access.
+officialSources:
+  - label: USGS Water Data — monitoring location 03485500
+    url: https://waterdata.usgs.gov/monitoring-location/03485500/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

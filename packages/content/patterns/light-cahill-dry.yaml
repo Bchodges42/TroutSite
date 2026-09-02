@@ -1,0 +1,19 @@
+id: light-cahill-dry
+name: Light Cahill
+type: dry
+imitates:
+  - light-cahill
+  - cream-cahill
+  - golden-flathead
+  - little-yellow-quill
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - cream dubbing
+  - ginger hackle
+  - wood duck flank wings
+notes: Dan Cahill’s 1880s pattern remains the summer-afternoon staple it always was.
+license: public-domain

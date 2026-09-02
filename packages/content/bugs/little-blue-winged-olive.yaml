@@ -1,0 +1,78 @@
+id: little-blue-winged-olive
+commonName: Little Blue-Winged Olive
+sciName: Diphetor hageni
+order: Ephemeroptera
+family: Baetidae
+sizeRange:
+  - 20
+  - 24
+keyAttributes:
+  tails: 2
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - brown-olive
+    - dark-olive
+  mouthparts: chewing-scraper
+habitat:
+  - riffles
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-blue-winged-olive.svg
+stages:
+  - nymph
+  - dun
+notes: "A warm-weather micro-BWO that often brings multiple generations a year. Its dark-olive
+  body and small size make #22-24 paraloop flies deadly in late summer."
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

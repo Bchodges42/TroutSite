@@ -1,0 +1,21 @@
+id: two-bit-hooker
+name: Two-Bit Hooker
+type: nymph
+imitates:
+  - blue-winged-olive
+  - little-spiny-crawler
+  - sulphur-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 3
+materials:
+  - peacock herl collar
+  - flashback rib
+  - dubbing body
+  - bead
+notes: Charlie Craven’s flashy-flashy mayfly nymph — a modern tailwater staple.
+license: attributed
+attribution: Designed by Charlie Craven (Colorado)

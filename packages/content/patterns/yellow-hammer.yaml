@@ -1,0 +1,20 @@
+id: yellow-hammer
+name: Yallar Hammer
+type: dry
+imitates:
+  - yellow-sally
+  - light-cahill
+  - sulphur-dun
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - yellow floss or yarn body
+  - ginger hackle
+  - yellow tail fibers
+notes: A genuine Southern folktale of a fly — yellow "as a hammer," and beloved from the Smokies
+  to the plateau.
+license: public-domain

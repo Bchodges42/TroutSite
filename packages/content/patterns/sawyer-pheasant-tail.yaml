@@ -1,0 +1,18 @@
+id: sawyer-pheasant-tail
+name: Sawyer Pheasant Tail Nymph
+type: nymph
+imitates:
+  - blue-winged-olive
+  - sulphur-dun
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - rooster pheasant tail fibers
+  - fine copper wire
+notes: Frank Sawyer’s sparse wire-ribbed original, tied in-hand; sinks fast and suggests slender
+  swimmer nymphs.
+license: attributed
+attribution: Designed by Frank Sawyer (River Avon, England, 1958)

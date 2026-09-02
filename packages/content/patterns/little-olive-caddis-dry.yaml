@@ -1,0 +1,17 @@
+id: little-olive-caddis-dry
+name: Little Olive Caddis Dry
+type: dry
+imitates:
+  - little-olive-net-spinner
+  - micro-caddis
+hookSizes:
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - pale olive dubbing
+  - olive elk hair
+  - dun hackle
+notes: A dainty olive tent-wing for summer evening flights.
+license: public-domain

@@ -1,0 +1,18 @@
+id: brassie
+name: Brassie
+type: nymph
+imitates:
+  - blood-midge
+  - olive-midge
+  - little-black-midge
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+difficulty: 1
+materials:
+  - wound copper wire body
+  - peacock herl thorax
+notes: The 1960s wire-body midge that still sips winter trout.
+license: public-domain

@@ -1,0 +1,55 @@
+id: flying-ant
+commonName: Flying Ant
+sciName: Formica / Camponotus (alates)
+order: Hymenoptera
+family: Formicidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - black
+    - brown
+  mouthparts: chewing
+habitat:
+  - banks
+  - open water during nuptial flights
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+illustration: illustrations/flying-ant.svg
+stages:
+  - adult
+notes: Humid late-summer afternoons trigger nuptial flights; ant swarms on the water create one
+  of fishing’s great free-for-alls. Keep a winged ant pattern in the box from July on.
+sources:
+  - https://bugguide.net

@@ -1,0 +1,26 @@
+id: foam-beetle
+name: Foam Beetle
+type: terrestrial
+imitates:
+  - japanese-beetle
+  - june-beetle
+  - fishing-spider
+  - leafhopper
+  - wasp-bee
+  - water-penny
+  - whirligig-beetle
+  - water-boatman
+  - soldier-beetle
+  - dog-day-cicada
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 1
+materials:
+  - black foam
+  - white wingpost dot
+  - hackle
+notes: The universal beetle — summer’s quiet assassin along every wooded bank.
+license: public-domain

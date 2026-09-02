@@ -1,0 +1,19 @@
+id: blue-winged-olive-dun
+name: Blue-Winged Olive Dun (Traditional)
+type: dry
+imitates:
+  - blue-winged-olive
+  - little-blue-winged-olive
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+difficulty: 2
+materials:
+  - olive dubbing
+  - blue dun hackle
+  - medium dun hackle wings
+  - grizzly hackle
+notes: The classic Catskill-style profile for steady BWO risers on overcast afternoons.
+license: public-domain

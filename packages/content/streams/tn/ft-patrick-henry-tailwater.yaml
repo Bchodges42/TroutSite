@@ -1,0 +1,23 @@
+id: ft-patrick-henry-tailwater
+name: Fort Patrick Henry Tailwater (South Fork Holston River)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-east-holston
+gaugeIds:
+  - "03487010"
+stockingProgram: true
+idealFlow:
+  - min: 100
+    max: 800
+    unit: cfs
+notes: Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and
+  TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly.
+officialSources:
+  - label: USGS Water Data — monitoring location 03487010
+    url: https://waterdata.usgs.gov/monitoring-location/03487010/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

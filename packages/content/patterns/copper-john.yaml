@@ -1,0 +1,24 @@
+id: copper-john
+name: Copper John
+type: nymph
+imitates:
+  - blue-winged-olive
+  - march-brown
+  - golden-stone
+  - little-golden-stone
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 3
+materials:
+  - copper wire body
+  - pheasant tail wingcase
+  - peacock herl
+  - bead head
+notes: John Barr’s wire-bodied attractor nymph sinks like a stone and reads as a generic bug —
+  the anchor on most Tennessee indicator rigs.
+license: attributed
+attribution: Designed by John Barr (Colorado, 1990s)

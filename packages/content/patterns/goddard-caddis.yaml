@@ -1,0 +1,17 @@
+id: goddard-caddis
+name: Goddard Caddis
+type: dry
+imitates:
+  - spotted-sedge
+  - green-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - spun deer hair
+  - brown hackle palmer
+notes: Peter Goddard’s deer-hair boat of a caddis — unsinkable for fast pocket water.
+license: attributed
+attribution: Designed by Peter Goddard & John Goddard (UK)

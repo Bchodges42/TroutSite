@@ -1,0 +1,22 @@
+id: duck-river-tailwater
+name: Duck River (Normandy tailwater)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-middle-duck-elk
+gaugeIds:
+  - "03596000"
+stockingProgram: true
+idealFlow:
+  - min: 100
+    max: 800
+    unit: cfs
+notes: Cold releases below Normandy Dam give the Duck its trout identity — TWRA
+  tailwater-stocked rainbows in a lovely valley reach. Release-dependent; verify schedules
+  before wading.
+officialSources:
+  - label: USGS Water Data — monitoring location 03596000
+    url: https://waterdata.usgs.gov/monitoring-location/03596000/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

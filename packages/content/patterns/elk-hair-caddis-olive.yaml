@@ -1,0 +1,22 @@
+id: elk-hair-caddis-olive
+name: Elk Hair Caddis (Olive)
+type: dry
+imitates:
+  - green-sedge
+  - little-sister-sedge
+  - saddle-case-caddis
+  - little-brown-sedge
+  - little-gray-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - olive elk hair
+  - palmered dun hackle
+  - olive dubbing
+notes: The olive sibling — mountain rivers and green sedges.
+license: attributed
+attribution: Designed by Al Troth

@@ -1,0 +1,19 @@
+id: muddler-minnow
+name: Muddler Minnow
+type: streamer
+imitates:
+  - sculpin
+  - creek-chub
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+difficulty: 3
+materials:
+  - spun deer hair head
+  - turkey quill wings
+  - gold tinsel body
+notes: Don Gapen’s 1936 sculpin — fish it greased-up as a skated baitfish or sunk deep.
+license: attributed
+attribution: Designed by Don Gapen (Nipigon River, Ontario, 1936)

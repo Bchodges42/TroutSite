@@ -1,0 +1,60 @@
+id: green-sedge
+commonName: Green Sedge (Rock Worm)
+sciName: Rhyacophila spp.
+order: Trichoptera
+family: Rhyacophilidae
+sizeRange:
+  - 10
+  - 14
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - bright-green
+    - olive-green
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - boulders
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/green-sedge.svg
+stages:
+  - larva
+  - adult
+notes: Free-living, bright-green larvae prowl rubble hunting mayflies — no case, undulating
+  swim. A dead-drifted green larva pattern is a Smokies secret weapon.
+sources:
+  - https://en.wikipedia.org/wiki/Rhyacophila
+  - https://bugguide.net

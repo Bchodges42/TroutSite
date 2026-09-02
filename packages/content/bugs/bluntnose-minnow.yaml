@@ -1,0 +1,76 @@
+id: bluntnose-minnow
+commonName: Bluntnose Minnow
+sciName: Pimephales notatus
+order: Cypriniformes
+family: Cyprinidae
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - silver-gray
+    - gray-olive
+  mouthparts: omnivorous
+habitat:
+  - pools
+  - slack water
+  - runs
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/bluntnose-minnow.svg
+stages:
+  - adult
+notes: Blunt-headed schooling minnows of slower water. White and gray streamers on sinking tips
+  work the pool tails they school over.
+sources:
+  - https://en.wikipedia.org/wiki/Pimephales_notatus

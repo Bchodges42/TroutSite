@@ -1,0 +1,65 @@
+id: river-bed-burrower
+commonName: River Bed Burrower
+sciName: Pentagenia vittigera
+order: Ephemeroptera
+family: Ephemeridae
+sizeRange:
+  - 8
+  - 12
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - pale-tan
+    - cream-yellow
+  mouthparts: burrowing-collector
+habitat:
+  - silt and clay banks
+  - large rivers
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/river-bed-burrower.svg
+stages:
+  - nymph
+  - dun
+notes: A mid-size burrowing mayfly of the big-river silt benches; duns flush at dusk and
+  spinners return pale in twilight. Tan burrower nymphs drifted along the clay banks of big
+  Tennessee rivers work through summer.
+sources:
+  - https://bugguide.net

@@ -1,0 +1,21 @@
+id: red-river-clarksville
+name: Red River (Montgomery County)
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-nashville
+gaugeIds:
+  - "03436100"
+stockingProgram: true
+idealFlow:
+  - min: 60
+    max: 500
+    unit: cfs
+notes: TWRA winter-stocked reaches near Clarksville. Mud-prone watershed — check the Port Royal
+  gauge after any rain.
+officialSources:
+  - label: USGS Water Data — monitoring location 03436100
+    url: https://waterdata.usgs.gov/monitoring-location/03436100/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

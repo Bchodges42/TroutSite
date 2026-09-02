@@ -1,0 +1,57 @@
+id: cricket
+commonName: Field Cricket
+sciName: Gryllus spp.
+order: Orthoptera
+family: Gryllidae
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - black
+    - dark-brown
+  mouthparts: chewing
+habitat:
+  - banks
+  - grass margins
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/cricket.svg
+stages:
+  - adult
+notes: Crickets blunder onto the water more than anglers credit — especially after mowing and
+  cold snaps. A black foam cricket is a great change-up after hopper refusals.
+sources:
+  - https://bugguide.net

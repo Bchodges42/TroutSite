@@ -1,0 +1,18 @@
+id: near-nuff-sculpin
+name: Near Nuff Sculpin
+type: streamer
+imitates:
+  - sculpin
+hookSizes:
+  - 2
+  - 4
+  - 6
+  - 8
+difficulty: 3
+materials:
+  - mottled deer hair
+  - barred rubber legs
+  - polarfiber
+notes: Blane Chocklett’s big sculpin — the brown-trout lunchbox on Tennessee tailwaters.
+license: attributed
+attribution: Designed by Blane Chocklett

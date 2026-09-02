@@ -1,0 +1,25 @@
+id: pats-rubber-legs
+name: Pat’s Rubber Legs
+type: nymph
+imitates:
+  - giant-black-stone
+  - golden-stone
+  - shortwing-golden-stone
+  - little-golden-stone
+  - yellow-sally
+  - early-black-stone
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 1
+materials:
+  - chenille body
+  - livid or brown rubber legs
+  - bead
+notes: Pat Bennett’s wormy rubber-legged stone — perhaps the single best nymph ever pitched
+  below a Tennessee dam.
+license: attributed
+attribution: Designed by Pat Bennett (Idaho)

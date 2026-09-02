@@ -1,0 +1,17 @@
+id: zebra-midge-red
+name: Zebra Midge (Red)
+type: nymph
+imitates:
+  - blood-midge
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+difficulty: 1
+materials:
+  - red thread body
+  - silver wire rib
+  - bead head optional
+notes: The blood-midge larva — red, slim, unkillable.
+license: public-domain

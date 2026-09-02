@@ -1,0 +1,61 @@
+id: golden-flathead
+commonName: Golden Flathead Dun
+sciName: Epeorus vitreus
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - pale-yellow
+    - cream
+    - yellow-olive
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - boulders
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/golden-flathead.svg
+stages:
+  - nymph
+  - dun
+notes: A yellow-tinged flathead of clean riffles; its gill plates flash gold against dark stone.
+  Imitate with pale-yellow comparaduns in fast pockets.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

@@ -1,0 +1,16 @@
+id: japanese-beetle-dry
+name: Japanese Beetle Dry
+type: terrestrial
+imitates:
+  - japanese-beetle
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - copper-brown foam
+  - metallic green flash back
+  - rubber legs
+notes: Copper-and-green for the invasive summer flopper of Middle Tennessee.
+license: public-domain

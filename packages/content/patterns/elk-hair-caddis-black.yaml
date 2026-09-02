@@ -1,0 +1,20 @@
+id: elk-hair-caddis-black
+name: Elk Hair Caddis (Black)
+type: dry
+imitates:
+  - grannom
+  - little-black-sedge
+  - dark-blue-sedge
+  - early-black-caddis
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - black elk hair
+  - palmered grizzly hackle
+  - black dubbing
+notes: "Black caddis water: grannom springs and Chimarra summers."
+license: attributed
+attribution: Designed by Al Troth

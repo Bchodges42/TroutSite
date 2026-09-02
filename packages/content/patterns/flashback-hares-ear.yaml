@@ -1,0 +1,18 @@
+id: flashback-hares-ear
+name: Flashback Hare’s Ear
+type: nymph
+imitates:
+  - march-brown
+  - light-cahill
+  - spiny-crawler-mayfly
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - hare’s ear dubbing
+  - pearl Flashabou
+  - gold tinsel rib
+notes: Hare’s Ear with a pearl case — the go-to under a hopper in summer.
+license: public-domain

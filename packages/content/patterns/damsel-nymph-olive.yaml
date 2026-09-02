@@ -1,0 +1,18 @@
+id: damsel-nymph-olive
+name: Damselfly Nymph (Olive)
+type: nymph
+imitates:
+  - damselfly-nymph
+  - dragonfly-nymph
+hookSizes:
+  - 8
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - olive dubbing
+  - marabou tail
+  - mono eyes
+notes: Slim olive paddler for weedy tailwater margins — short, sharp strips.
+license: public-domain

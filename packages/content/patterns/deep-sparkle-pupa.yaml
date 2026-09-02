@@ -1,0 +1,18 @@
+id: deep-sparkle-pupa
+name: Deep Sparkle Pupa
+type: nymph
+imitates:
+  - spotted-sedge
+  - green-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 3
+materials:
+  - Antron yarn shell
+  - dubbing loop body
+  - hare’s ear
+notes: The sunk version of the Sparkle Pupa for the pre-hatch drift.
+license: attributed
+attribution: Designed by Gary LaFontaine

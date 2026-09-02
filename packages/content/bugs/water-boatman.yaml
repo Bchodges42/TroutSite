@@ -1,0 +1,58 @@
+id: water-boatman
+commonName: Water Boatman
+sciName: Corixidae (family)
+order: Hemiptera
+family: Corixidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - gray-olive
+    - mottled-gray
+  mouthparts: scraping-sucking
+habitat:
+  - slack water
+  - weed beds
+  - glides
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/water-boatman.svg
+stages:
+  - adult
+notes: Mottled, boat-shaped true bugs that row with their middle legs across quiet tailwater
+  margins. Air-carry makes them bounce off the surface film.
+sources:
+  - https://bugguide.net

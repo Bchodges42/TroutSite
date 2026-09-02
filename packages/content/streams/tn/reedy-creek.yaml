@@ -1,0 +1,21 @@
+id: reedy-creek
+name: Reedy Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-holston
+gaugeIds:
+  - "03487602"
+stockingProgram: true
+idealFlow:
+  - min: 5
+    max: 60
+    unit: cfs
+notes: Small Sullivan County creek receiving TWRA spring rainbow stocking. Spring-fed pockets
+  and park access in Kingsport; flows track rain closely.
+officialSources:
+  - label: USGS Water Data — monitoring location 03487602
+    url: https://waterdata.usgs.gov/monitoring-location/03487602/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

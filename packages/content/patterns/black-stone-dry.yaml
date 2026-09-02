@@ -1,0 +1,21 @@
+id: black-stone-dry
+name: Black Stonefly Dry
+type: dry
+imitates:
+  - giant-black-stone
+  - early-black-stone
+  - tiny-winter-stone
+  - needlefly
+hookSizes:
+  - 8
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - black dubbing
+  - black elk hair
+  - grizzly hackle
+notes: For adult stone shuffles on warm March afternoons and January tailwater bridges.
+license: public-domain

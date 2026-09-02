@@ -1,0 +1,57 @@
+id: dragonfly-nymph
+commonName: Dragonfly Nymph
+sciName: Gomphidae / Libellulidae
+order: Odonata
+family: Gomphidae / Libellulidae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive-brown
+    - dark-olive
+  mouthparts: predatory-grasping
+habitat:
+  - silt and weed flats
+  - slack water
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/dragonfly-nymph.svg
+stages:
+  - nymph
+notes: Chunky ambush predators of warm tailwater flats — big browns hunt them. A bulky olive
+  nymph crawled slowly along the bottom is the right retrieve.
+sources:
+  - https://bugguide.net

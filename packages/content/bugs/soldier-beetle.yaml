@@ -1,0 +1,46 @@
+id: soldier-beetle
+commonName: Soldier Beetle
+sciName: Chauliognathus pensylvanicus
+order: Coleoptera
+family: Cantharidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - golden-amber
+    - black-marked
+  mouthparts: chewing
+habitat:
+  - goldenrod meadows near rivers
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 8
+    - 9
+    - 10
+illustration: illustrations/soldier-beetle.svg
+stages:
+  - adult
+notes: Soft-bodied amber beetles swarm goldenrod banks in early fall and regularly end up
+  drifting. A slim amber dry fished along grassy banks is a neat September trick.
+sources:
+  - https://bugguide.net

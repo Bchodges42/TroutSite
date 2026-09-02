@@ -1,0 +1,24 @@
+id: boone-tailwater
+name: Boone Tailwater (South Fork Holston River)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-east-holston
+gaugeIds:
+  - "03486810"
+stockingProgram: true
+idealFlow:
+  - min: 150
+    max: 1200
+    unit: cfs
+notes: Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and
+  brown trout. Flow swings hard with TVA generation; treat the ideal band as a guideline and
+  verify releases.
+officialSources:
+  - label: USGS Water Data — monitoring location 03486810
+    url: https://waterdata.usgs.gov/monitoring-location/03486810/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,25 @@
+id: south-holston-river
+name: South Fork Holston River (South Holston tailwater)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-east-holston
+gaugeIds:
+  - "03476500"
+stockingProgram: true
+idealFlow:
+  - min: 250
+    max: 2500
+    unit: cfs
+notes: "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s
+  richest tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows.
+  Ideal-flow band spans typical one- to two-turbine generation; the river is comfortably
+  wadeable only below roughly 1,000 cfs — always check the TVA release schedule first."
+officialSources:
+  - label: USGS Water Data — monitoring location 03476500
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

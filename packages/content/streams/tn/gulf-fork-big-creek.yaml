@@ -1,0 +1,17 @@
+id: gulf-fork-big-creek
+name: Gulf Fork Big Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-pigeon-frenchbroad
+gaugeIds: []
+stockingProgram: true
+idealFlow:
+  - min: 3
+    max: 30
+    unit: cfs
+notes: Small TWRA spring-stocked tributary near the NC line in Cocke County.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

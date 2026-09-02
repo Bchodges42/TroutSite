@@ -1,0 +1,49 @@
+id: blue-quill
+commonName: Blue Quill
+sciName: Paraleptophlebia adoptiva
+order: Ephemeroptera
+family: Leptophlebiidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - mahogany
+    - dark-brown
+  mouthparts: collector-gatherer
+habitat:
+  - mountain creeks
+  - riffles
+  - glides
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+  tn-northeast-watauga:
+    - 4
+    - 5
+  tn-east-clinch:
+    - 4
+    - 5
+  tn-se-hiwassee:
+    - 4
+    - 5
+  tn-cumberland-plateau:
+    - 4
+    - 5
+illustration: illustrations/blue-quill.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: A dark, delicate spring mayfly of Appalachian creeks; the dun’s slate-blue wings give the
+  name. Blue-quill hatches often overlap Quill Gordon emergences.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

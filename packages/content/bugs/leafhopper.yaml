@@ -1,0 +1,57 @@
+id: leafhopper
+commonName: Leafhopper
+sciName: Cicadellidae (family)
+order: Hemiptera
+family: Cicadellidae
+sizeRange:
+  - 16
+  - 20
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - green
+    - yellow-green
+  mouthparts: piercing-sucking
+habitat:
+  - meadows
+  - streamside vegetation
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/leafhopper.svg
+stages:
+  - adult
+notes: "Tiny green wedge-shaped hoppers abound on streamside grass. A #16-18 green dry fished
+  hopper-style in flat glides picks up curious lookers."
+sources:
+  - https://bugguide.net

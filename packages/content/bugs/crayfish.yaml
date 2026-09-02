@@ -1,0 +1,107 @@
+id: crayfish
+commonName: Crayfish
+sciName: Faxonius / Cambarus spp.
+order: Decapoda
+family: Cambaridae
+sizeRange:
+  - 2
+  - 8
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive-brown
+    - rust
+    - mottled-brown
+  mouthparts: omnivorous-grasping
+habitat:
+  - rocky runs
+  - banks
+  - tailwater flats
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/crayfish.svg
+stages:
+  - larva
+notes: Every Tennessee river has crayfish; molting "soft-shell" individuals are the target of
+  big brown trout. Olive and rust clawed patterns dead-drifted then hopped along banks in
+  summer.
+sources:
+  - https://en.wikipedia.org/wiki/Cambaridae

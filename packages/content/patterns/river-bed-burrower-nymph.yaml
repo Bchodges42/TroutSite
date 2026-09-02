@@ -1,0 +1,16 @@
+id: river-bed-burrower-nymph
+name: River Bed Burrower Nymph
+type: nymph
+imitates:
+  - river-bed-burrower
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - pale tan dubbing
+  - biot tails
+  - mono rib
+notes: A pale, stout burrower for big-river clay banks.
+license: public-domain

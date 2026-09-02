@@ -1,0 +1,63 @@
+id: fishing-spider
+commonName: Fishing Spider
+sciName: Dolomedes spp.
+order: Araneae
+family: Pisauridae
+sizeRange:
+  - 6
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - gray-brown
+    - dark-brown
+  mouthparts: chewing-predatory
+habitat:
+  - water surface
+  - rocks and logs at the margins
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/fishing-spider.svg
+stages:
+  - adult
+notes: Big rafts of leggy spiders actually skate Smokies pools at night taking small fish and
+  invertebrates. A skated spider pattern at dusk produces takes that feel unfair.
+sources:
+  - https://bugguide.net

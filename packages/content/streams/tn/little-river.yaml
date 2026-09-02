@@ -1,0 +1,27 @@
+id: little-river
+name: Little River (Smokies / Blount County)
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-smokies
+gaugeIds:
+  - "03497300"
+  - "03498500"
+stockingProgram: true
+idealFlow:
+  - min: 50
+    max: 350
+    unit: cfs
+notes: "The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA
+  spring stocking on the lower, out-of-park reaches near Walland and Maryville. The Townsend
+  gauge is the wade-flow reference; park waters have special regs — verify with NPS."
+officialSources:
+  - label: USGS Water Data — monitoring location 03497300
+    url: https://waterdata.usgs.gov/monitoring-location/03497300/
+  - label: USGS Water Data — monitoring location 03498500
+    url: https://waterdata.usgs.gov/monitoring-location/03498500/
+  - label: NPS — Great Smoky Mountains National Park fishing information
+    url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

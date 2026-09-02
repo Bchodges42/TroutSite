@@ -1,0 +1,21 @@
+id: clouser-minnow
+name: Clouser Minnow
+type: streamer
+imitates:
+  - threadfin-shad
+  - common-shiner
+  - bluntnose-minnow
+  - creek-chub
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - white bucktail
+  - colored bucktail topping
+  - dumbbell eyes
+notes: Bob Clouser’s upside-down jig minnow — silver-and-blue for shad, olive for chubs.
+license: attributed
+attribution: Designed by Bob Clouser (Pennsylvania, 1987)

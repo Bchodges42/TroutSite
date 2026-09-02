@@ -1,0 +1,16 @@
+id: gray-drake-spinner
+name: Gray Drake Spinner
+type: spinner
+imitates:
+  - gray-drake
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - pale gray dubbing
+  - spent grizzly and dun hackle
+  - white spent wings
+notes: Mottled-gray spent profile for backwater spinner falls.
+license: public-domain

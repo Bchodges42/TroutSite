@@ -1,0 +1,18 @@
+id: isonychia-nymph
+name: Isonychia Nymph
+type: nymph
+imitates:
+  - slate-drake
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - mahogany-brown dubbing
+  - dark dun hackle
+  - brown biot
+  - lead-free wire
+notes: Slim, mahogany and fast — strip it in short twitches to mimic the darting swim of this
+  strong crawler.
+license: public-domain

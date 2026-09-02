@@ -1,0 +1,18 @@
+id: double-bead-stone
+name: Double-Bead Stonefly Nymph
+type: nymph
+imitates:
+  - golden-stone
+  - giant-black-stone
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - two brass beads
+  - mottled dubbing
+  - goose biots
+  - hen hackle
+notes: Doubled weight for deep tailwater seams.
+license: public-domain
