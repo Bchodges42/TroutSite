@@ -1,0 +1,221 @@
+/*
+ * @trout/ui design tokens — tailwater slate/green palette with amber accents.
+ * ROLE 1 owns this file; consuming roles override the dark-mode block in their own CSS if needed.
+ * Components in this package style themselves from these variables only.
+ */
+:root {
+  /* Tailwater slate (neutrals) */
+  --trout-slate-50: #f8fafc;
+  --trout-slate-100: #f1f5f9;
+  --trout-slate-200: #e2e8f0;
+  --trout-slate-300: #cbd5e1;
+  --trout-slate-400: #94a3b8;
+  --trout-slate-500: #64748b;
+  --trout-slate-600: #475569;
+  --trout-slate-700: #334155;
+  --trout-slate-800: #1e293b;
+  --trout-slate-900: #0f172a;
+
+  /* Tailwater green (primary) */
+  --trout-green-100: #dcfce7;
+  --trout-green-200: #bbf7d0;
+  --trout-green-300: #86efac;
+  --trout-green-500: #22c55e;
+  --trout-green-600: #16a34a;
+  --trout-green-700: #15803d;
+  --trout-green-800: #166534;
+  --trout-green-900: #14532d;
+
+  /* Amber accents */
+  --trout-amber-100: #fef3c7;
+  --trout-amber-400: #fbbf24;
+  --trout-amber-500: #f59e0b;
+  --trout-amber-600: #d97706;
+
+  /* Semantic surface colors */
+  --trout-color-bg: var(--trout-slate-50);
+  --trout-color-surface: #ffffff;
+  --trout-color-text: var(--trout-slate-800);
+  --trout-color-text-muted: var(--trout-slate-500);
+  --trout-color-border: var(--trout-slate-200);
+  --trout-color-primary: var(--trout-green-700);
+  --trout-color-primary-hover: var(--trout-green-800);
+  --trout-color-accent: var(--trout-amber-500);
+  --trout-color-danger: #dc2626;
+
+  /* Condition/status colors (fishability, data freshness) */
+  --trout-status-good: var(--trout-green-600);
+  --trout-status-fair: var(--trout-amber-500);
+  --trout-status-poor: var(--trout-color-danger);
+  --trout-status-unknown: var(--trout-slate-400);
+
+  /* Shape & depth */
+  --trout-radius-sm: 4px;
+  --trout-radius-md: 8px;
+  --trout-radius-lg: 12px;
+  --trout-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.08);
+  --trout-shadow-md: 0 2px 8px rgb(15 23 42 / 0.12);
+
+  /* Typography */
+  --trout-font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --trout-font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+
+  /* Spacing scale */
+  --trout-space-1: 4px;
+  --trout-space-2: 8px;
+  --trout-space-3: 12px;
+  --trout-space-4: 16px;
+  --trout-space-6: 24px;
+}
+
+/* ---------- Base primitives (owned by ROLE 1) ---------- */
+
+.trout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--trout-space-2);
+  border-radius: var(--trout-radius-md);
+  border: 1px solid transparent;
+  font-family: var(--trout-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: var(--trout-space-2) var(--trout-space-4);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+.trout-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.trout-btn--primary {
+  background: var(--trout-color-primary);
+  color: #ffffff;
+}
+.trout-btn--primary:hover:not(:disabled) {
+  background: var(--trout-color-primary-hover);
+}
+.trout-btn--secondary {
+  background: var(--trout-color-surface);
+  color: var(--trout-color-primary);
+  border-color: var(--trout-color-border);
+}
+.trout-btn--secondary:hover:not(:disabled) {
+  border-color: var(--trout-color-primary);
+}
+.trout-btn--ghost {
+  background: transparent;
+  color: var(--trout-color-text);
+}
+.trout-btn--ghost:hover:not(:disabled) {
+  background: var(--trout-slate-100);
+}
+.trout-btn--sm {
+  font-size: 0.8rem;
+  padding: var(--trout-space-1) var(--trout-space-2);
+}
+.trout-btn--lg {
+  font-size: 1.05rem;
+  padding: var(--trout-space-3) var(--trout-space-6);
+}
+
+.trout-card {
+  background: var(--trout-color-surface);
+  border: 1px solid var(--trout-color-border);
+  border-radius: var(--trout-radius-lg);
+  box-shadow: var(--trout-shadow-sm);
+  padding: var(--trout-space-4);
+  font-family: var(--trout-font-body);
+  color: var(--trout-color-text);
+}
+
+.trout-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--trout-space-1);
+  border-radius: 999px;
+  font-family: var(--trout-font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 6px 10px;
+  background: var(--trout-slate-100);
+  color: var(--trout-slate-700);
+  border: 1px solid var(--trout-slate-200);
+}
+.trout-chip--accent {
+  background: var(--trout-amber-100);
+  color: var(--trout-amber-600);
+  border-color: var(--trout-amber-400);
+}
+.trout-chip--good {
+  background: var(--trout-green-100);
+  color: var(--trout-green-800);
+  border-color: var(--trout-green-300);
+}
+.trout-chip--fair {
+  background: var(--trout-amber-100);
+  color: var(--trout-amber-600);
+  border-color: var(--trout-amber-400);
+}
+.trout-chip--poor {
+  background: #fee2e2;
+  color: var(--trout-color-danger);
+  border-color: var(--trout-color-danger);
+}
+
+.trout-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--trout-space-2);
+  font-family: var(--trout-font-body);
+  font-size: 0.8rem;
+  border-left: 3px solid var(--trout-status-unknown);
+  background: var(--trout-color-surface);
+  border-radius: var(--trout-radius-sm);
+  padding: var(--trout-space-1) var(--trout-space-2);
+  border-top: 1px solid var(--trout-color-border);
+  border-right: 1px solid var(--trout-color-border);
+  border-bottom: 1px solid var(--trout-color-border);
+}
+.trout-badge__label {
+  color: var(--trout-color-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.trout-badge__value {
+  color: var(--trout-color-text);
+  font-weight: 700;
+}
+.trout-badge--good {
+  border-left-color: var(--trout-status-good);
+}
+.trout-badge--fair {
+  border-left-color: var(--trout-status-fair);
+}
+.trout-badge--poor {
+  border-left-color: var(--trout-status-poor);
+}
+
+.trout-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--trout-space-2);
+  text-align: center;
+  font-family: var(--trout-font-body);
+  color: var(--trout-color-text-muted);
+  border: 1px dashed var(--trout-color-border);
+  border-radius: var(--trout-radius-lg);
+  padding: var(--trout-space-6);
+}
+.trout-empty__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--trout-color-text);
+}
+.trout-empty__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
