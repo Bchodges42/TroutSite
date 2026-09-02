@@ -112,6 +112,13 @@ Why: pnpm rejects literal comments in package.json (`Unexpected token '/'`), but
 the npm-documented comment convention and parses everywhere.
 Impact: none — the ownership text is intact at the top of every package.json.
 
+### [ROLE 1] 2026-09-02 — `workbox-window` added explicitly to apps/web devDeps
+Decision: `apps/web` declares `workbox-window@^7` in devDependencies.
+Why: `vite-plugin-pwa`'s `virtual:pwa-register` imports `workbox-window` without declaring it, which
+pnpm's strict node_modules layout correctly rejects at build time. It is part of the Workbox
+toolchain the pinned stack already names.
+Impact: none for other roles; standard fix for pnpm + vite-plugin-pwa.
+
 ### [ROLE 1] 2026-09-02 — no GitHub remote connected at Phase-0 exit
 Decision: CI workflow committed; repo runs locally only.
 Why: the user did not provide a GitHub remote URL for this project.
