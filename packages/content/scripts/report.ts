@@ -25,7 +25,8 @@ const rows = (m: Map<string, number>, label: string) =>
   [...m.entries()]
     .sort((a, b) => b[1] - a[1])
     .map(([k, v]) => `  ${k.padEnd(34)} ${String(v).padStart(3)}`)
-    .join('\n') + `\n  ${'— total'.padEnd(34)} ${String(m.size).padStart(3)} ${label}`;
+    .join('\n') +
+  `\n  ${'— total'.padEnd(34)} ${String([...m.values()].reduce((a, b) => a + b, 0)).padStart(3)} ${label}`;
 
 console.log(`
 === TROUT CONTENT REPORT (Role 4) ===
