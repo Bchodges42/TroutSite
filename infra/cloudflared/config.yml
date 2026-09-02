@@ -1,0 +1,21 @@
+# ROLE 1 — cloudflared tunnel config TEMPLATE (see infra/RUNBOOK.md §2 for setup steps).
+# Copy values from `cloudflared tunnel create trout`, then replace APP.YOUR-DOMAIN.com.
+# The tunnel maps the public domain to the local API origin on 8787 (00-SHARED-CONTEXT §9).
+#
+# Do NOT commit real tunnel IDs or credentials paths — fill them in on the laptop only.
+
+tunnel: REPLACE_WITH_TUNNEL_ID
+credentials-file: C:\Users\Benjamin\.cloudflared\REPLACE_WITH_TUNNEL_ID.json
+
+ingress:
+  # Main app entry (PWA + snapshot JSON). §9: domain → localhost:8787.
+  - hostname: APP.YOUR-DOMAIN.com
+    service: http://localhost:8787
+  # Shop portal (ROLE 4 app). Uncomment + route DNS when the portal is served.
+  # - hostname: PORTAL.YOUR-DOMAIN.com
+  #   service: http://localhost:8788
+  # Marketing site (ROLE 5 build output). Uncomment when served.
+  # - hostname: WWW.YOUR-DOMAIN.com
+  #   service: http://localhost:8789
+  # Always last:
+  - service: http_status:404
