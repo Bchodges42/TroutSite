@@ -124,3 +124,96 @@ Decision: CI workflow committed; repo runs locally only.
 Why: the user did not provide a GitHub remote URL for this project.
 Impact: "remote pending" — Actions will go green once the remote is connected and pushed
 (see README).
+
+### [ROLE 3] 2026-09-02 — snapshot payloads are exactly contract-shaped; no file-level wrapper
+Decision: every file under `apps/web/public/data/` validates against the frozen §6 schemas
+(`Stream[]`, `ConditionSnapshot[]`, `StockingEvent[]`, `Shop[]`, `ShopReport[]`) with NO extra
+`{generatedAt, data}` wrapper. Freshness rides the per-item contract fields: conditions carry
+`fetchedAt` + `nextExpectedUpdate` per snapshot; stocking events carry `fetchedAt`; reports carry
+`publishedAt`. Staleness contract for the PWA: **conditions are stale when `now > nextExpectedUpdate`**
+(builder sets it to now+1h after a healthy gauges run, `now` (immediately stale) when the last
+gauges job errored); **stocking is stale when `fetchedAt` is > 26h old** (daily 06:00 job; failed
+states are not rewritten, so their files simply age).
+Why: a wrapper would break consumers that validate GET responses with the frozen Zod schemas
+(§6: `GET /v1/stocking/{state}.json → StockingEvent[]`), and Role 2 should not need a second shape.
+Impact: Role 2 reads the files as the endpoint payloads they are; Role 6's checklist item 3 works
+against the same validation.
+
+### [ROLE 3] 2026-09-02 — migration 002: normalized gauge columns + index
+Decision: `migrations/002_gauge_readings_raw.sql` adds `cfs`, `height_ft`, `temp_c`, `observed_at`
+columns and an `(gauge_id, observed_at)` index to Role 1's `gauge_readings_raw`; the raw USGS
+payload column is untouched as the audit trail. Raw rows older than 90 days are pruned per run.
+Why: sanctioned by the role brief ("Role 1's schema; extend via documented migration if needed");
+"latest per gauge" becomes an indexed lookup instead of re-parsing payloads at snapshot time.
+Impact: none on other roles; Role 1's migrations test updated inside apps/api (my owned package)
+to expect two applied migrations.
+
+### [ROLE 3] 2026-09-02 — /healthz extended additively with a job health summary
+Decision: `GET /healthz` returns `{ ok: true }` when the app has no DB wired, and
+`{ ok: true, jobs: { <job>: { job, status, startedAt, finishedAt, detail } } }` when wired (server
+runtime). Job names: `gauges`, `stocking`, `stocking:<STATE>`, `snapshots`, `seed`.
+Why: the deliverable requires a job health summary; §6 permits additive changes; `ok: true`
+remains the liveness signal Role 1's CI/infra probes.
+Impact: pm2/infra checks should keep asserting `ok === true`; dashboards can now read `jobs`.
+
+### [ROLE 3] 2026-09-02 — portal auth shape: `Authorization: Bearer`, stateless HMAC tokens
+Decision: shop tokens are `t1.<base64url(shopId)>.<base64url(HMAC-SHA256(PORTAL_SECRET, shopId))>`
+sent as `Authorization: Bearer <token>`; verification is constant-time with no server-side token
+store. `GET /v1/portal/me` → `{ shop: { id, name, town, websiteUrl, reportsEnabled } }`.
+`POST /v1/portal/reports` accepts `{ streamId?, date?, body, hotPatterns?: [{patternId, hookSize?}] }`;
+the server fills `id`, `shopId`, `shopName`, `attributionUrl` (shop website), `publishedAt` — a shop
+can never forge attribution. Without `PORTAL_SECRET` the routes fail closed with 503. Rate limit:
+20 reports/shop/hour (in-memory, nothing persisted). Body: plain text ≤ 4000 chars after
+sanitization (tags stripped, control chars removed), pattern/stream refs are strict slugs,
+≤ 25 patterns, hook sizes 1–24.
+Why: the endpoint map fixes only the paths ("shop token in header"), so Bearer + HMAC was chosen
+for statelessness (privacy-by-architecture: nothing about the requester is stored — no IPs in
+logs, no sessions).
+Impact: Role 4's admin SPA must send `Authorization: Bearer`; operators mint tokens with
+`pnpm --filter api token -- --shop=<shopId>`. See `docs/reports/ROLE-3-HANDOFF.md`.
+
+### [ROLE 3] 2026-09-02 — TWRA source target and schedule→event mapping
+Decision: researched 2026-09-02 — the 2026 stocking schedule at
+https://www.tn.gov/twra/fishing/trout-information-stockings.html renders an empty DataTables shell;
+rows load from a CMS "excel-driven" JSON file whose URL (containing a redeploy-fragile numeric id)
+is re-resolved from the page's `data-config` attribute on every fetch; raw page HTML + JSON are
+both snapshotted to `apps/api/data/raw/TN/{date}.*`. Mapping: `LOCATION`→`streamName`,
+`COUNTY`→`county`, `SPECIES`→ one event per species named; date = exact `STOCKING DAY` >
+`STOCKING WEEK` (week-of Sunday) > `TBD M/YYYY` (first of month) > `STOCKING MONTHS` initials
+(expanded to their next calendar occurrence, position-aware for repeated J/M/A initials); rows
+with no usable date are skipped with a warning. `count` is omitted (TWRA does not publish it in
+the schedule) and past dates are retained (consumers filter "upcoming").
+Why: the JSON source is far more stable than scraping rendered HTML; the mapping is lossless
+within the frozen contract and deterministic (idempotent re-scrapes upsert by content hash id).
+Impact: Role 2 should treat stocking as a forward-looking schedule (dates may be past → filter);
+stocking events have no `count`. A TWRA redesign soft-fails: warning in jobs_log + healthz,
+previous events retained, process survives.
+
+### [ROLE 3] 2026-09-02 — bootstrap content fixtures under apps/api/fixtures/content
+Decision: two TN stream YAMLs + one fictional shop YAML live in `apps/api/fixtures/content/` so
+tests and live demos run before Role 4's pack lands. One stream wires the live-verified USGS
+gauge 03486000 ("Watauga River at Elizabethton TN"); the other is explicitly fictional with no
+gauge (exercises the score-0/no-data path). Gauge IDs are consumed from `packages/content/streams`
+via the existing seed (`TROUT_CONTENT_DIR` override kept).
+Why: the gauges job has nothing to fetch until Role 4 ships streams; fixtures let the pipeline be
+verified end-to-end (DoD "full cron run against live USGS + one live state page").
+Impact: Role 4's real content supersedes these; nobody should copy fixture YAML into
+packages/content wholesale. NOTE: the shared content README still says "launch regions TX/OK/AR"
+while the master plan §2/§7 says Tennessee — flagging for Role 4/6; master plan wins.
+
+### [ROLE 3] 2026-09-02 — generated snapshots are gitignored build artifacts
+Decision: added one line to the root `.gitignore` (Role 1's file): `apps/web/public/data/` is
+treated like `dist/` — regenerated by `pnpm --filter api snapshots` (wired into deploy.sh via the
+`snapshots` script Role 1 anticipated) and by cron after each ingestion.
+Why: snapshots are derived data (regenerated hourly); committing them would churn git and risk
+stale serving. This is the only edit made outside `apps/api/**`.
+Impact: Role 2 dev servers see no data files until one ingest run; Role 5's e2e should generate
+them in setup or stub. If the team prefers committed snapshots for dev convenience, delete the
+.gitignore line and commit the folder (both work with the builder).
+
+### [ROLE 3] 2026-09-02 — fetch retries with backoff (live-observed transient failures)
+Decision: all USGS + TWRA fetches retry transient failures (network errors, 5xx, 429) up to 3
+attempts with exponential backoff (1–1.5s base). Non-transient 4xx fail immediately.
+Why: tn.gov intermittently resets connections (observed live during verification: "fetch failed"
+with no HTTP response, then success on manual retry); polite retry is cheaper than failed runs.
+Impact: none on other roles; job durations may be ~2-3s longer under transient failure.

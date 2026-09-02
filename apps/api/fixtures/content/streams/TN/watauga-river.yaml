@@ -1,0 +1,21 @@
+# Test/bootstrap fixture content (ROLE 3) — used by apps/api tests and live-run demos.
+# The canonical content pack lives in packages/content (OWNER: ROLE 4); this file set
+# exists only so the pipelines are exercisable before that pack lands.
+# Gauge 03486000 verified live 2026-09-02: "WATAUGA RIVER AT ELIZABETHTON, TN".
+id: watauga-river
+name: Watauga River (Tailwater)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-east-tailwaters
+gaugeIds: ["03486000"]
+stockingProgram: true
+idealFlow:
+  - min: 100
+    max: 500
+    unit: cfs
+notes: Tailrace below Wilbur Dam; blue-winged olive and caddis activity much of the year.
+officialSources:
+  - label: TWRA trout stocking information
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: USGS 03486000 gauge
+    url: https://waterdata.usgs.gov/monitoring-location/03486000
