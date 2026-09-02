@@ -1,0 +1,7 @@
+{
+  "//": "OWNER: ROLE 5 — Playwright e2e suite (offline hatch flow + online conditions flow, §12 #6). Placeholder created by ROLE 1 so the repo layout matches §5. ROLE 5 fills it in.",
+  "name": "@trout/e2e",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module"
+}
