@@ -1,0 +1,5 @@
+body {
+  background: var(--trout-color-bg);
+  color: var(--trout-color-text);
+  font-family: var(--trout-font-body);
+}
