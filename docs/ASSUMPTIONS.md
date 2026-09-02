@@ -105,6 +105,13 @@ Node 24 runtime and this machine has no MSVC toolchain, so v11 cannot install he
 Node 24 prebuilds and the same synchronous API used by the skeleton.
 Impact: none for other roles (same API); CI (Node 20) also has v12 prebuilds.
 
+### [ROLE 1] 2026-09-02 — ownership comments use the `"//"` JSON key, not literal comments
+Decision: ownership markers in package.json files are stored as a first-field `"//": "OWNER: …"`
+entry instead of a literal `// …` comment line.
+Why: pnpm rejects literal comments in package.json (`Unexpected token '/'`), but the `"//"` key is
+the npm-documented comment convention and parses everywhere.
+Impact: none — the ownership text is intact at the top of every package.json.
+
 ### [ROLE 1] 2026-09-02 — no GitHub remote connected at Phase-0 exit
 Decision: CI workflow committed; repo runs locally only.
 Why: the user did not provide a GitHub remote URL for this project.
