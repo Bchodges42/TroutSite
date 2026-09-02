@@ -11,6 +11,9 @@
     "start": "node dist/server.js",
     "start:cron": "node dist/cron.js",
     "seed": "pnpm --filter @trout/contracts build && tsx src/scripts/seed.ts",
+    "ingest": "tsx src/scripts/ingest.ts",
+    "snapshots": "pnpm --filter @trout/contracts build && tsx src/scripts/ingest.ts --job=snapshots",
+    "token": "tsx src/scripts/token.ts",
     "test": "vitest run",
     "lint": "eslint ."
   },
