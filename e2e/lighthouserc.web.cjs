@@ -1,3 +1,4 @@
+/* eslint-disable no-undef -- CommonJS config file run by Node (LHCI) */
 /**
  * Lighthouse CI — web PWA (ROLE 5). Accessibility gates at ≥ 90 today.
  * The full §12 #7 PWA gate (installable + offline pass) runs with `warn`

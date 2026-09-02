@@ -1,3 +1,4 @@
+/* eslint-disable no-undef -- CommonJS config file run by Node (LHCI) */
 /**
  * Lighthouse CI — marketing site (ROLE 5, DoD: Lighthouse SEO ≥ 95 on key
  * templates, a11y ≥ 90). Explicit URL list (via the zero-dep static server)
