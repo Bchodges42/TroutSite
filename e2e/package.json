@@ -1,7 +1,13 @@
 {
-  "//": "OWNER: ROLE 5 — Playwright e2e suite (offline hatch flow + online conditions flow, §12 #6). Placeholder created by ROLE 1 so the repo layout matches §5. ROLE 5 fills it in.",
+  "//": "OWNER: ROLE 5 — Playwright e2e suite (offline hatch flow + online conditions flow, §12 #6). Placeholder created by ROLE 1 so the repo layout matches §5. ROLE 5 fills it in. NOTE (ROLE 2): added only the devDependency + script below, additively, so the ROLE 2 specs in e2e/web/*.spec.ts can resolve @playwright/test (role scope #10); the harness/config lives in apps/web and stays ROLE 2's.",
   "name": "@trout/e2e",
   "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test:web": "playwright test -c ../apps/web/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1"
+  }
 }
