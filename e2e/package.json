@@ -1,7 +1,21 @@
 {
-  "//": "OWNER: ROLE 5 — Playwright e2e suite (offline hatch flow + online conditions flow, §12 #6). Placeholder created by ROLE 1 so the repo layout matches §5. ROLE 5 fills it in.",
+  "//": "OWNER: ROLE 5 — Playwright e2e + QA harness (offline hatch flow, privacy audit, fixtures, portal, SEO). Run via `pnpm --filter @trout/e2e e2e` (root alias requested in docs/ASSUMPTIONS.md). Requires built app dists first: `pnpm -r build`. NOTE: this package deliberately has NO `test` script so `pnpm -r test` (Role 1's CI) stays fast; Playwright runs via the e2e script + qa.yml.",
   "name": "@trout/e2e",
   "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "e2e": "playwright test",
+    "e2e:headed": "playwright test --headed",
+    "e2e:report": "playwright show-report",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "^1.48.2",
+    "@trout/contracts": "workspace:*",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.6.3",
+    "zod": "^3.23.8"
+  }
 }
