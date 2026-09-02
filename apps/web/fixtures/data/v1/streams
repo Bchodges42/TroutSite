@@ -1,0 +1,246 @@
+[
+  {
+    "id": "south-holston-river",
+    "name": "South Holston River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-tailwaters",
+    "gaugeIds": [
+      "03481500"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "World-famous sulphur fishery below South Holston Dam. Check TVA generation before wading; weirs create safe wading windows.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03481500 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03481500"
+      },
+      {
+        "label": "TVA dam release schedule — verify officially",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "watauga-river",
+    "name": "Watauga River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-tailwaters",
+    "gaugeIds": [
+      "03466000"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 150,
+        "max": 600,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cold, fertile water below Watauga Dam; long drift boats can run the Wilbur put-in stretch when generation is off.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03466000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03466000"
+      },
+      {
+        "label": "TVA dam release schedule — verify officially",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "hiwassee-river",
+    "name": "Hiwassee River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-hiwassee",
+    "gaugeIds": [
+      "03566000"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 250,
+        "max": 1200,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "State-designated trophy trout section at Reliance. Two-generator days push the river up fast — watch the gauge.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03566000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03566000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "caney-fork-river",
+    "name": "Caney Fork River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-middle",
+    "gaugeIds": [
+      "03430497"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 800,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Below Center Hill Dam. Generation can raise flows hundreds of cfs within minutes — know the retreat routes.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03430497 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03430497"
+      },
+      {
+        "label": "USACE Center Hill release schedule — verify officially",
+        "url": "https://www.lrn.usace.army.mil"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "elk-river",
+    "name": "Elk River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-middle",
+    "gaugeIds": [
+      "03599000"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 500,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Tims Ford tailwater with a strong summer dry-fly game; water can run warm in late August — check temperature.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03599000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03599000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "holston-river",
+    "name": "Holston River (Cherokee Tailwater)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-tailwaters",
+    "gaugeIds": [
+      "03587500"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 300,
+        "max": 1500,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Under-fished Cherokee Dam tailwater with big brown trout; access is limited to a few ramps.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03587500 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03587500"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "clinch-river",
+    "name": "Clinch River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-tailwaters",
+    "gaugeIds": [
+      "03452000"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 1000,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Norris Dam tailwater with deep slow pools; waxworm-quality midge water in winter, caddis in spring.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03452000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03452000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "duck-river",
+    "name": "Duck River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle",
+    "gaugeIds": [
+      "03537000"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 60,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Winter trout stocking reaches around Manchester and Norman Creek; smallmouth take over downstream in summer.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03537000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03537000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  }
+]

@@ -1,0 +1,387 @@
+[
+  {
+    "id": "pheasant-tail-nymph",
+    "name": "Pheasant Tail Nymph",
+    "type": "nymph",
+    "imitates": [
+      "baetis-bwo",
+      "ephemerella-sulphur",
+      "heptagenia-march-brown"
+    ],
+    "hookSizes": [
+      12,
+      14,
+      16,
+      18,
+      20,
+      22
+    ],
+    "difficulty": 2,
+    "materials": [
+      "pheasant tail fibres",
+      "copper wire",
+      "peacock herl",
+      "flex cement"
+    ],
+    "notes": "The default mayfly nymph in Tennessee tailwaters. Fish it deep under a strike indicator or as the dropper off a dry.",
+    "license": "public-domain"
+  },
+  {
+    "id": "rs2",
+    "name": "RS2",
+    "type": "emerger",
+    "imitates": [
+      "baetis-bwo",
+      "chironomid-midge"
+    ],
+    "hookSizes": [
+      16,
+      18,
+      20,
+      22,
+      24
+    ],
+    "difficulty": 2,
+    "materials": [
+      "grey microfibetts",
+      "olive dubbing",
+      "white antron"
+    ],
+    "notes": "Trailing-shuck emerger that excels during BWO and midge emergences; fish it in the film behind a dry.",
+    "license": "public-domain",
+    "attribution": "Designed by Rim Chung; tie to the original recipe and credit the designer."
+  },
+  {
+    "id": "sulphur-parachute",
+    "name": "Sulphur Parachute Dun",
+    "type": "dry",
+    "imitates": [
+      "ephemerella-sulphur"
+    ],
+    "hookSizes": [
+      14,
+      16,
+      18
+    ],
+    "difficulty": 3,
+    "materials": [
+      "sulphur super fine dubbing",
+      "white poly yarn post",
+      "grizzly hackle"
+    ],
+    "notes": "Rides low and visible; the go-to dun pattern on South Holston afternoon hatches.",
+    "license": "public-domain"
+  },
+  {
+    "id": "spent-sulphur-spinner",
+    "name": "Spent Sulphur Spinner",
+    "type": "spinner",
+    "imitates": [
+      "ephemerella-sulphur"
+    ],
+    "hookSizes": [
+      14,
+      16,
+      18
+    ],
+    "difficulty": 3,
+    "materials": [
+      "cream spinner poly",
+      "grizzly hackle",
+      "sulphur rust antron"
+    ],
+    "notes": "Dusk spinner fall on pool tails; look for the mating flight over the riffle.",
+    "license": "public-domain"
+  },
+  {
+    "id": "blue-winged-olive-dun",
+    "name": "Blue-Winged Olive Parachute",
+    "type": "dry",
+    "imitates": [
+      "baetis-bwo"
+    ],
+    "hookSizes": [
+      16,
+      18,
+      20,
+      22
+    ],
+    "difficulty": 2,
+    "materials": [
+      "olive dubbing",
+      "white poly post",
+      "blue dun hackle"
+    ],
+    "notes": "Overcast-day bread and butter; keep two sizes on you — the hatch often runs small.",
+    "license": "public-domain"
+  },
+  {
+    "id": "slate-drake-dun",
+    "name": "Slate Drake Parachute",
+    "type": "dry",
+    "imitates": [
+      "isonychia-slate"
+    ],
+    "hookSizes": [
+      10,
+      12,
+      14
+    ],
+    "difficulty": 3,
+    "materials": [
+      "slate poly",
+      "brown biot body",
+      "grizzly hackle"
+    ],
+    "notes": "Big summer mayfly on the Hiwassee; skitter it slightly at the end of the drift.",
+    "license": "public-domain"
+  },
+  {
+    "id": "march-brown-soft-hackle",
+    "name": "March Brown Soft Hackle",
+    "type": "wet",
+    "imitates": [
+      "heptagenia-march-brown",
+      "ephemerella-sulphur"
+    ],
+    "hookSizes": [
+      10,
+      12,
+      14
+    ],
+    "difficulty": 2,
+    "materials": [
+      "speckled hen hackle",
+      "mottled turkey tail",
+      "hare ear dubbing"
+    ],
+    "notes": "Swing it through riffle tails during the March Brown hatch; take is often a swirl.",
+    "license": "public-domain"
+  },
+  {
+    "id": "elk-hair-caddis",
+    "name": "Elk Hair Caddis",
+    "type": "dry",
+    "imitates": [
+      "hydropsyche-caddis",
+      "rhyacophila-green-sedge"
+    ],
+    "hookSizes": [
+      10,
+      12,
+      14,
+      16,
+      18
+    ],
+    "difficulty": 2,
+    "materials": [
+      "elk hair",
+      "brown rooster hackle",
+      "olive or tan dubbing"
+    ],
+    "notes": "The classic caddis adult — skittering it at dusk triggers violent takes on the Hiwassee.",
+    "license": "public-domain"
+  },
+  {
+    "id": "green-rock-worm",
+    "name": "Green Rock Worm",
+    "type": "nymph",
+    "imitates": [
+      "rhyacophila-green-sedge",
+      "hydropsyche-caddis"
+    ],
+    "hookSizes": [
+      10,
+      12,
+      14,
+      16
+    ],
+    "difficulty": 2,
+    "materials": [
+      "bright green dubbing loop",
+      "partridge hackle",
+      "lead-free wire"
+    ],
+    "notes": "Free-living caddis larva imitation for spring riffles; dead-drift then let it rise.",
+    "license": "public-domain"
+  },
+  {
+    "id": "zebra-midge",
+    "name": "Zebra Midge",
+    "type": "nymph",
+    "imitates": [
+      "chironomid-midge"
+    ],
+    "hookSizes": [
+      16,
+      18,
+      20,
+      22,
+      24
+    ],
+    "difficulty": 1,
+    "materials": [
+      "black thread",
+      "silver wire",
+      "bead head optional"
+    ],
+    "notes": "Two materials, one deadly pattern. Fish it under an indicator on slow winter pools.",
+    "license": "public-domain"
+  },
+  {
+    "id": "griffiths-gnat",
+    "name": "Griffith's Gnat",
+    "type": "dry",
+    "imitates": [
+      "chironomid-midge"
+    ],
+    "hookSizes": [
+      18,
+      20,
+      22,
+      24
+    ],
+    "difficulty": 1,
+    "materials": [
+      "grizzly hackle",
+      "peacock herl"
+    ],
+    "notes": "Cluster-of-midges imitation; perfect when trout are sipping in flat glides.",
+    "license": "public-domain"
+  },
+  {
+    "id": "olive-scud",
+    "name": "Olive Scud",
+    "type": "nymph",
+    "imitates": [
+      "gammarus-scud"
+    ],
+    "hookSizes": [
+      12,
+      14,
+      16,
+      18
+    ],
+    "difficulty": 1,
+    "materials": [
+      "olive sow-scud dubbing",
+      "clear shellback",
+      "grizzly hackle tip"
+    ],
+    "notes": "Dead-drift through weed seams; add a slight twitch every few seconds.",
+    "license": "public-domain"
+  },
+  {
+    "id": "gray-sowbug",
+    "name": "Gray Sowbug",
+    "type": "nymph",
+    "imitates": [
+      "caecidotea-sowbug"
+    ],
+    "hookSizes": [
+      14,
+      16,
+      18
+    ],
+    "difficulty": 1,
+    "materials": [
+      "gray sowbug dubbing",
+      "scud shellback",
+      "midge flash rib"
+    ],
+    "notes": "A Middle-Tennessee winter staple in the silt-weed pools of the Caney Fork.",
+    "license": "public-domain"
+  },
+  {
+    "id": "pats-rubber-legs",
+    "name": "Pat's Rubber Legs",
+    "type": "nymph",
+    "imitates": [
+      "pteronarcys-giant-stone",
+      "acroneuria-golden-stone",
+      "tipula-cranefly"
+    ],
+    "hookSizes": [
+      4,
+      6,
+      8,
+      10
+    ],
+    "difficulty": 1,
+    "materials": [
+      "variegated chenille",
+      "brown or black rubber legs",
+      "lead-free wire"
+    ],
+    "notes": "Big stonefly bait for spring; heavy body gets it down fast in boulder runs.",
+    "license": "public-domain"
+  },
+  {
+    "id": "golden-stone-nymph",
+    "name": "Golden Stone Nymph",
+    "type": "nymph",
+    "imitates": [
+      "acroneuria-golden-stone"
+    ],
+    "hookSizes": [
+      8,
+      10,
+      12,
+      14
+    ],
+    "difficulty": 3,
+    "materials": [
+      "golden-yellow dubbing",
+      "goose biots",
+      "mottled center tail",
+      "black bead"
+    ],
+    "notes": "Boulder-seam searcher for summer golden stones; fish it as your lead fly.",
+    "license": "public-domain"
+  },
+  {
+    "id": "stimulator",
+    "name": "Stimulator",
+    "type": "dry",
+    "imitates": [
+      "acroneuria-golden-stone",
+      "pteronarcys-giant-stone"
+    ],
+    "hookSizes": [
+      6,
+      8,
+      10,
+      12
+    ],
+    "difficulty": 3,
+    "materials": [
+      "orange or yellow elk",
+      "brown hackle",
+      "elk wing"
+    ],
+    "notes": "High-floating adult stonefly/attractor; also works as a big dry-dropper indicator.",
+    "license": "public-domain"
+  },
+  {
+    "id": "woolly-bugger",
+    "name": "Woolly Bugger",
+    "type": "streamer",
+    "imitates": [
+      "tipula-cranefly"
+    ],
+    "hookSizes": [
+      6,
+      8,
+      10,
+      12
+    ],
+    "difficulty": 1,
+    "materials": [
+      "olive or black marabou",
+      "grizzly hackle",
+      "chenille body"
+    ],
+    "notes": "Stripped slowly along soft banks it reads as a crane fly larva, leech, or sculpin.",
+    "license": "public-domain"
+  }
+]

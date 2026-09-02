@@ -1,0 +1,24 @@
+{
+  "regionId": "tn-hiwassee",
+  "month": 12,
+  "entries": [
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 4,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    }
+  ]
+}
