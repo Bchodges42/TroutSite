@@ -1,0 +1,117 @@
+[
+  {
+    "id": "pheasant-tail-nymph",
+    "name": "Pheasant Tail Nymph",
+    "type": "nymph",
+    "imitates": ["blue-winged-olive", "sulphur"],
+    "hookSizes": [14, 16, 18, 20],
+    "difficulty": 2,
+    "materials": ["pheasant tail fibers", "copper wire", "peacock herl (thorax)"],
+    "notes": "The default mayfly nymph on every Tennessee tailwater. Fish it as a lead fly with a midge dropper.",
+    "license": "public-domain"
+  },
+  {
+    "id": "rs2",
+    "name": "RS2",
+    "type": "emerger",
+    "imitates": ["blue-winged-olive", "midge"],
+    "hookSizes": [18, 20, 22, 24],
+    "difficulty": 2,
+    "materials": ["gray dubbing", "white/gray trailing shuck (Antron or CDC)"],
+    "notes": "Fished in the film just under the surface; the trailing shuck sells it on slow tailwater flats.",
+    "license": "attributed",
+    "attribution": "Rim Chung"
+  },
+  {
+    "id": "zebra-midge",
+    "name": "Zebra Midge",
+    "type": "nymph",
+    "imitates": ["midge"],
+    "hookSizes": [16, 18, 20, 22],
+    "difficulty": 1,
+    "materials": ["thread body (black/olive/red)", "silver wire ribbing", "bead head optional"],
+    "notes": "Simplest winter producer on the South Holston and Caney Fork; dead-drift under an indicator or a dry.",
+    "license": "public-domain"
+  },
+  {
+    "id": "mercury-midge",
+    "name": "Mercury Midge",
+    "type": "nymph",
+    "imitates": ["midge"],
+    "hookSizes": [18, 20, 22],
+    "difficulty": 2,
+    "materials": ["black thread", "silver tinsel rib", "glass bead"],
+    "notes": "The glass bead adds a gas-wing/bubble trigger for picky tailwater trout.",
+    "license": "attributed",
+    "attribution": "Pat Dorsey"
+  },
+  {
+    "id": "sulphur-comparadun",
+    "name": "Sulphur Comparadun",
+    "type": "dry",
+    "imitates": ["sulphur"],
+    "hookSizes": [14, 16, 18],
+    "difficulty": 2,
+    "materials": ["sulphur poly yarn wing", "cream-yellow dubbing", "micro-fibbets (tails)"],
+    "notes": "Low-profile no-hackled dun for the South Holston's evening spinner/dun flats.",
+    "license": "attributed",
+    "attribution": "Comparadun style — Al Caucci & Bob Nastasi"
+  },
+  {
+    "id": "elk-hair-caddis",
+    "name": "Elk Hair Caddis",
+    "type": "dry",
+    "imitates": ["spotted-sedge"],
+    "hookSizes": [12, 14, 16, 18],
+    "difficulty": 2,
+    "materials": ["elk hair wing", "brown/tan dry-fly hackle", "tan dubbing", "dry-fly hook"],
+    "notes": "Skated or dead-drifted through riffle seams on the Hiwassee in late spring.",
+    "license": "attributed",
+    "attribution": "Al Troth"
+  },
+  {
+    "id": "olive-scud",
+    "name": "Olive Scud",
+    "type": "nymph",
+    "imitates": ["scud"],
+    "hookSizes": [12, 14, 16],
+    "difficulty": 1,
+    "materials": ["olive/gray scud dubbing", "clear scud shellback", "lead-free wire underbody"],
+    "notes": "Weed-bed producer on the Caney Fork; add an orange hotspot in stained water.",
+    "license": "public-domain"
+  },
+  {
+    "id": "gray-sowbug",
+    "name": "Gray Sowbug",
+    "type": "nymph",
+    "imitates": ["sowbug"],
+    "hookSizes": [14, 16],
+    "difficulty": 1,
+    "materials": ["gray/tan sow-scud dubbing", "clear shellback", "pink hotspot optional"],
+    "notes": "Caney Fork and Elk River staple; dead-drifted a foot off bottom behind a scud.",
+    "license": "public-domain"
+  },
+  {
+    "id": "flying-ant",
+    "name": "Flying Ant",
+    "type": "terrestrial",
+    "imitates": ["terrestrial-ant"],
+    "hookSizes": [14, 16, 18],
+    "difficulty": 1,
+    "materials": ["black/cinnamon dubbing", "brown hackle", "white post (spent-wing optional)"],
+    "notes": "August mating flights dump ants on every tailwater flat; fish it alone on a long, light leader.",
+    "license": "public-domain"
+  },
+  {
+    "id": "woolly-bugger",
+    "name": "Woolly Bugger",
+    "type": "streamer",
+    "imitates": [],
+    "hookSizes": [6, 8, 10, 12],
+    "difficulty": 1,
+    "materials": ["marabou tail", "chenille body", "saddle hackle palmered", "bead or lead eyes"],
+    "notes": "Generic prey item (sculpins, crayfish, leeches) — the high-water and low-light anchor fly across all launch streams.",
+    "license": "attributed",
+    "attribution": "Russell Blessing"
+  }
+]

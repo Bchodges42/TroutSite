@@ -1,0 +1,35 @@
+{
+  "_readme": "ROLE 5 fixture readings for build-time marketing pages. Gauge IDs are illustrative pending ROLE 3/4 verification (see docs/ASSUMPTIONS.md). Scores are NOT stored here — the build computes them with the frozen scoreConditions() from @trout/contracts so pages can never drift from the real PWA logic.",
+  "snapshots": [
+    {
+      "streamId": "south-holston-river",
+      "readings": [
+        { "gaugeId": "03476500", "cfs": 285, "tempC": 11.2, "timestamp": "2026-09-02T11:30Z" }
+      ]
+    },
+    {
+      "streamId": "watauga-river",
+      "readings": [
+        { "gaugeId": "03467000", "cfs": 320, "tempC": 12.8, "timestamp": "2026-09-02T11:30Z" }
+      ]
+    },
+    {
+      "streamId": "hiwassee-river",
+      "readings": [
+        { "gaugeId": "03566000", "cfs": 1650, "tempC": 15.4, "timestamp": "2026-09-02T11:30Z" }
+      ]
+    },
+    {
+      "streamId": "caney-fork-river",
+      "readings": [
+        { "gaugeId": "03414000", "cfs": 3100, "tempC": 14.1, "timestamp": "2026-09-02T11:30Z" }
+      ]
+    },
+    {
+      "streamId": "elk-river",
+      "readings": [
+        { "gaugeId": "03597000", "heightFt": 2.4, "timestamp": "2026-09-02T11:30Z" }
+      ]
+    }
+  ]
+}

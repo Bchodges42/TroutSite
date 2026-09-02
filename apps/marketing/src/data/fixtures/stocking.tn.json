@@ -1,0 +1,134 @@
+[
+  {
+    "id": "tn-2026-001",
+    "stateId": "TN",
+    "streamName": "South Holston River",
+    "county": "Sullivan",
+    "species": "rainbow",
+    "count": 4200,
+    "date": "2026-02-10",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-002",
+    "stateId": "TN",
+    "streamName": "South Holston River",
+    "county": "Sullivan",
+    "species": "brown",
+    "count": 1800,
+    "date": "2026-02-10",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-003",
+    "stateId": "TN",
+    "streamName": "Watauga River",
+    "county": "Carter",
+    "species": "rainbow",
+    "count": 3600,
+    "date": "2026-02-17",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-004",
+    "stateId": "TN",
+    "streamName": "Watauga River",
+    "county": "Carter",
+    "species": "brook",
+    "count": 900,
+    "date": "2026-03-03",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-005",
+    "stateId": "TN",
+    "streamName": "Hiwassee River",
+    "county": "Polk",
+    "species": "rainbow",
+    "count": 5400,
+    "date": "2026-03-10",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-006",
+    "stateId": "TN",
+    "streamName": "Hiwassee River",
+    "county": "Polk",
+    "species": "brown",
+    "count": 1500,
+    "date": "2026-03-10",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-007",
+    "stateId": "TN",
+    "streamName": "Caney Fork River",
+    "county": "Warren",
+    "species": "rainbow",
+    "count": 6800,
+    "date": "2026-01-27",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-008",
+    "stateId": "TN",
+    "streamName": "Caney Fork River",
+    "county": "DeKalb",
+    "species": "rainbow",
+    "count": 6200,
+    "date": "2026-02-24",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-009",
+    "stateId": "TN",
+    "streamName": "Elk River",
+    "county": "Franklin",
+    "species": "rainbow",
+    "count": 2400,
+    "date": "2026-01-13",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-010",
+    "stateId": "TN",
+    "streamName": "Elk River",
+    "county": "Franklin",
+    "species": "brown",
+    "count": 800,
+    "date": "2026-02-03",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-011",
+    "stateId": "TN",
+    "streamName": "West Fork Stones River",
+    "county": "Rutherford",
+    "species": "rainbow",
+    "count": 1500,
+    "date": "2026-12-16",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  },
+  {
+    "id": "tn-2026-012",
+    "stateId": "TN",
+    "streamName": "West Fork Stones River",
+    "county": "Rutherford",
+    "species": "rainbow",
+    "count": 1500,
+    "date": "2027-01-13",
+    "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+    "fetchedAt": "2026-08-20T13:00Z"
+  }
+]

@@ -106,9 +106,21 @@ importers:
 
   apps/marketing:
     dependencies:
+      '@trout/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
+      '@trout/ui':
+        specifier: workspace:^
+        version: link:../../packages/ui
       astro:
         specifier: ^4.16.18
         version: 4.16.19(@types/node@20.19.43)(rollup@4.63.1)(terser@5.51.2)(typescript@5.9.3)
+      yaml:
+        specifier: ^2.5.1
+        version: 2.9.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.25.76
 
   apps/web:
     dependencies:
