@@ -1,0 +1,217 @@
+---
+/**
+ * /streams/{state}/{slug}/ — programmatic template (ROLE 5).
+ * First screen answers the query: conditions snapshot + fishability score,
+ * ideal-flow table, hatch-chart highlights, stocking history, and official links.
+ */
+import Base from '../../../../layouts/Base.astro';
+import ConditionsEmbed from '../../../../components/ConditionsEmbed.astro';
+import Disclaimer from '../../../../components/Disclaimer.astro';
+import { LAUNCH_STATES, stateById, regionById } from '../../../../data/states';
+import {
+  getStreams,
+  getSnapshot,
+  getStockingByStream,
+  getReportsForStream,
+  getYearlyHatch,
+  getTaxon,
+} from '../../../../data/load';
+import { formatDate, formatCfs, monthName } from '../../../../lib/format';
+import { breadcrumbLd, datasetLd } from '../../../../lib/seo';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const state of LAUNCH_STATES) {
+    for (const stream of getStreams(state.id)) {
+      paths.push({
+        params: { state: state.id.toLowerCase(), slug: stream.id },
+        props: { stream },
+      });
+    }
+  }
+  return paths;
+}
+
+const { stream } = Astro.props;
+const state = stateById(stream.stateId)!;
+const region = regionById(stream.regionId);
+const snapshot = getSnapshot(stream.id);
+const stocking = getStockingByStream(stream.stateId).get(stream.name) ?? [];
+const reports = getReportsForStream(stream.id);
+const charts = region ? getYearlyHatch(region.id) : [];
+const currentMonth = new Date().getMonth() + 1;
+const currentChart = charts.find((c) => c.month === currentMonth);
+const currentEntries = (currentChart?.entries ?? [])
+  .slice()
+  .sort((a, b) => b.abundance - a.abundance)
+  .slice(0, 3)
+  .map((e) => ({ entry: e, taxon: getTaxon(e.taxonId) }));
+
+const title = `${stream.name} fly fishing — conditions, flows, stocking & hatch chart`;
+const description = `${stream.name} (${state.name}): fishability score, ideal flow ranges, TWRA stocking history, hatch-chart highlights, and official sources to verify. Free stream guide — no trackers.`;
+
+// Kept in frontmatter: Astro's template compiler mis-parses `<=` inside inline expressions.
+function flowReadsAs(range: { min: number; max: number; unit: string }): string {
+  if (range.min >= 750) return 'big water — float or high-stick from bars';
+  if (range.max <= 350) return 'wade-friendly windows';
+  return 'wade the edges, float the middle';
+}
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/streams/${state.id.toLowerCase()}/${stream.id}/`}
+  ld={[
+    datasetLd({
+      name: `${stream.name} conditions & stocking data`,
+      description: `Fishability scoring inputs, ideal flow ranges, and stocking history for ${stream.name}, with official sources.`,
+      path: `/streams/${state.id.toLowerCase()}/${stream.id}/`,
+    }),
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: `${state.name} streams`, url: `/stocking/${state.id.toLowerCase()}/` },
+      { name: stream.name, url: `/streams/${state.id.toLowerCase()}/${stream.id}/` },
+    ]),
+  ]}
+>
+  <p class="kicker">
+    {state.name} · {stream.waterbodyType}
+    {region && <> · <a href={`/hatch/${state.id.toLowerCase()}/${region.slug}/`}>{region.name}</a></>}
+  </p>
+  <h1>{stream.name}</h1>
+
+  <ConditionsEmbed snapshot={snapshot} streamName={stream.name} gaugeIds={stream.gaugeIds} />
+
+  <h2>Ideal flow</h2>
+  {
+    stream.idealFlow.length > 0 ? (
+      <table class="data-table">
+        <caption>Fishability is scored against these ranges (set per stream, verified per source)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Range</th>
+            <th scope="col">Reads as</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stream.idealFlow.map((range) => (
+            <tr>
+              <td class="num">
+                {range.min.toLocaleString('en-US')}–{range.max.toLocaleString('en-US')} {range.unit}
+              </td>
+              <td>{flowReadsAs(range)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <p>No gauge-based flow ranges for this water (ungauged stocking stream).</p>
+    )
+  }
+
+  <h2>Stocking history</h2>
+  {
+    stocking.length > 0 ? (
+      <table class="data-table">
+        <caption>{state.agency.short} stockings of {stream.name} (verify officially)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Species</th>
+            <th class="num" scope="col">Count</th>
+            <th scope="col">Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stocking
+            .slice()
+            .sort((a, b) => b.date.localeCompare(a.date))
+            .map((e) => (
+              <tr>
+                <td>{formatDate(e.date)}</td>
+                <td>{e.species}</td>
+                <td class="num">{e.count?.toLocaleString('en-US') ?? '—'}</td>
+                <td>
+                  <a href={e.sourceUrl} rel="nofollow">
+                    official ↗
+                  </a>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    ) : (
+      <p>No stocking events recorded for this water in the current feed.</p>
+    )
+  }
+
+  <h2>Hatching now ({monthName(currentMonth)} highlight)</h2>
+  {
+    currentEntries.length > 0 ? (
+      <ul>
+        {currentEntries.map(({ entry, taxon }) => (
+          <li>
+            <strong>{taxon?.commonName ?? entry.taxonId}</strong> — {entry.stage}, {entry.timeOfDay}{' '}
+            window
+            {entry.patterns.length > 0 && <> (try: {entry.patterns.map((p) => p.replace(/-/g, ' ')).join(', ')})</>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>Little insect activity this month — midges and streamers usually carry the day.</p>
+    )
+  }
+  {
+    region && (
+      <p>
+        Full year at a glance:{' '}
+        <a href={`/hatch/${state.id.toLowerCase()}/${region.slug}/`}>
+          {region.name} 12-month hatch chart
+        </a>
+      </p>
+    )
+  }
+
+  <h2>Shop reports</h2>
+  {
+    reports.length > 0 ? (
+      reports.map((r) => (
+        <div class="card">
+          <p style="margin:0">
+            <strong>{r.shopName}</strong> · {formatDate(r.date)} ·{' '}
+            <a href={r.attributionUrl} rel="nofollow">
+              source ↗
+            </a>
+          </p>
+          <p>{r.body}</p>
+          {r.hotPatterns.length > 0 && (
+            <p style="color:var(--muted)">
+              Hot patterns: {r.hotPatterns.map((hp) => `${hp.patternId.replace(/-/g, ' ')}${hp.hookSize ? ` (#${hp.hookSize})` : ''}`).join(' · ')}
+            </p>
+          )}
+        </div>
+      ))
+    ) : (
+      <p>No shop reports for this water yet — fly shops file reports through the shop portal.</p>
+    )
+  }
+
+  <h2>Official sources</h2>
+  <ul>
+    {
+      stream.officialSources.map((src) => (
+        <li>
+          <a href={src.url} rel="nofollow">
+            {src.label} ↗
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Disclaimer
+    agency={state.agency.short}
+    topic="flows, stocking and regulations for this water"
+  />
+</Base>
