@@ -46,8 +46,10 @@ describe('migrations', () => {
       name: string;
     }[];
     reopened!.close();
-    expect(applied).toHaveLength(1);
+    // 001_init (Role 1) + 002_gauge_readings_normalized (Role 3).
+    expect(applied).toHaveLength(2);
     expect(applied[0]!.name).toMatch(/^001_/);
+    expect(applied[1]!.name).toMatch(/^002_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

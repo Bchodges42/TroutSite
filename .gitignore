@@ -6,6 +6,8 @@ dist/
 .astro/
 *.tsbuildinfo
 .eslintcache
+# generated snapshot JSONs (ROLE 3) — regenerate with `pnpm --filter api snapshots`
+apps/web/public/data/
 
 # local runtime data (SQLite lives at apps/api/data/trout.db — never commit)
 apps/api/data/
