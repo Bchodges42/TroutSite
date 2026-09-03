@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Card, Chip } from '@trout/ui';
 import { currentMonth } from '../lib/time';
 import { monthName, monthShort, REGIONS, regionBlurb } from '../data/regions';
 
 /** Hatch charts browse (scope 3): region × month grid into chart details. */
 export function HatchChartsPage() {
-  const [regionId, setRegionId] = useState(REGIONS[0]?.id ?? '');
+  const [searchParams, setSearchParams] = useSearchParams();
+  // Selected region lives in the URL so a region view is shareable and survives reload.
+  const regionId = searchParams.get('region') ?? REGIONS[0]?.id ?? '';
+  const setRegionId = (id: string) => setSearchParams({ region: id }, { replace: true });
   const region = REGIONS.find((r) => r.id === regionId);
   const now = currentMonth();
 
@@ -15,13 +17,12 @@ export function HatchChartsPage() {
       <h1 className="page-title">Hatch Charts</h1>
       <p className="page-subtitle">What comes off the water, month by month. Cached for offline use.</p>
 
-      <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="Region">
+      <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Region">
         {REGIONS.map((r) => (
           <button
             key={r.id}
             type="button"
-            role="tab"
-            aria-selected={r.id === regionId}
+            aria-pressed={r.id === regionId}
             className={`option-card focus-ring min-h-[48px] w-auto flex-1 basis-40 text-sm ${r.id === regionId ? 'is-selected' : ''}`}
             onClick={() => setRegionId(r.id)}
           >

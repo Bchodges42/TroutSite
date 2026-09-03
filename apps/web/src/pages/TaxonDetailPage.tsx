@@ -13,7 +13,7 @@ export function TaxonDetailPage() {
   if (pack.isLoading) {
     return (
       <main className="page">
-        <p className="page-subtitle">Loading bug reference…</p>
+        <p className="page-subtitle" role="status">Loading bug reference…</p>
       </main>
     );
   }
@@ -74,13 +74,14 @@ export function TaxonDetailPage() {
       <div className="flex flex-col gap-3">
         {REGIONS.filter((r) => taxon.monthsActiveByRegion[r.id]?.length).map((r) => (
           <Card key={r.id} className="!py-3">
-            <p className="text-sm font-bold">{r.name}</p>
+            <h3 className="text-sm font-bold">{r.name}</h3>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => {
                 const active = (taxon.monthsActiveByRegion[r.id] ?? []).includes(m);
                 return (
                   <span
                     key={m}
+                    role="img"
                     className="inline-flex h-8 w-10 items-center justify-center rounded-md text-xs font-bold"
                     style={{
                       background: active ? 'var(--trout-green-100)' : 'var(--trout-slate-100)',

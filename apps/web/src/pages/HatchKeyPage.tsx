@@ -321,7 +321,7 @@ function MatchRow({ ranked }: { ranked: RankedTaxon }) {
       </span>
       <span className="min-w-0 flex-1">
         <span className="flex flex-wrap items-center gap-2">
-          <span className="text-base font-extrabold">{t.commonName}</span>
+          <h3 className="text-base font-extrabold">{t.commonName}</h3>
           <Chip tone={CONFIDENCE_TONE[ranked.confidence]}>{ranked.confidence} confidence</Chip>
           {ranked.inHatchChart && <Chip tone="accent">hatching now</Chip>}
         </span>
@@ -330,7 +330,7 @@ function MatchRow({ ranked }: { ranked: RankedTaxon }) {
         </span>
         <span className="mt-2 block">
           <span className="score-track">
-            <span className="score-fill" style={{ width: `${(ranked.score / MATCH_HATCH_MAX_SCORE) * 100}%`, background: 'var(--trout-color-primary)' }} />
+            <span className="score-fill" style={{ transform: `scaleX(${ranked.score / MATCH_HATCH_MAX_SCORE})`, background: 'var(--trout-color-primary)' }} />
           </span>
         </span>
         <span className="mt-2 flex flex-wrap gap-1.5">

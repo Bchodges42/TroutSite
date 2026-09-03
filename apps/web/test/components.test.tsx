@@ -37,7 +37,7 @@ describe('ScorePill', () => {
 describe('FreshnessChip', () => {
   it('shows Live for fresh network data', () => {
     render(<FreshnessChip fetchedAt={Date.now() - 2 * 60_000} live />);
-    expect(screen.getByText(/Live · 2 min ago/)).toBeInTheDocument();
+    expect(screen.getByText(/Live · 2 minutes ago/)).toBeInTheDocument();
   });
 
   it('shows Offline · last known for cached data', () => {

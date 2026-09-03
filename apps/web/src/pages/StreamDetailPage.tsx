@@ -7,7 +7,7 @@ import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useSettingsContext } from '../lib/settings';
 import { flowTrend, rememberSeen, readSeen, scoreLabel, scoreBand, TREND_LABEL, whatChanged } from '../lib/conditions';
-import { formatFlow, formatHeight, formatTemp } from '../lib/units';
+import { formatFlow, formatHeight, formatNum, formatTemp } from '../lib/units';
 import { ageMinutes } from '../lib/time';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
@@ -47,7 +47,7 @@ export function StreamDetailPage() {
   if (streamsQuery.isLoading) {
     return (
       <main className="page">
-        <p className="page-subtitle">Loading stream…</p>
+        <p className="page-subtitle" role="status">Loading stream…</p>
       </main>
     );
   }
@@ -124,7 +124,7 @@ export function StreamDetailPage() {
             {newestHeight != null && <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />}
             <DataBadge
               label="Ideal flow"
-              value={stream.idealFlow.map((r) => `${r.min}–${r.max}`).join(', ') + ' cfs'}
+              value={stream.idealFlow.map((r) => `${formatNum(r.min)}–${formatNum(r.max)}`).join(', ') + ' cfs'}
               status="unknown"
             />
           </div>

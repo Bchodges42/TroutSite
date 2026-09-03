@@ -6,6 +6,7 @@ export function NotFoundPage() {
     <main className="page">
       <div className="mt-8">
         <EmptyState
+          heading="h1"
           icon="🐟"
           title="That pool is empty"
           description="The page you're after doesn't exist."

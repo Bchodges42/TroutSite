@@ -100,7 +100,9 @@ export function ConditionsPage() {
         </p>
       )}
 
-      {streamsQuery.isError && rows.length === 0 ? (
+      {streamsQuery.isLoading || conditionsQuery.isLoading ? (
+        <p className="page-subtitle mt-6" role="status">Loading streams…</p>
+      ) : streamsQuery.isError && rows.length === 0 ? (
         <div className="mt-6">
           <EmptyState
             icon="📡"
@@ -119,7 +121,7 @@ export function ConditionsPage() {
               <Link to={`/conditions/${stream.id}`} className="list-row focus-ring" style={{ borderRadius: 'var(--trout-radius-lg)' }}>
                 <span className="min-w-0 flex-1">
                   <span className="flex flex-wrap items-center gap-2">
-                    <span className="font-extrabold">{stream.name}</span>
+                    <h3 className="text-base font-extrabold">{stream.name}</h3>
                     <Chip tone="neutral">{stream.waterbodyType}</Chip>
                     {miles !== undefined && <Chip tone="accent">{formatMiles(miles)}</Chip>}
                   </span>

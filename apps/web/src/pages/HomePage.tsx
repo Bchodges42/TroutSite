@@ -53,15 +53,11 @@ export function HomePage() {
           about you ever leaves this device.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Link to="/hatch-key" className="focus-ring no-underline">
-            <Button size="lg" className="focus-ring">
-              <BugIcon size={20} /> Open the Hatch Key
-            </Button>
+          <Link to="/hatch-key" className="trout-btn trout-btn--primary trout-btn--lg focus-ring no-underline">
+            <BugIcon size={20} /> Open the Hatch Key
           </Link>
-          <Link to="/conditions" className="focus-ring no-underline">
-            <Button variant="secondary" size="lg" className="focus-ring">
-              <ChartIcon size={20} /> Check the water
-            </Button>
+          <Link to="/conditions" className="trout-btn trout-btn--secondary trout-btn--lg focus-ring no-underline">
+            <ChartIcon size={20} /> Check the water
           </Link>
         </div>
         {!online && (
@@ -76,7 +72,9 @@ export function HomePage() {
           <h2 className="section-title">Best water near your default state ({settings.defaultState})</h2>
           <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
         </div>
-        {topStreams.length === 0 ? (
+        {conditionsQuery.isLoading || streamsQuery.isLoading ? (
+          <p className="page-subtitle" role="status">Loading water…</p>
+        ) : topStreams.length === 0 ? (
           <EmptyState
             icon="📡"
             title="No conditions cached yet"
@@ -153,7 +151,7 @@ export function HomePage() {
         </section>
       )}
 
-      <section className="mt-6">
+      <div className="mt-6">
         <div className="flex flex-wrap items-center gap-2">
           <Chip tone="good">No accounts</Chip>
           <Chip tone="good">No tracking</Chip>
@@ -165,7 +163,7 @@ export function HomePage() {
             How the privacy works →
           </Link>
         </p>
-      </section>
+      </div>
     </main>
   );
 }
@@ -175,7 +173,7 @@ function FeatureCard({ to, icon, title, body }: { to: string; icon: ReactNode; t
     <Link to={to} className="focus-ring no-underline" style={{ color: 'inherit' }}>
       <Card className="h-full hover:!border-[var(--trout-color-primary)]">
         <span style={{ color: 'var(--trout-color-primary)' }}>{icon}</span>
-        <p className="mt-2 font-extrabold">{title}</p>
+        <h3 className="mt-2 text-base font-extrabold">{title}</h3>
         <p className="mt-1 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
           {body}
         </p>

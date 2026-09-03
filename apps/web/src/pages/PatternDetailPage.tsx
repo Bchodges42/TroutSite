@@ -15,7 +15,7 @@ export function PatternDetailPage() {
   if (pack.isLoading) {
     return (
       <main className="page">
-        <p className="page-subtitle">Loading pattern reference…</p>
+        <p className="page-subtitle" role="status">Loading pattern reference…</p>
       </main>
     );
   }

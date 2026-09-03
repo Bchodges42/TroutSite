@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { cx } from '@trout/ui';
 import { useOnline } from '../../hooks/useOnline';
 import { useSettingsContext } from '../../lib/settings';
@@ -32,21 +32,43 @@ export function AppShell() {
   const online = useOnline();
   const { settings } = useSettingsContext();
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   // reduce-motion is an html-level class so CSS can honor it everywhere
   useEffect(() => {
     document.documentElement.classList.toggle('reduce-motion', settings.reduceMotion);
   }, [settings.reduceMotion]);
 
-  // close the drawer on Escape (a11y)
+  // drawer open: move focus inside, trap Tab, return focus on close (a11y)
   useEffect(() => {
     if (!menuOpen) return;
+    const drawer = drawerRef.current;
+    const trigger = menuButtonRef.current;
+    drawer?.querySelector<HTMLElement>('nav a')?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false);
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab' || !drawer) return;
+      const items = [...drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')];
+      if (items.length === 0) return;
+      const first = items[0]!;
+      const last = items[items.length - 1]!;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      trigger?.focus();
+    };
   }, [menuOpen]);
 
   return (
@@ -65,22 +87,23 @@ export function AppShell() {
         <div className="mx-auto flex h-14 w-full max-w-5xl items-center gap-2 px-4">
           <button
             type="button"
+            ref={menuButtonRef}
             className="focus-ring -ml-2 flex h-12 w-12 items-center justify-center rounded-lg lg:hidden"
             aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen((v) => !v)}
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
-          <button
-            type="button"
-            onClick={() => navigate('/')}
+          <Link
+            to="/"
             className="focus-ring flex items-center gap-2 rounded-lg py-1 text-left"
             aria-label="Trout — home"
           >
             <FishIcon size={26} />
             <span className="text-lg font-extrabold tracking-tight">Trout</span>
-          </button>
+          </Link>
           <span className="ml-auto flex items-center gap-2">
             {!online && (
               <span
@@ -108,7 +131,7 @@ export function AppShell() {
         </nav>
 
         {menuOpen && (
-          <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+          <div ref={drawerRef} id="mobile-menu" className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
             <button
               type="button"
               aria-label="Close menu"
@@ -136,9 +159,9 @@ export function AppShell() {
           </div>
         )}
 
-        <main id="main" className="min-w-0 flex-1">
+        <div id="main" className="min-w-0 flex-1">
           <Outlet />
-        </main>
+        </div>
       </div>
 
       <nav

@@ -90,17 +90,22 @@ export function regionBlurb(regionId: string): string {
   return byId.get(regionId)?.blurb ?? '';
 }
 
-export const MONTH_NAMES = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-] as const;
+const longMonthFmt = new Intl.DateTimeFormat([], { month: 'long' });
+const shortMonthFmt = new Intl.DateTimeFormat([], { month: 'short' });
+const monthDate = (month: number) => new Date(2000, month - 1, 1);
 
-export const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
+export const MONTH_NAMES: readonly string[] = Array.from({ length: 12 }, (_, i) =>
+  longMonthFmt.format(new Date(2000, i, 1)),
+);
+
+export const MONTH_SHORT: readonly string[] = Array.from({ length: 12 }, (_, i) =>
+  shortMonthFmt.format(new Date(2000, i, 1)),
+);
 
 export function monthName(month: number): string {
-  return MONTH_NAMES[month - 1] ?? String(month);
+  return month >= 1 && month <= 12 ? longMonthFmt.format(monthDate(month)) : String(month);
 }
 
 export function monthShort(month: number): string {
-  return MONTH_SHORT[month - 1] ?? String(month);
+  return month >= 1 && month <= 12 ? shortMonthFmt.format(monthDate(month)) : String(month);
 }

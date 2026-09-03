@@ -29,7 +29,9 @@ export function ShopsPage() {
       </p>
 
       <h2 className="section-title">Recent reports</h2>
-      {reportsQuery.isError && reports.length === 0 ? (
+      {reportsQuery.isLoading ? (
+        <p className="page-subtitle" role="status">Loading reports…</p>
+      ) : reportsQuery.isError && reports.length === 0 ? (
         <EmptyState
           icon="📝"
           title="Reports not on this device yet"
@@ -53,7 +55,7 @@ export function ShopsPage() {
           {shops.map((s) => (
             <li key={s.id} className="list-row" style={{ borderRadius: 'var(--trout-radius-lg)' }}>
               <span className="min-w-0">
-                <span className="block font-extrabold">{s.name}</span>
+                <h3 className="block text-base font-extrabold">{s.name}</h3>
                 <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
                   {s.town}, {s.stateId}
                   {s.reportsEnabled ? ' · files reports' : ''}
@@ -103,7 +105,7 @@ function ReportCard({ report, patternName }: { report: ShopReport; patternName: 
         )}
         <p className="mt-2 text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
           Report by {report.shopName} ·{' '}
-          <a className="underline" href={report.attributionUrl} target="_blank" rel="noreferrer noopener">
+          <a className="focus-ring underline" href={report.attributionUrl} target="_blank" rel="noreferrer noopener">
             view at source ↗
           </a>
         </p>

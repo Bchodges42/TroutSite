@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Card, Chip, EmptyState } from '@trout/ui';
 import { StockingEventSchema } from '@trout/contracts';
 import type { Species, StockingEvent } from '@trout/contracts';
@@ -22,9 +23,18 @@ const WINDOW_DAYS = [30, 90, 3650] as const;
 export function StockingPage() {
   const { settings } = useSettingsContext();
   const stateId = settings.defaultState;
-  const [county, setCounty] = useState('all');
-  const [species, setSpecies] = useState<'all' | Species>('all');
-  const [days, setDays] = useState<number>(90);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // Filters live in the URL so a filtered view is shareable and survives reload.
+  const county = searchParams.get('county') ?? 'all';
+  const species = (searchParams.get('species') as 'all' | Species) || 'all';
+  const days = Number(searchParams.get('days') ?? 90) || 90;
+  const setFilter = (key: string, value: string) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set(key, value);
+      return next;
+    }, { replace: true });
+  };
 
   const stockingQuery = useSnapshotQuery(
     snapshotUrls.stocking(stateId),
@@ -66,7 +76,7 @@ export function StockingPage() {
             className="focus-ring min-h-[44px] rounded-lg border px-3"
             style={{ borderColor: 'var(--trout-color-border)' }}
             value={county}
-            onChange={(e) => setCounty(e.target.value)}
+            onChange={(e) => setFilter('county', e.target.value)}
           >
             <option value="all">All counties</option>
             {counties.map((c) => (
@@ -80,7 +90,7 @@ export function StockingPage() {
             className="focus-ring min-h-[44px] rounded-lg border px-3"
             style={{ borderColor: 'var(--trout-color-border)' }}
             value={species}
-            onChange={(e) => setSpecies(e.target.value as 'all' | Species)}
+            onChange={(e) => setFilter('species', e.target.value)}
           >
             <option value="all">All species</option>
             {(Object.keys(SPECIES_LABEL) as Species[]).map((s) => (
@@ -94,7 +104,7 @@ export function StockingPage() {
             className="focus-ring min-h-[44px] rounded-lg border px-3"
             style={{ borderColor: 'var(--trout-color-border)' }}
             value={days}
-            onChange={(e) => setDays(Number(e.target.value))}
+            onChange={(e) => setFilter('days', e.target.value)}
           >
             <option value={WINDOW_DAYS[0]}>Last 30 days</option>
             <option value={WINDOW_DAYS[1]}>Last 90 days</option>
@@ -103,7 +113,9 @@ export function StockingPage() {
         </label>
       </div>
 
-      {stockingQuery.isError && events.length === 0 ? (
+      {stockingQuery.isLoading ? (
+        <p className="page-subtitle mt-6" role="status">Loading schedule…</p>
+      ) : stockingQuery.isError && events.length === 0 ? (
         <div className="mt-6">
           <EmptyState
             icon="🐟"

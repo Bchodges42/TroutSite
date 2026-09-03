@@ -18,6 +18,7 @@ export function LogbookPage() {
   const entries = useLiveQuery(() => listEntries(), [], undefined);
 
   const [adding, setAdding] = useState(false);
+  const [importError, setImportError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const exportJson = async () => {
@@ -52,11 +53,17 @@ export function LogbookPage() {
           className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0];
-            if (file) void importJson(file).catch((err) => alert(`Import failed: ${err.message}`));
+            setImportError(null);
+            if (file) void importJson(file).catch((err) => setImportError(err instanceof Error ? err.message : 'Import failed'));
             e.target.value = '';
           }}
         />
       </div>
+      {importError && (
+        <p className="mt-2 text-sm font-bold" style={{ color: 'var(--trout-color-danger)' }} role="alert">
+          Import failed: {importError}
+        </p>
+      )}
 
       {adding && (
         <Card className="mt-4">
@@ -82,7 +89,7 @@ export function LogbookPage() {
             <li key={entry.id}>
               <Card>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-extrabold">{entry.streamName}</span>
+                  <h3 className="text-base font-extrabold">{entry.streamName}</h3>
                   <Chip tone="accent">{shortDate(entry.date)}</Chip>
                   <button
                     type="button"
@@ -116,7 +123,12 @@ function NewEntryForm({ onDone }: { onDone: () => void }) {
 
   const [streamId, setStreamId] = useState('');
   const [customName, setCustomName] = useState('');
-  const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(() => {
+    // Local calendar day — toISOString() is UTC and can shift the day near midnight.
+    const d = new Date();
+    const pad = (n: number) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  });
   const [flies, setFlies] = useState('');
   const [notes, setNotes] = useState('');
 

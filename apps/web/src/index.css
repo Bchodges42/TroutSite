@@ -129,14 +129,19 @@ html.reduce-motion *::after {
     background: var(--trout-slate-200);
   }
   .score-fill {
-    @apply h-full rounded-full;
-    transition: width 420ms ease;
+    @apply h-full w-full rounded-full;
+    transform-origin: left center;
+    transition: transform 420ms ease;
   }
   .stagger-in {
     animation: rise-in 260ms ease both;
   }
 
   /* --- misc ------------------------------------------------------------ */
+  #main {
+    /* sticky h-14 header must never cover the skip-link target or focused content */
+    scroll-margin-top: 4rem;
+  }
   .focus-ring:focus-visible {
     outline: 3px solid var(--trout-amber-500);
     outline-offset: 2px;

@@ -56,7 +56,9 @@ export function HatchChartDetailPage() {
         <FreshnessChip fetchedAt={chartQuery.data?.fetchedAt} live={chartQuery.data?.live ?? false} />
       </div>
 
-      {chartQuery.isError && entries.length === 0 ? (
+      {chartQuery.isLoading ? (
+        <p className="page-subtitle mt-6" role="status">Loading chart…</p>
+      ) : chartQuery.isError && entries.length === 0 ? (
         <div className="mt-6">
           <EmptyState
             icon="🗓️"
@@ -130,7 +132,7 @@ function ChartEntryRow({
           })}
         </div>
       </div>
-      <span className="flex shrink-0 items-center gap-1" aria-label={`Abundance ${entry.abundance} of 5`}>
+      <span className="flex shrink-0 items-center gap-1" role="img" aria-label={`Abundance ${entry.abundance} of 5`}>
         {Array.from({ length: 5 }, (_, i) => (
           <span key={i} className={`abundance-dot ${i < entry.abundance ? 'is-on' : ''}`} />
         ))}

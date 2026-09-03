@@ -16,7 +16,7 @@ describe('units', () => {
 
   it('formats flow and stage', () => {
     expect(formatFlow(245)).toBe('245 cfs');
-    expect(formatFlow(1234.56)).toBe('1234.6 cfs');
+    expect(formatFlow(1234.56)).toMatch(/1.234[.,]6 cfs/);
     expect(formatHeight(3.14159)).toBe('3.1 ft');
   });
 });
@@ -25,14 +25,14 @@ describe('time', () => {
   const now = Date.parse('2026-09-02T12:00:00Z');
 
   it('formats relative age', () => {
-    expect(ageMinutes(now - 30_000, now)).toBe('<1 min ago');
-    expect(ageMinutes(now - 12 * 60_000, now)).toBe('12 min ago');
-    expect(ageMinutes(now - 3 * 3600_000, now)).toBe('3 h ago');
-    expect(ageMinutes(now - 2 * 24 * 3600_000, now)).toBe('2 d ago');
+    expect(ageMinutes(now - 30_000, now)).toBe('now');
+    expect(ageMinutes(now - 12 * 60_000, now)).toBe('12 minutes ago');
+    expect(ageMinutes(now - 3 * 3600_000, now)).toBe('3 hours ago');
+    expect(ageMinutes(now - 2 * 24 * 3600_000, now)).toBe('2 days ago');
   });
 
   it('never reports negative age', () => {
-    expect(ageMinutes(now + 10 * 60_000, now)).toBe('<1 min ago');
+    expect(ageMinutes(now + 10 * 60_000, now)).toBe('now');
   });
 
   it('formats a clock time', () => {

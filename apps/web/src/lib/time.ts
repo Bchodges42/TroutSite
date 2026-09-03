@@ -1,12 +1,14 @@
 /** Pure time formatting — deterministic given `now` so tests stay stable. */
 
-/** "12 min ago", "3 h ago", "2 d ago". */
+const relativeFmt = new Intl.RelativeTimeFormat([], { numeric: 'auto' });
+
+/** "now", "12 minutes ago", "3 hours ago", "2 days ago". */
 export function ageMinutes(fetchedAt: number, now: number = Date.now()): string {
   const minutes = Math.max(0, (now - fetchedAt) / 60_000);
-  if (minutes < 1) return '<1 min ago';
-  if (minutes < 90) return `${Math.round(minutes)} min ago`;
-  if (minutes < 60 * 36) return `${Math.round(minutes / 60)} h ago`;
-  return `${Math.round(minutes / (60 * 24))} d ago`;
+  if (minutes < 1) return relativeFmt.format(0, 'second');
+  if (minutes < 90) return relativeFmt.format(-Math.round(minutes), 'minute');
+  if (minutes < 60 * 36) return relativeFmt.format(-Math.round(minutes / 60), 'hour');
+  return relativeFmt.format(-Math.round(minutes / (60 * 24)), 'day');
 }
 
 /** "6:40 AM" style local clock time for "Offline · last known 6:40 AM". */
