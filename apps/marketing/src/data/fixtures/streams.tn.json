@@ -4,18 +4,37 @@
     "name": "South Holston River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-east-tailwaters",
-    "gaugeIds": ["03476500"],
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03476500"
+    ],
     "stockingProgram": true,
     "idealFlow": [
-      { "min": 100, "max": 350, "unit": "cfs" },
-      { "min": 350, "max": 1000, "unit": "cfs" }
+      {
+        "min": 100,
+        "max": 350,
+        "unit": "cfs"
+      },
+      {
+        "min": 350,
+        "max": 1000,
+        "unit": "cfs"
+      }
     ],
     "notes": "Famous year-round tailwater below South Holston Dam (~1.2 mile weir pool). Known for sulphur hatches in early summer and large brown trout. Generation schedule from TVA controls wade/float windows.",
     "officialSources": [
-      { "label": "TWRA trout fishing", "url": "https://www.tn.gov/twra/fishing.html" },
-      { "label": "TVA lake & release info", "url": "https://www.tva.com/environment/lake-levels" },
-      { "label": "USGS gauge (verify live)", "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03476500" }
+      {
+        "label": "TWRA trout fishing",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      },
+      {
+        "label": "TVA lake & release info",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "USGS gauge (verify live)",
+        "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03476500"
+      }
     ]
   },
   {
@@ -23,17 +42,32 @@
     "name": "Watauga River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-east-tailwaters",
-    "gaugeIds": ["03467000"],
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [
+      "03467000"
+    ],
     "stockingProgram": true,
     "idealFlow": [
-      { "min": 120, "max": 500, "unit": "cfs" }
+      {
+        "min": 120,
+        "max": 500,
+        "unit": "cfs"
+      }
     ],
     "notes": "Tailwater below Watauga/Wilbur Dam; cold all summer, strong sulphur and caddis hatches, quality brown trout. TVA generation schedule dictates float windows.",
     "officialSources": [
-      { "label": "TWRA trout fishing", "url": "https://www.tn.gov/twra/fishing.html" },
-      { "label": "TVA lake & release info", "url": "https://www.tva.com/environment/lake-levels" },
-      { "label": "USGS gauge (verify live)", "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03467000" }
+      {
+        "label": "TWRA trout fishing",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      },
+      {
+        "label": "TVA lake & release info",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "USGS gauge (verify live)",
+        "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03467000"
+      }
     ]
   },
   {
@@ -41,17 +75,32 @@
     "name": "Hiwassee River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-hiwassee",
-    "gaugeIds": ["03566000"],
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03566000"
+    ],
     "stockingProgram": true,
     "idealFlow": [
-      { "min": 750, "max": 2500, "unit": "cfs" }
+      {
+        "min": 750,
+        "max": 2500,
+        "unit": "cfs"
+      }
     ],
     "notes": "Tailwater below Appalachia Dam through the Hiwassee State Scenic River. Strong late-winter caddis hatches and seasonal stocked rainbow/brook runs.",
     "officialSources": [
-      { "label": "TWRA trout fishing", "url": "https://www.tn.gov/twra/fishing.html" },
-      { "label": "TVA lake & release info", "url": "https://www.tva.com/environment/lake-levels" },
-      { "label": "USGS gauge (verify live)", "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03566000" }
+      {
+        "label": "TWRA trout fishing",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      },
+      {
+        "label": "TVA lake & release info",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "USGS gauge (verify live)",
+        "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03566000"
+      }
     ]
   },
   {
@@ -59,17 +108,32 @@
     "name": "Caney Fork River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-middle",
-    "gaugeIds": ["03414000"],
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [
+      "03414000"
+    ],
     "stockingProgram": true,
     "idealFlow": [
-      { "min": 300, "max": 1200, "unit": "cfs" }
+      {
+        "min": 300,
+        "max": 1200,
+        "unit": "cfs"
+      }
     ],
     "notes": "Middle Tennessee tailwater below Center Hill Dam; winter put-and-take rainbow fishery with scuds and sowbugs. Generation pulses can raise the river fast — verify before wading.",
     "officialSources": [
-      { "label": "TWRA trout fishing", "url": "https://www.tn.gov/twra/fishing.html" },
-      { "label": "USACE Center Hill releases (verify live)", "url": "https://www.lrn.usace.army.mil/Locations/Dams/Center-Hill-Dam/" },
-      { "label": "USGS gauge (verify live)", "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03414000" }
+      {
+        "label": "TWRA trout fishing",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      },
+      {
+        "label": "USACE Center Hill releases (verify live)",
+        "url": "https://www.lrn.usace.army.mil/Locations/Dams/Center-Hill-Dam/"
+      },
+      {
+        "label": "USGS gauge (verify live)",
+        "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03414000"
+      }
     ]
   },
   {
@@ -77,17 +141,32 @@
     "name": "Elk River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-middle",
-    "gaugeIds": ["03597000"],
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [
+      "03597000"
+    ],
     "stockingProgram": true,
     "idealFlow": [
-      { "min": 100, "max": 600, "unit": "cfs" }
+      {
+        "min": 100,
+        "max": 600,
+        "unit": "cfs"
+      }
     ],
     "notes": "Small tailwater below Tims Ford Dam near Winchester; year-round cold water with put-and-take stockings and occasional holdover rainbows.",
     "officialSources": [
-      { "label": "TWRA trout fishing", "url": "https://www.tn.gov/twra/fishing.html" },
-      { "label": "TVA lake & release info", "url": "https://www.tva.com/environment/lake-levels" },
-      { "label": "USGS gauge (verify live)", "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03597000" }
+      {
+        "label": "TWRA trout fishing",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      },
+      {
+        "label": "TVA lake & release info",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "USGS gauge (verify live)",
+        "url": "https://waterdata.usgs.gov/nwis/uv/?site_no=03597000"
+      }
     ]
   },
   {
@@ -95,14 +174,20 @@
     "name": "West Fork Stones River (winter stocking reach)",
     "stateId": "TN",
     "waterbodyType": "creek",
-    "regionId": "tn-middle",
+    "regionId": "tn-middle-nashville",
     "gaugeIds": [],
     "stockingProgram": true,
     "idealFlow": [],
     "notes": "Urban Middle Tennessee winter put-and-take stocking (TWRA cold-weather program, typically Dec–Feb). No gauge monitored; fish between stockings before warm spells.",
     "officialSources": [
-      { "label": "TWRA trout fishing", "url": "https://www.tn.gov/twra/fishing.html" },
-      { "label": "TWRA stocking schedule (verify)", "url": "https://www.tn.gov/twra/fishing.html" }
+      {
+        "label": "TWRA trout fishing",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      },
+      {
+        "label": "TWRA stocking schedule (verify)",
+        "url": "https://www.tn.gov/twra/fishing.html"
+      }
     ]
   }
 ]

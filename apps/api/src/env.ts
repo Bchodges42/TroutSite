@@ -14,6 +14,8 @@ export const EnvSchema = z.object({
    * written AT their served URLs (v1/**, content/**) per the frozen ENDPOINTS map.
    */
   TROUT_SNAPSHOTS_DIR: z.string().optional(),
+  /** Built PWA (apps/web/dist) served by this process; default ../web/dist. */
+  TROUT_WEB_DIST_DIR: z.string().optional(),
   /** Raw fetch snapshots (scraper audit trail); default data/raw under apps/api. */
   TROUT_RAW_DIR: z.string().optional(),
   /**

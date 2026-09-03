@@ -61,29 +61,51 @@ export interface RegionInfo {
 }
 
 export const REGIONS: RegionInfo[] = [
+  // Registry of record: packages/content/scripts/regions.ts (Role 4). Ids must
+  // match the content corpus + /v1/hatch/* snapshots exactly (ADR 0005).
   {
-    id: 'tn-east-tailwaters',
-    stateId: 'TN',
-    name: 'East Tennessee Tailwaters',
-    slug: 'east-tailwaters',
-    blurb:
-      'The South Holston and Watauga tailwaters in the northeast corner of the state — cold, fertile dam-release rivers with year-round insect activity.',
+    id: 'tn-east-holston', stateId: 'TN', name: 'East Tennessee — Holston Tailwaters', slug: 'east-holston-tailwaters',
+    blurb: 'The South Holston, Boone and Fort Patrick Henry tailwaters — cold, fertile dam-release rivers with year-round insect activity and a famous sulphur hatch.',
   },
   {
-    id: 'tn-hiwassee',
-    stateId: 'TN',
-    name: 'Hiwassee River',
-    slug: 'hiwassee',
-    blurb:
-      'The Hiwassee below Appalachia Dam in southeast Tennessee, designated a State Scenic River — a big-volume tailwater famous for its late-winter caddis hatch.',
+    id: 'tn-northeast-watauga', stateId: 'TN', name: 'Northeast Tennessee — Watauga', slug: 'northeast-watauga',
+    blurb: 'The Watauga tailwater, Doe River and Johnson County headwaters — cold tailrace water with blue-winged olives and caddis most of the year.',
   },
   {
-    id: 'tn-middle',
-    stateId: 'TN',
-    name: 'Middle Tennessee',
-    slug: 'middle-tennessee',
-    blurb:
-      'The Caney Fork and Elk River tailwaters plus TWRA winter urban stockings around Nashville — the closest reliable trout to Middle Tennessee population centers.',
+    id: 'tn-east-clinch', stateId: 'TN', name: 'East Tennessee — Clinch & Powell', slug: 'east-clinch-powell',
+    blurb: 'The Clinch below Norris Dam and the Powell River country — deep, slow tailwater pools with reliable midge and caddis fishing.',
+  },
+  {
+    id: 'tn-east-smokies', stateId: 'TN', name: 'Great Smoky Mountains National Park', slug: 'smoky-mountains',
+    blurb: 'Park streams — wild brook, rainbow and brown trout on small freestone water inside the most-visited national park in the country.',
+  },
+  {
+    id: 'tn-east-pigeon-frenchbroad', stateId: 'TN', name: 'East Tennessee — Pigeon & French Broad', slug: 'pigeon-french-broad',
+    blurb: 'The Pigeon, French Broad and Nolichucky drainages — big freestone rivers and warm-water transitions in the eastern part of the state.',
+  },
+  {
+    id: 'tn-se-hiwassee', stateId: 'TN', name: 'Southeast Tennessee — Hiwassee', slug: 'southeast-hiwassee',
+    blurb: 'The Hiwassee below Appalachia Dam — a State Scenic River and big-volume tailwater famous for its late-winter caddis hatch, plus the Tellico and Citico.',
+  },
+  {
+    id: 'tn-cumberland-plateau', stateId: 'TN', name: 'Cumberland Plateau', slug: 'cumberland-plateau',
+    blurb: 'The Obed, Emory and wild brown trout rivers atop the plateau — freestone water, gorges, and TWRA put-and-take stockings.',
+  },
+  {
+    id: 'tn-upper-cumberland', stateId: 'TN', name: 'Upper Cumberland', slug: 'upper-cumberland',
+    blurb: 'The Dale Hollow tailwater (Obey River) and Highland Rim streams — cold winter tailrace water plus spring-fed creeks.',
+  },
+  {
+    id: 'tn-middle-caney-fork', stateId: 'TN', name: 'Middle Tennessee — Caney Fork', slug: 'caney-fork',
+    blurb: 'The Caney Fork below Center Hill Dam plus the Collins and Calfkiller — the closest reliable tailwater trout to Middle Tennessee.',
+  },
+  {
+    id: 'tn-middle-duck-elk', stateId: 'TN', name: 'Middle Tennessee — Duck & Elk', slug: 'duck-elk',
+    blurb: 'The Duck and Elk River tailwaters and southern freestones — winter put-and-take trout with a strong summer smallmouth transition.',
+  },
+  {
+    id: 'tn-middle-nashville', stateId: 'TN', name: 'Middle Tennessee — Nashville', slug: 'nashville-area',
+    blurb: 'Nashville-area and Highland Rim winter-trout waters — TWRA urban stockings put catchable trout within reach of the city.',
   },
 ];
 

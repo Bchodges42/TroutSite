@@ -30,12 +30,12 @@ test('conditions list shows score pills, trend, and freshness; detail shows reas
   await expect(gaugeLink).toHaveAttribute('target', '_blank');
 });
 
-test('near me sorts by on-device distance without leaking coordinates', async ({ page }) => {
+test('near me sorts by on-device distance without leaking coordinates', async ({ page, baseURL }) => {
   await page.goto('/conditions');
   await expect(page.getByText('South Holston River')).toBeVisible();
 
   // grant a Knoxville-area position — coordinates stay on-device by design
-  await page.context().grantPermissions(['geolocation'], { origin: 'http://localhost:4173' });
+  await page.context().grantPermissions(['geolocation'], { origin: baseURL! });
   await page.context().setGeolocation({ latitude: 35.96, longitude: -83.92 });
 
   await page.getByRole('button', { name: 'Near me' }).click();

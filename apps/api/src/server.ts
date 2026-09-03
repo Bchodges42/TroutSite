@@ -10,7 +10,7 @@ const app = buildApp({
   db,
   portal: { secret: env.PORTAL_SECRET, snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public') },
   webPublicDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public'),
-  webDistDir: resolve('../web/dist'),
+  webDistDir: resolve(env.TROUT_WEB_DIST_DIR ?? '../web/dist'),
   portalOrigins: portalOrigins(env),
 });
 

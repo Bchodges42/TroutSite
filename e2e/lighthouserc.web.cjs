@@ -1,10 +1,7 @@
 /* eslint-disable no-undef -- CommonJS config file run by Node (LHCI) */
 /**
- * Lighthouse CI — web PWA (ROLE 5). Accessibility gates at ≥ 90 today.
- * The full §12 #7 PWA gate (installable + offline pass) runs with `warn`
- * until the Integration phase flips them to `error` (see
- * docs/integration-checklist.md #7) — the shell's SW/manifest already pass,
- * but the real offline UX must be judged against the finished app.
+ * Lighthouse CI — web PWA (ROLE 5; PWA gate flipped to error at integration
+ * per §12 #7): installable + offline pass + a11y ≥ 90 are all mandatory.
  */
 module.exports = {
   ci: {
@@ -19,7 +16,7 @@ module.exports = {
       assertions: {
         'categories:accessibility': ['error', { minScore: 0.9 }],
         'categories:best-practices': ['error', { minScore: 0.9 }],
-        'categories:pwa': ['warn', { minScore: 0.9 }],
+        'categories:pwa': ['error', { minScore: 0.9 }],
         'categories:seo': 'off', // the app shell is not the SEO surface
         'categories:performance': ['warn', { minScore: 0.8 }],
         'uses-long-cache-ttl': 'off',

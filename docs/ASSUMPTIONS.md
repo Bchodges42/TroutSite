@@ -390,3 +390,53 @@ SEO ≥ 0.95 / a11y ≥ 0.9 / best-practices ≥ 0.9 as errors today.
 Why: §12 #7 (installable + offline + a11y ≥ 90) is an integration-phase gate judged against the
 finished app; the Phase-0 shell already passes a11y and registers its SW.
 Impact: one-word config flip at integration (checklist item 7).
+
+### [ROLE 6] 2026-09-02 — web region table aligned to the content registry (11 regions)
+Decision: `apps/web/src/data/regions.ts` and marketing's `states.ts` REGIONS now carry the
+11 launch-region ids from `packages/content/scripts/regions.ts` (Role 4). The fixture-era
+ids (`tn-east-tailwaters`, `tn-hiwassee`, `tn-middle`) no longer exist anywhere; web +
+marketing fixture generators were re-pointed at the real ids.
+Why: charts/streams pages and marketing region pages fetch `/v1/hatch/{regionId}/…` — the
+UI table and the snapshot tree must key off the same registry.
+Impact: none on contracts (regionId is an open string); better-sorted near-me unaffected.
+
+### [ROLE 6] 2026-09-02 — e2e consolidation: `e2e/` is canonical, apps/web harness retired
+Decision: Role 2's four web specs were absorbed into `e2e/web/` (offline-cold-start,
+conditions-fixtures, manifest; privacy-audit's unique checks folded into privacy.spec) and
+`apps/web/playwright.config.ts` / `apps/web/e2e.global-setup.cjs` / its `test:e2e` script
+were removed. `e2e/global-setup.mjs` now builds the web fixture flavor + the admin flavor
+(baked against the e2e API origin) and seeds a throwaway DB + mints a real portal token so
+the portal specs run the §12 #5 flow against the REAL API on :8791.
+Why: two overlapping Playwright suites with two configs would drift (confirmed seam #7).
+Impact: `pnpm --filter @trout/e2e e2e` is the one suite; root `pnpm e2e` alias added (the
+[ROLE 5] request is satisfied).
+
+### [ROLE 6] 2026-09-02 — all Phase-1 `test.fixme` wrappers enabled (0 skips)
+Decision: the api `ingest --dry-run` spec runs the real CLI; the offline deep flow lives in
+`e2e/web/offline-cold-start.spec.ts` (Role 2's verified selectors replace the stubbed
+semantics); the online conditions flow is `e2e/web/conditions-fixtures.spec.ts`; the admin
+portal specs drive the real API. `e2e/lighthouserc.web.cjs` `categories:pwa` flipped
+`warn → error` per §12 #7.
+Why: §12 #6 mandates 0 skips at integration; Role 5's stubbed selectors did not match the
+shipped UI (no `data-testid` hooks exist), so the equivalent working assertions were used.
+Impact: qa.yml unchanged — the suite is strictly stronger.
+
+### [ROLE 6] 2026-09-02 — secondary origins served by `infra/static-server.mjs`
+Decision: pm2 runs `trout-portal-static` (:8788, apps/admin/dist, proxying `/v1/portal/*`
+to the API so the portal build stays same-origin and environment-neutral) and
+`trout-marketing-static` (:8789, apps/marketing/dist). cloudflared ingress entries for both
+are completed in `infra/cloudflared/config.yml`. See ADR 0004.
+Why: seam #5 — nothing served the two secondary app builds; a zero-dep Node server avoids
+new dependencies and keeps the portal's build free of the production hostname.
+Impact: `PORTAL_ORIGINS`/CORS remains as a dev-only escape hatch (portal dev against a
+local API can still set `VITE_API_BASE`).
+
+### [ROLE 6] 2026-09-02 — marketing reads real snapshots when `MARKETING_DATA_DIR` is set
+Decision: `apps/marketing/src/data/load.ts` accepts `MARKETING_DATA_DIR=<apps/web/public>`
+at build time and consumes the regenerated `/v1/*` + `/content/*` tree (validated with the
+same frozen schemas); default remains the bundled `(sample)` fixtures so CI and e2e stay
+deterministic. `infra/deploy.sh` rebuilds marketing from real data after snapshots.
+Why: Role 5's assumption ("swap the fixture imports for regenerated snapshot JSON") — the
+programmatic SEO pages then render real Tennessee data.
+Impact: soft content (stocking/reports) degrades to empty pages if not yet scraped; core
+files stay strict.

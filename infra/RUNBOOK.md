@@ -55,15 +55,22 @@ Copy the printed tunnel ID + credentials path into `infra/cloudflared/config.yml
 
 ### 2.3 Cron (ingest + snapshots)
 
-The hourly cron worker runs as the `trout-cron` pm2 process (`apps/api/dist/cron.js`).
-ROLE 3 replaces its tick body with the real pipeline: USGS + state pages → SQLite →
-snapshot JSON into `apps/web/public/data/`. Deploy (`§3`) regenerates snapshots on every
-release once that script exists; until then the step is skipped with a notice.
+The hourly cron worker runs as the `trout-cron` pm2 process (`apps/api/dist/cron.js`):
+USGS gauges (hourly) + TWRA stocking (daily 06:00) → SQLite → snapshot JSON regenerated
+AT the served URLs in `apps/web/public` (`/v1/**`, `/content/**` — ADR 0005). The API
+serves those files directly, so fresh data reaches visitors without a web rebuild.
+Deploy (`§3`) also regenerates snapshots on every release.
 
 ### 2.4 Start everything under pm2
 
 ```bash
-pm2 start infra/pm2/ecosystem.config.cjs   # trout-api, trout-cron, trout-cloudflared
+pm2 start infra/pm2/ecosystem.config.cjs
+#   trout-api            :8787  portal write routes + health + GET /v1/streams
+#                               + static serving of apps/web/public (/v1, /content) and web/dist (PWA)
+#   trout-cron                  hourly gauges + daily stocking + snapshot regeneration
+#   trout-portal-static  :8788  shop portal (apps/admin/dist); proxies /v1/portal/* → :8787
+#   trout-marketing-static :8789 marketing site (apps/marketing/dist)
+#   trout-cloudflared           the tunnel
 pm2 save                                   # persist the process list for resurrect (§4)
 ```
 
@@ -76,12 +83,13 @@ PATH, fix PATH rather than hardcoding a path in the ecosystem file.
 bash infra/deploy.sh
 ```
 
-Steps: `git pull --ff-only` → `pnpm install --frozen-lockfile` → `pnpm -r build` →
-`pnpm validate:content` → regenerate snapshots (guarded until ROLE 3's `snapshots` script
-exists) → `pm2 reload trout-api trout-cron` → `pm2 save`. Cloudflared keeps running; it needs
-no reload for app changes.
+Steps: `git pull --ff-only` → `pnpm install --frozen-lockfile` → `pnpm -r build` (content
+pack included) → `pnpm validate:content` → regenerate snapshots into `apps/web/public`
+(the live `/v1/*` tree) → `pm2 reload` api, cron, and the two static processes → `pm2 save`.
+Cloudflared keeps running; it needs no reload for app changes.
 
-Verify: `curl -fsS http://127.0.0.1:8787/healthz` → `{"ok":true}`, then check the public URL.
+Verify: `curl -fsS http://127.0.0.1:8787/healthz` → `{"ok":true}`, then check the public URL,
+the portal origin (:8788), and marketing (:8789).
 
 ## 4. Clean reboot recovery (§12 #10)
 
@@ -89,10 +97,13 @@ Windows update or a power cycle should recover with:
 
 1. Log in (laptop must be on, awake-on-AC per §6).
 2. If pm2 doesn't come back automatically: `pm2 resurrect` (reads the saved dump).
-   To make resurrection automatic, create a Task Scheduler job **At log on** that runs
-   `pm2 resurrect`, e.g.:
+   `pm2 save` alone does NOT survive a reboot on Windows — bootstrap persistence once:
+   `npm install -g pm2-windows-startup && pm2-startup install` (registers a Task
+   Scheduler job that runs `pm2 resurrect` at log on; verify with
+   `schtasks /Query /TN "pm2-resurrect"`). Fallback: create the job manually —
    `schtasks /Create /SC ONLOGON /TN "trout-pm2-resurrect" /TR "cmd /c pm2 resurrect"`
-3. Check processes: `pm2 ls` — `trout-api`, `trout-cron`, `trout-cloudflared` all `online`.
+3. Check processes: `pm2 ls` — `trout-api`, `trout-cron`, `trout-portal-static`,
+   `trout-marketing-static`, `trout-cloudflared` all `online`.
 4. Check health: `curl -fsS http://127.0.0.1:8787/healthz`.
 5. Check tunnel: `cloudflared tunnel info trout` (or hit the public URL).
 6. If the DB is missing/corrupt: restore the newest `backups/trout-*.db` over

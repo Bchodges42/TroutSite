@@ -61,6 +61,38 @@ test.describe('privacy audit — location never leaves the device', () => {
     }
   });
 
+  // Ported from Role 2's privacy-audit spec at integration (canonical suite per §5):
+  // "near me" computes distance on-device, so the granted coordinates must never
+  // appear in ANY request URL while the feature is exercised for real.
+  test('location coordinates never appear in any request while using near me', async ({
+    page,
+    baseURL,
+  }) => {
+    const LAT = 35.9643;
+    const LON = -83.9207;
+    const latTokens = [String(LAT), LAT.toFixed(4), LAT.toFixed(2), '35.96'];
+    const lonTokens = [String(LON), LON.toFixed(4), LON.toFixed(2), '-83.92'];
+
+    const requests: string[] = [];
+    page.on('request', (req) => requests.push(req.url()));
+
+    await page.context().grantPermissions(['geolocation'], { origin: baseURL! });
+    await page.context().setGeolocation({ latitude: LAT, longitude: LON });
+
+    await page.goto('/conditions');
+    await expect(page.getByText('South Holston River')).toBeVisible();
+    await page.getByRole('button', { name: 'Near me' }).click();
+    await expect(
+      page.locator('li', { hasText: 'South Holston River' }).first().getByText(/\d+(\.\d+)? mi/),
+    ).toBeVisible();
+    await page.waitForLoadState('networkidle');
+
+    const leaked = requests.filter(
+      (u) => latTokens.some((t) => u.includes(t)) || lonTokens.some((t) => u.includes(t)),
+    );
+    expect(leaked, `coordinates leaked into requests: ${leaked.join(', ')}`).toEqual([]);
+  });
+
   test('denying the (hypothetical) permission prompt never breaks the app', async ({
     page,
     baseURL,

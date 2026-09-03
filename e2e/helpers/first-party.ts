@@ -51,5 +51,16 @@ export const GEOLOCATION_SPY = `
   } catch {}
 `;
 
-/** The PWA routes the finished v1 app must expose (sweep target for privacy audit). */
-export const WEB_ROUTES = ['/', '/hatch', '/conditions', '/stocking', '/id'];
+/** The PWA routes the finished v1 app must expose (sweep target for privacy audit).
+ *  Kept in step with apps/web/src/App.tsx (Role 2's shipped route table). */
+export const WEB_ROUTES = [
+  '/',
+  '/hatch-key',
+  '/charts',
+  '/conditions',
+  '/stocking',
+  '/shops',
+  '/logbook',
+  '/settings',
+  '/about',
+];

@@ -92,9 +92,9 @@ test.describe('marketing fixtures are contract-valid', () => {
   });
 });
 
-test.describe('api ingestion dry-run (enabled when Role 3 ships the CLI)', () => {
-  test.fixme('`ingest --dry-run` parses all fixture HTML and emits contract-valid snapshots', () => {
-    // Exact §12 #2 command; requires apps/api to define the `ingest` script.
+test.describe('api ingestion dry-run (§12 #2 — enabled at integration)', () => {
+  test('`ingest --dry-run` parses all fixture HTML and emits contract-valid snapshots', () => {
+    // Exact §12 #2 command against the api's recorded fixtures.
     execFileSync('pnpm', ['--filter', 'api', 'ingest', '--dry-run'], {
       cwd: REPO_ROOT,
       stdio: 'inherit',
