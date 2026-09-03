@@ -1,14 +1,17 @@
 import { resolve } from 'node:path';
 import { buildApp } from './app.js';
 import { openDb } from './db.js';
-import { loadEnv } from './env.js';
+import { loadEnv, portalOrigins } from './env.js';
 
 const env = loadEnv();
 const db = openDb(resolve(env.TROUT_DB_PATH));
 const app = buildApp({
   logger: true,
   db,
-  portal: { secret: env.PORTAL_SECRET, snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public/data') },
+  portal: { secret: env.PORTAL_SECRET, snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public') },
+  webPublicDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public'),
+  webDistDir: resolve('../web/dist'),
+  portalOrigins: portalOrigins(env),
 });
 
 app

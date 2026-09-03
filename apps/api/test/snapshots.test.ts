@@ -53,20 +53,20 @@ describe('buildSnapshots', () => {
     // Files match the endpoint map; no atomic-write temp files left behind.
     const rel = (p: string) => p.slice(env.snapshotsDir.length + 1);
     const written = result.files.map(rel).sort();
-    expect(written).toContain('streams.json');
-    expect(written).toContain(join('conditions', 'latest.json'));
-    expect(written).toContain(join('stocking', 'TN.json'));
-    expect(written).toContain(join('shops', 'TN.json'));
-    expect(written).toContain(join('reports', 'recent.json'));
+    expect(written).toContain(join('v1', 'streams.json'));
+    expect(written).toContain(join('v1', 'conditions', 'latest.json'));
+    expect(written).toContain(join('v1', 'stocking', 'TN.json'));
+    expect(written).toContain(join('v1', 'shops', 'TN.json'));
+    expect(written).toContain(join('v1', 'reports', 'recent.json'));
     const all = listFiles(env.snapshotsDir);
     expect(all.every((f) => !f.includes('.tmp-'))).toBe(true);
 
     // Every payload validates against the frozen contract schemas.
-    const streams = JSON.parse(readOut(env.snapshotsDir, 'streams.json')) as unknown[];
+    const streams = JSON.parse(readOut(env.snapshotsDir, join('v1', 'streams.json'))) as unknown[];
     expect(streams).toHaveLength(2);
     streams.forEach((s) => expect(StreamSchema.safeParse(s).success).toBe(true));
 
-    const conditions = JSON.parse(readOut(env.snapshotsDir, join('conditions', 'latest.json'))) as unknown[];
+    const conditions = JSON.parse(readOut(env.snapshotsDir, join('v1', 'conditions', 'latest.json'))) as unknown[];
     expect(conditions).toHaveLength(2);
     conditions.forEach((c) => expect(ConditionSnapshotSchema.safeParse(c).success).toBe(true));
     const holston = conditions.find((c) => (c as { streamId: string }).streamId === 'watauga-river') as {
@@ -81,15 +81,15 @@ describe('buildSnapshots', () => {
     // Healthy gauges job → fresh until now + 1h.
     expect(Date.parse(holston.nextExpectedUpdate) - Date.parse(holston.fetchedAt)).toBe(3_600_000);
 
-    const stocking = JSON.parse(readOut(env.snapshotsDir, join('stocking', 'TN.json'))) as unknown[];
+    const stocking = JSON.parse(readOut(env.snapshotsDir, join('v1', 'stocking', 'TN.json'))) as unknown[];
     stocking.forEach((e) => expect(StockingEventSchema.safeParse(e).success).toBe(true));
     expect(stocking.length).toBeGreaterThan(500);
 
-    const shops = JSON.parse(readOut(env.snapshotsDir, join('shops', 'TN.json'))) as unknown[];
+    const shops = JSON.parse(readOut(env.snapshotsDir, join('v1', 'shops', 'TN.json'))) as unknown[];
     expect(shops).toHaveLength(1);
     shops.forEach((s) => expect(ShopSchema.safeParse(s).success).toBe(true));
 
-    const reports = JSON.parse(readOut(env.snapshotsDir, join('reports', 'recent.json'))) as unknown[];
+    const reports = JSON.parse(readOut(env.snapshotsDir, join('v1', 'reports', 'recent.json'))) as unknown[];
     expect(reports).toEqual([]);
   });
 
@@ -100,7 +100,7 @@ describe('buildSnapshots', () => {
     ).rejects.toThrow(/HTTP 404/);
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
     const conditions = JSON.parse(
-      readOut(env.snapshotsDir, join('conditions', 'latest.json')),
+      readOut(env.snapshotsDir, join('v1', 'conditions', 'latest.json')),
     ) as { nextExpectedUpdate: string; fetchedAt: string }[];
     for (const c of conditions) {
       // Immediately stale: consumers treat now > nextExpectedUpdate as stale (documented).
@@ -114,14 +114,14 @@ describe('buildSnapshots', () => {
     const later = new Date(NOW.getTime() + 60_000);
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: later });
     const conditions = JSON.parse(
-      readOut(env.snapshotsDir, join('conditions', 'latest.json')),
+      readOut(env.snapshotsDir, join('v1', 'conditions', 'latest.json')),
     ) as { fetchedAt: string }[];
     expect(conditions[0]?.fetchedAt).toBe(later.toISOString());
     expect(listFiles(env.snapshotsDir).filter((f) => f.includes('.tmp-'))).toHaveLength(0);
 
     // Orphan pruning: a stocking file for a state with no events disappears.
-    const orphan = join(env.snapshotsDir, 'stocking', 'ZZ.json');
-    mkdirSync(join(env.snapshotsDir, 'stocking'), { recursive: true });
+    const orphan = join(env.snapshotsDir, 'v1', 'stocking', 'ZZ.json');
+    mkdirSync(join(env.snapshotsDir, 'v1', 'stocking'), { recursive: true });
     writeRaw(orphan, '[]');
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: later });
     expect(existsSync(orphan)).toBe(false);
@@ -166,7 +166,7 @@ describe('buildSnapshots', () => {
     expect(reports.every((r) => r.shopName === 'Test Fly Shop (fixture)' && r.attributionUrl === shop.website_url)).toBe(true);
 
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
-    const written = JSON.parse(readOut(env.snapshotsDir, join('reports', 'recent.json'))) as unknown[];
+    const written = JSON.parse(readOut(env.snapshotsDir, join('v1', 'reports', 'recent.json'))) as unknown[];
     expect(written).toHaveLength(3);
   });
 });
@@ -197,11 +197,11 @@ describe('scoring parity (server snapshot == client recompute)', () => {
     readings: Parameters<typeof scoreConditions>[1];
     score: { value: number; reasons: string[] };
   }[] {
-    return JSON.parse(readOut(snapshotsDir, join('conditions', 'latest.json')));
+    return JSON.parse(readOut(snapshotsDir, join('v1', 'conditions', 'latest.json')));
   }
 
   function loadStream(snapshotsDir: string, id: string): Parameters<typeof scoreConditions>[0] {
-    const all = JSON.parse(readOut(snapshotsDir, 'streams.json')) as unknown[];
+    const all = JSON.parse(readOut(snapshotsDir, join('v1', 'streams.json'))) as unknown[];
     return StreamSchema.parse(all.find((s) => (s as { id: string }).id === id));
   }
 
@@ -252,6 +252,104 @@ describe('scoring parity (server snapshot == client recompute)', () => {
       // (100-40)/100 deficit → 80 - round(0.6*70) = 38.
       expect(holston!.score.value).toBe(38);
       expect(holston!.score.reasons.join(' ')).toContain('water is low');
+    } finally {
+      env2.db.close();
+      rmSync(env2.dir, { recursive: true, force: true });
+    }
+  });
+});
+
+/** Content-pack emission (integration seam): /v1/hatch/* + /content/{taxa,patterns}.json
+ *  are derived from the built pack (packages/content/dist/pack) in the same run. */
+describe('content pack emission', () => {
+  it('emits hatch charts at /v1/hatch and bare-array content payloads, stripping pack extras', () => {
+    const env2 = makeEnv();
+    try {
+      const pack = join(env2.dir, 'pack');
+      mkdirSync(join(pack, 'hatch', 'tn-test-region'), { recursive: true });
+      const taxon = {
+        id: 'baetis-tricaudatus',
+        commonName: 'Blue-Winged Olive',
+        sciName: 'Baetis tricaudatus',
+        order: 'Ephemeroptera',
+        family: 'Baetidae',
+        sizeRange: [16, 22],
+        keyAttributes: {
+          tails: 3,
+          gills: 'lamellae',
+          bodyShape: 'slender',
+          bodyColor: ['olive'],
+          mouthparts: 'chewing',
+        },
+        habitat: ['riffles'],
+        monthsActiveByRegion: { 'tn-test-region': [4, 5] },
+        notes: '',
+        sources: ['https://www.troutnut.com/hatch/47'],
+        // pack extras that must NOT reach the PWA payload:
+        svg: '<svg/>',
+        stages: ['nymph', 'dun'],
+      };
+      const pattern = {
+        id: 'pheasant-tail-nymph',
+        name: 'Pheasant Tail Nymph',
+        type: 'nymph',
+        imitates: ['baetis-tricaudatus'],
+        hookSizes: [16, 18],
+        difficulty: 2,
+        materials: ['pheasant tail fibers'],
+        notes: '',
+        license: 'public-domain',
+      };
+      writeFileSync(join(pack, 'bugs.json'), JSON.stringify({ taxa: [taxon] }));
+      writeFileSync(join(pack, 'patterns.json'), JSON.stringify({ patterns: [pattern] }));
+      writeFileSync(
+        join(pack, 'hatch', 'tn-test-region', '4.json'),
+        JSON.stringify({
+          regionId: 'tn-test-region',
+          month: 4,
+          entries: [
+            { taxonId: 'baetis-tricaudatus', stage: 'dun', timeOfDay: 'midday', abundance: 3, patterns: ['pheasant-tail-nymph'] },
+          ],
+        }),
+      );
+
+      const result = buildSnapshots({
+        db: env2.db,
+        snapshotsDir: env2.snapshotsDir,
+        contentPackDir: pack,
+        now: NOW,
+      });
+      expect(result.contentPack).toBe(true);
+      expect(result.hatchCharts).toBe(1);
+
+      const taxa = JSON.parse(readOut(env2.snapshotsDir, join('content', 'taxa.json'))) as Record<string, unknown>[];
+      expect(taxa).toHaveLength(1);
+      expect(taxa[0].id).toBe('baetis-tricaudatus');
+      expect(taxa[0]).not.toHaveProperty('svg');
+      expect(taxa[0]).not.toHaveProperty('stages');
+
+      const patterns = JSON.parse(readOut(env2.snapshotsDir, join('content', 'patterns.json'))) as unknown[];
+      expect(patterns).toHaveLength(1);
+
+      const chart = JSON.parse(
+        readOut(env2.snapshotsDir, join('v1', 'hatch', 'tn-test-region', '4.json')),
+      ) as { regionId: string; month: number; entries: unknown[] };
+      expect(chart.regionId).toBe('tn-test-region');
+      expect(chart.entries).toHaveLength(1);
+    } finally {
+      env2.db.close();
+      rmSync(env2.dir, { recursive: true, force: true });
+    }
+  });
+
+  it('warns (and still writes DB snapshots) when the content pack is absent', () => {
+    const env2 = makeEnv();
+    try {
+      const result = buildSnapshots({ db: env2.db, snapshotsDir: env2.snapshotsDir, now: NOW });
+      expect(result.contentPack).toBe(false);
+      expect(result.warnings.some((w) => w.includes('content pack'))).toBe(true);
+      expect(existsSync(join(env2.snapshotsDir, 'v1', 'streams.json'))).toBe(true);
+      expect(existsSync(join(env2.snapshotsDir, 'content', 'taxa.json'))).toBe(false);
     } finally {
       env2.db.close();
       rmSync(env2.dir, { recursive: true, force: true });

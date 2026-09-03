@@ -37,7 +37,7 @@ export function makeEnv(): TestEnv {
   const dir = makeTempDir();
   const db = openDb(join(dir, 'test.db'));
   seedContent(db, join(fixturesDir(), 'content'));
-  return { db, dir, snapshotsDir: join(dir, 'public', 'data'), rawDir: join(dir, 'raw') };
+  return { db, dir, snapshotsDir: join(dir, 'public'), rawDir: join(dir, 'raw') };
 }
 
 /** Mock fetch returning a canned Response; records requested URLs. */

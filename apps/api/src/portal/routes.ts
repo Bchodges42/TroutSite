@@ -44,6 +44,13 @@ export const ReportBodySchema = z.object({
     )
     .max(25)
     .default([]),
+  // Additive in contracts-v1.0.1 (ADR 0002): optional https photo URL, passed through
+  // to the public report. The composer validates client-side; re-validated here.
+  photoUrl: z
+    .string()
+    .max(2048)
+    .refine((v) => /^https:\/\/\S+$/.test(v), { message: 'photoUrl must be an https URL' })
+    .optional(),
 });
 export type ReportBody = z.infer<typeof ReportBodySchema>;
 
@@ -99,7 +106,9 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
       await deny(reply, 401, 'missing portal token');
       return;
     }
-    const shopId = verifyShopToken(deps.secret, token);
+    const shopId = verifyShopToken(deps.secret, token, Date.now(), (reason) => {
+      req.log.info({ tokenFail: reason }, 'portal token rejected');
+    });
     if (!shopId) {
       await deny(reply, 401, 'invalid portal token');
       return;
@@ -174,6 +183,7 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
       body,
       hotPatterns: patternIds,
       attributionUrl: shop.website_url,
+      ...(input.photoUrl !== undefined ? { photoUrl: input.photoUrl } : {}),
       publishedAt,
     });
     if (!candidate.success) {
@@ -183,8 +193,8 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
 
     deps.db
       .prepare(
-        `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, published_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, photo_url, published_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .run(
         report.id,
@@ -194,6 +204,7 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
         report.body,
         JSON.stringify(report.hotPatterns),
         report.attributionUrl,
+        report.photoUrl ?? null,
         report.publishedAt,
       );
 

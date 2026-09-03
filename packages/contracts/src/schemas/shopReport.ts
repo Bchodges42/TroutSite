@@ -16,6 +16,16 @@ export const ShopReportSchema = z.object({
   body: z.string().min(1),
   hotPatterns: z.array(HotPatternSchema),
   attributionUrl: z.string().url(),
+  /**
+   * Additive in contracts-v1.0.1 (ADR 0002): optional https photo URL supplied by the
+   * shop through the portal composer. Absent = no photo; the public feed renders it
+   * only alongside the attribution block.
+   */
+  photoUrl: z
+    .string()
+    .url()
+    .refine((v) => v.startsWith('https://'), { message: 'photoUrl must be an https URL' })
+    .optional(),
   publishedAt: IsoDateTimeSchema,
 });
 export type ShopReport = z.infer<typeof ShopReportSchema>;

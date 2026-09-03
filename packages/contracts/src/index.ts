@@ -1,4 +1,4 @@
-// @trout/contracts — frozen public surface (contracts-v1.0.0).
+// @trout/contracts — public surface (contracts-v1.0.0; additive photoUrl in contracts-v1.0.1, ADR 0002).
 // Schemas + types are re-exported from src/schemas; logic from the two pure-function modules.
 export * from './schemas/shared.js';
 export * from './schemas/stream.js';

@@ -2,20 +2,30 @@ import { readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { buildApp } from '../src/app.js';
-import { bearerToken, signShopToken, verifyShopToken } from '../src/portal/tokens.js';
+import { bearerToken, mintShopToken, signShopToken, verifyShopToken } from '../src/portal/tokens.js';
 import { makeEnv, type TestEnv } from './helpers.js';
 
 const SECRET = 'test-portal-secret-0123456789abcdef';
 
 describe('shop tokens', () => {
-  it('round-trips and rejects forgery/tampering', () => {
-    const token = signShopToken(SECRET, 'test-fly-shop');
-    expect(token.startsWith('t1.')).toBe(true);
+  it('round-trips the expiring v1 format (apps/admin/TOKENS.md) and rejects forgery/tampering', () => {
+    const iat = Date.now();
+    const token = signShopToken(SECRET, 'test-fly-shop', iat, iat + 86_400_000);
+    expect(token).toMatch(/^v1\.test-fly-shop\.\d+\.\d+\.[A-Za-z0-9_-]+$/);
     expect(verifyShopToken(SECRET, token)).toBe('test-fly-shop');
     expect(verifyShopToken('wrong-secret', token)).toBeNull();
     expect(verifyShopToken(SECRET, `${token}x`)).toBeNull();
     expect(verifyShopToken(SECRET, 'garbage')).toBeNull();
-    expect(verifyShopToken(SECRET, 't1..')).toBeNull();
+    expect(verifyShopToken(SECRET, 'v1..')).toBeNull();
+  });
+
+  it('rejects expired tokens (expiry checked before the HMAC)', () => {
+    const iat = Date.now() - 86_400_000;
+    const expired = signShopToken(SECRET, 'test-fly-shop', iat, iat + 1000);
+    const reasons: string[] = [];
+    expect(verifyShopToken(SECRET, expired, Date.now(), (r) => reasons.push(r))).toBeNull();
+    expect(reasons).toEqual(['expired']);
+    expect(mintShopToken(SECRET, 'test-fly-shop', 30)).toMatch(/^v1\.test-fly-shop\./);
   });
 
   it('extracts bearer tokens case-insensitively', () => {
@@ -34,7 +44,7 @@ describe('portal API', () => {
   beforeEach(() => {
     env = makeEnv();
     app = buildApp({ db: env.db, portal: { secret: SECRET, snapshotsDir: env.snapshotsDir } });
-    token = signShopToken(SECRET, 'test-fly-shop');
+    token = mintShopToken(SECRET, 'test-fly-shop', 30);
   });
 
   afterEach(async () => {
@@ -80,14 +90,14 @@ describe('portal API', () => {
       const forged = await app.inject({
         method: 'GET',
         url: '/v1/portal/me',
-        headers: { authorization: `Bearer ${signShopToken('other-secret', 'test-fly-shop')}` },
+        headers: { authorization: `Bearer ${mintShopToken('other-secret', 'test-fly-shop', 30)}` },
       });
       expect(forged.statusCode).toBe(401);
 
       const unknown = await app.inject({
         method: 'GET',
         url: '/v1/portal/me',
-        headers: { authorization: `Bearer ${signShopToken(SECRET, 'no-such-shop')}` },
+        headers: { authorization: `Bearer ${mintShopToken(SECRET, 'no-such-shop', 30)}` },
       });
       expect(unknown.statusCode).toBe(403);
     });
@@ -119,7 +129,7 @@ describe('portal API', () => {
 
       // Appears in the regenerated snapshot with attribution (DoD).
       const snapshot = JSON.parse(
-        readFileSync(join(env.snapshotsDir, 'reports', 'recent.json'), 'utf8'),
+        readFileSync(join(env.snapshotsDir, 'v1', 'reports', 'recent.json'), 'utf8'),
       ) as { id: string; shopName: string }[];
       expect(snapshot.some((r) => r.id === report.id && r.shopName === report.shopName)).toBe(true);
     });
@@ -136,6 +146,26 @@ describe('portal API', () => {
       expect(report.body).not.toContain('<');
       expect(report.body).toContain('BWO hatch');
       expect(report.body).toContain('today');
+    });
+
+    it('accepts and passes through an https photoUrl, rejects non-https (ADR 0002)', async () => {
+      const ok = await app.inject({
+        method: 'POST',
+        url: '/v1/portal/reports',
+        headers: { authorization: `Bearer ${token}` },
+        payload: { ...validBody, photoUrl: 'https://example.com/photos/bwo.jpg' },
+      });
+      expect(ok.statusCode).toBe(201);
+      const { report } = ok.json() as { report: { photoUrl?: string } };
+      expect(report.photoUrl).toBe('https://example.com/photos/bwo.jpg');
+
+      const http = await app.inject({
+        method: 'POST',
+        url: '/v1/portal/reports',
+        headers: { authorization: `Bearer ${token}` },
+        payload: { ...validBody, photoUrl: 'http://example.com/photos/bwo.jpg' },
+      });
+      expect(http.statusCode).toBe(422);
     });
 
     it('rejects oversized bodies with 422', async () => {
@@ -173,7 +203,7 @@ describe('portal API', () => {
       const badToken = await app.inject({
         method: 'POST',
         url: '/v1/portal/reports',
-        headers: { authorization: 'Bearer t1.zm9v.zm9v' },
+        headers: { authorization: 'Bearer v1.zm9v.123.456.zm9v' },
         payload: validBody,
       });
       expect(badToken.statusCode).toBe(401);

@@ -11,6 +11,7 @@ export type JobName = 'gauges' | 'stocking' | 'snapshots';
 
 export interface PipelineConfig {
   snapshotsDir: string;
+  contentPackDir: string;
   rawDir: string;
   userAgent: string;
   fixturesDir: string;
@@ -25,11 +26,14 @@ export interface JobOutcome {
 /** Resolve pipeline paths from env (relative paths anchor at the api package root/cwd). */
 export function pipelineConfig(env: {
   TROUT_SNAPSHOTS_DIR?: string;
+  TROUT_CONTENT_DIR?: string;
   TROUT_RAW_DIR?: string;
   USGS_USER_AGENT?: string;
 }, fixturesDir?: string): PipelineConfig {
+  const contentDir = resolve(env.TROUT_CONTENT_DIR ?? '../../packages/content');
   return {
-    snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public/data'),
+    snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public'),
+    contentPackDir: resolve(contentDir, 'dist/pack'),
     rawDir: resolve(env.TROUT_RAW_DIR ?? 'data/raw'),
     userAgent: env.USGS_USER_AGENT ?? 'trout-local/0.1.0 (contact: set USGS_USER_AGENT in env)',
     fixturesDir: fixturesDir ?? resolve('fixtures'),
@@ -126,7 +130,7 @@ export async function runJob(
   const now = opts.now ?? new Date();
   if (job === 'gauges') {
     await runGaugesJob(db, { userAgent: cfg.userAgent });
-    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, now });
+    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     return { job, ok: true, detail: { ...snap, files: snap.files.length } };
   }
   if (job === 'stocking') {
@@ -140,13 +144,13 @@ export async function runJob(
       },
       { states: opts.states },
     );
-    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, now });
+    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     const failing = result.states.filter((s) => !s.ok).length;
     return { job, ok: failing === 0, detail: { ...result, snapshots: snap.files.length } };
   }
   const handle = startJob(db, 'snapshots');
   try {
-    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, now });
+    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     const detail = { ...snap, files: snap.files.length };
     handle.ok(detail);
     return { job, ok: true, detail };

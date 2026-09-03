@@ -249,6 +249,15 @@ describe('ShopReportSchema', () => {
     expect(() => ShopReportSchema.parse(makeReport({ attributionUrl: 'not-a-url' }))).toThrow(ZodError);
   });
 
+  it('accepts an optional https photoUrl and rejects http/invalid (contracts-v1.0.1)', () => {
+    expect(ShopReportSchema.parse(makeReport({ photoUrl: 'https://example.com/photo.jpg' }))).
+      toHaveProperty('photoUrl', 'https://example.com/photo.jpg');
+    const { photoUrl: _p, ...withoutPhoto } = makeReport({ photoUrl: 'https://example.com/photo.jpg' });
+    expect(ShopReportSchema.parse(withoutPhoto)).toBeDefined();
+    expect(() => ShopReportSchema.parse(makeReport({ photoUrl: 'http://example.com/photo.jpg' }))).toThrow(ZodError);
+    expect(() => ShopReportSchema.parse(makeReport({ photoUrl: 'not-a-url' }))).toThrow(ZodError);
+  });
+
   it('rejects a non-positive hotPattern hookSize', () => {
     expect(() =>
       ShopReportSchema.parse(makeReport({ hotPatterns: [{ patternId: 'x', hookSize: 0 }] })),
