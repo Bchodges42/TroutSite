@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import * as maplibregl from 'maplibre-gl';
+import { setWorkerUrl } from 'maplibre-gl';
+// Bundle MapLibre's worker through Vite so it is emitted as a same-origin,
+// precached asset. Without this the map requests /assets/maplibre-gl-worker.mjs
+// (derived from the bundle URL), gets index.html from the SPA fallback, and
+// the style never goes idle — blank map. See mapStyle.ts note on fallbacks.
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { atlasStyle } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS } from './mapTokens';
+
+setWorkerUrl(maplibreWorkerUrl);
 
 export interface TennesseeMapProps {
   selectedId: string | null;
@@ -47,6 +55,12 @@ export function TennesseeMap({
   const [attempt, setAttempt] = useState(0);
   const [mapFailed, setMapFailed] = useState(false);
 
+  // Applies condition/hatch colors onto the loaded GeoJSON source data.
+  // Guards: style may be loaded while the source fetch is still in flight
+  // (src._data is not a FeatureCollection yet). The mount effect re-runs this
+  // on idle so colors land as soon as data arrives.
+  const applyRef = useRef(() => {});
+
   // mount once (plus explicit retries from the failure fallback)
   useEffect(() => {
     const container = containerRef.current;
@@ -90,6 +104,7 @@ export function TennesseeMap({
     });
     map.on('idle', () => {
       idle = true;
+      try { applyRef.current(); } catch { /* colors apply on next tick */ }
     });
     if (typeof window !== 'undefined' && import.meta.env?.DEV) {
       map.on('error', (e) => {
@@ -259,14 +274,15 @@ export function TennesseeMap({
   }, [selectedId]);
 
   // efficient source property updates (condition colors + hatch halo)
-  useEffect(() => {
+  applyRef.current = () => {
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
-    const src = map.getSource('rivers') as unknown as { _data?: { features: Array<{ properties: Record<string, unknown> }> }; setData?: (d: unknown) => void } | null;
-    if (!src || !src._data || !src.setData) return;
+    const src = map.getSource('rivers') as unknown as { _data?: { features?: Array<{ properties: Record<string, unknown>; id?: string }> }; setData?: (d: unknown) => void } | null;
+    const feats = src?._data?.features;
+    if (!src || !src.setData || !Array.isArray(feats)) return;
 
     let colorChanged = false;
-    for (const f of src._data.features as Array<{ properties: Record<string, unknown>; id?: string }>) {
+    for (const f of feats) {
       const id = (f.properties['id'] as string | undefined) ?? (f.id as string | undefined);
       if (!id) continue;
       const nextColor = featureColors.get(id);
@@ -297,6 +313,9 @@ export function TennesseeMap({
         }
       });
     }
+  };
+  useEffect(() => {
+    try { applyRef.current(); } catch { /* map not ready yet; idle handler retries */ }
   }, [featureColors, hatchActiveIds, hatchColors]);
 
   return (
