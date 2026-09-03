@@ -7,7 +7,7 @@ dist/
 *.tsbuildinfo
 .eslintcache
 # generated snapshot JSONs (ROLE 3/6) — regenerate with `pnpm --filter api snapshots`
-# written at the served /v1/* URLs + /content/* content pack (ADR 0001 in docs/adr/)
+# written at the served /v1/* URLs + /content/* content pack (ADR 0005 in docs/adr/)
 apps/web/public/data/
 apps/web/public/v1/
 apps/web/public/content/
