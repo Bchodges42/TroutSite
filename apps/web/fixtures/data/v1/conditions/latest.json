@@ -1,0 +1,253 @@
+[
+  {
+    "streamId": "south-holston-river",
+    "readings": [
+      {
+        "gaugeId": "03481500",
+        "timestamp": "2026-09-02T20:16:41Z",
+        "cfs": 245,
+        "heightFt": 2.9,
+        "tempC": 9.4
+      },
+      {
+        "gaugeId": "03481500",
+        "timestamp": "2026-09-02T19:16:41Z",
+        "cfs": 268,
+        "heightFt": 3,
+        "tempC": 9.6
+      },
+      {
+        "gaugeId": "03481500",
+        "timestamp": "2026-09-02T18:16:41Z",
+        "cfs": 250,
+        "heightFt": 3.1,
+        "tempC": 9.7
+      }
+    ],
+    "score": {
+      "value": 90,
+      "reasons": [
+        "Flow 245 cfs is within the ideal range (100–350 cfs).",
+        "Water temperature 9.4°C is in the ideal window for trout activity.",
+        "Scored from 3 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "watauga-river",
+    "readings": [
+      {
+        "gaugeId": "03466000",
+        "timestamp": "2026-09-02T20:20:41Z",
+        "cfs": 1520,
+        "heightFt": 6.8,
+        "tempC": 8.2
+      },
+      {
+        "gaugeId": "03466000",
+        "timestamp": "2026-09-02T19:20:41Z",
+        "cfs": 1490,
+        "heightFt": 6.7,
+        "tempC": 8.3
+      }
+    ],
+    "score": {
+      "value": 20,
+      "reasons": [
+        "Flow 1520 cfs is above the ideal range (150–600 cfs) — water is high and may be unsafe.",
+        "Water temperature 8.2°C is in the ideal window for trout activity.",
+        "Scored from 2 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "hiwassee-river",
+    "readings": [
+      {
+        "gaugeId": "03566000",
+        "timestamp": "2026-09-02T20:07:41Z",
+        "cfs": 480,
+        "heightFt": 3.4,
+        "tempC": 11.8
+      },
+      {
+        "gaugeId": "03566000",
+        "timestamp": "2026-09-02T19:07:41Z",
+        "cfs": 520,
+        "heightFt": 3.6,
+        "tempC": 12
+      },
+      {
+        "gaugeId": "03566000",
+        "timestamp": "2026-09-02T18:07:41Z",
+        "cfs": 560,
+        "heightFt": 3.7,
+        "tempC": 12.1
+      }
+    ],
+    "score": {
+      "value": 90,
+      "reasons": [
+        "Flow 480 cfs is within the ideal range (250–1200 cfs).",
+        "Water temperature 11.8°C is in the ideal window for trout activity.",
+        "Scored from 3 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "caney-fork-river",
+    "readings": [
+      {
+        "gaugeId": "03430497",
+        "timestamp": "2026-09-02T20:26:41Z",
+        "cfs": 360,
+        "heightFt": 4.1,
+        "tempC": 10.5
+      },
+      {
+        "gaugeId": "03430497",
+        "timestamp": "2026-09-02T19:26:41Z",
+        "cfs": 340,
+        "heightFt": 4,
+        "tempC": 10.6
+      }
+    ],
+    "score": {
+      "value": 90,
+      "reasons": [
+        "Flow 360 cfs is within the ideal range (200–800 cfs).",
+        "Water temperature 10.5°C is in the ideal window for trout activity.",
+        "Scored from 2 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "elk-river",
+    "readings": [
+      {
+        "gaugeId": "03599000",
+        "timestamp": "2026-09-02T20:12:41Z",
+        "cfs": 145,
+        "heightFt": 2.2,
+        "tempC": 25.4
+      },
+      {
+        "gaugeId": "03599000",
+        "timestamp": "2026-09-02T19:12:41Z",
+        "cfs": 150,
+        "heightFt": 2.2,
+        "tempC": 25.2
+      }
+    ],
+    "score": {
+      "value": 50,
+      "reasons": [
+        "Flow 145 cfs is within the ideal range (100–500 cfs).",
+        "Water temperature 25.4°C is dangerously warm — avoid stressing trout.",
+        "Scored from 2 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "holston-river",
+    "readings": [
+      {
+        "gaugeId": "03587500",
+        "timestamp": "2026-09-02T20:01:41Z",
+        "heightFt": 6.9,
+        "tempC": 12.4
+      },
+      {
+        "gaugeId": "03587500",
+        "timestamp": "2026-09-02T19:01:41Z",
+        "heightFt": 7,
+        "tempC": 12.5
+      }
+    ],
+    "score": {
+      "value": 60,
+      "reasons": [
+        "No flow (cfs) reading — scored from stage height 6.9 ft with limited confidence.",
+        "Water temperature 12.4°C is in the ideal window for trout activity.",
+        "Scored from 2 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "clinch-river",
+    "readings": [
+      {
+        "gaugeId": "03452000",
+        "timestamp": "2026-09-02T19:53:41Z",
+        "cfs": 85,
+        "heightFt": 1.9,
+        "tempC": 13.6
+      },
+      {
+        "gaugeId": "03452000",
+        "timestamp": "2026-09-02T18:53:41Z",
+        "cfs": 90,
+        "heightFt": 2,
+        "tempC": 13.5
+      },
+      {
+        "gaugeId": "03452000",
+        "timestamp": "2026-09-02T17:53:41Z",
+        "cfs": 95,
+        "heightFt": 2,
+        "tempC": 13.4
+      }
+    ],
+    "score": {
+      "value": 50,
+      "reasons": [
+        "Flow 85 cfs is below the ideal range (200–1000 cfs) — water is low.",
+        "Water temperature 13.6°C is in the ideal window for trout activity.",
+        "Scored from 3 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  },
+  {
+    "streamId": "duck-river",
+    "readings": [
+      {
+        "gaugeId": "03537000",
+        "timestamp": "2026-09-02T19:45:41Z",
+        "cfs": 130,
+        "heightFt": 2.8,
+        "tempC": 14.2
+      },
+      {
+        "gaugeId": "03537000",
+        "timestamp": "2026-09-02T18:45:41Z",
+        "cfs": 125,
+        "heightFt": 2.8,
+        "tempC": 14.3
+      }
+    ],
+    "score": {
+      "value": 90,
+      "reasons": [
+        "Flow 130 cfs is within the ideal range (60–400 cfs).",
+        "Water temperature 14.2°C is in the ideal window for trout activity.",
+        "Scored from 2 gauge readings (newest used)."
+      ]
+    },
+    "fetchedAt": "2026-09-02T20:16:41Z",
+    "nextExpectedUpdate": "2026-09-02T21:16:41Z"
+  }
+]

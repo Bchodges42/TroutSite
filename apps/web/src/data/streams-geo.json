@@ -1,0 +1,11 @@
+{
+  "_comment": "Approximate public USGS gauge coordinates for the fixture streams. Bundled with the PWA so 'Near me' never needs the network; coordinates never leave the device.",
+  "south-holston-river": { "lat": 36.532, "lon": -82.092 },
+  "watauga-river": { "lat": 36.363, "lon": -82.224 },
+  "hiwassee-river": { "lat": 35.058, "lon": -84.498 },
+  "caney-fork-river": { "lat": 36.028, "lon": -85.77 },
+  "elk-river": { "lat": 35.155, "lon": -86.108 },
+  "holston-river": { "lat": 36.087, "lon": -83.448 },
+  "clinch-river": { "lat": 36.222, "lon": -83.948 },
+  "duck-river": { "lat": 35.47, "lon": -86.1 }
+}

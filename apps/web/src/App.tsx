@@ -1,37 +1,40 @@
-import { Button, Card, LastUpdatedChip } from '@trout/ui';
+import { Route, Routes } from 'react-router-dom';
+import { AppShell } from './components/layout/AppShell';
+import { HomePage } from './pages/HomePage';
+import { HatchKeyPage } from './pages/HatchKeyPage';
+import { TaxonDetailPage } from './pages/TaxonDetailPage';
+import { PatternDetailPage } from './pages/PatternDetailPage';
+import { HatchChartsPage } from './pages/HatchChartsPage';
+import { HatchChartDetailPage } from './pages/HatchChartDetailPage';
+import { ConditionsPage } from './pages/ConditionsPage';
+import { StreamDetailPage } from './pages/StreamDetailPage';
+import { StockingPage } from './pages/StockingPage';
+import { ShopsPage } from './pages/ShopsPage';
+import { LogbookPage } from './pages/LogbookPage';
+import { SettingsPage } from './pages/SettingsPage';
+import { AboutPrivacyPage } from './pages/AboutPrivacyPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
-/**
- * Phase-0 shell only. ROLE 2 replaces this with the real PWA:
- * hatch key, ID flow, charts, conditions, stocking (see 00-SHARED-CONTEXT §2).
- */
+/** Route map (scope 1): Home, Hatch Key, Charts, Conditions, Stocking, Shops, Logbook, Settings, About. */
 export function App() {
   return (
-    <main className="mx-auto max-w-2xl p-6 space-y-4">
-      <header className="space-y-1">
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--trout-color-primary)' }}>
-          Trout
-        </h1>
-        <p className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-          Match the hatch &amp; stream conditions — offline, no accounts, no tracking.
-        </p>
-      </header>
-      <Card>
-        <div className="flex flex-col gap-3">
-          <p>
-            Phase-0 skeleton. Builds empty but green; the PWA shell is wired with
-            vite-plugin-pwa (Workbox), Tailwind, and the <code>@trout/ui</code> primitives.
-          </p>
-          <div className="flex items-center gap-2">
-            <Button variant="primary" size="sm">
-              Primary
-            </Button>
-            <Button variant="secondary" size="sm">
-              Secondary
-            </Button>
-            <LastUpdatedChip updatedAt={new Date()} />
-          </div>
-        </div>
-      </Card>
-    </main>
+    <Routes>
+      <Route element={<AppShell />}>
+        <Route index element={<HomePage />} />
+        <Route path="hatch-key" element={<HatchKeyPage />} />
+        <Route path="taxa/:taxonId" element={<TaxonDetailPage />} />
+        <Route path="patterns/:patternId" element={<PatternDetailPage />} />
+        <Route path="charts" element={<HatchChartsPage />} />
+        <Route path="charts/:regionId/:month" element={<HatchChartDetailPage />} />
+        <Route path="conditions" element={<ConditionsPage />} />
+        <Route path="conditions/:streamId" element={<StreamDetailPage />} />
+        <Route path="stocking" element={<StockingPage />} />
+        <Route path="shops" element={<ShopsPage />} />
+        <Route path="logbook" element={<LogbookPage />} />
+        <Route path="settings" element={<SettingsPage />} />
+        <Route path="about" element={<AboutPrivacyPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }

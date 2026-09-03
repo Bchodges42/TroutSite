@@ -2,8 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------
+   Trout PWA — sunlight-legible base styles (ROLE 2).
+   Tokens come from @trout/ui/tokens.css; these rules add app-level
+   rhythm, huge touch targets, and reduced-motion support.
+------------------------------------------------------------------- */
+
+:root {
+  /* practical alias for touch-target sizing */
+  --touch-min: 48px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--trout-color-bg);
   color: var(--trout-color-text);
   font-family: var(--trout-font-body);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* Reduce motion: user setting (html.reduce-motion) OR OS preference. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+@layer components {
+  /* --- layout ------------------------------------------------------ */
+  .page {
+    @apply mx-auto w-full max-w-3xl px-4 pt-4 pb-24 lg:pb-10;
+  }
+  .page-title {
+    @apply text-2xl font-extrabold tracking-tight;
+    color: var(--trout-color-text);
+  }
+  .page-subtitle {
+    @apply text-sm;
+    color: var(--trout-color-text-muted);
+  }
+  .section-title {
+    @apply mt-8 mb-2 text-lg font-bold;
+  }
+
+  /* --- nav ---------------------------------------------------------- */
+  .nav-link {
+    @apply flex min-h-[48px] items-center gap-3 rounded-lg px-3 text-[15px] font-semibold no-underline;
+    color: var(--trout-color-text);
+  }
+  .nav-link:hover {
+    background: var(--trout-slate-100);
+  }
+  .nav-link[aria-current='page'] {
+    background: var(--trout-green-100);
+    color: var(--trout-green-900);
+  }
+  .bottom-tab {
+    @apply flex min-h-[56px] flex-1 flex-col items-center justify-center gap-0.5 px-1 pt-1.5 pb-2 text-[11px] font-semibold no-underline;
+    color: var(--trout-color-text-muted);
+  }
+  .bottom-tab[aria-current='page'] {
+    color: var(--trout-color-primary);
+  }
+
+  /* --- cards & rows -------------------------------------------------- */
+  .list-row {
+    @apply flex min-h-[64px] items-center justify-between gap-3 px-4 py-3 no-underline;
+    background: var(--trout-color-surface);
+    border: 1px solid var(--trout-color-border);
+  }
+  a.list-row:hover {
+    border-color: var(--trout-color-primary);
+  }
+  .list-row:first-child {
+    border-top-left-radius: var(--trout-radius-lg);
+    border-top-right-radius: var(--trout-radius-lg);
+  }
+  .list-row:last-child {
+    border-bottom-left-radius: var(--trout-radius-lg);
+    border-bottom-right-radius: var(--trout-radius-lg);
+  }
+  .list-row + .list-row {
+    border-top-width: 0;
+  }
+
+  /* --- wizard option cards (hero flow: huge touch targets) ------------ */
+  .option-card {
+    @apply flex min-h-[72px] w-full select-none items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 text-center text-base font-bold;
+    border-color: var(--trout-color-border);
+    background: var(--trout-color-surface);
+    color: var(--trout-color-text);
+    transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
+  }
+  .option-card:hover {
+    border-color: var(--trout-color-primary);
+  }
+  .option-card[aria-pressed='true'],
+  .option-card.is-selected {
+    border-color: var(--trout-color-primary);
+    background: var(--trout-green-100);
+    color: var(--trout-green-900);
+  }
+  .option-card:active {
+    transform: scale(0.98);
+  }
+
+  /* --- results / score ------------------------------------------------ */
+  .score-track {
+    @apply h-2 w-full overflow-hidden rounded-full;
+    background: var(--trout-slate-200);
+  }
+  .score-fill {
+    @apply h-full rounded-full;
+    transition: width 420ms ease;
+  }
+  .stagger-in {
+    animation: rise-in 260ms ease both;
+  }
+
+  /* --- misc ------------------------------------------------------------ */
+  .focus-ring:focus-visible {
+    outline: 3px solid var(--trout-amber-500);
+    outline-offset: 2px;
+  }
+  .abundance-dot {
+    @apply inline-block h-2.5 w-2.5 rounded-full;
+    background: var(--trout-slate-200);
+  }
+  .abundance-dot.is-on {
+    background: var(--trout-color-primary);
+  }
+  .prose-plain p {
+    @apply mb-3;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
