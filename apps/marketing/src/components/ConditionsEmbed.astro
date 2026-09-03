@@ -1,0 +1,78 @@
+---
+/**
+ * Static conditions embed for stream pages — ROLE 5.
+ * Renders build-time snapshot data (from the frozen scoreConditions()) plus the
+ * USGS "verify live" link. The PWA is the live tool; this is the convenience mirror.
+ */
+import type { ConditionSnapshot } from '@trout/contracts';
+import { formatCfs, formatDateTime } from '../lib/format';
+import ScoreBadge from './ScoreBadge.astro';
+
+export interface Props {
+  snapshot?: ConditionSnapshot;
+  streamName: string;
+  gaugeIds: string[];
+}
+
+const { snapshot, streamName, gaugeIds } = Astro.props;
+const firstGauge = gaugeIds[0];
+---
+
+{
+  snapshot ? (
+    <section aria-label={`Current conditions for ${streamName}`}>
+      <h2>Conditions snapshot</h2>
+      <p class="asof">
+        Build-time sample data — as of {formatDateTime(snapshot.fetchedAt)} (the app shows live
+        hourly readings).
+      </p>
+      <ScoreBadge value={snapshot.score.value} />
+      <ul>
+        {snapshot.score.reasons.map((reason) => (
+          <li>{reason}</li>
+        ))}
+      </ul>
+      <table class="data-table">
+        <caption>Gauge readings in this snapshot</caption>
+        <thead>
+          <tr>
+            <th>Gauge</th>
+            <th class="num">Flow</th>
+            <th class="num">Temperature</th>
+            <th>Read at</th>
+          </tr>
+        </thead>
+        <tbody>
+          {snapshot.readings.map((r) => (
+            <tr>
+              <td>
+                <code>{r.gaugeId}</code>
+              </td>
+              <td class="num">{r.cfs !== undefined ? formatCfs(r.cfs) : '—'}</td>
+              <td class="num">{r.tempC !== undefined ? `${r.tempC.toFixed(1)} °C` : '—'}</td>
+              <td>{formatDateTime(r.timestamp)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {firstGauge && (
+        <p>
+          <a
+            href={`https://waterdata.usgs.gov/nwis/uv/?site_no=${firstGauge}`}
+            rel="nofollow"
+          >
+            Verify live readings on USGS Water Data ↗
+          </a>
+        </p>
+      )}
+    </section>
+  ) : (
+    <section aria-label={`Conditions for ${streamName}`}>
+      <h2>Conditions</h2>
+      <p>
+        No gauge is monitored for this water. Check the official links above — and note that
+        ungauged winter put-and-take streams can rise fast after rain or releases.
+      </p>
+    </section>
+  )
+}

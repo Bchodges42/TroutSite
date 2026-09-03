@@ -1,0 +1,139 @@
+---
+/**
+ * /when-does-{state}-stock-trout/ — keyword-page template (ROLE 5).
+ * One page per launch state; answers the query with real schedule data in the
+ * first screen (non-negotiable #1), FAQ JSON-LD, and the official link.
+ */
+import Base from '../../layouts/Base.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import { LAUNCH_STATES } from '../../data/states';
+import { getStockingEvents, getStreams } from '../../data/load';
+import { monthName, formatDate } from '../../lib/format';
+import { faqLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return LAUNCH_STATES.map((state) => ({
+    params: { state: state.slug },
+    props: { state },
+  }));
+}
+
+const { state } = Astro.props;
+const events = getStockingEvents(state.id);
+const stockedStreams = getStreams(state.id).filter((s) => s.stockingProgram);
+
+const stockedMonths = [...new Set(events.map((e) => Number.parseInt(e.date.slice(5, 7), 10)))].sort(
+  (a, b) => a - b,
+);
+
+const faqs = [
+  {
+    question: `When does ${state.name} stock trout?`,
+    answer: `${state.stockingSummary} In the current feed, stocking activity is concentrated in ${stockedMonths
+      .map(monthName)
+      .join(', ')}. The authoritative weekly schedule is published by ${state.agency.name}: ${state.agency.stockingUrl}`,
+  },
+  {
+    question: 'Which waters get stocked?',
+    answer: `The put-and-take program covers the major tailwaters and selected urban streams. This site tracks ${stockedStreams.length} stocked ${state.name} waters: ${stockedStreams
+      .map((s) => s.name)
+      .join('; ')}.`,
+  },
+  {
+    question: 'How soon after stocking is the fishing best?',
+    answer:
+      'Put-and-take fishing is typically best in the days right after a truck visit, then tapers as fish disperse or get caught. Tailwaters hold fish longer thanks to cold, consistent water — but always check dam-release schedules and verify regs with the agency.',
+  },
+  {
+    question: 'Do I need a license? Are there gear rules?',
+    answer:
+      `Yes — a ${state.name} fishing license is required, and some waters have special regulations or trout stamps. We deliberately don't restate fees or rules; verify at ${state.agency.url}.`,
+  },
+];
+
+const title = `When does ${state.name} stock trout? Season dates, waters & species`;
+const description = `${state.agency.short} trout stocking timing in ${state.name}: the months stocking happens, which waters and species, how the weekly schedule works, and the official link to verify. Plain answers, no trackers.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/when-does-${state.slug}-stock-trout/`}
+  ld={[faqLd(faqs)]}
+>
+  <p class="kicker">{state.name}</p>
+  <h1>When does {state.name} stock trout?</h1>
+  <p class="lead">
+    <strong>Short answer:</strong> {state.stockingSummary}
+  </p>
+
+  <h2>The months, from real data</h2>
+  <p>
+    Stocking events in the current feed land in {stockedMonths.map(monthName).join(', ')} —{' '}
+    {events.length} events across {new Set(events.map((e) => e.streamName)).size} waters. The table
+    below is the actual recent feed with per-row attribution:
+  </p>
+
+  <table class="data-table">
+    <caption>Recent {state.agency.short} stocking events (verify officially)</caption>
+    <thead>
+      <tr>
+        <th scope="col">Month</th>
+        <th scope="col">Water</th>
+        <th scope="col">Species</th>
+        <th scope="col">Date</th>
+        <th class="num" scope="col">Count</th>
+        <th scope="col">Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        events
+          .slice()
+          .sort((a, b) => a.date.localeCompare(b.date))
+          .map((e) => (
+            <tr>
+              <td>{monthName(Number.parseInt(e.date.slice(5, 7), 10))}</td>
+              <td>{e.streamName}</td>
+              <td>{e.species}</td>
+              <td>{formatDate(e.date)}</td>
+              <td class="num">{e.count?.toLocaleString('en-US') ?? '—'}</td>
+              <td>
+                <a href={e.sourceUrl} rel="nofollow">
+                  official ↗
+                </a>
+              </td>
+            </tr>
+          ))
+      }
+    </tbody>
+  </table>
+
+  <h2>Stocked waters worth knowing</h2>
+  <ul>
+    {
+      stockedStreams.map((s) => (
+        <li>
+          <a href={`/streams/${state.id.toLowerCase()}/${s.id}/`}>{s.name}</a> — {s.waterbodyType}
+          {s.notes ? `: ${s.notes.split('.')[0]}.` : ''}
+        </li>
+      ))
+    }
+  </ul>
+
+  <AdSlot label="Sponsored listing" />
+
+  <h2>Frequently asked questions</h2>
+  {faqs.map((f) => <div><h3>{f.question}</h3><p>{f.answer}</p></div>)}
+
+  <h2>Verify with {state.agency.name}</h2>
+  <p>
+    Official stocking info: <a href={state.agency.stockingUrl} rel="nofollow">{state.agency.stockingUrl}</a>
+  </p>
+
+  <Disclaimer agency={state.agency.short} topic="stocking schedules" />
+
+  <NewsletterForm heading="Get the weekly stocking digest when it launches" />
+</Base>

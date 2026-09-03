@@ -1,13 +1,21 @@
 {
-  "//": "OWNER: ROLE 5 — Playwright e2e suite (offline hatch flow + online conditions flow, §12 #6). Placeholder created by ROLE 1 so the repo layout matches §5. ROLE 5 fills it in. NOTE (ROLE 2): added only the devDependency + script below, additively, so the ROLE 2 specs in e2e/web/*.spec.ts can resolve @playwright/test (role scope #10); the harness/config lives in apps/web and stays ROLE 2's.",
+  "//": "OWNER: ROLE 5 — Playwright e2e + QA harness (offline hatch flow, privacy audit, fixtures, portal, SEO). Run via `pnpm --filter @trout/e2e e2e` (root alias added at integration). Requires built app dists first: `pnpm -r build`. NOTE: this package deliberately has NO `test` script so `pnpm -r test` (Role 1's CI) stays fast; Playwright runs via the e2e script + qa.yml. At integration (Role 6) this suite is canonical: Role 2's apps/web specs were absorbed into e2e/web and the extra apps/web config retired.",
   "name": "@trout/e2e",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "test:web": "playwright test -c ../apps/web/playwright.config.ts"
+    "e2e": "playwright test",
+    "e2e:headed": "playwright test --headed",
+    "e2e:report": "playwright show-report",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.1"
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "^1.48.2",
+    "@trout/contracts": "workspace:*",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.6.3",
+    "zod": "^3.23.8"
   }
 }

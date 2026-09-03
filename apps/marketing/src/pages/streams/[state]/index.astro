@@ -1,0 +1,80 @@
+---
+/**
+ * /streams/{state}/ — index hub for stream pages (ROLE 5).
+ * Gives crawlers and anglers the full water catalog on one screen.
+ */
+import Base from '../../../layouts/Base.astro';
+import { LAUNCH_STATES } from '../../../data/states';
+import { getStreams, getSnapshot } from '../../../data/load';
+import { breadcrumbLd } from '../../../lib/seo';
+import { formatCfs } from '../../../lib/format';
+
+export function getStaticPaths() {
+  return LAUNCH_STATES.map((state) => ({ params: { state: state.id.toLowerCase() }, props: { state } }));
+}
+
+const { state } = Astro.props;
+const streams = getStreams(state.id);
+
+const title = `${state.name} trout streams — conditions, stocking & hatch charts`;
+const description = `Every ${state.name} trout water in the Trout catalog: fishability scores, ideal flows, stocking history, hatch charts, and official sources. Free, no accounts, no trackers.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/streams/${state.id.toLowerCase()}/`}
+  ld={[
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: `${state.name} streams`, url: `/streams/${state.id.toLowerCase()}/` },
+    ]),
+  ]}
+>
+  <p class="kicker">{state.name}</p>
+  <h1>{state.name} trout streams</h1>
+  <p class="lead">
+    {streams.length} waters in the v1 catalog. Scores are computed by the same pure function the app
+    runs offline (build-time sample data — the app shows live readings).
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Water</th>
+        <th scope="col">Type</th>
+        <th scope="col">Region</th>
+        <th scope="col">Score</th>
+        <th class="num" scope="col">Flow</th>
+        <th scope="col">Stocked</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        streams.map((s) => {
+          const snap = getSnapshot(s.id);
+          return (
+            <tr>
+              <td>
+                <a href={`/streams/${state.id.toLowerCase()}/${s.id}/`}>{s.name}</a>
+              </td>
+              <td>{s.waterbodyType}</td>
+              <td>{s.regionId.replace(/^tn-/, '').replace(/-/g, ' ')}</td>
+              <td>{snap ? `${snap.score.value}/100` : '—'}</td>
+              <td class="num">
+                {snap?.readings.find((r) => r.cfs !== undefined)?.cfs !== undefined
+                  ? formatCfs(snap!.readings.find((r) => r.cfs !== undefined)!.cfs!)
+                  : '—'}
+              </td>
+              <td>{s.stockingProgram ? 'yes' : '—'}</td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+
+  <p>
+    Stocking season overview: <a href={`/stocking/${state.id.toLowerCase()}/`}>{state.name} stocking schedule</a>.
+  </p>
+</Base>

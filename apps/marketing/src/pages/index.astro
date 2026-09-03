@@ -1,22 +1,109 @@
 ---
-// Phase-0 hello page. ROLE 5 replaces this with the programmatic-SEO site.
+import Base from '../layouts/Base.astro';
+import { LAUNCH_STATES } from '../data/states';
+import { getStreams, getStockingEvents } from '../data/load';
+import { websiteLd } from '../lib/seo';
+
+const tn = LAUNCH_STATES[0];
+const streams = getStreams(tn.id);
+const events = getStockingEvents(tn.id);
+
+const title =
+  'Trout — match the hatch & stream conditions, offline. Free, no accounts, no tracking.';
+const description =
+  'The on-the-water decision tool for trout anglers: identify the bug, check fishability, and see Tennessee stocking schedules — all offline, with zero location tracking. Free.';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Trout — Match the Hatch &amp; Stream Conditions</title>
-  </head>
-  <body style="font-family: system-ui, sans-serif; background: #f8fafc; color: #1e293b; margin: 0; padding: 3rem;">
-    <main style="max-width: 40rem; margin: 0 auto;">
-      <h1 style="color: #15803d;">Trout</h1>
-      <p>
-        Offline-first, privacy-first decision tool for trout anglers. Marketing +
-        programmatic-SEO site will live here.
-      </p>
-      <p style="color: #64748b;">Skeleton — OWNER: ROLE 5.</p>
-    </main>
-  </body>
-</html>
+<Base title={title} description={description} path="/" ld={[websiteLd()]}>
+  <p class="kicker">The on-the-water decision tool</p>
+  <h1>Match the hatch. Check the water. Leave no trace of yourself.</h1>
+  <p class="lead">
+    Trout is a free web app for trout anglers that works where there's no signal and doesn't want
+    your data. Identify the bug that's hatching, see whether the water is fishable, and know what
+    got stocked — all computed on <em>your</em> device.
+  </p>
+  <p>
+    <a href="/install/"><strong>Add it to your home screen</strong></a> — no app store, no account,
+    no download bigger than a photo album.
+  </p>
+
+  <h2>Three questions, answered before you make a cast</h2>
+  <h3>1. What is this bug? (offline)</h3>
+  <p>
+    Work the structured ID key — size, color, tails, gills, shape — and get ranked insect matches
+    with the fly patterns that imitate them, plus a 12-month hatch chart for your region. The whole
+    key runs on your phone in airplane mode; no photo needed, no AI, no network.
+  </p>
+  <h3>2. Is this water fishable right now?</h3>
+  <p>
+    Live USGS gauge readings are scored 0–100 with plain-English reasons — no chart-reading
+    homework. {streams.length} Tennessee streams are in the v1 catalog, each with ideal-flow ranges,
+    the hatch chart for its region, and links to verify everything officially.
+  </p>
+  <h3>3. What got stocked, and when?</h3>
+  <p>
+    {events.length} TWRA stocking events are already mirrored on this site —{' '}
+    <a href="/stocking/tn/">see the Tennessee stocking page</a>, and the app refreshes the weekly
+    schedule when you have signal.
+  </p>
+
+  <h2>Honest positioning — what this is, and what it isn't</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Tool</th>
+        <th scope="col">Its job</th>
+        <th scope="col">Trout's difference</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Fishbrain</td>
+        <td>Community &amp; social fishing log</td>
+        <td>
+          No feed, no social. The logbook lives only in your browser — never on a server.
+        </td>
+      </tr>
+      <tr>
+        <td>TroutRoutes</td>
+        <td>Navigation, access &amp; land data</td>
+        <td>
+          Not a map. Trout answers "should I fish here right now, and with what?" — not "how do I
+          get there?"
+        </td>
+      </tr>
+      <tr>
+        <td>State agency sites</td>
+        <td>Authoritative schedules &amp; regs</td>
+        <td>
+          We're the convenience layer, never the authority — every number links back to the official
+          source.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Privacy by architecture, not by policy</h2>
+  <p>
+    There are no accounts in v1. Your location is computed on your device and is never sent
+    anywhere. There is no third-party analytics in the app or on this site — the app works fully in
+    airplane mode, which is the strongest privacy policy there is. Read{' '}
+    <a href="/privacy/">the plain-English privacy page</a>.
+  </p>
+
+  <h2>Free to use</h2>
+  <p>
+    The app and this site are free. No paywall on hatch data, conditions, or stocking. Later
+    versions may add clearly-labeled optional extras (alerts, a Pro tier) — the core decision tools
+    stay free (see <a href="/blog/">launch notes</a>).
+  </p>
+
+  <h2>Start here</h2>
+  <ul>
+    <li><a href="/install/">Install the app</a> on iOS, Android, or desktop</li>
+    <li><a href="/stocking/tn/">Tennessee stocking schedule</a> (verify officially)</li>
+    <li><a href="/streams/tn/south-holston-river/">Example stream page: South Holston River</a></li>
+    <li><a href="/hatch/tn/east-tailwaters/">East Tennessee hatch chart</a></li>
+    <li><a href="/when-does-tennessee-stock-trout/">When does Tennessee stock trout?</a></li>
+  </ul>
+</Base>

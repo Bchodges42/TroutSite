@@ -1,0 +1,44 @@
+[
+  {
+    "id": "report-sample-001",
+    "shopId": "shop-south-holston-fly-co",
+    "shopName": "South Holston Fly Co. (sample)",
+    "streamId": "south-holston-river",
+    "date": "2026-08-28",
+    "body": "Sulphurs are tapering off but evening spinners still bring a few big browns up in the weir pool. Midge pupa under a small dry has been the dependable midday rig. Low water mornings — check the TVA schedule before you drive up.",
+    "hotPatterns": [
+      { "patternId": "zebra-midge", "hookSize": 20 },
+      { "patternId": "pheasant-tail-nymph", "hookSize": 18 }
+    ],
+    "attributionUrl": "https://example.com/shops/south-holston-fly-co/reports",
+    "publishedAt": "2026-08-28T21:15Z"
+  },
+  {
+    "id": "report-sample-002",
+    "shopId": "shop-watauga-river-outfitters",
+    "shopName": "Watauga River Outfitters (sample)",
+    "streamId": "watauga-river",
+    "date": "2026-08-30",
+    "body": "Float windows are short with the summer generation schedule but the Sulphur/Cahill stretch below Wilbur is fishing well on slow evenings. Terrestrial action building along the grass banks.",
+    "hotPatterns": [
+      { "patternId": "sulphur-comparadun", "hookSize": 16 },
+      { "patternId": "flying-ant", "hookSize": 16 }
+    ],
+    "attributionUrl": "https://example.com/shops/watauga-river-outfitters/reports",
+    "publishedAt": "2026-08-30T22:40Z"
+  },
+  {
+    "id": "report-sample-003",
+    "shopId": "shop-caney-fork-outfitters",
+    "shopName": "Caney Fork Outfitters (sample)",
+    "streamId": "caney-fork-river",
+    "date": "2026-09-01",
+    "body": "Generation has been steady afternoons; fish the morning low-water window. Scuds and sowbugs around the upstream ramps, small midges mid-river. Bring a headlamp — the put-and-take crowd thins after dusk.",
+    "hotPatterns": [
+      { "patternId": "olive-scud", "hookSize": 14 },
+      { "patternId": "gray-sowbug", "hookSize": 16 }
+    ],
+    "attributionUrl": "https://example.com/shops/caney-fork-outfitters/reports",
+    "publishedAt": "2026-09-01T20:05Z"
+  }
+]

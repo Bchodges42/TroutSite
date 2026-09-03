@@ -321,3 +321,72 @@ keeps full labels. Specs use sidebar labels at the default 1280×720 viewport.
 Why: tab bar legibility on small screens; Playwright's default viewport is desktop-width, so the
 tab bar (lg:hidden) is not in the accessibility tree during e2e.
 Impact: none.
+
+### [ROLE 5] 2026-09-02 — launch state is TENNESSEE ONLY (canonical plan), not TX/OK/AR
+Decision: all marketing programmatic pages, fixtures, and e2e coverage target a single launch
+state, TN (regions: East TN tailwaters, Hiwassee, Middle TN per §7 of 00-SHARED-CONTEXT).
+Why: the canonical plan (CHAT-*.md / 00-MASTER-PLAN.md) says "1 launch state (Tennessee)" and the
+user confirmed Tennessee-only explicitly. Phase-0 shell text elsewhere in the repo (root README,
+packages/content/README.md, the endpoints.ts doc comment) references TX/OK/AR — that predates the
+Tennessee decision in the canonical files.
+Impact: contracts are state-agnostic (StateIdSchema = /^[A-Z]{2}$/), so nothing frozen changes.
+REQUEST to ROLE 1/4: update the TX/OK/AR mentions in README.md, packages/content/README.md and
+any seed/scrape targets to Tennessee (TWRA) at integration.
+
+### [ROLE 5] 2026-09-02 — marketing builds from contract-validated fixtures, not the live API
+Decision: `apps/marketing/src/data/fixtures/*.json` are the build-time data source; every file is
+Zod-validated against frozen @trout/contracts schemas at build (loader: src/data/load.ts) with
+cross-reference lint (orphan taxon/pattern/stream refs fail the build). ConditionSnapshot scores
+are computed at build with the frozen scoreConditions(), never hand-written.
+Why: CI and static builds must run without the laptop server (§3 read path is static); scores must
+not drift from the PWA logic.
+Impact: at integration (§12 #3), swap the fixture imports for regenerated snapshot JSON — the
+getter signatures and validation stay identical.
+
+### [ROLE 5] 2026-09-02 — fixture gauge IDs and sample data are illustrative
+Decision: stream gaugeIds (03476500, 03467000, 03566000, 03414000, 03597000), stocking events,
+shops and shop reports in the marketing fixtures are realistic SAMPLES; shops use example.com
+URLs and names suffixed "(sample)".
+Why: Role 3/4 own authoritative gauge linkage and content; Role 5 must not publish invented facts
+as authoritative (attribution culture, §1.5). Every page carries "verify officially" disclaimers.
+Impact: Role 3/4 replace fixtures with verified data at integration; no code changes.
+
+### [ROLE 5] 2026-09-02 — e2e deep flows shipped as `test.fixme` against frozen semantics
+Decision: `e2e/web/offline-hatch.spec.ts` (hatch ID flow, conditions flow), `e2e/admin/portal.spec.ts`
+(MSW token login + composer) and `e2e/api/fixtures.spec.ts` (`ingest --dry-run`) contain the
+canonical deep steps as test.fixme; the suites are green today (24 passed) with shell-level
+assertions running for real (SW registration, offline reload, privacy interception, SEO hygiene).
+Why: the UIs/CLI belong to Roles 2/3/4 and don't exist yet; skipping with written expectations is
+honest (suite green now) and mechanically enables at integration by deleting the fixme wrapper.
+Impact: Integration enables all fixmes in Phase 2 (docs/integration-checklist.md items 2/4/5/6).
+
+### [ROLE 5] 2026-09-02 — root `pnpm e2e` alias requested (did not edit root package.json)
+Decision: the suite runs via `pnpm --filter @trout/e2e e2e` everywhere (qa.yml, checklist, e2e
+README). Requesting ROLE 1 add `"e2e": "pnpm --filter @trout/e2e e2e"` to root scripts.
+Why: §4 role brief says "run via `pnpm e2e`", but root package.json is ROLE 1-owned (§5 hard rule;
+protocol = record request here, use a shim, move on).
+Impact: one-line addition by Role 1; nothing else changes.
+
+### [ROLE 5] 2026-09-02 — @trout/ui + yaml added to marketing dependencies
+Decision: marketing depends on `@trout/ui` (tokens.css for brand consistency, imported in
+Base.astro) and `yaml` v2 (parses partners.yaml for the inert AffiliateLink registry; parser
+already blessed by ADR 0001).
+Why: tokens keep marketing visually consistent with the PWA; partners.yaml is Role 5's registry
+per the role brief.
+Impact: none on other packages.
+
+### [ROLE 5] 2026-09-02 — canonical SITE_URL placeholder `https://trout.example`
+Decision: astro.config.mjs + src/site-config.ts read SITE_URL (default `https://trout.example`);
+canonical/OG URLs, sitemap.xml and robots.txt all derive from it. SEO tests assert pathname
+self-canonicality + sitemap/canonical origin agreement, not the placeholder host.
+Why: the production domain is not chosen yet (deployment via cloudflared tunnel, Role 1/infra);
+tests must not depend on the host.
+Impact: pre-launch task in docs/integration-checklist.md: rebuild with SITE_URL=<production>.
+
+### [ROLE 5] 2026-09-02 — Lighthouse PWA gate runs as `warn` pre-integration
+Decision: e2e/lighthouserc.web.cjs asserts a11y ≥ 0.9 and best-practices ≥ 0.9 as errors;
+`categories:pwa` ≥ 0.9 is warn until Integration flips it to error. Marketing asserts
+SEO ≥ 0.95 / a11y ≥ 0.9 / best-practices ≥ 0.9 as errors today.
+Why: §12 #7 (installable + offline + a11y ≥ 90) is an integration-phase gate judged against the
+finished app; the Phase-0 shell already passes a11y and registers its SW.
+Impact: one-word config flip at integration (checklist item 7).
