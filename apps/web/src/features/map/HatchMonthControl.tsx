@@ -7,8 +7,9 @@ export function HatchMonthControl({ month: monthProp, value: valueProp, onChange
   const months = MONTHS;
   return (
     <div className="flex flex-col gap-2">
-      {/* Slider row — accessible aria-slider + large touch targets */}
-      <div className="flex items-center gap-2">
+      {/* Slider row — sm and up. On phones the discrete grid below is the
+          primary control: bigger targets, no horizontal squeeze. */}
+      <div className="hidden items-center gap-2 sm:flex">
         <span className="text-xs font-bold uppercase tracking-wide text-[#566158]">Month</span>
         <div
           role="slider" aria-label="Hatch month" aria-valuemin={1} aria-valuemax={12} aria-valuenow={month} aria-valuetext={months[month - 1]} tabIndex={0}

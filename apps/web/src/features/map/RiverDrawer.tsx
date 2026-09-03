@@ -50,9 +50,9 @@ export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fet
 
   return (
     <div className={`absolute inset-x-0 bottom-0 z-10 flex flex-col rounded-t-[20px] border-t bg-[#F8F2E5] shadow-[0_-8px_32px_rgba(51,45,32,0.16)] ${height} overflow-hidden`} style={{ borderColor: atlas.hairline, paddingBottom: 'env(safe-area-inset-bottom)' }} role="dialog" aria-label={`${feature.stream.name} details`} aria-modal="false">
-      <div ref={dragRef} className="flex flex-col items-center pt-2 pb-1" onClick={() => setSheet(s => s === 'peek' ? 'medium' : s === 'medium' ? 'full' : 'peek')}>
-        <span className="h-1.5 w-10 rounded-full bg-[#D3C6AB]" />
-      </div>
+      <button ref={dragRef as any} type="button" aria-label={sheet === 'full' ? 'Collapse river details' : 'Expand river details'} aria-expanded={sheet !== 'peek'} onClick={() => setSheet(s => s === 'peek' ? 'medium' : s === 'medium' ? 'full' : 'peek')} className="flex min-h-[32px] flex-col items-center justify-center px-8 pt-2 pb-1">
+        <span className="h-1.5 w-10 rounded-full bg-[#D3C6AB]" aria-hidden />
+      </button>
       {/* Peek header */}
       <div className="px-4 pb-2">
         <div className="flex items-start justify-between gap-3">
@@ -66,9 +66,9 @@ export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fet
           </div>
           <button onClick={onClose} aria-label="Close" className="h-11 w-11 shrink-0 rounded-full border bg-white text-lg" style={{ borderColor: atlas.hairline }}>×</button>
         </div>
-        <div className="mt-2 flex gap-2 border-b" style={{ borderColor: atlas.hairline }} role="tablist" aria-label="River details">
+        <div className="mt-2 flex gap-2 overflow-x-auto border-b" style={{ borderColor: atlas.hairline }} role="tablist" aria-label="River details">
           {TABS.map(t => (
-            <button key={t} role="tab" aria-selected={tab === t} onClick={() => { onTab(t); setSheet('medium'); }} className={`-mb-px whitespace-nowrap border-b-2 px-2 py-2 text-sm font-bold ${tab === t ? 'border-[#24352D] text-[#24352D]' : 'border-transparent text-[#566158]'}`}>{t}</button>
+            <button key={t} role="tab" aria-selected={tab === t} onClick={() => { onTab(t); setSheet('medium'); }} className={`-mb-px shrink-0 whitespace-nowrap border-b-2 px-2 py-2 text-sm font-bold ${tab === t ? 'border-[#24352D] text-[#24352D]' : 'border-transparent text-[#566158]'}`}>{t}</button>
           ))}
         </div>
       </div>
