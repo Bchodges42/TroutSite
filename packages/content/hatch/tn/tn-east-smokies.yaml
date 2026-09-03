@@ -1,0 +1,3173 @@
+regionId: tn-east-smokies
+months:
+  - month: 1
+    entries:
+      - taxonId: little-black-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - griffiths-gnat
+          - parachute-midge-black
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: tiny-winter-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+          - griffiths-gnat
+      - taxonId: tiny-winter-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+  - month: 2
+    entries:
+      - taxonId: early-black-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: early-black-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - black-stone-nymph
+          - pats-rubber-legs
+      - taxonId: little-black-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - griffiths-gnat
+          - parachute-midge-black
+      - taxonId: mottled-willowfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - black-stone-nymph
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: tiny-winter-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+          - griffiths-gnat
+      - taxonId: tiny-winter-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+  - month: 3
+    entries:
+      - taxonId: black-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-quill-dry
+      - taxonId: black-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: early-black-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: early-black-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: early-black-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - black-stone-nymph
+          - pats-rubber-legs
+      - taxonId: little-black-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - griffiths-gnat
+          - parachute-midge-black
+      - taxonId: mottled-willowfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - black-stone-nymph
+      - taxonId: quill-gordon
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - quill-gordon-dry
+      - taxonId: quill-gordon
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - march-brown-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: quill-gordon
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: sucker
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - sucker-spawn
+      - taxonId: tiny-winter-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+          - griffiths-gnat
+      - taxonId: tiny-winter-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+  - month: 4
+    entries:
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: black-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-quill-dry
+      - taxonId: black-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-quill-dry
+      - taxonId: blue-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: blue-quill
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: chocolate-dun
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - chocolate-dun-parachute
+      - taxonId: chocolate-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crane-fly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - crane-fly-adult-dry
+      - taxonId: crane-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - crane-fly-larva
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: early-black-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: early-black-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: early-black-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - black-stone-nymph
+          - pats-rubber-legs
+      - taxonId: fishfly-larva
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - hellgrammite-fly
+      - taxonId: giant-black-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-dry
+      - taxonId: giant-black-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - black-stone-nymph
+          - pats-rubber-legs
+      - taxonId: inchworm
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - inchworm-dry
+          - green-weenie
+      - taxonId: little-black-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - griffiths-gnat
+          - parachute-midge-black
+      - taxonId: little-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+      - taxonId: little-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: little-brown-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: little-sulphur
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-sulphur-dun-dry
+          - sulphur-parachute
+      - taxonId: little-sulphur
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - sulphur-nymph
+          - pheasant-tail-nymph
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: march-brown
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - march-brown-dry
+          - march-brown-wet
+      - taxonId: march-brown
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - march-brown-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: march-brown
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: mottled-willowfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - black-stone-nymph
+      - taxonId: quill-gordon
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - quill-gordon-dry
+      - taxonId: quill-gordon
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - march-brown-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: quill-gordon
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: roachfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: saddle-case-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: saddle-case-caddis
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: spiny-crawler-mayfly
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: spiny-crawler-mayfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: sucker
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - sucker-spawn
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+      - taxonId: tiny-winter-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+          - griffiths-gnat
+      - taxonId: tiny-winter-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: water-penny
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: yellow-sally
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+          - yellow-stimulator
+      - taxonId: yellow-sally
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-stone-nymph
+  - month: 5
+    entries:
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: black-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-quill-dry
+      - taxonId: black-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-quill-dry
+      - taxonId: blue-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: blue-quill
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: chocolate-dun
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - chocolate-dun-parachute
+      - taxonId: chocolate-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crane-fly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - crane-fly-adult-dry
+      - taxonId: crane-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - crane-fly-larva
+      - taxonId: crayfish
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-crayfish
+          - foam-back-crawfish
+      - taxonId: cream-cahill
+        stage: dun
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - cream-cahill-dry
+      - taxonId: cream-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-nymph
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: early-black-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: fishfly-larva
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - hellgrammite-fly
+      - taxonId: fishing-spider
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: giant-black-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-dry
+      - taxonId: giant-black-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - black-stone-nymph
+          - pats-rubber-legs
+      - taxonId: golden-flathead
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-dry
+      - taxonId: golden-flathead
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stimulator
+          - orange-stimulator
+      - taxonId: golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+          - double-bead-stone
+      - taxonId: green-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+          - goddard-caddis
+      - taxonId: green-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - green-rock-worm
+      - taxonId: hellgrammite
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - hellgrammite-fly
+          - bitch-creek-nymph
+      - taxonId: inchworm
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - inchworm-dry
+          - green-weenie
+      - taxonId: light-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-dry
+      - taxonId: light-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: light-cahill
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: little-black-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: little-black-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+      - taxonId: little-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: little-brown-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-brown-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: little-gray-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-green-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-olive-net-spinner
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - little-olive-caddis-dry
+      - taxonId: little-olive-net-spinner
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-sister-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-sister-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - caddis-pupa-olive
+          - caddis-pupa-tan
+      - taxonId: little-spiny-crawler
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: little-spiny-crawler
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - split-case-bwo-nymph
+          - pheasant-tail-nymph
+      - taxonId: little-sulphur
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-sulphur-dun-dry
+          - sulphur-parachute
+      - taxonId: little-sulphur
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - sulphur-nymph
+          - pheasant-tail-nymph
+      - taxonId: little-yellow-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-yellow-quill-dry
+      - taxonId: little-yellow-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: march-brown
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - march-brown-dry
+          - march-brown-wet
+      - taxonId: march-brown
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - march-brown-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: march-brown
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: needlefly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: needlefly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: pale-evening-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - pale-evening-dun-dry
+          - sulphur-parachute
+      - taxonId: pale-evening-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: pale-evening-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: periodical-cicada
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-cicada
+      - taxonId: quill-gordon
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - quill-gordon-dry
+      - taxonId: quill-gordon
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - march-brown-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: quill-gordon
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: roachfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: saddle-case-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: saddle-case-caddis
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: shortwing-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+      - taxonId: slate-drake
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - slate-drake-parachute
+      - taxonId: slate-drake
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - isonychia-nymph
+          - pheasant-tail-nymph
+      - taxonId: slate-drake
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+      - taxonId: spiny-crawler-mayfly
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: spiny-crawler-mayfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: sucker
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - sucker-spawn
+      - taxonId: sulphur-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - sulphur-parachute
+          - sulphur-emerger
+      - taxonId: sulphur-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - sulphur-nymph
+          - pheasant-tail-nymph
+      - taxonId: sulphur-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+      - taxonId: water-penny
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: whirligig-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: yellow-sally
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+          - yellow-stimulator
+      - taxonId: yellow-sally
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-stone-nymph
+      - taxonId: yellow-stone-eccoptura
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stone-nymph
+  - month: 6
+    entries:
+      - taxonId: ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - fur-ant
+          - foam-ant-black
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: chocolate-dun
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - chocolate-dun-parachute
+      - taxonId: chocolate-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crane-fly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - crane-fly-adult-dry
+      - taxonId: crane-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - crane-fly-larva
+      - taxonId: crayfish
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-crayfish
+          - foam-back-crawfish
+      - taxonId: cream-cahill
+        stage: dun
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - cream-cahill-dry
+      - taxonId: cream-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-nymph
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: dark-blue-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-black
+      - taxonId: dark-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - dark-cahill-dry
+      - taxonId: dark-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - march-brown-nymph
+      - taxonId: fishfly-larva
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - hellgrammite-fly
+      - taxonId: fishing-spider
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: giant-black-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-dry
+      - taxonId: giant-black-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - black-stone-nymph
+          - pats-rubber-legs
+      - taxonId: golden-flathead
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-dry
+      - taxonId: golden-flathead
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stimulator
+          - orange-stimulator
+      - taxonId: golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+          - double-bead-stone
+      - taxonId: green-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+          - goddard-caddis
+      - taxonId: green-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - green-rock-worm
+      - taxonId: hellgrammite
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - hellgrammite-fly
+          - bitch-creek-nymph
+      - taxonId: inchworm
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - inchworm-dry
+          - green-weenie
+      - taxonId: leafhopper
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: light-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-dry
+      - taxonId: light-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: light-cahill
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: little-black-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: little-black-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+      - taxonId: little-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: little-brown-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-brown-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: little-golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - yellow-stone-nymph
+          - pats-rubber-legs
+      - taxonId: little-gray-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-green-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-olive-net-spinner
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - little-olive-caddis-dry
+      - taxonId: little-olive-net-spinner
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-sister-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-sister-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - caddis-pupa-olive
+          - caddis-pupa-tan
+      - taxonId: little-spiny-crawler
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: little-spiny-crawler
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - split-case-bwo-nymph
+          - pheasant-tail-nymph
+      - taxonId: little-sulphur
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-sulphur-dun-dry
+          - sulphur-parachute
+      - taxonId: little-sulphur
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - sulphur-nymph
+          - pheasant-tail-nymph
+      - taxonId: little-yellow-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-yellow-quill-dry
+      - taxonId: little-yellow-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: march-brown
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - march-brown-dry
+          - march-brown-wet
+      - taxonId: march-brown
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - march-brown-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: march-brown
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: needlefly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: needlefly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: pale-evening-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - pale-evening-dun-dry
+          - sulphur-parachute
+      - taxonId: pale-evening-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: pale-evening-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: periodical-cicada
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-cicada
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: roachfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: saddle-case-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: saddle-case-caddis
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: shortwing-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+      - taxonId: slate-drake
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - slate-drake-parachute
+      - taxonId: slate-drake
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - isonychia-nymph
+          - pheasant-tail-nymph
+      - taxonId: slate-drake
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+      - taxonId: spiny-crawler-mayfly
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: spiny-crawler-mayfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: sulphur-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - sulphur-parachute
+          - sulphur-emerger
+      - taxonId: sulphur-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - sulphur-nymph
+          - pheasant-tail-nymph
+      - taxonId: sulphur-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+      - taxonId: water-penny
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: whirligig-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: yellow-sally
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+          - yellow-stimulator
+      - taxonId: yellow-sally
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-stone-nymph
+      - taxonId: yellow-stone-eccoptura
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stone-nymph
+  - month: 7
+    entries:
+      - taxonId: ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - fur-ant
+          - foam-ant-black
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crane-fly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - crane-fly-adult-dry
+      - taxonId: crane-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - crane-fly-larva
+      - taxonId: crayfish
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-crayfish
+          - foam-back-crawfish
+      - taxonId: cream-cahill
+        stage: dun
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - cream-cahill-dry
+      - taxonId: cream-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-nymph
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: dark-blue-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-black
+      - taxonId: dark-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - dark-cahill-dry
+      - taxonId: dark-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - march-brown-nymph
+      - taxonId: dog-day-cicada
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-cicada
+          - foam-beetle
+      - taxonId: fishfly-larva
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - hellgrammite-fly
+      - taxonId: fishing-spider
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: flying-ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - flying-ant-dry
+          - fur-ant
+      - taxonId: golden-flathead
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-dry
+      - taxonId: golden-flathead
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stimulator
+          - orange-stimulator
+      - taxonId: golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+          - double-bead-stone
+      - taxonId: green-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+          - goddard-caddis
+      - taxonId: green-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - green-rock-worm
+      - taxonId: hellgrammite
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - hellgrammite-fly
+          - bitch-creek-nymph
+      - taxonId: leafhopper
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: light-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-dry
+      - taxonId: light-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: light-cahill
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: little-black-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: little-black-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+      - taxonId: little-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: little-brown-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - yellow-stone-nymph
+          - pats-rubber-legs
+      - taxonId: little-gray-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-green-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-olive-net-spinner
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - little-olive-caddis-dry
+      - taxonId: little-olive-net-spinner
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-sister-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-sister-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - caddis-pupa-olive
+          - caddis-pupa-tan
+      - taxonId: little-spiny-crawler
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: little-spiny-crawler
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - split-case-bwo-nymph
+          - pheasant-tail-nymph
+      - taxonId: little-yellow-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-yellow-quill-dry
+      - taxonId: little-yellow-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: needlefly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: needlefly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: pale-evening-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - pale-evening-dun-dry
+          - sulphur-parachute
+      - taxonId: pale-evening-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: pale-evening-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: roachfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: saddle-case-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: saddle-case-caddis
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: shortwing-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+      - taxonId: slate-drake
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - slate-drake-parachute
+      - taxonId: slate-drake
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - isonychia-nymph
+          - pheasant-tail-nymph
+      - taxonId: slate-drake
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+      - taxonId: spiny-crawler-mayfly
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: spiny-crawler-mayfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: sulphur-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - sulphur-parachute
+          - sulphur-emerger
+      - taxonId: sulphur-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - sulphur-nymph
+          - pheasant-tail-nymph
+      - taxonId: sulphur-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+      - taxonId: water-penny
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: whirligig-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: yellow-sally
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+          - yellow-stimulator
+      - taxonId: yellow-sally
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-stone-nymph
+      - taxonId: yellow-stone-eccoptura
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stone-nymph
+  - month: 8
+    entries:
+      - taxonId: ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - fur-ant
+          - foam-ant-black
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crane-fly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - crane-fly-adult-dry
+      - taxonId: crane-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - crane-fly-larva
+      - taxonId: crayfish
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-crayfish
+          - foam-back-crawfish
+      - taxonId: cream-cahill
+        stage: dun
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - cream-cahill-dry
+      - taxonId: cream-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-nymph
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: dark-blue-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-black
+      - taxonId: dark-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - dark-cahill-dry
+      - taxonId: dark-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - march-brown-nymph
+      - taxonId: dog-day-cicada
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-cicada
+          - foam-beetle
+      - taxonId: fishfly-larva
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - hellgrammite-fly
+      - taxonId: fishing-spider
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: flying-ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - flying-ant-dry
+          - fur-ant
+      - taxonId: golden-flathead
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - light-cahill-dry
+      - taxonId: golden-flathead
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - yellow-stimulator
+          - orange-stimulator
+      - taxonId: golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - pats-rubber-legs
+          - yellow-stone-nymph
+          - double-bead-stone
+      - taxonId: green-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+          - goddard-caddis
+      - taxonId: green-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - green-rock-worm
+      - taxonId: hellgrammite
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - hellgrammite-fly
+          - bitch-creek-nymph
+      - taxonId: leafhopper
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: light-cahill
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-dry
+      - taxonId: light-cahill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - light-cahill-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: light-cahill
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: little-black-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: little-black-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+      - taxonId: little-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: little-brown-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - yellow-stone-nymph
+          - pats-rubber-legs
+      - taxonId: little-olive-net-spinner
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - little-olive-caddis-dry
+      - taxonId: little-olive-net-spinner
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-sister-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-sister-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - caddis-pupa-olive
+          - caddis-pupa-tan
+      - taxonId: little-spiny-crawler
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: little-spiny-crawler
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - split-case-bwo-nymph
+          - pheasant-tail-nymph
+      - taxonId: little-yellow-quill
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - little-yellow-quill-dry
+      - taxonId: little-yellow-quill
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - gold-ribbed-hares-ear
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: needlefly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: needlefly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: pale-evening-dun
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - pale-evening-dun-dry
+          - sulphur-parachute
+      - taxonId: pale-evening-dun
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: pale-evening-dun
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - poly-wing-spinner
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: saddle-case-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: saddle-case-caddis
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: slate-drake
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - slate-drake-parachute
+      - taxonId: slate-drake
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - isonychia-nymph
+          - pheasant-tail-nymph
+      - taxonId: slate-drake
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+      - taxonId: spiny-crawler-mayfly
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: spiny-crawler-mayfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+      - taxonId: water-penny
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: whirligig-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+  - month: 9
+    entries:
+      - taxonId: ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - fur-ant
+          - foam-ant-black
+      - taxonId: autumn-mottled-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - autumn-sedge-dry
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crane-fly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - crane-fly-adult-dry
+      - taxonId: crane-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - crane-fly-larva
+      - taxonId: crayfish
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-crayfish
+          - foam-back-crawfish
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: dog-day-cicada
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-cicada
+          - foam-beetle
+      - taxonId: fishing-spider
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: flying-ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - flying-ant-dry
+          - fur-ant
+      - taxonId: great-autumn-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - autumn-sedge-dry
+      - taxonId: great-autumn-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - october-caddis-larva
+      - taxonId: leafhopper
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - foam-beetle
+      - taxonId: little-black-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - little-black-caddis-dry
+      - taxonId: little-black-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+      - taxonId: little-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+      - taxonId: little-brown-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-golden-stone
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - yellow-sally-dry
+      - taxonId: little-golden-stone
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - yellow-stone-nymph
+          - pats-rubber-legs
+      - taxonId: little-olive-net-spinner
+        stage: adult
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - little-olive-caddis-dry
+      - taxonId: little-olive-net-spinner
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: little-sister-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: little-sister-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - caddis-pupa-olive
+          - caddis-pupa-tan
+      - taxonId: little-spiny-crawler
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: little-spiny-crawler
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - split-case-bwo-nymph
+          - pheasant-tail-nymph
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: needlefly
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - early-black-stone-dry
+      - taxonId: needlefly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-stone-nymph
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: saddle-case-caddis
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - elk-hair-caddis-olive
+      - taxonId: saddle-case-caddis
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - caddis-pupa-olive
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: slate-drake
+        stage: dun
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - slate-drake-parachute
+      - taxonId: slate-drake
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - isonychia-nymph
+          - pheasant-tail-nymph
+      - taxonId: slate-drake
+        stage: spinner
+        timeOfDay: evening
+        abundance: 3
+        patterns:
+          - rusty-spinner
+      - taxonId: spiny-crawler-mayfly
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-dun
+      - taxonId: spiny-crawler-mayfly
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - gold-ribbed-hares-ear
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+      - taxonId: water-penny
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+      - taxonId: whirligig-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - foam-beetle
+  - month: 10
+    entries:
+      - taxonId: ant
+        stage: adult
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - fur-ant
+          - foam-ant-black
+      - taxonId: autumn-mottled-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - autumn-sedge-dry
+      - taxonId: black-fly
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+      - taxonId: blacknose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: common-shiner
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-minnow
+          - mickey-finn
+      - taxonId: crayfish
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - clouser-crayfish
+          - foam-back-crawfish
+      - taxonId: creek-chub
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - muddler-minnow
+          - clouser-minnow
+      - taxonId: great-autumn-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - autumn-sedge-dry
+      - taxonId: great-autumn-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - october-caddis-larva
+      - taxonId: longnose-dace
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - black-nose-dace-streamer
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+      - taxonId: spotted-sedge
+        stage: adult
+        timeOfDay: evening
+        abundance: 4
+        patterns:
+          - elk-hair-caddis-tan
+          - x-caddis-tan
+      - taxonId: spotted-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 5
+        patterns:
+          - caddis-pupa-tan
+          - green-rock-worm
+      - taxonId: tiny-blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - blue-winged-olive-parachute
+          - griffiths-gnat
+      - taxonId: tiny-blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - pheasant-tail-nymph
+          - split-case-bwo-nymph
+  - month: 11
+    entries:
+      - taxonId: autumn-mottled-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - autumn-sedge-dry
+      - taxonId: blue-winged-olive
+        stage: dun
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - blue-winged-olive-parachute
+          - blue-winged-olive-dun
+          - blue-winged-olive-sparkle-dun
+      - taxonId: blue-winged-olive
+        stage: nymph
+        timeOfDay: midday
+        abundance: 4
+        patterns:
+          - pheasant-tail-nymph
+          - flashback-pheasant-tail
+          - split-case-bwo-nymph
+      - taxonId: blue-winged-olive
+        stage: spinner
+        timeOfDay: evening
+        abundance: 2
+        patterns:
+          - rusty-spinner
+          - poly-wing-spinner
+      - taxonId: great-autumn-sedge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - autumn-sedge-dry
+      - taxonId: great-autumn-sedge
+        stage: larva
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - october-caddis-larva
+      - taxonId: little-black-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - griffiths-gnat
+          - parachute-midge-black
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow
+  - month: 12
+    entries:
+      - taxonId: little-black-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - griffiths-gnat
+          - parachute-midge-black
+      - taxonId: riffle-beetle
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - riffle-beetle-dry
+          - foam-beetle
+      - taxonId: sculpin
+        stage: adult
+        timeOfDay: midday
+        abundance: 3
+        patterns:
+          - near-nuff-sculpin
+          - muddler-minnow

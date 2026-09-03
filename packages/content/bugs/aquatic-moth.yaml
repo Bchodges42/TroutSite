@@ -1,0 +1,65 @@
+id: aquatic-moth
+commonName: Aquatic Moth Larva
+sciName: Parapoynx spp. (Pyralidae)
+order: Lepidoptera
+family: Crambidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - pale-cream
+    - pale-green
+  mouthparts: grazing-chewing
+habitat:
+  - weed beds
+  - slack margins
+  - tailwaters
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/aquatic-moth.svg
+stages:
+  - larva
+notes: True aquatic caterpillars live in tailwater weedbeds and occasionally dislodge into the
+  drift — pale, wiggly, and readily eaten. A pale cream worm pattern in weedy runs covers them.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

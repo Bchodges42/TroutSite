@@ -1,0 +1,17 @@
+id: green-rock-worm
+name: Green Rock Worm
+type: nymph
+imitates:
+  - green-sedge
+  - spotted-sedge
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - bright green dubbing
+  - partridge hackle
+  - dark head
+notes: The free-living green larva of mountain riffles — a Smokies staple.
+license: public-domain

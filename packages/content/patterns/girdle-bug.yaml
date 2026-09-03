@@ -1,0 +1,20 @@
+id: girdle-bug
+name: Girdle Bug
+type: nymph
+imitates:
+  - golden-stone
+  - giant-black-stone
+  - hellgrammite
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - black chenille
+  - white rubber legs
+  - bead
+notes: Skip Morris’s rubber-legged dark bug — stonefly or hellgrammite, trout don’t split hairs.
+license: attributed
+attribution: Designed by Skip Morris

@@ -1,0 +1,56 @@
+id: great-autumn-sedge
+commonName: Great Autumn Brown Sedge
+sciName: Pycnopsyche spp.
+order: Trichoptera
+family: Limnephilidae
+sizeRange:
+  - 6
+  - 10
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - mottled-orange-brown
+    - brown
+    - orange-tan
+  mouthparts: shredding-detritivore
+habitat:
+  - leaf packs
+  - runs
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 9
+    - 10
+    - 11
+  tn-east-pigeon-frenchbroad:
+    - 9
+    - 10
+    - 11
+  tn-northeast-watauga:
+    - 9
+    - 10
+    - 11
+  tn-east-clinch:
+    - 9
+    - 10
+    - 11
+  tn-se-hiwassee:
+    - 9
+    - 10
+    - 11
+  tn-cumberland-plateau:
+    - 9
+    - 10
+    - 11
+illustration: illustrations/great-autumn-sedge.svg
+stages:
+  - larva
+  - adult
+notes: "Big, lumbering October caddis of Appalachian streams, larvae hauling sticks-and-leaf
+  cases. A size #8 orange-bodied sedge dry fished against dark banks in fall is pure
+  foliage-adjacent fun."
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

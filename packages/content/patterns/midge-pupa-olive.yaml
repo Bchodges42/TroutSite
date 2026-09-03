@@ -1,0 +1,17 @@
+id: midge-pupa-olive
+name: Midge Pupa (Olive Glass Bead)
+type: nymph
+imitates:
+  - olive-midge
+  - blood-midge
+hookSizes:
+  - 18
+  - 20
+  - 22
+difficulty: 2
+materials:
+  - olive dubbing
+  - clear glass bead
+  - black thread
+notes: The glass bead reads as the developing wing pad of a rising pupa.
+license: public-domain

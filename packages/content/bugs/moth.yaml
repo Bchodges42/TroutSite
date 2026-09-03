@@ -1,0 +1,70 @@
+id: moth
+commonName: Moths & Miller Moths
+sciName: Lepidoptera (various)
+order: Lepidoptera
+family: Noctuidae / others
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - cream
+    - gray
+    - pale-brown
+  mouthparts: siphoning
+habitat:
+  - banks
+  - water near lights at night
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/moth.svg
+stages:
+  - adult
+notes: "Downstream of bridge and yard lights, moths pile onto the water all night. Pale #12-14
+  parachute dries fished after dark produce on urban-adjacent tailwaters."
+sources:
+  - https://bugguide.net

@@ -1,0 +1,22 @@
+id: woolly-bugger-olive
+name: Woolly Bugger (Olive)
+type: streamer
+imitates:
+  - leech
+  - sculpin
+  - stoneroller
+  - crayfish
+hookSizes:
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 1
+materials:
+  - olive marabou tail
+  - olive chenille
+  - grizzly saddle hackle
+notes: Russell Blessing’s 1967 invention — arguably the most caught-fish pattern in America.
+  Swing it, strip it, dead-drift it.
+license: attributed
+attribution: Designed by Russell Blessing (Pennsylvania, 1967)

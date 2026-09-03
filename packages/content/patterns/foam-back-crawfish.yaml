@@ -1,0 +1,17 @@
+id: foam-back-crawfish
+name: Foam-Back Crawfish
+type: nymph
+imitates:
+  - crayfish
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 3
+materials:
+  - mottled dubbing
+  - tan foam shellback
+  - rubber legs
+  - dumbbell eyes
+notes: The floating foam back mimics a molted soft-shell — the form big browns chase.
+license: public-domain

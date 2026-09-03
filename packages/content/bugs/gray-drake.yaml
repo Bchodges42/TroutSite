@@ -1,0 +1,53 @@
+id: gray-drake
+commonName: Gray Drake
+sciName: Siphlonurus spp.
+order: Ephemeroptera
+family: Siphlonuridae
+sizeRange:
+  - 10
+  - 14
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - gray-olive
+    - pale-gray
+  mouthparts: collector-gatherer
+habitat:
+  - weedy runs
+  - backwaters
+  - sloughs
+monthsActiveByRegion:
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/gray-drake.svg
+stages:
+  - nymph
+  - dun
+notes: Fast-swimming mayflies of weedy margins that often swarm as duns. Mottled gray spinner
+  falls can blanket soft backwater seams.
+sources:
+  - https://bugguide.net

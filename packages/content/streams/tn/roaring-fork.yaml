@@ -1,0 +1,21 @@
+id: roaring-fork
+name: Roaring Fork
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-smokies
+gaugeIds: []
+stockingProgram: true
+idealFlow:
+  - min: 10
+    max: 80
+    unit: cfs
+notes: Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and
+  brook trout, with TWRA listing spring stocking for the Roaring Fork area. No gauge; treat
+  flows as rain events.
+officialSources:
+  - label: NPS — Great Smoky Mountains National Park fishing information
+    url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

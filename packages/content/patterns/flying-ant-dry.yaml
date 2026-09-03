@@ -1,0 +1,16 @@
+id: flying-ant-dry
+name: Flying Ant Dry
+type: terrestrial
+imitates:
+  - flying-ant
+  - ant
+hookSizes:
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - black dubbing
+  - clear poly wings
+  - round hackle
+notes: For the late-summer nuptial-flight carnivals.
+license: public-domain

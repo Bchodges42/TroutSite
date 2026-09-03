@@ -1,0 +1,19 @@
+id: woolly-bugger-rust
+name: Woolly Bugger (Rust)
+type: streamer
+imitates:
+  - crayfish
+  - leech
+  - sculpin
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 1
+materials:
+  - rust marabou tail
+  - rust chenille
+  - grizzly hackle
+notes: Crayfish rust — the summer bugger color on rocky banks.
+license: attributed
+attribution: Designed by Russell Blessing (1967)

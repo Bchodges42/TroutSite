@@ -1,0 +1,64 @@
+id: whirligig-beetle
+commonName: Whirligig Beetle
+sciName: Gyrinus spp.
+order: Coleoptera
+family: Gyrinidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - black
+    - metallic-black
+  mouthparts: predatory-grasping
+habitat:
+  - pools
+  - slack water
+  - glides
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/whirligig-beetle.svg
+stages:
+  - adult
+notes: Sociable black beetles gyrating in circles over every calm pool. Curling wakes make them
+  look bigger than they are; trout still eat the occasional careless one.
+sources:
+  - https://bugguide.net

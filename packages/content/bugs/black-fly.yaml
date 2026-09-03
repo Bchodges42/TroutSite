@@ -1,0 +1,93 @@
+id: black-fly
+commonName: Black Fly Larva
+sciName: Simulium spp.
+order: Diptera
+family: Simuliidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - black
+    - dark-gray
+  mouthparts: filtering-fan
+habitat:
+  - riffles
+  - tailwaters
+  - weirs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/black-fly.svg
+stages:
+  - larva
+notes: Larvae anchor in silk on riffle rocks, fanning the current — abundant on tailwater weirs.
+  Dislodged larvae and pupae are a real (if overlooked) drifting food item.
+sources:
+  - https://en.wikipedia.org/wiki/Black_fly
+  - https://bugguide.net

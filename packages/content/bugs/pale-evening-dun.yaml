@@ -1,0 +1,67 @@
+id: pale-evening-dun
+commonName: Pale Evening Dun
+sciName: Ephemerella needhami
+order: Ephemeroptera
+family: Ephemerellidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - pale-cream
+    - pinkish-cream
+    - cream
+  mouthparts: chewing-collector
+habitat:
+  - riffles
+  - tailwaters
+  - seams
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/pale-evening-dun.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Larger and paler than the classic sulphur, with distinctly pinkish shucks on the duns. A
+  reliable June evening hatch on tailwater seams.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

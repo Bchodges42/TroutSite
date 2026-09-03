@@ -1,0 +1,72 @@
+id: little-spiny-crawler
+commonName: Little Spiny Crawler
+sciName: Serratella deficiens
+order: Ephemeroptera
+family: Ephemerellidae
+sizeRange:
+  - 16
+  - 20
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - olive
+    - dark-olive
+    - brown-olive
+  mouthparts: chewing-collector
+habitat:
+  - riffles
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-spiny-crawler.svg
+stages:
+  - nymph
+  - dun
+notes: "Small Ephemerellid that molts repeatedly on the surface film — trailing shucks fool
+  trout. Fish a #18 split-case under an indicator through summer riffle seams."
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

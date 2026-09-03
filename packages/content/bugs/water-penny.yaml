@@ -1,0 +1,63 @@
+id: water-penny
+commonName: Water Penny Beetle
+sciName: Psephenus herricki
+order: Coleoptera
+family: Psephenidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive-brown
+    - dark-olive
+  mouthparts: grazing-scraper
+habitat:
+  - clean riffles
+  - boulders
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/water-penny.svg
+stages:
+  - larva
+notes: Larvae are coin-shaped limpet mimics suctioned to the undersides of clean cobbles — a
+  sign of excellent water. Occasionally dislodged, occasionally eaten.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

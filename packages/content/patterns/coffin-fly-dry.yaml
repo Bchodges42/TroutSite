@@ -1,0 +1,16 @@
+id: coffin-fly-dry
+name: Coffin Fly (Hex Spinner)
+type: spinner
+imitates:
+  - burrowing-hex
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 3
+materials:
+  - cream dun hackle spent
+  - tan dubbing
+  - white spent wings
+notes: The spent hex spinner — the legendary last-light crash of the biggest fish in the river.
+license: public-domain

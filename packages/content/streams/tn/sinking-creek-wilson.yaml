@@ -1,0 +1,18 @@
+id: sinking-creek-wilson
+name: Sinking Creek (Wilson County)
+stateId: TN
+waterbodyType: spring
+regionId: tn-middle-nashville
+gaugeIds: []
+stockingProgram: true
+idealFlow:
+  - min: 5
+    max: 50
+    unit: cfs
+notes: Karst-influenced Wilson County creek in TWRA’s winter program — the name is the geology
+  lesson. Steady-ish flows by creek standards.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

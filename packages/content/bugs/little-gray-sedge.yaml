@@ -1,0 +1,47 @@
+id: little-gray-sedge
+commonName: Little Gray Sedge
+sciName: Goera spp.
+order: Trichoptera
+family: Goeridae
+sizeRange:
+  - 16
+  - 20
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - gray
+    - gray-olive
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+illustration: illustrations/little-gray-sedge.svg
+stages:
+  - larva
+notes: 'Larvae tow sand-tube cases with two side "towers" of pebbles. Gray #18 pupa patterns
+  drift well through Smokies pocket water.'
+sources:
+  - https://bugguide.net

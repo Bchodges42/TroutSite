@@ -1,0 +1,27 @@
+id: french-broad-river
+name: French Broad River (Douglas tailwater)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-east-pigeon-frenchbroad
+gaugeIds:
+  - "03468510"
+  - "03469000"
+stockingProgram: false
+idealFlow:
+  - min: 300
+    max: 2000
+    unit: cfs
+notes: Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s
+  stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled;
+  verify releases.
+officialSources:
+  - label: USGS Water Data — monitoring location 03468510
+    url: https://waterdata.usgs.gov/monitoring-location/03468510/
+  - label: USGS Water Data — monitoring location 03469000
+    url: https://waterdata.usgs.gov/monitoring-location/03469000/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

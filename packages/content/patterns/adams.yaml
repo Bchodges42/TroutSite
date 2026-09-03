@@ -1,0 +1,21 @@
+id: adams
+name: Adams
+type: dry
+imitates:
+  - blue-winged-olive
+  - march-brown
+  - little-blue-winged-olive
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - gray dubbing
+  - grizzly and brown hackles
+  - mixed dun wings
+notes: Leonard Halladay’s 1922 Michigan generalist — the mayfly of "I’m not sure."
+license: public-domain

@@ -1,0 +1,18 @@
+id: mickey-finn
+name: Mickey Finn
+type: streamer
+imitates:
+  - common-shiner
+  - bluntnose-minnow
+hookSizes:
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - "bucktail: yellow over red over yellow"
+  - silver tinsel
+notes: Charles LeBlanc’s "Yellow and Red Bucktail" renamed by John Alden Knight — pure flash for
+  schooling shiners.
+license: public-domain

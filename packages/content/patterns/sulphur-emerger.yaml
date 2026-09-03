@@ -1,0 +1,16 @@
+id: sulphur-emerger
+name: Sulphur Emerger
+type: emerger
+imitates:
+  - sulphur-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - sulphur dubbing
+  - pale shuck z-lon
+  - dun CDC loop wing
+notes: The transitional fly that catches the half-hour before the dun show starts.
+license: public-domain

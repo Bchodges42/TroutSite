@@ -1,0 +1,16 @@
+id: slate-drake-parachute
+name: Slate Drake Parachute
+type: dry
+imitates:
+  - slate-drake
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - mahogany dubbing
+  - dark slate parachute hackle
+  - white poly post
+notes: Big and visible — for the fast-water duns of summer evenings.
+license: public-domain

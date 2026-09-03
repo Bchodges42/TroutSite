@@ -1,0 +1,19 @@
+id: woolly-bugger-white
+name: Woolly Bugger (White)
+type: streamer
+imitates:
+  - threadfin-shad
+  - common-shiner
+  - bluntnose-minnow
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 1
+materials:
+  - white marabou tail
+  - white chenille
+  - white saddle hackle
+notes: For shad kills below dams — white on cold winter mornings.
+license: attributed
+attribution: Designed by Russell Blessing (1967)

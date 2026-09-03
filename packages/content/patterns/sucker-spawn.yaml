@@ -1,0 +1,15 @@
+id: sucker-spawn
+name: Sucker Spawn
+type: nymph
+imitates:
+  - sucker
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - pale orange or peach antron yarn
+  - glo-bug yarn clusters
+notes: March–April gravel flats below dams — drift it behind staging suckers.
+license: public-domain

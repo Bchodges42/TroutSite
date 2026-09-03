@@ -1,0 +1,16 @@
+id: san-juan-worm
+name: San Juan Worm
+type: nymph
+imitates:
+  - aquatic-worm
+  - leech
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - chenille (red, pink, or worm brown)
+  - hook
+notes: Worm brown after bumps in flow; red after stocking season. Humble and honest.
+license: public-domain

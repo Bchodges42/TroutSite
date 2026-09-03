@@ -1,0 +1,16 @@
+id: black-nose-dace-streamer
+name: Black Nose Dace
+type: streamer
+imitates:
+  - blacknose-dace
+  - longnose-dace
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - "bucktail: red over yellow over black"
+  - silver tinsel body
+notes: A Maine classic whose black lateral stripe is the dace’s whole identity.
+license: public-domain

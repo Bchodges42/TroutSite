@@ -1,0 +1,16 @@
+id: glo-bug
+name: Glo-Bug (Egg Fly)
+type: nymph
+imitates:
+  - sucker
+hookSizes:
+  - 8
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - glo-bug yarn
+  - egg-laying foam or yarn ball
+notes: The plain egg — March sucker runs and any gravel-bed spawning window.
+license: public-domain

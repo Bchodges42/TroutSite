@@ -1,0 +1,16 @@
+id: caenis-spinner
+name: Caenis Spinner (Angler’s Curse)
+type: spinner
+imitates:
+  - anglers-curse
+hookSizes:
+  - 22
+  - 24
+  - 26
+difficulty: 4
+materials:
+  - pale-gray dubbing
+  - clear antron spent wings
+  - tiny grizzly hackle
+notes: "A #24 pale speck for the curse hatches — tie three, lose three, catch fish."
+license: public-domain

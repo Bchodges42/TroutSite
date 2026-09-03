@@ -1,0 +1,134 @@
+id: aquatic-worm
+commonName: Aquatic Worm
+sciName: Oligochaeta (class)
+order: Annelida
+family: Naididae / Lumbriculidae
+sizeRange:
+  - 10
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - red-brown
+    - pink
+    - brown
+  mouthparts: deposit-feeder
+habitat:
+  - silt flats
+  - tailwaters
+  - soft margins
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-upper-cumberland:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+illustration: illustrations/aquatic-worm.svg
+stages:
+  - larva
+notes: Worms thrive in the silty bottoms below dams and flood into the drift with any flow bump.
+  A red or pink worm pattern is not classy — it’s just true.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

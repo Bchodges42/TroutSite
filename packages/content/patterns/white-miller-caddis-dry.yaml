@@ -1,0 +1,15 @@
+id: white-miller-caddis-dry
+name: White Miller Caddis Dry
+type: dry
+imitates:
+  - white-miller-caddis
+hookSizes:
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - white dubbing
+  - white elk hair
+  - light hackle
+notes: The all-white tent-wing for Hiwassee and Caney summer evenings.
+license: public-domain

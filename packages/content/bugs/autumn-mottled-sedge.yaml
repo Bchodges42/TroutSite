@@ -1,0 +1,52 @@
+id: autumn-mottled-sedge
+commonName: Autumn Mottled Sedge
+sciName: Neophylax spp.
+order: Trichoptera
+family: Uenoidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - mottled-brown
+    - black-brown
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - boulders
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 9
+    - 10
+    - 11
+  tn-east-pigeon-frenchbroad:
+    - 9
+    - 10
+    - 11
+  tn-northeast-watauga:
+    - 9
+    - 10
+    - 11
+  tn-east-clinch:
+    - 9
+    - 10
+    - 11
+  tn-se-hiwassee:
+    - 9
+    - 10
+    - 11
+  tn-cumberland-plateau:
+    - 9
+    - 10
+    - 11
+illustration: illustrations/autumn-mottled-sedge.svg
+stages:
+  - adult
+notes: Thoria-branded larvae bear a striking orange dorsal band inside mottled cases. Adults
+  appear in early fall afternoons; mottled-brown dries on calm days fool selective pool fish.
+sources:
+  - https://bugguide.net

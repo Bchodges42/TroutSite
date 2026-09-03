@@ -1,0 +1,15 @@
+id: scud-orange
+name: Scud (Orange)
+type: nymph
+imitates:
+  - scud
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - orange dubbing
+  - pearl shellback
+notes: Orange = dead or dying scud — trout relish the carrion.
+license: public-domain

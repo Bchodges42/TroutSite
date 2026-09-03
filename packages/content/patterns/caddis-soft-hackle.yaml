@@ -1,0 +1,17 @@
+id: caddis-soft-hackle
+name: Caddis Soft Hackle
+type: wet
+imitates:
+  - spotted-sedge
+  - little-sister-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 1
+materials:
+  - tan dubbing
+  - partridge soft hackle
+  - peacock herl
+notes: Swing it across current during emergence — caddis wets get crushed.
+license: public-domain

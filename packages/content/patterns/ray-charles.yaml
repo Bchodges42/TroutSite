@@ -1,0 +1,18 @@
+id: ray-charles
+name: Ray Charles
+type: nymph
+imitates:
+  - sowbug
+  - scud
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - gray or tan dubbing
+  - ostrich herl
+  - no shellback
+notes: Named for blindness — a bare, buggy isopod imitation from Michigan’s Au Sable guides.
+license: attributed
+attribution: Designed by Chuck Hawkins / Hawkins Outfitters guides (Michigan)

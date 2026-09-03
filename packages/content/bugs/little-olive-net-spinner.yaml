@@ -1,0 +1,76 @@
+id: little-olive-net-spinner
+commonName: Little Olive Net-Spinner
+sciName: Psychomyia flavida
+order: Trichoptera
+family: Psychomyiidae
+sizeRange:
+  - 18
+  - 22
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - olive
+    - pale-olive
+  mouthparts: filtering-net
+habitat:
+  - riffles
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-olive-net-spinner.svg
+stages:
+  - larva
+  - adult
+notes: "Silken-tunnel builders of clean riffles; their small pale-olive adults appear in slow
+  summer evening flights. A #18 olive caddis pupa is the honest match."
+sources:
+  - https://bugguide.net

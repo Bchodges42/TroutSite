@@ -1,0 +1,61 @@
+id: early-black-stone
+commonName: Early Black Stonefly
+sciName: Taeniopteryx spp.
+order: Plecoptera
+family: Taeniopterygidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - black
+    - dark-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - riffles
+  - tailwaters
+  - leaf packs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-middle-duck-elk:
+    - 2
+    - 3
+    - 4
+  tn-east-smokies:
+    - 2
+    - 3
+    - 4
+  tn-east-pigeon-frenchbroad:
+    - 2
+    - 3
+    - 4
+illustration: illustrations/early-black-stone.svg
+stages:
+  - nymph
+  - adult
+notes: Winter stoneflies that crawl onto snow in January and February — the only adult stonefly
+  show of the coldest months. Small black dries or dark wets work around midwinter warm snaps.
+sources:
+  - https://bugguide.net

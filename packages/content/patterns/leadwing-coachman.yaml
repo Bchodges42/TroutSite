@@ -1,0 +1,16 @@
+id: leadwing-coachman
+name: Leadwing Coachman
+type: wet
+imitates:
+  - slate-drake
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - peacock herl
+  - red-brown hen hackle
+  - wood duck flank
+notes: An ancient wet that doubles beautifully as a spent slate drake.
+license: public-domain

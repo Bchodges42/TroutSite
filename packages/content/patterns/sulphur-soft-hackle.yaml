@@ -1,0 +1,16 @@
+id: sulphur-soft-hackle
+name: Sulphur Soft Hackle
+type: wet
+imitates:
+  - sulphur-dun
+  - pale-evening-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - sulphur dubbing
+  - pale hen soft hackle
+notes: Swing it up-and-across as the sulphur hatch builds.
+license: public-domain

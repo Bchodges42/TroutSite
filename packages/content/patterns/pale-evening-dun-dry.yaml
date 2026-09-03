@@ -1,0 +1,16 @@
+id: pale-evening-dun-dry
+name: Pale Evening Dun Dry
+type: dry
+imitates:
+  - pale-evening-dun
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - pale cream dubbing
+  - pink-tinted antron shuck
+  - light dun hackle
+notes: Larger and pinker than the classic sulphur — matches E. needhami exactly.
+license: public-domain

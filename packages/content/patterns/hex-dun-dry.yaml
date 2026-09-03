@@ -1,0 +1,16 @@
+id: hex-dun-dry
+name: Hex Dun Dry
+type: dry
+imitates:
+  - burrowing-hex
+hookSizes:
+  - 6
+  - 8
+difficulty: 2
+materials:
+  - cream-tan dubbing
+  - pale ginger hackle
+  - wood duck flank
+  - foam underbody
+notes: A big, ugly, buoyant hex profile for dark twilight water.
+license: public-domain

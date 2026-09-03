@@ -1,0 +1,20 @@
+id: powell-river
+name: Powell River
+stateId: TN
+waterbodyType: river
+regionId: tn-east-clinch
+gaugeIds:
+  - "03532000"
+stockingProgram: false
+idealFlow:
+  - min: 50
+    max: 400
+    unit: cfs
+notes: A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow
+  and brown trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential
+  reading.
+officialSources:
+  - label: USGS Water Data — monitoring location 03532000
+    url: https://waterdata.usgs.gov/monitoring-location/03532000/
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

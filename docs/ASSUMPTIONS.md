@@ -217,3 +217,51 @@ attempts with exponential backoff (1–1.5s base). Non-transient 4xx fail immedi
 Why: tn.gov intermittently resets connections (observed live during verification: "fetch failed"
 with no HTTP response, then success on manual retry); polite retry is cheaper than failed runs.
 Impact: none on other roles; job durations may be ~2-3s longer under transient failure.
+
+### [ROLE 4] 2026-09-02 — launch state is Tennessee (supersedes Phase-0 TX/OK/AR note)
+Decision: the Role-4 content corpus is Tennessee-only (§2 v1 scope + §7 content model name TN
+launch regions); Role 1's Phase-0 shell README listed Guadalupe (TX)/Lower Mountain Fork (OK)/
+White & Little Red (AR) from an earlier draft.
+Why: the shared context is canonical — "1 launch state (Tennessee)" and the §7 region list are
+explicit and later than the shell note.
+Impact: hatch/streams/shops dirs are `tn/` only; `stateId` remains a free 2-letter code in the
+frozen contracts, so adding states later needs no contract change.
+
+### [ROLE 4] 2026-09-02 — additive `GET /v1/portal/me` endpoint
+Decision: the portal calls `GET /v1/portal/me` (Bearer shop token → Shop) to resolve identity at
+login; this route is not in the frozen §6 endpoint map.
+Why: the portal needs to verify a pasted token and show shop identity without trusting the token's
+unsigned shopId segment; §6's POST-only portal surface has no read for it.
+Impact: ADDITIVE only — no existing route renamed/removed (per §6 additive-change rule; requires
+ADR + tag bump only if signatures change). ROLE 3 implements it as snapshot-free live auth route.
+
+### [ROLE 4] 2026-09-02 — additive `photoUrl` on report input
+Decision: the composer accepts an optional `photoUrl` (https-only, validated client-side) and
+sends it with `POST /v1/portal/reports`; the frozen `ShopReport` schema has no such field.
+Why: shop reports are more useful with a photo; the role brief lists "optional photo URL" as a
+composer feature.
+Impact: ROLE 3 may ignore, persist, or reject-unknown-fields the extra key per its Zod config —
+recommend accepting + passing it through additively. Public feed renders it only if present.
+
+### [ROLE 4] 2026-09-02 — hatch YAML is one file per region with a `months[]` list
+Decision: `hatch/{stateId}/{regionId}.yaml` holds the whole year for a region as `months:` (12
+entries), not one file per month.
+Why: authoring/reviewing a region's seasonality in one file beats 132 files; the build emits the
+frozen `HatchChart` shape (and per-month `/v1/hatch/{regionId}/{month}.json` snapshots) unchanged.
+Impact: none at the contract surface; Role 5's marketing pages and the PWA consume built JSON.
+
+### [ROLE 4] 2026-09-02 — `@trout/content` exposes the built pack via `./pack/*` export
+Decision: content's package.json adds `"exports": { "./pack/*": "./dist/pack/*" }`; `apps/admin`
+imports `@trout/content/pack/{streams,patterns}.json` for the composer pickers.
+Why: the portal needs the same content pack as the PWA; a workspace subpath export is the
+pnpm-sanctioned way to consume another package's build artifact without reaching into its internals.
+Impact: build order matters — `pnpm --filter @trout/content build` must precede admin build/test
+(vitest config aliases the pack to a test mock so tests don't require it).
+
+### [ROLE 4] 2026-09-02 — MSW mock API is default-on in portal dev mode
+Decision: `apps/admin` starts `msw`'s browser worker in dev unless `VITE_ENABLE_MSW=false`; the
+worker file (`public/mockServiceWorker.js`) is dev-only and never deployed.
+Why: the real API arrives with Role 3; an always-working dev experience with fixtures parsed
+against the frozen contracts keeps portal development unblocked and contract-honest.
+Impact: production builds never import MSW (guarded by `import.meta.env.DEV`); Role 3's API can
+replace it by running the portal against the real origin.

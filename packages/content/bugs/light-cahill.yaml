@@ -1,0 +1,87 @@
+id: light-cahill
+commonName: Light Cahill
+sciName: Stenacron interpunctatum
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - cream
+    - pale-tan
+    - light-yellow
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - runs
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/light-cahill.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Classic ginger-cream hatches on warm summer afternoons. Bright sun rarely shuts these
+  down entirely, making them a good midday anchor fly.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

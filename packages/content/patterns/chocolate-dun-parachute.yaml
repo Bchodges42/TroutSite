@@ -1,0 +1,16 @@
+id: chocolate-dun-parachute
+name: Chocolate Dun Parachute
+type: dry
+imitates:
+  - chocolate-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - chocolate-brown dubbing
+  - dun parachute hackle
+  - antron shuck
+notes: A spring specialty for Ephemerellid-rich creeks.
+license: public-domain

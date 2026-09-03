@@ -1,0 +1,90 @@
+id: little-black-midge
+commonName: Little Black Midge
+sciName: Orthocladiinae (subfamily)
+order: Diptera
+family: Chironomidae
+sizeRange:
+  - 20
+  - 26
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - black
+    - dark-gray
+  mouthparts: grazing-scraper
+habitat:
+  - tailwaters
+  - riffles
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-east-smokies:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-east-pigeon-frenchbroad:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+  tn-cumberland-plateau:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+illustration: illustrations/little-black-midge.svg
+stages:
+  - adult
+notes: "Cold-water micro-midges that dominate winter hatches. If trout are sipping in January,
+  it’s usually this bug — a #22-26 Griffith’s Gnat or black midge dry solves it."
+sources:
+  - https://bugguide.net

@@ -1,0 +1,55 @@
+id: shortwing-golden-stone
+commonName: Shortwing Golden Stone
+sciName: Paragnetina immarginata
+order: Plecoptera
+family: Perlidae
+sizeRange:
+  - 6
+  - 10
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - golden-tan
+    - dark-brown
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - boulders
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+illustration: illustrations/shortwing-golden-stone.svg
+stages:
+  - nymph
+notes: Stocky golden stones whose adults have abbreviated wings. Nymphs mingle with Acroneuria
+  in the same riffles — the same heavy gold-stone rig covers both.
+sources:
+  - https://bugguide.net

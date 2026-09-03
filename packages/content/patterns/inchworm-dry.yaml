@@ -1,0 +1,15 @@
+id: inchworm-dry
+name: Inchworm Dry
+type: terrestrial
+imitates:
+  - inchworm
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - bright green dubbing
+  - green foam underbody
+notes: A simple green loaf of a fly — canopy-drip season in the Smokies.
+license: public-domain

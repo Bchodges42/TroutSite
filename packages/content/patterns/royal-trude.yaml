@@ -1,0 +1,19 @@
+id: royal-trude
+name: Royal Trude
+type: dry
+imitates:
+  - light-cahill
+  - spotted-sedge
+  - march-brown
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - red floss body
+  - white calf tail downwing
+  - brown hackle
+notes: The down-wing cousin of the Royal Wulff — a Southern Rocky tradition.
+license: public-domain

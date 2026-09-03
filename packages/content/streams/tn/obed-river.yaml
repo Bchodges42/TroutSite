@@ -1,0 +1,20 @@
+id: obed-river
+name: Obed River
+stateId: TN
+waterbodyType: river
+regionId: tn-cumberland-plateau
+gaugeIds:
+  - "03539800"
+stockingProgram: false
+idealFlow:
+  - min: 100
+    max: 800
+    unit: cfs
+notes: "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor —
+  self-sustaining rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed:
+  rises fast, drops fast. Stocking flag false by design — verify NPS/TWRA notices."
+officialSources:
+  - label: USGS Water Data — monitoring location 03539800
+    url: https://waterdata.usgs.gov/monitoring-location/03539800/
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

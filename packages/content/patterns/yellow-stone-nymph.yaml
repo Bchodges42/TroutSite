@@ -1,0 +1,20 @@
+id: yellow-stone-nymph
+name: Yellow Stonefly Nymph
+type: nymph
+imitates:
+  - little-golden-stone
+  - yellow-sally
+  - golden-stone
+  - yellow-stone-eccoptura
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - golden-yellow dubbing
+  - pale hen hackle
+  - brown biots
+notes: The small golden-stone and Sally nymph of summer riffles.
+license: public-domain

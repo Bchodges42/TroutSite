@@ -1,0 +1,17 @@
+id: standing-rock-creek
+name: Standing Rock Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-upper-cumberland
+gaugeIds: []
+stockingProgram: true
+idealFlow:
+  - min: 3
+    max: 40
+    unit: cfs
+notes: TWRA spring-stocked Stewart County creek. Tiny close-to-home water.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

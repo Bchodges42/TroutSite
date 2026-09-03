@@ -1,0 +1,28 @@
+id: duck-river-lower
+name: Duck River (Shelbyville to Columbia)
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-duck-elk
+gaugeIds:
+  - "03597860"
+  - "03598000"
+  - "03599500"
+stockingProgram: false
+idealFlow:
+  - min: 200
+    max: 1200
+    unit: cfs
+notes: Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper
+  reaches seasonally. Conservative flag; verify current TWRA stocking before planning a trout
+  trip here.
+officialSources:
+  - label: USGS Water Data — monitoring location 03597860
+    url: https://waterdata.usgs.gov/monitoring-location/03597860/
+  - label: USGS Water Data — monitoring location 03598000
+    url: https://waterdata.usgs.gov/monitoring-location/03598000/
+  - label: USGS Water Data — monitoring location 03599500
+    url: https://waterdata.usgs.gov/monitoring-location/03599500/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

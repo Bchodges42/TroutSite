@@ -1,0 +1,16 @@
+id: march-brown-dry
+name: March Brown Dry
+type: dry
+imitates:
+  - march-brown
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - mottled brown dubbing
+  - ginger hackle
+  - mottled turkey tail wing
+notes: A bushy, tobacco-colored dun for drizzly spring afternoons.
+license: public-domain

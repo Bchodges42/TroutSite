@@ -1,0 +1,20 @@
+id: hellgrammite-fly
+name: Hellgrammite Fly
+type: nymph
+imitates:
+  - hellgrammite
+  - fishfly-larva
+  - alderfly-larva
+hookSizes:
+  - 4
+  - 6
+  - 8
+difficulty: 3
+materials:
+  - dark brown dubbing
+  - rubber legs
+  - black hackle
+  - mottled case back
+notes: A dark, leggy, sprawling nymph — fish it slow through boulder seams.
+license: attributed
+attribution: Pattern popularized by Harry Murray (Virginia)

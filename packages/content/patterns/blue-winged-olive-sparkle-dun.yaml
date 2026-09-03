@@ -1,0 +1,20 @@
+id: blue-winged-olive-sparkle-dun
+name: BWO Sparkle Dun
+type: dry
+imitates:
+  - blue-winged-olive
+  - tiny-blue-winged-olive
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+difficulty: 3
+materials:
+  - olive dubbing
+  - z-lon trailing shuck
+  - deer hair wing
+notes: Mike Lawson’s shuck-and-spent-wing profile for picky flat-water fish taking emergers in
+  the film.
+license: attributed
+attribution: Designed by Mike Lawson (Henry’s Fork, Idaho, 1980s)

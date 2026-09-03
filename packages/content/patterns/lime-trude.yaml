@@ -1,0 +1,18 @@
+id: lime-trude
+name: Lime Trude
+type: dry
+imitates:
+  - green-sedge
+  - little-yellow-quill
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - lime green floss
+  - white calf tail downwing
+  - brown hackle
+notes: A Smokies tradition in green — looks like nothing and catches like everything.
+license: public-domain

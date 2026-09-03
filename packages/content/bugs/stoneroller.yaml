@@ -1,0 +1,99 @@
+id: stoneroller
+commonName: Central Stoneroller
+sciName: Campostoma anomalum
+order: Cypriniformes
+family: Cyprinidae
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - olive
+    - dull-olive
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - shallow runs
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/stoneroller.svg
+stages:
+  - adult
+notes: Ski-nosed algae grazers that horn the shallows in herds. Olive zonkers and small buggers
+  stripped through shin-deep runs imitate their constant motion.
+sources:
+  - https://en.wikipedia.org/wiki/Campostoma_anomalum

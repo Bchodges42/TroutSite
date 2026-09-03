@@ -1,0 +1,100 @@
+id: tiny-blue-winged-olive
+commonName: Tiny Blue-Winged Olive
+sciName: Acentrella / Pseudocloeon spp.
+order: Ephemeroptera
+family: Baetidae
+sizeRange:
+  - 20
+  - 24
+keyAttributes:
+  tails: 2
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - olive
+    - gray-olive
+    - pale-olive
+  mouthparts: chewing-scraper
+habitat:
+  - riffles
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-east-clinch:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-middle-caney-fork:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/tiny-blue-winged-olive.svg
+stages:
+  - nymph
+  - dun
+notes: Two-tailed micro-baetids a size class below the common BWO. Easy to dismiss, but picky
+  tailwater trout key on the tiny olive profile in slow flats.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

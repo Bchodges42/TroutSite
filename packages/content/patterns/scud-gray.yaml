@@ -1,0 +1,16 @@
+id: scud-gray
+name: Scud (Gray)
+type: nymph
+imitates:
+  - scud
+  - small-scud
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - gray dubbing
+  - clear shellback
+notes: The paler, smaller scud of picky tailwater fish.
+license: public-domain

@@ -1,0 +1,24 @@
+id: ocoee-river
+name: Ocoee River (upper, Copperhill reach)
+stateId: TN
+waterbodyType: river
+regionId: tn-se-hiwassee
+gaugeIds:
+  - "03559500"
+stockingProgram: false
+idealFlow:
+  - min: 800
+    max: 3000
+    unit: cfs
+notes: TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in
+  spring. TWRA’s stocking dataset lists Parksville Lake itself rather than this reach — set
+  conservatively. Verify TVA release schedules before planning.
+officialSources:
+  - label: USGS Water Data — monitoring location 03559500
+    url: https://waterdata.usgs.gov/monitoring-location/03559500/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

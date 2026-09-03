@@ -1,0 +1,16 @@
+id: dark-cahill-dry
+name: Dark Cahill
+type: dry
+imitates:
+  - dark-cahill
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - gray-brown dubbing
+  - medium dun hackle
+  - wood duck flank
+notes: For the dusky cahill hatches of midsummer.
+license: public-domain

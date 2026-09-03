@@ -1,0 +1,17 @@
+id: foam-hopper
+name: Foam Hopper
+type: terrestrial
+imitates:
+  - grasshopper
+  - leafhopper
+hookSizes:
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 1
+materials:
+  - yellow and olive foam
+  - rubber legs
+notes: Modern foam builds float all day — hopper-dropper anchor.
+license: public-domain
