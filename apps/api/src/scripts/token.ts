@@ -6,7 +6,11 @@ import { parseArgs } from 'node:util';
 import { loadEnv } from '../env.js';
 import { mintShopToken } from '../portal/tokens.js';
 
+// pnpm forwards the literal `--` separator on Windows/Git Bash; strict parseArgs
+// would reject it as a positional, so strip it before parsing.
+const argv = process.argv.slice(2).filter((a) => a !== '--');
 const { values } = parseArgs({
+  args: argv,
   options: {
     shop: { type: 'string' },
     days: { type: 'string', default: '30' },

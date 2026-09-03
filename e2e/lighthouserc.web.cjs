@@ -16,7 +16,11 @@ module.exports = {
       assertions: {
         'categories:accessibility': ['error', { minScore: 0.9 }],
         'categories:best-practices': ['error', { minScore: 0.9 }],
-        'categories:pwa': ['error', { minScore: 0.9 }],
+        // NOTE (integration, §12 #7): Lighthouse 12 removed the PWA category
+        // upstream, so 'categories:pwa' can never assert — the gate is covered
+        // instead by Playwright: e2e/web/manifest.spec.ts (manifest complete,
+        // SW registers + takes control) and offline-cold-start/offline-hatch
+        // specs (airplane-mode flows). See docs/integration-report.md.
         'categories:seo': 'off', // the app shell is not the SEO surface
         'categories:performance': ['warn', { minScore: 0.8 }],
         'uses-long-cache-ttl': 'off',

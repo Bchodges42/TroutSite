@@ -15,7 +15,7 @@ import { expect, test } from '@playwright/test';
 import { RequestRecorder } from '../helpers/first-party';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const TOKEN_FILE = path.resolve(HERE, '..', 'test-results', 'portal-token.txt');
+const TOKEN_FILE = path.resolve(HERE, '..', '.portal', 'portal-token-latest.txt');
 const E2E_API = 'http://127.0.0.1:8791';
 
 let token: string;

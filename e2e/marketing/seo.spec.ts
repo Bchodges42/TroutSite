@@ -22,9 +22,9 @@ test.describe('sitemap & robots', () => {
       '/stocking/tn/',
       '/streams/tn/',
       '/streams/tn/south-holston-river/',
-      '/hatch/tn/east-tailwaters/',
-      '/hatch/tn/hiwassee/',
-      '/hatch/tn/middle-tennessee/',
+      '/hatch/tn/east-holston-tailwaters/',
+      '/hatch/tn/southeast-hiwassee/',
+      '/hatch/tn/caney-fork/',
       '/when-does-tennessee-stock-trout/',
     ]) {
       expect(paths, `sitemap should list ${path}`).toContain(path);
@@ -196,7 +196,7 @@ test.describe('programmatic pages answer their query with real data', () => {
   });
 
   test('hatch page renders the full 12-month chart', async ({ request }) => {
-    const html = await (await request.get('/hatch/tn/east-tailwaters/')).text();
+    const html = await (await request.get('/hatch/tn/east-holston-tailwaters/')).text();
     const monthRows = (html.match(/scope="row">/g) ?? []).length;
     expect(monthRows, '12 month rows in the hatch table').toBe(12);
     expect(html).toContain('Patterns that cover this region');

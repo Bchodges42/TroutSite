@@ -2,7 +2,11 @@
 /**
  * Static file server for the secondary origins (infra / ROLE 6, ADR 0004).
  *
- *   node infra/static-server.mjs <distDir> <port> [--proxy /v1/portal=http://127.0.0.1:8787]
+ *   node infra/static-server.mjs <distDir> <port> [--proxy v1/portal=http://127.0.0.1:8787]
+ *
+ * (The proxy prefix deliberately has NO leading slash: Git Bash on Windows
+ * converts leading-slash arguments into Windows paths, which would mangle the
+ * spec. The prefix is normalized to /v1/portal internally.)
  *
  * Zero dependencies (Node http/fs). Used for:
  *   - the shop portal (apps/admin/dist, :8788) — with the proxy flag, so the
@@ -25,8 +29,9 @@ const port = Number(process.argv[3] ?? 58630);
 const proxyArgIdx = process.argv.indexOf('--proxy');
 const PROXY = proxyArgIdx > -1 ? parseProxy(process.argv[proxyArgIdx + 1] ?? '') : null;
 function parseProxy(spec) {
-  const [prefix, target] = String(spec).split('=');
-  if (!prefix?.startsWith('/') || !target) return null;
+  const [rawPrefix, target] = String(spec).split('=');
+  if (!rawPrefix || !target) return null;
+  const prefix = rawPrefix.startsWith('/') ? rawPrefix : `/${rawPrefix}`;
   const url = new URL(target);
   return { prefix, hostname: url.hostname, port: url.port || 80 };
 }

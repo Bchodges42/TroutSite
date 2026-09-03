@@ -9,7 +9,11 @@ import { openDb } from '../db.js';
 import { loadEnv } from '../env.js';
 import { dryRun, pipelineConfig, runJob, type JobName } from '../pipeline.js';
 
+// pnpm forwards the literal `--` separator on Windows/Git Bash; strict parseArgs
+// would reject it as a positional, so strip it before parsing.
+const argv = process.argv.slice(2).filter((a) => a !== '--');
 const { values } = parseArgs({
+  args: argv,
   options: {
     job: { type: 'string', default: 'all' },
     states: { type: 'string', default: '' },

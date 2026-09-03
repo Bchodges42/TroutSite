@@ -64,7 +64,13 @@ export async function publishReport(input: ShopReportInput): Promise<ShopReport>
   if (res.status === 401) throw new ApiError(401, 'This token is not valid or has expired.');
   if (res.status === 422) throw new ApiError(422, 'The report was rejected as invalid — check the highlighted fields.');
   if (!res.ok) throw new ApiError(res.status, `Publishing failed (${res.status}). Try again.`);
-  const parsed = ShopReportSchema.safeParse(await res.json());
+  // Real API wire format (Role 3): 201 { report: ShopReport }. The bare form is
+  // accepted for backwards compatibility with the MSW fixtures' earlier shape.
+  const wire = (await res.json()) as unknown;
+  const report = typeof wire === 'object' && wire !== null && 'report' in wire
+    ? (wire as { report: unknown }).report
+    : wire;
+  const parsed = ShopReportSchema.safeParse(report);
   if (!parsed.success) throw new ApiError(502, 'Portal responded with an unexpected report shape.');
   return parsed.data;
 }

@@ -17,7 +17,7 @@ module.exports = {
         'http://127.0.0.1:58630/stocking/tn/',
         'http://127.0.0.1:58630/streams/tn/',
         'http://127.0.0.1:58630/streams/tn/south-holston-river/',
-        'http://127.0.0.1:58630/hatch/tn/east-tailwaters/',
+        'http://127.0.0.1:58630/hatch/tn/east-holston-tailwaters/',
         'http://127.0.0.1:58630/when-does-tennessee-stock-trout/',
       ],
       numberOfRuns: 1,

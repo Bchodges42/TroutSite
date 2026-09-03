@@ -440,3 +440,37 @@ Why: Role 5's assumption ("swap the fixture imports for regenerated snapshot JSO
 programmatic SEO pages then render real Tennessee data.
 Impact: soft content (stocking/reports) degrades to empty pages if not yet scraped; core
 files stay strict.
+
+### [ROLE 6] 2026-09-03 — e2e API server builds snapshots before booting
+Decision: `e2e/scripts/api-e2e-server.mjs` runs `pnpm --filter api snapshots` after
+`seed` and before importing the API server.
+Why: the temp snapshot dir is empty at startup, so `buildApp` skipped the static
+mount (`existsSync` false) and `GET /v1/reports/recent.json` 404'd even after the
+portal POST regenerated the file — the §12 #5 spec failed on the feed check while the
+publish itself passed. Seeding snapshots first makes the mount exist; the inline
+regeneration on POST then lands on a served tree.
+Impact: e2e-only; one extra `snapshots` run per Playwright invocation (~seconds).
+
+### [ROLE 6] 2026-09-03 — `categories:pwa` gate replaced (Lighthouse 12 removed PWA)
+Decision: `e2e/lighthouserc.web.cjs` no longer asserts `categories:pwa` (Lighthouse
+12.6 removed the PWA category upstream — the assertion fails with `auditRan: 0` on any
+code, not just ours). a11y ≥ 0.9 + best-practices ≥ 0.9 stay `error`. PWA substance is
+asserted by Playwright instead: `e2e/web/manifest.spec.ts` (manifest complete, SW
+registers + takes control) and the offline-cold-start/offline-hatch specs.
+Why: the §12 #7 intent (installable + offline + a11y ≥ 90) is fully covered; keeping a
+dead assertion would gate deploys on a removed upstream audit.
+Impact: `lhci autorun` green on both configs; qa.yml unchanged.
+
+### [ROLE 6] 2026-09-03 — marketing LHCI URL re-pointed to the real region id
+Decision: `e2e/lighthouserc.marketing.cjs` audits `/hatch/tn/east-holston-tailwaters/`
+instead of the retired fixture-era `/hatch/tn/east-tailwaters/`.
+Why: region-registry realignment (11 real ids) left the old URL auditing a 404.
+Impact: LHCI-only.
+
+### [ROLE 6] 2026-09-03 — local deploy-verification env lives in gitignored root `.env`
+Decision: a root `.env` (gitignored per `.gitignore`, `PORTAL_SECRET` + `USGS_USER_AGENT`
++ `SITE_URL`) was created on this laptop so the pm2 ecosystem (`cwd: repo root`)
+loads the portal secret; production values stay laptop-only and uncommitted.
+Why: the ecosystem file must not hardcode secrets, and `trout-api` fails the portal
+closed (503) without one.
+Impact: none on the repo; operators repeat RUNBOOK §2.1 (`cp .env.example .env`).

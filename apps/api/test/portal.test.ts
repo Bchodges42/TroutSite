@@ -76,6 +76,7 @@ describe('portal API', () => {
         shop: {
           id: 'test-fly-shop',
           name: 'Test Fly Shop (fixture)',
+          stateId: 'TN',
           town: 'Elizabethton',
           websiteUrl: 'https://example.com/test-fly-shop',
           reportsEnabled: true,

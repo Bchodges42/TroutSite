@@ -94,26 +94,40 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   });
 
   // Snapshots + content pack: served from apps/web/public so cron updates them
-  // without touching the built app. Registered before the dist mount so /v1 and
-  // /content never fall through to the SPA bundle.
-  if (options.webPublicDir && existsSync(options.webPublicDir)) {
+  // without touching the built app. Each tree mounts at its own prefix —
+  // two prefix:'/' statics collide (find-my-way '/*' route clash, trout-api
+  // crash-loop — found at integration pm2 verification, §12 #10).
+  const noStore = (res: { setHeader: (k: string, v: string) => void }, path: string): void => {
+    // The service worker + Dexie are the offline layer; HTTP caching would
+    // masquerade as live data (apps/web/vite.shared.ts note).
+    if (/[/\\](v1|content)[/\\]/.test(path)) {
+      res.setHeader('Cache-Control', 'no-store');
+    }
+  };
+  if (options.webPublicDir && existsSync(join(options.webPublicDir, 'v1'))) {
     app.register(fastifyStatic, {
-      root: options.webPublicDir,
-      prefix: '/',
+      root: join(options.webPublicDir, 'v1'),
+      prefix: '/v1',
       decorateReply: false,
-      setHeaders: (res, path) => {
-        if (/[/\\](v1|content)[/\\]/.test(path)) {
-          // The service worker + Dexie are the offline layer; HTTP caching would
-          // masquerade as live data (apps/web/vite.shared.ts note).
-          res.setHeader('Cache-Control', 'no-store');
-        }
-      },
+      setHeaders: noStore,
+    });
+  }
+  if (options.webPublicDir && existsSync(join(options.webPublicDir, 'content'))) {
+    app.register(fastifyStatic, {
+      root: join(options.webPublicDir, 'content'),
+      prefix: '/content',
+      decorateReply: false,
+      setHeaders: noStore,
     });
   }
 
   // The built PWA (index.html + hashed assets). Assets are content-hashed and
   // immutable; index.html must revalidate so service-worker updates land.
-  if (options.webDistDir && existsSync(join(options.webDistDir, 'index.html'))) {
+  const distIndex =
+    options.webDistDir && existsSync(join(options.webDistDir, 'index.html'))
+      ? join(options.webDistDir, 'index.html')
+      : null;
+  if (options.webDistDir && distIndex) {
     app.register(fastifyStatic, {
       root: options.webDistDir,
       prefix: '/',
@@ -124,6 +138,21 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
           res.setHeader('Cache-Control', 'no-cache');
         }
       },
+    });
+  }
+
+  // SPA fallback for client-side routes (react-router): unknown non-API paths
+  // serve the PWA shell. /v1/* and /content/* stay 404 (they are API surface).
+  if (distIndex) {
+    app.setNotFoundHandler((req, reply) => {
+      const url = req.url.split('?')[0] ?? '/';
+      if (url.startsWith('/v1/') || url === '/v1' || url.startsWith('/content/') || url === '/content') {
+        return reply.code(404).send({ error: 'not found' });
+      }
+      return reply
+        .header('Cache-Control', 'no-cache')
+        .header('content-type', 'text/html; charset=utf-8')
+        .send(readFileSync(distIndex, 'utf8'));
     });
   }
 

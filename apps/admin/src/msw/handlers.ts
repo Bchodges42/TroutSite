@@ -43,7 +43,8 @@ export const handlers = [
       publishedAt: new Date().toISOString().replace(/\.\d+Z$/, 'Z'),
     });
     FIXTURE_SHOP_REPORTS.unshift(report);
-    return HttpResponse.json(report, { status: 201 });
+    // Real API wire format (Role 3): the 201 body wraps the report.
+    return HttpResponse.json({ report }, { status: 201 });
   }),
 
   // Public snapshot — the portal filters this to the signed-in shop

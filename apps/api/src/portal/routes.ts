@@ -65,6 +65,7 @@ export interface PortalDeps {
 interface ShopRow {
   id: string;
   name: string;
+  state_id: string;
   town: string;
   website_url: string;
   reports_enabled: number;
@@ -129,10 +130,12 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
     const shop = deps.db
       .prepare('SELECT * FROM shops WHERE id = ?')
       .get((req as FastifyRequest & AuthedRequest).shopId) as ShopRow | undefined;
+    // Full contract Shop shape (the admin validates with ShopSchema — stateId included).
     return {
       shop: {
         id: shop!.id,
         name: shop!.name,
+        stateId: shop!.state_id,
         town: shop!.town,
         websiteUrl: shop!.website_url,
         reportsEnabled: shop!.reports_enabled === 1,

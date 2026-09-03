@@ -7,8 +7,8 @@
  * portal project. Runs on Windows/Git Bash and in .github/workflows/qa.yml.
  *
  * Prerequisite: built app dists (`pnpm -r build`) — globalSetup additionally
- * rebuilds web as the fixture flavor and admin against the e2e API origin.
- * The E2E_* env defaults below must mirror e2e/global-setup.mjs.
+ * rebuilds web as the fixture flavor, rebuilds admin against the e2e API
+ * origin, seeds the e2e API's temp DB and generates its launcher script.
  */
 import { defineConfig, devices } from '@playwright/test';
 import path from 'node:path';
@@ -16,12 +16,6 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PORTS = { marketing: 4321, web: 4173, admin: 4174, api: 8791 };
-const E2E_PORTAL_SECRET = 'e2e-portal-secret-0123456789abcdef';
-const PORTAL_ENV_DIR = path.join(HERE, 'test-results', 'portal-env');
-
-process.env.E2E_PORTAL_ENV_DIR = PORTAL_ENV_DIR;
-process.env.E2E_PORTAL_SECRET = E2E_PORTAL_SECRET;
-process.env.E2E_API_BASE = `http://127.0.0.1:${PORTS.api}`;
 
 export default defineConfig({
   testDir: '.',
@@ -57,22 +51,14 @@ export default defineConfig({
 
   webServer: [
     {
-      // e2e-only API instance: temp DB (seeded by globalSetup from the api's
-      // fixture content) + temp snapshot dir, so tests never touch real data.
-      command: 'node dist/server.js',
-      cwd: path.join(HERE, '..', 'apps', 'api'),
+      // e2e-only API instance — scripts/api-e2e-server.mjs seeds a temp DB from
+      // the api's fixture content and mints a real portal token on startup,
+      // then imports the built server. Tests never touch real data.
+      command: 'node scripts/api-e2e-server.mjs',
+      cwd: HERE,
       url: `http://127.0.0.1:${PORTS.api}/healthz`,
       reuseExistingServer: !process.env.CI,
       timeout: 60_000,
-      env: {
-        ...process.env,
-        PORT: String(PORTS.api),
-        HOST: '127.0.0.1',
-        PORTAL_SECRET: E2E_PORTAL_SECRET,
-        TROUT_DB_PATH: path.join(PORTAL_ENV_DIR, 'trout.db'),
-        TROUT_SNAPSHOTS_DIR: path.join(PORTAL_ENV_DIR, 'snapshots'),
-        TROUT_CONTENT_DIR: path.join(HERE, '..', 'apps', 'api', 'fixtures', 'content'),
-      },
     },
     {
       command: 'pnpm --filter @trout/marketing preview --host 127.0.0.1 --port 4321',
@@ -87,7 +73,10 @@ export default defineConfig({
       timeout: 60_000,
     },
     {
-      command: 'pnpm --filter @trout/admin preview --host 127.0.0.1 --port 4174 --strictPort',
+      // Portal served the production way (ADR 0004): static dist + /v1/portal
+      // proxy to the e2e API — same-origin, no CORS anywhere.
+      command: 'node ../infra/static-server.mjs ../apps/admin/dist 4174 --proxy v1/portal=http://127.0.0.1:8791',
+      cwd: HERE,
       url: `http://127.0.0.1:${PORTS.admin}/`,
       reuseExistingServer: !process.env.CI,
       timeout: 60_000,
