@@ -1,0 +1,79 @@
+{
+  "regionId": "tn-middle-caney-fork",
+  "month": 8,
+  "entries": [
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "golden-stone-nymph"
+      ]
+    },
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "dun",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "slate-drake-dun"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "green-rock-worm"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "elk-hair-caddis"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    },
+    {
+      "taxonId": "acroneuria-golden-stone",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "golden-stone-nymph",
+        "pats-rubber-legs"
+      ]
+    },
+    {
+      "taxonId": "acroneuria-golden-stone",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "stimulator"
+      ]
+    }
+  ]
+}

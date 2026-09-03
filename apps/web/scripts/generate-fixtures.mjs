@@ -44,7 +44,7 @@ const streams = [
     name: 'South Holston River',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-east-tailwaters',
+    regionId: 'tn-east-holston',
     gaugeIds: ['03481500'],
     stockingProgram: true,
     idealFlow: [{ min: 100, max: 350, unit: 'cfs' }],
@@ -56,7 +56,7 @@ const streams = [
     name: 'Watauga River',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-east-tailwaters',
+    regionId: 'tn-northeast-watauga',
     gaugeIds: ['03466000'],
     stockingProgram: true,
     idealFlow: [{ min: 150, max: 600, unit: 'cfs' }],
@@ -68,7 +68,7 @@ const streams = [
     name: 'Hiwassee River',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-hiwassee',
+    regionId: 'tn-se-hiwassee',
     gaugeIds: ['03566000'],
     stockingProgram: true,
     idealFlow: [{ min: 250, max: 1200, unit: 'cfs' }],
@@ -80,7 +80,7 @@ const streams = [
     name: 'Caney Fork River',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-middle',
+    regionId: 'tn-middle-caney-fork',
     gaugeIds: ['03430497'],
     stockingProgram: true,
     idealFlow: [{ min: 200, max: 800, unit: 'cfs' }],
@@ -92,7 +92,7 @@ const streams = [
     name: 'Elk River',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-middle',
+    regionId: 'tn-middle-duck-elk',
     gaugeIds: ['03599000'],
     stockingProgram: true,
     idealFlow: [{ min: 100, max: 500, unit: 'cfs' }],
@@ -104,7 +104,7 @@ const streams = [
     name: 'Holston River (Cherokee Tailwater)',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-east-tailwaters',
+    regionId: 'tn-east-holston',
     gaugeIds: ['03587500'],
     stockingProgram: true,
     idealFlow: [{ min: 300, max: 1500, unit: 'cfs' }],
@@ -116,7 +116,7 @@ const streams = [
     name: 'Clinch River',
     stateId: 'TN',
     waterbodyType: 'tailrace',
-    regionId: 'tn-east-tailwaters',
+    regionId: 'tn-east-clinch',
     gaugeIds: ['03452000'],
     stockingProgram: true,
     idealFlow: [{ min: 200, max: 1000, unit: 'cfs' }],
@@ -128,7 +128,7 @@ const streams = [
     name: 'Duck River',
     stateId: 'TN',
     waterbodyType: 'river',
-    regionId: 'tn-middle',
+    regionId: 'tn-middle-nashville',
     gaugeIds: ['03537000'],
     stockingProgram: true,
     idealFlow: [{ min: 60, max: 400, unit: 'cfs' }],
@@ -139,9 +139,19 @@ const streams = [
 
 // ------------------------------------------------------------------ taxa ----
 
-const REGION_EAST = 'tn-east-tailwaters';
-const REGION_HIWASSEE = 'tn-hiwassee';
-const REGION_MIDDLE = 'tn-middle';
+// Real launch-region registry ids (packages/content/scripts/regions.ts) — the app's
+// region table and the /v1/hatch/* URLs must agree with these (ADR 0005).
+const REGION_EAST_IDS = ['tn-east-holston', 'tn-northeast-watauga', 'tn-east-clinch', 'tn-east-smokies', 'tn-east-pigeon-frenchbroad'];
+const REGION_HIWASSEE_ID = 'tn-se-hiwassee';
+const REGION_MIDDLE_IDS = ['tn-cumberland-plateau', 'tn-upper-cumberland', 'tn-middle-caney-fork', 'tn-middle-duck-elk', 'tn-middle-nashville'];
+
+function regionMonths(east, hiwassee, middle) {
+  const out = {};
+  for (const r of REGION_EAST_IDS) out[r] = east;
+  out[REGION_HIWASSEE_ID] = hiwassee;
+  for (const r of REGION_MIDDLE_IDS) out[r] = middle;
+  return out;
+}
 
 const taxon = (t) => t;
 const taxa = [
@@ -150,7 +160,7 @@ const taxa = [
     order: 'Ephemeroptera', family: 'Baetidae', sizeRange: [16, 22],
     keyAttributes: { tails: 2, gills: 'lamellae', bodyShape: 'slender', bodyColor: ['olive', 'olive-brown', 'gray'], mouthparts: 'herbivorous scraper' },
     habitat: ['riffles', 'moderate currents', 'weedy margins'],
-    monthsActiveByRegion: { [REGION_EAST]: [3, 4, 5, 6, 9, 10, 11], [REGION_HIWASSEE]: [2, 3, 4, 5, 9, 10, 11], [REGION_MIDDLE]: [3, 4, 5, 10, 11] },
+    monthsActiveByRegion: regionMonths([3, 4, 5, 6, 9, 10, 11], [2, 3, 4, 5, 9, 10, 11], [3, 4, 5, 10, 11]),
     notes: 'The dependable overcast-day mayfly in every Tennessee tailwater. Nymphs dart in short bursts when disturbed.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'Troutnut.com hatch reference (verify officially)', 'BugGuide.net family Baetidae (verify officially)'],
   }),
@@ -159,7 +169,7 @@ const taxa = [
     order: 'Ephemeroptera', family: 'Ephemerellidae', sizeRange: [14, 18],
     keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'slender', bodyColor: ['cream', 'pale-yellow', 'sulphur-orange'], mouthparts: 'shredder / grazer' },
     habitat: ['moderate riffles', 'pool tails', 'undercut seams'],
-    monthsActiveByRegion: { [REGION_EAST]: [4, 5, 6], [REGION_HIWASSEE]: [4, 5, 6], [REGION_MIDDLE]: [5, 6] },
+    monthsActiveByRegion: regionMonths([4, 5, 6], [4, 5, 6], [5, 6]),
     notes: 'The South Holston signature hatch. Duns ride high on sunny afternoons; spinners fall at dusk.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'Troutnut.com Ephemerella dorothea (verify officially)'],
   }),
@@ -168,7 +178,7 @@ const taxa = [
     order: 'Ephemeroptera', family: 'Isonychiidae', sizeRange: [10, 14],
     keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['dark-brown', 'mahogany', 'black'], mouthparts: 'active filter-feeder' },
     habitat: ['fast riffles', 'rocky runs', 'seams below rapids'],
-    monthsActiveByRegion: { [REGION_EAST]: [5, 6, 7, 8, 9], [REGION_HIWASSEE]: [5, 6, 7, 8, 9], [REGION_MIDDLE]: [6, 7, 8] },
+    monthsActiveByRegion: regionMonths([5, 6, 7, 8, 9], [5, 6, 7, 8, 9], [6, 7, 8]),
     notes: 'Strong summer hatch on the Hiwassee. Fast-swimming nymph — fish them with motion, not dead drift.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'BugGuide.net Isonychiidae (verify officially)'],
   }),
@@ -177,7 +187,7 @@ const taxa = [
     order: 'Ephemeroptera', family: 'Heptageniidae', sizeRange: [10, 14],
     keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['brown', 'tan', 'mottled'], mouthparts: 'grazer / scraper' },
     habitat: ['fast riffles', 'boulder gardens', 'cobble bars'],
-    monthsActiveByRegion: { [REGION_EAST]: [4, 5, 6], [REGION_HIWASSEE]: [4, 5, 6], [REGION_MIDDLE]: [4, 5] },
+    monthsActiveByRegion: regionMonths([4, 5, 6], [4, 5, 6], [4, 5]),
     notes: 'Flat-headed clinger mayfly; the mottled legs and broad head separate it from the Isonychia.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America'],
   }),
@@ -186,7 +196,7 @@ const taxa = [
     order: 'Trichoptera', family: 'Hydropsychidae', sizeRange: [12, 18],
     keyAttributes: { tails: 2, gills: 'filaments', bodyShape: 'robust', bodyColor: ['tan', 'olive', 'cream'], mouthparts: 'net-spinning filter-feeder' },
     habitat: ['riffles', 'current seams', 'below dams'],
-    monthsActiveByRegion: { [REGION_EAST]: [4, 5, 6, 7, 8, 9], [REGION_HIWASSEE]: [4, 5, 6, 7, 8, 9], [REGION_MIDDLE]: [4, 5, 6, 7, 8, 9] },
+    monthsActiveByRegion: regionMonths([4, 5, 6, 7, 8, 9], [4, 5, 6, 7, 8, 9], [4, 5, 6, 7, 8, 9]),
     notes: 'The long spring–summer caddis season on the Hiwassee. Look for tethered cases under cobbles.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'BugGuide.net Hydropsychidae (verify officially)'],
   }),
@@ -195,7 +205,7 @@ const taxa = [
     order: 'Trichoptera', family: 'Rhyacophilidae', sizeRange: [10, 16],
     keyAttributes: { tails: 2, gills: 'filaments', bodyShape: 'robust', bodyColor: ['green', 'bright-green'], mouthparts: 'free-living predator' },
     habitat: ['fast oxygenated riffles', 'steep runs'],
-    monthsActiveByRegion: { [REGION_EAST]: [4, 5, 6], [REGION_HIWASSEE]: [3, 4, 5, 6], [REGION_MIDDLE]: [4, 5] },
+    monthsActiveByRegion: regionMonths([4, 5, 6], [3, 4, 5, 6], [4, 5]),
     notes: 'Bright-green free-living larva with no case — a dead giveaway when you flip cobble in spring.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America'],
   }),
@@ -204,7 +214,7 @@ const taxa = [
     order: 'Diptera', family: 'Chironomidae', sizeRange: [18, 26],
     keyAttributes: { tails: 2, gills: 'none', bodyShape: 'slender', bodyColor: ['red', 'cream', 'black', 'olive'], mouthparts: 'collector-gatherer' },
     habitat: ['slow pools', 'weedy backwaters', 'tailout silt'],
-    monthsActiveByRegion: { [REGION_EAST]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [REGION_HIWASSEE]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [REGION_MIDDLE]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     notes: 'Year-round trout food in every tailwater. Blood-red "bloodworms" live in the silt of slow pools.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'BugGuide.net Chironomidae (verify officially)'],
   }),
@@ -213,7 +223,7 @@ const taxa = [
     order: 'Amphipoda', family: 'Gammaridae', sizeRange: [12, 20],
     keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['olive', 'gray', 'translucent', 'pink'], mouthparts: 'scavenger' },
     habitat: ['weedy runs', 'spring-fed margins', 'slow pools'],
-    monthsActiveByRegion: { [REGION_EAST]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [REGION_HIWASSEE]: [3, 4, 5, 6, 7, 8, 9, 10], [REGION_MIDDLE]: [1, 2, 3, 10, 11, 12] },
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 10, 11, 12]),
     notes: 'Freshwater shrimp that scull sideways. Orange or pink tint often means the scud is dead — trout still eat them.',
     sources: ['Pennak — Freshwater Invertebrates of the United States', 'Troutnut.com Amphipoda (verify officially)'],
   }),
@@ -222,7 +232,7 @@ const taxa = [
     order: 'Isopoda', family: 'Asellidae', sizeRange: [12, 20],
     keyAttributes: { tails: 2, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['tan', 'gray', 'cream'], mouthparts: 'scavenger' },
     habitat: ['weedy pools', 'slow margins', 'detritus banks'],
-    monthsActiveByRegion: { [REGION_EAST]: [1, 2, 3, 4, 10, 11, 12], [REGION_HIWASSEE]: [4, 5, 6, 7, 8, 9], [REGION_MIDDLE]: [1, 2, 3, 4, 5, 10, 11, 12] },
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 10, 11, 12], [4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 10, 11, 12]),
     notes: 'Flat, hump-backed crustacean common in fertile tailwaters; fish them deep and slow.',
     sources: ['Pennak — Freshwater Invertebrates of the United States'],
   }),
@@ -231,7 +241,7 @@ const taxa = [
     order: 'Plecoptera', family: 'Pteronarcyidae', sizeRange: [4, 10],
     keyAttributes: { tails: 2, gills: 'filaments', bodyShape: 'robust', bodyColor: ['black', 'dark-brown'], mouthparts: 'shredder' },
     habitat: ['clean riffles', 'under cobble', 'woody debris'],
-    monthsActiveByRegion: { [REGION_EAST]: [4, 5, 6], [REGION_HIWASSEE]: [3, 4, 5], [REGION_MIDDLE]: [4, 5] },
+    monthsActiveByRegion: regionMonths([4, 5, 6], [3, 4, 5], [4, 5]),
     notes: 'Salmonfly-sized rubber-legs bait. Nymphs wander toward the banks before the spring hatch.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'BugGuide.net Pteronarcyidae (verify officially)'],
   }),
@@ -240,7 +250,7 @@ const taxa = [
     order: 'Plecoptera', family: 'Perlidae', sizeRange: [8, 14],
     keyAttributes: { tails: 2, gills: 'filaments', bodyShape: 'robust', bodyColor: ['golden-brown', 'tan', 'yellow'], mouthparts: 'ambush predator' },
     habitat: ['boulder runs', 'fast riffles', 'deep seams'],
-    monthsActiveByRegion: { [REGION_EAST]: [5, 6, 7, 8, 9], [REGION_HIWASSEE]: [5, 6, 7, 8], [REGION_MIDDLE]: [5, 6, 7, 8] },
+    monthsActiveByRegion: regionMonths([5, 6, 7, 8, 9], [5, 6, 7, 8], [5, 6, 7, 8]),
     notes: 'Summer staple on the Hiwassee. Big nymphs fish well dead-drifted through boulder seams.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America'],
   }),
@@ -249,7 +259,7 @@ const taxa = [
     order: 'Diptera', family: 'Tipulidae', sizeRange: [8, 16],
     keyAttributes: { tails: 2, gills: 'none', bodyShape: 'robust', bodyColor: ['tan', 'brown', 'gray'], mouthparts: 'shredder' },
     habitat: ['soft banks', 'silted pool tails', 'detritus beds'],
-    monthsActiveByRegion: { [REGION_EAST]: [1, 2, 3, 4, 5, 9, 10, 11, 12], [REGION_HIWASSEE]: [2, 3, 4, 5, 9, 10, 11], [REGION_MIDDLE]: [1, 2, 3, 4, 5, 10, 11, 12] },
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 9, 10, 11, 12], [2, 3, 4, 5, 9, 10, 11], [1, 2, 3, 4, 5, 10, 11, 12]),
     notes: 'Fat, leggy larvae in the silt. A olive woolly bugger stripped slowly is the honest stand-in.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America'],
   }),

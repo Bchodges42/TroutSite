@@ -26,7 +26,7 @@
       "weedy margins"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         3,
         4,
         5,
@@ -35,7 +35,43 @@
         10,
         11
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-east-clinch": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-east-smokies": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-se-hiwassee": [
         2,
         3,
         4,
@@ -44,7 +80,35 @@
         10,
         11
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-upper-cumberland": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-middle-caney-fork": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-middle-duck-elk": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-middle-nashville": [
         3,
         4,
         5,
@@ -86,17 +150,53 @@
       "undercut seams"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         4,
         5,
         6
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
         4,
         5,
         6
       ],
-      "tn-middle": [
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6
+      ],
+      "tn-cumberland-plateau": [
+        5,
+        6
+      ],
+      "tn-upper-cumberland": [
+        5,
+        6
+      ],
+      "tn-middle-caney-fork": [
+        5,
+        6
+      ],
+      "tn-middle-duck-elk": [
+        5,
+        6
+      ],
+      "tn-middle-nashville": [
         5,
         6
       ]
@@ -134,21 +234,69 @@
       "seams below rapids"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         5,
         6,
         7,
         8,
         9
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
         5,
         6,
         7,
         8,
         9
       ],
-      "tn-middle": [
+      "tn-east-clinch": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-smokies": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-cumberland-plateau": [
+        6,
+        7,
+        8
+      ],
+      "tn-upper-cumberland": [
+        6,
+        7,
+        8
+      ],
+      "tn-middle-caney-fork": [
+        6,
+        7,
+        8
+      ],
+      "tn-middle-duck-elk": [
+        6,
+        7,
+        8
+      ],
+      "tn-middle-nashville": [
         6,
         7,
         8
@@ -187,17 +335,53 @@
       "cobble bars"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         4,
         5,
         6
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
         4,
         5,
         6
       ],
-      "tn-middle": [
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6
+      ],
+      "tn-cumberland-plateau": [
+        4,
+        5
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5
+      ],
+      "tn-middle-nashville": [
         4,
         5
       ]
@@ -234,7 +418,7 @@
       "below dams"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         4,
         5,
         6,
@@ -242,7 +426,7 @@
         8,
         9
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
         4,
         5,
         6,
@@ -250,7 +434,71 @@
         8,
         9
       ],
-      "tn-middle": [
+      "tn-east-clinch": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-cumberland-plateau": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-nashville": [
         4,
         5,
         6,
@@ -290,18 +538,54 @@
       "steep runs"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         4,
         5,
         6
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
         3,
         4,
         5,
         6
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        4,
+        5
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5
+      ],
+      "tn-middle-nashville": [
         4,
         5
       ]
@@ -339,7 +623,7 @@
       "tailout silt"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         1,
         2,
         3,
@@ -353,7 +637,7 @@
         11,
         12
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
         1,
         2,
         3,
@@ -367,7 +651,119 @@
         11,
         12
       ],
-      "tn-middle": [
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
         1,
         2,
         3,
@@ -416,7 +812,7 @@
       "slow pools"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         1,
         2,
         3,
@@ -430,7 +826,63 @@
         11,
         12
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
         3,
         4,
         5,
@@ -440,7 +892,39 @@
         9,
         10
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
         1,
         2,
         3,
@@ -482,7 +966,7 @@
       "detritus banks"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         1,
         2,
         3,
@@ -491,7 +975,43 @@
         11,
         12
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
         4,
         5,
         6,
@@ -499,7 +1019,47 @@
         8,
         9
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
         1,
         2,
         3,
@@ -541,17 +1101,53 @@
       "woody debris"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         4,
         5,
         6
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
         3,
         4,
         5
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        4,
+        5
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5
+      ],
+      "tn-middle-nashville": [
         4,
         5
       ]
@@ -589,20 +1185,72 @@
       "deep seams"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         5,
         6,
         7,
         8,
         9
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-clinch": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-smokies": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
         5,
         6,
         7,
         8
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-upper-cumberland": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-middle-caney-fork": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-middle-duck-elk": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-middle-nashville": [
         5,
         6,
         7,
@@ -641,7 +1289,7 @@
       "detritus beds"
     ],
     "monthsActiveByRegion": {
-      "tn-east-tailwaters": [
+      "tn-east-holston": [
         1,
         2,
         3,
@@ -652,7 +1300,51 @@
         11,
         12
       ],
-      "tn-hiwassee": [
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
         2,
         3,
         4,
@@ -661,7 +1353,47 @@
         10,
         11
       ],
-      "tn-middle": [
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
         1,
         2,
         3,

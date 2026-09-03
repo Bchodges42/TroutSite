@@ -17,16 +17,23 @@ import { fileURLToPath } from 'node:url';
 const webRoot = dirname(fileURLToPath(import.meta.url));
 
 /**
- * Precache globs are presence-driven so every build flavor stays warning-free:
- * the production build precaches only what exists in public/ (Role 3's
- * regenerated /data snapshots appear after the api role runs), while the
- * fixture build (fixtures: true) always precaches the copied fixture copies of
- * /content/* and /v1/*.
+ * Precache globs are presence-driven so every build flavor stays warning-free.
+ *
+ * Production (ADR 0005): the content pack + hatch charts are static between
+ * content deploys, so they precache (offline match-the-hatch on a cold install).
+ * The remaining /v1 snapshots (conditions/stocking/shops/reports) change hourly
+ * via cron, so they must NOT precache — precaching would serve build-time data
+ * until the next deploy. They are runtime-cached (NetworkFirst) instead; the
+ * fixture build (fixtures: true) still precaches everything it serves.
  */
 function precacheGlobPatterns(fixtures: boolean): string[] {
   const patterns = ['**/*.{js,css,html,svg}', 'icons/*.png'];
   if (fixtures || existsSync(join(webRoot, 'public', 'content'))) patterns.push('content/**/*.json');
-  if (fixtures || existsSync(join(webRoot, 'public', 'v1'))) patterns.push('v1/**');
+  if (fixtures) {
+    patterns.push('v1/**');
+  } else if (existsSync(join(webRoot, 'public', 'v1', 'hatch'))) {
+    patterns.push('v1/hatch/**');
+  }
   if (existsSync(join(webRoot, 'public', 'data'))) patterns.push('data/**');
   return patterns;
 }

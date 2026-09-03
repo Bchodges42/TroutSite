@@ -4,7 +4,7 @@
     "name": "South Holston River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-east-tailwaters",
+    "regionId": "tn-east-holston",
     "gaugeIds": [
       "03481500"
     ],
@@ -37,7 +37,7 @@
     "name": "Watauga River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-east-tailwaters",
+    "regionId": "tn-northeast-watauga",
     "gaugeIds": [
       "03466000"
     ],
@@ -70,7 +70,7 @@
     "name": "Hiwassee River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-hiwassee",
+    "regionId": "tn-se-hiwassee",
     "gaugeIds": [
       "03566000"
     ],
@@ -99,7 +99,7 @@
     "name": "Caney Fork River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-middle",
+    "regionId": "tn-middle-caney-fork",
     "gaugeIds": [
       "03430497"
     ],
@@ -132,7 +132,7 @@
     "name": "Elk River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-middle",
+    "regionId": "tn-middle-duck-elk",
     "gaugeIds": [
       "03599000"
     ],
@@ -161,7 +161,7 @@
     "name": "Holston River (Cherokee Tailwater)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-east-tailwaters",
+    "regionId": "tn-east-holston",
     "gaugeIds": [
       "03587500"
     ],
@@ -190,7 +190,7 @@
     "name": "Clinch River",
     "stateId": "TN",
     "waterbodyType": "tailrace",
-    "regionId": "tn-east-tailwaters",
+    "regionId": "tn-east-clinch",
     "gaugeIds": [
       "03452000"
     ],
@@ -219,7 +219,7 @@
     "name": "Duck River",
     "stateId": "TN",
     "waterbodyType": "river",
-    "regionId": "tn-middle",
+    "regionId": "tn-middle-nashville",
     "gaugeIds": [
       "03537000"
     ],

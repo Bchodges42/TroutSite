@@ -1,7 +1,8 @@
 /**
- * Launch-region metadata (§7). Region *ids* flow through contracts (regionId
- * strings); display names are a UI concern, so this table is app-local — no
- * contract change needed when more regions ship.
+ * Launch-region metadata. Region ids/names are the registry of record from
+ * packages/content (Role 4, scripts/regions.ts) — the hatch charts, streams, and
+ * the /v1/hatch/* snapshots all key off these ids, so this table must match.
+ * Blurbs are app-local UI copy.
  */
 export interface RegionInfo {
   id: string;
@@ -12,22 +13,70 @@ export interface RegionInfo {
 
 export const REGIONS: RegionInfo[] = [
   {
-    id: 'tn-east-tailwaters',
-    name: 'East TN Tailwaters',
+    id: 'tn-east-holston',
+    name: 'East TN — Holston Tailwaters',
     stateId: 'TN',
-    blurb: 'South Holston & Watauga — famous year-round sulphur and midge water.',
+    blurb: 'South Holston, Boone & Fort Patrick Henry — year-round sulphur and midge water.',
   },
   {
-    id: 'tn-hiwassee',
-    name: 'Hiwassee River',
+    id: 'tn-northeast-watauga',
+    name: 'Northeast TN — Watauga',
     stateId: 'TN',
-    blurb: 'Southeast Tennessee tailrace with a long spring caddis season.',
+    blurb: 'Watauga tailwater, Doe River & Johnson County headwaters.',
   },
   {
-    id: 'tn-middle',
-    name: 'Middle Tennessee',
+    id: 'tn-east-clinch',
+    name: 'East TN — Clinch & Powell',
     stateId: 'TN',
-    blurb: 'Caney Fork & Elk River tailwaters plus winter urban stockings.',
+    blurb: 'Clinch (Norris tailwater) & Powell River country.',
+  },
+  {
+    id: 'tn-east-smokies',
+    name: 'Great Smoky Mountains NP',
+    stateId: 'TN',
+    blurb: 'Park streams — wild brook, rainbow and brown trout on freestone water.',
+  },
+  {
+    id: 'tn-east-pigeon-frenchbroad',
+    name: 'East TN — Pigeon & French Broad',
+    stateId: 'TN',
+    blurb: 'Pigeon, French Broad & Nolichucky drainages.',
+  },
+  {
+    id: 'tn-se-hiwassee',
+    name: 'Southeast TN — Hiwassee',
+    stateId: 'TN',
+    blurb: 'Hiwassee, Tellico, Citico & Ocoee — a long spring caddis season.',
+  },
+  {
+    id: 'tn-cumberland-plateau',
+    name: 'Cumberland Plateau',
+    stateId: 'TN',
+    blurb: 'Obed, Emory & wild brown rivers.',
+  },
+  {
+    id: 'tn-upper-cumberland',
+    name: 'Upper Cumberland',
+    stateId: 'TN',
+    blurb: 'Dale Hollow tailwater (Obey) & Highland Rim.',
+  },
+  {
+    id: 'tn-middle-caney-fork',
+    name: 'Middle TN — Caney Fork',
+    stateId: 'TN',
+    blurb: 'Caney Fork & Collins/Calfkiller country.',
+  },
+  {
+    id: 'tn-middle-duck-elk',
+    name: 'Middle TN — Duck & Elk',
+    stateId: 'TN',
+    blurb: 'Duck & Elk River tailwaters and southern freestones.',
+  },
+  {
+    id: 'tn-middle-nashville',
+    name: 'Middle TN — Nashville',
+    stateId: 'TN',
+    blurb: 'Nashville-area & Highland Rim winter-trout waters.',
   },
 ];
 
