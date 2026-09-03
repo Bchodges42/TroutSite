@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -90.31,
+              35
+            ],
+            [
+              -90.3,
+              35.7
+            ],
+            [
+              -90.2,
+              36
+            ],
+            [
+              -89.85,
+              36.35
+            ],
+            [
+              -89.4,
+              36.55
+            ],
+            [
+              -88.9,
+              36.65
+            ],
+            [
+              -88.3,
+              36.62
+            ],
+            [
+              -87.7,
+              36.6
+            ],
+            [
+              -87.1,
+              36.58
+            ],
+            [
+              -86.5,
+              36.55
+            ],
+            [
+              -85.9,
+              36.52
+            ],
+            [
+              -85.2,
+              36.48
+            ],
+            [
+              -84.5,
+              36.3
+            ],
+            [
+              -83.8,
+              36.15
+            ],
+            [
+              -83.2,
+              35.9
+            ],
+            [
+              -82.8,
+              35.6
+            ],
+            [
+              -82.2,
+              35.3
+            ],
+            [
+              -81.95,
+              35.08
+            ],
+            [
+              -81.85,
+              35.02
+            ],
+            [
+              -81.65,
+              35
+            ],
+            [
+              -82.2,
+              35
+            ],
+            [
+              -84,
+              35
+            ],
+            [
+              -86,
+              35
+            ],
+            [
+              -88.5,
+              35
+            ],
+            [
+              -90.31,
+              35
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "tn-boundary",
+        "name": "Tennessee State Boundary (simplified)",
+        "source": "US Census TIGER/Line simplified, see docs/atlas-sources.md"
+      }
+    }
+  ],
+  "_meta": {
+    "generatedAt": "2026-09-03T04:47:15.724Z",
+    "crs": "WGS84",
+    "simplification": "Douglas-Peucker eps 0.05deg, hand-verified closure"
+  }
+}

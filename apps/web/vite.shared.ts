@@ -29,6 +29,7 @@ const webRoot = dirname(fileURLToPath(import.meta.url));
 function precacheGlobPatterns(fixtures: boolean): string[] {
   const patterns = ['**/*.{js,css,html,svg}', 'icons/*.png'];
   if (fixtures || existsSync(join(webRoot, 'public', 'content'))) patterns.push('content/**/*.json');
+  if (existsSync(join(webRoot, 'public', 'atlas'))) patterns.push('atlas/**');
   if (fixtures) {
     patterns.push('v1/**');
   } else if (existsSync(join(webRoot, 'public', 'v1', 'hatch'))) {

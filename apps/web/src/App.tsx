@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
-import { HomePage } from './pages/HomePage';
 import { HatchKeyPage } from './pages/HatchKeyPage';
 import { TaxonDetailPage } from './pages/TaxonDetailPage';
 import { PatternDetailPage } from './pages/PatternDetailPage';
@@ -14,13 +13,17 @@ import { LogbookPage } from './pages/LogbookPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AboutPrivacyPage } from './pages/AboutPrivacyPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { MapPage } from './features/map/MapPage';
+import { BrowsePage } from './features/map/BrowsePage';
 
-/** Route map (scope 1): Home, Hatch Key, Charts, Conditions, Stocking, Shops, Logbook, Settings, About. */
+/** Route map: / is the map-first home; existing pages preserved as fallbacks. */
 export function App() {
   return (
     <Routes>
       <Route element={<AppShell />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<MapPage />} />
+        <Route path="browse" element={<BrowsePage />} />
+        {/* Fallback/legacy routes preserved */}
         <Route path="hatch-key" element={<HatchKeyPage />} />
         <Route path="taxa/:taxonId" element={<TaxonDetailPage />} />
         <Route path="patterns/:patternId" element={<PatternDetailPage />} />

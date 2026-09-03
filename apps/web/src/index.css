@@ -2,169 +2,175 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------------------------------------------
-   Trout PWA — sunlight-legible base styles (ROLE 2).
-   Tokens come from @trout/ui/tokens.css; these rules add app-level
-   rhythm, huge touch targets, and reduced-motion support.
-------------------------------------------------------------------- */
+/* ---------------------------------------------------------------
+   Trout — Field Notes Atlas (map-first home)
+   warm paper + ink + moss/amber/clay, Fraunces + IBM Plex
+   paper grain ~3% via pseudo-layer, serif display
+   No floating white card stacks — surfaces are paper/ruled.
+---------------------------------------------------------------- */
+
+/* Fraunces + IBM Plex — self-hosted woff2 if present, else system fallback */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: local('Fraunces'), local('Fraunces Variable'),
+    url('/fonts/Fraunces-Variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('IBM Plex Sans'), local('IBMPlexSans'),
+    url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
+}
 
 :root {
-  /* practical alias for touch-target sizing */
+  /* Field Notes Atlas palette */
+  --trout-paper: #fdf8ef;
+  --trout-paper-2: #f6efe1;
+  --trout-paper-3: #ede3cc;
+  --trout-ink: #1c1917;
+  --trout-ink-muted: #57534e;
+  --trout-ink-faint: #a8a29e;
+  --trout-moss: #2d4a2b;
+  --trout-moss-2: #3a5f38;
+  --trout-amber: #b45309;
+  --trout-amber-soft: #fef3c7;
+  --trout-clay: #8b5a3c;
+  --trout-clay-soft: #f5e6d3;
+  --trout-rule: #e7ddd0;
+  --trout-rule-strong: #d6c7b8;
   --touch-min: 48px;
+
+  /* override @trout/ui tokens to Atlas */
+  --trout-color-bg: var(--trout-paper);
+  --trout-color-surface: var(--trout-paper);
+  --trout-color-text: var(--trout-ink);
+  --trout-color-text-muted: var(--trout-ink-muted);
+  --trout-color-border: var(--trout-rule);
+  --trout-color-primary: var(--trout-moss);
+  --trout-color-primary-hover: var(--trout-moss-2);
+  --trout-color-accent: var(--trout-amber);
+  --trout-font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --trout-font-display: 'Fraunces', Georgia, serif;
+
+  --trout-radius-sm: 6px;
+  --trout-radius-md: 10px;
+  --trout-radius-lg: 14px;
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
+html { -webkit-text-size-adjust: 100%; }
 body {
-  background: var(--trout-color-bg);
-  color: var(--trout-color-text);
+  background: var(--trout-paper);
+  color: var(--trout-ink);
   font-family: var(--trout-font-body);
   font-size: 16px;
   line-height: 1.55;
+  /* paper grain ~3% — layered SVG noise via data-uri */
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(139,90,60,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(45,74,43,0.03) 0%, transparent 50%);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  z-index: -1;
 }
 
-/* Reduce motion: user setting (html.reduce-motion) OR OS preference. */
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
-
-html.reduce-motion *,
-html.reduce-motion *::before,
-html.reduce-motion *::after {
+html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
 }
 
 @layer components {
-  /* --- layout ------------------------------------------------------ */
-  .page {
-    @apply mx-auto w-full max-w-3xl px-4 pt-4 pb-24 lg:pb-10;
-  }
+  .page { @apply mx-auto w-full max-w-3xl px-4 pt-4 pb-24 lg:pb-10; }
   .page-title {
-    @apply text-2xl font-extrabold tracking-tight;
-    color: var(--trout-color-text);
+    font-family: var(--trout-font-display);
+    @apply text-2xl font-black tracking-tight;
+    color: var(--trout-ink);
   }
-  .page-subtitle {
-    @apply text-sm;
-    color: var(--trout-color-text-muted);
-  }
+  .page-subtitle { @apply text-sm; color: var(--trout-ink-muted); }
   .section-title {
+    font-family: var(--trout-font-display);
     @apply mt-8 mb-2 text-lg font-bold;
   }
-
-  /* --- nav ---------------------------------------------------------- */
+  /* nav */
   .nav-link {
     @apply flex min-h-[48px] items-center gap-3 rounded-lg px-3 text-[15px] font-semibold no-underline;
-    color: var(--trout-color-text);
+    color: var(--trout-ink);
   }
-  .nav-link:hover {
-    background: var(--trout-slate-100);
-  }
+  .nav-link:hover { background: var(--trout-paper-2); }
   .nav-link[aria-current='page'] {
-    background: var(--trout-green-100);
-    color: var(--trout-green-900);
+    background: #e8f0e6;
+    color: var(--trout-moss);
+    border: 1px solid #c9d9c7;
   }
   .bottom-tab {
     @apply flex min-h-[56px] flex-1 flex-col items-center justify-center gap-0.5 px-1 pt-1.5 pb-2 text-[11px] font-semibold no-underline;
-    color: var(--trout-color-text-muted);
+    color: var(--trout-ink-muted);
   }
-  .bottom-tab[aria-current='page'] {
-    color: var(--trout-color-primary);
+  .bottom-tab[aria-current='page'] { color: var(--trout-moss); }
+  /* field-note surfaces — NO floating white stacks */
+  .trout-card {
+    background: var(--trout-paper-2) !important;
+    border: 1px solid var(--trout-rule) !important;
+    box-shadow: none !important;
   }
-
-  /* --- cards & rows -------------------------------------------------- */
   .list-row {
     @apply flex min-h-[64px] items-center justify-between gap-3 px-4 py-3 no-underline;
-    background: var(--trout-color-surface);
-    border: 1px solid var(--trout-color-border);
+    background: var(--trout-paper-2);
+    border: 1px solid var(--trout-rule);
   }
-  a.list-row:hover {
-    border-color: var(--trout-color-primary);
-  }
-  .list-row:first-child {
-    border-top-left-radius: var(--trout-radius-lg);
-    border-top-right-radius: var(--trout-radius-lg);
-  }
-  .list-row:last-child {
-    border-bottom-left-radius: var(--trout-radius-lg);
-    border-bottom-right-radius: var(--trout-radius-lg);
-  }
-  .list-row + .list-row {
-    border-top-width: 0;
-  }
+  a.list-row:hover { border-color: var(--trout-moss); }
+  .list-row:first-child { border-top-left-radius: var(--trout-radius-lg); border-top-right-radius: var(--trout-radius-lg); }
+  .list-row:last-child { border-bottom-left-radius: var(--trout-radius-lg); border-bottom-right-radius: var(--trout-radius-lg); }
+  .list-row + .list-row { border-top-width: 0; }
 
-  /* --- wizard option cards (hero flow: huge touch targets) ------------ */
   .option-card {
     @apply flex min-h-[72px] w-full select-none items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 text-center text-base font-bold;
-    border-color: var(--trout-color-border);
-    background: var(--trout-color-surface);
-    color: var(--trout-color-text);
+    border-color: var(--trout-rule);
+    background: var(--trout-paper-2);
+    color: var(--trout-ink);
     transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
   }
-  .option-card:hover {
-    border-color: var(--trout-color-primary);
+  .option-card:hover { border-color: var(--trout-moss); }
+  .option-card[aria-pressed='true'], .option-card.is-selected {
+    border-color: var(--trout-moss);
+    background: #e8f0e6;
+    color: var(--trout-moss);
   }
-  .option-card[aria-pressed='true'],
-  .option-card.is-selected {
-    border-color: var(--trout-color-primary);
-    background: var(--trout-green-100);
-    color: var(--trout-green-900);
+  .option-card:active { transform: scale(0.98); }
+  .score-track { @apply h-2 w-full overflow-hidden rounded-full; background: var(--trout-rule); }
+  .score-fill { @apply h-full w-full rounded-full; transform-origin: left center; transition: transform 420ms ease; }
+  .stagger-in { animation: rise-in 260ms ease both; }
+  #main { scroll-margin-top: 4rem; }
+  .focus-ring:focus-visible { outline: 3px solid var(--trout-amber); outline-offset: 2px; }
+  .abundance-dot { @apply inline-block h-2.5 w-2.5 rounded-full; background: var(--trout-rule); }
+  .abundance-dot.is-on { background: var(--trout-moss); }
+  .prose-plain p { @apply mb-3; }
+  .atlas-title {
+    font-family: var(--trout-font-display);
+    letter-spacing: -0.02em;
   }
-  .option-card:active {
-    transform: scale(0.98);
-  }
-
-  /* --- results / score ------------------------------------------------ */
-  .score-track {
-    @apply h-2 w-full overflow-hidden rounded-full;
-    background: var(--trout-slate-200);
-  }
-  .score-fill {
-    @apply h-full w-full rounded-full;
-    transform-origin: left center;
-    transition: transform 420ms ease;
-  }
-  .stagger-in {
-    animation: rise-in 260ms ease both;
-  }
-
-  /* --- misc ------------------------------------------------------------ */
-  #main {
-    /* sticky h-14 header must never cover the skip-link target or focused content */
-    scroll-margin-top: 4rem;
-  }
-  .focus-ring:focus-visible {
-    outline: 3px solid var(--trout-amber-500);
-    outline-offset: 2px;
-  }
-  .abundance-dot {
-    @apply inline-block h-2.5 w-2.5 rounded-full;
-    background: var(--trout-slate-200);
-  }
-  .abundance-dot.is-on {
-    background: var(--trout-color-primary);
-  }
-  .prose-plain p {
-    @apply mb-3;
-  }
+  .atlas-rule { border-color: var(--trout-rule); }
 }
+@keyframes rise-in { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform: translateY(0);} }
 
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Drawer handle */
+.drawer-handle { width: 36px; height: 4px; border-radius: 999px; background: var(--trout-rule-strong); }
