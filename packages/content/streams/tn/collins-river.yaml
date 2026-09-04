@@ -6,6 +6,7 @@ regionId: tn-middle-caney-fork
 gaugeIds:
   - "03421000"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 80
     max: 500

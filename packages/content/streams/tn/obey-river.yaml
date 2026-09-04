@@ -6,6 +6,7 @@ regionId: tn-upper-cumberland
 gaugeIds:
   - "03417000"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 150
     max: 1000

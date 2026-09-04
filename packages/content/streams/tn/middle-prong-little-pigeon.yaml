@@ -5,6 +5,7 @@ waterbodyType: creek
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 15
     max: 120

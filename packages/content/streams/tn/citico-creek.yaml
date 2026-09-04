@@ -5,6 +5,7 @@ waterbodyType: creek
 regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 20
     max: 150

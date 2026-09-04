@@ -6,6 +6,7 @@ regionId: tn-cumberland-plateau
 gaugeIds:
   - "03571000"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 100
     max: 600
