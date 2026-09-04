@@ -38,6 +38,8 @@ const TARGETS = [
   { key: 'mossy-creek-jefferson', like: 'Mossy Creek', env: '-83.65,36.0,-83.3,36.3', streams: ['mossy-creek-jefferson'] },
   { key: 'leconte-creek', like: '%onte Creek', env: '-83.7,35.6,-83.4,35.95', streams: ['leconte-creek'] },
   { key: 'forge-creek-johnson', like: 'Forge Creek', env: '-82.1,36.35,-81.65,36.65', streams: ['forge-creek-johnson'] },
+  { key: 'elk', like: 'Elk River', env: '-87.05,34.95,-86.2,35.45', streams: ['elk-river', 'elk-river-lower'] },
+  { key: 'duck', like: 'Duck River', env: '-87.1,35.4,-86.05,35.75', streams: ['duck-river-tailwater', 'duck-river-lower'] },
 ];
 
 const BASE = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/3/query';

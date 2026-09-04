@@ -64,9 +64,13 @@ export const REACH_GATE = {
     why: 'Dale Hollow tailwater: below Dale Hollow Dam (USGS 03417000 lat 36.5373)',
     minLon: -90, maxLon: -81.45, minLat: 36.52, maxLat: 36.75,
   },
+  'stones-river': {
+    why: 'Catalog "Stones River (Davidson County)" reach: below J. Percy Priest Dam — gate at the dam lat 36.153 (gap in the NHD connector chain at the dam; TIGER AREAWATER lake north tip 36.1638; tailwater gauge USGS 03430200 at 36.1865)',
+    minLon: -90, maxLon: -81.45, minLat: 36.153, maxLat: 36.75,
+  },
   'ocoee-river': {
-    why: 'Catalog "upper, Copperhill reach": upstream (east) of Parksville Lake (TIGER AREAWATER Parksville Lk west edge lon -84.6748; USGS 03564500 lon -84.6544)',
-    minLon: -84.68, maxLon: -84.3, minLat: 34.9, maxLat: 36.75,
+    why: 'Catalog "upper, Copperhill reach": upstream (east) of Parksville Lake (TIGER AREAWATER Parksville Lk west edge lon -84.6748, lake head lon -84.6248; USGS 03564500 lon -84.6544)',
+    minLon: -84.62, maxLon: -84.3, minLat: 34.9, maxLat: 36.75,
   },
   'parksville-tailwater': {
     why: 'Ocoee No. 1 tailwater: below Parksville Dam (TIGER AREAWATER Parksville Lk west edge lon -84.6748) toward the Hiwassee confluence',

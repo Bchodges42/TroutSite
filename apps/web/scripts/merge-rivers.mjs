@@ -45,6 +45,33 @@ const tigerLines = new Map(); // id -> {parts, names:Set}
 // Co., upstream of Norris Lake), one 7-point "South Fork Holston Riv" segment,
 // and no "Watauga Riv" outside Watauga Lake, so the NHDPlus HR flowline is the
 // primary (and for watauga-river the only) centerline source for these ids.
+// NHDPlus HR is a national layer: envelope fetches near state lines return
+// out-of-Tennessee flowlines (NC Hiwassee/French Broad, KY Cumberland-bend
+// "Obey" connectors). This atlas carries Tennessee water only, so a part is
+// kept only when EVERY vertex falls inside the state boundary polygon —
+// whole-part rejection, no interior coordinate deletion (same discipline as
+// the TN clip rectangle below).
+const tnBoundary = JSON.parse(readFileSync(path.join(OUT, 'tn-boundary.geojson'), 'utf8'));
+const TN_RINGS = [];
+{
+  const g = tnBoundary.features?.[0]?.geometry ?? tnBoundary.geometry;
+  for (const poly of g.type === 'Polygon' ? [g.coordinates] : g.coordinates) {
+    for (const ring of poly) TN_RINGS.push(ring);
+  }
+}
+function inTennessee([x, y]) {
+  let inside = false;
+  for (const ring of TN_RINGS) {
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+  }
+  return inside;
+}
+function partInTennessee(part) {
+  return part.length > 0 && part.every(inTennessee);
+}
 const NHD = {
   'roan': { file: 'roan.geojson', take: { 'Roan Creek': ['upper-roan-creek'] } },
   'nprong-barren': { file: 'nprong-barren.geojson', take: { 'North Prong Barren Fork': ['north-prong-barren-fork'], 'Barren Fork': ['barren-fork-river'] } },
@@ -64,8 +91,12 @@ const NHD = {
   'ocoee': { file: 'ocoee.geojson', take: { 'Ocoee River': ['ocoee-river', 'parksville-tailwater'] } },
   'station-creek': { file: 'station-creek.geojson', take: { 'Station Creek': ['station-creek'] } },
   'mossy-creek-jefferson': { file: 'mossy-creek-jefferson.geojson', take: { 'Mossy Creek': ['mossy-creek-jefferson'] } },
-  'leconte-creek': { file: 'leconte-creek.geojson', take: { 'LeConte Creek': ['leconte-creek'], 'Leconte Creek': ['leconte-creek'] } },
+  // GNIS spells it "Le Conte Creek" (2026-09-04 fetch); kept older spellings
+  // in case a future refresh changes casing/spacing upstream.
+  'leconte-creek': { file: 'leconte-creek.geojson', take: { 'Le Conte Creek': ['leconte-creek'], 'LeConte Creek': ['leconte-creek'], 'Leconte Creek': ['leconte-creek'] } },
   'forge-creek-johnson': { file: 'forge-creek-johnson.geojson', take: { 'Forge Creek': ['forge-creek-johnson'] } },
+  'elk': { file: 'elk.geojson', take: { 'Elk River': ['elk-river', 'elk-river-lower'] } },
+  'duck': { file: 'duck.geojson', take: { 'Duck River': ['duck-river-tailwater', 'duck-river-lower'] } },
 };
 const nhdLines = new Map(); // streamId -> {parts, names:Set}
 for (const { file, take } of Object.values(NHD)) {
@@ -74,8 +105,11 @@ for (const { file, take } of Object.values(NHD)) {
   for (const f of feats) {
     const ids = take[f.properties.gnis_name];
     if (!ids) continue;
-    const geoms = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.type === 'MultiLineString' ? f.geometry.coordinates : null;
+    let geoms = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.type === 'MultiLineString' ? f.geometry.coordinates : null;
     if (!geoms) continue;
+    // keep Tennessee water only (whole-part test, see note above)
+    geoms = geoms.filter(partInTennessee);
+    if (!geoms.length) continue;
     for (const id of ids) {
       const e = nhdLines.get(id) ?? { parts: [], names: new Set() };
       for (const part of geoms) e.parts.push(part);
