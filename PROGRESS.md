@@ -30,8 +30,36 @@ pipeline additions, `docs/` notes, this file. No UI files, no `packages/`
   merge-rivers, contract properties (`id`, `name`, `waterbodyType`,
   `source`, `approximate`, `labelAnchor`, `bounds`), idempotent append to
   rivers.geojson (never touches existing features).
-- [x] `validate-atlas.mjs` PASS; typecheck / web tests / build green.
-  Details in docs/atlas-sources.md § B15.
+- [x] All 8 rivers appended (one commit per river; 113 features in
+  rivers.geojson = 105 pre-existing [byte-identical, verified] + 8 new).
+  Members/verts: mississippi 2/278, obion 2/258, hatchie 1/754,
+  wolf 1/449, tennessee 3/1069, cumberland 1/795, buffalo 2/641,
+  holston 1/494. `validate-atlas.mjs` PASS after each append
+  (113 features, 113 unique ids, zero structural/coordinate errors).
+- [x] Verify: `pnpm --filter @trout/web typecheck` green; `test` 88/88 green;
+  `build` + size budget OK (dist 5.09 MB vs 25 MB gate). Append re-run
+  idempotent (appends 0). Evidence details in docs/atlas-sources.md § B15.
+
+## Notes / decisions
+
+- Catalog YAML for the 8 ids is the catalog lane's job; riverIndex.json
+  regeneration is the UI/integration lane's job (contract step 5) — UI files
+  untouched here, so riverIndex.json still carries the pre-B15 105 entries.
+- Mississippi corridor: 4000 m excursion + lat<=36.51 cap, measured against
+  the committed tn-boundary (evidence in docs/atlas-sources.md). Only
+  'Mississippi River'-named flowlines are fetched, so AR/MS backwaters are
+  never candidates; the corridor admits only the mainstem channel straddling
+  the survey line.
+- Endpoint welding (exact + 0.0005 deg jitter) is NEW relative to
+  merge-rivers (which never welds). Justification: the contract forbids
+  splitting connected reaches, and the impounded reaches (Kentucky Lake,
+  Cherokee Lake, Old Hickory) are chains of 2-vertex NHD waterbody
+  connectors; welding joins only existing endpoints, no synthetic
+  coordinates. Gaps larger than the jitter stay separate members (obion
+  ~110 m, buffalo 2.7 km, tennessee's Alabama detour) — documented
+  exceptions, one feature per river id.
+- USGS fetches 2026-09-04: one 504 (tennessee-river-east), cleared by the
+  script's built-in retry/backoff; all 10 targets fetched clean.
 
 
 
