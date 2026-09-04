@@ -1,14 +1,23 @@
 import type { Stream, ConditionSnapshot, ShopReport, StockingEvent, HatchChart } from '@trout/contracts';
+import { READING_STALE_MINUTES } from '@trout/contracts';
 import { scoreBand } from '../../lib/conditions';
 import { atlas, conditionColor } from './mapTokens';
 
 export type ConditionStatus = 'good' | 'fair' | 'poor' | 'no-data';
 
-export function statusForScore(score: number | null, hasData: boolean): ConditionStatus {
-  // scoreConditions returns value 0 only when it cannot assess (no readings,
-  // no matching gauge, or no usable flow/stage) — FLOW_SCORE_FLOOR keeps every
-  // real assessment at 10+. Render that as no-data, never "0 · Poor".
-  if (!hasData || score == null || score === 0) return 'no-data';
+export function statusForScore(
+  score: number | null,
+  hasData: boolean,
+  assessed?: boolean,
+): ConditionStatus {
+  // "No data" means scoreConditions could not assess (assessed === false: no
+  // readings, gauge mismatch, or no usable flow/stage). A REAL assessment that
+  // clamps to 0 — e.g. floored flow minus the dangerous-heat penalty — is
+  // genuinely Poor and must render as Poor. Legacy snapshots generated before
+  // the `assessed` flag exist keep the old inference (0 → no-data).
+  if (!hasData || score == null) return 'no-data';
+  if (assessed === false) return 'no-data';
+  if (score === 0) return assessed === true ? 'poor' : 'no-data';
   const b = scoreBand(score);
   return b as ConditionStatus;
 }
@@ -54,12 +63,31 @@ export function hatchHaloForChart(chart: HatchChart | null | undefined): { activ
   return { active: intensity > 0.15, color: atlas.sulphur };
 }
 
-// Freshness — mirrors FreshnessChip: live vs stale offline
-export function freshnessLabel(fetchedAt: number | null | undefined, live: boolean): string {
+// Freshness — keyed to the age of the newest gauge READING, not the success of
+// the last fetch: a live fetch of an old reading is still old data. `observedAt`
+// comes from newestReadingAt(snapshot.readings); `fetchedAt` only describes when
+// the payload was checked.
+export function freshnessLabel(
+  fetchedAt: number | null | undefined,
+  live: boolean,
+  observedAt?: number | null,
+): string {
   if (fetchedAt == null) return 'Never updated';
-  const mins = Math.max(0, (Date.now() - fetchedAt) / 60_000);
-  const age = mins < 1 ? 'now' : mins < 90 ? `${Math.round(mins)} min ago` : `${Math.round(mins / 60)} hr ago`;
-  return live ? `Live · ${age}` : `Offline · last known ${new Date(fetchedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  if (!live) {
+    return `Offline · last known ${new Date(fetchedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+  const dataAgeMin = observedAt != null ? Math.max(0, (Date.now() - observedAt) / 60_000) : null;
+  if (dataAgeMin == null) {
+    const mins = Math.max(0, (Date.now() - fetchedAt) / 60_000);
+    const age = mins < 1 ? 'now' : mins < 90 ? `${Math.round(mins)} min ago` : `${Math.round(mins / 60)} hr ago`;
+    return `Checked ${age} · gauge age unknown`;
+  }
+  if (dataAgeMin <= READING_STALE_MINUTES) {
+    const age = dataAgeMin < 1 ? 'just now' : dataAgeMin < 90 ? `${Math.round(dataAgeMin)} min ago` : `${Math.round(dataAgeMin / 60)} hr ago`;
+    return `Live · observed ${age}`;
+  }
+  const hrs = Math.round(dataAgeMin / 60);
+  return `Stale · observed ${hrs} hr ago`;
 }
 
 export function isFresh(fetchedAt: number | null | undefined, ttlMinutes: number): boolean {

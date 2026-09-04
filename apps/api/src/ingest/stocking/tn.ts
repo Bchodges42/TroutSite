@@ -130,33 +130,48 @@ function cleanWhitespace(s: string | undefined): string | undefined {
   return v.length > 0 ? v : undefined;
 }
 
-function resolveDate(row: TwraRow, now: Date): { date: string | null; warnings: string[] } {
+function resolveDate(row: TwraRow, now: Date): {
+  date: string | null;
+  /** How precise the published source date is ('day' | 'week' | 'month'). */
+  precision: 'day' | 'week' | 'month' | null;
+  warnings: string[];
+} {
   const day = cleanWhitespace(row['STOCKING DAY']);
   const week = cleanWhitespace(row['STOCKING WEEK']);
   const months = cleanWhitespace(row['STOCKING MONTHS']);
 
   if (day) {
     const exact = parseExactDate(day);
-    if (exact) return { date: exact, warnings: [] };
+    if (exact) return { date: exact, precision: 'day', warnings: [] };
     const tbd = parseTbdMonth(day);
-    if (tbd) return { date: `${tbd.year}-${String(tbd.month).padStart(2, '0')}-01`, warnings: [] };
+    if (tbd) {
+      return {
+        date: `${tbd.year}-${String(tbd.month).padStart(2, '0')}-01`,
+        precision: 'month',
+        warnings: [],
+      };
+    }
     const weekDate = week ? parseExactDate(week) : null;
     if (weekDate) {
-      return { date: weekDate, warnings: [`unparseable STOCKING DAY "${day}", used STOCKING WEEK`] };
+      return {
+        date: weekDate,
+        precision: 'week',
+        warnings: [`unparseable STOCKING DAY "${day}", used STOCKING WEEK`],
+      };
     }
   } else if (week) {
     const weekDate = parseExactDate(week);
-    if (weekDate) return { date: weekDate, warnings: [] };
+    if (weekDate) return { date: weekDate, precision: 'week', warnings: [] };
   }
 
   if (months) {
     const list = parseMonthInitials(months);
     const first = list[0];
     if (first !== undefined) {
-      return { date: nextMonthDate(first, now), warnings: [] };
+      return { date: nextMonthDate(first, now), precision: 'month', warnings: [] };
     }
   }
-  return { date: null, warnings: [] };
+  return { date: null, precision: null, warnings: [] };
 }
 
 /** Decode the tn.gov CMS data-config attribute and pull every excel-driven JSON path. */
@@ -245,7 +260,7 @@ function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date
   const location = cleanWhitespace(row.LOCATION);
   if (!location) return { events: [], warning: 'row without LOCATION skipped' };
 
-  const { date, warnings } = resolveDate(row, now);
+  const { date, precision, warnings } = resolveDate(row, now);
   if (!date) {
     return { events: [], warning: `no usable date for "${location}" (${row['STOCKING DAY'] ?? ''} / ${row['STOCKING WEEK'] ?? ''} / ${row['STOCKING MONTHS'] ?? ''})` };
   }
@@ -262,6 +277,10 @@ function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date
       ...(county ? { county } : {}),
       species: sp,
       date,
+      // B09: 'date' normalizes week/month windows to their first day — the
+      // precision tier tells the UI to say "published schedule", never
+      // "stocked today", unless the source published an exact day.
+      ...(precision ? { datePrecision: precision } : {}),
       sourceUrl: pageUrl,
       fetchedAt,
     });

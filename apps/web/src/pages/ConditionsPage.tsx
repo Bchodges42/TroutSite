@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { Card, Chip, EmptyState } from '@trout/ui';
-import { StreamSchema, ConditionSnapshotSchema } from '@trout/contracts';
+import { StreamSchema, ConditionSnapshotSchema, newestReadingAt } from '@trout/contracts';
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
 import { snapshotUrls, V1_STATES } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
@@ -87,13 +87,9 @@ export function ConditionsPage() {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">Conditions</h1>
         <FreshnessChip
-          fetchedAt={
-            conditionsQuery.data?.data[0]
-              ? Date.parse(conditionsQuery.data.data[0].fetchedAt)
-              : null
-          }
+          fetchedAt={conditionsQuery.data?.data[0] ? Date.parse(conditionsQuery.data.data[0].fetchedAt) : null}
           live={conditionsQuery.data?.live ?? false}
-        />
+          observedAt={newestReadingAt((conditionsQuery.data?.data ?? []).flatMap((s) => s.readings))} />
       </div>
       <p className="page-subtitle mt-1">
         Supplied trout assessments and gauge observations. Check observation times and official

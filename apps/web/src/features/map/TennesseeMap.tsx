@@ -205,7 +205,7 @@ export function TennesseeMap(props: Props) {
             [point.x - 5, point.y - 5],
             [point.x + 5, point.y + 5],
           ],
-          { layers: ['rivers-hit', 'rivers-water'] },
+          { layers: ['rivers-point-hit', 'rivers-hit', 'rivers-water'] },
         )
         .filter((f) => {
           const id = String(f.properties.id ?? '');

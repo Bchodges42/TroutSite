@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Chip, EmptyState } from '@trout/ui';
-import { ConditionSnapshotSchema, StreamSchema } from '@trout/contracts';
+import { ConditionSnapshotSchema, StreamSchema, newestReadingAt } from '@trout/contracts';
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
@@ -70,7 +70,7 @@ export function HomePage() {
       <section aria-label="Best water right now">
         <div className="flex items-center justify-between">
           <h2 className="section-title">Best water near your default state ({settings.defaultState})</h2>
-          <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
+          <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} observedAt={newestReadingAt((conditionsQuery.data?.data ?? []).flatMap((s) => s.readings))} />
         </div>
         {conditionsQuery.isLoading || streamsQuery.isLoading ? (
           <p className="page-subtitle" role="status">Loading water…</p>

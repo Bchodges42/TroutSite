@@ -18,6 +18,7 @@ export const REGIONS: RegionMeta[] = [
   { id: 'tn-middle-caney-fork', name: 'Middle TN — Caney Fork & Collins/Calfkiller country', stateId: 'TN' },
   { id: 'tn-middle-duck-elk', name: 'Middle TN — Duck & Elk River tailwaters and southern freestones', stateId: 'TN' },
   { id: 'tn-middle-nashville', name: 'Middle TN — Nashville-area & Highland Rim winter-trout waters', stateId: 'TN' },
+  { id: 'tn-west', name: 'West TN — TWRA winter put-and-take lakes & park ponds', stateId: 'TN' },
 ];
 
 export const REGION_IDS = new Set(REGIONS.map((r) => r.id));

@@ -223,21 +223,24 @@ function buildAtlasStreams() {
   for (const [id, props] of meta) {
     if (streams.some((s) => s.id === id)) continue;
     const warm = WARMWATER_IDS.has(id);
-    const waterbodyType = warm ? 'river' : 'creek';
-    const idealFlow = warm
+    // Point-anchor features (West TN put-and-take ponds) carry their real
+    // classification/provenance in the geometry properties — prefer those
+    // over the warmwater/trout defaults so catalog and map never drift.
+    const waterbodyType = props.waterbodyType ?? (warm ? 'river' : 'creek');
+    const idealFlow = props.idealFlow ?? (warm
       ? []
-      : (EXTRA_TAILWATERS[id] ?? (props.name.toLowerCase().includes('river') ? [{ min: 70, max: 350, unit: 'cfs' }] : [{ min: 8, max: 60, unit: 'cfs' }]));
+      : (EXTRA_TAILWATERS[id] ?? (props.name.toLowerCase().includes('river') ? [{ min: 70, max: 350, unit: 'cfs' }] : [{ min: 8, max: 60, unit: 'cfs' }])));
     extras.push({
       id,
       name: props.name,
       stateId: 'TN',
       waterbodyType,
       regionId: props.regionId,
-      gaugeIds: [],
-      stockingProgram: !warm,
-      species: warm ? 'warmwater' : 'trout',
+      gaugeIds: props.gaugeIds ?? [],
+      stockingProgram: props.stockingProgram ?? !warm,
+      species: props.species ?? (warm ? 'warmwater' : 'trout'),
       idealFlow,
-      notes: EXTRA_NOTES[id],
+      notes: EXTRA_NOTES[id] ?? props.notes,
       officialSources: [twraLink],
     });
   }

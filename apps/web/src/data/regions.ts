@@ -78,6 +78,12 @@ export const REGIONS: RegionInfo[] = [
     stateId: 'TN',
     blurb: 'Nashville-area & Highland Rim winter-trout waters.',
   },
+  {
+    id: 'tn-west',
+    name: 'West TN — Winter Trout',
+    stateId: 'TN',
+    blurb: 'TWRA winter put-and-take lakes & park ponds around Memphis, Jackson and Paris.',
+  },
 ];
 
 const byId = new Map(REGIONS.map((r) => [r.id, r]));

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { RiverContextBar, riverWorkflowUrl, validMonth } from '../lib/riverContext';
 import { Card, DataBadge, EmptyState } from '@trout/ui';
-import { ConditionSnapshotSchema, StreamSchema } from '@trout/contracts';
+import { ConditionSnapshotSchema, StreamSchema, newestReadingAt } from '@trout/contracts';
 import type { GaugeReading } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
@@ -105,7 +105,7 @@ export function StreamDetailPage() {
         <FreshnessChip
           fetchedAt={snapshot ? Date.parse(snapshot.fetchedAt) : null}
           live={conditionsQuery.data?.live ?? false}
-        />
+          observedAt={newestReadingAt(snapshot?.readings ?? [])} />
       </div>
 
       {!snapshot ? (

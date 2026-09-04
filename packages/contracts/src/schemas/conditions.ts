@@ -6,6 +6,14 @@ import { IsoDateTimeSchema } from './shared.js';
 export const ConditionScoreSchema = z.object({
   value: z.number().int().min(0).max(100),
   reasons: z.array(z.string()),
+  /**
+   * False when there was no usable data to assess (no readings, gauge mismatch,
+   * or no flow/stage value). A REAL assessment can also land on 0 — e.g. lethal
+   * water temperature clamping a floored flow score — and must render as Poor,
+   * never "No data". Optional so snapshots generated before this field existed
+   * still validate; consumers treat missing as "cannot distinguish".
+   */
+  assessed: z.boolean().optional(),
 });
 export type ConditionScore = z.infer<typeof ConditionScoreSchema>;
 

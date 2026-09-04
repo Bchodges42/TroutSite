@@ -349,7 +349,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-holston",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03486810"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -409,7 +411,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-middle-caney-fork",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03419530"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -502,7 +506,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03539778"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -520,7 +526,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03409500"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -538,7 +546,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-middle-caney-fork",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03421000"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -584,7 +594,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03539600"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -625,7 +637,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-northeast-watauga",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03485500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -648,7 +662,11 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-middle-duck-elk",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03597860",
+      "03598000",
+      "03599500"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -689,7 +707,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-middle-duck-elk",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03584600"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -707,7 +727,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03540500"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -771,7 +793,10 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-pigeon-frenchbroad",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03468510",
+      "03469000"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -795,7 +820,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-holston",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03487010"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -911,7 +938,10 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-middle-nashville",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03432350",
+      "03433500"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1090,7 +1120,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-east-smokies",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03470000"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1108,7 +1140,10 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-smokies",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03497300",
+      "03498500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1265,7 +1300,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03408500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1288,7 +1325,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-east-pigeon-frenchbroad",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03465500"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1306,7 +1345,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-se-hiwassee",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03566535"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1352,7 +1393,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03539800"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1370,7 +1413,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-upper-cumberland",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03417000"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1394,7 +1439,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-se-hiwassee",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03559500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1417,7 +1464,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-se-hiwassee",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03564500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1441,7 +1490,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-pigeon-frenchbroad",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03461500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1506,7 +1557,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-east-clinch",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03532000"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1547,7 +1600,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-middle-nashville",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03436100"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1565,7 +1620,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-holston",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03487602"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1681,7 +1738,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03571000"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1699,7 +1758,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-middle-duck-elk",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03588500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1745,7 +1806,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-cumberland-plateau",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03410210"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -1837,7 +1900,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-middle-nashville",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03430200"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -1895,7 +1960,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-se-hiwassee",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03518500"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -2011,7 +2078,9 @@
     "stateId": "TN",
     "waterbodyType": "river",
     "regionId": "tn-middle-nashville",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03428200"
+    ],
     "stockingProgram": false,
     "species": "warmwater",
     "idealFlow": [],
@@ -2029,7 +2098,9 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-east-smokies",
-    "gaugeIds": [],
+    "gaugeIds": [
+      "03469251"
+    ],
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [
@@ -2085,6 +2156,240 @@
         "unit": "cfs"
       }
     ],
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "shelby-farms-lake",
+    "name": "Shelby Farms",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Shelby Farms Park, Memphis. Rainbow trout in the cold months only — they do not hold over summer.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "cameron-brown-lake",
+    "name": "Cameron Brown Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Cameron Brown Park, Germantown. Winter-only rainbow fishery; check the schedule window.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "edmund-orgill-lake",
+    "name": "Edmund-Orgill Park",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Edmund-Orgill Park, Millington. Cold-month rainbows; does not hold over summer.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "yale-road-park-lake",
+    "name": "Yale Road Park",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Yale Road Park, Bartlett. Winter-only rainbow fishery.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "johnson-park-lake",
+    "name": "Johnson Park Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Johnson Park, Memphis. Cold-month rainbows only; anchor approximate until field-verified.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "valentine-park-pond",
+    "name": "Valentine Park",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take pond in Valentine Regional Park, Munford. Winter-only rainbow fishery.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "covington-fbc-pond",
+    "name": "Covington First Baptist Church Pond",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take pond at Covington First Baptist Church, Covington. Winter-only rainbows; anchor approximate.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "martin-city-pond",
+    "name": "Martin City Pond",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take pond at Martin City Park, Martin. Cold-month rainbows; does not hold over summer.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "milan-city-pond",
+    "name": "Milan City Pond",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take pond in Milan City Park, Milan. Winter-only rainbow fishery.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "paris-city-park-lake",
+    "name": "Paris City Park",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Paris City Park, Paris. Cold-month rainbows; anchor approximate until field-verified.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "beech-lake",
+    "name": "Beech Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake on Beech Lake, Lexington. Winter-only rainbow fishery on an otherwise warmwater lake.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "lake-graham",
+    "name": "Lake Graham",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take lake in Jackson (Madison County). Winter-only rainbows; anchor approximate until field-verified.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "union-city-reelfoot-pond",
+    "name": "Union City Reelfoot Packing Site",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter put-and-take pond at the Reelfoot Packing Site, Union City. Cold-month rainbows; anchor approximate.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
