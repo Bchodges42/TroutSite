@@ -11,11 +11,13 @@ node apps/web/scripts/fetch-atlas-sources.mjs   # one-time Census downloads (-> 
 node apps/web/scripts/build-atlas-context-sources.mjs  # context intermediates: boundary/counties/states/places
 node apps/web/scripts/fetch-nhd-targets.mjs     # one-time USGS NHDPlus HR fetches (-> .atlas-src/nhd/)
 node apps/web/scripts/match-rivers-tiger.mjs    # match 92 streams to TIGER LINEARWATER (-> .atlas-src/out/)
-node apps/web/scripts/merge-rivers.mjs          # assemble public/atlas/rivers.geojson
+node apps/web/scripts/merge-rivers.mjs          # assemble public/atlas/rivers.geojson (continuity-aware source selection)
+node apps/web/scripts/close-residual-gaps.mjs   # join residual chunk gaps <= 1 km (logged to .atlas-src/out/residual-joins.json)
 node apps/web/scripts/fix-caney-fork.mjs        # rebuild caney-fork-river from the NHD corridor
 node apps/web/scripts/build-atlas-context.mjs   # slim + publish context files
 node apps/web/scripts/merge-west-tn-points.mjs  # ALWAYS run last: restore the 13 point anchors (idempotent)
 node apps/web/scripts/validate-atlas.mjs        # structural gate (must PASS)
+node apps/web/scripts/audit-river-continuity.mjs # continuity gate: 0 unexpected multi-chunk line rivers (must PASS)
 ```
 
 `apps/web/scripts/build-atlas.mjs` is the RETIRED synthetic generator and must
@@ -42,6 +44,18 @@ not be run — it would overwrite the real atlas with jitter geometry.
 - **Geometry rules:** separate source parts stay separate — never concatenated
   into artificial connector lines. Whole-part rejection on malformed or
   out-of-Tennessee coordinates (never delete an interior point).
+- **Continuity (2026-09-04):** `merge-rivers.mjs` picks, per stream, the most
+  continuous REAL source combination (TIGER+NHD blend vs NHD-only vs
+  TIGER-only — fewest endpoint-stitched 1 km chunks; every candidate is real
+  geometry, so no fabrication is involved; the chosen combination is logged in
+  the source tag, e.g. `sel:tiger+nhd->nhd-hr`). `close-residual-gaps.mjs`
+  then joins chunk endpoints across residual gaps of at most 1 km — and only
+  where NHD/TIGER carry no intermediate segment (larger gaps are left open and
+  documented in `docs/CONTINUITY-AUDIT.md`; each join is tagged `residual-join`
+  in the feature's `source` and logged with its coordinates and gap size).
+  The continuity gate `audit-river-continuity.mjs` fails CI when a line river
+  renders as 2+ chunks unless the stream is allowlisted with a documented
+  reason (deliberate catalog joins, or gaps un-fillable from public sources).
 - **Wide water:** main stems missing from LINEARWATER fall back to TIGER
   AREAWATER polygons (`MultiPolygon`, `tiger-area` source).
 - **Per-feature properties:** `id, name, regionId, gaugeIds, bounds, labelAnchor,

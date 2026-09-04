@@ -97,13 +97,47 @@ const NHD = {
   'forge-creek-johnson': { file: 'forge-creek-johnson.geojson', take: { 'Forge Creek': ['forge-creek-johnson'] } },
   'elk': { file: 'elk.geojson', take: { 'Elk River': ['elk-river', 'elk-river-lower'] } },
   'duck': { file: 'duck.geojson', take: { 'Duck River': ['duck-river-tailwater', 'duck-river-lower'] } },
+  // CONTINUITY lane takes (2026-09-04): corridor fetches for waters whose
+  // TIGER-only coverage rendered as multiple disconnected chunks (see
+  // docs/CONTINUITY-AUDIT.md). Envelopes bound each water; takes are keyed by
+  // exact gnis_name (or '*' for the name-less fbb-braid corridor file).
+  'powell': { file: 'powell.geojson', take: { 'Powell River': ['powell-river'] } },
+  'byrd-creek': { file: 'byrd-creek.geojson', take: { 'Byrd Creek': ['richardson-byrd-creek'] } },
+  'harpeth': { file: 'harpeth.geojson', take: { 'Harpeth River': ['harpeth-river'] } },
+  'collins': { file: 'collins.geojson', take: { 'Collins River': ['collins-river'] } },
+  'clear-fork': { file: 'clear-fork.geojson', take: { 'Clear Fork': ['clear-fork'] } },
+  // GNIS spells the water "Sulphur Fork Creek"; the upper reaches are carried
+  // as "Sulphur Fork Red River" (the Sulphur Fork OF the Red River, rising in
+  // Sumner Co, mouth at the Red River / Port Royal — same water, alternate
+  // NHD name). Both spellings taken inside the Robertson/Sumner envelope.
+  'sulfur-fork': { file: 'sulfur-fork.geojson', take: { 'Sulfur Fork Creek': ['sulfur-fork-creek'], 'Sulphur Fork Creek': ['sulfur-fork-creek'], 'Sulphur Fork Red River': ['sulfur-fork-creek'] } },
+  'emory': { file: 'emory.geojson', take: { 'Emory River': ['emory-river'] } },
+  'hurricane-houston': { file: 'hurricane-houston.geojson', take: { 'Hurricane Creek': ['hurricane-creek'] } },
+  'sinking-wilson': { file: 'sinking-wilson.geojson', take: { 'Sinking Creek': ['sinking-creek-wilson'] } },
+  'daddys': { file: 'daddys.geojson', take: { 'Daddys Creek': ['daddys-creek'] } },
+  'efork-shoal': { file: 'efork-shoal.geojson', take: { 'East Fork Shoal Creek': ['east-fork-shoal-creek'] } },
+  'indian-claiborne': { file: 'indian-claiborne.geojson', take: { 'Indian Creek': ['indian-creek-claiborne'] } },
+  'laurel-johnson': { file: 'laurel-johnson.geojson', take: { 'Laurel Creek': ['laurel-creek-johnson'] } },
+  'new-river-scott': { file: 'new-river-scott.geojson', take: { 'New River': ['new-river'] } },
+  'n-chickamauga': { file: 'n-chickamauga.geojson', take: { 'North Chickamauga Creek': ['north-chickamauga-creek'] } },
+  'obed': { file: 'obed.geojson', take: { 'Obed River': ['obed-river'] } },
+  'sequatchie': { file: 'sequatchie.geojson', take: { 'Sequatchie River': ['sequatchie-river'], 'Sequatchie Creek': ['sequatchie-river'] } },
+  'fletchers': { file: 'fletchers.geojson', take: { 'Fletchers Fork': ['fletchers-fork'] } },
+  'horse-greene': { file: 'horse-greene.geojson', take: { 'Horse Creek': ['horse-creek-greene'] } },
+  // Unnamed braid channels of the French Broad below Seven Islands (tight
+  // envelope, name-less fetch). '*' take: every part in this file belongs to
+  // the braid corridor of one water.
+  'fbb-braid': { file: 'fbb-braid.geojson', take: { '*': ['french-broad-river'] } },
 };
+// "Piney River" is the NHD name of the lower Piney (Rhea Co) main stem; the
+// existing take only carried "Piney Creek".
+NHD['piney-rhea'].take['Piney River'] = ['piney-river-rhea'];
 const nhdLines = new Map(); // streamId -> {parts, names:Set}
 for (const { file, take } of Object.values(NHD)) {
   let feats = [];
   try { feats = JSON.parse(readFileSync(path.join(ROOT, '.atlas-src', 'nhd', file), 'utf8')).features ?? []; } catch { continue; }
   for (const f of feats) {
-    const ids = take[f.properties.gnis_name];
+    const ids = take[f.properties.gnis_name] ?? take['*'];
     if (!ids) continue;
     let geoms = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.type === 'MultiLineString' ? f.geometry.coordinates : null;
     if (!geoms) continue;
@@ -258,6 +292,39 @@ function cleanPolys(polys) {
 }
 const features = [];
 const summary = [];
+// ---- continuity-aware source selection (CONTINUITY lane, 2026-09-04) ----
+// TIGER-preferred dedup can leave a stream MORE fragmented than either source
+// alone: TIGER named segments carry small gaps, and dropping NHD parts that
+// overlap TIGER cells also drops the parts that bridge those gaps (elk-river:
+// 9 chunks from 114 parts). Conversely, sparse-but-connected NHD stubs can add
+// phantom chunks to a stream whose TIGER coverage is already continuous
+// (duck-river-tailwater). Since every candidate set is REAL geometry, pick the
+// most continuous one — fewest endpoint-stitched chunks (1 km haversine);
+// ties keep the TIGER+NHD blend (max provenance), then the denser set. A
+// stream never loses water wholesale: switching sources only happens when it
+// strictly reduces fragmentation.
+const R_KM = 6371.0088, RAD = Math.PI / 180;
+function havKm([lon1, lat1], [lon2, lat2]) {
+  const dLat = (lat2 - lat1) * RAD, dLon = (lon2 - lon1) * RAD;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * RAD) * Math.cos(lat2 * RAD) * Math.sin(dLon / 2) ** 2;
+  return 2 * R_KM * Math.asin(Math.sqrt(a));
+}
+function chunkCount(parts) {
+  const n = parts.length;
+  if (n <= 1) return n;
+  const ends = parts.map((p) => [p[0], p[p.length - 1]]);
+  const parent = parts.map((_, i) => i);
+  const find = (i) => { while (parent[i] !== i) { parent[i] = parent[parent[i]]; i = parent[i]; } return i; };
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+    const d = Math.min(
+      havKm(ends[i][0], ends[j][0]), havKm(ends[i][0], ends[j][1]),
+      havKm(ends[i][1], ends[j][0]), havKm(ends[i][1], ends[j][1]),
+    );
+    if (d <= 1.0) { const a = find(i), b = find(j); if (a !== b) parent[b] = a; }
+  }
+  return new Set(parts.map((_, i) => find(i))).size;
+}
+const countVerts = (parts) => parts.reduce((n, p) => n + p.length, 0);
 function partBbox(part) {
   const b = [Infinity, Infinity, -Infinity, -Infinity];
   for (const [x, y] of part) {
@@ -282,14 +349,69 @@ for (const st of streams) {
   const ctG = gFilter(ct);
   const cnRawG = gFilter(cnRaw);
   const cn = dedupNhd(ctG, cnRawG);
-  const cl = [...ctG, ...cn];
+  // candidate line sets. Base = TIGER + deduped NHD (max provenance, no
+  // double-draw). 'tiger+nhd-full' also keeps the NHD parts the dedup would
+  // drop — TIGER and NHD are both real centerlines of the same water, so the
+  // overlapping reaches draw twice but read as one continuous water, and it
+  // is the only set that can bridge holes each source has alone.
+  const combos = [];
+  if (ctG.length && cn.length) combos.push({ how: 'tiger+nhd', lines: [...ctG, ...cn] });
+  if (ctG.length && cnRawG.length) combos.push({ how: 'tiger+nhd-full', lines: [...ctG, ...cnRawG] });
+  if (cnRawG.length) combos.push({ how: 'nhd-hr', lines: cnRawG });
+  if (ctG.length) combos.push({ how: 'tiger-linear', lines: ctG });
+  let chosen = combos[0] ?? null;
+  let selNote = '';
+  if (combos.length > 1) {
+    const base = combos[0];
+    const bboxOf = (parts) => {
+      const b = [Infinity, Infinity, -Infinity, -Infinity];
+      for (const p of parts) { const pb = partBbox(p);
+        b[0] = Math.min(b[0], pb[0]); b[1] = Math.min(b[1], pb[1]);
+        b[2] = Math.max(b[2], pb[2]); b[3] = Math.max(b[3], pb[3]); }
+      return b;
+    };
+    const baseBox = bboxOf(base.lines);
+    // A candidate may only replace the blend when it is strictly more
+    // continuous AND it still covers the blend's extent — every bbox side
+    // must reach within 0.05 deg (~5 km) of the blend's edge, so a switch can
+    // never silently truncate the water (cane-creek's far county reaches,
+    // clear-fork's TIGER-only headwaters). Ties on chunks keep the set with
+    // fewer parts (less double-draw). A vacuous one-part "1 chunk" bbox
+    // cannot reach a multi-part blend's extent, so it is excluded here too.
+    const reaches = (b) => b[0] <= baseBox[0] + 0.05 && b[1] <= baseBox[1] + 0.05
+      && b[2] >= baseBox[2] - 0.05 && b[3] >= baseBox[3] - 0.05;
+    const debugIds = (process.env.CONTINUITY_DEBUG ?? '').split(',').filter(Boolean);
+    if (debugIds.includes(id)) {
+      for (const c of combos) {
+        const cb = bboxOf(c.lines);
+        console.log(`  [dbg ${id}] ${c.how}: ${chunkCount(c.lines)}ch ${c.lines.length}p bbox[${cb.map((v) => v.toFixed(3))}] reaches=${reaches(cb)}`);
+      }
+    }
+    for (const c of combos.slice(1)) {
+      // switch ONLY for a strictly lower chunk count on full extent coverage —
+      // no tie-switching, so the clean dedup blend wins every tie and
+      // double-draw happens only where it is the only way to bridge holes
+      if (reaches(bboxOf(c.lines)) && chunkCount(c.lines) < chunkCount(chosen.lines)) chosen = c;
+    }
+    if (chosen !== base) {
+      const counts = combos.map((c) => `${c.how}=${chunkCount(c.lines)}ch`).join(' ');
+      selNote = `sel:${base.how}->${chosen.how} (${counts})`;
+    }
+  }
+  const cl = chosen ? chosen.lines : [];
   const cp = gFilter(cleanPolys(polys));
   const s2 = [];
-  if (ctG.length) s2.push('tiger-linear');
-  if (cn.length) s2.push('nhd-hr');
-  if (cnRawG.length - cn.length > 0) s2.push(`nhd-dedup-${cnRawG.length - cn.length}`);
+  if (chosen?.how === 'tiger+nhd') {
+    s2.push('tiger-linear', 'nhd-hr');
+    if (cnRawG.length - cn.length > 0) s2.push(`nhd-dedup-${cnRawG.length - cn.length}`);
+  } else if (chosen?.how === 'tiger+nhd-full') {
+    s2.push('tiger-linear', 'nhd-hr', 'nhd-fulldraw');
+  } else if (chosen) {
+    s2.push(chosen.how);
+  }
   if (cp.length) s2.push('tiger-area');
   if (gate) s2.push('reach-gated');
+  if (selNote) s2.push(selNote);
   if (!cl.length && !cp.length) { summary.push(`${id}: UNRESOLVED`); continue; }
   // A GeoJSON feature has exactly one compatible geometry family. Prefer
   // centerlines when available; use AREAWATER polygons only as a fallback for
