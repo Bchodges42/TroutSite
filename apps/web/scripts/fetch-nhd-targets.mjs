@@ -40,6 +40,38 @@ const TARGETS = [
   { key: 'forge-creek-johnson', like: 'Forge Creek', env: '-82.1,36.35,-81.65,36.65', streams: ['forge-creek-johnson'] },
   { key: 'elk', like: 'Elk River', env: '-87.05,34.95,-86.2,35.45', streams: ['elk-river', 'elk-river-lower'] },
   { key: 'duck', like: 'Duck River', env: '-87.1,35.4,-86.05,35.75', streams: ['duck-river-tailwater', 'duck-river-lower'] },
+  // CONTINUITY lane (2026-09-04): per-stream corridor envelopes for the named
+  // waters whose TIGER LINEARWATER coverage is sparse enough to render as
+  // multiple disconnected chunks (see docs/CONTINUITY-AUDIT.md). Each envelope
+  // bounds the full Tennessee extent of that one water; NHD takes are keyed by
+  // exact gnis_name in merge-rivers.mjs, so same-named waters outside the
+  // envelope can never leak in.
+  { key: 'harpeth', like: 'Harpeth River', env: '-87.30,35.72,-86.55,36.32', streams: ['harpeth-river'] },
+  { key: 'collins', like: 'Collins River', env: '-85.82,35.40,-85.54,35.82', streams: ['collins-river'] },
+  { key: 'clear-fork', like: 'Clear Fork', env: '-85.02,36.02,-84.48,36.62', streams: ['clear-fork'] },
+  // GNIS spells both "Sulfur Fork Creek" and "Sulphur ..."; the wide prefix
+  // catches either spelling inside this Robertson/Sumner-corner envelope.
+  { key: 'sulfur-fork', like: 'Sul%', env: '-87.22,36.34,-86.28,36.70', streams: ['sulfur-fork-creek'] },
+  { key: 'emory', like: 'Emory River', env: '-84.72,35.90,-84.40,36.22', streams: ['emory-river'] },
+  { key: 'hurricane-houston', like: 'Hurricane Creek', env: '-87.98,35.92,-87.52,36.42', streams: ['hurricane-creek'] },
+  { key: 'sinking-wilson', like: 'Sinking Creek', env: '-86.46,36.00,-86.24,36.24', streams: ['sinking-creek-wilson'] },
+  { key: 'daddys', like: 'Daddys Creek', env: '-85.16,35.72,-84.72,36.12', streams: ['daddys-creek'] },
+  { key: 'efork-shoal', like: 'East Fork Shoal Creek', env: '-87.22,34.96,-87.02,35.14', streams: ['east-fork-shoal-creek'] },
+  { key: 'indian-claiborne', like: 'Indian Creek', env: '-83.66,36.34,-83.36,36.64', streams: ['indian-creek-claiborne'] },
+  { key: 'laurel-johnson', like: 'Laurel Creek', env: '-81.86,36.48,-81.70,36.64', streams: ['laurel-creek-johnson'] },
+  { key: 'new-river-scott', like: 'New River', env: '-84.62,36.08,-84.28,36.46', streams: ['new-river'] },
+  { key: 'n-chickamauga', like: 'North Chickamauga Creek', env: '-85.42,35.06,-85.12,35.32', streams: ['north-chickamauga-creek'] },
+  { key: 'obed', like: 'Obed%', env: '-85.16,35.86,-84.58,36.14', streams: ['obed-river'] },
+  { key: 'sequatchie', like: 'Sequatchie%', env: '-85.08,35.70,-84.93,35.88', streams: ['sequatchie-river'] },
+  { key: 'fletchers', like: 'Fletchers Fork', env: '-87.56,36.52,-87.38,36.64', streams: ['fletchers-fork'] },
+  { key: 'horse-greene', like: 'Horse Creek', env: '-82.88,36.03,-82.58,36.46', streams: ['horse-creek-greene'] },
+  // French Broad braids below Seven Islands: the NAMED "French Broad River"
+  // connectors hop channel to channel across a braided wide section, leaving a
+  // ~1.3 km hole in the drawn line. The braid channels themselves are UNNAMED
+  // 46006/55800 reaches in NHDPlus HR — fetched by this name-less corridor
+  // target (gnis_name IS NULL) and consumed for french-broad-river in
+  // merge-rivers.mjs. Envelope is tight around the braid only.
+  { key: 'fbb-braid', like: null, env: '-82.95,35.91,-82.87,35.97', streams: ['french-broad-river'] },
 ];
 
 const BASE = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/3/query';
@@ -72,8 +104,10 @@ for (const t of TARGETS.filter((t) => !only.size || only.has(t.key))) {
   for (;;) {
     const p = {
       // 46006 Stream/River · 46003 Artificial Path · 55800 Stream/River
-      // (waterbody connector reaches — e.g. the Caney Fork through its lakes)
-      where: `(fcode=46006 OR fcode=46003 OR fcode=55800) AND gnis_name LIKE '${t.like}'`,
+      // (waterbody connector reaches — e.g. the Caney Fork through its lakes).
+      // like=null fetches UNNAMED reaches only (gnis_name IS NULL) — used by
+      // the fbb-braid braid-channel corridor.
+      where: `(fcode=46006 OR fcode=46003 OR fcode=55800) AND ${t.like ? `gnis_name LIKE '${t.like}'` : 'gnis_name IS NULL'}`,
       geometry: t.env, geometryType: 'esriGeometryEnvelope', inSR: '4326',
       spatialRel: 'esriSpatialRelIntersects', returnIdsOnly: 'true',
       resultOffset: String(offset), f: 'pjson',

@@ -1,147 +1,114 @@
-# CATALOG lane — waterbody-inventory catalog stubs
-
-Base: `4e54c36` (`4e54c36` "fix(api): datePrecision survives the DB round-trip; live snapshots regenerated").
-Scope: `packages/content/streams/tn/*.yaml` (new files only) + one documented
-floor adjustment in `packages/content/test/content.test.ts` + fixtures regen +
-this file. Nothing else touched; existing YAML untouched.
-
-## Status log
-
-- [x] Setup: `pnpm install`, `@trout/contracts build`, plus `@trout/ui build`
-  (needed by web typecheck/tests; not in the brief but required in a fresh clone).
-- [x] Source of truth: the inventory lives at
-  `trout-fieldwork-20260904/docs/waterbody-inventory.json` (not in this repo);
-  read-only. Contract: `docs/WATERBODY-GEOMETRY-CONTRACT.md` (same repo).
-- [x] Authored **23 stubs** — every row with `crossCheck.contentYaml: false`:
-  8 missing-line rivers + 14 exists-ok reference lakes + Pickwick Lake
-  (missing-polygon). The other 19 inventory rows already had YAML.
-  Verified 0 rows missing afterwards.
-- [x] Honesty rules held: `id` = `proposedFeatureId`, `name` = `normalizedName`,
-  `gaugeIds: []` and `idealFlow: []` everywhere (never guessed),
-  `stockingProgram: false` everywhere (no row cites stocking),
-  `species` **omitted** everywhere (per SPECIES-REVIEW bar — no inventory
-  evidence), notes = plain "reference waterbody … pending detailed review"
-  sentences from inventory facts only. No new regions invented.
-- [x] Region assignments: tn-west → mississippi, obion, hatchie,
-  wolf-river-west-tennessee, tennessee-river, kentucky-lake, pickwick-lake;
-  tn-middle-nashville → cumberland-river, lake-barkley, old-hickory-lake,
-  j-percy-priest-lake; tn-middle-duck-elk → buffalo-river, tims-ford-lake;
-  tn-middle-caney-fork → center-hill-lake; tn-upper-cumberland → dale-hollow-lake;
-  tn-east-clinch → norris-lake; tn-east-holston → south-holston-lake;
-  tn-se-hiwassee → watts-bar-lake, chickamauga-lake, fort-loudoun-lake;
-  tn-east-pigeon-frenchbroad → holston-river, cherokee-lake, douglas-lake.
-- [x] `pnpm --filter @trout/content validate` green (128 streams, 87 warnings —
-  all "documented ungauged water"); `@trout/content test` 11/11.
-- [x] Fixtures regenerated (`@trout/content build` + `@trout/web
-  fixtures:generate`): contract-valid, 105 fixture streams unchanged. Catalog-only
-  stubs intentionally do NOT enter fixtures — the generator sources fixture
-  streams from `rivers.geojson` and its own note says catalog-without-geometry
-  entries must not ship searchable-but-invisible (see `generate-fixtures.mjs`
-  holston-river note). Only timestamp-driven fixture files drifted.
-- [x] `@trout/web` typecheck / test (88/88) / build + size budget green.
-
-## Notes / decisions
-
-- **Gauged-ratio floor lowered 0.35 → 0.30** (`content.test.ts`, own commit):
-  23 honest `gaugeIds: []` stubs take the ratio 41/105 = 0.39 → 41/128 = 0.32.
-  Same precedent as the earlier 0.4 → 0.35 move when the West TN ponds joined;
-  gauges are never guessed, so the floor yields. Documented in-test.
-- Ambiguous region calls, nearest-region rationale:
-  `tennessee-river` → tn-west (spans the state; inventory anchor sits in the
-  West TN Kentucky Lake corridor); `lake-barkley`/`cumberland-river` →
-  tn-middle-nashville (Stewart/Montgomery/Davidson corridor; matches
-  red-river-clarksville precedent); `holston-river`/`cherokee-lake` →
-  tn-east-pigeon-frenchbroad (main-stem corridor Hawkins→Knox; the
-  tn-east-holston region is named for the upper South Fork Holston reservoirs,
-  which south-holston-lake joins instead); `watts-bar-lake`/`fort-loudoun-lake`
-  → tn-se-hiwassee (Hiwassee mouth / Tellico shore).
-- `officialSources` = the standard TWRA trout/stockings + regulations pair on
-  every stub; no extra source lines because no inventory row cites a URL
-  (the reference document is a JPG, not citable).
-- Skips: **none** — all 23 rows authored, no documented skips needed.
-
----
-
 # Integrated lane progress
 
-Per-lane progress notes from merged lanes (GEO, SPECIES, TOPO). See COORDINATION.md in trout-backend for the full picture.
+Per-lane progress notes from merged lanes (GEO, SPECIES, TOPO, CONTINUITY, CATALOG). See COORDINATION.md in trout-backend.
 
 
-# TOPO lane — running status (B14)
+Base commit for CONTINUITY lane: db2555b (GEO lane final HEAD; `git log --oneline -3`
+recorded at lane start: db2555b geo(audit): final lane status / 8c3c9b4 / a6ecdd4).
+Base commit for GEO lane: 9182429ac67a514a609bb7b0554192dabd985e8e (trout-backend@9182429).
 
-Base: trout-backend@9182429 (`9182429ac67a514a609bb7b0554192dabd985e8e`).
-Scope: B14 at the asset layer — transparent shadow-only hillshade + contour
-clip to the real TN boundary (+small buffer). Only
-`apps/web/public/atlas/topo/**`, `apps/web/scripts/build-topo.mjs`,
-`validate-topo.mjs`, `docs/topo-sources.md`, this file. No UI files touched
-(`mapStyle.ts` / TennesseeMap masks stay until the integration lane swaps).
+## CONTINUITY lane — Final status: DONE (2026-09-04)
 
-## Status log
+- [done] Setup: node_modules present from GEO lane; base HEAD db2555b recorded.
+- [done] `apps/web/scripts/audit-river-continuity.mjs` (new): reproduces the chunk
+  counting (endpoint-to-endpoint haversine, 1 km stitch), emits the per-stream
+  report to docs/CONTINUITY-AUDIT.md, exits non-zero on unexpected multi-chunk
+  line rivers. Run FIRST: baseline committed as docs/CONTINUITY-AUDIT.md with the
+  before column (a9322ae) — 27 of 92 line rivers multi-chunk, matching the
+  user-verified total (elk measures 9 vs the report's 7 under the stricter
+  endpoint haversine; all other confirmed counts reproduce exactly).
+- [done] 18 new per-stream NHDPlus HR corridor fetch targets
+  (fetch-nhd-targets.mjs: harpeth, collins, clear-fork, sulfur-fork, emory,
+  hurricane-houston, sinking-wilson, daddys, efork-shoal, indian-claiborne,
+  laurel-johnson, new-river-scott, n-chickamauga, obed, sequatchie, fletchers,
+  horse-greene + name-less fbb-braid) — all fetched 2026-09-04 with retry/backoff;
+  no outstanding 504s.
+- [done] NHD takes for the new files plus previously fetched-but-untapped
+  coverage: powell "Powell River", byrd-creek "Byrd Creek", "Piney River" (lower
+  Piney main stem), "Sulphur Fork Creek" + "Sulphur Fork Red River".
+- [done] Continuity-aware source selection in merge-rivers.mjs: per stream pick
+  the most continuous REAL source set (TIGER+NHD blend / undeduplicated full
+  union / NHD-only / TIGER-only), switching only for a strictly lower chunk
+  count while still covering the base extent (0.05 deg/side) — logged as
+  `sel:...` in the feature source tag.
+- [done] watauga-river reach gate widened (maxLon -82.125 -> -82.11, provenance
+  in atlas-reach-gates.mjs): old edge rejected the two NHD Wilbur-dam-pool
+  connectors and split the tailwater.
+- [done] close-residual-gaps.mjs (new pipeline step, runs after merge-rivers):
+  joins chunk endpoints across residual gaps <= 1 km, logging every join to
+  .atlas-src/out/residual-joins.json. This run logged 0 joins — every residual
+  gap is > 1 km and was documented, never bridged (no straight-line fabrication).
+- [done] rivers.geojson regenerated through the full pipeline in order:
+  fetch-nhd-targets -> match-rivers-tiger -> merge-rivers -> close-residual-gaps
+  -> fix-caney-fork -> merge-west-tn-points (last) -> validate-atlas.
+- [done] Result: 16 of the 27 fragmented streams are fully continuous (1 chunk):
+  barren-fork-river, collins-river, daddys-creek, duck-river-tailwater, elk-river,
+  emory-river, fletchers-fork, french-broad-river, harpeth-river,
+  laurel-creek-johnson, new-river, north-chickamauga-creek, obed-river,
+  powell-river, sequatchie-river, watauga-river. The harpeth gap the user saw
+  (-87.04,36.08) is closed with the real NHD Harpeth River flowline (217 parts).
+- [done] 10 streams keep 2-3 chunks, each probe-verified un-fillable from public
+  sources (>1 km holes, no NHD reach, no TIGER segment; corridor chain tests
+  documented in docs/CONTINUITY-AUDIT.md) and allowlisted LEFT-OPEN:
+  clear-fork, horse-creek-greene, sinking-creek-wilson, east-fork-shoal-creek,
+  hurricane-creek, indian-creek-claiborne, mill-creek-overton, piney-river-rhea,
+  richardson-byrd-creek, sulfur-fork-creek. Each still gained substantial real
+  geometry (e.g. hurricane 10 -> 115 parts, sulfur-fork 10 -> 85, clear-fork
+  15 -> 92).
+- [done] cane-creek stays allowlisted DELIBERATE (docs/GEO-AUDIT.md): one catalog
+  id covering two same-named Cane Creeks; gained NHD Hickman-band water (33 -> 60
+  parts, 4 -> 3 chunks = one per county water).
+- [done] 13 twra-winter-ponds Point anchors verified byte-identical through the
+  full pipeline (snapshot diff before/after).
+- [done] Verify on the final tree: audit-river-continuity PASS (0 unexpected
+  multi-chunk streams), validate-atlas PASS (105 features), @trout/web typecheck
+  PASS, test 74/74, build + size budget OK (5.57 MB / 25 MB).
 
-- [x] Setup: `pnpm install`, `@trout/contracts build`, `@trout/ui build` — green.
-- [x] DEM cache staged: `apps/web/.atlas-src/dem/` was empty in the fresh clone
-  (git-ignored). Copied the 30 staged 1" TIFFs (1.60 GB) **read-only** out of
-  `C:\Users\Benjamin\Projects\trout` (same canonical USGS 3DEP set; source
-  checkout untouched). No network fetch needed.
-- [x] Baseline ("before") sizes recorded from committed assets:
-  band0 4,198,230 B · band1 3,012,742 B · band2 5,143,434 B (bands
-  12,354,406 B ≈ 11.78 MiB) · hillshade 5,514,538 B / 767 tiles ·
-  topo total 17,869,380 B ≈ 17.04 MiB.
-- [x] Boundary check: `public/atlas/tn-boundary.geojson` = 1 feature, Polygon,
-  single closed ring of 1,689 pts, bbox (−90.30971, 34.98297)–(−81.64690,
-  36.67812). Clip-rect edges sit up to ~20 km outside it (east: −81.45 vs
-  −81.647) — that rectangle is what rendered as the z8–9 contour border.
-- [x] **No new npm dependencies.** Implemented as a raster pipeline in
-  build-topo.mjs: scanline even-odd fill of the boundary ring + separable
-  morphological dilation (nominal 3 km; rectangular metric ⇒ ≈4.2 km diagonal)
-  → outside cells forced to NoData before anything is derived. Contour rings
-  get sustained (≥10-vertex) edge-hugging runs split off; only interior arcs
-  are kept, so no boundary-tracing segments survive.
-- [x] Hillshade regenerated: RGBA **lossless** WebP, black RGB, alpha =
-  `235 · s^0.8` where `s` is shadow depth below flat-ground shade (180/255,
-  ±2 dead zone); neutral/lit/outside → fully transparent. Same tile schema,
-  naming, zooms 7–11, azimuth 315°/altitude 45° math.
-- [x] Bug caught by standalone logic tests before the asset rebuild: the
-  dilation window was backward-only (buffer would shift west). Fixed to a
-  centered window (`bw[c] ∪ bw[c+rx]`).
-- [x] First rebuild also exposed lossy-WebP dequantization bleeding RGB=1 into
-  fully transparent pixels (validator's strict zero-RGB decode caught it).
-  Switched tiles to lossless WebP — size-neutral here (constant black +
-  smooth alpha), and the black-RGB contract now holds exactly.
-- [x] Rebuild results (deterministic; 30/30 DEM tiles): bands 4.01 + 2.94 +
-  4.71 MiB = **11.67 MiB** (−0.9% vs before; escalation landed FINER: band0
-  RDP 0.00157°, band1 0.00407°, band2 0.00581°); 1,015,240 boundary-tracing
-  vertices split off, 810 edge rings dropped. Hillshade **12.83 MiB / 531
-  tiles** (+144% bytes = the alpha plane; −236 tiles = −30.8%, masked
-  neighborhoods never written). **Total 24.50 MiB** (+43.8%), 21% of the
-  60 MB hillshade target; topo stays runtime-cached, outside the budget gate.
-- [x] Containment verified: all 579,822 contour coords within TN bbox + 4 km;
-  max measured reach outside the state ring 4,156 m (= buffer diagonal); old
-  rect edges (−90.6/−81.45/36.75) carry zero contour geometry.
-- [x] `node apps/web/scripts/validate-topo.mjs` → **PASS** (531/531 tiles
-  `hasAlpha:true`; per-zoom decode spot-checks black-RGB + real alpha;
-  manifest pins `encoding:"shadow-alpha"`, `maxAlpha:235`, `lossless:true`,
-  `mask:{tn-boundary,3000}`).
-- [x] sharp metadata spot-check: 256×256 webp `hasAlpha:true`, channels 4,
-  zero non-black pixels, e.g. hillshade/8/65/100.webp, 10/256/403.webp,
-  11/511/808.webp. (B14's evidence tile 9/139/201.webp is intentionally gone —
-  outside the masked state neighborhood now.)
-- [x] `pnpm --filter @trout/web build` — green (580 modules, 5.25s); dist
-  ships `atlas/topo/` (25.69 MB raw), size-budget OK: dist 4.97 MB vs 25 MB
-  gate, topo excluded/runtime-cached as designed.
-- [x] docs/topo-sources.md updated: B14 section (clip method + buffer, alpha
-  curve, provenance), new actuals, before/after byte table.
+## Commits (CONTINUITY lane, in order)
 
-## Notes / decisions
+- a9322ae continuity(audit): chunk-count audit script + before baseline (27 multi-chunk line rivers)
+- f4cdcf2 continuity(fix): pipeline — 18 NHD corridor fetch targets, takes for untapped coverage, continuity-aware source selection, watauga dam-pool gate widen, residual-gap joiner
+- 3ce644a continuity(fix): regenerate rivers.geojson — 16 more fragmented streams read as one continuous water from real NHD/TIGER reaches
+- 67b1df5 continuity(audit): allowlist documented deliberate + left-open streams; final report 0 unexpected multi-chunk (16 fixed, 10 documented source gaps)
 
-- Buffer chosen: **3 km** (task allowed ~2–5 km) — wide enough that genuine
-  contours near the state line survive the gap/split rules, far short of the
-  old acquisition rectangle edges.
-- Bands got *finer* RDP tolerances than pre-B14 (clip removed ~29% of the
-  grid, easing the 12 MB pressure) → smoother contours at essentially equal
-  total band size.
-- Hillshade byte growth is the alpha plane itself; client keeps relief
-  strength control via layer opacity (20/255 alpha headroom left at the
-  deepest shadows).
-- UI files untouched — Codex's masking layers stay until the integration lane
-  swaps assets and removes masks.
+## Coordinator hand-off notes
+
+- docs/waterbody-inventory.json is not in this repo (other lanes own it); the
+  duck/elk pairs it lists as 'fragmented' verify as 1 chunk each in the repaired
+  output (duck-river-tailwater 3 -> 1, duck-river-lower 1, elk-river 9 -> 1,
+  elk-river-lower 1) — those rows can be marked done against
+  docs/CONTINUITY-AUDIT.md's before/after table without redoing them.
+- rivers.geojson grew ~584 KB -> ~636 KB (real NHD reaches, compact JSON); size budget green.
+
+## GEO lane progress (previous lane, preserved below)
+
+## Final status: DONE
+
+- [done] Setup: pnpm install, @trout/contracts build, @trout/ui build — green (no network retry needed).
+- [done] Context: BACKEND-ISSUES.md B13, COORDINATION.md, docs/atlas-sources.md, pipeline scripts.
+- [done] Audit of all 105 rivers.geojson features (92 catalog streams + 13 tn-west point anchors) vs catalog, gauge anchors, TIGER 2024 and NHDPlus HR — verdict table in docs/GEO-AUDIT.md.
+- [done] Census TIGER/Line 2024 (95 counties LINEARWATER+AREAWATER, 183 MB) + USGS NHDPlus HR (26 targets) + USGS gauge coordinates (51 sites, NAD83, 2026-09-04) fetched; all public domain.
+- [done] Pipeline fixes: atlas-reach-gates.mjs (new, provenance-cited reach windows), fetch-nhd-targets.mjs (9 new targets, envelope fixes incl. 504 workaround), match-rivers-tiger.mjs (clinch window, strict counties, gates), merge-rivers.mjs (NHD takes for 16 streams, TN-boundary vertex test, gates on NHD+AREAWATER), validate-atlas.mjs (accept twra-winter-ponds Points — baseline validator FAILED on them).
+- [done] rivers.geojson regenerated through the full pipeline (match -> merge -> fix-caney-fork -> merge-west-tn-points); validate-atlas PASSES; 26 of 105 features changed, each an intended correction or a verified data-refresh delta; zero regressions.
+- [done] streams-geo.json rebuilt: 41 anchors, one per gauge-monitored stream, pinned to published USGS monitoring-location coordinates; dead keys removed; four provable offsets corrected.
+- [done] Verify: validate-atlas PASS; @trout/web typecheck, test (74/74), build + size budget — all green.
+- [done] docs/GEO-AUDIT.md + docs/atlas-sources.md pipeline-order fix (fix-caney-fork.mjs was undocumented).
+
+## Commits (GEO lane, in order)
+
+- a6de74f geo(audit): lane progress notes with baseline evidence
+- 38df0e8 geo(fix): validate-atlas accepts twra-winter-ponds Point anchors
+- f6fe001 geo(fix): pipeline reach gates + NHD takes for fragment/duplicate streams
+- 2d3f48d geo(fix): regenerate rivers.geojson — verified reaches for 26 streams
+- 6f6f4e6 geo(fix): streams-geo.json anchors rebuilt from USGS gauge locations
+- a6ecdd4 geo(audit): GEO-AUDIT per-stream verdict table + pipeline docs
+- 8c3c9b4 geo(fix): pipeline refinements used by the regenerated atlas (stones/ocoee gates, elk/duck takes, TN-boundary vertex test)
+- db2555b geo(audit): final lane status
+
+## Disclosed workarounds / upstream findings (GEO lane)
+
+- `pnpm --filter @trout/content build` FAILS at base: da80558 added region `tn-west` without `hatch/tn/tn-west.yaml`. Built the pack once with a temporary untracked shim hatch file, deleted immediately after; `git status` confirms no tracked packages/ change. Content lane must add the missing hatch chart.
+- apps/web/public/v1/streams.json is stale (92 entries, missing the 13 tn-west waters) — serving lane.
+- Catalog gauge 03596000 ("Duck River below Manchester") for duck-river-tailwater sits above Normandy Dam — content lane.
+- apps/web/scripts/fix-caney-fork.mjs was missing from docs/atlas-sources.md — fixed here.
+- stones-river: the baseline 3-part reach proved complete (dam-to-mouth tailwater); the new gate prevents Percy Priest Lake connector paths from joining it. Net geometry unchanged.

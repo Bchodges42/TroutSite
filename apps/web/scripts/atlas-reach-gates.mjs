@@ -41,8 +41,8 @@ export const REACH_GATE = {
     minLon: -82.62, maxLon: -82.5, minLat: 34.9, maxLat: 36.75,
   },
   'watauga-river': {
-    why: 'Wilbur tailwater: below Wilbur Dam (USGS 03484000 lon -82.1296); excludes the Watauga Lake arm (the stray Johnson Co TIGER segment at lon -81.93)',
-    minLon: -90, maxLon: -82.125, minLat: 34.9, maxLat: 36.75,
+    why: 'Wilbur tailwater: below Wilbur Dam (USGS 03484000 lon -82.1296); excludes the Watauga Lake arm (the stray Johnson Co TIGER segment at lon -81.93). CONTINUITY lane 2026-09-04: maxLon widened -82.125 -> -82.11 — the old edge rejected the two NHDPlus HR 55800 dam-pool connectors (bboxes -82.1268..-82.1168 and -82.1264..-82.1198 at lat ~36.33-36.34) that carry the flowline across the dam pool, which split the tailwater into 2 chunks. The excluded far lake arm (lon < -82.10) stays out.',
+    minLon: -90, maxLon: -82.11, minLat: 34.9, maxLat: 36.75,
   },
   'duck-river-tailwater': {
     why: 'Normandy tailwater: between Normandy Dam (TIGER AREAWATER Normandy Lk west edge lon -86.2482) and the Shelbyville gauges (USGS 03597860/03598000 lon -86.4626/-86.4992)',
