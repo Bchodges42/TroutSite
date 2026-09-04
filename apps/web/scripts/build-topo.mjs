@@ -8,12 +8,27 @@
 //   contours-band0.geojson      100 m intervals (statewide zooms)
 //   contours-band1.geojson       50 m intervals
 //   contours-band2.geojson       20 m intervals (client styles gate to high zoom)
-//   hillshade/{z}/{x}/{y}.webp   256×256 grayscale analytic shade, z7–11
+//   hillshade/{z}/{x}/{y}.webp   256×256 RGBA shadow-only shade, z7–11
 //   manifest.json                pinned contract (see scripts/validate-topo.mjs)
+//
+// B14 ASSET CONTRACT (2026-09 rebuild):
+// - Contours are clipped to the real Tennessee boundary
+//   (public/atlas/tn-boundary.geojson) dilated by ~3 km — no contour
+//   geometry reaches the old rectangular DEM acquisition extents, so no
+//   state-border rectangle renders at z8–9.
+// - Hillshade tiles are TRANSPARENT SHADOW-ONLY RGBA WebP (lossless): RGB is
+//   black and alpha ramps with shadow depth only (0 where illumination is
+//   neutral or lit). Relief therefore blends onto a dark ground with no
+//   visible tile footprint, and tiles outside the masked state neighborhood
+//   are never written.
 //
 // RULES this builder follows (do not regress):
 // - TN clip [-90.6, 34.98, -81.45, 36.75] (lon/lat), the same frozen constant
 //   as validate-atlas.mjs / validate-topo.mjs. No output coordinate leaves it.
+//   On top of the clip, a state mask (TN boundary + ~3 km dilation, B14) is
+//   applied before anything is generated: cells outside it are forced to
+//   NoData, so neither contours nor shading can extend along the DEM
+//   acquisition rectangle into neighboring states.
 // - The 1" source is aggregated 2×2 (mean of the ≤4 overlapping source pixels,
 //   ignoring NoData pixels) into a ~60 m working grid — downsampling for
 //   rendering at the max supported zoom z11 (~61 m/px at TN latitude), NOT
@@ -23,16 +38,19 @@
 // - NoData (sentinel -32768, always below every contour threshold) reads as
 //   "outside" to d3-contour, so gaps stay gaps. Contour rings hugging a NoData
 //   edge for ≥85% of their vertices are closure artifacts around the gap, not
-//   terrain — dropped.
+//   terrain — dropped. Surviving rings get their sustained (≥ MASK_RUN_MIN
+//   vertex) edge-hugging runs split off and only the interior arcs are kept:
+//   that is what removes the clip-boundary tracing the old rectangular
+//   acquisition edges came from.
 // - Grid cells are rectangular in degrees (2" lat ≈ 61.8 m, 2" lon ≈
 //   61.8·cos(lat) m): gradients and hillshade use per-axis meter spacing with
 //   per-row cos(lat), so shading is not north–south stretched.
 // - Hillshade tile coverage rule: a candidate tile is written only when ≥90%
-//   of its pixels are inside the mosaic; kept tiles fill missing pixels with
-//   mid-gray 127 (flat shade — invisible at the client's ~0.35 opacity).
-//   Slivers below 90% are skipped entirely so the ground color shows through
-//   instead of a hard edge. Tiles with zero mosaic intersection are never
-//   written.
+//   of its pixels are inside the masked mosaic AND at least one pixel carries
+//   shadow signal. Missing pixels stay fully transparent (no gray fill), so
+//   the ground color shows through everywhere the DEM has no data. Slivers
+//   below 90% are skipped entirely. Tiles with zero masked-mosaic
+//   intersection are never written.
 // - manifest.bytes = contour band bytes + hillshade tile bytes (exactly the
 //   sum validate-topo.mjs recomputes). Coordinates are serialized at exactly
 //   5 decimal places (the validator spot-checks precision). Band features
@@ -114,10 +132,20 @@ const HILLSHADE_TARGET_BYTES = 60 * 1024 * 1024;
 const Z_MIN = 7;
 const Z_MAX = 11;
 const TILE_PX = 256;
-const HILL_COVERAGE_MIN = 0.9; // coverage rule: keep tiles ≥90% inside the mosaic
-const HILL_FILL = 127; // mid-gray flat fill for the missing fraction of kept tiles
-const HILL_QUALITY = 75;
+const HILL_COVERAGE_MIN = 0.9; // coverage rule: keep tiles ≥90% inside the masked mosaic
 const ENCODE_CONCURRENCY = 8;
+
+// B14 state clip: real boundary + raster dilation, applied as NoData.
+const BOUNDARY_FILE = join(WEB, 'public', 'atlas', 'tn-boundary.geojson');
+const MASK_BUFFER_M = 3000; // state-ring dilation (task allows ~2–5 km)
+
+// B14 shadow-only alpha encoding. Flat-ground illumination at az 315°/alt 45°
+// is LU = √2/2 ≈ shade 180/255; alpha ramps from 0 at neutral (± dead zone) to
+// HILL_MAX_ALPHA at the deepest shadow (headroom left for client opacity).
+const FLAT_255 = Math.round(Math.SQRT1_2 * 255); // 180
+const HILL_DEADZONE_255 = 2; // |shade − flat| ≤ this reads as neutral → alpha 0
+const HILL_MAX_ALPHA = 235;
+const HILL_GAMMA = 0.8; // shadow→alpha curve; keeps midtones subtle
 
 // Expected fetch grid (informational — discovery reads whatever *.tif is on
 // disk). NOTE: staged 1" tiles are named by their NORTH edge — n{X} covers
@@ -369,6 +397,129 @@ async function ingestProjected(img, meta, values, bbox) {
 }
 
 // ---------------------------------------------------------------------------
+// Stage 2.5 — state mask: force everything outside TN (+buffer) to NoData
+// (B14). The DEM acquisition rectangle runs up to ~20 km past the real state
+// line; masking here means neither contours nor shading can ever reach the
+// rectangle edges again, without adding a line-clipping dependency.
+// ---------------------------------------------------------------------------
+
+function loadBoundaryRing() {
+  if (!existsSync(BOUNDARY_FILE)) throw new Error(`state boundary not found: ${BOUNDARY_FILE}`);
+  const g = JSON.parse(readFileSync(BOUNDARY_FILE, 'utf8'));
+  const geom = g && Array.isArray(g.features) && g.features[0] && g.features[0].geometry;
+  if (!geom || geom.type !== 'Polygon' || !Array.isArray(geom.coordinates) || geom.coordinates.length !== 1) {
+    throw new Error('tn-boundary.geojson: expected a single-ring Polygon feature');
+  }
+  return geom.coordinates[0];
+}
+
+// Scanline even-odd fill at working-grid resolution (cell centers tested).
+function rasterizeRing(ring) {
+  const mask = new Uint8Array(W * H);
+  const edges = [];
+  for (let i = 0; i < ring.length - 1; i++) edges.push([ring[i], ring[i + 1]]);
+  const first = ring[0];
+  const last = ring[ring.length - 1];
+  if (first[0] !== last[0] || first[1] !== last[1]) edges.push([last, first]);
+  const xs = [];
+  for (let r = 0; r < H; r++) {
+    const lat = north - (r + 0.5) * CELL_DEG;
+    xs.length = 0;
+    for (const [a, b] of edges) {
+      const y1 = a[1];
+      const y2 = b[1];
+      if ((y1 <= lat && y2 > lat) || (y2 <= lat && y1 > lat)) {
+        xs.push(a[0] + ((lat - y1) / (y2 - y1)) * (b[0] - a[0]));
+      }
+    }
+    if (xs.length < 2) continue;
+    xs.sort((p, q) => p - q);
+    const rowBase = r * W;
+    for (let k = 0; k + 1 < xs.length; k += 2) {
+      const c0 = Math.max(0, Math.ceil((xs[k] - west) / CELL_DEG - 0.5));
+      const c1 = Math.min(W - 1, Math.floor((xs[k + 1] - west) / CELL_DEG - 0.5));
+      for (let c = c0; c <= c1; c++) mask[rowBase + c] = 1;
+    }
+  }
+  return mask;
+}
+
+// Separable morphological dilation (per-row horizontal radius from the local
+// meters-per-cell, then a fixed vertical radius) — a raster stand-in for
+// polygon buffering that keeps the "no new dependencies" rule. The metric is
+// slightly square-ish at the diagonals; the buffer is approximate by design.
+function dilateMask(mask, bufferM) {
+  const ry = Math.max(1, Math.round(bufferM / CELL_LAT_M));
+  const tmp = new Uint8Array(W * H);
+  const deque = new Int32Array(W);
+  const bw = new Uint8Array(W); // backward window max: bw[c] = max(mask[c−rx..c])
+  for (let r = 0; r < H; r++) {
+    const lat = north - (r + 0.5) * CELL_DEG;
+    const rx = Math.max(1, Math.round(bufferM / (METERS_PER_DEG * CELL_DEG * Math.cos(lat * DEG))));
+    const rowBase = r * W;
+    let head = 0;
+    let tail = 0;
+    for (let c = 0; c < W; c++) {
+      while (tail > head && mask[rowBase + deque[tail - 1]] <= mask[rowBase + c]) tail--;
+      deque[tail++] = c;
+      while (deque[head] < c - rx) head++;
+      bw[c] = mask[rowBase + deque[head]];
+    }
+    // Centered window [c−rx, c+rx] = bw[c] ∪ bw[c+rx].
+    for (let c = 0; c < W; c++) {
+      if (bw[c] || (c + rx < W && bw[c + rx])) tmp[rowBase + c] = 1;
+    }
+  }
+  const out = new Uint8Array(W * H);
+  for (let c = 0; c < W; c++) {
+    let run = 0;
+    for (let r = 0; r < H + ry; r++) {
+      run += r < H ? tmp[r * W + c] : 0;
+      if (r >= 2 * ry + 1) run -= tmp[(r - 2 * ry - 1) * W + c];
+      const ro = r - ry;
+      if (ro >= 0 && run > 0) out[ro * W + c] = 1;
+    }
+  }
+  return out;
+}
+
+// Applies the mask to `values` (outside ⇒ NODATA), recomputes the data bbox
+// from the surviving cells, and returns a small stats object.
+function applyStateMask(values, bbox) {
+  const ring = loadBoundaryRing();
+  const mask = dilateMask(rasterizeRing(ring), MASK_BUFFER_M);
+  let inside = 0;
+  let clipped = 0;
+  for (let i = 0; i < W * H; i++) {
+    if (!mask[i]) {
+      if (values[i] !== NODATA) {
+        values[i] = NODATA;
+        clipped++;
+      }
+    } else {
+      inside++;
+    }
+  }
+  bbox.c0 = W;
+  bbox.c1 = -1;
+  bbox.r0 = H;
+  bbox.r1 = -1;
+  for (let r = 0; r < H; r++) {
+    const rowBase = r * W;
+    for (let c = 0; c < W; c++) {
+      if (values[rowBase + c] !== NODATA) {
+        if (c < bbox.c0) bbox.c0 = c;
+        if (c > bbox.c1) bbox.c1 = c;
+        if (r < bbox.r0) bbox.r0 = r;
+        if (r > bbox.r1) bbox.r1 = r;
+      }
+    }
+  }
+  if (bbox.c1 < 0) throw new Error('state mask left no data cells — check tn-boundary.geojson vs the clip');
+  return { inside, clipped };
+}
+
+// ---------------------------------------------------------------------------
 // Stage 3 — contours: d3-contour rings per band, gap-aware, RDP-simplified
 // ---------------------------------------------------------------------------
 
@@ -404,6 +555,69 @@ function isGapHugger(ring, nearGap) {
     tot++;
   }
   return tot > 0 && near / tot >= 0.85;
+}
+
+// A contour ring produced on a masked grid closes around the mask boundary:
+// part of it is real terrain, part just traces the clip edge — the source of
+// the rectangular acquisition borders Benjamin saw at z8–9 (and, before the
+// state mask, of the closure loops around DEM gaps). Sustained runs of
+// vertices sitting on the near-gap band are boundary tracing, not terrain:
+// split the ring there and keep only the interior arcs.
+//   returns null  — no sustained edge run: keep the ring closed as-is
+//   returns []    — the whole ring hugs the edge: drop it
+//   otherwise     — array of open arcs (grid coords) between the cut runs
+const MASK_RUN_MIN = 10; // consecutive edge vertices (~0.6 km) ⇒ boundary trace
+const ARC_MIN_PTS = 6; // interior crumbs shorter than this are dropped
+
+function splitAtMaskRuns(ringGrid, nearGap) {
+  const n = ringGrid.length;
+  const onEdge = new Uint8Array(n);
+  let totalEdge = 0;
+  for (let i = 0; i < n; i++) {
+    const gx = clampInt(Math.round(ringGrid[i][0]), 0, W - 1);
+    const gy = clampInt(Math.round(ringGrid[i][1]), 0, H - 1);
+    if (nearGap[gy * W + gx]) {
+      onEdge[i] = 1;
+      totalEdge++;
+    }
+  }
+  if (totalEdge === 0) return null;
+  if (totalEdge === n) return [];
+  // Mark the vertices of every sustained circular edge run. start0 is a
+  // non-edge index, so no run wraps the scan.
+  const cut = new Uint8Array(n);
+  const start0 = onEdge.indexOf(0);
+  let cutCount = 0;
+  let i = 0;
+  while (i < n) {
+    if (onEdge[(start0 + i) % n]) {
+      const from = i;
+      while (i < n && onEdge[(start0 + i) % n]) i++;
+      if (i - from >= MASK_RUN_MIN) {
+        for (let k = from; k < i; k++) cut[(start0 + k) % n] = 1;
+        cutCount += i - from;
+      }
+    } else {
+      i++;
+    }
+  }
+  if (cutCount === 0) return null; // only brief touches near gaps — real terrain
+  // Collect the circular runs of non-cut vertices: the interior arcs.
+  const arcs = [];
+  const startIdx = cut.indexOf(0);
+  if (startIdx < 0) return [];
+  let cur = [];
+  for (let k = 0; k < n; k++) {
+    const idx = (startIdx + k) % n;
+    if (cut[idx]) {
+      if (cur.length >= ARC_MIN_PTS) arcs.push(cur);
+      cur = [];
+    } else {
+      cur.push(ringGrid[idx]);
+    }
+  }
+  if (cur.length >= ARC_MIN_PTS) arcs.push(cur);
+  return { arcs, cutCount };
 }
 
 // Iterative RDP on one open segment [i0..i1]; marks kept vertices.
@@ -459,6 +673,23 @@ function simplifyRingDeg(ring, tol) {
   return out;
 }
 
+// Open-arc variant: RDP keep + 5 dp round + dedupe, no re-close.
+function simplifyArcDeg(arc, tol) {
+  const n = arc.length;
+  if (n < 2) return [];
+  const keep = new Uint8Array(n);
+  rdpSeg(arc, 0, n - 1, tol, keep);
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    if (!keep[i]) continue;
+    const x = r5(arc[i][0]);
+    const y = r5(arc[i][1]);
+    const last = out[out.length - 1];
+    if (!last || last[0] !== x || last[1] !== y) out.push([x, y]);
+  }
+  return out.length >= 2 ? out : [];
+}
+
 function thresholdsFor(iv, elevMin, elevMax) {
   const list = [];
   for (let T = Math.ceil(elevMin / iv) * iv; T <= elevMax; T += iv) list.push(T);
@@ -466,29 +697,49 @@ function thresholdsFor(iv, elevMin, elevMax) {
 }
 
 // Build one band's features: per threshold one Feature (MultiLineString, or
-// LineString when a single ring) carrying { H: threshold }.
+// LineString when a single piece) carrying { H: threshold }. Pieces are either
+// clean closed rings or open interior arcs left after the mask-edge splits.
 function buildBandFeats(values, nearGap, iv, elevMin, elevMax, tol) {
   const feats = [];
   let ringCount = 0;
   let rawPts = 0;
+  let cutVerts = 0;
+  let droppedRings = 0;
   for (const T of thresholdsFor(iv, elevMin, elevMax)) {
     const [mp] = contours().size([W, H]).thresholds([T])(values);
-    const ringsDeg = [];
+    const linesDeg = [];
     for (const poly of mp.coordinates) {
       for (const ringGrid of poly) {
-        if (isGapHugger(ringGrid, nearGap)) continue;
+        if (isGapHugger(ringGrid, nearGap)) {
+          droppedRings++;
+          continue;
+        }
         rawPts += ringGrid.length;
-        const ring = ringGrid.map(([gx, gy]) => [west + (gx + 0.5) * CELL_DEG, north - (gy + 0.5) * CELL_DEG]);
-        const s = simplifyRingDeg(ring, tol);
-        if (s.length >= 4) {
-          ringsDeg.push(s);
-          ringCount += s.length;
+        const split = splitAtMaskRuns(ringGrid, nearGap);
+        if (split === null) {
+          const ring = ringGrid.map(([gx, gy]) => [west + (gx + 0.5) * CELL_DEG, north - (gy + 0.5) * CELL_DEG]);
+          const s = simplifyRingDeg(ring, tol);
+          if (s.length >= 4) {
+            linesDeg.push(s);
+            ringCount += s.length;
+          }
+        } else {
+          cutVerts += split.cutCount;
+          if (split.arcs.length === 0) droppedRings++;
+          for (const arc of split.arcs) {
+            const deg = arc.map(([gx, gy]) => [west + (gx + 0.5) * CELL_DEG, north - (gy + 0.5) * CELL_DEG]);
+            const s = simplifyArcDeg(deg, tol);
+            if (s.length >= 2) {
+              linesDeg.push(s);
+              ringCount += s.length;
+            }
+          }
         }
       }
     }
-    if (ringsDeg.length) feats.push({ H: T, rings: ringsDeg });
+    if (linesDeg.length) feats.push({ H: T, lines: linesDeg });
   }
-  return { feats, ringCount, rawPts };
+  return { feats, ringCount, rawPts, cutVerts, droppedRings };
 }
 
 // Hand serializer: coordinates MUST hit exactly 5 decimal places (the
@@ -502,7 +753,7 @@ function serializeBand(feats) {
     const f = feats[i];
     if (i) s += ',';
     s += `{"type":"Feature","properties":{"H":${f.H}},"geometry":{"type":`;
-    s += f.rings.length === 1 ? `"LineString","coordinates":${ringJson(f.rings[0])}` : `"MultiLineString","coordinates":[${f.rings.map(ringJson).join(',')}]`;
+    s += f.lines.length === 1 ? `"LineString","coordinates":${ringJson(f.lines[0])}` : `"MultiLineString","coordinates":[${f.lines.map(ringJson).join(',')}]`;
     s += '}}';
   }
   return s + ']}';
@@ -536,7 +787,15 @@ function buildContours(values, nearGap, elevMin, elevMax) {
       const built = buildBandFeats(values, nearGap, spec.intervalM, elevMin, elevMax, tol);
       const w = writeBandFile(spec, built.feats);
       if (w.bytes <= BAND_SHARES[bi] || attempt >= 4 || tol >= TOL_MAX) {
-        stats[bi] = { spec, bytes: w.bytes, features: w.features, tol, escalated: tol !== RDP_TOL_BASE };
+        stats[bi] = {
+          spec,
+          bytes: w.bytes,
+          features: w.features,
+          tol,
+          escalated: tol !== RDP_TOL_BASE,
+          cutVerts: built.cutVerts,
+          droppedRings: built.droppedRings,
+        };
         console.log(`${w.features} features · ${fmtMB(w.bytes)}${w.bytes > BAND_SHARES[bi] ? ' (over share)' : ''} · ${since()}`);
         break;
       }
@@ -685,9 +944,9 @@ async function buildHillshade(mips, dataBbox) {
         jobs.push({ z, x, y, lon0, lon1, lat0, lat1 });
       }
     }
-    perZoom.set(z, { candidates, written: 0, skipped: 0, bytes: 0 });
+    perZoom.set(z, { candidates, written: 0, skipped: 0, blank: 0, bytes: 0 });
   }
-  console.log(`hillshade: ${jobs.length} candidate tiles (clip ∩ mosaic) across z${Z_MIN}–${Z_MAX}`);
+  console.log(`hillshade: ${jobs.length} candidate tiles (masked mosaic ∩ clip) across z${Z_MIN}–${Z_MAX}`);
 
   let ji = 0;
   const worker = async () => {
@@ -700,8 +959,12 @@ async function buildHillshade(mips, dataBbox) {
       const mpp = (156543.034 * Math.cos(latMid * DEG)) / n; // m/px at this latitude
       const L = clampInt(Math.round(Math.log2(mpp / CELL_LAT_M)), 0, 4);
       const mip = mips[L];
-      const buf = Buffer.alloc(TILE_PX * TILE_PX);
+      // RGBA: RGB stays black (0), alpha carries the shadow depth. Buffer is
+      // zero-initialized, so neutral/lit/outside pixels only ever need their
+      // alpha left at 0.
+      const buf = Buffer.alloc(TILE_PX * TILE_PX * 4);
       let invalid = 0;
+      let maxAlpha = 0;
       for (let py = 0; py < TILE_PX; py++) {
         const lat = mercLat((t.y + (py + 0.5) / TILE_PX) / n);
         const gy = (north - lat) / CELL_DEG - 0.5;
@@ -712,26 +975,42 @@ async function buildHillshade(mips, dataBbox) {
           const v = sampleMip(mip, gx / 2 ** L - 0.5, gy / 2 ** L - 0.5);
           const o = rowO + px;
           if (v < 0) {
-            invalid++;
+            invalid++; // outside the masked mosaic — stays fully transparent
             scratch[o] = 0;
-          } else {
-            buf[o] = v;
-            scratch[o] = 1;
+            continue;
+          }
+          scratch[o] = 1;
+          // Shadow-only curve: alpha 0 within ±HILL_DEADZONE_255 of the
+          // flat-ground shade (FLAT_255), ramping to HILL_MAX_ALPHA at the
+          // deepest shadow. Lit slopes (v > FLAT_255) stay transparent too.
+          let s = (FLAT_255 - HILL_DEADZONE_255 - v) / FLAT_255;
+          if (s > 0) {
+            if (s > 1) s = 1;
+            const a = Math.round(HILL_MAX_ALPHA * Math.pow(s, HILL_GAMMA));
+            if (a > 0) {
+              buf[o * 4 + 3] = a;
+              if (a > maxAlpha) maxAlpha = a;
+            }
           }
         }
       }
       const zs = perZoom.get(t.z);
       const coverage = 1 - invalid / (TILE_PX * TILE_PX);
-      if (coverage < HILL_COVERAGE_MIN) {
+      if (coverage < HILL_COVERAGE_MIN || maxAlpha === 0) {
         zs.skipped++;
-        continue; // edge sliver — client's ground color shows through instead
+        if (maxAlpha === 0) zs.blank++;
+        continue; // edge sliver or signal-free tile — ground shows through instead
       }
-      for (let o = 0; o < buf.length; o++) if (!scratch[o]) buf[o] = HILL_FILL;
       const dir = join(HILLSHADE_DIR, String(t.z), String(t.x));
       mkdirSync(dir, { recursive: true });
       const file = join(dir, `${t.y}.webp`);
-      await sharp(buf, { raw: { width: TILE_PX, height: TILE_PX, channels: 1 } })
-        .webp({ quality: HILL_QUALITY })
+      await sharp(buf, { raw: { width: TILE_PX, height: TILE_PX, channels: 4 } })
+        // Lossless: constant-black RGB + a smooth alpha ramp compress to about
+        // the same bytes as lossy at this content, and lossy dequantization
+        // was bleeding RGB=1 into fully transparent pixels — which would let
+        // an opaque black veil flash over the ground when a client ignores
+        // premultiplied alpha.
+        .webp({ lossless: true })
         .toFile(file);
       zs.written++;
       zs.bytes += statSync(file).size;
@@ -742,7 +1021,7 @@ async function buildHillshade(mips, dataBbox) {
   const stats = [];
   for (const [z, s] of [...perZoom.entries()].sort((a, b) => a[0] - b[0])) {
     stats.push({ z, ...s });
-    console.log(`  z${z}: ${s.written} written · ${s.skipped} skipped slivers (<${HILL_COVERAGE_MIN * 100}% covered) · ${fmtMB(s.bytes)} of ${s.candidates} candidates`);
+    console.log(`  z${z}: ${s.written} written · ${s.skipped} skipped (${s.blank} signal-free, rest slivers <${HILL_COVERAGE_MIN * 100}% covered) · ${fmtMB(s.bytes)} of ${s.candidates} candidates`);
   }
   return stats;
 }
@@ -765,6 +1044,13 @@ async function main() {
   // Stage 2: mosaic
   const mosaic = await buildMosaic(tiles);
   const { values, bbox, ingested } = mosaic;
+
+  // Stage 2.5: state mask (B14) — clip the grid to TN + ~3 km before anything
+  // is derived, so acquisition-extent edges can never be generated.
+  console.log(`state mask: rasterizing tn-boundary + ${(MASK_BUFFER_M / 1000).toFixed(0)} km dilation …`);
+  const maskStats = applyStateMask(values, bbox);
+  console.log(`state mask: ${(maskStats.inside / (W * H) * 100).toFixed(1)}% of the grid kept · ${maskStats.clipped} data cells masked to NoData · ${since()}`);
+
   let elevMin = Infinity;
   let elevMax = -Infinity;
   for (let i = 0; i < W * H; i++) {
@@ -806,6 +1092,16 @@ async function main() {
       maxZoom: Z_MAX,
       tiles: hillTiles,
       bytes: hillBytes,
+      // B14: transparent shadow-only RGBA tiles (black RGB, shadow-depth alpha).
+      encoding: 'shadow-alpha',
+      maxAlpha: HILL_MAX_ALPHA,
+      lossless: true,
+    },
+    // B14 provenance: contours + hillshade are clipped to the real state
+    // boundary dilated by bufferM (raster dilation on the working grid).
+    mask: {
+      source: 'public/atlas/tn-boundary.geojson',
+      bufferM: MASK_BUFFER_M,
     },
     minZoom: Z_MIN,
     maxZoom: Z_MAX,
@@ -815,7 +1111,10 @@ async function main() {
 
   // Final size table
   const total = bandBytes + hillBytes;
+  const cutVerts = bandStats.reduce((n, s) => n + (s.cutVerts || 0), 0);
+  const droppedRings = bandStats.reduce((n, s) => n + (s.droppedRings || 0), 0);
   console.log('\n──────── build-topo summary ────────');
+  console.log(`  state clip: TN boundary + ${(MASK_BUFFER_M / 1000).toFixed(0)} km · ${cutVerts} boundary-tracing vertices split off · ${droppedRings} edge-hugging rings dropped`);
   for (const [i, spec] of BANDS.entries()) {
     const s = bandStats[i];
     const tolNote = s.escalated ? ` · RDP ${s.tol.toFixed(5)}° (coarsened to fit)` : ` · RDP ${s.tol.toFixed(5)}°`;
@@ -823,9 +1122,9 @@ async function main() {
   }
   console.log(`  ${'bands total'.padEnd(24)} ${fmtMB(bandBytes).padStart(10)}  (target ≤ 12.00 MB${bandBytes > BAND_TARGET_BYTES ? ' — OVER' : ''})`);
   for (const s of hillStats) {
-    console.log(`  hillshade z${s.z}             ${fmtMB(s.bytes).padStart(10)}  ${String(s.written).padStart(5)} tiles    (${s.skipped} slivers skipped)`);
+    console.log(`  hillshade z${s.z}             ${fmtMB(s.bytes).padStart(10)}  ${String(s.written).padStart(5)} tiles    (${s.skipped} skipped: ${s.blank} signal-free, rest slivers)`);
   }
-  console.log(`  ${'hillshade total'.padEnd(24)} ${fmtMB(hillBytes).padStart(10)}  (target ≤ 60.00 MB${hillBytes > HILLSHADE_TARGET_BYTES ? ' — OVER' : ''}) · ${hillTiles} tiles`);
+  console.log(`  ${'hillshade total'.padEnd(24)} ${fmtMB(hillBytes).padStart(10)}  (target ≤ 60.00 MB${hillBytes > HILLSHADE_TARGET_BYTES ? ' — OVER' : ''}) · ${hillTiles} tiles · shadow-alpha RGBA`);
   console.log(`  ${'TOTAL'.padEnd(24)} ${fmtMB(total).padStart(10)}`);
   console.log(`absent DEM tiles: ${EXPECTED.length - ingested} of ${EXPECTED.length} (treated as NoData gaps)`);
   console.log(`done in ${since()}`);
