@@ -16,7 +16,12 @@ export const IsoDateTimeSchema = z
     'expected an ISO-8601 date-time string',
   );
 
-export const WaterbodyTypeSchema = z.enum(['river', 'creek', 'tailrace', 'spring']);
+/**
+ * 'lake'/'pond' cover the TWRA winter put-and-take program waters (small
+ * impoundments and park ponds, mostly West TN) — additive to the launch set,
+ * which was rivers/creeks/tailraces only.
+ */
+export const WaterbodyTypeSchema = z.enum(['river', 'creek', 'tailrace', 'spring', 'lake', 'pond']);
 export type WaterbodyType = z.infer<typeof WaterbodyTypeSchema>;
 
 export const RegionIdSchema = z.string().min(1);

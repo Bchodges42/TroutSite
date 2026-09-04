@@ -188,7 +188,7 @@ export function TennesseeMap({
     const handleClick = (e: maplibregl.MapMouseEvent) => {
       const feats = (map as unknown as { queryRenderedFeatures: (pt: unknown, opts: unknown) => Array<{ properties?: Record<string, unknown> }> }).queryRenderedFeatures(
         e.point,
-        { layers: ['rivers-hit', 'rivers-water', 'rivers-interior', 'rivers-casing'] },
+        { layers: ['rivers-point-hit', 'rivers-hit', 'rivers-water', 'rivers-interior', 'rivers-casing'] },
       );
       const f = feats.find((x) => typeof x.properties?.['id'] === 'string');
       const id = f?.properties?.['id'] as string | undefined;
@@ -200,7 +200,7 @@ export function TennesseeMap({
 
     let hoverId: string | null = null;
     const onMouseMove = (e: maplibregl.MapMouseEvent) => {
-      const feats = map.queryRenderedFeatures(e.point, { layers: ['rivers-hit', 'rivers-water'] }) as Array<{ properties?: Record<string, unknown> }>;
+      const feats = map.queryRenderedFeatures(e.point, { layers: ['rivers-point-hit', 'rivers-hit', 'rivers-water'] }) as Array<{ properties?: Record<string, unknown> }>;
       const found = (feats[0]?.properties?.['id'] as string | undefined) ?? null;
       // Species filter: hidden rivers get no hover highlight.
       const id = found && visibleIdsRef.current && !visibleIdsRef.current.has(found) ? null : found;

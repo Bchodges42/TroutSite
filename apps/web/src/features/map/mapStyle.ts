@@ -9,6 +9,9 @@ export type BasemapVariant = 'paper' | 'ink' | 'topo';
 // county-clip edges — instead of a river path). Legacy $type filters.
 const LINES_ONLY = ['==', '$type', 'LineString'] as unknown as FilterSpecification;
 const POLYS_ONLY = ['==', '$type', 'Polygon'] as unknown as FilterSpecification;
+// Point anchors (West TN put-and-take ponds — no NHD linear geometry exists
+// for them). In MapLibre $type, 'Point' also covers MultiPoint.
+const POINTS_ONLY = ['==', '$type', 'Point'] as unknown as FilterSpecification;
 
 /**
  * Self-hosted Field Notes Atlas StyleSpec.
@@ -308,6 +311,44 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': '#000', 'line-opacity': 0, 'line-width': 18 },
+      },
+      // Point anchors — put-and-take ponds rendered as circled markers keyed
+      // to the same condition feature-state colors as the river lines.
+      {
+        id: 'rivers-point',
+        type: 'circle',
+        source: 'rivers',
+        filter: POINTS_ONLY,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 5.6, 3.5, 8, 5.5],
+          'circle-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            '#D98232',
+            ['coalesce', ['feature-state', 'color'], ['get', 'color'], '#8B8A82'],
+          ],
+          'circle-stroke-color': '#000',
+          'circle-stroke-width': 1.2,
+          'circle-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            0.95,
+          ],
+          'circle-stroke-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            0.7,
+          ],
+        },
+      },
+      {
+        id: 'rivers-point-hit',
+        type: 'circle',
+        source: 'rivers',
+        filter: POINTS_ONLY,
+        paint: { 'circle-color': '#000', 'circle-opacity': 0, 'circle-radius': 16 },
       },
     ],
   };
