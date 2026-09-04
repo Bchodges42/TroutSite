@@ -3,26 +3,41 @@
 // Baked to static files — zero runtime requests. Public domain (USGS).
 // Run: node scripts/fetch-nhd-targets.mjs
 const only = new Set((process.argv[2] ?? '').split(',').filter(Boolean));
+// Envelopes cover the FULL Tennessee extent of each named water, including the
+// tailwater/confluence ends that earlier envelopes clipped (B13: the French
+// Broad envelope stopped short of the Holston confluence at Knoxville, the
+// Stones envelope short of the Cumberland mouth, the Clinch envelope cut the
+// Norris tailwater south of 35.9). Dam-gated sub-reaches (tailwaters) are
+// trimmed in merge-rivers.mjs REACH_GATE using USGS gauge / GNIS dam points.
 const TARGETS = [
   { key: 'white-oak', like: '%White Oak%', env: '-87.75,36.15,-87.3,36.5', streams: ['white-oak-creek'] },
-  { key: 'french-broad', like: '%French Broad%', env: '-83.6,35.5,-82.4,36.25', streams: ['french-broad-river'] },
+  { key: 'french-broad', like: '%French Broad%', env: '-83.95,35.5,-82.4,36.3', streams: ['french-broad-river'] },
   { key: 'hiwassee', like: '%Hiwassee%', env: '-85.1,34.9,-83.9,35.7', streams: ['hiwassee-river'] },
-  { key: 'obey', like: '%Obey%', env: '-85.5,36.2,-84.85,36.55', streams: ['obey-river'] },
+  { key: 'obey', like: '%Obey%', env: '-85.55,36.2,-85.05,36.62', streams: ['obey-river'] },
   { key: 'mill-overton', like: '%Mill Creek%', env: '-85.55,36.2,-85.0,36.52', streams: ['mill-creek-overton'] },
   { key: 'roan', like: '%Roan%', env: '-82.15,36.35,-81.8,36.68', streams: ['upper-roan-creek'] },
   { key: 'byrd-richardson', like: '%Richardson%', env: '-83.35,36.35,-82.95,36.62', streams: ['richardson-byrd-creek'] },
   { key: 'byrd-creek', like: 'Byrd Creek', env: '-83.35,36.35,-82.95,36.62', streams: ['richardson-byrd-creek'] },
   { key: 'nprong-barren', like: '%Barren%', env: '-86.05,35.6,-85.6,35.95', streams: ['north-prong-barren-fork', 'barren-fork-river'] },
-  { key: 'clinch', like: '%Clinch%', env: '-84.6,35.9,-82.0,36.7', streams: ['clinch-river'] },
-  { key: 'watauga', like: '%Watauga%', env: '-82.6,36.05,-81.9,36.55', streams: ['watauga-river'] },
+  // The wide -84.6..-82.0 Clinch envelope exceeded the service's processing
+  // window (HTTP 504, retried 2026-09-04); only water west of Norris Dam
+  // (lon -84.06, the gated tailwater) is consumed by merge-rivers.mjs, so the
+  // envelope covers just that reach.
+  { key: 'clinch', like: '%Clinch%', env: '-84.65,35.8,-84.0,36.4', streams: ['clinch-river'] },
+  { key: 'watauga', like: '%Watauga%', env: '-82.7,36.0,-81.85,36.6', streams: ['watauga-river'] },
   { key: 's-holston', like: '%Holston%', env: '-82.9,36.25,-81.8,36.7', streams: ['south-holston-river', 'boone-tailwater', 'ft-patrick-henry-tailwater'] },
   { key: 'caney-fork', like: '%Caney Fork%', env: '-86.0,35.55,-85.0,36.35', streams: ['caney-fork-river'] },
-  { key: 'nolichucky', like: '%Nolichucky%', env: '-83.25,35.9,-82.15,36.4', streams: ['nolichucky-river'] },
+  { key: 'nolichucky', like: '%Nolichucky%', env: '-83.35,35.85,-82.1,36.45', streams: ['nolichucky-river'] },
   { key: 'powell', like: '%Powell%', env: '-84.05,36.25,-82.95,36.7', streams: ['powell-river'] },
-  { key: 'stones', like: '%Stones%', env: '-86.7,35.65,-86.0,36.35', streams: ['stones-river', 'west-fork-stones-river', 'east-fork-stones-river'] },
+  { key: 'stones', like: '%Stones%', env: '-86.8,35.65,-86.0,36.3', streams: ['stones-river', 'west-fork-stones-river', 'east-fork-stones-river'] },
   { key: 's-cumberland', like: '%Cumberland%', env: '-85.05,36.35,-84.35,36.8', streams: ['south-fork-cumberland'] },
   { key: 'piney-rhea', like: '%Piney%', env: '-85.05,35.45,-84.55,35.9', streams: ['piney-river-rhea'] },
   { key: 'cane-hickman', like: 'Cane Creek', env: '-87.7,35.6,-87.2,36.0', streams: ['cane-creek'] },
+  { key: 'ocoee', like: '%Ocoee%', env: '-84.85,34.95,-84.3,35.35', streams: ['ocoee-river', 'parksville-tailwater'] },
+  { key: 'station-creek', like: 'Station Creek', env: '-83.7,36.4,-83.3,36.65', streams: ['station-creek'] },
+  { key: 'mossy-creek-jefferson', like: 'Mossy Creek', env: '-83.65,36.0,-83.3,36.3', streams: ['mossy-creek-jefferson'] },
+  { key: 'leconte-creek', like: '%onte Creek', env: '-83.7,35.6,-83.4,35.95', streams: ['leconte-creek'] },
+  { key: 'forge-creek-johnson', like: 'Forge Creek', env: '-82.1,36.35,-81.65,36.65', streams: ['forge-creek-johnson'] },
 ];
 
 const BASE = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/3/query';

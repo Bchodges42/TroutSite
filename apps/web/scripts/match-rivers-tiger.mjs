@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { open as openShapefile } from 'shapefile';
+import { REACH_GATE, gateKeeps } from './atlas-reach-gates.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const webDir = join(here, '..');
@@ -96,7 +97,11 @@ console.log(`named natural segments: ${segs.length}`);
 const REGION_WINDOW = {
   'tn-northeast-watauga': [-82.7, 35.9, -81.8, 36.7],
   'tn-east-holston': [-83.3, 36.1, -81.9, 36.7],
-  'tn-east-clinch': [-84.3, 36.0, -82.9, 36.7],
+  // B13: widened to include the Norris tailwater below the dam (Anderson /
+  // Knox / Roane, down to the Tennessee River confluence near Kingston at
+  // lat ~35.85). The old window (lat >= 36.0) covered only the upstream
+  // Clinch above Norris Lake and produced the one-segment fragment.
+  'tn-east-clinch': [-84.65, 35.8, -82.0, 36.7],
   'tn-east-pigeon-frenchbroad': [-83.7, 35.5, -82.7, 36.3],
   'tn-east-smokies': [-84.0, 35.4, -83.2, 35.9],
   'tn-se-hiwassee': [-85.1, 34.9, -84.2, 35.7],
@@ -130,6 +135,14 @@ const KNOWN_COUNTY = {
   'charles-creek': ['WARREN'],
   'cane-creek': ['BLEDSOE', 'VAN BUREN', 'HICKMAN', 'PERRY'],
   'east-fork-stones-river': ['RUTHERFORD', 'CANNON'],
+  // B13: full-county extents for rivers whose catalog reach spans several
+  // counties — without these the county filter admitted single stray
+  // fragments (e.g. the lone Johnson-County Watauga Lake segment).
+  'watauga-river': ['CARTER', 'SULLIVAN', 'WASHINGTON', 'JOHNSON'],
+  'nolichucky-river': ['UNICOI', 'WASHINGTON', 'GREENE', 'COCKE'],
+  'french-broad-river': ['COCKE', 'JEFFERSON', 'SEVIER', 'KNOX', 'GRAINGER'],
+  'clinch-river': ['CAMPBELL', 'CLAIBORNE', 'GRAINGER', 'UNION', 'ANDERSON', 'KNOX', 'ROANE'],
+  'station-creek': ['CLAIBORNE'],
 };
 const QUALIFIER = new Set(['EAST', 'WEST', 'NORTH', 'SOUTH', 'UPPER', 'LOWER', 'MIDDLE', 'LITTLE', 'BIG', 'OLD']);
 
@@ -210,6 +223,16 @@ for (const st of streams) {
     const inside = cands.filter((c) => boxesOverlap(c.bbox, win, 0.05));
     if (inside.length) { if (inside.length < cands.length) how += '+region'; cands = inside; }
     else how += '+region-miss';
+  }
+  // reach gate (B13): tailwater / catalog-bracketed reaches keep only source
+  // parts lying entirely inside the gated window (see atlas-reach-gates.mjs).
+  // Strictly applied — a gate that rejects every candidate yields an empty
+  // TIGER pool so NHD remains the sole geometry source for the reach.
+  const gate = REACH_GATE[st.id];
+  if (gate && cands.length) {
+    const kept = cands.filter((c) => gateKeeps(gate, c.bbox));
+    if (kept.length < cands.length) how += kept.length ? '+gate' : '+gate-all';
+    cands = kept;
   }
   results.push({ id: st.id, name: st.name, region: st.regionId, want, hint, how, parent: PARENT[st.id] ?? null, alias: ALIAS[st.id] ?? null, segs: cands });
 }

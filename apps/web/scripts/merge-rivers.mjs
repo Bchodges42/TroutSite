@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { open as openShape } from 'shapefile';
+import { REACH_GATE, gateKeeps } from './atlas-reach-gates.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const OUT = path.join(ROOT, '.atlas-src', 'out');
@@ -39,6 +40,11 @@ const tigerLines = new Map(); // id -> {parts, names:Set}
   }
 }
 // ---- NHD named reaches ----
+// B13 additions: the waters TIGER/Line names only sparsely (or not at all).
+// TIGER 2024 LINEARWATER carries a single named "Clinch Riv" segment (Hancock
+// Co., upstream of Norris Lake), one 7-point "South Fork Holston Riv" segment,
+// and no "Watauga Riv" outside Watauga Lake, so the NHDPlus HR flowline is the
+// primary (and for watauga-river the only) centerline source for these ids.
 const NHD = {
   'roan': { file: 'roan.geojson', take: { 'Roan Creek': ['upper-roan-creek'] } },
   'nprong-barren': { file: 'nprong-barren.geojson', take: { 'North Prong Barren Fork': ['north-prong-barren-fork'], 'Barren Fork': ['barren-fork-river'] } },
@@ -47,6 +53,19 @@ const NHD = {
   'stones': { file: 'stones.geojson', take: { 'East Fork Stones River': ['east-fork-stones-river'], 'West Fork Stones River': ['west-fork-stones-river'] } },
   'cane-hickman': { file: 'cane-hickman.geojson', take: { 'Cane Creek': ['cane-creek'] } },
   'piney-rhea': { file: 'piney-rhea.geojson', take: { 'Piney Creek': ['piney-river-rhea'] } },
+  'clinch': { file: 'clinch.geojson', take: { 'Clinch River': ['clinch-river'] } },
+  'watauga': { file: 'watauga.geojson', take: { 'Watauga River': ['watauga-river'] } },
+  's-holston': { file: 's-holston.geojson', take: { 'South Fork Holston River': ['south-holston-river', 'boone-tailwater', 'ft-patrick-henry-tailwater'] } },
+  'nolichucky': { file: 'nolichucky.geojson', take: { 'Nolichucky River': ['nolichucky-river'] } },
+  'french-broad': { file: 'french-broad.geojson', take: { 'French Broad River': ['french-broad-river'] } },
+  'hiwassee': { file: 'hiwassee.geojson', take: { 'Hiwassee River': ['hiwassee-river'] } },
+  'obey': { file: 'obey.geojson', take: { 'Obey River': ['obey-river'] } },
+  'stones-main': { file: 'stones.geojson', take: { 'Stones River': ['stones-river'] } },
+  'ocoee': { file: 'ocoee.geojson', take: { 'Ocoee River': ['ocoee-river', 'parksville-tailwater'] } },
+  'station-creek': { file: 'station-creek.geojson', take: { 'Station Creek': ['station-creek'] } },
+  'mossy-creek-jefferson': { file: 'mossy-creek-jefferson.geojson', take: { 'Mossy Creek': ['mossy-creek-jefferson'] } },
+  'leconte-creek': { file: 'leconte-creek.geojson', take: { 'LeConte Creek': ['leconte-creek'], 'Leconte Creek': ['leconte-creek'] } },
+  'forge-creek-johnson': { file: 'forge-creek-johnson.geojson', take: { 'Forge Creek': ['forge-creek-johnson'] } },
 };
 const nhdLines = new Map(); // streamId -> {parts, names:Set}
 for (const { file, take } of Object.values(NHD)) {
@@ -205,22 +224,38 @@ function cleanPolys(polys) {
 }
 const features = [];
 const summary = [];
+function partBbox(part) {
+  const b = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const [x, y] of part) {
+    b[0] = Math.min(b[0], x); b[1] = Math.min(b[1], y);
+    b[2] = Math.max(b[2], x); b[3] = Math.max(b[3], y);
+  }
+  return b;
+}
 for (const st of streams) {
   const id = st.id;
+  const gate = REACH_GATE[id] ?? null;
   const tigerParts = tigerLines.get(id)?.parts ?? [];
   const nhdParts = nhdLines.get(id)?.parts ?? [];
   const polys = areaPolys.get(id)?.polys ?? [];
   const ct = cleanLines(tigerParts);
   const cnRaw = cleanLines(nhdParts);
-  // Deduplicate NHD against TIGER (TIGER preferred; NHD fills gaps only).
-  const cn = dedupNhd(ct, cnRaw);
-  const cl = [...ct, ...cn];
-  const cp = cleanPolys(polys);
+  // Reach gates (B13): tailwater / catalog-bracketed reaches keep only source
+  // parts lying entirely inside the gated window (atlas-reach-gates.mjs).
+  // Applied to NHD flowline parts and AREAWATER polygons here; TIGER line
+  // parts were already gated at match time (belt-and-suspenders: gated again).
+  const gFilter = (parts) => (gate ? parts.filter((p) => gateKeeps(gate, partBbox(p))) : parts);
+  const ctG = gFilter(ct);
+  const cnRawG = gFilter(cnRaw);
+  const cn = dedupNhd(ctG, cnRawG);
+  const cl = [...ctG, ...cn];
+  const cp = gFilter(cleanPolys(polys));
   const s2 = [];
-  if (ct.length) s2.push('tiger-linear');
+  if (ctG.length) s2.push('tiger-linear');
   if (cn.length) s2.push('nhd-hr');
-  if (cnRaw.length - cn.length > 0) s2.push(`nhd-dedup-${cnRaw.length - cn.length}`);
+  if (cnRawG.length - cn.length > 0) s2.push(`nhd-dedup-${cnRawG.length - cn.length}`);
   if (cp.length) s2.push('tiger-area');
+  if (gate) s2.push('reach-gated');
   if (!cl.length && !cp.length) { summary.push(`${id}: UNRESOLVED`); continue; }
   // A GeoJSON feature has exactly one compatible geometry family. Prefer
   // centerlines when available; use AREAWATER polygons only as a fallback for
