@@ -36,7 +36,7 @@ import { fileURLToPath } from 'node:url';
 const webRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = resolve(webRoot, '../..');
 const SCOUT_DIR = join(webRoot, '.atlas-src', 'stillwater', 'scout');
-const OUT_DIR = join(webRoot, 'public', 'atlas', 'stillwater');
+const OUT_DIR = join(webRoot, '.atlas-src', 'stillwater', 'extract');
 const PONDS_JSON = join(repoRoot, 'packages', 'content', 'data', 'west-tn-ponds.json');
 const TN_BOUNDARY = join(webRoot, 'public', 'atlas', 'tn-boundary.geojson');
 
@@ -73,6 +73,10 @@ const TARGETS = [
   { id: 'edmund-orgill-lake', name: 'Edmund-Orgill Park Lake', env: [-89.863, 35.352, -89.803, 35.392], nameLike: '%Casper%', mao: 0.0002 },
   // Martin City Park pond: NHD polygon bbox contains the OSM pond center.
   { id: 'martin-city-pond', name: 'Martin City Pond', env: [-88.869, 36.300, -88.829, 36.320], pick: ['20000700143255'], mao: 0.00015 },
+  // TWRA "Paris City Park": NHD names this water Green Acres Lake (aka
+  // Williams Lake), the city-run public fishing lake ~850 m from the historic
+  // anchor; identity reasoning in docs/STILLWATER-COVERAGE.md.
+  { id: 'paris-city-park-lake', name: 'Paris City Park Lake', env: [-88.330, 36.295, -88.290, 36.325], pick: ['25000102170314'], mao: 0.00015 },
   // Valentine Regional Park pond: NHD polygon 80 m from the OSM pond center.
   { id: 'valentine-park-pond', name: 'Valentine Park Pond', env: [-89.821, 35.454, -89.781, 35.474], pick: ['20000700138219'], mao: 0.00015 },
   // Pickwick Lake (inventory missing-polygon): named NHD reservoir; envelope
@@ -90,7 +94,6 @@ const TARGETS = [
   { id: 'cameron-brown-lake', name: 'Cameron Brown Lake', env: [-89.792, 35.091, -89.752, 35.111], areaFloor: 0.002 },
   { id: 'yale-road-park-lake', name: 'Yale Road Park Lake', env: [-89.877, 35.207, -89.837, 35.227], areaFloor: 0.002 },
   { id: 'milan-city-pond', name: 'Milan City Pond', env: [-88.750, 35.912, -88.710, 35.932], areaFloor: 0.002 },
-  { id: 'paris-city-park-lake', name: 'Paris City Park Lake', env: [-88.370, 36.272, -88.250, 36.332], areaFloor: 0.002 },
   { id: 'covington-fbc-pond', name: 'Covington First Baptist Church Pond', env: [-89.709, 35.526, -89.589, 35.586], areaFloor: 0.001 },
   { id: 'union-city-reelfoot-pond', name: 'Union City Reelfoot Packing Site Pond', env: [-89.115, 36.396, -88.995, 36.456], areaFloor: 0.001 },
 ];
