@@ -36,6 +36,11 @@ export function AppShell() {
   const triggerRef = useRef<HTMLButtonElement>(null);
   if (isMap) rememberMapUrl('/' + location.search);
   const mapUrl = rememberedMapUrl();
+  const atlasParams = new URLSearchParams(mapUrl.split('?')[1]);
+  atlasParams.delete('river');
+  atlasParams.delete('tab');
+  atlasParams.set('atlas', '1');
+  const atlasUrl = '/?' + atlasParams.toString();
   const currentParams = new URLSearchParams(location.search);
   const contextParams =
     currentParams.has('river') || isMap ? currentParams : new URLSearchParams(mapUrl.split('?')[1]);
@@ -163,6 +168,10 @@ export function AppShell() {
               </button>
             </div>
             <nav aria-label="All pages">
+              <Link className="nav-link" to={atlasUrl} onClick={() => setMenuOpen(false)}>
+                <ListIcon size={20} />
+                Open water atlas
+              </Link>
               <Link className="nav-link" to={mapUrl} onClick={() => setMenuOpen(false)}>
                 <WavesIcon size={20} />
                 Explore waters

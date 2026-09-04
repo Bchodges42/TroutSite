@@ -54,6 +54,18 @@ describe('Fieldwork themes', () => {
       expect(theme.map.selection).not.toBe(theme.map.good);
     }
   });
+  it('renders still waters as zoom-scaled rings with a 44px minimum hit target', () => {
+    for (const theme of Object.values(themes)) {
+      const style = atlasStyle('paper', theme.map);
+      const ids = style.layers.map((layer) => layer.id);
+      expect(ids).toContain('rivers-point-halo');
+      expect(ids).toContain('rivers-point-center');
+      const marker = style.layers.find((layer) => layer.id === 'rivers-point');
+      expect(JSON.stringify(marker?.paint)).toContain('feature-state","hover');
+      const hit = style.layers.find((layer) => layer.id === 'rivers-point-hit');
+      expect(JSON.stringify(hit?.paint)).toContain('22');
+    }
+  });
 });
 
 it('uses contour relief in Nightfall without the opaque light raster footprint', () => {

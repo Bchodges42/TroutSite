@@ -358,35 +358,106 @@ export function atlasStyle(
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': t.ink, 'line-opacity': 0, 'line-width': 28 },
       },
-      // Point anchors — put-and-take ponds rendered as circled markers keyed
-      // to the same condition feature-state colors as the river lines.
+      // Point anchors — put-and-take ponds use a water-centered ring, distinct
+      // from river lines. The outer halo scales with zoom while the ring keeps
+      // their Unassessed condition status honest.
+      {
+        id: 'rivers-point-halo',
+        type: 'circle',
+        source: 'rivers',
+        filter: POINTS_ONLY,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 5.3, 9, 8, 13, 11, 17],
+          'circle-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            t.selection,
+            t.water,
+          ],
+          'circle-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'selected'], false],
+            0.28,
+            ['boolean', ['feature-state', 'hover'], false],
+            0.24,
+            0.14,
+          ],
+          'circle-blur': 0.45,
+        },
+      },
       {
         id: 'rivers-point',
         type: 'circle',
         source: 'rivers',
         filter: POINTS_ONLY,
         paint: {
-          'circle-radius': ['interpolate', ['linear'], ['zoom'], 5.6, 3.5, 8, 5.5],
+          'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            5.3,
+            [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              8,
+              ['boolean', ['feature-state', 'hover'], false],
+              7,
+              4.5,
+            ],
+            8,
+            [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              8,
+              ['boolean', ['feature-state', 'hover'], false],
+              7,
+              6,
+            ],
+            11,
+            8,
+          ],
           'circle-color': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
             t.selection,
-            ['coalesce', ['feature-state', 'color'], ['get', 'color'], '#8B8A82'],
+            t.paperRaised,
           ],
-          'circle-stroke-color': t.ink,
-          'circle-stroke-width': 1.2,
-          'circle-opacity': [
+          'circle-stroke-color': [
             'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            0.95,
+            ['boolean', ['feature-state', 'selected'], false],
+            t.selection,
+            ['boolean', ['feature-state', 'hover'], false],
+            t.hover,
+            ['coalesce', ['feature-state', 'color'], t.noData],
           ],
-          'circle-stroke-opacity': [
+          'circle-stroke-width': [
             'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            0.7,
+            ['boolean', ['feature-state', 'selected'], false],
+            3,
+            ['boolean', ['feature-state', 'hover'], false],
+            2.5,
+            2,
           ],
+          'circle-opacity': ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 0.95],
+          'circle-stroke-opacity': ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 1],
+        },
+      },
+      {
+        id: 'rivers-point-center',
+        type: 'circle',
+        source: 'rivers',
+        filter: POINTS_ONLY,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 5.3, 1.8, 9, 2.7],
+          'circle-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            t.paperRaised,
+            t.water,
+          ],
+          'circle-opacity': ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 1],
         },
       },
       {
@@ -394,7 +465,11 @@ export function atlasStyle(
         type: 'circle',
         source: 'rivers',
         filter: POINTS_ONLY,
-        paint: { 'circle-color': t.ink, 'circle-opacity': 0, 'circle-radius': 16 },
+        paint: {
+          'circle-color': t.ink,
+          'circle-opacity': 0,
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 5.3, 22, 10, 28],
+        },
       },
     ],
   };

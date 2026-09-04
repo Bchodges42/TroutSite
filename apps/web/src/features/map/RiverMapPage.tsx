@@ -33,7 +33,7 @@ export function RiverMapPage() {
   const assessedOnly = params.get('assessed') === '1';
   const data = useRiverMapData({ month });
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
-  const [mobileList, setMobileList] = useState(false);
+  const indexOpen = !selectedId && params.get('atlas') === '1';
   const [expanded, setExpanded] = useState(false);
   const [layers, setLayers] = useState(false);
   const [topoAvailable, setTopoAvailable] = useState(false);
@@ -61,17 +61,27 @@ export function RiverMapPage() {
       { replace },
     );
   const setRiver = (id: string | null) => {
-    setMobileList(false);
     setExpanded(false);
-    update({ river: id, tab: 'Water' }, false);
+    update({ river: id, tab: id ? 'Water' : null, atlas: null }, false);
+  };
+  const focusExploreControl = () =>
+    requestAnimationFrame(() => {
+      const visibleSearch = [...document.querySelectorAll<HTMLInputElement>('.search-input')].find(
+        (el) => el.getClientRects().length > 0,
+      );
+      (visibleSearch ?? document.querySelector<HTMLButtonElement>('.map-index-toggle'))?.focus();
+    });
+  const openIndex = () => {
+    setExpanded(false);
+    update({ river: null, tab: null, atlas: '1' });
+  };
+  const closeIndex = () => {
+    update({ atlas: null });
+    focusExploreControl();
   };
   const close = () => {
     setRiver(null);
-    requestAnimationFrame(() =>
-      [...document.querySelectorAll<HTMLInputElement>('.search-input')]
-        .find((el) => el.getClientRects().length > 0)
-        ?.focus(),
-    );
+    focusExploreControl();
   };
   useEffect(() => {
     const media = window.matchMedia('(min-width:901px)');
@@ -86,11 +96,19 @@ export function RiverMapPage() {
       );
   }, [selectedId]);
   useEffect(() => {
+    if (indexOpen)
+      requestAnimationFrame(() =>
+        [...document.querySelectorAll<HTMLInputElement>('.search-input')]
+          .find((el) => el.getClientRects().length > 0)
+          ?.focus(),
+      );
+  }, [indexOpen]);
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !document.getElementById('app-menu')) {
         if (layers) setLayers(false);
         else if (selectedId) close();
-        else setMobileList(false);
+        else if (indexOpen) closeIndex();
       }
     };
     window.addEventListener('keydown', onKey);
@@ -246,7 +264,7 @@ export function RiverMapPage() {
         className={
           'water-sidebar' +
           (selectedId ? ' is-inspecting' : '') +
-          (mobileList ? ' mobile-list-open' : '') +
+          (indexOpen ? ' is-index-open' : '') +
           (expanded ? ' is-expanded' : '')
         }
         aria-label={selectedId ? 'River inspector' : 'Explore waters'}
@@ -273,6 +291,7 @@ export function RiverMapPage() {
                 if (!desktop) setExpanded(true);
               }}
               onClose={close}
+              onBack={openIndex}
               modeMonth={month}
               live={data.live}
               fetchedAt={data.fetchedAt}
@@ -285,11 +304,11 @@ export function RiverMapPage() {
             <div className="explore-heading">
               <div className="flex items-center justify-between">
                 <span className="eyebrow">Tennessee / Field atlas</span>
-                {mobileList && (
+                {indexOpen && (
                   <button
                     className="icon-button"
                     aria-label="Close water list"
-                    onClick={() => setMobileList(false)}
+                    onClick={closeIndex}
                   >
                     <CloseIcon size={18} />
                   </button>
@@ -387,13 +406,10 @@ export function RiverMapPage() {
           <div className="mobile-search-row">
             <RiverSearch streams={data.streams} onSelect={setRiver} shortcut={!desktop} />
             <button
-              className="map-tool"
+              className="map-tool mobile-list-toggle"
               aria-label="Show water list"
-              aria-expanded={mobileList}
-              onClick={() => {
-                if (selectedId) update({ river: null });
-                setMobileList(!mobileList);
-              }}
+              aria-expanded={indexOpen}
+              onClick={() => (indexOpen ? closeIndex() : openIndex())}
             >
               <ListIcon size={19} />
             </button>
@@ -461,6 +477,16 @@ export function RiverMapPage() {
             {layers && (
               <div className="layer-picker" role="group" aria-label="Map layers">
                 <p className="eyebrow">Explore the map</p>
+                <button
+                  className="layer-index-action"
+                  onClick={() => {
+                    setLayers(false);
+                    openIndex();
+                  }}
+                >
+                  <ListIcon size={17} />
+                  Browse {data.streams.length} waters
+                </button>
                 <label>
                   <input
                     type="radio"
@@ -535,17 +561,39 @@ export function RiverMapPage() {
             </button>
           </div>
         )}
+        {data.isError && !indexOpen && !selectedId && (
+          <div className="map-catalog-alert" role="alert">
+            <div>
+              <strong>Catalog unavailable</strong>
+              <span>Map controls remain available.</span>
+            </div>
+            <button className="text-action" onClick={openIndex}>
+              Open details
+            </button>
+          </div>
+        )}
         <div className="map-bottom">
-          <div className="map-legend" aria-label="Condition legend">
-            <span className="legend-title">
-              {mode === 'hatches' ? 'Seasonal guidance' : 'Trout conditions'}
-            </span>
-            {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
-              <span key={s} data-status={s}>
-                <i className={'legend-line' + (s === 'no-data' ? ' unknown' : '')} />
-                {s === 'no-data' ? 'Unassessed' : statusName[s]}
+          <div className="map-keybar">
+            <button
+              className="map-index-toggle"
+              aria-label="Browse Tennessee waters"
+              aria-expanded={indexOpen}
+              onClick={() => (indexOpen ? closeIndex() : openIndex())}
+            >
+              <ListIcon size={17} />
+              {data.streams.length} waters
+            </button>
+            <div className="map-legend" aria-label="Condition legend">
+              <span className="legend-title">
+                {mode === 'hatches' ? 'Seasonal guidance' : 'Trout conditions'}
               </span>
-            ))}
+              {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
+                <span key={s} data-status={s}>
+                  <i className={'legend-line' + (s === 'no-data' ? ' unknown' : '')} />
+                  {s === 'no-data' ? 'Unassessed' : statusName[s]}
+                </span>
+              ))}
+            </div>
           </div>
           <p className="map-help">
             {mode === 'hatches'

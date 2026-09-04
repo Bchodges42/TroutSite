@@ -21,6 +21,7 @@ interface Props {
   tab: Tab;
   onTab: (t: Tab) => void;
   onClose: () => void;
+  onBack?: () => void;
   modeMonth: number;
   live: boolean;
   fetchedAt: number | null;
@@ -33,6 +34,7 @@ export function RiverDrawer({
   tab,
   onTab,
   onClose,
+  onBack,
   modeMonth,
   live,
   loading,
@@ -80,7 +82,7 @@ export function RiverDrawer({
       aria-label={feature.stream.name + ' details'}
     >
       <div className="inspector-header">
-        <button type="button" className="inspector-back" onClick={onClose}>
+        <button type="button" className="inspector-back" onClick={onBack ?? onClose}>
           ← All Tennessee waters
         </button>
         <div className="inspector-title-row">
@@ -93,7 +95,12 @@ export function RiverDrawer({
                   ? 'Tailwater'
                   : feature.stream.waterbodyType === 'creek'
                     ? 'Creek'
-                    : 'River')}{' '}
+                    : feature.stream.waterbodyType === 'lake' ||
+                        feature.stream.waterbodyType === 'pond'
+                      ? 'Small still water'
+                      : feature.stream.waterbodyType === 'spring'
+                        ? 'Spring'
+                        : 'River')}{' '}
               ·{' '}
               {feature.stream.stockingProgram
                 ? 'Stocking program listed'

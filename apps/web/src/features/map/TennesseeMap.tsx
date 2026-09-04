@@ -11,6 +11,13 @@ import index from './riverIndex.json';
 // Preserve the existing same-origin Vite worker bundle and offline caching.
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
+const stillWaterIds = new Set(
+  index
+    .filter((water) => water.bounds[0] === water.bounds[2] && water.bounds[1] === water.bounds[3])
+    .map((water) => water.id),
+);
+export const isStillWaterId = (id: string) => stillWaterIds.has(id);
+
 interface Camera {
   center: [number, number];
   zoom: number;
@@ -106,8 +113,15 @@ export function TennesseeMap(props: Props) {
       map = new maplibregl.Map({
         container: el,
         style: atlasStyle(latest.current.basemap, palette.current),
-        center: saved?.center ?? (el.clientWidth < 650 ? [-84.65, 35.85] : [-85.3, 35.88]),
-        zoom: saved?.zoom ?? (el.clientWidth < 650 ? 6.9 : 7),
+        ...(saved
+          ? { center: saved.center, zoom: saved.zoom }
+          : {
+              bounds: TN_BOUNDS,
+              fitBoundsOptions: {
+                padding: el.clientWidth < 650 ? 24 : 46,
+                maxZoom: 7,
+              },
+            }),
         minZoom: 5.3,
         maxZoom: 13,
         maxBounds: TN_MAX_BOUNDS,
@@ -216,6 +230,17 @@ export function TennesseeMap(props: Props) {
       const distance = (feature: maplibregl.MapGeoJSONFeature) => {
         if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon')
           return 0;
+        if (feature.geometry.type === 'Point') {
+          const projected = map.project(feature.geometry.coordinates as [number, number]);
+          return Math.hypot(point.x - projected.x, point.y - projected.y);
+        }
+        if (feature.geometry.type === 'MultiPoint')
+          return Math.min(
+            ...feature.geometry.coordinates.map((coordinates: number[]) => {
+              const projected = map.project(coordinates as [number, number]);
+              return Math.hypot(point.x - projected.x, point.y - projected.y);
+            }),
+          );
         const lines =
           feature.geometry.type === 'LineString'
             ? [feature.geometry.coordinates]
@@ -343,10 +368,16 @@ export function TennesseeMap(props: Props) {
     const markers = index.map((river) => {
       const el = document.createElement('button');
       el.type = 'button';
-      el.className = 'river-map-label';
+      const stillWater = isStillWaterId(river.id);
+      el.className = 'river-map-label' + (stillWater ? ' still-water-label' : '');
       el.textContent = waterIdentity(river.name).name;
       el.dataset.riverId = river.id;
-      el.setAttribute('aria-label', 'Select ' + river.name);
+      el.dataset.waterKind = stillWater ? 'still-water' : 'river';
+      el.setAttribute(
+        'aria-label',
+        'Select ' + river.name + (stillWater ? ', small still water, Unassessed' : ''),
+      );
+      if (stillWater) el.title = 'Small still water · Unassessed';
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         latest.current.onSelect(river.id);
@@ -354,7 +385,7 @@ export function TennesseeMap(props: Props) {
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom-left', offset: [7, -7] })
         .setLngLat(river.anchor as [number, number])
         .addTo(map);
-      return { river, el, marker, width: el.offsetWidth };
+      return { river, el, marker, width: el.offsetWidth, stillWater };
     });
     labelsRef.current = () => {
       const z = map.getZoom(),
@@ -366,20 +397,23 @@ export function TennesseeMap(props: Props) {
           : p.mobileSheet === 'compact'
             ? height * 0.49
             : 65;
-      const occupied: Array<{ x: number; y: number }> = [];
+      const occupied: Array<{ x: number; y: number; stillWater: boolean }> = [];
       const sorted = [...markers].sort(
         (a, b) =>
           Number(b.river.id === p.selectedId) - Number(a.river.id === p.selectedId) ||
+          Number(b.stillWater) - Number(a.stillWater) ||
           Number(p.assessedIds?.has(b.river.id)) - Number(p.assessedIds?.has(a.river.id)),
       );
-      for (const { river, el, width } of sorted) {
+      for (const { river, el, width, stillWater } of sorted) {
         const selected = river.id === p.selectedId;
         const point = map.project(river.anchor as [number, number]);
         const visible =
           (!p.visibleIds || p.visibleIds.has(river.id)) &&
-          (selected || p.assessedIds?.has(river.id) || z >= 8.5);
+          (selected || stillWater || p.assessedIds?.has(river.id) || z >= 8.5);
         const overlaps = occupied.some(
-          (o) => Math.abs(o.x - point.x) < 180 && Math.abs(o.y - point.y) < 60,
+          (o) =>
+            Math.abs(o.x - point.x) < (stillWater && o.stillWater ? 126 : 180) &&
+            Math.abs(o.y - point.y) < (stillWater && o.stillWater ? 38 : 60),
         );
         const show =
           visible &&
@@ -395,7 +429,7 @@ export function TennesseeMap(props: Props) {
           '--marker-color',
           p.featureColors.get(river.id) ?? palette.current.noData,
         );
-        if (show) occupied.push(point);
+        if (show) occupied.push({ ...point, stillWater });
       }
       placesRef.current();
     };

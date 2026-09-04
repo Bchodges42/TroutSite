@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS streams (
   id                TEXT PRIMARY KEY,
   name              TEXT NOT NULL,
   state_id          TEXT NOT NULL,
-  waterbody_type    TEXT NOT NULL CHECK (waterbody_type IN ('river','creek','tailrace','spring')),
+  waterbody_type    TEXT NOT NULL CHECK (waterbody_type IN ('river','creek','tailrace','spring','lake','pond')),
   region_id         TEXT NOT NULL,
   gauge_ids         TEXT NOT NULL DEFAULT '[]',  -- JSON array of USGS gauge ids
   stocking_program  INTEGER NOT NULL DEFAULT 0,
@@ -42,15 +42,16 @@ CREATE TABLE IF NOT EXISTS gauge_readings_raw (
 );
 
 CREATE TABLE IF NOT EXISTS stocking_events (
-  id           TEXT PRIMARY KEY,
-  state_id     TEXT NOT NULL,
-  stream_name  TEXT NOT NULL,
-  county       TEXT,
-  species      TEXT NOT NULL CHECK (species IN ('rainbow','brown','cutbow','brook','other')),
-  count        INTEGER,
-  date         TEXT NOT NULL,
-  source_url   TEXT NOT NULL,
-  fetched_at   TEXT NOT NULL
+  id             TEXT PRIMARY KEY,
+  state_id       TEXT NOT NULL,
+  stream_name    TEXT NOT NULL,
+  county         TEXT,
+  species        TEXT NOT NULL CHECK (species IN ('rainbow','brown','cutbow','brook','other')),
+  count          INTEGER,
+  date           TEXT NOT NULL,
+  date_precision TEXT,
+  source_url     TEXT NOT NULL,
+  fetched_at     TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS jobs_log (

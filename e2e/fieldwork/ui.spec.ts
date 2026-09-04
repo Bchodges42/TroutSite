@@ -22,7 +22,11 @@ test.beforeEach(async ({ page }) => {
   );
 });
 async function select(page: Page, name: string) {
-  const search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
+  let search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
+  if ((await search.count()) === 0) {
+    await page.getByRole('button', { name: 'Browse Tennessee waters', exact: true }).click();
+    search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
+  }
   await search.fill(name);
   await search.press('Enter');
   await expect(page.locator('#river-inspector')).toBeVisible();
@@ -33,15 +37,43 @@ async function ready(page: Page) {
 async function noOverflow(page: Page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }
+async function mapViewportCoordinate(page: Page, longitude: number, latitude: number) {
+  return page.getByTestId('river-map').evaluate(
+    (el, target) => {
+      const [lng, lat] = el.dataset.center!.split(',').map(Number);
+      const scale = 512 * 2 ** Number(el.dataset.zoom);
+      const merc = (value: number) => Math.log(Math.tan(Math.PI / 4 + (value * Math.PI) / 360));
+      return {
+        x: el.clientWidth / 2 + ((target.longitude - lng!) * scale) / 360,
+        y: el.clientHeight / 2 - ((merc(target.latitude) - merc(lat!)) * scale) / (2 * Math.PI),
+      };
+    },
+    { longitude, latitude },
+  );
+}
+async function clickMapCoordinate(page: Page, longitude: number, latitude: number) {
+  const point = await mapViewportCoordinate(page, longitude, latitude);
+  await page.locator('.maplibregl-canvas').click({ position: point });
+}
 
-test('controls and water index are immediately accessible', async ({ page }) => {
+test('the map opens full-bleed and the water atlas is summonable', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('combobox', { name: 'Search rivers' }).first()).toBeVisible();
+  await expect(page.locator('.water-sidebar')).toBeHidden();
   await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
-  await expect(page.locator('.water-row')).toHaveCount(92);
+  await expect(page.getByRole('button', { name: 'Browse Tennessee waters' })).toBeVisible();
   await ready(page);
+  await page.getByRole('button', { name: 'Browse Tennessee waters' }).click();
+  await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
+  await expect(page.locator('.water-row')).toHaveCount(105);
+  await page.getByRole('button', { name: 'Close water list' }).click();
+  await page.getByRole('button', { name: 'Map layers', exact: true }).click();
+  await page.getByRole('button', { name: 'Browse 105 waters', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
+  await page.getByRole('button', { name: 'Close water list' }).click();
+  await page.getByRole('button', { name: 'Open menu', exact: true }).click();
+  await page.getByRole('link', { name: 'Open water atlas', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
   await noOverflow(page);
 });
 
@@ -64,7 +96,7 @@ test('search, inspector tabs, Escape hierarchy, and focus restoration', async ({
   await expect(page.locator('#river-inspector')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#river-inspector')).toHaveCount(0);
-  await expect(page.getByRole('combobox', { name: 'Search rivers' }).first()).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Browse Tennessee waters' })).toBeFocused();
 });
 
 test('named map waters are independently selectable', async ({ page }) => {
@@ -178,10 +210,12 @@ test.describe('a missing catalog keeps map tools and a clear error state', () =>
   test.use({ serviceWorkers: 'block' });
 
   test('keeps map tools and shows a clear error', async ({ page }) => {
-    await page.route('**/v1/streams', (route) => route.fulfill({ status: 503, body: 'Unavailable' }));
+    await page.route('**/v1/streams', (route) =>
+      route.fulfill({ status: 503, body: 'Unavailable' }),
+    );
     await page.goto('/');
     await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
-    await expect(page.getByText('Catalog unavailable', { exact: true })).toBeVisible();
+    await expect(page.getByRole('alert')).toContainText('Catalog unavailable');
   });
 });
 
@@ -197,7 +231,7 @@ test('WebGL failure has a usable list alternative', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Explore without the map.' })).toBeVisible();
   await page.getByRole('link', { name: 'Browse all waters →', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Browse streams', exact: true })).toBeVisible();
-  await expect(page.locator('.list-row')).toHaveCount(92);
+  await expect(page.locator('.list-row')).toHaveCount(105);
 });
 
 test('offline and unassessed presentation never claim live or zero Poor', async ({
@@ -217,18 +251,38 @@ test('offline and unassessed presentation never claim live or zero Poor', async 
 test('clicking actual river geometry opens its inspector', async ({ page }) => {
   await page.goto('/');
   await ready(page);
-  // The unchanged geometry's Caney anchor, projected into the initial unpadded map.
-  const point = await page.getByTestId('river-map').evaluate((el) => {
-    const [lng, lat] = el.dataset.center!.split(',').map(Number);
-    const scale = 512 * 2 ** Number(el.dataset.zoom);
-    const merc = (latitude: number) => Math.log(Math.tan(Math.PI / 4 + (latitude * Math.PI) / 360));
-    return {
-      x: el.clientWidth / 2 + ((-85.7264 - lng!) * scale) / 360,
-      y: el.clientHeight / 2 - ((merc(35.9783) - merc(lat!)) * scale) / (2 * Math.PI),
-    };
-  });
-  await page.locator('.maplibregl-canvas').click({ position: point });
+  await expect(page.locator('.water-sidebar')).toBeHidden();
+  await clickMapCoordinate(page, -85.7264, 35.9783);
   await expect(page).toHaveURL(/river=caney-fork-river/);
+  await expect(page.locator('#river-inspector')).toBeVisible();
+});
+
+test('clicking river geometry opens the same inspector as a mobile sheet', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await ready(page);
+  await expect(page.locator('.water-sidebar')).toBeHidden();
+  await clickMapCoordinate(page, -85.7264, 35.9783);
+  await expect(page).toHaveURL(/river=caney-fork-river/);
+  const sheet = page.locator('.water-sidebar.is-inspecting');
+  await expect(sheet).toBeVisible();
+  expect((await sheet.boundingBox())!.y).toBeGreaterThan(300);
+});
+
+test('West Tennessee still waters are labeled, tappable, and honestly unassessed', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await ready(page);
+  await expect(page.locator('.still-water-label')).toHaveCount(13);
+  await expect(page.locator('.still-water-label').filter({ visible: true }).first()).toBeVisible();
+  await clickMapCoordinate(page, -89.77231, 35.10075);
+  await expect(page).toHaveURL(/river=cameron-brown-lake/);
+  await expect(
+    page.getByRole('heading', { name: 'Cameron Brown Lake', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
+  await expect(page.getByText('Small still water · Stocking program listed')).toBeVisible();
 });
 
 test('granted location moves the map and shows an on-device marker', async ({ page, context }) => {
@@ -300,19 +354,46 @@ test('East Tennessee relief never paints a rectangle outside the state at zoom 8
       })
       .toEqual(color);
   };
+  const mapBounds = (await page.getByTestId('river-map').boundingBox())!;
   await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
-  await expect(page.getByTestId('river-map')).toHaveAttribute('data-zoom', '8');
-  // Includes the South Carolina corner absent from the immediate-neighbor data.
-  await checkPixel(1150, 895, [16, 33, 37]);
-  await checkPixel(1150, 720, [16, 33, 37]);
+  await expect
+    .poll(async () =>
+      Math.round(Number(await page.getByTestId('river-map').getAttribute('data-zoom'))),
+    )
+    .toBe(8);
+  // A fixed North Carolina coordinate beyond East Tennessee remains map ground,
+  // not the former rectangular terrain acquisition extent.
+  let outside = await mapViewportCoordinate(page, -82.9, 35.4);
+  await checkPixel(
+    Math.round(mapBounds.x + outside.x),
+    Math.round(mapBounds.y + outside.y),
+    [16, 33, 37],
+  );
   await page.screenshot({ path: screenshots + '/nightfall-east-8.png' });
   await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
-  await expect(page.getByTestId('river-map')).toHaveAttribute('data-zoom', '9');
-  await checkPixel(1200, 740, [16, 33, 37]);
+  for (let i = 0; i < 3; i++) {
+    await page.locator('.maplibregl-canvas').press('ArrowRight');
+    await page.waitForTimeout(250);
+  }
+  await expect
+    .poll(async () =>
+      Math.round(Number(await page.getByTestId('river-map').getAttribute('data-zoom'))),
+    )
+    .toBe(9);
+  outside = await mapViewportCoordinate(page, -82.9, 35.4);
+  await checkPixel(
+    Math.round(mapBounds.x + outside.x),
+    Math.round(mapBounds.y + outside.y),
+    [16, 33, 37],
+  );
   await page.screenshot({ path: screenshots + '/nightfall-east-9.png' });
   await page.getByRole('button', { name: 'Switch to Daybreak theme', exact: true }).click();
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'daybreak');
-  await checkPixel(1200, 740, [221, 228, 223]);
+  await checkPixel(
+    Math.round(mapBounds.x + outside.x),
+    Math.round(mapBounds.y + outside.y),
+    [221, 228, 223],
+  );
   await page.screenshot({ path: screenshots + '/daybreak-east-9.png' });
 });
 

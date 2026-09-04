@@ -25,11 +25,11 @@ export function saveRawArtifacts(rawDir: string, stateId: string, now: Date, raw
 
 function upsertEvents(db: Db, events: StockingEvent[]): number {
   const insert = db.prepare(`
-    INSERT INTO stocking_events (id, state_id, stream_name, county, species, count, date, source_url, fetched_at)
-    VALUES (@id, @state_id, @stream_name, @county, @species, @count, @date, @source_url, @fetched_at)
+    INSERT INTO stocking_events (id, state_id, stream_name, county, species, count, date, date_precision, source_url, fetched_at)
+    VALUES (@id, @state_id, @stream_name, @county, @species, @count, @date, @date_precision, @source_url, @fetched_at)
     ON CONFLICT(id) DO UPDATE SET
       stream_name=@stream_name, county=@county, species=@species, count=@count,
-      date=@date, source_url=@source_url, fetched_at=@fetched_at
+      date=@date, date_precision=@date_precision, source_url=@source_url, fetched_at=@fetched_at
   `);
   return db.transaction(() => {
     let n = 0;
@@ -42,6 +42,7 @@ function upsertEvents(db: Db, events: StockingEvent[]): number {
         species: e.species,
         count: e.count ?? null,
         date: e.date,
+        date_precision: e.datePrecision ?? null,
         source_url: e.sourceUrl,
         fetched_at: e.fetchedAt,
       });
