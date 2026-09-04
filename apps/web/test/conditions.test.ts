@@ -172,3 +172,57 @@ describe('freshnessLabel observed-age semantics', () => {
     expect(freshnessLabel(null, true)).toBe('Never updated');
   });
 });
+
+describe('flowTrend same-gauge rule (B04)', () => {
+  it('never fabricates a trend from two different gauges', () => {
+    // Harpeth-style: 31 cfs at one gauge, newer 41 cfs at another = two sites, not a rise.
+    const crossGauge = [
+      reading({ gaugeId: 'A', cfs: 100, timestamp: '2026-09-01T14:00Z' }),
+      reading({ gaugeId: 'B', cfs: 300, timestamp: '2026-09-01T13:00Z' }),
+    ];
+    expect(flowTrend(crossGauge)).toBe('unknown');
+  });
+
+  it('zero flow is a reading, not missing data', () => {
+    const dryingUp = [
+      reading({ cfs: 0, timestamp: '2026-09-01T14:00Z' }),
+      reading({ cfs: 5, timestamp: '2026-09-01T13:00Z' }),
+    ];
+    expect(flowTrend(dryingUp)).toBe('falling');
+    const recovering = [
+      reading({ cfs: 5, timestamp: '2026-09-01T14:00Z' }),
+      reading({ cfs: 0, timestamp: '2026-09-01T13:00Z' }),
+    ];
+    expect(flowTrend(recovering)).toBe('rising');
+  });
+
+  it('requires two distinct timestamps at one gauge', () => {
+    expect(flowTrend([
+      reading({ cfs: 100, timestamp: '2026-09-01T14:00Z' }),
+      reading({ cfs: 300, timestamp: '2026-09-01T14:00Z' }),
+    ])).toBe('unknown');
+  });
+
+  it('follows the gauge with the globally newest pair when several exist', () => {
+    const multi = [
+      reading({ gaugeId: 'A', cfs: 300, timestamp: '2026-09-01T14:00Z' }),
+      reading({ gaugeId: 'A', cfs: 100, timestamp: '2026-09-01T13:00Z' }),
+      reading({ gaugeId: 'B', cfs: 90, timestamp: '2026-09-01T15:00Z' }),
+      reading({ gaugeId: 'B', cfs: 100, timestamp: '2026-09-01T14:30Z' }),
+    ];
+    expect(flowTrend(multi)).toBe('falling'); // gauge B is newer: 100 -> 90
+  });
+
+  it('whatChanged stays silent about cross-gauge flow or temperature deltas', () => {
+    const prev = [reading({ gaugeId: 'A', cfs: 100, tempC: 15, timestamp: '2026-09-01T12:00Z' })];
+    const next = [reading({ gaugeId: 'B', cfs: 300, tempC: 22, timestamp: '2026-09-01T14:00Z' })];
+    const changes = whatChanged(prev, next);
+    expect(changes.join(' ')).not.toMatch(/Flow is|temperature moved/);
+  });
+
+  it('whatChanged still reports a real same-gauge flow move', () => {
+    const prev = [reading({ gaugeId: 'A', cfs: 100, timestamp: '2026-09-01T12:00Z' })];
+    const next = [reading({ gaugeId: 'A', cfs: 200, timestamp: '2026-09-01T14:00Z' })];
+    expect(whatChanged(prev, next).join(' ')).toMatch(/Flow is up/);
+  });
+});
