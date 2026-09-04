@@ -73,6 +73,7 @@ export interface RiverMapFeature {
   status: ConditionStatus;
   color: string;
   score: number | null;
+  species: 'trout' | 'warmwater';
   freshness: number | null;
   hatchChart: HatchChart | null;
   hatchDominant: HatchChart['entries'][number] | null;

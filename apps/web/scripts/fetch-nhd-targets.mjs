@@ -16,7 +16,7 @@ const TARGETS = [
   { key: 'clinch', like: '%Clinch%', env: '-84.6,35.9,-82.0,36.7', streams: ['clinch-river'] },
   { key: 'watauga', like: '%Watauga%', env: '-82.6,36.05,-81.9,36.55', streams: ['watauga-river'] },
   { key: 's-holston', like: '%Holston%', env: '-82.9,36.25,-81.8,36.7', streams: ['south-holston-river', 'boone-tailwater', 'ft-patrick-henry-tailwater'] },
-  { key: 'caney-fork', like: 'Caney Fork%', env: '-86.2,35.55,-85.3,36.2', streams: ['caney-fork-river'] },
+  { key: 'caney-fork', like: '%Caney Fork%', env: '-86.0,35.55,-85.0,36.35', streams: ['caney-fork-river'] },
   { key: 'nolichucky', like: '%Nolichucky%', env: '-83.25,35.9,-82.15,36.4', streams: ['nolichucky-river'] },
   { key: 'powell', like: '%Powell%', env: '-84.05,36.25,-82.95,36.7', streams: ['powell-river'] },
   { key: 'stones', like: '%Stones%', env: '-86.7,35.65,-86.0,36.35', streams: ['stones-river', 'west-fork-stones-river', 'east-fork-stones-river'] },
@@ -54,7 +54,9 @@ for (const t of TARGETS.filter((t) => !only.size || only.has(t.key))) {
   let offset = 0;
   for (;;) {
     const p = {
-      where: `(fcode=46006 OR fcode=46003) AND gnis_name LIKE '${t.like}'`,
+      // 46006 Stream/River · 46003 Artificial Path · 55800 Stream/River
+      // (waterbody connector reaches — e.g. the Caney Fork through its lakes)
+      where: `(fcode=46006 OR fcode=46003 OR fcode=55800) AND gnis_name LIKE '${t.like}'`,
       geometry: t.env, geometryType: 'esriGeometryEnvelope', inSR: '4326',
       spatialRel: 'esriSpatialRelIntersects', returnIdsOnly: 'true',
       resultOffset: String(offset), f: 'pjson',

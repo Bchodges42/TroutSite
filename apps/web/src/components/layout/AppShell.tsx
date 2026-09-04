@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useOutletContext } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import { useOnline } from '../../hooks/useOnline';
 import { useSettingsContext } from '../../lib/settings';
+import { SPRING } from '../motion/atlas-motion';
 import {
   BookIcon, BugIcon, CloseIcon, FishIcon, GearIcon, LocationIcon,
   MenuIcon, ShieldIcon, ShopIcon, WavesIcon,
@@ -106,24 +108,53 @@ export function AppShell() {
       )}
 
       <div className={isMapRoute ? 'flex w-full flex-1 overflow-hidden' : 'mx-auto flex w-full max-w-[1600px] flex-1'}>
-        {menuOpen && (
-          <div ref={drawerRef} id="mobile-menu" className="fixed inset-0 z-40" role="dialog" aria-modal="true" aria-label="Menu">
-            <button type="button" aria-label="Close menu" className="absolute inset-0 bg-stone-900/40" onClick={() => setMenuOpen(false)} />
-            <nav aria-label="Primary mobile" className="absolute inset-y-0 left-0 flex w-72 max-w-[80vw] flex-col gap-1 overflow-y-auto p-3 pt-16 shadow-xl" style={{ background: 'var(--trout-paper)' }}>
-              {DESKTOP_NAV.map(({ to, label, Icon }) => (
-                <NavLink key={to} to={to} end={to === '/'} className="nav-link focus-ring" onClick={() => setMenuOpen(false)}><Icon size={20} />{label}</NavLink>
-              ))}
-              {MORE_LINKS.map(({ to, label, Icon }) => (
-                <NavLink key={to} to={to} className="nav-link focus-ring" onClick={() => setMenuOpen(false)}><Icon size={18} />{label}</NavLink>
-              ))}
-              <p className="mt-4 px-3 text-xs" style={{ color: 'var(--trout-ink-muted)' }}>No accounts. No tracking. Your logbook never leaves this device.</p>
-              <button type="button" onClick={() => setMenuOpen(false)} className="focus-ring mt-2 flex min-h-[44px] items-center gap-3 rounded-lg px-3 font-semibold"><CloseIcon size={18} /> Close</button>
-            </nav>
-          </div>
-        )}
+        <AnimatePresence>
+          {menuOpen && (
+            <div ref={drawerRef} id="mobile-menu" className="fixed inset-0 z-40" role="dialog" aria-modal="true" aria-label="Menu">
+              <motion.button
+                type="button" aria-label="Close menu"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                transition={SPRING.snappy}
+                className="absolute inset-0 bg-stone-900/40" onClick={() => setMenuOpen(false)}
+              />
+              <motion.nav
+                aria-label="Primary mobile"
+                initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }}
+                transition={SPRING.soft}
+                className="absolute inset-y-0 left-0 flex w-72 max-w-[80vw] flex-col gap-1 overflow-y-auto p-3 pt-16 shadow-xl"
+                style={{ background: 'var(--trout-paper)' }}
+              >
+                {DESKTOP_NAV.map(({ to, label, Icon }, i) => (
+                  <motion.div key={to} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ ...SPRING.soft, delay: 0.05 + i * 0.04 }}>
+                    <NavLink to={to} end={to === '/'} className="nav-link focus-ring" onClick={() => setMenuOpen(false)}><Icon size={20} />{label}</NavLink>
+                  </motion.div>
+                ))}
+                <div className="my-2 border-t" style={{ borderColor: 'var(--trout-rule)' }} />
+                {MORE_LINKS.map(({ to, label, Icon }, i) => (
+                  <motion.div key={to} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ ...SPRING.soft, delay: 0.18 + i * 0.035 }}>
+                    <NavLink to={to} className="nav-link focus-ring" onClick={() => setMenuOpen(false)}><Icon size={18} />{label}</NavLink>
+                  </motion.div>
+                ))}
+                <p className="mt-4 px-3 text-xs" style={{ color: 'var(--trout-ink-muted)' }}>No accounts. No tracking. Your logbook never leaves this device.</p>
+                <button type="button" onClick={() => setMenuOpen(false)} className="focus-ring mt-2 flex min-h-[44px] items-center gap-3 rounded-lg px-3 font-semibold"><CloseIcon size={18} /> Close</button>
+              </motion.nav>
+            </div>
+          )}
+        </AnimatePresence>
 
         <div id="main" className="flex min-w-0 flex-1 flex-col">
-          <Outlet context={{ openMenu: () => setMenuOpen(true), menuOpen }} />
+          {/* Secondary pages enter with the same soft spring the map overlays use. */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={isMapRoute ? 'map' : location.pathname}
+              initial={isMapRoute ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={SPRING.soft}
+              className="flex min-w-0 flex-1 flex-col"
+            >
+              <Outlet context={{ openMenu: () => setMenuOpen(true), menuOpen }} />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
@@ -138,7 +169,7 @@ export function useShell() {
 
 function OfflineNote() {
   return (
-    <div className="fixed bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full px-4 py-2 text-xs font-bold shadow-md" style={{ background: 'var(--trout-slate-800)', color: '#fff' }} role="status">
+    <div className="atlas-glass fixed bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full px-4 py-2 text-xs font-bold" role="status">
       <span className="inline-flex items-center gap-2"><LocationIcon size={14} /> Airplane mode is fine — everything core works offline.</span>
     </div>
   );

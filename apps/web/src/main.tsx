@@ -7,6 +7,7 @@ import '@trout/ui/tokens.css';
 import './index.css';
 import { App } from './App';
 import { SettingsProvider } from './lib/settings';
+import { MotionSettings } from './components/motion/MotionSettings';
 
 registerSW({ immediate: true });
 
@@ -26,9 +27,11 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <SettingsProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <MotionSettings>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </MotionSettings>
       </SettingsProvider>
     </QueryClientProvider>
   </StrictMode>,

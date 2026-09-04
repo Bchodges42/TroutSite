@@ -1,97 +1,107 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { atlas } from './mapTokens';
+import { SPRING } from '../../components/motion/atlas-motion';
 
-const HIDDEN_KEY = 'trout:legendHidden';
+const OPEN_KEY = 'trout:legendOpen';
 
-function ChevronIcon({ open }: { open: boolean }) {
+function LegendSwatch({ color, label }: { color: string; label: string }) {
   return (
-    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable="false">
-      {open ? <path d="m6 15 6-6 6 6" /> : <path d="m6 9 6 6 6-6" />}
-    </svg>
+    <span className="inline-flex items-center gap-1">
+      <span className="h-2.5 w-2.5 rounded-full" style={{ background: color }} aria-hidden /> {label}
+    </span>
   );
 }
 
-function LegendToggle({ hidden, onToggle }: { hidden: boolean; onToggle: () => void }) {
-  const label = hidden ? 'Show legend' : 'Hide legend';
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      aria-expanded={!hidden}
-      aria-label={label}
-      title={label}
-      className="ml-auto -mr-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[#566158] hover:bg-[#EFE5CF]"
-    >
-      <ChevronIcon open={!hidden} />
-    </button>
-  );
-}
-
-export function MapLegend({ mode }: { mode: 'conditions' | 'hatches' }) {
-  const [hidden, setHidden] = useState<boolean>(() => localStorage.getItem(HIDDEN_KEY) === '1');
+/**
+ * MapLegend — collapses to a corner chip by default and expands into a
+ * compact glass panel on demand. Pure overlay: it never occupies layout
+ * space, and its open/closed choice persists per device. In All-fish mode the
+ * warmwater bronze is documented so the map never shows an unexplained color.
+ */
+export function MapLegend({ mode, species }: { mode: 'conditions' | 'hatches'; species: 'trout' | 'all' }) {
+  const [open, setOpen] = useState<boolean>(() => localStorage.getItem(OPEN_KEY) === '1');
   const toggle = () =>
-    setHidden((v) => {
-      if (v) localStorage.removeItem(HIDDEN_KEY);
-      else localStorage.setItem(HIDDEN_KEY, '1');
+    setOpen((v) => {
+      localStorage.setItem(OPEN_KEY, v ? '0' : '1');
       return !v;
     });
 
-  if (mode === 'hatches') {
-    return (
-      <div
-        className="rounded-2xl border bg-[#F8F2E5]/95 px-3.5 py-2.5 text-xs shadow-[0_4px_16px_rgba(51,45,32,0.14)] backdrop-blur-sm"
-        style={{ borderColor: atlas.hairline }}
-        aria-label="Hatch legend"
-      >
-        <div className="flex items-center gap-2">
-          <p className="font-bold text-[#24352D]">Hatch activity</p>
-          <LegendToggle hidden={hidden} onToggle={toggle} />
-        </div>
-        {!hidden && (
-          <>
-            <p className="text-[#566158]">Halo shows dominant hatch for selected month</p>
-            <div className="mt-1 flex gap-2">
-              <span className="inline-flex items-center gap-1">
-                <span className="h-2 w-4 rounded-full" style={{ background: atlas.sulphur }} aria-hidden /> active
-              </span>
-              <span className="inline-flex items-center gap-1">
-                <span className="h-2 w-4 rounded-full" style={{ background: atlas.noData }} aria-hidden /> quiet
-              </span>
-            </div>
-          </>
-        )}
-      </div>
-    );
-  }
   return (
-    <div
-      className="rounded-2xl border bg-[#F8F2E5]/95 px-3.5 py-2.5 text-xs shadow-[0_4px_16px_rgba(51,45,32,0.14)] backdrop-blur-sm"
-      style={{ borderColor: atlas.hairline }}
-      aria-label="Condition legend"
-    >
-      <div className="flex items-center gap-2">
-        <p className="font-bold text-[#24352D]">Fishability</p>
-        <LegendToggle hidden={hidden} onToggle={toggle} />
-      </div>
-      {!hidden && (
-        <>
-          <p className="text-xs text-[#566158]">Flow + temp → 0–100 · Good ≥70 · Fair ≥40</p>
-          <div className="mt-1 flex flex-wrap gap-2">
-            <span className="inline-flex items-center gap-1">
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.good }} aria-hidden /> Good
+    <div className="relative">
+      <AnimatePresence initial={false} mode="popLayout">
+        {open ? (
+          <motion.div
+            key="panel"
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.96 }}
+            transition={SPRING.snappy}
+            className="atlas-glass w-[236px] rounded-2xl px-3.5 py-3 text-xs"
+            aria-label={mode === 'hatches' ? 'Hatch legend' : 'Condition legend'}
+          >
+            <div className="flex items-center gap-2">
+              <p className="font-bold text-[#EAF2ED]">{mode === 'hatches' ? 'Hatch activity' : 'Fishability'}</p>
+              <button
+                type="button"
+                onClick={toggle}
+                aria-expanded={open}
+                aria-label="Hide legend"
+                className="atlas-chip ml-auto h-7 w-7 rounded-full text-[#9FB5AA]"
+              >
+                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" aria-hidden focusable="false"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+            </div>
+            {mode === 'hatches' ? (
+              <>
+                <p className="mt-1 text-[#9FB5AA]">Halo shows dominant hatch for selected month</p>
+                <div className="mt-1.5 flex gap-2">
+                  <LegendSwatch color={atlas.sulphur} label="active" />
+                  <LegendSwatch color={atlas.noData} label="quiet" />
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="mt-1 text-[#9FB5AA]">Flow + temp → 0–100 · Good ≥70 · Fair ≥40</p>
+                <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1">
+                  <LegendSwatch color={atlas.good} label="Good" />
+                  <LegendSwatch color={atlas.fair} label="Fair" />
+                  <LegendSwatch color={atlas.poor} label="Poor" />
+                  <LegendSwatch color={atlas.noData} label="No data" />
+                </div>
+              </>
+            )}
+            {species === 'all' && (
+              <div className="mt-2 border-t pt-2" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                <LegendSwatch color={atlas.warmwater} label="Warmwater — bass & panfish" />
+              </div>
+            )}
+          </motion.div>
+        ) : (
+          <motion.button
+            key="chip"
+            type="button"
+            onClick={toggle}
+            aria-expanded={false}
+            aria-label="Show legend"
+            title="Show legend"
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.96 }}
+            transition={SPRING.snappy}
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.97 }}
+            className="atlas-glass atlas-chip h-10 gap-2 px-3 text-xs font-bold text-[#EAF2ED]"
+          >
+            <span className="flex gap-1" aria-hidden>
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.good }} />
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.fair }} />
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.poor }} />
             </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.fair }} aria-hidden /> Fair
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.poor }} aria-hidden /> Poor
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.noData }} aria-hidden /> No data
-            </span>
-          </div>
-        </>
-      )}
+            Legend
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -11,7 +11,7 @@
  *
  * Run: node scripts/generate-fixtures.mjs   (from apps/web)
  */
-import { mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { scoreConditions } from '@trout/contracts';
@@ -47,6 +47,7 @@ const streams = [
     regionId: 'tn-east-holston',
     gaugeIds: ['03481500'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 100, max: 350, unit: 'cfs' }],
     notes: 'World-famous sulphur fishery below South Holston Dam. Check TVA generation before wading; weirs create safe wading windows.',
     officialSources: [usgs('03481500'), { label: 'TVA dam release schedule — verify officially', url: 'https://www.tva.com/environment/lake-levels' }, twraLink],
@@ -59,6 +60,7 @@ const streams = [
     regionId: 'tn-northeast-watauga',
     gaugeIds: ['03466000'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 150, max: 600, unit: 'cfs' }],
     notes: 'Cold, fertile water below Watauga Dam; long drift boats can run the Wilbur put-in stretch when generation is off.',
     officialSources: [usgs('03466000'), { label: 'TVA dam release schedule — verify officially', url: 'https://www.tva.com/environment/lake-levels' }, twraLink],
@@ -71,6 +73,7 @@ const streams = [
     regionId: 'tn-se-hiwassee',
     gaugeIds: ['03566000'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 250, max: 1200, unit: 'cfs' }],
     notes: 'State-designated trophy trout section at Reliance. Two-generator days push the river up fast — watch the gauge.',
     officialSources: [usgs('03566000'), twraLink],
@@ -83,6 +86,7 @@ const streams = [
     regionId: 'tn-middle-caney-fork',
     gaugeIds: ['03430497'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 200, max: 800, unit: 'cfs' }],
     notes: 'Below Center Hill Dam. Generation can raise flows hundreds of cfs within minutes — know the retreat routes.',
     officialSources: [usgs('03430497'), { label: 'USACE Center Hill release schedule — verify officially', url: 'https://www.lrn.usace.army.mil' }, twraLink],
@@ -95,22 +99,14 @@ const streams = [
     regionId: 'tn-middle-duck-elk',
     gaugeIds: ['03599000'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 100, max: 500, unit: 'cfs' }],
     notes: 'Tims Ford tailwater with a strong summer dry-fly game; water can run warm in late August — check temperature.',
     officialSources: [usgs('03599000'), twraLink],
   },
-  {
-    id: 'holston-river',
-    name: 'Holston River (Cherokee Tailwater)',
-    stateId: 'TN',
-    waterbodyType: 'tailrace',
-    regionId: 'tn-east-holston',
-    gaugeIds: ['03587500'],
-    stockingProgram: true,
-    idealFlow: [{ min: 300, max: 1500, unit: 'cfs' }],
-    notes: 'Under-fished Cherokee Dam tailwater with big brown trout; access is limited to a few ramps.',
-    officialSources: [usgs('03587500'), twraLink],
-  },
+  // NOTE: the Cherokee-dam 'holston-river' entry was dropped — its segment has
+  // no geometry in public/atlas/rivers.geojson, so it would be searchable but
+  // invisible on the map. Re-add it together with the mapped segment.
   {
     id: 'clinch-river',
     name: 'Clinch River',
@@ -119,26 +115,29 @@ const streams = [
     regionId: 'tn-east-clinch',
     gaugeIds: ['03452000'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 200, max: 1000, unit: 'cfs' }],
     notes: 'Norris Dam tailwater with deep slow pools; waxworm-quality midge water in winter, caddis in spring.',
     officialSources: [usgs('03452000'), twraLink],
   },
   {
-    id: 'duck-river',
-    name: 'Duck River',
+    id: 'duck-river-tailwater',
+    name: 'Duck River (Normandy tailwater)',
     stateId: 'TN',
-    waterbodyType: 'river',
-    regionId: 'tn-middle-nashville',
+    waterbodyType: 'tailrace',
+    regionId: 'tn-middle-duck-elk',
     gaugeIds: ['03537000'],
     stockingProgram: true,
-    idealFlow: [{ min: 60, max: 400, unit: 'cfs' }],
-    notes: 'Winter trout stocking reaches around Manchester and Norman Creek; smallmouth take over downstream in summer.',
+    species: 'trout',
+    idealFlow: [{ min: 60, max: 300, unit: 'cfs' }],
+    notes: 'Normandy Dam releases keep this reach cold enough for winter trout; the fishery turns mixed by midsummer.',
     officialSources: [usgs('03537000'), twraLink],
   },
   {
     // Atlas QA stream: real content-catalog values (score 37 Poor, 19.3 cfs vs
     // ideal 50-400, no temperature) so the map E2E can assert the exact
     // selected-river presentation from the remediation brief.
+    // species stays 'trout' so the QA assertions hold in the default map mode.
     id: 'east-fork-stones-river',
     name: 'East Fork Stones River',
     stateId: 'TN',
@@ -146,11 +145,133 @@ const streams = [
     regionId: 'tn-middle-nashville',
     gaugeIds: ['03427500'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 50, max: 400, unit: 'cfs' }],
     notes: 'Middle Tennessee creek fishery near Nashville; runs low outside rain events.',
     officialSources: [usgs('03427500'), twraLink],
   },
 ];
+
+/**
+ * Full-atlas expansion — the remaining 80 mapped waters. Species classification
+ * is a first editorial pass grounded in TWRA's stocking programs (coldwater
+ * tailwaters + put-take streams) and the well-documented smallmouth rivers
+ * (Nolichucky, French Broad mainstem, Harpeth, Stones, Obed/Emory, lower
+ * Duck/Elk). Every entry carries the TWRA "verify officially" source; refine
+ * classifications here as field knowledge improves.
+ *
+ * Tuples: [id, waterbodyType, note?]. Species defaults to 'trout' unless the id
+ * is in WARMWATER_IDS. Names/regions come from public/atlas/rivers.geojson so
+ * the fixture list and the map geometry can never drift apart.
+ */
+const WARMWATER_IDS = new Set([
+  // Nashville middle — classic smallmouth/panfish mainstreams
+  'harpeth-river', 'stones-river', 'west-fork-stones-river', 'red-river-clarksville', 'sulfur-fork-creek',
+  // Duck/Elk mainstems below their trout reaches
+  'duck-river-lower', 'elk-river-lower',
+  // East Tennessee smallmouth rivers
+  'nolichucky-river', 'little-pigeon-river', 'powell-river', 'buffalo-creek-grainger', 'mossy-creek-jefferson', 'brush-creek-cocke',
+  // Cumberland Plateau smallmouth corridors
+  'obed-river', 'emory-river', 'daddys-creek', 'clear-creek-obed', 'piney-river-rhea', 'clear-fork', 'sequatchie-river',
+]);
+
+const EXTRA_TAILWATERS = {
+  'boone-tailwater': [{ min: 200, max: 800, unit: 'cfs' }],
+  'ft-patrick-henry-tailwater': [{ min: 80, max: 400, unit: 'cfs' }],
+  'parksville-tailwater': [{ min: 50, max: 250, unit: 'cfs' }],
+  'french-broad-river': [{ min: 400, max: 1600, unit: 'cfs' }],
+  'obey-river': [{ min: 200, max: 700, unit: 'cfs' }],
+};
+
+const EXTRA_NOTES = {
+  'boone-tailwater': 'Boone Dam tailwater on the South Fork Holston — quiet trout water between the famous stretches; generation governs wading.',
+  'ft-patrick-henry-tailwater': 'Put-take rainbow water below Fort Patrick Henry Dam; small urban fishery with easy bank access.',
+  'french-broad-river': 'Douglas Dam tailwater gets seasonal trout stockings; the mainstem warms into smallmouth water by late spring.',
+  'pigeon-river': 'Hartford corridor is stocked with rainbow through spring; fish the low-flow windows between releases.',
+  'obey-river': 'Dale Hollow tailwater — cold, clear, and stocked; mostly a float fishery with limited wade windows.',
+  'parksville-tailwater': 'Small Ocoee No. 1 tailwater fishery below Parksville Lake, stocked regularly.',
+  'tellico-river': 'Cherokee National Forest trout water above the lake; balds and plunge pools upstream of Bald River Falls.',
+  'little-river': 'GSMNP park water — rainbow and brown trout through the Metcalf bottoms; fish the pockets.',
+  'calfkiller-river': 'Small Sparta-area trout stream; flows ride spring feeders and can warm in late summer.',
+  'rocky-river': 'Cumberland stocking program water above Caney Fork; runs clear and cold most of the year.',
+  'harpeth-river': 'Williamson County smallmouth and panfish river with long float stretches — not a trout fishery.',
+  'stones-river': 'Davidson County river — largemouth, smallmouth, and panfish around the impoundments.',
+  'west-fork-stones-river': 'Warmwater creek above the impoundments; bass and sunfish only.',
+  'red-river-clarksville': 'Montgomery County float river — largemouth, spotted bass, and sunfish.',
+  'duck-river-lower': 'Award-winning smallmouth and spotted bass water below the trout reach; also a mussel sanctuary — mind the rules.',
+  'elk-river-lower': 'Warms below the trout water — smallmouth and roughfish country to the state line.',
+  'nolichucky-river': 'One of Tennessee\u2019s great free-flowing smallmouth rivers; trout water lives in its high tributaries.',
+  'little-pigeon-river': 'The Sevierville reach is smallmouth and panfish water; the park forks upstream are the trout water.',
+  'powell-river': 'Classic spotted and smallmouth bass flow; a few cool headwater reaches see occasional trout.',
+  'obed-river': 'Wild, scenic smallmouth water through the Obed Wild & Scenic River corridor.',
+  'emory-river': 'Warmwater smallmouth and panfish river joining the Obed system.',
+  'daddys-creek': 'Smallmouth boulder water in the Obed system; skip it for trout.',
+  'clear-creek-obed': 'Clear Fork system smallmouth and sunfish creek.',
+  'piney-river-rhea': 'Famous smallmouth float stream on the Cumberland Plateau.',
+  'clear-fork': 'Big South Fork smallmouth water; scenic and warm in summer.',
+  'sequatchie-river': 'Headwater smallmouth stream; the valley run stays warm year-round.',
+  'buffalo-creek-grainger': 'Warmwater creek — bass and sunfish only.',
+  'mossy-creek-jefferson': 'Warmwater creek near Jefferson City; bass and panfish.',
+  'brush-creek-cocke': 'Warmwater creek between the French Broad and Pigeon corridors.',
+};
+
+function buildAtlasStreams() {
+  const geo = JSON.parse(readFileSync(join(appRoot, 'public', 'atlas', 'rivers.geojson'), 'utf8'));
+  const meta = new Map(geo.features.map((f) => [f.properties.id, f.properties]));
+
+  const extras = [];
+  for (const [id, props] of meta) {
+    if (streams.some((s) => s.id === id)) continue;
+    const warm = WARMWATER_IDS.has(id);
+    const waterbodyType = warm ? 'river' : 'creek';
+    const idealFlow = warm
+      ? []
+      : (EXTRA_TAILWATERS[id] ?? (props.name.toLowerCase().includes('river') ? [{ min: 70, max: 350, unit: 'cfs' }] : [{ min: 8, max: 60, unit: 'cfs' }]));
+    extras.push({
+      id,
+      name: props.name,
+      stateId: 'TN',
+      waterbodyType,
+      regionId: props.regionId,
+      gaugeIds: [],
+      stockingProgram: !warm,
+      species: warm ? 'warmwater' : 'trout',
+      idealFlow,
+      notes: EXTRA_NOTES[id],
+      officialSources: [twraLink],
+    });
+  }
+  return extras;
+}
+streams.push(...buildAtlasStreams());
+
+// Deterministic demo conditions for trout streams without a curated plan:
+// hash of the stream id picks where in the ideal range (or outside it) the
+// water sits, so the demo map shows a believable mix of good/fair/poor.
+function fnv1a(str) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+function demoPlan(stream) {
+  const h = fnv1a(stream.id);
+  const range = stream.idealFlow[0];
+  const bucket = h % 100;
+  let cfs;
+  if (bucket < 14) cfs = Math.max(1, Math.round(range.min * 0.5));
+  else if (bucket < 24) cfs = Math.round(range.max * 1.6);
+  else cfs = range.min + (h % Math.max(1, range.max - range.min));
+  const tBucket = (h >> 3) % 5;
+  const tempC = tBucket === 0 ? 23 + (h % 3) : tBucket === 1 ? null : 9 + (h % 9);
+  return [
+    [cfs, null, tempC, 36 + (h % 50)],
+    [cfs + (bucket < 14 ? -1 : 1) * Math.max(1, Math.round(cfs * 0.08)), null, tempC === null ? null : tempC + 1, 96 + (h % 60)],
+  ].map(([c, hgt, t, mins]) => [c, hgt, t, mins]);
+}
 
 // ------------------------------------------------------------------ taxa ----
 
@@ -329,17 +450,24 @@ const conditionsPlans = {
   'east-fork-stones-river': [[19.3, null, null, 41], [19.1, null, null, 101]],
 };
 
-const conditions = streams.map((stream) => {
-  const readings = readingsFor(stream.id, stream.gaugeIds[0], conditionsPlans[stream.id]);
-  const score = scoreConditions(stream, readings);
-  return {
-    streamId: stream.id,
-    readings,
-    score,
-    fetchedAt: minutesAgo(32),
-    nextExpectedUpdate: minutesAgo(-28),
-  };
-});
+const conditions = streams
+  .map((stream) => {
+    const plan = conditionsPlans[stream.id] ?? (stream.species === 'trout' && stream.idealFlow.length > 0 ? demoPlan(stream) : null);
+    // Warmwater rivers are listed but never trout-scored — no snapshot, so the
+    // UI renders them with the warmwater treatment instead of a fake score.
+    if (!plan) return null;
+    const gaugeId = stream.gaugeIds[0] ?? 'demo';
+    const readings = readingsFor(stream.id, gaugeId, plan);
+    const score = scoreConditions(stream, readings);
+    return {
+      streamId: stream.id,
+      readings,
+      score,
+      fetchedAt: minutesAgo(32),
+      nextExpectedUpdate: minutesAgo(-28),
+    };
+  })
+  .filter(Boolean);
 
 // ----------------------------------------------------------------- stocking -
 

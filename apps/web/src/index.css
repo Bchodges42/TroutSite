@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------
-   Trout — Field Notes Atlas (map-first home)
-   warm paper + ink + moss/amber/clay, Fraunces + IBM Plex
-   paper grain ~3% via pseudo-layer, serif display
-   No floating white card stacks — surfaces are paper/ruled.
+   Trout — TAILWATER (dark field atlas)
+   Deep pine-black ground · luminous condition rivers · amber accent
+   Fraunces display + IBM Plex Sans · hairline glass panels
+   The map and the chrome share one token set: high contrast first.
 ---------------------------------------------------------------- */
 
 /* Fraunces + IBM Plex — self-hosted woff2 if present, else system fallback */
@@ -44,31 +44,32 @@
 }
 
 :root {
-  /* Field Notes Atlas palette */
-  --trout-paper: #fdf8ef;
-  --trout-paper-2: #f6efe1;
-  --trout-paper-3: #ede3cc;
-  --trout-ink: #1c1917;
-  --trout-ink-muted: #57534e;
-  --trout-ink-faint: #a8a29e;
-  --trout-moss: #2d4a2b;
-  --trout-moss-2: #3a5f38;
-  --trout-amber: #b45309;
-  --trout-amber-soft: #fef3c7;
-  --trout-clay: #8b5a3c;
-  --trout-clay-soft: #f5e6d3;
-  --trout-rule: #e7ddd0;
-  --trout-rule-strong: #d6c7b8;
+  /* Tailwater palette — "ink" now carries light text on dark ground */
+  --trout-paper: #0a100e;
+  --trout-paper-2: #131f19;
+  --trout-paper-3: #1a2820;
+  --trout-ink: #eaf2ed;
+  --trout-ink-muted: #9fb5aa;
+  --trout-ink-faint: #668074;
+  --trout-moss: #4cc38a;
+  --trout-moss-2: #63d69e;
+  --trout-amber: #e8b04b;
+  --trout-amber-soft: rgba(232, 176, 75, 0.14);
+  --trout-clay: #e0684b;
+  --trout-clay-soft: rgba(224, 104, 75, 0.14);
+  --trout-rule: #223329;
+  --trout-rule-strong: #31473b;
+  --trout-bronze: #b5854f;
   --touch-min: 48px;
 
-  /* override @trout/ui tokens to Atlas */
+  /* override @trout/ui tokens to Tailwater */
   --trout-color-bg: var(--trout-paper);
-  --trout-color-surface: var(--trout-paper);
+  --trout-color-surface: var(--trout-paper-2);
   --trout-color-text: var(--trout-ink);
   --trout-color-text-muted: var(--trout-ink-muted);
   --trout-color-border: var(--trout-rule);
-  --trout-color-primary: var(--trout-moss);
-  --trout-color-primary-hover: var(--trout-moss-2);
+  --trout-color-primary: var(--trout-amber);
+  --trout-color-primary-hover: #f5c05c;
   --trout-color-accent: var(--trout-amber);
   --trout-font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --trout-font-display: 'Fraunces', Georgia, serif;
@@ -76,6 +77,28 @@
   --trout-radius-sm: 6px;
   --trout-radius-md: 10px;
   --trout-radius-lg: 14px;
+
+  /* @trout/ui scale aliases — keep shared primitives on-palette */
+  --trout-slate-50: #0a100e;
+  --trout-slate-100: #0e1713;
+  --trout-slate-200: #131f19;
+  --trout-slate-300: #1a2820;
+  --trout-slate-400: #223329;
+  --trout-slate-500: #31473b;
+  --trout-slate-600: #46604f;
+  --trout-slate-700: #668074;
+  --trout-slate-800: #9fb5aa;
+  --trout-slate-900: #eaf2ed;
+  --trout-green-500: #4cc38a;
+  --trout-green-600: #63d69e;
+  --trout-green-700: #2f8f63;
+  --trout-amber-400: #f5c05c;
+  --trout-amber-500: #e8b04b;
+  --trout-amber-600: #c9932f;
+  --trout-status-good: #4cc38a;
+  --trout-status-fair: #e5a83b;
+  --trout-status-poor: #e0684b;
+  --trout-status-unknown: #54685e;
 }
 
 html { -webkit-text-size-adjust: 100%; }
@@ -85,17 +108,17 @@ body {
   font-family: var(--trout-font-body);
   font-size: 16px;
   line-height: 1.55;
-  /* paper grain ~3% — layered SVG noise via data-uri */
+  /* deep-water vignette — two cold glows so black is never dead */
   background-image:
-    radial-gradient(ellipse at 20% 30%, rgba(139,90,60,0.04) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 70%, rgba(45,74,43,0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 18% 22%, rgba(73, 179, 196, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 82% 78%, rgba(76, 195, 138, 0.04) 0%, transparent 50%);
 }
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   z-index: -1;
 }
@@ -115,16 +138,22 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
 }
 
 @layer components {
-  .page { @apply mx-auto w-full max-w-3xl px-4 pt-4 pb-24 lg:pb-10; }
+  .page { @apply mx-auto w-full max-w-3xl px-4 pt-5 pb-24 lg:pb-10; }
   .page-title {
     font-family: var(--trout-font-display);
-    @apply text-2xl font-black tracking-tight;
+    @apply text-3xl font-black tracking-tight;
     color: var(--trout-ink);
   }
   .page-subtitle { @apply text-sm; color: var(--trout-ink-muted); }
   .section-title {
     font-family: var(--trout-font-display);
     @apply mt-8 mb-2 text-lg font-bold;
+  }
+  /* micro-label — the atlas eyebrow used across data categories */
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase;
+    letter-spacing: 0.09em;
+    color: var(--trout-ink-faint);
   }
   /* nav */
   .nav-link {
@@ -133,16 +162,16 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
   }
   .nav-link:hover { background: var(--trout-paper-2); }
   .nav-link[aria-current='page'] {
-    background: #e8f0e6;
-    color: var(--trout-moss);
-    border: 1px solid #c9d9c7;
+    background: var(--trout-amber-soft);
+    color: var(--trout-amber);
+    border: 1px solid rgba(232, 176, 75, 0.35);
   }
   .bottom-tab {
     @apply flex min-h-[56px] flex-1 flex-col items-center justify-center gap-0.5 px-1 pt-1.5 pb-2 text-[11px] font-semibold no-underline;
     color: var(--trout-ink-muted);
   }
-  .bottom-tab[aria-current='page'] { color: var(--trout-moss); }
-  /* field-note surfaces — NO floating white stacks */
+  .bottom-tab[aria-current='page'] { color: var(--trout-amber); }
+  /* field-note surfaces */
   .trout-card {
     background: var(--trout-paper-2) !important;
     border: 1px solid var(--trout-rule) !important;
@@ -153,7 +182,7 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
     background: var(--trout-paper-2);
     border: 1px solid var(--trout-rule);
   }
-  a.list-row:hover { border-color: var(--trout-moss); }
+  a.list-row:hover { border-color: var(--trout-rule-strong); background: var(--trout-paper-3); }
   .list-row:first-child { border-top-left-radius: var(--trout-radius-lg); border-top-right-radius: var(--trout-radius-lg); }
   .list-row:last-child { border-bottom-left-radius: var(--trout-radius-lg); border-bottom-right-radius: var(--trout-radius-lg); }
   .list-row + .list-row { border-top-width: 0; }
@@ -163,21 +192,21 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
     border-color: var(--trout-rule);
     background: var(--trout-paper-2);
     color: var(--trout-ink);
-    transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
+    transition: border-color 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms cubic-bezier(0.22, 1, 0.36, 1), transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .option-card:hover { border-color: var(--trout-moss); }
+  .option-card:hover { border-color: var(--trout-rule-strong); transform: translateY(-1px); }
   .option-card[aria-pressed='true'], .option-card.is-selected {
-    border-color: var(--trout-moss);
-    background: #e8f0e6;
-    color: var(--trout-moss);
+    border-color: var(--trout-amber);
+    background: var(--trout-amber-soft);
+    color: var(--trout-amber);
   }
-  .option-card:active { transform: scale(0.98); }
+  .option-card:active { transform: scale(0.97); }
   .score-track { @apply h-2 w-full overflow-hidden rounded-full; background: var(--trout-rule); }
-  .score-fill { @apply h-full w-full rounded-full; transform-origin: left center; transition: transform 420ms ease; }
-  .stagger-in { animation: rise-in 260ms ease both; }
+  .score-fill { @apply h-full w-full rounded-full; transform-origin: left center; transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .stagger-in { animation: rise-in 300ms cubic-bezier(0.22, 1, 0.36, 1) both; }
   #main { scroll-margin-top: 4rem; }
   .focus-ring:focus-visible { outline: 3px solid var(--trout-amber); outline-offset: 2px; }
-  .abundance-dot { @apply inline-block h-2.5 w-2.5 rounded-full; background: var(--trout-rule); }
+  .abundance-dot { @apply inline-block h-2.5 w-2.5 rounded-full; background: var(--trout-rule-strong); }
   .abundance-dot.is-on { background: var(--trout-moss); }
   .prose-plain p { @apply mb-3; }
   .atlas-title {
@@ -188,29 +217,79 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
 }
 @keyframes rise-in { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform: translateY(0);} }
 
+/* ---- Tailwater overlay surfaces -----------------------------------
+   Floating controls sit ON the map: deep glass, hairline border,
+   layered shadow. Hover lifts, press settles, focus rings amber. */
+.atlas-glass {
+  background: rgba(13, 20, 17, 0.82);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  backdrop-filter: blur(12px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--trout-ink);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.atlas-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 700;
+  color: var(--trout-ink);
+  cursor: pointer;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 160ms cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.atlas-chip:hover { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45); }
+.atlas-chip:active { transform: scale(0.97); }
+.atlas-chip:focus-visible { outline: 3px solid var(--trout-amber); outline-offset: 2px; }
+/* amber-filled variant — primary actions */
+.atlas-chip--primary { background: var(--trout-amber); color: #0a100e; }
+.atlas-chip--primary:hover { background: #f5c05c; }
+
+/* Loading skeletons — paper-tone, never spinners */
+.skeleton {
+  border-radius: 8px;
+  background: linear-gradient(100deg, var(--trout-paper-2) 40%, var(--trout-paper-3) 50%, var(--trout-paper-2) 60%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+@keyframes skeleton-shimmer { from { background-position: 120% 0; } to { background-position: -80% 0; } }
+
 /* Drawer handle */
 .drawer-handle { width: 36px; height: 4px; border-radius: 999px; background: var(--trout-rule-strong); }
 
-/* Field Atlas orientation labels (HTML markers — no glyph pipeline) */
+/* Field Atlas orientation labels — tuned for the dark default ground */
 .atlas-place {
   pointer-events: none;
   font-family: var(--trout-font-body);
   font-weight: 700;
-  color: #24352D;
+  color: var(--atlas-place-text, #d9e4dc);
   white-space: nowrap;
-  text-shadow: 0 0 3px #F2E9D5, 0 0 6px #F2E9D5, 0 0 2px #F8F2E5;
+  text-shadow: 0 0 3px rgba(4, 9, 7, 0.9), 0 0 6px rgba(4, 9, 7, 0.9), 0 0 2px rgba(4, 9, 7, 0.9);
   transform: translateY(-4px);
 }
-.atlas-place--city { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85; }
-.atlas-place--town { font-size: 11px; letter-spacing: 0.03em; opacity: 0.65; }
-.atlas-place--water { font-size: 11px; font-style: italic; color: #2E6F73; opacity: 0.8; }
+.atlas-place--city { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.9; }
+.atlas-place--town { font-size: 11px; letter-spacing: 0.03em; opacity: 0.7; }
+.atlas-place--water { font-size: 11px; font-style: italic; color: #6fc4d2; opacity: 0.85; }
 
-/* Ink night basemap — labels flip light with a dark halo ([data-basemap] lives
-   on TennesseeMap's wrapper, an ancestor of the marker elements). */
-[data-basemap="ink"] .atlas-place { color: #D8D2C2; text-shadow: 0 0 3px rgba(10, 15, 12, 0.85); }
-[data-basemap="ink"] .atlas-place--city { color: #EDE7D7; }
+/* Paper day variant — labels flip dark on cream ([data-basemap] lives on
+   TennesseeMap's wrapper, an ancestor of the marker elements). */
+[data-basemap="paper"] .atlas-place { color: #1c2b23; text-shadow: 0 0 3px #efe8d8, 0 0 6px #efe8d8, 0 0 2px #f5efdf; }
+[data-basemap="paper"] .atlas-place--water { color: #2e6f73; }
 
 /* When the desktop inspector is open, keep zoom/attribution clear of it */
 @media (min-width: 1024px) {
-  .atlas-panel-open .maplibregl-ctrl-bottom-right { right: 436px; }
+  .atlas-panel-open .maplibregl-ctrl-bottom-right { right: 456px; }
 }
+
+/* MapLibre controls on dark ground */
+.maplibregl-ctrl-group { background: rgba(13, 20, 17, 0.85) !important; border: 1px solid rgba(255,255,255,0.1) !important; backdrop-filter: blur(10px); }
+.maplibregl-ctrl-group button + button { border-top: 1px solid rgba(255,255,255,0.1) !important; }
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.9) hue-rotate(90deg); }
+.maplibregl-ctrl-attrib { background: rgba(13, 20, 17, 0.7) !important; color: #9fb5aa !important; }
+.maplibregl-ctrl-attrib a { color: #9fb5aa !important; }
+[data-basemap="paper"] .maplibregl-ctrl-group { background: rgba(245, 239, 223, 0.9) !important; border-color: #d6c7b8 !important; }
+[data-basemap="paper"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: none; }
+[data-basemap="paper"] .maplibregl-ctrl-attrib { background: rgba(245,239,223,0.8) !important; color: #4a584f !important; }
+[data-basemap="paper"] .maplibregl-ctrl-attrib a { color: #4a584f !important; }

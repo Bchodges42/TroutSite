@@ -84,6 +84,18 @@ export function WifiOffIcon(props: IconProps) {
   return base({ ...props, children: <><path d="M2 4 22 20" /><path d="M5 12.5a10 10 0 0 1 5.5-3M2 8a15 15 0 0 1 4-2.4M19.5 15a10 10 0 0 0-2.6-2.4" /><circle cx="12" cy="19" r="0.8" fill="currentColor" /></> });
 }
 
+export function SlidersIcon(props: IconProps) {
+  return base({ ...props, children: <><path d="M4 8h10M18 8h2M4 16h4M12 16h8" /><circle cx="16" cy="8" r="2.2" /><circle cx="10" cy="16" r="2.2" /></> });
+}
+
+export function LayersIcon(props: IconProps) {
+  return base({ ...props, children: <><path d="m12 3 8 4.5-8 4.5-8-4.5L12 3Z" /><path d="m4 12.5 8 4.5 8-4.5" /><path d="m4 17 8 4.5L20 17" /></> });
+}
+
+export function ListIcon(props: IconProps) {
+  return base({ ...props, children: <><path d="M8 6h13M8 12h13M8 18h13" /><circle cx="4" cy="6" r="0.8" fill="currentColor" /><circle cx="4" cy="12" r="0.8" fill="currentColor" /><circle cx="4" cy="18" r="0.8" fill="currentColor" /></> });
+}
+
 export function CalendarIcon(props: IconProps) {
   return base({ ...props, children: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 9h18M8 3v4M16 3v4" /></> });
 }

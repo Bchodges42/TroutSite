@@ -9,8 +9,19 @@ import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&ur
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { atlasStyle, type BasemapVariant } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS } from './mapTokens';
+import { easeOutCubic } from '../../components/motion/atlas-motion';
 
 setWorkerUrl(maplibreWorkerUrl);
+
+// First-load cinematic: the map mounts on a wider stage (past TN) then eases
+// into the state over ≤1.5s. maxBounds starts loose so the wide frame is
+// legal, and clamps to TN once the push-in settles.
+function expandedTNBounds(): [[number, number], [number, number]] {
+  const [[w, s], [e, n]] = TN_MAX_BOUNDS as [[number, number], [number, number]];
+  const cx = (w + e) / 2, cy = (s + n) / 2;
+  const dx = (e - w) * 0.85, dy = (n - s) * 0.85;
+  return [[cx - dx / 2, cy - dy / 2], [cx + dx / 2, cy + dy / 2]];
+}
 
 export interface TennesseeMapProps {
   selectedId: string | null;
@@ -19,6 +30,10 @@ export interface TennesseeMapProps {
   featureColors: Map<string, string>;
   /** All river feature ids — used to dim non-selected rivers on selection. */
   allIds?: string[];
+  /** Ids that should be visible (species filter). Rivers outside the set get
+   * the `hidden` feature-state (opacity 0 in every paint layer) and are
+   * ignored by click/hover hit-testing. Undefined/omitted = show everything. */
+  visibleIds?: Set<string>;
   /** Stream ids that should glow in hatch mode. */
   hatchActiveIds?: Set<string>;
   /** Optional per-river hatch halo color override (e.g. sulphur hue). */
@@ -32,6 +47,9 @@ export interface TennesseeMapProps {
   basemap?: BasemapVariant;
   /** Called once the MapLibre instance is ready. */
   onMapReady?: (map: maplibregl.Map) => void;
+  /** Play the first-load push-in into Tennessee (skipped automatically for
+   * reduced-motion visitors and deep links with a preselected river). */
+  intro?: boolean;
   className?: string;
   /** Accessibility label. */
   ariaLabel?: string;
@@ -50,12 +68,14 @@ export function TennesseeMap({
   onSelect,
   featureColors,
   allIds,
+  visibleIds,
   hatchActiveIds,
   hatchColors,
   fitPadding,
   places,
-  basemap = 'paper',
+  basemap = 'ink',
   onMapReady,
+  intro = false,
   className,
   ariaLabel = 'Tennessee trout waters map',
 }: TennesseeMapProps) {
@@ -63,6 +83,8 @@ export function TennesseeMap({
   const mapRef = useRef<maplibregl.Map | null>(null);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
+  const visibleIdsRef = useRef(visibleIds);
+  visibleIdsRef.current = visibleIds;
   // Map-failure fallback: if the style/sources never go idle, say so plainly
   // and keep the stream list reachable (spec: map failure recovery action).
   const [attempt, setAttempt] = useState(0);
@@ -75,6 +97,8 @@ export function TennesseeMap({
   const applyRef = useRef(() => {});
 
   // mount once (plus explicit retries from the failure fallback)
+  const introRef = useRef(intro);
+  introRef.current = intro;
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -83,6 +107,7 @@ export function TennesseeMap({
     delete container.dataset.mapFailed;
     let idle = false;
     let disposed = false;
+    let settleTimeout: number | undefined;
 
     const map = new maplibregl.Map({
       container,
@@ -91,10 +116,10 @@ export function TennesseeMap({
       // via the basemap effect below (this effect only re-runs on retries).
       style: atlasStyle(basemap) as unknown as maplibregl.StyleSpecification,
       center: [-86.35, 35.75],
-      zoom: 6.45,
+      zoom: introRef.current ? 5.15 : 6.45,
       minZoom: 5.6,
       maxZoom: 11,
-      maxBounds: TN_MAX_BOUNDS,
+      maxBounds: introRef.current ? expandedTNBounds() : TN_MAX_BOUNDS,
       attributionControl: false,
       dragRotate: false,
       pitchWithRotate: false,
@@ -108,6 +133,9 @@ export function TennesseeMap({
     map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
     map.addControl(new maplibregl.NavigationControl({ showCompass: false, visualizePitch: false }), 'bottom-right');
 
+    const clampToTN = () => {
+      try { map.setMaxBounds(TN_MAX_BOUNDS); } catch { /* not loaded yet */ }
+    };
     const fitTN = () => {
       try {
         map.fitBounds(TN_BOUNDS, { padding: 28, duration: 0 });
@@ -117,7 +145,25 @@ export function TennesseeMap({
     };
 
     map.on('load', () => {
-      fitTN();
+      // First-load cinematic: one long easeOutCubic push-in into Tennessee
+      // (≤1.5s), skipped for reduced-motion visitors. Either way maxBounds
+      // clamps back to TN once the camera settles.
+      const reduced =
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        document.documentElement.classList.contains('reduce-motion');
+      if (introRef.current && !reduced) {
+        try {
+          map.fitBounds(TN_BOUNDS, { padding: 28, duration: 1400, easing: easeOutCubic });
+        } catch {
+          fitTN();
+        }
+        const settle = window.setTimeout(clampToTN, 1500);
+        settleTimeout = settle;
+        map.once('moveend', () => { window.clearTimeout(settle); clampToTN(); });
+      } else {
+        fitTN();
+        clampToTN();
+      }
       onMapReady?.(map);
     });
     map.on('idle', () => {
@@ -146,6 +192,8 @@ export function TennesseeMap({
       );
       const f = feats.find((x) => typeof x.properties?.['id'] === 'string');
       const id = f?.properties?.['id'] as string | undefined;
+      // Species filter: hidden rivers never receive clicks.
+      if (id && visibleIdsRef.current && !visibleIdsRef.current.has(id)) return;
       onSelectRef.current(id ?? null);
     };
     map.on('click', handleClick);
@@ -153,7 +201,9 @@ export function TennesseeMap({
     let hoverId: string | null = null;
     const onMouseMove = (e: maplibregl.MapMouseEvent) => {
       const feats = map.queryRenderedFeatures(e.point, { layers: ['rivers-hit', 'rivers-water'] }) as Array<{ properties?: Record<string, unknown> }>;
-      const id = (feats[0]?.properties?.['id'] as string | undefined) ?? null;
+      const found = (feats[0]?.properties?.['id'] as string | undefined) ?? null;
+      // Species filter: hidden rivers get no hover highlight.
+      const id = found && visibleIdsRef.current && !visibleIdsRef.current.has(found) ? null : found;
       if (id !== hoverId) {
         if (hoverId) {
           try {
@@ -213,6 +263,7 @@ export function TennesseeMap({
     return () => {
       disposed = true;
       window.clearTimeout(watchdog);
+      if (settleTimeout !== undefined) window.clearTimeout(settleTimeout);
       ro.disconnect();
       window.removeEventListener('resize', onResizeWindow);
       try {
@@ -369,6 +420,34 @@ export function TennesseeMap({
     };
   }, [basemap]);
 
+  // Species visibility — `hidden` feature-state drives paint opacity to 0 in
+  // every layer (see mapStyle). Retried on sourcedata for late-loading sources.
+  const allIdsForHiddenRef = useRef(allIds);
+  allIdsForHiddenRef.current = allIds;
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const apply = () => {
+      for (const id of allIdsForHiddenRef.current ?? []) {
+        try {
+          map.setFeatureState({ source: 'rivers', id }, { hidden: visibleIds ? !visibleIds.has(id) : false });
+        } catch {
+          // source not ready yet; sourcedata retries
+        }
+      }
+    };
+    apply();
+    const onSourceData = (event: maplibregl.MapSourceDataEvent) => {
+      if (event.sourceId !== 'rivers') return;
+      apply();
+      if (event.isSourceLoaded) map.off('sourcedata', onSourceData);
+    };
+    map.on('sourcedata', onSourceData);
+    return () => {
+      map.off('sourcedata', onSourceData);
+    };
+  }, [visibleIds]);
+
   // Condition colors + hatch halo via feature-state only (public API).
   // Retried on `sourcedata` for deep links whose ids aren't loaded yet.
   applyRef.current = () => {
@@ -471,12 +550,12 @@ export function TennesseeMap({
           class placed directly on its container and collapse it to zero height. */}
       <div ref={containerRef} className="h-full w-full" aria-label={ariaLabel} role="application" />
       {mapFailed && (
-        <div className="absolute inset-x-3 top-24 mx-auto max-w-md rounded-2xl border bg-[#F8F2E5] p-4 shadow-[0_8px_32px_rgba(51,45,32,0.16)]" style={{ borderColor: '#D3C6AB' }} role="alert">
-          <p className="text-sm font-bold text-[#24352D]">The river map didn&rsquo;t finish loading.</p>
-          <p className="mt-1 text-sm text-[#566158]">Your saved logbook and stream list are unaffected.</p>
+        <div className="atlas-glass absolute inset-x-3 top-24 mx-auto max-w-md rounded-2xl p-4" role="alert">
+          <p className="text-sm font-bold text-[#EAF2ED]">The river map didn&rsquo;t finish loading.</p>
+          <p className="mt-1 text-sm text-[#9FB5AA]">Your saved logbook and stream list are unaffected.</p>
           <div className="mt-3 flex gap-2">
-            <button type="button" onClick={() => setAttempt((a) => a + 1)} className="min-h-[44px] flex-1 rounded-xl bg-[#24352D] px-4 text-sm font-bold text-white">Try again</button>
-            <a href="/browse" className="flex min-h-[44px] flex-1 items-center justify-center rounded-xl border px-4 text-sm font-bold text-[#24352D]" style={{ borderColor: '#D3C6AB' }}>Browse streams as a list</a>
+            <button type="button" onClick={() => setAttempt((a) => a + 1)} className="atlas-chip atlas-chip--primary min-h-[44px] flex-1 rounded-xl px-4 text-sm">Try again</button>
+            <a href="/browse" className="atlas-chip atlas-glass flex min-h-[44px] flex-1 rounded-xl px-4 text-sm">Browse streams as a list</a>
           </div>
         </div>
       )}

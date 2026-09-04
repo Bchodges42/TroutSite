@@ -14,6 +14,7 @@ import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
 import { db } from '../../lib/db';
 import { fetchSnapshot } from '../../lib/snapshots';
 import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from './riverMapSelectors';
+import { atlas } from './mapTokens';
 import type { RiverMapFeature } from './riverMapSelectors';
 
 const StreamsSchema = z.array(StreamSchema);
@@ -70,12 +71,13 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   const features: RiverMapFeature[] = useMemo(() => {
     const streams = (streamsQ.data?.data ?? []) as unknown[];
-    return (streams as Array<{ id: string; name: string; regionId: string } & Record<string, unknown>>).map((stream) => {
+    return (streams as Array<{ id: string; name: string; regionId: string; species?: 'trout' | 'warmwater' } & Record<string, unknown>>).map((stream) => {
       const snap = snapshotById.get((stream as { id: string }).id) as any;
       const hasData = !!snap;
       const score = snap?.score?.value ?? null;
       const status = statusForScore(score, hasData);
-      const color = colorForStatus(status);
+      // Warmwater rivers are listed but never trout-scored — bronze, honest.
+      const color = stream.species === 'warmwater' ? atlas.warmwater : colorForStatus(status);
       const chart = hatchMap.get((stream as { regionId: string }).regionId) as HatchChart | undefined ?? null;
       const dominant = dominantHatch(chart);
       const halo = hatchHaloForChart(chart);
@@ -85,6 +87,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         status,
         color,
         score,
+        species: stream.species ?? 'trout',
         freshness: (conditionsQ.data?.fetchedAt ?? null) as number | null,
         hatchChart: chart,
         hatchDominant: dominant,

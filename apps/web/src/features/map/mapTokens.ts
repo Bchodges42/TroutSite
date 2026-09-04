@@ -1,42 +1,57 @@
 /**
- * Field Notes Atlas palette — paper-first, ink, and contour tones.
- * Condition colors map directly to src/lib/conditions.ts scoreBand:
+ * Tailwater palette — a dark, high-contrast field atlas. Deep pine-black
+ * ground, luminous condition-colored rivers, one warm amber accent for
+ * interaction. Condition hues map to src/lib/conditions.ts scoreBand:
  *   good >=70, fair >=40, poor <40, no-data otherwise.
+ * `atlasLight` restores the paper variant ('paper' basemap); every UI surface
+ * is driven by the same tokens so map and chrome read as one object.
  */
 export const atlas = {
-  paper: '#F2E9D5',
-  paperRaised: '#F8F2E5',
-  paperWarm: '#EDE6D3',
-  ink: '#24352D',
-  softInk: '#566158',
-  inkFaint: '#7A8578',
-  water: '#2E6F73',
-  // condition — muted field-notes earth tones, still distinct at a glance
-  good: '#5F7E4B', // moss — fishable
-  fair: '#B98232', // amber — marginal
-  poor: '#985446', // clay — poor
-  noData: '#8B8A82',
-  sulphur: '#D98232', // hatch halo
-  contour: '#B8A986',
-  hairline: '#D3C6AB',
-  shadow: 'rgba(51, 45, 32, 0.16)',
+  // ground
+  paper: '#0B120F', // map background (outside TN)
+  paperRaised: '#101B16', // Tennessee fill
+  paperWarm: '#0E1713',
+  ink: '#040806', // river casing — a shadow that makes data lines glow
+  softInk: '#9FB5AA', // secondary text
+  inkFaint: '#6B8177',
+  water: '#49B3C4',
+  // conditions — vivid on dark ground
+  good: '#4CC38A', // jade — fishable
+  fair: '#E5A83B', // amber — marginal
+  poor: '#E0684B', // coral — poor
+  noData: '#54685E', // slate — visible, never "missing"
+  warmwater: '#B5854F', // bronze — bass/panfish rivers (not trout-scored)
+  sulphur: '#F09A4E', // hatch halo
+  selection: '#FFD97A', // selected-river outline
+  // structure
+  contour: '#223429',
+  hairline: '#3A5448',
+  // lakes/reservoirs — a shade bluer and deeper than the land they sit on
+  lakeFill: '#0F2A31',
+  lakeShore: '#1E4750',
+  shadow: 'rgba(0, 0, 0, 0.5)',
+  // place-label markers
+  placeText: '#D9E4DC',
+  placeHalo: 'rgba(4, 9, 7, 0.9)',
 } as const;
 
-// Ink night — dark variant. Condition hues stay recognizable; only ground,
-// lines, and label tones change. Never used for UI chrome (panels stay paper).
-export const atlasNight = {
-  paper: '#121815',
-  paperRaised: '#1A231E',
-  paperWarm: '#161F1A',
-  ink: '#0B100D',
-  softInk: '#93A096',
-  inkFaint: '#5E6B62',
-  contour: '#26312A',
-  hairline: '#33423A',
-  noData: '#5E6B62',
-  sulphur: '#E89A4B',
-  placeText: '#D8D2C2',
-  placeHalo: 'rgba(10, 15, 12, 0.85)',
+/** Paper day variant — the classic cream atlas, refined for stronger line contrast. */
+export const atlasLight = {
+  paper: '#EFE8D8',
+  paperRaised: '#F5EFDF',
+  paperWarm: '#EDE5D1',
+  ink: '#1C2B23',
+  softInk: '#4A584F',
+  inkFaint: '#77826F',
+  contour: '#A79778',
+  hairline: '#B7A680',
+  lakeFill: '#C9DAE4',
+  lakeShore: '#9FB4C4',
+  noData: '#6E7A6F',
+  sulphur: '#D98232',
+  selection: '#D98232',
+  placeText: '#1C2B23',
+  placeHalo: 'rgba(245, 239, 223, 0.95)',
 } as const;
 
 /** Tennessee bounding box (lon/lat) — padded for maxBounds. */

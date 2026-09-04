@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import { TennesseeMap } from './TennesseeMap';
 import { RiverDrawer } from './RiverDrawer';
 import { RiverSearch } from './RiverSearch';
-import { MapModeControl } from './MapModeControl';
-import { HatchMonthControl } from './HatchMonthControl';
+import { MapControls } from './MapControls';
 import { MapLegend } from './MapLegend';
+import { Segmented } from '../../components/ui/Segmented';
 import type { BasemapVariant } from './mapStyle';
 import { useShell } from '../../components/layout/AppShell';
 import { MenuIcon } from '../../components/icons';
@@ -13,25 +14,30 @@ import { useRiverMapData } from './useRiverMapData';
 import { currentMonth } from '../../lib/time';
 import { useOnline } from '../../hooks/useOnline';
 import { ageMinutes } from '../../lib/time';
+import { SPRING, useAtlasReducedMotion } from '../../components/motion/atlas-motion';
 
 const TABS = ['Water','Hatch','Stocking','Reports','Your Log'] as const;
+type SpeciesMode = 'trout' | 'all';
+const isSpeciesMode = (v: string | null): v is SpeciesMode => v === 'trout' || v === 'all';
 
-// Cycled by the basemap pill. 'topo' joins once the /atlas/topo/manifest.json probe succeeds.
-const CORE_BASEMAPS: BasemapVariant[] = ['paper', 'ink'];
+// Cycled by the basemap control. 'topo' joins once the /atlas/topo/manifest.json probe succeeds.
+const CORE_BASEMAPS: BasemapVariant[] = ['ink', 'paper'];
 const ALL_BASEMAPS: BasemapVariant[] = [...CORE_BASEMAPS, 'topo'];
-const BASEMAP_LABELS: Record<BasemapVariant, string> = { paper: 'Paper', ink: 'Ink', topo: 'Topo' };
 const isBasemapVariant = (v: string | null): v is BasemapVariant => v === 'paper' || v === 'ink' || v === 'topo';
 
 export function RiverMapPage() {
   const [params, setParams] = useSearchParams();
   const { openMenu, menuOpen } = useShell();
   const online = useOnline();
+  const reducedMotion = useAtlasReducedMotion();
   const selectedId = params.get('river');
   const tab = (params.get('tab') as typeof TABS[number]) ?? 'Water';
   const mode = (params.get('mode') as 'conditions' | 'hatches') ?? 'conditions';
+  const speciesParam = params.get('species');
+  const species: SpeciesMode = isSpeciesMode(speciesParam) ? speciesParam : 'trout';
   const monthParam = params.get('month');
   const [month, setMonth] = useState<number>(monthParam ? parseInt(monthParam,10) : currentMonth());
-  const { features, fetchedAt, live, streams } = useRiverMapData({ month: mode === 'hatches' ? month : currentMonth() } as any);
+  const { features, isLoading, streams, live, fetchedAt } = useRiverMapData({ month: mode === 'hatches' ? month : currentMonth() } as any);
 
   const featureColors = useMemo(() => {
     const m = new Map<string,string>();
@@ -54,6 +60,27 @@ export function RiverMapPage() {
 
   const selectedFeature = useMemo(() => features.find(f=> f.stream.id === selectedId) ?? null, [features, selectedId]);
   const validatedTab = (TABS as readonly string[]).includes(tab) ? tab as typeof TABS[number] : 'Water';
+
+  // Species visibility — Trout mode (default) hides warmwater rivers entirely
+  // (paint + hit-testing); the selected river is always exempt from the filter.
+  const visibleIds = useMemo(() => {
+    const s = new Set<string>();
+    for (const f of features) {
+      if (species === 'all' || f.species === 'trout' || f.stream.id === selectedId) s.add(f.stream.id);
+    }
+    return s;
+  }, [features, species, selectedId]);
+
+  const searchableStreams = useMemo(
+    () => (species === 'all' ? streams : streams.filter((s: any) => (s.species ?? 'trout') === 'trout')),
+    [streams, species],
+  );
+
+  const setSpecies = (next: SpeciesMode) => {
+    const p = new URLSearchParams(params);
+    if (next === 'trout') p.delete('species'); else p.set('species', next);
+    setParams(p, { replace: true });
+  };
 
   const setRiver = (id: string | null) => {
     const next = new URLSearchParams(params);
@@ -79,12 +106,12 @@ export function RiverMapPage() {
     setParams(next, { replace: true });
   };
 
-  // Basemap — URL param wins, then last choice (localStorage), then paper.
+  // Basemap — URL param wins, then last choice (localStorage), then dark ink.
   const [basemap, setBasemap] = useState<BasemapVariant>(() => {
     const fromUrl = params.get('basemap');
     if (isBasemapVariant(fromUrl)) return fromUrl;
     const saved = localStorage.getItem('trout:basemap');
-    return isBasemapVariant(saved) ? saved : 'paper';
+    return isBasemapVariant(saved) ? saved : 'ink';
   });
   const setBasemapPersist = (v: BasemapVariant) => {
     setBasemap(v);
@@ -107,36 +134,34 @@ export function RiverMapPage() {
         if (j && Array.isArray(j.bands) && j.hillshade && typeof j.minZoom === 'number' && typeof j.maxZoom === 'number') {
           setTopoReady(true);
         } else if (basemapRef.current === 'topo') {
-          setBasemapPersist('paper'); // deep link / saved topo without the data — fall back honestly
+          setBasemapPersist('ink'); // deep link / saved topo without the data — fall back honestly
         }
       })
       .catch(() => {
-        if (!cancelled && basemapRef.current === 'topo') setBasemapPersist('paper');
+        if (!cancelled && basemapRef.current === 'topo') setBasemapPersist('ink');
       });
     return () => { cancelled = true; };
   }, []);
-  const cycleBasemap = () => {
-    const list = topoReady ? ALL_BASEMAPS : CORE_BASEMAPS;
-    const idx = list.indexOf(basemap);
-    const next = list[(idx + 1) % list.length] ?? 'paper';
-    setBasemapPersist(next);
-  };
-  // Until the probe confirms the build output, 'topo' renders as paper — the
+  // Until the probe confirms the build output, 'topo' renders as ink — the
   // style's sources must never be requested before the files exist.
-  const effectiveBasemap: BasemapVariant = basemap === 'topo' && !topoReady ? 'paper' : basemap;
+  const effectiveBasemap: BasemapVariant = basemap === 'topo' && !topoReady ? 'ink' : basemap;
 
   const [hintDismissed, setHintDismissed] = useState<boolean>(() => localStorage.getItem('trout:hintDismissed') === '1');
   useEffect(() => { if (selectedId) { localStorage.setItem('trout:hintDismissed','1'); setHintDismissed(true); } }, [selectedId]);
 
   // location (private, in-memory only)
-  const [userPos, setUserPos] = useState<{lat:number;lon:number}|null>(null);
   const requestLocation = async () => {
     if (!navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(p=> setUserPos({ lat: p.coords.latitude, lon: p.coords.longitude }), ()=>{}, { maximumAge: 300000, timeout: 8000 });
   };
+  const [userPos, setUserPos] = useState<{lat:number;lon:number}|null>(null);
+
+  // First-load cinematic: the map eases into Tennessee, then the overlays
+  // stagger in. Deep links with a selected river skip the fly-in.
+  const introEligible = useRef(!selectedId).current;
 
   // Desktop detection for panel-aware map fit (selection centers clear of the
-  // 420px inspector, top controls, and left nav).
+  // floating inspector, top controls, and left nav).
   const [isDesktop, setIsDesktop] = useState<boolean>(() => typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches);
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 1024px)');
@@ -146,78 +171,197 @@ export function RiverMapPage() {
   }, []);
   const fitPadding = selectedId
     ? isDesktop
-      ? { top: 96, bottom: 32, left: 32, right: 452 }
+      ? { top: 110, bottom: 32, left: 32, right: 472 }
       : { top: 148, bottom: 320, left: 16, right: 16 }
     : undefined;
   const allIds = useMemo(() => features.map((f) => f.stream.id), [features]);
 
   // Orientation places (real Census centroids, same-origin /atlas/places.json)
+  // plus lake/reservoir labels from the atlas lakes file.
   const [places, setPlaces] = useState<Array<{ name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' }>>([]);
   useEffect(() => {
     let cancelled = false;
-    fetch('/atlas/places.json')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => { if (!cancelled && j && Array.isArray(j.places)) setPlaces(j.places); })
-      .catch(() => { /* labels are orientation aids only */ });
+    Promise.all([
+      fetch('/atlas/places.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      fetch('/atlas/lakes.geojson').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    ]).then(([pj, lakes]) => {
+      if (cancelled) return;
+      const out: Array<{ name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' }> = [];
+      if (pj && Array.isArray(pj.places)) out.push(...pj.places);
+      if (lakes && Array.isArray(lakes.features)) {
+        for (const f of lakes.features) {
+          const a = f.properties?.labelAnchor;
+          if (Array.isArray(a) && typeof a[0] === 'number' && typeof a[1] === 'number') {
+            out.push({ name: f.properties.name, lon: a[0], lat: a[1], kind: 'water' });
+          }
+        }
+      }
+      setPlaces(out);
+    });
     return () => { cancelled = true; };
   }, []);
 
+  const statusLabel = `${live ? 'Live' : 'Cached'}${fetchedAt ? ` · ${ageMinutes(fetchedAt)}` : ''}${!online ? ' · Offline — still works' : ''}`;
+  // Overlay stagger: quiet entrances once the fly-in has committed. With
+  // reduced motion everything is simply there.
+  const enter = () =>
+    reducedMotion
+      ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
+      : { initial: { opacity: 0, y: -10 }, animate: { opacity: 1, y: 0 } };
+  const stagger = (i: number) => reducedMotion ? 0 : 0.55 + i * 0.12;
+
   return (
-    <div className={`relative flex h-dvh flex-col overflow-hidden bg-[#F2E9D5]${selectedId && isDesktop ? ' atlas-panel-open' : ''}`}>
-      {/* Map fills */}
-      <div className="relative min-h-0 flex-1 overflow-hidden">
+    <div className={`relative h-dvh overflow-hidden bg-[#0A100E]${selectedId && isDesktop ? ' atlas-panel-open' : ''}`}>
+      {/* Map fills edge to edge — overlays float above it and never take layout space */}
+      <div className="absolute inset-0">
         {/* paper grain */}
-        <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E")` }} />
-        <TennesseeMap selectedId={selectedId} onSelect={setRiver} featureColors={featureColors} allIds={allIds} hatchActiveIds={hatchActiveIds} hatchColors={hatchColors} fitPadding={fitPadding} places={places} basemap={effectiveBasemap} />
-        {/* Top bar — right-capped on desktop when the inspector is open so
-            controls never slide under the 420px panel (+24px gutters). */}
-        <div className={`pointer-events-none absolute inset-x-0 top-0 flex flex-col gap-2 p-3 ${selectedId && isDesktop ? 'lg:right-[444px]' : ''}`}>
-          <div className="pointer-events-auto flex flex-wrap items-center gap-2">
-            <button type="button" onClick={openMenu} aria-label="Open menu" aria-expanded={menuOpen} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border bg-white shadow-sm" style={{ borderColor: '#D3C6AB' }}>
-              <MenuIcon size={20} />
-            </button>
-            <Link to="/" className="flex shrink-0 items-center gap-1.5 rounded-full border bg-white px-3 py-2 shadow-sm" style={{ borderColor: '#D3C6AB' }} aria-label="Trout — home">
-              <span className="atlas-title text-sm font-black tracking-tight text-[#24352D]">Trout</span>
-              <span className="hidden text-[11px] font-semibold text-[#566158] sm:inline">Field Atlas</span>
-            </Link>
-            <RiverSearch streams={streams} onSelect={setRiver} />
-            <MapModeControl mode={mode} onChange={setMode} />
-            <button type="button" onClick={cycleBasemap} aria-label={`Basemap: ${BASEMAP_LABELS[basemap]} — change`} title={`Basemap: ${BASEMAP_LABELS[basemap]} — change`} className="flex h-11 min-w-[44px] shrink-0 items-center justify-center rounded-full border bg-white px-3 text-xs font-bold shadow-sm" style={{ borderColor: '#D3C6AB' }}>
-              {BASEMAP_LABELS[basemap]}
-            </button>
-            <button onClick={requestLocation} className="rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm" style={{ borderColor: '#D3C6AB' }} title="Use location only on this device — never sent">Near me</button>
-            <a href="/conditions" className="rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm" style={{ borderColor: '#D3C6AB' }}>Browse as list</a>
-          </div>
-          <div className="pointer-events-auto flex flex-wrap gap-2">
-            {mode === 'hatches' && <HatchMonthControl month={month} onChange={setMonthReplace} />}
-            <span className="whitespace-nowrap rounded-full border bg-white px-3 py-1 text-xs font-semibold shadow-sm" style={{ borderColor: '#D3C6AB' }}>{live ? 'Live' : 'Cached'} {fetchedAt ? `· ${ageMinutes(fetchedAt)}` : ''} {!online ? '· Offline — still works' : ''}</span>
-          </div>
-          {!hintDismissed && (
-            <div className="pointer-events-auto flex max-w-[360px] items-center justify-between gap-2 rounded-2xl border bg-[#F8F2E5] px-3 py-2 text-xs shadow-sm" style={{ borderColor: '#D3C6AB' }}>
-              <span className="font-semibold text-[#24352D]">Tap a river. Color shows current conditions.</span>
-              <button onClick={() => { setHintDismissed(true); localStorage.setItem('trout:hintDismissed','1'); }} className="rounded-full bg-[#24352D] px-3 py-1 text-xs font-bold text-white">Got it</button>
-            </div>
-          )}
-        </div>
-        {/* Docked legend — bottom-left; clears attribution (bottom-right) and the mobile peek sheet. */}
-        <div className={`absolute left-3 z-10 ${selectedFeature ? 'bottom-[172px] lg:bottom-3' : 'bottom-3'}`}>
-          <MapLegend mode={mode} />
-        </div>
-        {/* desktop inspector — full-height card, content starts at the top,
-            ONE scroll region (the panel body inside RiverDrawer). */}
-        {selectedFeature && (
-          <div className="atlas-panel-open pointer-events-none absolute bottom-3 right-3 top-20 hidden w-[420px] lg:block" data-testid="desktop-panel">
-            <div className="pointer-events-auto h-full overflow-hidden rounded-2xl border bg-[#F8F2E5] shadow-[0_8px_32px_rgba(51,45,32,0.16)]" style={{ borderColor: '#D3C6AB' }}>
-              <RiverDrawer feature={selectedFeature} tab={validatedTab} onTab={setTab} onClose={() => setRiver(null)} modeMonth={month} live={live} fetchedAt={fetchedAt} layout="panel" />
-            </div>
-          </div>
-        )}
+        <div className="pointer-events-none absolute inset-0 z-[2] opacity-[0.04]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E")` }} />
+        <TennesseeMap selectedId={selectedId} onSelect={setRiver} featureColors={featureColors} allIds={allIds} visibleIds={visibleIds} hatchActiveIds={hatchActiveIds} hatchColors={hatchColors} fitPadding={fitPadding} places={places} basemap={effectiveBasemap} intro={introEligible && !reducedMotion} />
       </div>
-      {/* mobile drawer */}
+
+      {/* Floating control cluster — menu, brand, omnibar, species, overflow */}
+      <motion.div
+        {...enter()}
+        transition={{ ...SPRING.gentle, delay: stagger(0) }}
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-3 lg:p-4"
+      >
+        <div className={`pointer-events-auto flex w-full max-w-[680px] items-center gap-2 ${selectedId && isDesktop ? 'lg:mr-[472px] lg:max-w-none lg:justify-start' : ''}`}>
+          <motion.button
+            type="button" onClick={openMenu} aria-label="Open menu" aria-expanded={menuOpen}
+            whileHover={{ y: -1 }} whileTap={{ scale: 0.97 }}
+            className="atlas-chip atlas-glass h-11 w-11 shrink-0"
+          >
+            <MenuIcon size={20} />
+          </motion.button>
+          <div className="hidden shrink-0 select-none flex-col leading-none sm:flex">
+            <Link to="/" aria-label="Trout — home" className="focus-ring rounded">
+              <span className="atlas-title text-[19px] font-black tracking-tight text-[#EAF2ED]">Trout</span>
+            </Link>
+            <span className="eyebrow mt-0.5 text-[9px]">Field Atlas</span>
+          </div>
+          <RiverSearch streams={searchableStreams} onSelect={setRiver} selectedId={selectedId} placeholder={species === 'all' ? 'Search Tennessee waters…' : 'Search trout waters…'} />
+          <div className="hidden md:block">
+            <Segmented
+              ariaLabel="Species"
+              size="sm"
+              value={species}
+              onChange={setSpecies}
+              options={[{ value: 'trout', label: 'Trout' }, { value: 'all', label: 'All fish' }]}
+            />
+          </div>
+          <span className="hidden items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] font-bold text-[#9FB5AA] lg:flex" title={statusLabel}>
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: online ? (live ? '#4CC38A' : '#E5A83B') : '#E0684B' }} aria-hidden />
+            {online ? (live ? 'Live' : 'Cached') : 'Offline'}
+          </span>
+          <MapControls
+            mode={mode}
+            onMode={setMode}
+            basemap={basemap}
+            basemapOptions={topoReady ? ALL_BASEMAPS : CORE_BASEMAPS}
+            onBasemap={setBasemapPersist}
+            month={month}
+            onMonth={setMonthReplace}
+            onLocate={requestLocation}
+            status={statusLabel}
+            species={species}
+            onSpecies={setSpecies}
+          />
+        </div>
+      </motion.div>
+
+      {/* First-visit hint — floats under the cluster, dismisses for good */}
+      <AnimatePresence>
+        {!hintDismissed && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ ...SPRING.soft, delay: reducedMotion ? 0 : 1.1 }}
+            className="atlas-glass pointer-events-auto absolute left-3 top-[68px] z-10 flex max-w-[320px] items-center justify-between gap-2 rounded-2xl px-3 py-2 text-xs"
+          >
+            <span className="font-semibold text-[#EAF2ED]">Tap a river. Color shows current conditions.</span>
+            <button onClick={() => { setHintDismissed(true); localStorage.setItem('trout:hintDismissed','1'); }} className="atlas-chip atlas-chip--primary px-3 py-1 text-xs">Got it</button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Legend — corner chip by default, expands on demand; never layout */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ...SPRING.gentle, delay: stagger(1) }}
+        className={`absolute left-3 z-10 ${selectedFeature && !isDesktop ? 'bottom-[calc(32vh+24px)]' : 'bottom-3'}`}
+      >
+        <MapLegend mode={mode} species={species} />
+      </motion.div>
+
+      {/* Desktop inspector — floating card, spring in/out, map re-fits around it.
+          Presence keys off selectedId so a selection NEVER no-ops: while the
+          feature loads (or if the id is unknown) the card shows why. */}
+      <AnimatePresence>
+        {selectedId && isDesktop && (
+          <motion.div
+            key="desktop-inspector"
+            data-testid="desktop-panel"
+            initial={{ x: 60, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 60, opacity: 0 }}
+            transition={SPRING.soft}
+            className="atlas-panel-open pointer-events-auto absolute bottom-3 right-3 top-[88px] hidden w-[440px] lg:block"
+          >
+            <div className="h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0D1411]/95 shadow-[0_16px_50px_rgba(0,0,0,0.5)] backdrop-blur-md">
+              {selectedFeature ? (
+                <RiverDrawer feature={selectedFeature} tab={validatedTab} onTab={setTab} onClose={() => setRiver(null)} modeMonth={month} live={live} fetchedAt={fetchedAt} layout="panel" />
+              ) : (
+                <InspectorPlaceholder
+                  loading={isLoading}
+                  onBrowse={() => setRiver(null)}
+                />
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile inspector — spring bottom sheet */}
       <div className="lg:hidden">
-        {selectedFeature && <RiverDrawer feature={selectedFeature} tab={validatedTab} onTab={setTab} onClose={() => setRiver(null)} modeMonth={month} live={live} fetchedAt={fetchedAt} />}
+        <AnimatePresence>
+          {selectedId && (
+            <RiverDrawer key="mobile-inspector" feature={selectedFeature} tab={validatedTab} onTab={setTab} onClose={() => setRiver(null)} modeMonth={month} live={live} fetchedAt={fetchedAt} loading={isLoading} />
+          )}
+        </AnimatePresence>
       </div>
       {userPos && <span className="sr-only">Location used locally only</span>}
+    </div>
+  );
+}
+
+/**
+ * InspectorPlaceholder — the in-between states for the river card: a paper
+ * skeleton while snapshots load, and an honest "not mapped" note when the id
+ * resolves to nothing. Never a spinner.
+ */
+function InspectorPlaceholder({ loading, onBrowse }: { loading: boolean; onBrowse: () => void }) {
+  return (
+    <div className="flex h-full flex-col p-5" role="status" aria-label="Loading river details">
+      {loading ? (
+        <>
+          <div className="skeleton h-3 w-24" />
+          <div className="skeleton mt-3 h-8 w-3/4" />
+          <div className="skeleton mt-2 h-4 w-40" />
+          <div className="skeleton mt-6 h-20 w-full" />
+          <div className="skeleton mt-3 h-14 w-full" />
+          <div className="skeleton mt-3 h-14 w-full" />
+        </>
+      ) : (
+        <div className="flex h-full flex-col items-start justify-center gap-3">
+          <p className="eyebrow">Off the atlas</p>
+          <p className="text-sm text-[#9FB5AA]">
+            That water isn&rsquo;t in the mapped set. Browse the full stream list instead — every water is reachable there.
+          </p>
+          <a href="/browse" onClick={onBrowse} className="atlas-chip atlas-chip--primary min-h-[44px] px-4 text-sm">Browse streams</a>
+        </div>
+      )}
     </div>
   );
 }

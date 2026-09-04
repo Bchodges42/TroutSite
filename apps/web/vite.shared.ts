@@ -89,8 +89,8 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
         scope: '/',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#f8fafc',
-        theme_color: '#0f172a',
+        background_color: '#0a100e',
+        theme_color: '#0a100e',
         categories: ['sports', 'utilities'],
         icons: [
           { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },

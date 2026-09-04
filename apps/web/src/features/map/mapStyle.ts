@@ -1,4 +1,4 @@
-import { atlas, atlasNight } from './mapTokens';
+import { atlas, atlasLight } from './mapTokens';
 import type { StyleSpecification, FilterSpecification } from 'maplibre-gl';
 
 /** Basemap variants. 'topo' layers real local USGS-3DEP derivatives; RiverMapPage only offers it when /atlas/topo/manifest.json resolves. */
@@ -21,26 +21,29 @@ const POLYS_ONLY = ['==', '$type', 'Polygon'] as unknown as FilterSpecification;
  *   real local files AND server routes that 404 instead of falling back.
  *   (No layer below needs them: there are no icon or symbol layers — place
  *   labels render as HTML markers in TennesseeMap, not as glyph text.)
- * - Layers bottom→top: background (paper #F2E9D5), neighbor-state context fill,
- *   TN fill, county hairlines, TN outline, river casing (ink #24352D),
+ * - Layers bottom→top: background (pine-black), neighbor-state context fill,
+ *   TN fill, county hairlines, TN outline, river casing (near-black shadow),
  *   river interior (condition color via feature property `color`),
  *   selection highlight, hatch-mode halo, wide transparent hit line.
- * - `variant` swaps ground/line tones only ('ink' merges atlasNight over atlas).
- *   Condition hues, selection orange, and data fallbacks are identical in
- *   every variant so the legend stays truthful.
- * - 'topo' keeps paper ground tones and splices in the local USGS-3DEP
+ * - `variant` swaps ground/line tones only ('paper' merges atlasLight over the
+ *   dark atlas). Condition hues, selection amber, and data fallbacks are
+ *   identical in every variant so the legend stays truthful.
+ * - The `hidden` feature-state (species filtering) removes a river from every
+ *   paint layer; visibility for hit-testing is enforced in TennesseeMap.
+ * - 'topo' keeps the dark ground and splices in the local USGS-3DEP
  *   derivatives (hillshade raster + contour band lines) beneath all river
  *   layers. RiverMapPage only selects it after the manifest probe succeeds.
  */
-export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecification {
-  const t = variant === 'ink' ? { ...atlas, ...atlasNight } : atlas;
+export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification {
+  const t = variant === 'paper' ? { ...atlas, ...atlasLight } : atlas;
   const style: StyleSpecification = {
     version: 8,
-    name: 'Field Notes Atlas',
+    name: 'Tailwater Atlas',
     sources: {
       'tn-boundary': { type: 'geojson', data: '/atlas/tn-boundary.geojson' },
       'states-context': { type: 'geojson', data: '/atlas/states-context.geojson' },
       'tn-counties': { type: 'geojson', data: '/atlas/tn-counties.geojson' },
+      lakes: { type: 'geojson', data: '/atlas/lakes.geojson' },
       rivers: { type: 'geojson', data: '/atlas/rivers.geojson', promoteId: 'id' as unknown as string },
     },
     layers: [
@@ -102,6 +105,28 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
         source: 'tn-boundary',
         paint: { 'line-color': t.hairline, 'line-width': 1.4, 'line-opacity': 1 },
       },
+      // Lakes & reservoirs (Census AREAWATER; see scripts/build-lakes.mjs) —
+      // the still waters the mapped rivers drain from / tailrace out of.
+      // Rendered beneath every river layer so tailwaters visibly connect.
+      {
+        id: 'lakes-fill',
+        type: 'fill' as const,
+        source: 'lakes',
+        paint: {
+          'fill-color': t.lakeFill,
+          'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5.6, 0.75, 8, 1],
+        },
+      },
+      {
+        id: 'lakes-shore',
+        type: 'line' as const,
+        source: 'lakes',
+        paint: {
+          'line-color': t.lakeShore,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 5.6, 0.5, 8, 1],
+          'line-opacity': 0.9,
+        },
+      },
       // Wide water — AREAWATER polygons (Hiwassee, French Broad, Obed; TIGER
       // has no centerlines for these). Rendered as watercolor washes: soft
       // condition tint + hairline shore. Never drawn by line layers.
@@ -119,11 +144,13 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
           ],
           'fill-opacity': [
             'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
             ['boolean', ['feature-state', 'selected'], false],
-            0.45,
+            0.55,
             ['boolean', ['feature-state', 'dimmed'], false],
             0.08,
-            0.3,
+            0.34,
           ],
         },
       },
@@ -138,11 +165,18 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
           'line-color': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
-            '#D98232',
+            t.selection,
             t.ink,
           ],
           'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 2.5, 0.8],
-          'line-opacity': ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.25, 0.7],
+          'line-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            0.25,
+            0.7,
+          ],
         },
       },
       // Hatch glow for wide water — soft interior wash, never a ring outline.
@@ -153,7 +187,14 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
         filter: POLYS_ONLY,
         paint: {
           'fill-color': ['coalesce', ['feature-state', 'hatchColor'], ['get', 'hatchColor'], t.sulphur],
-          'fill-opacity': ['case', ['boolean', ['feature-state', 'hatchActive'], false], 0.2, 0],
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'hatchActive'], false],
+            0.24,
+            0,
+          ],
         },
       },
       // Rivers — casing (ink) renders beneath interior so bends read clearly.
@@ -176,6 +217,8 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
           ],
           'line-opacity': [
             'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
             ['boolean', ['feature-state', 'selected'], false],
             1,
             ['boolean', ['feature-state', 'hover'], false],
@@ -208,6 +251,8 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
           ],
           'line-opacity': [
             'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
             ['boolean', ['feature-state', 'dimmed'], false],
             0.35,
             1,
@@ -222,9 +267,16 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
         filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': '#F59E0B',
+          'line-color': t.selection,
           'line-width': 8.5,
-          'line-opacity': ['case', ['boolean', ['feature-state', 'selected'], false], 0.9, 0],
+          'line-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'selected'], false],
+            0.95,
+            0,
+          ],
         },
       },
       // Hatch-mode halo — sulphur glow when hatchActive. LINES ONLY.
@@ -237,8 +289,15 @@ export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecificatio
         paint: {
           'line-color': ['coalesce', ['feature-state', 'hatchColor'], ['get', 'hatchColor'], t.sulphur],
           'line-width': 9,
-          'line-opacity': ['case', ['boolean', ['feature-state', 'hatchActive'], false], 0.42, 0],
-          'line-blur': 1.1,
+          'line-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'hatchActive'], false],
+            0.5,
+            0,
+          ],
+          'line-blur': 1.4,
         },
       },
       // Wide transparent hit area — last so it receives pointer events. LINES ONLY.

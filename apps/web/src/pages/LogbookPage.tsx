@@ -1,10 +1,13 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { motion } from 'motion/react';
 import { Button, Card, Chip, EmptyState } from '@trout/ui';
 import { StreamSchema } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { shortDate } from '../lib/time';
+import { AnimatedNumber } from '../components/ui/AnimatedNumber';
+import { SPRING } from '../components/motion/atlas-motion';
 import {
   addEntry, buildExport, deleteEntry, downloadExport, importFromExport, listEntries, LOGBOOK_NOTE,
 } from '../lib/logbook';
@@ -34,7 +37,10 @@ export function LogbookPage() {
   return (
     <main className="page">
       <h1 className="page-title">Logbook</h1>
-      <p className="page-subtitle mt-1">{LOGBOOK_NOTE}</p>
+      <p className="page-subtitle mt-1">
+        <AnimatedNumber value={entries?.length ?? 0} format={(v) => `${Math.round(v)} ${Math.round(v) === 1 ? 'entry' : 'entries'} · `} className="font-bold" />
+        {LOGBOOK_NOTE}
+      </p>
 
       <div className="mt-3 flex flex-wrap gap-2">
         <Button onClick={() => setAdding((v) => !v)} className="focus-ring">
@@ -85,8 +91,13 @@ export function LogbookPage() {
         />
       ) : (
         <ul className="flex flex-col gap-3">
-          {entries.map((entry) => (
-            <li key={entry.id}>
+          {entries.map((entry, i) => (
+            <motion.li
+              key={entry.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...SPRING.soft, delay: Math.min(i, 8) * 0.035 }}
+            >
               <Card>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-base font-extrabold">{entry.streamName}</h3>
@@ -109,7 +120,7 @@ export function LogbookPage() {
                 )}
                 {entry.notes && <p className="mt-2 whitespace-pre-wrap text-sm">{entry.notes}</p>}
               </Card>
-            </li>
+            </motion.li>
           ))}
         </ul>
       )}

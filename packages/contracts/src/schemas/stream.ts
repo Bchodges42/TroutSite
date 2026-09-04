@@ -19,6 +19,9 @@ export const StreamSchema = z.object({
   gaugeIds: z.array(z.string().min(1)),
   stockingProgram: z.boolean(),
   idealFlow: z.array(IdealFlowSchema),
+  /** Species focus: 'trout' waters are scored for trout fishability;
+   *  'warmwater' rivers (smallmouth/panfish) are listed but never trout-scored. */
+  species: z.enum(['trout', 'warmwater']).optional(),
   notes: z.string().optional(),
   officialSources: z.array(OfficialSourceSchema),
 });
