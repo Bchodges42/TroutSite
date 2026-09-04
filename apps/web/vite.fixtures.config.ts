@@ -22,5 +22,10 @@ const copyFixtures: Plugin = {
 
 export default defineConfig({
   plugins: [...buildPlugins({ fixtures: true }), copyFixtures],
-  define: fixtureDefine,
+  define: {
+    ...fixtureDefine,
+    // Provenance stamped unconditionally: this config IS the synthetic-data
+    // build — the flag must not depend on an env var being set (B11).
+    'import.meta.env.FIXTURE_BUILD': JSON.stringify(true),
+  },
 });
