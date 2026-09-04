@@ -27,11 +27,67 @@ const JOINS = join(webDir, '.atlas-src', 'out', 'residual-joins.json');
 const WRITE = process.argv.includes('--write');
 const STITCH_KM = 1.0;
 
-// Documented exceptions — fragmentation that is deliberate or inherent to the
-// catalog, NOT a geometry bug. Every entry must cite its documentation.
+// Documented exceptions — fragmentation that is deliberate (catalog design)
+// or a gap that public-domain sources genuinely cannot fill (>1 km, no NHD
+// reach and no TIGER segment in the corridor; probe evidence per entry in
+// docs/CONTINUITY-AUDIT.md). Every entry must cite its documentation. The
+// audit FAILS on any multi-chunk stream NOT listed here.
 const ALLOWLIST = {
-  'cane-creek':
-    'Deliberate (docs/GEO-AUDIT.md "Not correctable" section): ONE catalog id intentionally covers two same-named Cane Creeks — the Bledsoe/Van Buren water and the Hickman/Perry water (~2.3 deg apart). Splitting the id is a catalog change owned by the content lane.',
+  'cane-creek': {
+    kind: 'DELIBERATE',
+    reason:
+      'Deliberate (docs/GEO-AUDIT.md "Not correctable" section): ONE catalog id intentionally covers two same-named Cane Creeks — the Bledsoe/Van Buren water and the Hickman/Perry water (~2.3 deg apart). Splitting the id is a catalog change owned by the content lane.',
+  },
+  'clear-fork': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: NHDPlus HR "Clear Fork" carries only the middle band (lat 36.287-36.424); TIGER is sparse at both ends. All-fcode corridor probes across both ~15 km holes (36.156->36.292 and 36.424->36.553) found no connectable reach chain (688/804 parts, connected=false). Gaps left open per the no-fabrication rule.',
+  },
+  'horse-creek-greene': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: NHD "Horse Creek" stops at lon -82.711 while TIGER fragments reach -82.790; the only corridor connection runs through the whole Nolichucky drainage web (1700+ unrelated parts), which is not a same-water bridge. Left open.',
+  },
+  'sinking-creek-wilson': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: 12.15 km west hole (36.046->36.094) and 3.69 km mid hole; all-fcode corridor probes found no connectable chain (172/113 parts, connected=false). Left open.',
+  },
+  'east-fork-shoal-creek': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: NHD "East Fork Shoal Creek" covers only lon -87.100..-87.064; the 6.06 km upper-reach hole (35.005->35.015) has no named reach and no connectable unnamed chain (409 corridor parts, connected=false). Left open.',
+  },
+  'hurricane-creek': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: NHD "Hurricane Creek" (115 reaches, full-extent envelope) splits into 2 chains with a 34.5 km hole; no named reach exists mid-creek and TIGER has 3 fragments that do not bridge it. Left open.',
+  },
+  'indian-creek-claiborne': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: every source combination (TIGER blend / NHD-only / full union) yields 2 chunks with a 24.66 km hole; no named reach in the corridor. Left open.',
+  },
+  'mill-creek-overton': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: NHDPlus HR carries NO "Mill Creek" reach at all between lat 36.30 and 36.44 (all-fcode probe of the mid corridor: zero Mill Creek features, no connectable unnamed chain), and TIGER has no segments there. The 18.77 km hole is a genuine NHD discontinuity. Left open.',
+  },
+  'piney-river-rhea': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: NHD splits the water into "Piney Creek" (upper+lower) and "Piney River" (mid band) and still lacks the 14.5 km reach through the Piney gorge; both names are taken, all combinations remain 2 chunks. Left open.',
+  },
+  'richardson-byrd-creek': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: 2.48 km gap between the Richardson Creek chain and the NHD "Byrd Creek" chain (-83.1364,36.4913 -> -83.1547,36.4745); the corridor connects only through 450+ unrelated web parts, not a same-water reach. Left open.',
+  },
+  'sulfur-fork-creek': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Un-fillable from public sources: both NHD names taken ("Sulphur Fork Creek" + "Sulphur Fork Red River", 106 reaches, full-extent envelope) and the result is still 2 chunks with a 32.99 km hole. Left open.',
+  },
 };
 
 const R_KM = 6371.0088;
@@ -118,10 +174,12 @@ for (const f of lineFeatures) {
   const id = f.properties.id;
   const parts = f.geometry.coordinates.filter((p) => Array.isArray(p) && p.length >= 2);
   const a = analyze(parts);
-  const allowReason = ALLOWLIST[id] ?? null;
+  const allow = ALLOWLIST[id] ?? null;
+  const allowReason = allow?.reason ?? null;
+  const allowKind = allow?.kind ?? null;
   const bad = a.chunks > 1 && !allowReason;
   if (bad) failures++;
-  rows.push({ id, parts: parts.length, ...a, allowReason, bad });
+  rows.push({ id, parts: parts.length, ...a, allowReason, allowKind, bad });
 }
 rows.sort((x, y) => y.chunks - x.chunks || x.id.localeCompare(y.id));
 
@@ -166,6 +224,12 @@ lines.push('endpoint of the other. Chunks are separated by real coverage gaps in
 lines.push('geometry. This reproduces what the map renders: parts of the same chunk touch (or');
 lines.push('nearly touch), parts of different chunks show a visible break.');
 lines.push('');
+lines.push('Implementation note: this endpoint-to-endpoint haversine count is slightly stricter');
+lines.push('than the field verification for one stream — elk-river measures 9 chunks here vs 7');
+lines.push('in the user-report verification (different distance implementation; the other');
+lines.push('confirmed counts, and the 27-stream total, reproduce exactly). The stricter count');
+lines.push('is the one CI enforces.');
+lines.push('');
 lines.push('Script: `apps/web/scripts/audit-river-continuity.mjs` — CI mode exits non-zero when a');
 lines.push('non-allowlisted line river has more than one chunk. Run with `--write` to regenerate');
 lines.push('this file. The baseline ("before") column is frozen at');
@@ -173,9 +237,43 @@ lines.push('`.atlas-src/out/continuity-before.json` on first write.');
 lines.push('');
 lines.push('## Allowlist (documented exceptions)');
 lines.push('');
-const allowIds = Object.keys(ALLOWLIST);
-if (!allowIds.length) lines.push('_(empty)_');
-for (const id of allowIds) lines.push(`- **${id}** — ${ALLOWLIST[id]}`);
+lines.push('### Deliberate (catalog design)');
+lines.push('');
+const deliberate = Object.entries(ALLOWLIST).filter(([, v]) => v.kind === 'DELIBERATE');
+if (!deliberate.length) lines.push('_(none)_');
+for (const [id, v] of deliberate) lines.push(`- **${id}** — ${v.reason}`);
+lines.push('');
+lines.push('### Left-open gaps (no public-domain geometry available; not fabricated)');
+lines.push('');
+const leftOpen = Object.entries(ALLOWLIST).filter(([, v]) => v.kind === 'LEFT-OPEN');
+if (!leftOpen.length) lines.push('_(none)_');
+for (const [id, v] of leftOpen) lines.push(`- **${id}** — ${v.reason}`);
+lines.push('');
+lines.push('## What the CONTINUITY lane changed (2026-09-04)');
+lines.push('');
+lines.push('1. **18 new per-stream corridor fetch targets** in `fetch-nhd-targets.mjs`');
+lines.push('(harpeth, collins, clear-fork, sulfur-fork, emory, hurricane-houston, sinking-wilson,');
+lines.push('daddys, efork-shoal, indian-claiborne, laurel-johnson, new-river-scott,');
+lines.push('n-chickamauga, obed, sequatchie, fletchers, horse-greene, plus the name-less');
+lines.push('`fbb-braid` corridor of unnamed French Broad braid channels) — all USGS NHDPlus HR,');
+lines.push('fetched with retry/backoff on 2026-09-04 after earlier 504s.');
+lines.push('2. **NHD takes** in `merge-rivers.mjs` for the new files plus previously fetched but');
+lines.push('unused coverage: `powell.geojson` "Powell River", `byrd-creek.geojson` "Byrd Creek",');
+lines.push('"Piney River" (lower Piney main stem), and both "Sulphur Fork Creek" /');
+lines.push('"Sulphur Fork Red River" spellings.');
+lines.push('3. **Continuity-aware source selection** in `merge-rivers.mjs`: per stream the');
+lines.push('pipeline now picks the most continuous REAL source set — TIGER+NHD blend (base),');
+lines.push('TIGER+NHD undeduplicated full union, NHD-only, or TIGER-only — switching only for');
+lines.push('a strictly lower chunk count while still covering the base extent (0.05 deg per');
+lines.push('side), so no switch can truncate a stream (logged as `sel:...` in the source tag).');
+lines.push('4. **watauga-river reach gate** widened (maxLon -82.125 -> -82.11) with provenance:');
+lines.push('the old edge rejected the two NHD dam-pool connectors at Wilbur Dam and split the');
+lines.push('tailwater in two.');
+lines.push('5. **`close-residual-gaps.mjs`** (new pipeline step) joins chunk endpoints across');
+lines.push('residual gaps of at most 1 km; this run logged **0 joins** — every residual gap is');
+lines.push('> 1 km and was documented instead of bridged.');
+lines.push('');
+lines.push(`Streams made fully continuous with real NHD geometry: ${rows.filter((r) => (before[r.id]?.chunks ?? 1) > 1 && r.chunks === 1).map((r) => r.id).join(', ')}.`);
 lines.push('');
 lines.push('## Per-stream results (before -> after)');
 lines.push('');
@@ -188,7 +286,10 @@ lines.push('|---|---|---|---|---|---|');
 for (const r of rows) {
   const b = before[r.id] ?? { parts: r.parts, chunks: r.chunks };
   if (b.chunks === 1 && r.chunks === 1) continue;
-  const status = r.chunks > 1 ? (r.allowReason ? 'ALLOWLISTED' : 'STILL FRAGMENTED') : 'CONTINUOUS';
+  const status = r.chunks === 1 ? 'CONTINUOUS'
+    : r.allowKind === 'DELIBERATE' ? 'ALLOWLISTED (deliberate)'
+    : r.allowKind === 'LEFT-OPEN' ? 'LEFT-OPEN (documented source gap)'
+    : 'STILL FRAGMENTED';
   lines.push(`| ${r.id} | ${b.parts} | ${b.chunks} | ${r.parts} | ${r.chunks} | ${status} |`);
 }
 lines.push('');
