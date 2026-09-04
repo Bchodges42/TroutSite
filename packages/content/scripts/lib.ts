@@ -15,7 +15,7 @@ import {
   type Shop,
   type HatchChart,
 } from '@trout/contracts';
-import { REGION_IDS } from './regions.js';
+import { CHARTLESS_REGIONS, REGION_IDS } from './regions.js';
 
 export interface Issue {
   file: string;
@@ -287,7 +287,11 @@ export function loadContent(): LoadedContent {
     hatch.set(data.regionId, months);
   }
   for (const rid of REGION_IDS) {
-    if (!hatch.has(rid)) issues.push({ file: `hatch`, message: `no hatch chart file for region ${rid}` });
+    // Put-and-take pond regions (tn-west) intentionally ship without hatch
+    // charts — there is no meaningful hatch phenology to publish for them.
+    if (!hatch.has(rid) && !CHARTLESS_REGIONS.has(rid)) {
+      issues.push({ file: `hatch`, message: `no hatch chart file for region ${rid}` });
+    }
   }
 
   // --- orphan checks ---

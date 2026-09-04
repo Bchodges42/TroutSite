@@ -17,7 +17,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "World-famous sulphur fishery below South Holston Dam. Check TVA generation before wading; weirs create safe wading windows.",
+    "notes": "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs — always check the TVA release schedule first.",
     "officialSources": [
       {
         "label": "USGS gauge 03481500 — verify officially",
@@ -51,7 +51,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cold, fertile water below Watauga Dam; long drift boats can run the Wilbur put-in stretch when generation is off.",
+    "notes": "Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases; two gauges bracket the dam and town.",
     "officialSources": [
       {
         "label": "USGS gauge 03466000 — verify officially",
@@ -85,7 +85,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "State-designated trophy trout section at Reliance. Two-generator days push the river up fast — watch the gauge.",
+    "notes": "The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). Two- and four-turbine releases swing flow hard — the Reliance gauge is the call.",
     "officialSources": [
       {
         "label": "USGS gauge 03566000 — verify officially",
@@ -115,7 +115,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Below Center Hill Dam. Generation can raise flows hundreds of cfs within minutes — know the retreat routes.",
+    "notes": "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows plus a celebrated winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic — Stonewall and at-dam gauges are your wade-window planners.",
     "officialSources": [
       {
         "label": "USGS gauge 03430497 — verify officially",
@@ -149,7 +149,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Tims Ford tailwater with a strong summer dry-fly game; water can run warm in late August — check temperature.",
+    "notes": "A compact, cold Tims Ford release with put-grow-take rainbows and winter stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham) bracket the fishery.",
     "officialSources": [
       {
         "label": "USGS gauge 03599000 — verify officially",
@@ -179,7 +179,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Norris Dam tailwater with deep slow pools; waxworm-quality midge water in winter, caddis in spring.",
+    "notes": "One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is the wade-window truth-teller.",
     "officialSources": [
       {
         "label": "USGS gauge 03452000 — verify officially",
@@ -209,7 +209,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Normandy Dam releases keep this reach cold enough for winter trout; the fishery turns mixed by midsummer.",
+    "notes": "Cold releases below Normandy Dam give the Duck its trout identity — TWRA tailwater-stocked rainbows in a lovely valley reach. Release-dependent; verify schedules before wading.",
     "officialSources": [
       {
         "label": "USGS gauge 03537000 — verify officially",
@@ -239,7 +239,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Middle Tennessee creek fishery near Nashville; runs low outside rain events.",
+    "notes": "The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.",
     "officialSources": [
       {
         "label": "USGS gauge 03427500 — verify officially",
@@ -267,6 +267,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Warren County river through McMinnville. Gentle gradient; flows track rain closely.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -290,6 +291,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite small-water rainbow stop on the Shatley Springs road corridor. No USGS gauge — plan on recent-rain judgment.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -313,6 +315,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA winter-stocked Marshall County creek near Lewisburg.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -336,6 +339,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA winter-stocked Franklin County creek near Sewanee/Cowan.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -361,7 +365,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Boone Dam tailwater on the South Fork Holston — quiet trout water between the famous stretches; generation governs wading.",
+    "notes": "Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and brown trout. Flow swings hard with TVA generation; treat the ideal band as a guideline and verify releases.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -377,9 +381,9 @@
     "regionId": "tn-east-pigeon-frenchbroad",
     "gaugeIds": [],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Warmwater creek between the French Broad and Pigeon corridors.",
+    "notes": "TWRA spring-stocked Cocke County creek in the Big Creek corridor.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -395,9 +399,9 @@
     "regionId": "tn-east-clinch",
     "gaugeIds": [],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Warmwater creek — bass and sunfish only.",
+    "notes": "TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows track rain.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -423,7 +427,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small Sparta-area trout stream; flows ride spring feeders and can warm in late summer.",
+    "notes": "Spring-fed-ish White County river with TWRA spring stocking and a loyal following; the Sparta gauge runs low in dry summers.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -447,6 +451,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA lists both Upper Cane Creek (Bledsoe/Van Buren, near Fall Creek Falls) and Cane Creek (Hickman/Perry) under spring stocking — this entry covers the stocked gorge-and-valley reaches; flows respond fast to plateau rain.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -470,6 +475,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Warren County creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -493,6 +499,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Cherokee National Forest creek with TWRA spring stocking and wild brook trout upstream. Remote, brushy, rain-flashy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -510,9 +517,9 @@
       "03539778"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Clear Fork system smallmouth and sunfish creek.",
+    "notes": "Wild rainbows and the famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at Lilly Bridge is the go/no-go read.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -530,9 +537,8 @@
       "03409500"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "Big South Fork smallmouth water; scenic and warm in summer.",
+    "notes": "The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your wading to stable flows.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -558,6 +564,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Grundy/Warren County river with TWRA spring stocking and a strong small-water feel. The McMinnville gauge sits mid-basin; flows track plateau rain.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -581,6 +588,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA lists spring stocking. No gauge.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -598,9 +606,9 @@
       "03539600"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Smallmouth boulder water in the Obed system; skip it for trout.",
+    "notes": "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -624,6 +632,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Not to be confused with Carter County’s Doe River — this is the TWRA spring-stocked Johnson County creek. Pocket water with roadside access.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -649,6 +658,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks upper and lower sections in spring. Gentle gradient, easy wading, town access.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -668,9 +678,8 @@
       "03599500"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "Award-winning smallmouth and spotted bass water below the trout reach; also a mussel sanctuary — mind the rules.",
+    "notes": "Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper reaches seasonally. Conservative flag; verify current TWRA stocking before planning a trout trip here.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -694,6 +703,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Lawrence County tributary of Shoal Creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -711,9 +721,9 @@
       "03584600"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Warms below the trout water — smallmouth and roughfish country to the state line.",
+    "notes": "Wider, warmer Elk below the tailwater with TWRA winter rainbow stocking in Lincoln County reaches. Gauge at Prospect helps separate rain pulses from baseline.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -731,9 +741,8 @@
       "03540500"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "Warmwater smallmouth and panfish river joining the Obed system.",
+    "notes": "The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth downstream. Plateau flashiness applies.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -757,6 +766,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Montgomery County creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -780,6 +790,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked creek near Mountain City. Small, brushy, and rain-flashy; conservative flow band reflects its size.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -806,7 +817,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Douglas Dam tailwater gets seasonal trout stockings; the mainstem warms into smallmouth water by late spring.",
+    "notes": "Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -832,7 +843,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Put-take rainbow water below Fort Patrick Henry Dam; small urban fishery with easy bank access.",
+    "notes": "Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -856,6 +867,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked creek in the Norris watershed fringe. Rain-dependent flows.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -879,6 +891,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Cherokee National Forest creek along the Ocoee corridor with TWRA spring stocking. Steep, scenic pocket water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -902,6 +915,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Polk County creek near Coker Creek. Small and flashy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -925,6 +939,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Small TWRA spring-stocked tributary near the NC line in Cocke County.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -943,9 +958,8 @@
       "03433500"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "Williamson County smallmouth and panfish river with long float stretches — not a trout fishery.",
+    "notes": "Mostly a warmwater river, but TWRA’s winter program stocks Williamson County reaches near Franklin. Two gauges bracket the stocked corridor; summer water is smallmouth country.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -969,6 +983,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Cherokee National Forest creek with TWRA spring stocking and nearby Dillard Ponds put-ins. Classic bank-and-boulder small water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -992,6 +1007,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked creek across Houston/Humphreys counties in the western Highland Rim.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1015,6 +1031,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1038,6 +1055,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Spring-stocked Johnson County creek listed by TWRA for both Johnson and Van Buren county access points. Small pocket water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1061,6 +1079,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Remote Carter County headwaters with TWRA stocking and native brook trout upstream. Steep, brushy, and rain-flashy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1084,6 +1103,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Small park creek near Gatlinburg with wild fish and TWRA spring stocking listed. Pocket water under heavy canopy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1107,6 +1127,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Lawrence County creek in the Buffalo River system.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1124,9 +1145,8 @@
       "03470000"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "The Sevierville reach is smallmouth and panfish water; the park forks upstream are the trout water.",
+    "notes": "Below the park the river warms and the trout fishery thins out; the upper park reaches hold wild fish. TWRA’s stocking dataset does not currently list this reach — flag is set conservatively; verify locally.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1153,7 +1173,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "GSMNP park water — rainbow and brown trout through the Metcalf bottoms; fish the pockets.",
+    "notes": "The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA spring stocking on the lower, out-of-park reaches near Walland and Maryville. The Townsend gauge is the wade-flow reference; park waters have special regs — verify with NPS.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1177,6 +1197,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by Highland Rim standards.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1200,6 +1221,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Montgomery County creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1223,6 +1245,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA winter-stocked Maury County creek — a Columbia-area close-to-home trout stop.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1246,6 +1269,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking noted by TWRA on the Middle Prong. No gauge; recent-rain judgment applies.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1269,6 +1293,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Overton County creek on the plateau’s eastern rim.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1284,9 +1309,9 @@
     "regionId": "tn-east-pigeon-frenchbroad",
     "gaugeIds": [],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Warmwater creek near Jefferson City; bass and panfish.",
+    "notes": "A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows track rain and groundwater closely.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1312,6 +1337,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country history means check local access notices; flows are rain-driven.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1329,9 +1355,8 @@
       "03465500"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "One of Tennessee’s great free-flowing smallmouth rivers; trout water lives in its high tributaries.",
+    "notes": "Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge matters.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1357,6 +1382,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring stocking in the valley reaches. The Mile Straight gauge helps separate rain events from baseline.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1380,6 +1406,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked upper Barren Fork water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1397,9 +1424,9 @@
       "03539800"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Wild, scenic smallmouth water through the Obed Wild & Scenic River corridor.",
+    "notes": "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast. Stocking flag false by design — verify NPS/TWRA notices.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1425,7 +1452,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Dale Hollow tailwater — cold, clear, and stocked; mostly a float fishery with limited wade windows.",
+    "notes": "Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery below the dam. Release-dependent wade windows — the below-dam gauge tells the story.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1443,7 +1470,6 @@
       "03559500"
     ],
     "stockingProgram": true,
-    "species": "trout",
     "idealFlow": [
       {
         "min": 70,
@@ -1451,6 +1477,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s stocking dataset lists Parksville Lake itself rather than this reach — set conservatively. Verify TVA release schedules before planning.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1476,7 +1503,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small Ocoee No. 1 tailwater fishery below Parksville Lake, stocked regularly.",
+    "notes": "TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow). The reach below Parksville Dam mixes whitewater recreation schedules with cold releases — verify TVA’s Ocoee No. 1 flow before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1502,7 +1529,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Hartford corridor is stocked with rainbow through spring; fish the low-flow windows between releases.",
+    "notes": "Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach — set conservatively, verify locally.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1526,6 +1553,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked DeKalb County creek in the Center Hill fringe.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1541,9 +1569,9 @@
     "regionId": "tn-cumberland-plateau",
     "gaugeIds": [],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Famous smallmouth float stream on the Cumberland Plateau.",
+    "notes": "TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout reach — rain judgment required.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1561,9 +1589,9 @@
       "03532000"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Classic spotted and smallmouth bass flow; a few cool headwater reaches see occasional trout.",
+    "notes": "A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1587,6 +1615,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Grainger County creek. Tiny water; a close-to-home stocking option.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1604,9 +1633,9 @@
       "03436100"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Montgomery County float river — largemouth, spotted bass, and sunfish.",
+    "notes": "TWRA winter-stocked reaches near Clarksville. Mud-prone watershed — check the Port Royal gauge after any rain.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1632,6 +1661,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Small Sullivan County creek receiving TWRA spring rainbow stocking. Spring-fed pockets and park access in Kingsport; flows track rain closely.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1655,6 +1685,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1678,6 +1709,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and brook trout, with TWRA listing spring stocking for the Roaring Fork area. No gauge; treat flows as rain events.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1701,7 +1733,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cumberland stocking program water above Caney Fork; runs clear and cold most of the year.",
+    "notes": "TWRA spring-stocked Van Buren County creek. Karst-influenced flows can change quickly.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1725,6 +1757,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Macon County creek in the Dale Hollow fringe.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1742,9 +1775,9 @@
       "03571000"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Headwater smallmouth stream; the valley run stays warm year-round.",
+    "notes": "TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far downstream — treat it as a valley-level trend, not the headwater truth.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1770,6 +1803,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Lawrence County’s spring-fed Shoal Creek with TWRA spring stocking — the southern Highland Rim’s nicest surprise. Gauge at Iron City reads the groundwater mood.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1793,6 +1827,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Karst-influenced Wilson County creek in TWRA’s winter program — the name is the geology lesson. Steady-ish flows by creek standards.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1818,6 +1853,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood Ford. Beautiful and isolated — plan bail-outs.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1841,6 +1877,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked creek in the Coker Creek area.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1864,6 +1901,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Stewart County creek. Tiny close-to-home water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1887,6 +1925,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Claiborne County creek. Small pocket water near the Powell River corridor.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1904,9 +1943,9 @@
       "03430200"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Davidson County river — largemouth, smallmouth, and panfish around the impoundments.",
+    "notes": "TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from roughly December through February. The Donelson gauge (below Percy Priest) is the flow reference.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1930,6 +1969,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Carter County creek near Hampton. Steep gradient; save it for clear water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1945,8 +1985,9 @@
     "regionId": "tn-middle-nashville",
     "gaugeIds": [],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
+    "notes": "TWRA winter-stocked Robertson County creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1972,7 +2013,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cherokee National Forest trout water above the lake; balds and plunge pools upstream of Bald River Falls.",
+    "notes": "Heavy TWRA stocking in the Tellico Plains corridor plus a delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters. Rain-flashy mountain river — check the gauge.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1996,6 +2037,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Tiny TWRA spring-stocked headwater in Cocke County near the Big Creek trail system.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2019,6 +2061,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Polk County creek. Gradient earns the name.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2042,6 +2085,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Warren County creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2065,6 +2109,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Cold Johnson County water near the Virginia line, TWRA spring-stocked. Good early-season option when bigger rivers are high.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2082,9 +2127,9 @@
       "03428200"
     ],
     "stockingProgram": false,
-    "species": "warmwater",
+    "species": "trout",
     "idealFlow": [],
-    "notes": "Warmwater creek above the impoundments; bass and sunfish only.",
+    "notes": "Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting, December–February. Gauge at Murfreesboro.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2110,6 +2155,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "Wild rainbow and brook trout water in the park’s Chimneys/Tremont corridor, with TWRA spring stocking on lower reaches. Steep, flashy watershed — check the gauge before committing.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2133,6 +2179,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked Houston County creek near Land Between the Lakes’ eastern edge.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2156,6 +2203,7 @@
         "unit": "cfs"
       }
     ],
+    "notes": "TWRA spring-stocked headwaters of the Memphis-bound Wolf River, high on the plateau. Small riffly water; no gauge this far up.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2173,7 +2221,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Shelby Farms Park, Memphis. Rainbow trout in the cold months only — they do not hold over summer.",
+    "notes": "TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2191,7 +2239,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Cameron Brown Park, Germantown. Winter-only rainbow fishery; check the schedule window.",
+    "notes": "TWRA winter put-and-take lake in Germantown (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2209,7 +2257,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Edmund-Orgill Park, Millington. Cold-month rainbows; does not hold over summer.",
+    "notes": "TWRA winter put-and-take lake in Millington (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2227,7 +2275,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Yale Road Park, Bartlett. Winter-only rainbow fishery.",
+    "notes": "TWRA winter put-and-take lake in Bartlett (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2245,7 +2293,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Johnson Park, Memphis. Cold-month rainbows only; anchor approximate until field-verified.",
+    "notes": "TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2263,7 +2311,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take pond in Valentine Regional Park, Munford. Winter-only rainbow fishery.",
+    "notes": "TWRA winter put-and-take pond in Munford (Tipton County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2281,7 +2329,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take pond at Covington First Baptist Church, Covington. Winter-only rainbows; anchor approximate.",
+    "notes": "TWRA winter put-and-take pond in Covington (Tipton County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2299,7 +2347,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take pond at Martin City Park, Martin. Cold-month rainbows; does not hold over summer.",
+    "notes": "TWRA winter put-and-take pond in Martin (Weakley County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2317,7 +2365,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take pond in Milan City Park, Milan. Winter-only rainbow fishery.",
+    "notes": "TWRA winter put-and-take pond in Milan (Gibson County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2335,7 +2383,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Paris City Park, Paris. Cold-month rainbows; anchor approximate until field-verified.",
+    "notes": "TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2353,7 +2401,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake on Beech Lake, Lexington. Winter-only rainbow fishery on an otherwise warmwater lake.",
+    "notes": "TWRA winter put-and-take lake in Lexington (Henderson County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2371,7 +2419,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Jackson (Madison County). Winter-only rainbows; anchor approximate until field-verified.",
+    "notes": "TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2389,7 +2437,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take pond at the Reelfoot Packing Site, Union City. Cold-month rainbows; anchor approximate.",
+    "notes": "TWRA winter put-and-take pond in Union City (Obion County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",

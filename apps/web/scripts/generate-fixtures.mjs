@@ -248,6 +248,29 @@ function buildAtlasStreams() {
 }
 streams.push(...buildAtlasStreams());
 
+// B08 follow-up: the reviewed content pack (packages/content streams YAML ->
+// dist/pack/streams.json) is the source of truth for species + notes. The old
+// WARMWATER_IDS hypothesis was refuted in species review (0 warmwater
+// confirmed); a pack water without an explicit species stays unset rather
+// than inheriting a guess. Requires the pack build:
+//   pnpm --filter @trout/content build
+const packStreamsPath = join(appRoot, '..', '..', 'packages', 'content', 'dist', 'pack', 'streams.json');
+if (!existsSync(packStreamsPath)) {
+  throw new Error('content pack missing at packages/content/dist/pack/streams.json — run: pnpm --filter @trout/content build');
+}
+const packStreams = JSON.parse(readFileSync(packStreamsPath, 'utf8')).streams;
+const packById = new Map(packStreams.map((ps) => [ps.id, ps]));
+let speciesFromPack = 0;
+for (const s of streams) {
+  const pack = packById.get(s.id);
+  if (!pack) continue;
+  if (pack.species) { s.species = pack.species; speciesFromPack += 1; }
+  else delete s.species;
+  if (pack.notes) s.notes = pack.notes;
+}
+console.log('[fixtures] pack overlay: species on ' + speciesFromPack + '/' + streams.length + ' streams (unset stays unset)');
+
+
 // Deterministic demo conditions for trout streams without a curated plan:
 // hash of the stream id picks where in the ideal range (or outside it) the
 // water sits, so the demo map shows a believable mix of good/fair/poor.
