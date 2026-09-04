@@ -1,4 +1,5 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo } from 'react';
+import { useQueries } from '@tanstack/react-query';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { z } from 'zod';
 import {
@@ -151,21 +152,32 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 }
 
 function useHatchCache(month: number): Map<string, HatchChart> {
-  const [map, setMap] = useState<Map<string, HatchChart>>(new Map());
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const entries: Array<[string, HatchChart]> = [];
-      for (const regionId of TN_REGIONS) {
-        const url = `/v1/hatch/${regionId}/${month}.json`;
-        try {
-          const res = await fetchSnapshot(url, HatchChartSchema, 60 * 24 * 30);
-          entries.push([regionId, res.data]);
-        } catch {}
-      }
-      if (!cancelled) setMap(new Map(entries));
-    })();
-    return () => { cancelled = true; };
-  }, [month]);
-  return map;
+  // One concurrent, month-keyed query per region (B07): the old effect fetched
+  // 11 regions strictly sequentially and only published after the whole batch,
+  // so a month switch kept showing the PREVIOUS month's charts until every
+  // request finished. useQueries shares the ['snapshot', url] cache with
+  // useSnapshotQuery and lets charts land as each resolves; regions still
+  // loading are simply absent from the map (honest "no chart yet"), never
+  // substituted with the prior month.
+  const queries = useQueries({
+    queries: TN_REGIONS.map((regionId) => {
+      const url = `/v1/hatch/${regionId}/${month}.json`;
+      return {
+        queryKey: ['snapshot', url],
+        queryFn: () => fetchSnapshot(url, HatchChartSchema, 60 * 24 * 30),
+        staleTime: 60 * 24 * 30 * 60_000,
+        gcTime: Number.POSITIVE_INFINITY,
+        networkMode: 'offlineFirst' as const,
+        retry: 1,
+        refetchOnWindowFocus: false,
+      };
+    }),
+  });
+
+  const charts = new Map<string, HatchChart>();
+  TN_REGIONS.forEach((regionId, i) => {
+    const q = queries[i];
+    if (q?.data) charts.set(regionId, q.data.data);
+  });
+  return charts;
 }
