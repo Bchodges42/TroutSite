@@ -33,6 +33,21 @@ const STITCH_KM = 1.0;
 // docs/CONTINUITY-AUDIT.md). Every entry must cite its documentation. The
 // audit FAILS on any multi-chunk stream NOT listed here.
 const ALLOWLIST = {
+  'tennessee-river': {
+    kind: 'B15-DOCUMENTED',
+    reason:
+      'B15/LINES lane (build-missing-rivers.mjs): 3 welded members from NHDPlus HR. The large gap is the genuine Alabama detour of the mainstem below Chattanooga — real geography, not missing data; the Kentucky Lake sliver member is in-TN (verified against the slanting KY line).',
+  },
+  'buffalo-river': {
+    kind: 'B15-DOCUMENTED',
+    reason:
+      'B15/LINES lane: the named NHD flowline is absent for 2.7 km (35.364-35.389); the band was probed and carries zero named features, so no synthetic bridge was built per the no-fabrication rule.',
+  },
+  'mississippi-river': {
+    kind: 'B15-DOCUMENTED',
+    reason:
+      'B15/LINES lane: the corridor-hugging mainstem carries the KY-Bend exclave notch (Tiptonville bend). Corridor rule caps excursions at 4000 m beyond the TN boundary; >4 km out-of-state water is exclusively KY/MS and correctly excluded, leaving 2 chunks at the notch.',
+  },
   'cane-creek': {
     kind: 'DELIBERATE',
     reason:
