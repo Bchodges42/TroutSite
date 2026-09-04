@@ -22,14 +22,35 @@ export interface SnapshotResult<T> {
   live: boolean;
 }
 
+/** Network attempts must never hang the snapshot path (B10): cap at 8 s. */
+function fetchTimeoutSignal(): AbortSignal | undefined {
+  try {
+    return typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
+      ? AbortSignal.timeout(8_000)
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function fetchSnapshot<T>(
   url: string,
   schema: ZodType<T>,
   ttlMinutes: number,
 ): Promise<SnapshotResult<T>> {
   const requestUrl = resolveUrl(url);
+  // Known-offline: don't wait for the radio to fail — serve the stored
+  // snapshot immediately and report it honestly as not-live.
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+    const cached = await readCached<T>(url, schema);
+    if (cached) return cached;
+    throw new Error(`offline and no cached snapshot for ${requestUrl}`);
+  }
   try {
-    const res = await fetch(requestUrl, { headers: { accept: 'application/json' } });
+    const res = await fetch(requestUrl, {
+      headers: { accept: 'application/json' },
+      signal: fetchTimeoutSignal(),
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${requestUrl}`);
     const data = schema.parse(await res.json());
     const fetchedAt = Date.now();
@@ -44,15 +65,18 @@ export async function fetchSnapshot<T>(
     // freshness chip must then read "Offline · last known", not "Live".
     return { data, fetchedAt, live: navigator.onLine };
   } catch (networkError) {
-    const cached = await db.snapshots.get(url);
-    if (cached) {
-      const parsed = schema.safeParse(cached.data);
-      if (parsed.success) {
-        return { data: parsed.data, fetchedAt: cached.fetchedAt, live: false };
-      }
-    }
+    const cached = await readCached<T>(url, schema);
+    if (cached) return cached;
     throw networkError;
   }
+}
+
+/** Validate-and-serve the stored snapshot, or null (B10 fetch-order helper). */
+async function readCached<T>(url: string, schema: ZodType<T>): Promise<SnapshotResult<T> | null> {
+  const stored = await db.snapshots.get(url);
+  if (!stored) return null;
+  const parsed = schema.safeParse(stored.data);
+  return parsed.success ? { data: parsed.data, fetchedAt: stored.fetchedAt, live: false } : null;
 }
 
 /** Read-only peek at a stored snapshot, for pre-render displays ("last known"). */

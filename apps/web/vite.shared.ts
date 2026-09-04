@@ -27,7 +27,9 @@ const webRoot = dirname(fileURLToPath(import.meta.url));
  * fixture build (fixtures: true) still precaches everything it serves.
  */
 function precacheGlobPatterns(fixtures: boolean): string[] {
-  const patterns = ['**/*.{js,css,html,svg}', 'icons/*.png'];
+  // Fonts ship in the shell: offline installs must render Fraunces/Plex from
+  // the precache, not fall back to system faces (B10).
+  const patterns = ['**/*.{js,css,html,svg,woff2}', 'icons/*.png'];
   if (fixtures || existsSync(join(webRoot, 'public', 'content'))) patterns.push('content/**/*.json');
   if (existsSync(join(webRoot, 'public', 'atlas'))) {
     // Non-recursive on purpose: every precache-worthy atlas file (rivers,
@@ -140,8 +142,12 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
         navigateFallbackDenylist: [/^\/v1\//, /^\/data\//, /^\/content\//],
         runtimeCaching: [
           {
-            // RegExp (not a function) so generateSW can serialize it into sw.js.
-            urlPattern: /^\/(v1|data)\//,
+            // Snapshots (B10): NetworkFirst with a Dexie-backed fallback in the
+            // app layer. NOTE (same trap as the topo rule below): workbox's
+            // RegExpRoute tests the FULL url href, so this pattern must NOT be
+            // anchored with '^/' — the previous '^/(v1|data)/' regex could
+            // never match and the route silently did nothing.
+            urlPattern: /\/(v1|data)\//,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'snapshot-cache',
