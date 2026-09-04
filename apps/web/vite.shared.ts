@@ -2,8 +2,8 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import type { Connect, Plugin, PluginOption } from 'vite';
 import type { ServerResponse } from 'node:http';
-import { existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { createReadStream, existsSync, statSync } from 'node:fs';
+import { join, dirname, resolve as resolvePath, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /**
@@ -71,10 +71,42 @@ export const snapshotHeadersPlugin = (): Plugin => ({
   },
 });
 
+/**
+ * Frozen extensionless snapshot routes (GET /v1/streams — the stream catalog —
+ * among them) are shipped as <name>.json files. Dev/preview must resolve them
+ * BEFORE the SPA fallback: otherwise a fresh browser's JSON fetch receives
+ * index.html with status 200 and the schema parse fails into a hard error.
+ * Mirrors infra/static-server.mjs: non-HTML misses are a real 404, not HTML.
+ */
+export const snapshotRoutesPlugin = (): Plugin => ({
+  name: 'trout-snapshot-routes',
+  apply: 'serve',
+  configureServer(server) {
+    attachSnapshotRoutes(server.middlewares, () => server.config.publicDir);
+  },
+  configurePreviewServer(server) {
+    const outDir = resolvePath(webRoot, server.config.build.outDir ?? 'dist');
+    attachSnapshotRoutes(server.middlewares, () => outDir);
+  },
+});
+
+function attachSnapshotRoutes(middlewares: Connect.Server, rootDir: () => string): void {
+  middlewares.use((req, res, next) => {
+    const pathname = (req.url ?? '').split('?')[0] ?? '';
+    if (!/^\/(v1|data|content)\//.test(pathname) || extname(pathname)) return next();
+    const candidate = join(rootDir(), decodeURIComponent(pathname) + '.json');
+    if (!existsSync(candidate) || !statSync(candidate).isFile()) return next();
+    res.setHeader('content-type', 'application/json');
+    res.setHeader('cache-control', 'no-store');
+    createReadStream(candidate).pipe(res);
+  });
+}
+
 export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) {
   return [
     react(),
     snapshotHeadersPlugin(),
+    snapshotRoutesPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],

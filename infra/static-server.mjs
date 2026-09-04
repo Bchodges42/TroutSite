@@ -53,10 +53,15 @@ const MIME = {
 
 function serveFile(req, res, filePath) {
   const ext = path.extname(filePath).toLowerCase();
+  const rel = path.relative(distDir, filePath).replace(/\\/g, '/');
+  // Snapshot routes (/v1/*, /data/*, /content/*) must never be HTTP-cached:
+  // the service worker + Dexie are the offline layer, and an HTTP-cached
+  // snapshot would masquerade as live data (deploy note in apps/web/vite.shared.ts).
+  const snapshot = /^(v1|data|content)\//.test(rel);
   res.writeHead(200, {
     'content-type': MIME[ext] ?? 'application/octet-stream',
     // Static assets are fingerprinted by the build; HTML must revalidate.
-    'cache-control': ext === '.html' ? 'no-cache' : 'public, max-age=3600',
+    'cache-control': ext === '.html' ? 'no-cache' : snapshot ? 'no-store' : 'public, max-age=3600',
   });
   createReadStream(filePath).pipe(res);
 }
@@ -91,13 +96,27 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  let filePath = path.join(distDir, decodeURIComponent(url.pathname));
+  const pathname = decodeURIComponent(url.pathname);
+  let filePath = path.join(distDir, pathname);
   if (existsSync(filePath) && statSync(filePath).isDirectory()) {
     filePath = path.join(filePath, 'index.html');
   }
+  if (!existsSync(filePath) && !path.extname(filePath)) {
+    // Frozen extensionless snapshot routes (e.g. GET /v1/streams, the stream
+    // catalog) are shipped as <name>.json — resolve them before any fallback.
+    const asJson = filePath + '.json';
+    if (existsSync(asJson)) filePath = asJson;
+  }
   if (!existsSync(filePath)) {
-    // SPA fallback → index.html; if the build ships a 404 page for truly
-    // missing assets, it is reachable at /404.html directly.
+    // SPA fallback is for NAVIGATION only: a data/asset fetch must get a real
+    // 404, never index.html with status 200 (a JSON parse of HTML reads as a
+    // broken API on a fresh browser whose Dexie cache is empty).
+    const acceptsHtml = String(req.headers.accept ?? '').includes('text/html');
+    if (!acceptsHtml) {
+      res.writeHead(404, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ error: `not found: ${url.pathname}` }));
+      return;
+    }
     filePath = path.join(distDir, 'index.html');
   }
   serveFile(req, res, filePath);
