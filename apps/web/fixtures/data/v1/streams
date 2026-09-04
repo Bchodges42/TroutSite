@@ -242,5 +242,34 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ]
+  },
+  {
+    "id": "east-fork-stones-river",
+    "name": "East Fork Stones River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [
+      "03427500"
+    ],
+    "stockingProgram": true,
+    "idealFlow": [
+      {
+        "min": 50,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Middle Tennessee creek fishery near Nashville; runs low outside rain events.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03427500 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03427500"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
   }
 ]

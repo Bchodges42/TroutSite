@@ -5,7 +5,10 @@ import { atlas, conditionColor } from './mapTokens';
 export type ConditionStatus = 'good' | 'fair' | 'poor' | 'no-data';
 
 export function statusForScore(score: number | null, hasData: boolean): ConditionStatus {
-  if (!hasData || score == null) return 'no-data';
+  // scoreConditions returns value 0 only when it cannot assess (no readings,
+  // no matching gauge, or no usable flow/stage) — FLOW_SCORE_FLOOR keeps every
+  // real assessment at 10+. Render that as no-data, never "0 · Poor".
+  if (!hasData || score == null || score === 0) return 'no-data';
   const b = scoreBand(score);
   return b as ConditionStatus;
 }
@@ -23,8 +26,7 @@ export function colorForSnapshot(snap: ConditionSnapshot | undefined): string {
 }
 
 export function plainStatus(status: ConditionStatus, score: number | null): string {
-  if (status === 'no-data') return 'No recent reading';
-  if (score == null) return 'No recent reading';
+  if (status === 'no-data' || score == null) return 'No data';
   if (status === 'good') return `${score} · Good`;
   if (status === 'fair') return `${score} · Fair`;
   return `${score} · Poor`;

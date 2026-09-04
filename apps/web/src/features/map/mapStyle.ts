@@ -1,5 +1,14 @@
-import { atlas } from './mapTokens';
-import type { StyleSpecification } from 'maplibre-gl';
+import { atlas, atlasNight } from './mapTokens';
+import type { StyleSpecification, FilterSpecification } from 'maplibre-gl';
+
+/** Basemap variants. 'topo' layers real local USGS-3DEP derivatives; RiverMapPage only offers it when /atlas/topo/manifest.json resolves. */
+export type BasemapVariant = 'paper' | 'ink' | 'topo';
+
+// Wide-water safety: line layers must never touch polygon features (a line
+// layer on polygon geometry draws ring outlines — including straight
+// county-clip edges — instead of a river path). Legacy $type filters.
+const LINES_ONLY = ['==', '$type', 'LineString'] as unknown as FilterSpecification;
+const POLYS_ONLY = ['==', '$type', 'Polygon'] as unknown as FilterSpecification;
 
 /**
  * Self-hosted Field Notes Atlas StyleSpec.
@@ -10,31 +19,70 @@ import type { StyleSpecification } from 'maplibre-gl';
  *   sprite/glyph path that has no real file makes it parse HTML as JSON/PBF and
  *   fail the whole style load (blank map). Only re-add those keys together with
  *   real local files AND server routes that 404 instead of falling back.
- *   (No layer below needs them: there are no icon or symbol layers yet. Stream
- *   labels are a documented next step — generate local glyphs first.)
- * - Layers bottom→top: background (paper #F2E9D5), TN fill, subtle contour lines,
- *   river casing (ink #24352D), river interior (condition color via feature property `color`),
+ *   (No layer below needs them: there are no icon or symbol layers — place
+ *   labels render as HTML markers in TennesseeMap, not as glyph text.)
+ * - Layers bottom→top: background (paper #F2E9D5), neighbor-state context fill,
+ *   TN fill, county hairlines, TN outline, river casing (ink #24352D),
+ *   river interior (condition color via feature property `color`),
  *   selection highlight, hatch-mode halo, wide transparent hit line.
+ * - `variant` swaps ground/line tones only ('ink' merges atlasNight over atlas).
+ *   Condition hues, selection orange, and data fallbacks are identical in
+ *   every variant so the legend stays truthful.
+ * - 'topo' keeps paper ground tones and splices in the local USGS-3DEP
+ *   derivatives (hillshade raster + contour band lines) beneath all river
+ *   layers. RiverMapPage only selects it after the manifest probe succeeds.
  */
-export function atlasStyle(): StyleSpecification {
-  return {
+export function atlasStyle(variant: BasemapVariant = 'paper'): StyleSpecification {
+  const t = variant === 'ink' ? { ...atlas, ...atlasNight } : atlas;
+  const style: StyleSpecification = {
     version: 8,
     name: 'Field Notes Atlas',
     sources: {
       'tn-boundary': { type: 'geojson', data: '/atlas/tn-boundary.geojson' },
+      'states-context': { type: 'geojson', data: '/atlas/states-context.geojson' },
+      'tn-counties': { type: 'geojson', data: '/atlas/tn-counties.geojson' },
       rivers: { type: 'geojson', data: '/atlas/rivers.geojson', promoteId: 'id' as unknown as string },
     },
     layers: [
       {
         id: 'background',
         type: 'background',
-        paint: { 'background-color': atlas.paper },
+        paint: { 'background-color': t.paper },
+      },
+      // Neighboring states — faint context so TN reads as a place, not a void
+      {
+        id: 'states-context-fill',
+        type: 'fill' as const,
+        source: 'states-context',
+        paint: { 'fill-color': t.paper, 'fill-opacity': 1 },
+      },
+      {
+        id: 'states-context-outline',
+        type: 'line' as const,
+        source: 'states-context',
+        paint: {
+          'line-color': t.hairline,
+          'line-width': 1,
+          'line-opacity': 0.6,
+          'line-dasharray': [2, 2.5],
+        },
       },
       {
         id: 'tn-fill',
         type: 'fill' as const,
         source: 'tn-boundary',
-        paint: { 'fill-color': atlas.paperRaised, 'fill-opacity': 1 },
+        paint: { 'fill-color': t.paperRaised, 'fill-opacity': 1 },
+      },
+      // County hairlines — orientation grid at mid zooms, faded at state view
+      {
+        id: 'tn-counties',
+        type: 'line' as const,
+        source: 'tn-counties',
+        paint: {
+          'line-color': t.contour,
+          'line-width': 0.7,
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 5.6, 0.25, 7.5, 0.55],
+        },
       },
       // subtle contour / state border — hairline on paper
       {
@@ -42,7 +90,7 @@ export function atlasStyle(): StyleSpecification {
         type: 'line' as const,
         source: 'tn-boundary',
         paint: {
-          'line-color': atlas.contour,
+          'line-color': t.contour,
           'line-width': 0.85,
           'line-opacity': 0.45,
           'line-dasharray': [3, 3],
@@ -52,16 +100,72 @@ export function atlasStyle(): StyleSpecification {
         id: 'tn-outline',
         type: 'line' as const,
         source: 'tn-boundary',
-        paint: { 'line-color': atlas.hairline, 'line-width': 1.4, 'line-opacity': 1 },
+        paint: { 'line-color': t.hairline, 'line-width': 1.4, 'line-opacity': 1 },
       },
-      // Rivers — casing (ink #24352D) renders beneath interior so bends read clearly
+      // Wide water — AREAWATER polygons (Hiwassee, French Broad, Obed; TIGER
+      // has no centerlines for these). Rendered as watercolor washes: soft
+      // condition tint + hairline shore. Never drawn by line layers.
+      {
+        id: 'rivers-water',
+        type: 'fill',
+        source: 'rivers',
+        filter: POLYS_ONLY,
+        paint: {
+          'fill-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            '#D98232',
+            ['coalesce', ['feature-state', 'color'], ['get', 'color'], '#8B8A82'],
+          ],
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            0.45,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            0.08,
+            0.3,
+          ],
+        },
+      },
+      // Shore hairline for wide water — 1px ink so the county-clip edges that
+      // exist in the source polygons stay subtle; selection turns it sulphur.
+      {
+        id: 'rivers-water-shore',
+        type: 'line' as const,
+        source: 'rivers',
+        filter: POLYS_ONLY,
+        paint: {
+          'line-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            '#D98232',
+            t.ink,
+          ],
+          'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 2.5, 0.8],
+          'line-opacity': ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.25, 0.7],
+        },
+      },
+      // Hatch glow for wide water — soft interior wash, never a ring outline.
+      {
+        id: 'rivers-hatch-wash',
+        type: 'fill',
+        source: 'rivers',
+        filter: POLYS_ONLY,
+        paint: {
+          'fill-color': ['coalesce', ['feature-state', 'hatchColor'], ['get', 'hatchColor'], t.sulphur],
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hatchActive'], false], 0.2, 0],
+        },
+      },
+      // Rivers — casing (ink) renders beneath interior so bends read clearly.
+      // LINESTRING ONLY — see LINES_ONLY note above.
       {
         id: 'rivers-casing',
         type: 'line' as const,
         source: 'rivers',
+        filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': atlas.ink,
+          'line-color': t.ink,
           'line-width': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
@@ -76,34 +180,46 @@ export function atlasStyle(): StyleSpecification {
             1,
             ['boolean', ['feature-state', 'hover'], false],
             0.9,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            0.18,
             0.62,
           ],
         },
       },
-      // Rivers — interior (condition color via feature property `color`)
+      // Rivers — interior (condition color: feature-state `color` set live by
+      // TennesseeMap, static `get color` property as fallback). LINES ONLY.
       {
         id: 'rivers-interior',
         type: 'line' as const,
         source: 'rivers',
+        filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': ['coalesce', ['get', 'color'], atlas.noData],
+          'line-color': ['coalesce', ['feature-state', 'color'], ['get', 'color'], t.noData],
           'line-width': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
             3.4,
             ['boolean', ['feature-state', 'hover'], false],
             2.9,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            1.4,
             2.05,
           ],
-          'line-opacity': 1,
+          'line-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'dimmed'], false],
+            0.35,
+            1,
+          ],
         },
       },
-      // Selection highlight — warm outline beyond casing when selected
+      // Selection highlight — warm outline beyond casing when selected. LINES ONLY.
       {
         id: 'rivers-selection',
         type: 'line' as const,
         source: 'rivers',
+        filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': '#F59E0B',
@@ -111,29 +227,104 @@ export function atlasStyle(): StyleSpecification {
           'line-opacity': ['case', ['boolean', ['feature-state', 'selected'], false], 0.9, 0],
         },
       },
-      // Hatch-mode halo — sulphur glow when hatchActive feature-state is true
+      // Hatch-mode halo — sulphur glow when hatchActive. LINES ONLY.
       {
         id: 'rivers-hatch-halo',
         type: 'line' as const,
         source: 'rivers',
+        filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': ['coalesce', ['get', 'hatchColor'], atlas.sulphur],
+          'line-color': ['coalesce', ['feature-state', 'hatchColor'], ['get', 'hatchColor'], t.sulphur],
           'line-width': 9,
           'line-opacity': ['case', ['boolean', ['feature-state', 'hatchActive'], false], 0.42, 0],
           'line-blur': 1.1,
         },
       },
-      // Wide transparent hit area — last so it receives pointer events
+      // Wide transparent hit area — last so it receives pointer events. LINES ONLY.
       {
         id: 'rivers-hit',
         type: 'line' as const,
         source: 'rivers',
+        filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': '#000', 'line-opacity': 0, 'line-width': 18 },
       },
     ],
   };
+
+  if (variant !== 'topo') return style;
+
+  // Task 6e Phase B — Topo: real USGS-3DEP derivatives, fully local, layered
+  // beneath every river layer. RiverMapPage only requests this style after
+  // /atlas/topo/manifest.json resolves, so missing build output can't 404 here.
+  // Ground stays paper tones; the hillshade and contour lines carry the relief.
+  style.sources = {
+    ...style.sources,
+    hillshade: {
+      type: 'raster',
+      tiles: ['/atlas/topo/hillshade/{z}/{x}/{y}.webp'],
+      tileSize: 256,
+      minzoom: 7,
+      maxzoom: 11,
+      // The build clips output to the TN box — bounds keeps MapLibre from
+      // requesting (and 404ing) tiles outside it.
+      bounds: [-90.6, 34.98, -81.45, 36.75],
+    },
+    'contours-band0': { type: 'geojson', data: '/atlas/topo/contours-band0.geojson' },
+    'contours-band1': { type: 'geojson', data: '/atlas/topo/contours-band1.geojson' },
+    'contours-band2': { type: 'geojson', data: '/atlas/topo/contours-band2.geojson' },
+  };
+  const afterLayer = (id: string) => {
+    const i = style.layers.findIndex((l) => l.id === id);
+    return i < 0 ? style.layers.length : i + 1;
+  };
+  // Hillshade sits just above the TN fill (under the county hairlines) so the
+  // relief reads as ground, not as a data layer. 0.35 keeps rivers the lead.
+  style.layers.splice(afterLayer('tn-fill'), 0, {
+    id: 'topo-hillshade',
+    type: 'raster',
+    source: 'hillshade',
+    paint: { 'raster-opacity': 0.35 },
+  });
+  // Contour bands — above the county hairlines, below the state border and
+  // every river layer. Same hairline tone in three descending weights, each
+  // fading in with zoom; the 20 m band only appears at high zoom (≥ z10).
+  style.layers.splice(
+    afterLayer('tn-counties'),
+    0,
+    {
+      id: 'topo-contours-major',
+      type: 'line' as const,
+      source: 'contours-band0',
+      paint: {
+        'line-color': t.contour,
+        'line-width': 1.1,
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 7, 0, 8, 0.55],
+      },
+    },
+    {
+      id: 'topo-contours-mid',
+      type: 'line' as const,
+      source: 'contours-band1',
+      paint: {
+        'line-color': t.contour,
+        'line-width': 0.7,
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 8, 0, 9, 0.4],
+      },
+    },
+    {
+      id: 'topo-contours-minor',
+      type: 'line' as const,
+      source: 'contours-band2',
+      paint: {
+        'line-color': t.contour,
+        'line-width': 0.55,
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0, 10.5, 0.3],
+      },
+    },
+  );
+  return style;
 }
 
 /** Back-compat alias for older imports. */

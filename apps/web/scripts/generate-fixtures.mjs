@@ -135,6 +135,21 @@ const streams = [
     notes: 'Winter trout stocking reaches around Manchester and Norman Creek; smallmouth take over downstream in summer.',
     officialSources: [usgs('03537000'), twraLink],
   },
+  {
+    // Atlas QA stream: real content-catalog values (score 37 Poor, 19.3 cfs vs
+    // ideal 50-400, no temperature) so the map E2E can assert the exact
+    // selected-river presentation from the remediation brief.
+    id: 'east-fork-stones-river',
+    name: 'East Fork Stones River',
+    stateId: 'TN',
+    waterbodyType: 'river',
+    regionId: 'tn-middle-nashville',
+    gaugeIds: ['03427500'],
+    stockingProgram: true,
+    idealFlow: [{ min: 50, max: 400, unit: 'cfs' }],
+    notes: 'Middle Tennessee creek fishery near Nashville; runs low outside rain events.',
+    officialSources: [usgs('03427500'), twraLink],
+  },
 ];
 
 // ------------------------------------------------------------------ taxa ----
@@ -309,6 +324,9 @@ const conditionsPlans = {
   'holston-river': [[null, 6.9, 12.4, 47], [null, 7.0, 12.5, 107]],
   'clinch-river': [[85, 1.9, 13.6, 55], [90, 2.0, 13.5, 115], [95, 2.0, 13.4, 175]],
   'duck-river': [[130, 2.8, 14.2, 63], [125, 2.8, 14.3, 123]],
+  // Atlas QA: real remediation-brief values — 19.3 cfs vs ideal 50-400 scores
+  // 37 Poor via scoreConditions(); no tempC key = temperature unavailable.
+  'east-fork-stones-river': [[19.3, null, null, 41], [19.1, null, null, 101]],
 };
 
 const conditions = streams.map((stream) => {

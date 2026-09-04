@@ -29,7 +29,15 @@ const webRoot = dirname(fileURLToPath(import.meta.url));
 function precacheGlobPatterns(fixtures: boolean): string[] {
   const patterns = ['**/*.{js,css,html,svg}', 'icons/*.png'];
   if (fixtures || existsSync(join(webRoot, 'public', 'content'))) patterns.push('content/**/*.json');
-  if (existsSync(join(webRoot, 'public', 'atlas'))) patterns.push('atlas/**');
+  if (existsSync(join(webRoot, 'public', 'atlas'))) {
+    // Non-recursive on purpose: every precache-worthy atlas file (rivers,
+    // places, tn-boundary/counties, states-context) sits directly in atlas/.
+    // 'atlas/**' would also match atlas/topo/** (771 runtime-cached tiles),
+    // and workbox's '!…' negation inside globPatterns proved unreliable in
+    // this pipeline — a non-recursive glob can't reach the nested dir at all.
+    patterns.push('atlas/*');
+    patterns.push('!atlas/topo/**');
+  }
   if (fixtures) {
     patterns.push('v1/**');
   } else if (existsSync(join(webRoot, 'public', 'v1', 'hatch'))) {
@@ -107,6 +115,21 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
               cacheName: 'snapshot-cache',
               networkTimeoutSeconds: 4,
               expiration: { maxEntries: 128, maxAgeSeconds: 14 * 24 * 3600 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // Topo hillshade/contours (Task 6e Phase B): heavy but immutable
+            // derivatives, so CacheFirst at runtime — never precached (see
+            // precacheGlobPatterns above). NOTE: workbox RegExpRoute matches
+            // against the FULL url href, so the pattern must not be anchored
+            // with '^/' — an '^/'-anchored regex can never match and the
+            // route silently does nothing.
+            urlPattern: /\/atlas\/topo\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'topo-cache',
+              expiration: { maxEntries: 512, maxAgeSeconds: 90 * 24 * 3600 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

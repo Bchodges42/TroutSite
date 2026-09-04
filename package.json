@@ -17,7 +17,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate:content": "pnpm --filter @trout/content validate",
-    "e2e": "pnpm --filter @trout/e2e e2e"
+    "e2e": "pnpm --filter @trout/e2e e2e",
+    "e2e:web": "pnpm --filter @trout/e2e exec playwright test --project=web"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",

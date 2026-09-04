@@ -22,6 +22,23 @@ export const atlas = {
   shadow: 'rgba(51, 45, 32, 0.16)',
 } as const;
 
+// Ink night — dark variant. Condition hues stay recognizable; only ground,
+// lines, and label tones change. Never used for UI chrome (panels stay paper).
+export const atlasNight = {
+  paper: '#121815',
+  paperRaised: '#1A231E',
+  paperWarm: '#161F1A',
+  ink: '#0B100D',
+  softInk: '#93A096',
+  inkFaint: '#5E6B62',
+  contour: '#26312A',
+  hairline: '#33423A',
+  noData: '#5E6B62',
+  sulphur: '#E89A4B',
+  placeText: '#D8D2C2',
+  placeHalo: 'rgba(10, 15, 12, 0.85)',
+} as const;
+
 /** Tennessee bounding box (lon/lat) — padded for maxBounds. */
 export const TN_BOUNDS: [[number, number], [number, number]] = [
   [-90.31, 35.0],

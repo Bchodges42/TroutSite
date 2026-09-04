@@ -24,7 +24,8 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   expect(await page.evaluate(() => navigator.onLine)).toBe(false);
 
   // SPA navigation into the hatch key (never reloads the document)
-  await page.getByRole('link', { name: 'Hatch Key' }).click();
+  await page.getByRole('button', { name: 'Open menu' }).click();
+  await page.getByRole('link', { name: 'Match the Hatch' }).click();
   await expect(page.getByRole('heading', { name: 'Hatch Key' })).toBeVisible();
 
   await runWizard(page);
@@ -42,6 +43,9 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   await expect(page.getByText('Fly patterns that imitate it')).toBeVisible();
 
   // hatch chart renders offline (region × month)
+  // Step 6c.4 pattern: the nav links live in the hamburger drawer now —
+  // open it before each drawer-only navigation, not just the first one.
+  await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('link', { name: 'Hatch Charts' }).click();
   await page.getByRole('link', { name: /May/ }).click();
   await expect(page.getByRole('heading', { name: /May/ })).toBeVisible();
@@ -50,6 +54,7 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   // a never-visited conditions surface: navigate in-app (a document reload
   // would reset Playwright's offline emulation), the query refetches while
   // offline and the freshness chip must read "Offline · last known …"
+  await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('link', { name: 'Conditions' }).click();
   await expect(page.getByRole('heading', { name: 'Conditions' })).toBeVisible();
   await page.getByText('South Holston River').click();

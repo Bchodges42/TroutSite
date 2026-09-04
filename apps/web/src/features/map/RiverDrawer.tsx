@@ -15,7 +15,7 @@ import { db } from '../../lib/db';
 const TABS = ['Water','Hatch','Stocking','Reports','Your Log'] as const;
 type Tab = typeof TABS[number];
 
-export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fetchedAt }: { feature: RiverMapFeature | null; tab: Tab; onTab: (t: Tab) => void; onClose: () => void; modeMonth: number; live: boolean; fetchedAt: number | null }) {
+export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fetchedAt, layout }: { feature: RiverMapFeature | null; tab: Tab; onTab: (t: Tab) => void; onClose: () => void; modeMonth: number; live: boolean; fetchedAt: number | null; layout?: 'sheet' | 'panel' }) {
   const [sheet, setSheet] = useState<'peek'|'medium'|'full'>('peek');
   const dragRef = useRef<HTMLDivElement>(null);
 
@@ -45,8 +45,45 @@ export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fet
 
   if (!feature) return null;
   const snap = feature.snapshot;
-  const height = sheet === 'peek' ? 'min-h-[148px] max-h-[32vh]' : sheet === 'medium' ? 'max-h-[58vh]' : 'max-h-[86vh]';
+  const isPanel = layout === 'panel';
+  const sheetHeight = sheet === 'peek' ? 'min-h-[148px] max-h-[32vh]' : sheet === 'medium' ? 'max-h-[58vh]' : 'max-h-[86vh]';
   const freshnessLabel = fetchedAt ? `${live ? 'Updated' : 'Cached'} ${ageMinutes(fetchedAt)} · ${clockTime(fetchedAt)}` : 'No recent reading';
+
+  if (isPanel) {
+    // Desktop inspector: content starts at the top, ONE scroll region (the
+    // body). Heading + tabs are sticky. No sheet positioning, no blank space.
+    return (
+      <div className="flex h-full min-h-0 flex-col bg-[#F8F2E5]" role="dialog" aria-label={`${feature.stream.name} details`} aria-modal="false">
+        <div className="shrink-0 px-4 pt-3">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h2 className="font-['Fraunces'] text-[24px] font-extrabold leading-none tracking-tight text-[#24352D]">{feature.stream.name}</h2>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#566158]">{regionName(feature.stream.regionId)}</p>
+              <p className="mt-1 text-sm font-bold" style={{ color: feature.color }}>{plainStatus(feature.status, feature.score)} · {interpretationFor(snap, feature.stream)}</p>
+              <p className="text-xs text-[#566158]">{freshnessLabel}{snap ? ` · trend ${TREND_LABEL[flowTrend(snap.readings)] || 'n/a'}` : ''}</p>
+              {feature.hatchChart && <p className="text-xs text-[#566158]">{feature.hatchChart.entries[0]?.taxonId ?? ''} toward dusk</p>}
+              {feature.logCount > 0 && <p className="text-xs text-[#566158]">{feature.logCount} private entries on this river · Only on this device</p>}
+            </div>
+            <button onClick={onClose} aria-label="Close river details" className="h-11 w-11 shrink-0 rounded-full border bg-white text-lg text-[#24352D]" style={{ borderColor: atlas.hairline }}>×</button>
+          </div>
+          <div className="mt-2 flex gap-2 overflow-x-auto border-b" style={{ borderColor: atlas.hairline }} role="tablist" aria-label="River details">
+            {TABS.map(t => (
+              <button key={t} role="tab" aria-selected={tab === t} onClick={() => onTab(t)} className={`-mb-px shrink-0 whitespace-nowrap border-b-2 px-2 py-2 text-sm font-bold ${tab === t ? 'border-[#24352D] text-[#24352D]' : 'border-transparent text-[#566158]'}`}>{t}</button>
+            ))}
+          </div>
+        </div>
+        <div className="min-h-0 flex-1 overflow-auto px-4 py-3">
+          {tab === 'Water' && <WaterTab feature={feature} />}
+          {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
+          {tab === 'Stocking' && <StockingTab feature={feature} />}
+          {tab === 'Reports' && <ReportsTab feature={feature} />}
+          {tab === 'Your Log' && <LogTab feature={feature} />}
+        </div>
+      </div>
+    );
+  }
+
+  const height = sheetHeight;
 
   return (
     <div className={`absolute inset-x-0 bottom-0 z-10 flex flex-col rounded-t-[20px] border-t bg-[#F8F2E5] shadow-[0_-8px_32px_rgba(51,45,32,0.16)] ${height} overflow-hidden`} style={{ borderColor: atlas.hairline, paddingBottom: 'env(safe-area-inset-bottom)' }} role="dialog" aria-label={`${feature.stream.name} details`} aria-modal="false">

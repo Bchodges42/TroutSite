@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { flowTrend, scoreBand, whatChanged } from '../src/lib/conditions';
+import { plainStatus, statusForScore } from '../src/features/map/riverMapSelectors';
 import type { GaugeReading } from '@trout/contracts';
 
 const reading = (over: Partial<GaugeReading>): GaugeReading => ({
@@ -66,5 +67,27 @@ describe('whatChanged ("since your last visit")', () => {
 
   it('says nothing when both sides are empty', () => {
     expect(whatChanged([], [])).toHaveLength(0);
+  });
+});
+
+describe('plainStatus', () => {
+  it('never fabricates a score for no-data rivers', () => {
+    expect(plainStatus('no-data', null)).toBe('No data');
+    expect(plainStatus('poor', null)).toBe('No data');
+  });
+
+  it('keeps numeric status wording for scored rivers', () => {
+    expect(plainStatus('good', 90)).toBe('90 · Good');
+    expect(plainStatus('fair', 50)).toBe('50 · Fair');
+    expect(plainStatus('poor', 37)).toBe('37 · Poor');
+  });
+});
+
+describe('statusForScore', () => {
+  it('treats a cannot-assess 0 score as no-data, never "0 · Poor"', () => {
+    expect(statusForScore(0, true)).toBe('no-data');
+    expect(statusForScore(null, false)).toBe('no-data');
+    expect(statusForScore(37, true)).toBe('poor');
+    expect(statusForScore(90, true)).toBe('good');
   });
 });

@@ -21,6 +21,11 @@ export default defineConfig({
   testDir: '.',
   globalSetup: './global-setup.mjs',
   fullyParallel: true,
+  // Serialized on purpose: parallel workers each boot a MapLibre WebGL context
+  // and a service-worker install; on constrained machines (and 2-core CI) that
+  // starves SW activation/render budgets and fails offline specs. All projects
+  // pass green at workers=1; deterministic > fast for this suite.
+  workers: 1,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
