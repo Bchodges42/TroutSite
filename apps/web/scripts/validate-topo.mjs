@@ -1,11 +1,14 @@
-// Structural validator for public/atlas/topo (Task 6e Phase B, guide steps 6–7).
-// Checks: manifest-vs-reality (band byte counts, feature counts, hillshade
-// tile count and byte sum, top-level bytes), contour coordinates inside the
-// TN clip (+0.01° epsilon), elevation multiples per band (100/50/20 m),
-// hillshade tile names/zoom range/web-mercator ranges, WebP magic bytes, and
-// the guide's size targets (contours ≤ 12 MB, hillshade ≤ 60 MB; warn within
-// +20%, fail beyond it). Exits non-zero on failure. Fails cleanly (message
-// only, never a stack trace) when the topo output or manifest isn't built yet.
+// Structural validator for public/atlas/topo (Task 6e Phase B, guide steps 6–7;
+// B14 additions noted). Checks: manifest-vs-reality (band byte counts, feature
+// counts, hillshade tile count and byte sum, top-level bytes), contour
+// coordinates inside the TN clip (+0.01° epsilon), elevation multiples per band
+// (100/50/20 m), hillshade tile names/zoom range/web-mercator ranges, WebP
+// magic bytes, B14 shadow-alpha encoding (every tile reports hasAlpha:true;
+// decoded spot-checks must be black-RGB with real shadow alpha; manifest pins
+// the shadow-alpha contract + TN-boundary mask provenance), and the guide's
+// size targets (contours ≤ 12 MB, hillshade ≤ 60 MB; warn within +20%, fail
+// beyond it). Exits non-zero on failure. Fails cleanly (message only, never a
+// stack trace) when the topo output or manifest isn't built yet.
 //
 // Run: node scripts/validate-topo.mjs
 import {
@@ -19,6 +22,7 @@ import {
 } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const TOPO = join(here, '..', 'public', 'atlas', 'topo');
@@ -34,10 +38,17 @@ const ZOOM_RANGE = [7, 11];
 const TARGET_MB = { contours: 12, hillshade: 60 };
 const FAIL_TOLERANCE = 1.2; // stop-condition: fail when a target is exceeded by more than +20%
 
+// B14 pinned contract — must mirror build-topo.mjs.
+const HILL_ENCODING = 'shadow-alpha';
+const HILL_MAX_ALPHA = 235;
+const MASK_SOURCE = 'public/atlas/tn-boundary.geojson';
+const MASK_BUFFER_M = 3000;
+
 const MB = 1024 * 1024;
 const fmtMB = (bytes) => `${(bytes / MB).toFixed(1)} MB`;
 const errors = [];
 const warns = [];
+const tilePaths = []; // collected during the walk, decoded in the B14 alpha pass
 
 const fail = (reason) => {
   console.error(`validate-topo: FAIL — ${reason}`);
@@ -63,7 +74,66 @@ const latToTileY = (lat, z) => {
   return Math.floor((0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * 2 ** z);
 };
 
-const main = () => {
+const spotSamples = new Map(); // z → first tile seen (deterministic decode sample)
+
+// B14 alpha pass: every tile must report hasAlpha:true (shadow-only RGBA
+// contract), and one decoded tile per zoom must be black-RGB with real
+// shadow alpha. Header metadata is cheap for all tiles; full decode only on
+// the per-zoom spot sample.
+async function verifyShadowAlpha() {
+  if (!tilePaths.length) return;
+  let i = 0;
+  let noAlpha = 0;
+  let noAlphaExample = null;
+  const worker = async () => {
+    while (i < tilePaths.length) {
+      const p = tilePaths[i++];
+      try {
+        const meta = await sharp(p).metadata();
+        if (!meta.hasAlpha) {
+          noAlpha++;
+          if (!noAlphaExample) noAlphaExample = p;
+        }
+      } catch (e) {
+        errors.push(`${p}: unreadable by sharp (${e.message})`);
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: 16 }, worker));
+  if (noAlpha) {
+    errors.push(
+      `${noAlpha}/${tilePaths.length} hillshade tiles without an alpha channel (opaque pre-B14 grayscale cannot blend onto a dark ground), e.g. ${noAlphaExample}`,
+    );
+  } else {
+    console.log(`shadow-alpha: ${tilePaths.length}/${tilePaths.length} tiles report hasAlpha:true`);
+  }
+  for (const z of [...spotSamples.keys()].sort((a, b) => a - b)) {
+    const p = spotSamples.get(z);
+    let decoded;
+    try {
+      decoded = await sharp(p).raw().toBuffer({ resolveWithObject: true });
+    } catch (e) {
+      errors.push(`hillshade z${z} spot tile: decode failed (${e.message})`);
+      continue;
+    }
+    const { data, info } = decoded;
+    const rel = p.slice(p.indexOf('hillshade'));
+    if (info.channels !== 4) {
+      errors.push(`${rel}: decoded ${info.channels} channels, expected 4 (RGBA shadow-only)`);
+      continue;
+    }
+    let nonBlack = 0;
+    let maxAlpha = 0;
+    for (let o = 0; o < data.length; o += 4) {
+      if (data[o] !== 0 || data[o + 1] !== 0 || data[o + 2] !== 0) nonBlack++;
+      if (data[o + 3] > maxAlpha) maxAlpha = data[o + 3];
+    }
+    if (nonBlack) errors.push(`${rel}: ${nonBlack} non-black RGB pixels — shadow-only contract violated`);
+    if (maxAlpha === 0) errors.push(`${rel}: no shadow signal (all alpha 0) — tile should have been skipped`);
+  }
+}
+
+const main = async () => {
   // ---- manifest exists + parses ------------------------------------------
   const manifestPath = join(TOPO, 'manifest.json');
   if (!existsSync(manifestPath)) {
@@ -113,6 +183,25 @@ const main = () => {
     }
     if (!Number.isInteger(hill.tiles)) errors.push('manifest.hillshade.tiles missing or not an integer');
     if (!Number.isInteger(hill.bytes)) errors.push('manifest.hillshade.bytes missing or not an integer');
+    // B14 pinned contract: shadow-only alpha encoding.
+    if (hill.encoding !== HILL_ENCODING) {
+      errors.push(`manifest.hillshade.encoding ${JSON.stringify(hill.encoding)} !== ${JSON.stringify(HILL_ENCODING)} (pre-B14 grayscale tiles cannot blend onto a dark ground)`);
+    }
+    if (hill.maxAlpha !== HILL_MAX_ALPHA) {
+      errors.push(`manifest.hillshade.maxAlpha ${JSON.stringify(hill.maxAlpha)} !== ${HILL_MAX_ALPHA}`);
+    }
+  }
+  // B14 pinned contract: state-boundary clip provenance.
+  const mask = manifest.mask;
+  if (!mask || typeof mask !== 'object') {
+    errors.push('manifest.mask missing (B14 TN-boundary clip provenance)');
+  } else {
+    if (mask.source !== MASK_SOURCE) {
+      errors.push(`manifest.mask.source ${JSON.stringify(mask.source)} !== ${JSON.stringify(MASK_SOURCE)}`);
+    }
+    if (mask.bufferM !== MASK_BUFFER_M) {
+      errors.push(`manifest.mask.bufferM ${JSON.stringify(mask.bufferM)} !== ${MASK_BUFFER_M}`);
+    }
   }
 
   // ---- contour bands: bytes, feature counts, structure, coords, elevations -
@@ -289,6 +378,8 @@ const main = () => {
           if (!head || head.toString('latin1', 0, 4) !== 'RIFF' || head.toString('latin1', 8, 12) !== 'WEBP') {
             errors.push(`${rel}: not a valid WebP (missing RIFF/WEBP magic bytes)`);
           }
+          tilePaths.push(tilePath);
+          if (!spotSamples.has(z)) spotSamples.set(z, tilePath);
           if (x < xLo || x > xHi || y < yLo || y > yHi) {
             outsideVicinity++;
             if (!vicinityExample) vicinityExample = rel;
@@ -330,6 +421,9 @@ const main = () => {
   checkTarget(`contour bands (${BANDS.length} files)`, bandBytes, TARGET_MB.contours);
   checkTarget('hillshade tiles', tileBytes, TARGET_MB.hillshade);
 
+  // ---- B14 shadow-alpha pass (hasAlpha on every tile, decode spot-checks) --
+  await verifyShadowAlpha();
+
   // ---- report ---------------------------------------------------------------
   console.log(`topo: ${TOPO}`);
   console.log(`manifest: generated ${manifest.generated ?? '?'} · declared bytes ${manifest.bytes ?? '?'}`);
@@ -351,8 +445,10 @@ const main = () => {
   console.log('validate-topo: PASS');
 };
 
-try {
-  main();
-} catch (e) {
-  fail(`unexpected failure: ${e && e.message ? e.message : String(e)}`);
-}
+(async () => {
+  try {
+    await main();
+  } catch (e) {
+    fail(`unexpected failure: ${e && e.message ? e.message : String(e)}`);
+  }
+})();
