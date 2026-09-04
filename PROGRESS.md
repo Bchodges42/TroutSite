@@ -2,6 +2,67 @@
 
 Per-lane progress notes from merged lanes (GEO, SPECIES, TOPO, CONTINUITY, CATALOG). See COORDINATION.md in trout-backend.
 
+Base: `4e54c36` (integrated branch HEAD at lane start).
+
+# LINES lane — running status (B15 missing-line rivers)
+
+Base: `4e54c36` (`fix(api): datePrecision survives the DB round-trip…`).
+Scope: real channel geometry (MultiLineString) for the 8 inventory rivers with
+`type:'river'` + `geometryStatus:'missing-line'` (mississippi-river,
+obion-river, hatchie-river, wolf-river-west-tennessee, tennessee-river,
+cumberland-river, buffalo-river, holston-river). Only
+`apps/web/public/atlas/rivers.geojson` (append-only), `apps/web/scripts/`
+pipeline additions, `docs/` notes, this file. No UI files, no `packages/`
+(catalog YAML belongs to the catalog lane), no other waters' geometry.
+
+## Status log
+
+- [x] Setup: `pnpm install`, `@trout/contracts build`, `@trout/ui build` — green.
+- [x] `docs/waterbody-inventory.json` + `docs/WATERBODY-GEOMETRY-CONTRACT.md`
+  were absent from this clone (git-ignored lane split); copied byte-identical
+  from the integrated fieldwork checkout (same HEAD, read-only source).
+- [x] Added B15 corridor targets to `fetch-nhd-targets.mjs` (10 targets / 8
+  rivers; tennessee-river and cumberland-river use two overlapping envelopes to
+  stay under the USGS processing window that 504'd the wide Clinch fetch).
+- [x] New `build-missing-rivers.mjs`: NHD take maps per river, whole-part
+  Tennessee filter (same `partInTennessee` discipline as merge-rivers),
+  Mississippi state-line corridor rule, RDP 0.00012 + CLIP identical to
+  merge-rivers, contract properties (`id`, `name`, `waterbodyType`,
+  `source`, `approximate`, `labelAnchor`, `bounds`), idempotent append to
+  rivers.geojson (never touches existing features).
+- [x] All 8 rivers appended (one commit per river; 113 features in
+  rivers.geojson = 105 pre-existing [byte-identical, verified] + 8 new).
+  Members/verts: mississippi 2/278, obion 2/258, hatchie 1/754,
+  wolf 1/449, tennessee 3/1069, cumberland 1/795, buffalo 2/641,
+  holston 1/494. `validate-atlas.mjs` PASS after each append
+  (113 features, 113 unique ids, zero structural/coordinate errors).
+- [x] Verify: `pnpm --filter @trout/web typecheck` green; `test` 88/88 green;
+  `build` + size budget OK (dist 5.09 MB vs 25 MB gate). Append re-run
+  idempotent (appends 0). Evidence details in docs/atlas-sources.md § B15.
+
+## Notes / decisions
+
+- Catalog YAML for the 8 ids is the catalog lane's job; riverIndex.json
+  regeneration is the UI/integration lane's job (contract step 5) — UI files
+  untouched here, so riverIndex.json still carries the pre-B15 105 entries.
+- Mississippi corridor: 4000 m excursion + lat<=36.51 cap, measured against
+  the committed tn-boundary (evidence in docs/atlas-sources.md). Only
+  'Mississippi River'-named flowlines are fetched, so AR/MS backwaters are
+  never candidates; the corridor admits only the mainstem channel straddling
+  the survey line.
+- Endpoint welding (exact + 0.0005 deg jitter) is NEW relative to
+  merge-rivers (which never welds). Justification: the contract forbids
+  splitting connected reaches, and the impounded reaches (Kentucky Lake,
+  Cherokee Lake, Old Hickory) are chains of 2-vertex NHD waterbody
+  connectors; welding joins only existing endpoints, no synthetic
+  coordinates. Gaps larger than the jitter stay separate members (obion
+  ~110 m, buffalo 2.7 km, tennessee's Alabama detour) — documented
+  exceptions, one feature per river id.
+- USGS fetches 2026-09-04: one 504 (tennessee-river-east), cleared by the
+  script's built-in retry/backoff; all 10 targets fetched clean.
+
+
+
 
 Base commit for CONTINUITY lane: db2555b (GEO lane final HEAD; `git log --oneline -3`
 recorded at lane start: db2555b geo(audit): final lane status / 8c3c9b4 / a6ecdd4).
