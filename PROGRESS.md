@@ -31,19 +31,49 @@ stable (point → polygon upgrades staged in this clone).
   Waterbody fcodes observed live: 39004/39009 Lake/Pond (many unnamed small
   park ponds present). Public domain.
 
-## Phase A
+## Phase A (DONE)
 
-- [ ] Scout per-water NHD polygon coverage for the 13 anchors + known still
-      waters → docs/STILLWATER-COVERAGE.md.
-- [ ] Extraction tooling: fetch-stillwater-nhd.mjs (name + envelope →
-      NHD waterbody polygons, TN clip, contract-shaped GeoJSON).
+- [x] Scout per-water NHD polygon coverage for the 13 anchors → cached in
+  apps/web/.atlas-src/stillwater/scout (service responses + summary.json);
+  findings written to docs/STILLWATER-COVERAGE.md (identity verification via
+  NHD names, OSM/Overpass centers, Wikipedia/TWRA research).
+- [x] Extraction tooling: apps/web/scripts/fetch-stillwater-nhd.mjs
+  (scout/extract modes, deterministic picks, TN clip, contract shape) and
+  trace-stillwater.mjs (last-resort Esri-imagery digitizer with preview
+  overlay) + build-stillwater.mjs (integrates extracts into rivers.geojson,
+  promotes reference lakes).
 
-## Phase B (blocked on CODEX docs: waterbody-inventory.json +
-## WATERBODY-GEOMETRY-CONTRACT.md — polling)
+## Phase B (in progress)
 
-- [ ] Polygons for every inventory entry typed lake/pond/reservoir.
-- [ ] Verify: validate-atlas.mjs, typecheck, tests, build.
-- [ ] Commits (waterbody(still): ...).
+- [x] CODEX gate docs read (published 2026-09-04 in
+  trout-fieldwork-20260904/docs): contract = rivers.geojson placement,
+  space-delimited `source` string, required boolean `approximate`.
+  Scope: 13 anchor upgrades + pickwick-lake (missing-polygon); 14 exists-ok
+  reference lakes promoted from lakes.geojson per coordinator (B15).
+- [x] NHD polygons integrated: beech-lake (named), lake-graham (verified
+  unnamed nhdplusid 20000700115945), edmund-orgill-lake (Casper Lake),
+  martin-city-pond, pickwick-lake (TN-clipped 139 km² reservoir).
+  Commit: "waterbody(still): NHD-sourced polygons...".
+- [x] Aerial traces staged (approximate=true, source
+  "aerial-trace twra-winter-ponds", preview-verified): shelby-farms-lake
+  (Jones Pond), johnson-park-lake (W.C. Johnson Park, Collierville — the old
+  downtown-Memphis anchor was ~20 km off), yale-road-park-lake,
+  cameron-brown-lake, milan-city-pond, valentine-park-pond.
+- [ ] Remaining waters: paris-city-park-lake, covington-fbc-pond,
+  union-city-reelfoot-pond (location research + trace).
+- [ ] Promote 14 reference lakes (lakes.geojson → rivers.geojson, source
+  census-areawater; remove from passive file).
+- [ ] riverIndex.json regen; validate-atlas/typecheck/test/build; coverage doc.
+
+## Notes / decisions
+
+- Staged per-water geojson live in apps/web/.atlas-src/stillwater/extract
+  (git-ignored intermediates; reproducible from the committed scripts +
+  scout cache). The committed deliverable is rivers.geojson per contract §3.
+- Trace vertex lists + preview PNGs in .atlas-src/stillwater/trace; method
+  documented in docs/STILLWATER-COVERAGE.md.
+- lakes.geojson keeps non-reference lakes (boone, patrick-henry, great falls,
+  normandy, parksville, reelfoot, woods) passive.
 
 ---
 
