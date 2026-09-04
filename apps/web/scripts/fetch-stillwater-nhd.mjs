@@ -76,7 +76,7 @@ const TARGETS = [
   // TWRA "Paris City Park": NHD names this water Green Acres Lake (aka
   // Williams Lake), the city-run public fishing lake ~850 m from the historic
   // anchor; identity reasoning in docs/STILLWATER-COVERAGE.md.
-  { id: 'paris-city-park-lake', name: 'Paris City Park Lake', env: [-88.330, 36.295, -88.290, 36.325], pick: ['25000102170314'], mao: 0.00015 },
+  { id: 'paris-city-park-lake', name: 'Paris City Park Lake', env: [-88.330, 36.295, -88.290, 36.325], pick: ['25000102170314'], mao: 0 },
   // Valentine Regional Park pond: NHD polygon 80 m from the OSM pond center.
   { id: 'valentine-park-pond', name: 'Valentine Park Pond', env: [-89.821, 35.454, -89.781, 35.474], pick: ['20000700138219'], mao: 0.00015 },
   // Pickwick Lake (inventory missing-polygon): named NHD reservoir; envelope
