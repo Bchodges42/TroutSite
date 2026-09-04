@@ -127,7 +127,7 @@
   },
   {
     "id": "cameron-brown-lake",
-    "name": "cameron-brown-lake",
+    "name": "Cameron Brown Lake",
     "anchor": [
       -89.77363,
       35.10007
@@ -309,7 +309,7 @@
   },
   {
     "id": "covington-fbc-pond",
-    "name": "covington-fbc-pond",
+    "name": "Covington First Baptist Church Pond",
     "anchor": [
       -89.63506,
       35.53608
@@ -715,7 +715,7 @@
   },
   {
     "id": "johnson-park-lake",
-    "name": "johnson-park-lake",
+    "name": "Johnson Park Lake",
     "anchor": [
       -89.68139,
       35.08906
@@ -925,7 +925,7 @@
   },
   {
     "id": "milan-city-pond",
-    "name": "milan-city-pond",
+    "name": "Milan City Pond",
     "anchor": [
       -88.72909,
       35.92375
@@ -1095,8 +1095,8 @@
     "id": "paris-city-park-lake",
     "name": "Paris City Park Lake",
     "anchor": [
-      -88.30901,
-      36.30953
+      -88.30902,
+      36.3095
     ],
     "bounds": [
       -88.30999,
@@ -1303,7 +1303,7 @@
   },
   {
     "id": "shelby-farms-lake",
-    "name": "shelby-farms-lake",
+    "name": "Shelby Farms Lake",
     "anchor": [
       -89.83386,
       35.13965
@@ -1527,7 +1527,7 @@
   },
   {
     "id": "union-city-reelfoot-pond",
-    "name": "union-city-reelfoot-pond",
+    "name": "Union City Reelfoot Packing Site Pond",
     "anchor": [
       -89.06269,
       36.41437
@@ -1569,7 +1569,7 @@
   },
   {
     "id": "valentine-park-pond",
-    "name": "valentine-park-pond",
+    "name": "Valentine Park Pond",
     "anchor": [
       -89.80598,
       35.46305
@@ -1667,7 +1667,7 @@
   },
   {
     "id": "yale-road-park-lake",
-    "name": "yale-road-park-lake",
+    "name": "Yale Road Park Lake",
     "anchor": [
       -89.85634,
       35.21676

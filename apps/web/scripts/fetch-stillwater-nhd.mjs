@@ -396,7 +396,9 @@ function emitFeature(target, chosen, { how, approximate }) {
       name: target.name,
       waterbodyType: target.waterbodyType ?? waterbodyTypeFor(fcMain, target),
       source: ['nhd-hr', ...((target.extraSource ?? []))].join(' '),
-      approximate: approximate || Boolean(target.approximate),
+      // geometry certainty only — anchor-certainty (approx-town vs osm) is a
+      // property of the old Point anchors, not of the authoritative polygon
+      approximate: approximate,
       regionId: target.regionId ?? 'tn-west',
       labelAnchor: labelAnchor ? [rounded(labelAnchor[0]), rounded(labelAnchor[1])] : null,
       bounds: [rounded(b[0]), rounded(b[1]), rounded(b[2]), rounded(b[3])],
