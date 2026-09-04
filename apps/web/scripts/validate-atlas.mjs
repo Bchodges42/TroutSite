@@ -1,7 +1,8 @@
 // Structural validator for public/atlas/rivers.geojson.
 // Checks: WGS84 lon/lat order, in-Tennessee clip, no empty parts, no NaN,
-// MultiLineString (or MultiPolygon for wide-water fallbacks), unique ids,
-// white-oak + tailwater reach notes. Exits non-zero on failure.
+// MultiLineString (or MultiPolygon for wide-water fallbacks, or Point for the
+// 13 West TN put-and-take anchors merged by merge-west-tn-points.mjs), unique
+// ids, white-oak + tailwater reach notes. Exits non-zero on failure.
 //
 // Run: node scripts/validate-atlas.mjs
 import { readFileSync } from 'node:fs';
@@ -27,7 +28,9 @@ for (const f of g.features) {
   if (seen.has(id)) errors.push(`duplicate id ${id}`);
   seen.add(id);
   const geom = f.geometry ?? {};
-  if (geom.type !== 'MultiLineString' && geom.type !== 'MultiPolygon') {
+  const sources = Array.isArray(p.source) ? p.source : [];
+  const isPointAnchor = geom.type === 'Point' && sources.includes('twra-winter-ponds');
+  if (geom.type !== 'MultiLineString' && geom.type !== 'MultiPolygon' && !isPointAnchor) {
     errors.push(`${id}: unexpected geometry ${geom.type}`);
     continue;
   }
