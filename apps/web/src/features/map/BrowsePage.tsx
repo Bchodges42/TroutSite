@@ -1,60 +1,82 @@
-import { useMemo } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { StreamSchema, ConditionSnapshotSchema } from '@trout/contracts';
-import { snapshotUrls } from '../../lib/endpoints';
-import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
-import { useSettingsContext } from '../../lib/settings';
-import { flowTrend, TREND_LABEL } from '../../lib/conditions';
-import { FreshnessChip } from '../../components/FreshnessChip';
-import { ScorePill } from '../../components/ScorePill';
+import { useRiverMapData } from './useRiverMapData';
 import { regionName } from '../../data/regions';
-
+import { ScorePill } from '../../components/ScorePill';
+import { rememberedMapUrl } from '../../lib/riverContext';
 export function BrowsePage() {
-  const { settings } = useSettingsContext();
-  const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamSchema.array(), 60*24, true);
-  const conditionsQuery = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionSnapshotSchema.array(), 60, true);
-  const streams = streamsQuery.data?.data ?? [];
-  const condByStream = useMemo(() => {
-    const m = new Map<string, any>();
-    for (const s of conditionsQuery.data?.data ?? []) m.set(s.streamId, s);
-    return m;
-  }, [conditionsQuery.data]);
-
-  const rows = useMemo(() => {
-    return [...streams].sort((a, b) => {
-      const sa = condByStream.get(a.id)?.score.value ?? -1;
-      const sb = condByStream.get(b.id)?.score.value ?? -1;
-      return sb - sa || a.name.localeCompare(b.name);
-    });
-  }, [streams, condByStream]);
-
+  const data = useRiverMapData();
+  const [search, setSearch] = useState('');
+  const rows = data.features
+    .filter((f) =>
+      (f.stream.name + ' ' + regionName(f.stream.regionId))
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
+    .sort((a, b) => a.stream.name.localeCompare(b.stream.name));
   return (
     <main className="page">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h1 className="page-title">Browse streams</h1>
-        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
-      </div>
-      <p className="page-subtitle mt-1">List fallback for the map — same rivers, keyboard and screen-reader friendly.</p>
-      <p className="mt-2 text-sm"><Link to="/" className="font-bold underline">← Back to Map</Link></p>
-      {streamsQuery.isLoading ? <p className="mt-6 text-sm">Loading streams…</p> : (
-        <ul className="mt-4 flex flex-col gap-2">
-          {rows.map((s) => {
-            const snap = condByStream.get(s.id);
-            return (
-              <li key={s.id}>
-                <Link to={`/?river=${encodeURIComponent(s.id)}`} className="list-row focus-ring" style={{ borderRadius: 'var(--trout-radius-lg)' }}>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-extrabold">{s.name}</span>
-                    <span className="block text-sm" style={{ color: 'var(--trout-ink-muted)' }}>
-                      {regionName(s.regionId)} · {s.waterbodyType} {snap ? `· trend ${TREND_LABEL[flowTrend(snap.readings)] || 'n/a'}` : '· no cached readings'}
+      <p className="eyebrow mb-3">Tennessee / Water index</p>
+      <h1 className="page-title">Browse streams</h1>
+      <p className="page-subtitle mt-2">
+        Every water, with or without a map. Search the catalog and open full conditions, sources,
+        and hatch guidance.
+      </p>
+      <Link to={rememberedMapUrl()} className="text-action mt-3">
+        ← Back to map
+      </Link>
+      <label className="block mt-5">
+        <span className="block text-sm font-semibold mb-2">Find a water</span>
+        <input
+          className="search-input !pl-4"
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="River name or region"
+        />
+      </label>
+      {data.isLoading ? (
+        <p className="mt-6" role="status">
+          Loading streams…
+        </p>
+      ) : data.isError ? (
+        <div className="empty-note mt-6" role="alert">
+          <strong>Catalog unavailable</strong>
+          <p>Connect once to download the stream catalog. Your local logbook is unaffected.</p>
+        </div>
+      ) : (
+        <>
+          <p className="muted text-sm my-4" role="status">
+            {rows.length} waters
+          </p>
+          <ul className="space-y-2">
+            {rows.map((f) => (
+              <li key={f.stream.id}>
+                <Link to={'/conditions/' + f.stream.id} className="list-row focus-ring !rounded-xl">
+                  <span className="min-w-0">
+                    <strong>{f.stream.name}</strong>
+                    <span className="block text-sm muted mt-1">
+                      {regionName(f.stream.regionId)}
                     </span>
                   </span>
-                  {snap ? <ScorePill score={snap.score.value} /> : <span className="text-sm" style={{ color: 'var(--trout-ink-faint)' }}>—</span>}
+                  {f.status !== 'no-data' && f.score !== null && f.species !== 'warmwater' ? (
+                    <ScorePill score={f.score} />
+                  ) : (
+                    <span className="muted text-sm">
+                      {f.species === 'warmwater' ? 'Warmwater' : 'Unassessed'}
+                    </span>
+                  )}
                 </Link>
               </li>
-            );
-          })}
-        </ul>
+            ))}
+          </ul>
+          {rows.length === 0 && (
+            <div className="empty-note">
+              <strong>No matching waters</strong>
+              <p>Try a shorter name or a different region.</p>
+            </div>
+          )}
+        </>
       )}
     </main>
   );

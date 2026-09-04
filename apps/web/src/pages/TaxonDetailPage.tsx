@@ -1,4 +1,5 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { RiverContextBar, contextUrl } from '../lib/riverContext';
 import { Card, Chip, EmptyState } from '@trout/ui';
 import type { FlyPattern } from '@trout/contracts';
 import { patternsForTaxon, useContentPack } from '../lib/content';
@@ -8,12 +9,15 @@ import { monthShort, REGIONS } from '../data/regions';
 /** Taxon detail (scope 2): art, key attributes, season table, sources, patterns. */
 export function TaxonDetailPage() {
   const { taxonId } = useParams();
+  const [params] = useSearchParams();
   const pack = useContentPack();
 
   if (pack.isLoading) {
     return (
       <main className="page">
-        <p className="page-subtitle" role="status">Loading bug reference…</p>
+        <p className="page-subtitle" role="status">
+          Loading bug reference…
+        </p>
       </main>
     );
   }
@@ -25,8 +29,13 @@ export function TaxonDetailPage() {
         <EmptyState
           icon="🪰"
           title="Unknown insect"
+          heading="h1"
           description="That taxon is not in the bundled content pack."
-          action={<Link to="/hatch-key" className="focus-ring font-bold underline">Back to the Hatch Key</Link>}
+          action={
+            <Link to={contextUrl('/hatch-key', params)} className="focus-ring font-bold underline">
+              Back to the Hatch Key
+            </Link>
+          }
         />
       </main>
     );
@@ -36,10 +45,14 @@ export function TaxonDetailPage() {
 
   return (
     <main className="page">
-      <Link to="/hatch-key" className="focus-ring text-sm font-bold underline">
+      <RiverContextBar />
+      <Link
+        to={contextUrl('/hatch-key', params)}
+        className="focus-ring text-sm font-bold underline"
+      >
         ← Hatch Key
       </Link>
-      <div className="mt-3 flex items-start gap-4">
+      <div className="reference-heading mt-3 flex items-start gap-4">
         <div className="shrink-0" style={{ color: 'var(--trout-color-primary)' }}>
           <TaxonArt taxon={taxon} size={132} />
         </div>
@@ -85,7 +98,7 @@ export function TaxonDetailPage() {
                     className="inline-flex h-8 w-10 items-center justify-center rounded-md text-xs font-bold"
                     style={{
                       background: active ? 'var(--trout-green-100)' : 'var(--trout-slate-100)',
-                      color: active ? 'var(--trout-green-900)' : 'var(--trout-slate-400)',
+                      color: active ? 'var(--trout-green-900)' : 'var(--ui-muted)',
                     }}
                     aria-label={`${monthShort(m)}: ${active ? 'active' : 'not active'}`}
                   >
@@ -100,7 +113,10 @@ export function TaxonDetailPage() {
 
       <h2 className="section-title">Fly patterns that imitate it</h2>
       {patterns.length === 0 ? (
-        <EmptyState title="No patterns listed" description="The content pack has no pattern tied to this insect yet." />
+        <EmptyState
+          title="No patterns listed"
+          description="The content pack has no pattern tied to this insect yet."
+        />
       ) : (
         <ul className="flex flex-col gap-2">
           {patterns.map((p) => (
@@ -119,7 +135,8 @@ export function TaxonDetailPage() {
         <ul className="list-disc pl-5 text-sm">
           {taxon.sources.map((s) => (
             <li key={s}>
-              {s} <span style={{ color: 'var(--trout-color-text-muted)' }}>(verify officially)</span>
+              {s}{' '}
+              <span style={{ color: 'var(--trout-color-text-muted)' }}>(verify officially)</span>
             </li>
           ))}
         </ul>
@@ -131,7 +148,10 @@ export function TaxonDetailPage() {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--trout-color-text-muted)' }}>
+      <dt
+        className="text-xs font-bold uppercase tracking-wide"
+        style={{ color: 'var(--trout-color-text-muted)' }}
+      >
         {label}
       </dt>
       <dd className="font-semibold capitalize">{value}</dd>
@@ -140,9 +160,14 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 function PatternRow({ pattern }: { pattern: FlyPattern }) {
+  const [params] = useSearchParams();
   return (
     <li>
-      <Link to={`/patterns/${pattern.id}`} className="list-row focus-ring" style={{ borderRadius: 'var(--trout-radius-lg)' }}>
+      <Link
+        to={contextUrl(`/patterns/${pattern.id}`, params)}
+        className="list-row focus-ring"
+        style={{ borderRadius: 'var(--trout-radius-lg)' }}
+      >
         <span className="min-w-0">
           <span className="block font-extrabold">{pattern.name}</span>
           <span className="text-sm capitalize" style={{ color: 'var(--trout-color-text-muted)' }}>

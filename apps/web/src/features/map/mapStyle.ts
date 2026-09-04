@@ -1,5 +1,11 @@
 import { atlas, atlasLight } from './mapTokens';
-import type { StyleSpecification, FilterSpecification } from 'maplibre-gl';
+import type {
+  StyleSpecification,
+  FilterSpecification,
+  GeoJSONSourceSpecification,
+} from 'maplibre-gl';
+import type { MapPalette } from '../../theme/themes';
+import terrainClip from './terrainClip.json';
 
 /** Basemap variants. 'topo' layers real local USGS-3DEP derivatives; RiverMapPage only offers it when /atlas/topo/manifest.json resolves. */
 export type BasemapVariant = 'paper' | 'ink' | 'topo';
@@ -34,17 +40,24 @@ const POLYS_ONLY = ['==', '$type', 'Polygon'] as unknown as FilterSpecification;
  *   derivatives (hillshade raster + contour band lines) beneath all river
  *   layers. RiverMapPage only selects it after the manifest probe succeeds.
  */
-export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification {
-  const t = variant === 'paper' ? { ...atlas, ...atlasLight } : atlas;
+export function atlasStyle(
+  variant: BasemapVariant = 'ink',
+  palette?: MapPalette,
+): StyleSpecification {
+  const t = palette ?? (variant === 'paper' ? { ...atlas, ...atlasLight } : atlas);
   const style: StyleSpecification = {
     version: 8,
-    name: 'Tailwater Atlas',
+    name: 'Trout · Fieldwork',
     sources: {
       'tn-boundary': { type: 'geojson', data: '/atlas/tn-boundary.geojson' },
       'states-context': { type: 'geojson', data: '/atlas/states-context.geojson' },
       'tn-counties': { type: 'geojson', data: '/atlas/tn-counties.geojson' },
       lakes: { type: 'geojson', data: '/atlas/lakes.geojson' },
-      rivers: { type: 'geojson', data: '/atlas/rivers.geojson', promoteId: 'id' as unknown as string },
+      rivers: {
+        type: 'geojson',
+        data: '/atlas/rivers.geojson',
+        promoteId: 'id' as unknown as string,
+      },
     },
     layers: [
       {
@@ -103,7 +116,11 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         id: 'tn-outline',
         type: 'line' as const,
         source: 'tn-boundary',
-        paint: { 'line-color': t.hairline, 'line-width': 1.4, 'line-opacity': 1 },
+        paint: {
+          'line-color': t.softInk,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 5.5, 1.2, 8.5, 2],
+          'line-opacity': 1,
+        },
       },
       // Lakes & reservoirs (Census AREAWATER; see scripts/build-lakes.mjs) —
       // the still waters the mapped rivers drain from / tailrace out of.
@@ -139,8 +156,8 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
           'fill-color': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
-            '#D98232',
-            ['coalesce', ['feature-state', 'color'], ['get', 'color'], '#8B8A82'],
+            ['coalesce', ['feature-state', 'color'], t.noData],
+            ['coalesce', ['feature-state', 'color'], t.noData],
           ],
           'fill-opacity': [
             'case',
@@ -166,13 +183,24 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
             'case',
             ['boolean', ['feature-state', 'selected'], false],
             t.selection,
+            ['boolean', ['feature-state', 'hover'], false],
+            t.hover,
             t.ink,
           ],
-          'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 2.5, 0.8],
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            2.5,
+            ['boolean', ['feature-state', 'hover'], false],
+            2,
+            0.8,
+          ],
           'line-opacity': [
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
             0,
+            ['boolean', ['feature-state', 'selected'], false],
+            1,
             ['boolean', ['feature-state', 'dimmed'], false],
             0.25,
             0.7,
@@ -186,7 +214,12 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         source: 'rivers',
         filter: POLYS_ONLY,
         paint: {
-          'fill-color': ['coalesce', ['feature-state', 'hatchColor'], ['get', 'hatchColor'], t.sulphur],
+          'fill-color': [
+            'coalesce',
+            ['feature-state', 'hatchColor'],
+            ['get', 'hatchColor'],
+            t.sulphur,
+          ],
           'fill-opacity': [
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
@@ -206,13 +239,20 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': t.ink,
+          'line-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            t.selection,
+            ['boolean', ['feature-state', 'hover'], false],
+            t.hover,
+            t.ink,
+          ],
           'line-width': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
-            7,
+            6,
             ['boolean', ['feature-state', 'hover'], false],
-            5,
+            6,
             3.4,
           ],
           'line-opacity': [
@@ -268,7 +308,8 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': t.selection,
-          'line-width': 8.5,
+          'line-width': 1.2,
+          'line-gap-width': 3.4,
           'line-opacity': [
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
@@ -287,7 +328,12 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': ['coalesce', ['feature-state', 'hatchColor'], ['get', 'hatchColor'], t.sulphur],
+          'line-color': [
+            'coalesce',
+            ['feature-state', 'hatchColor'],
+            ['get', 'hatchColor'],
+            t.sulphur,
+          ],
           'line-width': 9,
           'line-opacity': [
             'case',
@@ -307,11 +353,45 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
         source: 'rivers',
         filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': '#000', 'line-opacity': 0, 'line-width': 18 },
+        paint: { 'line-color': t.ink, 'line-opacity': 0, 'line-width': 28 },
       },
     ],
   };
 
+  const interior = style.layers.find((l) => l.id === 'rivers-interior');
+  if (interior?.type === 'line')
+    interior.paint!['line-opacity'] = [
+      'case',
+      ['boolean', ['feature-state', 'hidden'], false],
+      0,
+      ['boolean', ['feature-state', 'assessed'], false],
+      1,
+      0,
+    ];
+  style.layers.splice(
+    style.layers.findIndex((l) => l.id === 'rivers-selection'),
+    0,
+    {
+      id: 'rivers-unassessed',
+      type: 'line',
+      source: 'rivers',
+      filter: LINES_ONLY,
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: {
+        'line-color': t.noData,
+        'line-width': 2.2,
+        'line-dasharray': [3, 2],
+        'line-opacity': [
+          'case',
+          ['boolean', ['feature-state', 'hidden'], false],
+          0,
+          ['boolean', ['feature-state', 'assessed'], false],
+          0,
+          1,
+        ],
+      },
+    },
+  );
   if (variant !== 'topo') return style;
 
   // Task 6e Phase B — Topo: real USGS-3DEP derivatives, fully local, layered
@@ -320,6 +400,10 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
   // Ground stays paper tones; the hillshade and contour lines carry the relief.
   style.sources = {
     ...style.sources,
+    'terrain-outside-mask': {
+      type: 'geojson',
+      data: terrainClip as GeoJSONSourceSpecification['data'],
+    },
     hillshade: {
       type: 'raster',
       tiles: ['/atlas/topo/hillshade/{z}/{x}/{y}.webp'],
@@ -344,7 +428,8 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
     id: 'topo-hillshade',
     type: 'raster',
     source: 'hillshade',
-    paint: { 'raster-opacity': 0.35 },
+    layout: { visibility: t.reliefOpacity === 0 ? 'none' : 'visible' },
+    paint: { 'raster-opacity': t.reliefOpacity, 'raster-brightness-max': t.reliefBrightness },
   });
   // Contour bands — above the county hairlines, below the state border and
   // every river layer. Same hairline tone in three descending weights, each
@@ -383,6 +468,22 @@ export function atlasStyle(variant: BasemapVariant = 'ink'): StyleSpecification 
       },
     },
   );
+  // The relief assets include rectangular acquisition/contour extents outside TN.
+  // Cover those with the existing neighboring-state fills, then redraw their
+  // outlines. This is a visual clip using real boundaries, not modified geometry.
+  const contextLayers = style.layers.filter(
+    (layer) => layer.id === 'states-context-fill' || layer.id === 'states-context-outline',
+  );
+  style.layers = style.layers.filter(
+    (layer) => layer.id !== 'states-context-fill' && layer.id !== 'states-context-outline',
+  );
+  style.layers.splice(afterLayer('topo-contours-minor'), 0, ...contextLayers);
+  style.layers.splice(afterLayer('topo-contours-minor'), 0, {
+    id: 'terrain-outside-mask',
+    type: 'fill',
+    source: 'terrain-outside-mask',
+    paint: { 'fill-color': t.paper, 'fill-opacity': 1, 'fill-antialias': false },
+  });
   return style;
 }
 

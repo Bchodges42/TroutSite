@@ -1,129 +1,171 @@
 import { useMemo, useState, useRef, useEffect, useId } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
-import { snapshotUrls } from '../../lib/endpoints';
-import { StreamSchema } from '@trout/contracts';
-import type { Stream } from '@trout/contracts';
 import { regionName } from '../../data/regions';
-import { SPRING } from '../../components/motion/atlas-motion';
-
-function normalize(s: string): string { return s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
-function searchHay(stream: Stream): string[] {
-  const parts: string[] = [stream.name, stream.id, stream.regionId, regionName(stream.regionId)];
-  const m = stream.name.match(/\(([^)]+)\)/);
-  if (m?.[1]) parts.push(m[1]);
-  stream.name.split(/[/—–-]/).forEach((p) => { if (p.trim().length > 3) parts.push(p.trim()); });
-  return parts.map(normalize).filter(Boolean);
+interface SearchStream {
+  id: string;
+  name: string;
+  regionId: string;
 }
-
-type Props =
-  | { streams?: Stream[]; onSelect: (id: string) => void; selectedId?: string | null; placeholder?: string }
-  | { streams: { id: string; name: string; regionId: string }[]; onSelect: (id: string) => void };
-
-export function RiverSearch(props: any) {
-  const { onSelect, streams: streamsProp, selectedId, placeholder } = props as { streams?: any[]; onSelect: (id: string) => void; selectedId?: string | null; placeholder?: string };
-  const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamSchema.array(), 60 * 24, !streamsProp);
-  const streams: Stream[] = (streamsProp as Stream[]) ?? (streamsQuery.data?.data as Stream[] ?? []);
-  const [q, setQ] = useState('');
+export function RiverSearch({
+  streams = [],
+  onSelect,
+  placeholder = 'Search rivers, creeks…',
+  shortcut = true,
+}: {
+  streams?: SearchStream[];
+  onSelect: (id: string) => void;
+  selectedId?: string | null;
+  placeholder?: string;
+  shortcut?: boolean;
+}) {
+  const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const listId = useId(); const inputId = useId();
-
-  const filtered = useMemo(() => {
-    const nq = normalize(q);
-    if (!nq) return streams.slice().sort((a, b) => a.name.localeCompare(b.name)).slice(0, 12);
-    const scored = streams.map((s) => {
-      const hay = searchHay(s as Stream);
-      let score = -1;
-      for (const h of hay) {
-        if (h === nq) score = Math.max(score, 100);
-        else if (h.startsWith(nq)) score = Math.max(score, 80);
-        else if (h.includes(nq)) score = Math.max(score, 50);
-        const tokens = nq.split(' ').filter(Boolean);
-        if (tokens.every((t) => t.length < 2 || h.includes(t))) score = Math.max(score, 30);
-      }
-      return { s, score };
-    }).filter((x) => x.score >= 30).sort((a,b)=> b.score - a.score || a.s.name.localeCompare(b.s.name)).map((x)=> x.s);
-    return scored.slice(0, 12);
-  }, [streams, q]);
-
-  useEffect(() => setActiveIndex(0), [q]);
-  // Omnibar: ⌘K / Ctrl+K (and "/" when nothing is focused) jumps to search.
+  const [active, setActive] = useState(0);
+  const input = useRef<HTMLInputElement>(null);
+  const wrap = useRef<HTMLDivElement>(null);
+  const id = useId();
+  const normalize = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  const matches = useMemo(
+    () =>
+      streams
+        .filter((s) => normalize(s.name + ' ' + regionName(s.regionId)).includes(normalize(query)))
+        .sort(
+          (a, b) =>
+            Number(normalize(b.name).includes(normalize(query))) -
+              Number(normalize(a.name).includes(normalize(query))) || a.name.localeCompare(b.name),
+        )
+        .slice(0, 30),
+    [streams, query],
+  );
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    setActive(0);
+  }, [query, matches.length]);
+  useEffect(() => {
+    if (!shortcut) return;
+    const key = (e: KeyboardEvent) => {
+      if (document.getElementById('app-menu')) return;
+      const editing =
+        e.target instanceof HTMLElement &&
+        (e.target.matches('input,textarea,select') || e.target.isContentEditable);
+      if (
+        ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') ||
+        (e.key === '/' && !editing && !e.ctrlKey && !e.metaKey && !e.altKey)
+      ) {
         e.preventDefault();
-        inputRef.current?.focus();
-        inputRef.current?.select();
-      } else if (e.key === '/' && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
-        e.preventDefault();
-        inputRef.current?.focus();
+        input.current?.focus();
       }
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
+    window.addEventListener('keydown', key);
+    return () => window.removeEventListener('keydown', key);
+  }, [shortcut]);
   useEffect(() => {
-    if (!open) return;
-    const onDoc = (e: MouseEvent) => { if (!(e.target as Element).closest('[data-river-search]')) setOpen(false); };
-    document.addEventListener('mousedown', onDoc); return () => document.removeEventListener('mousedown', onDoc);
-  }, [open]);
-
-  const activeId = (filtered[activeIndex] as any)?.id;
-
+    if (open)
+      document.getElementById(id + '-option-' + active)?.scrollIntoView({ block: 'nearest' });
+  }, [active, open, id]);
+  const choose = (river: string) => {
+    setOpen(false);
+    setQuery('');
+    onSelect(river);
+  };
   return (
-    <div data-river-search className="relative w-full max-w-[360px]">
-      <label htmlFor={inputId} className="sr-only">Search rivers</label>
-      <div className="relative">
-        <span aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: '#6B8177' }}>⌕</span>
-        <input
-          id={inputId} ref={inputRef} type="search" role="combobox"
-          aria-expanded={open} aria-controls={listId} aria-autocomplete="list"
-          aria-activedescendant={activeId ? `river-opt-${activeId}` : undefined}
-          placeholder={placeholder ?? 'Search 92 Tennessee waters…'}
-          value={q} onChange={(e) => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)}
-          onKeyDown={(e) => {
-            if (!open && (e.key === 'ArrowDown' || e.key === 'Enter')) setOpen(true);
-            if (e.key === 'ArrowDown') { e.preventDefault(); setActiveIndex((i) => Math.min(i + 1, filtered.length - 1)); }
-            else if (e.key === 'ArrowUp') { e.preventDefault(); setActiveIndex((i) => Math.max(i - 1, 0)); }
-            else if (e.key === 'Enter') { const t = filtered[activeIndex] as any; if (t) { onSelect(t.id); setOpen(false); inputRef.current?.blur(); } }
-            else if (e.key === 'Escape') setOpen(false);
-          }}
-          className="focus-ring atlas-glass h-11 w-full rounded-full pl-9 pr-14 text-sm font-medium text-[#EAF2ED] outline-none placeholder:text-[#6B8177]"
-        />
-        <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md border px-1.5 py-0.5 text-[10px] font-bold text-[#9FB5AA] sm:inline" style={{ borderColor: 'rgba(255,255,255,0.14)', background: 'rgba(255,255,255,0.06)' }} aria-hidden>⌘K</kbd>
-      </div>
-      <AnimatePresence>
-      {open && (
-        <motion.div
-          id={listId} role="listbox" aria-label="River results"
-          initial={{ opacity: 0, y: -6, scale: 0.99 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -4, scale: 0.99 }}
-          transition={SPRING.snappy}
-          className="atlas-glass absolute left-0 right-0 z-20 mt-2 max-h-[52vh] overflow-auto rounded-2xl py-1 shadow-[0_8px_32px_rgba(51,45,32,0.16)]"
+    <div
+      ref={wrap}
+      className="search-wrap"
+      data-river-search
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
+      }}
+    >
+      <div className="search-field">
+        <svg
+          className="search-icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          aria-hidden="true"
         >
-          {filtered.length === 0 ? <p className="px-4 py-6 text-sm" style={{ color: '#9FB5AA' }}>No streams match “{q}”.</p> : (
-            <ul>
-              {filtered.map((s: any, idx: number) => {
-                const isActive = idx === activeIndex; const isSelected = s.id === selectedId;
-                const dup = streams.filter((x: any) => normalize((x.name as string).split('(')[0]!) === normalize((s.name as string).split('(')[0]!)).length > 1;
-                return (
-                  <li key={s.id}>
-                    <button id={`river-opt-${s.id}`} role="option" aria-selected={isActive} onMouseEnter={() => setActiveIndex(idx)} onMouseDown={() => { onSelect(s.id); setOpen(false); }} className="flex w-full flex-col items-start px-3 py-2 text-left hover:bg-white/5 focus:bg-white/5 focus:outline-none" style={{ background: isActive ? 'rgba(255,255,255,0.06)' : undefined, borderLeft: isSelected ? '3px solid #E8B04B' : '3px solid transparent' }}>
-                      <span className="text-sm font-bold text-[#EAF2ED]">{s.name}</span>
-                      <span className="text-xs text-[#9FB5AA]">{dup ? `${regionName(s.regionId)} · ` : ''}{s.regionId ? regionName(s.regionId).split(' — ')[0] : ''}</span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+          <circle cx="10" cy="10" r="6.5" />
+          <path d="m15 15 5 5" />
+        </svg>
+        <input
+          ref={input}
+          className="search-input"
+          type="search"
+          role="combobox"
+          aria-label="Search rivers"
+          aria-expanded={open}
+          aria-controls={open ? id : undefined}
+          aria-autocomplete="list"
+          aria-activedescendant={open && matches[active] ? id + '-option-' + active : undefined}
+          placeholder={placeholder}
+          value={query}
+          onFocus={() => setOpen(true)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setOpen(true);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              setOpen(true);
+              setActive((i) => Math.min(i + 1, Math.max(0, matches.length - 1)));
+            }
+            if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              setActive((i) => Math.max(0, i - 1));
+            }
+            if (e.key === 'Enter' && open && matches[active]) {
+              e.preventDefault();
+              choose(matches[active]!.id);
+            }
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              e.stopPropagation();
+              setOpen(false);
+            }
+          }}
+        />
+        <kbd className="search-key" aria-hidden="true">
+          /
+        </kbd>
+      </div>
+      {open && (
+        <div id={id} role="listbox" aria-label="River results" className="search-results">
+          {matches.length === 0 && (
+            <p className="search-note">
+              {streams.length
+                ? 'No waters match. Try another name or region.'
+                : 'River catalog is loading or unavailable. Browse the list for details.'}
+            </p>
           )}
-          <div className="border-t px-3 py-2 text-xs" style={{ borderColor: 'rgba(211,198,171,0.6)', color: '#908a7a' }}>{streams.length} streams · offline · alternate names in parentheses</div>
-        </motion.div>
+          {matches.map((s, i) => (
+            <button
+              key={s.id}
+              id={id + '-option-' + i}
+              tabIndex={-1}
+              type="button"
+              role="option"
+              aria-selected={i === active}
+              className="search-option"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => choose(s.id)}
+              onMouseEnter={() => setActive(i)}
+            >
+              <strong>{s.name}</strong>
+              <small>{regionName(s.regionId)}</small>
+            </button>
+          ))}
+          <div className="search-note">
+            {streams.length} waters · ↑ ↓ to explore · Enter to select
+          </div>
+        </div>
       )}
-      </AnimatePresence>
     </div>
   );
 }

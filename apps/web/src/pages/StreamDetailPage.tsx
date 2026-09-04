@@ -1,22 +1,34 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { RiverContextBar, riverWorkflowUrl, validMonth } from '../lib/riverContext';
 import { Card, DataBadge, EmptyState } from '@trout/ui';
 import { ConditionSnapshotSchema, StreamSchema } from '@trout/contracts';
 import type { GaugeReading } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useSettingsContext } from '../lib/settings';
-import { flowTrend, rememberSeen, readSeen, scoreLabel, scoreBand, TREND_LABEL, whatChanged } from '../lib/conditions';
+import {
+  flowTrend,
+  rememberSeen,
+  readSeen,
+  scoreLabel,
+  scoreBand,
+  TREND_LABEL,
+  whatChanged,
+} from '../lib/conditions';
 import { formatFlow, formatHeight, formatNum, formatTemp } from '../lib/units';
 import { ageMinutes } from '../lib/time';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
+import { conditionReason } from '../lib/presentation';
+import { statusForScore } from '../features/map/riverMapSelectors';
 
 const CONDITIONS_TTL_MIN = 60;
 
 /** Stream detail (scope 4): readings, score + reasons, what changed, official links. */
 export function StreamDetailPage() {
   const { streamId = '' } = useParams();
+  const [params] = useSearchParams();
   const { settings } = useSettingsContext();
 
   const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamSchema.array(), 60 * 24, true);
@@ -47,7 +59,9 @@ export function StreamDetailPage() {
   if (streamsQuery.isLoading) {
     return (
       <main className="page">
-        <p className="page-subtitle" role="status">Loading stream…</p>
+        <p className="page-subtitle" role="status">
+          Loading stream…
+        </p>
       </main>
     );
   }
@@ -58,7 +72,11 @@ export function StreamDetailPage() {
         <EmptyState
           title="Stream not found"
           description="It may not be in the cached catalog yet."
-          action={<Link to="/conditions" className="focus-ring font-bold underline">Back to Conditions</Link>}
+          action={
+            <Link to="/conditions" className="focus-ring font-bold underline">
+              Back to Conditions
+            </Link>
+          }
         />
       </main>
     );
@@ -72,15 +90,22 @@ export function StreamDetailPage() {
 
   return (
     <main className="page">
-      <Link to="/conditions" className="focus-ring text-sm font-bold underline">← Conditions</Link>
+      <RiverContextBar />
+      <Link to="/conditions" className="focus-ring text-sm font-bold underline">
+        ← Conditions
+      </Link>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="page-title">{stream.name}</h1>
           <p className="page-subtitle capitalize">
-            {stream.waterbodyType} · {stream.stockingProgram ? 'stocked by TWRA' : 'wild / not stocked'}
+            {stream.waterbodyType} ·{' '}
+            {stream.stockingProgram ? 'stocking program listed' : 'no stocking program listed'}
           </p>
         </div>
-        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
+        <FreshnessChip
+          fetchedAt={snapshot ? Date.parse(snapshot.fetchedAt) : null}
+          live={conditionsQuery.data?.live ?? false}
+        />
       </div>
 
       {!snapshot ? (
@@ -95,15 +120,25 @@ export function StreamDetailPage() {
         <>
           <Card className="mt-4">
             <div className="flex flex-wrap items-center gap-4">
-              <ScorePill score={snapshot.score.value} size="lg" />
+              {statusForScore(snapshot.score.value, snapshot.readings.length > 0) !== 'no-data' &&
+                stream.species !== 'warmwater' && (
+                  <ScorePill score={snapshot.score.value} size="lg" />
+                )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold">
-                  Fishability: {scoreLabel(snapshot.score.value)} ({scoreBand(snapshot.score.value)})
-                  {trend !== 'unknown' && <span className="ml-2 font-semibold">{TREND_LABEL[trend]}</span>}
+                  {stream.species === 'warmwater'
+                    ? 'Warmwater — trout model does not apply'
+                    : statusForScore(snapshot.score.value, snapshot.readings.length > 0) !==
+                        'no-data'
+                      ? 'Trout condition assessment'
+                      : 'Assessment unavailable in this snapshot'}
+                  {trend !== 'unknown' && (
+                    <span className="ml-2 font-semibold">{TREND_LABEL[trend]}</span>
+                  )}
                 </p>
                 <ul className="mt-2 list-disc pl-5 text-sm">
                   {snapshot.score.reasons.map((r) => (
-                    <li key={r}>{r}</li>
+                    <li key={r}>{conditionReason(r, settings.tempUnit)}</li>
                   ))}
                 </ul>
               </div>
@@ -113,18 +148,25 @@ export function StreamDetailPage() {
           <div className="mt-4 flex flex-wrap gap-2">
             <DataBadge
               label="Flow"
-              value={newestCfs != null ? formatFlow(newestCfs) : 'n/a'}
+              value={newestCfs != null ? formatFlow(newestCfs) : 'Not reported'}
               status={newestCfs != null ? statusForFlow(stream, newestCfs) : 'unknown'}
             />
             <DataBadge
               label="Water temp"
-              value={newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : 'n/a'}
+              value={
+                newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : 'Not reported'
+              }
               status={newestTemp != null ? statusForTemp(newestTemp) : 'unknown'}
             />
-            {newestHeight != null && <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />}
+            {newestHeight != null && (
+              <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />
+            )}
             <DataBadge
               label="Ideal flow"
-              value={stream.idealFlow.map((r) => `${formatNum(r.min)}–${formatNum(r.max)}`).join(', ') + ' cfs'}
+              value={
+                stream.idealFlow.map((r) => `${formatNum(r.min)}–${formatNum(r.max)}`).join(', ') +
+                ' cfs'
+              }
               status="unknown"
             />
           </div>
@@ -144,7 +186,10 @@ export function StreamDetailPage() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[420px] border-collapse text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide" style={{ color: 'var(--trout-color-text-muted)' }}>
+                <tr
+                  className="text-left text-xs uppercase tracking-wide"
+                  style={{ color: 'var(--trout-color-text-muted)' }}
+                >
                   <th className="py-2 pr-3">Gauge</th>
                   <th className="py-2 pr-3">Flow</th>
                   <th className="py-2 pr-3">Stage</th>
@@ -156,11 +201,21 @@ export function StreamDetailPage() {
                 {[...readings]
                   .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
                   .map((r, i) => (
-                    <tr key={`${r.gaugeId}-${r.timestamp}-${i}`} className="border-t" style={{ borderColor: 'var(--trout-color-border)' }}>
+                    <tr
+                      key={`${r.gaugeId}-${r.timestamp}-${i}`}
+                      className="border-t"
+                      style={{ borderColor: 'var(--trout-color-border)' }}
+                    >
                       <td className="py-2 pr-3 font-mono text-xs">{r.gaugeId}</td>
-                      <td className="py-2 pr-3 font-semibold">{r.cfs != null ? formatFlow(r.cfs) : '—'}</td>
-                      <td className="py-2 pr-3">{r.heightFt != null ? formatHeight(r.heightFt) : '—'}</td>
-                      <td className="py-2 pr-3">{r.tempC != null ? formatTemp(r.tempC, settings.tempUnit) : '—'}</td>
+                      <td className="py-2 pr-3 font-semibold">
+                        {r.cfs != null ? formatFlow(r.cfs) : '—'}
+                      </td>
+                      <td className="py-2 pr-3">
+                        {r.heightFt != null ? formatHeight(r.heightFt) : '—'}
+                      </td>
+                      <td className="py-2 pr-3">
+                        {r.tempC != null ? formatTemp(r.tempC, settings.tempUnit) : '—'}
+                      </td>
                       <td className="py-2" style={{ color: 'var(--trout-color-text-muted)' }}>
                         {ageMinutes(Date.parse(r.timestamp))}
                       </td>
@@ -172,6 +227,26 @@ export function StreamDetailPage() {
         </>
       )}
 
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link
+          className="secondary-action"
+          to={riverWorkflowUrl('/', stream, validMonth(params.get('month')))}
+        >
+          View on map
+        </Link>
+        <Link
+          className="primary-action"
+          to={riverWorkflowUrl('/hatch-key', stream, validMonth(params.get('month')))}
+        >
+          Match this water
+        </Link>
+        <Link
+          className="secondary-action"
+          to={riverWorkflowUrl('/logbook', stream, validMonth(params.get('month')))}
+        >
+          Log this water
+        </Link>
+      </div>
       {stream.notes && (
         <>
           <h2 className="section-title">Notes</h2>
@@ -190,7 +265,12 @@ export function StreamDetailPage() {
         <ul className="list-disc pl-5 text-sm">
           {stream.officialSources.map((src) => (
             <li key={src.url}>
-              <a className="focus-ring font-semibold underline" href={src.url} target="_blank" rel="noreferrer noopener">
+              <a
+                className="focus-ring font-semibold underline"
+                href={src.url}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 {src.label}
               </a>
             </li>
@@ -209,7 +289,10 @@ function newestValue(readings: GaugeReading[], key: 'cfs' | 'tempC' | 'heightFt'
   return top ? (top[key] as number) : null;
 }
 
-function statusForFlow(stream: { idealFlow: { min: number; max: number }[] }, cfs: number): 'good' | 'fair' | 'poor' {
+function statusForFlow(
+  stream: { idealFlow: { min: number; max: number }[] },
+  cfs: number,
+): 'good' | 'fair' | 'poor' {
   if (stream.idealFlow.some((r) => cfs >= r.min && cfs <= r.max)) return 'good';
   const nearest = stream.idealFlow.reduce(
     (best, r) => {

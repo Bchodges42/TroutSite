@@ -1,4 +1,5 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { RiverContextBar, contextUrl } from '../lib/riverContext';
 import { Card, Chip, EmptyState } from '@trout/ui';
 import { HatchChartSchema } from '@trout/contracts';
 import type { BugTaxon, FlyPattern, HatchEntry, TimeOfDay } from '@trout/contracts';
@@ -10,15 +11,24 @@ import { monthName, REGIONS, regionName } from '../data/regions';
 
 const TIME_ORDER: TimeOfDay[] = ['am', 'midday', 'pm', 'evening'];
 const TIME_LABEL: Record<TimeOfDay, string> = {
-  am: 'Morning', midday: 'Midday', pm: 'Afternoon', evening: 'Evening',
+  am: 'Morning',
+  midday: 'Midday',
+  pm: 'Afternoon',
+  evening: 'Evening',
 };
 const STAGE_LABEL: Record<HatchEntry['stage'], string> = {
-  nymph: 'nymph', larva: 'larva', dun: 'dun', spinner: 'spinner', adult: 'adult',
+  nymph: 'nymph',
+  larva: 'larva',
+  dun: 'dun',
+  spinner: 'spinner',
+  adult: 'adult',
 };
 
 /** One region-month hatch chart (scope 3) — snapshot-served, cached, offline. */
 export function HatchChartDetailPage() {
   const { regionId = '', month = '' } = useParams();
+  const [params] = useSearchParams();
+  const contextual = (path: string) => contextUrl(path, params, { region: regionId, month });
   const monthNum = Number(month);
   const valid = REGIONS.some((r) => r.id === regionId) && monthNum >= 1 && monthNum <= 12;
 
@@ -33,7 +43,15 @@ export function HatchChartDetailPage() {
   if (!valid) {
     return (
       <main className="page">
-        <EmptyState title="Unknown region or month" action={<Link to="/charts" className="focus-ring font-bold underline">Back to Hatch Charts</Link>} />
+        <EmptyState
+          heading="h1"
+          title="Unknown region or month"
+          action={
+            <Link to={contextUrl('/charts', params)} className="focus-ring font-bold underline">
+              Back to Hatch Charts
+            </Link>
+          }
+        />
       </main>
     );
   }
@@ -48,28 +66,44 @@ export function HatchChartDetailPage() {
 
   return (
     <main className="page">
-      <Link to="/charts" className="focus-ring text-sm font-bold underline">← Hatch Charts</Link>
+      <RiverContextBar />
+      <Link to={contextual('/charts')} className="focus-ring text-sm font-bold underline">
+        ← Hatch Charts
+      </Link>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">
           {regionName(regionId)} · {monthName(monthNum)}
         </h1>
-        <FreshnessChip fetchedAt={chartQuery.data?.fetchedAt} live={chartQuery.data?.live ?? false} />
+        <FreshnessChip
+          fetchedAt={chartQuery.data?.fetchedAt}
+          live={chartQuery.data?.live ?? false}
+        />
       </div>
 
       {chartQuery.isLoading ? (
-        <p className="page-subtitle mt-6" role="status">Loading chart…</p>
+        <p className="page-subtitle mt-6" role="status">
+          Loading chart…
+        </p>
       ) : chartQuery.isError && entries.length === 0 ? (
         <div className="mt-6">
           <EmptyState
             icon="🗓️"
             title="Chart not on this device yet"
             description="Open this chart once while online — it then stays available offline."
-            action={<Link to="/charts" className="focus-ring font-bold underline">Pick another chart</Link>}
+            action={
+              <Link to={contextual('/charts')} className="focus-ring font-bold underline">
+                Pick another chart
+              </Link>
+            }
           />
         </div>
       ) : byTime.length === 0 ? (
         <div className="mt-6">
-          <EmptyState icon="🌙" title="Quiet month" description="No hatch entries recorded for this region and month." />
+          <EmptyState
+            icon="🌙"
+            title="Quiet month"
+            description="No hatch entries recorded for this region and month."
+          />
         </div>
       ) : (
         <div className="mt-4 flex flex-col gap-5">
@@ -78,7 +112,13 @@ export function HatchChartDetailPage() {
               <h2 className="mb-2 text-base font-bold">{TIME_LABEL[timeOfDay]}</h2>
               <div className="flex flex-col gap-2">
                 {group.map((entry, i) => (
-                  <ChartEntryRow key={`${entry.taxonId}-${entry.stage}-${i}`} entry={entry} taxaById={taxaById} patterns={pack.data?.patterns ?? []} />
+                  <ChartEntryRow
+                    key={`${entry.taxonId}-${entry.stage}-${i}`}
+                    entry={entry}
+                    taxaById={taxaById}
+                    patterns={pack.data?.patterns ?? []}
+                    contextual={contextual}
+                  />
                 ))}
               </div>
             </section>
@@ -88,8 +128,8 @@ export function HatchChartDetailPage() {
 
       <Card className="mt-6">
         <p className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-          Abundance is 1–5. Everything here is cached on your device — no connection needed after the
-          first visit.
+          Abundance is 1–5. Everything here is cached on your device — no connection needed after
+          the first visit.
         </p>
       </Card>
     </main>
@@ -100,10 +140,12 @@ function ChartEntryRow({
   entry,
   taxaById,
   patterns,
+  contextual,
 }: {
   entry: HatchEntry;
   taxaById: Map<string, BugTaxon>;
   patterns: FlyPattern[];
+  contextual: (path: string) => string;
 }) {
   const taxon = taxaById.get(entry.taxonId);
   return (
@@ -111,11 +153,14 @@ function ChartEntryRow({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
           {taxon ? (
-            <Link to={`/taxa/${taxon.id}`} className="focus-ring font-extrabold underline-offset-2 hover:underline">
+            <Link
+              to={contextual(`/taxa/${taxon.id}`)}
+              className="focus-ring font-extrabold underline-offset-2 hover:underline"
+            >
               {taxon.commonName}
             </Link>
           ) : (
-            <span className="font-extrabold">{entry.taxonId}</span>
+            <span className="font-extrabold">Insect reference unavailable</span>
           )}
           <Chip>{STAGE_LABEL[entry.stage]}</Chip>
         </div>
@@ -123,16 +168,20 @@ function ChartEntryRow({
           {entry.patterns.map((pid) => {
             const pattern = patterns.find((x) => x.id === pid);
             return pattern ? (
-              <Link key={pid} to={`/patterns/${pattern.id}`} className="focus-ring">
+              <Link key={pid} to={contextual(`/patterns/${pattern.id}`)} className="focus-ring">
                 <Chip tone="accent">{pattern.name}</Chip>
               </Link>
             ) : (
-              <Chip key={pid}>{pid}</Chip>
+              <Chip key={pid}>Pattern reference unavailable</Chip>
             );
           })}
         </div>
       </div>
-      <span className="flex shrink-0 items-center gap-1" role="img" aria-label={`Abundance ${entry.abundance} of 5`}>
+      <span
+        className="flex shrink-0 items-center gap-1"
+        role="img"
+        aria-label={`Abundance ${entry.abundance} of 5`}
+      >
         {Array.from({ length: 5 }, (_, i) => (
           <span key={i} className={`abundance-dot ${i < entry.abundance ? 'is-on' : ''}`} />
         ))}

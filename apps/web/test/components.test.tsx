@@ -18,8 +18,8 @@ function stubOnline(online: boolean): () => void {
 describe('ScorePill', () => {
   it('labels the band with plain English', () => {
     render(<ScorePill score={90} />);
-    expect(screen.getByLabelText('Fishability 90 out of 100 — Fishable')).toBeInTheDocument();
-    expect(screen.getByText('Fishable')).toBeInTheDocument();
+    expect(screen.getByLabelText('Condition score 90 out of 100 — Good')).toBeInTheDocument();
+    expect(screen.getByText('Good')).toBeInTheDocument();
   });
 
   it('shows marginal and poor bands', () => {
@@ -29,20 +29,20 @@ describe('ScorePill', () => {
         <ScorePill score={20} />
       </>,
     );
-    expect(screen.getByText('Marginal')).toBeInTheDocument();
+    expect(screen.getByText('Fair')).toBeInTheDocument();
     expect(screen.getByText('Poor')).toBeInTheDocument();
   });
 });
 
 describe('FreshnessChip', () => {
-  it('shows Live for fresh network data', () => {
+  it('labels a network response as a snapshot, not a live observation', () => {
     render(<FreshnessChip fetchedAt={Date.now() - 2 * 60_000} live />);
-    expect(screen.getByText(/Live · 2 minutes ago/)).toBeInTheDocument();
+    expect(screen.getByText(/Snapshot · 2 minutes ago/)).toBeInTheDocument();
   });
 
-  it('shows Offline · last known for cached data', () => {
+  it('shows Cached · last known when using cached data online', () => {
     render(<FreshnessChip fetchedAt={Date.now() - 90 * 60_000} live={false} />);
-    expect(screen.getByText(/Offline · last known/)).toBeInTheDocument();
+    expect(screen.getByText(/Cached · last known/)).toBeInTheDocument();
   });
 
   it('shows Offline · last known while the device is offline, even for live data', () => {
@@ -66,6 +66,8 @@ describe('TaxonArt', () => {
   it('renders decorative line art with an accessible label', () => {
     const taxon = BugTaxonSchema.parse(taxaFixture[0]);
     render(<TaxonArt taxon={taxon} />);
-    expect(screen.getByRole('img', { name: `Line drawing of a ${taxon.commonName}` })).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: `Line drawing of a ${taxon.commonName}` }),
+    ).toBeInTheDocument();
   });
 });

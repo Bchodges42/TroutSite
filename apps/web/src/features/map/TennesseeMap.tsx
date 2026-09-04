@@ -1,564 +1,498 @@
 import { useEffect, useRef, useState } from 'react';
 import * as maplibregl from 'maplibre-gl';
-import { setWorkerUrl } from 'maplibre-gl';
-// Bundle MapLibre's worker through Vite so it is emitted as a same-origin,
-// precached asset. Without this the map requests /assets/maplibre-gl-worker.mjs
-// (derived from the bundle URL), gets index.html from the SPA fallback, and
-// the style never goes idle — blank map. See mapStyle.ts note on fallbacks.
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { Link } from 'react-router-dom';
 import { atlasStyle, type BasemapVariant } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS } from './mapTokens';
-import { easeOutCubic } from '../../components/motion/atlas-motion';
+import { useTheme } from '../../theme/ThemeProvider';
+import { waterIdentity } from '../../lib/presentation';
+import index from './riverIndex.json';
+// Preserve the existing same-origin Vite worker bundle and offline caching.
+maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
-setWorkerUrl(maplibreWorkerUrl);
-
-// First-load cinematic: the map mounts on a wider stage (past TN) then eases
-// into the state over ≤1.5s. maxBounds starts loose so the wide frame is
-// legal, and clamps to TN once the push-in settles.
-function expandedTNBounds(): [[number, number], [number, number]] {
-  const [[w, s], [e, n]] = TN_MAX_BOUNDS as [[number, number], [number, number]];
-  const cx = (w + e) / 2, cy = (s + n) / 2;
-  const dx = (e - w) * 0.85, dy = (n - s) * 0.85;
-  return [[cx - dx / 2, cy - dy / 2], [cx + dx / 2, cy + dy / 2]];
+interface Camera {
+  center: [number, number];
+  zoom: number;
+  padding: maplibregl.PaddingOptions;
 }
-
-export interface TennesseeMapProps {
+// UI-only, in-memory camera continuity, including live design refreshes.
+const cameras: Map<string, Camera> = import.meta.hot?.data.fieldworkCameras ?? new Map();
+if (import.meta.hot) import.meta.hot.data.fieldworkCameras = cameras;
+type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
+interface Props {
   selectedId: string | null;
   onSelect: (id: string | null) => void;
-  /** Stream id → condition color (e.g. "#5F7E4B"). Missing entries fall back to no-data. */
   featureColors: Map<string, string>;
-  /** All river feature ids — used to dim non-selected rivers on selection. */
   allIds?: string[];
-  /** Ids that should be visible (species filter). Rivers outside the set get
-   * the `hidden` feature-state (opacity 0 in every paint layer) and are
-   * ignored by click/hover hit-testing. Undefined/omitted = show everything. */
   visibleIds?: Set<string>;
-  /** Stream ids that should glow in hatch mode. */
+  assessedIds?: Set<string>;
   hatchActiveIds?: Set<string>;
-  /** Optional per-river hatch halo color override (e.g. sulphur hue). */
   hatchColors?: Map<string, string>;
-  /** Padding (px) for fitBounds when centering a selected river, so the line
-   * lands in the unobscured map area (clear of nav, top controls, panel). */
   fitPadding?: { top: number; bottom: number; left: number; right: number };
-  /** Orientation labels rendered as lightweight HTML markers (no glyph pipeline). */
-  places?: Array<{ name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' }>;
-  /** Basemap variant — style is swapped in place on change (never remounts the map). */
   basemap?: BasemapVariant;
-  /** Called once the MapLibre instance is ready. */
-  onMapReady?: (map: maplibregl.Map) => void;
-  /** Play the first-load push-in into Tennessee (skipped automatically for
-   * reduced-motion visitors and deep links with a preselected river). */
+  places?: Place[];
   intro?: boolean;
   className?: string;
-  /** Accessibility label. */
   ariaLabel?: string;
+  onMapReady?: (map: maplibregl.Map) => void;
+  viewKey?: string;
+  viewRoute?: string;
+  layout?: 'desktop' | 'mobile';
+  mobileSheet?: 'compact' | 'expanded';
 }
-
-/**
- * TennesseeMap — MapLibre lifecycle wrapper.
- * - Self-hosted style (no remote glyphs beyond /fonts/glyphs/…, no Mapbox token).
- * - Fit to TN bounds on load, bounded pan via maxBounds, resize observer, cleanup.
- * - Feature-state for selected / hover / hatchActive — no React state inside MapLibre.
- * - Efficient source updates: mutates GeoJSON properties in-place then setData once per tick.
- * - Keeps application state outside MapLibre (selection lives in React/URL).
- */
-export function TennesseeMap({
-  selectedId,
-  onSelect,
-  featureColors,
-  allIds,
-  visibleIds,
-  hatchActiveIds,
-  hatchColors,
-  fitPadding,
-  places,
-  basemap = 'ink',
-  onMapReady,
-  intro = false,
-  className,
-  ariaLabel = 'Tennessee trout waters map',
-}: TennesseeMapProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+function savedCamera(props: Props) {
+  return (
+    cameras.get((props.viewKey ?? 'default') + ':' + props.layout) ??
+    cameras.get('route:' + props.viewRoute + ':' + props.layout)
+  );
+}
+export function TennesseeMap(props: Props) {
+  const { theme } = useTheme();
+  const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
-  const onSelectRef = useRef(onSelect);
-  onSelectRef.current = onSelect;
-  const visibleIdsRef = useRef(visibleIds);
-  visibleIdsRef.current = visibleIds;
-  // Map-failure fallback: if the style/sources never go idle, say so plainly
-  // and keep the stream list reachable (spec: map failure recovery action).
+  const latest = useRef(props);
+  latest.current = props;
+  const palette = useRef(theme.map);
+  palette.current = theme.map;
   const [attempt, setAttempt] = useState(0);
-  const [mapFailed, setMapFailed] = useState(false);
-
-  // Applies condition/hatch colors via feature-state (the style reads
-  // `feature-state color` / `hatchColor`, with static property fallbacks).
-  // No private MapLibre fields: URL-loaded GeoJSON sources don't expose
-  // `_data.features`, so the old mutation path silently no-opped.
-  const applyRef = useRef(() => {});
-
-  // mount once (plus explicit retries from the failure fallback)
-  const introRef = useRef(intro);
-  introRef.current = intro;
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    setMapFailed(false);
-    delete container.dataset.mapReady;
-    delete container.dataset.mapFailed;
-    let idle = false;
-    let disposed = false;
-    let settleTimeout: number | undefined;
-
-    const map = new maplibregl.Map({
-      container,
-      // Mount with the current variant so deep links (?basemap=ink) and
-      // failure retries start on the right ground; later changes swap in place
-      // via the basemap effect below (this effect only re-runs on retries).
-      style: atlasStyle(basemap) as unknown as maplibregl.StyleSpecification,
-      center: [-86.35, 35.75],
-      zoom: introRef.current ? 5.15 : 6.45,
-      minZoom: 5.6,
-      maxZoom: 11,
-      maxBounds: introRef.current ? expandedTNBounds() : TN_MAX_BOUNDS,
-      attributionControl: false,
-      dragRotate: false,
-      pitchWithRotate: false,
-      // Style + sources are same-origin only; no transform needed. NOTE: do not
-      // add remote glyph/sprite URLs without shipping real local files — the
-      // server's SPA fallback answers unknown paths with index.html (HTTP 200),
-      // which MapLibre then fails to parse, blanking the whole style.
-    } as unknown as maplibregl.MapOptions);
-    mapRef.current = map;
-
-    map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false, visualizePitch: false }), 'bottom-right');
-
-    const clampToTN = () => {
-      try { map.setMaxBounds(TN_MAX_BOUNDS); } catch { /* not loaded yet */ }
-    };
-    const fitTN = () => {
-      try {
-        map.fitBounds(TN_BOUNDS, { padding: 28, duration: 0 });
-      } catch {
-        // ignore before style load
-      }
-    };
-
-    map.on('load', () => {
-      // First-load cinematic: one long easeOutCubic push-in into Tennessee
-      // (≤1.5s), skipped for reduced-motion visitors. Either way maxBounds
-      // clamps back to TN once the camera settles.
-      const reduced =
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-        document.documentElement.classList.contains('reduce-motion');
-      if (introRef.current && !reduced) {
-        try {
-          map.fitBounds(TN_BOUNDS, { padding: 28, duration: 1400, easing: easeOutCubic });
-        } catch {
-          fitTN();
-        }
-        const settle = window.setTimeout(clampToTN, 1500);
-        settleTimeout = settle;
-        map.once('moveend', () => { window.clearTimeout(settle); clampToTN(); });
-      } else {
-        fitTN();
-        clampToTN();
-      }
-      onMapReady?.(map);
-    });
-    map.on('idle', () => {
-      idle = true;
-      container.dataset.mapReady = '1';
-      try { applyRef.current(); } catch { /* colors apply on next tick */ }
-    });
-    if (typeof window !== 'undefined' && import.meta.env?.DEV) {
-      map.on('error', (e) => {
-        // Local diagnostics only — never shipped anywhere (privacy principle).
-        console.warn('[trout map]', (e as { error?: { message?: string } }).error?.message ?? e);
-      });
-    }
-    // Watchdog: the paper atlas must never sit blank without explanation.
-    const watchdog = window.setTimeout(() => {
-      if (!disposed && !idle) {
-        container.dataset.mapFailed = '1';
-        setMapFailed(true);
-      }
-    }, 12000);
-
-    const handleClick = (e: maplibregl.MapMouseEvent) => {
-      const feats = (map as unknown as { queryRenderedFeatures: (pt: unknown, opts: unknown) => Array<{ properties?: Record<string, unknown> }> }).queryRenderedFeatures(
-        e.point,
-        { layers: ['rivers-hit', 'rivers-water', 'rivers-interior', 'rivers-casing'] },
-      );
-      const f = feats.find((x) => typeof x.properties?.['id'] === 'string');
-      const id = f?.properties?.['id'] as string | undefined;
-      // Species filter: hidden rivers never receive clicks.
-      if (id && visibleIdsRef.current && !visibleIdsRef.current.has(id)) return;
-      onSelectRef.current(id ?? null);
-    };
-    map.on('click', handleClick);
-
-    let hoverId: string | null = null;
-    const onMouseMove = (e: maplibregl.MapMouseEvent) => {
-      const feats = map.queryRenderedFeatures(e.point, { layers: ['rivers-hit', 'rivers-water'] }) as Array<{ properties?: Record<string, unknown> }>;
-      const found = (feats[0]?.properties?.['id'] as string | undefined) ?? null;
-      // Species filter: hidden rivers get no hover highlight.
-      const id = found && visibleIdsRef.current && !visibleIdsRef.current.has(found) ? null : found;
-      if (id !== hoverId) {
-        if (hoverId) {
-          try {
-            map.setFeatureState({ source: 'rivers', id: hoverId }, { hover: false });
-          } catch {
-            // feature not yet promoted
-          }
-        }
-        if (id) {
-          try {
-            map.setFeatureState({ source: 'rivers', id }, { hover: true });
-          } catch {
-            // ignore
-          }
-        }
-        hoverId = id;
-        const canvas = map.getCanvas();
-        if (canvas) canvas.style.cursor = id ? 'pointer' : '';
-      }
-    };
-    map.on('mousemove', onMouseMove);
-
-    const onMouseLeaveHit = () => {
-      if (hoverId) {
-        try {
-          map.setFeatureState({ source: 'rivers', id: hoverId }, { hover: false });
-        } catch {
-          // ignore
-        }
-        hoverId = null;
-      }
-      const canvas = map.getCanvas();
-      if (canvas) canvas.style.cursor = '';
-    };
-    map.on('mouseleave', 'rivers-hit', onMouseLeaveHit);
-    map.on('mouseleave', 'rivers-water', onMouseLeaveHit);
-
-    // resize observer — keeps map crisp on container changes
-    const ro = new ResizeObserver(() => {
-      try {
-        map.resize();
-      } catch {
-        // ignore
-      }
-    });
-    ro.observe(container);
-
-    const onResizeWindow = () => {
-      try {
-        map.resize();
-      } catch {
-        // ignore
-      }
-    };
-    window.addEventListener('resize', onResizeWindow);
-
-    return () => {
-      disposed = true;
-      window.clearTimeout(watchdog);
-      if (settleTimeout !== undefined) window.clearTimeout(settleTimeout);
-      ro.disconnect();
-      window.removeEventListener('resize', onResizeWindow);
-      try {
-        map.off('click', handleClick);
-        map.off('mousemove', onMouseMove);
-        map.off('mouseleave', 'rivers-hit', onMouseLeaveHit);
-        map.off('mouseleave', 'rivers-water', onMouseLeaveHit);
-      } catch {
-        // ignore
-      }
-      try {
-        map.remove();
-      } catch {
-        // ignore
-      }
-      mapRef.current = null;
-    };
-  }, [onMapReady, attempt]);
-
-  // selection feature-state
-  const prevSel = useRef<string | null>(null);
-  const fitPaddingRef = useRef(fitPadding);
-  fitPaddingRef.current = fitPadding;
-  const allIdsRef = useRef(allIds);
-  allIdsRef.current = allIds;
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-    let disposed = false;
-
-    // Returns false only when a selected feature is not in the loaded source yet.
-    const applySelection = (): boolean => {
-      if (disposed) return true;
-      if (prevSel.current && prevSel.current !== selectedId) {
-        try {
-          map.setFeatureState({ source: 'rivers', id: prevSel.current }, { selected: false });
-        } catch {
-          // source is not ready yet; sourcedata retries below
-        }
-      }
-      const ids = allIdsRef.current;
-      if (ids) {
-        for (const id of ids) {
-          try {
-            map.setFeatureState({ source: 'rivers', id }, { dimmed: selectedId ? id !== selectedId : false });
-          } catch {
-            // source is not ready yet; sourcedata retries below
-          }
-        }
-      }
-      if (!selectedId) {
-        prevSel.current = null;
-        return true;
-      }
-      try {
-        map.setFeatureState({ source: 'rivers', id: selectedId }, { selected: true });
-      } catch {
-        // source is not ready yet; sourcedata retries below
-      }
-
-      try {
-        const feats = map.querySourceFeatures('rivers', {
-          filter: ['==', ['get', 'id'], selectedId],
-        }) as Array<{ geometry: { type: string; coordinates?: unknown; geometries?: Array<{ coordinates?: unknown }> } }>;
-        if (!feats.length) return false;
-
-        const flat: Array<[number, number]> = [];
-        const walk = (node: unknown) => {
-          if (Array.isArray(node) && typeof node[0] === 'number' && typeof node[1] === 'number') {
-            flat.push([node[0], node[1]]);
-            return;
-          }
-          if (Array.isArray(node)) for (const child of node) walk(child);
-        };
-        // Aggregate every returned part/feature; never join parts into a path.
-        for (const feat of feats) {
-          const g = feat.geometry;
-          walk(g.type === 'GeometryCollection' ? (g.geometries ?? []).map((x) => x.coordinates) : g.coordinates);
-        }
-        if (!flat.length) return false;
-
-        let minLon = Infinity, minLat = Infinity, maxLon = -Infinity, maxLat = -Infinity;
-        for (const [lon, lat] of flat) {
-          if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
-          minLon = Math.min(minLon, lon); minLat = Math.min(minLat, lat);
-          maxLon = Math.max(maxLon, lon); maxLat = Math.max(maxLat, lat);
-        }
-        if (!Number.isFinite(minLon)) return false;
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        map.fitBounds([[minLon, minLat], [maxLon, maxLat]], {
-          padding: fitPaddingRef.current ?? { top: 80, bottom: 220, left: 20, right: 20 },
-          duration: reduced ? 0 : 420,
-          maxZoom: 10,
-        });
-        prevSel.current = selectedId;
-        return true;
-      } catch {
-        return false;
-      }
-    };
-
-    const onSourceData = (event: maplibregl.MapSourceDataEvent) => {
-      if (event.sourceId !== 'rivers') return;
-      if (applySelection() || event.isSourceLoaded) map.off('sourcedata', onSourceData);
-    };
-    const start = () => {
-      if (!applySelection()) map.on('sourcedata', onSourceData);
-    };
-    if (map.isStyleLoaded()) start();
-    else map.once('load', start);
-    return () => {
-      disposed = true;
-      map.off('load', start);
-      map.off('sourcedata', onSourceData);
-    };
-  }, [selectedId]);
-
-  // Basemap swap (Paper ⇄ Ink) — replaces the style in place; never remounts
-  // the map. MapLibre keeps feature-state with the style, so once the swapped
-  // style goes idle we re-apply condition colors and selection states.
-  // 'topo' availability is RiverMapPage's concern (manifest probe) — by the
-  // time it reaches here the local topo sources are guaranteed to exist.
-  const appliedBasemapRef = useRef<BasemapVariant>('paper');
-  const selectedIdRef = useRef(selectedId);
-  selectedIdRef.current = selectedId;
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || basemap === appliedBasemapRef.current) return;
-    const swap = () => {
-      try {
-        map.setStyle(atlasStyle(basemap) as unknown as maplibregl.StyleSpecification);
-        appliedBasemapRef.current = basemap;
-        map.once('idle', () => {
-          // feature-state lives with the style — re-apply colors + selection
-          try { applyRef.current(); } catch { /* retry paths cover */ }
-          for (const id of allIdsRef.current ?? []) {
-            try {
-              map.setFeatureState(
-                { source: 'rivers', id },
-                {
-                  dimmed: selectedIdRef.current ? id !== selectedIdRef.current : false,
-                  selected: id === selectedIdRef.current,
-                },
-              );
-            } catch { /* sourcedata retries cover */ }
-          }
-        });
-      } catch { /* style not ready; next idle applies */ }
-    };
-    if (map.isStyleLoaded()) swap();
-    else map.once('idle', swap); // style can still be loading on first mount
-    return () => {
-      map.off('idle', swap);
-    };
-  }, [basemap]);
-
-  // Species visibility — `hidden` feature-state drives paint opacity to 0 in
-  // every layer (see mapStyle). Retried on sourcedata for late-loading sources.
-  const allIdsForHiddenRef = useRef(allIds);
-  allIdsForHiddenRef.current = allIds;
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-    const apply = () => {
-      for (const id of allIdsForHiddenRef.current ?? []) {
-        try {
-          map.setFeatureState({ source: 'rivers', id }, { hidden: visibleIds ? !visibleIds.has(id) : false });
-        } catch {
-          // source not ready yet; sourcedata retries
-        }
-      }
-    };
-    apply();
-    const onSourceData = (event: maplibregl.MapSourceDataEvent) => {
-      if (event.sourceId !== 'rivers') return;
-      apply();
-      if (event.isSourceLoaded) map.off('sourcedata', onSourceData);
-    };
-    map.on('sourcedata', onSourceData);
-    return () => {
-      map.off('sourcedata', onSourceData);
-    };
-  }, [visibleIds]);
-
-  // Condition colors + hatch halo via feature-state only (public API).
-  // Retried on `sourcedata` for deep links whose ids aren't loaded yet.
+  const [failed, setFailed] = useState(false);
+  const [ready, setReady] = useState(false);
+  const previousSelection = useRef<string | null | undefined>(undefined);
+  const previousLayout = useRef(props.layout);
+  const firstView = useRef(true);
+  const appliedStyle = useRef('');
+  const labelsRef = useRef<() => void>(() => {});
+  const placesRef = useRef<() => void>(() => {});
+  const applyRef = useRef<() => void>(() => {});
+  const reduced = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    document.documentElement.classList.contains('reduce-motion');
   applyRef.current = () => {
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
-    for (const [id, color] of featureColors) {
-      try {
-        map.setFeatureState({ source: 'rivers', id }, { color });
-      } catch {
-        // source not ready yet; idle/sourcedata handlers retry
-      }
+    for (const river of index) {
+      const p = latest.current;
+      map.setFeatureState(
+        { source: 'rivers', id: river.id },
+        {
+          selected: p.selectedId === river.id,
+          hidden: p.visibleIds ? !p.visibleIds.has(river.id) : false,
+          color: p.featureColors.get(river.id) ?? palette.current.noData,
+          assessed: p.assessedIds?.has(river.id) ?? false,
+          hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
+          hatchColor: palette.current.sulphur,
+        },
+      );
     }
-    if (hatchColors) {
-      for (const [id, hatchColor] of hatchColors) {
-        try {
-          map.setFeatureState({ source: 'rivers', id }, { hatchColor });
-        } catch {
-          // source not ready yet; idle/sourcedata handlers retry
-        }
-      }
-    }
-    const ids = allIdsRef.current ?? [...featureColors.keys()];
-    for (const id of ids) {
-      const active = hatchActiveIds?.has(id) ?? false;
-      try {
-        map.setFeatureState({ source: 'rivers', id }, { hatchActive: active });
-      } catch {
-        // promoteId not ready yet; idle/sourcedata handlers retry
-      }
-    }
+    labelsRef.current();
+    const renderedStyle = appliedStyle.current;
+    map.once('render', () => {
+      if (container.current && appliedStyle.current === renderedStyle)
+        container.current.dataset.mapTheme = renderedStyle.split(':')[0] ?? '';
+    });
   };
   useEffect(() => {
-    try { applyRef.current(); } catch { /* map not ready yet; idle handler retries */ }
-    const map = mapRef.current;
-    if (!map) return;
-    // Deep links can mount before the rivers source finishes fetching —
-    // retry colors on sourcedata until the source reports loaded.
-    const onSourceData = (event: maplibregl.MapSourceDataEvent) => {
-      if (event.sourceId !== 'rivers') return;
-      try { applyRef.current(); } catch { /* retry on next event */ }
-      if (event.isSourceLoaded) map.off('sourcedata', onSourceData);
+    const el = container.current;
+    if (!el) return;
+    setFailed(false);
+    setReady(false);
+    delete el.dataset.mapReady;
+    previousSelection.current = undefined;
+    firstView.current = true;
+    let map: maplibregl.Map;
+    try {
+      const saved = savedCamera(latest.current);
+      map = new maplibregl.Map({
+        container: el,
+        style: atlasStyle(latest.current.basemap, palette.current),
+        center: saved?.center ?? (el.clientWidth < 650 ? [-84.65, 35.85] : [-85.3, 35.88]),
+        zoom: saved?.zoom ?? (el.clientWidth < 650 ? 6.9 : 7),
+        minZoom: 5.3,
+        maxZoom: 13,
+        maxBounds: TN_MAX_BOUNDS,
+        attributionControl: false,
+        dragRotate: false,
+        pitchWithRotate: false,
+      });
+    } catch {
+      setFailed(true);
+      el.dataset.mapFailed = '1';
+      return;
+    }
+    mapRef.current = map;
+    appliedStyle.current = theme.id + ':' + latest.current.basemap;
+    // Custom zoom buttons respect both OS and in-app reduced-motion preferences.
+    const zoomGroup = document.createElement('div');
+    zoomGroup.className = 'maplibregl-ctrl maplibregl-ctrl-group field-zoom';
+    const zoomIn = document.createElement('button'),
+      zoomOut = document.createElement('button');
+    zoomIn.type = zoomOut.type = 'button';
+    zoomIn.textContent = '+';
+    zoomOut.textContent = '−';
+    zoomIn.setAttribute('aria-label', 'Zoom in');
+    zoomOut.setAttribute('aria-label', 'Zoom out');
+    zoomIn.onclick = () => map.zoomIn({ duration: reduced() ? 0 : 200 });
+    zoomOut.onclick = () => map.zoomOut({ duration: reduced() ? 0 : 200 });
+    zoomGroup.append(zoomIn, zoomOut);
+    const updateZoom = () => {
+      zoomIn.disabled = map.getZoom() >= map.getMaxZoom();
+      zoomOut.disabled = map.getZoom() <= map.getMinZoom();
     };
-    map.on('sourcedata', onSourceData);
+    map.on('zoomend', updateZoom);
+    updateZoom();
+    map.addControl(
+      {
+        onAdd: () => zoomGroup,
+        onRemove: () => {
+          map.off('zoomend', updateZoom);
+          zoomGroup.remove();
+        },
+      },
+      'bottom-right',
+    );
+    map.addControl(
+      new maplibregl.AttributionControl({
+        compact: true,
+        customAttribution:
+          'Geometry: <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html" target="_blank" rel="noreferrer">US Census TIGER</a> · Relief: USGS 3DEP',
+      }),
+      'bottom-right',
+    );
+    let loaded = false;
+    const attribution = el.querySelector<HTMLDetailsElement>('.maplibregl-ctrl-attrib');
+    let wideAttribution = el.clientWidth > 900;
+    if (attribution) attribution.open = wideAttribution;
+    const watchdog = window.setTimeout(() => {
+      if (!loaded) {
+        setFailed(true);
+        el.dataset.mapFailed = '1';
+      }
+    }, 15000);
+    const syncCamera = () => {
+      const c = map.getCenter();
+      el.dataset.center = c.lng.toFixed(5) + ',' + c.lat.toFixed(5);
+      el.dataset.zoom = String(map.getZoom());
+      const camera = {
+        center: [c.lng, c.lat],
+        zoom: map.getZoom(),
+        padding: map.getPadding(),
+      } as Camera;
+      cameras.set((latest.current.viewKey ?? 'default') + ':' + latest.current.layout, camera);
+      cameras.set('route:' + latest.current.viewRoute + ':' + latest.current.layout, camera);
+      while (cameras.size > 100) cameras.delete(cameras.keys().next().value!);
+      labelsRef.current();
+    };
+    map.on('load', () => {
+      loaded = true;
+      window.clearTimeout(watchdog);
+      setReady(true);
+      setFailed(false);
+      el.dataset.mapReady = '1';
+      delete el.dataset.mapFailed;
+      applyRef.current();
+      latest.current.onMapReady?.(map);
+      syncCamera();
+    });
+    // Reapply feature presentation once after a style swap, never on every idle.
+    map.on('style.load', () => map.once('idle', () => applyRef.current()));
+    map.on('moveend', syncCamera);
+    const hit = (point: maplibregl.Point) => {
+      if (!map.getLayer('rivers-hit')) return null;
+      const candidates = map
+        .queryRenderedFeatures(
+          [
+            [point.x - 5, point.y - 5],
+            [point.x + 5, point.y + 5],
+          ],
+          { layers: ['rivers-hit', 'rivers-water'] },
+        )
+        .filter((f) => {
+          const id = String(f.properties.id ?? '');
+          return id && (!latest.current.visibleIds || latest.current.visibleIds.has(id));
+        });
+      // Broad touch targets may overlap. Choose the nearest visible centerline,
+      // not the arbitrary source/tile order (which can pick a neighboring creek).
+      const distance = (feature: maplibregl.MapGeoJSONFeature) => {
+        if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon')
+          return 0;
+        const lines =
+          feature.geometry.type === 'LineString'
+            ? [feature.geometry.coordinates]
+            : feature.geometry.type === 'MultiLineString'
+              ? feature.geometry.coordinates
+              : [];
+        let nearest = Infinity;
+        for (const line of lines)
+          for (let i = 1; i < line.length; i++) {
+            const a = map.project([line[i - 1]![0]!, line[i - 1]![1]!]),
+              b = map.project([line[i]![0]!, line[i]![1]!]);
+            const dx = b.x - a.x,
+              dy = b.y - a.y,
+              length = dx * dx + dy * dy;
+            const t = length
+              ? Math.max(0, Math.min(1, ((point.x - a.x) * dx + (point.y - a.y) * dy) / length))
+              : 0;
+            nearest = Math.min(nearest, Math.hypot(point.x - a.x - t * dx, point.y - a.y - t * dy));
+          }
+        return nearest;
+      };
+      const found = candidates
+        .map((feature) => ({ feature, distance: distance(feature) }))
+        .sort((a, b) => a.distance - b.distance)[0]?.feature;
+      return found ? String(found.properties.id) : null;
+    };
+    let hovered: string | null = null;
+    map.on('mousemove', (e) => {
+      const id = hit(e.point);
+      if (hovered && hovered !== id)
+        map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
+      if (id) map.setFeatureState({ source: 'rivers', id }, { hover: true });
+      hovered = id;
+      map.getCanvas().style.cursor = id ? 'pointer' : '';
+    });
+    map.on('click', (e) => {
+      const id = hit(e.point);
+      if (id) latest.current.onSelect(id);
+    });
+    map.on('mouseout', () => {
+      if (hovered) map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
+      hovered = null;
+      map.getCanvas().style.cursor = '';
+    });
+    const ro = new ResizeObserver(() => {
+      map.resize();
+      labelsRef.current();
+      const wide = el.clientWidth > 900;
+      if (attribution && wide !== wideAttribution) attribution.open = wide;
+      wideAttribution = wide;
+    });
+    ro.observe(el);
     return () => {
-      map.off('sourcedata', onSourceData);
+      window.clearTimeout(watchdog);
+      ro.disconnect();
+      map.remove();
+      mapRef.current = null;
     };
-  }, [featureColors, hatchActiveIds, hatchColors, allIds]);
-
-  // Orientation labels as lightweight HTML markers (no glyph pipeline, no
-  // remote fonts). Pointer-transparent so river taps always land.
-  // Zoom-gated to avoid statewide clutter: cities always, towns at z≥7,
-  // water labels at z≥7.5.
+  }, [attempt]);
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !places?.length) return;
-    let idle = false;
-    const markers: Array<{ marker: maplibregl.Marker; el: HTMLDivElement; kind: string }> = [];
-    const applyZoomVisibility = () => {
-      let z = 6;
-      try { z = map.getZoom(); } catch { /* keep default */ }
-      for (const { el, kind } of markers) {
-        const show = kind === 'city' ? true : kind === 'town' ? z >= 7 : z >= 7.5;
-        el.style.display = show ? '' : 'none';
-      }
+    if (!map) return;
+    const styleKey = theme.id + ':' + props.basemap;
+    if (appliedStyle.current === styleKey) return;
+    const swap = () => {
+      appliedStyle.current = styleKey;
+      if (container.current) delete container.current.dataset.mapTheme;
+      map.setStyle(atlasStyle(props.basemap, theme.map));
+      // Diffed styles can skip style.load; still reapply feature colors once ready.
+      map.once('idle', () => applyRef.current());
     };
-    const add = () => {
-      if (idle) return;
-      idle = true;
-      for (const p of places) {
-        const el = document.createElement('div');
-        el.className = `atlas-place atlas-place--${p.kind}`;
-        el.textContent = p.name;
-        el.setAttribute('aria-hidden', 'true');
-        try {
-          const marker = new maplibregl.Marker({ element: el }).setLngLat([p.lon, p.lat]).addTo(map);
-          markers.push({ marker, el, kind: p.kind });
-        } catch {
-          // ignore marker failures — labels are orientation aids only
-        }
-      }
-      applyZoomVisibility();
-    };
-    if (map.isStyleLoaded()) add();
-    else map.once('load', add);
-    map.on('zoom', applyZoomVisibility);
-    map.on('moveend', applyZoomVisibility);
+    if (map.isStyleLoaded()) swap();
+    // A theme can change while a previous diffed style or resize is loading.
+    // `load` fires only once per map; `idle` also covers subsequent style work.
+    else map.once('idle', swap);
     return () => {
-      map.off('zoom', applyZoomVisibility);
-      map.off('moveend', applyZoomVisibility);
-      for (const { marker } of markers) {
-        try { marker.remove(); } catch { /* ignore */ }
+      map.off('idle', swap);
+    };
+  }, [props.basemap, theme.id, attempt]);
+  useEffect(() => {
+    applyRef.current();
+  }, [
+    props.featureColors,
+    props.visibleIds,
+    props.assessedIds,
+    props.selectedId,
+    props.hatchActiveIds,
+    props.mobileSheet,
+    props.layout,
+    ready,
+  ]);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const saved = firstView.current
+      ? savedCamera(props)
+      : cameras.get((props.viewKey ?? 'default') + ':' + props.layout);
+    firstView.current = false;
+    const river = index.find((r) => r.id === props.selectedId);
+    const layoutChanged = previousLayout.current !== props.layout;
+    // Fit against the committed layout before ResizeObserver can interrupt the
+    // camera animation with a stale desktop-sized transform on mobile.
+    map.resize();
+    if (saved && !layoutChanged) map.jumpTo(saved);
+    else if (river && (previousSelection.current !== props.selectedId || layoutChanged)) {
+      const b = river.bounds;
+      map.fitBounds(
+        [
+          [b[0]!, b[1]!],
+          [b[2]!, b[3]!],
+        ],
+        {
+          padding: props.fitPadding ?? { top: 120, bottom: 100, left: 75, right: 75 },
+          duration: reduced() ? 0 : 300,
+          maxZoom: 10.5,
+        },
+      );
+    }
+    previousSelection.current = props.selectedId;
+    previousLayout.current = props.layout;
+  }, [props.selectedId, props.viewKey, props.layout, attempt]);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    const markers = index.map((river) => {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'river-map-label';
+      el.textContent = waterIdentity(river.name).name;
+      el.dataset.riverId = river.id;
+      el.setAttribute('aria-label', 'Select ' + river.name);
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        latest.current.onSelect(river.id);
+      });
+      const marker = new maplibregl.Marker({ element: el, anchor: 'bottom-left', offset: [7, -7] })
+        .setLngLat(river.anchor as [number, number])
+        .addTo(map);
+      return { river, el, marker, width: el.offsetWidth };
+    });
+    labelsRef.current = () => {
+      const z = map.getZoom(),
+        p = latest.current;
+      const height = map.getContainer().clientHeight;
+      const coveredBottom =
+        p.mobileSheet === 'expanded'
+          ? height * 0.82
+          : p.mobileSheet === 'compact'
+            ? height * 0.49
+            : 65;
+      const occupied: Array<{ x: number; y: number }> = [];
+      const sorted = [...markers].sort(
+        (a, b) =>
+          Number(b.river.id === p.selectedId) - Number(a.river.id === p.selectedId) ||
+          Number(p.assessedIds?.has(b.river.id)) - Number(p.assessedIds?.has(a.river.id)),
+      );
+      for (const { river, el, width } of sorted) {
+        const selected = river.id === p.selectedId;
+        const point = map.project(river.anchor as [number, number]);
+        const visible =
+          (!p.visibleIds || p.visibleIds.has(river.id)) &&
+          (selected || p.assessedIds?.has(river.id) || z >= 8.5);
+        const overlaps = occupied.some(
+          (o) => Math.abs(o.x - point.x) < 180 && Math.abs(o.y - point.y) < 60,
+        );
+        const show =
+          visible &&
+          (selected || !overlaps) &&
+          point.x > 0 &&
+          point.y > (p.layout === 'mobile' ? 192 : 80) &&
+          point.x < map.getContainer().clientWidth - width - 15 &&
+          point.y < height - coveredBottom - 8;
+        el.setAttribute('aria-pressed', String(selected));
+        el.style.display = show ? 'flex' : 'none';
+        el.classList.toggle('selected', selected);
+        el.style.setProperty(
+          '--marker-color',
+          p.featureColors.get(river.id) ?? palette.current.noData,
+        );
+        if (show) occupied.push(point);
+      }
+      placesRef.current();
+    };
+    labelsRef.current();
+    map.on('move', labelsRef.current);
+    const update = labelsRef.current;
+    return () => {
+      map.off('move', update);
+      markers.forEach((m) => m.marker.remove());
+      labelsRef.current = () => {};
+    };
+  }, [ready, attempt]);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready || !props.places) return;
+    const markers = props.places.map((place) => {
+      const el = document.createElement('div');
+      el.className = 'atlas-place atlas-place--' + place.kind;
+      el.textContent = place.name;
+      el.setAttribute('aria-hidden', 'true');
+      return {
+        place,
+        el,
+        marker: new maplibregl.Marker({ element: el }).setLngLat([place.lon, place.lat]).addTo(map),
+        width: el.offsetWidth,
+      };
+    });
+    const update = () => {
+      const origin = map.getContainer().getBoundingClientRect();
+      const occupied = [...map.getContainer().querySelectorAll<HTMLElement>('.river-map-label')]
+        .filter((el) => el.getClientRects().length > 0)
+        .map((el) => el.getBoundingClientRect());
+      for (const { place, el, width } of [...markers].sort(
+        (a, b) => Number(b.place.kind === 'city') - Number(a.place.kind === 'city'),
+      )) {
+        const point = map.project([place.lon, place.lat]);
+        const rect = {
+          left: origin.left + point.x - width / 2 - 4,
+          right: origin.left + point.x + width / 2 + 4,
+          top: origin.top + point.y - 11,
+          bottom: origin.top + point.y + 11,
+        };
+        const show =
+          (place.kind === 'city' || map.getZoom() >= (place.kind === 'town' ? 8 : 7.5)) &&
+          point.x > width / 2 &&
+          point.x < origin.width - width / 2 &&
+          point.y > 60 &&
+          point.y < origin.height - 50 &&
+          !occupied.some(
+            (other) =>
+              rect.left < other.right &&
+              rect.right > other.left &&
+              rect.top < other.bottom &&
+              rect.bottom > other.top,
+          );
+        el.style.display = show ? '' : 'none';
+        if (show) occupied.push(rect as DOMRect);
       }
     };
-  }, [places]);
-
+    placesRef.current = update;
+    update();
+    map.on('zoom', update);
+    return () => {
+      map.off('zoom', update);
+      markers.forEach((m) => m.marker.remove());
+      placesRef.current = () => {};
+    };
+  }, [props.places, ready, attempt]);
   return (
-    <div className={className ?? 'absolute inset-0'} data-basemap={basemap}>
-      {/* NOTE: positioning lives on this wrapper. MapLibre sets
-          .maplibregl-map{position:relative}, which would override an `absolute`
-          class placed directly on its container and collapse it to zero height. */}
-      <div ref={containerRef} className="h-full w-full" aria-label={ariaLabel} role="application" />
-      {mapFailed && (
-        <div className="atlas-glass absolute inset-x-3 top-24 mx-auto max-w-md rounded-2xl p-4" role="alert">
-          <p className="text-sm font-bold text-[#EAF2ED]">The river map didn&rsquo;t finish loading.</p>
-          <p className="mt-1 text-sm text-[#9FB5AA]">Your saved logbook and stream list are unaffected.</p>
-          <div className="mt-3 flex gap-2">
-            <button type="button" onClick={() => setAttempt((a) => a + 1)} className="atlas-chip atlas-chip--primary min-h-[44px] flex-1 rounded-xl px-4 text-sm">Try again</button>
-            <a href="/browse" className="atlas-chip atlas-glass flex min-h-[44px] flex-1 rounded-xl px-4 text-sm">Browse streams as a list</a>
-          </div>
+    <div className={props.className ?? 'absolute inset-0'} data-basemap={props.basemap}>
+      <div
+        ref={container}
+        className="h-full w-full"
+        aria-label={props.ariaLabel ?? 'Tennessee trout waters map'}
+        role="region"
+        data-testid="river-map"
+      />
+      {failed && (
+        <div className="map-fallback" role="alert">
+          <h2>Explore without the map.</h2>
+          <p>
+            Your browser could not display the map. Every water is still available in search and the
+            accessible list.
+          </p>
+          <button
+            type="button"
+            className="primary-action w-full"
+            onClick={() => setAttempt((a) => a + 1)}
+          >
+            Try loading the map again
+          </button>
+          <Link className="text-action" to="/browse">
+            Browse all waters →
+          </Link>
         </div>
       )}
     </div>
   );
 }
+export { TN_BOUNDS };

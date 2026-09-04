@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Button, Card, Chip, EmptyState } from '@trout/ui';
 import { BugObservationSchema, matchHatch, MATCH_HATCH_MAX_SCORE } from '@trout/contracts';
 import type { BugObservation, RankedTaxon } from '@trout/contracts';
@@ -11,6 +11,7 @@ import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { currentMonth } from '../lib/time';
 import { monthName, REGIONS } from '../data/regions';
 import { TaxonArt } from '../components/art/TaxonArt';
+import { RiverContextBar, useRiverContext, contextUrl } from '../lib/riverContext';
 
 /**
  * Match-the-hatch (hero feature, scope 2): guided attribute key → ranked taxa
@@ -32,11 +33,25 @@ const STEP_TITLE: Record<Step, string> = {
 const HOOK_SIZES = [8, 10, 12, 14, 16, 18, 20, 22, 24];
 
 const COLOR_SWATCH: Record<string, string> = {
-  olive: '#6b8e23', 'olive-brown': '#6b6423', gray: '#8a8f98', cream: '#f5f0dc',
-  'pale-yellow': '#f7e9a0', 'sulphur-orange': '#f2b263', tan: '#d2b48c', brown: '#8b5e34',
-  'dark-brown': '#4e3b28', black: '#1f2429', green: '#4caf50', 'bright-green': '#3fbf4a',
-  red: '#c04a3a', 'golden-brown': '#c9973f', yellow: '#f2d24b', mottled: '#a58d6f',
-  translucent: '#dcdcd4', pink: '#e8a7a7', mahogany: '#7a3b2e',
+  olive: '#6b8e23',
+  'olive-brown': '#6b6423',
+  gray: '#8a8f98',
+  cream: '#f5f0dc',
+  'pale-yellow': '#f7e9a0',
+  'sulphur-orange': '#f2b263',
+  tan: '#d2b48c',
+  brown: '#8b5e34',
+  'dark-brown': '#4e3b28',
+  black: '#1f2429',
+  green: '#4caf50',
+  'bright-green': '#3fbf4a',
+  red: '#c04a3a',
+  'golden-brown': '#c9973f',
+  yellow: '#f2d24b',
+  mottled: '#a58d6f',
+  translucent: '#dcdcd4',
+  pink: '#e8a7a7',
+  mahogany: '#7a3b2e',
 };
 
 const GILLS_LABEL: Record<BugObservation['gills'], string> = {
@@ -46,12 +61,19 @@ const GILLS_LABEL: Record<BugObservation['gills'], string> = {
 };
 
 const ATTRIBUTE_LABEL: Record<string, string> = {
-  size: 'size', tails: 'tails', gills: 'gills', bodyShape: 'shape',
-  bodyColor: 'color', hatchChart: 'hatching now', seasonRecord: 'in season',
+  size: 'size',
+  tails: 'tails',
+  gills: 'gills',
+  bodyShape: 'shape',
+  bodyColor: 'color',
+  hatchChart: 'hatching now',
+  seasonRecord: 'in season',
 };
 
 const CONFIDENCE_TONE: Record<RankedTaxon['confidence'], 'good' | 'fair' | 'poor'> = {
-  high: 'good', medium: 'fair', low: 'poor',
+  high: 'good',
+  medium: 'fair',
+  low: 'poor',
 };
 
 interface Draft {
@@ -65,9 +87,24 @@ interface Draft {
 }
 
 export function HatchKeyPage() {
+  const context = useRiverContext();
   const [step, setStep] = useState<Step>('size');
-  const [draft, setDraft] = useState<Draft>({ month: currentMonth(), regionId: REGIONS[0]?.id });
+  const [draft, setDraft] = useState<Draft>({
+    month: context.month,
+    regionId: REGIONS.some((r) => r.id === context.region)
+      ? (context.region ?? undefined)
+      : REGIONS[0]?.id,
+  });
+  useEffect(() => {
+    if (context.stream) setDraft((d) => ({ ...d, regionId: context.stream!.regionId }));
+  }, [context.stream?.id]);
   const [finished, setFinished] = useState(false);
+  useEffect(() => {
+    if (step === 'size' && !finished) return;
+    document
+      .getElementById(finished ? 'hatch-results-heading' : 'hatch-step-heading')
+      ?.focus({ preventScroll: true });
+  }, [step, finished]);
 
   const pack = useContentPack();
   const chartQuery = useSnapshotQuery(
@@ -113,7 +150,7 @@ export function HatchKeyPage() {
   };
 
   const startOver = () => {
-    setDraft({ month: currentMonth(), regionId: REGIONS[0]?.id });
+    setDraft({ month: context.month, regionId: context.stream?.regionId ?? REGIONS[0]?.id });
     setFinished(false);
     setStep('size');
   };
@@ -135,7 +172,9 @@ export function HatchKeyPage() {
 
   return (
     <main className="page">
-      <h1 className="page-title">Hatch Key</h1>
+      <RiverContextBar />
+      <p className="eyebrow mb-3">The riverside insect key</p>
+      <h1 className="page-title">Match the hatch.</h1>
       <p className="page-subtitle">
         Answer a few questions about the bug you found — the matches are ranked on your device,
         fully offline.
@@ -148,7 +187,10 @@ export function HatchKeyPage() {
               <div
                 key={s}
                 className="h-2 flex-1 rounded-full"
-                style={{ background: i <= stepIndex ? 'var(--trout-color-primary)' : 'var(--trout-slate-200)' }}
+                style={{
+                  background:
+                    i <= stepIndex ? 'var(--trout-color-primary)' : 'var(--trout-slate-200)',
+                }}
               />
             ))}
           </div>
@@ -157,12 +199,20 @@ export function HatchKeyPage() {
           </p>
 
           <Card className="mt-4">
-            <h2 className="text-lg font-bold">{STEP_TITLE[step]}</h2>
+            <h2 id="hatch-step-heading" tabIndex={-1} className="text-lg font-bold">
+              {STEP_TITLE[step]}
+            </h2>
             <div className="mt-4">
               {step === 'size' && (
                 <div className="grid grid-cols-3 gap-3 sm:grid-cols-5">
                   {HOOK_SIZES.map((size) => (
-                    <button key={size} type="button" className={`option-card focus-ring ${draft.sizeHook === size ? 'is-selected' : ''}`} aria-pressed={draft.sizeHook === size} onClick={() => pick('sizeHook', size)}>
+                    <button
+                      key={size}
+                      type="button"
+                      className={`option-card focus-ring ${draft.sizeHook === size ? 'is-selected' : ''}`}
+                      aria-pressed={draft.sizeHook === size}
+                      onClick={() => pick('sizeHook', size)}
+                    >
                       #{size}
                     </button>
                   ))}
@@ -172,8 +222,21 @@ export function HatchKeyPage() {
               {step === 'color' && (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {Object.keys(COLOR_SWATCH).map((color) => (
-                    <button key={color} type="button" className={`option-card focus-ring justify-start text-left text-sm ${draft.bodyColor === color ? 'is-selected' : ''}`} aria-pressed={draft.bodyColor === color} onClick={() => pick('bodyColor', color)}>
-                      <span className="h-6 w-6 shrink-0 rounded-full border" style={{ background: COLOR_SWATCH[color], borderColor: 'var(--trout-color-border)' }} aria-hidden="true" />
+                    <button
+                      key={color}
+                      type="button"
+                      className={`option-card focus-ring justify-start text-left text-sm ${draft.bodyColor === color ? 'is-selected' : ''}`}
+                      aria-pressed={draft.bodyColor === color}
+                      onClick={() => pick('bodyColor', color)}
+                    >
+                      <span
+                        className="h-6 w-6 shrink-0 rounded-full border"
+                        style={{
+                          background: COLOR_SWATCH[color],
+                          borderColor: 'var(--trout-color-border)',
+                        }}
+                        aria-hidden="true"
+                      />
                       {color.replace('-', ' ')}
                     </button>
                   ))}
@@ -183,7 +246,13 @@ export function HatchKeyPage() {
               {step === 'tails' && (
                 <div className="grid grid-cols-2 gap-3">
                   {([2, 3] as const).map((t) => (
-                    <button key={t} type="button" className={`option-card focus-ring ${draft.tails === t ? 'is-selected' : ''}`} aria-pressed={draft.tails === t} onClick={() => pick('tails', t)}>
+                    <button
+                      key={t}
+                      type="button"
+                      className={`option-card focus-ring ${draft.tails === t ? 'is-selected' : ''}`}
+                      aria-pressed={draft.tails === t}
+                      onClick={() => pick('tails', t)}
+                    >
                       {t} tails
                     </button>
                   ))}
@@ -193,7 +262,13 @@ export function HatchKeyPage() {
               {step === 'gills' && (
                 <div className="flex flex-col gap-3">
                   {(Object.keys(GILLS_LABEL) as BugObservation['gills'][]).map((g) => (
-                    <button key={g} type="button" className={`option-card focus-ring text-left ${draft.gills === g ? 'is-selected' : ''}`} aria-pressed={draft.gills === g} onClick={() => pick('gills', g)}>
+                    <button
+                      key={g}
+                      type="button"
+                      className={`option-card focus-ring text-left ${draft.gills === g ? 'is-selected' : ''}`}
+                      aria-pressed={draft.gills === g}
+                      onClick={() => pick('gills', g)}
+                    >
                       {GILLS_LABEL[g]}
                     </button>
                   ))}
@@ -203,7 +278,13 @@ export function HatchKeyPage() {
               {step === 'shape' && (
                 <div className="grid grid-cols-2 gap-3">
                   {(['slender', 'robust'] as const).map((s) => (
-                    <button key={s} type="button" className={`option-card focus-ring capitalize ${draft.bodyShape === s ? 'is-selected' : ''}`} aria-pressed={draft.bodyShape === s} onClick={() => pick('bodyShape', s)}>
+                    <button
+                      key={s}
+                      type="button"
+                      className={`option-card focus-ring capitalize ${draft.bodyShape === s ? 'is-selected' : ''}`}
+                      aria-pressed={draft.bodyShape === s}
+                      onClick={() => pick('bodyShape', s)}
+                    >
                       {s}
                     </button>
                   ))}
@@ -221,7 +302,9 @@ export function HatchKeyPage() {
                       onChange={(e) => setDraft((d) => ({ ...d, regionId: e.target.value }))}
                     >
                       {REGIONS.map((r) => (
-                        <option key={r.id} value={r.id}>{r.name}</option>
+                        <option key={r.id} value={r.id}>
+                          {r.name}
+                        </option>
                       ))}
                     </select>
                   </label>
@@ -234,11 +317,18 @@ export function HatchKeyPage() {
                       onChange={(e) => setDraft((d) => ({ ...d, month: Number(e.target.value) }))}
                     >
                       {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                        <option key={m} value={m}>{monthName(m)}</option>
+                        <option key={m} value={m}>
+                          {monthName(m)}
+                        </option>
                       ))}
                     </select>
                   </label>
-                  <Button size="lg" disabled={!complete} onClick={() => setFinished(true)} className="focus-ring">
+                  <Button
+                    size="lg"
+                    disabled={!complete}
+                    onClick={() => setFinished(true)}
+                    className="focus-ring"
+                  >
                     See matches
                   </Button>
                 </div>
@@ -246,7 +336,13 @@ export function HatchKeyPage() {
             </div>
 
             <div className="mt-5 flex items-center justify-between">
-              <Button variant="ghost" size="sm" onClick={back} disabled={step === 'size'} className="focus-ring">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={back}
+                disabled={step === 'size'}
+                className="focus-ring"
+              >
                 ← Back
               </Button>
               <Button variant="ghost" size="sm" onClick={startOver}>
@@ -260,15 +356,17 @@ export function HatchKeyPage() {
       {finished && observation && (
         <section className="mt-4" aria-label="Matched insects">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-lg font-bold">
-              Top matches · {monthName(observation.month)} · {REGIONS.find((r) => r.id === observation.regionId)?.name}
+            <h2 id="hatch-results-heading" tabIndex={-1} className="text-lg font-bold">
+              Top matches · {monthName(observation.month)} ·{' '}
+              {REGIONS.find((r) => r.id === observation.regionId)?.name}
             </h2>
             <Button variant="ghost" size="sm" onClick={startOver}>
               Start over
             </Button>
           </div>
           <p className="page-subtitle mt-1">
-            Transparent scoring: attribute matches (0–5) + hatching now (+2) + in-season record (+1).
+            Transparent scoring: attribute matches (0–5) + hatching now (+2) + in-season record
+            (+1).
           </p>
 
           {chartQuery.data && (
@@ -283,36 +381,56 @@ export function HatchKeyPage() {
                 icon="🤷"
                 title="No confident matches"
                 description="Every attribute missed. Re-check tails, gills, and size — those separate the big groups."
-                action={<Button variant="secondary" onClick={startOver}>Try again</Button>}
+                action={
+                  <Button variant="secondary" onClick={startOver}>
+                    Try again
+                  </Button>
+                }
               />
             </div>
           ) : (
             <ol className="mt-4 flex flex-col gap-3">
               {ranked.map((r, i) => (
-                <li key={r.taxon.id} className="stagger-in" style={{ animationDelay: `${i * 70}ms` }}>
-                  <MatchRow ranked={r} />
+                <li
+                  key={r.taxon.id}
+                  className="stagger-in"
+                  style={{ animationDelay: `${i * 70}ms` }}
+                >
+                  <MatchRow ranked={r} month={observation.month} region={observation.regionId} />
                 </li>
               ))}
             </ol>
           )}
-
         </section>
       )}
 
       {finished && !observation && (
         <div className="mt-6">
-          <EmptyState title="Something went wrong" description="Your answers did not form a complete observation." action={<Button onClick={startOver}>Start over</Button>} />
+          <EmptyState
+            title="Something went wrong"
+            description="Your answers did not form a complete observation."
+            action={<Button onClick={startOver}>Start over</Button>}
+          />
         </div>
       )}
     </main>
   );
 }
 
-function MatchRow({ ranked }: { ranked: RankedTaxon }) {
+function MatchRow({
+  ranked,
+  month,
+  region,
+}: {
+  ranked: RankedTaxon;
+  month: number;
+  region: string;
+}) {
+  const [params] = useSearchParams();
   const t: BugTaxon = ranked.taxon;
   return (
     <Link
-      to={`/taxa/${t.id}`}
+      to={contextUrl(`/taxa/${t.id}`, params, { month: String(month), region })}
       className="list-row focus-ring !items-start hover:!border-[var(--trout-color-primary)]"
       style={{ borderRadius: 'var(--trout-radius-lg)' }}
     >
@@ -330,14 +448,23 @@ function MatchRow({ ranked }: { ranked: RankedTaxon }) {
         </span>
         <span className="mt-2 block">
           <span className="score-track">
-            <span className="score-fill" style={{ transform: `scaleX(${ranked.score / MATCH_HATCH_MAX_SCORE})`, background: 'var(--trout-color-primary)' }} />
+            <span
+              className="score-fill"
+              style={{
+                transform: `scaleX(${ranked.score / MATCH_HATCH_MAX_SCORE})`,
+                background: 'var(--trout-color-primary)',
+              }}
+            />
           </span>
         </span>
         <span className="mt-2 flex flex-wrap gap-1.5">
           {ranked.matchedAttributes.map((a) => (
             <Chip key={a}>{ATTRIBUTE_LABEL[a] ?? a}</Chip>
           ))}
-          <span className="ml-auto text-sm font-extrabold" style={{ color: 'var(--trout-color-primary)' }}>
+          <span
+            className="ml-auto text-sm font-extrabold"
+            style={{ color: 'var(--trout-color-primary)' }}
+          >
             {ranked.score}/{ranked.maxScore}
           </span>
         </span>

@@ -1,241 +1,532 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { regionName } from '../../data/regions';
-import { ageMinutes, clockTime } from '../../lib/time';
-import { formatFlow, formatTemp } from '../../lib/units';
-import { flowTrend, TREND_LABEL } from '../../lib/conditions';
-import { useSettingsContext } from '../../lib/settings';
-import { atlas } from './mapTokens';
-import { interpretationFor, plainStatus } from './riverMapSelectors';
-import type { RiverMapFeature } from './riverMapSelectors';
-import { LOGBOOK_NOTE, listEntries } from '../../lib/logbook';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { regionName, monthName } from '../../data/regions';
+import { ageMinutes } from '../../lib/time';
+import { formatFlow, formatTemp, formatHeight } from '../../lib/units';
+import { flowTrend, TREND_LABEL } from '../../lib/conditions';
+import { orderedReadings, conditionReason, waterIdentity } from '../../lib/presentation';
+import { useSettingsContext } from '../../lib/settings';
+import { useContentPack } from '../../lib/content';
+import { useOnline } from '../../hooks/useOnline';
+import { riverWorkflowUrl } from '../../lib/riverContext';
+import type { RiverMapFeature } from './riverMapSelectors';
 import { db } from '../../lib/db';
-import { SPRING } from '../../components/motion/atlas-motion';
-
-const TABS = ['Water','Hatch','Stocking','Reports','Your Log'] as const;
-type Tab = typeof TABS[number];
-
-export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fetchedAt, layout, loading }: { feature: RiverMapFeature | null; tab: Tab; onTab: (t: Tab) => void; onClose: () => void; modeMonth: number; live: boolean; fetchedAt: number | null; layout?: 'sheet' | 'panel'; loading?: boolean }) {
-  const [sheet, setSheet] = useState<'peek'|'medium'|'full'>('peek');
-  const dragRef = useRef<HTMLDivElement>(null);
-
-  // drag to expand
-  useEffect(() => {
-    const el = dragRef.current?.parentElement;
-    if (!el) return;
-    let startY = 0, startSheet: typeof sheet = 'peek';
-    const onDown = (e: TouchEvent | MouseEvent) => {
-      const y = 'touches' in e ? (e.touches[0]?.clientY ?? 0) : (e as MouseEvent).clientY;
-      startY = y; startSheet = sheet;
-      const onMove = (ev: TouchEvent | MouseEvent) => {
-        const cur = 'touches' in ev ? ((ev as TouchEvent).touches[0]?.clientY ?? 0) : (ev as MouseEvent).clientY;
-        const dy = startY - cur;
-        if (dy > 80 && startSheet === 'peek') setSheet('medium');
-        if (dy > 180) setSheet('full');
-        if (dy < -80 && startSheet !== 'peek') setSheet(startSheet === 'full' ? 'medium' : 'peek');
-      };
-      const onUp = () => { window.removeEventListener('mousemove', onMove as any); window.removeEventListener('touchmove', onMove as any); window.removeEventListener('mouseup', onUp); window.removeEventListener('touchend', onUp); };
-      window.addEventListener('mousemove', onMove as any); window.addEventListener('touchmove', onMove as any, { passive: true } as any);
-      window.addEventListener('mouseup', onUp); window.addEventListener('touchend', onUp);
-    };
-    el.addEventListener('touchstart', onDown as any, { passive: true } as any);
-    el.addEventListener('mousedown', onDown as any);
-    return () => { el.removeEventListener('touchstart', onDown as any); el.removeEventListener('mousedown', onDown as any); };
-  }, [sheet]);
-
-  // Mobile: feature still loading → a small skeleton peek; unknown id → nothing.
-  if (!feature && layout !== 'panel') {
-    if (!loading) return null;
+import { BookIcon, BugIcon, CloseIcon, WavesIcon } from '../../components/icons';
+const TABS = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
+type Tab = (typeof TABS)[number];
+const TIMES = { am: 'Morning', midday: 'Midday', pm: 'Afternoon', evening: 'Evening' };
+interface Props {
+  feature: RiverMapFeature | null;
+  tab: Tab;
+  onTab: (t: Tab) => void;
+  onClose: () => void;
+  modeMonth: number;
+  live: boolean;
+  fetchedAt: number | null;
+  layout?: 'sheet' | 'panel';
+  loading?: boolean;
+  feedErrors?: { reports: boolean; stocking: boolean };
+}
+export function RiverDrawer({
+  feature,
+  tab,
+  onTab,
+  onClose,
+  modeMonth,
+  live,
+  loading,
+  feedErrors,
+}: Props) {
+  const body = useRef<HTMLDivElement>(null);
+  if (!feature)
     return (
-      <motion.div
-        initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={SPRING.soft}
-        className="absolute inset-x-0 bottom-0 z-10 rounded-t-[20px] border-t border-white/10 bg-[#0D1411]/95 p-4 pb-8 backdrop-blur-md"
-        style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 1rem)' }}
-        role="status" aria-label="Loading river details"
+      <section
+        className="inspector p-6"
+        id="river-inspector"
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="false"
+        aria-label="River details"
       >
-        <div className="skeleton h-1.5 w-10 rounded-full" />
-        <div className="skeleton mt-4 h-6 w-2/3" />
-        <div className="skeleton mt-2 h-4 w-1/3" />
-      </motion.div>
-    );
-  }
-  if (!feature) return null;
-
-  const snap = feature.snapshot;
-  const isPanel = layout === 'panel';
-  const isWarm = feature.species === 'warmwater';
-  const accent = isWarm ? atlas.warmwater : feature.color;
-  const snapHeight = sheet === 'peek' ? '32vh' : sheet === 'medium' ? '58vh' : '86vh';
-  const freshnessLabel = fetchedAt ? `${live ? 'Updated' : 'Cached'} ${ageMinutes(fetchedAt)} · ${clockTime(fetchedAt)}` : 'No recent reading';
-
-  const header = (size: 'panel' | 'sheet') => (
-    <>
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="eyebrow">{regionName(feature.stream.regionId)}</p>
-          <h2 className={`atlas-title mt-1 font-black leading-[1.05] tracking-tight text-[#EAF2ED] ${size === 'panel' ? 'text-[26px]' : 'text-[23px]'}`}>{feature.stream.name}</h2>
-          {isWarm ? (
-            <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold" style={{ background: 'rgba(181,133,79,0.16)', color: atlas.warmwater }}>
-              Warmwater · smallmouth &amp; panfish
-            </p>
-          ) : (
-            <>
-              <p className="mt-1.5 flex items-baseline gap-2">
-                <span className="atlas-title text-[34px] font-black leading-none" style={{ color: accent }}>{feature.score ?? '—'}</span>
-                <span className="text-sm font-bold" style={{ color: accent }}>{feature.status === 'no-data' ? 'No data' : plainStatus(feature.status, feature.score).split('· ')[1] ?? ''}</span>
-              </p>
-              <p className="text-sm font-semibold text-[#9FB5AA]">{interpretationFor(snap, feature.stream)}</p>
-            </>
-          )}
-          {!isWarm && <p className="text-xs text-[#6B8177]">{freshnessLabel}{snap ? ` · trend ${TREND_LABEL[flowTrend(snap.readings)] || 'n/a'}` : ''}</p>}
-          {feature.hatchChart && !isWarm && <p className="text-xs text-[#6B8177]">{feature.hatchChart.entries[0]?.taxonId ?? ''} toward dusk</p>}
-          {feature.logCount > 0 && <p className="text-xs text-[#6B8177]">{feature.logCount} private entries · Only on this device</p>}
+        <button className="icon-button self-end" aria-label="Close river details" onClick={onClose}>
+          <CloseIcon />
+        </button>
+        <div className="empty-note mt-6" role="status">
+          <strong>{loading ? 'Loading this water…' : 'Water not available'}</strong>
+          <p>
+            {loading
+              ? 'The catalog is loading. You can continue exploring the map.'
+              : 'This river is not in the available catalog. Search for a water, or use the full list.'}
+          </p>
+          <Link className="text-action" to="/browse">
+            Browse all waters →
+          </Link>
         </div>
-        <button onClick={onClose} aria-label={size === 'panel' ? 'Close river details' : 'Close'} className="atlas-chip atlas-glass h-11 w-11 shrink-0 text-lg">×</button>
-      </div>
-      {!isWarm && (
-        <div className="mt-3 flex gap-1 overflow-x-auto border-b border-[#223329]" role="tablist" aria-label="River details">
-          {TABS.map(t => (
-            <button key={t} role="tab" aria-selected={tab === t} onClick={() => { onTab(t); if (size === 'sheet') setSheet('medium'); }} className={`-mb-px shrink-0 whitespace-nowrap px-2.5 py-2 text-sm font-bold ${tab === t ? 'text-[#EAF2ED]' : 'text-[#6B8177]'}`}>
-              <span className="relative inline-block">
-                {t}
-                {tab === t && <motion.span layoutId={`tab-underline-${size}`} transition={SPRING.snappy} className="absolute -bottom-[10px] left-0 right-0 h-0.5 rounded-full bg-[#E8B04B]" aria-hidden />}
-              </span>
+      </section>
+    );
+  const choose = (next: Tab) => {
+    onTab(next);
+    body.current?.scrollTo({ top: 0 });
+  };
+  const identity = waterIdentity(feature.stream.name);
+  return (
+    <section
+      className="inspector"
+      id="river-inspector"
+      tabIndex={-1}
+      role="dialog"
+      aria-modal="false"
+      aria-label={feature.stream.name + ' details'}
+    >
+      <div className="inspector-header">
+        <button type="button" className="inspector-back" onClick={onClose}>
+          ← All Tennessee waters
+        </button>
+        <div className="inspector-title-row">
+          <div>
+            <p className="eyebrow">{regionName(feature.stream.regionId)}</p>
+            <h2>{identity.name}</h2>
+            <p className="inspector-subtitle">
+              {identity.reach ??
+                (feature.stream.waterbodyType === 'tailrace'
+                  ? 'Tailwater'
+                  : feature.stream.waterbodyType === 'creek'
+                    ? 'Creek'
+                    : 'River')}{' '}
+              ·{' '}
+              {feature.stream.stockingProgram
+                ? 'Stocking program listed'
+                : 'No stocking program listed'}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="icon-button"
+            aria-label="Close river details"
+            onClick={onClose}
+          >
+            <CloseIcon size={19} />
+          </button>
+        </div>
+        <div className="inspector-tabs" role="tablist" aria-label="River details">
+          {TABS.map((t, i) => (
+            <button
+              key={t}
+              id={'river-tab-' + i}
+              role="tab"
+              tabIndex={tab === t ? 0 : -1}
+              aria-selected={tab === t}
+              aria-controls="river-tabpanel"
+              onClick={() => choose(t)}
+              onKeyDown={(e) => {
+                let n = i;
+                if (e.key === 'ArrowRight') n = (i + 1) % TABS.length;
+                else if (e.key === 'ArrowLeft') n = (i + TABS.length - 1) % TABS.length;
+                else if (e.key === 'Home') n = 0;
+                else if (e.key === 'End') n = TABS.length - 1;
+                else return;
+                e.preventDefault();
+                choose(TABS[n]!);
+                document.getElementById('river-tab-' + n)?.focus();
+              }}
+            >
+              {t === 'Water'
+                ? 'Conditions'
+                : t === 'Hatch'
+                  ? 'Hatches'
+                  : t === 'Your Log'
+                    ? 'Log'
+                    : t}
             </button>
           ))}
         </div>
-      )}
-    </>
+      </div>
+      <div
+        ref={body}
+        className="inspector-body"
+        id="river-tabpanel"
+        role="tabpanel"
+        aria-labelledby={'river-tab-' + TABS.indexOf(tab)}
+      >
+        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
+        {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
+        {tab === 'Stocking' && <StockingTab feature={feature} error={feedErrors?.stocking} />}
+        {tab === 'Reports' && <ReportsTab feature={feature} error={feedErrors?.reports} />}
+        {tab === 'Your Log' && <LogTab feature={feature} month={modeMonth} />}
+      </div>
+    </section>
   );
-
-  if (isPanel) {
-    // Desktop inspector: content starts at the top, ONE scroll region (the
-    // body). Heading + tabs are sticky. No sheet positioning, no blank space.
-    return (
-      <div className="flex h-full min-h-0 flex-col bg-transparent" role="dialog" aria-label={`${feature.stream.name} details`} aria-modal="false">
-        <div className="shrink-0 px-5 pt-4">
-          {header('panel')}
+}
+function WaterTab({
+  feature,
+  month,
+  live,
+}: {
+  feature: RiverMapFeature;
+  month: number;
+  live: boolean;
+}) {
+  const { settings } = useSettingsContext();
+  const pack = useContentPack();
+  const online = useOnline();
+  const snap = feature.snapshot;
+  const readings = orderedReadings(snap);
+  const flow = readings.find((r) => r.cfs != null),
+    temp = readings.find((r) => r.tempC != null),
+    stage = readings.find((r) => r.heightFt != null);
+  const observed = readings[0]?.timestamp;
+  const warm = feature.species === 'warmwater';
+  const title = warm
+    ? 'Warmwater fishery'
+    : feature.status === 'no-data'
+      ? 'Not assessed'
+      : feature.status === 'good'
+        ? 'Good conditions'
+        : feature.status === 'fair'
+          ? 'Fair conditions'
+          : 'Poor conditions';
+  const reason = warm
+    ? 'Trout scores do not apply to this fishery. Check the readings and local guidance.'
+    : feature.status === 'no-data'
+      ? 'An assessment is not available in this snapshot. This does not mean fishing is poor.'
+      : (snap?.score.reasons.find((r) => /dangerously|avoid stressing/i.test(r)) ??
+        snap?.score.reasons[0] ??
+        'Assessment based on the available gauge readings.');
+  const dominant = feature.hatchDominant;
+  const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
+  return (
+    <>
+      <div className="assessment" data-status={warm ? 'warmwater' : feature.status}>
+        <div className="assessment-top">
+          <div>
+            <span className="assessment-label">
+              {warm ? 'Species guidance' : 'Trout condition assessment'}
+            </span>
+            <h3 className="assessment-name">{title}</h3>
+          </div>
+          {feature.status !== 'no-data' && feature.score !== null && !warm && (
+            <span
+              className="score-disc"
+              aria-label={'Condition score ' + feature.score + ' out of 100'}
+            >
+              <strong>{feature.score}</strong>
+              <small>OUT OF 100</small>
+            </span>
+          )}
         </div>
-        <div className="min-h-0 flex-1 overflow-auto px-5 py-4">
-          {isWarm ? <WarmTab feature={feature} /> : (
+        <p className="assessment-reason">{conditionReason(reason, settings.tempUnit)}</p>
+        <div className="freshness">
+          <span>{!online ? 'Saved offline' : snap ? 'Snapshot' : 'No snapshot'}</span>
+          {observed && (
             <>
-              {tab === 'Water' && <WaterTab feature={feature} />}
-              {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
-              {tab === 'Stocking' && <StockingTab feature={feature} />}
-              {tab === 'Reports' && <ReportsTab feature={feature} />}
-              {tab === 'Your Log' && <LogTab feature={feature} />}
+              <span>·</span>
+              <time dateTime={observed} title={new Date(observed).toLocaleString()}>
+                Observed {ageMinutes(Date.parse(observed))}
+              </time>
             </>
           )}
         </div>
       </div>
-    );
-  }
-
-  return (
-    <motion.div
-      initial={{ y: '100%' }}
-      animate={{ y: 0, height: snapHeight }}
-      exit={{ y: '100%' }}
-      transition={SPRING.soft}
-      className="absolute inset-x-0 bottom-0 z-10 flex flex-col overflow-hidden rounded-t-[20px] border-t border-white/10 bg-[#0D1411]/95 shadow-[0_-12px_40px_rgba(0,0,0,0.5)] backdrop-blur-md"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-      role="dialog" aria-label={`${feature.stream.name} details`} aria-modal="false"
-    >
-      <button ref={dragRef as any} type="button" aria-label={sheet === 'full' ? 'Collapse river details' : 'Expand river details'} aria-expanded={sheet !== 'peek'} onClick={() => setSheet(s => s === 'peek' ? 'medium' : s === 'medium' ? 'full' : 'peek')} className="flex min-h-[32px] flex-col items-center justify-center px-8 pt-2 pb-1">
-        <span className="h-1.5 w-10 rounded-full bg-[#31473B]" aria-hidden />
-      </button>
-      <div className="px-4 pb-2">
-        {header('sheet')}
+      <div className="metrics">
+        <div className="metric">
+          <span className="metric-label">
+            <WavesIcon size={15} />
+            Streamflow
+          </span>
+          <strong className={'metric-value' + (!flow ? ' is-empty' : '')}>
+            {flow?.cfs != null ? formatFlow(flow.cfs) : 'Not reported'}
+          </strong>
+          <small>
+            {flow
+              ? 'USGS ' + flow.gaugeId
+              : stage?.heightFt != null
+                ? 'Stage ' + formatHeight(stage.heightFt)
+                : 'No flow observation'}
+          </small>
+        </div>
+        <div className="metric">
+          <span className="metric-label">Water temperature</span>
+          <strong className={'metric-value' + (!temp ? ' is-empty' : '')}>
+            {temp?.tempC != null ? formatTemp(temp.tempC, settings.tempUnit) : 'Not reported'}
+          </strong>
+          <small>{temp ? 'USGS ' + temp.gaugeId : 'Check water before fishing'}</small>
+        </div>
       </div>
-      <div className="flex-1 overflow-auto px-4 pb-6">
-        {isWarm ? <WarmTab feature={feature} /> : (
-          <>
-            {tab === 'Water' && <WaterTab feature={feature} />}
-            {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
-            {tab === 'Stocking' && <StockingTab feature={feature} />}
-            {tab === 'Reports' && <ReportsTab feature={feature} />}
-            {tab === 'Your Log' && <LogTab feature={feature} />}
-          </>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
-/** Warmwater rivers — honest, useful, and clearly not a trout score. */
-function WarmTab({ feature }: { feature: RiverMapFeature }) {
-  return (
-    <div className="space-y-3">
-      <div className="rounded-xl border p-3 text-sm" style={{ borderColor: '#223329', background: 'rgba(181,133,79,0.08)' }}>
-        <p className="font-bold" style={{ color: atlas.warmwater }}>Warmwater fishery</p>
-        <p className="mt-1 text-[#9FB5AA]">This river holds smallmouth, spotted bass, and panfish rather than trout, so it isn&rsquo;t scored for trout fishability. Toggle <span className="font-bold text-[#EAF2ED]">All fish</span> on the map to keep it visible.</p>
-      </div>
-      {feature.stream.notes && <div className="rounded-xl border p-3 text-sm" style={{ borderColor: '#223329', background: '#131F19' }}><p className="text-[#EAF2ED]">{feature.stream.notes}</p></div>}
-      <div className="flex flex-wrap gap-2">
-        <a href={`/conditions/${feature.stream.id}`} className="atlas-chip atlas-glass min-h-[40px] px-3 text-xs">Flow &amp; gauges →</a>
-        <a href="/browse" className="atlas-chip atlas-glass min-h-[40px] px-3 text-xs">All streams</a>
-      </div>
-    </div>
-  );
-}
-
-function WaterTab({ feature }: { feature: RiverMapFeature }) {
-  const snap = feature.snapshot;
-  const { settings } = useSettingsContext();
-  if (!snap) return <p className="text-sm text-[#9FB5AA]">No recent reading. {feature.stream.notes ?? ''}</p>;
-  return (
-    <div className="space-y-3">
-      <div className="rounded-xl border p-3" style={{ borderColor: '#223329', background: '#131F19' }}>
-        <p className="text-sm font-bold" style={{ color: feature.color }}>{plainStatus(feature.status, feature.score)}</p>
-        <ul className="mt-1 list-disc pl-5 text-sm text-[#EAF2ED]">{snap.score.reasons.map(r => <li key={r}>{r}</li>)}</ul>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        <span className="rounded-full border px-3 py-1 text-sm font-semibold" style={{ borderColor: '#223329', background: '#131F19' }}>Flow {snap.readings.find(r=>r.cfs!=null)?.cfs != null ? formatFlow(snap.readings.find(r=>r.cfs!=null)!.cfs!) : 'n/a'}</span>
-        <span className="rounded-full border px-3 py-1 text-sm font-semibold" style={{ borderColor: '#223329', background: '#131F19' }}>Temp {snap.readings.find(r=>r.tempC!=null)?.tempC != null ? formatTemp(snap.readings.find(r=>r.tempC!=null)!.tempC!, settings.tempUnit) : 'n/a'}</span>
-      </div>
-      <details className="rounded-xl border p-3 text-sm" style={{ borderColor: '#223329', background: '#131F19' }}><summary className="cursor-pointer font-bold">Gauge readings</summary>
-        <table className="mt-2 w-full text-left text-sm"><thead><tr className="text-xs text-[#6B8177]"><th>Gauge</th><th>Flow</th><th>Temp</th><th>When</th></tr></thead><tbody>{[...snap.readings].sort((a,b)=>Date.parse(b.timestamp)-Date.parse(a.timestamp)).slice(0,8).map((r,i)=><tr key={i} className="border-t" style={{ borderColor: '#223329' }}><td className="py-1 font-mono text-xs">{r.gaugeId}</td><td>{r.cfs!=null?formatFlow(r.cfs):'—'}</td><td>{r.tempC!=null?formatTemp(r.tempC, settings.tempUnit):'—'}</td><td className="text-xs text-[#6B8177]">{ageMinutes(Date.parse(r.timestamp))}</td></tr>)}</tbody></table>
+      {!warm && (
+        <div className="hatch-preview">
+          <span className="eyebrow">
+            <BugIcon size={16} />
+            {monthName(month)} hatch outlook
+          </span>
+          <strong>{taxon?.commonName ?? 'What is on the water?'}</strong>
+          <p>
+            {dominant
+              ? TIMES[dominant.timeOfDay] + ' · ' + dominant.stage + ' · regional seasonal guidance'
+              : 'Identify the insect you find and explore matching fly patterns.'}
+          </p>
+          <Link
+            className="primary-action"
+            to={riverWorkflowUrl('/hatch-key', feature.stream, month)}
+          >
+            <BugIcon size={17} />
+            Match the hatch <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      )}
+      <details className="reading-details">
+        <summary>Why this assessment?</summary>
+        <div className="detail-section mt-2">
+          <p>
+            Scores are the supplied trout model, not a catch forecast or a wading-safety rating.
+            Good: 70–100. Fair: 40–69. Poor: 0–39.
+          </p>
+          <ul className="mt-2">
+            {snap?.score.reasons.map((r) => (
+              <li key={r}>{conditionReason(r, settings.tempUnit)}</li>
+            ))}
+          </ul>
+          <p className="mt-2">
+            {feature.stream.species
+              ? 'Species applicability is supplied by the catalog.'
+              : 'Species metadata is not supplied for this water. Read the fishery notes and check seasonal restrictions.'}
+          </p>
+        </div>
       </details>
-      <Link to={`/conditions/${feature.stream.id}`} className="inline-flex text-sm font-bold underline decoration-[#E8B04B] underline-offset-4">Open full water page →</Link>
-    </div>
+      <details className="reading-details">
+        <summary>Gauge readings & sources</summary>
+        {readings.length === 0 ? (
+          <p className="muted">No gauge observations are available.</p>
+        ) : (
+          readings.map((r, i) => (
+            <div className="reading-row" key={r.gaugeId + r.timestamp + i}>
+              <strong>USGS {r.gaugeId}</strong>
+              <span>
+                {[
+                  r.cfs != null ? formatFlow(r.cfs) : null,
+                  r.heightFt != null ? formatHeight(r.heightFt) + ' stage' : null,
+                  r.tempC != null ? formatTemp(r.tempC, settings.tempUnit) : null,
+                ]
+                  .filter(Boolean)
+                  .join(' · ') || 'No measurements reported'}
+              </span>
+              <span>Observed {new Date(r.timestamp).toLocaleString()}</span>
+            </div>
+          ))
+        )}
+        <p className="muted text-xs">
+          Trend:{' '}
+          {TREND_LABEL[flowTrend(readings)] ||
+            'unavailable — two readings from the same gauge are needed.'}
+        </p>
+        {snap && (
+          <p className="muted text-xs mt-2">
+            Snapshot generated {new Date(snap.fetchedAt).toLocaleString()}. Expected update{' '}
+            {new Date(snap.nextExpectedUpdate).toLocaleString()}.
+          </p>
+        )}
+      </details>
+      {feature.stream.notes && (
+        <div className="detail-section">
+          <h3>Know this water</h3>
+          <p>{feature.stream.notes}</p>
+        </div>
+      )}
+      <div className="detail-section">
+        <h3>Check before you cast</h3>
+        <p>
+          Conditions can change quickly. Confirm releases, access, and regulations with the official
+          source.
+        </p>
+        {feature.stream.officialSources.map((s) => (
+          <a key={s.url} href={s.url} target="_blank" rel="noreferrer" className="text-action mr-3">
+            {s.label} ↗
+          </a>
+        ))}
+      </div>
+      <Link className="secondary-action" to={riverWorkflowUrl('/logbook', feature.stream, month)}>
+        <BookIcon size={17} />
+        Log a day on this water
+      </Link>
+      <Link
+        className="text-action"
+        to={riverWorkflowUrl('/conditions/' + feature.stream.id, feature.stream, month)}
+      >
+        Full water details →
+      </Link>
+    </>
   );
 }
 function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number }) {
+  const pack = useContentPack();
   const chart = feature.hatchChart;
-  if (!chart || !chart.entries.length) return <p className="text-sm text-[#9FB5AA]">No hatch chart for this region/month.</p>;
   return (
-    <div className="space-y-2">
-      {chart.entries.slice(0,5).map((e:any) => (
-        <div key={e.taxonId} className="rounded-xl border p-3" style={{ borderColor: '#223329', background: '#131F19' }}>
-          <p className="text-sm font-bold text-[#EAF2ED]">{e.taxonId} · {e.stage} · {e.timeOfDay} · size {e.size_mm ?? '—'}mm</p>
-          <p className="text-xs text-[#9FB5AA]">abundance {e.abundance}/3 {e.notes ? `· ${e.notes}` : ''}</p>
+    <>
+      <div className="detail-section">
+        <h3>{monthName(month)} on this water</h3>
+        <p>
+          Regional seasonal guidance, not live sightings. Match the insects you actually observe.
+        </p>
+      </div>
+      {!chart?.entries.length && (
+        <div className="empty-note">
+          <strong>No seasonal chart available</strong>
+          <p>
+            The insect key still works from your observations. Try a different month in map layers.
+          </p>
         </div>
-      ))}
-      <Link to={`/charts/${feature.stream.regionId}/${month}`} className="inline-flex text-sm font-bold underline decoration-[#E8B04B] underline-offset-4">Hatch chart →</Link>
-      <Link to={`/hatch-key`} className="ml-3 inline-flex text-sm font-bold underline decoration-[#E8B04B] underline-offset-4">Match this water →</Link>
+      )}
+      {chart?.entries.map((entry, i) => {
+        const taxon = pack.data?.taxa.find((t) => t.id === entry.taxonId);
+        return (
+          <div className="hatch-card" key={entry.taxonId + entry.stage + entry.timeOfDay + i}>
+            <h3>{taxon?.commonName ?? 'Insect reference unavailable'}</h3>
+            <p>
+              {TIMES[entry.timeOfDay]} · <span className="capitalize">{entry.stage}</span>
+              {taxon ? ' · Hook #' + taxon.sizeRange.join('–#') : ''}
+            </p>
+            <div className="hatch-abundance">Seasonal abundance {entry.abundance}/5</div>
+            <div className="hatch-patterns">
+              {entry.patterns.map((id) => {
+                const pattern = pack.data?.patterns.find((p) => p.id === id);
+                return pattern ? (
+                  <Link key={id} to={riverWorkflowUrl('/patterns/' + id, feature.stream, month)}>
+                    {pattern.name} ↗
+                  </Link>
+                ) : null;
+              })}
+            </div>
+          </div>
+        );
+      })}
+      <Link className="primary-action" to={riverWorkflowUrl('/hatch-key', feature.stream, month)}>
+        <BugIcon size={17} />
+        Match this water
+      </Link>
+      <Link
+        className="text-action"
+        to={riverWorkflowUrl(
+          '/charts/' + feature.stream.regionId + '/' + month,
+          feature.stream,
+          month,
+        )}
+      >
+        Open regional hatch calendar →
+      </Link>
+    </>
+  );
+}
+function StockingTab({ feature, error }: { feature: RiverMapFeature; error?: boolean }) {
+  const event = feature.stocking;
+  if (!event)
+    return (
+      <div className="empty-note">
+        <strong>{error ? 'Schedule unavailable' : 'No matched stocking schedule'}</strong>
+        <p>
+          {error
+            ? 'Could not retrieve a schedule or find a saved copy. Try again when connected.'
+            : 'No published entry matches this water in the available TWRA schedule. This is not confirmation that it is unstocked.'}
+        </p>
+        <Link className="text-action" to="/stocking">
+          Browse published schedules →
+        </Link>
+      </div>
+    );
+  return (
+    <>
+      <div className="detail-section">
+        <p className="eyebrow">Published schedule</p>
+        <h3 className="capitalize mt-2">{event.species} trout</h3>
+        <p>{event.streamName}</p>
+        <p className="mt-2">
+          {new Date(event.date + 'T12:00:00').toLocaleDateString(undefined, {
+            month: 'long',
+            year: 'numeric',
+          })}
+          {event.count != null ? ' · ' + event.count.toLocaleString() + ' fish' : ''}
+        </p>
+      </div>
+      <div className="empty-note">
+        <strong>Verify the timing at TWRA</strong>
+        <p>
+          Published schedules can describe a month or week. The stored date may not be an exact
+          stocking day, and plans can change.
+        </p>
+        <a className="text-action" href={event.sourceUrl} target="_blank" rel="noreferrer">
+          Official schedule ↗
+        </a>
+      </div>
+      <p className="muted text-xs">
+        {feature.stockingCount} matching schedule entries. Source fetched{' '}
+        {new Date(event.fetchedAt).toLocaleDateString()}.
+      </p>
+      <Link className="text-action" to="/stocking">
+        All stocking schedules →
+      </Link>
+    </>
+  );
+}
+function ReportsTab({ feature, error }: { feature: RiverMapFeature; error?: boolean }) {
+  const report = feature.report;
+  if (!report)
+    return (
+      <div className="empty-note">
+        <strong>Reports unavailable here</strong>
+        <p>
+          A river-specific report is not available in this view. Browse the shop directory for
+          attributed reports and local knowledge.
+        </p>
+        <Link className="text-action" to="/shops">
+          Explore shops & reports →
+        </Link>
+      </div>
+    );
+  return (
+    <div className="detail-section">
+      <p className="eyebrow">{report.date}</p>
+      <h3>{report.shopName}</h3>
+      <p>{report.body}</p>
+      <a className="text-action" href={report.attributionUrl} target="_blank" rel="noreferrer">
+        Read the attributed report ↗
+      </a>
     </div>
   );
 }
-function StockingTab({ feature }: { feature: RiverMapFeature }) {
-  if (!feature.stocking) return <p className="text-sm text-[#9FB5AA]">No recent stocking in the cached schedule.</p>;
-  const s: any = feature.stocking;
-  return <div className="rounded-xl border p-3 text-sm" style={{ borderColor: '#223329', background: '#131F19' }}><p className="font-bold">{s.species} · {s.date}</p><p className="text-[#9FB5AA]">{s.streamName} · {s.count ?? ''} {s.hatchery ?? ''}</p><Link to="/stocking" className="font-bold underline decoration-[#E8B04B] underline-offset-4">All stocking →</Link></div>;
-}
-function ReportsTab({ feature }: { feature: RiverMapFeature }) {
-  if (!feature.report) return <p className="text-sm text-[#9FB5AA]">No shop reports for this water.</p>;
-  const r: any = feature.report;
-  return <div className="rounded-xl border p-3 text-sm" style={{ borderColor: '#223329', background: '#131F19' }}><p className="font-bold">{r.shopName ?? r.shopId} · {r.date ?? ''}</p><p className="mt-1 line-clamp-3 text-[#EAF2ED]">{r.summary ?? r.body ?? ''}</p><Link to="/shops" className="font-bold underline decoration-[#E8B04B] underline-offset-4">All reports →</Link></div>;
-}
-function LogTab({ feature }: { feature: RiverMapFeature }) {
-  const entries = useLiveQuery(() => db.logbook.where('streamId').equals(feature.stream.id).toArray().then(a => a.sort((x,y)=> y.date.localeCompare(x.date)).slice(0,5)), [feature.stream.id]) ?? [];
+function LogTab({ feature, month }: { feature: RiverMapFeature; month: number }) {
+  const entries =
+    useLiveQuery(
+      () =>
+        db.logbook
+          .where('streamId')
+          .equals(feature.stream.id)
+          .toArray()
+          .then((rows) => rows.sort((a, b) => b.date.localeCompare(a.date))),
+      [feature.stream.id],
+    ) ?? [];
   return (
-    <div className="space-y-2">
-      <p className="text-xs font-semibold text-[#6B8177]">{LOGBOOK_NOTE} · Only on this device</p>
-      <Link to="/logbook" className="atlas-chip atlas-chip--primary min-h-[40px] px-4 text-sm">Add entry for {feature.stream.name}</Link>
-      {entries.length === 0 ? <p className="text-sm text-[#9FB5AA]">No private entries yet.</p> : entries.map((e:any)=><div key={e.id} className="rounded-xl border p-3 text-sm" style={{ borderColor: '#223329', background: '#131F19' }}><p className="font-bold">{e.date} · {e.streamName}</p><p className="text-[#EAF2ED]">{e.notes}</p>{e.flies?.length ? <p className="text-xs text-[#9FB5AA]">Flies: {e.flies.join(', ')}</p> : null}</div>)}
-      <p className="text-xs text-[#6B8177]">{feature.logCount} total private entries on this water.</p>
-    </div>
+    <>
+      <div className="detail-section">
+        <h3>Your days on this water</h3>
+        <p>Private, on-device notes. No account and no upload.</p>
+      </div>
+      <Link className="primary-action" to={riverWorkflowUrl('/logbook', feature.stream, month)}>
+        <BookIcon size={17} />
+        Add an entry for this water
+      </Link>
+      {entries.length === 0 ? (
+        <div className="empty-note">
+          <strong>A new page in your logbook.</strong>
+          <p>Record the flies, conditions, and little things worth remembering.</p>
+        </div>
+      ) : (
+        entries.map((entry) => (
+          <div className="hatch-card" key={entry.id}>
+            <h3>{entry.date}</h3>
+            <p>{entry.notes || 'No notes added.'}</p>
+            <p>{entry.flies.join(' · ')}</p>
+          </div>
+        ))
+      )}
+    </>
   );
 }

@@ -8,6 +8,7 @@ import './index.css';
 import { App } from './App';
 import { SettingsProvider } from './lib/settings';
 import { MotionSettings } from './components/motion/MotionSettings';
+import { ThemeProvider } from './theme/ThemeProvider';
 
 registerSW({ immediate: true });
 
@@ -26,13 +27,15 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <SettingsProvider>
-        <MotionSettings>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </MotionSettings>
-      </SettingsProvider>
+      <ThemeProvider>
+        <SettingsProvider>
+          <MotionSettings>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </MotionSettings>
+        </SettingsProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>,
 );

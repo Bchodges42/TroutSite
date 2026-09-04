@@ -5,9 +5,12 @@ import { useSettingsContext } from '../lib/settings';
 import { clearCachedSnapshots } from '../lib/db';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { V1_STATES } from '../lib/endpoints';
+import { useTheme } from '../theme/ThemeProvider';
+import { themes } from '../theme/themes';
 
 /** Settings (scope 8): units, default state, reduce-motion — persisted in Dexie. */
 export function SettingsPage() {
+  const { theme, setTheme } = useTheme();
   const { settings, update } = useSettingsContext();
   const { canInstall, installed, promptInstall } = useInstallPrompt();
   const [cleared, setCleared] = useState(false);
@@ -19,6 +22,28 @@ export function SettingsPage() {
         Preferences live in this browser's IndexedDB. No cookies, no accounts, no server.
       </p>
 
+      <h2 className="section-title">Field appearance</h2>
+      <Card>
+        <p className="page-subtitle">
+          One palette for the map and every page. Saved on this device.
+        </p>
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          {Object.values(themes).map((preset) => (
+            <button
+              key={preset.id}
+              className="option-card"
+              aria-pressed={theme.id === preset.id}
+              onClick={() => setTheme(preset.id)}
+            >
+              <span
+                className="h-8 w-8 rounded-full border"
+                style={{ background: preset.map.paperRaised, borderColor: preset.map.hairline }}
+              />
+              {preset.name}
+            </button>
+          ))}
+        </div>
+      </Card>
       <h2 className="section-title">Units</h2>
       <Card>
         <p className="text-sm font-bold">Water temperature</p>
@@ -35,7 +60,9 @@ export function SettingsPage() {
             </button>
           ))}
         </div>
-        <p className="page-subtitle mt-2">Flow is always shown in cfs — gauge data is reported that way.</p>
+        <p className="page-subtitle mt-2">
+          Flow is always shown in cfs — gauge data is reported that way.
+        </p>
       </Card>
 
       <h2 className="section-title">Default state</h2>
@@ -48,7 +75,9 @@ export function SettingsPage() {
           aria-label="Default state"
         >
           {V1_STATES.map((s) => (
-            <option key={s} value={s}>{s} (available now)</option>
+            <option key={s} value={s}>
+              {s} (available now)
+            </option>
           ))}
           <option disabled>More states — v2</option>
         </select>
@@ -64,11 +93,21 @@ export function SettingsPage() {
         >
           <span>
             <span className="block font-bold">Reduce motion</span>
-            <span className="block text-xs font-normal" style={{ color: 'var(--trout-color-text-muted)' }}>
+            <span
+              className="block text-xs font-normal"
+              style={{ color: 'var(--trout-color-text-muted)' }}
+            >
               Disables the wizard's staggered animations. Your OS preference is respected too.
             </span>
           </span>
-          <span className="ml-3 font-extrabold" style={{ color: settings.reduceMotion ? 'var(--trout-color-primary)' : 'var(--trout-color-text-muted)' }}>
+          <span
+            className="ml-3 font-extrabold"
+            style={{
+              color: settings.reduceMotion
+                ? 'var(--trout-color-primary)'
+                : 'var(--trout-color-text-muted)',
+            }}
+          >
             {settings.reduceMotion ? 'ON' : 'OFF'}
           </span>
         </button>
@@ -92,8 +131,8 @@ export function SettingsPage() {
           </>
         ) : (
           <p className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-            Use your browser's <strong>Install app</strong> / <strong>Add to Home Screen</strong> menu
-            option. iOS: Share → Add to Home Screen.
+            Use your browser's <strong>Install app</strong> / <strong>Add to Home Screen</strong>{' '}
+            menu option. iOS: Share → Add to Home Screen.
           </p>
         )}
       </Card>
@@ -115,7 +154,11 @@ export function SettingsPage() {
             Clear cached snapshots
           </Button>
           {cleared && (
-            <span className="text-sm font-bold" style={{ color: 'var(--trout-color-primary)' }} role="status">
+            <span
+              className="text-sm font-bold"
+              style={{ color: 'var(--trout-color-primary)' }}
+              role="status"
+            >
               Cleared ✓
             </span>
           )}

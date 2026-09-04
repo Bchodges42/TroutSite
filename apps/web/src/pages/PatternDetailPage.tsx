@@ -1,21 +1,31 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { RiverContextBar, contextUrl } from '../lib/riverContext';
 import { Card, Chip, EmptyState } from '@trout/ui';
 import { useContentPack } from '../lib/content';
 import type { FlyPattern } from '@trout/contracts';
 
 const TYPE_TONE: Record<FlyPattern['type'], 'neutral' | 'accent' | 'good' | 'fair' | 'poor'> = {
-  dry: 'accent', nymph: 'good', emerger: 'fair', spinner: 'fair', streamer: 'poor', wet: 'neutral', terrestrial: 'neutral',
+  dry: 'accent',
+  nymph: 'good',
+  emerger: 'fair',
+  spinner: 'fair',
+  streamer: 'poor',
+  wet: 'neutral',
+  terrestrial: 'neutral',
 };
 
 /** Fly pattern detail (scope 2): recipe, difficulty, attribution/license. */
 export function PatternDetailPage() {
   const { patternId } = useParams();
+  const [params] = useSearchParams();
   const pack = useContentPack();
 
   if (pack.isLoading) {
     return (
       <main className="page">
-        <p className="page-subtitle" role="status">Loading pattern reference…</p>
+        <p className="page-subtitle" role="status">
+          Loading pattern reference…
+        </p>
       </main>
     );
   }
@@ -27,8 +37,13 @@ export function PatternDetailPage() {
         <EmptyState
           icon="🪝"
           title="Unknown pattern"
+          heading="h1"
           description="That fly is not in the bundled content pack."
-          action={<Link to="/hatch-key" className="focus-ring font-bold underline">Back to the Hatch Key</Link>}
+          action={
+            <Link to={contextUrl('/hatch-key', params)} className="focus-ring font-bold underline">
+              Back to the Hatch Key
+            </Link>
+          }
         />
       </main>
     );
@@ -38,7 +53,11 @@ export function PatternDetailPage() {
 
   return (
     <main className="page">
-      <Link to="/hatch-key" className="focus-ring text-sm font-bold underline">
+      <RiverContextBar />
+      <Link
+        to={contextUrl('/hatch-key', params)}
+        className="focus-ring text-sm font-bold underline"
+      >
         ← Hatch Key
       </Link>
       <h1 className="page-title mt-3">{pattern.name}</h1>
@@ -59,12 +78,18 @@ export function PatternDetailPage() {
 
       <h2 className="section-title">Imitates</h2>
       {imitates.length === 0 ? (
-        <p className="page-subtitle">Generalist / attractor — not tied to one insect in the pack.</p>
+        <p className="page-subtitle">
+          Generalist / attractor — not tied to one insect in the pack.
+        </p>
       ) : (
         <ul className="flex flex-col gap-2">
           {imitates.map((t) => (
             <li key={t.id}>
-              <Link to={`/taxa/${t.id}`} className="list-row focus-ring" style={{ borderRadius: 'var(--trout-radius-lg)' }}>
+              <Link
+                to={contextUrl(`/taxa/${t.id}`, params)}
+                className="list-row focus-ring"
+                style={{ borderRadius: 'var(--trout-radius-lg)' }}
+              >
                 <span className="font-extrabold">{t.commonName}</span>
                 <span className="text-sm font-bold" style={{ color: 'var(--trout-color-primary)' }}>
                   Details →
@@ -89,7 +114,8 @@ export function PatternDetailPage() {
         </Card>
       )}
       <p className="page-subtitle mt-3">
-        License: {pattern.license === 'public-domain' ? 'public domain pattern' : 'attributed pattern'}.
+        License:{' '}
+        {pattern.license === 'public-domain' ? 'public domain pattern' : 'attributed pattern'}.
       </p>
     </main>
   );

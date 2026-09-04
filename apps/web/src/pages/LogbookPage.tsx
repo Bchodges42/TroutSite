@@ -8,8 +8,15 @@ import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { shortDate } from '../lib/time';
 import { AnimatedNumber } from '../components/ui/AnimatedNumber';
 import { SPRING } from '../components/motion/atlas-motion';
+import { RiverContextBar, useRiverContext } from '../lib/riverContext';
 import {
-  addEntry, buildExport, deleteEntry, downloadExport, importFromExport, listEntries, LOGBOOK_NOTE,
+  addEntry,
+  buildExport,
+  deleteEntry,
+  downloadExport,
+  importFromExport,
+  listEntries,
+  LOGBOOK_NOTE,
 } from '../lib/logbook';
 
 /**
@@ -18,9 +25,11 @@ import {
  */
 
 export function LogbookPage() {
+  const context = useRiverContext();
   const entries = useLiveQuery(() => listEntries(), [], undefined);
 
-  const [adding, setAdding] = useState(false);
+  const [adding, setAdding] = useState(Boolean(context.riverId));
+  const [saved, setSaved] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -36,9 +45,15 @@ export function LogbookPage() {
 
   return (
     <main className="page">
+      <RiverContextBar />
+      <p className="eyebrow mb-3">Kept on this device</p>
       <h1 className="page-title">Logbook</h1>
       <p className="page-subtitle mt-1">
-        <AnimatedNumber value={entries?.length ?? 0} format={(v) => `${Math.round(v)} ${Math.round(v) === 1 ? 'entry' : 'entries'} · `} className="font-bold" />
+        <AnimatedNumber
+          value={entries?.length ?? 0}
+          format={(v) => `${Math.round(v)} ${Math.round(v) === 1 ? 'entry' : 'entries'} · `}
+          className="font-bold"
+        />
         {LOGBOOK_NOTE}
       </p>
 
@@ -60,23 +75,41 @@ export function LogbookPage() {
           onChange={(e) => {
             const file = e.target.files?.[0];
             setImportError(null);
-            if (file) void importJson(file).catch((err) => setImportError(err instanceof Error ? err.message : 'Import failed'));
+            if (file)
+              void importJson(file).catch((err) =>
+                setImportError(err instanceof Error ? err.message : 'Import failed'),
+              );
             e.target.value = '';
           }}
         />
       </div>
       {importError && (
-        <p className="mt-2 text-sm font-bold" style={{ color: 'var(--trout-color-danger)' }} role="alert">
+        <p
+          className="mt-2 text-sm font-bold"
+          style={{ color: 'var(--trout-color-danger)' }}
+          role="alert"
+        >
           Import failed: {importError}
         </p>
       )}
 
       {adding && (
         <Card className="mt-4">
-          <NewEntryForm onDone={() => setAdding(false)} />
+          <NewEntryForm
+            initialStreamId={context.riverId ?? ''}
+            onDone={() => {
+              setAdding(false);
+              setSaved(true);
+            }}
+          />
         </Card>
       )}
 
+      {saved && (
+        <p role="status" className="mt-4 text-sm" style={{ color: 'var(--ui-good)' }}>
+          Entry saved privately on this device.
+        </p>
+      )}
       <h2 className="section-title">Entries</h2>
       {entries === undefined || entries.length === 0 ? (
         <EmptyState
@@ -106,7 +139,15 @@ export function LogbookPage() {
                     type="button"
                     className="focus-ring ml-auto text-sm font-bold underline"
                     style={{ color: 'var(--trout-color-danger)' }}
-                    onClick={() => entry.id !== undefined && void deleteEntry(entry.id)}
+                    onClick={() => {
+                      if (
+                        entry.id !== undefined &&
+                        window.confirm(
+                          'Delete this private logbook entry? Export a backup first if you want to keep it.',
+                        )
+                      )
+                        void deleteEntry(entry.id);
+                    }}
                   >
                     Delete
                   </button>
@@ -128,11 +169,18 @@ export function LogbookPage() {
   );
 }
 
-function NewEntryForm({ onDone }: { onDone: () => void }) {
+function NewEntryForm({
+  onDone,
+  initialStreamId = '',
+}: {
+  onDone: () => void;
+  initialStreamId?: string;
+}) {
   const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamSchema.array(), 60 * 24, true);
   const streams = streamsQuery.data?.data ?? [];
 
-  const [streamId, setStreamId] = useState('');
+  const [streamId, setStreamId] = useState(initialStreamId);
+  const [saveError, setSaveError] = useState('');
   const [customName, setCustomName] = useState('');
   const [date, setDate] = useState(() => {
     // Local calendar day — toISOString() is UTC and can shift the day near midnight.
@@ -153,13 +201,24 @@ function NewEntryForm({ onDone }: { onDone: () => void }) {
       streamName: name,
       date,
       notes: notes.trim(),
-      flies: flies.split(',').map((f) => f.trim()).filter(Boolean),
+      flies: flies
+        .split(',')
+        .map((f) => f.trim())
+        .filter(Boolean),
     });
     onDone();
   };
 
   return (
-    <form className="flex flex-col gap-3" onSubmit={(e) => void submit(e)}>
+    <form
+      className="flex flex-col gap-3"
+      onSubmit={(e) =>
+        void submit(e).catch(() =>
+          setSaveError('Could not save this entry. Check available browser storage and try again.'),
+        )
+      }
+    >
+      {saveError && <p role="alert">{saveError}</p>}
       <label className="text-sm">
         <span className="mb-1 block font-bold">Stream (from the catalog)</span>
         <select
@@ -170,7 +229,9 @@ function NewEntryForm({ onDone }: { onDone: () => void }) {
         >
           <option value="">— Other / not listed —</option>
           {streams.map((s) => (
-            <option key={s.id} value={s.id}>{s.name}</option>
+            <option key={s.id} value={s.id}>
+              {s.name}
+            </option>
           ))}
         </select>
       </label>
@@ -219,8 +280,12 @@ function NewEntryForm({ onDone }: { onDone: () => void }) {
         />
       </label>
       <div className="flex items-center gap-2">
-        <Button type="submit" size="lg" className="focus-ring">Save entry</Button>
-        <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>{LOGBOOK_NOTE}</span>
+        <Button type="submit" size="lg" className="focus-ring">
+          Save entry
+        </Button>
+        <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+          {LOGBOOK_NOTE}
+        </span>
       </div>
     </form>
   );

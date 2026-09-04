@@ -14,6 +14,7 @@ import { ScorePill } from '../components/ScorePill';
 import { LocationIcon } from '../components/icons';
 import { formatMiles, getCurrentPosition, nearestStreams } from '../lib/geo';
 import geoJson from '../data/streams-geo.json';
+import { statusForScore } from '../features/map/riverMapSelectors';
 
 /** Bundled coordinates (public USGS gauge locations) for the on-device "near me". */
 const geoByStreamId = geoJson as unknown as Record<string, { lat: number; lon: number }>;
@@ -36,7 +37,12 @@ export function ConditionsPage() {
   const [geoError, setGeoError] = useState<string | null>(null);
 
   const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamListSchema, 60 * 24, true);
-  const conditionsQuery = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsListSchema, CONDITIONS_TTL_MIN, true);
+  const conditionsQuery = useSnapshotQuery(
+    snapshotUrls.conditionsLatest,
+    ConditionsListSchema,
+    CONDITIONS_TTL_MIN,
+    true,
+  );
 
   const snapshotByStream = useMemo(() => {
     const map = new Map<string, ConditionSnapshot>();
@@ -44,7 +50,10 @@ export function ConditionsPage() {
     return map;
   }, [conditionsQuery.data]);
 
-  const streams = useMemo(() => (streamsQuery.data?.data ?? []).filter((s) => s.stateId === stateId), [streamsQuery.data, stateId]);
+  const streams = useMemo(
+    () => (streamsQuery.data?.data ?? []).filter((s) => s.stateId === stateId),
+    [streamsQuery.data, stateId],
+  );
 
   const rows: Row[] = useMemo(() => {
     if (nearMe) {
@@ -56,7 +65,11 @@ export function ConditionsPage() {
     }
     return streams
       .map((stream) => ({ stream, snapshot: snapshotByStream.get(stream.id) }))
-      .sort((a, b) => (b.snapshot?.score.value ?? -1) - (a.snapshot?.score.value ?? -1) || a.stream.name.localeCompare(b.stream.name));
+      .sort(
+        (a, b) =>
+          (b.snapshot?.score.value ?? -1) - (a.snapshot?.score.value ?? -1) ||
+          a.stream.name.localeCompare(b.stream.name),
+      );
   }, [streams, snapshotByStream, nearMe]);
 
   const requestNearMe = async () => {
@@ -73,23 +86,41 @@ export function ConditionsPage() {
     <main className="page">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">Conditions</h1>
-        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
+        <FreshnessChip
+          fetchedAt={
+            conditionsQuery.data?.data[0]
+              ? Date.parse(conditionsQuery.data.data[0].fetchedAt)
+              : null
+          }
+          live={conditionsQuery.data?.live ?? false}
+        />
       </div>
       <p className="page-subtitle mt-1">
-        Fishability scores are computed on your device from the latest cached gauge readings.
+        Supplied trout assessments and gauge observations. Check observation times and official
+        release schedules before fishing.
       </p>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <Chip tone="good">{stateId}</Chip>
         {V1_STATES.filter((s) => s !== stateId).map((s) => (
-          <Chip key={s} tone="neutral" title="More states arrive in v2">{s} · v2</Chip>
+          <Chip key={s} tone="neutral" title="More states arrive in v2">
+            {s} · v2
+          </Chip>
         ))}
         {nearMe ? (
-          <button type="button" className="focus-ring ml-auto underline" onClick={() => setNearMe(null)}>
+          <button
+            type="button"
+            className="focus-ring ml-auto underline"
+            onClick={() => setNearMe(null)}
+          >
             Clear near me
           </button>
         ) : (
-          <button type="button" className="focus-ring ml-auto inline-flex items-center gap-1.5 font-bold underline" onClick={() => void requestNearMe()}>
+          <button
+            type="button"
+            className="focus-ring ml-auto inline-flex items-center gap-1.5 font-bold underline"
+            onClick={() => void requestNearMe()}
+          >
             <LocationIcon size={16} /> Near me
           </button>
         )}
@@ -101,7 +132,9 @@ export function ConditionsPage() {
       )}
 
       {streamsQuery.isLoading || conditionsQuery.isLoading ? (
-        <p className="page-subtitle mt-6" role="status">Loading streams…</p>
+        <p className="page-subtitle mt-6" role="status">
+          Loading streams…
+        </p>
       ) : streamsQuery.isError && rows.length === 0 ? (
         <div className="mt-6">
           <EmptyState
@@ -112,29 +145,44 @@ export function ConditionsPage() {
         </div>
       ) : rows.length === 0 ? (
         <div className="mt-6">
-          <EmptyState icon="🎣" title="No streams here yet" description={`No ${stateId} streams in the catalog yet.`} />
+          <EmptyState
+            icon="🎣"
+            title="No streams here yet"
+            description={`No ${stateId} streams in the catalog yet.`}
+          />
         </div>
       ) : (
         <ul className="mt-4 flex flex-col gap-2">
           {rows.map(({ stream, snapshot, miles }) => (
             <li key={stream.id}>
-              <Link to={`/conditions/${stream.id}`} className="list-row focus-ring" style={{ borderRadius: 'var(--trout-radius-lg)' }}>
+              <Link
+                to={`/conditions/${stream.id}`}
+                className="list-row focus-ring"
+                style={{ borderRadius: 'var(--trout-radius-lg)' }}
+              >
                 <span className="min-w-0 flex-1">
                   <span className="flex flex-wrap items-center gap-2">
                     <h3 className="text-base font-extrabold">{stream.name}</h3>
                     <Chip tone="neutral">{stream.waterbodyType}</Chip>
                     {miles !== undefined && <Chip tone="accent">{formatMiles(miles)}</Chip>}
                   </span>
-                  <span className="mt-1 block text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+                  <span
+                    className="mt-1 block text-sm"
+                    style={{ color: 'var(--trout-color-text-muted)' }}
+                  >
                     {snapshot
                       ? `${latestFlowLabel(snapshot)} · ${latestTempLabel(snapshot, settings.tempUnit)} · trend ${TREND_LABEL[flowTrend(snapshot.readings)] || 'n/a'}`
                       : 'No cached readings yet'}
                   </span>
                 </span>
-                {snapshot ? (
+                {snapshot &&
+                statusForScore(snapshot.score.value, snapshot.readings.length > 0) !== 'no-data' &&
+                stream.species !== 'warmwater' ? (
                   <ScorePill score={snapshot.score.value} />
                 ) : (
-                  <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>—</span>
+                  <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+                    {stream.species === 'warmwater' ? 'Warmwater' : 'Unassessed'}
+                  </span>
                 )}
               </Link>
             </li>
