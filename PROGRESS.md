@@ -2,19 +2,31 @@
 
 Base commit: 9182429ac67a514a609bb7b0554192dabd985e8e (trout-backend@9182429)
 
-## Status
+## Final status: DONE
 
-- [done] Setup: pnpm install, @trout/contracts build, @trout/ui build — all green (no network retry needed).
-- [done] Context read: BACKEND-ISSUES.md B13, COORDINATION.md, docs/atlas-sources.md, pipeline scripts.
-- [done] Baseline audit scan of all 105 rivers.geojson features (bbox/parts/verts/gaps) — evidence in .atlas-src/audit/scan.json (gitignored working evidence).
-- [blocked->worked around] `pnpm --filter @trout/content build` FAILS at base: commit da80558 added region `tn-west` (regions.ts) but no `hatch/tn/tn-west.yaml` exists, so loadContent() emits "no hatch chart file for region tn-west" and the pack build aborts. The pack is required by match-rivers-tiger.mjs / merge-rivers.mjs. Workaround: built the pack once with a temporary untracked `packages/content/hatch/tn/tn-west.yaml` (copy of tn-east-clinch with regionId swapped), then DELETED the shim — no tracked file under packages/ changed (verified with git status). Reported as an upstream defect for the content lane (B08 owner); the served apps/web/public/v1/streams.json is also stale at 92 entries (missing the 13 tn-west waters) because the pack was never rebuilt.
-- [done] Census TIGER/Line 2024 sources downloaded (95 counties LINEARWATER+AREAWATER, 183 MB, public domain).
-- [done] USGS gauge coordinates retrieved for all 51 verified-gauges sites (NAD83, waterservices.usgs.gov, retrieved 2026-09-04) — anchor + reach-gate provenance.
-- [done] Pipeline fixes: atlas-reach-gates.mjs (new shared module, provenance in header), fetch-nhd-targets.mjs (missing targets + envelope corrections incl. 504 workaround), match-rivers-tiger.mjs (clinch region window, strict county lists, reach gates), merge-rivers.mjs (NHD take-map for 16 streams, gates on NHD+AREAWATER parts), validate-atlas.mjs (accept the 13 twra-winter-ponds Point anchors — baseline validator FAILED on them).
-- [in-progress] NHDPlus HR fetch (19 targets; clinch envelope shrunk to the gated tailwater after service 504s), then pipeline rerun.
+- [done] Setup: pnpm install, @trout/contracts build, @trout/ui build — green (no network retry needed).
+- [done] Context: BACKEND-ISSUES.md B13, COORDINATION.md, docs/atlas-sources.md, pipeline scripts.
+- [done] Audit of all 105 rivers.geojson features (92 catalog streams + 13 tn-west point anchors) vs catalog, gauge anchors, TIGER 2024 and NHDPlus HR — verdict table in docs/GEO-AUDIT.md.
+- [done] Census TIGER/Line 2024 (95 counties LINEARWATER+AREAWATER, 183 MB) + USGS NHDPlus HR (26 targets) + USGS gauge coordinates (51 sites, NAD83, 2026-09-04) fetched; all public domain.
+- [done] Pipeline fixes: atlas-reach-gates.mjs (new, provenance-cited reach windows), fetch-nhd-targets.mjs (9 new targets, envelope fixes incl. 504 workaround), match-rivers-tiger.mjs (clinch window, strict counties, gates), merge-rivers.mjs (NHD takes for 16 streams, TN-boundary vertex test, gates on NHD+AREAWATER), validate-atlas.mjs (accept twra-winter-ponds Points — baseline validator FAILED on them).
+- [done] rivers.geojson regenerated through the full pipeline (match -> merge -> fix-caney-fork -> merge-west-tn-points); validate-atlas PASSES; 26 of 105 features changed, each an intended correction or a verified data-refresh delta; zero regressions.
+- [done] streams-geo.json rebuilt: 41 anchors, one per gauge-monitored stream, pinned to published USGS monitoring-location coordinates; dead keys removed; four provable offsets corrected.
+- [done] Verify: validate-atlas PASS; @trout/web typecheck, test (74/74), build + size budget — all green.
+- [done] docs/GEO-AUDIT.md + docs/atlas-sources.md pipeline-order fix (fix-caney-fork.mjs was undocumented).
 
-## Root causes confirmed so far
+## Commits (this lane, in order)
 
-- TIGER 2024 LINEARWATER names big rivers only sparsely: exactly ONE named "Clinch Riv" segment statewide (Hancock Co, upstream of Norris Lake) — this is the whole clinch-river feature; one 7-point "South Fork Holston Riv" segment (Sullivan Co) shared by south-holston-river + boone-tailwater + ft-patrick-henry-tailwater; "Watauga Riv" appears only as one Watauga Lake arm segment (Johnson Co, upstream water). NHDPlus HR is the authoritative centerline source for these.
-- clinch-river TIGER match window (tn-east-clinch lat >= 36.0) excluded the actual Norris tailwater (lat 35.85-36.25).
-- streams-geo.json anchors: clinch -83.948 is ~12 km east of the real below-Norris-Dam gauge (03533000 at -84.0821); hiwassee 35.058 is ~14 km off the Reliance gauge (03556590 at 35.1883); elk -86.108 is in Tims Ford Lake, not the below-dam gauge (03580750 at -86.2811); caney-fork -85.77/-85.77 is inside Center Hill Lake rather than at the dam gauge (03424010).
+- a6de74f geo(audit): lane progress notes with baseline evidence
+- 38df0e8 geo(fix): validate-atlas accepts twra-winter-ponds Point anchors
+- f6fe001 geo(fix): pipeline reach gates + NHD takes for fragment/duplicate streams
+- 2d3f48d geo(fix): regenerate rivers.geojson — verified reaches for 26 streams
+- 6f6f4e6 geo(fix): streams-geo.json anchors rebuilt from USGS gauge locations
+- (final) geo(audit): GEO-AUDIT verdict table + atlas-sources pipeline order
+
+## Disclosed workarounds / upstream findings
+
+- `pnpm --filter @trout/content build` FAILS at base: da80558 added region `tn-west` without `hatch/tn/tn-west.yaml`. Built the pack once with a temporary untracked shim hatch file, deleted immediately after; `git status` confirms no tracked packages/ change. Content lane must add the missing hatch chart.
+- apps/web/public/v1/streams.json is stale (92 entries, missing the 13 tn-west waters) — serving lane.
+- Catalog gauge 03596000 ("Duck River below Manchester") for duck-river-tailwater sits above Normandy Dam — content lane.
+- apps/web/scripts/fix-caney-fork.mjs was missing from docs/atlas-sources.md — fixed here.
+- stones-river: the baseline 3-part reach proved complete (dam-to-mouth tailwater); the new gate prevents Percy Priest Lake connector paths from joining it. Net geometry unchanged.

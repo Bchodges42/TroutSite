@@ -12,7 +12,9 @@ node apps/web/scripts/build-atlas-context-sources.mjs  # context intermediates: 
 node apps/web/scripts/fetch-nhd-targets.mjs     # one-time USGS NHDPlus HR fetches (-> .atlas-src/nhd/)
 node apps/web/scripts/match-rivers-tiger.mjs    # match 92 streams to TIGER LINEARWATER (-> .atlas-src/out/)
 node apps/web/scripts/merge-rivers.mjs          # assemble public/atlas/rivers.geojson
+node apps/web/scripts/fix-caney-fork.mjs        # rebuild caney-fork-river from the NHD corridor
 node apps/web/scripts/build-atlas-context.mjs   # slim + publish context files
+node apps/web/scripts/merge-west-tn-points.mjs  # ALWAYS run last: restore the 13 point anchors (idempotent)
 node apps/web/scripts/validate-atlas.mjs        # structural gate (must PASS)
 ```
 
@@ -48,7 +50,17 @@ not be run — it would overwrite the real atlas with jitter geometry.
 - **Managed reaches:** `boone-tailwater`, `ft-patrick-henry-tailwater`,
   `parksville-tailwater` reuse their parent river's real geometry (same water,
   different managed reach — recorded in `match-report.json` `parent`, not
-  invented).
+  invented). Reach windows for tailwaters and catalog-bracketed reaches
+  (Norris/Wilbur/South Holston/Boone/Fort Patrick Henry/Normandy/Tims Ford/
+  Parksville/Dale Hollow/Percy Priest dams) live in
+  `apps/web/scripts/atlas-reach-gates.mjs` with per-bound provenance (USGS
+  monitoring-location coordinates, TIGER AREAWATER reservoir footprints);
+  gates keep only source parts lying entirely inside the window. See
+  `docs/GEO-AUDIT.md` for the 2026-09-04 audit that introduced them.
+- **Tennessee-only:** NHDPlus HR is a national layer, so envelope fetches near
+  state lines return out-of-state flowlines; `merge-rivers.mjs` keeps an NHD
+  part only when every vertex is inside the Tennessee boundary polygon
+  (whole-part rejection — never delete an interior point).
 - **Resolved:** all 92/92 streams carry verified official geometry.
   `white-oak-creek` is matched to TIGER LINEARWATER through the
   `WHITEOAK → WHITE OAK` entry in the `WORD` normalization map in
