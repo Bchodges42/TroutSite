@@ -1,0 +1,17 @@
+id: tennessee-river
+name: Tennessee River
+stateId: TN
+waterbodyType: river
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Reference waterbody from the Tennessee waterways inventory — one continuous main-stem
+  river shown in both East and West Tennessee, not a pair of east/west duplicates.
+  Catalog stub pending detailed review and line geometry.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html
