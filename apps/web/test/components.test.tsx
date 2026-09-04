@@ -35,9 +35,22 @@ describe('ScorePill', () => {
 });
 
 describe('FreshnessChip', () => {
-  it('shows Live for fresh network data', () => {
+  it('shows Live · observed with the reading age when observedAt is present', () => {
+    render(<FreshnessChip fetchedAt={Date.now()} live observedAt={Date.now() - 2 * 60_000} />);
+    expect(screen.getByText(/Live · observed 2 minutes ago/)).toBeInTheDocument();
+  });
+
+  it('shows Stale · observed when the newest reading is old, even on a live fetch', () => {
+    render(
+      <FreshnessChip fetchedAt={Date.now()} live observedAt={Date.now() - 4 * 60 * 60_000} />,
+    );
+    expect(screen.getByText(/Stale · observed 4 hours ago/)).toBeInTheDocument();
+  });
+
+  it('never claims Live without reading timestamps — only Checked', () => {
     render(<FreshnessChip fetchedAt={Date.now() - 2 * 60_000} live />);
-    expect(screen.getByText(/Live · 2 minutes ago/)).toBeInTheDocument();
+    expect(screen.getByText(/Checked · 2 minutes ago/)).toBeInTheDocument();
+    expect(screen.queryByText(/Live ·/)).not.toBeInTheDocument();
   });
 
   it('shows Offline · last known for cached data', () => {

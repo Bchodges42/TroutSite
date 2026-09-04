@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { StreamSchema, ConditionSnapshotSchema } from '@trout/contracts';
+import { StreamSchema, ConditionSnapshotSchema, newestReadingAt } from '@trout/contracts';
 import { snapshotUrls } from '../../lib/endpoints';
 import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
 import { useSettingsContext } from '../../lib/settings';
@@ -32,7 +32,7 @@ export function BrowsePage() {
     <main className="page">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">Browse streams</h1>
-        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
+        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} observedAt={newestReadingAt((conditionsQuery.data?.data ?? []).flatMap((s) => s.readings))} />
       </div>
       <p className="page-subtitle mt-1">List fallback for the map — same rivers, keyboard and screen-reader friendly.</p>
       <p className="mt-2 text-sm"><Link to="/" className="font-bold underline">← Back to Map</Link></p>

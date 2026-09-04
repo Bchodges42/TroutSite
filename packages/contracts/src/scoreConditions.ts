@@ -13,7 +13,10 @@ import type { Stream } from './schemas/stream.js';
  *    from the nearest range (floor 10). With no cfs but a stage height, base 50 (low confidence).
  *  - Temperature adjusts the flow score: +10 in the 6–20°C ideal window, 0 in the 2–6 / 20–24°C
  *    marginal bands, −15 near freezing (<2°C), −30 dangerously warm (>24°C).
- *  - Score is clamped to 0–100. Empty/foreign-gauge readings score 0 with an explanatory reason.
+ *  - Score is clamped to 0–100. A clamped 0 is a REAL assessment (e.g. floored
+ *    flow minus the dangerous-heat penalty) and callers must render it as Poor;
+ *    only `assessed: false` returns mean "no data". Empty/foreign-gauge readings
+ *    score 0 with an explanatory reason and `assessed: false`.
  */
 const FLOW_BASE_WITHIN = 80;
 const FLOW_PENALTY_MAX = 70;
@@ -52,6 +55,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
     return {
       value: 0,
       reasons: ['No gauge readings are available, so conditions cannot be assessed.'],
+      assessed: false,
     };
   }
 
@@ -66,6 +70,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
       reasons: [
         `Readings do not match this stream's configured gauges (${stream.gaugeIds.join(', ')}).`,
       ],
+      assessed: false,
     };
   }
 
@@ -74,6 +79,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
   const cfsReading = byAge.find((r) => typeof r.cfs === 'number');
 
   let value: number;
+  let assessed = true;
   const reasons: string[] = [];
 
   if (cfsReading && typeof cfsReading.cfs === 'number') {
@@ -123,6 +129,11 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
     } else {
       value = 0;
       reasons.push('The gauge returned no usable flow or stage data.');
+      // Readings exist but carry nothing assessable — same "cannot assess"
+      // contract as the empty/mismatched paths above. Temperature may still
+      // adjust the value below, so this is recorded as a flag, not an early
+      // return (preserves the historical scoring for temp-only readings).
+      assessed = false;
     }
   }
 
@@ -149,5 +160,5 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
     reasons.push(`Scored from ${relevant.length} gauge readings (newest used).`);
   }
 
-  return { value: Math.min(100, Math.max(0, Math.round(value))), reasons };
+  return { value: Math.min(100, Math.max(0, Math.round(value))), reasons, assessed };
 }

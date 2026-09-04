@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Card, DataBadge, EmptyState } from '@trout/ui';
-import { ConditionSnapshotSchema, StreamSchema } from '@trout/contracts';
+import { ConditionSnapshotSchema, StreamSchema, newestReadingAt } from '@trout/contracts';
 import type { GaugeReading } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
@@ -80,7 +80,7 @@ export function StreamDetailPage() {
             {stream.waterbodyType} · {stream.stockingProgram ? 'stocked by TWRA' : 'wild / not stocked'}
           </p>
         </div>
-        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
+        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} observedAt={newestReadingAt(snapshot?.readings ?? [])} />
       </div>
 
       {!snapshot ? (

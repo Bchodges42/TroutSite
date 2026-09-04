@@ -9,6 +9,7 @@ import {
   HatchChartSchema,
 } from '@trout/contracts';
 import type { HatchChart } from '@trout/contracts';
+import { newestReadingAt } from '@trout/contracts';
 import { snapshotUrls } from '../../lib/endpoints';
 import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
 import { db } from '../../lib/db';
@@ -75,7 +76,10 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
       const snap = snapshotById.get((stream as { id: string }).id) as any;
       const hasData = !!snap;
       const score = snap?.score?.value ?? null;
-      const status = statusForScore(score, hasData);
+      const status = statusForScore(score, hasData, snap?.score?.assessed);
+      // Freshness is the age of this stream's newest gauge reading — not when
+      // the snapshot file happened to be fetched (they diverge for hours).
+      const freshness = snap ? newestReadingAt(snap.readings ?? []) : null;
       // Warmwater rivers are listed but never trout-scored — bronze, honest.
       const color = stream.species === 'warmwater' ? atlas.warmwater : colorForStatus(status);
       const chart = hatchMap.get((stream as { regionId: string }).regionId) as HatchChart | undefined ?? null;
@@ -88,7 +92,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         color,
         score,
         species: stream.species ?? 'trout',
-        freshness: (conditionsQ.data?.fetchedAt ?? null) as number | null,
+        freshness: (freshness ?? (conditionsQ.data?.fetchedAt ?? null)) as number | null,
         hatchChart: chart,
         hatchDominant: dominant,
         hatchHalo: halo,

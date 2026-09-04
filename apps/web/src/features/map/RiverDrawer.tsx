@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { READING_STALE_MINUTES } from '@trout/contracts';
 import { regionName } from '../../data/regions';
-import { ageMinutes, clockTime } from '../../lib/time';
+import { ageMinutes } from '../../lib/time';
 import { formatFlow, formatTemp } from '../../lib/units';
 import { flowTrend, TREND_LABEL } from '../../lib/conditions';
 import { useSettingsContext } from '../../lib/settings';
@@ -68,7 +69,16 @@ export function RiverDrawer({ feature, tab, onTab, onClose, modeMonth, live, fet
   const isWarm = feature.species === 'warmwater';
   const accent = isWarm ? atlas.warmwater : feature.color;
   const snapHeight = sheet === 'peek' ? '32vh' : sheet === 'medium' ? '58vh' : '86vh';
-  const freshnessLabel = fetchedAt ? `${live ? 'Updated' : 'Cached'} ${ageMinutes(fetchedAt)} · ${clockTime(fetchedAt)}` : 'No recent reading';
+  // Honest freshness: age of the newest gauge READING (feature.freshness), not
+  // when the snapshot file was fetched. The fetch time only supplements the
+  // stale case ("… · checked just now").
+  const observedMs = feature.freshness;
+  const dataStale = observedMs != null && Date.now() - observedMs > READING_STALE_MINUTES * 60_000;
+  const freshnessLabel = observedMs
+    ? `${!live ? 'Cached' : dataStale ? 'Stale' : 'Live'} · observed ${ageMinutes(observedMs)}${live && dataStale && fetchedAt ? ` · checked ${ageMinutes(fetchedAt)}` : ''}`
+    : fetchedAt
+      ? `Checked ${ageMinutes(fetchedAt)} · no gauge reading`
+      : 'No recent reading';
 
   const header = (size: 'panel' | 'sheet') => (
     <>

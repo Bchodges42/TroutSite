@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { Card, Chip, EmptyState } from '@trout/ui';
-import { StreamSchema, ConditionSnapshotSchema } from '@trout/contracts';
+import { StreamSchema, ConditionSnapshotSchema, newestReadingAt } from '@trout/contracts';
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
 import { snapshotUrls, V1_STATES } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
@@ -73,7 +73,7 @@ export function ConditionsPage() {
     <main className="page">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">Conditions</h1>
-        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} />
+        <FreshnessChip fetchedAt={conditionsQuery.data?.fetchedAt} live={conditionsQuery.data?.live ?? false} observedAt={newestReadingAt((conditionsQuery.data?.data ?? []).flatMap((s) => s.readings))} />
       </div>
       <p className="page-subtitle mt-1">
         Fishability scores are computed on your device from the latest cached gauge readings.
