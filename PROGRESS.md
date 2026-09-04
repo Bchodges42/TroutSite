@@ -21,7 +21,10 @@ Base commit: 9182429ac67a514a609bb7b0554192dabd985e8e (trout-backend@9182429)
 - f6fe001 geo(fix): pipeline reach gates + NHD takes for fragment/duplicate streams
 - 2d3f48d geo(fix): regenerate rivers.geojson — verified reaches for 26 streams
 - 6f6f4e6 geo(fix): streams-geo.json anchors rebuilt from USGS gauge locations
-- (final) geo(audit): GEO-AUDIT verdict table + atlas-sources pipeline order
+- a6ecdd4 geo(audit): GEO-AUDIT per-stream verdict table + pipeline docs
+- 8c3c9b4 geo(fix): pipeline refinements used by the regenerated atlas (stones/ocoee gates, elk/duck takes, TN-boundary vertex test)
+
+All verifications re-run on the final committed tree: validate-atlas PASS, typecheck PASS, 74/74 tests, build + size budget OK.
 
 ## Disclosed workarounds / upstream findings
 
