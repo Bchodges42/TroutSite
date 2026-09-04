@@ -172,11 +172,17 @@ test('reduced motion keeps zoom usable', async ({ page }) => {
     .toBeGreaterThan(before);
 });
 
-test('a missing catalog keeps map tools and a clear error state', async ({ page }) => {
-  await page.route('**/v1/streams', (route) => route.fulfill({ status: 503, body: 'Unavailable' }));
-  await page.goto('/');
-  await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
-  await expect(page.getByText('Catalog unavailable', { exact: true })).toBeVisible();
+test.describe('a missing catalog keeps map tools and a clear error state', () => {
+  // The SW runtime-caches /v1/streams (B10 fix made that route live) and SW
+  // fetches bypass page.route — block the worker so the 503 mock is honored.
+  test.use({ serviceWorkers: 'block' });
+
+  test('keeps map tools and shows a clear error', async ({ page }) => {
+    await page.route('**/v1/streams', (route) => route.fulfill({ status: 503, body: 'Unavailable' }));
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
+    await expect(page.getByText('Catalog unavailable', { exact: true })).toBeVisible();
+  });
 });
 
 test('WebGL failure has a usable list alternative', async ({ page }) => {

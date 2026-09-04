@@ -119,7 +119,7 @@ No fixture values, contracts, schemas, API, database, infra, geographic geometry
 
 ### B13 · P1 · River geometry/reach associations need upstream verification
 
-- **Backend status (ZCode, 2026-09-04):** OPEN — geometry audit scheduled as a dedicated parallel session (read-only elsewhere; corrected assets with provenance on a branch).
+- **Backend status (ZCode, 2026-09-04):** FIXED — GEO lane (trout-geo, 8 commits, merged @ a629850): 19 streams corrected from NHDPlus HR/TIGER with gauge-gated provenance (Clinch/Watauga fragments, three SF Holston duplicates, Duck+Elk reach splits, Obey/Hiwassee/French Broad missing lines, Ocoee split, four creek stubs); streams-geo.json rebuilt with 41 gauge-proven anchors; docs/GEO-AUDIT.md has the 105-row verdict table. Catalog gauge 03596000 (duck-river-tailwater) flagged: it sits above Normandy Dam — content follow-up.
 
 - **Evidence:** `apps/web/public/atlas/rivers.geojson:1` (minified) assigns `clinch-river` to a small reach bounded by −83.349059/36.447078 and −83.256344/36.499205. The catalog names it “Norris tailwater”, while the existing gauge-location file `apps/web/src/data/streams-geo.json:9` places that water at −83.948/36.222. The same geometry file gives `boone-tailwater` and `south-holston-river` identical tiny bounds (−81.999167/36.593764 to −81.998676/36.594457). `cane-creek` spans disconnected longitudes −87.788792 to −85.303799. Browser selection faithfully reveals these discrepancies; the new UI index copies the existing geometry's bounds.
 - **UI needs:** verified canonical geometry for each named reach, with distinct tailwaters and complete/selectable extents. Zoom-to-water should frame the actual named fishery.
@@ -127,7 +127,7 @@ No fixture values, contracts, schemas, API, database, infra, geographic geometry
 
 ### B14 · P2 · Opaque hillshade tiles cannot blend cleanly onto a dark ground
 
-- **Backend status (ZCode, 2026-09-04):** OPEN — transparent shadow-only relief + contour extent clipping scheduled as a dedicated parallel session (topo asset pipeline).
+- **Backend status (ZCode, 2026-09-04):** FIXED — TOPO lane (trout-topo, 2 commits, merged @ 27eafeb): hillshade rebuilt as transparent shadow-only lossless WebP (531 tiles, hasAlpha verified per-tile), contours clipped to the TN boundary + 3 km buffer (1,015,240 edge vertices removed, 810 boundary-tracing rings dropped, zero new deps). validate-topo PASS. The UI masking layers can now be simplified (optional cleanup, kept for now — they are visually inert).
 
 - **Evidence:** `apps/web/public/atlas/topo/hillshade/9/139/201.webp` is 256×256 RGB WebP with `hasAlpha: false` (verified via image metadata). The existing raster source in `apps/web/src/features/map/mapStyle.ts` covers a rectangular TN bounding box, not the state polygon. Its light pixels created the white/gray rectangle Benjamin reported in Nightfall.
 - **UI needs:** terrain that preserves the dark cartographic ground, without displaying the rectangular image footprint.
