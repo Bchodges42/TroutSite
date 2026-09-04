@@ -19,7 +19,7 @@ UI text uses `text`, `muted`, and `faint`; surfaces use `bg`, `surface`, `subtle
 
 `apps/web/src/features/map/mapStyle.ts` exports `atlasStyle(variant, palette)` → typed MapLibre `StyleSpecification`. `TennesseeMap` applies per-water colors from the active palette, preserves camera state, and reapplies feature state once after a style swap. It does not recreate the map for theme changes.
 
-The palette covers land, water, labels/halos, county/state outlines, condition lines, hover, selection, lake shores, and terrain rendering. `reliefOpacity` and `reliefBrightness` are numeric cartographic appearance tokens. A zero opacity hides the raster layer but retains contours. The `road` token is reserved: no first-party road data exists in this baseline, and no fabricated road layer was added.
+The palette covers land, water, labels/halos, county/state outlines, condition lines and polygon washes, hover, selection, lake shores, and terrain rendering. Catalog polygons use a quiet base-water fill, a feature-state condition wash, selected/hover shoreline, and transparent fill/edge hit surfaces. Their labels reuse the existing still-water typography and collision path. `reliefOpacity` and `reliefBrightness` are numeric cartographic appearance tokens. A zero opacity hides the raster layer but retains contours. The `road` token is reserved: no first-party road data exists in this baseline, and no fabricated road layer was added.
 
 In terrain mode, neighboring-state fills are drawn **above** relief and below the genuine Tennessee outline. This masks rectangular acquisition/contour extents outside Tennessee at higher zooms. It is a rendering-order change using the existing boundaries, not a geographic-data rewrite. Keep this ordering when adding layers.
 
@@ -48,4 +48,4 @@ Themes map existing categories to appearance; they do not calculate conditions, 
 
 ## Backend lane note (2026-09-04)
 
-The backend lane (`C:\Users\Benjamin\Projects\trout-backend`) touches none of the theme token files; `applyTheme`/`atlasStyle` remain the single source of palette truth. Backend additions that render into the map (West TN point anchors) consume the same condition feature-state colors as river lines, so themes recolor them for free — restyling the point markers is UI-lane work. The B14 relief/contour asset fix upstream will replace this doc's masking notes with genuinely clipped assets; keep the layer-ordering rule until then.
+The integrated data lanes touch none of the theme token files; `applyTheme`/`atlasStyle` remain the single source of palette truth. West Tennessee Point fallbacks and future Polygon/MultiPolygon replacements consume the same promoted-ID condition feature state as river lines, so both themes remain truthful without per-feature CSS. B14's transparent hillshade and clipped contours are merged; the existing UI masks remain visually inert safeguards, and the layer-ordering rule still protects boundaries and labels.

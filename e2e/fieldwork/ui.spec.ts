@@ -9,6 +9,9 @@ const sharp = createRequire(new URL('../../apps/web/package.json', import.meta.u
 const catalogPath = fileURLToPath(
   new URL('../../apps/web/public/v1/streams.json', import.meta.url),
 );
+const riversPath = fileURLToPath(
+  new URL('../../apps/web/public/atlas/rivers.geojson', import.meta.url),
+);
 
 // Test-only transport seam for BACKEND-ISSUES B01. This serves the unchanged
 // baseline catalog to a browser test; it does NOT patch the production adapter.
@@ -54,6 +57,46 @@ async function mapViewportCoordinate(page: Page, longitude: number, latitude: nu
 async function clickMapCoordinate(page: Page, longitude: number, latitude: number) {
   const point = await mapViewportCoordinate(page, longitude, latitude);
   await page.locator('.maplibregl-canvas').click({ position: point });
+}
+async function mockCatalogPolygon(page: Page) {
+  await page.route('**/atlas/rivers.geojson', async (route) => {
+    const atlas = JSON.parse(await readFile(riversPath, 'utf8')) as {
+      features: Array<{
+        properties: Record<string, unknown> & { id: string };
+        geometry: { type: string; coordinates: unknown };
+      }>;
+    };
+    const feature = atlas.features.find((candidate) => candidate.properties.id === 'beech-lake')!;
+    // Central Tennessee keeps the artificial polygon on-screen at the
+    // product's enforced mobile minimum zoom. This is never persisted.
+    const longitude = -86.8;
+    const latitude = 36.45;
+    feature.geometry = {
+      type: 'Polygon',
+      coordinates: [
+        [
+          [longitude - 0.32, latitude - 0.22],
+          [longitude + 0.32, latitude - 0.22],
+          [longitude + 0.32, latitude + 0.22],
+          [longitude - 0.32, latitude + 0.22],
+          [longitude - 0.32, latitude - 0.22],
+        ],
+      ],
+    };
+    feature.properties = {
+      ...feature.properties,
+      waterbodyType: 'lake',
+      source: 'test-only-architecture-fixture',
+      approximate: true,
+      bounds: [longitude - 0.32, latitude - 0.22, longitude + 0.32, latitude + 0.22],
+      labelAnchor: [longitude, latitude],
+    };
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/geo+json',
+      body: JSON.stringify(atlas),
+    });
+  });
 }
 
 test('the map opens full-bleed and the water atlas is summonable', async ({ page }) => {
@@ -283,6 +326,35 @@ test('West Tennessee still waters are labeled, tappable, and honestly unassessed
   ).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
   await expect(page.getByText('Small still water · Stocking program listed')).toBeVisible();
+});
+
+test('a catalog polygon uses the shared label, filter, and inspector path', async ({ page }) => {
+  await mockCatalogPolygon(page);
+  await page.goto('/');
+  await ready(page);
+  await expect(page.locator('.water-sidebar')).toBeHidden();
+  await expect(page.locator('[data-river-id="beech-lake"]')).toHaveClass(/still-water-label/);
+  // Deliberately oversized test geometry keeps its open surface separable from
+  // the label at state zoom; no production geometry is written.
+  await clickMapCoordinate(page, -86.65, 36.45);
+  await expect(page).toHaveURL(/river=beech-lake/);
+  await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
+});
+
+test.describe('touch polygon selection', () => {
+  test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  test('opens the same mobile fiche from the polygon surface', async ({ page }) => {
+    await mockCatalogPolygon(page);
+    await page.goto('/');
+    await ready(page);
+    const point = await mapViewportCoordinate(page, -86.65, 36.45);
+    const canvas = await page.locator('.maplibregl-canvas').boundingBox();
+    await page.touchscreen.tap(canvas!.x + point.x, canvas!.y + point.y);
+    await expect(page).toHaveURL(/river=beech-lake/);
+    await expect(page.locator('.water-sidebar.is-inspecting')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
+  });
 });
 
 test('granted location moves the map and shows an on-device marker', async ({ page, context }) => {

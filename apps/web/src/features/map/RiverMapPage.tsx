@@ -206,6 +206,15 @@ export function RiverMapPage() {
     () => new Set(data.features.filter((f) => f.status !== 'no-data').map((f) => f.stream.id)),
     [data.features.map((f) => f.stream.id + f.status).join(',')],
   );
+  const stillWaterIds = useMemo(
+    () =>
+      new Set(
+        data.streams
+          .filter((stream) => ['lake', 'pond', 'reservoir'].includes(stream.waterbodyType))
+          .map((stream) => stream.id),
+      ),
+    [data.streams.map((stream) => stream.id + stream.waterbodyType).join(',')],
+  );
   const colors = useMemo(
     () =>
       new Map(
@@ -388,6 +397,7 @@ export function RiverMapPage() {
           featureColors={colors}
           visibleIds={visibleIds}
           assessedIds={assessedIds}
+          stillWaterIds={stillWaterIds}
           hatchActiveIds={hatchActive}
           basemap={basemap}
           places={places}

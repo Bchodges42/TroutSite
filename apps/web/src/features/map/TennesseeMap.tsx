@@ -34,6 +34,7 @@ interface Props {
   allIds?: string[];
   visibleIds?: Set<string>;
   assessedIds?: Set<string>;
+  stillWaterIds?: Set<string>;
   hatchActiveIds?: Set<string>;
   hatchColors?: Map<string, string>;
   fitPadding?: { top: number; bottom: number; left: number; right: number };
@@ -108,13 +109,15 @@ export function TennesseeMap(props: Props) {
     previousSelection.current = undefined;
     firstView.current = true;
     let map: maplibregl.Map;
+    const initialSaved = savedCamera(latest.current);
+    const bootstrapSelection =
+      !initialSaved && index.some((river) => river.id === latest.current.selectedId);
     try {
-      const saved = savedCamera(latest.current);
       map = new maplibregl.Map({
         container: el,
         style: atlasStyle(latest.current.basemap, palette.current),
-        ...(saved
-          ? { center: saved.center, zoom: saved.zoom }
+        ...(initialSaved
+          ? { center: initialSaved.center, zoom: initialSaved.zoom }
           : {
               bounds: TN_BOUNDS,
               fitBoundsOptions: {
@@ -192,9 +195,13 @@ export function TennesseeMap(props: Props) {
         zoom: map.getZoom(),
         padding: map.getPadding(),
       } as Camera;
-      cameras.set((latest.current.viewKey ?? 'default') + ':' + latest.current.layout, camera);
-      cameras.set('route:' + latest.current.viewRoute + ':' + latest.current.layout, camera);
-      while (cameras.size > 100) cameras.delete(cameras.keys().next().value!);
+      // Initial fitBounds can emit moveend before the deep-linked selection
+      // effect runs. Do not persist that bootstrap camera over the water.
+      if (!bootstrapSelection || previousSelection.current !== undefined) {
+        cameras.set((latest.current.viewKey ?? 'default') + ':' + latest.current.layout, camera);
+        cameras.set('route:' + latest.current.viewRoute + ':' + latest.current.layout, camera);
+        while (cameras.size > 100) cameras.delete(cameras.keys().next().value!);
+      }
       labelsRef.current();
     };
     map.on('load', () => {
@@ -206,7 +213,10 @@ export function TennesseeMap(props: Props) {
       delete el.dataset.mapFailed;
       applyRef.current();
       latest.current.onMapReady?.(map);
-      syncCamera();
+      // Do not snapshot the full-state bootstrap over a deep-linked water's
+      // intended camera. The selection effect fits it once `ready` commits.
+      const initialRiver = index.find((river) => river.id === latest.current.selectedId);
+      if (initialSaved || !initialRiver) syncCamera();
     });
     // Reapply feature presentation once after a style swap, never on every idle.
     map.on('style.load', () => map.once('idle', () => applyRef.current()));
@@ -219,7 +229,14 @@ export function TennesseeMap(props: Props) {
             [point.x - 5, point.y - 5],
             [point.x + 5, point.y + 5],
           ],
-          { layers: ['rivers-point-hit', 'rivers-hit', 'rivers-water'] },
+          {
+            layers: [
+              'rivers-point-hit',
+              'rivers-water-hit',
+              'rivers-water-hit-outline',
+              'rivers-hit',
+            ],
+          },
         )
         .filter((f) => {
           const id = String(f.properties.id ?? '');
@@ -228,8 +245,11 @@ export function TennesseeMap(props: Props) {
       // Broad touch targets may overlap. Choose the nearest visible centerline,
       // not the arbitrary source/tile order (which can pick a neighboring creek).
       const distance = (feature: maplibregl.MapGeoJSONFeature) => {
+        // A line drawn across a lake should remain directly selectable. Give
+        // polygon interiors a small deterministic distance so a centerline
+        // within the same pointer box wins, while open water still selects.
         if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon')
-          return 0;
+          return feature.layer.id === 'rivers-water-hit' ? 6 : 9;
         if (feature.geometry.type === 'Point') {
           const projected = map.project(feature.geometry.coordinates as [number, number]);
           return Math.hypot(point.x - projected.x, point.y - projected.y);
@@ -276,7 +296,26 @@ export function TennesseeMap(props: Props) {
       hovered = id;
       map.getCanvas().style.cursor = id ? 'pointer' : '';
     });
+    let touchStart: maplibregl.Point | null = null;
+    let lastTouchSelection = 0;
+    map.on('touchstart', (e) => {
+      touchStart = e.originalEvent.touches.length === 1 ? e.point : null;
+    });
+    map.on('touchend', (e) => {
+      const start = touchStart;
+      touchStart = null;
+      if (!start || Math.hypot(e.point.x - start.x, e.point.y - start.y) > 10) return;
+      const id = hit(e.point);
+      if (id) {
+        lastTouchSelection = Date.now();
+        latest.current.onSelect(id);
+      }
+    });
+    map.on('touchcancel', () => {
+      touchStart = null;
+    });
     map.on('click', (e) => {
+      if (Date.now() - lastTouchSelection < 500) return;
       const id = hit(e.point);
       if (id) latest.current.onSelect(id);
     });
@@ -302,7 +341,7 @@ export function TennesseeMap(props: Props) {
   }, [attempt]);
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) return;
+    if (!map || !ready) return;
     const styleKey = theme.id + ':' + props.basemap;
     if (appliedStyle.current === styleKey) return;
     const swap = () => {
@@ -361,14 +400,14 @@ export function TennesseeMap(props: Props) {
     }
     previousSelection.current = props.selectedId;
     previousLayout.current = props.layout;
-  }, [props.selectedId, props.viewKey, props.layout, attempt]);
+  }, [props.selectedId, props.viewKey, props.layout, attempt, ready]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
     const markers = index.map((river) => {
       const el = document.createElement('button');
       el.type = 'button';
-      const stillWater = isStillWaterId(river.id);
+      const stillWater = isStillWaterId(river.id) || Boolean(props.stillWaterIds?.has(river.id));
       el.className = 'river-map-label' + (stillWater ? ' still-water-label' : '');
       el.textContent = waterIdentity(river.name).name;
       el.dataset.riverId = river.id;

@@ -147,9 +147,42 @@ export function atlasStyle(
           'line-opacity': 0.9,
         },
       },
-      // Wide water — AREAWATER polygons (Hiwassee, French Broad, Obed; TIGER
-      // has no centerlines for these). Rendered as watercolor washes: soft
-      // condition tint + hairline shore. Never drawn by line layers.
+      // First-class catalog water polygons. Keep a quiet water-colored base so
+      // an unassessed polygon is still legible as water; condition and
+      // interaction state are layered above it. Never drawn by line layers.
+      {
+        id: 'rivers-water-base',
+        type: 'fill',
+        source: 'rivers',
+        filter: POLYS_ONLY,
+        paint: {
+          'fill-color': t.lakeFill,
+          'fill-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            5.5,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'dimmed'], false],
+              0.18,
+              0.72,
+            ],
+            9,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'dimmed'], false],
+              0.18,
+              0.94,
+            ],
+          ],
+        },
+      },
+      // Condition wash — the polygon equivalent of the river interior.
       {
         id: 'rivers-water',
         type: 'fill',
@@ -168,9 +201,11 @@ export function atlasStyle(
             0,
             ['boolean', ['feature-state', 'selected'], false],
             0.55,
+            ['boolean', ['feature-state', 'hover'], false],
+            0.46,
             ['boolean', ['feature-state', 'dimmed'], false],
             0.08,
-            0.34,
+            0.3,
           ],
         },
       },
@@ -357,6 +392,23 @@ export function atlasStyle(
         filter: LINES_ONLY,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': t.ink, 'line-opacity': 0, 'line-width': 28 },
+      },
+      // Catalog polygon hit target. The fill makes the complete visible water
+      // surface tappable; the transparent outline gives narrow coves and tiny
+      // polygons a forgiving edge without changing their appearance.
+      {
+        id: 'rivers-water-hit',
+        type: 'fill',
+        source: 'rivers',
+        filter: POLYS_ONLY,
+        paint: { 'fill-color': t.water, 'fill-opacity': 0 },
+      },
+      {
+        id: 'rivers-water-hit-outline',
+        type: 'line',
+        source: 'rivers',
+        filter: POLYS_ONLY,
+        paint: { 'line-color': t.water, 'line-opacity': 0, 'line-width': 18 },
       },
       // Point anchors — put-and-take ponds use a water-centered ring, distinct
       // from river lines. The outer halo scales with zoom while the ring keeps

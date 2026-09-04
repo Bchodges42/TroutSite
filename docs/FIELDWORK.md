@@ -19,7 +19,7 @@ Fieldwork makes the map a working instrument: persistent navigation, a searchabl
 
 ## Implemented experience
 
-- **Map first:** immediately available search, zoom, layers, filters, and location controls. Geometry and named labels both select a water. Generous geometry hit areas choose the nearest river where targets overlap. Selection, hover, assessed, and unassessed states have distinct treatments.
+- **Map first:** the state map is full-bleed on first load; the water atlas opens on demand from the map key, Layers, or menu. Search, zoom, filters, and location stay immediately available. Lines, Point fallbacks, and catalog polygons share selection, hover, assessed, unassessed, and generous pointer/touch hit treatment.
 - **Contextual decisions:** a desktop inspector and expandable mobile sheet show one supplied assessment, explanation, observations, units, and hatch outlook. Conditions, Hatches, Stocking, Reports, and Log are progressively disclosed. Empty sections do not imply that a disabled feed has been checked.
 - **Continuous journeys:** river, region, and month travel through hatch matching, taxon/pattern references, charts, and logbook. Returning to exploration or navigating history preserves selection and camera. The mobile fit uses the resized map dimensions, keeping the chosen river above the sheet.
 - **Shared identity:** Fraunces headings, IBM Plex Sans UI, restrained panels, mineral cartography, and warm actions. Two complete palettes style both chrome and map without recreating the map. Supporting consumer routes share the same system.
@@ -30,7 +30,7 @@ Theme configuration and extension instructions: [THEMES.md](THEMES.md).
 
 ## UI-only ownership / remaining limitations
 
-Per Benjamin's process change, backend logic, data semantics, fixtures, tile serving, APIs, offline caching, schemas, and infrastructure are not owned by this branch. Earlier non-UI experiments were reverted. All five affected existing files and all 777 atlas source files were verified byte-identical to baseline. Only UI implementation, presentation metadata, tests, and documentation remain changed.
+Per Benjamin's process change, backend logic, data semantics, fixtures, tile serving, APIs, offline caching, schemas, and infrastructure are not owned by this branch. Earlier non-UI experiments were reverted. This UI pass leaves the integrated catalog, atlas geometry, topo assets, generated snapshots, and pipeline scripts untouched.
 
 [BACKEND-ISSUES.md](../BACKEND-ISSUES.md) contains the complete reverted-change inventory and fourteen evidence-backed dependencies, including:
 
@@ -38,7 +38,8 @@ Per Benjamin's process change, backend logic, data semantics, fixtures, tile ser
 - **B02–B05, B08:** assessment availability/species, freshness, cross-gauge trends, and stocking associations require upstream contracts or adapters. The UI does not repair or recompute them. A retrieved snapshot is not claimed to be a live observation.
 - **B06–B07:** disabled reports/stocking feeds and sequential month-dependent hatch loading remain upstream. Published schedules are not confirmations that stocking occurred.
 - **B10–B11:** clean-install offline behavior and demonstration-build provenance need backend/infra verification. Existing local persistence and caching code were preserved; full production offline guarantees are not asserted.
-- **B12–B14:** road data is absent; some existing river/reach geometries are mismatched; relief assets have opaque/rectangular extents. The visual terrain issue is masked in this UI, while geographic corrections and improved assets remain upstream.
+- **B12:** road data is absent pending a first-party licensing/source decision.
+- **B15:** the reference inventory identifies passive lake polygons, fragmented main stems, missing geometries, and the 13 Point-to-polygon upgrades. Geometry/catalog production follows the new machine-readable inventory and contract; no geometry is fabricated in UI code.
 
 ## Startup
 
@@ -63,9 +64,9 @@ pnpm --filter @trout/web build
 pnpm --filter @trout/e2e exec playwright test --config fieldwork.config.ts
 ```
 
-- Baseline web unit suite: 50 passing tests. Current web unit suite: 62 passing tests across eight files.
-- Focused browser suite: 20 passing tests covering immediate controls, map/label/search selection, inspector keyboard behavior, both themes and reload, river/month context, history/camera, 768/390/320 px layouts, reduced motion, missing catalog, unavailable WebGL, offline/unassessed presentation, location success/denial, guided hatch focus, East Tennessee pixels, and desktop/mobile inspector framing.
-- TypeScript and production build pass. Production app assets are approximately 5.83 MB excluding 17.04 MB of retained topo assets, under the repository's 25 MB app budget.
+- Current web unit suite: 89 passing tests across nine files.
+- Focused browser suite: 24 passing tests covering full-bleed/atlas disclosure, map/label/search selection, pointer and real touch polygon selection, direct line selection, inspector keyboard behavior, both themes and reload, river/month context, deep-link/history camera behavior, 768/390/320 px layouts, reduced motion, missing catalog, unavailable WebGL, offline/unassessed presentation, location success/denial, guided hatch focus, East Tennessee pixels, and desktop/mobile inspector framing.
+- TypeScript and the full workspace production build pass. Production web assets are 5.00 MB excluding 24.50 MB of runtime-cached topo assets, under the repository's 25 MB app budget.
 - Build warnings retained: large main bundle (approximately 1.67 MB before gzip), existing static/dynamic database-import overlap, and an unmatched Workbox negative glob. No package or lockfile changes were made. Offline cache warnings are recorded in B10 rather than patched here.
 - Browser verification uses unchanged source snapshots, not generated condition fixtures. The offline test verifies presentation with already-loaded data, not clean-install production caching. Tests do not create or delete logbook entries.
 
@@ -88,5 +89,6 @@ Backend/infra lane lives in `C:\Users\Benjamin\Projects\trout-backend` (branch `
 
 - **Fixed and committed (8 commits):** B01 (`7363324`), B02+B03 (`866a7a8`), B04 (`ba28b05`), B05+B06 (`75c5d18`), B07 (`d0997a7`), B10 (`fd23f57`), B09+B11 (`419baed`). Web unit suite 50 → 74 passing; typecheck + production build + size budget green.
 - **West Tennessee blank map — fixed (`da80558`):** root cause was catalog scope, not rendering — the launch catalog had zero waters west of the Tennessee River and rivers.geojson carries exactly one feature per catalog stream. Added the 13 real TWRA winter put-and-take waters (verbatim schedule names, so stocking matching resolves them), a `tn-west` region, `lake`/`pond` waterbody types, and first-party Point anchors in rivers.geojson (8 OSM-geocoded, 5 explicitly approximate) with map point layers + touch hit targets. Fixtures now carry 105 waters.
-- **Still open:** B08 (species applicability), B12 (roads — deferred pending licensing call), B13 (river geometry audit), B14 (relief/contour asset extents). B13/B14 are being split into dedicated parallel sessions; integration of this UI branch with backend `main` is the critical path and is single-threaded.
+- **Integrated data lanes:** the species catalog, 19 corrected stream geometries, clipped/alpha topo assets, backend fixes, regenerated 105-entry river index, and 13 West Tennessee waters are present on this branch.
+- **Still open:** B12 (roads — deferred pending licensing/source decision) and B15 (reference-waterbody catalog/geometry production described by the inventory and contract).
 - **Coordination:** `trout-backend/COORDINATION.md` (lane split, merge plan) and `trout-backend/SESSIONS.md` (parallel-session briefs).

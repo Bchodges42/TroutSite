@@ -66,6 +66,26 @@ describe('Fieldwork themes', () => {
       expect(JSON.stringify(hit?.paint)).toContain('22');
     }
   });
+  it('gives catalog polygons a base, state wash, shore, and generous transparent hit surface', () => {
+    for (const theme of Object.values(themes)) {
+      const layers = atlasStyle('paper', theme.map).layers;
+      const ids = layers.map((layer) => layer.id);
+      expect(ids.indexOf('rivers-water-base')).toBeLessThan(ids.indexOf('rivers-water'));
+      expect(ids.indexOf('rivers-water')).toBeLessThan(ids.indexOf('rivers-water-shore'));
+      expect(ids.indexOf('rivers-water-shore')).toBeLessThan(ids.indexOf('rivers-water-hit'));
+      expect(JSON.stringify(layers.find((layer) => layer.id === 'rivers-water')?.paint)).toContain(
+        'feature-state","hover',
+      );
+      expect(layers.find((layer) => layer.id === 'rivers-water-hit')).toMatchObject({
+        type: 'fill',
+        filter: ['==', '$type', 'Polygon'],
+      });
+      expect(layers.find((layer) => layer.id === 'rivers-water-hit-outline')?.paint).toHaveProperty(
+        'line-width',
+        18,
+      );
+    }
+  });
 });
 
 it('uses contour relief in Nightfall without the opaque light raster footprint', () => {
