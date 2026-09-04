@@ -14,6 +14,7 @@ import { snapshotUrls } from '../../lib/endpoints';
 import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
 import { db } from '../../lib/db';
 import { fetchSnapshot } from '../../lib/snapshots';
+import { matchStocking } from '../../lib/stockingMatch';
 import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from './riverMapSelectors';
 import { atlas } from './mapTokens';
 import type { RiverMapFeature } from './riverMapSelectors';
@@ -48,8 +49,11 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   const streamsQ = useSnapshotQuery(snapshotUrls.streams, StreamsSchema, 60 * 24, enabled);
   const conditionsQ = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsSchema, 60, enabled);
-  const reportsQ = useSnapshotQuery(snapshotUrls.reportsRecent, ReportsSchema, 60 * 24, false);
-  const stockingQ = useSnapshotQuery(snapshotUrls.stocking('TN'), StockingSchema, 60 * 24, false);
+  // Reports + stocking were permanently disabled (B06): counts hardcoded to 0
+  // and "never fetched" was indistinguishable from "no reports". Both feeds are
+  // small cached snapshots — fetch them with the rest and report their state.
+  const reportsQ = useSnapshotQuery(snapshotUrls.reportsRecent, ReportsSchema, 60 * 24, enabled);
+  const stockingQ = useSnapshotQuery(snapshotUrls.stocking('TN'), StockingSchema, 60 * 24, enabled);
 
   const hatchMap = useHatchCache(month);
 
@@ -69,6 +73,22 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   const reports = (reportsQ.data?.data ?? []) as unknown as Array<Record<string, unknown>>;
   const stockings = (stockingQ.data?.data ?? []) as unknown as Array<Record<string, unknown>>;
+
+  // Canonical stocking association (B05): TWRA water names resolve through
+  // normalization → curated aliases → unambiguous containment only.
+  const streamsForMatch = (streamsQ.data?.data ?? []) as unknown as Array<{ id: string; name: string }>;
+  const stockingByStream = useMemo(() => {
+    const { byStream } = matchStocking(streamsForMatch, stockings as never);
+    return byStream as Map<string, Array<Record<string, unknown>>>;
+  }, [streamsForMatch, stockings]);
+  const reportCountByStream = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const r of reports) {
+      const id = (r as { streamId?: string }).streamId;
+      if (id) m.set(id, (m.get(id) ?? 0) + 1);
+    }
+    return m;
+  }, [reports]);
 
   const features: RiverMapFeature[] = useMemo(() => {
     const streams = (streamsQ.data?.data ?? []) as unknown[];
@@ -96,14 +116,14 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         hatchChart: chart,
         hatchDominant: dominant,
         hatchHalo: halo,
-        stocking: stockings.find((e) => ((e as any).streamName?.toLowerCase() ?? '').includes((stream as any).name.split(' ')[0].toLowerCase())) as any ?? null,
-        stockingCount: 0,
+        stocking: stockingByStream.get((stream as { id: string }).id)?.[0] as any ?? null,
+        stockingCount: stockingByStream.get((stream as { id: string }).id)?.length ?? 0,
         report: reports.find((r) => (r as any).streamId === (stream as any).id) as any ?? null,
-        reportCount: 0,
+        reportCount: reportCountByStream.get((stream as { id: string }).id) ?? 0,
         logCount: logCountByStream.get((stream as { id: string }).id) ?? 0,
       };
     });
-  }, [streamsQ.data, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data]);
+  }, [streamsQ.data, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
 
   return {
     features,
@@ -113,6 +133,20 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
     live: (conditionsQ.data?.live ?? false) as boolean,
     streams: (streamsQ.data?.data ?? []) as unknown as RiverMapFeature['stream'][],
     hatchMap,
+    // Per-feed state (B06): a feed with zero rows must be distinguishable
+    // from one that was never fetched or failed.
+    feeds: {
+      stocking: {
+        isLoading: stockingQ.isLoading,
+        isError: stockingQ.isError,
+        empty: !stockingQ.isLoading && !stockingQ.isError && stockings.length === 0,
+      },
+      reports: {
+        isLoading: reportsQ.isLoading,
+        isError: reportsQ.isError,
+        empty: !reportsQ.isLoading && !reportsQ.isError && reports.length === 0,
+      },
+    },
   };
 }
 
