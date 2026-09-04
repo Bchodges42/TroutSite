@@ -5,6 +5,7 @@ waterbodyType: creek
 regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 20
     max: 120

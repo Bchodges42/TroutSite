@@ -6,6 +6,7 @@ regionId: tn-middle-duck-elk
 gaugeIds:
   - "03596000"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 100
     max: 800

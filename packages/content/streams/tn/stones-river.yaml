@@ -6,6 +6,7 @@ regionId: tn-middle-nashville
 gaugeIds:
   - "03430200"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 40
     max: 400

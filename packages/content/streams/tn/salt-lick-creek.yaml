@@ -5,6 +5,7 @@ waterbodyType: creek
 regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 10
     max: 80

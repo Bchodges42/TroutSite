@@ -5,6 +5,7 @@ waterbodyType: creek
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 15
     max: 120

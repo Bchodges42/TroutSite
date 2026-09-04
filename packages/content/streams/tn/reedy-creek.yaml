@@ -6,6 +6,7 @@ regionId: tn-east-holston
 gaugeIds:
   - "03487602"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 5
     max: 60

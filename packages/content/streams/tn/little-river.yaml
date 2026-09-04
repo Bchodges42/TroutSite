@@ -7,6 +7,7 @@ gaugeIds:
   - "03497300"
   - "03498500"
 stockingProgram: true
+species: trout
 idealFlow:
   - min: 50
     max: 350
