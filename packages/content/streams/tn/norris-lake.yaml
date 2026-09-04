@@ -1,0 +1,18 @@
+id: norris-lake
+name: Norris Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-clinch
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Reference waterbody from the Tennessee waterways inventory — the Clinch River
+  reservoir above Norris Dam across Anderson, Campbell, Claiborne, Grainger, and
+  Union counties. Catalog stub pending detailed review; promotion of the passive
+  lake polygon is a separate step.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

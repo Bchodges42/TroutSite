@@ -1,0 +1,18 @@
+id: south-holston-lake
+name: South Holston Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-holston
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Reference waterbody from the Tennessee waterways inventory — the South Fork Holston
+  reservoir east of Bristol in Sullivan County, extending toward Virginia. Catalog
+  stub pending detailed review; promotion of the passive lake polygon is a separate
+  step.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

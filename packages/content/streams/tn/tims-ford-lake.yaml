@@ -1,0 +1,17 @@
+id: tims-ford-lake
+name: Tims Ford Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir
+  near Winchester in Franklin and Moore counties. Catalog stub pending detailed
+  review; promotion of the passive lake polygon is a separate step.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html
