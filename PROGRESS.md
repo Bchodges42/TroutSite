@@ -2,6 +2,39 @@
 
 Per-lane progress notes from merged lanes (GEO, SPECIES, TOPO). See COORDINATION.md in trout-backend for the full picture.
 
+Base: `4e54c36` (integrated branch HEAD at lane start).
+
+# LINES lane — running status (B15 missing-line rivers)
+
+Base: `4e54c36` (`fix(api): datePrecision survives the DB round-trip…`).
+Scope: real channel geometry (MultiLineString) for the 8 inventory rivers with
+`type:'river'` + `geometryStatus:'missing-line'` (mississippi-river,
+obion-river, hatchie-river, wolf-river-west-tennessee, tennessee-river,
+cumberland-river, buffalo-river, holston-river). Only
+`apps/web/public/atlas/rivers.geojson` (append-only), `apps/web/scripts/`
+pipeline additions, `docs/` notes, this file. No UI files, no `packages/`
+(catalog YAML belongs to the catalog lane), no other waters' geometry.
+
+## Status log
+
+- [x] Setup: `pnpm install`, `@trout/contracts build`, `@trout/ui build` — green.
+- [x] `docs/waterbody-inventory.json` + `docs/WATERBODY-GEOMETRY-CONTRACT.md`
+  were absent from this clone (git-ignored lane split); copied byte-identical
+  from the integrated fieldwork checkout (same HEAD, read-only source).
+- [x] Added B15 corridor targets to `fetch-nhd-targets.mjs` (10 targets / 8
+  rivers; tennessee-river and cumberland-river use two overlapping envelopes to
+  stay under the USGS processing window that 504'd the wide Clinch fetch).
+- [x] New `build-missing-rivers.mjs`: NHD take maps per river, whole-part
+  Tennessee filter (same `partInTennessee` discipline as merge-rivers),
+  Mississippi state-line corridor rule, RDP 0.00012 + CLIP identical to
+  merge-rivers, contract properties (`id`, `name`, `waterbodyType`,
+  `source`, `approximate`, `labelAnchor`, `bounds`), idempotent append to
+  rivers.geojson (never touches existing features).
+- [x] `validate-atlas.mjs` PASS; typecheck / web tests / build green.
+  Details in docs/atlas-sources.md § B15.
+
+
+
 
 # TOPO lane — running status (B14)
 

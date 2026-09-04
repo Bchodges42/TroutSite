@@ -40,6 +40,27 @@ const TARGETS = [
   { key: 'forge-creek-johnson', like: 'Forge Creek', env: '-82.1,36.35,-81.65,36.65', streams: ['forge-creek-johnson'] },
   { key: 'elk', like: 'Elk River', env: '-87.05,34.95,-86.2,35.45', streams: ['elk-river', 'elk-river-lower'] },
   { key: 'duck', like: 'Duck River', env: '-87.1,35.4,-86.05,35.75', streams: ['duck-river-tailwater', 'duck-river-lower'] },
+  // ---- B15 missing-line rivers (docs/waterbody-inventory.json) ----
+  // One corridor envelope per named water, sized to its FULL Tennessee extent
+  // (inventory approximateLocation + countyOrRegion). Consumed by
+  // build-missing-rivers.mjs; whole-part TN filter + contract properties there.
+  // Wide rivers split into two overlapping envelopes (overlap keeps every part
+  // whole: phase-2 geometry is fetched by OBJECTID, so a part intersecting
+  // either envelope comes back complete; dedupe by NHD key at assembly).
+  // Mississippi = the state-boundary mainstem ONLY; the narrow corridor keeps
+  // the fetch inside the Tennessee line (AR/MS water never fetched). East cap
+  // -89.40 (not -89.55): the channel bends east above Tiptonville to ~-89.46,
+  // still well west of any interior TN water.
+  { key: 'mississippi', like: 'Mississippi River', env: '-90.35,34.98,-89.40,36.60', streams: ['mississippi-river'] },
+  { key: 'obion', like: '%Obion%', env: '-89.65,35.85,-88.65,36.7', streams: ['obion-river'] },
+  { key: 'hatchie', like: '%Hatchie%', env: '-89.7,35.2,-88.95,36.1', streams: ['hatchie-river'] },
+  { key: 'wolf-west', like: 'Wolf River', env: '-90.2,34.95,-89.05,35.35', streams: ['wolf-river-west-tennessee'] },
+  { key: 'tennessee-river-east', like: 'Tennessee River', env: '-85.65,34.95,-83.55,36.1', streams: ['tennessee-river'] },
+  { key: 'tennessee-river-west', like: 'Tennessee River', env: '-88.6,34.95,-87.75,36.7', streams: ['tennessee-river'] },
+  { key: 'cumberland-upper', like: 'Cumberland River', env: '-86.95,36.05,-85.05,36.72', streams: ['cumberland-river'] },
+  { key: 'cumberland-lower', like: 'Cumberland River', env: '-87.95,36.05,-86.85,36.72', streams: ['cumberland-river'] },
+  { key: 'buffalo', like: '%Buffalo%', env: '-88.1,35.3,-87.2,36.0', streams: ['buffalo-river'] },
+  { key: 'holston', like: 'Holston River', env: '-84.05,35.85,-82.45,36.65', streams: ['holston-river'] },
 ];
 
 const BASE = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/3/query';
