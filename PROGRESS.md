@@ -43,7 +43,7 @@ stable (point → polygon upgrades staged in this clone).
   overlay) + build-stillwater.mjs (integrates extracts into rivers.geojson,
   promotes reference lakes).
 
-## Phase B (in progress)
+## Phase B (DONE)
 
 - [x] CODEX gate docs read (published 2026-09-04 in
   trout-fieldwork-20260904/docs): contract = rivers.geojson placement,
@@ -53,17 +53,44 @@ stable (point → polygon upgrades staged in this clone).
 - [x] NHD polygons integrated: beech-lake (named), lake-graham (verified
   unnamed nhdplusid 20000700115945), edmund-orgill-lake (Casper Lake),
   martin-city-pond, pickwick-lake (TN-clipped 139 km² reservoir).
-  Commit: "waterbody(still): NHD-sourced polygons...".
-- [x] Aerial traces staged (approximate=true, source
+- [x] Aerial traces integrated (approximate=true, source
   "aerial-trace twra-winter-ponds", preview-verified): shelby-farms-lake
   (Jones Pond), johnson-park-lake (W.C. Johnson Park, Collierville — the old
   downtown-Memphis anchor was ~20 km off), yale-road-park-lake,
-  cameron-brown-lake, milan-city-pond, valentine-park-pond.
-- [ ] Remaining waters: paris-city-park-lake, covington-fbc-pond,
-  union-city-reelfoot-pond (location research + trace).
-- [ ] Promote 14 reference lakes (lakes.geojson → rivers.geojson, source
-  census-areawater; remove from passive file).
-- [ ] riverIndex.json regen; validate-atlas/typecheck/test/build; coverage doc.
+  cameron-brown-lake, milan-city-pond, valentine-park-pond,
+  covington-fbc-pond (FBC campus lake, 2105 TN-59), union-city-reelfoot-pond
+  (pond alongside W Reelfoot Ave at the former packing plant).
+- [x] paris-city-park-lake: NHD Green Acres Lake (aka Williams Lake) at full
+  resolution; identity follow-up documented (Paris City Park alias).
+- [x] 14 reference lakes promoted lakes.geojson → rivers.geojson (source
+  census-areawater, approximate=false, inventory names); removed from the
+  passive file (9 non-reference lakes remain passive).
+- [x] riverIndex.json regenerated (120 entries, 0 point anchors).
+- [x] Verify: validate-atlas PASS; typecheck green; 88/88 tests; build +
+  size budget OK (dist 5.03 MB).
+- [x] docs/STILLWATER-COVERAGE.md written (per-water table, identity
+  evidence, checklist-format rows for transplant, handoff notes).
+
+## Commits (this lane)
+
+- waterbody(still): NHD-sourced polygons for beech/graham/orgill/martin
+  lakes + pickwick-lake (+ fetch-stillwater-nhd/trace-stillwater/
+  build-stillwater tooling)
+- waterbody(still): traced polygons replace remaining 6 winter-pond Points
+- waterbody(still): final three winter-pond polygons (paris, covington,
+  union-city)
+- waterbody(still): promote 14 reference lakes to interactive geometry
+- waterbody(still): paris-city-park-lake at full NHD resolution
+- waterbody(still): contract property sweep on still-water features
+- docs: STILLWATER-COVERAGE.md (per-water coverage + checklist rows)
+
+## Handoff / remaining (none blocking merge of geometry)
+
+1. Catalog lane: YAML + streams.json + checklist transplant (rows in
+   docs/STILLWATER-COVERAGE.md); confirm paris alias question.
+2. Line lane: 92 line features still need contract `waterbodyType` +
+   `approximate` (out of this lane's scope).
+3. Optional trace polish noted in coverage doc (sub-z13 details only).
 
 ## Notes / decisions
 
