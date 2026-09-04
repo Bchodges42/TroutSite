@@ -1,37 +1,34 @@
 # Coordination — two-lane rebuild of the Trout app
 
-**Date:** 2026-09-04 · **Base for both lanes:** `51f8803` ("Redesign: dark Tailwater identity, species toggle, full river atlas data") on `C:\Users\Benjamin\Projects\trout` (frozen reference — do not touch).
+**Date:** 2026-09-04 (updated evening) · **Base for all lanes:** `51f8803` ("Redesign: dark Tailwater identity, species toggle, full river atlas data") on `C:\Users\Benjamin\Projects\trout` (frozen reference — do not touch).
 
-## The lanes
+## Lane status
 
-| Lane | Repo | Owner | Scope |
-|---|---|---|---|
-| UI / UX design | `C:\Users\Benjamin\Projects\trout-fieldwork-20260904` (branch `codex/trout-fieldwork-20260904`) | Codex (ChatGPT desktop) | Everything the user sees: layout, chrome, themes, interaction, motion, visual states |
-| Backend / data / infra | `C:\Users\Benjamin\Projects\trout-backend` (this repo, branch `main`) | ZCode | Scoring engine, contracts, fixtures pipeline, freshness semantics, offline/cache machinery, api, infra |
+| Lane | Repo | Status |
+|---|---|---|
+| UI / UX design | `trout-fieldwork-20260904` (branch `codex/trout-fieldwork-20260904`) | **Codex run FINISHED.** +4,310/−1,842 across 24 files, UI-only (verified byte-identical elsewhere). Its own suites: 62 unit + 20 browser tests, typecheck + build green. **Uncommitted — integration lane commits it first.** Handoff: `docs/FIELDWORK.md`, `docs/THEMES.md`, `BACKEND-ISSUES.md` (14 issues, per-issue backend status now annotated). |
+| Backend / data / infra | `trout-backend` (branch `main`) | **All actionable issues fixed.** 8 commits on top of `51f8803`: `866a7a8` (B02+B03), `ba28b05` (B04), `7363324` (B01), `75c5d18` (B05+B06), `d0997a7` (B07), `fd23f57` (B10), `419baed` (B09+B11), `da80558` (West TN waters). 74 unit tests, typecheck, build + size budget green. |
+| Parallel sessions | `trout-geo`, `trout-species`, `trout-topo` (to be cloned) | Briefs in [`SESSIONS.md`](SESSIONS.md) — B13 geometry audit, B08 species catalog, B14 topo assets. Start each in a fresh ZCode session by pasting its brief. |
 
-**Rule (relayed to Codex, in its chat as a Steer message):** when the UI needs a non-UI change, Codex does NOT implement it — it appends the issue to `BACKEND-ISSUES.md` in its repo root (what's wrong, file/line evidence, what the UI needs, suggested fix, severity) and keeps designing. This lane (trout-backend) implements from that file.
+## What the backend lane delivered
 
-## Merge plan
+- **B02** assessed-flag: a real clamped-0 (lethal temp) renders Poor; cannot-assess renders No data. Fixtures regenerated.
+- **B03** freshness keyed to newest reading age (`Live · observed` / `Stale · observed` / `Offline`), not fetch success.
+- **B04** same-gauge flow/temp trends; zero cfs is a value.
+- **B01** frozen `/v1/streams` resolves on static-server + vite dev/preview; honest 404s; no-store.
+- **B05+B06** canonical stocking matching (aliases from the real TWRA schedule; ties unmatched) + feeds activated with per-feed status.
+- **B07** concurrent month-keyed hatch charts (no prior-month substitution).
+- **B10** SW snapshot-cache regex unanchored (was dead), fonts precached, offline short-circuit + 8s timeout.
+- **B09+B11** stocking `datePrecision`; unconditional fixture-build provenance flag (`lib/provenance.ts`).
+- **West TN blank map** root-caused (catalog scope, not rendering) and fixed: 13 real TWRA winter put-and-take waters, `tn-west` region, lake/pond types, sourced Point anchors (8 OSM / 5 explicit approx), point map layers + touch targets, fixtures now 105 waters.
 
-Both lanes fork from `51f8803`. Backend changes deliberately keep a **minimal footprint inside `apps/web/src` UI files** (only wiring data semantics into current surfaces, which Codex's rebuild replaces anyway). Durable backend changes live in:
+## Open work
 
-- `packages/contracts/src/schemas/conditions.ts` — `ConditionScore.assessed?: boolean`
-- `packages/contracts/src/scoreConditions.ts` — sets `assessed` on every return path
-- `packages/contracts/src/readingFreshness.ts` — `newestReadingAt`, `readingAgeMinutes`, `readingsAreStale`, `READING_STALE_MINUTES`
-- `apps/web/scripts/generate-fixtures.mjs` output — fixtures now carry `assessed`
-- Minimal web wiring: `riverMapSelectors.ts`, `useRiverMapData.ts`, `FreshnessChip.tsx`, `RiverDrawer.tsx`, `HomePage/ConditionsPage/StreamDetailPage/BrowsePage` chip props
+- **INTEGRATION (critical path, single-threaded):** commit Codex UI → merge backend `main` → conflicts resolve to Codex's UI with data hooks re-attached (assessed, newestReadingAt freshness, stockingMatch, feeds, point layers) → regenerate served v1 snapshots → full suites + e2e + 390/768/1440 screenshot pass.
+- **B13** geometry audit, **B08** species catalog, **B14** topo assets — parallel session briefs in [`SESSIONS.md`](SESSIONS.md).
+- **B12** roads — deferred pending Benjamin's licensing/source decision.
+- Follow-up noted in BACKEND-ISSUES B03: service-worker-returned responses should preserve original fetch age (recommendation).
 
-To merge: rebase Codex's UI branch onto this main (expected conflicts only in the wiring files listed above — take Codex's UI, re-attach the data hooks it needs), or cherry-pick the contracts/fixtures commits into its branch.
+## Merge order
 
-## What the backend lane has fixed (2026-09-04)
-
-1. **"No data" vs "Poor" conflation (found by Codex's data audit).** A real assessment can clamp to 0 (floored flow score 10 − 30 dangerous-heat penalty). `statusForScore` used to infer "no data" from `value === 0`, hiding scorching-hot trout waters as unassessed. Now `scoreConditions` returns an explicit `assessed` flag; consumers key off it. Legacy snapshots without the flag keep the old inference.
-2. **"Live" lied about data age.** Freshness labels keyed off fetch success ("Live · now" on a 6-hour-old reading). Now freshness is computed from the newest gauge reading's own timestamp: `Live · observed 15 min ago` / `Stale · observed 4 hr ago` / `Offline · last known …`. `READING_STALE_MINUTES = 180`.
-3. **Fixtures regenerated** (139 files) so baked snapshot JSON carries `assessed`. Tests: 60 passing (10 new: clamp case, assessed paths, reading-age helpers, chip labels).
-
-## Known follow-ups for this lane
-
-- Refresh the **served** `public/v1` snapshots (deploy artifact) after this lands — dev servers still serve 51f8803-era data.
-- `apps/web/fixtures` currently generates no clamped-zero (hot water) stream; add a deterministic heat-wave case so the UI lane always has a true "Poor" example to design against.
-- Shop reports: fixtures have none (Codex noted it); decide whether to synthesize sample reports for dev fixtures.
-- Intake and implement whatever lands in `trout-fieldwork-20260904/BACKEND-ISSUES.md`.
+Integration first; then TOPO → GEO → SPECIES rebases onto the integrated result (disjoint scopes keep conflicts near zero: topo assets / river geometry + anchors / content YAML respectively). Codex's `riverIndex.json` regenerates from approved geometry after GEO lands.
