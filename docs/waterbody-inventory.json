@@ -167,8 +167,8 @@
         "riversGeojson": true,
         "lakesGeojson": false
       },
-      "geometryStatus": "fragmented",
-      "verdict": "The existing lower-river catalog ID is canonical, but its geometry stops well east of the reference river's Tennessee River confluence. Keep duck-river-tailwater as a distinct managed reach.",
+      "geometryStatus": "exists-ok",
+      "verdict": "DONE 2026-09-04: GEO lane corrected duck-river-lower to its catalog reach Shelbyville-to-Columbia (GEO-AUDIT) and rebuilt duck-river-tailwater to one continuous chunk (30 parts/3 chunks -> 126 parts/1 chunk per CONTINUITY-AUDIT before/after); tailwater remains a distinct managed reach.",
       "locationConfidence": "high"
     },
     {
@@ -236,8 +236,8 @@
         "riversGeojson": true,
         "lakesGeojson": false
       },
-      "geometryStatus": "fragmented",
-      "verdict": "Use elk-river for the reference corridor; elk-river-lower remains a distinct catalog reach. The pair does not yet verify one continuous reference line.",
+      "geometryStatus": "exists-ok",
+      "verdict": "DONE 2026-09-04: elk-river rebuilt continuous below Tims Ford Dam to Prospect (114 parts/9 chunks -> 372 parts/1 chunk per CONTINUITY-AUDIT before/after, GEO-AUDIT reach correction); elk-river-lower remains a distinct catalog reach.",
       "locationConfidence": "high"
     },
     {

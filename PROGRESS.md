@@ -57,115 +57,119 @@ docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/**
 
 ---
 
-# Integrated lane progress
+# Session B — catalog & content corrections (2026-09-04)
 
-Notes from merged lanes (GEO, SPECIES, TOPO, CONTINUITY, CATALOG, LINES, STILLWATER). See COORDINATION.md in trout-backend.
+Base commit: 826e5cb (codex/trout-fieldwork-20260904)
 
+## Summary
 
-# STILLWATER lane — running status
+Six commits on top of the integrated tree; content pack, fixtures, and served
+snapshots all regenerated; every gate green (content validate/build/test 11/11,
+web typecheck/test 122/122, web build + size budget OK). No files touched under
+`apps/web/src`, map styles, or `e2e/`.
 
-Base: trout-stillwater@4e54c36 (integrated branch: Fieldwork UI + corrected
-geometry + species catalog). Scope: still-water (lake/pond/reservoir)
-polygons for the waterbody expansion — new geometry files per the CODEX lane's
-waterbody contract (docs/waterbody-inventory.json +
-docs/WATERBODY-GEOMETRY-CONTRACT.md in trout-fieldwork-20260904, pending),
-apps/web/scripts tooling, docs/STILLWATER-COVERAGE.md. No UI/package file
-edits; existing line geometry untouched; the 13 twra-winter-ponds IDs stay
-stable (point → polygon upgrades staged in this clone).
+## Commit list
 
-## Status log
+| commit | subject |
+|---|---|
+| `186d41c` | content(tn-west): author honest hatch chart for the winter put-and-take region |
+| `ae09f77` | content(duck): point Normandy tailwater gauge below the dam (B13 follow-up) |
+| `2874208` | content(species): apply owner decisions 2026-09-04 (B08) |
+| `2902c93` | content(docs): bookkeeping — paris alias resolved, duck/elk fragmentation rows done |
+| `457d688` | content(fixtures): overlay pack catalog fields so fixtures:generate runs clean |
+| `62c5768` | content(fixtures): regenerate demo fixtures from the corrected catalog |
 
-- [x] Setup: clone at 4e54c36, `pnpm install` green.
-- [ ] `@trout/contracts` + `@trout/ui` builds.
-- [x] Context read: 13 twra-winter-ponds anchors identified in
-  `apps/web/public/atlas/rivers.geojson` (all Point, regionId tn-west,
-  properties.id stable: shelby-farms-lake, cameron-brown-lake,
-  edmund-orgill-lake, yale-road-park-lake, johnson-park-lake,
-  valentine-park-pond, covington-fbc-pond, martin-city-pond,
-  milan-city-pond, paris-city-park-lake, beech-lake, lake-graham,
-  union-city-reelfoot-pond). Curated metadata in
-  `packages/content/data/west-tn-ponds.json`. Existing major-lake polygons:
-  `apps/web/public/atlas/lakes.geojson` (24 MultiPolygon lakes, TIGER
-  AREAWATER provenance via build-lakes.mjs).
-- [x] NHD access pattern confirmed: USGS NHDPlus HR MapServer
-  (hydro.nationalmap.gov), layer 9 = NHDWaterbody, layer 8 = NHDArea
-  (polygon layers; fetch-nhd-targets.mjs already uses layer 3 flowlines).
-  Waterbody fcodes observed live: 39004/39009 Lake/Pond (many unnamed small
-  park ponds present). Public domain.
+## Task 1 — tn-west region + hatch chart
 
-## Phase A (DONE)
+The premise was partially stale: `regions.ts` already registered `tn-west`
+(12 regions) with a `hatchCharts: false` escape hatch, and the stream
+regionId-vs-registry cross-check already exists (`scripts/lib.ts:225-226`).
+What was missing was the chart. Shipped `hatch/tn/tn-west.yaml` (12 months):
+cold months carry the stillwater staples of freshly stocked small lakes
+(midges, scuds, sowbugs, leeches, aquatic worms — the same fare the
+tn-middle-nashville winter-program chart carries); warm months (Apr–Oct) list
+only permanent pond residents at abundance 1, because the stocked fish do not
+hold over summer and no trout guidance exists for that season. Provenance in
+the file header. With a chart shipped, the `hatchCharts` flag,
+`CHARTLESS_REGIONS`, and the validator/test carve-outs were retired — all 12
+launch regions now require and ship 12-month coverage (validate prints
+"12 regions × 12 months"; the pack-wide regionId check passes).
 
-- [x] Scout per-water NHD polygon coverage for the 13 anchors → cached in
-  apps/web/.atlas-src/stillwater/scout (service responses + summary.json);
-  findings written to docs/STILLWATER-COVERAGE.md (identity verification via
-  NHD names, OSM/Overpass centers, Wikipedia/TWRA research).
-- [x] Extraction tooling: apps/web/scripts/fetch-stillwater-nhd.mjs
-  (scout/extract modes, deterministic picks, TN clip, contract shape) and
-  trace-stillwater.mjs (last-resort Esri-imagery digitizer with preview
-  overlay) + build-stillwater.mjs (integrates extracts into rivers.geojson,
-  promotes reference lakes).
+## Task 2 — Duck River gauge evidence (B13)
 
-## Phase B (DONE)
+Old gauge `03596000` "Duck River below Manchester, TN" is ABOVE Normandy Dam.
+Swap target: `03597860` "Duck River at Shelbyville, TN".
 
-- [x] CODEX gate docs read (published 2026-09-04 in
-  trout-fieldwork-20260904/docs): contract = rivers.geojson placement,
-  space-delimited `source` string, required boolean `approximate`.
-  Scope: 13 anchor upgrades + pickwick-lake (missing-polygon); 14 exists-ok
-  reference lakes promoted from lakes.geojson per coordinator (B15).
-- [x] NHD polygons integrated: beech-lake (named), lake-graham (verified
-  unnamed nhdplusid 20000700115945), edmund-orgill-lake (Casper Lake),
-  martin-city-pond, pickwick-lake (TN-clipped 139 km² reservoir).
-- [x] Aerial traces integrated (approximate=true, source
-  "aerial-trace twra-winter-ponds", preview-verified): shelby-farms-lake
-  (Jones Pond), johnson-park-lake (W.C. Johnson Park, Collierville — the old
-  downtown-Memphis anchor was ~20 km off), yale-road-park-lake,
-  cameron-brown-lake, milan-city-pond, valentine-park-pond,
-  covington-fbc-pond (FBC campus lake, 2105 TN-59), union-city-reelfoot-pond
-  (pond alongside W Reelfoot Ave at the former packing plant).
-- [x] paris-city-park-lake: NHD Green Acres Lake (aka Williams Lake) at full
-  resolution; identity follow-up documented (Paris City Park alias).
-- [x] 14 reference lakes promoted lakes.geojson → rivers.geojson (source
-  census-areawater, approximate=false, inventory names); removed from the
-  passive file (9 non-reference lakes remain passive).
-- [x] riverIndex.json regenerated (120 entries, 0 point anchors).
-- [x] Verify: validate-atlas PASS; typecheck green; 88/88 tests; build +
-  size budget OK (dist 5.03 MB).
-- [x] docs/STILLWATER-COVERAGE.md written (per-water table, identity
-  evidence, checklist-format rows for transplant, handoff notes).
+Evidence, all from USGS NWIS (waterservices.usgs.gov site/IV/DV services,
+queried live 2026-09-04):
 
-## Commits (this lane)
+| site | name | lat/lon | drainage | position vs dam |
+|---|---|---|---|---|
+| 03596000 | DUCK RIVER BELOW MANCHESTER, TN | 35.47094 / −86.12164 | 107 mi² | east (UPSTREAM) of the dam |
+| 03596460 | NORMANDY LAKE (LK) | 35.46535 / −86.24860 | 195 mi² | the reservoir |
+| 03596470 | DUCK RIVER ABOVE NORMANDY, TN | 35.46091 / −86.24527 | 196 mi² | reservoir inlet |
+| 03596500 | DUCK RIVER AT NORMANDY, TN | 35.45730 / −86.25694 | 208 mi² | just below dam — but NO current IV/DV data (checked: zero series in last 3 days, any parameter) |
+| **03597860** | **DUCK RIVER AT SHELBYVILLE, TN** | **35.48293 / −86.46258** | **425 mi²** | **west (DOWNSTREAM) of the dam; LIVE: 6 IV series in last 3 days + daily-value discharge (provisional ~174 cfs, 2026-08-28..09-03)** |
 
-- waterbody(still): NHD-sourced polygons for beech/graham/orgill/martin
-  lakes + pickwick-lake (+ fetch-stillwater-nhd/trace-stillwater/
-  build-stillwater tooling)
-- waterbody(still): traced polygons replace remaining 6 winter-pond Points
-- waterbody(still): final three winter-pond polygons (paris, covington,
-  union-city)
-- waterbody(still): promote 14 reference lakes to interactive geometry
-- waterbody(still): paris-city-park-lake at full NHD resolution
-- waterbody(still): contract property sweep on still-water features
-- docs: STILLWATER-COVERAGE.md (per-water coverage + checklist rows)
+Dam position: Normandy Lake's west edge (TIGER AREAWATER, per GEO-AUDIT) is at
+lon ≈ −86.248, matching USGS lake site 03596460 (−86.24860). 03597860 sits at
+lon −86.4626, well west (downstream) of the dam at the tailwater reach's lower
+end (GEO lane's own geometry gate lon −86.50..−86.24). The closer below-dam
+gauges (03596500/03596510/03596520) are historical — no current flow data — so
+03597860 is the nearest REPORTING gauge below the dam. Sharing it with
+duck-river-lower is intentional (it bounds that reach's upstream end too).
+Stale fixture row 03596000 removed from `packages/content/data/verified-gauges.json`.
 
-## Handoff / remaining (none blocking merge of geometry)
+## Task 3 — species decisions (owner rulings 2026-09-04)
 
-1. Catalog lane: YAML + streams.json + checklist transplant (rows in
-   docs/STILLWATER-COVERAGE.md); confirm paris alias question.
-2. Line lane: 92 line features still need contract `waterbodyType` +
-   `approximate` (out of this lane's scope).
-3. Optional trace polish noted in coverage doc (sub-z13 details only).
+- harpeth-river → `species: warmwater` + December stocking stated in the note.
+- little-pigeon-river → `species: trout`, `stockingProgram: true`, note
+  rewritten per owner confirmation (2026-09-04); TWRA sources + gauge kept.
+- duck-river-tailwater → note sharpened to year-round stocking (owner
+  confirmation 2026-09-04).
+- Everything else stays UNSET: 5 thin-evidence waters + 23 waterbody stubs.
+- `docs/SPECIES-REVIEW.md` gained "Owner decisions (2026-09-04)" with the
+  rulings, the leave-unset list, and a clearly-marked RECOMMENDATIONS-ONLY
+  decision menu for the 23 stubs. `BACKEND-ISSUES.md` B08 status updated.
 
-## Notes / decisions
+## Task 4 — bookkeeping
 
-- Staged per-water geojson live in apps/web/.atlas-src/stillwater/extract
-  (git-ignored intermediates; reproducible from the committed scripts +
-  scout cache). The committed deliverable is rivers.geojson per contract §3.
-- Trace vertex lists + preview PNGs in .atlas-src/stillwater/trace; method
-  documented in docs/STILLWATER-COVERAGE.md.
-- lakes.geojson keeps non-reference lakes (boone, patrick-henry, great falls,
-  normandy, parksville, reelfoot, woods) passive.
+- paris-city-park-lake alias confirmed consistent (catalog name = TWRA site
+  name; mapped polygon = Green Acres Lake aka Williams Lake; Eiffel Tower Park
+  pond is a different secondary water); catalog note now carries the alias;
+  STILLWATER-COVERAGE handoff row 1 + checklist row marked resolved.
+- waterbody-inventory.json: Duck River and Elk River rows marked `exists-ok`
+  with DONE verdicts citing the CONTINUITY-AUDIT before/after table
+  (duck-river-tailwater 3→1 chunks; elk-river 9→1 chunks).
 
----
+## Fixture / snapshot regeneration
 
-# Integrated lane progress (prior lanes, kept for reference)
+- The species-drift generator gap was already fixed by a prior lane (the
+  generator overlays pack species/notes). But `fixtures:generate` FAILED at
+  base 826e5cb for an unrelated pre-existing reason: 22 atlas extras had no
+  `regionId` prop and pickwick-lake's geometry said `waterbodyType: reservoir`
+  (not in the contract enum). Fixed by extending the pack overlay to the
+  pack-validated identity fields (regionId, waterbodyType, stockingProgram,
+  gaugeIds) — commit `457d688`. 128 streams validate cleanly.
+- Regenerated: `apps/web/fixtures/data` (committed, `62c5768`) and the
+  gitignored served snapshot `apps/web/public/v1/` (streams.json from the pack
+  + new `hatch/tn-west/` 12 month files + refreshed hatch dirs). Verified in
+  the served snapshot: harpeth `species: warmwater`; little-pigeon
+  `species: trout` + `stockingProgram: true`; duck-river-tailwater gauge
+  `03597860`; paris note carries the alias; 28 waters remain species-unset
+  (5 thin-evidence + 23 stubs).
 
-Per-lane progress notes from merged lanes (GEO, SPECIES, TOPO). See COORDINATION.md in trout-backend for the full picture.
+## Verification (final state)
+
+- `pnpm --filter @trout/content validate` → OK — 103 taxa, 155 patterns,
+  **12 regions × 12 months**, 128 streams, 23 shops. Warnings: 87 (all
+  documented-ungauged gauge notices).
+- `pnpm --filter @trout/content build` → OK (1.00 MB of 20 MB budget).
+- `pnpm --filter @trout/content test` → 11/11.
+- `pnpm --filter @trout/web typecheck` → clean.
+- `pnpm --filter @trout/web test` → 122/122 (14 files).
+- `pnpm --filter @trout/web build` → OK + size budget (5.22 MB / 25 MB).
+- `fixtures:generate` → clean, all files validated against @trout/contracts.
+- Note for the next session: fresh clones must `pnpm --filter @trout/contracts
+  build && pnpm --filter @trout/ui build` before the web gates; the baseline
+  "failures" on a fresh checkout were only unbuilt workspace deps.

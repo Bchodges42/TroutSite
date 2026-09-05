@@ -7,12 +7,15 @@ gaugeIds:
   - "03432350"
   - "03433500"
 stockingProgram: true
+species: warmwater
 idealFlow:
   - min: 50
     max: 400
     unit: cfs
-notes: Mostly a warmwater river, but TWRA’s winter program stocks Williamson County reaches near
-  Franklin. Two gauges bracket the stocked corridor; summer water is smallmouth country.
+notes: Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches
+  near Franklin with catchable trout each December (the winter put-and-take season runs
+  December–February; check the TWRA schedule for the current window). Two gauges bracket the
+  stocked corridor; summer water is smallmouth country.
 officialSources:
   - label: USGS Water Data — monitoring location 03432350
     url: https://waterdata.usgs.gov/monitoring-location/03432350/

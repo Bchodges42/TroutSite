@@ -267,6 +267,14 @@ for (const s of streams) {
   if (pack.species) { s.species = pack.species; speciesFromPack += 1; }
   else delete s.species;
   if (pack.notes) s.notes = pack.notes;
+  // Identity fields: geometry properties lag the reviewed pack (B15 stubs ship
+  // no regionId prop; pickwick-lake geometry says 'reservoir', which the frozen
+  // contract enum rejects). The pack is the source of truth for catalog
+  // semantics — overlay the same fields it validates so fixtures cannot drift.
+  s.regionId = pack.regionId;
+  s.waterbodyType = pack.waterbodyType;
+  s.stockingProgram = pack.stockingProgram;
+  s.gaugeIds = pack.gaugeIds;
 }
 console.log('[fixtures] pack overlay: species on ' + speciesFromPack + '/' + streams.length + ' streams (unset stays unset)');
 

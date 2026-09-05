@@ -98,7 +98,7 @@ geometry-production rows below are complete.
  {"featureId":"covington-fbc-pond","inventoryName":"Covington First Baptist Church Pond","geometrySource":"aerial-trace","geometryState":"verified","verificationState":"PENDING_QA","notes":"FBC campus lake at 2105 TN-59; approximate=true"},
  {"featureId":"martin-city-pond","inventoryName":"Martin City Pond","geometrySource":"nhd-hr","geometryState":"verified","verificationState":"PENDING_QA","notes":"unnamed NHD pond, bbox contains OSM center"},
  {"featureId":"milan-city-pond","inventoryName":"Milan City Pond","geometrySource":"aerial-trace","geometryState":"verified","verificationState":"PENDING_QA","notes":"preview-verified; approximate=true"},
- {"featureId":"paris-city-park-lake","inventoryName":"Paris City Park Lake","geometrySource":"nhd-hr","geometryState":"verified","verificationState":"PENDING_QA","notes":"Green Acres Lake (aka Williams Lake); confirm Paris City Park alias vs Eiffel Tower Park pond"},
+ {"featureId":"paris-city-park-lake","inventoryName":"Paris City Park Lake","geometrySource":"nhd-hr","geometryState":"verified","verificationState":"PENDING_QA","notes":"Green Acres Lake (aka Williams Lake); alias RESOLVED 2026-09-04 — catalog name is TWRA's site name, Eiffel Tower Park pond is a different water; catalog note now carries the alias"},
  {"featureId":"beech-lake","inventoryName":"Beech Lake","geometrySource":"nhd-hr","geometryState":"verified","verificationState":"PENDING_QA","notes":"GNIS-named NHD waterbody"},
  {"featureId":"lake-graham","inventoryName":"Lake Graham","geometrySource":"nhd-hr","geometryState":"verified","verificationState":"PENDING_QA","notes":"unnamed NHD nhdplusid 20000700115945 verified via Wikipedia/TWRA location"},
  {"featureId":"union-city-reelfoot-pond","inventoryName":"Union City Reelfoot Packing Site Pond","geometrySource":"aerial-trace","geometryState":"verified","verificationState":"PENDING_QA","notes":"pond alongside W Reelfoot Ave at former plant; approximate=true"},
@@ -122,9 +122,14 @@ geometry-production rows below are complete.
 
 ## Remaining work / handoff
 
-1. Catalog lane: YAML rows + streams.json + checklist transplant (rows above);
-   confirm the `paris-city-park-lake` alias question (Paris City Park = Green
-   Acres Lake vs Eiffel Tower Park pond).
+1. RESOLVED 2026-09-04 (content Session B): YAML rows for all still-water
+   features exist in `packages/content/streams/tn/` and the served snapshots
+   were regenerated. `paris-city-park-lake` alias confirmed against the
+   catalog entry: the catalog name is TWRA's site name ("Paris City Park",
+   Henry County) and the mapped polygon is the city-run Green Acres Lake
+   (aka Williams Lake); the Eiffel Tower Park pond is a different secondary
+   water. The catalog note now carries the alias, so name and geometry are
+   consistent.
 2. Line lane: the 92 existing line features still lack the contract-required
    `waterbodyType` + `approximate` properties (out of this lane's scope —
    "do not edit existing line geometry").

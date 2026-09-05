@@ -139,3 +139,64 @@ trout").
 "hatch: no hatch chart file for region tn-west" (the West TN region landed in `da80558` without
 hatch charts; 3 test failures, identical before and after this change — verified by stashing).
 Web suite: typecheck, 74/74 tests, build + size budget all green.
+
+## Owner decisions (2026-09-04)
+
+Benjamin ruled on the thin-evidence waters. Applied exactly as ruled — nothing more. The two
+waters in the "Thin evidence / conflicts — left UNSET" table above are now resolved; the other
+five stay unset.
+
+### Rulings applied (3)
+
+| id | decision | what changed |
+|---|---|---|
+| harpeth-river | `species: warmwater` | Warm river with a real winter fishery: TWRA stocks the Williamson County reaches near Franklin each December. Note extended to state the December stocking explicitly. Catalog semantics are intentional — a warmwater water is never trout-scored by the UI; the stocking flag and the note carry the December fishery. |
+| little-pigeon-river | `species: trout`, `stockingProgram: true` | Full trout stream stocked consistently (owner confirmation 2026-09-04, supplementing the TWRA dataset which does not list the reach). Conservative note rewritten; TWRA source URL and gauge 03470000 kept. |
+| duck-river-tailwater | note sharpened (was already `species: trout`) | Note now states the tailwater is stocked year-round (owner confirmation 2026-09-04). |
+
+### Leave UNSET (5 — owner could not confirm)
+
+`duck-river-lower`, `nolichucky-river`, `emory-river`, `clear-fork`, `ocoee-river` — unchanged,
+no data invented.
+
+### Recommendation menu — the 23 waterbody-expansion waters
+
+**These are RECOMMENDATIONS ONLY, a decision menu for Benjamin. None of it is applied data —
+every listed water remains unset in the catalog until ruled on.** Evidence lines are the
+fishery identities documented in this catalog plus public TWRA/TVA program structure; the
+underlying stub notes carry no fishery evidence of their own ("Catalog stub pending detailed
+review").
+
+Big-reservoir rule of thumb: the trout water is the dam's tailwater, which this catalog already
+covers as its own scored feature; the reservoirs themselves are warm/coolwater bass, crappie,
+and striper fisheries. Recommend `warmwater` for all of them.
+
+| id | recommendation | evidence (one line) |
+|---|---|---|
+| norris-lake | warmwater | Deep Clinch reservoir managed for black bass/striped bass/walleye; the trout water is the Clinch (Norris tailwater) the catalog already scores. |
+| cherokee-lake | warmwater | Holston reservoir fishery is bass/crappie; the tailwater below Cherokee Dam is the separate stocked trout reach. |
+| douglas-lake | warmwater | French Broad reservoir, bass/crappie; the catalog's french-broad-river note confines the cold-release trout fringe to the water near the dam. |
+| fort-loudoun-lake | warmwater | Upper Tennessee main-stem reservoir; warmwater bass/crappie fishery, no trout program. |
+| watts-bar-lake | warmwater | Tennessee main-stem reservoir; warmwater fishery, no trout program. |
+| chickamauga-lake | warmwater | Tennessee main-stem reservoir famous for trophy largemouth; warmwater. |
+| kentucky-lake | warmwater | Tennessee main-stem reservoir; nationally known crappie/bass fishery, warmwater. |
+| pickwick-lake | warmwater | Tennessee main-stem reservoir; noted smallmouth fishery, warmwater. |
+| center-hill-lake | warmwater | Caney Fork reservoir; the trout water is the Caney Fork tailwater below the dam, already cataloged. |
+| dale-hollow-lake | warmwater | Obey River reservoir renowned for smallmouth bass; the trout water is the Obey tailwater, not the lake. |
+| tims-ford-lake | warmwater | Elk River reservoir near Winchester (bass/crappie); the trout water is the Elk tailwater below the dam, already cataloged. |
+| south-holston-lake | warmwater (confirm) | The cataloged trout fishery is the South Fork Holston tailwater below the dam; recommend confirming with TWRA whether the lake itself also receives trout before finalizing. |
+| old-hickory-lake | warmwater | Cumberland main-stem reservoir; warmwater bass/crappie/striped bass fishery. |
+| j-percy-priest-lake | warmwater | Stones River reservoir southeast of Nashville; warmwater bass/crappie/catfish fishery. |
+| lake-barkley | warmwater | Cumberland main-stem reservoir at the Kentucky line; warmwater bass/crappie fishery. |
+| cumberland-river | warmwater | The Nashville→Barkley main stem is warmwater; the Cumberland system's trout fishing lives in the stocked tailwaters (Caney Fork, Obey) the catalog already covers. |
+| tennessee-river | warmwater | The main-stem river/reservoir chain is warmwater end to end; no trout program on the main stem. |
+| mississippi-river | warmwater | Boundary river fishery (catfish/carp/bass); no trout fishery in the Tennessee reach. |
+| hatchie-river | warmwater | Unchannelized West TN river; warmwater bass/panfish corridor, no trout stocking. |
+| obion-river | warmwater | Northwest TN lowland river; warmwater fishery, no trout stocking. |
+| wolf-river-west-tennessee | warmwater | Memphis-area lowland river (distinct from the Fentress County trout headwaters, wolf-river-fentress); warmwater. |
+| buffalo-river | warmwater | Scenic north-flowing Duck tributary known as a smallmouth float stream; warmwater. |
+| holston-river | warmwater | Main Holston below the N/S Fork confluence is warmwater; the trout tailwaters (South Holston, Boone, Ft. Patrick Henry) are separate catalog features. |
+
+A `warmwater` ruling here means the UI never trout-scores these waters (species semantics above);
+if any is confirmed to carry a real winter put-and-take program instead, it should be ruled
+`trout` with a seasonal note like the West TN ponds.
