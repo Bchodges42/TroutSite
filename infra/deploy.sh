@@ -17,8 +17,17 @@ pnpm -r build
 echo "[deploy] validate content pack"
 pnpm validate:content
 
+echo "[deploy] seed catalog into the API database (idempotent upsert)"
+# The streams/shops tables must match the shipped content pack before
+# snapshots are built — a stale DB regenerates stale snapshots (the live
+# 'Catalog unavailable' incident of 2026-09-05). Seeding is an upsert:
+# portal data is never touched.
+pnpm --filter api seed
+
 echo "[deploy] regenerate snapshots"
-# ROLE 3 owns the real snapshot builder. Guarded until its script exists in apps/api.
+# ROLE 3 owns the real snapshot builder: v1/** (from the DB) + content/**
+# (from the built content pack). If this is skipped or fails, /v1/streams
+# answers 503 and the app shows 'Catalog unavailable'.
 if grep -q '"snapshots"' apps/api/package.json; then
   pnpm --filter api snapshots
 else
@@ -41,4 +50,23 @@ else
 fi
 pm2 save
 
-echo "[deploy] done — verify with: curl -fsS http://127.0.0.1:8787/healthz"
+echo "[deploy] verify the live read path"
+sleep 2
+FAIL=0
+for check in "healthz|200" "v1/streams|200" "v1/conditions/latest.json|200" "content/taxa.json|200"; do
+  path="${check%%|*}"; want="${check##*|}"
+  got="$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "http://127.0.0.1:8787/$path" || echo 000)"
+  if [ "$got" != "$want" ]; then
+    echo "[deploy] FAIL — /$path answered $got (expected $want)"
+    FAIL=1
+  else
+    echo "[deploy] ok — /$path $got"
+  fi
+done
+if [ "$FAIL" = "1" ]; then
+  echo "[deploy] ENDPOINT CHECK FAILED — the site would show 'Catalog unavailable'."
+  echo "[deploy] usual cause: seed/snapshots did not run (see steps above)."
+  exit 1
+fi
+
+echo "[deploy] done — all endpoints green."

@@ -19,6 +19,7 @@ idealFlow:
     max: 400
     unit: cfs
 notes: Tailrace below Canyon Dam.
+species: trout
 officialSources:
   - label: TPWD stocking schedule
     url: https://tpwd.texas.gov/fishing/stocking
@@ -80,11 +81,14 @@ describe('seedContent', () => {
       gauge_ids: string;
       stocking_program: number;
       ideal_flow: string;
+      species: string | null;
     };
     expect(stream.state_id).toBe('TX');
     expect(JSON.parse(stream.gauge_ids)).toEqual(['08155500']);
     expect(stream.stocking_program).toBe(1);
     expect(JSON.parse(stream.ideal_flow)).toEqual([{ min: 100, max: 400, unit: 'cfs' }]);
+    // B08: species applicability must survive the seed round trip (NULL when unset).
+    expect(stream.species).toBe('trout');
 
     const shop = db.prepare("SELECT * FROM shops WHERE id = 'guadalupe-trout'").get() as {
       reports_enabled: number;

@@ -52,6 +52,7 @@ interface StreamRow {
   gauge_ids: string;
   stocking_program: number;
   ideal_flow: string;
+  species: string | null;
   notes: string | null;
   official_sources: string;
 }
@@ -89,6 +90,7 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       stockingProgram: r.stocking_program === 1,
       idealFlow: JSON.parse(r.ideal_flow),
       ...(r.notes ? { notes: r.notes } : {}),
+      ...(r.species ? { species: r.species as 'trout' | 'warmwater' } : {}),
       officialSources: JSON.parse(r.official_sources),
     }),
   );
