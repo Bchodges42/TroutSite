@@ -1,0 +1,348 @@
+{
+  "comment": "USGS site-service series catalog audit of every gauge id referenced by the catalog. Captured 2026-09-04 via waterservices.usgs.gov/nwis/site/?format=rdb&seriesCatalogOutput=true&hasDataTypeCd=iv (user-agent trout-lane/0.1). params lists the evidence-relevant instantaneous parameter codes seen at the site (00060 discharge, 00065 gage height, 00010 water temperature); absentFromCatalog=true means the site returned no series at all; ivEnd is the latest end_date across the site instantaneous series.",
+  "retrievedAt": "2026-09-04",
+  "sourceUrl": "https://waterservices.usgs.gov/nwis/site/",
+  "sites": {
+    "03408500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03409500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03410210": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03419530": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03421000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03424860": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03427500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03428200": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03430200": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03432350": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03433500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03436100": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03461500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03465500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03469251": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03470000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03485500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03486000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03497300": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03498500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03518500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03532000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03539600": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03539778": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03539800": {
+      "ivEnd": "2026-07-26",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03540500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03556590": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010"
+      ]
+    },
+    "03559500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03564500": {
+      "ivEnd": "1994-12-31",
+      "params": [
+        "00060"
+      ]
+    },
+    "03566000": {
+      "ivEnd": "2018-06-05",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03566535": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03571000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03578000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03584600": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03588500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03596000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03597860": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03598000": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00010",
+        "00060",
+        "00065"
+      ]
+    },
+    "03599500": {
+      "ivEnd": "2026-09-04",
+      "params": [
+        "00060",
+        "00065"
+      ]
+    },
+    "03486810": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03424010": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03533000": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03580750": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03468510": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03469000": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03487010": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03417000": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03487602": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03476500": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03483980": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    },
+    "03484000": {
+      "ivEnd": "",
+      "params": [],
+      "absentFromCatalog": true
+    }
+  }
+}
