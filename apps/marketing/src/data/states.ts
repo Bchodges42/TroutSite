@@ -107,6 +107,10 @@ export const REGIONS: RegionInfo[] = [
     id: 'tn-middle-nashville', stateId: 'TN', name: 'Middle Tennessee — Nashville', slug: 'nashville-area',
     blurb: 'Nashville-area and Highland Rim winter-trout waters — TWRA urban stockings put catchable trout within reach of the city.',
   },
+  {
+    id: 'tn-west', stateId: 'TN', name: 'West Tennessee', slug: 'west-tennessee',
+    blurb: 'West Tennessee winter put-and-take lakes and park ponds — accessible cold-season trout waters across the western basin.',
+  },
 ];
 
 export function stateBySlug(slug: string): LaunchState | undefined {
