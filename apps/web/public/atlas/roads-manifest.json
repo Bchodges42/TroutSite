@@ -1,0 +1,159 @@
+{
+ "generated": "2026-09-05",
+ "source": {
+  "dataset": "Census TIGER/Line 2024 ROADS (All Roads), Tennessee per-county shapefiles",
+  "urls": "https://www2.census.gov/geo/tiger/TIGER2024/ROADS/tl_2024_47NNN_roads.zip (FIPS 47001..47189)",
+  "license": "Public domain (US Government work, 17 U.S.C. § 105)",
+  "licenseDoc": "docs/roads-sources.md"
+ },
+ "clip": {
+  "mask": "public/atlas/tn-boundary.geojson",
+  "bufferM": 1000,
+  "rule": "whole-part rejection"
+ },
+ "lod": {
+  "major": [
+   "S1100",
+   "S1200"
+  ],
+  "mid": [
+   "S1400 (chains ≥ settled minChainM)",
+   "S1630 (ramps)",
+   "S1640 (service drives)"
+  ],
+  "minor": [
+   "S1500 (vehicular trails)",
+   "S1820",
+   "S1830"
+  ],
+  "dropped": {
+   "mtfcc": [
+    "S1710",
+    "S1730",
+    "S1740",
+    "S1750",
+    "S1780"
+   ],
+   "meaning": "walkways, alleys, private service roads, private driveways, parking-lot roads",
+   "features": 40656
+  }
+ },
+ "welding": "endpoint-exact at 5dp within (MTFCC, FULLNAME) groups; greedy continuation at forks; no invented coordinates",
+ "ladder": {
+  "settled": "rung3 (mid ≥ 3200 m)",
+  "targetBytes": 6000000,
+  "attempts": [
+   {
+    "label": "base (mid ≥ 800 m)",
+    "totalBytes": 11768566,
+    "perFileBytes": {
+     "major": 2206905,
+     "mid": 9362002,
+     "minor": 199659
+    }
+   },
+   {
+    "label": "rung1 (mid ≥ 1200 m)",
+    "totalBytes": 8937987,
+    "perFileBytes": {
+     "major": 2206905,
+     "mid": 6546372,
+     "minor": 184710
+    }
+   },
+   {
+    "label": "rung2 (mid ≥ 2000 m)",
+    "totalBytes": 6410181,
+    "perFileBytes": {
+     "major": 1956036,
+     "mid": 4278234,
+     "minor": 175911
+    }
+   },
+   {
+    "label": "rung3 (mid ≥ 3200 m)",
+    "totalBytes": 4606657,
+    "perFileBytes": {
+     "major": 1785851,
+     "mid": 2651753,
+     "minor": 169053
+    }
+   }
+  ],
+  "minChainM": 3200
+ },
+ "files": [
+  {
+   "file": "roads-major.geojson",
+   "lod": "major",
+   "bytes": 1785851,
+   "features": 2842,
+   "vertices": 68611,
+   "bbox": [
+    -90.12747,
+    34.98295,
+    -81.69614,
+    36.67634
+   ],
+   "rdpDeg": 0.0005,
+   "precisionDp": 5
+  },
+  {
+   "file": "roads-mid.geojson",
+   "lod": "mid",
+   "bytes": 2651753,
+   "features": 8686,
+   "vertices": 82733,
+   "bbox": [
+    -90.2141,
+    34.9832,
+    -81.6952,
+    36.678
+   ],
+   "rdpDeg": 0.0016,
+   "precisionDp": 4
+  },
+  {
+   "file": "roads-minor.geojson",
+   "lod": "minor",
+   "bytes": 169053,
+   "features": 312,
+   "vertices": 6704,
+   "bbox": [
+    -90.0439,
+    34.9883,
+    -81.961,
+    36.64
+   ],
+   "rdpDeg": 0.0025,
+   "precisionDp": 4
+  }
+ ],
+ "totals": {
+  "bytes": 4606657,
+  "features": 11840,
+  "vertices": 158048
+ },
+ "counts": {
+  "sourceSegments": 324180,
+  "sourceVertices": 8757072,
+  "keptParts": 324180,
+  "rejectedPartsOutsideTn": 0,
+  "weldedChains": 287101,
+  "mtfccHistogram": {
+   "S1100": 427,
+   "S1200": 8897,
+   "S1400": 296412,
+   "S1500": 3584,
+   "S1630": 4771,
+   "S1640": 10078,
+   "S1710": 233,
+   "S1730": 2658,
+   "S1740": 25057,
+   "S1750": 9618,
+   "S1780": 3090,
+   "S1820": 10,
+   "S1830": 1
+  }
+ }
+}
