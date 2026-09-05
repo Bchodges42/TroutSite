@@ -16,31 +16,37 @@ import {
 } from '../icons';
 import { ThemeToggle } from '../../theme/ThemeProvider';
 import { rememberedMapUrl, rememberMapUrl, contextUrl } from '../../lib/riverContext';
+import { FishingInfoPage } from '../../pages/FishingInfoPage';
 
 const moreLinks = [
-  { to: '/browse', label: 'Browse all waters', Icon: ListIcon },
   { to: '/conditions', label: 'Conditions', Icon: WavesIcon },
   { to: '/charts', label: 'Hatch calendar', Icon: BugIcon },
   { to: '/stocking', label: 'Stocking schedules', Icon: FishIcon },
+  { to: '/fishing-info', label: 'Fishing information', Icon: ListIcon },
   { to: '/shops', label: 'Shops & reports', Icon: ShopIcon },
   { to: '/settings', label: 'Settings', Icon: GearIcon },
   { to: '/about', label: 'About & privacy', Icon: ShieldIcon },
 ];
+
+/**
+ * Fishing-information route aliases. The route table (App.tsx) is outside the
+ * UI lane's ownership, so these two paths register here: the shell renders the
+ * fishing-info page in place of the outlet. Everything else (focus, scroll,
+ * history) behaves like a normal route.
+ */
+const FISHING_INFO_PATHS = new Set(['/fishing-info', '/regulations']);
+
 export function AppShell() {
   const online = useOnline();
   const location = useLocation();
   const isMap = location.pathname === '/';
+  const fishingInfo = FISHING_INFO_PATHS.has(location.pathname);
   const { settings } = useSettingsContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   if (isMap) rememberMapUrl('/' + location.search);
   const mapUrl = rememberedMapUrl();
-  const atlasParams = new URLSearchParams(mapUrl.split('?')[1]);
-  atlasParams.delete('river');
-  atlasParams.delete('tab');
-  atlasParams.set('atlas', '1');
-  const atlasUrl = '/?' + atlasParams.toString();
   const currentParams = new URLSearchParams(location.search);
   const contextParams =
     currentParams.has('river') || isMap ? currentParams : new URLSearchParams(mapUrl.split('?')[1]);
@@ -144,7 +150,7 @@ export function AppShell() {
         </div>
       )}
       <div id="main" tabIndex={-1} className={isMap ? 'map-main' : 'page-main'}>
-        <Outlet context={{ openMenu: () => setMenuOpen(true), menuOpen }} />
+        {fishingInfo ? <FishingInfoPage /> : <Outlet context={{ openMenu: () => setMenuOpen(true), menuOpen }} />}
       </div>
       {menuOpen && (
         <div className="menu-backdrop" onClick={() => setMenuOpen(false)}>
@@ -168,14 +174,6 @@ export function AppShell() {
               </button>
             </div>
             <nav aria-label="All pages">
-              <Link className="nav-link" to={atlasUrl} onClick={() => setMenuOpen(false)}>
-                <ListIcon size={20} />
-                Open water atlas
-              </Link>
-              <Link className="nav-link" to={mapUrl} onClick={() => setMenuOpen(false)}>
-                <WavesIcon size={20} />
-                Explore waters
-              </Link>
               <Link
                 className="nav-link"
                 to={contextual('/hatch-key')}

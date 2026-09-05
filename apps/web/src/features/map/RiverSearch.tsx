@@ -105,7 +105,12 @@ export function RiverSearch({
           aria-activedescendant={open && matches[active] ? id + '-option-' + active : undefined}
           placeholder={placeholder}
           value={query}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            // An empty query opens nothing: the auto-focused atlas search must
+            // not drop a result sheet over the filters below it. Typing or
+            // ArrowDown still opens the list immediately.
+            if (query) setOpen(true);
+          }}
           onChange={(e) => {
             setQuery(e.target.value);
             setOpen(true);

@@ -631,10 +631,6 @@ a {
 .map-topbar > * {
   pointer-events: auto;
 }
-.map-toolbar {
-  display: flex;
-  gap: 8px;
-}
 .map-tool {
   display: flex;
   align-items: center;
@@ -666,7 +662,7 @@ a {
 }
 .layer-picker {
   position: absolute;
-  top: 54px;
+  top: calc(100% + 10px);
   right: 0;
   width: 238px;
   padding: 16px;
@@ -723,31 +719,6 @@ a {
 }
 .map-bottom > * {
   pointer-events: auto;
-}
-.map-keybar {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-}
-.map-index-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 9px 13px;
-  border: 1px solid var(--ui-border);
-  border-radius: 8px;
-  background: var(--ui-surface);
-  box-shadow: var(--ui-shadow);
-  color: var(--ui-text);
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.map-index-toggle:hover,
-.map-index-toggle[aria-expanded='true'] {
-  color: var(--ui-accent);
-  border-color: var(--ui-accent);
 }
 .map-legend {
   display: flex;
@@ -1599,17 +1570,7 @@ a {
     left: auto;
     right: 14px;
   }
-  .map-toolbar > .map-tool {
-    width: 44px;
-    padding: 0;
-  }
-  .map-toolbar .tool-label {
-    display: none;
-  }
   .map-view-label {
-    display: none;
-  }
-  .map-topbar .map-home {
     display: none;
   }
   .map-bottom {
@@ -1624,9 +1585,6 @@ a {
     width: fit-content;
   }
   .map-legend .legend-title {
-    display: none;
-  }
-  .map-index-toggle {
     display: none;
   }
   .map-help {
@@ -1836,4 +1794,296 @@ html.reduce-motion *::after {
   animation-delay: 0s !important;
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
+}
+/* ============================================================
+   UI redesign lane — fluid control group, tooltips, discovery
+   surfaces, data states, fishing-information guide.
+   ============================================================ */
+.map-fab-wrap {
+  position: relative;
+  pointer-events: auto;
+}
+.map-fab-group {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow);
+}
+.map-fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ui-text);
+}
+.map-fab:hover {
+  background: var(--ui-subtle);
+  color: var(--ui-accent);
+}
+.map-fab[aria-expanded='true'] {
+  background: var(--ui-accentSoft);
+  color: var(--ui-accent);
+  border-color: var(--ui-accent);
+}
+.map-fab:disabled {
+  opacity: 0.6;
+}
+/* Fluid tooltip — spring rise on hover AND keyboard focus, never on touch,
+   never required for comprehension (every control has an accessible name). */
+.map-fab::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 45;
+  padding: 7px 11px;
+  border-radius: 8px;
+  background: var(--ui-text);
+  color: var(--ui-bg);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-5px) scale(0.92);
+  transform-origin: top right;
+  transition:
+    opacity 140ms var(--trout-motion-ease),
+    transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.map-fab:hover::after,
+.map-fab:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+@media (pointer: coarse) {
+  .map-fab::after {
+    display: none;
+  }
+}
+.legend-scope {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--ui-faint);
+}
+.legend-line.warmwater {
+  background: var(--ui-warmwater);
+}
+
+/* Conditions discovery — search first, small relevant strips, capped results */
+.discovery-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.discovery-search .search-field {
+  flex: 1;
+  min-width: min(100%, 320px);
+}
+.discovery-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--ui-muted);
+}
+.discovery-clear:hover {
+  color: var(--ui-accent);
+  background: var(--ui-subtle);
+}
+.discovery-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.discovery-near {
+  gap: 8px;
+}
+.water-card h3 {
+  font-size: 16px;
+}
+.distance-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border: 1px solid var(--ui-border);
+  border-radius: 99px;
+  background: var(--ui-subtle);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ui-muted);
+  white-space: nowrap;
+}
+
+/* Data states — observed vs cached vs scheduled vs reported, at a glance */
+.data-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  background: var(--ui-accentSoft);
+  color: var(--ui-accent);
+  white-space: nowrap;
+}
+.data-state::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.data-state.is-future {
+  background: var(--ui-subtle);
+  color: var(--ui-muted);
+}
+.filter-disclosure summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-muted);
+  cursor: pointer;
+}
+.filter-disclosure summary:hover {
+  color: var(--ui-accent);
+}
+.filter-disclosure[open] summary {
+  color: var(--ui-text);
+}
+
+/* Fishing information & regulations guide */
+.fishing-info .fi-reviewed {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--ui-accent);
+  background: var(--ui-subtle);
+  border-radius: 0 10px 10px 0;
+  font-size: 14px;
+  color: var(--ui-muted);
+  max-width: 70ch;
+}
+.fi-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.fi-jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 6px 13px;
+  border: 1px solid var(--ui-border);
+  border-radius: 99px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ui-muted);
+}
+.fi-jump a:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+  background: var(--ui-accentSoft);
+}
+.fi-section {
+  margin-top: 36px;
+  max-width: 72ch;
+  scroll-margin-top: 96px;
+}
+.fi-section h2 {
+  font-family: var(--trout-font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.fi-section p {
+  line-height: 1.7;
+}
+.fi-effective {
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--ui-muted);
+  border-left: 2px solid var(--ui-borderStrong);
+  padding-left: 12px;
+}
+.fi-sources {
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fi-sources a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ui-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.fi-terms {
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px 18px;
+}
+.fi-terms dt {
+  font-weight: 650;
+}
+.fi-terms dd {
+  margin: 0;
+  color: var(--ui-muted);
+  line-height: 1.6;
+}
+.fi-disclaimer {
+  margin-top: 40px;
+  padding: 18px 20px;
+  border: 1px dashed var(--ui-borderStrong);
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.fi-disclaimer strong {
+  display: block;
+  margin-bottom: 6px;
+}
+@media (max-width: 600px) {
+  .fi-terms {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .fi-terms dd {
+    margin-bottom: 10px;
+  }
+  .fi-jump a {
+    min-height: 44px;
+  }
 }

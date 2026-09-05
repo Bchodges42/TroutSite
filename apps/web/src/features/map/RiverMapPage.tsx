@@ -4,19 +4,14 @@ import * as maplibregl from 'maplibre-gl';
 import { TennesseeMap, TN_BOUNDS } from './TennesseeMap';
 import { RiverDrawer } from './RiverDrawer';
 import { RiverSearch } from './RiverSearch';
+import { MapControlGroup } from './MapControlGroup';
 import { useRiverMapData } from './useRiverMapData';
 import { useOnline } from '../../hooks/useOnline';
 import { useTheme } from '../../theme/ThemeProvider';
 import { validMonth } from '../../lib/riverContext';
 import { monthName, regionName } from '../../data/regions';
-import {
-  CloseIcon,
-  LayersIcon,
-  ListIcon,
-  LocationIcon,
-  WavesIcon,
-  BugIcon,
-} from '../../components/icons';
+import { decisionStatusText, toWaterDecisionView } from './waterDecision';
+import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
 const statusName = { good: 'Good', fair: 'Fair', poor: 'Poor', 'no-data': 'Unassessed' };
@@ -69,8 +64,11 @@ export function RiverMapPage() {
       const visibleSearch = [...document.querySelectorAll<HTMLInputElement>('.search-input')].find(
         (el) => el.getClientRects().length > 0,
       );
-      (visibleSearch ?? document.querySelector<HTMLButtonElement>('.map-index-toggle'))?.focus();
+      (visibleSearch ?? document.querySelector<HTMLElement>('.map-fab-search'))?.focus();
     });
+  // The atlas has ONE path per surface: the search control (group icon on
+  // desktop, the always-visible field's list on mobile). No second chrome
+  // entry opens it.
   const openIndex = () => {
     setExpanded(false);
     update({ river: null, tab: null, atlas: '1' });
@@ -82,6 +80,10 @@ export function RiverMapPage() {
   const close = () => {
     setRiver(null);
     focusExploreControl();
+  };
+  const recenterTennessee = () => {
+    mapRef.current?.fitBounds(TN_BOUNDS, { padding: 45, duration: 0 });
+    setLayers(false);
   };
   useEffect(() => {
     const media = window.matchMedia('(min-width:901px)');
@@ -106,8 +108,7 @@ export function RiverMapPage() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !document.getElementById('app-menu')) {
-        if (layers) setLayers(false);
-        else if (selectedId) close();
+        if (selectedId) close();
         else if (indexOpen) closeIndex();
       }
     };
@@ -267,6 +268,57 @@ export function RiverMapPage() {
       </button>
     </div>
   );
+  const layerPanel = (
+    <>
+      <label>
+        <input
+          type="radio"
+          name="map-mode"
+          checked={mode === 'conditions'}
+          onChange={() => update({ mode: 'conditions' })}
+        />
+        Water conditions
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="map-mode"
+          checked={mode === 'hatches'}
+          onChange={() => update({ mode: 'hatches' })}
+        />
+        Seasonal hatches
+      </label>
+      {mode === 'hatches' && (
+        <select
+          aria-label="Hatch month"
+          value={month}
+          onChange={(e) => update({ month: e.target.value })}
+        >
+          {Array.from({ length: 12 }, (_, i) => (
+            <option key={i} value={i + 1}>
+              {monthName(i + 1)}
+            </option>
+          ))}
+        </select>
+      )}
+      <label>
+        <input
+          type="checkbox"
+          checked={basemap === 'topo'}
+          disabled={!topoAvailable}
+          onChange={(e) => update({ terrain: e.target.checked ? '1' : null, basemap: null })}
+        />
+        Terrain relief
+      </label>
+      <p className="muted text-xs">
+        {topoAvailable
+          ? theme.id === 'nightfall'
+            ? 'USGS terrain contours · clearer as you zoom in'
+            : 'USGS shaded relief · clearer as you zoom in'
+          : 'Terrain is not available on this device.'}
+      </p>
+    </>
+  );
   return (
     <div className="field-map">
       <aside
@@ -357,29 +409,34 @@ export function RiverMapPage() {
                   No waters match this filter. Choose All fish to browse the catalog.
                 </p>
               )}
-              {sorted.map((f) => (
-                <button
-                  key={f.stream.id}
-                  className="water-row"
-                  onClick={() => setRiver(f.stream.id)}
-                  aria-label={'Select ' + f.stream.name + ' — ' + statusName[f.status]}
-                  data-status={f.status}
-                >
-                  <span className="water-symbol">
-                    <WavesIcon size={17} />
-                  </span>
-                  <span className="water-row-copy">
-                    <strong>{f.stream.name}</strong>
-                    <small>{regionName(f.stream.regionId).split(' — ')[0]}</small>
-                  </span>
-                  <span className="water-row-meta">
-                    <span className="status-text">{statusName[f.status]}</span>
-                    <small>
-                      {f.status === 'no-data' || f.score === null ? 'No score' : f.score + ' / 100'}
-                    </small>
-                  </span>
-                </button>
-              ))}
+              {sorted.map((f) => {
+                const decision = toWaterDecisionView(f, species);
+                return (
+                  <button
+                    key={f.stream.id}
+                    className="water-row"
+                    onClick={() => setRiver(f.stream.id)}
+                    aria-label={'Select ' + f.stream.name + ' — ' + decisionStatusText(decision, f)}
+                    data-status={f.status}
+                  >
+                    <span className="water-symbol">
+                      <WavesIcon size={17} />
+                    </span>
+                    <span className="water-row-copy">
+                      <strong>{f.stream.name}</strong>
+                      <small>{regionName(f.stream.regionId).split(' — ')[0]}</small>
+                    </span>
+                    <span className="water-row-meta">
+                      <span className="status-text">{decisionStatusText(decision, f)}</span>
+                      <small>
+                        {decision.displayMetric === 'trout-condition' && f.score !== null
+                          ? f.score + ' / 100'
+                          : 'No score'}
+                      </small>
+                    </span>
+                  </button>
+                );
+              })}
             </div>
             <footer className="index-footer">
               <span>
@@ -415,14 +472,6 @@ export function RiverMapPage() {
         <div className="mobile-explore">
           <div className="mobile-search-row">
             <RiverSearch streams={data.streams} onSelect={setRiver} shortcut={!desktop} />
-            <button
-              className="map-tool mobile-list-toggle"
-              aria-label="Show water list"
-              aria-expanded={indexOpen}
-              onClick={() => (indexOpen ? closeIndex() : openIndex())}
-            >
-              <ListIcon size={19} />
-            </button>
           </div>
           <div className="mobile-map-tools">
             <button
@@ -456,108 +505,15 @@ export function RiverMapPage() {
             Tennessee waters <span aria-hidden="true"> / </span>{' '}
             {mode === 'hatches' ? monthName(month) + ' hatches' : 'Conditions atlas'}
           </span>
-          <div className="map-toolbar">
-            <button
-              className="map-tool map-home"
-              onClick={() => {
-                mapRef.current?.fitBounds(TN_BOUNDS, { padding: 45, duration: 0 });
-              }}
-              title="Show all Tennessee"
-            >
-              Tennessee ↗
-            </button>
-            <button
-              className="map-tool"
-              aria-label="Use my location"
-              disabled={locating}
-              onClick={locate}
-            >
-              <LocationIcon size={18} />
-              <span className="tool-label">{locating ? 'Locating…' : 'Near me'}</span>
-            </button>
-            <button
-              className="map-tool"
-              aria-label="Map layers"
-              aria-expanded={layers}
-              onClick={() => setLayers(!layers)}
-            >
-              <LayersIcon size={18} />
-              <span className="tool-label">Layers</span>
-            </button>
-            {layers && (
-              <div className="layer-picker" role="group" aria-label="Map layers">
-                <p className="eyebrow">Explore the map</p>
-                <button
-                  className="layer-index-action"
-                  onClick={() => {
-                    setLayers(false);
-                    openIndex();
-                  }}
-                >
-                  <ListIcon size={17} />
-                  Browse {data.streams.length} waters
-                </button>
-                <label>
-                  <input
-                    type="radio"
-                    name="map-mode"
-                    checked={mode === 'conditions'}
-                    onChange={() => update({ mode: 'conditions' })}
-                  />
-                  Water conditions
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="map-mode"
-                    checked={mode === 'hatches'}
-                    onChange={() => update({ mode: 'hatches' })}
-                  />
-                  Seasonal hatches
-                </label>
-                {mode === 'hatches' && (
-                  <select
-                    aria-label="Hatch month"
-                    value={month}
-                    onChange={(e) => update({ month: e.target.value })}
-                  >
-                    {Array.from({ length: 12 }, (_, i) => (
-                      <option key={i} value={i + 1}>
-                        {monthName(i + 1)}
-                      </option>
-                    ))}
-                  </select>
-                )}
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={basemap === 'topo'}
-                    disabled={!topoAvailable}
-                    onChange={(e) =>
-                      update({ terrain: e.target.checked ? '1' : null, basemap: null })
-                    }
-                  />
-                  Terrain relief
-                </label>
-                <p className="muted text-xs">
-                  {topoAvailable
-                    ? theme.id === 'nightfall'
-                      ? 'USGS terrain contours · clearer as you zoom in'
-                      : 'USGS shaded relief · clearer as you zoom in'
-                    : 'Terrain is not available on this device.'}
-                </p>
-                <button
-                  className="text-action"
-                  onClick={() => {
-                    mapRef.current?.fitBounds(TN_BOUNDS, { padding: 45, duration: 0 });
-                    setLayers(false);
-                  }}
-                >
-                  Show all Tennessee ↗
-                </button>
-              </div>
-            )}
-          </div>
+          <MapControlGroup
+            onRecenter={recenterTennessee}
+            layersOpen={layers}
+            onLayersToggle={() => setLayers(!layers)}
+            onLocate={locate}
+            locating={locating}
+            onOpenSearch={openIndex}
+            layersPanel={layerPanel}
+          />
         </div>
         {locationNote && (
           <div className="map-location-note" role="status">
@@ -583,32 +539,36 @@ export function RiverMapPage() {
           </div>
         )}
         <div className="map-bottom">
-          <div className="map-keybar">
-            <button
-              className="map-index-toggle"
-              aria-label="Browse Tennessee waters"
-              aria-expanded={indexOpen}
-              onClick={() => (indexOpen ? closeIndex() : openIndex())}
-            >
-              <ListIcon size={17} />
-              {data.streams.length} waters
-            </button>
-            <div className="map-legend" aria-label="Condition legend">
-              <span className="legend-title">
-                {mode === 'hatches' ? 'Seasonal guidance' : 'Trout conditions'}
+          <div className="map-legend" aria-label="Condition legend">
+            <span className="legend-title">
+              {mode === 'hatches'
+                ? 'Seasonal guidance'
+                : species === 'trout'
+                  ? 'Trout conditions'
+                  : 'Water guide'}
+            </span>
+            {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
+              <span key={s} data-status={s}>
+                <i className={'legend-line' + (s === 'no-data' ? ' unknown' : '')} />
+                {s === 'no-data' ? 'Unassessed' : statusName[s]}
+                {mode !== 'hatches' && species === 'all' && s !== 'no-data' && (
+                  <em className="legend-scope"> · trout waters</em>
+                )}
               </span>
-              {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
-                <span key={s} data-status={s}>
-                  <i className={'legend-line' + (s === 'no-data' ? ' unknown' : '')} />
-                  {s === 'no-data' ? 'Unassessed' : statusName[s]}
-                </span>
-              ))}
-            </div>
+            ))}
+            {mode !== 'hatches' && species === 'all' && (
+              <span data-status="warmwater">
+                <i className="legend-line warmwater" />
+                Warmwater · no trout score
+              </span>
+            )}
           </div>
           <p className="map-help">
             {mode === 'hatches'
               ? 'Amber halos show regional hatch guidance, not live sightings.'
-              : 'Select a river line or named water to explore.'}{' '}
+              : species === 'all'
+                ? 'Good, Fair, and Poor describe trout waters only. Warmwater waters are shown but not scored.'
+                : 'Select a river line or named water to explore.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>
         </div>

@@ -27,7 +27,7 @@ test.beforeEach(async ({ page }) => {
 async function select(page: Page, name: string) {
   let search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
   if ((await search.count()) === 0) {
-    await page.getByRole('button', { name: 'Browse Tennessee waters', exact: true }).click();
+    await page.getByRole('button', { name: 'Search waters', exact: true }).click();
     search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
   }
   await search.fill(name);
@@ -104,20 +104,79 @@ test('the map opens full-bleed and the water atlas is summonable', async ({ page
   await expect(page.locator('.water-sidebar')).toBeHidden();
   await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Browse Tennessee waters' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Center map on Tennessee' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Search waters' })).toBeVisible();
   await ready(page);
-  await page.getByRole('button', { name: 'Browse Tennessee waters' }).click();
+  await page.getByRole('button', { name: 'Search waters' }).click();
   await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
-  await expect(page.locator('.water-row')).toHaveCount(105);
+  await expect(page.locator('.water-row')).toHaveCount(128);
   await page.getByRole('button', { name: 'Close water list' }).click();
+  // The atlas has one chrome path: the layers panel no longer duplicates it,
+  // and the menu no longer carries 'Open water atlas' or 'Browse all waters'.
   await page.getByRole('button', { name: 'Map layers', exact: true }).click();
-  await page.getByRole('button', { name: 'Browse 105 waters', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
-  await page.getByRole('button', { name: 'Close water list' }).click();
+  await expect(page.getByRole('group', { name: 'Map layers' })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Browse \d+ waters/ })).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('group', { name: 'Map layers' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Open menu', exact: true }).click();
-  await page.getByRole('link', { name: 'Open water atlas', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open water atlas' })).toHaveCount(0);
+  await expect(
+    page.getByRole('dialog', { name: 'Navigation menu' }).getByRole('link', { name: 'Explore waters' }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('dialog', { name: 'Navigation menu' }).getByRole('link', { name: 'Browse all waters' }),
+  ).toHaveCount(0);
+  await page.keyboard.press('Escape');
   await noOverflow(page);
+});
+
+test('fluid tooltips appear on hover and keyboard focus and never trap focus', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await ready(page);
+  const layers = page.getByRole('button', { name: 'Map layers', exact: true });
+  const tooltipOpacity = () => layers.evaluate((el) => getComputedStyle(el, '::after').opacity);
+  expect(await tooltipOpacity()).toBe('0');
+  await layers.hover();
+  await expect.poll(tooltipOpacity).toBe('1');
+  await layers.focus();
+  await expect.poll(tooltipOpacity).toBe('1');
+  // Focus moves straight through the group — no tooltip trap.
+  await page.keyboard.press('Tab');
+  expect(await page.evaluate(() => document.activeElement?.className)).toContain('map-fab');
+  expect(await page.evaluate(() => document.activeElement?.getAttribute('aria-label'))).toBe(
+    'Use my location',
+  );
+});
+
+test('control group buttons meet the 44px touch minimum', async ({ page }) => {
+  await page.goto('/');
+  await ready(page);
+  for (const name of ['Center map on Tennessee', 'Map layers', 'Use my location', 'Search waters']) {
+    const box = (await page.getByRole('button', { name }).boundingBox())!;
+    expect(box.width).toBeGreaterThanOrEqual(44);
+    expect(box.height).toBeGreaterThanOrEqual(44);
+  }
+});
+
+test('Tennessee recentering resets the camera from a zoomed view', async ({ page }) => {
+  await page.goto('/');
+  await ready(page);
+  await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await page
+    .getByRole('button', { name: 'Zoom in', exact: true })
+    .click();
+  await expect
+    .poll(async () => Number(await page.getByTestId('river-map').getAttribute('data-zoom')))
+    .toBeGreaterThan(8);
+  await page.getByRole('button', { name: 'Center map on Tennessee' }).click();
+  // The statewide fit sits at the product's enforced state zoom, far below the
+  // zoomed-in view.
+  await expect
+    .poll(async () => Number(await page.getByTestId('river-map').getAttribute('data-zoom')))
+    .toBeLessThan(7.5);
 });
 
 test('search, inspector tabs, Escape hierarchy, and focus restoration', async ({ page }) => {
@@ -139,7 +198,24 @@ test('search, inspector tabs, Escape hierarchy, and focus restoration', async ({
   await expect(page.locator('#river-inspector')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#river-inspector')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Browse Tennessee waters' })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Search waters' })).toBeFocused();
+});
+
+test('legend speaks trout conditions in trout mode and stays honest in all-fish mode', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await ready(page);
+  await expect(page.locator('.map-legend .legend-title')).toHaveText('Trout conditions');
+  await expect(page.locator('.map-legend')).not.toContainText('Warmwater');
+  await page.getByRole('button', { name: 'Search waters' }).click();
+  await page.getByRole('button', { name: 'All fish', exact: true }).click();
+  await expect(page.locator('.map-legend .legend-title')).toHaveText('Water guide');
+  await expect(page.locator('.map-legend')).toContainText('trout waters');
+  await expect(page.locator('.map-legend')).toContainText('Warmwater · no trout score');
+  await expect(page.locator('.map-help')).toContainText(
+    'Good, Fair, and Poor describe trout waters only',
+  );
 });
 
 test('named map waters are independently selectable', async ({ page }) => {
@@ -274,7 +350,7 @@ test('WebGL failure has a usable list alternative', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Explore without the map.' })).toBeVisible();
   await page.getByRole('link', { name: 'Browse all waters →', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Browse streams', exact: true })).toBeVisible();
-  await expect(page.locator('.list-row')).toHaveCount(105);
+  await expect(page.locator('.list-row')).toHaveCount(128);
 });
 
 test('offline and unassessed presentation never claim live or zero Poor', async ({
@@ -317,9 +393,12 @@ test('West Tennessee still waters are labeled, tappable, and honestly unassessed
 }) => {
   await page.goto('/');
   await ready(page);
-  await expect(page.locator('.still-water-label')).toHaveCount(13);
+  await expect(page.locator('.still-water-label')).toHaveCount(28);
   await expect(page.locator('.still-water-label').filter({ visible: true }).first()).toBeVisible();
-  await clickMapCoordinate(page, -89.77231, 35.10075);
+  // With real polygon geometry, a neighboring line river can legitimately win
+  // a raw coordinate tap at state zoom (nearest-centerline selection), so the
+  // labeled still water asserts its designed selection surface: its label.
+  await page.locator('[data-river-id="cameron-brown-lake"]').click();
   await expect(page).toHaveURL(/river=cameron-brown-lake/);
   await expect(
     page.getByRole('heading', { name: 'Cameron Brown Lake', exact: true }),

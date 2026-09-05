@@ -19,6 +19,22 @@ const POLYS_ONLY = ['==', '$type', 'Polygon'] as unknown as FilterSpecification;
 // for them). In MapLibre $type, 'Point' also covers MultiPoint.
 const POINTS_ONLY = ['==', '$type', 'Point'] as unknown as FilterSpecification;
 
+/** Linear mix of two #rrggbb colors — derives presentation tones without new palette entries. */
+function mixHex(a: string, b: string, ratio: number): string {
+  const parse = (hex: string) => [
+    parseInt(hex.slice(1, 3), 16),
+    parseInt(hex.slice(3, 5), 16),
+    parseInt(hex.slice(5, 7), 16),
+  ];
+  const [ar, ag, ab] = parse(a) as [number, number, number];
+  const [br, bg, bb] = parse(b) as [number, number, number];
+  const channel = (x: number, y: number) =>
+    Math.round(x + (y - x) * ratio)
+      .toString(16)
+      .padStart(2, '0');
+  return '#' + channel(ar, br) + channel(ag, bg) + channel(ab, bb);
+}
+
 /**
  * Self-hosted Field Notes Atlas StyleSpec.
  * - No remote tiles, no Mapbox token, no external requests of any kind.
@@ -31,9 +47,11 @@ const POINTS_ONLY = ['==', '$type', 'Point'] as unknown as FilterSpecification;
  *   (No layer below needs them: there are no icon or symbol layers — place
  *   labels render as HTML markers in TennesseeMap, not as glyph text.)
  * - Layers bottom→top: background (pine-black), neighbor-state context fill,
- *   TN fill, county hairlines, TN outline, river casing (near-black shadow),
- *   river interior (condition color via feature property `color`),
- *   selection highlight, hatch-mode halo, wide transparent hit line.
+ *   TN fill, county hairlines, TN outline, river casing (paper-tone halo),
+ *   river water corridor (solid muted water base for EVERY line),
+ *   condition centerline (narrower, assessed only), unassessed dashes
+ *   (quiet at state zoom, clearer at local zoom), selection highlight,
+ *   hatch-mode halo, wide transparent hit line.
  * - `variant` swaps ground/line tones only ('paper' merges atlasLight over the
  *   dark atlas). Condition hues, selection amber, and data fallbacks are
  *   identical in every variant so the legend stays truthful.
@@ -48,6 +66,10 @@ export function atlasStyle(
   palette?: MapPalette,
 ): StyleSpecification {
   const t = palette ?? (variant === 'paper' ? { ...atlas, ...atlasLight } : atlas);
+  // The continuous water corridor every river line sits on: a muted water tone
+  // halfway between the still-water polygon fill and the deep water accent, so
+  // lines and polygons read as one hydrography system in both themes.
+  const waterCorridor = mixHex(t.lakeFill, t.water, 0.5);
   const style: StyleSpecification = {
     version: 8,
     name: 'Trout · Fieldwork',
@@ -268,8 +290,8 @@ export function atlasStyle(
           ],
         },
       },
-      // Rivers — casing (ink) renders beneath interior so bends read clearly.
-      // LINESTRING ONLY — see LINES_ONLY note above.
+      // Rivers — casing (paper-tone halo) renders beneath the water corridor so
+      // bends read clearly against the ground. LINESTRING ONLY — see note above.
       {
         id: 'rivers-casing',
         type: 'line' as const,
@@ -288,10 +310,12 @@ export function atlasStyle(
           'line-width': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
-            6,
+            6.4,
             ['boolean', ['feature-state', 'hover'], false],
-            6,
-            3.4,
+            6.4,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            2.6,
+            4.2,
           ],
           'line-opacity': [
             'case',
@@ -307,8 +331,47 @@ export function atlasStyle(
           ],
         },
       },
-      // Rivers — interior (condition color: feature-state `color` set live by
-      // TennesseeMap, static `get color` property as fallback). LINES ONLY.
+      // Continuous water corridor — a solid, muted water-colored base under
+      // EVERY river line, assessed or not. Unassessed water still reads as
+      // water at state zoom; forks and multipart segments stay visually
+      // connected because dash gaps land on this corridor, never on bare
+      // ground. Selection hides it so the amber casing + condition color read
+      // exactly like the pre-corridor selection pop.
+      {
+        id: 'rivers-base',
+        type: 'line' as const,
+        source: 'rivers',
+        filter: LINES_ONLY,
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': waterCorridor,
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            4.4,
+            ['boolean', ['feature-state', 'hover'], false],
+            3.9,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            1.8,
+            3.2,
+          ],
+          'line-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'selected'], false],
+            0,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            0.4,
+            0.9,
+          ],
+        },
+      },
+      // Rivers — condition centerline (feature-state `color` set live by
+      // TennesseeMap, static `get color` property as fallback). Rendered as a
+      // NARROWER line down the center of the corridor, and only for assessed
+      // waters — unavailable data never renders as a solid condition.
+      // LINES ONLY.
       {
         id: 'rivers-interior',
         type: 'line' as const,
@@ -322,18 +385,106 @@ export function atlasStyle(
             ['boolean', ['feature-state', 'selected'], false],
             3.4,
             ['boolean', ['feature-state', 'hover'], false],
-            2.9,
+            2.6,
             ['boolean', ['feature-state', 'dimmed'], false],
-            1.4,
-            2.05,
+            1.2,
+            1.9,
           ],
           'line-opacity': [
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
             0,
-            ['boolean', ['feature-state', 'dimmed'], false],
-            0.35,
-            1,
+            ['boolean', ['feature-state', 'assessed'], false],
+            [
+              'case',
+              ['boolean', ['feature-state', 'dimmed'], false],
+              0.4,
+              1,
+            ],
+            0,
+          ],
+        },
+      },
+      // Unassessed dashes — dashed semantics for waters without an applicable
+      // assessment, layered OVER the solid corridor (never converting missing
+      // data into a condition). Two treatments crossfade with zoom:
+      //   • state/low zoom — a tight, quiet dash so the whole river system
+      //     reads as one cohesive water corridor from the statewide view;
+      //   • regional/local zoom — a clearer dash that honestly communicates
+      //     "no condition available here" once the user is choosing waters.
+      {
+        id: 'rivers-unassessed-quiet',
+        type: 'line' as const,
+        source: 'rivers',
+        filter: LINES_ONLY,
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': t.noData,
+          'line-width': 1.9,
+          'line-dasharray': [1.5, 3.2],
+          // zoom must stay top-level (MapLibre), so the state gates live in
+          // the stop values.
+          'line-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            5.6,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'assessed'], false],
+              0,
+              0.5,
+            ],
+            7.4,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'assessed'], false],
+              0,
+              0.22,
+            ],
+            8.6,
+            0,
+          ],
+        },
+      },
+      {
+        id: 'rivers-unassessed',
+        type: 'line' as const,
+        source: 'rivers',
+        filter: LINES_ONLY,
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': t.noData,
+          'line-width': 2.3,
+          'line-dasharray': [3, 2.4],
+          'line-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            7.4,
+            0,
+            8.6,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'assessed'], false],
+              0,
+              0.75,
+            ],
+            9.4,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'assessed'], false],
+              0,
+              1,
+            ],
           ],
         },
       },
@@ -347,7 +498,7 @@ export function atlasStyle(
         paint: {
           'line-color': t.selection,
           'line-width': 1.2,
-          'line-gap-width': 3.4,
+          'line-gap-width': 6.4,
           'line-opacity': [
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
@@ -526,40 +677,6 @@ export function atlasStyle(
     ],
   };
 
-  const interior = style.layers.find((l) => l.id === 'rivers-interior');
-  if (interior?.type === 'line')
-    interior.paint!['line-opacity'] = [
-      'case',
-      ['boolean', ['feature-state', 'hidden'], false],
-      0,
-      ['boolean', ['feature-state', 'assessed'], false],
-      1,
-      0,
-    ];
-  style.layers.splice(
-    style.layers.findIndex((l) => l.id === 'rivers-selection'),
-    0,
-    {
-      id: 'rivers-unassessed',
-      type: 'line',
-      source: 'rivers',
-      filter: LINES_ONLY,
-      layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: {
-        'line-color': t.noData,
-        'line-width': 2.2,
-        'line-dasharray': [3, 2],
-        'line-opacity': [
-          'case',
-          ['boolean', ['feature-state', 'hidden'], false],
-          0,
-          ['boolean', ['feature-state', 'assessed'], false],
-          0,
-          1,
-        ],
-      },
-    },
-  );
   if (variant !== 'topo') return style;
 
   // Task 6e Phase B — Topo: real USGS-3DEP derivatives, fully local, layered

@@ -99,3 +99,11 @@ export function ListIcon(props: IconProps) {
 export function CalendarIcon(props: IconProps) {
   return base({ ...props, children: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 9h18M8 3v4M16 3v4" /></> });
 }
+
+export function SearchIcon(props: IconProps) {
+  return base({ ...props, children: <><circle cx="10.5" cy="10.5" r="6.5" /><path d="m15.5 15.5 5 5" /></> });
+}
+
+export function CompassIcon(props: IconProps) {
+  return base({ ...props, children: <><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" /></> });
+}

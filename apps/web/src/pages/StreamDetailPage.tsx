@@ -1,12 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { RiverContextBar, riverWorkflowUrl, validMonth } from '../lib/riverContext';
 import { Card, DataBadge, EmptyState } from '@trout/ui';
-import { ConditionSnapshotSchema, StreamSchema, newestReadingAt } from '@trout/contracts';
-import type { GaugeReading } from '@trout/contracts';
+import {
+  ConditionSnapshotSchema,
+  StreamSchema,
+  StockingEventSchema,
+  newestReadingAt,
+} from '@trout/contracts';
+import type { GaugeReading, StockingEvent } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useSettingsContext } from '../lib/settings';
+import { matchStocking } from '../lib/stockingMatch';
 import {
   flowTrend,
   rememberSeen,
@@ -22,6 +28,7 @@ import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
 import { conditionReason } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
+import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 
 const CONDITIONS_TTL_MIN = 60;
 
@@ -38,8 +45,25 @@ export function StreamDetailPage() {
     CONDITIONS_TTL_MIN,
     true,
   );
+  const stockingQuery = useSnapshotQuery(
+    snapshotUrls.stocking(settings.defaultState),
+    StockingEventSchema.array(),
+    60 * 24,
+    true,
+  );
   const stream = streamsQuery.data?.data.find((s) => s.id === streamId);
   const snapshot = conditionsQuery.data?.data.find((s) => s.streamId === streamId);
+
+  // Canonical stocking association (B05) — the same matcher the map uses, so
+  // the detail page and the map can never tell different stocking stories.
+  const stockingEvents = useMemo(() => {
+    if (!stream) return [];
+    const events = stockingQuery.data?.data ?? [];
+    return (matchStocking(streamsQuery.data?.data ?? [], events).byStream.get(stream.id) ?? [])
+      .slice()
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .slice(0, 6) as StockingEvent[];
+  }, [stream, stockingQuery.data, streamsQuery.data]);
 
   const [changes, setChanges] = useState<string[] | null>(null);
   const seenHandled = useRef(false);
@@ -226,6 +250,77 @@ export function StreamDetailPage() {
           </div>
         </>
       )}
+
+      <section aria-labelledby="stocking-history-heading">
+        <h2 className="section-title" id="stocking-history-heading">
+          Stocking history
+        </h2>
+        {stockingQuery.isLoading ? (
+          <p className="page-subtitle" role="status">
+            Loading stocking schedule…
+          </p>
+        ) : stockingEvents.length === 0 ? (
+          <Card>
+            <p className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+              No published TWRA entry matches this water in the current schedule. That is not
+              confirmation that it is unstocked — check the{' '}
+              <Link to="/stocking" className="focus-ring font-bold underline">
+                full schedule
+              </Link>{' '}
+              and the official source.
+            </p>
+          </Card>
+        ) : (
+          <>
+            <ul className="mt-3 flex flex-col gap-2">
+              {stockingEvents.map((event) => {
+                const state = stockingEventState(event);
+                return (
+                  <li
+                    key={event.id}
+                    className="list-row"
+                    style={{ borderRadius: 'var(--trout-radius-lg)' }}
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="flex flex-wrap items-center gap-2">
+                        <span className="font-extrabold">{stockingPrecisionDate(event)}</span>
+                        <span
+                          className={'data-state' + (state.future ? ' is-future' : '')}
+                        >
+                          {state.label}
+                        </span>
+                      </span>
+                      <span
+                        className="mt-1 block text-sm"
+                        style={{ color: 'var(--trout-color-text-muted)' }}
+                      >
+                        {event.species} trout
+                        {event.count ? ` · ${event.count.toLocaleString()} fish` : ''}
+                      </span>
+                    </span>
+                    <a
+                      className="focus-ring shrink-0 text-sm font-bold underline"
+                      href={event.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Verify at TWRA ↗
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="muted text-xs mt-2">
+              Reported entries are past-dated published schedules, not field-verified stockings.
+              Cached from the TWRA feed fetched{' '}
+              {stockingQuery.data?.fetchedAt
+                ? new Date(stockingQuery.data.fetchedAt).toLocaleString()
+                : 'at an unknown time'}
+              ; the schedule is re-read on refresh, never cached indefinitely.
+            </p>
+          </>
+        )}
+      </section>
 
       <div className="mt-6 flex flex-wrap gap-3">
         <Link

@@ -86,6 +86,56 @@ describe('Fieldwork themes', () => {
       );
     }
   });
+  it('renders a continuous water corridor under every river line, with the condition color narrower and above it', () => {
+    for (const theme of Object.values(themes)) {
+      const style = atlasStyle('paper', theme.map);
+      const ids = style.layers.map((layer) => layer.id);
+      const base = style.layers.find((layer) => layer.id === 'rivers-base');
+      const interior = style.layers.find((layer) => layer.id === 'rivers-interior');
+      // Corridor sits between the casing and the condition centerline.
+      expect(ids.indexOf('rivers-base')).toBeGreaterThan(ids.indexOf('rivers-casing'));
+      expect(ids.indexOf('rivers-base')).toBeLessThan(ids.indexOf('rivers-interior'));
+      // Solid water, never dashed: unassessed water still reads as water.
+      expect(base?.paint).not.toHaveProperty('line-dasharray');
+      // The corridor does not depend on the assessed state — it is visible for
+      // every line, and selection/hover/dimmed/hidden are all honored.
+      const basePaint = JSON.stringify(base?.paint);
+      expect(basePaint).not.toContain('assessed');
+      expect(basePaint).toContain('selected');
+      expect(basePaint).toContain('hover');
+      expect(basePaint).toContain('dimmed');
+      expect(basePaint).toContain('hidden');
+      // The condition centerline is narrower than the corridor (1.9 < 3.2).
+      expect(JSON.stringify(interior?.paint)).toContain('1.9');
+      expect(JSON.stringify(base?.paint)).toContain('3.2');
+      // The corridor derives from the theme's water tones in both themes.
+      expect(basePaint).toMatch(/#[0-9a-f]{6}/i);
+    }
+  });
+  it('crossfades unassessed dashes from a quiet state-zoom treatment to clear local dashes', () => {
+    for (const theme of Object.values(themes)) {
+      const style = atlasStyle('ink', theme.map);
+      const quiet = style.layers.find((layer) => layer.id === 'rivers-unassessed-quiet');
+      const clear = style.layers.find((layer) => layer.id === 'rivers-unassessed');
+      for (const layer of [quiet, clear]) {
+        expect(layer?.paint).toHaveProperty('line-dasharray');
+        // Dashes are unassessed-only: an assessed water never shows one.
+        expect(JSON.stringify(layer?.paint)).toContain('assessed');
+        expect(JSON.stringify(layer?.paint)).toContain('hidden');
+      }
+      // State zoom: the quiet tight dash reads as one cohesive river, then
+      // fades out by z8.6 where the clearer dash takes over.
+      expect(JSON.stringify(quiet?.paint)).toContain('5.6');
+      expect(JSON.stringify(quiet?.paint)).toContain('8.6,0');
+      expect(JSON.stringify(quiet?.paint)).toContain('0.22');
+      // Regional/local zoom: honest, clearly dashed "no condition here".
+      expect(JSON.stringify(clear?.paint)).toContain('7.4,0');
+      expect(JSON.stringify(clear?.paint)).toContain('9.4');
+      // The clearer dash is heavier than the quiet one.
+      expect(JSON.stringify(clear?.paint)).toContain('2.3');
+      expect(JSON.stringify(quiet?.paint)).toContain('1.9');
+    }
+  });
 });
 
 it('uses contour relief in Nightfall without the opaque light raster footprint', () => {

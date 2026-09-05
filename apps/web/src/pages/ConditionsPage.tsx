@@ -1,20 +1,21 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
-import { Card, Chip, EmptyState } from '@trout/ui';
+import { Card, EmptyState } from '@trout/ui';
 import { StreamSchema, ConditionSnapshotSchema, newestReadingAt } from '@trout/contracts';
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
-import { snapshotUrls, V1_STATES } from '../lib/endpoints';
+import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useSettingsContext } from '../lib/settings';
-import { flowTrend, TREND_LABEL } from '../lib/conditions';
 import { formatFlow, formatTemp } from '../lib/units';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
-import { LocationIcon } from '../components/icons';
+import { CloseIcon, LocationIcon, SearchIcon } from '../components/icons';
 import { formatMiles, getCurrentPosition, nearestStreams } from '../lib/geo';
+import { ageMinutes } from '../lib/time';
 import geoJson from '../data/streams-geo.json';
 import { statusForScore } from '../features/map/riverMapSelectors';
+import { decisionStatusText, toWaterDecisionView } from '../features/map/waterDecision';
 
 /** Bundled coordinates (public USGS gauge locations) for the on-device "near me". */
 const geoByStreamId = geoJson as unknown as Record<string, { lat: number; lon: number }>;
@@ -23,16 +24,56 @@ const CONDITIONS_TTL_MIN = 60; // USGS refreshes hourly (§8)
 const StreamListSchema = z.array(StreamSchema);
 const ConditionsListSchema = z.array(ConditionSnapshotSchema);
 
+/**
+ * Search-first progressive disclosure (UI redesign): the page opens with a
+ * search field, a near-me activation, and a handful of relevant/recent
+ * waters — never the whole catalog. The full list only appears through an
+ * explicit search, and every selection deep-links to /conditions/:streamId
+ * so browser history and shareable URLs keep working.
+ */
 interface Row {
   stream: Stream;
   snapshot: ConditionSnapshot | undefined;
   miles?: number;
 }
 
-/** Conditions browser (scope 4): state → stream list with score pills + trend. */
+/** Match + rank a search query against names/regions (name hits first). */
+function matchRows(
+  streams: Stream[],
+  snapshotByStream: Map<string, ConditionSnapshot>,
+  query: string,
+): Row[] {
+  const normalize = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  const q = normalize(query);
+  return streams
+    .map((stream) => ({ stream, snapshot: snapshotByStream.get(stream.id) }))
+    .filter(
+      ({ stream }) =>
+        !q ||
+        normalize(stream.name + ' ' + (stream.notes ?? '')).includes(q) ||
+        normalize(stream.id).includes(q),
+    )
+    .sort(
+      (a, b) =>
+        Number(normalize(b.stream.name).includes(q)) -
+          Number(normalize(a.stream.name).includes(q)) ||
+        a.stream.name.localeCompare(b.stream.name),
+    );
+}
+
+const SEARCH_RESULT_CAP = 24;
+const NEAR_ME_COUNT = 8;
+
+/** Conditions browser (scope 4) — search-first, disclosed progressively. */
 export function ConditionsPage() {
   const { settings } = useSettingsContext();
   const stateId = settings.defaultState;
+  const [params, setParams] = useSearchParams();
+  const query = params.get('q') ?? '';
   const [nearMe, setNearMe] = useState<{ lat: number; lon: number } | null>(null);
   const [geoError, setGeoError] = useState<string | null>(null);
 
@@ -43,6 +84,17 @@ export function ConditionsPage() {
     CONDITIONS_TTL_MIN,
     true,
   );
+
+  const setQuery = (value: string) =>
+    setParams(
+      (previous) => {
+        const next = new URLSearchParams(previous);
+        if (value) next.set('q', value);
+        else next.delete('q');
+        return next;
+      },
+      { replace: true },
+    );
 
   const snapshotByStream = useMemo(() => {
     const map = new Map<string, ConditionSnapshot>();
@@ -55,21 +107,48 @@ export function ConditionsPage() {
     [streamsQuery.data, stateId],
   );
 
-  const rows: Row[] = useMemo(() => {
-    if (nearMe) {
-      return nearestStreams(streams, geoByStreamId, nearMe).map(({ stream, miles }) => ({
-        stream,
-        snapshot: snapshotByStream.get(stream.id),
-        miles,
-      }));
-    }
+  const searching = query.trim().length > 0;
+
+  const searchRows = useMemo(
+    () => (searching ? matchRows(streams, snapshotByStream, query).slice(0, SEARCH_RESULT_CAP) : []),
+    [searching, streams, snapshotByStream, query],
+  );
+
+  // Relevance strip — the major tailwaters, best score first. A small,
+  // editorial answer to "where do I go" that never grows into the catalog.
+  const tailwaterRows = useMemo(() => {
     return streams
-      .map((stream) => ({ stream, snapshot: snapshotByStream.get(stream.id) }))
+      .filter((s) => s.waterbodyType === 'tailrace' && snapshotByStream.has(s.id))
+      .map((stream) => ({ stream, snapshot: snapshotByStream.get(stream.id)! }))
       .sort(
         (a, b) =>
           (b.snapshot?.score.value ?? -1) - (a.snapshot?.score.value ?? -1) ||
           a.stream.name.localeCompare(b.stream.name),
-      );
+      )
+      .slice(0, 4);
+  }, [streams, snapshotByStream]);
+
+  // Recency strip — the waters whose newest gauge observation is freshest.
+  const recentRows = useMemo(() => {
+    const observed = (s: Stream): number => {
+      const snap = snapshotByStream.get(s.id);
+      const reading = newestReadingAt(snap?.readings ?? []);
+      if (reading != null) return reading;
+      const fetched = snap ? Date.parse(snap.fetchedAt) : NaN;
+      return Number.isFinite(fetched) ? fetched : 0;
+    };
+    return streams
+      .filter((s) => snapshotByStream.has(s.id))
+      .sort((a, b) => observed(b) - observed(a) || a.name.localeCompare(b.name))
+      .slice(0, 4)
+      .map((stream) => ({ stream, snapshot: snapshotByStream.get(stream.id)! }));
+  }, [streams, snapshotByStream]);
+
+  const nearRows = useMemo(() => {
+    if (!nearMe) return [];
+    return nearestStreams(streams, geoByStreamId, nearMe)
+      .slice(0, NEAR_ME_COUNT)
+      .map(({ stream, miles }) => ({ stream, snapshot: snapshotByStream.get(stream.id), miles }));
   }, [streams, snapshotByStream, nearMe]);
 
   const requestNearMe = async () => {
@@ -82,44 +161,74 @@ export function ConditionsPage() {
     }
   };
 
+  const totalCount = streams.length;
+  const searchingState = streamsQuery.isLoading || conditionsQuery.isLoading;
+
+  useEffect(() => {
+    document.title = 'Conditions — Trout field atlas';
+    return () => {
+      document.title = 'Trout — The Field Atlas';
+    };
+  }, []);
+
   return (
-    <main className="page">
+    <main className="page conditions-discovery">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">Conditions</h1>
         <FreshnessChip
-          fetchedAt={conditionsQuery.data?.data[0] ? Date.parse(conditionsQuery.data.data[0].fetchedAt) : null}
+          fetchedAt={
+            conditionsQuery.data?.data[0] ? Date.parse(conditionsQuery.data.data[0].fetchedAt) : null
+          }
           live={conditionsQuery.data?.live ?? false}
-          observedAt={newestReadingAt((conditionsQuery.data?.data ?? []).flatMap((s) => s.readings))} />
+          observedAt={newestReadingAt((conditionsQuery.data?.data ?? []).flatMap((s) => s.readings))}
+        />
       </div>
       <p className="page-subtitle mt-1">
-        Supplied trout assessments and gauge observations. Check observation times and official
-        release schedules before fishing.
+        Gauge-fed trout assessments for {stateId} waters. Search a water, or start from the
+        waters below — the full catalog never opens on its own.
       </p>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        <Chip tone="good">{stateId}</Chip>
-        {V1_STATES.filter((s) => s !== stateId).map((s) => (
-          <Chip key={s} tone="neutral" title="More states arrive in v2">
-            {s} · v2
-          </Chip>
-        ))}
-        {nearMe ? (
-          <button
-            type="button"
-            className="focus-ring ml-auto underline"
-            onClick={() => setNearMe(null)}
-          >
-            Clear near me
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="focus-ring ml-auto inline-flex items-center gap-1.5 font-bold underline"
-            onClick={() => void requestNearMe()}
-          >
-            <LocationIcon size={16} /> Near me
-          </button>
-        )}
+      <div className="discovery-search mt-4">
+        <div className="search-field">
+          <SearchIcon size={18} className="search-icon" />
+          <input
+            className="search-input"
+            type="search"
+            aria-label="Search waters by name"
+            placeholder="Search a named water — try “Clinch”…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          {searching && (
+            <button
+              type="button"
+              className="discovery-clear"
+              aria-label="Clear search"
+              onClick={() => setQuery('')}
+            >
+              <CloseIcon size={16} />
+            </button>
+          )}
+        </div>
+        <div className="discovery-actions">
+          {nearMe ? (
+            <button
+              type="button"
+              className="text-action"
+              onClick={() => setNearMe(null)}
+            >
+              Clear near me
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="secondary-action discovery-near"
+              onClick={() => void requestNearMe()}
+            >
+              <LocationIcon size={16} /> Near me
+            </button>
+          )}
+        </div>
       </div>
       {geoError && (
         <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-danger)' }} role="alert">
@@ -127,11 +236,11 @@ export function ConditionsPage() {
         </p>
       )}
 
-      {streamsQuery.isLoading || conditionsQuery.isLoading ? (
+      {searchingState ? (
         <p className="page-subtitle mt-6" role="status">
-          Loading streams…
+          Loading waters…
         </p>
-      ) : streamsQuery.isError && rows.length === 0 ? (
+      ) : streamsQuery.isError && totalCount === 0 ? (
         <div className="mt-6">
           <EmptyState
             icon="📡"
@@ -139,60 +248,133 @@ export function ConditionsPage() {
             description="Open once while online; the catalog then stays available offline."
           />
         </div>
-      ) : rows.length === 0 ? (
-        <div className="mt-6">
-          <EmptyState
-            icon="🎣"
-            title="No streams here yet"
-            description={`No ${stateId} streams in the catalog yet.`}
-          />
-        </div>
+      ) : searching ? (
+        <section className="mt-6" aria-label="Search results">
+          <p className="muted text-sm" role="status">
+            {searchRows.length === 0
+              ? `No waters match “${query}”.`
+              : `${searchRows.length} of ${totalCount} waters${searchRows.length === SEARCH_RESULT_CAP ? ' — keep typing to narrow it' : ''}`}
+          </p>
+          <ul className="mt-3 flex flex-col gap-2">
+            {searchRows.map((row) => (
+              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} />
+            ))}
+          </ul>
+        </section>
+      ) : nearMe ? (
+        <section className="mt-6" aria-label="Waters near you">
+          <p className="muted text-sm" role="status">
+            Closest {nearRows.length} waters with gauges — distances stay on this device.
+          </p>
+          <ul className="mt-3 flex flex-col gap-2">
+            {nearRows.map((row) => (
+              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} />
+            ))}
+          </ul>
+        </section>
       ) : (
-        <ul className="mt-4 flex flex-col gap-2">
-          {rows.map(({ stream, snapshot, miles }) => (
-            <li key={stream.id}>
-              <Link
-                to={`/conditions/${stream.id}`}
-                className="list-row focus-ring"
-                style={{ borderRadius: 'var(--trout-radius-lg)' }}
-              >
-                <span className="min-w-0 flex-1">
-                  <span className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-base font-extrabold">{stream.name}</h3>
-                    <Chip tone="neutral">{stream.waterbodyType}</Chip>
-                    {miles !== undefined && <Chip tone="accent">{formatMiles(miles)}</Chip>}
-                  </span>
-                  <span
-                    className="mt-1 block text-sm"
-                    style={{ color: 'var(--trout-color-text-muted)' }}
-                  >
-                    {snapshot
-                      ? `${latestFlowLabel(snapshot)} · ${latestTempLabel(snapshot, settings.tempUnit)} · trend ${TREND_LABEL[flowTrend(snapshot.readings)] || 'n/a'}`
-                      : 'No cached readings yet'}
-                  </span>
-                </span>
-                {snapshot &&
-                statusForScore(snapshot.score.value, snapshot.readings.length > 0) !== 'no-data' &&
-                stream.species !== 'warmwater' ? (
-                  <ScorePill score={snapshot.score.value} />
-                ) : (
-                  <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-                    {stream.species === 'warmwater' ? 'Warmwater' : 'Unassessed'}
-                  </span>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          <WaterSection
+            title="Tailwaters now"
+            note="Big water, gauged around the clock — best scores first."
+            rows={tailwaterRows}
+            tempUnit={settings.tempUnit}
+          />
+          <WaterSection
+            title="Recently observed"
+            note="Newest gauge observations across the state."
+            rows={recentRows}
+            tempUnit={settings.tempUnit}
+          />
+          <p className="muted text-sm mt-6">
+            Looking for a specific creek? Search above — {totalCount} waters are in the catalog and
+            none of them load until you ask.
+          </p>
+        </>
       )}
 
       <Card className="mt-6">
         <p className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
           Scores are a starting point, not a guarantee. Dam releases change conditions fast — always
-          verify with the official links on each stream page.
+          verify with the official links on each water page.
         </p>
       </Card>
     </main>
+  );
+}
+
+function WaterSection({
+  title,
+  note,
+  rows,
+  tempUnit,
+}: {
+  title: string;
+  note: string;
+  rows: Row[];
+  tempUnit: 'C' | 'F';
+}) {
+  if (rows.length === 0) return null;
+  return (
+    <section className="mt-6" aria-label={title}>
+      <h2 className="section-title !mt-0">{title}</h2>
+      <p className="muted text-sm">{note}</p>
+      <ul className="mt-3 flex flex-col gap-2">
+        {rows.map((row) => (
+          <ConditionRow key={row.stream.id} {...row} tempUnit={tempUnit} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function ConditionRow({
+  stream,
+  snapshot,
+  miles,
+  tempUnit,
+}: Row & { tempUnit: 'C' | 'F' }) {
+  const hasData = (snapshot?.readings.length ?? 0) > 0;
+  const status = statusForScore(snapshot?.score.value ?? null, hasData, snapshot?.score?.assessed);
+  const species = stream.species ?? 'trout';
+  const decision = toWaterDecisionView(
+    { stream, status, score: snapshot?.score?.value ?? null, snapshot, species },
+    'trout',
+  );
+  const observedAt = newestReadingAt(snapshot?.readings ?? []);
+  const stateText = decisionStatusText(decision, { species, status });
+  return (
+    <li key={stream.id}>
+      <Link
+        to={`/conditions/${stream.id}`}
+        className="list-row focus-ring water-card"
+        style={{ borderRadius: 'var(--trout-radius-lg)' }}
+      >
+        <span className="min-w-0 flex-1">
+          <span className="flex flex-wrap items-center gap-2">
+            <h3 className="text-base font-extrabold">{stream.name}</h3>
+            {miles !== undefined && <span className="distance-chip">{formatMiles(miles)}</span>}
+          </span>
+          <span
+            className="mt-1 block text-sm"
+            style={{ color: 'var(--trout-color-text-muted)' }}
+          >
+            {snapshot
+              ? observedAt
+                ? `Observed ${ageMinutes(observedAt)} · ${latestFlowLabel(snapshot)} · ${latestTempLabel(snapshot, tempUnit)}`
+                : `${latestFlowLabel(snapshot)} · ${latestTempLabel(snapshot, tempUnit)}`
+              : 'No cached readings yet'}
+          </span>
+        </span>
+        {hasData && status !== 'no-data' && species !== 'warmwater' ? (
+          <ScorePill score={snapshot!.score.value} />
+        ) : (
+          <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+            {stateText}
+          </span>
+        )}
+      </Link>
+    </li>
   );
 }
 
