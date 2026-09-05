@@ -137,7 +137,7 @@ const OWNED_YAML = new Set([
   'beech-lake', 'cameron-brown-lake', 'covington-fbc-pond', 'edmund-orgill-lake', 'hatchie-river',
   'johnson-park-lake', 'kentucky-lake', 'lake-graham', 'martin-city-pond', 'milan-city-pond',
   'mississippi-river', 'obion-river', 'paris-city-park-lake', 'pickwick-lake', 'shelby-farms-lake',
-  'union-city-reelfoot-pond', 'valentine-park-pond', 'wolf-river-west-tennessee',
+  'tennessee-river', 'union-city-reelfoot-pond', 'valentine-park-pond', 'wolf-river-west-tennessee',
   'yale-road-park-lake', 'reelfoot-lake',
   // tn-middle-nashville
   'cumberland-river', 'east-fork-stones-river', 'fletchers-fork', 'harpeth-river', 'j-percy-priest-lake',
@@ -157,7 +157,7 @@ const OWNED_YAML = new Set([
 ]);
 
 const REQUIRED = [
-  'mississippi-river', 'obion-river', 'hatchie-river', 'wolf-river-west-tennessee',
+  'mississippi-river', 'obion-river', 'hatchie-river', 'wolf-river-west-tennessee', 'tennessee-river',
   'kentucky-lake', 'pickwick-lake', 'lake-barkley', 'cumberland-river', 'old-hickory-lake',
   'j-percy-priest-lake', 'stones-river', 'east-fork-stones-river', 'west-fork-stones-river',
   'duck-river-lower', 'duck-river-tailwater', 'normandy-lake', 'buffalo-river', 'tims-ford-lake',
@@ -183,7 +183,7 @@ for (const f of fc.features ?? []) {
   if (!['MultiLineString', 'LineString', 'MultiPolygon', 'Polygon'].includes(g?.type)) err(`${id}: unexpected geometry ${g?.type}`);
   const isLine = g?.type.includes('LineString');
   const isPoly = g?.type.includes('Polygon');
-  if (isLine && !['river', 'stream', 'creek', 'tailrace'].includes(p.waterbodyType)) err(`${id}: line geometry with waterbodyType ${p.waterbodyType}`);
+  if (isLine && !['river', 'stream', 'creek', 'tailrace', 'spring'].includes(p.waterbodyType)) err(`${id}: line geometry with waterbodyType ${p.waterbodyType}`);
   if (isPoly && !['lake', 'pond', 'reservoir'].includes(p.waterbodyType)) err(`${id}: polygon geometry with waterbodyType ${p.waterbodyType}`);
 
   // coordinates sanity
