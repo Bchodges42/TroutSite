@@ -102,6 +102,16 @@ function geomBBox(coords) {
   })(coords);
   return b;
 }
+// outward-rounded bounds so every coordinate is strictly covered (the
+// integration gate rejects bounds that truncate an extreme coordinate)
+function outwardBounds(b) {
+  return [
+    Math.floor(b[0] * 1e6) / 1e6,
+    Math.floor(b[1] * 1e6) / 1e6,
+    Math.ceil(b[2] * 1e6) / 1e6,
+    Math.ceil(b[3] * 1e6) / 1e6,
+  ];
+}
 function unionBBox(list) {
   const b = [Infinity, Infinity, -Infinity, -Infinity];
   for (const bb of list) {
@@ -338,10 +348,12 @@ function weldLines(lines) {
             const pa = A.end === 0 ? parts[A.i][0] : parts[A.i][parts[A.i].length - 1];
             const pb = B.end === 0 ? parts[B.i][0] : parts[B.i][parts[B.i].length - 1];
             if (Math.abs(pa[0] - pb[0]) >= eps || Math.abs(pa[1] - pb[1]) >= eps) continue;
-            // junction guard: only weld TRUE continuations. When 3+ distinct
-            // parts meet at this vertex (braided channels, same-name
-            // tributaries), welding would chain one branch onto another and
-            // render as zigzag spaghetti — leave the branches separate.
+            // junction handling: when 3+ distinct parts meet at this vertex
+            // (braided channels, same-name tributaries), blind welding chains
+            // one branch onto another and renders as zigzag spaghetti. Pair
+            // the two branches whose arrival bearings are most anti-parallel
+            // (a river passing THROUGH the junction) and leave side branches
+            // as separate chains.
             const meeting = [...list, ...neighborLists[1], ...neighborLists[2], ...neighborLists[3]];
             const distinct = new Set();
             for (const E of meeting) {
@@ -349,7 +361,35 @@ function weldLines(lines) {
               const q = E.end === 0 ? parts[E.i][0] : parts[E.i][parts[E.i].length - 1];
               if (Math.abs(q[0] - pa[0]) < eps && Math.abs(q[1] - pa[1]) < eps) distinct.add(E.i);
             }
-            if (distinct.size > 2) continue;
+            if (distinct.size > 2) {
+              // arrival bearing of an endpoint: direction from interior into this endpoint
+              const arr = (idx, end) => {
+                const ch = parts[idx];
+                const v = end === 0 ? ch[0] : ch[ch.length - 1];
+                for (let k = 1; k < ch.length; k++) {
+                  const w = end === 0 ? ch[Math.min(k, ch.length - 1)] : ch[Math.max(ch.length - 1 - k, 0)];
+                  if (haversine(w, v) >= 40) return (Math.atan2((v[0] - w[0]) * Math.cos(rad(v[1])), v[1] - w[1]) * 180) / Math.PI;
+                }
+                return null;
+              };
+              const entries = [...distinct].map((idx) => {
+                const E = meeting.find((E2) => E2.i === idx);
+                return { idx, end: E.end, b: arr(idx, E.end) };
+              });
+              let bestPair = null, bestScore = -Infinity;
+              for (let m = 0; m < entries.length; m++) {
+                for (let n2 = m + 1; n2 < entries.length; n2++) {
+                  const E1 = entries[m], E2 = entries[n2];
+                  if (E1.b == null || E2.b == null) continue;
+                  let diff = Math.abs(Math.abs(E1.b - E2.b) - 180); // 0 = anti-parallel = pass-through
+                  if (diff > 90) diff = 180 - diff;
+                  const score = 90 - diff;
+                  if (score > bestScore) { bestScore = score; bestPair = [E1, E2]; }
+                }
+              }
+              if (!bestPair || bestScore < 20) continue; // no convincing pass-through: leave unwelded
+              if (!(bestPair[0].idx === A.i && bestPair[1].idx === B.i) && !(bestPair[0].idx === B.i && bestPair[1].idx === A.i)) continue;
+            }
             let seg = parts[B.i].slice();
             if (B.end === 1) seg.reverse();
             parts[A.i] = A.end === 0 ? seg.concat(parts[A.i].slice(1)) : parts[A.i].concat(seg.slice(1));
@@ -493,7 +533,8 @@ function loadYaml(id) {
   const region = text.match(/^regionId:\s*(\S+)/m)?.[1] ?? null;
   const gauges = (text.match(/^gaugeIds:\s*\[(.*)\]/m)?.[1] ?? '').split(',').map((s) => s.trim().replace(/['"]/g, '')).filter(Boolean);
   const name = text.match(/^name:\s*(.+)$/m)?.[1]?.replace(/["']/g, '').trim() ?? null;
-  return { region, gaugeIds: gauges, name };
+  const waterbodyType = text.match(/^waterbodyType:\s*(.+)$/m)?.[1]?.replace(/["']/g, '').trim() ?? null;
+  return { region, gaugeIds: gauges, name, waterbodyType };
 }
 
 // ---------------------------------------------------------------------------
@@ -502,21 +543,21 @@ function loadYaml(id) {
 // ---------------------------------------------------------------------------
 const LAKE_SPECS = [
   {
-    id: 'kentucky-lake', cache: 'lake-kentucky', name: 'Kentucky Lake', type: 'reservoir',
+    id: 'kentucky-lake', cache: 'lake-kentucky', name: 'Kentucky Lake', type: 'lake',
     region: 'tn-west', budget: 3400, tolM: 220, aliases: ['Kentucky Reservoir'],
     dam: { cache: 'dam-kentucky', pick: /Kentucky/i, label: 'Kentucky Dam (TVA/USACE)' },
     upstream: ['tennessee-river'], downstream: ['tennessee-river'],
     note: 'Full TVA pool Pickwick Dam → Kentucky Dam incl. Big Sandy/Duck arms; spans the TN line by design.',
   },
   {
-    id: 'pickwick-lake', cache: 'lake-pickwick', name: 'Pickwick Lake', type: 'reservoir',
+    id: 'pickwick-lake', cache: 'lake-pickwick', name: 'Pickwick Lake', type: 'lake',
     region: 'tn-west', budget: 1600, tolM: 200, aliases: ['Pickwick Reservoir'],
     dam: { cache: 'dam-pickwick', pick: /Pickwick/i, label: 'Pickwick Landing Dam (TVA)' },
     upstream: ['tennessee-river'], downstream: ['tennessee-river', 'kentucky-lake'],
     note: 'Full reservoir Wilson Dam (AL) → Pickwick Landing Dam (TN/MS line) incl. Yellow Creek arm.',
   },
   {
-    id: 'lake-barkley', cache: 'lake-barkley', name: 'Lake Barkley', type: 'reservoir',
+    id: 'lake-barkley', cache: 'lake-barkley', name: 'Lake Barkley', type: 'lake',
     region: 'tn-middle-nashville', budget: 1600, tolM: 200, aliases: ['Barkley Reservoir', 'Barkley Lake'],
     dam: { cache: 'dam-barkley', pick: /Barkley/i, label: 'Barkley Dam (USACE)' },
     upstream: ['cumberland-river'], downstream: ['cumberland-river'],
@@ -524,7 +565,7 @@ const LAKE_SPECS = [
     areaFloor: 0.5, corridor: [-88.25, 36.2, -87.15, 37.15],
   },
   {
-    id: 'old-hickory-lake', cache: 'lake-old-hickory', name: 'Old Hickory Lake', type: 'reservoir',
+    id: 'old-hickory-lake', cache: 'lake-old-hickory', name: 'Old Hickory Lake', type: 'lake',
     region: 'tn-middle-nashville', budget: 4000, tolM: 50, aliases: ['Old Hickory Reservoir'],
     dam: { cache: 'dam-old-hickory', pick: /Old Hickory/i, label: 'Old Hickory Dam (USACE)' },
     upstream: ['cumberland-river', 'caney-fork-river'], downstream: ['cumberland-river'],
@@ -532,35 +573,35 @@ const LAKE_SPECS = [
     areaFloor: 0.5, corridor: [-86.8, 36.18, -85.9, 36.6],
   },
   {
-    id: 'j-percy-priest-lake', cache: 'lake-percy-priest', name: 'J. Percy Priest Lake', type: 'reservoir',
+    id: 'j-percy-priest-lake', cache: 'lake-percy-priest', name: 'J. Percy Priest Lake', type: 'lake',
     region: 'tn-middle-nashville', budget: 1300, tolM: 180, aliases: ['J. Percy Priest Reservoir'],
     dam: { cache: 'dam-percy-priest', pick: /Percy Priest/i, label: 'J. Percy Priest Dam (USACE)' },
     upstream: ['west-fork-stones-river', 'east-fork-stones-river'], downstream: ['stones-river'],
     note: 'NHD name "J Percy Priest Reservoir".',
   },
   {
-    id: 'tims-ford-lake', cache: 'lake-tims-ford', name: 'Tims Ford Lake', type: 'reservoir',
+    id: 'tims-ford-lake', cache: 'lake-tims-ford', name: 'Tims Ford Lake', type: 'lake',
     region: 'tn-middle-duck-elk', budget: 2200, tolM: 100, aliases: ['Tims Ford Reservoir'],
     dam: { cache: 'dam-tims-ford', pick: /Tims Ford/i, label: 'Tims Ford Dam (TVA)' },
     upstream: ['elk-river'], downstream: ['elk-river'],
     note: 'NHD pool reaches the dam (west edge -86.314); the old Census polygon stopped at -86.2865.',
   },
   {
-    id: 'center-hill-lake', cache: 'lake-center-hill', name: 'Center Hill Lake', type: 'reservoir',
+    id: 'center-hill-lake', cache: 'lake-center-hill', name: 'Center Hill Lake', type: 'lake',
     region: 'tn-middle-caney-fork', budget: 2400, tolM: 180, aliases: ['Center Hill Reservoir'],
     dam: { cache: 'dam-center-hill', pick: /Center Hill/i, label: 'Center Hill Dam (USACE)' },
     upstream: ['caney-fork-river', 'collins-river'], downstream: ['caney-fork-river'],
     note: 'Single NHD waterbody polygon, 69.9 km².',
   },
   {
-    id: 'dale-hollow-lake', cache: 'lake-dale-hollow', name: 'Dale Hollow Lake', type: 'reservoir',
+    id: 'dale-hollow-lake', cache: 'lake-dale-hollow', name: 'Dale Hollow Lake', type: 'lake',
     region: 'tn-upper-cumberland', budget: 2800, tolM: 200, aliases: ['Dale Hollow Reservoir'],
     dam: { cache: 'dam-dale-hollow', pick: /Dale Hollow/i, label: 'Dale Hollow Dam (USACE)' },
     upstream: ['obey-river'], downstream: ['obey-river'],
     note: 'Single NHD waterbody polygon incl. the KY portion; pool kept whole to the dam.',
   },
   {
-    id: 'normandy-lake', cache: 'lake-normandy', name: 'Normandy Lake', type: 'reservoir',
+    id: 'normandy-lake', cache: 'lake-normandy', name: 'Normandy Lake', type: 'lake',
     region: 'tn-middle-duck-elk', budget: 700, tolM: 120, aliases: ['Normandy Reservoir'],
     dam: { cache: 'dam-normandy', pick: /DUCK RIVER AT NORMANDY|NORMANDY LAKE/i, label: 'Normandy Dam (TVA)' },
     upstream: ['duck-river-tailwater'], downstream: ['duck-river-tailwater'],
@@ -575,14 +616,14 @@ const LAKE_SPECS = [
     areaFloor: 1,
   },
   {
-    id: 'woods-reservoir', cache: 'lake-woods', name: 'Woods Reservoir', type: 'reservoir',
+    id: 'woods-reservoir', cache: 'lake-woods', name: 'Woods Reservoir', type: 'lake',
     region: 'tn-middle-duck-elk', budget: 600, tolM: 100, aliases: ['Woods Lake', 'AEDC Woods Reservoir'],
     dam: null,
     upstream: [], downstream: [],
     note: 'AEDC reservoir on Bradley Creek, Franklin County; no tailwater in the catalog; promoted to interactive with catalog record.',
   },
   {
-    id: 'great-falls-lake', cache: 'lake-great-falls', name: 'Great Falls Lake', type: 'reservoir',
+    id: 'great-falls-lake', cache: 'lake-great-falls', name: 'Great Falls Lake', type: 'lake',
     region: 'tn-middle-caney-fork', budget: 6000, tolM: 40, aliases: ['Great Falls Reservoir'],
     // NHDArea pieces are wide river-valley polygons reaching far beyond the
     // impoundment; keep only pieces containing the pool core point or whose
@@ -601,42 +642,44 @@ const LAKE_SPECS = [
 // ---------------------------------------------------------------------------
 const RW = (key, gate) => ({ cache: key, gate });
 const RIVER_SPECS = [
-  { id: 'mississippi-river', cache: 'river-mississippi', name: 'Mississippi River', region: 'tn-west',
+  { id: 'mississippi-river', cache: 'river-mississippi', name: 'Mississippi River', region: 'tn-west', allowOpenEnds: true,
     gate: 'corridor', gauge: null,
     upstream: [], downstream: ['wolf-river-west-tennessee', 'hatchie-river', 'obion-river', 'forked-deer-system(unrepresented)'],
     note: 'State-line corridor rule: whole parts whose every vertex lies inside TN or ≤4 km west of the tn-boundary ring, lat 34.95..36.51.' },
-  { id: 'obion-river', cache: 'river-obion', name: 'Obion River', region: 'tn-west',
+  { id: 'obion-river', cache: 'river-obion', name: 'Obion River', region: 'tn-west', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['mississippi-river'],
     anchors: [{ featureId: 'mississippi-river', label: 'Mississippi River mouth', maxM: 500, informational: true, note: 'NHD named coverage stops short of the Mississippi across the bottomland/wetland reach' }],
     note: 'Main stem (GNIS "Obion River"); forks are distinct names and excluded.' },
-  { id: 'hatchie-river', cache: 'river-hatchie', name: 'Hatchie River', region: 'tn-west',
+  { id: 'hatchie-river', cache: 'river-hatchie', name: 'Hatchie River', region: 'tn-west', allowOpenEnds: true,
     gate: 'state', exact: 'Hatchie River', upstream: [], downstream: ['mississippi-river'],
     anchors: [{ featureId: 'mississippi-river', label: 'Mississippi River mouth', maxM: 500, informational: true, note: 'NHD named coverage stops at the Hatchie NWR wetlands short of the Mississippi' }],
     note: 'Main stem only; South Fork Hatchie is a distinct NHD name.' },
-  { id: 'wolf-river-west-tennessee', cache: 'river-wolf-west', name: 'Wolf River', region: 'tn-west',
+  { id: 'wolf-river-west-tennessee', cache: 'river-wolf-west', name: 'Wolf River', region: 'tn-west', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['mississippi-river'],
     anchors: [{ featureId: 'mississippi-river', label: 'Mississippi River mouth at Memphis', maxM: 500, informational: true, note: 'NHD named coverage stops in the Wolf River bottomlands short of the Mississippi' }],
     note: 'West Tennessee Wolf (different water from wolf-river-fentress).' },
-  { id: 'tennessee-river', cache: 'river-tennessee', name: 'Tennessee River', region: 'tn-west',
+  { id: 'tennessee-river', cache: 'river-tennessee', name: 'Tennessee River', region: 'tn-west', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['kentucky-lake', 'pickwick-lake'],
+    throughLakeIds: ['kentucky-lake', 'pickwick-lake'],
     anchors: [
       { lon: -88.25226, lat: 35.06508, label: 'USGS 03593005 Tennessee River at Pickwick Landing Dam', maxM: 600, informational: true, note: 'through-pool carrier is an unnamed NHD artificial path; the pool polygons carry the connection (designed lake-transition behavior)' },
     ],
     note: 'Statewide main stem; through-reservoir carriers are NHD artificial paths (pool polygons render the water).' },
-  { id: 'cumberland-river', cache: 'river-cumberland', name: 'Cumberland River', region: 'tn-middle-nashville',
+  { id: 'cumberland-river', cache: 'river-cumberland', name: 'Cumberland River', region: 'tn-middle-nashville', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['lake-barkley', 'old-hickory-lake'],
     anchors: [
       { lon: -86.65863, lat: 36.29712, label: 'USGS 03426310 Cumberland River at Old Hickory Dam (TW)', maxM: 600, informational: true, note: 'through-pool carrier unnamed in NHD; pool polygons carry the connection' },
       { lon: -87.22826, lat: 36.32290, label: 'USGS 03435000 Cumberland River below Cheatham Dam', maxM: 600, informational: true, note: 'through-pool carrier unnamed in NHD; pool polygons carry the connection' },
     ],
+    throughLakeIds: ['lake-barkley', 'old-hickory-lake'],
     note: 'Statewide main stem; pool reaches are covered by the reservoir polygons.' },
-  { id: 'buffalo-river', cache: 'river-buffalo', name: 'Buffalo River', region: 'tn-middle-duck-elk',
-    gate: 'state', exact: 'Buffalo River', upstream: [], downstream: ['duck-river-lower'],
+  { id: 'buffalo-river', cache: 'river-buffalo', name: 'Buffalo River', region: 'tn-middle-duck-elk', allowOpenEnds: true,
+    gate: 'state', exact: 'Buffalo River', upstream: [], downstream: ['duck-river-lower'], throughLakeIds: ['kentucky-lake'],
     note: 'Main stem; North/South/West forks are distinct names. Mouth: joins the Duck River ~20 km below Columbia — that Duck reach is outside the catalog and carries no feature, so no confluence anchor is verifiable in-product.' },
-  { id: 'little-buffalo-river', cache: 'river-buffalo', name: 'Little Buffalo River', region: 'tn-middle-duck-elk',
+  { id: 'little-buffalo-river', cache: 'river-buffalo', name: 'Little Buffalo River', region: 'tn-middle-duck-elk', allowOpenEnds: true,
     gate: 'state', exact: 'Little Buffalo River', upstream: [], downstream: ['buffalo-river'],
     anchors: [{ featureId: 'buffalo-river', label: 'Buffalo River confluence', maxM: 1500, informational: true, note: 'mouth reach is swamp; named chain ends ~1.2 km short of the Buffalo line' }] },
-  { id: 'harpeth-river', cache: 'river-harpeth', name: 'Harpeth River', region: 'tn-middle-nashville',
+  { id: 'harpeth-river', cache: 'river-harpeth', name: 'Harpeth River', region: 'tn-middle-nashville', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['cumberland-river'],
     anchors: [{ featureId: 'cumberland-river', label: 'Cumberland River confluence', maxM: 200 }] },
   { id: 'duck-river-tailwater', cache: 'river-duck', name: 'Duck River (Normandy tailwater)', region: 'tn-middle-duck-elk',
@@ -648,13 +691,13 @@ const RIVER_SPECS = [
   // gate widened from REACH_GATE: minLon -87.06 -> -87.08 so whole parts
   // whose bbox dips past the Columbia gauge (USGS 03599500 lon -87.03234)
   // are kept; the Shelbyville handoff edge (maxLon -86.42) is unchanged
-  { id: 'duck-river-lower', cache: 'river-duck', name: 'Duck River (Shelbyville to Columbia)', region: 'tn-middle-duck-elk',
+  { id: 'duck-river-lower', cache: 'river-duck', name: 'Duck River (Shelbyville to Columbia)', region: 'tn-middle-duck-elk', allowOpenEnds: true,
     gate: { ...REACH_GATE['duck-river-lower'], minLon: -87.08 }, upstream: ['duck-river-tailwater'], downstream: ['normandy-lake(terminus Columbia; mouth at Kentucky Lake beyond catalog reach)'],
     anchors: [
       { lon: -86.49916, lat: 35.48035, label: 'USGS 03598000 Duck River near Shelbyville', maxM: 500 },
       { lon: -87.03234, lat: 35.61809, label: 'USGS 03599500 Duck River at Columbia', maxM: 500 },
     ] },
-  { id: 'elk-river', cache: 'river-elk', name: 'Elk River (Tims Ford tailwater)', region: 'tn-middle-duck-elk',
+  { id: 'elk-river', cache: 'river-elk', name: 'Elk River (Tims Ford tailwater)', region: 'tn-middle-duck-elk', allowOpenEnds: true,
     gate: REACH_GATE['elk-river'], excludePool: 'tims-ford-lake', upstream: ['tims-ford-lake'], downstream: ['elk-river-lower'],
     anchors: [
       { lon: -86.28110, lat: 35.19231, label: 'USGS 03580750 Elk River below Tims Ford Dam', maxM: 600 },
@@ -663,10 +706,11 @@ const RIVER_SPECS = [
   // gate widened from the TIGER-era REACH_GATE window ([-87.02..-86.99],
   // which cut the reach to a sliver): whole named parts from Prospect
   // (USGS 03584600) to the AL state line
-  { id: 'elk-river-lower', cache: 'river-elk', name: 'Elk River (Prospect to state line)', region: 'tn-middle-duck-elk',
+  { id: 'elk-river-lower', cache: 'river-elk', name: 'Elk River (Prospect to state line)', region: 'tn-middle-duck-elk', allowOpenEnds: true,
     gate: { minLon: -87.10, minLat: 34.90, maxLon: -86.90, maxLat: 35.10 }, upstream: ['elk-river'], downstream: ['tennessee-river(Elk River Reservoir, AL line)'] },
-  { id: 'caney-fork-river', cache: 'river-caney-fork', name: 'Caney Fork River (Center Hill tailwater)', region: 'tn-middle-caney-fork',
+  { id: 'caney-fork-river', cache: 'river-caney-fork', name: 'Caney Fork River (Center Hill tailwater)', region: 'tn-middle-caney-fork', allowOpenEnds: true,
     gate: 'state', exact: 'Caney Fork', upstream: ['great-falls-lake', 'center-hill-lake'], downstream: ['old-hickory-lake'],
+    throughLakeIds: ['center-hill-lake', 'great-falls-lake', 'old-hickory-lake'],
     anchors: [
       { lon: -85.158, lat: 36.043, label: 'headwaters near Campbell Junction (fix-caney-fork verified source)', maxM: 400 },
       { lon: -85.941, lat: 36.239, label: 'mouth at the Cumberland / Old Hickory Lake at Carthage (fix-caney-fork verified mouth)', maxM: 400 },
@@ -689,7 +733,7 @@ const RIVER_SPECS = [
       { lon: -85.45525, lat: 36.53728, label: 'USGS 03417000 Obey River below Dale Hollow Dam', maxM: 900, note: 'chain stops ~800 m short at the dam pool edge' },
       { featureId: 'cumberland-river', label: 'Cumberland River confluence at Celina', maxM: 900, informational: true, note: 'chain end sits within 900 m of the Cumberland line at Celina; the last metres are the NHD big-river seam' },
     ] },
-  { id: 'red-river-clarksville', cache: 'river-red', name: 'Red River (Montgomery County)', region: 'tn-middle-nashville',
+  { id: 'red-river-clarksville', cache: 'river-red', name: 'Red River (Montgomery County)', region: 'tn-middle-nashville', allowOpenEnds: true,
     gate: [-87.42, 36.42, -87.02, 36.75], exact: 'Red River', upstream: [], downstream: ['cumberland-river'],
     anchors: [
       { featureId: 'cumberland-river', label: 'Cumberland River confluence', maxM: 150, informational: true, note: 'NHD named coverage of the Red stops ~26 km short of the Cumberland; the lower Red through the Cross Banks refuge is unnamed in NHD' },
@@ -697,32 +741,40 @@ const RIVER_SPECS = [
     ],
     note: 'Catalog reach: Montgomery County corridor to the Cumberland confluence.' },
   // small catalog streams (full named extent within their corridor envelopes)
-  { id: 'big-rock-creek', cache: 'creek-big-rock', name: 'Big Rock Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'Big Rock Creek' },
-  { id: 'boiling-fork-creek', cache: 'creek-boiling-fork', name: 'Boiling Fork Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'Boiling Fork Creek' },
-  { id: 'east-fork-shoal-creek', cache: 'creek-east-fork-shoal', name: 'East Fork Shoal Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'East Fork Shoal Creek' },
-  { id: 'shoal-creek', cache: 'creek-shoal', name: 'Shoal Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'Shoal Creek' },
-  { id: 'mccutcheon-creek', cache: 'creek-mccutcheon', name: 'McCutcheon Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'McCutcheon Creek' },
-  { id: 'fletchers-fork', cache: 'fork-fletchers', name: 'Fletchers Fork', region: 'tn-middle-nashville', gate: 'state', exact: 'Fletchers Fork' },
-  { id: 'little-west-fork-creek', cache: 'creek-little-west-fork', name: 'Little West Fork Creek', region: 'tn-middle-nashville', gate: 'state', exact: /^(Little West Fork( Creek)?)$/ },
-  { id: 'sinking-creek-wilson', cache: 'creek-sinking', name: 'Sinking Creek (Wilson County)', region: 'tn-middle-nashville', gate: 'state', exact: 'Sinking Creek' },
-  { id: 'sulfur-fork-creek', cache: 'creek-sulfur-fork', name: 'Sulfur Fork Creek', region: 'tn-middle-nashville', gate: 'state', exact: /^Sul?phur Fork/ },
-  { id: 'hurricane-creek', cache: 'creek-hurricane', name: 'Hurricane Creek', region: 'tn-upper-cumberland', gate: 'state', exact: 'Hurricane Creek' },
-  { id: 'salt-lick-creek', cache: 'creek-salt-lick', name: 'Salt Lick Creek', region: 'tn-upper-cumberland', gate: 'state', exact: 'Salt Lick Creek' },
-  { id: 'standing-rock-creek', cache: 'creek-standing-rock', name: 'Standing Rock Creek', region: 'tn-upper-cumberland', gate: 'state', exact: 'Standing Rock Creek' },
-  { id: 'white-oak-creek', cache: 'creek-white-oak', name: 'White Oak Creek', region: 'tn-upper-cumberland', gate: 'state', exact: /^White ?oak Creek$/i },
-  { id: 'barren-fork-river', cache: 'river-barren-fork', name: 'Barren Fork River', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Barren Fork/ },
-  { id: 'calfkiller-river', cache: 'river-calfkiller', name: 'Calfkiller River', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Calfkiller/ },
-  { id: 'charles-creek', cache: 'creek-charles', name: 'Charles Creek', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Charles Creek' },
-  { id: 'collins-river', cache: 'river-collins', name: 'Collins River', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Collins River',
+  { id: 'big-rock-creek', cache: 'creek-big-rock', name: 'Big Rock Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'Big Rock Creek', allowOpenEnds: true },
+  { id: 'boiling-fork-creek', cache: 'creek-boiling-fork', name: 'Boiling Fork Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'Boiling Fork Creek', allowOpenEnds: true },
+  { id: 'east-fork-shoal-creek', cache: 'creek-east-fork-shoal', name: 'East Fork Shoal Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'East Fork Shoal Creek', allowOpenEnds: true },
+  { id: 'shoal-creek', cache: 'creek-shoal', name: 'Shoal Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'Shoal Creek', allowOpenEnds: true },
+  { id: 'mccutcheon-creek', cache: 'creek-mccutcheon', name: 'McCutcheon Creek', region: 'tn-middle-duck-elk', gate: 'state', exact: 'McCutcheon Creek', allowOpenEnds: true },
+  { id: 'fletchers-fork', cache: 'fork-fletchers', name: 'Fletchers Fork', region: 'tn-middle-nashville', gate: 'state', exact: 'Fletchers Fork', allowOpenEnds: true },
+  { id: 'little-west-fork-creek', cache: 'creek-little-west-fork', name: 'Little West Fork Creek', region: 'tn-middle-nashville', gate: 'state', exact: /^(Little West Fork( Creek)?)$/, allowOpenEnds: true },
+  { id: 'sinking-creek-wilson', cache: 'creek-sinking', name: 'Sinking Creek (Wilson County)', region: 'tn-middle-nashville', gate: 'state', exact: 'Sinking Creek', allowOpenEnds: true },
+  { id: 'sulfur-fork-creek', cache: 'creek-sulfur-fork', name: 'Sulfur Fork Creek', region: 'tn-middle-nashville', gate: 'state', exact: /^Sul?phur Fork/, allowOpenEnds: true },
+  { id: 'hurricane-creek', cache: 'creek-hurricane', name: 'Hurricane Creek', region: 'tn-upper-cumberland', gate: 'state', exact: 'Hurricane Creek', allowOpenEnds: true, throughLakeIds: ['kentucky-lake'] },
+  { id: 'salt-lick-creek', cache: 'creek-salt-lick', name: 'Salt Lick Creek', region: 'tn-upper-cumberland', gate: 'state', exact: 'Salt Lick Creek', allowOpenEnds: true },
+  { id: 'standing-rock-creek', cache: 'creek-standing-rock', name: 'Standing Rock Creek', region: 'tn-upper-cumberland', gate: 'state', exact: 'Standing Rock Creek', allowOpenEnds: true, throughLakeIds: ['kentucky-lake'] },
+  { id: 'white-oak-creek', cache: 'creek-white-oak', name: 'White Oak Creek', region: 'tn-upper-cumberland', gate: 'state', exact: /^White ?oak Creek$/i, allowOpenEnds: true },
+  { id: 'barren-fork-river', cache: 'river-barren-fork', name: 'Barren Fork River', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Barren Fork/, allowOpenEnds: true,
+    throughLakeIds: ['great-falls-lake'],
+    note: 'Barren Fork → Collins River → Great Falls pool; NHD named flowline continues through the pool margin (verified path).' },
+  { id: 'calfkiller-river', cache: 'river-calfkiller', name: 'Calfkiller River', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Calfkiller/, allowOpenEnds: true },
+  { id: 'charles-creek', cache: 'creek-charles', name: 'Charles Creek', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Charles Creek', allowOpenEnds: true,
+    throughLakeIds: ['great-falls-lake'],
+    note: 'lower Charles Creek runs through the Great Falls Collins-arm margin (NHD continuous path).' },
+  { id: 'collins-river', cache: 'river-collins', name: 'Collins River', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Collins River', throughLakeIds: ['great-falls-lake'], allowOpenEnds: true,
     anchors: [
       { lon: -85.63359, lat: 35.80701, label: 'USGS 03422495 Collins River at Rock Island (Great Falls pool)', maxM: 1500, informational: true, note: 'named chain ends at the Great Falls pool edge; the pool polygon carries the water to the powerhouse' },
       { featureId: 'great-falls-lake', label: 'Great Falls Lake pool entry', maxM: 1500, informational: true, note: 'Census pool polygon and NHD named chain stop ~1.3 km apart at the Rock Island upstream end (source seam, documented)' },
     ] },
-  { id: 'mill-creek-overton', cache: 'creek-mill-overton', name: 'Mill Creek (Overton County)', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Mill Creek' },
-  { id: 'north-prong-barren-fork', cache: 'creek-north-prong-barren', name: 'North Prong Barren Fork River', region: 'tn-middle-caney-fork', gate: 'state', exact: /^North Prong Barren/ },
-  { id: 'pine-creek-dekalb', cache: 'creek-pine-dekalb', name: 'Pine Creek (DeKalb County)', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Pine Creek' },
-  { id: 'rocky-river', cache: 'river-rocky', name: 'Rocky River', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Rocky River' },
-  { id: 'upper-hills-creek', cache: 'creek-upper-hills', name: 'Upper Hills Creek', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Hills Creek$/ },
+  { id: 'mill-creek-overton', cache: 'creek-mill-overton', name: 'Mill Creek (Overton County)', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Mill Creek', allowOpenEnds: true },
+  { id: 'north-prong-barren-fork', cache: 'creek-north-prong-barren', name: 'North Prong Barren Fork River', region: 'tn-middle-caney-fork', gate: 'state', exact: /^North Prong Barren/, allowOpenEnds: true },
+  { id: 'pine-creek-dekalb', cache: 'creek-pine-dekalb', name: 'Pine Creek (DeKalb County)', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Pine Creek', allowOpenEnds: true,
+    throughLakeIds: ['center-hill-lake'],
+    note: 'Pine Creek drains into the Center Hill pool (NHD continuous path).' },
+  { id: 'rocky-river', cache: 'river-rocky', name: 'Rocky River', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Rocky River', allowOpenEnds: true },
+  { id: 'upper-hills-creek', cache: 'creek-upper-hills', name: 'Upper Hills Creek', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Hills Creek$/, allowOpenEnds: true,
+    throughLakeIds: ['great-falls-lake'],
+    note: 'Hills Creek joins the Caney Fork arm of Great Falls pool (NHD continuous path).' },
 ];
 
 const CARRY_OVER = ['cane-creek'];
@@ -879,6 +931,29 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
   // any remaining break is measured, not bridged.
   const attached = attachConnectors(parts, spec, gate);
   parts = attached.parts;
+  // drop foreign pool-interior parts: a connector candidate that lies inside
+  // a delivered reservoir other than this reach's declared through-lakes is
+  // that lake's own artificial-path water, not this river
+  if (lakeIndex.length) {
+    const through = new Set(spec.throughLakeIds ?? []);
+    const before = parts.length;
+    parts = parts.filter((p) => {
+      const mid = p[Math.floor(p.length / 2)];
+      for (const lake of lakeIndex) {
+        if (through.has(lake.id)) continue;
+        const b = lake.bbox;
+        if (mid[0] < b[0] || mid[0] > b[2] || mid[1] < b[1] || mid[1] > b[3]) continue;
+        if (pointInRings(mid, lake.geom.coordinates.type ? lake.geom.coordinates : lake.geom.coordinates)) {
+          if (lake.geom.type.includes('Polygon')) {
+            const polys = lake.geom.type === 'MultiPolygon' ? lake.geom.coordinates : [lake.geom.coordinates];
+            if (polys.some((poly) => pointInRings(mid, poly))) return false;
+          }
+        }
+      }
+      return true;
+    });
+    if (parts.length !== before) log.push({ id: `pooltrim:${spec.id}`, note: `${before - parts.length} foreign pool-interior parts dropped` });
+  }
   // final dedupe: connector boxes overlap, so the same OBJECTID can arrive
   // several times; identical welded chains would render as multi-drawn lines
   {
@@ -917,14 +992,19 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
       termini.push({ anchor: a.label, coordinates: [a.lon, a.lat], distanceM: Math.round(best), maxM: a.maxM, poolMediated: poolOk ? Math.round(bestPool) : null, ok: best <= a.maxM || poolOk, informational: a.informational ?? false, note: a.note });
     }
   }
+  const yaml = loadYaml(spec.id);
+  const LINE_TYPES = ['river', 'creek', 'stream', 'tailrace', 'spring'];
+  const wbType = LINE_TYPES.includes(yaml?.waterbodyType) ? yaml.waterbodyType : 'river';
   const feature = {
     type: 'Feature',
     properties: {
-      id: spec.id, name: spec.name, waterbodyType: 'river',
+      id: spec.id, name: spec.name, waterbodyType: wbType,
+      ...(spec.throughLakeIds ? { throughLakeIds: spec.throughLakeIds } : {}),
+      ...(spec.allowOpenEnds ? { allowOpenEnds: true } : {}),
       source: 'nhd-hr', approximate: false,
       labelAnchor: [+anchor[0].toFixed(4), +anchor[1].toFixed(4)],
-      bounds: bbox.map((v) => +v.toFixed(4)),
-      regionId: spec.region, gaugeIds: loadYaml(spec.id)?.gaugeIds ?? [],
+      bounds: outwardBounds(bbox),
+      regionId: spec.region, gaugeIds: yaml?.gaugeIds ?? [],
       crs: 'EPSG:4326', coordinateOrder: 'longitude,latitude',
       partCount: welded.length, vertexCount: countVerts(welded),
       lengthKm: +lengthKm.toFixed(2),
@@ -1003,13 +1083,17 @@ function buildLake(spec, log) {
   const bbox = geomBBox(geom.coordinates);
   const anchor = interiorAnchor(geom);
   const yaml = loadYaml(spec.id);
+  const STILL_TYPES = ['lake', 'pond'];
+  const wbType = STILL_TYPES.includes(yaml?.waterbodyType) ? yaml.waterbodyType : (STILL_TYPES.includes(spec.type) ? spec.type : 'lake');
   const feature = {
     type: 'Feature',
     properties: {
-      id: spec.id, name: spec.name, waterbodyType: spec.type,
+      id: spec.id, name: spec.name, waterbodyType: wbType,
+      ...(spec.throughLakeIds ? { throughLakeIds: spec.throughLakeIds } : {}),
+      ...(spec.allowOpenEnds ? { allowOpenEnds: true } : {}),
       source: 'nhd-hr', approximate: false,
       labelAnchor: anchor,
-      bounds: bbox.map((v) => +v.toFixed(4)),
+      bounds: outwardBounds(bbox),
       regionId: spec.region, gaugeIds: yaml?.gaugeIds ?? [],
       crs: 'EPSG:4326', coordinateOrder: 'longitude,latitude',
       partCount: geom.type === 'MultiPolygon' ? geom.coordinates.length : 1,
@@ -1132,7 +1216,7 @@ function buildGreatFalls(spec, log) {
       id: spec.id, name: spec.name, waterbodyType: spec.type,
       source: 'nhd-hr', approximate: false,
       labelAnchor: anchor,
-      bounds: bbox.map((v) => +v.toFixed(4)),
+      bounds: outwardBounds(bbox),
       regionId: spec.region, gaugeIds: loadYaml(spec.id)?.gaugeIds ?? [],
       crs: 'EPSG:4326', coordinateOrder: 'longitude,latitude',
       partCount: geom.type === 'MultiPolygon' ? geom.coordinates.length : 1,
@@ -1330,6 +1414,14 @@ async function main() {
         geom = { type: 'MultiPolygon', coordinates: geom.coordinates.map((ring) => [ring]) };
       }
     }
+    // label anchors inherited from the stillwater lane can sit outside the
+    // re-nested rings; recompute an interior anchor when so
+    let anchorOut = p.labelAnchor;
+    if (geom.type.includes('Polygon') && Array.isArray(anchorOut)) {
+      const polys = geom.type === 'MultiPolygon' ? geom.coordinates : [geom.coordinates];
+      const inside = polys.some((poly) => pointInRings(anchorOut, poly));
+      if (!inside) anchorOut = interiorAnchor(geom);
+    }
     const yaml = loadYaml(id);
     const bbox = geomBBox(src.geometry.coordinates);
     features.push({
@@ -1338,8 +1430,8 @@ async function main() {
         id, name: p.name, waterbodyType: p.waterbodyType,
         source: Array.isArray(p.source) ? p.source.filter((s) => !/sel:|welded/.test(s)).join(' ') : String(p.source),
         approximate: p.approximate ?? false,
-        labelAnchor: p.labelAnchor,
-        bounds: bbox.map((v) => +v.toFixed(4)),
+        labelAnchor: anchorOut,
+        bounds: outwardBounds(bbox),
         regionId: yaml?.region ?? p.regionId ?? 'tn-west',
         gaugeIds: yaml?.gaugeIds ?? p.gaugeIds ?? [],
         crs: 'EPSG:4326', coordinateOrder: 'longitude,latitude',

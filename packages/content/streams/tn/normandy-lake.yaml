@@ -1,11 +1,10 @@
 id: normandy-lake
 name: Normandy Lake
 stateId: TN
-waterbodyType: reservoir
+waterbodyType: lake
 regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
-species: []
 idealFlow: []
 notes: >-
   TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater

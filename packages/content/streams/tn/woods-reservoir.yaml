@@ -1,11 +1,10 @@
 id: woods-reservoir
 name: Woods Reservoir
 stateId: TN
-waterbodyType: reservoir
+waterbodyType: lake
 regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
-species: []
 idealFlow: []
 notes: >-
   AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and

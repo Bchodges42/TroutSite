@@ -1,11 +1,10 @@
 id: great-falls-lake
 name: Great Falls Lake
 stateId: TN
-waterbodyType: reservoir
+waterbodyType: lake
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: false
-species: []
 idealFlow: []
 notes: >-
   TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island
