@@ -93,3 +93,37 @@ covered the corridor model; it stayed in the lane-lead-only set untouched.
   failing (B03-adjacent recommendation).
 - Results: unit 124/124, fieldwork e2e 28/28, canonical web e2e 28/28,
   marketing e2e 14/14, build + size budget green (5.17 MB / 25 MB).
+
+## Integration of Sessions B + C (2026-09-05)
+
+Merged `trout-content-fix` (Session B) and `trout-roads` (Session C) into this tree;
+one seam reconciled and the whole product re-verified.
+
+- **B delivered:** owner species decisions applied (harpeth warmwater w/ December
+  stocking note; little-pigeon trout + stockingProgram true; duck-river-tailwater
+  trout, year-round note); Normandy tailwater gauge moved below the dam (03596000 →
+  03597860, evidence in their PROGRESS.md); `tn-west` region registered + 12-month
+  hatch chart authored; regionId↔registry check; species recommendation menu for
+  the remaining 28 unset waters; paris alias + waterbody-inventory bookkeeping.
+- **C delivered:** TIGER/Line 2024 ROADS, public-domain verdict recorded before any
+  build, OSM/ODbL rejected; three LOD classes (major/mid/minor — 4.6 MB total,
+  TN-clipped, welded chains, Douglas–Peucker per class, walkways/driveways dropped);
+  `validate-roads.mjs` + `docs/roads-sources.md`.
+- **Seam reconciliation (Session A):** probe moved to `/atlas/roads-manifest.json`
+  (C's delivery path); sources point at the atlas-root files; zoom gates derive from
+  the entry's LOD (major 5.6 / mid 8 / minor 9.5, explicit `minZoom` overrides); the
+  stub manifest removed; roads attribution rendered at source level so a single
+  attribution control carries it. One MapLibre lesson re-learned in integration:
+  `minzoom` is a TOP-LEVEL layer property — a `layout.minzoom` fails the entire
+  style load, caught by the live probe (console error) before any suite run.
+- **Served snapshots:** `public/v1` + `public/content` mirrored from B's clone
+  (gitignored, per the established robocopy pattern); verified: harpeth warmwater,
+  little-pigeon trout + stocked, duck gauge 03597860, tn-west hatch present.
+- **Live verification:** roads render beneath the water corridors at regional zoom
+  with attribution (`artifacts/ui-redesign/after-shots/roads-live-1440.png`), zero
+  console errors; no roads before the manifest resolves.
+- **Final results:** content 11/11 tests + validate (12 regions × 12 months, 128
+  streams); unit 124/124; web build + size budget green (9.57 MB / 25 MB — roads
+  precache-able and offline-available); fieldwork e2e 28/28; canonical web e2e
+  28/28; marketing e2e 14/14. BACKEND-ISSUES: B12 now FIXED; B08 partially fixed
+  (3 owner decisions applied; 28 waters documented-unset pending owner review).

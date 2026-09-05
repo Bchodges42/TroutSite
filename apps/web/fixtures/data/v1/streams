@@ -203,7 +203,7 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-middle-duck-elk",
     "gaugeIds": [
-      "03597860"
+      "03596000"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -214,7 +214,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cold releases below Normandy Dam give the Duck its trout identity — TWRA stocks this tailwater with rainbow trout year-round (owner confirmation, September 2026). Release-dependent; verify schedules before wading.",
+    "notes": "Cold releases below Normandy Dam give the Duck its trout identity — TWRA tailwater-stocked rainbows in a lovely valley reach. Release-dependent; verify schedules before wading.",
     "officialSources": [
       {
         "label": "USGS gauge 03537000 — verify officially",
@@ -963,9 +963,8 @@
       "03433500"
     ],
     "stockingProgram": true,
-    "species": "warmwater",
     "idealFlow": [],
-    "notes": "Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches near Franklin with catchable trout each December (the winter put-and-take season runs December–February; check the TWRA schedule for the current window). Two gauges bracket the stocked corridor; summer water is smallmouth country.",
+    "notes": "Mostly a warmwater river, but TWRA’s winter program stocks Williamson County reaches near Franklin. Two gauges bracket the stocked corridor; summer water is smallmouth country.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1150,10 +1149,9 @@
     "gaugeIds": [
       "03470000"
     ],
-    "stockingProgram": true,
-    "species": "trout",
+    "stockingProgram": false,
     "idealFlow": [],
-    "notes": "A consistent trout water below the Smokies — TWRA stocks the Sevierville reach regularly (confirmed by the owner against local knowledge, September 2026, supplementing the TWRA dataset, which does not list the reach), and the upper park reaches hold wild fish. Verify current schedules with TWRA before you go.",
+    "notes": "Below the park the river warms and the trout fishery thins out; the upper park reaches hold wild fish. TWRA’s stocking dataset does not currently list this reach — flag is set conservatively; verify locally.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2574,7 +2572,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. TWRA lists the site as Paris City Park; the mapped water is the city-run Green Acres Lake (aka Williams Lake) — the secondary Eiffel Tower Park pond is a different water. Check the TWRA schedule for the current winter window before you go.",
+    "notes": "TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",

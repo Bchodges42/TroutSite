@@ -111,7 +111,7 @@ No fixture values, contracts, schemas, API, database, infra, geographic geometry
 
 ### B12 · P3 · Roads / complete contextual cartography not supplied
 
-- **Backend status (ZCode, 2026-09-04):** UNBLOCKED — Benjamin approved road data on 2026-09-04 conditional on a free license (public domain / CC0; OSM/ODbL explicitly rejected). Session C (trout-roads) delivers the TIGER 2024 road assets + manifest; Session A already wired the graceful map layers (roads render only when /atlas/roads/manifest.json lists files, always beneath water, themed via --map-road).
+- **Backend status (ZCode, 2026-09-05):** FIXED — Benjamin approved road data conditional on a free license. The roads session delivered TIGER/Line 2024 ROADS (public domain, 17 U.S.C. § 105; OSM/ODbL explicitly rejected — see docs/roads-sources.md): three LOD GeoJSON classes (major/mid/minor, 4.6 MB total, TN-clipped, welded + simplified) with roads-manifest.json. Session A's wiring renders one quiet zoom-gated layer per manifest entry beneath all water, themed via --map-road, with source-level attribution; no manifest → no roads, no attribution claim.
 
 - **Evidence:** `apps/web/public/atlas` contains boundary, counties, water geometry, place centroids, and local relief; no road geometry/source exists.
 - **UI needs:** optional first-party licensed road/context data with provenance, zoom bounds, and offline budget if roads are expected. Theme exposes a road token; no fictitious road lines are added.

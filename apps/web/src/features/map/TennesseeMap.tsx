@@ -65,7 +65,6 @@ export function TennesseeMap(props: Props) {
   const palette = useRef(theme.map);
   palette.current = theme.map;
   const [attempt, setAttempt] = useState(0);
-  const roadsAttribution = useRef(false);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
   const previousSelection = useRef<string | null | undefined>(undefined);
@@ -344,15 +343,6 @@ export function TennesseeMap(props: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    if (props.roads && !roadsAttribution.current) {
-      roadsAttribution.current = true;
-      map.addControl(
-        new maplibregl.AttributionControl({
-          customAttribution: props.roads.attribution ?? 'Roads: US Census TIGER',
-        }),
-        'bottom-right',
-      );
-    }
     const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
     if (appliedStyle.current === styleKey) return;
     const swap = () => {
@@ -369,7 +359,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       map.off('idle', swap);
     };
-  }, [props.basemap, props.roads, theme.id, attempt]);
+  }, [props.basemap, props.roads, ready, theme.id, attempt]);
   useEffect(() => {
     applyRef.current();
   }, [

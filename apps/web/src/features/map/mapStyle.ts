@@ -10,16 +10,18 @@ import type { MapPalette } from '../../theme/themes';
 export type BasemapVariant = 'paper' | 'ink' | 'topo';
 
 /**
- * Optional first-party road context (BACKEND-ISSUES B12). The UI probes
- * /atlas/roads/manifest.json and only builds road layers when the manifest
- * resolves, so the style is identical until Session C's assets land:
- *   { files: [{ file, minZoom? }], attribution? }
- * Roads always render beneath every water layer — context, never competition.
+ * Optional first-party road context (BACKEND-ISSUES B12, delivered by the
+ * roads session). The UI probes /atlas/roads-manifest.json and only builds
+ * road layers when it lists files; roads always render beneath every water
+ * layer — context, never competition. Zoom gates come from the entry's
+ * `minZoom` when present, else from its LOD class.
  */
 export interface RoadsSpec {
-  files: Array<{ file: string; minZoom?: number }>;
+  files: Array<{ file: string; lod?: string; minZoom?: number }>;
   attribution?: string;
 }
+
+const LOD_MIN_ZOOM: Record<string, number> = { major: 5.6, mid: 8, minor: 9.5 };
 
 // Wide-water safety: line layers must never touch polygon features (a line
 // layer on polygon geometry draws ring outlines — including straight
@@ -695,18 +697,22 @@ export function atlasStyle(
   const roads = options?.roads;
   if (roads?.files?.length) {
     roads.files.forEach((entry, i) => {
+      const minZoom = entry.minZoom ?? (entry.lod ? LOD_MIN_ZOOM[entry.lod] : undefined);
       style.sources[`roads-${i}`] = {
         type: 'geojson',
-        data: '/atlas/roads/' + entry.file,
+        data: '/atlas/' + entry.file,
+        attribution: roads.attribution ?? 'Roads: US Census TIGER',
       } as GeoJSONSourceSpecification;
+      // minzoom/maxzoom are TOP-LEVEL layer properties in MapLibre, never
+      // layout properties (an invalid spec fails the whole style load).
       style.layers.splice(style.layers.findIndex((l) => l.id === 'lakes-fill'), 0, {
         id: `roads-${i}`,
         type: 'line' as const,
         source: `roads-${i}`,
+        ...(minZoom ? { minzoom: minZoom } : {}),
         layout: {
           'line-cap': 'round' as const,
           'line-join': 'round' as const,
-          ...(entry.minZoom ? { minzoom: entry.minZoom } : {}),
         },
         paint: {
           'line-color': t.road,

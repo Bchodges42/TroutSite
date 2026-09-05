@@ -165,8 +165,9 @@ it('no longer carries the relief masking machinery — the merged topo assets ar
 it('builds quiet road layers beneath every water layer only from a roads manifest', () => {
   const roads = {
     files: [
-      { file: 'roads-major.geojson', minZoom: 5.6 },
-      { file: 'roads-minor.geojson', minZoom: 9 },
+      { file: 'roads-major.geojson', lod: 'major' },
+      { file: 'roads-mid.geojson', lod: 'mid' },
+      { file: 'roads-minor.geojson', lod: 'minor' },
     ],
     attribution: 'Roads: US Census TIGER',
   };
@@ -174,21 +175,31 @@ it('builds quiet road layers beneath every water layer only from a roads manifes
     for (const variant of ['paper', 'ink', 'topo'] as const) {
       const withRoads = atlasStyle(variant, theme.map, { roads });
       const ids = withRoads.layers.map((layer) => layer.id);
-      // One layer per manifest entry, zoom-gated, riding above the ground and
-      // beneath ALL water.
+      // One layer per manifest entry, zoom-gated by LOD, riding above the
+      // ground and beneath ALL water.
       expect(ids).toContain('roads-0');
-      expect(ids).toContain('roads-1');
+      expect(ids).toContain('roads-2');
       expect(ids.indexOf('roads-0')).toBeLessThan(ids.indexOf('lakes-fill'));
-      const minor = withRoads.layers.find((l) => l.id === 'roads-1');
-      expect(minor?.layout).toHaveProperty('minzoom', 9);
+      // LOD zoom gates: majors from the state view, minor trails last.
+      expect(withRoads.layers.find((l) => l.id === 'roads-0')).toHaveProperty('minzoom', 5.6);
+      expect(withRoads.layers.find((l) => l.id === 'roads-1')).toHaveProperty('minzoom', 8);
+      const minor = withRoads.layers.find((l) => l.id === 'roads-2');
+      expect(minor).toHaveProperty('minzoom', 9.5);
       expect(JSON.stringify(minor?.paint)).toContain(theme.map.road);
       // Same-origin source only — the manifest contract never leaks a URL.
       expect(JSON.stringify(withRoads.sources)).not.toMatch(/https?:\/\//);
+      // Sources point at the atlas-root files the roads session delivered.
+      expect(JSON.stringify(withRoads.sources)).toContain('/atlas/roads-minor.geojson');
     }
   }
   // No manifest, no roads: the style is unchanged and claims nothing.
   const without = atlasStyle('paper', themes.daybreak.map);
   expect(without.layers.map((l) => l.id)).not.toContain('roads-0');
+  // An explicit minZoom on a manifest entry overrides the LOD default.
+  const explicit = atlasStyle('paper', themes.daybreak.map, {
+    roads: { files: [{ file: 'roads-major.geojson', lod: 'major', minZoom: 7 }] },
+  });
+  expect(explicit.layers.find((l) => l.id === 'roads-0')).toHaveProperty('minzoom', 7);
 });
 
 describe('River navigation context', () => {

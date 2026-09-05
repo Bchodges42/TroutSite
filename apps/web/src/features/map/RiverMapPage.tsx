@@ -138,7 +138,7 @@ export function RiverMapPage() {
       .catch(() => {});
     // Road context is strictly opt-in via Session C's manifest: no manifest,
     // no roads, no attribution claim.
-    fetch('/atlas/roads/manifest.json')
+    fetch('/atlas/roads-manifest.json')
       .then((r) => r.json())
       .then((j) => {
         if (!cancelled && Array.isArray(j.files) && j.files.length > 0) setRoads(j as RoadsSpec);
