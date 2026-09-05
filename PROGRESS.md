@@ -81,3 +81,54 @@ clip to the real TN boundary (+small buffer). Only
   deepest shadows).
 - UI files untouched — Codex's masking layers stay until the integration lane
   swaps assets and removes masks.
+
+---
+
+# FISHABILITY lane — running status
+
+Base: `4e54c36` (integrated branch HEAD at lane start — same base as the
+LINES/CATALOG/STILLWATER wave; no BASE_SHA was supplied with the lane brief).
+Scope: pure month-aware trout-applicability + all-fish fishability decision
+model. Only `apps/web/src/domain/fishability/**`,
+`apps/web/test/fishability-model.test.ts`,
+`apps/web/test/trout-applicability.test.ts`, `docs/FISHABILITY-MODEL.md`,
+`docs/lane-results/fishability.md`, this file. Gitignored snapshot data
+(`apps/web/public/v1`, `apps/web/public/content`) copied byte-identical from
+the trout-stillwater checkout for build/test runtime only.
+
+## Status log
+
+- [x] Clone of trout-integration at `4e54c36`, branch `fishability/model`;
+  `pnpm install`, `@trout/contracts` + `@trout/ui` builds, baseline
+  typecheck + 88 unit tests green.
+- [x] Read-only audit subagent: existing scoring (contracts
+  `scoreConditions`, `readingFreshness`), test conventions, strict-TS
+  flags, B08 status, vocabulary. `apps/web/src/domain` did not exist
+  (created by this lane).
+- [x] Model implemented: `evaluateWater` (deterministic, UTC-normalized
+  time, no Date.now/network/React), `selectVisibleWaters`, named
+  versioned config, MODEL_VERSION 1.0.0 + debug metadata.
+- [x] Tests: trout-applicability + fishability-model (45 new tests).
+  Every required brief scenario covered, including September old-winter-
+  stocking, wild-in-September, tailwater year-round, stale-vs-current
+  warmth, scheduled-vs-completed, zero CFS, all-fish never trout-condition,
+  selected-but-filtered, timezone determinism.
+- [x] typecheck / 133 tests / eslint (new files) / build + size budget —
+  all green.
+- [x] Adversarial biology subagent + test-overclaiming subagent (both
+  read-only; no repo edits): fixes committed — sustained-warmth knob
+  wired, date-precision grace ages, near-zero flow banding, near-cutoff
+  phrasing, low-confidence wild wording/visibility, hemisphere-safe
+  determinism vectors, boundary-style confidence assertions, filter
+  non-mutation check.
+- [x] Docs: `docs/FISHABILITY-MODEL.md` (decision table, config listing,
+  10 validation-flagged biological assumptions, limitations),
+  `docs/lane-results/fishability.md` (handoff).
+
+## Commits (this lane, on `fishability/model`)
+
+- `373fccb` fishability(model): pure month-aware trout-applicability +
+  all-fish fishability decision model v1.0.0
+- `9b4a16d` fishability(model): address adversarial bio + test-overclaiming
+  reviews
+- final docs commit — see `git log` / `docs/lane-results/fishability.md`
