@@ -173,3 +173,22 @@ Stale fixture row 03596000 removed from `packages/content/data/verified-gauges.j
 - Note for the next session: fresh clones must `pnpm --filter @trout/contracts
   build && pnpm --filter @trout/ui build` before the web gates; the baseline
   "failures" on a fresh checkout were only unbuilt workspace deps.
+
+---
+
+# Session A round 2 — roads toggle, terrain fix, Stones reconnection (2026-09-05)
+
+- Roads: Layers-panel toggle, default off (?roads=1). Availability still from
+  roads-manifest.json; rendering is the user's choice.
+- Terrain (B14 follow-up): the TOPO build skips fully-masked tiles, and the dev
+  server's SPA fallback answered those missing .webp requests with index.html —
+  MapLibre decode errors, no relief. scripts/fill-topo-tiles.mjs pads the grid
+  with 490 transparent tiles (matching the alpha/lossless delivery format) to
+  the hillshade request bounds; terrain renders, zero console errors.
+- Stones (B13 follow-up): fetched NHD take for the corridor; welded East Fork
+  (86 segs -> 1 chain), West Fork (65 -> 1), and the Stones main stem (dam joint
+  bridged at ~9 m; degenerate fragment dropped). Forks now meet at 0 m and the
+  main stem runs confluence -> Percy Priest Lake -> dam -> Cumberland mouth.
+  riverIndex regenerated; validate-atlas + continuity audit PASS.
+- Verified by vision: stones-fixed.png (corridor), stones-confluence.png
+  (forks joining), terrain-fixed-1440.png (relief + contours).
