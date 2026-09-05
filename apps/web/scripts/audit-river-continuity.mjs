@@ -63,11 +63,6 @@ const ALLOWLIST = {
     reason:
       'Un-fillable from public sources: NHD "Horse Creek" stops at lon -82.711 while TIGER fragments reach -82.790; the only corridor connection runs through the whole Nolichucky drainage web (1700+ unrelated parts), which is not a same-water bridge. Left open.',
   },
-  'sinking-creek-wilson': {
-    kind: 'LEFT-OPEN',
-    reason:
-      'Un-fillable from public sources: 12.15 km west hole (36.046->36.094) and 3.69 km mid hole; all-fcode corridor probes found no connectable chain (172/113 parts, connected=false). Left open.',
-  },
   'east-fork-shoal-creek': {
     kind: 'LEFT-OPEN',
     reason:

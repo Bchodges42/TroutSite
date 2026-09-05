@@ -10,7 +10,7 @@ Current integration checkpoint for every row in `waterbody-inventory.json`. `PAS
 | Wolf River                            | `wolf-river-west-tennessee` | not supplied                       | PENDING_GEOMETRY   | catalog + West Tennessee line + full UI QA                    |
 | Tennessee River                       | `tennessee-river`           | not supplied                       | PENDING_GEOMETRY   | one canonical main-stem feature + full UI QA                  |
 | Cumberland River                      | `cumberland-river`          | not supplied                       | PENDING_GEOMETRY   | catalog + main-stem line + full UI QA                         |
-| Duck River                            | `duck-river-lower`          | TIGER Linear + NHD HR, reach-gated | PENDING_GEOMETRY   | extend/verify to the reference corridor, then full UI QA      |
+| Duck River                            | `duck-river-lower`          | TIGER Linear + NHD HR, reach-gated | PENDING_GEOMETRY   | extend/verify to the reference corridor, then full UI QA; gate-overlap dedupe applied 2026-09-04 (see GEO-CONTINUITY-AUDIT.md) |
 | Buffalo River                         | `buffalo-river`             | not supplied                       | PENDING_GEOMETRY   | catalog + main-river line + full UI QA                        |
 | Caney Fork River                      | `caney-fork-river`          | NHD HR + curated corridor fix      | PENDING_GEOMETRY   | verify full reference extent, then full UI QA                 |
 | Elk River                             | `elk-river`                 | TIGER Linear + NHD HR, reach-gated | PENDING_GEOMETRY   | reconcile continuous reference corridor, then full UI QA      |
@@ -33,19 +33,19 @@ Current integration checkpoint for every row in `waterbody-inventory.json`. `PAS
 | Cherokee Lake                         | `cherokee-lake`             | Census AREAWATER MultiPolygon      | PENDING_CATALOG    | provenance confirmation + catalog promotion + full UI QA      |
 | Douglas Lake                          | `douglas-lake`              | Census AREAWATER MultiPolygon      | PENDING_CATALOG    | provenance confirmation + catalog promotion + full UI QA      |
 | South Holston Lake                    | `south-holston-lake`        | Census AREAWATER MultiPolygon      | PENDING_CATALOG    | provenance confirmation + catalog promotion + full UI QA      |
-| Shelby Farms Lake                     | `shelby-farms-lake`         | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Cameron Brown Lake                    | `cameron-brown-lake`        | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Edmund-Orgill Park Lake               | `edmund-orgill-lake`        | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Yale Road Park Lake                   | `yale-road-park-lake`       | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Johnson Park Lake                     | `johnson-park-lake`         | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Valentine Park Pond                   | `valentine-park-pond`       | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Covington First Baptist Church Pond   | `covington-fbc-pond`        | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Martin City Pond                      | `martin-city-pond`          | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Milan City Pond                       | `milan-city-pond`           | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Paris City Park Lake                  | `paris-city-park-lake`      | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Beech Lake                            | `beech-lake`                | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Lake Graham                           | `lake-graham`               | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
-| Union City Reelfoot Packing Site Pond | `union-city-reelfoot-pond`  | TWRA winter-water Point only       | PENDING_GEOMETRY   | replace Point in place with verified polygon + full UI QA     |
+| Shelby Farms Lake                     | `shelby-farms-lake`         | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; MultiPolygon nesting fixed 2026-09-04) |
+| Cameron Brown Lake                    | `cameron-brown-lake`        | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
+| Edmund-Orgill Park Lake               | `edmund-orgill-lake`        | NHD HR polygon                     | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed)                 |
+| Yale Road Park Lake                   | `yale-road-park-lake`       | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
+| Johnson Park Lake                     | `johnson-park-lake`         | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
+| Valentine Park Pond                   | `valentine-park-pond`       | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
+| Covington First Baptist Church Pond   | `covington-fbc-pond`        | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
+| Martin City Pond                      | `martin-city-pond`          | NHD HR polygon                     | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed)                 |
+| Milan City Pond                       | `milan-city-pond`           | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
+| Paris City Park Lake                  | `paris-city-park-lake`      | NHD HR polygon                     | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed)                 |
+| Beech Lake                            | `beech-lake`                | NHD HR polygon                     | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed)                 |
+| Lake Graham                           | `lake-graham`               | NHD HR polygon                     | PENDING_GEOMETRY   | full UI QA (label anchor moved inside polygon 2026-09-04)     |
+| Union City Reelfoot Packing Site Pond | `union-city-reelfoot-pond`  | aerial-trace polygon (approximate) | PENDING_GEOMETRY   | full UI QA (point→polygon replacement landed; nesting fixed 2026-09-04) |
 
 ## Current architecture verification
 
@@ -64,3 +64,34 @@ Current integration checkpoint for every row in `waterbody-inventory.json`. `PAS
 | Existing creek line end to end              | PASS             | current catalog line architecture; `beaverdam-creek` is the contract example        |
 
 There are no `UNRESOLVED` location judgments. There are also no false `PASS` claims: geometry and catalog production remain pending exactly where shown.
+
+## Geometry lane update — 2026-09-04 (`trout-geometry`, base `5648ccc`)
+
+Continuity and contract repairs documented in [`GEO-CONTINUITY-AUDIT.md`](./GEO-CONTINUITY-AUDIT.md);
+no verification state was flipped to `PASS` (the full-UI-QA gate is unchanged).
+
+- **Stones River / J. Percy Priest**: `stones-river` now carries a real NHDPlus
+  HR centerline from the East/West Fork confluence (−86.4587, 35.9859)
+  through the reservoir corridor to the dam; both forks verified to meet at
+  the confluence. `riverIndex.json` regenerated.
+- **Sinking Creek (Wilson)**: three fused waters separated — the Lebanon /
+  Don Fox Park creek (NHD GNIS 01270380, TWRA stocking layer cross-checked)
+  kept; the GNIS 01303641 creek and the Rutherford County fragment removed.
+  1 component, 0 separation. Feature `waterbodyType` corrected to `creek`
+  (catalog YAML still says `spring` — content-lane follow-up).
+- **Duplicate segments removed**: duck tailwater/lower (14 shared parts),
+  elk/elk-lower (2), boone/FPH tailwaters (3, assigned at Fort Patrick
+  Henry Dam), clear-fork/clear-creek-obed (2, NHD GNIS 01305953 evidence),
+  19 self-duplicate parts across 10 features.
+- **Contract fixes**: 8 TWRA-pond MultiPolygon nestings repaired (depth 3 →
+  4, no coordinate changes); 10 lake `labelAnchor`s moved inside their
+  polygons (they were reference-image approximate locations);
+  `j-percy-priest-lake` polygon verified as the reservoir corridor body.
+- **New regression suite**: `apps/web/test/geometry-continuity.test.ts`
+  (16 tests) enforces the contract checks, Stones-system connectivity, the
+  Sinking Creek component/separation regression, and zero shared parts
+  between reach-paired features.
+- Row cells above updated where geometry reality had drifted (the 13 winter
+  waters are polygons today, not Points — the point→polygon replacement
+  landed with B15; the rows keep `PENDING_GEOMETRY` only for the full UI QA
+  gate).
