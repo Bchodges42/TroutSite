@@ -46,9 +46,9 @@ describe('migrations', () => {
       name: string;
     }[];
     reopened!.close();
-    // 001_init (Role 1) + 002_gauge_readings_normalized (Role 3)
+    // 001_init (Role 1) + 002_gauge_readings_normalized + 003_report_photo_url + 004_evidence_runs
     // + 003_report_photo_url (Role 6 integration, ADR 0002).
-    expect(applied).toHaveLength(3);
+    expect(applied).toHaveLength(4);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);

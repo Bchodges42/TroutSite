@@ -324,7 +324,7 @@ describe('content pack emission', () => {
 
       const taxa = JSON.parse(readOut(env2.snapshotsDir, join('content', 'taxa.json'))) as Record<string, unknown>[];
       expect(taxa).toHaveLength(1);
-      expect(taxa[0].id).toBe('baetis-tricaudatus');
+      expect(taxa[0]!.id).toBe('baetis-tricaudatus');
       expect(taxa[0]).not.toHaveProperty('svg');
       expect(taxa[0]).not.toHaveProperty('stages');
 

@@ -26,7 +26,7 @@ import type { FetchCtx, NormalizeCtx, NormalizeResult, RawArtifact, RawFetch, St
 
 export const TWRA_PAGE_URL = 'https://www.tn.gov/twra/fishing/trout-information-stockings.html';
 
-interface TwraRow {
+export interface TwraRow {
   REGION?: string;
   COUNTY?: string;
   LOCATION?: string;
@@ -130,7 +130,8 @@ function cleanWhitespace(s: string | undefined): string | undefined {
   return v.length > 0 ? v : undefined;
 }
 
-function resolveDate(row: TwraRow, now: Date): {
+/** Exported for the evidence layer (same schedule-date semantics, single source of truth). */
+export function resolveDate(row: TwraRow, now: Date): {
   date: string | null;
   /** How precise the published source date is ('day' | 'week' | 'month'). */
   precision: 'day' | 'week' | 'month' | null;

@@ -23,8 +23,8 @@ const { values } = parseArgs({
 });
 
 const jobRaw = values.job;
-if (!['gauges', 'stocking', 'snapshots', 'all'].includes(jobRaw)) {
-  console.error(`[ingest] unknown --job=${jobRaw} (use gauges|stocking|snapshots|all)`);
+if (!['gauges', 'stocking', 'evidence', 'snapshots', 'all'].includes(jobRaw)) {
+  console.error(`[ingest] unknown --job=${jobRaw} (use gauges|stocking|evidence|snapshots|all)`);
   process.exit(2);
 }
 const states = values.states ? values.states.split(',').map((s) => s.trim().toUpperCase()) : [];
@@ -47,7 +47,7 @@ if (values['dry-run']) {
 }
 
 const db = openDb(resolve(env.TROUT_DB_PATH));
-const jobs: JobName[] = jobRaw === 'all' ? ['gauges', 'stocking'] : [jobRaw as JobName];
+const jobs: JobName[] = jobRaw === 'all' ? ['gauges', 'stocking', 'evidence'] : [jobRaw as JobName];
 
 let failed = 0;
 for (const j of jobs) {

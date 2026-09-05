@@ -24,13 +24,19 @@ describe('ingest --dry-run', () => {
     const result = dryRun(cfg);
 
     expect(result.ok).toBe(true);
-    // fixtures/USGS: 2 recorded responses; fixtures/TN: 3 dated artifact sets.
-    expect(result.fixtureSets).toBe(5);
+    // fixtures/USGS: 2 recorded responses; fixtures/TN: 3 dated artifact sets;
+    // fixtures/TVA: 2 observed-data captures; TN evidence parser: 1 page+json set.
+    expect(result.fixtureSets).toBe(9);
     expect(result.readings).toBeGreaterThanOrEqual(2);
+    // Evidence-layer parses of the same fixtures (data-sources lane):
+    expect(result.observations).toBeGreaterThanOrEqual(2);
+    expect(result.evidenceStockingEvents).toBeGreaterThan(500);
     // Real 2026 TWRA schedule → hundreds of events; redesign fallback adds a few.
     expect(result.events).toBeGreaterThan(500);
-    // Soft-fail warning from the garbage fixture is expected and surfaced.
-    expect(result.warnings.join(' ')).toContain('soft-fail');
+    // The 2026-09-04 group now carries real schedule JSON, so the adapter parses
+    // it clean; its recent-report grid rows hit the schedule adapter as tolerant
+    // skips (documented noise from the two-grid page).
+    expect(result.warnings.join(' ')).toContain('row without LOCATION skipped');
 
     // No writes: no snapshots, no raw captures.
     expect(existsSync(env.snapshotsDir)).toBe(false);

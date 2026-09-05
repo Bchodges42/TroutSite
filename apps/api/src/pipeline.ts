@@ -5,9 +5,14 @@ import { parseInstantValues, runGaugesJob } from './ingest/usgs.js';
 import { runStockingJob } from './ingest/stockingJob.js';
 import { getAdapters } from './ingest/stocking/index.js';
 import { buildSnapshots } from './snapshots/build.js';
+import { runEvidenceJob } from './evidence/evidenceJob.js';
+import { parseUsgsObservations } from './evidence/usgs-provider.js';
+import { parseTvaObservations } from './evidence/tva-provider.js';
+import { parseTwraEvidence } from './evidence/twra-evidence.js';
+import { TWRA_PAGE_URL } from './ingest/stocking/tn.js';
 import { startJob } from './jobs/run.js';
 
-export type JobName = 'gauges' | 'stocking' | 'snapshots';
+export type JobName = 'gauges' | 'stocking' | 'evidence' | 'snapshots';
 
 export interface PipelineConfig {
   snapshotsDir: string;
@@ -53,14 +58,16 @@ export interface DryRunResult {
   fixtureSets: number;
   readings: number;
   events: number;
+  observations: number;
+  evidenceStockingEvents: number;
   errors: string[];
   warnings: string[];
 }
 
 /**
- * --dry-run: parse every recorded fixture (USGS JSON + each state adapter's artifacts),
- * validate against the frozen contracts, and touch NOTHING — no DB, no snapshots, no
- * raw captures, no network (non-negotiable #3).
+ * --dry-run: parse every recorded fixture (USGS JSON + each state adapter's artifacts +
+ * the evidence-layer providers' fixtures), validate against the frozen contracts, and
+ * touch NOTHING — no DB, no snapshots, no raw captures, no network (non-negotiable #3).
  */
 export function dryRun(cfg: PipelineConfig): DryRunResult {
   const errors: string[] = [];
@@ -68,6 +75,8 @@ export function dryRun(cfg: PipelineConfig): DryRunResult {
   let readings = 0;
   let events = 0;
   let fixtureSets = 0;
+  let observations = 0;
+  let evidenceStockingEvents = 0;
 
   // USGS fixtures: every *.json directly under fixtures/USGS/.
   for (const f of listFiles(join(cfg.fixturesDir, 'USGS')).filter((x) => x.endsWith('.json'))) {
@@ -75,8 +84,52 @@ export function dryRun(cfg: PipelineConfig): DryRunResult {
     try {
       const parsed = JSON.parse(readFileSync(join(cfg.fixturesDir, 'USGS', f), 'utf8'));
       readings += parseInstantValues(parsed).length;
+      observations += parseUsgsObservations(parsed).length;
     } catch (err) {
       errors.push(`USGS/${f}: ${(err as Error).message}`);
+    }
+  }
+
+  // TVA fixtures: fixtures/TVA/observed-data-*.json row arrays (evidence provider).
+  for (const f of listFiles(join(cfg.fixturesDir, 'TVA')).filter((x) => x.startsWith('observed-data-') && x.endsWith('.json'))) {
+    fixtureSets += 1;
+    try {
+      const parsed = JSON.parse(readFileSync(join(cfg.fixturesDir, 'TVA', f), 'utf8')) as unknown[];
+      const obs = parseTvaObservations(parsed as Parameters<typeof parseTvaObservations>[0], { locationId: 'DRYRUN' });
+      observations += obs.length;
+      if (obs.length === 0) warnings.push(`TVA/${f}: parsed to zero observations`);
+    } catch (err) {
+      errors.push(`TVA/${f}: ${(err as Error).message}`);
+    }
+  }
+
+  // Evidence-layer TWRA fixtures: dated artifact sets also parsed through the
+  // two-grid evidence parser (schedule vs recent-report).
+  {
+    const dir = join(cfg.fixturesDir, 'TN');
+    const dated = listFiles(dir).filter((f) => /^\d{4}-\d{2}-\d{2}[.-]/.test(f)).sort();
+    const dates = [...new Set(dated.map((f) => f.slice(0, 'YYYY-MM-DD'.length)))];
+    for (const date of dates) {
+      const artifacts = dated
+        .filter((f) => f.startsWith(`${date}.`) || f.startsWith(`${date}-`))
+        .map((f) => {
+          const rawSuffix = f.slice(date.length + 1);
+          const suffix = rawSuffix.endsWith('.html') ? 'html' : rawSuffix;
+          // Evidence events carry sourceUrl; fixtures must validate, so the TWRA
+          // page URL stands in for the fixture filename here.
+          return { suffix, content: readFileSync(join(dir, f), 'utf8'), url: TWRA_PAGE_URL };
+        });
+      const hasPage = artifacts.some((a) => a.suffix === 'html' || a.suffix.endsWith('.html'));
+      const hasJson = artifacts.some((a) => a.suffix.endsWith('.json') || a.suffix.endsWith('.exceldriven.json'));
+      if (!hasPage || !hasJson) continue;
+      fixtureSets += 1;
+      try {
+        const result = parseTwraEvidence(artifacts, { now: new Date() });
+        evidenceStockingEvents += result.scheduleRows.length + result.recentRows.length;
+        warnings.push(...result.warnings.map((w) => `TN/${date} (evidence): ${w}`));
+      } catch (err) {
+        errors.push(`TN/${date} (evidence): parseTwraEvidence threw: ${(err as Error).message}`);
+      }
     }
   }
 
@@ -117,7 +170,16 @@ export function dryRun(cfg: PipelineConfig): DryRunResult {
     }
   }
 
-  return { ok: errors.length === 0, fixtureSets, readings, events, errors, warnings };
+  return {
+    ok: errors.length === 0,
+    fixtureSets,
+    readings,
+    events,
+    observations,
+    evidenceStockingEvents,
+    errors,
+    warnings,
+  };
 }
 
 /** Run one pipeline job against the live world (network + SQLite + snapshots). */
@@ -147,6 +209,15 @@ export async function runJob(
     const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     const failing = result.states.filter((s) => !s.ok).length;
     return { job, ok: failing === 0, detail: { ...result, snapshots: snap.files.length } };
+  }
+  if (job === 'evidence') {
+    const result = await runEvidenceJob(
+      db,
+      { contentPackDir: cfg.contentPackDir, rawDir: cfg.rawDir, userAgent: cfg.userAgent },
+      { now },
+    );
+    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
+    return { job, ok: true, detail: { ...result, snapshots: snap.files.length } };
   }
   const handle = startJob(db, 'snapshots');
   try {

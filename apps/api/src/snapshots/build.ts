@@ -3,12 +3,14 @@ import { join } from 'node:path';
 import {
   BugTaxonSchema,
   ConditionSnapshotSchema,
+  FishingInformationSchema,
   FlyPatternSchema,
   HatchChartSchema,
   ShopReportSchema,
   ShopSchema,
   StreamSchema,
   StockingEventSchema,
+  WaterEvidenceSetSchema,
   scoreConditions,
 } from '@trout/contracts';
 import type {
@@ -18,6 +20,7 @@ import type {
   ShopReport,
   Stream,
   StockingEvent,
+  WaterEvidence,
 } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { latestReadings } from '../ingest/usgs.js';
@@ -145,6 +148,7 @@ export interface SnapshotResult {
   reports: number;
   hatchCharts: number;
   contentPack: boolean;
+  evidenceWaters: number | null;
   warnings: string[];
 }
 
@@ -259,6 +263,23 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   writeJsonAtomic(reportsPath, reports);
   files.push(reportsPath);
 
+  // ── v1/evidence/waters.json (WaterEvidence[], data-sources lane) ───────────
+  // Re-emits the newest evidence_runs payload (written by the evidence job). No
+  // evidence job has run yet → skipped with a warning; never synthesized.
+  let evidenceWaters: number | null = null;
+  const evidenceRow = db
+    .prepare('SELECT payload FROM evidence_runs ORDER BY retrieved_at DESC, id DESC LIMIT 1')
+    .get() as { payload: string } | undefined;
+  if (evidenceRow) {
+    const evidence = WaterEvidenceSetSchema.parse(JSON.parse(evidenceRow.payload)) as WaterEvidence[];
+    const evidencePath = join(v1Dir, 'evidence', 'waters.json');
+    writeJsonAtomic(evidencePath, evidence);
+    files.push(evidencePath);
+    evidenceWaters = evidence.length;
+  } else {
+    warnings.push('no evidence_runs yet — /v1/evidence/waters.json not regenerated (run the evidence job)');
+  }
+
   // ── v1/hatch/{regionId}/{month}.json + content/{taxa,patterns}.json ────────
   // Both come from the built content pack (Role 4): hatch charts are already in the
   // HatchChart snapshot shape; taxa/patterns are re-emitted as the bare arrays the
@@ -276,6 +297,18 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     writeJsonAtomic(taxaPath, taxa);
     writeJsonAtomic(patternsPath, patterns);
     files.push(taxaPath, patternsPath);
+
+    // Fishing-information content (data-sources lane): served as /content/fishing.json.
+    const fishingPackPath = join(packDir, 'fishing.json');
+    if (existsSync(fishingPackPath)) {
+      const fishingRaw = JSON.parse(readFileSync(fishingPackPath, 'utf8')) as { fishing?: unknown };
+      const fishing = FishingInformationSchema.parse(fishingRaw.fishing);
+      const fishingPath = join(snapshotsDir, 'content', 'fishing.json');
+      writeJsonAtomic(fishingPath, fishing);
+      files.push(fishingPath);
+    } else {
+      warnings.push('content pack has no fishing.json — /content/fishing.json not regenerated');
+    }
 
     const hatchRoot = join(packDir, 'hatch');
     const regionDirs = readdirSync(hatchRoot, { withFileTypes: true })
@@ -310,6 +343,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     reports: reports.length,
     hatchCharts,
     contentPack,
+    evidenceWaters,
     warnings,
   };
 }
