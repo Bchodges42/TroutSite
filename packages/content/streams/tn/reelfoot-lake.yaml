@@ -1,0 +1,20 @@
+id: reelfoot-lake
+name: Reelfoot Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+species: []
+idealFlow: []
+notes: >-
+  Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West
+  Tennessee). NHD's main-basin waterbody carries the historic gnis_name "Reading House Slough";
+  the product identity is the lake basin promoted from the passive lake source to an
+  authoritative NHD polygon with a catalog record. Source NHDPlusIDs are recorded on the
+  delivered feature and in docs/audits/WEST-MIDDLE-HYDROGRAPHY.md.
+officialSources:
+  - label: USGS NHDPlus HR — NHDWaterbody Reelfoot basin (Reading House Slough polygon)
+    url: https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/9
+  - label: TWRA — Reelfoot Lake information
+    url: https://www.tn.gov/twra.html

@@ -1,0 +1,19 @@
+id: normandy-lake
+name: Normandy Lake
+stateId: TN
+waterbodyType: reservoir
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: false
+species: []
+idealFlow: []
+notes: >-
+  TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater
+  catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of
+  it. Promoted from the passive lake source to an authoritative NHD polygon so the visible water
+  is identified and selectable.
+officialSources:
+  - label: USGS NHDPlus HR — NHDWaterbody "Normandy Lake" (GNIS 01269831, NHDPlusID 25000102179819)
+    url: https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/9
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html
