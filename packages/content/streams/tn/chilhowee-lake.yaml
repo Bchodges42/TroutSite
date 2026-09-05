@@ -1,0 +1,21 @@
+id: chilhowee-lake
+name: Chilhowee Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-smokies
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Reservoir on the Little Tennessee River in Blount County below the
+  Chilhowee Mountains, impounded by Chilhowee Dam (dam at the pool's
+  downstream extremum ≈35.5623/-84.0252, from the NHD pool shape; no NWIS dam
+  gauge). Receives the Little Tennessee River from Calderwood Lake and
+  discharges into Tellico Lake. Verified geometry: USGS NHDPlus HR
+  NHDWaterbody GNIS 01280464 (6.8 km²; TWRA "Chilhowee Reservoir" 1,738 ac).
+  Represented on the TWRA waterways map but previously absent from the atlas.
+officialSources:
+  - label: TVA — reservoir information (verify lake levels officially)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

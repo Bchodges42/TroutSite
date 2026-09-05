@@ -1,0 +1,26 @@
+id: parksville-lake
+name: Parksville Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-se-hiwassee
+gaugeIds:
+  - "03564500"
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Ocoee River impoundment (TVA Ocoee Dam No. 1, "Parksville Dam") in Polk
+  County southeast of Benton; dam at the pool's west edge (-84.655, bracketed
+  by USGS 03564500 "Ocoee River at Parksville" and the NHD pool edge).
+  Receives the upper Ocoee River (ocoee-river) below Ocoee Number Three Lake
+  and discharges through the dam into the Parksville tailwater
+  (parksville-tailwater), which joins the Hiwassee River. Verified geometry:
+  USGS NHDPlus HR NHDWaterbody GNIS 01304751 — GNIS/NHD name "Lake Ocoee";
+  TWRA layer lists the same pool as "Ocoee Lake" (2,112 ac). Aliases: Ocoee
+  Lake, Ocoee Lake No. 1, Parksville Reservoir.
+officialSources:
+  - label: USGS Water Data — monitoring location 03564500
+    url: https://waterdata.usgs.gov/monitoring-location/03564500/
+  - label: TVA — Ocoee reservoirs/dam releases
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

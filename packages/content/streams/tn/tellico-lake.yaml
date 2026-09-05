@@ -1,0 +1,24 @@
+id: tellico-lake
+name: Tellico Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-clinch
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount
+  counties, impounded by Tellico Dam at Lenoir City (dam at ≈35.7877/-84.2545,
+  from the NHD pool extremum; no NWIS dam gauge). Receives the Little
+  Tennessee River (little-tennessee-river) below Chilhowee Dam, the Tellico
+  River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake
+  through the dam and the connecting canal. Verified geometry: USGS NHDPlus HR
+  NHDWaterbody GNIS 01327191 + 01304036 (61.4 km²; TWRA layer cross-check
+  15,788 ac). Aliases: Tellico Reservoir.
+officialSources:
+  - label: TVA — Tellico Reservoir lake levels
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

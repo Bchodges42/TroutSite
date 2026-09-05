@@ -7,12 +7,20 @@ gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Tennessee River
-  reservoir north of Chattanooga across Hamilton, Bradley, Meigs, and Rhea counties.
-  Catalog stub pending detailed review; promotion of the passive lake polygon is a
-  separate step.
+  Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater
+  gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea
+  counties, extending up to Watts Bar Dam and receiving the Hiwassee River
+  (hiwassee-river). Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS
+  01312639 ("Dallas Lake" — the GNIS/NHD name of the Chickamauga impoundment)
+  plus GNIS 01289869 (Judd Slough, the Hiwassee-mouth pool section), 123.5 km²
+  dam-to-dam; TWRA layer 33,973 ac (its outline adds riverine channel slivers
+  up the Hiwassee that NHD models as river — not delivered). The shipped
+  polygon held 15 county-clipped fragments (49.9 km²) missing both dam ends
+  and the upper arm.
 officialSources:
-  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
-    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: USGS Water Data — monitoring location 03566510
+    url: https://waterdata.usgs.gov/monitoring-location/03566510/
+  - label: TVA — Chickamauga Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,1279 @@
+{
+ "schema": "trout/east-southeast-topology/1",
+ "generated": "2026-09-05",
+ "region": "east-southeast",
+ "records": [
+  {
+   "featureId": "norris-lake",
+   "sourceIdentifiers": [
+    "Census TIGER/Line 2024 AREAWATER (H2030) pieces: Norris Lk/Clinch Riv/Powell Riv/Lost Crk + unnamed ≥0.05 km2 in pool window [-84.35,36.15,-83.2,36.66]"
+   ],
+   "upstreamFeatureIds": [
+    "clinch-river",
+    "powell-river"
+   ],
+   "downstreamFeatureIds": [
+    "clinch-river"
+   ],
+   "dam": {
+    "name": "Norris Dam",
+    "coordinates": [
+     -84.08214,
+     36.21563
+    ],
+    "source": "USGS NWIS 03533000 (Clinch River below Norris Dam), NAD83"
+   },
+   "sourceAreaSqKm": 85.45,
+   "deliveredAreaSqKm": 85.77,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "NHD medium-res NHDWaterbody GNIS 01269832 — 95.5 km²",
+    "TWRA RiversReservoirs reservoir layer (Norris Lake, 36,149 ac pool outline incl. riverine arms) — 146.3 km²",
+    "TVA published Norris size (33,840 ac at summer normal) — 137 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NHDPlus HR carries almost no named Norris pool; Census name-only match (the shipped defect) dropped every arm piece labeled Clinch Riv/Powell Riv. Pool assembled by membership rule; upper-Clinch VA channel trace present in the TWRA pool outline was excluded (it follows free-flowing water, not the pool).",
+   "damPoolDistanceM": 1145,
+   "connections": {
+    "clinch-river": {
+     "nearestVertexDistanceM": 262
+    }
+   }
+  },
+  {
+   "featureId": "cherokee-lake",
+   "sourceIdentifiers": [
+    "Cherokee Lake (GNIS 01280322, PID 138805581, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "holston-river"
+   ],
+   "downstreamFeatureIds": [
+    "holston-river"
+   ],
+   "dam": {
+    "name": "Cherokee Dam",
+    "coordinates": [
+     -83.49934,
+     36.1662
+    ],
+    "source": "USGS NWIS 03493510 (Holston River at Cherokee Dam, TW) + 03494000 (Holston River near Jefferson City)"
+   },
+   "sourceAreaSqKm": 119.13,
+   "deliveredAreaSqKm": 122.78,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Cherokee Lake, 27,029 ac) — 109.4 km²",
+    "TVA published Cherokee size (30,300 ac) — 122.6 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Single NHDPlus HR waterbody, dam-to-dam; Holston arm included to the NHD pool head.",
+   "damPoolDistanceM": 403,
+   "connections": {
+    "holston-river": {
+     "nearestVertexDistanceM": 64
+    }
+   }
+  },
+  {
+   "featureId": "chickamauga-lake",
+   "sourceIdentifiers": [
+    "Dallas Lake (GNIS 01312639, PID 139293038, fcode 39009)",
+    "Judd Slough (GNIS 01289869, PID 133012092, fcode 39009)"
+   ],
+   "upstreamFeatureIds": [
+    "watts-bar-lake",
+    "hiwassee-river",
+    "tennessee-river"
+   ],
+   "downstreamFeatureIds": [
+    "tennessee-river",
+    "nickajack-lake"
+   ],
+   "dam": {
+    "name": "Chickamauga Dam",
+    "coordinates": [
+     -85.22968,
+     35.10313
+    ],
+    "source": "USGS NWIS 03566510 (Tennessee River at Chickamauga Dam, TW)"
+   },
+   "sourceAreaSqKm": 123.45,
+   "deliveredAreaSqKm": 123.92,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Chickamauga Lake, 33,973 ac; outline extends riverine channel slivers up the Hiwassee to Reliance — excluded from delivery) — 137.5 km²",
+    "TVA published Chickamauga size (35,400 ac) — 143.2 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Shipped polygon held 15 county-clipped fragments (49.9 km2) missing both dam ends and the upper arm. NHD pool = Dallas Lake + Judd Slough (dam-to-dam).",
+   "damPoolDistanceM": 99,
+   "connections": {
+    "watts-bar-lake": {
+     "nearestVertexDistanceM": 506
+    },
+    "tennessee-river": {
+     "nearestVertexDistanceM": 131
+    },
+    "nickajack-lake": {
+     "nearestVertexDistanceM": 304
+    }
+   }
+  },
+  {
+   "featureId": "douglas-lake",
+   "sourceIdentifiers": [
+    "Douglas Lake (GNIS 01282739, PID 51639932, fcode 39009)"
+   ],
+   "upstreamFeatureIds": [
+    "french-broad-river",
+    "pigeon-river",
+    "little-pigeon-river"
+   ],
+   "downstreamFeatureIds": [
+    "french-broad-river"
+   ],
+   "dam": {
+    "name": "Douglas Dam",
+    "coordinates": [
+     -83.53878,
+     35.9612
+    ],
+    "source": "USGS NWIS 03468510 (French Broad River at Douglas Dam, TW) + 03469000 (below Douglas Dam)"
+   },
+   "sourceAreaSqKm": 118.27,
+   "deliveredAreaSqKm": 121.74,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Douglas Lake, 28,738 ac) — 116.3 km²",
+    "TVA published Douglas size (28,420 ac at full pool) — 115 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Aliases: Douglas Reservoir. Shipped polygon held 6 fragments (64.6 km2).",
+   "damPoolDistanceM": 214,
+   "connections": {}
+  },
+  {
+   "featureId": "fort-loudoun-lake",
+   "sourceIdentifiers": [
+    "Fort Loudoun Lake (GNIS 01307966, PID {EDEB44A0-07F7-49F2-A41F-E2BF9C465131}, fcode 39009)"
+   ],
+   "upstreamFeatureIds": [
+    "holston-river",
+    "french-broad-river",
+    "little-tennessee-river",
+    "tellico-lake"
+   ],
+   "downstreamFeatureIds": [
+    "watts-bar-lake"
+   ],
+   "dam": {
+    "name": "Fort Loudoun Dam",
+    "coordinates": [
+     -84.24325,
+     35.79174
+    ],
+    "source": "USGS NWIS 03499510 (Tennessee River at Fort Loudoun Dam, TW) + river-mile site 354730084143601 (TN RM 602.3)"
+   },
+   "sourceAreaSqKm": 55.73,
+   "deliveredAreaSqKm": 56.88,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Fort Loudoun Lake, 18,727 ac) — 75.8 km²",
+    "TVA published Fort Loudoun size (14,600 ac) — 59.1 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Shipped polygon (6 parts, 12.5 km2) missed the dam reach and most of both arms; NHD pool reaches Fort Loudoun Dam at -84.2432/35.7917.",
+   "damPoolDistanceM": 119,
+   "connections": {
+    "holston-river": {
+     "nearestVertexDistanceM": 1105
+    },
+    "little-tennessee-river": {
+     "nearestVertexDistanceM": 1747
+    },
+    "tellico-lake": {
+     "nearestVertexDistanceM": 939
+    },
+    "watts-bar-lake": {
+     "nearestVertexDistanceM": 369
+    }
+   }
+  },
+  {
+   "featureId": "watts-bar-lake",
+   "sourceIdentifiers": [
+    "Watts Bar Lake (GNIS 01304421, PID 132368052, fcode 39009)"
+   ],
+   "upstreamFeatureIds": [
+    "fort-loudoun-lake",
+    "melton-hill-lake",
+    "clinch-river"
+   ],
+   "downstreamFeatureIds": [
+    "chickamauga-lake"
+   ],
+   "dam": {
+    "name": "Watts Bar Dam",
+    "coordinates": [
+     -84.78328,
+     35.62035
+    ],
+    "source": "USGS NWIS 03543005 (Tennessee River at Watts Bar Dam, TW) + river-mile site 353712084465900 (TN RM 529.9)"
+   },
+   "sourceAreaSqKm": 135.33,
+   "deliveredAreaSqKm": 137.83,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Watts Bar Lake, 37,884 ac) — 153.3 km²",
+    "TVA published Watts Bar size (39,090 ac at full pool) — 158.2 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Single NHDPlus HR pool polygon: Fort Loudoun Dam (-84.2432) to Watts Bar Dam (-84.7833) incl. the Clinch arm to Melton Hill Dam. Emory River arm remains NHD river-area, not lake polygon (documented).",
+   "damPoolDistanceM": 118,
+   "connections": {
+    "fort-loudoun-lake": {
+     "nearestVertexDistanceM": 369
+    },
+    "melton-hill-lake": {
+     "nearestVertexDistanceM": 9934
+    },
+    "clinch-river": {
+     "nearestVertexDistanceM": 848
+    },
+    "chickamauga-lake": {
+     "nearestVertexDistanceM": 506
+    }
+   }
+  },
+  {
+   "featureId": "south-holston-lake",
+   "sourceIdentifiers": [
+    "South Holston Lake (GNIS 01327073, PID 43594500, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "south-fork-holston-river-va"
+   ],
+   "downstreamFeatureIds": [
+    "south-holston-river"
+   ],
+   "dam": {
+    "name": "South Holston Dam",
+    "coordinates": [
+     -82.09726,
+     36.52356
+    ],
+    "source": "USGS NWIS 03476500 (S F Holston River below South Holston Dam)"
+   },
+   "sourceAreaSqKm": 30.29,
+   "deliveredAreaSqKm": 31.34,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (South Holston Lake, 6,019 ac — Tennessee portion only) — 24.4 km²",
+    "TVA published South Holston size (7,580 ac) — 30.7 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NHD waterbody spans the state line into Washington Co VA (30.3 km2, to 36.66 N) — full lake delivered unclipped; the shipped polygon was the TN-clipped 18.2 km2 portion.",
+   "damPoolDistanceM": 817,
+   "connections": {
+    "south-holston-river": {
+     "nearestVertexDistanceM": 1084
+    }
+   }
+  },
+  {
+   "featureId": "boone-lake",
+   "sourceIdentifiers": [
+    "Boone Lake (GNIS 01326910, PID 89956265, fcode 39004)",
+    "Boone Lake (GNIS 01326910, PID 43594876, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "south-holston-river",
+    "watauga-river"
+   ],
+   "downstreamFeatureIds": [
+    "boone-tailwater"
+   ],
+   "dam": {
+    "name": "Boone Dam",
+    "coordinates": [
+     -82.43792,
+     36.44066
+    ],
+    "source": "USGS NWIS 03486810 (South Fork Holston River at Boone Dam, TW)"
+   },
+   "sourceAreaSqKm": 17.12,
+   "deliveredAreaSqKm": 17.5,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Boone Lake, 5,055 ac — incl. upper slackwater arms) — 20.5 km²",
+    "TVA published Boone size (4,400 ac) — 17.8 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Promoted from passive lakes.geojson to interactive. NHD models the upper SF Holston/Watauga slackwater arms as river; the tailwater lines carry continuity to the NHD pool edge.",
+   "damPoolDistanceM": 87,
+   "connections": {
+    "south-holston-river": {
+     "nearestVertexDistanceM": 546
+    },
+    "watauga-river": {
+     "nearestVertexDistanceM": 1059
+    },
+    "boone-tailwater": {
+     "nearestVertexDistanceM": 87
+    }
+   }
+  },
+  {
+   "featureId": "watauga-lake",
+   "sourceIdentifiers": [
+    "Watauga Lake (GNIS 01273873, PID 89956533, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "watauga-river-headwaters-nc"
+   ],
+   "downstreamFeatureIds": [
+    "watauga-river-wilbur-reach"
+   ],
+   "dam": {
+    "name": "Watauga Dam",
+    "coordinates": [
+     -82.12596,
+     36.33011
+    ],
+    "source": "USGS NWIS 03483950 (Watauga River below Watauga Dam) + 03483450 (above Watauga Dam)"
+   },
+   "sourceAreaSqKm": 25.71,
+   "deliveredAreaSqKm": 26.28,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Watauga Lake, 6,350 ac) — 25.7 km²",
+    "TVA published Watauga size (6,430 ac) — 26 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Promoted from passive lakes.geojson. Reaches Watauga Dam at the pool west end (-82.126).",
+   "damPoolDistanceM": 884,
+   "connections": {
+    "watauga-river-wilbur-reach": {
+     "nearestVertexDistanceM": 1274
+    }
+   }
+  },
+  {
+   "featureId": "wilbur-lake",
+   "sourceIdentifiers": [
+    "Wilbur Lake (GNIS 01327381, PID 89956337, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "watauga-river-wilbur-reach"
+   ],
+   "downstreamFeatureIds": [
+    "watauga-river"
+   ],
+   "dam": {
+    "name": "Wilbur Dam",
+    "coordinates": [
+     -82.12956,
+     36.34411
+    ],
+    "source": "USGS NWIS 03484000 (Watauga River below Wilbur Dam) + tailrace gauges 03483970/03483980"
+   },
+   "sourceAreaSqKm": 0.23,
+   "deliveredAreaSqKm": 0.22,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Wilbur Lake, 72 ac) — 0.29 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NEW interactive feature (was absent from catalog and both map sources). Small regulating pond between Watauga Dam and Wilbur Dam.",
+   "damPoolDistanceM": 426,
+   "connections": {
+    "watauga-river-wilbur-reach": {
+     "nearestVertexDistanceM": 53
+    },
+    "watauga-river": {
+     "nearestVertexDistanceM": 1369
+    }
+   }
+  },
+  {
+   "featureId": "fort-patrick-henry-lake",
+   "sourceIdentifiers": [
+    "Fort Patrick Henry Lake (GNIS 01284672, PID 43594860, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "boone-tailwater"
+   ],
+   "downstreamFeatureIds": [
+    "ft-patrick-henry-tailwater"
+   ],
+   "dam": {
+    "name": "Fort Patrick Henry Dam",
+    "coordinates": [
+     -82.50904,
+     36.49816
+    ],
+    "source": "USGS NWIS 03487010 (S F Holston River at Fort Patrick Henry Dam)"
+   },
+   "sourceAreaSqKm": 3.44,
+   "deliveredAreaSqKm": 3.48,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Fort Patrick Henry Lake, 860 ac) — 3.5 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NEW interactive feature (was visible on the waterways map but absent from the atlas).",
+   "damPoolDistanceM": 70,
+   "connections": {
+    "boone-tailwater": {
+     "nearestVertexDistanceM": 68
+    },
+    "ft-patrick-henry-tailwater": {
+     "nearestVertexDistanceM": 366
+    }
+   }
+  },
+  {
+   "featureId": "tellico-lake",
+   "sourceIdentifiers": [
+    "Tellico Lake (GNIS 01327191, PID 112272637, fcode 39009)",
+    "Tellico Lake (GNIS 01304036, PID 112272781, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "little-tennessee-river",
+    "chilhowee-lake",
+    "tellico-river"
+   ],
+   "downstreamFeatureIds": [
+    "fort-loudoun-lake"
+   ],
+   "dam": {
+    "name": "Tellico Dam",
+    "coordinates": [
+     -84.25445,
+     35.78768
+    ],
+    "source": "NHD 01327191 + TWRA Tellico Lake northern extremum (both ≈ -84.2545, 35.7877); no NWIS dam gauge exists"
+   },
+   "sourceAreaSqKm": 61.42,
+   "deliveredAreaSqKm": 62.12,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Tellico Lake, 15,788 ac) — 63.9 km²",
+    "TVA published Tellico size (15,540 ac) — 62.9 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Promoted from passive lakes.geojson (which stopped 1 km short of Tellico Dam and missed the upstream arm shape).",
+   "damPoolDistanceM": 733,
+   "connections": {
+    "little-tennessee-river": {
+     "nearestVertexDistanceM": 124
+    },
+    "chilhowee-lake": {
+     "nearestVertexDistanceM": 684
+    },
+    "fort-loudoun-lake": {
+     "nearestVertexDistanceM": 939
+    }
+   }
+  },
+  {
+   "featureId": "melton-hill-lake",
+   "sourceIdentifiers": [
+    "Melton Hill Lake (GNIS 01293571, PID 139451046, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "clinch-river"
+   ],
+   "downstreamFeatureIds": [
+    "watts-bar-lake"
+   ],
+   "dam": {
+    "name": "Melton Hill Dam",
+    "coordinates": [
+     -84.30076,
+     35.88536
+    ],
+    "source": "USGS NWIS 03535912 (Clinch River at Melton Hill Dam, tailwater) + river-mile site 355307084180200 (Clinch RM 23.1)"
+   },
+   "sourceAreaSqKm": 23.3,
+   "deliveredAreaSqKm": 23.77,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Melton Hill Lake, 6,035 ac) — 24.4 km²",
+    "TVA published Melton Hill size (5,470 ac) — 22.1 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NEW interactive feature. The Norris tailwater (clinch-river) runs through this pool — line-over-polygon by design; condition scoring stays with the line feature.",
+   "damPoolDistanceM": 131,
+   "connections": {
+    "clinch-river": {
+     "nearestVertexDistanceM": 65
+    },
+    "watts-bar-lake": {
+     "nearestVertexDistanceM": 9934
+    }
+   }
+  },
+  {
+   "featureId": "chilhowee-lake",
+   "sourceIdentifiers": [
+    "Chilhowee Lake (GNIS 01280464, PID 112272657, fcode 39009)"
+   ],
+   "upstreamFeatureIds": [
+    "calderwood-lake",
+    "little-tennessee-river"
+   ],
+   "downstreamFeatureIds": [
+    "tellico-lake"
+   ],
+   "dam": {
+    "name": "Chilhowee Dam",
+    "coordinates": [
+     -84.0252,
+     35.5623
+    ],
+    "source": "NHD 01280464 Chilhowee Lake north-east extremum at the dam; no NWIS dam gauge"
+   },
+   "sourceAreaSqKm": 6.8,
+   "deliveredAreaSqKm": 6.75,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (Chilhowee Reservoir, 1,738 ac) — 7 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NEW interactive feature (represented on the waterways map, absent from the atlas).",
+   "damPoolDistanceM": 1223,
+   "connections": {
+    "calderwood-lake": {
+     "nearestVertexDistanceM": 904
+    },
+    "little-tennessee-river": {
+     "nearestVertexDistanceM": 27
+    },
+    "tellico-lake": {
+     "nearestVertexDistanceM": 684
+    }
+   }
+  },
+  {
+   "featureId": "calderwood-lake",
+   "sourceIdentifiers": [
+    "Calderwood Lake (GNIS 00982412, PID 112272675, fcode 39009)"
+   ],
+   "upstreamFeatureIds": [
+    "little-tennessee-river-headwaters-nc"
+   ],
+   "downstreamFeatureIds": [
+    "chilhowee-lake"
+   ],
+   "dam": {
+    "name": "Calderwood Dam",
+    "coordinates": [
+     -83.9418,
+     35.4987
+    ],
+    "source": "NHD 00982412 Calderwood Lake south-east extremum at the dam; no NWIS dam gauge"
+   },
+   "sourceAreaSqKm": 2.25,
+   "deliveredAreaSqKm": 2.26,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer lists this pool as \"Little Calderwood Reservoir\" (458 ac) — 1.85 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NEW interactive feature. TWRA names the TN pool \"Little Calderwood Reservoir\"; NHD/GNIS name is Calderwood Lake (GNIS 00982412) — alias recorded.",
+   "damPoolDistanceM": 816,
+   "connections": {
+    "chilhowee-lake": {
+     "nearestVertexDistanceM": 904
+    }
+   }
+  },
+  {
+   "featureId": "parksville-lake",
+   "sourceIdentifiers": [
+    "Lake Ocoee (GNIS 01304751, PID 132765201, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "ocoee-river",
+    "ocoee-number-three-lake"
+   ],
+   "downstreamFeatureIds": [
+    "parksville-tailwater"
+   ],
+   "dam": {
+    "name": "Parksville Dam (Ocoee No. 1)",
+    "coordinates": [
+     -84.6552,
+     35.0908
+    ],
+    "source": "USGS NWIS 03564500 (Ocoee River at Parksville) + NHD 01304751 Lake Ocoee west edge -84.65"
+   },
+   "sourceAreaSqKm": 7.48,
+   "deliveredAreaSqKm": 7.56,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer (\"Ocoee Lake\", 2,112 ac) — 8.5 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Aliases: Ocoee Lake, Ocoee Lake No. 1, Parksville Reservoir. Promoted from passive lakes.geojson to interactive under the same ID.",
+   "damPoolDistanceM": 748,
+   "connections": {
+    "ocoee-number-three-lake": {
+     "nearestVertexDistanceM": 11305
+    }
+   }
+  },
+  {
+   "featureId": "ocoee-number-three-lake",
+   "sourceIdentifiers": [
+    "Ocoee Number Three Lake (GNIS 01296232, PID 132765214, fcode 39004)"
+   ],
+   "upstreamFeatureIds": [
+    "ocoee-river"
+   ],
+   "downstreamFeatureIds": [
+    "ocoee-river"
+   ],
+   "dam": {
+    "name": "Ocoee Dam No. 3",
+    "coordinates": [
+     -84.4699,
+     35.0371
+    ],
+    "source": "NHD 01296232 Ocoee Number Three Lake downstream (west) extremum at the dam; TVA Ocoee Dam No. 3"
+   },
+   "sourceAreaSqKm": 2.2,
+   "deliveredAreaSqKm": 2.23,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "TWRA reservoir layer lists this pool as \"Hiwassee Lake\" (443 ac) — 1.8 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "NEW interactive feature — this is the unidentified lake near the Parksville/Ocoee system. GNIS/NHD name \"Ocoee Number Three Lake\" (TVA Ocoee Dam No. 3 impoundment); TWRA lists it under the historical name \"Hiwassee Lake\" — alias recorded, NOT the NC Hiwassee Lake.",
+   "damPoolDistanceM": 152,
+   "connections": {}
+  },
+  {
+   "featureId": "nickajack-lake",
+   "sourceIdentifiers": [
+    "TWRA tn_reservoirs OBJECTID 36 \"Nickajack Lake\" (10470 ac)"
+   ],
+   "upstreamFeatureIds": [
+    "tennessee-river"
+   ],
+   "downstreamFeatureIds": [
+    "tennessee-river"
+   ],
+   "dam": {
+    "name": "Nickajack Dam",
+    "coordinates": [
+     -85.62108,
+     35.00258
+    ],
+    "source": "USGS NWIS 03570525 (Tennessee River at Nickajack Dam, tailwater)"
+   },
+   "sourceAreaSqKm": 41.96,
+   "deliveredAreaSqKm": 41.94,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": null,
+   "largestConnectionGapMeters": null,
+   "verificationSources": [
+    "NHDPlus HR NHDWaterbody GNIS 01295741 (covers only the western gorge; the Chattanooga reach is NHD river-area) — 28 km²",
+    "TVA published Nickajack size (10,700 ac) — 43.3 km²",
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "TWRA polygon is the complete pool (Chickamauga Dam to Nickajack Dam); NHDPlus HR splits it, so TWRA (the waterways-map source) is the delivery geometry, simplified 0.0002.",
+   "damPoolDistanceM": 198,
+   "connections": {
+    "tennessee-river": {
+     "nearestVertexDistanceM": 92
+    }
+   }
+  },
+  {
+   "featureId": "tennessee-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000300026360 reachcode 06020001014599 gnis Tennessee River (00517033) fcode 55800 0.6722442000000001km",
+    "nhdplusid 25000300016642 reachcode 06020001002523 gnis Tennessee River (00517033) fcode 55800 0.13099477km",
+    "nhdplusid 25000300014411 reachcode 06020001014257 gnis Tennessee River (00517033) fcode 55800 0.23394589000000002km",
+    "nhdplusid 25000400362843 reachcode 06010201010807 gnis Tennessee River (00517033) fcode 55800 0.20461332000000002km",
+    "nhdplusid 25000300019673 reachcode 06020001014400 gnis Tennessee River (00517033) fcode 55800 0.8126145499999999km",
+    "nhdplusid 25000200018116 reachcode 06030001002484 gnis Tennessee River (00517033) fcode 55800 0.56823643km",
+    "nhdplusid 25000400360742 reachcode 06010201010739 gnis Tennessee River (00517033) fcode 55800 1.50867032km",
+    "nhdplusid 25000400455220 reachcode 06010201010359 gnis Tennessee River (00517033) fcode 55800 0.5770596600000001km",
+    "nhdplusid 25000400510040 reachcode 06010201010654 gnis Tennessee River (00517033) fcode 55800 1.49959753km",
+    "nhdplusid 25000400495274 reachcode 06010201010893 gnis Tennessee River (00517033) fcode 55800 0.34663514km",
+    "nhdplusid 25000400301982 reachcode 06010201010528 gnis Tennessee River (00517033) fcode 55800 0.8715850100000001km",
+    "nhdplusid 25000300003574 reachcode 06020001014858 gnis Tennessee River (00517033) fcode 55800 0.45945951km"
+   ],
+   "upstreamFeatureIds": [
+    "holston-river",
+    "french-broad-river"
+   ],
+   "downstreamFeatureIds": [
+    "tennessee-river (continues into AL/KY)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 624.81,
+   "largestConnectionGapMeters": 282335.1,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Full Tennessee main stem within Tennessee: AL line (Shellmound, TN RM 424) upstream to the Holston/French Broad confluence at Knoxville, plus the West Tennessee main stem (Pickwick to the KY line). Flowline continuity preserved through Nickajack/Chickamauga/Watts Bar/Fort Loudoun/Kentucky pools via NHD artificial paths (no tailwater scoring implied inside reservoirs).",
+   "islands": 18,
+   "connections": {
+    "holston-river": {
+     "nearestVertexDistanceM": 1005
+    }
+   }
+  },
+  {
+   "featureId": "holston-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400473921 reachcode 06010104000982 gnis Holston River (01303469) fcode 55800 0.40100951km",
+    "nhdplusid 25000400297625 reachcode 06010104000019 gnis Holston River (01303469) fcode 55800 1.54950088km",
+    "nhdplusid 25000400480234 reachcode 06010104000018 gnis Holston River (01303469) fcode 55800 1.19433266km",
+    "nhdplusid 25000400537059 reachcode 06010104006263 gnis Holston River (01303469) fcode 55800 0.13897724km",
+    "nhdplusid 25000400484521 reachcode 06010104006308 gnis Holston River (01303469) fcode 55800 0.18777726km",
+    "nhdplusid 25000400499294 reachcode 06010104000971 gnis Holston River (01303469) fcode 55800 0.9169521500000001km",
+    "nhdplusid 25000400352005 reachcode 06010104005930 gnis Holston River (01303469) fcode 55800 2.14902769km",
+    "nhdplusid 25000400497149 reachcode 06010104000973 gnis Holston River (01303469) fcode 55800 0.94490565km",
+    "nhdplusid 25000400560215 reachcode 06010104000974 gnis Holston River (01303469) fcode 55800 0.14649579000000001km",
+    "nhdplusid 25000400501439 reachcode 06010104000896 gnis Holston River (01303469) fcode 55800 0.6445371200000001km",
+    "nhdplusid 25000400476051 reachcode 06010104000903 gnis Holston River (01303469) fcode 55800 1.3378504500000001km",
+    "nhdplusid 25000400467678 reachcode 06010104000969 gnis Holston River (01303469) fcode 55800 0.36464891000000005km"
+   ],
+   "upstreamFeatureIds": [
+    "north-fork-holston-river",
+    "ft-patrick-henry-tailwater"
+   ],
+   "downstreamFeatureIds": [
+    "fort-loudoun-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 220.16,
+   "largestConnectionGapMeters": 0,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Holston main stem from the North/South Fork confluence at Kingsport (USGS 03487010 tailwater terminus) through Cherokee Lake (artificial path) to the French Broad confluence at the head of Fort Loudoun Lake. Excludes VA fork water by name discipline (only gnis_name = Holston River).",
+   "islands": 1,
+   "connections": {
+    "north-fork-holston-river": {
+     "nearestVertexDistanceM": 1867
+    },
+    "ft-patrick-henry-tailwater": {
+     "nearestVertexDistanceM": 3124
+    },
+    "fort-loudoun-lake": {
+     "nearestVertexDistanceM": 1105
+    }
+   }
+  },
+  {
+   "featureId": "north-fork-holston-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400549289 reachcode 06010101000011 gnis North Fork Holston River (01487063) fcode 55800 0.5265493200000001km",
+    "nhdplusid 25000400362227 reachcode 06010101000011 gnis North Fork Holston River (01487063) fcode 55800 0.7471396299999999km",
+    "nhdplusid 25000400540905 reachcode 06010101000006 gnis North Fork Holston River (01487063) fcode 55800 1.08257943km",
+    "nhdplusid 25000400469530 reachcode 06010101006248 gnis North Fork Holston River (01487063) fcode 55800 0.6938175700000001km",
+    "nhdplusid 25000400326500 reachcode 06010101000005 gnis North Fork Holston River (01487063) fcode 55800 0.052295280000000006km",
+    "nhdplusid 25000400431628 reachcode 06010101000007 gnis North Fork Holston River (01487063) fcode 55800 0.35029433km",
+    "nhdplusid 25000400520049 reachcode 06010101000008 gnis North Fork Holston River (01487063) fcode 55800 0.47696834000000005km",
+    "nhdplusid 25000400461124 reachcode 06010101006246 gnis North Fork Holston River (01487063) fcode 55800 0.7369828km",
+    "nhdplusid 25000400473618 reachcode 06010101000002 gnis North Fork Holston River (01487063) fcode 55800 0.04914350000000001km",
+    "nhdplusid 25000400341178 reachcode 06010101000010 gnis North Fork Holston River (01487063) fcode 55800 1.1300891499999999km",
+    "nhdplusid 25000400425199 reachcode 06010101000011 gnis North Fork Holston River (01487063) fcode 55800 0.03616796km",
+    "nhdplusid 25000400456820 reachcode 06010101000008 gnis North Fork Holston River (01487063) fcode 55800 1.03687036km"
+   ],
+   "upstreamFeatureIds": [
+    "north-fork-holston-river (continues in VA)"
+   ],
+   "downstreamFeatureIds": [
+    "holston-river"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 15.01,
+   "largestConnectionGapMeters": 1038.8,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "North Fork Holston from the TN/VA line (the fork forms part of the state line; VA water upstream is out of scope) to the Kingsport confluence where the Holston main stem begins.",
+   "islands": 4,
+   "connections": {
+    "holston-river": {
+     "nearestVertexDistanceM": 1867
+    }
+   }
+  },
+  {
+   "featureId": "clinch-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400560407 reachcode 06010207003713 gnis Clinch River (01307258) fcode 55800 0.64185943km",
+    "nhdplusid 25000400467853 reachcode 06010207000129 gnis Clinch River (01307258) fcode 55800 0.41353324km",
+    "nhdplusid 25000400312368 reachcode 06010207000850 gnis Clinch River (01307258) fcode 55800 0.29539944km",
+    "nhdplusid 25000400381565 reachcode 06010207003751 gnis Clinch River (01307258) fcode 55800 0.15643424km",
+    "nhdplusid 25000400533027 reachcode 06010207000799 gnis Clinch River (01307258) fcode 55800 0.66732924km",
+    "nhdplusid 25000400465724 reachcode 06010207000129 gnis Clinch River (01307258) fcode 55800 0.89316324km",
+    "nhdplusid 25000400394024 reachcode 06010207003583 gnis Clinch River (01307258) fcode 55800 1.67965951km",
+    "nhdplusid 25000400410982 reachcode 06010207000805 gnis Clinch River (01307258) fcode 55800 1.15053852km",
+    "nhdplusid 25000400467855 reachcode 06010207000786 gnis Clinch River (01307258) fcode 55800 0.01546597km",
+    "nhdplusid 25000400514173 reachcode 06010207003741 gnis Clinch River (01307258) fcode 55800 1.03472976km",
+    "nhdplusid 25000400318653 reachcode 06010207003835 gnis Clinch River (01307258) fcode 55800 0.9876657km",
+    "nhdplusid 25000400329016 reachcode 06010207000840 gnis Clinch River (01307258) fcode 55800 2.05005509km"
+   ],
+   "upstreamFeatureIds": [
+    "norris-lake"
+   ],
+   "downstreamFeatureIds": [
+    "watts-bar-lake",
+    "melton-hill-lake"
+   ],
+   "dam": {
+    "name": "Norris Dam",
+    "coordinates": [
+     -84.08214,
+     36.21563
+    ],
+    "source": "USGS NWIS 03533000 (Clinch River below Norris Dam), NAD83"
+   },
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 121.51,
+   "largestConnectionGapMeters": 1212.7,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Norris tailwater rebuilt from NHDPlus HR at precision 6: begins AT Norris Dam (USGS 03533000 lon -84.0821 — the shipped gate cut the reach 2 km downstream of the dam), runs through the Melton Hill pool to the Clinch mouth at Kingston / Watts Bar Lake.",
+   "islands": 4,
+   "damPoolDistanceM": 133,
+   "connections": {
+    "norris-lake": {
+     "nearestVertexDistanceM": 262
+    },
+    "watts-bar-lake": {
+     "nearestVertexDistanceM": 848
+    },
+    "melton-hill-lake": {
+     "nearestVertexDistanceM": 65
+    }
+   }
+  },
+  {
+   "featureId": "south-holston-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400406337 reachcode 06010102005066 gnis South Fork Holston River (01327068) fcode 55800 0.53555213km",
+    "nhdplusid 25000400339003 reachcode 06010102001258 gnis South Fork Holston River (01327068) fcode 55800 0.28755172km",
+    "nhdplusid 25000400402019 reachcode 06010102001258 gnis South Fork Holston River (01327068) fcode 55800 0.38291005km",
+    "nhdplusid 25000400542896 reachcode 06010102001269 gnis South Fork Holston River (01327068) fcode 55800 0.13364111km",
+    "nhdplusid 25000400484124 reachcode 06010102001268 gnis South Fork Holston River (01327068) fcode 55800 0.34655926000000004km",
+    "nhdplusid 25000400549316 reachcode 06010102001269 gnis South Fork Holston River (01327068) fcode 55800 0.22631651km",
+    "nhdplusid 25000400324188 reachcode 06010102001270 gnis South Fork Holston River (01327068) fcode 55800 0.61102324km",
+    "nhdplusid 25000400520024 reachcode 06010102001264 gnis South Fork Holston River (01327068) fcode 55800 0.9702241600000001km",
+    "nhdplusid 25000400395620 reachcode 06010102001258 gnis South Fork Holston River (01327068) fcode 55800 0.44436515000000004km",
+    "nhdplusid 25000400498984 reachcode 06010102007887 gnis South Fork Holston River (01327068) fcode 55800 0.02359384km",
+    "nhdplusid 25000400341131 reachcode 06010102007905 gnis South Fork Holston River (01327068) fcode 55800 0.57361135km",
+    "nhdplusid 25000400463059 reachcode 06010102001264 gnis South Fork Holston River (01327068) fcode 55800 0.40104769km"
+   ],
+   "upstreamFeatureIds": [
+    "south-holston-lake"
+   ],
+   "downstreamFeatureIds": [
+    "boone-lake"
+   ],
+   "dam": {
+    "name": "South Holston Dam",
+    "coordinates": [
+     -82.09726,
+     36.52356
+    ],
+    "source": "USGS NWIS 03476500 (S F Holston River below South Holston Dam)"
+   },
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 24.55,
+   "largestConnectionGapMeters": 515,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "South Holston Dam (USGS 03476500) to the Boone Lake SF Holston arm head (NHD pool edge).",
+   "islands": 4,
+   "damPoolDistanceM": 45,
+   "connections": {
+    "south-holston-lake": {
+     "nearestVertexDistanceM": 1084
+    },
+    "boone-lake": {
+     "nearestVertexDistanceM": 546
+    }
+   }
+  },
+  {
+   "featureId": "boone-tailwater",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400385317 reachcode 06010102007875 gnis South Fork Holston River (01327068) fcode 55800 0.8571007km",
+    "nhdplusid 25000400341153 reachcode 06010102001271 gnis South Fork Holston River (01327068) fcode 55800 0.45586189000000005km",
+    "nhdplusid 25000400330592 reachcode 06010102007861 gnis South Fork Holston River (01327068) fcode 55800 0.59886603km",
+    "nhdplusid 25000400431574 reachcode 06010102007837 gnis South Fork Holston River (01327068) fcode 55800 0.5296851400000001km",
+    "nhdplusid 25000400425263 reachcode 06010102007872 gnis South Fork Holston River (01327068) fcode 55800 0.65268851km",
+    "nhdplusid 25000400505312 reachcode 06010102007853 gnis South Fork Holston River (01327068) fcode 55800 0.48108172000000005km",
+    "nhdplusid 25000400557788 reachcode 06010102007856 gnis South Fork Holston River (01327068) fcode 55800 0.90607684km",
+    "nhdplusid 25000400480646 reachcode 06010102007873 gnis South Fork Holston River (01327068) fcode 55800 0.092km",
+    "nhdplusid 25000400311925 reachcode 06010102007859 gnis South Fork Holston River (01327068) fcode 55800 0.22898103000000003km",
+    "nhdplusid 25000400450481 reachcode 06010102007870 gnis South Fork Holston River (01327068) fcode 55800 1.29782782km",
+    "nhdplusid 25000400366601 reachcode 06010102007860 gnis South Fork Holston River (01327068) fcode 55800 0.85344343km",
+    "nhdplusid 25000400498906 reachcode 06010102007847 gnis South Fork Holston River (01327068) fcode 55800 0.46215908km"
+   ],
+   "upstreamFeatureIds": [
+    "boone-lake"
+   ],
+   "downstreamFeatureIds": [
+    "fort-patrick-henry-lake"
+   ],
+   "dam": {
+    "name": "Boone Dam",
+    "coordinates": [
+     -82.43792,
+     36.44066
+    ],
+    "source": "USGS NWIS 03486810 (South Fork Holston River at Boone Dam, TW)"
+   },
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 16.69,
+   "largestConnectionGapMeters": 4849.9,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Boone Dam (USGS 03486810) to Fort Patrick Henry Lake head (NHD pool edge).",
+   "islands": 7,
+   "damPoolDistanceM": 2,
+   "connections": {
+    "boone-lake": {
+     "nearestVertexDistanceM": 87
+    },
+    "fort-patrick-henry-lake": {
+     "nearestVertexDistanceM": 68
+    }
+   }
+  },
+  {
+   "featureId": "ft-patrick-henry-tailwater",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400341153 reachcode 06010102001271 gnis South Fork Holston River (01327068) fcode 55800 0.45586189000000005km",
+    "nhdplusid 25000400397846 reachcode 06010102001249 gnis South Fork Holston River (01327068) fcode 55800 0.39336296000000004km",
+    "nhdplusid 25000400551508 reachcode 06010102001272 gnis South Fork Holston River (01327068) fcode 55800 0.7079245500000001km",
+    "nhdplusid 25000400431574 reachcode 06010102007837 gnis South Fork Holston River (01327068) fcode 55800 0.5296851400000001km",
+    "nhdplusid 25000400553540 reachcode 06010102001272 gnis South Fork Holston River (01327068) fcode 55800 0.56592684km",
+    "nhdplusid 25000400551800 reachcode 06010104008440 gnis South Fork Holston River (01327068) fcode 55800 0.0292101km",
+    "nhdplusid 25000400408425 reachcode 06010102004903 gnis South Fork Holston River (01327068) fcode 55800 1.4703429km",
+    "nhdplusid 25000400393543 reachcode 06010102001243 gnis South Fork Holston River (01327068) fcode 55800 0.5127211km",
+    "nhdplusid 25000400551488 reachcode 06010102004830 gnis South Fork Holston River (01327068) fcode 55800 1.7569274099999999km",
+    "nhdplusid 25000400295304 reachcode 06010102001249 gnis South Fork Holston River (01327068) fcode 55800 2.24854752km",
+    "nhdplusid 25000400551383 reachcode 06010102007842 gnis South Fork Holston River (01327068) fcode 55800 1.709834km",
+    "nhdplusid 25000400539113 reachcode 06010102008028 gnis South Fork Holston River (01327068) fcode 55800 0.34955626km"
+   ],
+   "upstreamFeatureIds": [
+    "fort-patrick-henry-lake"
+   ],
+   "downstreamFeatureIds": [
+    "holston-river",
+    "north-fork-holston-river"
+   ],
+   "dam": {
+    "name": "Fort Patrick Henry Dam",
+    "coordinates": [
+     -82.50904,
+     36.49816
+    ],
+    "source": "USGS NWIS 03487010 (S F Holston River at Fort Patrick Henry Dam)"
+   },
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 15.28,
+   "largestConnectionGapMeters": 0,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Fort Patrick Henry Dam (USGS 03487010) to the Kingsport confluence where the North and South Forks form the Holston River.",
+   "islands": 1,
+   "damPoolDistanceM": 22,
+   "connections": {
+    "fort-patrick-henry-lake": {
+     "nearestVertexDistanceM": 366
+    },
+    "holston-river": {
+     "nearestVertexDistanceM": 3124
+    },
+    "north-fork-holston-river": {
+     "nearestVertexDistanceM": 3875
+    }
+   }
+  },
+  {
+   "featureId": "watauga-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400327158 reachcode 06010103001172 gnis Watauga River (01327321) fcode 55800 0.20900000000000002km",
+    "nhdplusid 25000400529206 reachcode 06010103007271 gnis Watauga River (01327321) fcode 55800 0.7190000000000001km",
+    "nhdplusid 25000400314879 reachcode 06010103007269 gnis Watauga River (01327321) fcode 55800 0.35400000000000004km",
+    "nhdplusid 25000400514365 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.29200000000000004km",
+    "nhdplusid 25000400430236 reachcode 06010103001171 gnis Watauga River (01327321) fcode 55800 0.35700000000000004km",
+    "nhdplusid 25000400421652 reachcode 06010103001172 gnis Watauga River (01327321) fcode 55800 0.095km",
+    "nhdplusid 25000400551867 reachcode 06010102008027 gnis Watauga River (01327321) fcode 55800 0.09052738km",
+    "nhdplusid 25000400373487 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.329km",
+    "nhdplusid 25000400377818 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.11800000000000001km",
+    "nhdplusid 25000400381922 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.109km",
+    "nhdplusid 25000400436468 reachcode 06010103001160 gnis Watauga River (01327321) fcode 55800 0.084km",
+    "nhdplusid 25000400367341 reachcode 06010103001161 gnis Watauga River (01327321) fcode 55800 0.031km"
+   ],
+   "upstreamFeatureIds": [
+    "wilbur-lake"
+   ],
+   "downstreamFeatureIds": [
+    "boone-lake"
+   ],
+   "dam": {
+    "name": "Wilbur Dam",
+    "coordinates": [
+     -82.12956,
+     36.34411
+    ],
+    "source": "USGS NWIS 03484000 (Watauga River below Wilbur Dam) + tailrace gauges 03483970/03483980"
+   },
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 31.78,
+   "largestConnectionGapMeters": 7858.1,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Wilbur Dam (USGS 03484000) down the Watauga valley through Elizabethton (USGS 03486000) to the South Fork Holston confluence at the head of the Boone Lake Watauga arm.",
+   "islands": 4,
+   "damPoolDistanceM": 63,
+   "connections": {
+    "wilbur-lake": {
+     "nearestVertexDistanceM": 1369
+    },
+    "boone-lake": {
+     "nearestVertexDistanceM": 1059
+    }
+   }
+  },
+  {
+   "featureId": "watauga-river-wilbur-reach",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400551868 reachcode 06010103007354 gnis Watauga River (01327321) fcode 55800 0.17411965000000001km",
+    "nhdplusid 25000400379871 reachcode 06010103007347 gnis Watauga River (01327321) fcode 55800 0.46900000000000003km",
+    "nhdplusid 25000400510301 reachcode 06010103007349 gnis Watauga River (01327321) fcode 55800 0.336km",
+    "nhdplusid 25000400507750 reachcode 06010103007354 gnis Watauga River (01327321) fcode 55800 1.37900352km",
+    "nhdplusid 25000400329357 reachcode 06010103007348 gnis Watauga River (01327321) fcode 55800 0.603km"
+   ],
+   "upstreamFeatureIds": [
+    "watauga-lake"
+   ],
+   "downstreamFeatureIds": [
+    "wilbur-lake"
+   ],
+   "dam": {
+    "name": "Watauga Dam",
+    "coordinates": [
+     -82.12596,
+     36.33011
+    ],
+    "source": "USGS NWIS 03483950 (Watauga River below Watauga Dam) + 03483450 (above Watauga Dam)"
+   },
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 2.93,
+   "largestConnectionGapMeters": 0,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Short riverine reach connecting Watauga Lake at Watauga Dam (USGS 03483950, 36.3301/-82.1260) to Wilbur Lake, closing the Watauga Lake -> Wilbur Lake -> Watauga River chain.",
+   "islands": 1,
+   "damPoolDistanceM": 39,
+   "connections": {
+    "watauga-lake": {
+     "nearestVertexDistanceM": 1274
+    },
+    "wilbur-lake": {
+     "nearestVertexDistanceM": 53
+    }
+   }
+  },
+  {
+   "featureId": "little-tennessee-river",
+   "sourceIdentifiers": [
+    "nhdplusid 25000400322556 reachcode 06010204007221 gnis Little Tennessee River (01013036) fcode 55800 0.013803610000000001km",
+    "nhdplusid 25000400328913 reachcode 06010202001567 gnis Little Tennessee River (01013036) fcode 55800 0.0680395km",
+    "nhdplusid 25000400400393 reachcode 06010204007099 gnis Little Tennessee River (01013036) fcode 55800 0.91417775km",
+    "nhdplusid 25000400377419 reachcode 06010204007017 gnis Little Tennessee River (01013036) fcode 55800 0.73693807km",
+    "nhdplusid 25000400314827 reachcode 06010204007263 gnis Little Tennessee River (01013036) fcode 55800 0.014km",
+    "nhdplusid 25000400371162 reachcode 06010204007269 gnis Little Tennessee River (01013036) fcode 55800 0.19279916km",
+    "nhdplusid 25000400507092 reachcode 06010204007687 gnis Little Tennessee River (01013036) fcode 55800 0.03287915km",
+    "nhdplusid 25000400452375 reachcode 06010204007578 gnis Little Tennessee River (01013036) fcode 55800 0.43572951000000004km",
+    "nhdplusid 25000400394443 reachcode 06010204007091 gnis Little Tennessee River (01013036) fcode 55800 0.08900000000000001km",
+    "nhdplusid 25000400324752 reachcode 06010204007266 gnis Little Tennessee River (01013036) fcode 55800 0.08883251km",
+    "nhdplusid 25000400488823 reachcode 06010204006779 gnis Little Tennessee River (01013036) fcode 55800 0.04889898km",
+    "nhdplusid 25000400526100 reachcode 06010204007649 gnis Little Tennessee River (01013036) fcode 55800 0.06849523km"
+   ],
+   "upstreamFeatureIds": [
+    "little-tennessee-river (continues in NC above Fontana)"
+   ],
+   "downstreamFeatureIds": [
+    "fort-loudoun-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 74.25,
+   "largestConnectionGapMeters": 18703.9,
+   "verificationSources": [
+    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
+    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
+    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+   ],
+   "verificationState": "PASS",
+   "notes": "Little Tennessee from the TN/NC line below Fontana Dam (state cut verified against the Census 2024 state boundary; NC water excluded) through Calderwood and Chilhowee pools and Tellico Lake (artificial paths) to the Tennessee River at the Little T mouth. Reservoir continuity is carried by the lake polygons; no tailwater scoring implied.",
+   "islands": 3,
+   "connections": {
+    "fort-loudoun-lake": {
+     "nearestVertexDistanceM": 1747
+    }
+   }
+  }
+ ]
+}

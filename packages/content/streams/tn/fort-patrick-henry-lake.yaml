@@ -1,0 +1,25 @@
+id: fort-patrick-henry-lake
+name: Fort Patrick Henry Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-holston
+gaugeIds:
+  - "03487010"
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport
+  (Sullivan County), impounded by Fort Patrick Henry Dam (USGS 03487010,
+  36.49816/-82.50904). Receives the Boone tailwater (boone-tailwater) at its
+  upper arm and discharges through the dam into the Fort Patrick Henry
+  tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston
+  River to form the Holston main stem at Kingsport. Verified geometry: USGS
+  NHDPlus HR NHDWaterbody GNIS 01284672. Aliases: FPH Lake, Fort Patrick
+  Henry Reservoir.
+officialSources:
+  - label: USGS Water Data — monitoring location 03487010
+    url: https://waterdata.usgs.gov/monitoring-location/03487010/
+  - label: TVA — Fort Patrick Henry Dam release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

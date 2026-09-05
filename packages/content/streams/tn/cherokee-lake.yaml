@@ -2,16 +2,24 @@ id: cherokee-lake
 name: Cherokee Lake
 stateId: TN
 waterbodyType: lake
-regionId: tn-east-pigeon-frenchbroad
+regionId: tn-east-holston
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Holston River
-  reservoir northeast of Knoxville across Grainger, Hamblen, Hawkins, and Jefferson
-  counties. Catalog stub pending detailed review; promotion of the passive lake
-  polygon is a separate step.
+  TVA reservoir on the Holston River northeast of Knoxville across Grainger,
+  Hamblen, Hawkins, and Jefferson counties, impounded by Cherokee Dam
+  (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the Holston
+  River main stem (holston-river); its dam releases the Holston Cherokee
+  tailwater that runs to Fort Loudoun Lake. Verified geometry: USGS NHDPlus HR
+  NHDWaterbody GNIS 01280322 (single unclipped pool polygon, 119.1 km²;
+  TWRA layer 27,029 ac; TVA 30,300 ac). The shipped polygon held 9
+  county-clipped fragments (99.5 km²) that stopped short of the dam.
 officialSources:
+  - label: USGS Water Data — monitoring location 03493510
+    url: https://waterdata.usgs.gov/monitoring-location/03493510/
+  - label: TVA — Cherokee Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
