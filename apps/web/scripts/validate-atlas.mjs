@@ -1,8 +1,8 @@
 // Structural validator for public/atlas/rivers.geojson.
-// Checks: WGS84 lon/lat order, in-Tennessee clip, no empty parts, no NaN,
-// MultiLineString (or MultiPolygon for wide-water fallbacks, or Point for the
-// 13 West TN put-and-take anchors merged by merge-west-tn-points.mjs), unique
-// ids, white-oak + tailwater reach notes. Exits non-zero on failure.
+// Checks: WGS84 lon/lat order, regional clip, no empty parts, no NaN,
+// MultiLineString / MultiPolygon / Polygon (interactive lakes) / Point (the
+// West TN put-and-take anchors merged by merge-west-tn-points.mjs), unique
+// ids, tailwater reach notes. Exits non-zero on failure.
 //
 // Run: node scripts/validate-atlas.mjs
 import { readFileSync } from 'node:fs';
@@ -11,7 +11,11 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ATLAS = join(here, '..', 'public', 'atlas');
-const CLIP = [-90.6, 34.98, -81.45, 36.75];
+// Regional clip: catches gross coordinate errors, not border compliance —
+// verified cross-state water is delivered unclipped (South Holston's VA arm,
+// kentucky-lake / lake-barkley / cumberland-river into Kentucky), so the
+// north bound covers the Kentucky pools (Kentucky Dam ≈ 37.01 N).
+const CLIP = [-90.6, 34.6, -81.4, 37.3];
 
 const errors = [];
 const g = JSON.parse(readFileSync(join(ATLAS, 'rivers.geojson'), 'utf8'));
@@ -30,7 +34,7 @@ for (const f of g.features) {
   const geom = f.geometry ?? {};
   const sources = Array.isArray(p.source) ? p.source : [];
   const isPointAnchor = geom.type === 'Point' && sources.includes('twra-winter-ponds');
-  if (geom.type !== 'MultiLineString' && geom.type !== 'MultiPolygon' && !isPointAnchor) {
+  if (geom.type !== 'MultiLineString' && geom.type !== 'MultiPolygon' && geom.type !== 'Polygon' && !isPointAnchor) {
     errors.push(`${id}: unexpected geometry ${geom.type}`);
     continue;
   }
