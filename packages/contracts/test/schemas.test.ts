@@ -37,7 +37,10 @@ describe('StreamSchema', () => {
   });
 
   it('rejects an unknown waterbodyType', () => {
-    expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'lake' as never }))).toThrow(ZodError);
+    // 'lake'/'pond' joined the enum with the TWRA winter put-and-take waters
+    // (da80558); a type that was never in the schema still throws.
+    expect(StreamSchema.parse(makeStream({ waterbodyType: 'lake' as never })).waterbodyType).toBe('lake');
+    expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'swamp' as never }))).toThrow(ZodError);
   });
 
   it('rejects an idealFlow range with min > max', () => {
