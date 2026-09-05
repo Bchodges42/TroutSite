@@ -11,9 +11,9 @@ idealFlow:
   - min: 100
     max: 800
     unit: cfs
-notes: Cold releases below Normandy Dam give the Duck its trout identity — TWRA
-  tailwater-stocked rainbows in a lovely valley reach. Release-dependent; verify schedules
-  before wading.
+notes: Cold releases below Normandy Dam give the Duck its trout identity — TWRA stocks this
+  tailwater with rainbow trout year-round (owner confirmation, September 2026). Release-dependent;
+  verify schedules before wading.
 officialSources:
   - label: USGS Water Data — monitoring location 03597860 (Duck River at Shelbyville)
     url: https://waterdata.usgs.gov/monitoring-location/03597860/

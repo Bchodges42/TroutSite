@@ -79,7 +79,7 @@ No fixture values, contracts, schemas, API, database, infra, geographic geometry
 
 ### B08 · P2 · Species applicability is absent in real catalog
 
-- **Backend status (ZCode, 2026-09-04):** OPEN — needs authoritative species/applicability data decision (TWRA seasonal classifications). Content-lane task, not started.
+- **Backend status (ZCode, 2026-09-04):** PARTIALLY RESOLVED — SPECIES lane reviewed the full catalog (98 trout / 0 warmwater confirmed / 7 unset, see docs/SPECIES-REVIEW.md); content Session B then applied Benjamin's owner decisions (2026-09-04) for 3 waters: harpeth-river → warmwater (December stocking stated in note), little-pigeon-river → trout + stockingProgram true (owner-confirmed consistent stocking), duck-river-tailwater → note sharpened to year-round stocking (already trout). Remaining unset pending owner review: 5 thin-evidence waters (duck-river-lower, nolichucky-river, emory-river, clear-fork, ocoee-river) + ~23 waterbody-expansion stubs — a clearly-marked recommendation menu (species + one line of evidence each) for the stubs is in docs/SPECIES-REVIEW.md "Owner decisions (2026-09-04)".
 
 - **Evidence:** all 92 copied real streams omit optional `species`. Fixture classifications conflict with catalog seasonal-stocked notes (e.g. Harpeth, West Fork Stones). `useRiverMapData.ts` defaults unspecified species to trout.
 - **UI needs:** authoritative species/model applicability and seasonal context. “All fish”/“Trout” cannot be accurately filtered from missing metadata.
