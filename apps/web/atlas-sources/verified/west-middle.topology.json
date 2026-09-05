@@ -2616,7 +2616,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 31.02,
-   "deliveredLengthKm": 34.92,
+   "deliveredLengthKm": 30.93,
    "largestConnectionGapMeters": 646,
    "termini": [],
    "chainSeparations": {
@@ -2963,7 +2963,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 30.45,
-   "deliveredLengthKm": 33.41,
+   "deliveredLengthKm": 30.58,
    "largestConnectionGapMeters": 2924,
    "termini": [],
    "chainSeparations": {
@@ -3481,7 +3481,7 @@
     "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)"
    ],
    "verificationState": "PASS",
-   "notes": ""
+   "notes": "Barren Fork → Collins River → Great Falls pool; NHD named flowline continues through the pool margin (verified path)."
   },
   {
    "featureId": "calfkiller-river",
@@ -3610,7 +3610,7 @@
     "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)"
    ],
    "verificationState": "PASS",
-   "notes": ""
+   "notes": "lower Charles Creek runs through the Great Falls Collins-arm margin (NHD continuous path)."
   },
   {
    "featureId": "collins-river",
@@ -3902,7 +3902,7 @@
     "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)"
    ],
    "verificationState": "PASS",
-   "notes": ""
+   "notes": "Pine Creek drains into the Center Hill pool (NHD continuous path)."
   },
   {
    "featureId": "rocky-river",
@@ -4010,7 +4010,7 @@
     "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)"
    ],
    "verificationState": "PASS",
-   "notes": ""
+   "notes": "Hills Creek joins the Caney Fork arm of Great Falls pool (NHD continuous path)."
   },
   {
    "featureId": "cane-creek",

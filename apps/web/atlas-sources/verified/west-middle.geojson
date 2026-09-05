@@ -69497,6 +69497,7 @@
     "id": "mississippi-river",
     "name": "Mississippi River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -70770,6 +70771,7 @@
     "id": "obion-river",
     "name": "Obion River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -72801,6 +72803,7 @@
     "id": "hatchie-river",
     "name": "Hatchie River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -79602,6 +79605,7 @@
     "id": "wolf-river-west-tennessee",
     "name": "Wolf River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -83361,6 +83365,11 @@
     "id": "tennessee-river",
     "name": "Tennessee River",
     "waterbodyType": "river",
+    "throughLakeIds": [
+     "kentucky-lake",
+     "pickwick-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -84324,6 +84333,11 @@
     "id": "cumberland-river",
     "name": "Cumberland River",
     "waterbodyType": "river",
+    "throughLakeIds": [
+     "lake-barkley",
+     "old-hickory-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -90365,6 +90379,7 @@
     "id": "buffalo-river",
     "name": "Buffalo River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -94954,6 +94969,7 @@
     "id": "little-buffalo-river",
     "name": "Little Buffalo River",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -95527,6 +95543,7 @@
     "id": "harpeth-river",
     "name": "Harpeth River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -100297,6 +100314,7 @@
     "id": "duck-river-lower",
     "name": "Duck River (Shelbyville to Columbia)",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -106425,6 +106443,7 @@
     "id": "elk-river-lower",
     "name": "Elk River (Prospect to state line)",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -107292,6 +107311,12 @@
     "id": "caney-fork-river",
     "name": "Caney Fork River (Center Hill tailwater)",
     "waterbodyType": "tailrace",
+    "throughLakeIds": [
+     "center-hill-lake",
+     "great-falls-lake",
+     "old-hickory-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -113765,6 +113790,7 @@
     "id": "red-river-clarksville",
     "name": "Red River (Montgomery County)",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -115620,6 +115646,7 @@
     "id": "big-rock-creek",
     "name": "Big Rock Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -116833,6 +116860,7 @@
     "id": "boiling-fork-creek",
     "name": "Boiling Fork Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -116840,18 +116868,18 @@
      35.1552
     ],
     "bounds": [
-     -86.151995,
+     -86.117129,
      35.154698,
      -85.92777,
-     35.204449
+     35.199644
     ],
     "regionId": "tn-middle-duck-elk",
     "gaugeIds": [],
     "crs": "EPSG:4326",
     "coordinateOrder": "longitude,latitude",
     "partCount": 6,
-    "vertexCount": 183,
-    "lengthKm": 34.92,
+    "vertexCount": 164,
+    "lengthKm": 30.93,
     "sourceIds": [
      "25000200048134",
      "25000200041734",
@@ -117073,82 +117101,6 @@
       [
        -86.117129,
        35.199644
-      ],
-      [
-       -86.117868,
-       35.200252
-      ],
-      [
-       -86.118497,
-       35.201494
-      ],
-      [
-       -86.121367,
-       35.202556
-      ],
-      [
-       -86.123517,
-       35.202552
-      ],
-      [
-       -86.123916,
-       35.202045
-      ],
-      [
-       -86.1268,
-       35.201394
-      ],
-      [
-       -86.127639,
-       35.198205
-      ],
-      [
-       -86.129106,
-       35.197295
-      ],
-      [
-       -86.132216,
-       35.198649
-      ],
-      [
-       -86.134989,
-       35.198638
-      ],
-      [
-       -86.138737,
-       35.199879
-      ],
-      [
-       -86.139025,
-       35.200224
-      ],
-      [
-       -86.141246,
-       35.200002
-      ],
-      [
-       -86.144655,
-       35.201413
-      ],
-      [
-       -86.145627,
-       35.20219
-      ],
-      [
-       -86.146269,
-       35.203362
-      ],
-      [
-       -86.147733,
-       35.204449
-      ],
-      [
-       -86.14992,
-       35.2037
-      ],
-      [
-       -86.151995,
-       35.203471
       ]
      ],
      [
@@ -117650,6 +117602,7 @@
     "id": "east-fork-shoal-creek",
     "name": "East Fork Shoal Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -118102,6 +118055,7 @@
     "id": "shoal-creek",
     "name": "Shoal Creek",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -120099,6 +120053,7 @@
     "id": "mccutcheon-creek",
     "name": "McCutcheon Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -120575,6 +120530,7 @@
     "id": "fletchers-fork",
     "name": "Fletchers Fork",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -121178,6 +121134,7 @@
     "id": "little-west-fork-creek",
     "name": "Little West Fork Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -122171,6 +122128,7 @@
     "id": "sinking-creek-wilson",
     "name": "Sinking Creek (Wilson County)",
     "waterbodyType": "spring",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -122188,8 +122146,8 @@
     "crs": "EPSG:4326",
     "coordinateOrder": "longitude,latitude",
     "partCount": 6,
-    "vertexCount": 122,
-    "lengthKm": 33.41,
+    "vertexCount": 116,
+    "lengthKm": 30.58,
     "sourceIds": [
      "24001400003572",
      "24001400054982",
@@ -122634,30 +122592,6 @@
       [
        -86.534166,
        36.046482
-      ],
-      [
-       -86.533204,
-       36.048498
-      ],
-      [
-       -86.532553,
-       36.051944
-      ],
-      [
-       -86.532849,
-       36.056264
-      ],
-      [
-       -86.53184,
-       36.058363
-      ],
-      [
-       -86.53184,
-       36.058363
-      ],
-      [
-       -86.526913,
-       36.070947
       ]
      ],
      [
@@ -122731,6 +122665,7 @@
     "id": "sulfur-fork-creek",
     "name": "Sulfur Fork Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -124634,6 +124569,7 @@
     "id": "hurricane-creek",
     "name": "Hurricane Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -126309,6 +126245,7 @@
     "id": "salt-lick-creek",
     "name": "Salt Lick Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -128014,6 +127951,7 @@
     "id": "standing-rock-creek",
     "name": "Standing Rock Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -128526,6 +128464,7 @@
     "id": "white-oak-creek",
     "name": "White Oak Creek",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -129929,6 +129868,10 @@
     "id": "barren-fork-river",
     "name": "Barren Fork River",
     "waterbodyType": "river",
+    "throughLakeIds": [
+     "great-falls-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -130860,6 +130803,7 @@
     "id": "calfkiller-river",
     "name": "Calfkiller River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -132455,6 +132399,10 @@
     "id": "charles-creek",
     "name": "Charles Creek",
     "waterbodyType": "creek",
+    "throughLakeIds": [
+     "great-falls-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -133229,6 +133177,10 @@
     "id": "collins-river",
     "name": "Collins River",
     "waterbodyType": "river",
+    "throughLakeIds": [
+     "great-falls-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -135192,6 +135144,7 @@
     "id": "mill-creek-overton",
     "name": "Mill Creek (Overton County)",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -136505,6 +136458,7 @@
     "id": "north-prong-barren-fork",
     "name": "North Prong Barren Fork River",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -136691,6 +136645,10 @@
     "id": "pine-creek-dekalb",
     "name": "Pine Creek (DeKalb County)",
     "waterbodyType": "creek",
+    "throughLakeIds": [
+     "center-hill-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -137626,6 +137584,7 @@
     "id": "rocky-river",
     "name": "Rocky River",
     "waterbodyType": "creek",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -138801,6 +138760,10 @@
     "id": "upper-hills-creek",
     "name": "Upper Hills Creek",
     "waterbodyType": "creek",
+    "throughLakeIds": [
+     "great-falls-lake"
+    ],
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
