@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS stocking_events (
   species        TEXT NOT NULL CHECK (species IN ('rainbow','brown','cutbow','brook','other')),
   count          INTEGER,
   date           TEXT NOT NULL,
-  date_precision TEXT,
   source_url     TEXT NOT NULL,
   fetched_at     TEXT NOT NULL
 );
