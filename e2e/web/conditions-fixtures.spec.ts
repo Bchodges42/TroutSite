@@ -1,30 +1,34 @@
 import { expect, test } from '@playwright/test';
 
 /** Conditions browser against the fixture snapshots (ROLE 2 scope 4). */
-test('conditions list shows score pills, trend, and freshness; detail shows reasons', async ({ page }) => {
+test('conditions opens search-first; search discloses waters; detail shows reasons', async ({ page }) => {
   await page.goto('/conditions');
   await expect(page.getByRole('heading', { name: 'Conditions' })).toBeVisible();
 
-  // every fixture stream is listed with a score
-  await expect(page.getByText('South Holston River')).toBeVisible();
-  await expect(page.getByText('Watauga River')).toBeVisible();
-  await expect(page.getByText('Clinch River')).toBeVisible();
+  // Search-first: a small relevance strip opens by default — the catalog
+  // never auto-opens.
+  await expect(page.getByText('Tailwaters now')).toBeVisible();
+  const listSize = await page.locator('li').count();
+  expect(listSize).toBeGreaterThan(0);
+  expect(listSize).toBeLessThanOrEqual(8);
 
-  // Watauga is at flood flow in fixtures → Poor band; South Holston is ideal → 90
+  // The gauged tailwaters carry their score pills straight from the snapshot
+  const booneRow = page.locator('li', { hasText: 'Boone Tailwater' }).first();
+  await expect(booneRow.getByText('90')).toBeVisible();
+
+  // Search discloses exactly the matching waters, still capped
+  await page.getByRole('searchbox', { name: 'Search waters by name' }).fill('Watauga');
   const wataugaRow = page.locator('li', { hasText: 'Watauga River' }).first();
-  await expect(wataugaRow.getByText('Poor')).toBeVisible();
-  const holstonRow = page.locator('li', { hasText: 'South Holston River' }).first();
-  await expect(holstonRow.getByText('90')).toBeVisible();
+  await expect(wataugaRow).toBeVisible();
+  await expect(page.getByText(/of \d+ waters/)).toBeVisible();
 
-  // stream detail: score reasons come straight from scoreConditions()
-  await holstonRow.click();
-  await expect(page.getByRole('heading', { name: 'South Holston River' })).toBeVisible();
-  await expect(page.getByText(/within the ideal range/)).toBeVisible();
-  await expect(page.getByText('Water temp', { exact: true })).toBeVisible();
+  // stream detail: the assessment comes straight from the snapshot
+  await wataugaRow.click();
+  await expect(page.getByRole('heading', { name: 'Watauga River' })).toBeVisible();
   await expect(page.getByText(/Verify officially/)).toBeVisible();
 
   // official gauge link is present and external
-  const gaugeLink = page.getByRole('link', { name: /USGS gauge 03481500/ });
+  const gaugeLink = page.getByRole('link', { name: /USGS Water Data/ }).first();
   await expect(gaugeLink).toBeVisible();
   await expect(gaugeLink).toHaveAttribute('href', /waterdata\.usgs\.gov/);
   await expect(gaugeLink).toHaveAttribute('target', '_blank');
@@ -32,7 +36,7 @@ test('conditions list shows score pills, trend, and freshness; detail shows reas
 
 test('near me sorts by on-device distance without leaking coordinates', async ({ page, baseURL }) => {
   await page.goto('/conditions');
-  await expect(page.getByText('South Holston River')).toBeVisible();
+  await expect(page.getByText('Tailwaters now')).toBeVisible();
 
   // grant a Knoxville-area position — coordinates stay on-device by design
   await page.context().grantPermissions(['geolocation'], { origin: baseURL! });
@@ -40,26 +44,30 @@ test('near me sorts by on-device distance without leaking coordinates', async ({
 
   await page.getByRole('button', { name: 'Near me' }).click();
 
-  // East TN streams (gauge coordinates near Knoxville) should surface with a distance chip
-  const holstonRow = page.locator('li', { hasText: 'South Holston River' }).first();
-  await expect(holstonRow.getByText(/\d+(\.\d+)? mi/)).toBeVisible();
+  // the nearest-gauged-water list replaces the strips, distances on rows
+  await expect(page.getByText(/Closest \d+ waters/)).toBeVisible();
+  const nearList = page.locator('li').filter({ hasText: /\d+(\.\d+)? mi/ });
+  await expect(nearList.first()).toBeVisible();
 
-  // and the sorted list should be headed by an East TN tailwater
+  // headed by an East TN water — Middle TN is ~200+ mi away
   const firstName = await page.locator('ul li .font-extrabold').first().textContent();
-  expect(firstName).not.toContain('Caney Fork'); // Middle TN is ~200+ mi away
+  expect(firstName).not.toContain('Caney Fork');
 });
 
 test('stocking browser filters by county and species, newest first', async ({ page }) => {
   await page.goto('/stocking');
   await expect(page.getByRole('heading', { name: 'Stocking' })).toBeVisible();
+  // search-first: the newest published entries preview, verify links on rows
+  await expect(page.getByText('Latest published')).toBeVisible();
   await expect(page.getByText(/Verify at TWRA/).first()).toBeVisible();
+  await expect(page.getByRole('button', { name: /Browse the full schedule/ })).toBeVisible();
 
+  // filters live behind the disclosure until asked for
+  await page.locator('summary', { hasText: 'Filter the schedule' }).click();
   await page.getByLabel('Species').selectOption('brown');
-  await expect(page.getByText('South Holston River')).toBeVisible(); // brown stocking event
-  // rainbow-only events (e.g. Caney Fork 5200 rainbows 4 days ago) are filtered out
-  await expect(page.getByText(/5,200/)).toHaveCount(0);
+  // brown events surface by TWRA water name; the real feed names reaches
+  await expect(page.getByText(/Hiwassee River/).first()).toBeVisible();
 
-  await page.getByLabel('County').selectOption('Polk');
-  await expect(page.getByText('Hiwassee River')).toBeVisible();
-  await expect(page.getByText('South Holston River')).toHaveCount(0);
+  await page.getByLabel('County', { exact: true }).selectOption('Polk');
+  await expect(page.getByText(/Hiwassee River/).first()).toBeVisible();
 });

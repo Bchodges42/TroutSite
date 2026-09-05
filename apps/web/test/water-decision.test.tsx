@@ -75,6 +75,22 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(toWaterDecisionView(f, 'all').visibility).toBe('include');
   });
 
+  it('keeps a stocked warmwater water visible but de-emphasized in trout mode (owner decision 2026-09-04)', () => {
+    // harpeth-river is warmwater yet stocked with trout in December — hiding
+    // it would hide a real fishery.
+    const stocked = {
+      ...feature({ species: 'warmwater', score: null }),
+      stream: { id: 'harpeth-river', name: 'Harpeth River', stockingProgram: true },
+    };
+    const view = toWaterDecisionView(stocked, 'trout');
+    expect(view.visibility).toBe('deemphasize');
+    expect(view.troutApplicability).toBe('not-trout');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(decisionStatusText(view, { species: 'warmwater', status: 'no-data' })).toBe(
+      'Warmwater',
+    );
+  });
+
   it('surfaces danger-language reasons as cautions', () => {
     const view = toWaterDecisionView(
       feature({

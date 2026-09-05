@@ -16,7 +16,6 @@ import {
 } from '../icons';
 import { ThemeToggle } from '../../theme/ThemeProvider';
 import { rememberedMapUrl, rememberMapUrl, contextUrl } from '../../lib/riverContext';
-import { FishingInfoPage } from '../../pages/FishingInfoPage';
 
 const moreLinks = [
   { to: '/conditions', label: 'Conditions', Icon: WavesIcon },
@@ -28,19 +27,10 @@ const moreLinks = [
   { to: '/about', label: 'About & privacy', Icon: ShieldIcon },
 ];
 
-/**
- * Fishing-information route aliases. The route table (App.tsx) is outside the
- * UI lane's ownership, so these two paths register here: the shell renders the
- * fishing-info page in place of the outlet. Everything else (focus, scroll,
- * history) behaves like a normal route.
- */
-const FISHING_INFO_PATHS = new Set(['/fishing-info', '/regulations']);
-
 export function AppShell() {
   const online = useOnline();
   const location = useLocation();
   const isMap = location.pathname === '/';
-  const fishingInfo = FISHING_INFO_PATHS.has(location.pathname);
   const { settings } = useSettingsContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -150,7 +140,7 @@ export function AppShell() {
         </div>
       )}
       <div id="main" tabIndex={-1} className={isMap ? 'map-main' : 'page-main'}>
-        {fishingInfo ? <FishingInfoPage /> : <Outlet context={{ openMenu: () => setMenuOpen(true), menuOpen }} />}
+        <Outlet context={{ openMenu: () => setMenuOpen(true), menuOpen }} />
       </div>
       {menuOpen && (
         <div className="menu-backdrop" onClick={() => setMenuOpen(false)}>

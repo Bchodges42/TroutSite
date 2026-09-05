@@ -150,19 +150,45 @@ it('uses contour relief in Nightfall without the opaque light raster footprint',
   ).toHaveProperty('visibility', 'visible');
 });
 
-it('masks rectangular relief extents outside the real Tennessee boundary in both themes', () => {
+it('no longer carries the relief masking machinery — the merged topo assets are TN-clipped', () => {
   for (const theme of Object.values(themes)) {
-    const layers = atlasStyle('topo', theme.map).layers.map((layer) => layer.id);
-    expect(layers.indexOf('states-context-fill')).toBeGreaterThan(
-      layers.indexOf('topo-contours-minor'),
-    );
-    expect(layers.indexOf('terrain-outside-mask')).toBeGreaterThan(
-      layers.indexOf('topo-contours-minor'),
-    );
-    expect(layers.indexOf('tn-outline')).toBeGreaterThan(layers.indexOf('terrain-outside-mask'));
-    expect(layers.indexOf('tn-outline')).toBeGreaterThan(layers.indexOf('states-context-fill'));
-    expect(layers.indexOf('rivers-interior')).toBeGreaterThan(layers.indexOf('tn-outline'));
+    const style = atlasStyle('topo', theme.map);
+    const ids = style.layers.map((layer) => layer.id);
+    expect(ids).not.toContain('terrain-outside-mask');
+    // The neighboring-state context sits in its natural place below the
+    // boundary contours; no reordering trick, no paper fill-over.
+    expect(ids.indexOf('states-context-fill')).toBeLessThan(ids.indexOf('tn-contour'));
+    expect(Object.keys(style.sources)).not.toContain('terrain-outside-mask');
   }
+});
+
+it('builds quiet road layers beneath every water layer only from a roads manifest', () => {
+  const roads = {
+    files: [
+      { file: 'roads-major.geojson', minZoom: 5.6 },
+      { file: 'roads-minor.geojson', minZoom: 9 },
+    ],
+    attribution: 'Roads: US Census TIGER',
+  };
+  for (const theme of Object.values(themes)) {
+    for (const variant of ['paper', 'ink', 'topo'] as const) {
+      const withRoads = atlasStyle(variant, theme.map, { roads });
+      const ids = withRoads.layers.map((layer) => layer.id);
+      // One layer per manifest entry, zoom-gated, riding above the ground and
+      // beneath ALL water.
+      expect(ids).toContain('roads-0');
+      expect(ids).toContain('roads-1');
+      expect(ids.indexOf('roads-0')).toBeLessThan(ids.indexOf('lakes-fill'));
+      const minor = withRoads.layers.find((l) => l.id === 'roads-1');
+      expect(minor?.layout).toHaveProperty('minzoom', 9);
+      expect(JSON.stringify(minor?.paint)).toContain(theme.map.road);
+      // Same-origin source only — the manifest contract never leaks a URL.
+      expect(JSON.stringify(withRoads.sources)).not.toMatch(/https?:\/\//);
+    }
+  }
+  // No manifest, no roads: the style is unchanged and claims nothing.
+  const without = atlasStyle('paper', themes.daybreak.map);
+  expect(without.layers.map((l) => l.id)).not.toContain('roads-0');
 });
 
 describe('River navigation context', () => {

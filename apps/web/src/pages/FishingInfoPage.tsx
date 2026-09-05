@@ -9,6 +9,7 @@
  * the /fishing-info and /regulations paths are registered as shell aliases in
  * AppShell.tsx, which renders this page in place of the outlet.
  */
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const REVIEWED = 'September 4, 2026';
@@ -62,6 +63,12 @@ function SourceList({ sources }: { sources: Array<{ label: string; url: string }
 }
 
 export function FishingInfoPage() {
+  useEffect(() => {
+    document.title = 'Fishing information & regulations — Trout field atlas';
+    return () => {
+      document.title = 'Trout — The Field Atlas';
+    };
+  }, []);
   return (
     <main className="page fishing-info">
       <p className="eyebrow">Tennessee / Field guide</p>

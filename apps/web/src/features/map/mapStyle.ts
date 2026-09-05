@@ -5,10 +5,21 @@ import type {
   GeoJSONSourceSpecification,
 } from 'maplibre-gl';
 import type { MapPalette } from '../../theme/themes';
-import terrainClip from './terrainClip.json';
 
 /** Basemap variants. 'topo' layers real local USGS-3DEP derivatives; RiverMapPage only offers it when /atlas/topo/manifest.json resolves. */
 export type BasemapVariant = 'paper' | 'ink' | 'topo';
+
+/**
+ * Optional first-party road context (BACKEND-ISSUES B12). The UI probes
+ * /atlas/roads/manifest.json and only builds road layers when the manifest
+ * resolves, so the style is identical until Session C's assets land:
+ *   { files: [{ file, minZoom? }], attribution? }
+ * Roads always render beneath every water layer — context, never competition.
+ */
+export interface RoadsSpec {
+  files: Array<{ file: string; minZoom?: number }>;
+  attribution?: string;
+}
 
 // Wide-water safety: line layers must never touch polygon features (a line
 // layer on polygon geometry draws ring outlines — including straight
@@ -64,6 +75,7 @@ function mixHex(a: string, b: string, ratio: number): string {
 export function atlasStyle(
   variant: BasemapVariant = 'ink',
   palette?: MapPalette,
+  options?: { roads?: RoadsSpec },
 ): StyleSpecification {
   const t = palette ?? (variant === 'paper' ? { ...atlas, ...atlasLight } : atlas);
   // The continuous water corridor every river line sits on: a muted water tone
@@ -677,6 +689,34 @@ export function atlasStyle(
     ],
   };
 
+  // Optional first-party road context (B12) — present only when Session C's
+  // manifest resolved. Roads sit above the ground layers and beneath ALL
+  // water: context, never competition with the condition story.
+  const roads = options?.roads;
+  if (roads?.files?.length) {
+    roads.files.forEach((entry, i) => {
+      style.sources[`roads-${i}`] = {
+        type: 'geojson',
+        data: '/atlas/roads/' + entry.file,
+      } as GeoJSONSourceSpecification;
+      style.layers.splice(style.layers.findIndex((l) => l.id === 'lakes-fill'), 0, {
+        id: `roads-${i}`,
+        type: 'line' as const,
+        source: `roads-${i}`,
+        layout: {
+          'line-cap': 'round' as const,
+          'line-join': 'round' as const,
+          ...(entry.minZoom ? { minzoom: entry.minZoom } : {}),
+        },
+        paint: {
+          'line-color': t.road,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 8, 0.6, 11, 1.6],
+          'line-opacity': 0.85,
+        },
+      });
+    });
+  }
+
   if (variant !== 'topo') return style;
 
   // Task 6e Phase B — Topo: real USGS-3DEP derivatives, fully local, layered
@@ -685,10 +725,6 @@ export function atlasStyle(
   // Ground stays paper tones; the hillshade and contour lines carry the relief.
   style.sources = {
     ...style.sources,
-    'terrain-outside-mask': {
-      type: 'geojson',
-      data: terrainClip as GeoJSONSourceSpecification['data'],
-    },
     hillshade: {
       type: 'raster',
       tiles: ['/atlas/topo/hillshade/{z}/{x}/{y}.webp'],
@@ -753,22 +789,9 @@ export function atlasStyle(
       },
     },
   );
-  // The relief assets include rectangular acquisition/contour extents outside TN.
-  // Cover those with the existing neighboring-state fills, then redraw their
-  // outlines. This is a visual clip using real boundaries, not modified geometry.
-  const contextLayers = style.layers.filter(
-    (layer) => layer.id === 'states-context-fill' || layer.id === 'states-context-outline',
-  );
-  style.layers = style.layers.filter(
-    (layer) => layer.id !== 'states-context-fill' && layer.id !== 'states-context-outline',
-  );
-  style.layers.splice(afterLayer('topo-contours-minor'), 0, ...contextLayers);
-  style.layers.splice(afterLayer('topo-contours-minor'), 0, {
-    id: 'terrain-outside-mask',
-    type: 'fill',
-    source: 'terrain-outside-mask',
-    paint: { 'fill-color': t.paper, 'fill-opacity': 1, 'fill-antialias': false },
-  });
+  // The topo assets themselves are clipped to the Tennessee boundary (+3 km
+  // buffer) since the TOPO lane's rebuild, so the former acquisition-extent
+  // mask layers are gone: what you see outside the state is simply ground.
   return style;
 }
 

@@ -6,6 +6,7 @@ import { StreamSchema, ConditionSnapshotSchema, newestReadingAt } from '@trout/c
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
+import { useContentPack } from '../lib/content';
 import { useSettingsContext } from '../lib/settings';
 import { formatFlow, formatTemp } from '../lib/units';
 import { FreshnessChip } from '../components/FreshnessChip';
@@ -78,6 +79,10 @@ export function ConditionsPage() {
   const [geoError, setGeoError] = useState<string | null>(null);
 
   const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamListSchema, 60 * 24, true);
+  // Warm the content pack while online: this page is the app's "open once
+  // while online" surface, and the match-the-hatch key needs the pack in the
+  // on-device cache to rank matches offline on a brand-new install.
+  useContentPack();
   const conditionsQuery = useSnapshotQuery(
     snapshotUrls.conditionsLatest,
     ConditionsListSchema,

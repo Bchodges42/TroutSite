@@ -9,6 +9,7 @@ import { useRiverMapData } from './useRiverMapData';
 import { useOnline } from '../../hooks/useOnline';
 import { useTheme } from '../../theme/ThemeProvider';
 import { validMonth } from '../../lib/riverContext';
+import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
 import { decisionStatusText, toWaterDecisionView } from './waterDecision';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
@@ -32,6 +33,7 @@ export function RiverMapPage() {
   const [expanded, setExpanded] = useState(false);
   const [layers, setLayers] = useState(false);
   const [topoAvailable, setTopoAvailable] = useState(false);
+  const [roads, setRoads] = useState<RoadsSpec | null>(null);
   const [places, setPlaces] = useState<Place[]>([]);
   const [locationNote, setLocationNote] = useState('');
   const [locating, setLocating] = useState(false);
@@ -134,6 +136,14 @@ export function RiverMapPage() {
         if (!cancelled) setTopoAvailable(Array.isArray(j.bands) && Boolean(j.hillshade));
       })
       .catch(() => {});
+    // Road context is strictly opt-in via Session C's manifest: no manifest,
+    // no roads, no attribution claim.
+    fetch('/atlas/roads/manifest.json')
+      .then((r) => r.json())
+      .then((j) => {
+        if (!cancelled && Array.isArray(j.files) && j.files.length > 0) setRoads(j as RoadsSpec);
+      })
+      .catch(() => {});
     return () => {
       cancelled = true;
       markerRef.current?.remove();
@@ -191,7 +201,10 @@ export function RiverMapPage() {
   };
   const filtered = data.features.filter(
     (f) =>
-      (species === 'all' || f.species === 'trout' || f.stream.id === selectedId) &&
+      (species === 'all' ||
+        f.species === 'trout' ||
+        Boolean(f.stream.stockingProgram) ||
+        f.stream.id === selectedId) &&
       (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId),
   );
   const sorted = [...filtered].sort(
@@ -204,8 +217,13 @@ export function RiverMapPage() {
     [filtered.map((f) => f.stream.id).join(',')],
   );
   const assessedIds = useMemo(
-    () => new Set(data.features.filter((f) => f.status !== 'no-data').map((f) => f.stream.id)),
-    [data.features.map((f) => f.stream.id + f.status).join(',')],
+    () =>
+      new Set(
+        data.features
+          .filter((f) => f.status !== 'no-data' && f.species !== 'warmwater')
+          .map((f) => f.stream.id),
+      ),
+    [data.features.map((f) => f.stream.id + f.status + f.species).join(',')],
   );
   const stillWaterIds = useMemo(
     () =>
@@ -221,17 +239,25 @@ export function RiverMapPage() {
       new Map(
         data.features.map((f) => [
           f.stream.id,
-          f.status === 'no-data' ? theme.map.noData : theme.map[f.status],
+          f.species === 'warmwater'
+            ? theme.map.warmwater
+            : f.status === 'no-data'
+              ? theme.map.noData
+              : theme.map[f.status],
         ]),
       ),
-    [data.features.map((f) => f.stream.id + f.status).join(','), theme.id],
+    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), theme.id],
   );
   const hatchActive = useMemo(
     () =>
       new Set(
         mode === 'hatches'
           ? filtered
-              .filter((f) => f.hatchChart?.entries.some((e) => e.abundance >= 2))
+              .filter(
+                (f) =>
+                  f.species !== 'warmwater' &&
+                  f.hatchChart?.entries.some((e) => e.abundance >= 2),
+              )
               .map((f) => f.stream.id)
           : [],
       ),
@@ -457,6 +483,7 @@ export function RiverMapPage() {
           stillWaterIds={stillWaterIds}
           hatchActiveIds={hatchActive}
           basemap={basemap}
+          roads={roads ?? undefined}
           places={places}
           onMapReady={onMapReady}
           viewKey={location.key}

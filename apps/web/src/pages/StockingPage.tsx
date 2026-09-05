@@ -206,6 +206,7 @@ export function StockingPage() {
             <select
               className="focus-ring min-h-[44px] rounded-lg border px-3"
               style={{ borderColor: 'var(--trout-color-border)' }}
+              aria-label="County"
               value={county}
               onChange={(e) => setFilter('county', e.target.value)}
             >
@@ -220,6 +221,7 @@ export function StockingPage() {
             <select
               className="focus-ring min-h-[44px] rounded-lg border px-3"
               style={{ borderColor: 'var(--trout-color-border)' }}
+              aria-label="Species"
               value={species}
               onChange={(e) => setFilter('species', e.target.value)}
             >
@@ -234,6 +236,7 @@ export function StockingPage() {
             <select
               className="focus-ring min-h-[44px] rounded-lg border px-3"
               style={{ borderColor: 'var(--trout-color-border)' }}
+              aria-label="Stocking window"
               value={days}
               onChange={(e) => setFilter('days', e.target.value)}
             >

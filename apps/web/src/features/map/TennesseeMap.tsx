@@ -3,7 +3,7 @@ import * as maplibregl from 'maplibre-gl';
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Link } from 'react-router-dom';
-import { atlasStyle, type BasemapVariant } from './mapStyle';
+import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
@@ -39,6 +39,7 @@ interface Props {
   hatchColors?: Map<string, string>;
   fitPadding?: { top: number; bottom: number; left: number; right: number };
   basemap?: BasemapVariant;
+  roads?: RoadsSpec;
   places?: Place[];
   intro?: boolean;
   className?: string;
@@ -64,6 +65,7 @@ export function TennesseeMap(props: Props) {
   const palette = useRef(theme.map);
   palette.current = theme.map;
   const [attempt, setAttempt] = useState(0);
+  const roadsAttribution = useRef(false);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
   const previousSelection = useRef<string | null | undefined>(undefined);
@@ -115,7 +117,7 @@ export function TennesseeMap(props: Props) {
     try {
       map = new maplibregl.Map({
         container: el,
-        style: atlasStyle(latest.current.basemap, palette.current),
+        style: atlasStyle(latest.current.basemap, palette.current, { roads: latest.current.roads }),
         ...(initialSaved
           ? { center: initialSaved.center, zoom: initialSaved.zoom }
           : {
@@ -342,12 +344,21 @@ export function TennesseeMap(props: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    const styleKey = theme.id + ':' + props.basemap;
+    if (props.roads && !roadsAttribution.current) {
+      roadsAttribution.current = true;
+      map.addControl(
+        new maplibregl.AttributionControl({
+          customAttribution: props.roads.attribution ?? 'Roads: US Census TIGER',
+        }),
+        'bottom-right',
+      );
+    }
+    const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
     if (appliedStyle.current === styleKey) return;
     const swap = () => {
       appliedStyle.current = styleKey;
       if (container.current) delete container.current.dataset.mapTheme;
-      map.setStyle(atlasStyle(props.basemap, theme.map));
+      map.setStyle(atlasStyle(props.basemap, theme.map, { roads: props.roads }));
       // Diffed styles can skip style.load; still reapply feature colors once ready.
       map.once('idle', () => applyRef.current());
     };
@@ -358,7 +369,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       map.off('idle', swap);
     };
-  }, [props.basemap, theme.id, attempt]);
+  }, [props.basemap, props.roads, theme.id, attempt]);
   useEffect(() => {
     applyRef.current();
   }, [

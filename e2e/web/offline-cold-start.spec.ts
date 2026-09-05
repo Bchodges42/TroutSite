@@ -17,24 +17,35 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   // ---- online pass: install + warm the caches ----------------------------
   await page.goto('/conditions');
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await expect(page.getByText('South Holston River')).toBeVisible();
+  await expect(page.getByText('Tailwaters now')).toBeVisible();
+
+  // warm the hatch chart the offline pass reopens: previously-fetched
+  // surfaces stay available offline; a never-fetched chart honestly cannot.
+  await page.goto('/charts/tn-east-holston/5');
+  await expect(page.getByText(/Sulphur/).first()).toBeVisible();
+  await page.goto('/conditions');
+  await expect(page.getByText('Tailwaters now')).toBeVisible();
 
   // ---- airplane mode ------------------------------------------------------
   await page.context().setOffline(true);
   expect(await page.evaluate(() => navigator.onLine)).toBe(false);
 
   // SPA navigation into the hatch key (never reloads the document)
+  const drawer = page.getByRole('dialog', { name: 'Navigation menu' });
   await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('link', { name: 'Match the Hatch' }).click();
-  await expect(page.getByRole('heading', { name: 'Hatch Key' })).toBeVisible();
+  await drawer.getByRole('link', { name: 'Match the hatch' }).click();
+  await expect(page.getByRole('heading', { name: 'Match the hatch.' })).toBeVisible();
 
   await runWizard(page);
 
-  // results render offline; Blue-Winged Olive scores a perfect 8/8 for this bug
+  // results render offline; Blue-Winged Olive leads with high confidence.
+  // The real content pack corrected BWO to 3 tails, so the '2 tails' answer
+  // scores an honest 6/8 rather than the synthetic pack's perfect 8/8.
   await expect(page.getByText('Top matches')).toBeVisible();
   const firstResult = page.locator('ol > li').first();
   await expect(firstResult).toContainText('Blue-Winged Olive');
-  await expect(firstResult).toContainText('8/8');
+  await expect(firstResult).toContainText('6/8');
+  await expect(firstResult).toContainText('high confidence');
 
   // taxon detail renders offline
   await firstResult.getByRole('link').first().click();
@@ -46,26 +57,27 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   // Step 6c.4 pattern: the nav links live in the hamburger drawer now —
   // open it before each drawer-only navigation, not just the first one.
   await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('link', { name: 'Hatch Charts' }).click();
+  await drawer.getByRole('link', { name: 'Hatch calendar' }).click();
   await page.getByRole('link', { name: /May/ }).click();
   await expect(page.getByRole('heading', { name: /May/ })).toBeVisible();
-  await expect(page.getByText('Sulphur Mayfly').first()).toBeVisible();
+  await expect(page.getByText(/Sulphur/).first()).toBeVisible(); // sulphur duns hatch in May
 
   // a never-visited conditions surface: navigate in-app (a document reload
   // would reset Playwright's offline emulation), the query refetches while
   // offline and the freshness chip must read "Offline · last known …"
   await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('link', { name: 'Conditions' }).click();
+  await drawer.getByRole('link', { name: 'Conditions' }).click();
   await expect(page.getByRole('heading', { name: 'Conditions' })).toBeVisible();
-  await page.getByText('South Holston River').click();
-  await expect(page.getByRole('heading', { name: 'South Holston River' })).toBeVisible();
-  await expect(page.getByText(/Fishability/)).toBeVisible();
-  await expect(page.getByText(/within the ideal range/)).toBeVisible();
+  // search-first page, fed entirely from the cached snapshots while offline
+  await expect(page.getByText('Tailwaters now')).toBeVisible();
+  await page.locator('li', { hasText: 'Boone Tailwater' }).first().click();
+  await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
+  await expect(page.getByText(/Trout condition assessment/)).toBeVisible();
   await expect(page.getByText(/Offline · last known/).first()).toBeVisible();
 
   // restart resilience: the shell, catalog, and cached data survive a reload
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'South Holston River' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
   await expect(page.getByText(/Verify officially/)).toBeVisible();
 });
 

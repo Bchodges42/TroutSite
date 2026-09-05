@@ -111,7 +111,7 @@ No fixture values, contracts, schemas, API, database, infra, geographic geometry
 
 ### B12 · P3 · Roads / complete contextual cartography not supplied
 
-- **Backend status (ZCode, 2026-09-04):** OPEN (deferred) — needs a licensing/first-party road-source decision from Benjamin. Not scheduled.
+- **Backend status (ZCode, 2026-09-04):** UNBLOCKED — Benjamin approved road data on 2026-09-04 conditional on a free license (public domain / CC0; OSM/ODbL explicitly rejected). Session C (trout-roads) delivers the TIGER 2024 road assets + manifest; Session A already wired the graceful map layers (roads render only when /atlas/roads/manifest.json lists files, always beneath water, themed via --map-road).
 
 - **Evidence:** `apps/web/public/atlas` contains boundary, counties, water geometry, place centroids, and local relief; no road geometry/source exists.
 - **UI needs:** optional first-party licensed road/context data with provenance, zoom bounds, and offline budget if roads are expected. Theme exposes a road token; no fictitious road lines are added.

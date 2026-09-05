@@ -80,10 +80,12 @@ test.describe('privacy audit — location never leaves the device', () => {
     await page.context().setGeolocation({ latitude: LAT, longitude: LON });
 
     await page.goto('/conditions');
-    await expect(page.getByText('South Holston River')).toBeVisible();
+    await expect(page.getByText('Tailwaters now')).toBeVisible();
     await page.getByRole('button', { name: 'Near me' }).click();
+    await expect(page.getByText(/Closest \d+ waters/)).toBeVisible();
+    // the nearest-waters list renders with on-device distance chips
     await expect(
-      page.locator('li', { hasText: 'South Holston River' }).first().getByText(/\d+(\.\d+)? mi/),
+      page.locator('li').filter({ hasText: /\d+(\.\d+)? mi/ }).first(),
     ).toBeVisible();
     await page.waitForLoadState('networkidle');
 

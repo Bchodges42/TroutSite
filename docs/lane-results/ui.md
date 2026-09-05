@@ -62,3 +62,34 @@ covered the corridor model; it stayed in the lane-lead-only set untouched.
 3. `sitemap.xml.ts` (not owned) needs one-line entries for `/fishing/tennessee/` and `/regulations/tennessee/`.
 4. Session 3 replaces the adapter in `waterDecision.ts` with the real decision model.
 5. e2e/web spec refresh recommended at integration (stale labels/counts listed above).
+
+## Session A follow-up (2026-09-04, post-lane integration pass)
+
+- Removed the obsolete topo masking layers (`terrain-outside-mask`, states-context
+  reordering) — the merged TOPO assets are TN-clipped; unit test replaced with an
+  assertion that the masking machinery is gone, the East-TN pixel e2e stays as the
+  runtime regression.
+- Wired optional road layers (B12) behind `/atlas/roads/manifest.json`: no files →
+  no layers, no attribution claim; files → one quiet zoom-gated line layer per
+  entry beneath all water, themed via `--map-road`, attribution control added only
+  when roads exist. A stub manifest ships so pre-delivery builds never 404.
+- Registered `/fishing-info` + `/regulations` as real routes in `App.tsx` (shell
+  alias removed); fishing-info sets `document.title`.
+- Marketing: the two guide routes joined `sitemap.xml.ts` and the site nav/footer.
+- Owner decisions applied to the adapter: a warmwater water WITH a stocking
+  program (harpeth-river, December trout stocking) stays visible but de-emphasized
+  in trout mode; warmwater never wears a trout assessment on the map (no
+  condition centerline, no hatch halo, bronze corridor).
+- Refreshed the 9 stale canonical `e2e/web` specs (pre-existing failures at base)
+  to the current app + integrated data; 28/28 green. Spec changes were data-driven:
+  real catalog names, search-first conditions/stocking flows, current menu labels,
+  tab display names, `summary` role semantics, and the corrected BWO score (6/8,
+  tails 2 → 3 in the real pack).
+- Product fix found by the refreshed offline spec: the online warm-up never cached
+  the content pack, so the offline hatch key could not rank on a brand-new install
+  (TanStack pauses retries while offline). ConditionsPage now warms the pack —
+  the app's own "open once while online" promise holds. Follow-up for the backend
+  lane: `fetchSnapshot`'s offline path could try the service-worker cache before
+  failing (B03-adjacent recommendation).
+- Results: unit 124/124, fieldwork e2e 28/28, canonical web e2e 28/28,
+  marketing e2e 14/14, build + size budget green (5.17 MB / 25 MB).

@@ -55,9 +55,17 @@ export function toWaterDecisionView(
 
   return {
     waterId: feature.stream.id,
-    // Session 3 will drive visibility; until then it mirrors the two current
-    // UI filters: species mode and nothing else.
-    visibility: mode === 'trout' && warmwater ? 'exclude' : 'include',
+    // Session 3 will drive visibility; until then it mirrors the current UI
+    // filters. Owner decision (2026-09-04): a warmwater water WITH a stocking
+    // program (e.g. the Harpeth's December trout stocking) stays visible in
+    // trout mode, de-emphasized — hiding it would hide a real fishery. Plain
+    // warmwater stays excluded.
+    visibility:
+      mode === 'trout' && warmwater
+        ? feature.stream.stockingProgram
+          ? 'deemphasize'
+          : 'exclude'
+        : 'include',
     troutApplicability: warmwater
       ? 'not-trout'
       : assessed

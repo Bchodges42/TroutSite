@@ -12,6 +12,7 @@ import { ShopsPage } from './pages/ShopsPage';
 import { LogbookPage } from './pages/LogbookPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AboutPrivacyPage } from './pages/AboutPrivacyPage';
+import { FishingInfoPage } from './pages/FishingInfoPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { MapPage } from './features/map/MapPage';
 import { BrowsePage } from './features/map/BrowsePage';
@@ -36,6 +37,8 @@ export function App() {
         <Route path="logbook" element={<LogbookPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="about" element={<AboutPrivacyPage />} />
+        <Route path="fishing-info" element={<FishingInfoPage />} />
+        <Route path="regulations" element={<FishingInfoPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

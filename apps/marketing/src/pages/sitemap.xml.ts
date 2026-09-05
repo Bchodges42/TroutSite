@@ -22,6 +22,8 @@ export function GET() {
     const st = state.id.toLowerCase();
     urls.push({ loc: `/stocking/${st}/`, priority: '0.9' });
     urls.push({ loc: `/when-does-${state.slug}-stock-trout/`, priority: '0.9' });
+    urls.push({ loc: `/fishing/${state.slug}/`, priority: '0.8' });
+    urls.push({ loc: `/regulations/${state.slug}/`, priority: '0.8' });
     for (const region of regionsForState(state.id)) {
       urls.push({ loc: `/hatch/${st}/${region.slug}/`, priority: '0.8' });
     }
