@@ -658,13 +658,6 @@ const RIVER_SPECS = [
     gate: 'state', upstream: [], downstream: ['mississippi-river'],
     anchors: [{ featureId: 'mississippi-river', label: 'Mississippi River mouth at Memphis', maxM: 500, informational: true, note: 'NHD named coverage stops in the Wolf River bottomlands short of the Mississippi' }],
     note: 'West Tennessee Wolf (different water from wolf-river-fentress).' },
-  { id: 'tennessee-river', cache: 'river-tennessee', name: 'Tennessee River', region: 'tn-west', allowOpenEnds: true,
-    gate: 'state', upstream: [], downstream: ['kentucky-lake', 'pickwick-lake'],
-    throughLakeIds: ['kentucky-lake', 'pickwick-lake'],
-    anchors: [
-      { lon: -88.25226, lat: 35.06508, label: 'USGS 03593005 Tennessee River at Pickwick Landing Dam', maxM: 600, informational: true, note: 'through-pool carrier is an unnamed NHD artificial path; the pool polygons carry the connection (designed lake-transition behavior)' },
-    ],
-    note: 'Statewide main stem; through-reservoir carriers are NHD artificial paths (pool polygons render the water).' },
   { id: 'cumberland-river', cache: 'river-cumberland', name: 'Cumberland River', region: 'tn-middle-nashville', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['lake-barkley', 'old-hickory-lake'],
     anchors: [

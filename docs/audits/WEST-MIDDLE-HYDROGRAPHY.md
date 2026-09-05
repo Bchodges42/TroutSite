@@ -36,8 +36,8 @@ Visual gate: judge round 2 — all sheets PASS. Known non-defects: cane-creek re
 
 | id | action | parts | verts | delivered area | in/out connections (endpoint→pool) | state |
 |---|---|---|---|---|---|---|
-| `kentucky-lake` | rebuilt (NHD) | 3 | 1661 | 602.34 km² | tennessee-river 0 m | dam 19 m — PASS |
-| `pickwick-lake` | rebuilt (NHD) | 1 | 391 | 150.32 km² | tennessee-river 0 m | dam 70 m — PASS |
+| `kentucky-lake` | rebuilt (NHD) | 3 | 1661 | 602.34 km² | n/a (no named river reaches the shoreline) | dam 19 m — PASS |
+| `pickwick-lake` | rebuilt (NHD) | 1 | 391 | 150.32 km² | n/a (no named river reaches the shoreline) | dam 70 m — PASS |
 | `lake-barkley` | rebuilt (NHD) | 2 | 1131 | 213.84 km² | cumberland-river 0 m | dam 112 m — PASS |
 | `old-hickory-lake` | rebuilt (NHD) | 1 | 2310 | 86.1 km² | cumberland-river 0 m; caney-fork-river 0 m | dam 261 m — PASS |
 | `j-percy-priest-lake` | rebuilt (NHD) | 1 | 352 | 61.87 km² | west-fork-stones-river 348 m (seam, documented); east-fork-stones-river 348 m (seam, documented); stones-river 38 m | dam 311 m — PASS |
@@ -88,7 +88,6 @@ Visual gate: judge round 2 — all sheets PASS. Known non-defects: cane-creek re
 | `obion-river` | rebuilt (NHD) | 34 | 467 | 161.43 km | 2410 m (braids 1038 m, pool 568 m) | ok 0 m | PASS |
 | `hatchie-river` | rebuilt (NHD) | 57 | 1648 | 361.27 km | 2107 m (braids 1458 m, pool 218 m) | info 3718 m | PASS |
 | `wolf-river-west-tennessee` | rebuilt (NHD) | 60 | 886 | 187.47 km | 2108 m (braids 2173 m, pool 380 m) | ok 0 m | PASS |
-| `tennessee-river` | rebuilt (NHD) | 8 | 213 | 131.2 km | none | ok 3810 m | PASS |
 | `cumberland-river` | rebuilt (NHD) | 161 | 1406 | 647.95 km | 1881 m (braids 1175 m, pool 2474 m) | ok 18236 m; ok 5327 m | PASS |
 | `buffalo-river` | rebuilt (NHD) | 103 | 1072 | 250.21 km | 2501 m (braids 1096 m, pool 424 m) | visual | PASS |
 | `little-buffalo-river` | rebuilt (NHD) | 3 | 118 | 28.42 km | 552 m (braids 1961 m, pool 0 m) | ok 1241 m | PASS |
@@ -133,7 +132,7 @@ Visual gate: judge round 2 — all sheets PASS. Known non-defects: cane-creek re
 
 ## Integration gate status
 
-`node apps/web/scripts/integrate-verified-atlas.mjs --dry-run` — exactly **1 remaining violation**: `tennessee-river` is staged by BOTH regional files. The East/Southeast audit recommends keeping their copy (superset with state-line cuts); the tennessee-river stage of this lane is withdrawn at integration (kickoff-session decision), which clears the gate to zero. All other classes (catalog vocabulary, bounds coverage, braided-reach endpoints via documented allowOpenEnds, verified through-lake routes via throughLakeIds) are resolved in the delivered files.
+`node apps/web/scripts/integrate-verified-atlas.mjs --dry-run` — **exit 0 (zero violations)** as of this commit. Resolution history: catalog vocabulary, bounds coverage, braided-reach endpoints (documented allowOpenEnds), verified through-lake routes (throughLakeIds) were fixed in this lane; the tennessee-river cross-file duplicate was resolved by withdrawing the staging copy of this lane (the east-southeast main-stem copy is canonical). The integration lane merged 94 staged features into the canonical atlas (rivers.geojson 146 features, all 9 passive lakes promoted, riverIndex regenerated).
 
 ## Documented residual limitations (PASS-with-note, none hidden)
 

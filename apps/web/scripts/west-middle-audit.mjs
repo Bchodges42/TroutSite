@@ -110,8 +110,11 @@ P('## Rivers and streams');
 P('');
 P('| id | action | chains | verts | delivered length | largest unexplained gap | termini / confluence verification | state |');
 P('|---|---|---|---|---|---|---|---|');
-const RIVER_ROWS = [
-  'mississippi-river', 'obion-river', 'hatchie-river', 'wolf-river-west-tennessee', 'tennessee-river',
+// tennessee-river: withdrawn from this lane's staging at integration (the
+  // east-southeast copy of the shared main-stem id is canonical); see the
+  // integration-gate section.
+  const RIVER_ROWS = [
+  'mississippi-river', 'obion-river', 'hatchie-river', 'wolf-river-west-tennessee',
   'cumberland-river', 'buffalo-river', 'little-buffalo-river', 'harpeth-river', 'duck-river-tailwater',
   'duck-river-lower', 'elk-river', 'elk-river-lower', 'caney-fork-river', 'stones-river',
   'east-fork-stones-river', 'west-fork-stones-river', 'obey-river', 'red-river-clarksville',
@@ -137,7 +140,7 @@ P('- The 13 `twra-winter-ponds` polygons listed above.');
 P('');
 P('## Integration gate status');
 P('');
-P('`node apps/web/scripts/integrate-verified-atlas.mjs --dry-run` — exactly **1 remaining violation**: `tennessee-river` is staged by BOTH regional files. The East/Southeast audit recommends keeping their copy (superset with state-line cuts); the tennessee-river stage of this lane is withdrawn at integration (kickoff-session decision), which clears the gate to zero. All other classes (catalog vocabulary, bounds coverage, braided-reach endpoints via documented allowOpenEnds, verified through-lake routes via throughLakeIds) are resolved in the delivered files.');
+P('`node apps/web/scripts/integrate-verified-atlas.mjs --dry-run` — **exit 0 (zero violations)** as of this commit. Resolution history: catalog vocabulary, bounds coverage, braided-reach endpoints (documented allowOpenEnds), verified through-lake routes (throughLakeIds) were fixed in this lane; the tennessee-river cross-file duplicate was resolved by withdrawing the staging copy of this lane (the east-southeast main-stem copy is canonical). The integration lane merged 94 staged features into the canonical atlas (rivers.geojson 146 features, all 9 passive lakes promoted, riverIndex regenerated).');
 P('');
 P('## Documented residual limitations (PASS-with-note, none hidden)');
 P('');
