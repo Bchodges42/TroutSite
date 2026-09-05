@@ -14,10 +14,46 @@ docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/**
   (typecheck OK, 122/122 tests, build + size budget OK, dist 5.21 MB).
 - [x] License verdict documented BEFORE build: TIGER 2024 public domain
   (17 U.S.C. § 105); OSM rejected (ODbL share-alike) — docs/roads-sources.md.
+- [x] Fetch: 95/95 TIGER 2024 ROADS county zips (105 MB) → .atlas-src/roadshp
+  (364,836 features; fetch-roads.mjs mirrors fetch-atlas-sources.mjs).
+- [x] Build (build-roads.mjs): TN whole-part clip against tn-boundary + 1 km
+  (0 rejections), non-through classes dropped (40,656: alleys/private service
+  roads/driveways/parking/walkways), endpoint-exact welding with
+  straightest-continuation + anti-double-back corridor guard, per-(MTFCC,name)
+  MultiLineString collapse, RDP ladder settled at rung 3 (major 0.0005°,
+  mid 0.0016° with S1400 chains ≥ 3200 m, minor 0.0025°).
+- [x] Assets: public/atlas/roads-{major,mid,minor}.geojson + roads-manifest.json
+  = 11,840 features / 158,048 verts / 4,606,657 bytes (4.39 MiB ≤ 6 MB aim).
+- [x] validate-roads.mjs: PASS (geometry, MTFCC-per-LOD whitelist, bounds
+  +eps, lon/lat order, manifest-vs-reality, size gate).
+- [x] Full gate green: typecheck OK, 122/122 tests, build OK; size-budget OK —
+  dist 9.61 MB vs 25 MB gate (roads precached via existing `atlas/*` glob; NO
+  size-budget.mjs exclusion needed — decision documented in roads-sources.md).
 
 ## Commits (this lane)
 
-(appended as they land)
+- roads(license): TIGER 2024 public-domain verdict (OSM/ODbL rejected),
+  fetch tooling, progress base 826e5cb
+- roads(build): TIGER ROADS → LOD road atlas (clip/weld/collapse/simplify
+  tooling + roads-major/mid/minor.geojson + roads-manifest.json)
+- roads(validate): structural gate + docs/roads-sources.md build results and
+  Session A integration handoff + progress
+
+## Notes / decisions
+
+- Per-feature property contract is deliberately minimal ({mtfcc, name?}) with
+  file-level provenance in roads-manifest.json — rivers-style per-feature
+  source/crs/coordinateOrder fields would cost ~90 B × ~300k source features
+  (see roads-sources.md "Property conventions"). No per-feature ids.
+- The S1400 coverage decision (chains ≥ 3200 m only) is the size ladder's
+  settled rung; lower `minChainM` in build-roads.mjs and re-run for more
+  coverage (each halving ≈ doubles the mid file). All weld/walk defects found
+  during the lane are documented in roads-sources.md "Build method" with
+  their measured signatures.
+- Long straight roads (E Shelby Dr, delta section-line roads, straight
+  interstate reaches) collapse to few-vertex chords within tolerance —
+  verified: every >10 km output chord has 3–52 m true deviation vs 56 m tol.
+- Scope kept: no apps/web/src/**, no e2e/**, no packages/** touched.
 
 ---
 
