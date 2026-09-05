@@ -1,3 +1,26 @@
+# ROADS lane (B12) — base commit 826e5cb
+
+Base: trout-fieldwork-20260904@826e5cb (branch codex/trout-fieldwork-20260904).
+Clone: C:\Users\Benjamin\Projects\trout-roads. Scope: B12 roads / contextual
+cartography — TIGER 2024 All Roads → public/atlas/roads*, fetch/build/validate
+scripts, docs/roads-sources.md. License gate: PROCEED (public domain), see
+docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/**
+(other lanes own them).
+
+## Status log
+
+- [x] Setup: clone at 826e5cb, snapshots public/v1 + public/content copied,
+  `pnpm install` green, workspace packages built, baseline green
+  (typecheck OK, 122/122 tests, build + size budget OK, dist 5.21 MB).
+- [x] License verdict documented BEFORE build: TIGER 2024 public domain
+  (17 U.S.C. § 105); OSM rejected (ODbL share-alike) — docs/roads-sources.md.
+
+## Commits (this lane)
+
+(appended as they land)
+
+---
+
 # Integrated lane progress
 
 Notes from merged lanes (GEO, SPECIES, TOPO, CONTINUITY, CATALOG, LINES, STILLWATER). See COORDINATION.md in trout-backend.
