@@ -482,6 +482,21 @@ const conditionsPlans = {
   // Atlas QA: real remediation-brief values — 19.3 cfs vs ideal 50-400 scores
   // 37 Poor via scoreConditions(); no tempC key = temperature unavailable.
   'east-fork-stones-river': [[19.3, null, null, 41], [19.1, null, null, 101]],
+  // Demo semantic coverage — these exercise the assessment states the UI must
+  // keep distinct. Every score is still produced by the frozen scoreConditions
+  // model, never hand-written:
+  //   doe-river — a REAL clamped 0: floored flow (5 cfs vs ideal 50-250 → floor 10)
+  //   minus the dangerously-warm penalty (27 °C → −30) scores 0 with
+  //   assessed: true. Must render Poor, never "Unassessed".
+  'doe-river': [[5, null, 27, 38], [4.6, null, 27.4, 98]],
+  //   obed-river — readings that carry neither flow nor stage (temperature
+  //   only): scoreConditions returns assessed: false. Must render Unassessed,
+  //   never a band, whatever numeric value rides along.
+  'obed-river': [[null, null, 12.5, 44], [null, null, 12.1, 104]],
+  //   collins-river — an in-range but OLD assessment (readings ~10-12 h old,
+  //   past the 3 h READING_STALE_MINUTES window): the score stays a score and
+  //   the freshness chip must read "Stale · observed …".
+  'collins-river': [[64, 1.8, 14.8, 600], [66, 1.9, 14.6, 705]],
 };
 
 const conditions = streams

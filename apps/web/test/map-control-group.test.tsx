@@ -114,4 +114,57 @@ describe('MapControlGroup', () => {
     renderGroup({ locating: true });
     expect(screen.getByRole('button', { name: 'Use my location' })).toBeDisabled();
   });
+
+  it('does NOT treat a press inside the layers panel as an outside press', () => {
+    // Regression: the panel renders as a SIBLING of the toolbar, so the old
+    // containment check (toolbar only) saw every press on the panel's inputs
+    // as outside — mousedown unmounted the panel before the click could reach
+    // the checkbox, so Terrain/Roads closed the menu without activating.
+    const props = renderGroup({ layersOpen: true });
+    const panel = screen.getByRole('group', { name: 'Map layers' });
+    const checkboxInside = document.createElement('input');
+    checkboxInside.type = 'checkbox';
+    panel.appendChild(checkboxInside);
+    fireEvent.mouseDown(checkboxInside);
+    fireEvent.pointerDown(checkboxInside);
+    expect(props.onLayersToggle).not.toHaveBeenCalled();
+  });
+
+  it('closes the panel on an intentional outside press (mouse and touch)', () => {
+    const props = renderGroup({ layersOpen: true });
+    fireEvent.pointerDown(document.body);
+    expect(props.onLayersToggle).toHaveBeenCalledTimes(1);
+    fireEvent.mouseDown(document.body);
+    expect(props.onLayersToggle).toHaveBeenCalledTimes(2);
+  });
+
+  it('lets the Layers button toggle closed through its own handler, not the outside-press path', () => {
+    const props = renderGroup({ layersOpen: true });
+    const layersButton = screen.getByRole('button', { name: 'Map layers' });
+    fireEvent.pointerDown(layersButton);
+    fireEvent.click(layersButton);
+    // The press is contained (no dismissal), then the button's own click
+    // toggles — exactly once.
+    expect(props.onLayersToggle).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps dismissal working for checkbox-driven panel content end to end', () => {
+    // The panel content comes from RiverMapPage's layerPanel; simulate the
+    // real sequence a click produces: pointerdown → mousedown on the input.
+    // The panel must survive both so the input's change event can fire.
+    const props = renderGroup({
+      layersOpen: true,
+      layersPanel: (
+        <label>
+          <input type="checkbox" aria-label="Terrain relief" readOnly />
+          Terrain relief
+        </label>
+      ),
+    });
+    const input = screen.getByLabelText('Terrain relief');
+    fireEvent.pointerDown(input);
+    fireEvent.mouseDown(input);
+    fireEvent.click(input);
+    expect(props.onLayersToggle).not.toHaveBeenCalled();
+  });
 });

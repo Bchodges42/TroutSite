@@ -158,9 +158,15 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       placeText: '#b4cabb',
       placeHalo: '#1a3032',
       road: '#38504b',
-      // Nightfall uses contour relief; opaque light hillshade tiles create a rectangular wash.
-      reliefOpacity: 0,
-      reliefBrightness: 0.35,
+      // Terrain relief renders in BOTH themes: the hillshade tiles are
+      // shadow-only alpha WebP (verified VP8L alpha, clipped to TN+3km), so
+      // Nightfall draws them as subdued dark valley shading on the dark
+      // ground. Hiding them here (the old reliefOpacity: 0 workaround for the
+      // pre-alpha opaque tiles) hid valid terrain; the rectangle those opaque
+      // tiles painted is instead prevented at the asset + cache layer (stale
+      // runtime-cache purge on manifest change — see lib/atlasAvailability).
+      reliefOpacity: 0.45,
+      reliefBrightness: 1,
     },
   },
 };

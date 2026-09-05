@@ -33,14 +33,26 @@ export function MapControlGroup({
   onOpenSearch: () => void;
   layersPanel?: ReactNode;
 }) {
-  const groupRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const layersRef = useRef<HTMLButtonElement>(null);
   const layersWasOpen = useRef(false);
 
   useEffect(() => {
     if (!layersOpen) return;
-    const onDocPress = (e: MouseEvent) => {
-      if (!groupRef.current?.contains(e.target as Node)) onLayersToggle();
+    // Outside-press containment is checked against the WRAPPER, which contains
+    // both the control group and the layer picker it opens. The picker renders
+    // as a sibling of the toolbar, so testing containment against the toolbar
+    // alone treated every press INSIDE the picker as an outside press: mousedown
+    // unmounted the panel before the click could reach its inputs, so Terrain
+    // and Roads appeared to close the menu without activating.
+    const isOutsidePress = (target: EventTarget | null) =>
+      !wrapRef.current || !wrapRef.current.contains(target as Node);
+    // pointerdown covers mouse, touch, and pen uniformly; the mousedown
+    // fallback keeps dismissal working where PointerEvent is unavailable.
+    // Listening at pointerdown (not click) matches native popover semantics:
+    // a press that starts elsewhere dismisses before it can click through.
+    const onDocPress = (e: Event) => {
+      if (isOutsidePress(e.target)) onLayersToggle();
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return;
@@ -49,9 +61,11 @@ export function MapControlGroup({
       e.stopPropagation();
       onLayersToggle();
     };
+    document.addEventListener('pointerdown', onDocPress);
     document.addEventListener('mousedown', onDocPress);
     window.addEventListener('keydown', onKey);
     return () => {
+      document.removeEventListener('pointerdown', onDocPress);
       document.removeEventListener('mousedown', onDocPress);
       window.removeEventListener('keydown', onKey);
     };
@@ -71,8 +85,8 @@ export function MapControlGroup({
   }, [layersOpen]);
 
   return (
-    <div className="map-fab-wrap">
-      <div ref={groupRef} className="map-fab-group" role="toolbar" aria-label="Map controls">
+    <div ref={wrapRef} className="map-fab-wrap">
+      <div className="map-fab-group" role="toolbar" aria-label="Map controls">
         <button
           type="button"
           className="map-fab"

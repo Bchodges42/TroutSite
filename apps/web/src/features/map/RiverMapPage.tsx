@@ -12,6 +12,7 @@ import { validMonth } from '../../lib/riverContext';
 import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
 import { decisionStatusText, toWaterDecisionView } from './waterDecision';
+import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
@@ -131,21 +132,22 @@ export function RiverMapPage() {
         if (!cancelled && Array.isArray(j.places)) setPlaces(j.places);
       })
       .catch(() => {});
-    fetch('/atlas/topo/manifest.json')
-      .then((r) => r.json())
-      .then((j) => {
-        if (!cancelled) setTopoAvailable(Array.isArray(j.bands) && Boolean(j.hillshade));
-      })
-      .catch(() => {});
-    // Road context availability comes from Session C's manifest; whether it
-    // RENDERS is the user's choice in the Layers panel (default off).
-    fetch('/atlas/roads-manifest.json')
-      .then((r) => r.json())
-      .then((j) => {
-        if (!cancelled && Array.isArray(j.files) && j.files.length > 0)
-          setRoadsManifest(j as RoadsSpec);
-      })
-      .catch(() => {});
+    // Terrain/Roads availability is PROBED, not assumed: the manifest must be
+    // well-formed AND the assets it references must actually be servable
+    // (probed: one real hillshade tile; every road file). A manifest that
+    // lists files the deployment cannot serve disables the control instead of
+    // shipping a broken layer. The terrain probe also purges the service
+    // worker's CacheFirst topo cache when the asset build has changed — stale
+    // pre-alpha hillshade tiles under unchanged URLs were the Nightfall
+    // rectangle. A failed probe (SPA fallback answering HTML for a missing
+    // manifest, offline, partial deploy) degrades to the control being
+    // disabled — never to a broken map.
+    probeTerrainAvailability().then((available) => {
+      if (!cancelled) setTopoAvailable(available);
+    });
+    probeRoadsAvailability().then((manifest) => {
+      if (!cancelled) setRoadsManifest(manifest as RoadsSpec | null);
+    });
     return () => {
       cancelled = true;
       markerRef.current?.remove();

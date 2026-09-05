@@ -138,13 +138,24 @@ describe('Fieldwork themes', () => {
   });
 });
 
-it('uses contour relief in Nightfall without the opaque light raster footprint', () => {
+it('renders terrain relief in BOTH themes from the shadow-alpha tiles', () => {
+  // The hillshade assets are shadow-only alpha WebP clipped to TN+3km, and the
+  // service worker's CacheFirst topo cache is purged when the asset build
+  // changes (lib/atlasAvailability). Terrain therefore no longer needs the old
+  // Nightfall workaround of hiding the raster entirely — valid terrain shows
+  // in both themes, subdued on the dark ground.
   const night = atlasStyle('topo', themes.nightfall.map);
   expect(night.layers.find((l) => l.id === 'topo-hillshade')?.layout).toHaveProperty(
     'visibility',
-    'none',
+    'visible',
   );
   expect(night.layers.find((l) => l.id === 'topo-contours-major')).toBeDefined();
+  // Nightfall draws the shadow-alpha hillshade subdued but really present.
+  const nightHillshade = night.layers.find((l) => l.id === 'topo-hillshade') as {
+    paint: Record<string, number>;
+  };
+  expect(nightHillshade.paint['raster-opacity']).toBe(themes.nightfall.map.reliefOpacity);
+  expect(themes.nightfall.map.reliefOpacity).toBeGreaterThan(0);
   expect(
     atlasStyle('topo', themes.daybreak.map).layers.find((l) => l.id === 'topo-hillshade')?.layout,
   ).toHaveProperty('visibility', 'visible');

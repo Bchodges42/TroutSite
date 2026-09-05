@@ -77,29 +77,76 @@ export function TennesseeMap(props: Props) {
   const reduced = () =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
     document.documentElement.classList.contains('reduce-motion');
+  // Presentation scheduling. Every style swap, theme change, and props update
+  // funnels through one tokenized scheduler: only the MOST RECENT scheduled
+  // apply runs, it re-arms until the style is genuinely loaded (a diffed
+  // setStyle can skip style.load, and `idle` alone can fire early), and every
+  // feature state — selected, hover, dimmed, hidden, assessed, hatch — is
+  // rewritten from `latest.current` so a swap never leaves stale presentation
+  // behind. Without the token, rapid Terrain/Roads/theme toggles queue
+  // out-of-order swaps and the map ends up styled for a state the URL left
+  // behind generations ago.
+  const applyToken = useRef(0);
+  const swapToken = useRef(0);
   applyRef.current = () => {
     const map = mapRef.current;
-    if (!map || !map.isStyleLoaded()) return;
-    for (const river of index) {
+    if (!map) return;
+    const token = ++applyToken.current;
+    const el = container.current;
+    let retries = 0;
+    const run = () => {
+      if (mapRef.current !== map) return;
+      if (token !== applyToken.current) return;
+      if (!map.isStyleLoaded()) {
+        // Style still loading (initial load or a diffed swap in progress).
+        // Re-arm on idle; capped so a permanently failed style stops here.
+        if (++retries > 30) return;
+        map.once('idle', run);
+        return;
+      }
       const p = latest.current;
-      map.setFeatureState(
-        { source: 'rivers', id: river.id },
-        {
-          selected: p.selectedId === river.id,
-          hidden: p.visibleIds ? !p.visibleIds.has(river.id) : false,
-          color: p.featureColors.get(river.id) ?? palette.current.noData,
-          assessed: p.assessedIds?.has(river.id) ?? false,
-          hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
-          hatchColor: palette.current.sulphur,
-        },
-      );
-    }
-    labelsRef.current();
-    const renderedStyle = appliedStyle.current;
-    map.once('render', () => {
-      if (container.current && appliedStyle.current === renderedStyle)
-        container.current.dataset.mapTheme = renderedStyle.split(':')[0] ?? '';
-    });
+      for (const river of index) {
+        map.setFeatureState(
+          { source: 'rivers', id: river.id },
+          {
+            selected: p.selectedId === river.id,
+            // hover is producer state (the pointer handlers below) with no
+            // prop to restore it from — after a swap the honest value is off,
+            // and the next mousemove re-derives it.
+            hover: false,
+            dimmed: false,
+            hidden: p.visibleIds ? !p.visibleIds.has(river.id) : false,
+            color: p.featureColors.get(river.id) ?? palette.current.noData,
+            assessed: p.assessedIds?.has(river.id) ?? false,
+            hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
+            hatchColor: palette.current.sulphur,
+          },
+        );
+      }
+      if (el) el.dataset.mapSelected = p.selectedId ?? '';
+      labelsRef.current();
+      // Test/verification seam: the live style inventory (which sources and
+      // layers exist right now) so Terrain/Roads activation is observable
+      // from outside the canvas, not inferred from the URL.
+      if (el) {
+        try {
+          el.dataset.mapSources = Object.keys(map.getStyle().sources).join(' ');
+          el.dataset.mapLayers = map
+            .getStyle()
+            .layers.map((l) => l.id)
+            .join(' ');
+        } catch {
+          /* a torn-down style can throw here; the next apply refreshes it */
+        }
+      }
+      const renderedStyle = appliedStyle.current;
+      map.once('render', () => {
+        if (container.current && appliedStyle.current === renderedStyle)
+          container.current.dataset.mapTheme = renderedStyle.split(':')[0] ?? '';
+      });
+    };
+    if (map.isStyleLoaded()) run();
+    else map.once('idle', run);
   };
   useEffect(() => {
     const el = container.current;
@@ -214,6 +261,8 @@ export function TennesseeMap(props: Props) {
       delete el.dataset.mapFailed;
       applyRef.current();
       latest.current.onMapReady?.(map);
+      // Dev-only inspection handle for map-verification tooling.
+      if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__troutMap = map;
       // Do not snapshot the full-state bootstrap over a deep-linked water's
       // intended camera. The selection effect fits it once `ready` commits.
       const initialRiver = index.find((river) => river.id === latest.current.selectedId);
@@ -345,12 +394,24 @@ export function TennesseeMap(props: Props) {
     if (!map || !ready) return;
     const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
     if (appliedStyle.current === styleKey) return;
+    // Swap token: rapid toggles (Terrain ⇄ Roads ⇄ theme) must never apply an
+    // older swap after a newer one — only the latest scheduled swap runs, and
+    // this effect's cleanup cancels its own pending swap. Separate from the
+    // apply token on purpose: a props update in the same commit schedules a
+    // fresh presentation apply WITHOUT cancelling the still-pending swap.
+    const token = ++swapToken.current;
     const swap = () => {
+      if (token !== swapToken.current || mapRef.current !== map) return;
       appliedStyle.current = styleKey;
       if (container.current) delete container.current.dataset.mapTheme;
       map.setStyle(atlasStyle(props.basemap, theme.map, { roads: props.roads }));
-      // Diffed styles can skip style.load; still reapply feature colors once ready.
-      map.once('idle', () => applyRef.current());
+      // Diffed styles can skip style.load; reapply feature presentation once
+      // the (possibly diffed) style is ready. applyRef re-arms internally
+      // until the style is genuinely loaded.
+      map.once('idle', () => {
+        if (token !== swapToken.current) return;
+        applyRef.current();
+      });
     };
     if (map.isStyleLoaded()) swap();
     // A theme can change while a previous diffed style or resize is loading.

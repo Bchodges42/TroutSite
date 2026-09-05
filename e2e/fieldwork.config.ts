@@ -10,7 +10,10 @@ export default defineConfig({
   fullyParallel: true,
   reporter: [['list']],
   use: {
-    baseURL: 'http://127.0.0.1:5197',
+    // The documented fieldwork preview is 5197. Another live checkout's server
+    // may own that port during parallel sessions — override with
+    // FIELDWORK_PORT to point the suite at this checkout's own preview.
+    baseURL: `http://127.0.0.1:${process.env.FIELDWORK_PORT ?? 5197}`,
     viewport: { width: 1440, height: 960 },
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',

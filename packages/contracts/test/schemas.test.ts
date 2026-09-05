@@ -36,8 +36,16 @@ describe('StreamSchema', () => {
     expect(StreamSchema.parse(rest)).toBeDefined();
   });
 
+  it('allows the still-water waterbodyTypes (lake, pond) the catalog ships', () => {
+    // West TN put-and-take ponds and the reference waterbodies made these
+    // first-class contract types.
+    expect(StreamSchema.parse(makeStream({ waterbodyType: 'lake' as never })).waterbodyType).toBe('lake');
+    expect(StreamSchema.parse(makeStream({ waterbodyType: 'pond' as never })).waterbodyType).toBe('pond');
+  });
+
   it('rejects an unknown waterbodyType', () => {
-    expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'lake' as never }))).toThrow(ZodError);
+    expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'reservoir' as never }))).toThrow(ZodError);
+    expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'swamp' as never }))).toThrow(ZodError);
   });
 
   it('rejects an idealFlow range with min > max', () => {
