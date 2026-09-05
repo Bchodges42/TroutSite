@@ -4,7 +4,7 @@ stateId: TN
 waterbodyType: tailrace
 regionId: tn-middle-duck-elk
 gaugeIds:
-  - "03596000"
+  - "03597860"
 stockingProgram: true
 species: trout
 idealFlow:
@@ -15,8 +15,8 @@ notes: Cold releases below Normandy Dam give the Duck its trout identity — TWR
   tailwater-stocked rainbows in a lovely valley reach. Release-dependent; verify schedules
   before wading.
 officialSources:
-  - label: USGS Water Data — monitoring location 03596000
-    url: https://waterdata.usgs.gov/monitoring-location/03596000/
+  - label: USGS Water Data — monitoring location 03597860 (Duck River at Shelbyville)
+    url: https://waterdata.usgs.gov/monitoring-location/03597860/
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
