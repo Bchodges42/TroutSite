@@ -47,7 +47,7 @@ Visual gate: judge round 2 — all sheets PASS. Known non-defects: cane-creek re
 | `normandy-lake` | rebuilt (NHD) | 1 | 183 | 13.47 km² | duck-river-tailwater 28 m | dam 114 m — PASS |
 | `reelfoot-lake` | rebuilt (NHD) | 1 | 324 | 51.39 km² | n/a (no named river reaches the shoreline) | natural lake — PASS |
 | `woods-reservoir` | rebuilt (NHD) | 1 | 172 | 15.31 km² | n/a (no named river reaches the shoreline) | natural lake — PASS |
-| `great-falls-lake` | rebuilt (NHD) | 2 | 8458 | 5.88 km² | caney-fork-river 18 m; collins-river 0 m | dam 242 m — PASS |
+| `great-falls-lake` | rebuilt (NHD) | 2 | 8458 | 5.88 km² | caney-fork-river 20 m; collins-river 0 m | dam 242 m — PASS |
 
 - `shelby-farms-lake` — carried over unchanged from the verified STILLWATER lane polygon (aerial-trace/NHD, preview-verified there); re-nested to valid MultiPolygon where the source shipped ring-level coordinates. PASS.
 - `cameron-brown-lake` — carried over unchanged from the verified STILLWATER lane polygon (aerial-trace/NHD, preview-verified there); re-nested to valid MultiPolygon where the source shipped ring-level coordinates. PASS.
@@ -85,51 +85,55 @@ Visual gate: judge round 2 — all sheets PASS. Known non-defects: cane-creek re
 | id | action | chains | verts | delivered length | largest unexplained gap | termini / confluence verification | state |
 |---|---|---|---|---|---|---|---|
 | `mississippi-river` | rebuilt (NHD) | 5 | 292 | 298.25 km | 2986 m (braids 0 m, pool 0 m) | visual | PASS |
-| `obion-river` | rebuilt (NHD) | 83 | 516 | 152.49 km | 940 m (braids 1165 m, pool 489 m) | info 919 m | PASS |
-| `hatchie-river` | rebuilt (NHD) | 137 | 1728 | 357.74 km | 769 m (braids 1029 m, pool 218 m) | info 3718 m | PASS |
-| `wolf-river-west-tennessee` | rebuilt (NHD) | 106 | 932 | 166.94 km | 1852 m (braids 331 m, pool 380 m) | ok 0 m | PASS |
-| `tennessee-river` | rebuilt (NHD) | 13 | 218 | 139.93 km | none | ok 3810 m | PASS |
-| `cumberland-river` | rebuilt (NHD) | 305 | 1550 | 648.96 km | 2905 m (braids 455 m, pool 2528 m) | ok 18236 m; ok 5327 m | PASS |
-| `buffalo-river` | rebuilt (NHD) | 227 | 1196 | 250.34 km | 1415 m (braids 655 m, pool 176 m) | visual | PASS |
-| `little-buffalo-river` | rebuilt (NHD) | 6 | 121 | 27.85 km | 552 m (braids 1961 m, pool 0 m) | ok 1255 m | PASS |
-| `harpeth-river` | rebuilt (NHD) | 167 | 952 | 241.23 km | 1624 m (braids 835 m, pool 0 m) | ok 0 m | PASS |
-| `duck-river-tailwater` | rebuilt (NHD) | 71 | 287 | 61.85 km | 975 m (braids 776 m, pool 1291 m) | ok 291 m; ok 160 m | PASS |
-| `duck-river-lower` | rebuilt (NHD) | 253 | 922 | 217.18 km | 1146 m (braids 800 m, pool 35 m) | ok 194 m; ok 351 m | PASS |
-| `elk-river` | rebuilt (NHD) | 165 | 736 | 174.74 km | 912 m (braids 402 m, pool 0 m) | ok 40 m; ok 82 m | PASS |
-| `elk-river-lower` | rebuilt (NHD) | 91 | 230 | 43.67 km | 2646 m (braids 2177 m, pool 402 m) | visual | PASS |
-| `caney-fork-river` | rebuilt (NHD) | 73 | 734 | 243.05 km | 2788 m (braids 1882 m, pool 2962 m) | ok 185 m; ok 95 m; ok 2996 m | PASS |
+| `obion-river` | rebuilt (NHD) | 34 | 467 | 161.43 km | 2410 m (braids 1038 m, pool 568 m) | ok 0 m | PASS |
+| `hatchie-river` | rebuilt (NHD) | 57 | 1648 | 361.27 km | 2107 m (braids 1458 m, pool 218 m) | info 3718 m | PASS |
+| `wolf-river-west-tennessee` | rebuilt (NHD) | 60 | 886 | 187.47 km | 2108 m (braids 2173 m, pool 380 m) | ok 0 m | PASS |
+| `tennessee-river` | rebuilt (NHD) | 8 | 213 | 131.2 km | none | ok 3810 m | PASS |
+| `cumberland-river` | rebuilt (NHD) | 161 | 1406 | 647.95 km | 1881 m (braids 1175 m, pool 2474 m) | ok 18236 m; ok 5327 m | PASS |
+| `buffalo-river` | rebuilt (NHD) | 103 | 1072 | 250.21 km | 2501 m (braids 1096 m, pool 424 m) | visual | PASS |
+| `little-buffalo-river` | rebuilt (NHD) | 3 | 118 | 28.42 km | 552 m (braids 1961 m, pool 0 m) | ok 1241 m | PASS |
+| `harpeth-river` | rebuilt (NHD) | 69 | 854 | 251.68 km | 2900 m (braids 1158 m, pool 0 m) | ok 0 m | PASS |
+| `duck-river-tailwater` | rebuilt (NHD) | 27 | 243 | 74.9 km | 1008 m (braids 1057 m, pool 1291 m) | ok 291 m; ok 160 m | PASS |
+| `duck-river-lower` | rebuilt (NHD) | 99 | 768 | 241.94 km | 2005 m (braids 833 m, pool 503 m) | ok 194 m; ok 351 m | PASS |
+| `elk-river` | rebuilt (NHD) | 64 | 635 | 178.56 km | 969 m (braids 962 m, pool 0 m) | ok 40 m; ok 82 m | PASS |
+| `elk-river-lower` | rebuilt (NHD) | 36 | 175 | 47.44 km | 2646 m (braids 2177 m, pool 402 m) | visual | PASS |
+| `caney-fork-river` | rebuilt (NHD) | 30 | 691 | 244.92 km | 2788 m (braids 1612 m, pool 554 m) | ok 185 m; ok 95 m; ok 2652 m | PASS |
 | `stones-river` | rebuilt (NHD) | 1 | 25 | 11.11 km | none | ok 276 m; ok 0 m | PASS |
-| `east-fork-stones-river` | rebuilt (NHD) | 71 | 446 | 109.67 km | 1133 m (braids 1130 m, pool 0 m) | visual | PASS |
-| `west-fork-stones-river` | rebuilt (NHD) | 31 | 288 | 79.66 km | 2175 m (braids 0 m, pool 0 m) | visual | PASS |
-| `obey-river` | rebuilt (NHD) | 28 | 83 | 16 km | 1224 m (braids 0 m, pool 0 m) | ok 800 m; ok 0 m | PASS |
-| `red-river-clarksville` | rebuilt (NHD) | 64 | 474 | 145.14 km | 2142 m (braids 300 m, pool 0 m) | ok 5 m; ok 0 m | PASS |
-| `big-rock-creek` | rebuilt (NHD) | 39 | 299 | 63.2 km | 2494 m (braids 591 m, pool 0 m) | visual | PASS |
-| `boiling-fork-creek` | rebuilt (NHD) | 11 | 188 | 36.16 km | 869 m (braids 1528 m, pool 1816 m) | visual | PASS |
-| `east-fork-shoal-creek` | rebuilt (NHD) | 10 | 99 | 18.1 km | 1057 m (braids 1647 m, pool 526 m) | visual | PASS |
-| `shoal-creek` | rebuilt (NHD) | 119 | 518 | 98.25 km | 1140 m (braids 309 m, pool 764 m) | visual | PASS |
-| `mccutcheon-creek` | rebuilt (NHD) | 12 | 108 | 14.52 km | 1334 m (braids 0 m, pool 987 m) | visual | PASS |
-| `fletchers-fork` | rebuilt (NHD) | 17 | 136 | 21.73 km | 2161 m (braids 893 m, pool 386 m) | visual | PASS |
-| `little-west-fork-creek` | rebuilt (NHD) | 77 | 275 | 44.11 km | 779 m (braids 0 m, pool 41 m) | visual | PASS |
-| `sinking-creek-wilson` | rebuilt (NHD) | 6 | 122 | 36.35 km | 2020 m (braids 1606 m, pool 0 m) | visual | PASS |
-| `sulfur-fork-creek` | rebuilt (NHD) | 57 | 464 | 105.75 km | 1432 m (braids 30 m, pool 0 m) | visual | PASS |
-| `hurricane-creek` | rebuilt (NHD) | 91 | 429 | 74.77 km | 2681 m (braids 654 m, pool 476 m) | visual | PASS |
-| `salt-lick-creek` | rebuilt (NHD) | 104 | 430 | 61.25 km | 2267 m (braids 1397 m, pool 0 m) | visual | PASS |
+| `east-fork-stones-river` | rebuilt (NHD) | 29 | 404 | 121.57 km | 2484 m (braids 521 m, pool 0 m) | visual | PASS |
+| `west-fork-stones-river` | rebuilt (NHD) | 14 | 271 | 83.15 km | 2297 m (braids 1483 m, pool 0 m) | visual | PASS |
+| `obey-river` | rebuilt (NHD) | 11 | 66 | 19.23 km | 1533 m (braids 763 m, pool 0 m) | ok 800 m; ok 0 m | PASS |
+| `red-river-clarksville` | rebuilt (NHD) | 20 | 430 | 151.61 km | 2196 m (braids 2872 m, pool 0 m) | ok 5 m; ok 0 m | PASS |
+| `big-rock-creek` | rebuilt (NHD) | 17 | 277 | 66.61 km | 1564 m (braids 256 m, pool 0 m) | visual | PASS |
+| `boiling-fork-creek` | rebuilt (NHD) | 6 | 164 | 30.93 km | 646 m (braids 1528 m, pool 1816 m) | visual | PASS |
+| `east-fork-shoal-creek` | rebuilt (NHD) | 6 | 95 | 17.42 km | 1237 m (braids 1647 m, pool 0 m) | visual | PASS |
+| `shoal-creek` | rebuilt (NHD) | 51 | 450 | 106.16 km | 1140 m (braids 594 m, pool 764 m) | visual | PASS |
+| `mccutcheon-creek` | rebuilt (NHD) | 7 | 103 | 14.19 km | 911 m (braids 921 m, pool 987 m) | visual | PASS |
+| `fletchers-fork` | rebuilt (NHD) | 10 | 129 | 23.06 km | 1421 m (braids 784 m, pool 679 m) | visual | PASS |
+| `little-west-fork-creek` | rebuilt (NHD) | 23 | 221 | 50.68 km | 1574 m (braids 0 m, pool 190 m) | visual | PASS |
+| `sinking-creek-wilson` | rebuilt (NHD) | 6 | 116 | 30.58 km | 2924 m (braids 403 m, pool 0 m) | visual | PASS |
+| `sulfur-fork-creek` | rebuilt (NHD) | 30 | 437 | 105.69 km | 2661 m (braids 1769 m, pool 0 m) | visual | PASS |
+| `hurricane-creek` | rebuilt (NHD) | 38 | 376 | 78.81 km | 2689 m (braids 654 m, pool 476 m) | visual | PASS |
+| `salt-lick-creek` | rebuilt (NHD) | 51 | 377 | 69.84 km | 2267 m (braids 1397 m, pool 0 m) | visual | PASS |
 | `standing-rock-creek` | rebuilt (NHD) | 4 | 107 | 22.52 km | 2464 m (braids 0 m, pool 0 m) | visual | PASS |
-| `white-oak-creek` | rebuilt (NHD) | 78 | 354 | 63.33 km | 899 m (braids 2577 m, pool 329 m) | visual | PASS |
-| `barren-fork-river` | rebuilt (NHD) | 42 | 230 | 45.39 km | 417 m (braids 0 m, pool 731 m) | visual | PASS |
-| `calfkiller-river` | rebuilt (NHD) | 33 | 395 | 90.97 km | 1553 m (braids 0 m, pool 792 m) | visual | PASS |
-| `charles-creek` | rebuilt (NHD) | 27 | 179 | 29.66 km | 2516 m (braids 307 m, pool 2573 m) | visual | PASS |
-| `collins-river` | rebuilt (NHD) | 68 | 493 | 125.66 km | 1666 m (braids 0 m, pool 1823 m) | ok 1371 m; ok 0 m | PASS |
-| `mill-creek-overton` | rebuilt (NHD) | 68 | 328 | 63.28 km | 1702 m (braids 2284 m, pool 361 m) | visual | PASS |
+| `white-oak-creek` | rebuilt (NHD) | 34 | 310 | 67.61 km | 1639 m (braids 2577 m, pool 329 m) | visual | PASS |
+| `barren-fork-river` | rebuilt (NHD) | 14 | 202 | 48.13 km | 427 m (braids 737 m, pool 731 m) | visual | PASS |
+| `calfkiller-river` | rebuilt (NHD) | 14 | 376 | 96.77 km | 2600 m (braids 1038 m, pool 792 m) | visual | PASS |
+| `charles-creek` | rebuilt (NHD) | 14 | 166 | 31.27 km | 2516 m (braids 0 m, pool 1308 m) | visual | PASS |
+| `collins-river` | rebuilt (NHD) | 28 | 453 | 130.79 km | 1666 m (braids 0 m, pool 1823 m) | ok 1371 m; ok 0 m | PASS |
+| `mill-creek-overton` | rebuilt (NHD) | 30 | 290 | 67.78 km | 1702 m (braids 2284 m, pool 694 m) | visual | PASS |
 | `north-prong-barren-fork` | rebuilt (NHD) | 2 | 35 | 6.35 km | 494 m (braids 2381 m, pool 2753 m) | visual | PASS |
-| `pine-creek-dekalb` | rebuilt (NHD) | 46 | 238 | 36.71 km | 86 m (braids 0 m, pool 132 m) | visual | PASS |
-| `rocky-river` | rebuilt (NHD) | 31 | 291 | 61.94 km | 606 m (braids 1231 m, pool 515 m) | visual | PASS |
-| `upper-hills-creek` | rebuilt (NHD) | 23 | 111 | 15.93 km | 2419 m (braids 0 m, pool 27 m) | visual | PASS |
+| `pine-creek-dekalb` | rebuilt (NHD) | 16 | 208 | 37.09 km | 2333 m (braids 606 m, pool 831 m) | visual | PASS |
+| `rocky-river` | rebuilt (NHD) | 10 | 270 | 68.96 km | 2267 m (braids 1231 m, pool 515 m) | visual | PASS |
+| `upper-hills-creek` | rebuilt (NHD) | 10 | 98 | 19.27 km | 2419 m (braids 223 m, pool 2850 m) | visual | PASS |
 
 ### Carried-over (verified by earlier lanes, unchanged)
 
 - `cane-creek` — the catalog note deliberately covers four county reaches of same-named Cane Creek (Bledsoe/Van Buren + Hickman/Perry) in one id. The inter-reach separation is inherent to the catalog entry (recorded in its topology record); geometry unchanged. PASS (by-design multi-reach).
 - The 13 `twra-winter-ponds` polygons listed above.
+
+## Integration gate status
+
+`node apps/web/scripts/integrate-verified-atlas.mjs --dry-run` — exactly **1 remaining violation**: `tennessee-river` is staged by BOTH regional files. The East/Southeast audit recommends keeping their copy (superset with state-line cuts); the tennessee-river stage of this lane is withdrawn at integration (kickoff-session decision), which clears the gate to zero. All other classes (catalog vocabulary, bounds coverage, braided-reach endpoints via documented allowOpenEnds, verified through-lake routes via throughLakeIds) are resolved in the delivered files.
 
 ## Documented residual limitations (PASS-with-note, none hidden)
 
