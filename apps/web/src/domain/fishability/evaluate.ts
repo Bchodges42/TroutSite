@@ -87,6 +87,13 @@ function canonicalInstant(iso: string): string {
 export type StockingProfile = {
   lastCompleted: StockingEvent | null;
   lastCompletedAgeDays: number | null;
+  /**
+   * Youngest plausible age (nominal − precision grace): generous to
+   * presence, and conservative against absence claims.
+   */
+  youngestPlausibleAgeDays: number | null;
+  /** Oldest plausible age (nominal + precision grace): used only to decide high-confidence absence. */
+  oldestPlausibleAgeDays: number | null;
   upcomingScheduled: StockingEvent | null;
   hasAnyTroutStockingRecord: boolean;
   retentionDays: number;
@@ -152,11 +159,21 @@ export function buildStockingProfile(
   }
   if (upcomingScheduled !== null) usedEvents.push(upcomingScheduled);
 
+  const graceDays =
+    lastCompleted === null
+      ? 0
+      : cfg.precisionGraceDays[lastCompleted.datePrecision];
+  const lastCompletedAgeDays =
+    lastCompleted === null ? null : elapsedDays(lastCompleted.date, input.now);
+
   return {
     profile: {
       lastCompleted,
-      lastCompletedAgeDays:
-        lastCompleted === null ? null : elapsedDays(lastCompleted.date, input.now),
+      lastCompletedAgeDays,
+      youngestPlausibleAgeDays:
+        lastCompletedAgeDays === null ? null : lastCompletedAgeDays - graceDays,
+      oldestPlausibleAgeDays:
+        lastCompletedAgeDays === null ? null : lastCompletedAgeDays + graceDays,
       upcomingScheduled,
       hasAnyTroutStockingRecord: troutEvents.length > 0,
       retentionDays,
@@ -171,6 +188,11 @@ type ApplicabilityResult = {
   confidence: EvidenceConfidence;
   reasons: string[];
   cautions: string[];
+  /**
+   * True when presence rests on low-confidence year-round evidence: the
+   * water stays visible but is de-emphasized rather than fully included.
+   */
+  weakPresence: boolean;
 };
 
 function classifyTroutApplicability(
@@ -178,8 +200,10 @@ function classifyTroutApplicability(
   month: number,
   warm: TemperatureRead,
   stocking: StockingProfile,
+  minSustainedWarm: number,
 ): ApplicabilityResult {
   const cfgStocking = FISHABILITY_CONFIG.stocking;
+  const cfgTrout = FISHABILITY_CONFIG.trout;
   const monthName = MONTH_NAMES[month - 1] ?? `month ${month}`;
   const troutStrong = strongestTroutEvidence(input.speciesEvidence);
   const nonTrout = strongestNonTroutEvidence(input.speciesEvidence);
@@ -213,6 +237,7 @@ function classifyTroutApplicability(
           `Authoritative evidence classifies this water as a ${nonTrout.species} fishery (${nonTrout.basis}, ${nonTrout.confidence} confidence), not a trout water.`,
         ],
         cautions,
+        weakPresence: false,
       };
     }
     // Otherwise year-round trout evidence is at least as strong: fall
@@ -247,24 +272,38 @@ function classifyTroutApplicability(
           `${basisReason} (high confidence); eligible in ${monthName} regardless of season.`,
         ],
         cautions,
+        weakPresence: false,
+      };
+    }
+    if (troutStrong.confidence === 'medium') {
+      return {
+        applicability: 'probable-current',
+        confidence: 'medium',
+        reasons: [
+          `${basisReason} (medium confidence); eligible in ${monthName} regardless of season.`,
+        ],
+        cautions,
+        weakPresence: false,
       };
     }
     return {
       applicability: 'probable-current',
-      confidence: troutStrong.confidence,
+      confidence: 'low',
       reasons: [
-        `${basisReason} (${troutStrong.confidence} confidence); eligible in ${monthName} regardless of season.`,
+        `Reported year-round trout population (unverified, low confidence); presence is plausible but should not be relied on.`,
       ],
       cautions,
+      weakPresence: true,
     };
   }
 
   // 3. Put-and-take presence: a completed stocking inside the retention
-  // window asserts probable (never confirmed) presence.
+  // window asserts probable (never confirmed) presence. The youngest
+  // plausible age is used, so date-precision grace is generous to presence.
   if (
     stocking.lastCompleted !== null &&
-    stocking.lastCompletedAgeDays !== null &&
-    stocking.lastCompletedAgeDays <= stocking.retentionDays
+    stocking.youngestPlausibleAgeDays !== null &&
+    stocking.youngestPlausibleAgeDays <= stocking.retentionDays
   ) {
     const stockedMonths = input.seasonalPolicy?.stockedMonths;
     if (stockedMonths !== undefined && !stockedMonths.includes(month)) {
@@ -272,69 +311,93 @@ function classifyTroutApplicability(
         applicability: 'seasonal-uncertain',
         confidence: 'medium',
         reasons: [
-          `A completed stocking ${Math.round(stocking.lastCompletedAgeDays)} days ago is within the ${stocking.retentionDays}-day retention window, but ${monthName} is outside the configured stocking months [${stockedMonths.join(', ')}]; the record may be misattributed to this water.`,
+          `A completed stocking ${Math.round(stocking.lastCompletedAgeDays ?? 0)} days ago is within the ${stocking.retentionDays}-day retention window, but ${monthName} is outside the configured stocking months [${stockedMonths.join(', ')}]; the record may be misattributed to this water.`,
         ],
         cautions: [
           'Stocking recorded outside the configured stocking months; verify the water matching before treating this as trout evidence.',
         ],
+        weakPresence: false,
       };
     }
     return {
       applicability: 'probable-current',
       confidence: stocking.lastCompleted.datePrecision === 'day' ? 'high' : 'medium',
       reasons: [
-        `Completed stocking on ${canonicalDate(stocking.lastCompleted.date)} (${Math.round(stocking.lastCompletedAgeDays)} days ago) is within the ${stocking.retentionDays}-day retention window.`,
+        `Completed stocking on ${canonicalDate(stocking.lastCompleted.date)} (${Math.round(stocking.lastCompletedAgeDays ?? 0)} days ago) is within the ${stocking.retentionDays}-day retention window.`,
       ],
       cautions: [
         'Put-and-take water: trout presence decays after the retention window; this is not a year-round trout fishery.',
       ],
+      weakPresence: false,
     };
   }
 
   // 4. Seasonal absence: only current warmth plus an aged-out completed
-  // stocking supports likely-absent. Month alone, or stale warmth, never
-  // claims fish are gone (no fixed-date absence claims).
+  // stocking supports likely-absent. The youngest plausible age gates the
+  // claim (conservative against absence); month alone, or stale warmth,
+  // never claims fish are gone (no fixed-date absence claims). High
+  // confidence additionally requires sustained warm readings.
   if (
     stocking.lastCompleted !== null &&
-    stocking.lastCompletedAgeDays !== null &&
-    stocking.lastCompletedAgeDays > stocking.retentionDays &&
+    stocking.youngestPlausibleAgeDays !== null &&
+    stocking.youngestPlausibleAgeDays > stocking.retentionDays &&
     warm.kind === 'current-warm'
   ) {
     const stockedMonths = input.seasonalPolicy?.stockedMonths;
     const explicitOffSeason =
       stockedMonths !== undefined && !stockedMonths.includes(month);
     const agedOutDecisively =
-      stocking.lastCompletedAgeDays >
-      stocking.retentionDays * cfgStocking.highConfidenceAbsenceRetentionMultiple;
-    const highConfidence = explicitOffSeason && agedOutDecisively;
+      stocking.oldestPlausibleAgeDays !== null &&
+      stocking.oldestPlausibleAgeDays >
+        stocking.retentionDays * cfgStocking.highConfidenceAbsenceRetentionMultiple;
+    const sustainedWarm = warm.warmCountCurrent >= minSustainedWarm;
+    const highConfidence = explicitOffSeason && agedOutDecisively && sustainedWarm;
+    const cautions = [
+      'Absence is an inference from warm current water and an aged-out stocking, not a certainty: cold headwater refugia or unreported late stockings can still hold trout.',
+    ];
+    if (!sustainedWarm) {
+      cautions.push(
+        `Only ${warm.warmCountCurrent} fresh warm reading(s) are available; corroborating warm readings would be needed for high-confidence absence.`,
+      );
+    }
     return {
       applicability: 'seasonal-likely-absent',
       confidence: highConfidence ? 'high' : 'medium',
       reasons: [
-        `Freshest water temperature ${formatTemp(warm.freshest?.value ?? Number.NaN)} observed ${Math.round(warm.ageDays ?? 0)} days ago is at or above the ${warmCutoff}°C cutoff, and the last completed stocking (${canonicalDate(stocking.lastCompleted.date)}, ${Math.round(stocking.lastCompletedAgeDays)} days ago) is past the ${stocking.retentionDays}-day retention window; recently stocked trout are unlikely to remain.`,
+        `Freshest water temperature ${formatTemp(warm.freshest?.value ?? Number.NaN)} observed ${Math.round(warm.ageDays ?? 0)} days ago is at or above the ${warmCutoff}°C cutoff, and the last completed stocking (${canonicalDate(stocking.lastCompleted.date)}, ${Math.round(stocking.lastCompletedAgeDays ?? 0)} days ago) is past the ${stocking.retentionDays}-day retention window; recently stocked trout are unlikely to remain.`,
         explicitOffSeason
           ? `${monthName} is outside the configured stocking months [${stockedMonths.join(', ')}] and no new stocking is on record.`
           : `Current conditions are warm and no newer stocking is on record for ${monthName}.`,
       ],
-      cautions: [
-        'Absence is an inference from warm current water and an aged-out stocking, not a certainty: cold headwater refugia or unreported late stockings can still hold trout.',
-      ],
+      cautions,
+      weakPresence: false,
     };
   }
 
   // 5. Seasonal uncertainty: aging stocked evidence without current warmth.
+  // When the freshest reading is cool but close to the cutoff, say so
+  // explicitly instead of implying there is no temperature evidence.
   if (
     stocking.lastCompleted !== null &&
-    stocking.lastCompletedAgeDays !== null &&
-    stocking.lastCompletedAgeDays > stocking.retentionDays
+    stocking.youngestPlausibleAgeDays !== null &&
+    stocking.youngestPlausibleAgeDays > stocking.retentionDays
   ) {
+    const nearWarm =
+      warm.kind === 'current-cool' &&
+      warm.freshest !== null &&
+      warmCutoff - warm.freshest.value <= cfgTrout.nearWarmCutoffDeltaC;
     return {
       applicability: 'seasonal-uncertain',
       confidence: 'medium',
       reasons: [
-        `The last completed stocking (${canonicalDate(stocking.lastCompleted.date)}, ${Math.round(stocking.lastCompletedAgeDays)} days ago) is past the ${stocking.retentionDays}-day retention window and no current temperature evidence shows sustained warmth; trout presence is possible but unsupported.`,
+        `The last completed stocking (${canonicalDate(stocking.lastCompleted.date)}, ${Math.round(stocking.lastCompletedAgeDays ?? 0)} days ago) is past the ${stocking.retentionDays}-day retention window and ${
+          nearWarm
+            ? `the freshest water temperature (${formatTemp(warm.freshest?.value ?? Number.NaN)}) sits near, but below, the ${warmCutoff}°C cutoff`
+            : 'no current temperature evidence shows sustained warmth'
+        }; trout presence is possible but unsupported.`,
       ],
       cautions: [],
+      weakPresence: false,
     };
   }
 
@@ -347,6 +410,7 @@ function classifyTroutApplicability(
         `Only a scheduled stocking (${canonicalDate(stocking.upcomingScheduled.date)}) is on record; a schedule is weaker evidence than a completed stocking report, so presence is not asserted.`,
       ],
       cautions: [],
+      weakPresence: false,
     };
   }
 
@@ -365,6 +429,7 @@ function classifyTroutApplicability(
         'Seasonal or reported trout evidence exists but no completed stocking is on record; missing history is treated as uncertainty, not absence.',
       ],
       cautions: [],
+      weakPresence: false,
     };
   }
 
@@ -376,6 +441,7 @@ function classifyTroutApplicability(
         'Trout species evidence exists but its basis is unknown; the water cannot be classified.',
       ],
       cautions: [],
+      weakPresence: false,
     };
   }
 
@@ -388,6 +454,7 @@ function classifyTroutApplicability(
     cautions: hasUsableFlowEvidence(input.observations, input.now)
       ? ['Discharge observations alone do not indicate trout presence.']
       : [],
+    weakPresence: false,
   };
 }
 
@@ -410,13 +477,33 @@ function validateSeasonalPolicy(input: FishabilityInput): void {
 }
 
 /**
+ * Options for evaluateWater. `overrides` provides named, narrow
+ * configuration overrides of FISHABILITY_CONFIG (unlisted keys fall back
+ * to the shipped config) so hosts can demand stricter evidence without
+ * forking the model.
+ */
+export type EvaluateOptions = {
+  debug?: boolean;
+  overrides?: {
+    trout?: {
+      /** Fresh warm readings required to call warmth sustained (default 1). */
+      minSustainedWarmObservations?: number;
+    };
+  };
+};
+
+/**
  * Evaluate one water. Pure and deterministic. Pass `{ debug: true }` to
  * append versioned debug metadata to the decision.
  */
 export function evaluateWater(
   input: FishabilityInput,
-  options: { debug?: boolean } = {},
+  options: EvaluateOptions = {},
 ): WaterDecision & { debug?: DecisionDebug } {
+  validateSeasonalPolicy(input);
+  const minSustainedWarm =
+    options.overrides?.trout?.minSustainedWarmObservations ??
+    FISHABILITY_CONFIG.trout.minSustainedWarmObservations;
   validateSeasonalPolicy(input);
   const nowMs = toUtcMs(input.now, 'now');
   const month = utcMonth(input.now);
@@ -432,6 +519,7 @@ export function evaluateWater(
     month,
     warm,
     stocking,
+    minSustainedWarm,
   );
 
   const cautions: string[] = [...stockingCautions, ...applicabilityResult.cautions];
@@ -519,6 +607,16 @@ export function evaluateWater(
       if (obs === flow && obs.value === 0 && freshnessOf(obs.observedAt, input.now) !== 'stale') {
         cautions.push('Zero discharge is a real reading (no flow), not missing data.');
       }
+      if (
+        obs === flow &&
+        obs.value > 0 &&
+        obs.value < FISHABILITY_CONFIG.general.lowFlowSuspicionCfs &&
+        freshnessOf(obs.observedAt, input.now) !== 'stale'
+      ) {
+        cautions.push(
+          `Discharge ${obs.value} cfs is near zero; no per-water reference flow range is available, so flow-based quality is not assessed.`,
+        );
+      }
       if (obs === temp && warm.kind === 'stale-warm') {
         cautions.push(
           `Freshest temperature ${formatTemp(obs.value)} is ${Math.round(warm.ageDays ?? 0)} days old (stale); it is not evidence of current warmth.`,
@@ -545,6 +643,9 @@ export function evaluateWater(
         break;
       case 'seasonal-uncertain':
         visibility = 'deemphasize';
+        break;
+      case 'probable-current':
+        visibility = applicabilityResult.weakPresence ? 'deemphasize' : 'include';
         break;
       case 'unknown':
         visibility =

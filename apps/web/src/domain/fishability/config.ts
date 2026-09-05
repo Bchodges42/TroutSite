@@ -41,12 +41,20 @@ export const FISHABILITY_CONFIG = {
      */
     defaultWarmWaterCutoffC: 24,
     /**
-     * Number of fresh temperature observations at or above the cutoff
-     * needed to call warmth "sustained" when they disagree; the freshest
-     * observation always decides direction, this only affects phrasing of
-     * confidence. [REQUIRES VALIDATION]
+     * Number of fresh (within currentHours) temperature observations at or
+     * above the cutoff required to call warmth "sustained". A single fresh
+     * warm reading still supports seasonal-likely-absent, but high
+     * confidence (and therefore list exclusion) additionally requires this
+     * many corroborating warm readings. [REQUIRES VALIDATION]
      */
     minSustainedWarmObservations: 1,
+    /**
+     * How close (°C) the freshest cool reading must sit to the warm cutoff
+     * for seasonal-uncertain reasons to say "near the cutoff" instead of
+     * implying there is no temperature evidence at all.
+     * [REQUIRES VALIDATION]
+     */
+    nearWarmCutoffDeltaC: 3,
   },
 
   stocking: {
@@ -60,8 +68,10 @@ export const FISHABILITY_CONFIG = {
     /**
      * When the last completed stocking is older than this multiple of the
      * retention window AND an explicit stockedMonths policy excludes the
-     * current month, seasonal-likely-absent reaches high confidence (and
-     * may be excluded from the general list). [REQUIRES VALIDATION]
+     * current month AND warmth is sustained (see
+     * trout.minSustainedWarmObservations), seasonal-likely-absent reaches
+     * high confidence (and may be excluded from the general list).
+     * [REQUIRES VALIDATION]
      */
     highConfidenceAbsenceRetentionMultiple: 2,
     /**
@@ -69,6 +79,15 @@ export const FISHABILITY_CONFIG = {
      * evidence in reasons. [REQUIRES VALIDATION]
      */
     scheduleUpcomingDays: 45,
+    /**
+     * Date-precision grace (days): how far the true stocking date may sit
+     * from the published nominal date for week/month precision. Absence
+     * claims use the youngest plausible age (nominal − grace); decisive
+     * high-confidence aging uses the oldest plausible age (nominal +
+     * grace), so a nominal-day convention cannot flip the classification.
+     * [REQUIRES VALIDATION]
+     */
+    precisionGraceDays: { day: 0, week: 7, month: 15 } as const,
   },
 
   general: {
@@ -80,6 +99,14 @@ export const FISHABILITY_CONFIG = {
     lethalTempC: 35,
     hotTempC: 32,
     freezingTempC: 0,
+    /**
+     * Fresh discharge below this (cfs) is treated as near-dry → poor in
+     * both bandings, because no per-water reference flow range exists in
+     * FishabilityInput. A single global threshold is necessarily crude;
+     * per-water reference ranges are a documented future extension.
+     * [REQUIRES VALIDATION]
+     */
+    lowFlowSuspicionCfs: 1,
   },
 
   filter: {

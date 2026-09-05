@@ -2,7 +2,7 @@
 // Pure, deterministic, no network / storage / React dependencies.
 
 export { MODEL_VERSION, FISHABILITY_CONFIG } from './config';
-export { evaluateWater, buildStockingProfile } from './evaluate';
+export { evaluateWater, buildStockingProfile, type EvaluateOptions } from './evaluate';
 export { selectVisibleWaters } from './filter';
 export { classifySpecies } from './species';
 export { freshestObservation, freshnessOf, readTemperature } from './observations';

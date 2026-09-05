@@ -149,7 +149,7 @@ export function troutConditionBand(
   const flow = freshestObservation(observations, 'discharge-cfs', nowIso);
   const flowUsable = flow !== null && freshnessOf(flow.observedAt, nowIso) !== 'stale';
 
-  if (flowUsable && flow.value === 0) return 'poor';
+  if (flowUsable && flow.value < FISHABILITY_CONFIG.general.lowFlowSuspicionCfs) return 'poor';
 
   const temp = freshestObservation(observations, 'temperature-c', nowIso);
   if (temp !== null && freshnessOf(temp.observedAt, nowIso) !== 'stale') {
@@ -184,7 +184,7 @@ export function generalFishabilityBand(
   const tempUsable = temp !== null && freshnessOf(temp.observedAt, nowIso) !== 'stale';
 
   if (!flowUsable && !stageUsable && !tempUsable) return 'unknown';
-  if (flowUsable && flow.value === 0) return 'poor';
+  if (flowUsable && flow.value < FISHABILITY_CONFIG.general.lowFlowSuspicionCfs) return 'poor';
   if (tempUsable) {
     if (temp.value >= cfg.lethalTempC || temp.value <= cfg.freezingTempC) return 'poor';
     if (temp.value >= cfg.hotTempC) return 'fair';

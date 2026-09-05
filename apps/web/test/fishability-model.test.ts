@@ -67,6 +67,19 @@ describe('all-fish mode — general fishability', () => {
     expect(decision.displayMetric).toBe('trout-condition');
   });
 
+  it('treats near-zero (but nonzero) discharge as poor water, not good', () => {
+    const trickle = evaluateWater(
+      input({
+        observations: [
+          { metric: 'discharge-cfs', value: 0.5, observedAt: '2026-09-14T12:00:00Z' },
+          { metric: 'temperature-c', value: 20, observedAt: '2026-09-14T12:00:00Z' },
+        ],
+      }),
+    );
+    expect(trickle.fishability).toBe('poor');
+    expect(trickle.cautions.join(' ')).toMatch(/near zero/i);
+  });
+
   it('caps at fair under hot (but not lethal) water and reads stage/reservoir level as water presence', () => {
     const hot = evaluateWater(
       input({
@@ -236,9 +249,12 @@ describe('filtering — selectVisibleWaters', () => {
   });
 
   it('never excludes uncertain waters (they are de-emphasized, still visible)', () => {
+    const snapshot = JSON.stringify(uncertainWater);
     const result = selectVisibleWaters([uncertainWater]);
     expect(result.excluded).toHaveLength(0);
     expect(result.included).toHaveLength(1);
+    // The filter is pure too: decisions are never mutated or reordered in place.
+    expect(JSON.stringify(uncertainWater)).toBe(snapshot);
   });
 });
 
@@ -261,19 +277,26 @@ describe('determinism and time zones', () => {
   });
 
   it('treats date-only, explicit-UTC, and zone-free stocking dates identically', () => {
-    const dateOnly = evaluateWater(
-      input({ ...scenario, stockingEvents: [{ date: '2026-02-10', datePrecision: 'day', status: 'reported-complete' }] }),
-    );
-    const explicitUtc = evaluateWater(
-      input({ ...scenario, stockingEvents: [{ date: '2026-02-10T00:00:00Z', datePrecision: 'day', status: 'reported-complete' }] }),
-    );
-    const zoneFree = evaluateWater(
-      input({ ...scenario, stockingEvents: [{ date: '2026-02-10T00:00:00', datePrecision: 'day', status: 'reported-complete' }] }),
-    );
+    const make = (date: string) =>
+      evaluateWater(
+        input({
+          ...scenario,
+          stockingEvents: [{ date, datePrecision: 'day', status: 'reported-complete' }],
+        }),
+        { debug: true },
+      );
+    const dateOnly = make('2026-02-10');
+    const explicitUtc = make('2026-02-10T00:00:00Z');
+    const zoneFree = make('2026-02-10T00:00:00');
     expect(explicitUtc).toEqual(dateOnly);
-    // The zone-free form is UTC by model rule, so it matches even on a
-    // machine whose local timezone is not UTC.
+    // The zone-free form is UTC by model rule. The whole-decision equality
+    // above only detects a normalization regression on UTC>=+1 machines
+    // (whole days round away west of UTC), so the fractional-day stocking
+    // age is asserted exactly: any local-time misparse shifts it by a
+    // fraction of a day on either hemisphere.
     expect(zoneFree).toEqual(dateOnly);
+    expect(zoneFree.debug?.elapsedDaysSinceLastCompletedStocking).toBe(217.5);
+    expect(explicitUtc.debug?.elapsedDaysSinceLastCompletedStocking).toBe(217.5);
   });
 
   it('derives the model month from the UTC instant, not the local offset', () => {
@@ -281,8 +304,16 @@ describe('determinism and time zones', () => {
       input({ ...scenario, now: '2026-09-30T23:30:00-05:00' }),
       { debug: true },
     );
-    // Local time says September 30; UTC says October 1.
+    // Local time says September 30; UTC says October 1. This vector catches
+    // a local-month (getMonth) regression on UTC-negative machines.
     expect(decision.debug?.monthUtc).toBe(10);
+
+    // Complementary UTC-east vector: local calendars already say October,
+    // but the UTC instant is still September 30.
+    const east = evaluateWater(input({ ...scenario, now: '2026-10-01T00:30:00+13:00' }), {
+      debug: true,
+    });
+    expect(east.debug?.monthUtc).toBe(9);
   });
 
   it('is repeatable and does not mutate its input', () => {
@@ -317,8 +348,12 @@ describe('model versioning and debug metadata', () => {
     expect(plain).not.toHaveProperty('debug');
 
     const debugged = evaluateWater(input(), { debug: true });
-    expect(debugged.debug?.modelVersion).toBe(MODEL_VERSION);
+    // Pinned literal on purpose: a version bump must be a conscious,
+    // documented change, not a tautology against the same constant.
+    expect(debugged.debug?.modelVersion).toBe('1.0.0');
     expect(debugged.debug?.monthUtc).toBe(9);
+    // Regression pin of the [REQUIRES VALIDATION] default in config.ts
+    // (stocking.defaultRetentionDays): changing it is a re-validation event.
     expect(debugged.debug?.retentionDays).toBe(60);
     expect(debugged.debug?.warmEvidence).toBe('no-temperature');
     expect(debugged.debug?.elapsedDaysSinceLastCompletedStocking).toBeNull();
