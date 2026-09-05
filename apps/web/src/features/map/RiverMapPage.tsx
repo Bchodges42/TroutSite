@@ -27,13 +27,14 @@ export function RiverMapPage() {
   const mode = params.get('mode') === 'hatches' ? 'hatches' : 'conditions';
   const species = params.get('species') === 'all' ? 'all' : 'trout';
   const assessedOnly = params.get('assessed') === '1';
+  const roadsOn = params.get('roads') === '1';
   const data = useRiverMapData({ month });
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
   const [expanded, setExpanded] = useState(false);
   const [layers, setLayers] = useState(false);
   const [topoAvailable, setTopoAvailable] = useState(false);
-  const [roads, setRoads] = useState<RoadsSpec | null>(null);
+  const [roadsManifest, setRoadsManifest] = useState<RoadsSpec | null>(null);
   const [places, setPlaces] = useState<Place[]>([]);
   const [locationNote, setLocationNote] = useState('');
   const [locating, setLocating] = useState(false);
@@ -136,12 +137,13 @@ export function RiverMapPage() {
         if (!cancelled) setTopoAvailable(Array.isArray(j.bands) && Boolean(j.hillshade));
       })
       .catch(() => {});
-    // Road context is strictly opt-in via Session C's manifest: no manifest,
-    // no roads, no attribution claim.
+    // Road context availability comes from Session C's manifest; whether it
+    // RENDERS is the user's choice in the Layers panel (default off).
     fetch('/atlas/roads-manifest.json')
       .then((r) => r.json())
       .then((j) => {
-        if (!cancelled && Array.isArray(j.files) && j.files.length > 0) setRoads(j as RoadsSpec);
+        if (!cancelled && Array.isArray(j.files) && j.files.length > 0)
+          setRoadsManifest(j as RoadsSpec);
       })
       .catch(() => {});
     return () => {
@@ -343,6 +345,20 @@ export function RiverMapPage() {
             : 'USGS shaded relief · clearer as you zoom in'
           : 'Terrain is not available on this device.'}
       </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={roadsOn}
+          disabled={!roadsManifest}
+          onChange={(e) => update({ roads: e.target.checked ? '1' : null })}
+        />
+        Roads
+      </label>
+      <p className="muted text-xs">
+        {roadsManifest
+          ? 'Context road network (US Census TIGER) · off by default'
+          : 'Road context is not available on this device.'}
+      </p>
     </>
   );
   return (
@@ -483,7 +499,7 @@ export function RiverMapPage() {
           stillWaterIds={stillWaterIds}
           hatchActiveIds={hatchActive}
           basemap={basemap}
-          roads={roads ?? undefined}
+          roads={roadsOn && roadsManifest ? roadsManifest : undefined}
           places={places}
           onMapReady={onMapReady}
           viewKey={location.key}
