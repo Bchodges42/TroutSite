@@ -248,26 +248,44 @@ function uncrossRing(ring) {
   return r;
 }
 function simplifyPolygon(geom, tolM, budget) {
+  // Outer rings: DP at the spec tolerance, with an amputation guard. When DP
+  // folds a ring into self-crossings, the uncrosser (loop removal) is only
+  // accepted if it keeps ≥97% of the folded ring's area — otherwise the fold
+  // cut through real water (thin drowned-valley arms fold above roughly half
+  // their width) and the tolerance DESCENDS (×0.6) to a fold-free scale
+  // instead. The kentucky-lake Duck River arm lost 90% of its area to a
+  // blind uncross repair in the first build (13.5 km² → 1.28 km²).
+  const simplifyOuter = (ring, t0) => {
+    const closed = closeRing(ring);
+    let t = t0;
+    for (let guard = 0; guard < 6; guard++) {
+      const s = rdp(closed, t);
+      const sRing = s.length >= 4 ? s : closed;
+      if (!ringSelfIntersects(sRing)) return closeRing(sRing);
+      const u = uncrossRing(sRing);
+      const retain = Math.abs(ringAreaKm2(sRing)) > 0 ? Math.abs(ringAreaKm2(u)) / Math.abs(ringAreaKm2(sRing)) : 1;
+      if (!ringSelfIntersects(u) && retain >= 0.97) return closeRing(u);
+      t *= 0.6;
+    }
+    // floor: keep the previous build's behaviour (uncross at spec tolerance)
+    const s = rdp(closed, t0);
+    return closeRing(uncrossRing(s.length >= 4 ? s : closed));
+  };
   const simplifyPoly = (poly, t) => {
-    const closed = poly.map((ring) => closeRing(ring));
-    const outer = (() => { let r = rdp(closed[0], t); if (r.length < 4) r = closed[0]; return closeRing(r); })();
-    const holes = closed.slice(1)
-      .map((ring) => { let r = rdp(ring, t); if (r.length < 4) r = null; return r; })
+    const outer = simplifyOuter(poly[0], t);
+    const holes = poly.slice(1)
+      .map((ring) => { let r = rdp(closeRing(ring), t); if (r.length < 4) r = null; return r; })
       .filter((r) => r && r.length >= 4 && ringAreaKm2(r) > 0.004)
+      .map((r) => (ringSelfIntersects(r) ? uncrossRing(r) : r))
+      // a hole that stays self-crossing after repair is dropped, never
+      // allowed to force a coarser tolerance onto the outer boundary
+      .filter((r) => !ringSelfIntersects(r))
       .map(closeRing);
     return [outer].concat(holes);
   };
   let t = tolM;
   let out = geom.coordinates.map((poly) => simplifyPoly(poly, t)).filter((poly) => ringAreaKm2(poly[0]) > 0.004);
-  // polygon validity: escalate tolerance while any ring self-intersects,
-  // then repair any remaining crossings by loop removal
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const bad = out.some((poly) => poly.some((ring) => ringSelfIntersects(ring)));
-    if (!bad.length) break;
-    t *= 1.6;
-    out = geom.coordinates.map((poly) => simplifyPoly(poly, t)).filter((poly) => ringAreaKm2(poly[0]) > 0.004);
-  }
-  out = out.map((poly) => poly.map((ring) => (ringSelfIntersects(ring) ? uncrossRing(ring) : ring)))
+  out = out
     .filter((poly) => poly.length && poly.every((ring) => ring.length >= 4))
     .filter((poly) => ringAreaKm2(poly[0]) > 0.004);
   // vertex budget: escalate tolerance toward the budget but NEVER past the

@@ -25,7 +25,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 583.09,
-   "deliveredAreaSqKm": 602.34,
+   "deliveredAreaSqKm": 614.54,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -3025,7 +3025,7 @@
    "largestConnectionGapMeters": 2689,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 2,
+    "poolMediated": 1,
     "poolMediatedMaxM": 476,
     "braid": 6,
     "braidMaxM": 654
