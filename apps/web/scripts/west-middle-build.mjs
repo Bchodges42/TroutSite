@@ -743,9 +743,13 @@ const RIVER_SPECS = [
       { featureId: 'cumberland-river', label: 'Cumberland River confluence', maxM: 200 },
     ] },
   { id: 'east-fork-stones-river', cache: 'river-stones', name: 'East Fork Stones River', region: 'tn-middle-nashville',
-    gate: 'state', exact: 'East Fork Stones River', upstream: [], downstream: ['j-percy-priest-lake'] },
+    gate: 'state', exact: 'East Fork Stones River', upstream: [], downstream: ['j-percy-priest-lake'],
+    poolBound: 'j-percy-priest-lake',
+    note: 'Named coverage stops at the fork confluence ~350 m above the pool; the last stretch is the unnamed 55800 artificial path into the J. Percy Priest pool head (attached pool-bound).' },
   { id: 'west-fork-stones-river', cache: 'river-stones', name: 'West Fork Stones River', region: 'tn-middle-nashville',
-    gate: 'state', exact: 'West Fork Stones River', upstream: [], downstream: ['j-percy-priest-lake'] },
+    gate: 'state', exact: 'West Fork Stones River', upstream: [], downstream: ['j-percy-priest-lake'],
+    poolBound: 'j-percy-priest-lake',
+    note: 'Joins the East Fork at the pool-head confluence; the shared unnamed 55800 artificial path carries both forks the last ~350 m into the J. Percy Priest pool (attached pool-bound).' },
   { id: 'obey-river', cache: 'river-obey', name: 'Obey River (Dale Hollow tailwater)', region: 'tn-upper-cumberland',
     gate: REACH_GATE['obey-river'], excludePool: 'dale-hollow-lake', upstream: ['dale-hollow-lake'], downstream: ['cumberland-river'],
     anchors: [
@@ -823,11 +827,19 @@ function distPointToLinesM(p, lines) {
 //     join the chain within 80 m (prevents absorbing nearby tributaries).
 //   - gated reaches: the connector must intersect the gate window; state-
 //     gated systems: within the named-parts bbox inflated by 0.1°.
-function attachConnectors(parts, spec, gate) {
+//   - spec.poolBound (lake id): the reach's named coverage stops at a pool
+//     head and the last stretch is an unnamed artificial path INTO that pool
+//     (e.g. the Stones forks at J. Percy Priest). A 55800 candidate then
+//     attaches when ONE endpoint joins the chain within 150 m AND the far
+//     end lands within 150 m of (or inside) the DELIVERED pool polygon.
+function attachConnectors(parts, spec, gate, lakeIndex = []) {
   const connPath = join(CACHE, 'connectors.json');
   if (!existsSync(connPath)) return { parts, added: 0 };
   let conn;
   try { conn = JSON.parse(readFileSync(connPath, 'utf8')); } catch { return { parts, added: 0 }; }
+  const boundLake = spec.poolBound
+    ? lakeIndex.find((l) => l.id === spec.poolBound) ?? null
+    : null;
   const cloud = [];
   for (const p of parts) { cloud.push(p[0]); cloud.push(p[p.length - 1]); }
   const bbox = geomBBox(parts);
@@ -862,7 +874,16 @@ function attachConnectors(parts, spec, gate) {
         else if ((pr.fcode === 46006 || pr.fcode === 46003) && (pr.lengthkm ?? 9) <= 3) tol = 0.0036;
         else continue;
         const [a, b] = [l[0], l[l.length - 1]];
-        const joins = near(a, tol) && near(b, tol);
+        let joins = near(a, tol) && near(b, tol);
+        if (!joins && isArtificial && boundLake) {
+          // pool-bound mode: chain end → unnamed artificial path → pool
+          const aJoin = near(a, 0.00135);
+          const bJoin = near(b, 0.00135);
+          if (aJoin !== bJoin) { // exactly one endpoint joins the chain
+            const far = aJoin ? b : a;
+            if (pointToPolygonM(far, boundLake.geom) <= 150) joins = true;
+          }
+        }
         if (!joins) continue;
         working.push(l);
         cloud.push(a, b);
@@ -917,10 +938,9 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
     // tailwater reaches must START at the dam: drop NHD parts that begin
     // inside the upstream reservoir pool (named artificial paths continue
     // through the pool; the pool polygon carries that water instead).
-    // "Inside" means deeper than 150 m from the boundary — a boundary-zone
+    // "Inside" means deeper than SNAP_M from the boundary — a boundary-zone
     // stub whose endpoint lands within the fetch-precision band (~50 m) plus
-    // boundary rounding is the tailwater's own last metres at the dam, not
-    // the pool's through-pool carrier
+    // rounding is the tailwater's own last metres, not the pool's carrier
     if (spec.excludePool) {
       const lake = builtById.get(spec.excludePool);
       if (lake) {
@@ -953,13 +973,14 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
   // unnamed 46006 pieces) from the phase-2 connector fetch. Only parts whose
   // endpoints join the existing chain are added — nothing is fabricated, and
   // any remaining break is measured, not bridged.
-  const attached = attachConnectors(parts, spec, gate);
+  const attached = attachConnectors(parts, spec, gate, lakeIndex);
   parts = attached.parts;
   // drop foreign pool-interior parts: a connector candidate that lies inside
   // a delivered reservoir other than this reach's declared through-lakes is
-  // that lake's own artificial-path water, not this river
+  // that lake's own artificial-path water, not this river. A poolBound pool
+  // is by definition entered by this reach's own artificial path.
   if (lakeIndex.length) {
-    const through = new Set(spec.throughLakeIds ?? []);
+    const through = new Set([...(spec.throughLakeIds ?? []), ...(spec.poolBound ? [spec.poolBound] : [])]);
     const before = parts.length;
     parts = parts.filter((p) => {
       const mid = p[Math.floor(p.length / 2)];
