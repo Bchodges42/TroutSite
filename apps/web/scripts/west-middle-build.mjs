@@ -637,8 +637,8 @@ const LAKE_SPECS = [
     id: 'reelfoot-lake', cache: 'lake-reelfoot', name: 'Reelfoot Lake', type: 'lake',
     region: 'tn-west', budget: 900, tolM: 150, aliases: ['Reelfoot'],
     dam: null,
-    upstream: [], downstream: [],
-    note: 'Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name "Reading House Slough" (44.3 km²) — identity documented. Fed by Reelfoot Creek/bayous and Mississippi seepage; no named catalog river reaches the shoreline.',
+    upstream: ['running-reelfoot-bayou(unrepresented)'], downstream: ['saint-johns-bayou(managed outlet, unrepresented)'],
+    note: 'Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name "Reading House Slough" (44.3 km²) — identity documented. Actual bayou feed verified against NHD: Running Reelfoot Bayou artificial paths reach the delivered basin at 0 m from the north (Bayou du Chien joins it upstream at the KY line); Wilson Bayou\'s named course stops ~12 km east; Saint Johns Bayou is the managed outlet to the Mississippi ~18 km south. No catalog river reaches the shoreline.',
     areaFloor: 1,
   },
   {
@@ -678,7 +678,8 @@ const RIVER_SPECS = [
     note: 'Main stem (GNIS "Obion River"); forks are distinct names and excluded.' },
   { id: 'hatchie-river', cache: 'river-hatchie', name: 'Hatchie River', region: 'tn-west', allowOpenEnds: true,
     gate: 'state', exact: 'Hatchie River', upstream: [], downstream: ['mississippi-river'],
-    anchors: [{ featureId: 'mississippi-river', label: 'Mississippi River mouth', maxM: 500, informational: true, note: 'NHD named coverage stops at the Hatchie NWR wetlands short of the Mississippi' }],
+    namedCarry: true,
+    anchors: [{ featureId: 'mississippi-river', label: 'Mississippi River mouth', maxM: 500, informational: true, note: 'mouth reach is NHD 55800 artificial paths gnis-named Hatchie River through the Hatchie NWR bottomland; carried to the Mississippi line by namedCarry attach' }],
     note: 'Main stem only; South Fork Hatchie is a distinct NHD name.' },
   { id: 'wolf-river-west-tennessee', cache: 'river-wolf-west', name: 'Wolf River', region: 'tn-west', allowOpenEnds: true,
     gate: 'state', upstream: [], downstream: ['mississippi-river'],
@@ -820,16 +821,12 @@ function distPointToLinesM(p, lines) {
   return best;
 }
 // near-duplicate reach collapse: NHD carries the same physical reach under
-// several OBJECTIDs (named + unnamed carrier, VPU seams, re-digitizations)
-// with slightly different vertex lists, so exact-signature dedupe misses
-// them. Two parts whose quantized endpoint pair matches AND whose PATHS
-// coincide (every vertex of each within 40 m of the other's path) are the
-// same reach — keep the most detailed copy. Left in place, duplicates
-// double-draw water (the first builds delivered red-river at 151.6 km of
-// 106.7 km source) and make the welder's anti-parallel junction guard split
-// chains at the duplicated reach's ends (sinking-creek-wilson fractured
-// into 6 chains this way). Braided channels between the same confluences
-// diverge on path and are all kept.
+// several OBJECTIDs (named + unnamed carrier, VPU seams) with slightly
+// different vertex lists, so exact-signature dedupe misses them. Two parts
+// whose quantized endpoint pair, length, and midpoint all agree are the same
+// reach — keep the most detailed copy. Left in place, duplicates make the
+// welder's anti-parallel junction guard split chains at the duplicated
+// reach's ends (sinking-creek-wilson fractured into 6 chains this way).
 function collapseDuplicateReaches(parts) {
   const q = (v) => Math.round(v / 0.0005);
   const groups = new Map();
@@ -841,10 +838,14 @@ function collapseDuplicateReaches(parts) {
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(p);
   }
-  const pathDistM = (p, q2) => {
+  // braid guard: two parts sharing endpoints are duplicates only if their
+  // PATHS coincide — every vertex of each lies within DUP_TOL_M of the
+  // other's path (precision-variant re-digitizations qualify; braided
+  // channels between the same confluences do not and are all kept)
+  const pathDistM = (p, q) => {
     let best = Infinity;
-    for (let i = 0; i < q2.length - 1; i++) {
-      const d = pointToSegmentM(p, q2[i], q2[i + 1]);
+    for (let i = 0; i < q.length - 1; i++) {
+      const d = pointToSegmentM(p, q[i], q[i + 1]);
       if (d < best) best = d;
     }
     return best;
@@ -889,13 +890,20 @@ function attachConnectors(parts, spec, gate, lakeIndex = []) {
   const boundLake = spec.poolBound
     ? lakeIndex.find((l) => l.id === spec.poolBound) ?? null
     : null;
+  const carryRe = spec.namedCarry
+    ? (spec.exact instanceof RegExp ? spec.exact : spec.exact ? new RegExp(`^${spec.exact}$`, 'i') : null)
+    : null;
   const cloud = [];
   for (const p of parts) { cloud.push(p[0]); cloud.push(p[p.length - 1]); }
   const bbox = geomBBox(parts);
   const near = (pt, tolDeg) => cloud.some((e) => Math.abs(e[0] - pt[0]) < tolDeg && Math.abs(e[1] - pt[1]) < tolDeg);
   const working = parts.map((p) => p.slice());
   let added = 0;
-  for (let pass = 0; pass < 3; pass++) {
+  // named-carry chaining needs extra cloud-growth passes to walk piecewise
+  // NHD chains (hatchie mouth: 4 successive 55800 paths); the default and
+  // pool-bound rules stop after 3 to limit reach creep
+  const passes = spec.namedCarry ? 6 : 3;
+  for (let pass = 0; pass < passes; pass++) {
     let addedThisPass = 0;
     for (const f of conn.features ?? []) {
       const pr = f.properties ?? {};
@@ -932,6 +940,19 @@ function attachConnectors(parts, spec, gate, lakeIndex = []) {
             const far = aJoin ? b : a;
             if (pointToPolygonM(far, boundLake.geom) <= 150) joins = true;
           }
+        }
+        if (!joins && isArtificial && spec.namedCarry && carryRe && pr.gnis_name && carryRe.test(pr.gnis_name)) {
+          // named-carry mode (bottomland mouths, e.g. hatchie-river →
+          // Mississippi across Hatchie NWR): NHD carries the river's own
+          // mouth reach as a CHAIN of 55800 artificial paths gnis-named for
+          // the river itself. A candidate attaches when ONE endpoint joins
+          // the growing cloud within 150 m — the far end is NHD's own
+          // continuation of the same named water, verified to chain 0 m
+          // end-to-end to the Mississippi. The pass loop grows the cloud so
+          // the whole named chain attaches piecewise.
+          const aJoin = near(a, 0.00135);
+          const bJoin = near(b, 0.00135);
+          if (aJoin !== bJoin) joins = true;
         }
         if (!joins) continue;
         working.push(l);
@@ -1018,7 +1039,9 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
     parts = parts.filter(stateWindowKeeps);
   }
   if (!parts.length) { log.push({ id: spec.id, error: 'all parts outside reach window' }); return null; }
-  // collapse near-duplicate reaches BEFORE welding (see function doc)
+  // collapse near-duplicate reaches (same endpoint pair + length + midpoint,
+  // different OBJECTID/vertex precision) BEFORE welding — duplicates make the
+  // junction guard split chains at the duplicated reach's ends
   {
     const before = parts.length;
     const collapsed = collapseDuplicateReaches(parts);
@@ -1057,8 +1080,8 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
   }
   // final dedupe: connector boxes overlap, so the same OBJECTID can arrive
   // several times; identical welded chains would render as multi-drawn lines.
-  // Near-duplicate collapse then removes attached carriers whose geometry
-  // duplicates a named reach (endpoint pair + coincident path).
+  // Near-duplicate collapse then removes attached unnamed carriers whose
+  // geometry duplicates a named reach (endpoint pair + length + midpoint).
   {
     const seenSig = new Set();
     parts = parts.filter((p) => {

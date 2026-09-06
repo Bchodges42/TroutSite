@@ -403,8 +403,12 @@
     "20000700088213",
     "20000700087371"
    ],
-   "upstreamFeatureIds": [],
-   "downstreamFeatureIds": [],
+   "upstreamFeatureIds": [
+    "running-reelfoot-bayou(unrepresented)"
+   ],
+   "downstreamFeatureIds": [
+    "saint-johns-bayou(managed outlet, unrepresented)"
+   ],
    "dam": null,
    "sourceAreaSqKm": 45.36,
    "deliveredAreaSqKm": 51.39,
@@ -417,7 +421,7 @@
     "Census TIGER/Line 2024 AREAWATER window sum: 0 km²"
    ],
    "verificationState": "PASS",
-   "notes": "Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name \"Reading House Slough\" (44.3 km²) — identity documented. Fed by Reelfoot Creek/bayous and Mississippi seepage; no named catalog river reaches the shoreline.",
+   "notes": "Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name \"Reading House Slough\" (44.3 km²) — identity documented. Actual bayou feed verified against NHD: Running Reelfoot Bayou artificial paths reach the delivered basin at 0 m from the north (Bayou du Chien joins it upstream at the KY line); Wilson Bayou's named course stops ~12 km east; Saint Johns Bayou is the managed outlet to the Mississippi ~18 km south. No catalog river reaches the shoreline.",
    "connections": {}
   },
   {
@@ -752,17 +756,17 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 408.73,
-   "deliveredLengthKm": 330.92,
+   "deliveredLengthKm": 339.61,
    "largestConnectionGapMeters": 2107,
    "termini": [
     {
      "anchor": "Mississippi River mouth",
      "target": "mississippi-river",
-     "distanceM": 3718,
+     "distanceM": 0,
      "maxM": 500,
-     "ok": false,
+     "ok": true,
      "informational": true,
-     "note": "NHD named coverage stops at the Hatchie NWR wetlands short of the Mississippi"
+     "note": "mouth reach is NHD 55800 artificial paths gnis-named Hatchie River through the Hatchie NWR bottomland; carried to the Mississippi line by namedCarry attach"
     }
    ],
    "chainSeparations": {
