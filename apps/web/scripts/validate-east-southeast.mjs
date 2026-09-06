@@ -227,6 +227,19 @@ const CHAINS = [
   // the two lake polygons span the canal (visual QA: knoxville-system.png).
   { line: 'little-tennessee-river', target: { lake: 'fort-loudoun-lake' }, maxM: 1200 },
   { line: 'little-tennessee-river', target: { lake: 'chilhowee-lake' }, maxM: 400 },
+  // geo/east-fix rebuild — rebuilt reaches must terminate at their declared
+  // pools/confluences (the throughLakeIds gate below checks the through-route)
+  { line: 'nolichucky-river', target: { lake: 'douglas-lake' }, maxM: 400 },
+  { line: 'french-broad-river', target: { lake: 'douglas-lake' }, maxM: 400 },
+  { line: 'french-broad-river', target: { lake: 'fort-loudoun-lake' }, maxM: 600 },
+  { line: 'pigeon-river', target: { lake: 'douglas-lake' }, maxM: 400 },
+  { line: 'emory-river', target: { lake: 'watts-bar-lake' }, maxM: 400 },
+  { line: 'sequatchie-river', target: { lake: 'nickajack-lake' }, maxM: 400 },
+  { line: 'powell-river', target: { lake: 'norris-lake' }, maxM: 400 },
+  { line: 'holston-river', target: { dam: 'cherokee' }, maxM: 800 },
+  { line: 'obed-river', target: { line: 'emory-river' }, maxM: 300 },
+  { line: 'new-river', target: { line: 'clear-fork' }, maxM: 500 },
+  { line: 'horse-creek-greene', target: { line: 'nolichucky-river' }, maxM: 500 },
 ];
 for (const c of CHAINS) {
   const f = rivers.get(c.line);
@@ -277,6 +290,82 @@ else {
     for (const r of t.records) {
       if (!r.sourceIdentifiers?.length) fail(r.featureId, 'topology record missing sourceIdentifiers');
       if (r.verificationState !== 'PASS' && r.verificationState !== 'UNRESOLVED') fail(r.featureId, `bad verificationState ${r.verificationState}`);
+    }
+    // ---- geo/east-fix rebuild gates -------------------------------------
+    // Welded rivers: ≤ 40 chains, source-length parity (full-named-extent
+    // reaches within 10% of the NHD lengthkm sum; gated/state-cut reaches
+    // must keep ≥ half the source length), through-pool routes real, and no
+    // unexplained mid-course gap over the 1 km policy line.
+    const topoById = new Map(t.records.map((r) => [r.featureId, r]));
+    const westMiddleLakes = new Map();
+    try {
+      const wm = JSON.parse(readFileSync(path.join(VERIFIED, 'west-middle.geojson'), 'utf8'));
+      for (const f of wm.features ?? []) if (f.geometry?.type?.endsWith('Polygon')) westMiddleLakes.set(f.properties.id, f.geometry);
+    } catch { /* west-middle file optional for the through-lake existence check */ }
+    const REBUILT_RIVERS = new Set([
+      'tennessee-river', 'french-broad-river', 'holston-river', 'nolichucky-river', 'powell-river',
+      'little-tennessee-river', 'clinch-river', 'hiwassee-river', 'obed-river', 'daddys-creek',
+      'clear-fork', 'piney-river-rhea', 'emory-river', 'new-river', 'ocoee-river', 'pigeon-river',
+      'watauga-river', 'south-holston-river', 'little-river', 'upper-roan-creek', 'horse-creek-greene',
+      'richardson-byrd-creek', 'indian-creek-claiborne', 'north-fork-holston-river', 'boone-tailwater',
+      'sequatchie-river', 'ft-patrick-henry-tailwater',
+    ]);
+    for (const id of REBUILT_RIVERS) {
+      const f = rivers.get(id);
+      if (!f) { fail(id, 'rebuilt reach missing'); continue; }
+      const rec = topoById.get(id);
+      if (!rec) continue;
+      const chains = f.geometry.type === 'MultiLineString' ? f.geometry.coordinates.length : 1;
+      if (chains > 40) fail(id, `rebuilt reach has ${chains} chains (> 40 weld target)`);
+      if (rec.sourceLengthKm && rec.deliveredLengthKm) {
+        const ratio = rec.deliveredLengthKm / rec.sourceLengthKm;
+        const floor = rec.reachScope === 'gated' ? 0.5 : 0.9;
+        if (ratio < floor || ratio > 1.1) {
+          fail(id, `delivered length ${rec.deliveredLengthKm} km is ${(ratio * 100).toFixed(0)}% of NHD source ${rec.sourceLengthKm} km (scope ${rec.reachScope ?? 'full-named-extent'}, floor ${Math.round(floor * 100)}%)`);
+        } else {
+          notes.push(`OK ${id}: length ${rec.deliveredLengthKm} km = ${(ratio * 100).toFixed(0)}% of NHD ${rec.sourceLengthKm} km (${rec.reachScope ?? 'full-named-extent'})`);
+        }
+      }
+      const gap = rec.largestConnectionGapMeters ?? 0;
+      if (gap > 1000) fail(id, `unexplained mid-course gap ${gap} m exceeds the 1 km policy (must be documented as a real seam)`);
+      for (const lid of f.properties.throughLakeIds ?? []) {
+        const lakeGeom = lakes.get(lid)?.geometry ?? westMiddleLakes.get(lid);
+        if (!lakeGeom) { fail(id, `throughLakeIds references missing lake ${lid}`); continue; }
+        let best = Infinity;
+        for (const line of (f.geometry.type === 'MultiLineString' ? f.geometry.coordinates : [f.geometry.coordinates])) {
+          for (let i = 0; i < line.length; i += 3) {
+            const d = distToGeom(line[i], lakeGeom);
+            if (d < best) best = d;
+            if (best === 0) break;
+          }
+          if (best === 0) break;
+        }
+        if (best > 150) fail(id, `through-lake route to ${lid} never reaches the pool (nearest ${Math.round(best)} m)`);
+        else notes.push(`OK ${id}: through-lake ${lid} reached (${Math.round(best)} m)`);
+      }
+      for (const tr of rec.termini ?? []) {
+        if (!tr.ok && !tr.informational) fail(id, `terminus anchor '${tr.anchor}' is ${tr.distanceM} m away (max ${tr.maxM} m)`);
+      }
+      if (rec.tailwaterStartDistanceM != null && rec.tailwaterStartDistanceM > 800) {
+        fail(id, `tailwater starts ${rec.tailwaterStartDistanceM} m from the dam (> 800 m)`);
+      }
+    }
+    // Rebuilt lakes: part ceilings + pool-stage area windows + identity source
+    const REBUILT_LAKES = {
+      'norris-lake': { maxParts: 3, areaKm2: [90, 100], source: 'nhd-hr' },
+      'nickajack-lake': { maxParts: 3, areaKm2: [40, 47], source: 'twra-reservoirs' },
+      'boone-lake': { maxParts: 3, areaKm2: [15, 22], source: 'nhd-hr' },
+    };
+    for (const [id, gate] of Object.entries(REBUILT_LAKES)) {
+      const f = lakes.get(id);
+      if (!f) { fail(id, 'rebuilt lake missing'); continue; }
+      if (f.properties.source !== gate.source) fail(id, `source ${f.properties.source} != expected ${gate.source} (identity source policy)`);
+      const parts = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates.length : 1;
+      if (parts > gate.maxParts) fail(id, `rebuilt lake has ${parts} parts (> ${gate.maxParts})`);
+      const area = f.properties.areaSqKm;
+      if (typeof area !== 'number') fail(id, 'rebuilt lake missing areaSqKm');
+      else if (area < gate.areaKm2[0] || area > gate.areaKm2[1]) fail(id, `area ${area} km² outside expected pool-stage window [${gate.areaKm2}]`);
+      else notes.push(`OK ${id}: ${parts} parts, ${area} km² (pool-stage window ${gate.areaKm2.join('–')})`);
     }
   }
 }
