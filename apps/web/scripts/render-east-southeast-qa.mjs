@@ -11,7 +11,7 @@
  *
  * Run: node scripts/render-east-southeast-qa.mjs [page ...]   (default: all)
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -22,11 +22,10 @@ const QA = path.join(CACHE, 'qa');
 // playwright-core is installed in the workspace pnpm store (apps/e2e deps are
 // not linked); resolve the chromium driver from there.
 const pwStore = path.join(webRoot, '..', '..', 'node_modules', '.pnpm');
-const pwDir = readDirSafe(pwStore)?.find((n) => /^playwright-core@/.test(n));
+const pwDir = readdirSync(pwStore).find((n) => /^playwright-core@/.test(n));
 if (!pwDir) throw new Error('playwright-core not found in pnpm store (run pnpm install)');
 const { chromium } = createRequire(path.join(pwStore, pwDir, 'package.json'))('playwright-core');
 
-function readDirSafe(p) { try { return require('node:fs').readdirSync(p); } catch { return null; } }
 
 const fc = JSON.parse(readFileSync(path.join(webRoot, 'atlas-sources', 'verified', 'east-southeast.geojson'), 'utf8'));
 const byId = Object.fromEntries(fc.features.map((f) => [f.properties.id, f]));
@@ -133,10 +132,11 @@ function geomPaths(geom, proj) {
   return out;
 }
 
-function pageHtml(bb, opts) {
+async function pageHtml(bb, opts) {
   const W = 1500, H = 1050;
   const proj = projectFactory(bb, W, H);
   const parts = [];
+  if (opts.imagery) parts.push(await imageryLayer(bb, proj));
   for (const g of counties) {
     for (const p of geomPaths(g.geometry, proj)) parts.push(`<path d="${p}" fill="none" stroke="#cccccc" stroke-width="0.6"/>`);
   }
@@ -146,7 +146,6 @@ function pageHtml(bb, opts) {
   for (const g of tnBoundary) {
     for (const p of geomPaths(g.geometry, proj)) parts.push(`<path d="${p}" fill="none" stroke="#555555" stroke-width="1.6"/>`);
   }
-  if (opts.imagery) parts.push(`<rect width="${W}" height="${H}" fill="#dde5ea"/>`);
   // TWRA pool outlines (identity cross-check)
   if (opts.twraNames?.length) {
     for (const f of twraFeatures) {
@@ -248,7 +247,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1520, height: 1070 } });
 for (const p of PAGES) {
   if (onlyPages.length && !onlyPages.includes(p.name)) continue;
-  const html = pageHtml(p.bb, { ...(p.opts ?? {}), ...(p.ids ? { ids: p.ids } : {}) });
+  const html = await pageHtml(p.bb, { ...(p.opts ?? {}), ...(p.ids ? { ids: p.ids } : {}) });
   const file = path.join(QA, `${p.name}.png`);
   await page.setContent(html, { waitUntil: 'load' });
   await page.screenshot({ path: file });

@@ -35,7 +35,8 @@ import shapefile from 'shapefile';
 const webRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = path.join(webRoot, '.atlas-src', 'east-southeast');
 const OUT_DIR = path.join(webRoot, 'atlas-sources', 'verified');
-const retrieved = JSON.parse(readFileSync(path.join(CACHE, 'fetched.json'), 'utf8'));
+const fetchedPath = path.join(CACHE, 'fetched.json');
+const retrieved = existsSync(fetchedPath) ? JSON.parse(readFileSync(fetchedPath, 'utf8')) : {};
 
 const KM2_PER_DEG2 = 12392 * Math.cos((36 * Math.PI) / 180); // planar deg^2 -> km^2 near TN lat
 

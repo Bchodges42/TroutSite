@@ -84,7 +84,11 @@ function ringAreaKm2(ring) {
 function polyAreaKm2(geom) {
   const polys = geom.type === 'MultiPolygon' ? geom.coordinates : geom.type === 'Polygon' ? [geom.coordinates] : [];
   let area = 0;
-  for (const poly of polys) for (const ring of poly) area += Math.abs(ringAreaKm2(ring));
+  for (const poly of polys) {
+    // outer ring minus holes (NHD pool polygons carry island holes)
+    area += Math.abs(ringAreaKm2(poly[0]));
+    for (let i = 1; i < poly.length; i++) area -= Math.abs(ringAreaKm2(poly[i]));
+  }
   return area;
 }
 function geomBBox(coords) {
@@ -347,6 +351,16 @@ function weldLines(lines) {
             const pa = A.end === 0 ? parts[A.i][0] : parts[A.i][parts[A.i].length - 1];
             const pb = B.end === 0 ? parts[B.i][0] : parts[B.i][parts[B.i].length - 1];
             if (Math.abs(pa[0] - pb[0]) >= eps || Math.abs(pa[1] - pb[1]) >= eps) continue;
+            // duplicate parallel carries (VPU-seam re-digitizations) share
+            // BOTH endpoints — welding them folds the chain back over itself.
+            // Real continuations never share both ends, so skip such pairs
+            // (the near-duplicate parts themselves are removed upstream by
+            // dedupeNearDuplicateParts).
+            {
+              const fa = A.end === 0 ? parts[A.i][parts[A.i].length - 1] : parts[A.i][0];
+              const fb = B.end === 0 ? parts[B.i][parts[B.i].length - 1] : parts[B.i][0];
+              if (haversine(fa, fb) < 150) continue;
+            }
             const meeting = [...list, ...neighborLists[1], ...neighborLists[2], ...neighborLists[3]];
             const distinct = new Set();
             for (const E of meeting) {
@@ -382,8 +396,13 @@ function weldLines(lines) {
               if (!bestPair || bestScore < 20) continue;
               if (!(bestPair[0].idx === A.i && bestPair[1].idx === B.i) && !(bestPair[0].idx === B.i && bestPair[1].idx === A.i)) continue;
             }
+            // Orient B so its SHARED vertex joins A's shared vertex: reverse
+            // iff the two shared ends are the SAME side (B.end === A.end).
+            // (Reversing on B.end === 1 alone — the west-middle original —
+            // misjoins A0+B1 merges and welds a straight chord across the
+            // basin; caught here by km-conservation instrumentation.)
             let seg = parts[B.i].slice();
-            if (B.end === 1) seg.reverse();
+            if (B.end === A.end) seg.reverse();
             parts[A.i] = A.end === 0 ? seg.concat(parts[A.i].slice(1)) : parts[A.i].concat(seg.slice(1));
             parts[B.i] = null;
             return true;
@@ -398,7 +417,9 @@ function weldLines(lines) {
   return parts.filter(Boolean);
 }
 
-// classify chain separations for the topology record (west-middle gapReport)
+// classify chain ends for the topology record (west-middle gapReport,
+// adapted: attachment is measured against other chains' GEOMETRY, so braid
+// loops and tributary junctions that rejoin mid-chain are connected, not gaps)
 function gapReport(lines, lakeIndex) {
   const chains = lines.map((l, i) => ({ i, l }));
   const ends = [];
@@ -409,39 +430,99 @@ function gapReport(lines, lakeIndex) {
   });
   const bear = new Map();
   for (const e of ends) bear.set(`${e.ci}:${e.at}`, arrivalBearing(chains[e.ci].l, e.at));
-  let worstUnexplained = 0, wp = null;
+  // segment index per chain with bbox prefilter
+  const chainBBox = chains.map((c) => geomBBox(c.l));
+  function distToChainGeomM(p, ci, skipSelfTouching) {
+    let best = Infinity;
+    for (const c of chains) {
+      if (c.i === ci) continue;
+      const b = chainBBox[c.i];
+      if (p[0] < b[0] - 0.05 || p[0] > b[2] + 0.05 || p[1] < b[1] - 0.05 || p[1] > b[3] + 0.05) continue;
+      const l = c.l;
+      for (let k = 0; k < l.length - 1; k++) {
+        const d = pointToSegmentM(p, l[k], l[k + 1]);
+        if (d < best) best = d;
+      }
+    }
+    if (best === Infinity && skipSelfTouching) {
+      // self-rejoining lasso chains: an end may touch the chain's own body
+      // (diversion loops) — skip the segments adjacent to this end
+      const l = chains[ci].l;
+      const interior = l.slice(3, l.length - 3);
+      const b = geomBBox(interior.length >= 2 ? interior : l);
+      if (p[0] >= b[0] - 0.05 && p[0] <= b[2] + 0.05 && p[1] >= b[1] - 0.05 && p[1] <= b[3] + 0.05) {
+        for (let k = 0; k < interior.length - 1; k++) {
+          const d = pointToSegmentM(p, interior[k], interior[k + 1]);
+          if (d < best) best = d;
+        }
+      }
+    }
+    return best;
+  }
+  function nearestOtherEndM(p, ci) {
+    let best = Infinity;
+    for (const o of ends) {
+      if (o.ci === ci) continue;
+      const d = haversine(p, o.p);
+      if (d < best) best = d;
+    }
+    return best;
+  }
+  let worstSeam = 0, wp = null;
   let worstPool = 0, worstBraid = 0;
-  let poolHits = 0, braidHits = 0;
-  for (let i = 0; i < ends.length; i++) {
-    const e = ends[i];
-    let m = Infinity, mj = -1;
-    for (let j = 0; j < ends.length; j++) {
-      if (ends[j].ci === e.ci) continue;
-      const d = haversine(e.p, ends[j].p);
-      if (d < m) { m = d; mj = j; }
-    }
-    if (m >= 3000) continue;
-    const b0 = bear.get(`${e.ci}:${e.at}`);
-    const other = ends[mj];
-    const b1raw = bear.get(`${other.ci}:${other.at}`);
-    let braid = false;
-    if (b0 != null && b1raw != null) {
-      const diff = Math.abs(((b0 - b1raw + 180 + 540) % 360) - 180);
-      braid = diff <= 60;
-    }
-    if (braid) { braidHits++; worstBraid = Math.max(worstBraid, m); continue; }
-    let lakeM = Infinity;
+  let poolHits = 0, braidHits = 0, attachments = 0, openEnds = 0;
+  const unexplainedEnds = [];
+  for (const e of ends) {
+    const dGeom = distToChainGeomM(e.p, e.ci, false);
+    // self-rejoining lasso chains (diversion loops): a rejoin touch counts as
+    // a connection (≤ SNAP_M) and may lower the seam distance, but a far
+    // own-chain branch (U-shaped reach) must never fabricate a seam
+    const dSelf = distToChainGeomM(e.p, e.ci, true);
+    const dSelfTouch = dSelf < dGeom && dSelf <= 600 ? dSelf : Infinity;
+    if (Math.min(dGeom, dSelfTouch) <= SNAP_M) { attachments++; continue; } // junction/loop/lasso rejoin — connected
+    let poolM = Infinity;
     for (const lake of lakeIndex) {
       const b = lake.bbox;
       if (e.p[0] < b[0] - 0.02 || e.p[0] > b[2] + 0.02 || e.p[1] < b[1] - 0.02 || e.p[1] > b[3] + 0.02) continue;
-      lakeM = Math.min(lakeM, pointToPolygonM(e.p, lake.geom));
+      poolM = Math.min(poolM, pointToPolygonM(e.p, lake.geom));
     }
-    if (lakeM <= SNAP_M) { poolHits++; worstPool = Math.max(worstPool, m); continue; }
-    if (m > worstUnexplained) { worstUnexplained = m; wp = e.p; }
+    if (poolM <= SNAP_M) {
+      poolHits++;
+      const nEnd = nearestOtherEndM(e.p, e.ci);
+      if (Number.isFinite(nEnd)) worstPool = Math.max(worstPool, nEnd);
+      continue;
+    }
+    const dEnd = nearestOtherEndM(e.p, e.ci);
+    const b0 = bear.get(`${e.ci}:${e.at}`);
+    const near = Math.min(dGeom, dSelfTouch, dEnd);
+    if (near < 3000 && b0 != null) {
+      // facing neighbour roughly continues this chain's arrival bearing?
+      // (side channel of a braided reach; both drawn, no visual break)
+      let bestBraid = null, bestDiff = Infinity;
+      for (const o of ends) {
+        if (o.ci === e.ci) continue;
+        const d = haversine(e.p, o.p);
+        if (d > 3000) continue;
+        const b1 = bear.get(`${o.ci}:${o.at}`);
+        if (b1 == null) continue;
+        const diff = Math.abs(((b0 - b1 + 180 + 540) % 360) - 180);
+        if (diff < bestDiff) { bestDiff = diff; bestBraid = { d, diff }; }
+      }
+      if (bestBraid && bestBraid.diff <= 60 && bestBraid.d <= SNAP_M * 20) {
+        braidHits++; worstBraid = Math.max(worstBraid, bestBraid.d); continue;
+      }
+    }
+    if (near >= 5000) { openEnds++; continue; } // reach terminus, no continuation nearby
+    unexplainedEnds.push({ at: e.p.map((v) => +v.toFixed(4)), nearestM: Math.round(near) });
+    if (near > worstSeam) { worstSeam = near; wp = e.p; }
   }
+  unexplainedEnds.sort((a, b) => b.nearestM - a.nearestM);
   return {
-    largestGapM: worstUnexplained === 0 ? null : Math.round(worstUnexplained),
+    largestGapM: worstSeam === 0 ? null : Math.round(worstSeam),
     gapAt: wp ? wp.map((v) => +v.toFixed(4)) : null,
+    unexplainedEnds: unexplainedEnds.slice(0, 12),
+    attachments,
+    openEnds,
     poolMediated: poolHits,
     poolMediatedMaxM: worstPool ? Math.round(worstPool) : null,
     braidSeparations: braidHits,
@@ -499,14 +580,20 @@ function loadYaml(id) {
 const LINE_TYPES = ['river', 'creek', 'stream', 'tailrace', 'spring'];
 const STILL_TYPES = ['lake', 'pond'];
 
-// state polygons for documented state cuts
-const statePolys = [];
+// state polygons for documented state cuts (flat lists of RINGS)
+const stateRings = new Map(); // lowercased state name -> [ring, ...]
 {
   const j = JSON.parse(readFileSync(STATES_CTX, 'utf8'));
   for (const f of j.features) {
     const g = f.geometry;
-    const polys = g.type === 'MultiPolygon' ? g.coordinates : [g.coordinates];
-    statePolys.push({ name: f.properties.name ?? f.properties.NAME, polys });
+    const rings = g.type === 'MultiPolygon' ? g.coordinates.flat() : g.coordinates;
+    const fullName = String(f.properties.name ?? f.properties.NAME ?? '').toLowerCase();
+    const abbr = String(f.properties.state ?? f.properties.STUSPS ?? '').toLowerCase();
+    for (const key of [fullName, abbr]) {
+      if (!key) continue;
+      if (!stateRings.has(key)) stateRings.set(key, []);
+      stateRings.get(key).push(...rings);
+    }
   }
 }
 const tnPolys = [];
@@ -514,23 +601,24 @@ const tnPolys = [];
   const j = JSON.parse(readFileSync(TN_BOUNDARY, 'utf8'));
   for (const f of j.features) {
     const g = f.geometry;
-    tnPolys.push(...(g.type === 'MultiPolygon' ? g.coordinates : [g.coordinates]));
+    tnPolys.push(...(g.type === 'MultiPolygon' ? g.coordinates.flat() : g.coordinates));
   }
 }
 function pointInState(p, stateName) {
   if (stateName === 'tn') return pointInRings(p, tnPolys);
-  const st = statePolys.find((s) => s.name.toLowerCase() === stateName);
-  if (!st) throw new Error(`state polygon missing: ${stateName}`);
-  return st.polys.some((poly) => pointInRings(p, poly));
+  const rings = stateRings.get(stateName);
+  if (!rings) throw new Error(`state polygon missing: ${stateName}`);
+  return pointInRings(p, rings);
 }
-// keep the LONGEST contiguous in-state run of vertices per part (documented
-// state cut, same rule as the previous east lane's little-tennessee cut)
-function stateCut(parts, stateName) {
+// keep the LONGEST contiguous in-TENNESSEE run of vertices per part (the
+// documented state cut: cross-state headwater water beyond the TN line is
+// excluded — the spec.stateCut value records WHICH neighbor is excluded)
+function stateCut(parts) {
   const out = [];
   for (const line of parts) {
     let bestStart = -1, bestLen = 0, curStart = -1;
     for (let i = 0; i <= line.length; i++) {
-      const inside = i < line.length && pointInState(line[i], stateName);
+      const inside = i < line.length && pointInState(line[i], 'tn');
       if (inside && curStart < 0) curStart = i;
       if ((!inside || i === line.length) && curStart >= 0) {
         if (i - curStart > bestLen) { bestLen = i - curStart; bestStart = curStart; }
@@ -541,11 +629,12 @@ function stateCut(parts, stateName) {
   }
   return out;
 }
-// drop parts with either endpoint inside the named pool (tailwater reaches
-// start at the dam, not inside the upstream reservoir)
+// drop pool-INTERIOR parts (midpoint inside the pool): named artificial paths
+// that carry the water through the pool are the pool's own water. Parts that
+// merely touch the pool edge at a dam crest are the tailwater's start and stay.
 function excludePoolParts(parts, poolGeom) {
   if (!poolGeom) return parts;
-  return parts.filter((p) => !pointInPolygonGeom(p[0], poolGeom) && !pointInPolygonGeom(p[p.length - 1], poolGeom));
+  return parts.filter((p) => !pointInPolygonGeom(p[Math.floor(p.length / 2)], poolGeom));
 }
 // trim slackwater strands inside a delivered pool: keep the longest
 // outside-run per part (the pool polygon carries that water)
@@ -562,6 +651,38 @@ function trimInsideLake(parts, lakeGeom) {
     }
     return bestLen >= 2 ? line.slice(bestStart, bestStart + bestLen) : [];
   }).filter((l) => l.length >= 2);
+}
+// drop re-digitized duplicate parts (VPU-seam double carries with differing
+// vertices): a part whose >=80% of vertices lie within 40 m of the union of
+// the already-kept parts' polylines is a redundant second digitization of the
+// same water — whole-part discipline keeps the first copy
+const __nearDupes = new Map();
+function trimmedDebugDupes(id, n) { __nearDupes.set(id, n); }
+function dedupeNearDuplicateParts(parts) {
+  const accepted = [];
+  const acceptedBBoxes = [];
+  const nearAccepted = (pt) => {
+    for (let ai = 0; ai < accepted.length; ai++) {
+      const b = acceptedBBoxes[ai];
+      if (pt[0] < b[0] - 0.001 || pt[0] > b[2] + 0.001 || pt[1] < b[1] - 0.001 || pt[1] > b[3] + 0.001) continue;
+      const l = accepted[ai];
+      for (let k = 0; k < l.length - 1; k++) {
+        if (pointToSegmentM(pt, l[k], l[k + 1]) < 40) return true;
+      }
+    }
+    return false;
+  };
+  let dropped = 0;
+  for (const p of parts) {
+    let nearCount = 0;
+    const step = Math.max(1, Math.floor(p.length / 40));
+    let tested = 0;
+    for (let i = 0; i < p.length; i += step) { tested++; if (nearAccepted(p[i])) nearCount++; }
+    if (tested >= 2 && nearCount / tested >= 0.8) { dropped++; continue; }
+    accepted.push(p);
+    acceptedBBoxes.push(geomBBox(p));
+  }
+  return { parts: accepted, dropped };
 }
 function dedupeParts(parts, precision) {
   const seenSig = new Set();
@@ -636,7 +757,11 @@ const RIVER_SPECS = [
   },
   {
     id: 'north-fork-holston-river', name: 'North Fork Holston River', cache: 'river-north-fork-holston', exact: /^North Fork Holston River$/i,
-    gates: [{ minLon: -82.95, maxLon: -82.56, minLat: 36.45, maxLat: 36.75 }],
+    // the fork forms the TN/VA line for its final miles: the VA-side braided
+    // water sits at lat >= 36.629, so a bbox gate at 36.625 keeps the
+    // Tennessee reach (to the Kingsport confluence) and drops VA water
+    // whole-part; a state cut would fragment on boundary vertices
+    gates: [{ minLon: -82.95, maxLon: -82.42, minLat: 36.45, maxLat: 36.625 }],
     allowOpenEnds: true,
     upstream: ['north-fork-holston-river (continues in VA)'], downstream: ['holston-river'],
     note: 'North Fork Holston from the TN/VA line to the Kingsport confluence (the fork forms part of the state line; VA water upstream is out of scope).',
@@ -644,7 +769,8 @@ const RIVER_SPECS = [
   {
     id: 'clinch-river', name: 'Clinch River (Norris tailwater)', cache: 'river-clinch', exact: /^Clinch River$/i,
     reachScope: 'gated',
-    gates: [{ minLon: -84.60, maxLon: -84.07, minLat: 35.70, maxLat: 36.30 }],
+    gates: [{ minLon: -84.60, maxLon: -84.075, minLat: 35.70, maxLat: 36.30 }],
+    fillNear: [{ dam: 'norris', r: 1000 }],
     excludePool: 'norris-lake', throughLakeIds: ['melton-hill-lake', 'watts-bar-lake'], allowOpenEnds: true,
     upstream: ['norris-lake'], downstream: ['watts-bar-lake', 'melton-hill-lake'],
     anchors: [{ lon: -84.08214, lat: 36.21563, label: 'USGS 03533000 Clinch River below Norris Dam', maxM: 500 }],
@@ -661,10 +787,10 @@ const RIVER_SPECS = [
   {
     id: 'boone-tailwater', name: 'Boone Tailwater (South Fork Holston River)', reachScope: 'gated', cache: 'river-south-fork-holston', exact: /^South Fork Holston River$/i,
     gates: [{ minLon: -82.515, maxLon: -82.43, minLat: 36.35, maxLat: 36.6 }],
-    excludePool: 'boone-lake', trimInsideLakeIds: ['fort-patrick-henry-lake'],
+    excludePool: 'boone-lake', throughLakeIds: ['fort-patrick-henry-lake'],
     upstream: ['boone-lake'], downstream: ['fort-patrick-henry-lake'],
     anchors: [{ lon: -82.43792, lat: 36.44066, label: 'USGS 03486810 South Fork Holston River at Boone Dam', maxM: 500 }],
-    note: 'Boone Dam to the Fort Patrick Henry Lake head (NHD pool edge); the pool carries the water to Fort Patrick Henry Dam.',
+    note: 'Boone Dam through the Fort Patrick Henry pool (declared through-route) to Fort Patrick Henry Dam, where the ft-patrick-henry-tailwater reach begins.',
   },
   {
     id: 'ft-patrick-henry-tailwater', name: 'Fort Patrick Henry Tailwater (South Fork Holston River)', reachScope: 'gated', cache: 'river-south-fork-holston', exact: /^South Fork Holston River$/i,
@@ -696,7 +822,7 @@ const RIVER_SPECS = [
   {
     id: 'pigeon-river', name: 'Pigeon River (Hartford corridor)', reachScope: 'gated', cache: 'river-pigeon', exact: /^Pigeon River$/i,
     gates: [{ minLon: -83.45, maxLon: -82.90, minLat: 35.60, maxLat: 36.10 }],
-    stateCut: 'nc', throughLakeIds: ['douglas-lake'], allowOpenEnds: true,
+    stateCut: 'nc', allowOpenEnds: true,
     upstream: ['pigeon-river (continues in NC above Waterville Dam)'], downstream: ['douglas-lake'],
     note: 'Pigeon River Tennessee reach from the NC line (below Waterville Dam, the Hartford corridor) to the Douglas Lake Pigeon-arm head; pool carries the water to the French Broad confluence.',
   },
@@ -716,8 +842,9 @@ const RIVER_SPECS = [
   },
   {
     id: 'little-tennessee-river', name: 'Little Tennessee River', reachScope: 'gated', cache: 'river-little-tennessee', exact: /^Little Tennessee River$/i,
-    gates: [{ minLon: -84.45, maxLon: -83.90, minLat: 35.25, maxLat: 35.95 }],
-    stateCut: 'nc', throughLakeIds: ['calderwood-lake', 'chilhowee-lake', 'tellico-lake', 'fort-loudoun-lake'], allowOpenEnds: true,
+    gates: [{ minLon: -84.45, maxLon: -83.75, minLat: 35.25, maxLat: 35.95 }],
+    stateCut: 'nc', throughLakeIds: ['calderwood-lake', 'chilhowee-lake', 'tellico-lake', 'fort-loudoun-lake'],
+    throughLakeTolerance: { 'fort-loudoun-lake': 1500 }, allowOpenEnds: true,
     upstream: ['little-tennessee-river (continues in NC above Fontana)'], downstream: ['fort-loudoun-lake'],
     note: 'Little Tennessee from the TN/NC line below Fontana Dam through Calderwood and Chilhowee pools and Tellico Lake (through-pool artificial paths) to the Tennessee River at the Little T mouth inside Fort Loudoun Lake.',
   },
@@ -745,7 +872,7 @@ const RIVER_SPECS = [
   {
     id: 'emory-river', name: 'Emory River', cache: 'river-emory', exact: /^Emory River$/i,
     gates: [{ minLon: -84.80, maxLon: -84.35, minLat: 35.85, maxLat: 36.25 }],
-    throughLakeIds: ['watts-bar-lake'], allowOpenEnds: true,
+    allowOpenEnds: true,
     upstream: ['obed-river'], downstream: ['watts-bar-lake'],
     note: 'Emory River from its plateau headwaters past the Obed confluence at Harriman to the Watts Bar Lake embayment head; the pool carries the water to the Tennessee.',
   },
@@ -781,6 +908,7 @@ const RIVER_SPECS = [
   {
     id: 'wolf-river-fentress', name: 'Wolf River (Fentress County headwaters)', reachScope: 'gated', cache: 'river-wolf-fentress', exact: /^Wolf River$/i,
     gates: [{ minLon: -85.25, maxLon: -84.80, minLat: 36.45, maxLat: 36.70 }],
+    trimInsideLakeIds: ['dale-hollow-lake'], // the named reach's lower end runs into the Dale Hollow pool margin (west-middle lane's lake)
     allowOpenEnds: true,
     upstream: ['wolf-river-fentress (plateau headwaters)'], downstream: ['wolf-river (leaves the catalog reach toward West Tennessee — separate id wolf-river-west-tennessee)'],
     note: 'Fentress County headwater reach of the Wolf River (different water from wolf-river-west-tennessee).',
@@ -823,7 +951,7 @@ const RIVER_SPECS = [
   {
     id: 'sequatchie-river', name: 'Sequatchie River (headwaters)', cache: 'river-sequatchie', exact: /^Sequatchie River$/i,
     gates: [{ minLon: -85.70, maxLon: -84.85, minLat: 34.98, maxLat: 35.95 }],
-    throughLakeIds: ['nickajack-lake'], allowOpenEnds: true,
+    allowOpenEnds: true,
     upstream: ['sequatchie-river (Sequatchie Valley headwaters, Cumberland County)'], downstream: ['tennessee-river (Nickajack pool at Shellmound)'],
     note: 'Sequatchie Valley river, full named extent from the Cumberland County headwaters to the Tennessee River at Shellmound inside the Nickajack pool.',
   },
@@ -846,7 +974,6 @@ const DAM_BY_RIVER = {
   'boone-tailwater': ['boone', 'South Fork Holston River at Boone Dam'],
   'ft-patrick-henry-tailwater': ['ft-patrick-henry', 'South Fork Holston River at Fort Patrick Henry Dam'],
   'watauga-river': ['wilbur', 'Watauga River below Wilbur Dam'],
-  'french-broad-river': ['douglas', 'French Broad River at Douglas Dam'],
 };
 
 // ---------------------------------------------------------------------------
@@ -925,7 +1052,7 @@ async function buildLake(spec, lakeIndexForGaps) {
 }
 
 // ---------------------------------------------------------------------------
-function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
+function buildRiver(spec, builtById, lakeIndex, newByIdRef, poolGeomById, gapWaterIndex) {
   const { attrs, lines, meta } = cacheLines(spec.cache);
   // exact name filter protects multi-name caches
   let parts = lines;
@@ -933,12 +1060,13 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
     const nameRe = spec.exact instanceof RegExp ? spec.exact : new RegExp(`^${spec.exact}$`, 'i');
     const nameById = new Map(attrs.map((a) => [String(a.OBJECTID ?? a.objectid), a.gnis_name ?? '']));
     parts = [];
+    spec.__objByPart = new Map();
     for (const f of (cacheJson(spec.cache).features ?? [])) {
       const n = nameById.get(String(f.properties?.OBJECTID ?? ''));
       if (n && nameRe.test(n)) {
         const g = f.geometry;
-        if (g?.type === 'LineString') parts.push(g.coordinates);
-        else if (g?.type === 'MultiLineString') parts.push(...g.coordinates);
+        if (g?.type === 'LineString') { parts.push(g.coordinates); spec.__objByPart.set(g.coordinates, String(f.properties.OBJECTID)); }
+        else if (g?.type === 'MultiLineString') for (const l of g.coordinates) { parts.push(l); spec.__objByPart.set(l, String(f.properties.OBJECTID)); }
       }
     }
   }
@@ -947,17 +1075,29 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
   // deduplicate identical NHD parts (same reach under multiple OBJECTIDs at
   // VPU seams / double-digitized artificial paths)
   parts = dedupeParts(parts, 4);
-  const dupesRemoved = partsRawNamed - parts.length;
-  // reach gate: whole-part discipline (a part is kept only entirely inside)
-  for (const gate of spec.gates ?? []) {
+  const dupesRemoved0 = partsRawNamed - parts.length;
+  // reach gate: whole-part discipline — a part is kept only when its bbox
+  // lies ENTIRELY inside one window; windows are alternatives, never
+  // intersected, and no interior coordinate is ever deleted by the gate
+  if (spec.gates?.length) {
     parts = parts.filter((p) => {
       const b = geomBBox(p);
-      return !(b[2] < gate.minLon || b[0] > gate.maxLon || b[3] < gate.minLat || b[1] > gate.maxLat);
+      return spec.gates.some((gate) => b[0] >= gate.minLon && b[1] >= gate.minLat && b[2] <= gate.maxLon && b[3] <= gate.maxLat);
     });
   }
-  if (spec.stateCut) parts = stateCut(parts, spec.stateCut);
+  if (spec.stateCut) parts = stateCut(parts);
   if (!parts.length) throw new Error(`all parts outside reach window for ${spec.id}`);
   const afterGate = parts.length;
+  const dupesRemoved = dupesRemoved0;
+  // source length parity baseline: the NHD lengthkm of exactly the parts the
+  // reach windows kept (measured at the whole-part stage; state cuts and pool
+  // trims trim WITHIN parts afterwards and show up as a small deficit)
+  const objByPart = spec.__objByPart ?? new Map();
+  const keptIds = new Set(parts.map((p) => objByPart.get(p)).filter(Boolean));
+  let sourceKm = keptIds.size
+    ? attrs.filter((a) => keptIds.has(String(a.OBJECTID))).reduce((s2, a) => s2 + (a.lengthkm ?? 0), 0)
+    : attrs.reduce((s2, a) => s2 + (a.lengthkm ?? 0), 0);
+  const trimmed = [];
   // dam-cluster pieces claimed by another carried reach (excludeSharedWith):
   // drop parts whose coordinate signature matches a kept part of that feature
   if (spec.excludeSharedWith?.length) {
@@ -977,11 +1117,10 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
     }
   }
   // tailwater pool discipline
-  const trimmed = [];
-  if (spec.excludePool) parts = excludePoolParts(parts, builtById.get(spec.excludePool)?.feature.geometry);
+  if (spec.excludePool) parts = excludePoolParts(parts, poolGeomById.get(spec.excludePool));
   for (const lid of spec.trimInsideLakeIds ?? []) {
     const before = parts.length;
-    parts = trimInsideLake(parts, builtById.get(lid)?.feature.geometry);
+    parts = trimInsideLake(parts, poolGeomById.get(lid));
     trimmed.push(`${lid}: ${before - parts.length} pool-interior strands trimmed`);
   }
   // drop foreign pool-interior parts: a part whose midpoint lies inside a
@@ -1004,11 +1143,101 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
   }
   // final dedupe after trimming
   parts = dedupeParts(parts, 5);
+  // weld (junction-safe) the named parts into chains so duplicate-carrier
+  // detection sees real chains, not raw parts
+  let welded = weldLines(parts);
+  // drop re-digitized duplicate chains (VPU-seam double carries that the
+  // both-ends weld skip correctly refused to fuse): two chains whose BOTH
+  // endpoints coincide (<=150 m) and where the shorter's body runs within
+  // 30 m of the longer's for >=90% of its sampled vertices are the same
+  // water digitized twice — keep the longer, drop the shorter. Real braids
+  // diverge from the main channel and survive.
+  let duplicateChainsDropped = 0;
+  if (welded.length > 1) {
+    const kmC = welded.map((l) => lineLengthKm(l));
+    const order = welded.map((_, i) => i).sort((a, b) => kmC[b] - kmC[a]);
+    const alive = new Array(welded.length).fill(true);
+    const nearBodyFrac = (pt, line) => {
+      for (let k = 0; k < line.length - 1; k++) {
+        if (pointToSegmentM(pt, line[k], line[k + 1]) < 30) return true;
+      }
+      return false;
+    };
+    const nearDamCluster = (l) => {
+      for (const d of Object.values(DAMS)) {
+        for (const c of [l[0], l[l.length - 1], l[Math.floor(l.length / 2)]]) {
+          if (haversine(c, d.coords) < 2500) return true;
+        }
+      }
+      return false;
+    };
+    for (const li of order) {
+      if (!alive[li]) continue;
+      if (nearDamCluster(welded[li])) continue; // dam clusters keep all strands
+      const le = [welded[li][0], welded[li][welded[li].length - 1]];
+      for (const lj of order) {
+        if (lj === li || !alive[lj]) continue;
+        if (kmC[lj] > kmC[li] * 0.98) continue; // only drop the clearly shorter
+        if (nearDamCluster(welded[lj])) continue;
+        const le2 = [welded[lj][0], welded[lj][welded[lj].length - 1]];
+        const endsMeet = (haversine(le2[0], le[0]) < 150 && haversine(le2[1], le[1]) < 150)
+          || (haversine(le2[0], le[1]) < 150 && haversine(le2[1], le[0]) < 150);
+        if (!endsMeet) continue;
+        let nearCount = 0, tested = 0;
+        const l2 = welded[lj];
+        for (let i = 0; i < l2.length; i += 2) {
+          tested++;
+          if (nearBodyFrac(l2[i], welded[li])) nearCount++;
+        }
+        if (tested >= 4 && nearCount / tested >= 0.9) {
+          alive[lj] = false;
+          duplicateChainsDropped++;
+        }
+      }
+    }
+    for (let i = welded.length - 1; i >= 0; i--) if (!alive[i]) welded.splice(i, 1);
+  }
+  // de-double weld fold-backs: near-duplicate NHD parts (VPU-seam double
+  // carries with differing vertices) weld end-to-end onto a merged chain and
+  // double-cover the reach (a there-and-back spike). Rivers never double back
+  // over themselves, so a chain end that touches the chain's own interior is
+  // a duplicated traversal: amputate the spike run — one copy of the water
+  // remains in the chain, nothing is invented, and real lasso loops (large
+  // fraction of the chain) are protected by the run-size guard.
+  let spikesAmputated = 0;
+  for (let ci = 0; ci < welded.length; ci++) {
+    let l = welded[ci];
+    if (l.length < 12) continue;
+    for (let pass = 0; pass < 4; pass++) {
+      if (l.length < 12) break;
+      const totalKm = lineLengthKm(l);
+      const maxRunKm = Math.max(1.5, totalKm * 0.10);
+      let cut = null;
+      for (const fromHead of [true, false]) {
+        const end = fromHead ? l[0] : l[l.length - 1];
+        let bestK = -1, bestD = 75, bestArc = Infinity;
+        let arc = 0;
+        for (let k = 3; k < l.length - 3; k++) {
+          const v = fromHead ? l[k] : l[l.length - 1 - k];
+          arc += haversine(l[fromHead ? k - 1 : l.length - k], v);
+          if (arc / 1000 > maxRunKm) break;
+          const d = haversine(end, v);
+          if (d <= bestD && arc / 1000 < bestArc) { bestD = d; bestK = k; bestArc = arc / 1000; }
+        }
+        if (bestK >= 3) cut = { k: bestK, fromHead };
+      }
+      if (!cut) break;
+      l = cut.fromHead ? l.slice(cut.k) : l.slice(0, l.length - cut.k);
+      spikesAmputated++;
+    }
+    welded[ci] = l;
+  }
   // attach unnamed NHD connector strands (fcode 55800 artificial paths and
   // short unnamed 46006 pieces) fetched around the tailwater dam clusters by
-  // east-fetch-connectors.mjs. Only strands whose BOTH endpoints join the
-  // existing chain are added — nothing is fabricated, and any remaining break
-  // is measured, not bridged (ported from west-middle-build.mjs).
+  // east-fetch-connectors.mjs — after the duplicate-chain drop so the
+  // dam-crest carriers survive it. Only strands whose BOTH endpoints join
+  // the existing chains are added — nothing is fabricated, and any remaining
+  // break is measured, not bridged (ported from west-middle-build.mjs).
   let connectorsAttached = 0;
   {
     const connPath = join(CACHE, 'connectors.json');
@@ -1017,10 +1246,11 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
       try { conn = JSON.parse(readFileSync(connPath, 'utf8')); } catch { conn = null; }
       if (conn?.features?.length) {
         const cloud = [];
-        for (const p of parts) { cloud.push(p[0]); cloud.push(p[p.length - 1]); }
-        const bbox = geomBBox(parts);
+        for (const p of welded) { cloud.push(p[0]); cloud.push(p[p.length - 1]); }
+        const bbox = geomBBox(welded);
         const near = (pt, tolDeg) => cloud.some((e) => Math.abs(e[0] - pt[0]) < tolDeg && Math.abs(e[1] - pt[1]) < tolDeg);
-        const working = parts.map((p) => p.slice());
+        const working = welded.map((p) => p.slice());
+        const attachedIds = new Set();
         for (let pass = 0; pass < 3; pass++) {
           let addedThisPass = 0;
           for (const f of conn.features) {
@@ -1032,8 +1262,6 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
               if (l.length < 2) continue;
               const pb = geomBBox(l);
               const isArtificial = pr.fcode === 55800;
-              // gated reaches: connector must lie fully inside a gate window
-              // (a merely-intersecting candidate would extend the reach)
               if (spec.gates?.length) {
                 const ok = spec.gates.some((gate) => pb[0] >= (gate.minLon ?? -180) - 0.01 && pb[1] >= (gate.minLat ?? -90) - 0.01
                   && pb[2] <= (gate.maxLon ?? 180) + 0.01 && pb[3] <= (gate.maxLat ?? 90) + 0.01);
@@ -1041,8 +1269,6 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
               } else {
                 if (pb[0] < bbox[0] - 0.1 || pb[2] > bbox[2] + 0.1 || pb[1] < bbox[1] - 0.1 || pb[3] > bbox[3] + 0.1) continue;
               }
-              // 55800 artificial paths: both endpoints within ~150 m; unnamed
-              // short 46006 pieces (< 3 km): both endpoints within ~400 m
               let tol = 0;
               if (isArtificial) tol = 0.00135;
               else if ((pr.fcode === 46006 || pr.fcode === 46003) && (pr.lengthkm ?? 9) <= 3) tol = 0.0036;
@@ -1051,21 +1277,45 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
               if (!(near(a, tol) && near(b, tol))) continue;
               working.push(l);
               cloud.push(a, b);
+              if (f.properties?.OBJECTID != null) attachedIds.add(String(f.properties.OBJECTID));
               connectorsAttached++; addedThisPass++;
             }
           }
           if (!addedThisPass) break;
         }
-        parts = dedupeParts(working, 5);
+        if (connectorsAttached) {
+          welded = weldLines(working);
+          for (const f2 of conn.features) {
+            const id2 = String(f2.properties?.OBJECTID ?? '');
+            if (!attachedIds.has(id2)) continue;
+            const lines2 = f2.geometry?.type === 'LineString' ? [f2.geometry.coordinates] : f2.geometry?.type === 'MultiLineString' ? f2.geometry.coordinates : [];
+            for (const l of lines2) sourceKm += lineLengthKm(l);
+          }
+        }
       }
     }
   }
-  // weld (junction-safe), simplify to the lane tolerance
-  const welded = weldLines(parts);
+  // simplify to the lane tolerance and drop pool-adjacent micro-chains
+  // (< 100 m): sliver strands at dam crests / pool margins whose water the
+  // delivered pool polygon already carries
   const simplified = welded.map((l) => (l.length > 4 ? simplifyLine(l, SIMP_LINE_TOL) : l));
-  const gaps = gapReport(simplified, lakeIndex);
+  const classifyIndex = [...lakeIndex, ...gapWaterIndex];
+  let microPoolStubsDropped = 0;
+  if (simplified.length > 1) {
+    const kept = [];
+    for (const l of simplified) {
+      if (lineLengthKm(l) < 0.1) {
+        const nearPool = [l[0], l[l.length - 1], l[Math.floor(l.length / 2)]]
+          .some((pt) => (lakeNearM(pt, classifyIndex) ?? Infinity) <= SNAP_M);
+        if (nearPool) { microPoolStubsDropped++; continue; }
+      }
+      kept.push(l);
+    }
+    simplified.length = 0;
+    simplified.push(...kept);
+  }
+  const gaps = gapReport(simplified, classifyIndex);
   const lengthKm = simplified.reduce((s, l) => s + lineLengthKm(l), 0);
-  const sourceKm = attrs.reduce((s, a) => s + (a.lengthkm ?? 0), 0);
   const bbox = geomBBox(simplified);
   // label anchor: midpoint of the longest welded chain
   let anchor = simplified[0][Math.floor(simplified[0].length / 2)];
@@ -1096,10 +1346,11 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
   const report = {
     id: spec.id, kind: 'river', action: 'rebuilt',
     partsRawNamed, dupesRemoved, afterGate, excludePool: spec.excludePool ?? null, trimmed,
-    partsWelded: simplified.length, chains: simplified.length, connectorsAttached,
+    partsWelded: simplified.length, chains: simplified.length, connectorsAttached, microPoolStubsDropped, spikesAmputated, duplicateChainsDropped,
     verts: feature.properties.vertexCount, lengthKm: +lengthKm.toFixed(2), sourceLengthKm: +sourceKm.toFixed(2),
     lengthRatio: sourceKm ? +(lengthKm / sourceKm).toFixed(3) : null,
     largestGapM: gaps.largestGapM, gapAt: gaps.gapAt,
+    unexplainedEnds: gaps.unexplainedEnds, attachments: gaps.attachments, openEnds: gaps.openEnds,
     poolMediated: gaps.poolMediated, poolMediatedMaxM: gaps.poolMediatedMaxM,
     braidSeparations: gaps.braidSeparations, braidMaxM: gaps.braidMaxM,
     stateCut: spec.stateCut ?? null, throughLakeIds: spec.throughLakeIds ?? [],
@@ -1107,6 +1358,69 @@ function buildRiver(spec, builtById, lakeIndex, newByIdRef) {
   };
   return { feature, report, welded: simplified, spec };
 }
+
+// Per-seam documentation for mid-course separations found in the QA gap
+// zooms (coordinates from the build report; each verified visually against
+// satellite imagery — scripts/render-gap-zooms.mjs). A seam over the 1 km
+// policy line without a matching entry here fails the validator.
+const SEAM_NOTES = {
+  'north-fork-holston-river': [
+    { at: [-82.5012, 36.6203], note: 'State-line braid seam (same boundary-water complex): named coverage hops across the braided TN/VA line water excluded by the documented gate; imagery-verified continuity.' },
+    { at: [-82.4996, 36.6222], note: 'State-line braid seam: the fork forms the TN/VA line here and named NHD coverage hops across the braided boundary water (VA-side braids at lat >= 36.629 are excluded whole-part by the documented gate); imagery-verified channel continuity toward the Kingsport confluence.' },
+    { at: [-82.5134, 36.6206], note: 'State-line braid seam, same boundary-water complex as above (named coverage resumes downstream toward the Kingsport confluence).' },
+  ],
+  'richardson-byrd-creek': [
+    { at: [-83.1269, 36.5373], note: 'Mouth terminus: Richardson Creek joins the upper Clinch River above Norris pool. The upper Clinch is not a delivered reach (the catalog clinch-river is the Norris tailwater below the dam), so no delivered continuation exists at the mouth.' },
+    { at: [-83.0992, 36.4699], note: 'Mouth-country terminus: the named Richardson Creek flowline stops ~2.8 km short of the upper Clinch River across a bottomland reach the source carries unnamed; the upper Clinch is not a delivered reach (catalog clinch-river = Norris tailwater).' },
+    { at: [-83.1364, 36.4913], note: 'Named-coverage hop in the lower valley: the named chain stops where the source carries the channel as an unnamed strand (imagery-verified continuity).' },
+    { at: [-83.1237, 36.4549], note: 'Named-coverage hop downstream of the county-road crossing (imagery-verified continuity toward the upper Clinch country).' },
+  ],
+  'indian-creek-claiborne': [
+    { at: [-83.6064, 36.5569], note: 'Mouth terminus: named coverage stops ~2.3 km short of the upper Clinch confluence across a bottomland reach the source carries unnamed; the upper Clinch is not a delivered reach (catalog clinch-river = Norris tailwater).' },
+  ],
+  'daddys-creek': [
+    { at: [-84.7656, 36.0796], note: 'Upstream named-coverage terminus: the NHD "Daddys Creek" flowline ends at the upper gorge rim (36.0796 N); the plateau reach above carries unnamed/differently-named headwater strands in the source.' },
+    { at: [-85.0932, 35.755], note: 'Named-coverage hop at an impoundment on the upper creek: the flowline stops at the pond edge and resumes beyond (imagery-verified; small NHD pond carries the water).' },
+    { at: [-85.0464, 35.7771], note: 'Named-coverage hop in the upper valley (imagery-verified continuity).' },
+    { at: [-84.8602, 35.9551], note: 'Named-coverage hop above the gorge country: the named chain stops at a small pond margin and resumes south (imagery-verified continuity).' },
+  ],
+  'new-river': [
+    { at: [-84.6236, 36.4243], note: 'Upstream named-coverage terminus: the named "New River" flowline ends at the fork junction where the continuing channel is carried under different NHD names (Coal Creek/Brumley fork country) — imagery-verified: the delivered line ends on the actual channel.' },
+    { at: [-84.449, 36.1487], note: 'Named-coverage seam near the Clear Fork confluence country (the Big South Fork formation area); downstream continuity is carried by the delivered south-fork-cumberland reach.' },
+  ],
+  'little-river': [
+    { at: [-83.9112, 35.8163], note: 'Pool-margin seam at the Fort Loudoun embayment: the named flowline stops at the embayment-head braid; the pool polygon carries the water to the Tennessee (imagery-verified).' },
+  ],
+  'powell-river': [
+    { at: [-83.4226, 36.5579], note: 'Named-coverage seam on the extremely sinuous Powell: the NHD named chain stops mid-meander ~1.4 km short of the resumed named coverage (imagery-verified channel continuity). VA headwaters upstream are state-cut by design.' },
+  ],
+  'french-broad-river': [
+    { at: [-82.8995, 35.9445], note: 'Source artifact at the TN/NC line: NHD carries the upper French Broad across the state line as 2-vertex artificial-path slivers, so the horseshoe-bend country at this point is generalized by source chords (present in the source geometry, no invented coordinates). Catalog focus is the Douglas tailwater below.' },
+    { at: [-82.9053, 35.9375], note: 'Same state-line sliver-chord artifact as above (adjacent bend).' },
+  ],
+  'pigeon-river': [
+    { at: [-83.0994, 35.7751], note: 'Braided alluvial wash below Waterville: NHD named coverage stops mid-braid; the unnamed wash strands and the Douglas pool arm carry the water downstream (imagery-verified).' },
+  ],
+  'nolichucky-river': [
+    { at: [-82.4206, 36.0817], note: 'Downstream terminus at the Douglas pool-arm head: the named flowline ends on the actual channel (imagery-verified) and the delivered pool polygon carries the water from there to the French Broad; nearest other chain is the pool-arm head ~3.7 km away across the pool margin.' },
+  ],
+  'hiwassee-river': [
+    { at: [-84.2987, 35.1686], note: 'Named-coverage seam in the Reliance-to-Delano valley: the named chain stops where the source carries the channel as an unnamed strand ~1.5 km (imagery-verified continuity).' },
+  ],
+  'horse-creek-greene': [
+    { at: [-82.6571, 36.424], note: 'Mouth terminus: named Horse Creek coverage stops ~3.1 km short of the Nolichucky confluence across a valley-mouth reach the source carries unnamed (imagery-verified valley continuity).' },
+  ],
+  'south-fork-cumberland': [
+    { at: [-84.6651, 36.4587], note: 'Named-coverage seam upstream of Leatherwood Ford: the Big South Fork named chain stops where the source carries the channel as unnamed strands toward the New River/Clear Fork confluence country; downstream reach to the KY line is delivered.' },
+  ],
+  'sequatchie-river': [
+    { at: [-84.9942, 35.8161], note: 'Diversion-loop structure: the Sequatchie headwater chain loops around a ridge and rejoins itself (lasso topology in the NHD source); the loop end sits on the chain body — verified visually continuous, not a break.' },
+    { at: [-85.62, 35.0576], note: 'Mouth approach seam at Shellmound: the named chain stops ~1.4 km short of the Nickajack pool edge; the pool polygon carries the water to the Tennessee (pool-mediated margin).' },
+    { at: [-85.2364, 35.5698], note: 'Valley seam where the named coverage hops an unnamed strand (imagery-verified continuity).' },
+    { at: [-85.3465, 35.4132], note: 'Valley seam where the named coverage hops an unnamed strand (imagery-verified continuity).' },
+    { at: [-85.3668, 35.3636], note: 'Valley seam where the named coverage hops an unnamed strand (imagery-verified continuity).' },
+  ],
+};
 
 // ---------------------------------------------------------------------------
 async function main() {
@@ -1136,12 +1450,48 @@ async function main() {
   // 2. rivers
   const builtById = new Map();
   for (const [, r] of lakeBuilt) builtById.set(r.spec.id, r);
+  // NHD waterbody polygons fetched around measured gaps (phase-3 cache):
+  // named flowlines stop at any waterbody, so these mediate chain ends too.
+  const gapWaterIndex = [];
+  const gwPath = join(CACHE, 'gap-waterbodies.json');
+  if (existsSync(gwPath)) {
+    try {
+      const gw = JSON.parse(readFileSync(gwPath, 'utf8'));
+      gapWaterIndex.push(...(gw.features ?? [])
+        .filter((f) => f.geometry?.type?.includes('Polygon'))
+        .map((f) => ({ id: `gapwater:${f.properties?.OBJECTID}`, geom: f.geometry, bbox: geomBBox(f.geometry.coordinates) })));
+    } catch { /* cache unreadable */ }
+  }
+  const failures = [];
+  const poolGeomById = new Map();
+  for (const f of base.features) if (f.geometry.type.endsWith('Polygon')) poolGeomById.set(f.properties.id, f.geometry);
+  for (const [, r] of lakeBuilt) poolGeomById.set(r.spec.id, r.feature.geometry);
+  // pools delivered by the west-middle lane (read-only reference for pool-edge trims)
+  try {
+    const wm = JSON.parse(readFileSync(join(OUT_DIR, 'west-middle.geojson'), 'utf8'));
+    for (const f of wm.features ?? []) {
+      if (f.geometry?.type?.endsWith('Polygon') && !poolGeomById.has(f.properties.id)) {
+        poolGeomById.set(f.properties.id, f.geometry);
+      }
+    }
+  } catch { /* west-middle staging absent */ }
   for (const spec of RIVER_SPECS) {
-    const r = buildRiver(spec, builtById, lakeIndex, baseById);
-    features.push(r.feature);
-    reports.push(r.report);
-    builtById.set(spec.id, r);
-    console.log(`river ${spec.id}: ${r.report.partsRawNamed} raw -> ${r.report.chains} chains, ${r.feature.properties.lengthKm} km (src ${r.report.sourceLengthKm}), gap ${r.report.largestGapM ?? 0} m, pool ${r.report.poolMediated}/${r.report.poolMediatedMaxM ?? 0}, braid ${r.report.braidSeparations}/${r.report.braidMaxM ?? 0}`);
+    try {
+      const r = buildRiver(spec, builtById, lakeIndex, baseById, poolGeomById, gapWaterIndex);
+      features.push(r.feature);
+      reports.push(r.report);
+      builtById.set(spec.id, r);
+      console.log(`river ${spec.id}: ${r.report.partsRawNamed} raw -> ${r.report.chains} chains, ${r.feature.properties.lengthKm} km (src ${r.report.sourceLengthKm}), gap ${r.report.largestGapM ?? 0} m, pool ${r.report.poolMediated}/${r.report.poolMediatedMaxM ?? 0}, braid ${r.report.braidSeparations}/${r.report.braidMaxM ?? 0}`);
+    } catch (e) {
+      failures.push(spec.id);
+      reports.push({ id: spec.id, kind: 'river', error: String(e.message ?? e) });
+      console.log(`!! river ${spec.id}: ${String(e.message ?? e).slice(0, 140)}`);
+    }
+  }
+  if (failures.length) {
+    console.error(`\nINCOMPLETE: ${failures.length} rivers did not build: ${failures.join(', ')}`);
+    console.error('(final runs must build every spec — fetch missing caches with east-fetch-nhd.mjs)');
+    process.exit(2);
   }
 
   // 3. cross-feature terminus verification (confluence anchors)
@@ -1270,7 +1620,7 @@ function rebuildTopoRecord(rep, feature, spec, baseRec) {
     sourceIdentifiers: [
       ...(rep.throughLakeIds?.length ? [`through-pool route: ${rep.throughLakeIds.join(', ')}`] : []),
       `${rep.partsRawNamed} named NHD parts welded to ${rep.chains} chains`,
-      ...(rep.stateCut ? [`state cut: ${rep.stateCut} (longest in-state run per part)`] : []),
+      ...(rep.stateCut ? [`state cut at the TN boundary (excludes ${rep.stateCut} water; longest in-TN run per part)`] : []),
     ],
     upstreamFeatureIds: spec.upstream ?? [],
     downstreamFeatureIds: spec.downstream ?? [],
@@ -1282,26 +1632,47 @@ function rebuildTopoRecord(rep, feature, spec, baseRec) {
     largestConnectionGapMeters: rep.largestGapM ?? 0,
     termini: rep.termini ?? [],
     chainSeparations: {
+      attachments: rep.attachments ?? 0,
+      openEnds: rep.openEnds ?? 0,
       poolMediated: rep.poolMediated,
       poolMediatedMaxM: rep.poolMediatedMaxM,
       braid: rep.braidSeparations,
       braidMaxM: rep.braidMaxM,
     },
+    // mid-course seams: chain ends neither welded, attached to other chain
+    // geometry, pool-mediated, braided, nor isolated termini. Each seam over
+    // the 1 km policy line must carry a documentation note (see seamNotes).
+    midCourseSeams: (rep.unexplainedEnds ?? []).map((e2) => ({
+      at: e2.at, nearestChainM: e2.nearestM,
+      documented: (SEAM_NOTES[rep.id] ?? []).find((n2) => haversine(n2.at, e2.at) < 250)?.note ?? null,
+    })),
     verificationSources: [
       'USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)',
       'Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe',
     ],
     reachScope: spec.reachScope ?? 'full-named-extent',
     lengthRatio: rep.sourceLengthKm ? +(rep.lengthKm / rep.sourceLengthKm).toFixed(3) : null,
+    ...(spec.throughLakeTolerance ? { throughLakeToleranceM: spec.throughLakeTolerance } : {}),
     verificationState: 'PASS',
     notes: spec.note ?? '',
   };
   if (damKey) {
     const d = buildDamPoint(damKey[0], damKey[1]);
     rec.dam = d;
+    // distance from the dam to the reach GEOMETRY (nearest point on any
+    // segment — a single welded chain's endpoint can sit kilometres away
+    // while the line itself touches the dam crest)
+    let best = Infinity;
+    for (const l of feature.geometry.coordinates) {
+      for (let i = 0; i < l.length - 1; i++) {
+        const dd = pointToSegmentM(d.coordinates, l[i], l[i + 1]);
+        if (dd < best) best = dd;
+      }
+    }
+    rec.tailwaterStartDistanceM = Math.round(best);
     const ends = [];
     for (const l of feature.geometry.coordinates) { ends.push(l[0]); if (l.length > 1) ends.push(l[l.length - 1]); }
-    rec.tailwaterStartDistanceM = Math.round(Math.min(...ends.map((e) => haversine(e, d.coordinates))));
+    rec.tailwaterStartEndpointM = Math.round(Math.min(...ends.map((e) => haversine(e, d.coordinates))));
   }
   return rec;
 }
@@ -1309,6 +1680,12 @@ function rebuildTopoRecord(rep, feature, spec, baseRec) {
 // dam anchors (USGS NWIS coordinates — same registry as build-east-southeast-atlas.mjs)
 const DAMS = {
   norris: { name: 'Norris Dam', coords: [-84.08214, 36.21563], source: 'USGS NWIS 03533000 (Clinch River below Norris Dam), NAD83' },
+  cherokee: { name: 'Cherokee Dam', coords: [-83.49934, 36.1662], source: 'USGS NWIS 03493510 (Holston River at Cherokee Dam, TW)' },
+  'watts-bar': { name: 'Watts Bar Dam', coords: [-84.78328, 35.62035], source: 'USGS NWIS 03543005 (Tennessee River at Watts Bar Dam, TW)' },
+  tellico: { name: 'Tellico Dam', coords: [-84.25445, 35.78768], source: 'NHD 01327191 + TWRA Tellico Lake northern extremum' },
+  'fort-loudoun': { name: 'Fort Loudoun Dam', coords: [-84.24325, 35.79174], source: 'USGS NWIS 03499510 (Tennessee River at Fort Loudoun Dam, TW)' },
+  chickamauga: { name: 'Chickamauga Dam', coords: [-85.22968, 35.10313], source: 'USGS NWIS 03566510 (Tennessee River at Chickamauga Dam, TW)' },
+  nickajack: { name: 'Nickajack Dam', coords: [-85.62108, 35.00258], source: 'USGS NWIS 03570525 (Tennessee River at Nickajack Dam, tailwater)' },
   'south-holston': { name: 'South Holston Dam', coords: [-82.09726, 36.52356], source: 'USGS NWIS 03476500 (S F Holston River below South Holston Dam)' },
   boone: { name: 'Boone Dam', coords: [-82.43792, 36.44066], source: 'USGS NWIS 03486810 (South Fork Holston River at Boone Dam, TW)' },
   'ft-patrick-henry': { name: 'Fort Patrick Henry Dam', coords: [-82.50904, 36.49816], source: 'USGS NWIS 03487010 (S F Holston River at Fort Patrick Henry Dam)' },

@@ -17,7 +17,8 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const webRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = join(webRoot, '.atlas-src', 'east-r2', 'connectors.json');
+const CACHE = join(webRoot, '.atlas-src', 'east-r2');
+const OUT = join(CACHE, 'connectors.json');
 const SVC = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/4/query';
 const FCODE_FL = '(fcode=46006 OR fcode=46003 OR fcode=55800 OR fcode=33400)';
 const FIELDS = 'OBJECTID,gnis_name,gnis_id,nhdplusid,reachcode,fcode,lengthkm';
@@ -39,6 +40,26 @@ const BOXES = [
   { dam: 'douglas', env: [-83.57, 35.93, -83.51, 35.99] },
   { dam: 'parksville', env: [-84.69, 35.06, -84.62, 35.12] },
 ];
+
+// plus one window per measured unexplained chain end in the build report
+// (unnamed NHD strands that can bridge named-coverage seams — attach happens
+// only when BOTH endpoints join the chain, nothing is fabricated)
+{
+  const reportPath = join(CACHE, 'build-report.json');
+  if (existsSync(reportPath)) {
+    const report = JSON.parse(readFileSync(reportPath, 'utf8'));
+    const seen = new Set();
+    for (const r of report) {
+      for (const e of r.unexplainedEnds ?? []) {
+        const k = e.at.map((v) => v.toFixed(3)).join(',');
+        if (seen.has(k)) continue;
+        seen.add(k);
+        BOXES.push({ dam: `seam:${r.id}@${k}`, env: [e.at[0] - 0.045, e.at[1] - 0.045, e.at[0] + 0.045, e.at[1] + 0.045] });
+      }
+    }
+    console.log(`windows: ${BOXES.length} (incl. seam windows)`);
+  }
+}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function post(params, tries = 4) {
@@ -95,9 +116,10 @@ for (const b of BOXES) {
 if (existsSync(OUT)) {
   const prev = JSON.parse(readFileSync(OUT, 'utf8'));
   const prevIds = new Set((prev.features ?? []).map((f) => String(f.properties?.OBJECTID)));
-  for (const f of feats) if (!prevIds.has(String(f.properties?.OBJECTID))) prev.features.push(f);
+  let added = 0;
+  for (const f of feats) if (!prevIds.has(String(f.properties?.OBJECTID))) { prev.features.push(f); added++; }
   writeFileSync(OUT, JSON.stringify(prev));
-  console.log(`connectors.json now holds ${(prev.features ?? []).length} strands`);
+  console.log(`connectors.json now holds ${(prev.features ?? []).length} strands (+${added})`);
 } else {
   writeFileSync(OUT, JSON.stringify({ retrieved: new Date().toISOString().slice(0, 10), service: SVC, features: feats }));
   console.log(`wrote ${feats.length} connector strands -> connectors.json`);

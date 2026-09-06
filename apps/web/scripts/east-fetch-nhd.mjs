@@ -193,6 +193,8 @@ const RIVERS = [
     envs: ['-84.10,35.80,-82.40,36.70'], mao: '0.0005' },
   { key: 'river-north-fork-holston', nameTest: /^North Fork Holston River$/i,
     envs: ['-83.00,36.40,-82.30,36.90'], mao: '0.0005' },
+  // (envelope already covers the full fork incl. the VA headwaters; the build
+  // gate + VA state cut keep the Tennessee reach to the Kingsport confluence)
   // One fetch feeds three gated reaches (south-holston-river below South
   // Holston Dam, boone-tailwater, ft-patrick-henry-tailwater) plus the
   // South Holston Lake inflow reach in VA.
@@ -207,11 +209,11 @@ const RIVERS = [
   { key: 'river-nolichucky', nameTest: /^Nolichucky River$/i,
     envs: ['-83.35,35.80,-82.05,36.50'], mao: '0.0004' },
   { key: 'river-powell', nameTest: /^Powell River$/i,
-    envs: ['-84.15,36.20,-83.15,36.80'], mao: '0.0004' },
+    envs: ['-84.40,36.10,-82.90,36.90'], mao: '0.0004' },
   { key: 'river-clinch', nameTest: /^Clinch River$/i,
     envs: ['-84.75,35.70,-83.75,36.50'], mao: '0.0004' },
   { key: 'river-little-tennessee', nameTest: /^Little Tennessee River$/i,
-    envs: ['-84.45,35.25,-83.90,35.95'], mao: '0.0004' },
+    envs: ['-84.45,35.25,-83.70,35.95'], mao: '0.0004' },
   { key: 'river-hiwassee', nameTest: /^Hiwassee River$/i,
     envs: ['-85.15,35.00,-84.10,35.50'], mao: '0.0004' },
   { key: 'river-ocoee', nameTest: /^Ocoee River$/i,
