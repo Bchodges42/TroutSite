@@ -1136,12 +1136,19 @@ function buildGreatFalls(spec, log) {
   if (!selected.length) { log.push({ id: spec.id, error: 'no NHDArea piece has interior water in the Great Falls core box' }); return null; }
   const sourceKm2 = attrs.reduce((acc, a) => acc + (a.areasqkm ?? 0), 0);
   const polysArr = selected.map((s) => s.poly);
-  const raw = polysArr;
   // The pool is a narrow drowned-valley ribbon: Douglas-Peucker anywhere near
   // the ribbon width folds the two banks into self-crossings, grid snaps merge
-  // the banks, and uncross amputates real water. Greedy crossing-free
-  // decimation instead builds a guaranteed-simple ring: a vertex is kept only
-  // if the chord to it crosses nothing already built.
+  // the banks, and uncross amputates real water (the first shipping build
+  // lost 55% of the pool area this way — 5.88 of 13.0 km²). The delivered
+  // geometry is built by a containment-preserving advancing-front decimation
+  // instead: a stride-selected subset of ORIGINAL NHD vertices whose chords
+  // are crossing-free (simple ring guaranteed) and stay within 30 m of the
+  // raw water polygon (no land bridges across concave gaps, which pure
+  // crossing-free walks silently enclose). Every integer stride is walked
+  // (three ring rotations each — a stride can stall where the walk starts)
+  // and a global allocator picks the per-ring attempt mix with the best area
+  // retention under the feature vertex cap. Only source vertices are kept —
+  // nothing is smoothed or invented.
   const segCross = (a, b, c, d) => {
     if (Math.max(a[0], b[0]) < Math.min(c[0], d[0]) || Math.max(c[0], d[0]) < Math.min(a[0], b[0])) return false;
     if (Math.max(a[1], b[1]) < Math.min(c[1], d[1]) || Math.max(c[1], d[1]) < Math.min(a[1], b[1])) return false;
@@ -1151,55 +1158,204 @@ function buildGreatFalls(spec, log) {
     const d4 = (d[0] - c[0]) * (b[1] - c[1]) - (d[1] - c[1]) * (b[0] - c[0]);
     return ((d1 > 0) !== (d2 > 0)) && ((d3 > 0) !== (d4 > 0));
   };
-  const M2 = 111320;
-  const decimateRingSafe = (ring, maxKeep) => {
-    // stride covers the WHOLE ring (truncating at the budget would cut off
-    // the return bank); candidates whose chord crosses the already-built
-    // ring are simply skipped — the result stays a simple ring and keeps
-    // the full boundary span
+  // uniform grid over a ring's edges: ray-cast point-in-ring and metric
+  // distance-to-boundary queries for the chord containment test
+  const makeEdgeGrid = (edges, cellDeg) => {
+    const cells = new Map();
+    let maxX = -Infinity;
+    for (const [a, b] of edges) {
+      maxX = Math.max(maxX, a[0], b[0]);
+      const x0 = Math.floor(Math.min(a[0], b[0]) / cellDeg), x1 = Math.floor(Math.max(a[0], b[0]) / cellDeg);
+      const y0 = Math.floor(Math.min(a[1], b[1]) / cellDeg), y1 = Math.floor(Math.max(a[1], b[1]) / cellDeg);
+      for (let cx = x0; cx <= x1; cx++) for (let cy = y0; cy <= y1; cy++) {
+        const k = `${cx}:${cy}`;
+        if (!cells.has(k)) cells.set(k, []);
+        cells.get(k).push([a, b]);
+      }
+    }
+    const maxCx = Math.ceil(maxX / cellDeg);
+    return {
+      inside(p) {
+        const cy = Math.floor(p[1] / cellDeg);
+        let inside = false;
+        const seen = new Set();
+        for (let cx = Math.floor(p[0] / cellDeg); cx <= maxCx; cx++) {
+          const list = cells.get(`${cx}:${cy}`);
+          if (!list) continue;
+          for (const [a, b] of list) {
+            const k = `${a[0]},${a[1]};${b[0]},${b[1]}`;
+            if (seen.has(k)) continue;
+            seen.add(k);
+            if ((a[1] > p[1]) !== (b[1] > p[1]) && p[0] < ((b[0] - a[0]) * (p[1] - a[1])) / (b[1] - a[1]) + a[0]) inside = !inside;
+          }
+        }
+        return inside;
+      },
+      distM(p) {
+        const cx = Math.floor(p[0] / cellDeg), cy = Math.floor(p[1] / cellDeg);
+        const kx = M_PER_DEG_LAT * Math.cos(rad(p[1])), ky = M_PER_DEG_LAT;
+        let best = Infinity;
+        for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) {
+          const list = cells.get(`${cx + dx}:${cy + dy}`);
+          if (!list) continue;
+          for (const [a, b] of list) {
+            const ax = a[0] * kx, ay = a[1] * ky, bx = b[0] * kx, by = b[1] * ky;
+            const px = p[0] * kx, py = p[1] * ky;
+            const ex = bx - ax, ey = by - ay;
+            const L2 = ex * ex + ey * ey;
+            let t = L2 ? ((px - ax) * ex + (py - ay) * ey) / L2 : 0;
+            t = Math.max(0, Math.min(1, t));
+            const d = Math.hypot(px - (ax + t * ex), py - (ay + t * ey));
+            if (d < best) best = d;
+          }
+        }
+        return best;
+      },
+    };
+  };
+  const TOL_OUT_M = 30; // chord may hug the bank or clip a concave corner by this much
+  const walkRingOnce = (pts, step, rawGrid) => {
+    const n = pts.length;
+    const chordInsideRaw = (a, b) => {
+      for (const t of [0.5, 0.25, 0.75]) {
+        const p = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+        if (rawGrid.inside(p)) continue;
+        if (rawGrid.distM(p) <= TOL_OUT_M) continue;
+        return false;
+      }
+      return true;
+    };
+    const kept = [pts[0]];
+    const keptEdges = [];
+    let i = 1;
+    while (i < n) {
+      const a = kept[kept.length - 1];
+      let taken = -1;
+      const hi = Math.min(i + step - 1, n - 1);
+      for (let j = hi; j >= i; j--) {
+        const v = pts[j];
+        if (j > i && !chordInsideRaw(a, v)) continue;
+        let cross = false;
+        for (const [c, d] of keptEdges) {
+          if (d === a) continue; // the edge being extended from shares this endpoint
+          if (segCross(a, v, c, d)) { cross = true; break; }
+        }
+        if (cross) continue;
+        taken = j;
+        break;
+      }
+      if (taken >= 0) {
+        keptEdges.push([a, pts[taken]]);
+        kept.push(pts[taken]);
+        i = taken + 1;
+      } else {
+        i += 1; // front stalls here — advance one source vertex, retry from a
+      }
+    }
+    const a = kept[kept.length - 1], b = kept[0];
+    let closingOk = chordInsideRaw(a, b);
+    if (closingOk) {
+      for (const [c, d] of keptEdges) {
+        if (d === a || c === b) continue;
+        if (segCross(a, b, c, d)) { closingOk = false; break; }
+      }
+    }
+    if (!closingOk || kept.length < 4) return null;
+    return kept;
+  };
+  // every integer stride from the cheap floor down, up to three rotations —
+  // returns valid attempts sorted fewest-verts-first with their retention
+  const ringAttemptsFor = (ring, { coarsest, retainFloor, reserveFloor }) => {
     const pts = ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]
       ? ring.slice(0, -1) : ring.slice();
     const n = pts.length;
-    const rawArea = Math.abs(ringAreaKm2(pts));
-    let best = null;
-    for (let attempt = 6; attempt >= 0; attempt--) {
-      const step = Math.max(1, Math.ceil(n / (maxKeep * Math.pow(2, attempt))));
-      const kept = [pts[0]];
-      for (let i = step; i < n; i += step) {
-        const v = pts[i];
-        const a = kept[kept.length - 1];
-        let ok = true;
-        for (let k = 0; k < kept.length - 1; k++) {
-          if (segCross(a, v, kept[k], kept[k + 1])) { ok = false; break; }
-        }
-        if (ok) kept.push(v);
+    const rawArea = Math.abs(ringAreaKm2(closeRing(pts)));
+    const rawEdges = [];
+    for (let i = 0; i < n; i++) rawEdges.push([pts[i], pts[(i + 1) % n]]);
+    const rawGrid = makeEdgeGrid(rawEdges, 0.004);
+    const attempts = [];
+    const seen = new Set();
+    for (let step = coarsest; step >= 1; step--) {
+      for (const rot of [0, Math.floor(n / 3), Math.floor(n / 2)]) {
+        const rpts = rot === 0 ? pts : pts.slice(rot).concat(pts.slice(0, rot));
+        const kept = walkRingOnce(rpts, step, rawGrid);
+        if (!kept) continue;
+        const closed = closeRing(kept);
+        const retain = Math.abs(ringAreaKm2(closed)) / rawArea;
+        if (ringSelfIntersects(closed)) continue;
+        if (retain < reserveFloor) continue;
+        const key = `${kept.length}@${retain.toFixed(4)}`;
+        if (!seen.has(key)) { seen.add(key); attempts.push({ step, verts: kept.length, retain, ring: kept }); }
+        break; // this stride closed; other rotations are redundant
       }
-      let closingOk = true;
-      const a = kept[kept.length - 1], b = kept[0];
-      for (let k = 0; k < kept.length - 2; k++) {
-        if (segCross(a, b, kept[k], kept[k + 1])) { closingOk = false; break; }
-      }
-      if (!closingOk || kept.length < 4) continue;
-      const retain = rawArea > 0 ? Math.abs(ringAreaKm2(kept)) / rawArea : 1;
-      if (retain < 0.85) continue;
-      // valid and shape-faithful: prefer the fewest vertices seen so far
-      if (!best || kept.length < best.length) best = kept;
     }
-    return best ?? pts;
+    attempts.sort((a, b) => a.verts - b.verts || b.retain - a.retain);
+    return { attempts, pts, rawArea };
   };
+  // start every ring at its cheapest attempt, then spend the remaining
+  // vertex budget on whichever ring gains the most retention per vertex
+  const allocateRingBudget = (perRing, budget) => {
+    const picks = perRing.map((atts) => (atts.length ? atts[0] : null));
+    let used = picks.reduce((s, p) => s + (p ? p.verts : 0), 0);
+    for (let guard = 0; guard < 1000; guard++) {
+      let bestGain = -1, bestIdx = -1;
+      for (let i = 0; i < picks.length; i++) {
+        const atts = perRing[i];
+        if (atts.length < 2) continue;
+        const curPos = atts.indexOf(picks[i]);
+        if (curPos === -1 || curPos === atts.length - 1) continue;
+        const next = atts[curPos + 1];
+        const dVerts = next.verts - picks[i].verts;
+        if (used + dVerts > budget) continue;
+        const gain = dVerts > 0 ? (next.retain - picks[i].retain) / dVerts : -1;
+        if (gain > bestGain) { bestGain = gain; bestIdx = i; }
+      }
+      if (bestIdx < 0) break;
+      const atts = perRing[bestIdx];
+      const next = atts[atts.indexOf(picks[bestIdx]) + 1];
+      used += next.verts - picks[bestIdx].verts;
+      picks[bestIdx] = next;
+    }
+    return picks;
+  };
+  const FEATURE_VERT_BUDGET = 4900; // delivery cap 5,000 incl. holes
+  // holes first at fixed small budgets (their verts are reserved from the cap)
+  const holeRingsByPoly = polysArr.map((poly) => {
+    const outHoles = [];
+    for (const h of poly.slice(1)) {
+      const closedH = closeRing(h);
+      const ha = Math.abs(ringAreaKm2(closedH));
+      if (ha < 0.01) continue;
+      const cap = ha >= 0.05 ? 40 : 18;
+      const hra = ringAttemptsFor(h, { coarsest: Math.max(1, Math.ceil(closedH.length / cap)), retainFloor: 0.8, reserveFloor: 0.7 });
+      const pick = hra.attempts[0] ?? null;
+      const hclosed = pick ? closeRing(pick.ring) : (ringSelfIntersects(closedH) ? uncrossRing(closedH) : closedH);
+      if (hclosed.length < 4 || ringSelfIntersects(hclosed) || Math.abs(ringAreaKm2(hclosed)) < 0.004) continue;
+      outHoles.push(hclosed);
+    }
+    return outHoles;
+  });
+  const holeVerts = holeRingsByPoly.reduce((s, hs) => s + hs.reduce((s2, h) => s2 + h.length, 0), 0);
+  const outerResults = polysArr.map((poly) => ringAttemptsFor(poly[0], {
+    coarsest: Math.max(1, Math.ceil(poly[0].length / 1100)),
+    retainFloor: 0.85, reserveFloor: 0.78,
+  }));
+  const outerPicks = allocateRingBudget(outerResults.map((r) => r.attempts), FEATURE_VERT_BUDGET - holeVerts);
   const simplified = {
     type: 'MultiPolygon',
-    coordinates: raw.map((poly) => {
-      const outer = decimateRingSafe(poly[0], 4200).map((p) => [+p[0].toFixed(6), +p[1].toFixed(6)]);
-      const holes = poly.slice(1)
-        .map((r) => ({ r, a: ringAreaKm2(r) }))
-        .filter((h) => h.a >= 0.01)
-        .map((h) => decimateRingSafe(h.r, 60).map((p) => [+p[0].toFixed(6), +p[1].toFixed(6)]))
-        .filter((r) => r.length >= 4);
-      return [closeRing(outer)].concat(holes.map(closeRing));
+    coordinates: polysArr.map((poly, i) => {
+      const res = outerResults[i];
+      const pick = outerPicks[i];
+      const outer = pick
+        ? closeRing(pick.ring)
+        : (() => { const c = closeRing(res.pts); return ringSelfIntersects(c) ? uncrossRing(c) : c; })();
+      return [outer].concat(holeRingsByPoly[i]);
     }),
   };
   const geom = simplified;
+  const decimationNote = outerPicks.map((p, i) => p
+    ? `part${i} stride ${p.step} (${(p.retain * 100).toFixed(0)}% of raw ring area)`
+    : `part${i} raw`).join(', ');
   const deliveredKm2 = polyAreaKm2(geom);
   const bbox = geomBBox(geom.coordinates);
   const anchor = interiorAnchor(geom);
@@ -1223,7 +1379,7 @@ function buildGreatFalls(spec, log) {
   log.push({
     id: spec.id, action: 'rebuilt', partsRaw: polysArr.length, partsDelivered: feature.properties.partCount,
     verts: feature.properties.vertexCount, sourceAreaKm2: +sourceKm2.toFixed(2), deliveredAreaKm2: +deliveredKm2.toFixed(2),
-    bbox, selectionNote: 'both NHDArea wide-water arms (Collins + Caney Fork) pinned by candidate points; combined area matches TVA ~2900 acres',
+    bbox, selectionNote: `both NHDArea wide-water arms (Collins + Caney Fork) pinned by candidate points; containment-preserving decimation: ${decimationNote}`,
   });
   return { feature, logEntry: log[log.length - 1], rings: geom.coordinates };
 }

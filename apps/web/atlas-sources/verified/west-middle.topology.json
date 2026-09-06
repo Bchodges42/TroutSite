@@ -464,7 +464,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 13.04,
-   "deliveredAreaSqKm": 5.88,
+   "deliveredAreaSqKm": 12.83,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -475,10 +475,10 @@
    ],
    "verificationState": "PASS",
    "notes": "Caney Fork/Collins impoundment above Center Hill Lake at Rock Island; promoted to interactive with catalog record.",
-   "damPoolDistanceM": 242,
+   "damPoolDistanceM": 282,
    "connections": {
     "caney-fork-river": {
-     "endpointToLakeM": 20,
+     "endpointToLakeM": 0,
      "ok": true,
      "informational": false
     },
@@ -1804,7 +1804,7 @@
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 227.64,
    "deliveredLengthKm": 244.92,
-   "largestConnectionGapMeters": 2788,
+   "largestConnectionGapMeters": 1136,
    "termini": [
     {
      "anchor": "headwaters near Campbell Junction (fix-caney-fork verified source)",
@@ -1845,8 +1845,8 @@
     }
    ],
    "chainSeparations": {
-    "poolMediated": 5,
-    "poolMediatedMaxM": 554,
+    "poolMediated": 38,
+    "poolMediatedMaxM": 2788,
     "braid": 7,
     "braidMaxM": 1612
    },
@@ -3409,7 +3409,7 @@
    "largestConnectionGapMeters": 2600,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 3,
+    "poolMediated": 4,
     "poolMediatedMaxM": 792,
     "braid": 1,
     "braidMaxM": 1038
@@ -3839,11 +3839,11 @@
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 49.88,
    "deliveredLengthKm": 68.96,
-   "largestConnectionGapMeters": 2267,
+   "largestConnectionGapMeters": 606,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 2,
-    "poolMediatedMaxM": 515,
+    "poolMediated": 13,
+    "poolMediatedMaxM": 2267,
     "braid": 1,
     "braidMaxM": 1231
    },
