@@ -12,9 +12,14 @@ idealFlow:
   - min: 300
     max: 2000
     unit: cfs
-notes: Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s
-  stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled;
-  verify releases.
+notes: >-
+  Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking
+  dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.
+  Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS French Broad River, state-cut at
+  the TN/NC line, through Douglas Lake via declared through-pool route to the Holston confluence. Two
+  documented source-chord seams at the state line where NHD carries the river as 2-vertex artificial-
+  path slivers (topology midCourseSeams).
+
 officialSources:
   - label: USGS Water Data — monitoring location 03468510
     url: https://waterdata.usgs.gov/monitoring-location/03468510/

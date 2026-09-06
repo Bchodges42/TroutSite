@@ -10,7 +10,12 @@ idealFlow:
   - min: 3
     max: 30
     unit: cfs
-notes: TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy.
+notes: >-
+  TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. Verified geometry (geo/east-fix
+  rebuild): NHDPlus HR NHDFlowline GNIS Richardson Creek (the catalog's Byrd alias), Hancock County;
+  documented mouth terminus at the upper Clinch (undelivered water) plus coverage hops (topology
+  midCourseSeams).
+
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

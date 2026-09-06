@@ -11,8 +11,12 @@ idealFlow:
   - min: 30
     max: 250
     unit: cfs
-notes: "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the
-  Hebbertsburg gauge — it moves quickly after storms."
+notes: >-
+  "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the Hebbertsburg
+  gauge — it moves quickly after storms." Verified geometry (geo/east-fix rebuild): NHDPlus HR
+  NHDFlowline GNIS Daddys Creek, full named extent to the Obed confluence; three documented named-
+  coverage hops at impoundments/valley strands (topology midCourseSeams).
+
 officialSources:
   - label: USGS Water Data — monitoring location 03539600
     url: https://waterdata.usgs.gov/monitoring-location/03539600/

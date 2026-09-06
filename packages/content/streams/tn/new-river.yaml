@@ -11,8 +11,12 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
-notes: Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country
-  history means check local access notices; flows are rain-driven.
+notes: >-
+  Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country history means
+  check local access notices; flows are rain-driven. Verified geometry (geo/east-fix rebuild): NHDPlus
+  HR NHDFlowline GNIS New River (Scott/Anderson counties), full named extent; two documented named-
+  coverage termini/seams (topology midCourseSeams).
+
 officialSources:
   - label: USGS Water Data — monitoring location 03408500
     url: https://waterdata.usgs.gov/monitoring-location/03408500/

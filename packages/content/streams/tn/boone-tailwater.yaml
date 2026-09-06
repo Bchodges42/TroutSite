@@ -11,9 +11,13 @@ idealFlow:
   - min: 150
     max: 1200
     unit: cfs
-notes: Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and
-  brown trout. Flow swings hard with TVA generation; treat the ideal band as a guideline and
-  verify releases.
+notes: >-
+  Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and brown trout. Flow
+  swings hard with TVA generation; treat the ideal band as a guideline and verify releases. Verified
+  geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS South Fork Holston River, Boone Dam (USGS
+  03486810) through the Fort Patrick Henry pool (declared through-route) to Fort Patrick Henry Dam;
+  single welded chain.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03486810
     url: https://waterdata.usgs.gov/monitoring-location/03486810/

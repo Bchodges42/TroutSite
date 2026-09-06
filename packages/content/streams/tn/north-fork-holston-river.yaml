@@ -8,14 +8,16 @@ stockingProgram: false
 species: warmwater
 idealFlow: []
 notes: >-
-  The northern fork of the Holston, entering Tennessee from Virginia shortly
-  before its confluence with the South Fork Holston at Kingsport — the point
-  where the Holston River main stem (holston-river) begins. The Tennessee
-  reach is short (the fork forms the state line for its final miles); Virginia
-  water upstream is out of scope. Recognized as a separate named river on the
-  TWRA waterways rivers layer. Renowned smallmouth water in Virginia; verify
-  regulations and any consumption advisories before eating fish from this
-  reach.
+  The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence with
+  the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river)
+  begins. The Tennessee reach is short (the fork forms the state line for its final miles); Virginia
+  water upstream is out of scope. Recognized as a separate named river on the TWRA waterways rivers
+  layer. Renowned smallmouth water in Virginia; verify regulations and any consumption advisories before
+  eating fish from this reach. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS
+  North Fork Holston River, gated to the Tennessee reach (VA-side braided boundary water at lat >=
+  36.629 excluded whole-part). Two documented named-coverage seams at the state-line braid complex
+  (topology midCourseSeams).
+
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html

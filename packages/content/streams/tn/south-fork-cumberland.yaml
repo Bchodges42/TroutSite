@@ -11,8 +11,13 @@ idealFlow:
   - min: 80
     max: 500
     unit: cfs
-notes: Big South Fork National River & Recreation Area water with wild browns and rainbows
-  around Leatherwood Ford. Beautiful and isolated — plan bail-outs.
+notes: >-
+  Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood
+  Ford. Beautiful and isolated — plan bail-outs. Verified geometry (geo/east-fix rebuild): NHDPlus HR
+  NHDFlowline GNIS Big South Fork / South Fork Cumberland River, state-cut at the KY line, Leatherwood
+  Ford country; one documented named-coverage seam upstream of Leatherwood Ford (topology
+  midCourseSeams).
+
 officialSources:
   - label: USGS Water Data — monitoring location 03410210
     url: https://waterdata.usgs.gov/monitoring-location/03410210/

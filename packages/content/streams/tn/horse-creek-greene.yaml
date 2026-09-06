@@ -10,8 +10,12 @@ idealFlow:
   - min: 5
     max: 60
     unit: cfs
-notes: Cherokee National Forest creek with TWRA spring stocking and nearby Dillard Ponds
-  put-ins. Classic bank-and-boulder small water.
+notes: >-
+  Cherokee National Forest creek with TWRA spring stocking and nearby Dillard Ponds put-ins. Classic
+  bank-and-boulder small water. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS
+  Horse Creek (Greene County), full named extent; one documented mouth terminus ~3 km short of the
+  Nolichucky across an unnamed valley-mouth reach (topology midCourseSeams).
+
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

@@ -11,8 +11,12 @@ idealFlow:
   - min: 100
     max: 800
     unit: cfs
-notes: Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and
-  TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly.
+notes: >-
+  Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked
+  rainbow and brown trout. Wadeable at low generation; rises quickly. Verified geometry (geo/east-fix
+  rebuild): NHDPlus HR NHDFlowline GNIS South Fork Holston River from Fort Patrick Henry Dam (USGS
+  03487010) to the Kingsport confluence; single welded chain.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03487010
     url: https://waterdata.usgs.gov/monitoring-location/03487010/

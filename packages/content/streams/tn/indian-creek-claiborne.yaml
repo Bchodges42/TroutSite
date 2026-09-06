@@ -10,7 +10,12 @@ idealFlow:
   - min: 5
     max: 50
     unit: cfs
-notes: TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May.
+notes: >-
+  TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May. Verified
+  geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS Indian Creek (Claiborne County), full
+  named extent; one documented mouth terminus short of the upper Clinch (undelivered water; topology
+  midCourseSeams).
+
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
