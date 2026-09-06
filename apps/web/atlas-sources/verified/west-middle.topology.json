@@ -25,7 +25,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 583.09,
-   "deliveredAreaSqKm": 614.54,
+   "deliveredAreaSqKm": 614.79,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -199,7 +199,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 56.8,
-   "deliveredAreaSqKm": 61.87,
+   "deliveredAreaSqKm": 61.19,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -210,20 +210,20 @@
    ],
    "verificationState": "PASS",
    "notes": "NHD name \"J Percy Priest Reservoir\".",
-   "damPoolDistanceM": 311,
+   "damPoolDistanceM": 266,
    "connections": {
     "west-fork-stones-river": {
-     "endpointToLakeM": 348,
-     "ok": false,
-     "informational": true
+     "endpointToLakeM": 0,
+     "ok": true,
+     "informational": false
     },
     "east-fork-stones-river": {
-     "endpointToLakeM": 348,
-     "ok": false,
-     "informational": true
+     "endpointToLakeM": 3,
+     "ok": true,
+     "informational": false
     },
     "stones-river": {
-     "endpointToLakeM": 38,
+     "endpointToLakeM": 0,
      "ok": true,
      "informational": false
     }
@@ -249,7 +249,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 31.34,
-   "deliveredAreaSqKm": 33.18,
+   "deliveredAreaSqKm": 32.92,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -290,7 +290,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 69.88,
-   "deliveredAreaSqKm": 80.67,
+   "deliveredAreaSqKm": 75.31,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -301,7 +301,7 @@
    ],
    "verificationState": "PASS",
    "notes": "Single NHD waterbody polygon, 69.9 km².",
-   "damPoolDistanceM": 123,
+   "damPoolDistanceM": 119,
    "connections": {
     "caney-fork-river": {
      "endpointToLakeM": 0,
@@ -335,7 +335,7 @@
     "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
    },
    "sourceAreaSqKm": 103.24,
-   "deliveredAreaSqKm": 114.13,
+   "deliveredAreaSqKm": 111.06,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
@@ -346,10 +346,10 @@
    ],
    "verificationState": "PASS",
    "notes": "Single NHD waterbody polygon incl. the KY portion; pool kept whole to the dam.",
-   "damPoolDistanceM": 330,
+   "damPoolDistanceM": 410,
    "connections": {
     "obey-river": {
-     "endpointToLakeM": 1128,
+     "endpointToLakeM": 1100,
      "ok": false,
      "informational": true
     }
@@ -1950,7 +1950,7 @@
      ],
      "distanceM": 276,
      "maxM": 600,
-     "poolMediated": 38,
+     "poolMediated": 0,
      "ok": true,
      "informational": false
     },
@@ -2050,12 +2050,12 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 228.39,
-   "deliveredLengthKm": 121.57,
-   "largestConnectionGapMeters": 2484,
+   "deliveredLengthKm": 121.53,
+   "largestConnectionGapMeters": 1654,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 0,
-    "poolMediatedMaxM": null,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 2465,
     "braid": 3,
     "braidMaxM": 521
    },
@@ -2139,7 +2139,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 228.39,
-   "deliveredLengthKm": 83.15,
+   "deliveredLengthKm": 83.08,
    "largestConnectionGapMeters": 2297,
    "termini": [],
    "chainSeparations": {
@@ -2237,7 +2237,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 78.6,
-   "deliveredLengthKm": 19.23,
+   "deliveredLengthKm": 21.61,
    "largestConnectionGapMeters": 1533,
    "termini": [
     {
@@ -3025,7 +3025,7 @@
    "largestConnectionGapMeters": 2689,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 1,
+    "poolMediated": 2,
     "poolMediatedMaxM": 476,
     "braid": 6,
     "braidMaxM": 654

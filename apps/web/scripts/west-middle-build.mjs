@@ -250,11 +250,14 @@ function uncrossRing(ring) {
 function simplifyPolygon(geom, tolM, budget) {
   // Outer rings: DP at the spec tolerance, with an amputation guard. When DP
   // folds a ring into self-crossings, the uncrosser (loop removal) is only
-  // accepted if it keeps ≥97% of the folded ring's area — otherwise the fold
-  // cut through real water (thin drowned-valley arms fold above roughly half
-  // their width) and the tolerance DESCENDS (×0.6) to a fold-free scale
-  // instead. The kentucky-lake Duck River arm lost 90% of its area to a
-  // blind uncross repair in the first build (13.5 km² → 1.28 km²).
+  // accepted if it keeps ≥97% of the folded ring's area AND stays within
+  // DP's own contract — every SOURCE vertex must remain within ~2×t of the
+  // repaired ring (a narrow upstream arm 2 km from the truncated boundary is
+  // caught by the distance test even when its area is rounding noise: the
+  // J. Percy Priest pool lost its upper East Fork arm that way, and the
+  // kentucky-lake Duck River arm lost 90% of its area to a blind uncross
+  // repair in the first build). When the repair fails either test the
+  // tolerance DESCENDS (×0.6) to a fold-free scale instead.
   const simplifyOuter = (ring, t0) => {
     const closed = closeRing(ring);
     let t = t0;
@@ -264,7 +267,12 @@ function simplifyPolygon(geom, tolM, budget) {
       if (!ringSelfIntersects(sRing)) return closeRing(sRing);
       const u = uncrossRing(sRing);
       const retain = Math.abs(ringAreaKm2(sRing)) > 0 ? Math.abs(ringAreaKm2(u)) / Math.abs(ringAreaKm2(sRing)) : 1;
-      if (!ringSelfIntersects(u) && retain >= 0.97) return closeRing(u);
+      let maxDev = 0;
+      for (const v of closed) {
+        const d = pointToRingsM(v, [u]);
+        if (d > maxDev) maxDev = d;
+      }
+      if (!ringSelfIntersects(u) && retain >= 0.97 && maxDev <= Math.max(2 * t, 150)) return closeRing(u);
       t *= 0.6;
     }
     // floor: keep the previous build's behaviour (uncross at spec tolerance)
@@ -908,13 +916,18 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
     parts = parts.filter((p) => { const b = geomBBox(p); return b[0] >= win[0] && b[1] >= win[1] && b[2] <= win[2] && b[3] <= win[3]; });
     // tailwater reaches must START at the dam: drop NHD parts that begin
     // inside the upstream reservoir pool (named artificial paths continue
-    // through the pool; the pool polygon carries that water instead)
+    // through the pool; the pool polygon carries that water instead).
+    // "Inside" means deeper than 150 m from the boundary — a boundary-zone
+    // stub whose endpoint lands within the fetch-precision band (~50 m) plus
+    // boundary rounding is the tailwater's own last metres at the dam, not
+    // the pool's through-pool carrier
     if (spec.excludePool) {
       const lake = builtById.get(spec.excludePool);
       if (lake) {
         const rings = (lake.feature.geometry.type === 'MultiPolygon'
           ? lake.feature.geometry.coordinates : [lake.feature.geometry.coordinates]).flat();
-        parts = parts.filter((p) => !pointInRings(p[0], rings) && !pointInRings(p[p.length - 1], rings));
+        const deepInside = (p) => pointInRings(p, rings) && pointToRingsM(p, rings) > 150;
+        parts = parts.filter((p) => !deepInside(p[0]) && !deepInside(p[p.length - 1]));
       }
     }
   } else if (gate === 'corridor') {
