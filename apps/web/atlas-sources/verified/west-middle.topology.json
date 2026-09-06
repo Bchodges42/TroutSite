@@ -349,7 +349,7 @@
    "damPoolDistanceM": 410,
    "connections": {
     "obey-river": {
-     "endpointToLakeM": 1100,
+     "endpointToLakeM": 937,
      "ok": false,
      "informational": true
     }
@@ -653,8 +653,8 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 126.06,
-   "deliveredLengthKm": 161.43,
-   "largestConnectionGapMeters": 2410,
+   "deliveredLengthKm": 161.58,
+   "largestConnectionGapMeters": 2741,
    "termini": [
     {
      "anchor": "Mississippi River mouth",
@@ -667,10 +667,10 @@
     }
    ],
    "chainSeparations": {
-    "poolMediated": 15,
-    "poolMediatedMaxM": 568,
-    "braid": 9,
-    "braidMaxM": 1038
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 2,
+    "braidMaxM": 615
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -752,7 +752,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 408.73,
-   "deliveredLengthKm": 361.27,
+   "deliveredLengthKm": 330.92,
    "largestConnectionGapMeters": 2107,
    "termini": [
     {
@@ -766,9 +766,9 @@
     }
    ],
    "chainSeparations": {
-    "poolMediated": 10,
-    "poolMediatedMaxM": 218,
-    "braid": 12,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 450,
+    "braid": 6,
     "braidMaxM": 1458
    },
    "verificationSources": [
@@ -851,8 +851,8 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 166.29,
-   "deliveredLengthKm": 187.47,
-   "largestConnectionGapMeters": 2108,
+   "deliveredLengthKm": 174.57,
+   "largestConnectionGapMeters": 1582,
    "termini": [
     {
      "anchor": "Mississippi River mouth at Memphis",
@@ -865,8 +865,8 @@
     }
    ],
    "chainSeparations": {
-    "poolMediated": 1,
-    "poolMediatedMaxM": 380,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
     "braid": 12,
     "braidMaxM": 2173
    },
@@ -951,8 +951,8 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 693.49,
-   "deliveredLengthKm": 647.95,
-   "largestConnectionGapMeters": 1881,
+   "deliveredLengthKm": 647.9,
+   "largestConnectionGapMeters": 2586,
    "termini": [
     {
      "anchor": "USGS 03426310 Cumberland River at Old Hickory Dam (TW)",
@@ -985,7 +985,7 @@
     "poolMediated": 41,
     "poolMediatedMaxM": 2474,
     "braid": 12,
-    "braidMaxM": 1175
+    "braidMaxM": 2602
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -1067,14 +1067,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 236.31,
-   "deliveredLengthKm": 250.21,
-   "largestConnectionGapMeters": 2501,
+   "deliveredLengthKm": 253.68,
+   "largestConnectionGapMeters": 2736,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 14,
-    "poolMediatedMaxM": 424,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 617,
     "braid": 12,
-    "braidMaxM": 1096
+    "braidMaxM": 1396
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -1255,7 +1255,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 191.47,
-   "deliveredLengthKm": 251.68,
+   "deliveredLengthKm": 240.21,
    "largestConnectionGapMeters": 2900,
    "termini": [
     {
@@ -1270,8 +1270,8 @@
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 9,
-    "braidMaxM": 1158
+    "braid": 6,
+    "braidMaxM": 505
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -1355,7 +1355,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 271.92,
-   "deliveredLengthKm": 74.9,
+   "deliveredLengthKm": 72.8,
    "largestConnectionGapMeters": 1008,
    "termini": [
     {
@@ -1386,7 +1386,7 @@
    "chainSeparations": {
     "poolMediated": 9,
     "poolMediatedMaxM": 1291,
-    "braid": 9,
+    "braid": 8,
     "braidMaxM": 1057
    },
    "verificationSources": [
@@ -1471,7 +1471,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 271.92,
-   "deliveredLengthKm": 241.94,
+   "deliveredLengthKm": 267.04,
    "largestConnectionGapMeters": 2005,
    "termini": [
     {
@@ -1594,8 +1594,8 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 220.24,
-   "deliveredLengthKm": 178.56,
-   "largestConnectionGapMeters": 969,
+   "deliveredLengthKm": 182.06,
+   "largestConnectionGapMeters": 1338,
    "termini": [
     {
      "anchor": "USGS 03580750 Elk River below Tims Ford Dam",
@@ -1625,8 +1625,8 @@
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 8,
-    "braidMaxM": 962
+    "braid": 4,
+    "braidMaxM": 525
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -1711,13 +1711,13 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 220.24,
-   "deliveredLengthKm": 47.44,
-   "largestConnectionGapMeters": 2646,
+   "deliveredLengthKm": 46.4,
+   "largestConnectionGapMeters": 1985,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 2,
     "poolMediatedMaxM": 402,
-    "braid": 5,
+    "braid": 7,
     "braidMaxM": 2177
    },
    "verificationSources": [
@@ -1803,7 +1803,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 227.64,
-   "deliveredLengthKm": 244.92,
+   "deliveredLengthKm": 236.75,
    "largestConnectionGapMeters": 1136,
    "termini": [
     {
@@ -1845,9 +1845,9 @@
     }
    ],
    "chainSeparations": {
-    "poolMediated": 38,
+    "poolMediated": 24,
     "poolMediatedMaxM": 2788,
-    "braid": 7,
+    "braid": 9,
     "braidMaxM": 1612
    },
    "verificationSources": [
@@ -2050,14 +2050,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 228.39,
-   "deliveredLengthKm": 121.57,
+   "deliveredLengthKm": 116.66,
    "largestConnectionGapMeters": 1654,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 1,
-    "poolMediatedMaxM": 2484,
-    "braid": 3,
-    "braidMaxM": 521
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 7,
+    "braidMaxM": 1134
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -2139,7 +2139,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 228.39,
-   "deliveredLengthKm": 83.15,
+   "deliveredLengthKm": 67.39,
    "largestConnectionGapMeters": 2297,
    "termini": [],
    "chainSeparations": {
@@ -2237,7 +2237,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 78.6,
-   "deliveredLengthKm": 21.61,
+   "deliveredLengthKm": 17.01,
    "largestConnectionGapMeters": 1533,
    "termini": [
     {
@@ -2350,8 +2350,8 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 106.66,
-   "deliveredLengthKm": 151.61,
-   "largestConnectionGapMeters": 2196,
+   "deliveredLengthKm": 126.21,
+   "largestConnectionGapMeters": 1992,
    "termini": [
     {
      "anchor": "west end of NHD named coverage (Clarksville)",
@@ -2378,7 +2378,7 @@
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 5,
+    "braid": 4,
     "braidMaxM": 2872
    },
    "verificationSources": [
@@ -2435,14 +2435,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 39.99,
-   "deliveredLengthKm": 66.61,
-   "largestConnectionGapMeters": 1564,
+   "deliveredLengthKm": 62.01,
+   "largestConnectionGapMeters": 2503,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 2,
-    "braidMaxM": 256
+    "braid": 5,
+    "braidMaxM": 1150
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -2552,13 +2552,13 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 15.34,
-   "deliveredLengthKm": 17.42,
+   "deliveredLengthKm": 19.27,
    "largestConnectionGapMeters": 1237,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 0,
-    "poolMediatedMaxM": null,
-    "braid": 2,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 1062,
+    "braid": 4,
     "braidMaxM": 1647
    },
    "verificationSources": [
@@ -2639,14 +2639,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 77.04,
-   "deliveredLengthKm": 106.16,
-   "largestConnectionGapMeters": 1140,
+   "deliveredLengthKm": 104.35,
+   "largestConnectionGapMeters": 2651,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 4,
+    "poolMediated": 5,
     "poolMediatedMaxM": 764,
-    "braid": 6,
-    "braidMaxM": 594
+    "braid": 5,
+    "braidMaxM": 818
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -2740,13 +2740,13 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 17.62,
-   "deliveredLengthKm": 23.06,
+   "deliveredLengthKm": 22.76,
    "largestConnectionGapMeters": 1421,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 3,
+    "poolMediated": 2,
     "poolMediatedMaxM": 679,
-    "braid": 3,
+    "braid": 5,
     "braidMaxM": 784
    },
    "verificationSources": [
@@ -2795,14 +2795,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 21.08,
-   "deliveredLengthKm": 50.68,
-   "largestConnectionGapMeters": 1574,
+   "deliveredLengthKm": 39.55,
+   "largestConnectionGapMeters": 1406,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 2,
     "poolMediatedMaxM": 190,
-    "braid": 0,
-    "braidMaxM": null
+    "braid": 3,
+    "braidMaxM": 237
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -2847,14 +2847,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 30.45,
-   "deliveredLengthKm": 30.58,
+   "deliveredLengthKm": 30.92,
    "largestConnectionGapMeters": 2924,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 2,
-    "braidMaxM": 403
+    "braid": 0,
+    "braidMaxM": null
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -2934,14 +2934,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 93.99,
-   "deliveredLengthKm": 105.69,
-   "largestConnectionGapMeters": 2661,
+   "deliveredLengthKm": 99.47,
+   "largestConnectionGapMeters": 2493,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 2,
-    "braidMaxM": 1769
+    "braid": 3,
+    "braidMaxM": 1563
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -3021,14 +3021,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 55.35,
-   "deliveredLengthKm": 78.81,
-   "largestConnectionGapMeters": 2689,
+   "deliveredLengthKm": 59.55,
+   "largestConnectionGapMeters": 2681,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 2,
+    "poolMediated": 1,
     "poolMediatedMaxM": 476,
-    "braid": 6,
-    "braidMaxM": 654
+    "braid": 4,
+    "braidMaxM": 1686
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -3108,13 +3108,13 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 36.32,
-   "deliveredLengthKm": 69.84,
-   "largestConnectionGapMeters": 2267,
+   "deliveredLengthKm": 55.75,
+   "largestConnectionGapMeters": 1153,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 0,
     "poolMediatedMaxM": null,
-    "braid": 10,
+    "braid": 4,
     "braidMaxM": 1397
    },
    "verificationSources": [
@@ -3263,13 +3263,13 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 50.27,
-   "deliveredLengthKm": 67.61,
+   "deliveredLengthKm": 61.63,
    "largestConnectionGapMeters": 1639,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 9,
     "poolMediatedMaxM": 329,
-    "braid": 5,
+    "braid": 3,
     "braidMaxM": 2577
    },
    "verificationSources": [
@@ -3350,14 +3350,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 37.61,
-   "deliveredLengthKm": 48.13,
+   "deliveredLengthKm": 50.64,
    "largestConnectionGapMeters": 427,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 22,
+    "poolMediated": 30,
     "poolMediatedMaxM": 731,
-    "braid": 3,
-    "braidMaxM": 737
+    "braid": 1,
+    "braidMaxM": 287
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -3405,7 +3405,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 68.19,
-   "deliveredLengthKm": 96.77,
+   "deliveredLengthKm": 93.73,
    "largestConnectionGapMeters": 2600,
    "termini": [],
    "chainSeparations": {
@@ -3479,12 +3479,12 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 25.56,
-   "deliveredLengthKm": 31.27,
+   "deliveredLengthKm": 27.3,
    "largestConnectionGapMeters": 2516,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 21,
-    "poolMediatedMaxM": 1308,
+    "poolMediated": 5,
+    "poolMediatedMaxM": 769,
     "braid": 0,
     "braidMaxM": null
    },
@@ -3566,7 +3566,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 97.57,
-   "deliveredLengthKm": 130.79,
+   "deliveredLengthKm": 122.53,
    "largestConnectionGapMeters": 1666,
    "termini": [
     {
@@ -3593,7 +3593,7 @@
     }
    ],
    "chainSeparations": {
-    "poolMediated": 37,
+    "poolMediated": 32,
     "poolMediatedMaxM": 1823,
     "braid": 0,
     "braidMaxM": null
@@ -3674,13 +3674,13 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 44.71,
-   "deliveredLengthKm": 67.78,
+   "deliveredLengthKm": 56.43,
    "largestConnectionGapMeters": 1702,
    "termini": [],
    "chainSeparations": {
     "poolMediated": 4,
     "poolMediatedMaxM": 694,
-    "braid": 4,
+    "braid": 2,
     "braidMaxM": 2284
    },
    "verificationSources": [
@@ -3771,14 +3771,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 23.31,
-   "deliveredLengthKm": 37.09,
-   "largestConnectionGapMeters": 2333,
+   "deliveredLengthKm": 23.76,
+   "largestConnectionGapMeters": 2335,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 9,
-    "poolMediatedMaxM": 831,
-    "braid": 7,
-    "braidMaxM": 606
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 1,
+    "braidMaxM": 2383
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
@@ -3838,7 +3838,7 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 49.88,
-   "deliveredLengthKm": 68.96,
+   "deliveredLengthKm": 67.89,
    "largestConnectionGapMeters": 606,
    "termini": [],
    "chainSeparations": {
@@ -3879,14 +3879,14 @@
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
    "sourceLengthKm": 9.14,
-   "deliveredLengthKm": 19.27,
+   "deliveredLengthKm": 18.97,
    "largestConnectionGapMeters": 2419,
    "termini": [],
    "chainSeparations": {
-    "poolMediated": 16,
+    "poolMediated": 18,
     "poolMediatedMaxM": 2850,
-    "braid": 3,
-    "braidMaxM": 223
+    "braid": 1,
+    "braidMaxM": 129
    },
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",

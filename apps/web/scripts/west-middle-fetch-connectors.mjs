@@ -41,6 +41,19 @@ const ANCHOR_BOXES = [
   ['wolf-river-west-tennessee@mouth', -90.062, 35.179],
   ['obion-river@mouth', -89.6876, 35.8904],
   ['hatchie-river@mouth', -89.8622, 35.5851],
+  // NOTE (stones-forks pool head, 2026-09-06): the pool-head site
+  // (-86.4587,35.9859) is already covered by the east/west-fork-stones-river
+  // measured-gap boxes; a dedicated box only floods the attach with floating
+  // unnamed 46006 fragments around the pool head (both-endpoint 400 m rule),
+  // so no dedicated box is kept.
+  // NOTE (sinking-creek-wilson karst verification, 2026-09-06): corridor
+  // probe boxes at the inter-fragment gaps (upper -86.294,36.176; middle
+  // -86.322,36.125; lower -86.48,36.075) were fetched and inspected: NHD
+  // carries disconnected unnamed subnetworks and a named 'Sinking Creek'
+  // artificial path (OBJ 2649969) INSIDE the corridors, but no segment
+  // bridges the gaps to the named chains - NHD itself models the losing
+  // stream as discontinuous. No boxes kept: candidates there only attach
+  // as dangling fragments.
 ];
 for (const [id, lon, lat] of ANCHOR_BOXES) {
   if (!gapSites.has(id)) gapSites.set(id, [lon, lat]);

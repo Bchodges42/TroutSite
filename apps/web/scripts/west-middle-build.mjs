@@ -819,6 +819,55 @@ function distPointToLinesM(p, lines) {
   }
   return best;
 }
+// near-duplicate reach collapse: NHD carries the same physical reach under
+// several OBJECTIDs (named + unnamed carrier, VPU seams, re-digitizations)
+// with slightly different vertex lists, so exact-signature dedupe misses
+// them. Two parts whose quantized endpoint pair matches AND whose PATHS
+// coincide (every vertex of each within 40 m of the other's path) are the
+// same reach — keep the most detailed copy. Left in place, duplicates
+// double-draw water (the first builds delivered red-river at 151.6 km of
+// 106.7 km source) and make the welder's anti-parallel junction guard split
+// chains at the duplicated reach's ends (sinking-creek-wilson fractured
+// into 6 chains this way). Braided channels between the same confluences
+// diverge on path and are all kept.
+function collapseDuplicateReaches(parts) {
+  const q = (v) => Math.round(v / 0.0005);
+  const groups = new Map();
+  for (const p of parts) {
+    const a = p[0], b = p[p.length - 1];
+    const fwd = `${q(a[0])},${q(a[1])},${q(b[0])},${q(b[1])}`;
+    const rev = `${q(b[0])},${q(b[1])},${q(a[0])},${q(a[1])}`;
+    const key = fwd < rev ? fwd : rev;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(p);
+  }
+  const pathDistM = (p, q2) => {
+    let best = Infinity;
+    for (let i = 0; i < q2.length - 1; i++) {
+      const d = pointToSegmentM(p, q2[i], q2[i + 1]);
+      if (d < best) best = d;
+    }
+    return best;
+  };
+  const samePath = (p, q2) => {
+    for (const v of p) if (pathDistM(v, q2) > 40) return false;
+    for (const v of q2) if (pathDistM(v, p) > 40) return false;
+    return true;
+  };
+  const out = [];
+  let dropped = 0;
+  for (const [, list] of groups) {
+    if (list.length === 1) { out.push(list[0]); continue; }
+    const sorted = list.slice().sort((x, y) => y.length - x.length);
+    const kept = [];
+    for (const p of sorted) {
+      if (kept.some((k) => samePath(p, k))) { dropped++; continue; }
+      kept.push(p);
+    }
+    out.push(...kept);
+  }
+  return { parts: out, dropped };
+}
 // attach unnamed NHD connector segments fetched around measured gaps
 // (west-middle-fetch-connectors.mjs). Rules:
 //   - fcode 55800 (artificial path = mainstem carrier through pools): attach
@@ -969,6 +1018,13 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
     parts = parts.filter(stateWindowKeeps);
   }
   if (!parts.length) { log.push({ id: spec.id, error: 'all parts outside reach window' }); return null; }
+  // collapse near-duplicate reaches BEFORE welding (see function doc)
+  {
+    const before = parts.length;
+    const collapsed = collapseDuplicateReaches(parts);
+    parts = collapsed.parts;
+    if (collapsed.dropped > 0) log.push({ id: `reachdup:${spec.id}`, note: `${collapsed.dropped} near-duplicate reaches collapsed (of ${before} parts)` });
+  }
   // attach unnamed NHD connector segments (fcode 55800 artificial paths and
   // unnamed 46006 pieces) from the phase-2 connector fetch. Only parts whose
   // endpoints join the existing chain are added — nothing is fabricated, and
@@ -1000,7 +1056,9 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
     if (parts.length !== before) log.push({ id: `pooltrim:${spec.id}`, note: `${before - parts.length} foreign pool-interior parts dropped` });
   }
   // final dedupe: connector boxes overlap, so the same OBJECTID can arrive
-  // several times; identical welded chains would render as multi-drawn lines
+  // several times; identical welded chains would render as multi-drawn lines.
+  // Near-duplicate collapse then removes attached carriers whose geometry
+  // duplicates a named reach (endpoint pair + coincident path).
   {
     const seenSig = new Set();
     parts = parts.filter((p) => {
@@ -1009,6 +1067,10 @@ function buildRiver(spec, log, lakeIndex, gapWaterIndex, builtById) {
       seenSig.add(sig);
       return true;
     });
+    const before = parts.length;
+    const collapsed = collapseDuplicateReaches(parts);
+    parts = collapsed.parts;
+    if (collapsed.dropped > 0) log.push({ id: `reachdup:${spec.id}`, note: `${collapsed.dropped} near-duplicate reaches collapsed after attach (of ${before} parts)` });
   }
   const welded = weldLines(parts);
   const gaps = gapReport(welded, lakeIndex, gapWaterIndex);
