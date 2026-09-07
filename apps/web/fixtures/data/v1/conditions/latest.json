@@ -4,21 +4,21 @@
     "readings": [
       {
         "gaugeId": "03476500",
-        "timestamp": "2026-09-05T22:46:11Z",
+        "timestamp": "2026-09-07T22:27:46Z",
         "cfs": 245,
         "heightFt": 2.9,
         "tempC": 9.4
       },
       {
         "gaugeId": "03476500",
-        "timestamp": "2026-09-05T21:46:11Z",
+        "timestamp": "2026-09-07T21:27:46Z",
         "cfs": 268,
         "heightFt": 3,
         "tempC": 9.6
       },
       {
         "gaugeId": "03476500",
-        "timestamp": "2026-09-05T20:46:11Z",
+        "timestamp": "2026-09-07T20:27:46Z",
         "cfs": 250,
         "heightFt": 3.1,
         "tempC": 9.7
@@ -33,22 +33,22 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "watauga-river",
     "readings": [
       {
         "gaugeId": "03483980",
-        "timestamp": "2026-09-05T22:50:11Z",
+        "timestamp": "2026-09-07T22:31:46Z",
         "cfs": 1520,
         "heightFt": 6.8,
         "tempC": 8.2
       },
       {
         "gaugeId": "03483980",
-        "timestamp": "2026-09-05T21:50:11Z",
+        "timestamp": "2026-09-07T21:31:46Z",
         "cfs": 1490,
         "heightFt": 6.7,
         "tempC": 8.3
@@ -63,29 +63,29 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "hiwassee-river",
     "readings": [
       {
         "gaugeId": "03556590",
-        "timestamp": "2026-09-05T22:37:11Z",
+        "timestamp": "2026-09-07T22:18:46Z",
         "cfs": 480,
         "heightFt": 3.4,
         "tempC": 11.8
       },
       {
         "gaugeId": "03556590",
-        "timestamp": "2026-09-05T21:37:11Z",
+        "timestamp": "2026-09-07T21:18:46Z",
         "cfs": 520,
         "heightFt": 3.6,
         "tempC": 12
       },
       {
         "gaugeId": "03556590",
-        "timestamp": "2026-09-05T20:37:11Z",
+        "timestamp": "2026-09-07T20:18:46Z",
         "cfs": 560,
         "heightFt": 3.7,
         "tempC": 12.1
@@ -100,22 +100,22 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "caney-fork-river",
     "readings": [
       {
         "gaugeId": "03424010",
-        "timestamp": "2026-09-05T22:56:11Z",
+        "timestamp": "2026-09-07T22:37:46Z",
         "cfs": 360,
         "heightFt": 4.1,
         "tempC": 10.5
       },
       {
         "gaugeId": "03424010",
-        "timestamp": "2026-09-05T21:56:11Z",
+        "timestamp": "2026-09-07T21:37:46Z",
         "cfs": 340,
         "heightFt": 4,
         "tempC": 10.6
@@ -130,22 +130,22 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "elk-river",
     "readings": [
       {
         "gaugeId": "03580750",
-        "timestamp": "2026-09-05T22:42:11Z",
+        "timestamp": "2026-09-07T22:23:46Z",
         "cfs": 145,
         "heightFt": 2.2,
         "tempC": 25.4
       },
       {
         "gaugeId": "03580750",
-        "timestamp": "2026-09-05T21:42:11Z",
+        "timestamp": "2026-09-07T21:23:46Z",
         "cfs": 150,
         "heightFt": 2.2,
         "tempC": 25.2
@@ -160,29 +160,29 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "clinch-river",
     "readings": [
       {
         "gaugeId": "03533000",
-        "timestamp": "2026-09-05T22:23:11Z",
+        "timestamp": "2026-09-07T22:04:46Z",
         "cfs": 85,
         "heightFt": 1.9,
         "tempC": 13.6
       },
       {
         "gaugeId": "03533000",
-        "timestamp": "2026-09-05T21:23:11Z",
+        "timestamp": "2026-09-07T21:04:46Z",
         "cfs": 90,
         "heightFt": 2,
         "tempC": 13.5
       },
       {
         "gaugeId": "03533000",
-        "timestamp": "2026-09-05T20:23:11Z",
+        "timestamp": "2026-09-07T20:04:46Z",
         "cfs": 95,
         "heightFt": 2,
         "tempC": 13.4
@@ -197,21 +197,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "duck-river-tailwater",
     "readings": [
       {
         "gaugeId": "03597860",
-        "timestamp": "2026-09-05T22:21:11Z",
+        "timestamp": "2026-09-07T22:02:46Z",
         "cfs": 71,
         "tempC": 14
       },
       {
         "gaugeId": "03597860",
-        "timestamp": "2026-09-05T21:31:11Z",
+        "timestamp": "2026-09-07T21:12:46Z",
         "cfs": 77,
         "tempC": 15
       }
@@ -225,20 +225,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "east-fork-stones-river",
     "readings": [
       {
         "gaugeId": "03427500",
-        "timestamp": "2026-09-05T22:37:11Z",
+        "timestamp": "2026-09-07T22:18:46Z",
         "cfs": 19.3
       },
       {
         "gaugeId": "03427500",
-        "timestamp": "2026-09-05T21:37:11Z",
+        "timestamp": "2026-09-07T21:18:46Z",
         "cfs": 19.1
       }
     ],
@@ -251,21 +251,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "barren-fork-river",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:41:11Z",
+        "timestamp": "2026-09-07T22:22:46Z",
         "cfs": 35,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:01:11Z",
+        "timestamp": "2026-09-07T20:42:46Z",
         "cfs": 32,
         "tempC": 26
       }
@@ -279,20 +279,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "beaverdam-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:17:11Z",
+        "timestamp": "2026-09-07T21:58:46Z",
         "cfs": 39
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:27:11Z",
+        "timestamp": "2026-09-07T21:08:46Z",
         "cfs": 42
       }
     ],
@@ -305,21 +305,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "beech-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:34:11Z",
+        "timestamp": "2026-09-07T22:15:46Z",
         "cfs": 4,
         "tempC": 10
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:14:11Z",
+        "timestamp": "2026-09-07T20:55:46Z",
         "cfs": 3,
         "tempC": 11
       }
@@ -333,21 +333,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "big-rock-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:16:11Z",
+        "timestamp": "2026-09-07T21:57:46Z",
         "cfs": 44,
         "tempC": 17
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:46:11Z",
+        "timestamp": "2026-09-07T20:27:46Z",
         "cfs": 48,
         "tempC": 18
       }
@@ -361,21 +361,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "boiling-fork-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:57:11Z",
+        "timestamp": "2026-09-07T21:38:46Z",
         "cfs": 41,
         "tempC": 15
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:57:11Z",
+        "timestamp": "2026-09-07T20:38:46Z",
         "cfs": 44,
         "tempC": 16
       }
@@ -389,21 +389,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "boone-tailwater",
     "readings": [
       {
         "gaugeId": "03486810",
-        "timestamp": "2026-09-05T22:12:11Z",
+        "timestamp": "2026-09-07T21:53:46Z",
         "cfs": 630,
         "tempC": 13
       },
       {
         "gaugeId": "03486810",
-        "timestamp": "2026-09-05T21:32:11Z",
+        "timestamp": "2026-09-07T21:13:46Z",
         "cfs": 680,
         "tempC": 14
       }
@@ -417,21 +417,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "calfkiller-river",
     "readings": [
       {
         "gaugeId": "03419530",
-        "timestamp": "2026-09-05T22:27:11Z",
+        "timestamp": "2026-09-07T22:08:46Z",
         "cfs": 560,
         "tempC": 14
       },
       {
         "gaugeId": "03419530",
-        "timestamp": "2026-09-05T21:07:11Z",
+        "timestamp": "2026-09-07T20:48:46Z",
         "cfs": 605,
         "tempC": 15
       }
@@ -445,21 +445,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "cameron-brown-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:15:11Z",
+        "timestamp": "2026-09-07T21:56:46Z",
         "cfs": 9,
         "tempC": 23
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:45:11Z",
+        "timestamp": "2026-09-07T20:26:46Z",
         "cfs": 10,
         "tempC": 24
       }
@@ -473,21 +473,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "cane-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:17:11Z",
+        "timestamp": "2026-09-07T21:58:46Z",
         "cfs": 45,
         "tempC": 11
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:37:11Z",
+        "timestamp": "2026-09-07T21:18:46Z",
         "cfs": 49,
         "tempC": 12
       }
@@ -501,21 +501,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "charles-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:16:11Z",
+        "timestamp": "2026-09-07T21:57:46Z",
         "cfs": 26,
         "tempC": 17
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:16:11Z",
+        "timestamp": "2026-09-07T20:57:46Z",
         "cfs": 28,
         "tempC": 18
       }
@@ -529,21 +529,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "citico-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:27:11Z",
+        "timestamp": "2026-09-07T22:08:46Z",
         "cfs": 45,
         "tempC": 9
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:57:11Z",
+        "timestamp": "2026-09-07T20:38:46Z",
         "cfs": 49,
         "tempC": 10
       }
@@ -557,22 +557,22 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "collins-river",
     "readings": [
       {
         "gaugeId": "03421000",
-        "timestamp": "2026-09-05T13:18:11Z",
+        "timestamp": "2026-09-07T12:59:46Z",
         "cfs": 64,
         "heightFt": 1.8,
         "tempC": 14.8
       },
       {
         "gaugeId": "03421000",
-        "timestamp": "2026-09-05T11:33:11Z",
+        "timestamp": "2026-09-07T11:14:46Z",
         "cfs": 66,
         "heightFt": 1.9,
         "tempC": 14.6
@@ -587,21 +587,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "cosby-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:12:11Z",
+        "timestamp": "2026-09-07T21:53:46Z",
         "cfs": 40,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:22:11Z",
+        "timestamp": "2026-09-07T21:03:46Z",
         "cfs": 43,
         "tempC": 26
       }
@@ -615,21 +615,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "covington-fbc-pond",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:14:11Z",
+        "timestamp": "2026-09-07T21:55:46Z",
         "cfs": 10,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:04:11Z",
+        "timestamp": "2026-09-07T20:45:46Z",
         "cfs": 11,
         "tempC": 26
       }
@@ -643,21 +643,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "doe-creek-johnson",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:56:11Z",
+        "timestamp": "2026-09-07T21:37:46Z",
         "cfs": 48,
         "tempC": 15
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:06:11Z",
+        "timestamp": "2026-09-07T20:47:46Z",
         "cfs": 52,
         "tempC": 16
       }
@@ -671,21 +671,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "doe-river",
     "readings": [
       {
         "gaugeId": "03485500",
-        "timestamp": "2026-09-05T22:40:11Z",
+        "timestamp": "2026-09-07T22:21:46Z",
         "cfs": 5,
         "tempC": 27
       },
       {
         "gaugeId": "03485500",
-        "timestamp": "2026-09-05T21:40:11Z",
+        "timestamp": "2026-09-07T21:21:46Z",
         "cfs": 4.6,
         "tempC": 27.4
       }
@@ -699,21 +699,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "east-fork-shoal-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:54:11Z",
+        "timestamp": "2026-09-07T21:35:46Z",
         "cfs": 54,
         "tempC": 23
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:24:11Z",
+        "timestamp": "2026-09-07T21:05:46Z",
         "cfs": 58,
         "tempC": 24
       }
@@ -727,21 +727,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "edmund-orgill-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:24:11Z",
+        "timestamp": "2026-09-07T22:05:46Z",
         "cfs": 96,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:04:11Z",
+        "timestamp": "2026-09-07T20:45:46Z",
         "cfs": 104,
         "tempC": 26
       }
@@ -755,21 +755,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "fletchers-fork",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:14:11Z",
+        "timestamp": "2026-09-07T21:55:46Z",
         "cfs": 14,
         "tempC": 9
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:24:11Z",
+        "timestamp": "2026-09-07T21:05:46Z",
         "cfs": 15,
         "tempC": 10
       }
@@ -783,21 +783,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "forge-creek-johnson",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:57:11Z",
+        "timestamp": "2026-09-07T21:38:46Z",
         "cfs": 11,
         "tempC": 17
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:07:11Z",
+        "timestamp": "2026-09-07T20:48:46Z",
         "cfs": 12,
         "tempC": 18
       }
@@ -811,21 +811,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "french-broad-river",
     "readings": [
       {
         "gaugeId": "03468510",
-        "timestamp": "2026-09-05T22:07:11Z",
+        "timestamp": "2026-09-07T21:48:46Z",
         "cfs": 735,
         "tempC": 14
       },
       {
         "gaugeId": "03468510",
-        "timestamp": "2026-09-05T21:07:11Z",
+        "timestamp": "2026-09-07T20:48:46Z",
         "cfs": 794,
         "tempC": 15
       }
@@ -839,21 +839,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "ft-patrick-henry-tailwater",
     "readings": [
       {
         "gaugeId": "03487010",
-        "timestamp": "2026-09-05T22:15:11Z",
+        "timestamp": "2026-09-07T21:56:46Z",
         "cfs": 227,
         "tempC": 12
       },
       {
         "gaugeId": "03487010",
-        "timestamp": "2026-09-05T21:15:11Z",
+        "timestamp": "2026-09-07T20:56:46Z",
         "cfs": 245,
         "tempC": 13
       }
@@ -867,21 +867,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "gap-creek-claiborne",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:32:11Z",
+        "timestamp": "2026-09-07T22:13:46Z",
         "cfs": 4,
         "tempC": 14
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:52:11Z",
+        "timestamp": "2026-09-07T20:33:46Z",
         "cfs": 3,
         "tempC": 15
       }
@@ -895,21 +895,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "goforth-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:59:11Z",
+        "timestamp": "2026-09-07T21:40:46Z",
         "cfs": 23,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:19:11Z",
+        "timestamp": "2026-09-07T21:00:46Z",
         "cfs": 25,
         "tempC": 26
       }
@@ -923,21 +923,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "greasy-creek-polk",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:40:11Z",
+        "timestamp": "2026-09-07T22:21:46Z",
         "cfs": 4,
         "tempC": 24
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:20:11Z",
+        "timestamp": "2026-09-07T21:01:46Z",
         "cfs": 3,
         "tempC": 25
       }
@@ -951,20 +951,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "gulf-fork-big-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:54:11Z",
+        "timestamp": "2026-09-07T21:35:46Z",
         "cfs": 28
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:54:11Z",
+        "timestamp": "2026-09-07T20:35:46Z",
         "cfs": 30
       }
     ],
@@ -977,21 +977,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "holston-river",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:31:11Z",
+        "timestamp": "2026-09-07T22:12:46Z",
         "heightFt": 6.9,
         "tempC": 12.4
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:31:11Z",
+        "timestamp": "2026-09-07T21:12:46Z",
         "heightFt": 7,
         "tempC": 12.5
       }
@@ -1005,21 +1005,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "horse-creek-greene",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:32:11Z",
+        "timestamp": "2026-09-07T22:13:46Z",
         "cfs": 56,
         "tempC": 11
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:22:11Z",
+        "timestamp": "2026-09-07T21:03:46Z",
         "cfs": 60,
         "tempC": 12
       }
@@ -1033,20 +1033,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "hurricane-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:59:11Z",
+        "timestamp": "2026-09-07T21:40:46Z",
         "cfs": 29
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:49:11Z",
+        "timestamp": "2026-09-07T20:30:46Z",
         "cfs": 31
       }
     ],
@@ -1059,21 +1059,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "indian-creek-claiborne",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:57:11Z",
+        "timestamp": "2026-09-07T21:38:46Z",
         "cfs": 47,
         "tempC": 14
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:07:11Z",
+        "timestamp": "2026-09-07T20:48:46Z",
         "cfs": 51,
         "tempC": 15
       }
@@ -1087,21 +1087,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "johnson-park-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:11:11Z",
+        "timestamp": "2026-09-07T21:52:46Z",
         "cfs": 29,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:01:11Z",
+        "timestamp": "2026-09-07T20:42:46Z",
         "cfs": 31,
         "tempC": 26
       }
@@ -1115,21 +1115,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "lake-graham",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:17:11Z",
+        "timestamp": "2026-09-07T21:58:46Z",
         "cfs": 11,
         "tempC": 10
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:47:11Z",
+        "timestamp": "2026-09-07T20:28:46Z",
         "cfs": 12,
         "tempC": 11
       }
@@ -1143,20 +1143,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "laurel-creek-johnson",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:27:11Z",
+        "timestamp": "2026-09-07T22:08:46Z",
         "cfs": 96
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:27:11Z",
+        "timestamp": "2026-09-07T21:08:46Z",
         "cfs": 104
       }
     ],
@@ -1169,21 +1169,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "laurel-fork-carter",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:07:11Z",
+        "timestamp": "2026-09-07T21:48:46Z",
         "cfs": 15,
         "tempC": 15
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:27:11Z",
+        "timestamp": "2026-09-07T21:08:46Z",
         "cfs": 16,
         "tempC": 16
       }
@@ -1197,21 +1197,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "leconte-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:00:11Z",
+        "timestamp": "2026-09-07T21:41:46Z",
         "cfs": 56,
         "tempC": 10
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:50:11Z",
+        "timestamp": "2026-09-07T20:31:46Z",
         "cfs": 60,
         "tempC": 11
       }
@@ -1225,20 +1225,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "little-buffalo-river",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:32:11Z",
+        "timestamp": "2026-09-07T22:13:46Z",
         "cfs": 35
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:12:11Z",
+        "timestamp": "2026-09-07T20:53:46Z",
         "cfs": 32
       }
     ],
@@ -1251,21 +1251,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "little-river",
     "readings": [
       {
         "gaugeId": "03497300",
-        "timestamp": "2026-09-05T22:32:11Z",
+        "timestamp": "2026-09-07T22:13:46Z",
         "cfs": 35,
         "tempC": 15
       },
       {
         "gaugeId": "03497300",
-        "timestamp": "2026-09-05T21:12:11Z",
+        "timestamp": "2026-09-07T20:53:46Z",
         "cfs": 32,
         "tempC": 16
       }
@@ -1279,21 +1279,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "little-sequatchie-river",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:57:11Z",
+        "timestamp": "2026-09-07T21:38:46Z",
         "cfs": 155,
         "tempC": 9
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:57:11Z",
+        "timestamp": "2026-09-07T20:38:46Z",
         "cfs": 167,
         "tempC": 10
       }
@@ -1307,21 +1307,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "little-west-fork-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:11:11Z",
+        "timestamp": "2026-09-07T21:52:46Z",
         "cfs": 35,
         "tempC": 12
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:51:11Z",
+        "timestamp": "2026-09-07T20:32:46Z",
         "cfs": 38,
         "tempC": 13
       }
@@ -1335,21 +1335,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "martin-city-pond",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:02:11Z",
+        "timestamp": "2026-09-07T21:43:46Z",
         "cfs": 26,
         "tempC": 10
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:32:11Z",
+        "timestamp": "2026-09-07T21:13:46Z",
         "cfs": 28,
         "tempC": 11
       }
@@ -1363,21 +1363,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "mccutcheon-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:13:11Z",
+        "timestamp": "2026-09-07T21:54:46Z",
         "cfs": 43,
         "tempC": 23
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:03:11Z",
+        "timestamp": "2026-09-07T20:44:46Z",
         "cfs": 46,
         "tempC": 24
       }
@@ -1391,21 +1391,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "middle-prong-little-pigeon",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:15:11Z",
+        "timestamp": "2026-09-07T21:56:46Z",
         "cfs": 87,
         "tempC": 16
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:05:11Z",
+        "timestamp": "2026-09-07T20:46:46Z",
         "cfs": 94,
         "tempC": 17
       }
@@ -1419,21 +1419,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "milan-city-pond",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:04:11Z",
+        "timestamp": "2026-09-07T21:45:46Z",
         "cfs": 46,
         "tempC": 17
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:04:11Z",
+        "timestamp": "2026-09-07T20:45:46Z",
         "cfs": 50,
         "tempC": 18
       }
@@ -1447,21 +1447,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "mill-creek-overton",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:56:11Z",
+        "timestamp": "2026-09-07T21:37:46Z",
         "cfs": 16,
         "tempC": 9
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:06:11Z",
+        "timestamp": "2026-09-07T20:47:46Z",
         "cfs": 17,
         "tempC": 10
       }
@@ -1475,21 +1475,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "new-river",
     "readings": [
       {
         "gaugeId": "03408500",
-        "timestamp": "2026-09-05T22:12:11Z",
+        "timestamp": "2026-09-07T21:53:46Z",
         "cfs": 100,
         "tempC": 9
       },
       {
         "gaugeId": "03408500",
-        "timestamp": "2026-09-05T21:12:11Z",
+        "timestamp": "2026-09-07T20:53:46Z",
         "cfs": 108,
         "tempC": 10
       }
@@ -1503,21 +1503,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "north-chickamauga-creek",
     "readings": [
       {
         "gaugeId": "03566535",
-        "timestamp": "2026-09-05T22:36:11Z",
+        "timestamp": "2026-09-07T22:17:46Z",
         "cfs": 24,
         "tempC": 10
       },
       {
         "gaugeId": "03566535",
-        "timestamp": "2026-09-05T21:26:11Z",
+        "timestamp": "2026-09-07T21:07:46Z",
         "cfs": 26,
         "tempC": 11
       }
@@ -1531,21 +1531,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "north-prong-barren-fork",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:31:11Z",
+        "timestamp": "2026-09-07T22:12:46Z",
         "cfs": 91,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:01:11Z",
+        "timestamp": "2026-09-07T20:42:46Z",
         "cfs": 98,
         "tempC": 26
       }
@@ -1559,20 +1559,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "obed-river",
     "readings": [
       {
         "gaugeId": "03539800",
-        "timestamp": "2026-09-05T22:34:11Z",
+        "timestamp": "2026-09-07T22:15:46Z",
         "tempC": 12.5
       },
       {
         "gaugeId": "03539800",
-        "timestamp": "2026-09-05T21:34:11Z",
+        "timestamp": "2026-09-07T21:15:46Z",
         "tempC": 12.1
       }
     ],
@@ -1585,21 +1585,21 @@
       ],
       "assessed": false
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "obey-river",
     "readings": [
       {
         "gaugeId": "03417000",
-        "timestamp": "2026-09-05T22:05:11Z",
+        "timestamp": "2026-09-07T21:46:46Z",
         "cfs": 537,
         "tempC": 10
       },
       {
         "gaugeId": "03417000",
-        "timestamp": "2026-09-05T21:05:11Z",
+        "timestamp": "2026-09-07T20:46:46Z",
         "cfs": 580,
         "tempC": 11
       }
@@ -1613,21 +1613,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "paris-city-park-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:01:11Z",
+        "timestamp": "2026-09-07T21:42:46Z",
         "cfs": 13,
         "tempC": 9
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:21:11Z",
+        "timestamp": "2026-09-07T21:02:46Z",
         "cfs": 14,
         "tempC": 10
       }
@@ -1641,20 +1641,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "parksville-tailwater",
     "readings": [
       {
         "gaugeId": "03564500",
-        "timestamp": "2026-09-05T22:42:11Z",
+        "timestamp": "2026-09-07T22:23:46Z",
         "cfs": 100
       },
       {
         "gaugeId": "03564500",
-        "timestamp": "2026-09-05T21:32:11Z",
+        "timestamp": "2026-09-07T21:13:46Z",
         "cfs": 108
       }
     ],
@@ -1667,20 +1667,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "pigeon-river",
     "readings": [
       {
         "gaugeId": "03461500",
-        "timestamp": "2026-09-05T22:04:11Z",
+        "timestamp": "2026-09-07T21:45:46Z",
         "cfs": 78
       },
       {
         "gaugeId": "03461500",
-        "timestamp": "2026-09-05T21:14:11Z",
+        "timestamp": "2026-09-07T20:55:46Z",
         "cfs": 84
       }
     ],
@@ -1693,21 +1693,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "pine-creek-dekalb",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:58:11Z",
+        "timestamp": "2026-09-07T21:39:46Z",
         "cfs": 56,
         "tempC": 13
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:38:11Z",
+        "timestamp": "2026-09-07T21:19:46Z",
         "cfs": 60,
         "tempC": 14
       }
@@ -1721,21 +1721,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "puncheon-camp-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:56:11Z",
+        "timestamp": "2026-09-07T21:37:46Z",
         "cfs": 18,
         "tempC": 11
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:16:11Z",
+        "timestamp": "2026-09-07T20:57:46Z",
         "cfs": 19,
         "tempC": 12
       }
@@ -1749,21 +1749,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "reedy-creek",
     "readings": [
       {
         "gaugeId": "03487602",
-        "timestamp": "2026-09-05T22:11:11Z",
+        "timestamp": "2026-09-07T21:52:46Z",
         "cfs": 45,
         "tempC": 25
       },
       {
         "gaugeId": "03487602",
-        "timestamp": "2026-09-05T21:01:11Z",
+        "timestamp": "2026-09-07T20:42:46Z",
         "cfs": 49,
         "tempC": 26
       }
@@ -1777,21 +1777,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "richardson-byrd-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:37:11Z",
+        "timestamp": "2026-09-07T22:18:46Z",
         "cfs": 4,
         "tempC": 12
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:57:11Z",
+        "timestamp": "2026-09-07T20:38:46Z",
         "cfs": 3,
         "tempC": 13
       }
@@ -1805,21 +1805,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "roaring-fork",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:04:11Z",
+        "timestamp": "2026-09-07T21:45:46Z",
         "cfs": 50,
         "tempC": 13
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:44:11Z",
+        "timestamp": "2026-09-07T20:25:46Z",
         "cfs": 54,
         "tempC": 14
       }
@@ -1833,21 +1833,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "rocky-river",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:14:11Z",
+        "timestamp": "2026-09-07T21:55:46Z",
         "cfs": 78,
         "tempC": 16
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:14:11Z",
+        "timestamp": "2026-09-07T20:55:46Z",
         "cfs": 84,
         "tempC": 17
       }
@@ -1861,21 +1861,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "salt-lick-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:10:11Z",
+        "timestamp": "2026-09-07T21:51:46Z",
         "cfs": 44,
         "tempC": 14
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:10:11Z",
+        "timestamp": "2026-09-07T20:51:46Z",
         "cfs": 48,
         "tempC": 15
       }
@@ -1889,21 +1889,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "shelby-farms-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:40:11Z",
+        "timestamp": "2026-09-07T22:21:46Z",
         "cfs": 4,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:40:11Z",
+        "timestamp": "2026-09-07T21:21:46Z",
         "cfs": 3,
         "tempC": 26
       }
@@ -1917,21 +1917,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "shoal-creek",
     "readings": [
       {
         "gaugeId": "03588500",
-        "timestamp": "2026-09-05T22:33:11Z",
+        "timestamp": "2026-09-07T22:14:46Z",
         "cfs": 59,
         "tempC": 25
       },
       {
         "gaugeId": "03588500",
-        "timestamp": "2026-09-05T20:43:11Z",
+        "timestamp": "2026-09-07T20:24:46Z",
         "cfs": 64,
         "tempC": 26
       }
@@ -1945,21 +1945,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "sinking-creek-wilson",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:30:11Z",
+        "timestamp": "2026-09-07T22:11:46Z",
         "cfs": 34,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:40:11Z",
+        "timestamp": "2026-09-07T21:21:46Z",
         "cfs": 37,
         "tempC": 26
       }
@@ -1973,21 +1973,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "south-fork-cumberland",
     "readings": [
       {
         "gaugeId": "03410210",
-        "timestamp": "2026-09-05T22:41:11Z",
+        "timestamp": "2026-09-07T22:22:46Z",
         "cfs": 35,
         "tempC": 13
       },
       {
         "gaugeId": "03410210",
-        "timestamp": "2026-09-05T21:41:11Z",
+        "timestamp": "2026-09-07T21:22:46Z",
         "cfs": 32,
         "tempC": 14
       }
@@ -2001,20 +2001,20 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "spring-creek-polk",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:14:11Z",
+        "timestamp": "2026-09-07T21:55:46Z",
         "cfs": 44
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:14:11Z",
+        "timestamp": "2026-09-07T20:55:46Z",
         "cfs": 48
       }
     ],
@@ -2027,21 +2027,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "standing-rock-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:16:11Z",
+        "timestamp": "2026-09-07T21:57:46Z",
         "cfs": 32,
         "tempC": 10
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:26:11Z",
+        "timestamp": "2026-09-07T21:07:46Z",
         "cfs": 35,
         "tempC": 11
       }
@@ -2055,21 +2055,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "station-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:16:11Z",
+        "timestamp": "2026-09-07T21:57:46Z",
         "cfs": 34,
         "tempC": 11
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:16:11Z",
+        "timestamp": "2026-09-07T20:57:46Z",
         "cfs": 37,
         "tempC": 12
       }
@@ -2083,21 +2083,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "stoney-creek-carter",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:34:11Z",
+        "timestamp": "2026-09-07T22:15:46Z",
         "cfs": 38,
         "tempC": 13
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:44:11Z",
+        "timestamp": "2026-09-07T20:25:46Z",
         "cfs": 41,
         "tempC": 14
       }
@@ -2111,21 +2111,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "tellico-river",
     "readings": [
       {
         "gaugeId": "03518500",
-        "timestamp": "2026-09-05T22:08:11Z",
+        "timestamp": "2026-09-07T21:49:46Z",
         "cfs": 154,
         "tempC": 17
       },
       {
         "gaugeId": "03518500",
-        "timestamp": "2026-09-05T20:58:11Z",
+        "timestamp": "2026-09-07T20:39:46Z",
         "cfs": 166,
         "tempC": 18
       }
@@ -2139,21 +2139,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "trail-fork-big-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:36:11Z",
+        "timestamp": "2026-09-07T22:17:46Z",
         "cfs": 32,
         "tempC": 9
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:06:11Z",
+        "timestamp": "2026-09-07T20:47:46Z",
         "cfs": 35,
         "tempC": 10
       }
@@ -2167,21 +2167,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "tumbling-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:20:11Z",
+        "timestamp": "2026-09-07T22:01:46Z",
         "cfs": 12,
         "tempC": 11
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:10:11Z",
+        "timestamp": "2026-09-07T20:51:46Z",
         "cfs": 13,
         "tempC": 12
       }
@@ -2195,21 +2195,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "union-city-reelfoot-pond",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:09:11Z",
+        "timestamp": "2026-09-07T21:50:46Z",
         "cfs": 49,
         "tempC": 17
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:49:11Z",
+        "timestamp": "2026-09-07T20:30:46Z",
         "cfs": 53,
         "tempC": 18
       }
@@ -2223,21 +2223,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "upper-hills-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:05:11Z",
+        "timestamp": "2026-09-07T21:46:46Z",
         "cfs": 19,
         "tempC": 13
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:35:11Z",
+        "timestamp": "2026-09-07T21:16:46Z",
         "cfs": 21,
         "tempC": 14
       }
@@ -2251,21 +2251,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "upper-roan-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:55:11Z",
+        "timestamp": "2026-09-07T21:36:46Z",
         "cfs": 27,
         "tempC": 24
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:35:11Z",
+        "timestamp": "2026-09-07T21:16:46Z",
         "cfs": 29,
         "tempC": 25
       }
@@ -2279,21 +2279,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "valentine-park-pond",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:24:11Z",
+        "timestamp": "2026-09-07T22:05:46Z",
         "cfs": 8,
         "tempC": 14
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:34:11Z",
+        "timestamp": "2026-09-07T21:15:46Z",
         "cfs": 9,
         "tempC": 15
       }
@@ -2307,21 +2307,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "watauga-river-wilbur-reach",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:32:11Z",
+        "timestamp": "2026-09-07T22:13:46Z",
         "cfs": 35,
         "tempC": 16
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:32:11Z",
+        "timestamp": "2026-09-07T21:13:46Z",
         "cfs": 32,
         "tempC": 17
       }
@@ -2335,21 +2335,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "west-prong-little-pigeon",
     "readings": [
       {
         "gaugeId": "03469251",
-        "timestamp": "2026-09-05T21:55:11Z",
+        "timestamp": "2026-09-07T21:36:46Z",
         "cfs": 97,
         "tempC": 10
       },
       {
         "gaugeId": "03469251",
-        "timestamp": "2026-09-05T21:35:11Z",
+        "timestamp": "2026-09-07T21:16:46Z",
         "cfs": 105,
         "tempC": 11
       }
@@ -2363,21 +2363,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "white-oak-creek",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:27:11Z",
+        "timestamp": "2026-09-07T22:08:46Z",
         "cfs": 96,
         "tempC": 12
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:27:11Z",
+        "timestamp": "2026-09-07T21:08:46Z",
         "cfs": 104,
         "tempC": 13
       }
@@ -2391,21 +2391,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "wolf-river-fentress",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:17:11Z",
+        "timestamp": "2026-09-07T21:58:46Z",
         "cfs": 235,
         "tempC": 25
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T21:37:11Z",
+        "timestamp": "2026-09-07T21:18:46Z",
         "cfs": 254,
         "tempC": 26
       }
@@ -2419,21 +2419,21 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   },
   {
     "streamId": "yale-road-park-lake",
     "readings": [
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T22:20:11Z",
+        "timestamp": "2026-09-07T22:01:46Z",
         "cfs": 52,
         "tempC": 10
       },
       {
         "gaugeId": "demo",
-        "timestamp": "2026-09-05T20:50:11Z",
+        "timestamp": "2026-09-07T20:31:46Z",
         "cfs": 56,
         "tempC": 11
       }
@@ -2447,7 +2447,7 @@
       ],
       "assessed": true
     },
-    "fetchedAt": "2026-09-05T22:46:11Z",
-    "nextExpectedUpdate": "2026-09-05T23:46:11Z"
+    "fetchedAt": "2026-09-07T22:27:46Z",
+    "nextExpectedUpdate": "2026-09-07T23:27:46Z"
   }
 ]
