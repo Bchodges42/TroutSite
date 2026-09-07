@@ -15,9 +15,8 @@ idealFlow:
 notes: >-
   "The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA spring stocking
   on the lower, out-of-park reaches near Walland and Maryville. The Townsend gauge is the wade-flow
-  reference; park waters have special regs — verify with NPS." Verified geometry (geo/east-fix rebuild):
-  NHDPlus HR NHDFlowline GNIS Little River (Blount County), Smokies headwaters to the Fort Loudoun
-  embayment; one documented pool-margin seam at the embayment head (topology midCourseSeams).
+  reference; park waters have special regs — verify with NPS." It runs from the Smokies headwaters
+  down to the Fort Loudoun Lake embayment near Maryville/Alcoa.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03497300

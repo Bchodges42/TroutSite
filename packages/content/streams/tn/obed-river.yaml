@@ -14,9 +14,8 @@ idealFlow:
 notes: >-
   "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining
   rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast.
-  Stocking flag false by design — verify NPS/TWRA notices." Verified geometry (geo/east-fix rebuild):
-  NHDPlus HR NHDFlowline GNIS Obed River, full named extent across the Cumberland Plateau to the Emory
-  confluence; 132 TIGER fragments replaced by welded chains; length within 1% of the NHD source sum.
+  Stocking flag false by design — verify NPS/TWRA notices." It runs its full named length across the
+  Cumberland Plateau to the Emory confluence.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03539800

@@ -14,9 +14,8 @@ idealFlow:
 notes: >-
   Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is
   popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list
-  the TN reach — set conservatively, verify locally. Verified geometry (geo/east-fix rebuild): NHDPlus
-  HR NHDFlowline GNIS Pigeon River, Hartford corridor from the NC line to the Douglas pool arm; one
-  documented braid seam in the alluvial wash below Waterville (topology midCourseSeams).
+  the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line
+  down to the Douglas Lake arm.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03461500

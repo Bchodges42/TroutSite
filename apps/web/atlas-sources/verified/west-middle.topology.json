@@ -417,7 +417,7 @@
     "Census TIGER/Line 2024 AREAWATER window sum: 0 km²"
    ],
    "verificationState": "PASS",
-   "notes": "Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name \"Reading House Slough\" (44.3 km²) — identity documented. Fed by Reelfoot Creek/bayous and Mississippi seepage; no named catalog river reaches the shoreline.",
+   "notes": "Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name \"Reading House Slough\" (44.3 km²) — identity documented. Fed by Reelfoot Creek/bayous and Mississippi seepage; no named catalog river reaches the shoreline. Source NHDPlusIDs are recorded on the delivered feature and in docs/audits/WEST-MIDDLE-HYDROGRAPHY.md.",
    "connections": {}
   },
   {

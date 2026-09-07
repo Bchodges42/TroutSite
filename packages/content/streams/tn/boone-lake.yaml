@@ -12,11 +12,7 @@ notes: >-
   counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork
   Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by
   the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to
-  Fort Patrick Henry Lake. Aliases: Boone Reservoir. Verified geometry (geo/east-fix re-verification):
-  NHDPlus HR NHDWaterbody GNIS 01326910 — two pool polygons (9.0 + 8.1 km²) forming the Holston and
-  Watauga arms of the Y, abutting at the junction narrows and reaching Boone Dam; outline cross-checked
-  against the TWRA reservoir layer and satellite imagery. The two-part split is real NHD modeling of the
-  drowned Y, not an assembly defect.
+  Fort Patrick Henry Lake. Aliases: Boone Reservoir.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03486810

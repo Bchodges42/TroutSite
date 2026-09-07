@@ -13,10 +13,7 @@ idealFlow:
 notes: >-
   Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking
   dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the
-  Embreeville gauge matters. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS
-  Nolichucky River, state-cut at the NC line, full Tennessee extent to the Douglas pool-arm head; 295
-  fragments replaced by welded chains; one documented pool-margin seam at the mouth (topology
-  midCourseSeams).
+  Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03465500

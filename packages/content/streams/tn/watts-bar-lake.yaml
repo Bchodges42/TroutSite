@@ -11,10 +11,8 @@ notes: >-
   35.62035/-84.78328; Tennessee River mile 529.9) upstream 72.4 miles to Fort
   Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties — including the
   Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm.
-  Discharges through Watts Bar Dam into Chickamauga Lake. Verified geometry:
-  USGS NHDPlus HR NHDWaterbody GNIS 01304421 (single unclipped pool polygon,
-  135.3 km²; TWRA 37,884 ac; TVA 39,090 ac). The shipped polygon held 8
-  fragments (120.3 km²) that stopped ~9 km short of Fort Loudoun Dam.
+  Discharges through Watts Bar Dam into Chickamauga Lake. TVA lists the
+  reservoir at 39,090 ac at full pool.
 officialSources:
   - label: USGS Water Data — monitoring location 03543005
     url: https://waterdata.usgs.gov/monitoring-location/03543005/

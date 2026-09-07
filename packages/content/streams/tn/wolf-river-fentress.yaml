@@ -12,9 +12,7 @@ idealFlow:
     unit: cfs
 notes: >-
   TWRA spring-stocked headwaters of the Memphis-bound Wolf River, high on the plateau. Small riffly
-  water; no gauge this far up. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS
-  Wolf River Fentress County headwaters, trimmed at the Dale Hollow pool margin (west-middle lane's
-  pool).
+  water; no gauge this far up.
 
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

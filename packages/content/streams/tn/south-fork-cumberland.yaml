@@ -13,10 +13,8 @@ idealFlow:
     unit: cfs
 notes: >-
   Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood
-  Ford. Beautiful and isolated — plan bail-outs. Verified geometry (geo/east-fix rebuild): NHDPlus HR
-  NHDFlowline GNIS Big South Fork / South Fork Cumberland River, state-cut at the KY line, Leatherwood
-  Ford country; one documented named-coverage seam upstream of Leatherwood Ford (topology
-  midCourseSeams).
+  Ford. Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New River/Clear Fork
+  confluence country up to the Kentucky line.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03410210

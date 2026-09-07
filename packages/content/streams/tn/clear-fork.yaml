@@ -12,8 +12,7 @@ idealFlow:
     unit: cfs
 notes: >-
   The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your
-  wading to stable flows. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS Clear
-  Fork, full named extent along the New River system's western branch.
+  wading to stable flows.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03409500

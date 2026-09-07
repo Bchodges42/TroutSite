@@ -12,9 +12,7 @@ notes: >-
   03483950 below-dam gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600)
   and Wilbur Lake in Carter County. Cold, clear release water that closes the
   Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur tailwater) chain; the
-  celebrated trophy water begins below Wilbur Dam as watauga-river. Verified
-  geometry: USGS NHDPlus HR NHDFlowline between the two dams, including the
-  dam-pool connectors.
+  celebrated trophy water begins below Wilbur Dam as watauga-river.
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/

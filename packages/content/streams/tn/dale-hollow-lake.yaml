@@ -8,8 +8,9 @@ stockingProgram: false
 idealFlow: []
 notes: >-
   Reference waterbody from the Tennessee waterways inventory — the Obey River
-  reservoir at the Kentucky line in Clay, Pickett, and Overton counties. Catalog stub
-  pending detailed review; promotion of the passive lake polygon is a separate step.
+  reservoir at the Kentucky line in Clay, Pickett, and Overton counties. Detailed
+  angler notes are still being prepared — check TWRA and local access areas in the
+  meantime.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

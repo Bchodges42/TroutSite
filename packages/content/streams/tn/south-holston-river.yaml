@@ -15,9 +15,8 @@ notes: >-
   "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest
   tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans
   typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs
-  — always check the TVA release schedule first." Verified geometry (geo/east-fix rebuild): NHDPlus HR
-  NHDFlowline GNIS South Fork Holston River from South Holston Dam (USGS 03476500) to the Boone Lake arm
-  head; dam-crest connector strands attached from the NHD non-network layer.
+  — always check the TVA release schedule first." The tailwater runs from South Holston Dam down to
+  the Boone Lake arm head.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03476500

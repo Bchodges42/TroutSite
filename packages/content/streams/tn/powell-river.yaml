@@ -13,9 +13,8 @@ idealFlow:
     unit: cfs
 notes: >-
   A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout
-  in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. Verified geometry
-  (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS Powell River, state-cut at the VA line, to the
-  Norris pool arm; one documented named-coverage seam mid-meander (topology midCourseSeams).
+  in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA
+  line down to the Norris Lake arm.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03532000

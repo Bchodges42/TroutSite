@@ -33,7 +33,8 @@
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 9 NHDWaterbody (GNIS-matched, NHDPlusID pinned)",
     "NHD medium-resolution NHDWaterbody GNIS cross-check (area parity)",
-    "TWRA pool outline + TVA published pool size cross-checks"
+    "TWRA pool outline + TVA published pool size cross-checks",
+    "TWRA pool outline (36,149 ac incl. riverine arms) cross-check"
    ],
    "verificationState": "PASS",
    "notes": "REBUILT from the NHDPlus HR NHDWaterbody layer: GNIS \"Norris Lake\"/\"Norris Reservoir\" polygons, NHDPlusIDs pinned — replaces the 48-fragment Census TIGER/Line AREAWATER assembly. NHD models the pool at its own mapping stage (~95 km² incl. riverine-arm margin; the TVA full-pool figure is 33,840 ac ≈ 137 km² at summer normal) — delivered stage is the NHD waterbody take, cross-checked against NHD medium-res GNIS 01269832 (95.5 km²) and the TWRA pool outline."
@@ -252,7 +253,7 @@
     "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
    ],
    "verificationState": "PASS",
-   "notes": "Single NHDPlus HR pool polygon: Fort Loudoun Dam (-84.2432) to Watts Bar Dam (-84.7833) incl. the Clinch arm to Melton Hill Dam. Emory River arm remains NHD river-area, not lake polygon (documented).",
+   "notes": "Single NHDPlus HR pool polygon: Fort Loudoun Dam (-84.2432) to Watts Bar Dam (-84.7833) incl. the Clinch arm to Melton Hill Dam. Emory River arm remains NHD river-area, not lake polygon (documented). Superseded shipped polygon held 8 fragments (120.3 km2) and stopped ~9 km short of Fort Loudoun Dam.",
    "damPoolDistanceM": 118,
    "connections": {
     "fort-loudoun-lake": {
@@ -549,7 +550,7 @@
     "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
    ],
    "verificationState": "PASS",
-   "notes": "NEW interactive feature. The Norris tailwater (clinch-river) runs through this pool — line-over-polygon by design; condition scoring stays with the line feature.",
+   "notes": "NEW interactive feature. The Norris tailwater (clinch-river) runs through this pool — line-over-polygon by design; condition scoring stays with the line feature. Previously a visible unnamed pool in the shipped map between the Norris tailwater and Watts Bar.",
    "damPoolDistanceM": 131,
    "connections": {
     "clinch-river": {
@@ -752,7 +753,7 @@
     "TWRA pool outline + TVA published pool size cross-checks"
    ],
    "verificationState": "PASS",
-   "notes": "TWRA tn_reservoirs stays the identity source (NHDPlus HR carries only the western gorge as the named Nickajack pool — the Chattanooga reach is NHD river-area). Assembly fixed: the TWRA multipart feature's real pool polygons are kept whole; its micro-sliver fragments (< 0.5 km²) are dropped and counted in the build report."
+   "notes": "TWRA tn_reservoirs stays the identity source (NHDPlus HR carries only the western gorge as the named Nickajack pool — the Chattanooga reach is NHD river-area). Assembly fixed: the TWRA multipart feature's real pool polygons are kept whole; its micro-sliver fragments (< 0.5 km²) are dropped and counted in the build report. Superseded delivery assembled the same source feature part-by-part (20 fragments); the two real pool polygons (Chattanooga reach + gorge) total 45.6 km2. NHD medium-res NHDWaterbody GNIS 01295741 cross-check: 28.0 km2 (area parity)."
   },
   {
    "featureId": "tennessee-river",
@@ -791,7 +792,7 @@
    "reachScope": "gated",
    "lengthRatio": 0.924,
    "verificationState": "PASS",
-   "notes": "Full Tennessee main stem within Tennessee (AL line at Shellmound, RM 424, to the Holston/French Broad confluence at Knoxville, plus the West Tennessee reach Pickwick to the KY line), rebuilt from NHDPlus HR named flowlines incl. through-pool artificial paths. State cut at the TN boundary; the main stem legitimately leaves the state between the Nickajack tailwater (RM 424) and Pickwick Lake."
+   "notes": "Full Tennessee main stem within Tennessee (AL line at Shellmound, RM 424, to the Holston/French Broad confluence at Knoxville, plus the West Tennessee reach Pickwick to the KY line), rebuilt from NHDPlus HR named flowlines incl. through-pool artificial paths. State cut at the TN boundary; the main stem legitimately leaves the state between the Nickajack tailwater (RM 424) and Pickwick Lake. Superseded delivery assembled 814 TIGER-fragment parts; delivered length ~622 km within TN vs 673 km NHD source (state cut + pool-margin trims)."
   },
   {
    "featureId": "holston-river",
@@ -846,7 +847,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.989,
    "verificationState": "PASS",
-   "notes": "Holston main stem from the North/South Fork confluence at Kingsport through Cherokee Lake (through-pool) to the French Broad confluence at the head of Fort Loudoun Lake."
+   "notes": "Holston main stem from the North/South Fork confluence at Kingsport through Cherokee Lake (through-pool) to the French Broad confluence at the head of Fort Loudoun Lake. Superseded delivery: 336 fragments; delivered length within 2% of the NHD named-source sum."
   },
   {
    "featureId": "north-fork-holston-river",
@@ -1023,7 +1024,7 @@
    "reachScope": "gated",
    "lengthRatio": 0.693,
    "verificationState": "PASS",
-   "notes": "South Holston Dam to the Boone Lake South Fork Holston arm head (NHD pool edge).",
+   "notes": "South Holston Dam to the Boone Lake South Fork Holston arm head (NHD pool edge). Dam-crest connector strands attached from the NHD non-network layer.",
    "tailwaterStartDistanceM": 29,
    "tailwaterStartEndpointM": 584
   },
@@ -1199,7 +1200,7 @@
    "reachScope": "gated",
    "lengthRatio": 0.569,
    "verificationState": "PASS",
-   "notes": "Wilbur Dam down the Watauga valley through Elizabethton to the South Fork Holston confluence at the head of the Boone Lake Watauga arm.",
+   "notes": "Wilbur Dam down the Watauga valley through Elizabethton to the South Fork Holston confluence at the head of the Boone Lake Watauga arm. Pool-interior strands trimmed at both ends of the reach.",
    "tailwaterStartDistanceM": 2,
    "tailwaterStartEndpointM": 943
   },
@@ -1237,7 +1238,7 @@
     "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
    ],
    "verificationState": "PASS",
-   "notes": "Short riverine reach connecting Watauga Lake at Watauga Dam (USGS 03483950, 36.3301/-82.1260) to Wilbur Lake, closing the Watauga Lake -> Wilbur Lake -> Watauga River chain.",
+   "notes": "Short riverine reach connecting Watauga Lake at Watauga Dam (USGS 03483950, 36.3301/-82.1260) to Wilbur Lake, closing the Watauga Lake -> Wilbur Lake -> Watauga River chain. Dam-pool connectors included in the delivered geometry.",
    "islands": 1,
    "damPoolDistanceM": 39,
    "connections": {
@@ -1458,7 +1459,7 @@
    "reachScope": "gated",
    "lengthRatio": 0.886,
    "verificationState": "PASS",
-   "notes": "Nolichucky from the NC line (unimpounded gorge reach) through Greene/Cocke counties to its Douglas Lake confluence; the Nolichucky arm of the pool carries the water to the French Broad."
+   "notes": "Nolichucky from the NC line (unimpounded gorge reach) through Greene/Cocke counties to its Douglas Lake confluence; the Nolichucky arm of the pool carries the water to the French Broad. Superseded delivery: 295 fragments replaced by welded chains."
   },
   {
    "featureId": "powell-river",
@@ -1642,7 +1643,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.982,
    "verificationState": "PASS",
-   "notes": "Obed River full named extent across the Cumberland Plateau (Obed Wild & Scenic River corridor) to the Emory confluence below Wartburg/Harriman."
+   "notes": "Obed River full named extent across the Cumberland Plateau (Obed Wild & Scenic River corridor) to the Emory confluence below Wartburg/Harriman. Superseded delivery: 132 TIGER fragments; delivered length within 1% of the NHD source sum."
   },
   {
    "featureId": "emory-river",
@@ -1678,7 +1679,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.987,
    "verificationState": "PASS",
-   "notes": "Emory River from its plateau headwaters past the Obed confluence at Harriman to the Watts Bar Lake embayment head; the pool carries the water to the Tennessee."
+   "notes": "Emory River from its plateau headwaters past the Obed confluence at Harriman to the Watts Bar Lake embayment head; the pool carries the water to the Tennessee. The Watts Bar pool polygon excludes the Emory arm (NHD river-area water; documented on watts-bar-lake)."
   },
   {
    "featureId": "daddys-creek",
@@ -1714,7 +1715,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.987,
    "verificationState": "PASS",
-   "notes": "Daddy’s Creek full named extent (Hebbertsburg gauge reach and the Obed gorge confluence)."
+   "notes": "Daddy’s Creek full named extent (Hebbertsburg gauge reach and the Obed gorge confluence). Rebuild seam summary: three documented named-coverage hops at impoundments/valley strands (see chainSeparations openEnds)."
   },
   {
    "featureId": "clear-fork",
@@ -1795,7 +1796,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.985,
    "verificationState": "PASS",
-   "notes": "New River (Scott/Anderson counties) full named extent to the Clear Fork confluence."
+   "notes": "New River (Scott/Anderson counties) full named extent to the Clear Fork confluence. Rebuild seam summary: two documented named-coverage termini/seams (midCourseSeams + chainSeparations)."
   },
   {
    "featureId": "south-fork-cumberland",
@@ -1833,7 +1834,7 @@
    "reachScope": "gated",
    "lengthRatio": 0.625,
    "verificationState": "PASS",
-   "notes": "The catalog reach around Leatherwood Ford: the Big South Fork Cumberland from the New River/Clear Fork confluence country to the KY line (state cut). GNIS carries the reach as \"Big South Fork\" / \"South Fork Cumberland River\"."
+   "notes": "The catalog reach around Leatherwood Ford: the Big South Fork Cumberland from the New River/Clear Fork confluence country to the KY line (state cut). GNIS carries the reach as \"Big South Fork\" / \"South Fork Cumberland River\". Rebuild seam summary: one documented named-coverage seam upstream of Leatherwood Ford (chainSeparations braid 676 m)."
   },
   {
    "featureId": "wolf-river-fentress",
@@ -1869,7 +1870,7 @@
    "reachScope": "gated",
    "lengthRatio": 0.832,
    "verificationState": "PASS",
-   "notes": "Fentress County headwater reach of the Wolf River (different water from wolf-river-west-tennessee)."
+   "notes": "Fentress County headwater reach of the Wolf River (different water from wolf-river-west-tennessee). Reach trimmed at the Dale Hollow pool margin (west-middle lane's pool)."
   },
   {
    "featureId": "piney-river-rhea",
@@ -1943,7 +1944,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.981,
    "verificationState": "PASS",
-   "notes": "Little River from the Smokies park boundary through Townsend/Walland to the Fort Loudoun Lake embayment near Maryville/Alcoa."
+   "notes": "Little River from the Smokies park boundary through Townsend/Walland to the Fort Loudoun Lake embayment near Maryville/Alcoa. Rebuild seam summary: one documented pool-margin seam at the Fort Loudoun embayment head (see chainSeparations poolMediated)."
   },
   {
    "featureId": "upper-roan-creek",
@@ -2121,7 +2122,7 @@
    "reachScope": "full-named-extent",
    "lengthRatio": 0.973,
    "verificationState": "PASS",
-   "notes": "Sequatchie Valley river, full named extent from the Cumberland County headwaters to the Tennessee River at Shellmound inside the Nickajack pool."
+   "notes": "Sequatchie Valley river, full named extent from the Cumberland County headwaters to the Tennessee River at Shellmound inside the Nickajack pool. Rebuild seam summary: five documented seams (lasso loop + valley coverage hops; see chainSeparations)."
   },
   {
    "featureId": "richardson-byrd-creek",

@@ -11,12 +11,8 @@ notes: >-
   Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424)
   upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad
   confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the
-  river legitimately leaves the state between mile 424 and Pickwick. Verified geometry (geo/east-fix
-  rebuild): USGS NHDPlus HR NHDFlowline GNIS Tennessee River incl. through-pool artificial paths (Fort
-  Loudoun, Watts Bar, Chickamauga, Nickajack, Pickwick, Kentucky pools declared via throughLakeIds),
-  state-cut at the TN boundary (the main stem legitimately leaves the state between Shellmound/RM 424
-  and Pickwick Lake). 814 TIGER-fragment parts replaced by 10 welded chains; length ~622 km within TN vs
-  673 km NHD source (state cut + pool-margin trims).
+  river legitimately leaves the state between mile 424 and Pickwick. Warm main-stem water — the trout
+  fishing lives in the cold tailwaters below the dams, and the moving reaches are smallmouth water.
 
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

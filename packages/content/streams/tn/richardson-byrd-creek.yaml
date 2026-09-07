@@ -11,10 +11,8 @@ idealFlow:
     max: 30
     unit: cfs
 notes: >-
-  TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. Verified geometry (geo/east-fix
-  rebuild): NHDPlus HR NHDFlowline GNIS Richardson Creek (the catalog's Byrd alias), Hancock County;
-  documented mouth terminus at the upper Clinch (undelivered water) plus coverage hops (topology
-  midCourseSeams).
+  TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. It runs down to the upper
+  Clinch River above the Norris pool.
 
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

@@ -14,10 +14,7 @@ notes: >-
   Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main-
   stem sequence; the trout-stocked upper water is the reach below Chilhowee Dam — verify current TWRA
   schedules. Distinct from the Tellico River (tellico-river), a different tributary near Tellico Plains.
-  USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool. Verified geometry (geo/east-fix
-  rebuild): NHDPlus HR NHDFlowline GNIS Little Tennessee River, state-cut at the NC line below Fontana,
-  through Calderwood/Chilhowee/Tellico pools (declared through-pool routes) to the Fort Loudoun pool
-  margin; single welded chain.
+  USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03519750

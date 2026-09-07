@@ -13,8 +13,7 @@ notes: >-
   the Watauga River in Carter County. Receives Watauga Dam releases via the
   short riverine reach (watauga-river-wilbur-reach) and discharges through
   Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River
-  (Wilbur tailwater). Verified geometry: USGS NHDPlus HR NHDWaterbody
-  GNIS 01327381. Represented on the TWRA waterways reservoir layer (72 ac).
+  (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).
 officialSources:
   - label: USGS Water Data — monitoring location 03484000
     url: https://waterdata.usgs.gov/monitoring-location/03484000/

@@ -13,9 +13,8 @@ idealFlow:
 notes: >-
   TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring.
   TWRA’s stocking dataset lists Parksville Lake itself rather than this reach — set conservatively.
-  Verify TVA release schedules before planning. Verified geometry (geo/east-fix rebuild): NHDPlus HR
-  NHDFlowline GNIS Ocoee River, Copperhill reach through Ocoee Number Three Lake (declared through-
-  route) and the No. 3/No. 2 gorge to the Parksville Lake head.
+  Verify TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three
+  Lake and the No. 3/No. 2 gorge to the Parksville Lake head.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03559500

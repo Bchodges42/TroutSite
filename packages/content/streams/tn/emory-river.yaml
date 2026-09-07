@@ -12,9 +12,8 @@ idealFlow:
     unit: cfs
 notes: >-
   The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth
-  downstream. Plateau flashiness applies. Verified geometry (geo/east-fix rebuild): NHDPlus HR
-  NHDFlowline GNIS Emory River, full named extent to the Watts Bar embayment head (the Watts Bar pool
-  polygon excludes the Emory arm — NHD river-area water; documented in topology).
+  downstream. Plateau flashiness applies. It runs to the Watts Bar embayment head, where the pool
+  carries the water down to the Tennessee River.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03540500

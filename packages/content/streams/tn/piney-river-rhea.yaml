@@ -12,8 +12,7 @@ idealFlow:
     unit: cfs
 notes: >-
   TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout
-  reach — rain judgment required. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline GNIS
-  Piney River (Rhea County), full named extent to the Watts Bar embayment head; single welded chain.
+  reach — rain judgment required. It runs down to the Watts Bar embayment head.
 
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

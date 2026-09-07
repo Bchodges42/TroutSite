@@ -13,10 +13,8 @@ idealFlow:
     unit: cfs
 notes: >-
   TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far
-  downstream — treat it as a valley-level trend, not the headwater truth. Verified geometry (geo/east-
-  fix rebuild): NHDPlus HR NHDFlowline GNIS Sequatchie River, full valley extent from the Cumberland
-  County headwaters to the Shellmound pool margin; five documented seams (lasso loop + valley coverage
-  hops; topology midCourseSeams).
+  downstream — treat it as a valley-level trend, not the headwater truth. It runs the full valley from
+  the Cumberland County headwaters down toward the Tennessee River at Shellmound.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03571000

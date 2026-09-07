@@ -9,17 +9,11 @@ stockingProgram: false
 idealFlow: []
 notes: >-
   TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger,
-  and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge, 36.21563/-84.08214).
-  Receives the Clinch River and Powell River (powell-river); the dam releases the Clinch River Norris
-  tailwater (clinch-river) into Melton Hill Lake. Cross-checks: NHD medium-res GNIS 01269832 (95.5 km²),
-  TWRA pool outline (36,149 ac incl. riverine arms), TVA published 33,840 ac at summer normal. Aliases:
-  Norris Reservoir. Verified geometry (geo/east-fix rebuild): USGS NHDPlus HR NHDWaterbody — GNIS Norris
-  Lake/Norris Reservoir polygons, NHDPlusIDs 25000400564035 + 25000400570453 pinned; 2 parts, ~95 km²,
-  contiguous to the dam. This replaces the earlier Census TIGER/Line AREAWATER piece assembly (48
-  fragments). NHD models the pool at its own mapping stage (~95 km² incl. arm margin); TVA full pool is
-  33,840 ac ≈ 137 km² at summer normal, and the TWRA pool outline (36,149 ac incl. riverine arms)
-  extends farther up the Clinch/Powell arms than the NHD waterbody — the delivered stage is the NHD
-  take.
+  and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch
+  River and Powell River (powell-river); the dam releases the Clinch River Norris tailwater
+  (clinch-river) into Melton Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is
+  about 33,840 acres, and the pool outline runs far up the Clinch and Powell arms — expect shorelines
+  and access points to follow the impounded river channels.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03533000

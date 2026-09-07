@@ -11,10 +11,8 @@ notes: >-
   impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge,
   35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and
   French Broad main stems and the Little Tennessee arm (Tellico Lake joins via
-  the canal); discharges into Watts Bar Lake. Verified geometry: USGS NHDPlus
-  HR NHDWaterbody GNIS 01307966 (55.7 km²; TWRA 18,727 ac; TVA 14,600 ac). The
-  shipped polygon held 6 fragments (12.5 km²) missing the dam reach and both
-  arms. Aliases: Fort Loudoun Reservoir.
+  the canal); discharges into Watts Bar Lake. TVA lists the reservoir at
+  14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.
 officialSources:
   - label: USGS Water Data — monitoring location 03499510
     url: https://waterdata.usgs.gov/monitoring-location/03499510/

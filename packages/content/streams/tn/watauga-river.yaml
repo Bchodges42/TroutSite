@@ -16,9 +16,7 @@ idealFlow:
 notes: >-
   Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow
   management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases;
-  two gauges bracket the dam and town. Verified geometry (geo/east-fix rebuild): NHDPlus HR NHDFlowline
-  GNIS Watauga River from Wilbur Dam (USGS 03484000) to the Boone Lake Watauga-arm head; pool-interior
-  strands trimmed at both ends.
+  two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.
 
 officialSources:
   - label: USGS Water Data — monitoring location 03483980
