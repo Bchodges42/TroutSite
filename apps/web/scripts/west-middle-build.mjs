@@ -745,14 +745,14 @@ const RIVER_SPECS = [
     ] },
   { id: 'east-fork-stones-river', cache: 'river-stones', name: 'East Fork Stones River', region: 'tn-middle-nashville',
     gate: 'state', exact: 'East Fork Stones River', upstream: [], downstream: ['j-percy-priest-lake'],
-    poolBound: 'j-percy-priest-lake',
-    note: 'Named coverage stops at the fork confluence ~350 m above the pool; the last stretch is the unnamed 55800 artificial path into the J. Percy Priest pool head (attached pool-bound).' },
+    poolBound: 'j-percy-priest-lake', allowOpenEnds: true,
+    note: 'Named coverage stops at the fork confluence ~350 m above the pool; the last stretch is the unnamed 55800 artificial path into the J. Percy Priest pool head (attached pool-bound). Upper reaches are mid-network open ends (NHD named coverage is discontinuous upstream) — allowOpenEnds documented.' },
   { id: 'west-fork-stones-river', cache: 'river-stones', name: 'West Fork Stones River', region: 'tn-middle-nashville',
     gate: 'state', exact: 'West Fork Stones River', upstream: [], downstream: ['j-percy-priest-lake'],
-    poolBound: 'j-percy-priest-lake',
-    note: 'Joins the East Fork at the pool-head confluence; the shared unnamed 55800 artificial path carries both forks the last ~350 m into the J. Percy Priest pool (attached pool-bound).' },
+    poolBound: 'j-percy-priest-lake', allowOpenEnds: true,
+    note: 'Joins the East Fork at the pool-head confluence; the shared unnamed 55800 artificial path carries both forks the last ~350 m into the J. Percy Priest pool (attached pool-bound). Upper reaches are mid-network open ends (NHD named coverage is discontinuous upstream) — allowOpenEnds documented.' },
   { id: 'obey-river', cache: 'river-obey', name: 'Obey River (Dale Hollow tailwater)', region: 'tn-upper-cumberland',
-    gate: REACH_GATE['obey-river'], excludePool: 'dale-hollow-lake', upstream: ['dale-hollow-lake'], downstream: ['cumberland-river'],
+    gate: REACH_GATE['obey-river'], excludePool: 'dale-hollow-lake', upstream: ['dale-hollow-lake'], downstream: ['cumberland-river'], allowOpenEnds: true,
     anchors: [
       { lon: -85.45525, lat: 36.53728, label: 'USGS 03417000 Obey River below Dale Hollow Dam', maxM: 900, note: 'chain stops ~800 m short at the dam pool edge' },
       { featureId: 'cumberland-river', label: 'Cumberland River confluence at Celina', maxM: 900, informational: true, note: 'chain end sits within 900 m of the Cumberland line at Celina; the last metres are the NHD big-river seam' },
@@ -795,7 +795,9 @@ const RIVER_SPECS = [
   { id: 'pine-creek-dekalb', cache: 'creek-pine-dekalb', name: 'Pine Creek (DeKalb County)', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Pine Creek', allowOpenEnds: true,
     throughLakeIds: ['center-hill-lake'],
     note: 'Pine Creek drains into the Center Hill pool (NHD continuous path).' },
-  { id: 'rocky-river', cache: 'river-rocky', name: 'Rocky River', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Rocky River', allowOpenEnds: true },
+  { id: 'rocky-river', cache: 'river-rocky', name: 'Rocky River', region: 'tn-middle-caney-fork', gate: 'state', exact: 'Rocky River', allowOpenEnds: true,
+    throughLakeIds: ['great-falls-lake'],
+    note: 'Lower Rocky River runs through the Great Falls Caney-Fork arm wide-water margin (NHD continuous path) before joining the Caney Fork.' },
   { id: 'upper-hills-creek', cache: 'creek-upper-hills', name: 'Upper Hills Creek', region: 'tn-middle-caney-fork', gate: 'state', exact: /^Hills Creek$/, allowOpenEnds: true,
     throughLakeIds: ['great-falls-lake'],
     note: 'Hills Creek joins the Caney Fork arm of Great Falls pool (NHD continuous path).' },
@@ -1714,6 +1716,10 @@ async function main() {
       type: 'Feature',
       properties: {
         id, name: p.name, waterbodyType: p.waterbodyType,
+        // cane-creek's lower Caney-Fork-valley reach runs through the Great
+        // Falls wide-water margin (verified NHD path) — declare it so the
+        // integration gate reads the crossing as a through-path, not a leak
+        ...(id === 'cane-creek' ? { throughLakeIds: ['great-falls-lake'] } : {}),
         source: Array.isArray(p.source) ? p.source.filter((s) => !/sel:|welded/.test(s)).join(' ') : String(p.source),
         approximate: p.approximate ?? false,
         labelAnchor: anchorOut,

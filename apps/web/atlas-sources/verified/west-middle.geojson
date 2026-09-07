@@ -108037,6 +108037,7 @@
     "id": "east-fork-stones-river",
     "name": "East Fork Stones River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -109700,6 +109701,7 @@
     "id": "west-fork-stones-river",
     "name": "West Fork Stones River",
     "waterbodyType": "river",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -110731,6 +110733,7 @@
     "id": "obey-river",
     "name": "Obey River (Dale Hollow tailwater)",
     "waterbodyType": "tailrace",
+    "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
     "labelAnchor": [
@@ -132754,6 +132757,9 @@
     "id": "rocky-river",
     "name": "Rocky River",
     "waterbodyType": "creek",
+    "throughLakeIds": [
+     "great-falls-lake"
+    ],
     "allowOpenEnds": true,
     "source": "nhd-hr",
     "approximate": false,
@@ -134371,6 +134377,9 @@
     "id": "cane-creek",
     "name": "Cane Creek",
     "waterbodyType": "creek",
+    "throughLakeIds": [
+     "great-falls-lake"
+    ],
     "source": "tiger-linear nhd-hr nhd-fulldraw",
     "approximate": false,
     "labelAnchor": [
