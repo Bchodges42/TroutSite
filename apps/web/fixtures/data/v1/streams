@@ -584,6 +584,29 @@
     ]
   },
   {
+    "id": "caney-fork-upper",
+    "name": "Caney Fork River (above Center Hill Lake)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Free-flowing upper Caney Fork from the Cumberland County headwaters down through Rock Island to the slackwater pools pooled above Center Hill Dam — Great Falls Lake (great-falls-lake) at Rock Island and the long Center Hill Lake (center-hill-lake) arms. Warmwater water: smallmouth and bream country; no trout program is documented this far above the dams and no gauge-based condition is published for this reach. The celebrated tailwater fishery begins at the dam on the caney-fork-river reach.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
     "id": "center-hill-lake",
     "name": "Center Hill Lake",
     "stateId": "TN",
@@ -1321,7 +1344,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-river catalog reach passes through this pool, so paddlers and anglers can follow the water through the impoundment.",
+    "notes": "TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper catalog reach passes through this pool, so paddlers and anglers can follow the water through the impoundment.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",

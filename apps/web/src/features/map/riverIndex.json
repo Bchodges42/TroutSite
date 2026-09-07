@@ -199,14 +199,28 @@
     "id": "caney-fork-river",
     "name": "Caney Fork River (Center Hill tailwater)",
     "anchor": [
-      -85.6695,
-      35.8868
+      -85.8437,
+      36.1176
     ],
     "bounds": [
       -85.951584,
+      36.097941,
+      -85.802311,
+      36.248674
+    ]
+  },
+  {
+    "id": "caney-fork-upper",
+    "name": "Caney Fork River (above Center Hill Lake)",
+    "anchor": [
+      -85.3126,
+      35.8358
+    ],
+    "bounds": [
+      -85.847378,
       35.791412,
       -85.154845,
-      36.248674
+      36.097941
     ]
   },
   {
