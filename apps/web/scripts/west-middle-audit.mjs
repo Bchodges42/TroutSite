@@ -116,7 +116,7 @@ P('|---|---|---|---|---|---|---|---|');
   const RIVER_ROWS = [
   'mississippi-river', 'obion-river', 'hatchie-river', 'wolf-river-west-tennessee',
   'cumberland-river', 'buffalo-river', 'little-buffalo-river', 'harpeth-river', 'duck-river-tailwater',
-  'duck-river-lower', 'elk-river', 'elk-river-lower', 'caney-fork-river', 'stones-river',
+  'duck-river-lower', 'elk-river', 'elk-river-lower', 'caney-fork-river', 'caney-fork-upper', 'stones-river',
   'east-fork-stones-river', 'west-fork-stones-river', 'obey-river', 'red-river-clarksville',
   'big-rock-creek', 'boiling-fork-creek', 'east-fork-shoal-creek', 'shoal-creek', 'mccutcheon-creek',
   'fletchers-fork', 'little-west-fork-creek', 'sinking-creek-wilson', 'sulfur-fork-creek', 'hurricane-creek',
@@ -127,7 +127,18 @@ P('|---|---|---|---|---|---|---|---|');
 for (const id of RIVER_ROWS) {
   const e = log.find((x) => x.id === id);
   const t = topoById.get(id);
-  if (!e) { P(`| \`${id}\` | — | | | | | | MISSING |`); continue; }
+  if (!e) {
+    // surgically split features (review G2) have no build-log entry — report
+    // from the staged deliverable + topology record instead
+    const f = fc.features.find((x) => x.properties.id === id);
+    if (!f || !t) { P(`| \`${id}\` | — | | | | | | MISSING |`); continue; }
+    const gap = t.largestConnectionGapMeters != null
+      ? `${t.largestConnectionGapMeters} m (braids ${t.chainSeparations?.braidMaxM ?? 0} m, pool ${t.chainSeparations?.poolMediatedMaxM ?? 0} m)`
+      : 'none';
+    const termi = (t.termini ?? []).map((x) => `${x.ok ? 'ok' : 'info'} ${x.distanceM} m`).join('; ') || 'visual';
+    P(`| \`${id}\` | G2 split (staged) | ${f.properties.partCount} | ${f.properties.vertexCount} | ${f.properties.lengthKm} km | ${gap} | ${termi} | ${t.verificationState} |`);
+    continue;
+  }
   const termi = (t?.termini ?? []).map((x) => `${x.ok ? 'ok' : 'info'} ${x.distanceM} m`).join('; ') || 'visual';
   const gap = e.largestGapM != null ? `${e.largestGapM} m (braids ${e.braidMaxM ?? 0} m, pool ${e.poolMediatedMaxM ?? 0} m)` : 'none';
   P(`| \`${id}\` | rebuilt (NHD) | ${e.partsWelded} | ${e.verts} | ${e.lengthKm} km | ${gap} | ${termi} | PASS |`);

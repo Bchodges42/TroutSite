@@ -1,5 +1,14 @@
 // Rebuild the caney-fork-river atlas feature from USGS NHDPlus HR flowlines.
 //
+// SUPERSEDED (2026-09-07, review G2): the single full-course caney-fork-river
+// identity this script (re)builds was split into two reach-scoped identities —
+// caney-fork-river (the assessed Center Hill tailwater, Center Hill Dam to the
+// Carthage mouth) and caney-fork-upper (headwaters and the Great Falls /
+// Center Hill pool route). Do NOT re-run this script against the split
+// staging: use west-middle-build.mjs (two reach-gated RIVER_SPECS entries)
+// followed by split-caney-fork.mjs (the deterministic dam cut). The
+// full-course geometry this script established is preserved, not reverted.
+//
 // Why: the original TIGER name-match kept only a headwaters fragment (TIGER
 // LINEARWATER names the upper river "Caney Fork Riv/Frk" in Cumberland/White
 // counties, and the lake and lower reaches carry no TIGER name at all). The
