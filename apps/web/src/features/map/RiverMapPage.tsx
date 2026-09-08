@@ -319,7 +319,10 @@ export function RiverMapPage() {
               .filter(
                 (f) =>
                   f.species !== 'warmwater' &&
-                  f.hatchChart?.entries.some((e) => e.abundance >= 2),
+                  // Expected-activity rework: any charted guidance lights the
+                  // halo (abundance >= 1). The old >= 2 cut produced dead
+                  // "nothing is hatching" months; something hatches year-round.
+                  f.hatchChart?.entries.some((e) => e.abundance >= 1),
               )
               .map((f) => f.stream.id)
           : [],
@@ -724,7 +727,7 @@ export function RiverMapPage() {
             {mode === 'hatches' && (
               <span data-status="hatch">
                 <i className="legend-line halo" />
-                Active hatch guidance
+                Hatch guidance this month
               </span>
             )}
             {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
@@ -746,7 +749,7 @@ export function RiverMapPage() {
           </div>
           <p className="map-help">
             {mode === 'hatches'
-              ? 'Amber halos show regional hatch guidance, not live sightings.'
+              ? 'Amber halos mark waters with regional hatch guidance for the selected month — something hatches year-round; open a water for what is expected and how strong.'
               : coverageUnavailable
                 ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
                 : species === 'all'
