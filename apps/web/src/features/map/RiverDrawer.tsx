@@ -8,6 +8,7 @@ import { orderedReadings, conditionReason, waterIdentity, waterTypeLabel } from 
 import { useSettingsContext } from '../../lib/settings';
 import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
+import { activityLabel } from '../../lib/hatchActivity';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -264,7 +265,12 @@ function WaterTab({
           <strong>{taxon?.commonName ?? 'What is on the water?'}</strong>
           <p>
             {dominant
-              ? TIMES[dominant.timeOfDay] + ' · ' + dominant.stage + ' · regional seasonal guidance'
+              ? TIMES[dominant.timeOfDay] +
+                ' · ' +
+                dominant.stage +
+                ' · expected ' +
+                activityLabel(dominant.abundance) +
+                ' (regional guidance)'
               : 'Identify the insect you find and explore matching fly patterns.'}
           </p>
           <Link
@@ -387,7 +393,9 @@ function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number 
               {TIMES[entry.timeOfDay]} · <span className="capitalize">{entry.stage}</span>
               {taxon ? ' · Hook #' + taxon.sizeRange.join('–#') : ''}
             </p>
-            <div className="hatch-abundance">Seasonal abundance {entry.abundance}/5</div>
+            <div className="hatch-abundance">
+              Expected activity: {activityLabel(entry.abundance)} ({entry.abundance}/5)
+            </div>
             <div className="hatch-patterns">
               {entry.patterns.map((id) => {
                 const pattern = pack.data?.patterns.find((p) => p.id === id);

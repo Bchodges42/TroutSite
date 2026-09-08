@@ -1408,6 +1408,84 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
 .abundance-dot.is-on {
   background: var(--ui-good);
 }
+/* Hatch calendar — expected-activity strips. Brightness encodes the 1–5
+   abundance; a ring marks the peak month; an outline marks the viewed month.
+   Something hatches year-round, so level 0 reads as "no data", never "dead". */
+.activity-strip-nav {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 4px;
+}
+.activity-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 2px 5px;
+  border-radius: 10px;
+  border: 1px solid var(--ui-border);
+  text-decoration: none;
+}
+.activity-cell.is-current {
+  border-color: var(--ui-accent);
+  background: var(--ui-surface);
+}
+.activity-cell-month {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ui-muted);
+}
+.activity-cell-bar,
+.activity-strip-cell {
+  display: block;
+  border-radius: 3px;
+  background: var(--ui-accent);
+}
+.activity-cell-bar {
+  width: 100%;
+  height: 8px;
+}
+.activity-cell-bar[data-level='0'],
+.activity-strip-cell[data-level='0'] {
+  opacity: 0.12;
+}
+.activity-cell-bar[data-level='1'],
+.activity-strip-cell[data-level='1'] {
+  opacity: 0.28;
+}
+.activity-cell-bar[data-level='2'],
+.activity-strip-cell[data-level='2'] {
+  opacity: 0.48;
+}
+.activity-cell-bar[data-level='3'],
+.activity-strip-cell[data-level='3'] {
+  opacity: 0.68;
+}
+.activity-cell-bar[data-level='4'],
+.activity-strip-cell[data-level='4'] {
+  opacity: 0.85;
+}
+.activity-cell-bar[data-level='5'],
+.activity-strip-cell[data-level='5'] {
+  opacity: 1;
+}
+.activity-cell-bar.is-peak,
+.activity-strip-cell.is-peak {
+  box-shadow: 0 0 0 2px var(--ui-accent);
+}
+.activity-strip {
+  display: inline-flex;
+  gap: 2px;
+  flex-wrap: nowrap;
+}
+.activity-strip-cell {
+  width: 9px;
+  height: 12px;
+}
+.activity-strip-cell.is-current {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 1px;
+}
 .prose-plain p {
   margin-bottom: 12px;
 }
