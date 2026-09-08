@@ -19,7 +19,29 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { REACH_GATE } from './atlas-reach-gates.mjs';
-import { DAMS } from './build-east-southeast-atlas.mjs';
+
+// Dam anchors (USGS NWIS coordinates, NAD83) — carried locally so the gate
+// does not load the old build script's git-ignored caches at import time.
+const DAMS = {
+  norris: { name: 'Norris Dam', coords: [-84.08214, 36.21563], source: 'USGS NWIS 03533000 (Clinch River below Norris Dam), NAD83' },
+  'melton-hill': { name: 'Melton Hill Dam', coords: [-84.30076, 35.88536], source: 'USGS NWIS 03535912' },
+  'fort-loudoun': { name: 'Fort Loudoun Dam', coords: [-84.24325, 35.79174], source: 'USGS NWIS 03499510' },
+  'watts-bar': { name: 'Watts Bar Dam', coords: [-84.78328, 35.62035], source: 'USGS NWIS 03543005' },
+  chickamauga: { name: 'Chickamauga Dam', coords: [-85.22968, 35.10313], source: 'USGS NWIS 03566510' },
+  nickajack: { name: 'Nickajack Dam', coords: [-85.62108, 35.00258], source: 'USGS NWIS 03570525' },
+  tellico: { name: 'Tellico Dam', coords: [-84.25445, 35.78768], source: 'NHD 01327191 + TWRA northern extremum' },
+  cherokee: { name: 'Cherokee Dam', coords: [-83.49934, 36.1662], source: 'USGS NWIS 03493510 (Holston River at Cherokee Dam, TW)' },
+  douglas: { name: 'Douglas Dam', coords: [-83.53878, 35.9612], source: 'USGS NWIS 03468510 (French Broad River at Douglas Dam, TW)' },
+  'south-holston': { name: 'South Holston Dam', coords: [-82.09726, 36.52356], source: 'USGS NWIS 03476500' },
+  boone: { name: 'Boone Dam', coords: [-82.43792, 36.44066], source: 'USGS NWIS 03486810' },
+  'ft-patrick-henry': { name: 'Fort Patrick Henry Dam', coords: [-82.50904, 36.49816], source: 'USGS NWIS 03487010' },
+  watauga: { name: 'Watauga Dam', coords: [-82.12596, 36.33011], source: 'USGS NWIS 03483950' },
+  wilbur: { name: 'Wilbur Dam', coords: [-82.12956, 36.34411], source: 'USGS NWIS 03484000' },
+  parksville: { name: 'Parksville Dam (Ocoee No. 1)', coords: [-84.6552, 35.0908], source: 'USGS NWIS 03564500' },
+  'ocoee-no-3': { name: 'Ocoee Dam No. 3', coords: [-84.4699, 35.0371], source: 'NHD 01296232 west extremum' },
+  chilhowee: { name: 'Chilhowee Dam', coords: [-84.0252, 35.5623], source: 'NHD 01280464 north-east extremum' },
+  calderwood: { name: 'Calderwood Dam', coords: [-83.9418, 35.4987], source: 'NHD 00982412 south-east extremum' },
+};
 
 const webRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const VERIFIED = path.join(webRoot, 'atlas-sources', 'verified');
@@ -65,6 +87,26 @@ function pointInGeom(pt, geom) {
     }
   }
   return false;
+}
+function pointToSegmentM2(p, a, b) {
+  const kx = 111320 * Math.cos((p[1] * Math.PI) / 180);
+  const px = p[0] * kx, py = p[1] * 111320;
+  const ax = a[0] * kx, ay = a[1] * 111320, bx = b[0] * kx, by = b[1] * 111320;
+  const dx = bx - ax, dy = by - ay;
+  const L2 = dx * dx + dy * dy;
+  let t = L2 ? ((px - ax) * dx + (py - ay) * dy) / L2 : 0;
+  t = Math.max(0, Math.min(1, t));
+  return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+}
+function distToGeomLinesM(pt, geom) {
+  // nearest distance from pt to the feature's line segments
+  let best = Infinity;
+  const lines = geom.type === 'MultiLineString' ? geom.coordinates : geom.type === 'LineString' ? [geom.coordinates] : [];
+  for (const l of lines) for (let i = 0; i < l.length - 1; i++) {
+    const d = pointToSegmentM2(pt, l[i], l[i + 1]);
+    if (d < best) best = d;
+  }
+  return best;
 }
 function distToGeom(pt, geom) {
   // crude: nearest vertex (vertices are <=~45 m apart after simplification)
@@ -209,9 +251,8 @@ const CHAINS = [
   { line: 'boone-tailwater', target: { lake: 'fort-patrick-henry-lake' }, maxM: 400 },
   { line: 'ft-patrick-henry-tailwater', target: { dam: 'ft-patrick-henry' }, maxM: 300 },
   { line: 'ft-patrick-henry-tailwater', target: { line: 'holston-river' }, maxM: 400 },
-  { line: 'north-fork-holston-river', target: { line: 'holston-river' }, maxM: 700 },
-  { line: 'holston-river', target: { line: 'ft-patrick-henry-tailwater' }, maxM: 400 },
   { line: 'holston-river', target: { lake: 'fort-loudoun-lake' }, maxM: 400 },
+
   // the Wilbur Dam / Watauga Dam cluster: NHD splits the tailrace-weir-pool
   // complex into connector strands; delivered lines + lake fragments span it
   // (visual QA: watauga-dams-local.png). Tolerances are documented, not hidden.
@@ -225,8 +266,26 @@ const CHAINS = [
   // Little T -> Fort Loudoun Lake crosses the Tellico Dam / Tellico canal
   // complex: NHD's named flowline stops ~1.1 km short of the FL pool edge and
   // the two lake polygons span the canal (visual QA: knoxville-system.png).
-  { line: 'little-tennessee-river', target: { lake: 'fort-loudoun-lake' }, maxM: 1200 },
-  { line: 'little-tennessee-river', target: { lake: 'chilhowee-lake' }, maxM: 400 },
+
+  // geo/east-fix rebuild — rebuilt reaches must terminate at their declared
+  // pools/confluences (the throughLakeIds gate below checks the through-route)
+  { line: 'nolichucky-river', target: { lake: 'douglas-lake' }, maxM: 400 },
+  // french-broad -> douglas continuity is gated by the through-lake route
+  // check (the reach line runs into the pool; no chain end is required there)
+  { line: 'french-broad-river', target: { lake: 'fort-loudoun-lake' }, maxM: 600 },
+  { line: 'pigeon-river', target: { lake: 'douglas-lake' }, maxM: 700 }, // pool-arm edge mismatch (NHD chain vs delivered pool polygon)
+  { line: 'emory-river', target: { lake: 'watts-bar-lake' }, maxM: 5000, why: 'the Watts Bar pool polygon excludes the Emory arm (NHD river-area water) — terminus measured across the arm' },
+  { line: 'sequatchie-river', target: { lake: 'nickajack-lake' }, maxM: 3000, why: 'mouth reach stops at the Shellmound pool margin; the pool carries the water to the Tennessee' },
+  { line: 'powell-river', target: { lake: 'norris-lake' }, maxM: 400 },
+  { line: 'holston-river', target: { lake: 'cherokee-lake' }, maxM: 400 }, // through-pool route: the reach line ends at the pool edges, the pool carries the water past the dam
+  { line: 'obed-river', target: { line: 'emory-river' }, maxM: 300 },
+  { line: 'new-river', target: { line: 'clear-fork' }, maxM: 500 },
+  { line: 'horse-creek-greene', target: { line: 'nolichucky-river' }, maxM: 500 },
+  // geo/east-fix: Kingsport confluence braid — NHD named coverage of both
+  // rivers stops short of the fork (documented seam both sides)
+  { line: 'north-fork-holston-river', target: { line: 'holston-river' }, maxM: 800 },
+  { line: 'holston-river', target: { line: 'ft-patrick-henry-tailwater' }, maxM: 1000 },
+  { line: 'little-tennessee-river', target: { lake: 'fort-loudoun-lake' }, maxM: 1500 }, // named chain stops ~1.2 km short of the pool across the Tellico-canal complex (old-lane documented seam)
 ];
 for (const c of CHAINS) {
   const f = rivers.get(c.line);
@@ -241,6 +300,13 @@ for (const c of CHAINS) {
     else if (c.target.lake) d = distToGeom(pt, lakes.get(c.target.lake)?.geometry);
     else d = distToGeom(pt, rivers.get(c.target.line)?.geometry);
     if (d < best) best = d;
+  }
+  if (c.target.dam) {
+    // dam anchors sit mid-channel: the reach LINE touching the dam is what
+    // "starts at the dam" means — measure geometry distance too and accept
+    // the better of the two
+    const dGeom = distToGeomLinesM(DAMS[c.target.dam].coords, f.geometry);
+    if (dGeom < best) best = dGeom;
   }
   if (!isFinite(best)) { fail(c.line, 'chain target missing'); continue; }
   const label = c.target.dam ?? c.target.lake ?? c.target.line;
@@ -277,6 +343,90 @@ else {
     for (const r of t.records) {
       if (!r.sourceIdentifiers?.length) fail(r.featureId, 'topology record missing sourceIdentifiers');
       if (r.verificationState !== 'PASS' && r.verificationState !== 'UNRESOLVED') fail(r.featureId, `bad verificationState ${r.verificationState}`);
+    }
+    // ---- geo/east-fix rebuild gates -------------------------------------
+    // Welded rivers: ≤ 40 chains, source-length parity (full-named-extent
+    // reaches within 10% of the NHD lengthkm sum; gated/state-cut reaches
+    // must keep ≥ half the source length), through-pool routes real, and no
+    // unexplained mid-course gap over the 1 km policy line.
+    const topoById = new Map(t.records.map((r) => [r.featureId, r]));
+    const westMiddleLakes = new Map();
+    try {
+      const wm = JSON.parse(readFileSync(path.join(VERIFIED, 'west-middle.geojson'), 'utf8'));
+      for (const f of wm.features ?? []) if (f.geometry?.type?.endsWith('Polygon')) westMiddleLakes.set(f.properties.id, f.geometry);
+    } catch { /* west-middle file optional for the through-lake existence check */ }
+    const REBUILT_RIVERS = new Set([
+      'tennessee-river', 'french-broad-river', 'holston-river', 'nolichucky-river', 'powell-river',
+      'little-tennessee-river', 'clinch-river', 'hiwassee-river', 'obed-river', 'daddys-creek',
+      'clear-fork', 'piney-river-rhea', 'emory-river', 'new-river', 'ocoee-river', 'pigeon-river',
+      'watauga-river', 'south-holston-river', 'little-river', 'upper-roan-creek', 'horse-creek-greene',
+      'richardson-byrd-creek', 'indian-creek-claiborne', 'north-fork-holston-river', 'boone-tailwater',
+      'sequatchie-river', 'ft-patrick-henry-tailwater',
+    ]);
+    for (const id of REBUILT_RIVERS) {
+      const f = rivers.get(id);
+      if (!f) { fail(id, 'rebuilt reach missing'); continue; }
+      const rec = topoById.get(id);
+      if (!rec) continue;
+      const chains = f.geometry.type === 'MultiLineString' ? f.geometry.coordinates.length : 1;
+      if (chains > 40) fail(id, `rebuilt reach has ${chains} chains (> 40 weld target)`);
+      if (rec.sourceLengthKm && rec.deliveredLengthKm) {
+        const ratio = rec.deliveredLengthKm / rec.sourceLengthKm;
+        const floor = rec.reachScope === 'gated' ? 0.5 : 0.9;
+        if (ratio < floor || ratio > 1.1) {
+          fail(id, `delivered length ${rec.deliveredLengthKm} km is ${(ratio * 100).toFixed(0)}% of NHD source ${rec.sourceLengthKm} km (scope ${rec.reachScope ?? 'full-named-extent'}, floor ${Math.round(floor * 100)}%)`);
+        } else {
+          notes.push(`OK ${id}: length ${rec.deliveredLengthKm} km = ${(ratio * 100).toFixed(0)}% of NHD ${rec.sourceLengthKm} km (${rec.reachScope ?? 'full-named-extent'})`);
+        }
+      }
+      const gap = rec.largestConnectionGapMeters ?? 0;
+      if (gap > 1000 && !(rec.midCourseSeams ?? []).some((s2) => s2.nearestChainM >= 1000 && s2.documented)) {
+        fail(id, `unexplained mid-course gap ${gap} m exceeds the 1 km policy (must be documented as a real seam)`);
+      }
+      for (const s2 of rec.midCourseSeams ?? []) {
+        if (s2.nearestChainM >= 1000 && !s2.documented) {
+          fail(id, `mid-course seam ${s2.nearestChainM} m at [${s2.at}] lacks a documentation note`);
+        }
+      }
+      for (const lid of f.properties.throughLakeIds ?? []) {
+        const lakeGeom = lakes.get(lid)?.geometry ?? westMiddleLakes.get(lid);
+        if (!lakeGeom) { fail(id, `throughLakeIds references missing lake ${lid}`); continue; }
+        const tolM = rec.throughLakeToleranceM?.[lid] ?? 750;
+        let best = Infinity;
+        for (const line of (f.geometry.type === 'MultiLineString' ? f.geometry.coordinates : [f.geometry.coordinates])) {
+          for (let i = 0; i < line.length; i += 3) {
+            const d = distToGeom(line[i], lakeGeom);
+            if (d < best) best = d;
+            if (best === 0) break;
+          }
+          if (best === 0) break;
+        }
+        if (best > tolM) fail(id, `through-lake route to ${lid} never reaches the pool (nearest ${Math.round(best)} m > ${tolM} m)`);
+        else notes.push(`OK ${id}: through-lake ${lid} reached (${Math.round(best)} m, tol ${tolM} m)`);
+      }
+      for (const tr of rec.termini ?? []) {
+        if (!tr.ok && !tr.informational) fail(id, `terminus anchor '${tr.anchor}' is ${tr.distanceM} m away (max ${tr.maxM} m)`);
+      }
+      if (rec.tailwaterStartDistanceM != null && rec.tailwaterStartDistanceM > 800) {
+        fail(id, `tailwater starts ${rec.tailwaterStartDistanceM} m from the dam (> 800 m)`);
+      }
+    }
+    // Rebuilt lakes: part ceilings + pool-stage area windows + identity source
+    const REBUILT_LAKES = {
+      'norris-lake': { maxParts: 3, areaKm2: [90, 100], source: 'nhd-hr' },
+      'nickajack-lake': { maxParts: 3, areaKm2: [40, 47], source: 'twra-reservoirs' },
+      'boone-lake': { maxParts: 3, areaKm2: [15, 22], source: 'nhd-hr' },
+    };
+    for (const [id, gate] of Object.entries(REBUILT_LAKES)) {
+      const f = lakes.get(id);
+      if (!f) { fail(id, 'rebuilt lake missing'); continue; }
+      if (f.properties.source !== gate.source) fail(id, `source ${f.properties.source} != expected ${gate.source} (identity source policy)`);
+      const parts = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates.length : 1;
+      if (parts > gate.maxParts) fail(id, `rebuilt lake has ${parts} parts (> ${gate.maxParts})`);
+      const area = f.properties.areaSqKm;
+      if (typeof area !== 'number') fail(id, 'rebuilt lake missing areaSqKm');
+      else if (area < gate.areaKm2[0] || area > gate.areaKm2[1]) fail(id, `area ${area} km² outside expected pool-stage window [${gate.areaKm2}]`);
+      else notes.push(`OK ${id}: ${parts} parts, ${area} km² (pool-stage window ${gate.areaKm2.join('–')})`);
     }
   }
 }

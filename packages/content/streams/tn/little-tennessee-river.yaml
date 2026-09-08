@@ -8,15 +8,14 @@ stockingProgram: false
 species: warmwater
 idealFlow: []
 notes: >-
-  Main-stem river entering Tennessee from North Carolina below Fontana Dam,
-  flowing through the Calderwood and Chilhowee pools and Tellico Lake
-  (impounded reaches are carried by the lake features; no tailwater condition
-  scoring is applied across a reservoir) to its mouth at the Tennessee River
-  in Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is
-  the Little T of TVA's main-stem sequence; the trout-stocked upper water is
-  the reach below Chilhowee Dam — verify current TWRA schedules. Distinct
-  from the Tellico River (tellico-river), a different tributary near Tellico
-  Plains. USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.
+  Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the
+  Calderwood and Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features;
+  no tailwater condition scoring is applied across a reservoir) to its mouth at the Tennessee River in
+  Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main-
+  stem sequence; the trout-stocked upper water is the reach below Chilhowee Dam — verify current TWRA
+  schedules. Distinct from the Tellico River (tellico-river), a different tributary near Tellico Plains.
+  USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03519750
     url: https://waterdata.usgs.gov/monitoring-location/03519750/

@@ -11,8 +11,11 @@ idealFlow:
   - min: 80
     max: 500
     unit: cfs
-notes: Big South Fork National River & Recreation Area water with wild browns and rainbows
-  around Leatherwood Ford. Beautiful and isolated — plan bail-outs.
+notes: >-
+  Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood
+  Ford. Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New River/Clear Fork
+  confluence country up to the Kentucky line.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03410210
     url: https://waterdata.usgs.gov/monitoring-location/03410210/

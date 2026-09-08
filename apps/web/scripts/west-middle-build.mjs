@@ -701,15 +701,32 @@ const RIVER_SPECS = [
   // (USGS 03584600) to the AL state line
   { id: 'elk-river-lower', cache: 'river-elk', name: 'Elk River (Prospect to state line)', region: 'tn-middle-duck-elk', allowOpenEnds: true,
     gate: { minLon: -87.10, minLat: 34.90, maxLon: -86.90, maxLat: 35.10 }, upstream: ['elk-river'], downstream: ['tennessee-river(Elk River Reservoir, AL line)'] },
+  // Review G2 split (2026-09-07): the single full-course caney-fork-river
+  // identity (fix-caney-fork precedent, 30 parts / 244.92 km, dam crossing
+  // welded into one chain) is superseded by TWO reach-scoped identities —
+  // BOTH catalog gauges (USGS 03424010 at-dam, 03424860 Stonewall) sit below
+  // Center Hill Dam, so the tailwater assessment must not extend above it.
+  // split-caney-fork.mjs is the deterministic surgical tool that performs
+  // this cut on the staged feature; these entries document the split for
+  // future full rebuilds (run split-caney-fork.mjs afterwards if the rebuild
+  // re-welds the dam crossing into one chain).
   { id: 'caney-fork-river', cache: 'river-caney-fork', name: 'Caney Fork River (Center Hill tailwater)', region: 'tn-middle-caney-fork', allowOpenEnds: true,
-    gate: 'state', exact: 'Caney Fork', upstream: ['great-falls-lake', 'center-hill-lake'], downstream: ['old-hickory-lake'],
-    throughLakeIds: ['center-hill-lake', 'great-falls-lake', 'old-hickory-lake'],
+    gate: { minLon: -85.97, minLat: 36.09, maxLon: -85.79, maxLat: 36.27 }, exact: 'Caney Fork',
+    upstream: ['caney-fork-upper'], downstream: ['old-hickory-lake'],
+    anchors: [
+      { lon: -85.82721, lat: 36.09784, label: 'USGS 03424010 Caney Fork at Center Hill Dam (tailwater start)', maxM: 600 },
+      { lon: -85.941, lat: 36.239, label: 'mouth at the Cumberland / Old Hickory Lake at Carthage (fix-caney-fork verified mouth)', maxM: 400 },
+    ],
+    damCut: { partVertex: [-85.826276, 36.097941], damSite: [-85.8272071, 36.09783778], note: 'whole-part selection cannot cut the dam-crossing chain mid-segment — after assembly, trim the chain at the dam vertex (84 m from the USGS site) keeping below-dam braid fragments; split-caney-fork.mjs implements this deterministically' },
+    note: 'G2 tailwater reach: Center Hill Dam to the mouth only; the through-pool route above the dam belongs to caney-fork-upper.' },
+  { id: 'caney-fork-upper', cache: 'river-caney-fork', name: 'Caney Fork River (above Center Hill Lake)', region: 'tn-middle-caney-fork', allowOpenEnds: true,
+    gate: 'state', exact: 'Caney Fork', upstream: [], downstream: ['center-hill-lake'],
+    throughLakeIds: ['great-falls-lake', 'center-hill-lake'],
     anchors: [
       { lon: -85.158, lat: 36.043, label: 'headwaters near Campbell Junction (fix-caney-fork verified source)', maxM: 400 },
-      { lon: -85.941, lat: 36.239, label: 'mouth at the Cumberland / Old Hickory Lake at Carthage (fix-caney-fork verified mouth)', maxM: 400 },
-      { lon: -85.82721, lat: 36.09784, label: 'USGS 03424010 Caney Fork at Center Hill Dam (tailwater)', maxM: 600, informational: true, note: 'full-course feature; the through-pool route is carried by named NHD artificial paths around the dam' },
+      { lon: -85.82721, lat: 36.09784, label: 'Center Hill Dam (upstream terminus of this identity; USGS 03424010 dam site)', maxM: 600 },
     ],
-    note: 'Full Caney Fork course per fix-caney-fork precedent; GNIS "Caney Fork" (Creek excluded).' },
+    note: 'Full named course above Center Hill Dam per fix-caney-fork precedent; GNIS "Caney Fork" (Creek excluded). Through-pool route via Great Falls + Center Hill carried by named NHD artificial paths; the assessed tailwater below the dam is caney-fork-river.' },
   { id: 'stones-river', cache: 'river-stones', name: 'Stones River (Davidson County)', region: 'tn-middle-nashville',
     gate: REACH_GATE['stones-river'], excludePool: 'j-percy-priest-lake', exact: 'Stones River', upstream: ['j-percy-priest-lake'], downstream: ['cumberland-river'],
     anchors: [

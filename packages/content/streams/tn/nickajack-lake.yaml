@@ -7,15 +7,12 @@ gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater
-  gauge, 35.00258/-85.62108) upstream 46 miles through Chattanooga to
-  Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;
-  discharges at the dam toward Guntersville Lake in Alabama (the main stem
-  continues as tennessee-river). Verified geometry: TWRA tn_reservoirs layer
-  (the Tennessee waterways experience source, 10,470 ac) — chosen because
-  NHDPlus HR carries only the western gorge portion as a named waterbody
-  (GNIS 01295741, 28.0 km²) and models the Chattanooga reach as river area.
-  Cross-checks: NHD 01295741 and TVA published size (10,700 ac).
+  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles
+  through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;
+  below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA
+  lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban
+  Chattanooga reach above it. Verify TVA release schedules before paddling the gorge.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03570525
     url: https://waterdata.usgs.gov/monitoring-location/03570525/

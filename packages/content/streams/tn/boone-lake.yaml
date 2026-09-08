@@ -8,14 +8,12 @@ gaugeIds:
 stockingProgram: false
 idealFlow: []
 notes: >-
-  TVA reservoir on the South Fork Holston River northeast of Johnson City
-  (Sullivan/Washington counties), impounded by Boone Dam (USGS 03486810,
-  36.44066/-82.43792). Two arms: the South Fork Holston arm fed by the South
-  Holston Dam tailwater (south-holston-river) and the Watauga arm fed by the
-  Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater
-  (boone-tailwater) down to Fort Patrick Henry Lake. Verified geometry: USGS
-  NHDPlus HR NHDWaterbody GNIS 01326910 (two parts, dam-to-dam open water);
-  upper slackwater arms remain river-modeled. Aliases: Boone Reservoir.
+  TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington
+  counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork
+  Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by
+  the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to
+  Fort Patrick Henry Lake. Aliases: Boone Reservoir.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03486810
     url: https://waterdata.usgs.gov/monitoring-location/03486810/

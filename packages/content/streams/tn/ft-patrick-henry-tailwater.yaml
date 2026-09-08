@@ -11,8 +11,11 @@ idealFlow:
   - min: 100
     max: 800
     unit: cfs
-notes: Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and
-  TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly.
+notes: >-
+  Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked
+  rainbow and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the
+  Kingsport confluence, where the Holston main stem forms.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03487010
     url: https://waterdata.usgs.gov/monitoring-location/03487010/

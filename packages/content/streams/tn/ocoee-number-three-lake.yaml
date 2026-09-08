@@ -8,15 +8,11 @@ stockingProgram: false
 idealFlow: []
 notes: >-
   Small (≈550 acre) impoundment of the Ocoee River in Polk County upstream of
-  Parksville Lake, created by TVA's Ocoee Dam No. 3 (dam at the pool's
-  downstream/west extremum ≈35.0371/-84.4699, from the NHD pool shape). The
-  upper Ocoee (ocoee-river) enters from the Copperhill end and resumes below
-  the dam toward Parksville Lake. Verified geometry: USGS NHDPlus HR
-  NHDWaterbody GNIS 01296232 — "Ocoee Number Three Lake". The TWRA waterways
-  reservoir layer lists this same pool under the historical name "Hiwassee
-  Lake" (443 ac) — that TWRA label is an alias here and does NOT refer to the
-  Hiwassee Lake in North Carolina. This is the previously unidentified lake
-  polygon near the Parksville/Ocoee system.
+  Parksville Lake, created by TVA's Ocoee Dam No. 3. The upper Ocoee
+  (ocoee-river) enters from the Copperhill end and resumes below the dam toward
+  Parksville Lake. TWRA records this same pool under the historical name
+  "Hiwassee Lake" (443 ac) — that label does not refer to the Hiwassee Lake in
+  North Carolina.
 officialSources:
   - label: TVA — Ocoee No. 3 dam & powerhouse
     url: https://www.tva.com/environment/lake-levels

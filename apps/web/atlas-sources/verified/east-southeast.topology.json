@@ -1,15 +1,16 @@
 {
  "schema": "trout/east-southeast-topology/1",
- "generated": "2026-09-05",
+ "generated": "2026-09-06",
  "region": "east-southeast",
  "records": [
   {
    "featureId": "norris-lake",
    "sourceIdentifiers": [
-    "Census TIGER/Line 2024 AREAWATER (H2030) pieces: Norris Lk/Clinch Riv/Powell Riv/Lost Crk + unnamed ≥0.05 km2 in pool window [-84.35,36.15,-83.2,36.66]"
+    "nhdplusid 25000400564035 gnis Norris Lake (01269832) fcode 39004 94.23 km²",
+    "nhdplusid 25000400570453 gnis Norris Lake (01269832) fcode 39004 1.25 km²"
    ],
    "upstreamFeatureIds": [
-    "clinch-river",
+    "clinch-river(pool arm)",
     "powell-river"
    ],
    "downstreamFeatureIds": [
@@ -23,27 +24,20 @@
     ],
     "source": "USGS NWIS 03533000 (Clinch River below Norris Dam), NAD83"
    },
-   "sourceAreaSqKm": 85.45,
-   "deliveredAreaSqKm": 85.77,
+   "damPoolDistanceM": 1146,
+   "sourceAreaSqKm": 95.48,
+   "deliveredAreaSqKm": 99.7,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
    "verificationSources": [
-    "NHD medium-res NHDWaterbody GNIS 01269832 — 95.5 km²",
-    "TWRA RiversReservoirs reservoir layer (Norris Lake, 36,149 ac pool outline incl. riverine arms) — 146.3 km²",
-    "TVA published Norris size (33,840 ac at summer normal) — 137 km²",
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+    "USGS NHDPlus HR MapServer layer 9 NHDWaterbody (GNIS-matched, NHDPlusID pinned)",
+    "NHD medium-resolution NHDWaterbody GNIS cross-check (area parity)",
+    "TWRA pool outline + TVA published pool size cross-checks",
+    "TWRA pool outline (36,149 ac incl. riverine arms) cross-check"
    ],
    "verificationState": "PASS",
-   "notes": "NHDPlus HR carries almost no named Norris pool; Census name-only match (the shipped defect) dropped every arm piece labeled Clinch Riv/Powell Riv. Pool assembled by membership rule; upper-Clinch VA channel trace present in the TWRA pool outline was excluded (it follows free-flowing water, not the pool).",
-   "damPoolDistanceM": 1145,
-   "connections": {
-    "clinch-river": {
-     "nearestVertexDistanceM": 262
-    }
-   }
+   "notes": "REBUILT from the NHDPlus HR NHDWaterbody layer: GNIS \"Norris Lake\"/\"Norris Reservoir\" polygons, NHDPlusIDs pinned — replaces the 48-fragment Census TIGER/Line AREAWATER assembly. NHD models the pool at its own mapping stage (~95 km² incl. riverine-arm margin; the TVA full-pool figure is 33,840 ac ≈ 137 km² at summer normal) — delivered stage is the NHD waterbody take, cross-checked against NHD medium-res GNIS 01269832 (95.5 km²) and the TWRA pool outline."
   },
   {
    "featureId": "cherokee-lake",
@@ -259,7 +253,7 @@
     "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
    ],
    "verificationState": "PASS",
-   "notes": "Single NHDPlus HR pool polygon: Fort Loudoun Dam (-84.2432) to Watts Bar Dam (-84.7833) incl. the Clinch arm to Melton Hill Dam. Emory River arm remains NHD river-area, not lake polygon (documented).",
+   "notes": "Single NHDPlus HR pool polygon: Fort Loudoun Dam (-84.2432) to Watts Bar Dam (-84.7833) incl. the Clinch arm to Melton Hill Dam. Emory River arm remains NHD river-area, not lake polygon (documented). Superseded shipped polygon held 8 fragments (120.3 km2) and stopped ~9 km short of Fort Loudoun Dam.",
    "damPoolDistanceM": 118,
    "connections": {
     "fort-loudoun-lake": {
@@ -319,8 +313,8 @@
   {
    "featureId": "boone-lake",
    "sourceIdentifiers": [
-    "Boone Lake (GNIS 01326910, PID 89956265, fcode 39004)",
-    "Boone Lake (GNIS 01326910, PID 43594876, fcode 39004)"
+    "nhdplusid 25000400573092 gnis Boone Lake (01326910) fcode 39004 8.12 km²",
+    "nhdplusid 25000400569182 gnis Boone Lake (01326910) fcode 39004 9.00 km²"
    ],
    "upstreamFeatureIds": [
     "south-holston-river",
@@ -337,32 +331,19 @@
     ],
     "source": "USGS NWIS 03486810 (South Fork Holston River at Boone Dam, TW)"
    },
+   "damPoolDistanceM": 60,
    "sourceAreaSqKm": 17.12,
    "deliveredAreaSqKm": 17.5,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
    "verificationSources": [
-    "TWRA reservoir layer (Boone Lake, 5,055 ac — incl. upper slackwater arms) — 20.5 km²",
-    "TVA published Boone size (4,400 ac) — 17.8 km²",
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+    "USGS NHDPlus HR MapServer layer 9 NHDWaterbody (GNIS-matched, NHDPlusID pinned)",
+    "NHD medium-resolution NHDWaterbody GNIS cross-check (area parity)",
+    "TWRA pool outline + TVA published pool size cross-checks"
    ],
    "verificationState": "PASS",
-   "notes": "Promoted from passive lakes.geojson to interactive. NHD models the upper SF Holston/Watauga slackwater arms as river; the tailwater lines carry continuity to the NHD pool edge.",
-   "damPoolDistanceM": 87,
-   "connections": {
-    "south-holston-river": {
-     "nearestVertexDistanceM": 546
-    },
-    "watauga-river": {
-     "nearestVertexDistanceM": 1059
-    },
-    "boone-tailwater": {
-     "nearestVertexDistanceM": 87
-    }
-   }
+   "notes": "RE-VERIFIED NHD waterbody GNIS 01326910: two pool polygons of 9.0 and 8.1 km² — the Holston and Watauga arms of the Y, abutting at the junction narrows (outline cross-checked against the TWRA reservoir layer and satellite imagery in the QA render). Part split is real NHD modeling, not an assembly defect; kept at 2 parts."
   },
   {
    "featureId": "watauga-lake",
@@ -569,7 +550,7 @@
     "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
    ],
    "verificationState": "PASS",
-   "notes": "NEW interactive feature. The Norris tailwater (clinch-river) runs through this pool — line-over-polygon by design; condition scoring stays with the line feature.",
+   "notes": "NEW interactive feature. The Norris tailwater (clinch-river) runs through this pool — line-over-polygon by design; condition scoring stays with the line feature. Previously a visible unnamed pool in the shipped map between the Norris tailwater and Watts Bar.",
    "damPoolDistanceM": 131,
    "connections": {
     "clinch-river": {
@@ -743,7 +724,8 @@
   {
    "featureId": "nickajack-lake",
    "sourceIdentifiers": [
-    "TWRA tn_reservoirs OBJECTID 36 \"Nickajack Lake\" (10470 ac)"
+    "TWRA tn_reservoirs OBJECTID 36 \"Nickajack Lake\" (10470 ac)",
+    "27 source slivers < 0.5 km² dropped (0.031 km²/43v, 0.007 km²/22v, 0.054 km²/40v, 0.019 km²/31v, 0.001 km²/8v, 0 km²/8v, 0.005 km²/20v, 0.023 km²/37v, 0.011 km²/34v, 0.035 km²/50v, 0.007 km²/14v, 0.001 km²/9v, 0.006 km²/24v, 0.01 km²/29v, 0.005 km²/23v, 0 km²/7v, 0.1 km²/48v, 0.003 km²/15v, 0.001 km²/10v, 0.001 km²/15v, 0.002 km²/13v, 0 km²/11v, 0.002 km²/17v, 0.004 km²/16v, 0.011 km²/25v, 0.016 km²/40v, 0.005 km²/43v)"
    ],
    "upstreamFeatureIds": [
     "tennessee-river"
@@ -759,42 +741,26 @@
     ],
     "source": "USGS NWIS 03570525 (Tennessee River at Nickajack Dam, tailwater)"
    },
-   "sourceAreaSqKm": 41.96,
-   "deliveredAreaSqKm": 41.94,
+   "damPoolDistanceM": 77,
+   "sourceAreaSqKm": 45.68,
+   "deliveredAreaSqKm": 45.61,
    "sourceLengthKm": null,
    "deliveredLengthKm": null,
    "largestConnectionGapMeters": null,
    "verificationSources": [
-    "NHDPlus HR NHDWaterbody GNIS 01295741 (covers only the western gorge; the Chattanooga reach is NHD river-area) — 28 km²",
-    "TVA published Nickajack size (10,700 ac) — 43.3 km²",
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+    "TWRA RiversReservoirs FeatureServer tn_reservoirs (the Tennessee waterways experience source)",
+    "NHD medium-resolution NHDWaterbody GNIS cross-check (area parity)",
+    "TWRA pool outline + TVA published pool size cross-checks"
    ],
    "verificationState": "PASS",
-   "notes": "TWRA polygon is the complete pool (Chickamauga Dam to Nickajack Dam); NHDPlus HR splits it, so TWRA (the waterways-map source) is the delivery geometry, simplified 0.0002.",
-   "damPoolDistanceM": 198,
-   "connections": {
-    "tennessee-river": {
-     "nearestVertexDistanceM": 92
-    }
-   }
+   "notes": "TWRA tn_reservoirs stays the identity source (NHDPlus HR carries only the western gorge as the named Nickajack pool — the Chattanooga reach is NHD river-area). Assembly fixed: the TWRA multipart feature's real pool polygons are kept whole; its micro-sliver fragments (< 0.5 km²) are dropped and counted in the build report. Superseded delivery assembled the same source feature part-by-part (20 fragments); the two real pool polygons (Chattanooga reach + gorge) total 45.6 km2. NHD medium-res NHDWaterbody GNIS 01295741 cross-check: 28.0 km2 (area parity)."
   },
   {
    "featureId": "tennessee-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000300026360 reachcode 06020001014599 gnis Tennessee River (00517033) fcode 55800 0.6722442000000001km",
-    "nhdplusid 25000300016642 reachcode 06020001002523 gnis Tennessee River (00517033) fcode 55800 0.13099477km",
-    "nhdplusid 25000300014411 reachcode 06020001014257 gnis Tennessee River (00517033) fcode 55800 0.23394589000000002km",
-    "nhdplusid 25000400362843 reachcode 06010201010807 gnis Tennessee River (00517033) fcode 55800 0.20461332000000002km",
-    "nhdplusid 25000300019673 reachcode 06020001014400 gnis Tennessee River (00517033) fcode 55800 0.8126145499999999km",
-    "nhdplusid 25000200018116 reachcode 06030001002484 gnis Tennessee River (00517033) fcode 55800 0.56823643km",
-    "nhdplusid 25000400360742 reachcode 06010201010739 gnis Tennessee River (00517033) fcode 55800 1.50867032km",
-    "nhdplusid 25000400455220 reachcode 06010201010359 gnis Tennessee River (00517033) fcode 55800 0.5770596600000001km",
-    "nhdplusid 25000400510040 reachcode 06010201010654 gnis Tennessee River (00517033) fcode 55800 1.49959753km",
-    "nhdplusid 25000400495274 reachcode 06010201010893 gnis Tennessee River (00517033) fcode 55800 0.34663514km",
-    "nhdplusid 25000400301982 reachcode 06010201010528 gnis Tennessee River (00517033) fcode 55800 0.8715850100000001km",
-    "nhdplusid 25000300003574 reachcode 06020001014858 gnis Tennessee River (00517033) fcode 55800 0.45945951km"
+    "through-pool route: fort-loudoun-lake, watts-bar-lake, chickamauga-lake, nickajack-lake, pickwick-lake, kentucky-lake",
+    "879 named NHD parts welded to 10 chains",
+    "state cut at the TN boundary (excludes tn water; longest in-TN run per part)"
    ],
    "upstreamFeatureIds": [
     "holston-river",
@@ -806,38 +772,33 @@
    "dam": null,
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 624.81,
-   "largestConnectionGapMeters": 282335.1,
+   "sourceLengthKm": 673.5,
+   "deliveredLengthKm": 622.4,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 14,
+    "openEnds": 3,
+    "poolMediated": 3,
+    "poolMediatedMaxM": 366422,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
    "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
    ],
+   "reachScope": "gated",
+   "lengthRatio": 0.924,
    "verificationState": "PASS",
-   "notes": "Full Tennessee main stem within Tennessee: AL line (Shellmound, TN RM 424) upstream to the Holston/French Broad confluence at Knoxville, plus the West Tennessee main stem (Pickwick to the KY line). Flowline continuity preserved through Nickajack/Chickamauga/Watts Bar/Fort Loudoun/Kentucky pools via NHD artificial paths (no tailwater scoring implied inside reservoirs).",
-   "islands": 18,
-   "connections": {
-    "holston-river": {
-     "nearestVertexDistanceM": 1005
-    }
-   }
+   "notes": "Full Tennessee main stem within Tennessee (AL line at Shellmound, RM 424, to the Holston/French Broad confluence at Knoxville, plus the West Tennessee reach Pickwick to the KY line), rebuilt from NHDPlus HR named flowlines incl. through-pool artificial paths. State cut at the TN boundary; the main stem legitimately leaves the state between the Nickajack tailwater (RM 424) and Pickwick Lake. Superseded delivery assembled 814 TIGER-fragment parts; delivered length ~622 km within TN vs 673 km NHD source (state cut + pool-margin trims)."
   },
   {
    "featureId": "holston-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000400473921 reachcode 06010104000982 gnis Holston River (01303469) fcode 55800 0.40100951km",
-    "nhdplusid 25000400297625 reachcode 06010104000019 gnis Holston River (01303469) fcode 55800 1.54950088km",
-    "nhdplusid 25000400480234 reachcode 06010104000018 gnis Holston River (01303469) fcode 55800 1.19433266km",
-    "nhdplusid 25000400537059 reachcode 06010104006263 gnis Holston River (01303469) fcode 55800 0.13897724km",
-    "nhdplusid 25000400484521 reachcode 06010104006308 gnis Holston River (01303469) fcode 55800 0.18777726km",
-    "nhdplusid 25000400499294 reachcode 06010104000971 gnis Holston River (01303469) fcode 55800 0.9169521500000001km",
-    "nhdplusid 25000400352005 reachcode 06010104005930 gnis Holston River (01303469) fcode 55800 2.14902769km",
-    "nhdplusid 25000400497149 reachcode 06010104000973 gnis Holston River (01303469) fcode 55800 0.94490565km",
-    "nhdplusid 25000400560215 reachcode 06010104000974 gnis Holston River (01303469) fcode 55800 0.14649579000000001km",
-    "nhdplusid 25000400501439 reachcode 06010104000896 gnis Holston River (01303469) fcode 55800 0.6445371200000001km",
-    "nhdplusid 25000400476051 reachcode 06010104000903 gnis Holston River (01303469) fcode 55800 1.3378504500000001km",
-    "nhdplusid 25000400467678 reachcode 06010104000969 gnis Holston River (01303469) fcode 55800 0.36464891000000005km"
+    "through-pool route: cherokee-lake",
+    "337 named NHD parts welded to 7 chains"
    ],
    "upstreamFeatureIds": [
     "north-fork-holston-river",
@@ -849,44 +810,49 @@
    "dam": null,
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 220.16,
+   "sourceLengthKm": 221.25,
+   "deliveredLengthKm": 218.74,
    "largestConnectionGapMeters": 0,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "Holston main stem from the North/South Fork confluence at Kingsport (USGS 03487010 tailwater terminus) through Cherokee Lake (artificial path) to the French Broad confluence at the head of Fort Loudoun Lake. Excludes VA fork water by name discipline (only gnis_name = Holston River).",
-   "islands": 1,
-   "connections": {
-    "north-fork-holston-river": {
-     "nearestVertexDistanceM": 1867
+   "termini": [
+    {
+     "anchor": "South Fork Holston confluence at Kingsport",
+     "target": "ft-patrick-henry-tailwater",
+     "distanceM": 29,
+     "maxM": 400,
+     "ok": true,
+     "informational": false
     },
-    "ft-patrick-henry-tailwater": {
-     "nearestVertexDistanceM": 3124
-    },
-    "fort-loudoun-lake": {
-     "nearestVertexDistanceM": 1105
+    {
+     "anchor": "French Broad confluence / Fort Loudoun Lake head",
+     "target": "fort-loudoun-lake",
+     "distanceM": 167,
+     "maxM": 500,
+     "ok": true,
+     "informational": false
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 12,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 90643,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.989,
+   "verificationState": "PASS",
+   "notes": "Holston main stem from the North/South Fork confluence at Kingsport through Cherokee Lake (through-pool) to the French Broad confluence at the head of Fort Loudoun Lake. Superseded delivery: 336 fragments; delivered length within 2% of the NHD named-source sum."
   },
   {
    "featureId": "north-fork-holston-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000400549289 reachcode 06010101000011 gnis North Fork Holston River (01487063) fcode 55800 0.5265493200000001km",
-    "nhdplusid 25000400362227 reachcode 06010101000011 gnis North Fork Holston River (01487063) fcode 55800 0.7471396299999999km",
-    "nhdplusid 25000400540905 reachcode 06010101000006 gnis North Fork Holston River (01487063) fcode 55800 1.08257943km",
-    "nhdplusid 25000400469530 reachcode 06010101006248 gnis North Fork Holston River (01487063) fcode 55800 0.6938175700000001km",
-    "nhdplusid 25000400326500 reachcode 06010101000005 gnis North Fork Holston River (01487063) fcode 55800 0.052295280000000006km",
-    "nhdplusid 25000400431628 reachcode 06010101000007 gnis North Fork Holston River (01487063) fcode 55800 0.35029433km",
-    "nhdplusid 25000400520049 reachcode 06010101000008 gnis North Fork Holston River (01487063) fcode 55800 0.47696834000000005km",
-    "nhdplusid 25000400461124 reachcode 06010101006246 gnis North Fork Holston River (01487063) fcode 55800 0.7369828km",
-    "nhdplusid 25000400473618 reachcode 06010101000002 gnis North Fork Holston River (01487063) fcode 55800 0.04914350000000001km",
-    "nhdplusid 25000400341178 reachcode 06010101000010 gnis North Fork Holston River (01487063) fcode 55800 1.1300891499999999km",
-    "nhdplusid 25000400425199 reachcode 06010101000011 gnis North Fork Holston River (01487063) fcode 55800 0.03616796km",
-    "nhdplusid 25000400456820 reachcode 06010101000008 gnis North Fork Holston River (01487063) fcode 55800 1.03687036km"
+    "122 named NHD parts welded to 2 chains"
    ],
    "upstreamFeatureIds": [
     "north-fork-holston-river (continues in VA)"
@@ -897,38 +863,58 @@
    "dam": null,
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 15.01,
-   "largestConnectionGapMeters": 1038.8,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "North Fork Holston from the TN/VA line (the fork forms part of the state line; VA water upstream is out of scope) to the Kingsport confluence where the Holston main stem begins.",
-   "islands": 4,
-   "connections": {
-    "holston-river": {
-     "nearestVertexDistanceM": 1867
+   "sourceLengthKm": 22.6,
+   "deliveredLengthKm": 21.41,
+   "largestConnectionGapMeters": 1240,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 1,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -82.4996,
+      36.6222
+     ],
+     "nearestChainM": 1240,
+     "documented": "State-line braid seam: the fork forms the TN/VA line here and named NHD coverage hops across the braided boundary water (VA-side braids at lat >= 36.629 are excluded whole-part by the documented gate); imagery-verified channel continuity toward the Kingsport confluence."
+    },
+    {
+     "at": [
+      -82.5134,
+      36.6206
+     ],
+     "nearestChainM": 1091,
+     "documented": "State-line braid seam, same boundary-water complex as above (named coverage resumes downstream toward the Kingsport confluence)."
+    },
+    {
+     "at": [
+      -82.5012,
+      36.6203
+     ],
+     "nearestChainM": 1091,
+     "documented": "State-line braid seam (same boundary-water complex): named coverage hops across the braided TN/VA line water excluded by the documented gate; imagery-verified continuity."
     }
-   }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.947,
+   "verificationState": "PASS",
+   "notes": "North Fork Holston from the TN/VA line to the Kingsport confluence (the fork forms part of the state line; VA water upstream is out of scope)."
   },
   {
    "featureId": "clinch-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000400560407 reachcode 06010207003713 gnis Clinch River (01307258) fcode 55800 0.64185943km",
-    "nhdplusid 25000400467853 reachcode 06010207000129 gnis Clinch River (01307258) fcode 55800 0.41353324km",
-    "nhdplusid 25000400312368 reachcode 06010207000850 gnis Clinch River (01307258) fcode 55800 0.29539944km",
-    "nhdplusid 25000400381565 reachcode 06010207003751 gnis Clinch River (01307258) fcode 55800 0.15643424km",
-    "nhdplusid 25000400533027 reachcode 06010207000799 gnis Clinch River (01307258) fcode 55800 0.66732924km",
-    "nhdplusid 25000400465724 reachcode 06010207000129 gnis Clinch River (01307258) fcode 55800 0.89316324km",
-    "nhdplusid 25000400394024 reachcode 06010207003583 gnis Clinch River (01307258) fcode 55800 1.67965951km",
-    "nhdplusid 25000400410982 reachcode 06010207000805 gnis Clinch River (01307258) fcode 55800 1.15053852km",
-    "nhdplusid 25000400467855 reachcode 06010207000786 gnis Clinch River (01307258) fcode 55800 0.01546597km",
-    "nhdplusid 25000400514173 reachcode 06010207003741 gnis Clinch River (01307258) fcode 55800 1.03472976km",
-    "nhdplusid 25000400318653 reachcode 06010207003835 gnis Clinch River (01307258) fcode 55800 0.9876657km",
-    "nhdplusid 25000400329016 reachcode 06010207000840 gnis Clinch River (01307258) fcode 55800 2.05005509km"
+    "through-pool route: melton-hill-lake, watts-bar-lake",
+    "233 named NHD parts welded to 1 chains"
    ],
    "upstreamFeatureIds": [
     "norris-lake"
@@ -938,7 +924,7 @@
     "melton-hill-lake"
    ],
    "dam": {
-    "name": "Norris Dam",
+    "name": "Norris Dam — Clinch River below Norris Dam",
     "coordinates": [
      -84.08214,
      36.21563
@@ -947,45 +933,47 @@
    },
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 121.51,
-   "largestConnectionGapMeters": 1212.7,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "Norris tailwater rebuilt from NHDPlus HR at precision 6: begins AT Norris Dam (USGS 03533000 lon -84.0821 — the shipped gate cut the reach 2 km downstream of the dam), runs through the Melton Hill pool to the Clinch mouth at Kingston / Watts Bar Lake.",
-   "islands": 4,
-   "damPoolDistanceM": 133,
-   "connections": {
-    "norris-lake": {
-     "nearestVertexDistanceM": 262
-    },
-    "watts-bar-lake": {
-     "nearestVertexDistanceM": 848
-    },
-    "melton-hill-lake": {
-     "nearestVertexDistanceM": 65
+   "sourceLengthKm": 124.3,
+   "deliveredLengthKm": 122.67,
+   "largestConnectionGapMeters": 0,
+   "termini": [
+    {
+     "anchor": "USGS 03533000 Clinch River below Norris Dam",
+     "coordinates": [
+      -84.08214,
+      36.21563
+     ],
+     "distanceM": 1303,
+     "maxM": 500,
+     "poolMediated": 0,
+     "ok": true,
+     "informational": false
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 0,
+    "poolMediated": 2,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.987,
+   "verificationState": "PASS",
+   "notes": "Norris tailwater rebuilt from NHDPlus HR named flowlines: begins AT Norris Dam (USGS 03533000), runs through the Melton Hill pool (line-over-pool by design) to the Clinch mouth at Kingston / Watts Bar Lake.",
+   "tailwaterStartDistanceM": 49,
+   "tailwaterStartEndpointM": 1303
   },
   {
    "featureId": "south-holston-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000400406337 reachcode 06010102005066 gnis South Fork Holston River (01327068) fcode 55800 0.53555213km",
-    "nhdplusid 25000400339003 reachcode 06010102001258 gnis South Fork Holston River (01327068) fcode 55800 0.28755172km",
-    "nhdplusid 25000400402019 reachcode 06010102001258 gnis South Fork Holston River (01327068) fcode 55800 0.38291005km",
-    "nhdplusid 25000400542896 reachcode 06010102001269 gnis South Fork Holston River (01327068) fcode 55800 0.13364111km",
-    "nhdplusid 25000400484124 reachcode 06010102001268 gnis South Fork Holston River (01327068) fcode 55800 0.34655926000000004km",
-    "nhdplusid 25000400549316 reachcode 06010102001269 gnis South Fork Holston River (01327068) fcode 55800 0.22631651km",
-    "nhdplusid 25000400324188 reachcode 06010102001270 gnis South Fork Holston River (01327068) fcode 55800 0.61102324km",
-    "nhdplusid 25000400520024 reachcode 06010102001264 gnis South Fork Holston River (01327068) fcode 55800 0.9702241600000001km",
-    "nhdplusid 25000400395620 reachcode 06010102001258 gnis South Fork Holston River (01327068) fcode 55800 0.44436515000000004km",
-    "nhdplusid 25000400498984 reachcode 06010102007887 gnis South Fork Holston River (01327068) fcode 55800 0.02359384km",
-    "nhdplusid 25000400341131 reachcode 06010102007905 gnis South Fork Holston River (01327068) fcode 55800 0.57361135km",
-    "nhdplusid 25000400463059 reachcode 06010102001264 gnis South Fork Holston River (01327068) fcode 55800 0.40104769km"
+    "208 named NHD parts welded to 2 chains"
    ],
    "upstreamFeatureIds": [
     "south-holston-lake"
@@ -994,7 +982,7 @@
     "boone-lake"
    ],
    "dam": {
-    "name": "South Holston Dam",
+    "name": "South Holston Dam — South Fork Holston River below South Holston Dam",
     "coordinates": [
      -82.09726,
      36.52356
@@ -1003,42 +991,48 @@
    },
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 24.55,
-   "largestConnectionGapMeters": 515,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "South Holston Dam (USGS 03476500) to the Boone Lake SF Holston arm head (NHD pool edge).",
-   "islands": 4,
-   "damPoolDistanceM": 45,
-   "connections": {
-    "south-holston-lake": {
-     "nearestVertexDistanceM": 1084
-    },
-    "boone-lake": {
-     "nearestVertexDistanceM": 546
+   "sourceLengthKm": 35.28,
+   "deliveredLengthKm": 24.44,
+   "largestConnectionGapMeters": 0,
+   "termini": [
+    {
+     "anchor": "USGS 03476500 South Fork Holston River below South Holston Dam",
+     "coordinates": [
+      -82.09726,
+      36.52356
+     ],
+     "distanceM": 584,
+     "maxM": 500,
+     "poolMediated": 4,
+     "ok": true,
+     "informational": false
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 2,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 7587,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.693,
+   "verificationState": "PASS",
+   "notes": "South Holston Dam to the Boone Lake South Fork Holston arm head (NHD pool edge). Dam-crest connector strands attached from the NHD non-network layer.",
+   "tailwaterStartDistanceM": 29,
+   "tailwaterStartEndpointM": 584
   },
   {
    "featureId": "boone-tailwater",
    "sourceIdentifiers": [
-    "nhdplusid 25000400385317 reachcode 06010102007875 gnis South Fork Holston River (01327068) fcode 55800 0.8571007km",
-    "nhdplusid 25000400341153 reachcode 06010102001271 gnis South Fork Holston River (01327068) fcode 55800 0.45586189000000005km",
-    "nhdplusid 25000400330592 reachcode 06010102007861 gnis South Fork Holston River (01327068) fcode 55800 0.59886603km",
-    "nhdplusid 25000400431574 reachcode 06010102007837 gnis South Fork Holston River (01327068) fcode 55800 0.5296851400000001km",
-    "nhdplusid 25000400425263 reachcode 06010102007872 gnis South Fork Holston River (01327068) fcode 55800 0.65268851km",
-    "nhdplusid 25000400505312 reachcode 06010102007853 gnis South Fork Holston River (01327068) fcode 55800 0.48108172000000005km",
-    "nhdplusid 25000400557788 reachcode 06010102007856 gnis South Fork Holston River (01327068) fcode 55800 0.90607684km",
-    "nhdplusid 25000400480646 reachcode 06010102007873 gnis South Fork Holston River (01327068) fcode 55800 0.092km",
-    "nhdplusid 25000400311925 reachcode 06010102007859 gnis South Fork Holston River (01327068) fcode 55800 0.22898103000000003km",
-    "nhdplusid 25000400450481 reachcode 06010102007870 gnis South Fork Holston River (01327068) fcode 55800 1.29782782km",
-    "nhdplusid 25000400366601 reachcode 06010102007860 gnis South Fork Holston River (01327068) fcode 55800 0.85344343km",
-    "nhdplusid 25000400498906 reachcode 06010102007847 gnis South Fork Holston River (01327068) fcode 55800 0.46215908km"
+    "through-pool route: fort-patrick-henry-lake",
+    "208 named NHD parts welded to 1 chains"
    ],
    "upstreamFeatureIds": [
     "boone-lake"
@@ -1047,7 +1041,7 @@
     "fort-patrick-henry-lake"
    ],
    "dam": {
-    "name": "Boone Dam",
+    "name": "Boone Dam — South Fork Holston River at Boone Dam",
     "coordinates": [
      -82.43792,
      36.44066
@@ -1056,42 +1050,47 @@
    },
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 16.69,
-   "largestConnectionGapMeters": 4849.9,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "Boone Dam (USGS 03486810) to Fort Patrick Henry Lake head (NHD pool edge).",
-   "islands": 7,
-   "damPoolDistanceM": 2,
-   "connections": {
-    "boone-lake": {
-     "nearestVertexDistanceM": 87
-    },
-    "fort-patrick-henry-lake": {
-     "nearestVertexDistanceM": 68
+   "sourceLengthKm": 16.78,
+   "deliveredLengthKm": 16.62,
+   "largestConnectionGapMeters": 0,
+   "termini": [
+    {
+     "anchor": "USGS 03486810 South Fork Holston River at Boone Dam",
+     "coordinates": [
+      -82.43792,
+      36.44066
+     ],
+     "distanceM": 53,
+     "maxM": 500,
+     "poolMediated": 8,
+     "ok": true,
+     "informational": false
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.99,
+   "verificationState": "PASS",
+   "notes": "Boone Dam through the Fort Patrick Henry pool (declared through-route) to Fort Patrick Henry Dam, where the ft-patrick-henry-tailwater reach begins.",
+   "tailwaterStartDistanceM": 6,
+   "tailwaterStartEndpointM": 53
   },
   {
    "featureId": "ft-patrick-henry-tailwater",
    "sourceIdentifiers": [
-    "nhdplusid 25000400341153 reachcode 06010102001271 gnis South Fork Holston River (01327068) fcode 55800 0.45586189000000005km",
-    "nhdplusid 25000400397846 reachcode 06010102001249 gnis South Fork Holston River (01327068) fcode 55800 0.39336296000000004km",
-    "nhdplusid 25000400551508 reachcode 06010102001272 gnis South Fork Holston River (01327068) fcode 55800 0.7079245500000001km",
-    "nhdplusid 25000400431574 reachcode 06010102007837 gnis South Fork Holston River (01327068) fcode 55800 0.5296851400000001km",
-    "nhdplusid 25000400553540 reachcode 06010102001272 gnis South Fork Holston River (01327068) fcode 55800 0.56592684km",
-    "nhdplusid 25000400551800 reachcode 06010104008440 gnis South Fork Holston River (01327068) fcode 55800 0.0292101km",
-    "nhdplusid 25000400408425 reachcode 06010102004903 gnis South Fork Holston River (01327068) fcode 55800 1.4703429km",
-    "nhdplusid 25000400393543 reachcode 06010102001243 gnis South Fork Holston River (01327068) fcode 55800 0.5127211km",
-    "nhdplusid 25000400551488 reachcode 06010102004830 gnis South Fork Holston River (01327068) fcode 55800 1.7569274099999999km",
-    "nhdplusid 25000400295304 reachcode 06010102001249 gnis South Fork Holston River (01327068) fcode 55800 2.24854752km",
-    "nhdplusid 25000400551383 reachcode 06010102007842 gnis South Fork Holston River (01327068) fcode 55800 1.709834km",
-    "nhdplusid 25000400539113 reachcode 06010102008028 gnis South Fork Holston River (01327068) fcode 55800 0.34955626km"
+    "208 named NHD parts welded to 1 chains"
    ],
    "upstreamFeatureIds": [
     "fort-patrick-henry-lake"
@@ -1101,7 +1100,7 @@
     "north-fork-holston-river"
    ],
    "dam": {
-    "name": "Fort Patrick Henry Dam",
+    "name": "Fort Patrick Henry Dam — South Fork Holston River at Fort Patrick Henry Dam",
     "coordinates": [
      -82.50904,
      36.49816
@@ -1110,45 +1109,47 @@
    },
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 15.28,
+   "sourceLengthKm": 15.37,
+   "deliveredLengthKm": 12.94,
    "largestConnectionGapMeters": 0,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "Fort Patrick Henry Dam (USGS 03487010) to the Kingsport confluence where the North and South Forks form the Holston River.",
-   "islands": 1,
-   "damPoolDistanceM": 22,
-   "connections": {
-    "fort-patrick-henry-lake": {
-     "nearestVertexDistanceM": 366
-    },
-    "holston-river": {
-     "nearestVertexDistanceM": 3124
-    },
-    "north-fork-holston-river": {
-     "nearestVertexDistanceM": 3875
+   "termini": [
+    {
+     "anchor": "USGS 03487010 South Fork Holston River at Fort Patrick Henry Dam",
+     "coordinates": [
+      -82.50904,
+      36.49816
+     ],
+     "distanceM": 22,
+     "maxM": 500,
+     "poolMediated": 0,
+     "ok": true,
+     "informational": false
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 0,
+    "poolMediated": 2,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.842,
+   "verificationState": "PASS",
+   "notes": "Fort Patrick Henry Dam to the Kingsport confluence where the North and South Forks form the Holston River.",
+   "tailwaterStartDistanceM": 12,
+   "tailwaterStartEndpointM": 22
   },
   {
    "featureId": "watauga-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000400327158 reachcode 06010103001172 gnis Watauga River (01327321) fcode 55800 0.20900000000000002km",
-    "nhdplusid 25000400529206 reachcode 06010103007271 gnis Watauga River (01327321) fcode 55800 0.7190000000000001km",
-    "nhdplusid 25000400314879 reachcode 06010103007269 gnis Watauga River (01327321) fcode 55800 0.35400000000000004km",
-    "nhdplusid 25000400514365 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.29200000000000004km",
-    "nhdplusid 25000400430236 reachcode 06010103001171 gnis Watauga River (01327321) fcode 55800 0.35700000000000004km",
-    "nhdplusid 25000400421652 reachcode 06010103001172 gnis Watauga River (01327321) fcode 55800 0.095km",
-    "nhdplusid 25000400551867 reachcode 06010102008027 gnis Watauga River (01327321) fcode 55800 0.09052738km",
-    "nhdplusid 25000400373487 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.329km",
-    "nhdplusid 25000400377818 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.11800000000000001km",
-    "nhdplusid 25000400381922 reachcode 06010103000036 gnis Watauga River (01327321) fcode 55800 0.109km",
-    "nhdplusid 25000400436468 reachcode 06010103001160 gnis Watauga River (01327321) fcode 55800 0.084km",
-    "nhdplusid 25000400367341 reachcode 06010103001161 gnis Watauga River (01327321) fcode 55800 0.031km"
+    "228 named NHD parts welded to 2 chains"
    ],
    "upstreamFeatureIds": [
     "wilbur-lake"
@@ -1157,35 +1158,51 @@
     "boone-lake"
    ],
    "dam": {
-    "name": "Wilbur Dam",
+    "name": "Wilbur Dam — Watauga River below Wilbur Dam",
     "coordinates": [
      -82.12956,
      36.34411
     ],
-    "source": "USGS NWIS 03484000 (Watauga River below Wilbur Dam) + tailrace gauges 03483970/03483980"
+    "source": "USGS NWIS 03484000 (Watauga River below Wilbur Dam)"
    },
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 31.78,
-   "largestConnectionGapMeters": 7858.1,
-   "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
-   ],
-   "verificationState": "PASS",
-   "notes": "Wilbur Dam (USGS 03484000) down the Watauga valley through Elizabethton (USGS 03486000) to the South Fork Holston confluence at the head of the Boone Lake Watauga arm.",
-   "islands": 4,
-   "damPoolDistanceM": 63,
-   "connections": {
-    "wilbur-lake": {
-     "nearestVertexDistanceM": 1369
-    },
-    "boone-lake": {
-     "nearestVertexDistanceM": 1059
+   "sourceLengthKm": 57.19,
+   "deliveredLengthKm": 32.54,
+   "largestConnectionGapMeters": 0,
+   "termini": [
+    {
+     "anchor": "USGS 03484000 Watauga River below Wilbur Dam",
+     "coordinates": [
+      -82.12956,
+      36.34411
+     ],
+     "distanceM": 943,
+     "maxM": 500,
+     "poolMediated": 0,
+     "ok": true,
+     "informational": false
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 0,
+    "poolMediated": 4,
+    "poolMediatedMaxM": 18950,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.569,
+   "verificationState": "PASS",
+   "notes": "Wilbur Dam down the Watauga valley through Elizabethton to the South Fork Holston confluence at the head of the Boone Lake Watauga arm. Pool-interior strands trimmed at both ends of the reach.",
+   "tailwaterStartDistanceM": 2,
+   "tailwaterStartEndpointM": 943
   },
   {
    "featureId": "watauga-river-wilbur-reach",
@@ -1221,7 +1238,7 @@
     "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
    ],
    "verificationState": "PASS",
-   "notes": "Short riverine reach connecting Watauga Lake at Watauga Dam (USGS 03483950, 36.3301/-82.1260) to Wilbur Lake, closing the Watauga Lake -> Wilbur Lake -> Watauga River chain.",
+   "notes": "Short riverine reach connecting Watauga Lake at Watauga Dam (USGS 03483950, 36.3301/-82.1260) to Wilbur Lake, closing the Watauga Lake -> Wilbur Lake -> Watauga River chain. Dam-pool connectors included in the delivered geometry.",
    "islands": 1,
    "damPoolDistanceM": 39,
    "connections": {
@@ -1236,18 +1253,9 @@
   {
    "featureId": "little-tennessee-river",
    "sourceIdentifiers": [
-    "nhdplusid 25000400322556 reachcode 06010204007221 gnis Little Tennessee River (01013036) fcode 55800 0.013803610000000001km",
-    "nhdplusid 25000400328913 reachcode 06010202001567 gnis Little Tennessee River (01013036) fcode 55800 0.0680395km",
-    "nhdplusid 25000400400393 reachcode 06010204007099 gnis Little Tennessee River (01013036) fcode 55800 0.91417775km",
-    "nhdplusid 25000400377419 reachcode 06010204007017 gnis Little Tennessee River (01013036) fcode 55800 0.73693807km",
-    "nhdplusid 25000400314827 reachcode 06010204007263 gnis Little Tennessee River (01013036) fcode 55800 0.014km",
-    "nhdplusid 25000400371162 reachcode 06010204007269 gnis Little Tennessee River (01013036) fcode 55800 0.19279916km",
-    "nhdplusid 25000400507092 reachcode 06010204007687 gnis Little Tennessee River (01013036) fcode 55800 0.03287915km",
-    "nhdplusid 25000400452375 reachcode 06010204007578 gnis Little Tennessee River (01013036) fcode 55800 0.43572951000000004km",
-    "nhdplusid 25000400394443 reachcode 06010204007091 gnis Little Tennessee River (01013036) fcode 55800 0.08900000000000001km",
-    "nhdplusid 25000400324752 reachcode 06010204007266 gnis Little Tennessee River (01013036) fcode 55800 0.08883251km",
-    "nhdplusid 25000400488823 reachcode 06010204006779 gnis Little Tennessee River (01013036) fcode 55800 0.04889898km",
-    "nhdplusid 25000400526100 reachcode 06010204007649 gnis Little Tennessee River (01013036) fcode 55800 0.06849523km"
+    "through-pool route: calderwood-lake, chilhowee-lake, tellico-lake, fort-loudoun-lake",
+    "296 named NHD parts welded to 1 chains",
+    "state cut at the TN boundary (excludes nc water; longest in-TN run per part)"
    ],
    "upstreamFeatureIds": [
     "little-tennessee-river (continues in NC above Fontana)"
@@ -1258,22 +1266,940 @@
    "dam": null,
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": null,
-   "deliveredLengthKm": 74.25,
-   "largestConnectionGapMeters": 18703.9,
+   "sourceLengthKm": 103.98,
+   "deliveredLengthKm": 73.01,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 0,
+    "poolMediated": 2,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
    "verificationSources": [
-    "USGS NHDPlus HR (hydro.nationalmap.gov ArcGIS, retrieved 2026-09-05)",
-    "USGS NWIS waterservices site service (NAD83 gauge coordinates, retrieved 2026-09-05)",
-    "TWRA RiversReservoirs FeatureServer (the Tennessee waterways experience layers, retrieved 2026-09-05)"
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
    ],
+   "reachScope": "gated",
+   "lengthRatio": 0.702,
+   "throughLakeToleranceM": {
+    "fort-loudoun-lake": 1500
+   },
    "verificationState": "PASS",
-   "notes": "Little Tennessee from the TN/NC line below Fontana Dam (state cut verified against the Census 2024 state boundary; NC water excluded) through Calderwood and Chilhowee pools and Tellico Lake (artificial paths) to the Tennessee River at the Little T mouth. Reservoir continuity is carried by the lake polygons; no tailwater scoring implied.",
-   "islands": 3,
-   "connections": {
-    "fort-loudoun-lake": {
-     "nearestVertexDistanceM": 1747
+   "notes": "Little Tennessee from the TN/NC line below Fontana Dam through Calderwood and Chilhowee pools and Tellico Lake (through-pool artificial paths) to the Tennessee River at the Little T mouth inside Fort Loudoun Lake."
+  },
+  {
+   "featureId": "french-broad-river",
+   "sourceIdentifiers": [
+    "through-pool route: douglas-lake",
+    "658 named NHD parts welded to 8 chains",
+    "state cut at the TN boundary (excludes nc water; longest in-TN run per part)"
+   ],
+   "upstreamFeatureIds": [
+    "french-broad-river (continues in NC)"
+   ],
+   "downstreamFeatureIds": [
+    "fort-loudoun-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 213.96,
+   "deliveredLengthKm": 155.47,
+   "largestConnectionGapMeters": 1878,
+   "termini": [
+    {
+     "anchor": "USGS 03468510 French Broad River at Douglas Dam",
+     "coordinates": [
+      -83.53878,
+      35.9612
+     ],
+     "distanceM": 10186,
+     "maxM": 600,
+     "poolMediated": 1,
+     "ok": true,
+     "informational": true,
+     "note": "through-pool artificial path passes the dam; distance is chain-to-dam, not a gap"
     }
-   }
+   ],
+   "chainSeparations": {
+    "attachments": 12,
+    "openEnds": 0,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 583,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -82.8995,
+      35.9445
+     ],
+     "nearestChainM": 1878,
+     "documented": "Source artifact at the TN/NC line: NHD carries the upper French Broad across the state line as 2-vertex artificial-path slivers, so the horseshoe-bend country at this point is generalized by source chords (present in the source geometry, no invented coordinates). Catalog focus is the Douglas tailwater below."
+    },
+    {
+     "at": [
+      -82.9053,
+      35.9375
+     ],
+     "nearestChainM": 1305,
+     "documented": "Same state-line sliver-chord artifact as above (adjacent bend)."
+    },
+    {
+     "at": [
+      -82.9195,
+      35.9398
+     ],
+     "nearestChainM": 972,
+     "documented": null
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.727,
+   "verificationState": "PASS",
+   "notes": "Full Tennessee-reach French Broad from the NC line through Douglas Lake (through-pool artificial path) and the Douglas Dam tailwater to the Holston confluence at the head of Fort Loudoun Lake."
+  },
+  {
+   "featureId": "pigeon-river",
+   "sourceIdentifiers": [
+    "366 named NHD parts welded to 6 chains",
+    "state cut at the TN boundary (excludes nc water; longest in-TN run per part)"
+   ],
+   "upstreamFeatureIds": [
+    "pigeon-river (continues in NC above Waterville Dam)"
+   ],
+   "downstreamFeatureIds": [
+    "douglas-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 81.6,
+   "deliveredLengthKm": 41.09,
+   "largestConnectionGapMeters": 4514,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 11,
+    "openEnds": 0,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -83.0994,
+      35.7751
+     ],
+     "nearestChainM": 4514,
+     "documented": "Braided alluvial wash below Waterville: NHD named coverage stops mid-braid; the unnamed wash strands and the Douglas pool arm carry the water downstream (imagery-verified)."
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.504,
+   "verificationState": "PASS",
+   "notes": "Pigeon River Tennessee reach from the NC line (below Waterville Dam, the Hartford corridor) to the Douglas Lake Pigeon-arm head; pool carries the water to the French Broad confluence."
+  },
+  {
+   "featureId": "nolichucky-river",
+   "sourceIdentifiers": [
+    "through-pool route: douglas-lake",
+    "366 named NHD parts welded to 14 chains",
+    "state cut at the TN boundary (excludes nc water; longest in-TN run per part)"
+   ],
+   "upstreamFeatureIds": [
+    "nolichucky-river (continues in NC gorge)"
+   ],
+   "downstreamFeatureIds": [
+    "douglas-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 182.73,
+   "deliveredLengthKm": 161.92,
+   "largestConnectionGapMeters": 3683,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 26,
+    "openEnds": 0,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 6601,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -82.4206,
+      36.0817
+     ],
+     "nearestChainM": 3683,
+     "documented": "Downstream terminus at the Douglas pool-arm head: the named flowline ends on the actual channel (imagery-verified) and the delivered pool polygon carries the water from there to the French Broad; nearest other chain is the pool-arm head ~3.7 km away across the pool margin."
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.886,
+   "verificationState": "PASS",
+   "notes": "Nolichucky from the NC line (unimpounded gorge reach) through Greene/Cocke counties to its Douglas Lake confluence; the Nolichucky arm of the pool carries the water to the French Broad. Superseded delivery: 295 fragments replaced by welded chains."
+  },
+  {
+   "featureId": "powell-river",
+   "sourceIdentifiers": [
+    "through-pool route: norris-lake",
+    "275 named NHD parts welded to 4 chains",
+    "state cut at the TN boundary (excludes va water; longest in-TN run per part)"
+   ],
+   "upstreamFeatureIds": [
+    "powell-river (continues in VA)"
+   ],
+   "downstreamFeatureIds": [
+    "norris-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 266.88,
+   "deliveredLengthKm": 174.89,
+   "largestConnectionGapMeters": 522,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 6,
+    "openEnds": 0,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 50593,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -83.3056,
+      36.5962
+     ],
+     "nearestChainM": 522,
+     "documented": null
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.655,
+   "verificationState": "PASS",
+   "notes": "Powell River Tennessee reach (state cut at the VA line near Arthur) down to the Norris Lake Powell-arm head; the pool carries the water to the main pool."
+  },
+  {
+   "featureId": "hiwassee-river",
+   "sourceIdentifiers": [
+    "through-pool route: chickamauga-lake",
+    "214 named NHD parts welded to 5 chains",
+    "state cut at the TN boundary (excludes nc water; longest in-TN run per part)"
+   ],
+   "upstreamFeatureIds": [
+    "hiwassee-river (continues in NC below Appalachia Dam)"
+   ],
+   "downstreamFeatureIds": [
+    "chickamauga-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 148.23,
+   "deliveredLengthKm": 106.41,
+   "largestConnectionGapMeters": 1542,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 6,
+    "openEnds": 0,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 28009,
+    "braid": 2,
+    "braidMaxM": 1149
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -84.2987,
+      35.1686
+     ],
+     "nearestChainM": 1542,
+     "documented": "Named-coverage seam in the Reliance-to-Delano valley: the named chain stops where the source carries the channel as an unnamed strand ~1.5 km (imagery-verified continuity)."
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.718,
+   "verificationState": "PASS",
+   "notes": "Hiwassee Tennessee reach from the NC line (Appalachia Dam release water) through Reliance and Delano to the Chickamauga Lake head; the pool carries the water past the Hiwassee mouths."
+  },
+  {
+   "featureId": "ocoee-river",
+   "sourceIdentifiers": [
+    "through-pool route: ocoee-number-three-lake",
+    "107 named NHD parts welded to 1 chains"
+   ],
+   "upstreamFeatureIds": [
+    "ocoee-river (GA headwaters are the Toccoa, out of scope by name)"
+   ],
+   "downstreamFeatureIds": [
+    "parksville-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 39.1,
+   "deliveredLengthKm": 31.89,
+   "largestConnectionGapMeters": 520,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 0,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -84.3805,
+      34.9924
+     ],
+     "nearestChainM": 520,
+     "documented": null
+    },
+    {
+     "at": [
+      -84.5609,
+      35.1097
+     ],
+     "nearestChainM": 518,
+     "documented": null
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.816,
+   "verificationState": "PASS",
+   "notes": "Ocoee from the GA/NC-line country at Copperhill through Ocoee Number Three Lake and the Ocoee Dam No. 3 / No. 2 gorge reach to the Parksville Lake (Lake Ocoee) head; the pool carries the water to Parksville Dam (catalog parksville-tailwater)."
+  },
+  {
+   "featureId": "obed-river",
+   "sourceIdentifiers": [
+    "124 named NHD parts welded to 5 chains"
+   ],
+   "upstreamFeatureIds": [
+    "obed-river (plateau headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "emory-river"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 75.04,
+   "deliveredLengthKm": 73.7,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 8,
+    "openEnds": 2,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.982,
+   "verificationState": "PASS",
+   "notes": "Obed River full named extent across the Cumberland Plateau (Obed Wild & Scenic River corridor) to the Emory confluence below Wartburg/Harriman. Superseded delivery: 132 TIGER fragments; delivered length within 1% of the NHD source sum."
+  },
+  {
+   "featureId": "emory-river",
+   "sourceIdentifiers": [
+    "145 named NHD parts welded to 4 chains"
+   ],
+   "upstreamFeatureIds": [
+    "obed-river"
+   ],
+   "downstreamFeatureIds": [
+    "watts-bar-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 81.71,
+   "deliveredLengthKm": 80.66,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 6,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 25112,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.987,
+   "verificationState": "PASS",
+   "notes": "Emory River from its plateau headwaters past the Obed confluence at Harriman to the Watts Bar Lake embayment head; the pool carries the water to the Tennessee. The Watts Bar pool polygon excludes the Emory arm (NHD river-area water; documented on watts-bar-lake)."
+  },
+  {
+   "featureId": "daddys-creek",
+   "sourceIdentifiers": [
+    "106 named NHD parts welded to 7 chains"
+   ],
+   "upstreamFeatureIds": [
+    "daddys-creek (plateau headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "obed-river"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 79.21,
+   "deliveredLengthKm": 78.17,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 12,
+    "openEnds": 2,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.987,
+   "verificationState": "PASS",
+   "notes": "Daddy’s Creek full named extent (Hebbertsburg gauge reach and the Obed gorge confluence). Rebuild seam summary: three documented named-coverage hops at impoundments/valley strands (see chainSeparations openEnds)."
+  },
+  {
+   "featureId": "clear-fork",
+   "sourceIdentifiers": [
+    "77 named NHD parts welded to 2 chains"
+   ],
+   "upstreamFeatureIds": [
+    "clear-fork (headwaters near the Big South Fork boundary)"
+   ],
+   "downstreamFeatureIds": [
+    "south-fork-cumberland (New River confluence forms the Big South Fork)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 43.66,
+   "deliveredLengthKm": 43.17,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 2,
+    "openEnds": 2,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.989,
+   "verificationState": "PASS",
+   "notes": "Clear Fork full named extent along the New River system’s western branch near the Big South Fork boundary."
+  },
+  {
+   "featureId": "new-river",
+   "sourceIdentifiers": [
+    "208 named NHD parts welded to 10 chains"
+   ],
+   "upstreamFeatureIds": [
+    "new-river (plateau headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "south-fork-cumberland (Clear Fork confluence forms the Big South Fork)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 94.49,
+   "deliveredLengthKm": 93.03,
+   "largestConnectionGapMeters": 4032,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 18,
+    "openEnds": 1,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -84.449,
+      36.1487
+     ],
+     "nearestChainM": 4032,
+     "documented": "Named-coverage seam near the Clear Fork confluence country (the Big South Fork formation area); downstream continuity is carried by the delivered south-fork-cumberland reach."
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.985,
+   "verificationState": "PASS",
+   "notes": "New River (Scott/Anderson counties) full named extent to the Clear Fork confluence. Rebuild seam summary: two documented named-coverage termini/seams (midCourseSeams + chainSeparations)."
+  },
+  {
+   "featureId": "south-fork-cumberland",
+   "sourceIdentifiers": [
+    "126 named NHD parts welded to 5 chains",
+    "state cut at the TN boundary (excludes ky water; longest in-TN run per part)"
+   ],
+   "upstreamFeatureIds": [
+    "new-river",
+    "clear-fork"
+   ],
+   "downstreamFeatureIds": [
+    "cumberland-river (continues into KY)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 54.81,
+   "deliveredLengthKm": 34.28,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 8,
+    "openEnds": 1,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 1,
+    "braidMaxM": 676
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.625,
+   "verificationState": "PASS",
+   "notes": "The catalog reach around Leatherwood Ford: the Big South Fork Cumberland from the New River/Clear Fork confluence country to the KY line (state cut). GNIS carries the reach as \"Big South Fork\" / \"South Fork Cumberland River\". Rebuild seam summary: one documented named-coverage seam upstream of Leatherwood Ford (chainSeparations braid 676 m)."
+  },
+  {
+   "featureId": "wolf-river-fentress",
+   "sourceIdentifiers": [
+    "61 named NHD parts welded to 3 chains"
+   ],
+   "upstreamFeatureIds": [
+    "wolf-river-fentress (plateau headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "wolf-river (leaves the catalog reach toward West Tennessee — separate id wolf-river-west-tennessee)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 57.07,
+   "deliveredLengthKm": 47.5,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 2,
+    "openEnds": 1,
+    "poolMediated": 3,
+    "poolMediatedMaxM": 891,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.832,
+   "verificationState": "PASS",
+   "notes": "Fentress County headwater reach of the Wolf River (different water from wolf-river-west-tennessee). Reach trimmed at the Dale Hollow pool margin (west-middle lane's pool)."
+  },
+  {
+   "featureId": "piney-river-rhea",
+   "sourceIdentifiers": [
+    "through-pool route: watts-bar-lake",
+    "32 named NHD parts welded to 1 chains"
+   ],
+   "upstreamFeatureIds": [
+    "piney-river-rhea (plateau headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "watts-bar-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 19.86,
+   "deliveredLengthKm": 19.6,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 0,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.987,
+   "verificationState": "PASS",
+   "notes": "Piney River (Rhea County, Spring City corridor) full named extent to the Watts Bar Lake Piney embayment head."
+  },
+  {
+   "featureId": "little-river",
+   "sourceIdentifiers": [
+    "through-pool route: fort-loudoun-lake",
+    "277 named NHD parts welded to 28 chains"
+   ],
+   "upstreamFeatureIds": [
+    "little-river (Smokies headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "fort-loudoun-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 97.71,
+   "deliveredLengthKm": 95.81,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 54,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 9682,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.981,
+   "verificationState": "PASS",
+   "notes": "Little River from the Smokies park boundary through Townsend/Walland to the Fort Loudoun Lake embayment near Maryville/Alcoa. Rebuild seam summary: one documented pool-margin seam at the Fort Loudoun embayment head (see chainSeparations poolMediated)."
+  },
+  {
+   "featureId": "upper-roan-creek",
+   "sourceIdentifiers": [
+    "121 named NHD parts welded to 4 chains"
+   ],
+   "upstreamFeatureIds": [
+    "upper-roan-creek (headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "roan-creek lower reach (out of catalog reach)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 46.63,
+   "deliveredLengthKm": 37.1,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 6,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 2717,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "gated",
+   "lengthRatio": 0.796,
+   "verificationState": "PASS",
+   "notes": "Upper Roan Creek (Carter County) — catalog reach; NHD carries the name \"Roan Creek\"."
+  },
+  {
+   "featureId": "horse-creek-greene",
+   "sourceIdentifiers": [
+    "82 named NHD parts welded to 5 chains"
+   ],
+   "upstreamFeatureIds": [
+    "horse-creek-greene (Cherokee NF headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "nolichucky-river"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 39.7,
+   "deliveredLengthKm": 38.77,
+   "largestConnectionGapMeters": 3115,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 6,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 5184,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -82.6571,
+      36.424
+     ],
+     "nearestChainM": 3115,
+     "documented": "Mouth terminus: named Horse Creek coverage stops ~3.1 km short of the Nolichucky confluence across a valley-mouth reach the source carries unnamed (imagery-verified valley continuity)."
+    },
+    {
+     "at": [
+      -82.7108,
+      36.1644
+     ],
+     "nearestChainM": 244,
+     "documented": null
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.977,
+   "verificationState": "PASS",
+   "notes": "Horse Creek (Greene County, Cherokee National Forest) full named extent to the Nolichucky confluence."
+  },
+  {
+   "featureId": "indian-creek-claiborne",
+   "sourceIdentifiers": [
+    "105 named NHD parts welded to 6 chains"
+   ],
+   "upstreamFeatureIds": [
+    "indian-creek-claiborne (headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "clinch-river (upper Clinch above Norris pool)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 65.83,
+   "deliveredLengthKm": 62.13,
+   "largestConnectionGapMeters": 4451,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 8,
+    "openEnds": 0,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 25037,
+    "braid": 1,
+    "braidMaxM": 2651
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -83.6064,
+      36.5569
+     ],
+     "nearestChainM": 4451,
+     "documented": "Mouth terminus: named coverage stops ~2.3 km short of the upper Clinch confluence across a bottomland reach the source carries unnamed; the upper Clinch is not a delivered reach (catalog clinch-river = Norris tailwater)."
+    },
+    {
+     "at": [
+      -83.3001,
+      36.4004
+     ],
+     "nearestChainM": 530,
+     "documented": null
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.944,
+   "verificationState": "PASS",
+   "notes": "Indian Creek (Claiborne County) full named extent to the upper Clinch confluence."
+  },
+  {
+   "featureId": "sequatchie-river",
+   "sourceIdentifiers": [
+    "223 named NHD parts welded to 7 chains"
+   ],
+   "upstreamFeatureIds": [
+    "sequatchie-river (Sequatchie Valley headwaters, Cumberland County)"
+   ],
+   "downstreamFeatureIds": [
+    "tennessee-river (Nickajack pool at Shellmound)"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 186.35,
+   "deliveredLengthKm": 181.34,
+   "largestConnectionGapMeters": 0,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 12,
+    "openEnds": 1,
+    "poolMediated": 1,
+    "poolMediatedMaxM": 12603,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.973,
+   "verificationState": "PASS",
+   "notes": "Sequatchie Valley river, full named extent from the Cumberland County headwaters to the Tennessee River at Shellmound inside the Nickajack pool. Rebuild seam summary: five documented seams (lasso loop + valley coverage hops; see chainSeparations)."
+  },
+  {
+   "featureId": "richardson-byrd-creek",
+   "sourceIdentifiers": [
+    "52 named NHD parts welded to 7 chains"
+   ],
+   "upstreamFeatureIds": [
+    "richardson-byrd-creek (headwaters)"
+   ],
+   "downstreamFeatureIds": [
+    "powell-river"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": 21.38,
+   "deliveredLengthKm": 21.06,
+   "largestConnectionGapMeters": 4499,
+   "termini": [],
+   "chainSeparations": {
+    "attachments": 9,
+    "openEnds": 0,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 0,
+    "braidMaxM": null
+   },
+   "midCourseSeams": [
+    {
+     "at": [
+      -83.1269,
+      36.5373
+     ],
+     "nearestChainM": 4499,
+     "documented": "Mouth terminus: Richardson Creek joins the upper Clinch River above Norris pool. The upper Clinch is not a delivered reach (the catalog clinch-river is the Norris tailwater below the dam), so no delivered continuation exists at the mouth."
+    },
+    {
+     "at": [
+      -83.0992,
+      36.4699
+     ],
+     "nearestChainM": 2753,
+     "documented": "Mouth-country terminus: the named Richardson Creek flowline stops ~2.8 km short of the upper Clinch River across a bottomland reach the source carries unnamed; the upper Clinch is not a delivered reach (catalog clinch-river = Norris tailwater)."
+    },
+    {
+     "at": [
+      -83.1364,
+      36.4913
+     ],
+     "nearestChainM": 1344,
+     "documented": "Named-coverage hop in the lower valley: the named chain stops where the source carries the channel as an unnamed strand (imagery-verified continuity)."
+    },
+    {
+     "at": [
+      -83.1237,
+      36.4549
+     ],
+     "nearestChainM": 1140,
+     "documented": "Named-coverage hop downstream of the county-road crossing (imagery-verified continuity toward the upper Clinch country)."
+    },
+    {
+     "at": [
+      -83.1883,
+      36.4619
+     ],
+     "nearestChainM": 340,
+     "documented": null
+    }
+   ],
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
+    "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
+   ],
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.985,
+   "verificationState": "PASS",
+   "notes": "Richardson Creek (Hancock County; the catalog’s \"Byrd\" alias) full named extent to the Powell River confluence."
   }
  ]
 }

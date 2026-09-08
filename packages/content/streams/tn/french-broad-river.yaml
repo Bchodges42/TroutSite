@@ -12,9 +12,11 @@ idealFlow:
   - min: 300
     max: 2000
     unit: cfs
-notes: Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s
-  stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled;
-  verify releases.
+notes: >-
+  Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking
+  dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.
+  The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03468510
     url: https://waterdata.usgs.gov/monitoring-location/03468510/

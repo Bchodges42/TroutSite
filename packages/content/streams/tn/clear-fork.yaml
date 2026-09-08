@@ -10,8 +10,10 @@ idealFlow:
   - min: 30
     max: 250
     unit: cfs
-notes: The New River system’s wild branch near the Big South Fork boundary. Remote gorges;
-  conserve your wading to stable flows.
+notes: >-
+  The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your
+  wading to stable flows.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03409500
     url: https://waterdata.usgs.gov/monitoring-location/03409500/

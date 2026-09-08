@@ -12,9 +12,8 @@ notes: >-
   Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS
   03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad
   River and the Pigeon River; discharges through the dam into the French Broad
-  tailwater toward the Holston/French Broad confluence. Verified geometry:
-  USGS NHDPlus HR NHDWaterbody GNIS 01282739 (118.3 km²; TWRA 28,738 ac). The
-  shipped polygon held 6 fragments (64.6 km²). Aliases: Douglas Reservoir.
+  tailwater toward the Holston/French Broad confluence. TWRA maps the
+  reservoir at 28,738 ac. Aliases: Douglas Reservoir.
 officialSources:
   - label: USGS Water Data — monitoring location 03468510
     url: https://waterdata.usgs.gov/monitoring-location/03468510/

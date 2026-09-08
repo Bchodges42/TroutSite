@@ -12,11 +12,9 @@ notes: >-
   County, Tennessee, and Washington County, Virginia), impounded by South
   Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726). Discharges
   the South Holston tailwater (south-holston-river) toward Boone Lake. The
-  lake crosses the state line — the verified geometry (USGS NHDPlus HR
-  NHDWaterbody GNIS 01327073, 30.3 km²) retains the full Virginia portion
-  north to 36.66 N; the shipped polygon was the state-clipped 18.2 km²
-  Tennessee-only portion. Cross-checks: TWRA layer 6,019 ac (Tennessee
-  portion), TVA published 7,580 ac (full pool).
+  lake crosses the state line into Virginia, so the mapped water covers the
+  full reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes
+  7,580 ac at full pool.
 officialSources:
   - label: USGS Water Data — monitoring location 03476500
     url: https://waterdata.usgs.gov/monitoring-location/03476500/

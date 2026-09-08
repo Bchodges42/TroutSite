@@ -1,6 +1,6 @@
 {
  "schema": "trout/west-middle-topology/1",
- "generated": "2026-09-05",
+ "generated": "2026-09-07",
  "region": "west-middle",
  "records": [
   {
@@ -275,7 +275,7 @@
     "24001400103966"
    ],
    "upstreamFeatureIds": [
-    "caney-fork-river",
+    "caney-fork-upper",
     "collins-river"
    ],
    "downstreamFeatureIds": [
@@ -417,7 +417,7 @@
     "Census TIGER/Line 2024 AREAWATER window sum: 0 km²"
    ],
    "verificationState": "PASS",
-   "notes": "Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name \"Reading House Slough\" (44.3 km²) — identity documented. Fed by Reelfoot Creek/bayous and Mississippi seepage; no named catalog river reaches the shoreline.",
+   "notes": "Natural oxbow lake (1811-12 earthquakes); NHD main basin carries gnis_name \"Reading House Slough\" (44.3 km²) — identity documented. Fed by Reelfoot Creek/bayous and Mississippi seepage; no named catalog river reaches the shoreline. Source NHDPlusIDs are recorded on the delivered feature and in docs/audits/WEST-MIDDLE-HYDROGRAPHY.md.",
    "connections": {}
   },
   {
@@ -449,11 +449,11 @@
     "24001400139538"
    ],
    "upstreamFeatureIds": [
-    "caney-fork-river",
+    "caney-fork-upper",
     "collins-river"
    ],
    "downstreamFeatureIds": [
-    "caney-fork-river"
+    "caney-fork-upper"
    ],
    "dam": {
     "name": "Great Falls Dam (TVA) — CANEY FORK AT GREAT FALLS POWERHOUSE (USGS 03422495)",
@@ -1730,6 +1730,7 @@
   },
   {
    "featureId": "caney-fork-river",
+   "reachScope": "gated",
    "sourceIdentifiers": [
     "24001400056128",
     "24001400046488",
@@ -1793,27 +1794,33 @@
     "24001400066831"
    ],
    "upstreamFeatureIds": [
-    "great-falls-lake",
-    "center-hill-lake"
+    "caney-fork-upper"
    ],
    "downstreamFeatureIds": [
     "old-hickory-lake"
    ],
-   "dam": null,
+   "dam": {
+    "name": "Center Hill Dam (USACE) — CANEY FORK AT CENTER HILL DAM (TAILWATER), TN (USGS 03424010)",
+    "coordinates": [
+     -85.8272071,
+     36.09783778
+    ],
+    "source": "USGS waterservices site service (NAD83), retrieved 2026-09-05"
+   },
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": 227.64,
-   "deliveredLengthKm": 244.92,
-   "largestConnectionGapMeters": 2788,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 43.27,
+   "largestConnectionGapMeters": 2715,
    "termini": [
     {
-     "anchor": "headwaters near Campbell Junction (fix-caney-fork verified source)",
+     "anchor": "Center Hill Dam tailwater start (USGS 03424010)",
      "coordinates": [
-      -85.158,
-      36.043
+      -85.8272071,
+      36.09783778
      ],
-     "distanceM": 185,
-     "maxM": 400,
+     "distanceM": 84,
+     "maxM": 800,
      "poolMediated": 0,
      "ok": true,
      "informational": false
@@ -1824,24 +1831,128 @@
       -85.941,
       36.239
      ],
-     "distanceM": 95,
+     "distanceM": 29,
+     "maxM": 400,
+     "poolMediated": 0,
+     "ok": true,
+     "informational": false
+    }
+   ],
+   "chainSeparations": {
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
+    "braid": 1,
+    "braidMaxM": 2715
+   },
+   "verificationSources": [
+    "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
+    "Census TIGER/Line 2024 LINEARWATER cross-check",
+    "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)",
+    "G2 split verification (2026-09-07): dam cut at [-85.826276, 36.097941], 84 m from the USGS 03424010 NAD83 site coordinate; reach lengths recomputed from the delivered geometry (tailwater 43.27 km + upper 201.65 km = the superseded 244.92 km); the two features share exactly one coordinate — the cut vertex."
+   ],
+   "verificationState": "PASS",
+   "notes": "Review G2 split (2026-09-07): this id is now the assessed Center Hill tailwater reach only — a single chain from the Center Hill Dam cut vertex to the verified mouth at Carthage. Supersedes the full-course assembly (30 parts, 244.92 km, fix-caney-fork precedent), which continues as caney-fork-upper + this reach; the full course must not regress to a headwaters stub. Both catalog gauges (03424010 at-dam, 03424860 Stonewall) sit on this reach, so gauge applicability now matches the selected geometry. throughLakeIds is empty: the reach starts at the dam and only its final vertex abuts the Old Hickory pool edge (no interior run). Carries 1 inherited below-dam braid fragment(s) (2-vertex) — their endpoint separation (2715 m) is recorded under chainSeparations. sourceIdentifiers are the pre-split full-course superset (60 NHDPlusHR reachcodes); per-reach attribution was not derivable from the staged assembly and is deliberately not invented.",
+   "tailwaterStartDistanceM": 84
+  },
+  {
+   "featureId": "caney-fork-upper",
+   "reachScope": "state",
+   "sourceIdentifiers": [
+    "24001400056128",
+    "24001400046488",
+    "24001400035276",
+    "24001400004936",
+    "24001400035675",
+    "24001400035279",
+    "24001400035832",
+    "24001400015185",
+    "24001400056065",
+    "24001400046567",
+    "24001400056367",
+    "24001400010136",
+    "24001400035729",
+    "24001400015731",
+    "24001400004867",
+    "24001400004935",
+    "24001400056432",
+    "24001400056433",
+    "24001400004997",
+    "24001400015080",
+    "24001400014982",
+    "24001400004828",
+    "24001400035585",
+    "24001400056438",
+    "24001400005051",
+    "24001400035587",
+    "24001400004830",
+    "24001400056368",
+    "24001400025376",
+    "24001400066647",
+    "24001400076832",
+    "24001400014983",
+    "24001400066716",
+    "24001400004509",
+    "24001400046097",
+    "24001400015241",
+    "24001400035393",
+    "24001400046186",
+    "24001400046185",
+    "24001400066874",
+    "24001400025270",
+    "24001400077129",
+    "24001400045865",
+    "24001400066982",
+    "24001400046034",
+    "24001400045985",
+    "24001400004998",
+    "24001400066830",
+    "24001400035586",
+    "24001400015673",
+    "24001400066923",
+    "24001400025462",
+    "24001400004570",
+    "24001400067034",
+    "24001400046141",
+    "24001400015129",
+    "24001400030612",
+    "24001400045631",
+    "24001400077214",
+    "24001400066831"
+   ],
+   "upstreamFeatureIds": [],
+   "downstreamFeatureIds": [
+    "center-hill-lake"
+   ],
+   "dam": null,
+   "sourceAreaSqKm": null,
+   "deliveredAreaSqKm": null,
+   "sourceLengthKm": null,
+   "deliveredLengthKm": 201.65,
+   "largestConnectionGapMeters": 2788,
+   "termini": [
+    {
+     "anchor": "headwaters near Campbell Junction (fix-caney-fork verified source)",
+     "coordinates": [
+      -85.158,
+      36.043
+     ],
+     "distanceM": 85,
      "maxM": 400,
      "poolMediated": 0,
      "ok": true,
      "informational": false
     },
     {
-     "anchor": "USGS 03424010 Caney Fork at Center Hill Dam (tailwater)",
+     "anchor": "Center Hill Dam (upstream terminus of this identity; USGS 03424010 dam site)",
      "coordinates": [
-      -85.82721,
-      36.09784
+      -85.8272071,
+      36.09783778
      ],
-     "distanceM": 2652,
+     "distanceM": 84,
      "maxM": 600,
      "poolMediated": 0,
      "ok": true,
-     "informational": true,
-     "note": "full-course feature; the through-pool route is carried by named NHD artificial paths around the dam"
+     "informational": false
     }
    ],
    "chainSeparations": {
@@ -1853,10 +1964,11 @@
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (nhdplusid/reachcode)",
     "Census TIGER/Line 2024 LINEARWATER cross-check",
-    "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)"
+    "TN waterways experience service RiversReservoirs/FeatureServer rivers_arc (name present)",
+    "G2 split verification (2026-09-07): dam cut at [-85.826276, 36.097941], 84 m from the USGS 03424010 NAD83 site coordinate; reach lengths recomputed from the delivered geometry (tailwater 43.27 km + upper 201.65 km = the superseded 244.92 km); the two features share exactly one coordinate — the cut vertex."
    ],
    "verificationState": "PASS",
-   "notes": "Full Caney Fork course per fix-caney-fork precedent; GNIS \"Caney Fork\" (Creek excluded)."
+   "notes": "Review G2 split (2026-09-07): upstream identity carrying the full-course geometry preserved by the fix-caney-fork precedent — headwaters near Campbell Junction through the Great Falls Lake and Center Hill Lake pools (through-pool route via named NHD artificial paths; throughLakeIds declares both), ending at the Center Hill Dam cut vertex. The tailwater identity (caney-fork-river) carries the assessed reach below the dam; its gauges do not measure this water, which is intentionally ungauged in the catalog. chainSeparations and largestConnectionGapMeters are carried from the pre-split full-course measurement — every separated chain is inherited unchanged and the dam cut added none (its endpoint is pool-mediated inside Center Hill pool). sourceIdentifiers are the pre-split full-course superset (60 NHDPlusHR reachcodes); per-reach attribution was not derivable from the staged assembly and is deliberately not invented."
   },
   {
    "featureId": "stones-river",

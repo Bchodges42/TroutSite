@@ -110,6 +110,45 @@ export function isWellFormedSvg(markup: string): boolean {
 
 const GAUGE_ID_RE = /^\d{8}(\.\d+)?$/;
 
+// M3 (production review §4): `notes` and officialSources labels are angler-facing copy —
+// `notes` renders verbatim as "Know this water" in the map drawer (RiverDrawer.tsx) and on
+// stream pages. Geometry provenance / maintenance history belongs in the provenance surface:
+// apps/web/atlas-sources/verified/{east-southeast,west-middle}.topology.json (records[]
+// keyed by featureId, carrying sourceIdentifiers / verificationSources / midCourseSeams).
+// Deny-list is deliberately narrow — false-positive sweep over all 146 waters (2026-09-07):
+// - "TIGER"/"Census" stay case-sensitive so a future lowercase "tiger muskie" stocking note
+//   (TWRA stocks tiger muskie) can never trip the lint; the source layers are uppercase.
+// - bare "seam" is EXCLUDED: current seams are legitimate fly-fishing vocabulary; only the
+//   topology field name "midCourseSeam" is banned.
+// - "verify"/"verified" are allowed (we repeatedly tell anglers to verify schedules/regs);
+//   only the exact rebuild-banner phrase "Verified geometry" is banned.
+// - "km" alone is allowed (e.g. it occurs inside "Hickman"); only the unit "km²" (source-area
+//   statistic) is banned.
+const NOTE_PROVENANCE_DENYLIST: Array<[RegExp, string]> = [
+  [/Verified geometry/, '"Verified geometry" rebuild banner'],
+  [/NHD/, 'source-layer name (NHD/NHDPlus)'],
+  [/GNIS/, 'GNIS identifier'],
+  [/TIGER/, 'TIGER source layer'],
+  [/Census/, 'Census source layer'],
+  [/OBJECTID/, 'OBJECTID source id'],
+  [/fragment/i, 'fragment (assembly-defect narrative)'],
+  [/weld/i, 'weld (rebuild narrative)'],
+  [/midCourseSeam/, 'midCourseSeam (topology field name)'],
+  [/topolog/i, 'topology (maintenance vocabulary)'],
+  [/geo[/\\]east-fix/, 'geo/east-fix branch name'],
+  [/Catalog stub/, 'catalog maintenance narrative'],
+  [/passive lake/, '"passive lake source" narrative'],
+  [/shipped (polygon|map)/, 'shipped-polygon repair narrative'],
+  [/km²/, 'km² source-area statistic'],
+];
+// officialSources labels are citation copy: no layer names or unexplained ids either.
+const SOURCE_LABEL_DENYLIST: Array<[RegExp, string]> = [
+  [/NHD/, 'source-layer name (NHD/NHDPlus)'],
+  [/GNIS \d/, 'GNIS identifier'],
+  [/OBJECTID/, 'OBJECTID source id'],
+  [/TIGER/, 'TIGER source layer'],
+];
+
 interface VerifiedGauges {
   comment: string;
   sourceUrl: string;
@@ -227,6 +266,30 @@ export function loadContent(): LoadedContent {
     }
     if (!stream.officialSources?.length) {
       issues.push({ file: rel(file), message: 'streams must cite at least one officialSources entry' });
+    }
+    // M3 anti-regression lint: keep geometry provenance out of angler-facing copy.
+    for (const [re, what] of NOTE_PROVENANCE_DENYLIST) {
+      if (stream.notes && re.test(stream.notes)) {
+        issues.push({
+          file: rel(file),
+          message:
+            `notes contain geometry provenance (${what}) — move it to the provenance surface ` +
+            '(apps/web/atlas-sources/verified/{east-southeast,west-middle}.topology.json, records[] keyed by featureId) and keep `notes` angler-facing',
+        });
+        break; // one provenance report per file is enough
+      }
+    }
+    for (const source of stream.officialSources ?? []) {
+      for (const [re, what] of SOURCE_LABEL_DENYLIST) {
+        if (re.test(source.label)) {
+          issues.push({
+            file: rel(file),
+            message:
+              `officialSources label "${source.label}" exposes provenance (${what}) — cite ` +
+              'angler-facing sources (USGS gauge / TVA / TWRA) and keep layer ids in the topology provenance records',
+          });
+        }
+      }
     }
   }
 

@@ -11,10 +11,13 @@ idealFlow:
   - min: 250
     max: 2500
     unit: cfs
-notes: "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s
-  richest tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows.
-  Ideal-flow band spans typical one- to two-turbine generation; the river is comfortably
-  wadeable only below roughly 1,000 cfs — always check the TVA release schedule first."
+notes: >-
+  A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest
+  tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans
+  typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs
+  — always check the TVA release schedule first. The tailwater runs from South Holston Dam down to
+  the Boone Lake arm head.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03476500
     url: https://waterdata.usgs.gov/monitoring-location/03476500/

@@ -10,9 +10,11 @@ idealFlow:
   - min: 300
     max: 1500
     unit: cfs
-notes: Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s
-  stocking dataset does not currently list it; upstream reaches hold scattered wild fish.
-  Rain-flashy; the Embreeville gauge matters.
+notes: >-
+  Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking
+  dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the
+  Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03465500
     url: https://waterdata.usgs.gov/monitoring-location/03465500/

@@ -12,9 +12,8 @@ notes: >-
   below; tailwater gauge 36.33011/-82.12596). One of the highest reservoirs in
   the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout
   fishery downstream. Outflow runs via the short Watauga River reach
-  (watauga-river-wilbur-reach) into Wilbur Lake. Verified geometry: USGS
-  NHDPlus HR NHDWaterbody GNIS 01273873 (25.7 km², reaches the dam at the pool
-  west end). Aliases: Watauga Reservoir.
+  (watauga-river-wilbur-reach) into Wilbur Lake. The pool runs all the way to
+  the dam at its west end. Aliases: Watauga Reservoir.
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/

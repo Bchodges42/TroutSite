@@ -11,6 +11,7 @@ export * from './schemas/hatchChart.js';
 export * from './schemas/shop.js';
 export * from './schemas/shopReport.js';
 export * from './schemas/observation.js';
+export * from './schemas/provenance.js';
 export * from './endpoints.js';
 export * from './scoreConditions.js';
 export * from './matchHatch.js';

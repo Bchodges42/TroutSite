@@ -7,15 +7,12 @@ gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  The main Holston below the North/South Fork confluence at Kingsport through
-  Hawkins, Grainger, Jefferson, and Knox counties to the French Broad
-  confluence at the head of Fort Loudoun Lake; the South Fork Holston tailwaters
-  are separate catalog features (south-holston-river, boone-tailwater,
-  ft-patrick-henry-tailwater), the northern fork is north-fork-holston-river,
-  and Cherokee Lake lies mid-stem (flowline continuity runs through the pool).
-  Verified geometry: USGS NHDPlus HR NHDFlowline GNIS "Holston River" from the
-  Kingsport confluence (ft-patrick-henry-tailwater terminus) to Fort Loudoun
-  Lake, replacing the earlier line that stopped short of both ends.
+  The main Holston below the North/South Fork confluence at Kingsport through Hawkins, Grainger,
+  Jefferson, and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake; the
+  South Fork Holston tailwaters are separate catalog features (south-holston-river, boone-tailwater, ft-
+  patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake lies mid-
+  stem, with the river continuing through the pool.
+
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

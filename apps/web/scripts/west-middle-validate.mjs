@@ -148,7 +148,7 @@ const OWNED_YAML = new Set([
   'east-fork-shoal-creek', 'elk-river', 'elk-river-lower', 'little-buffalo-river', 'mccutcheon-creek',
   'shoal-creek', 'tims-ford-lake', 'normandy-lake', 'woods-reservoir',
   // tn-middle-caney-fork
-  'barren-fork-river', 'calfkiller-river', 'cane-creek', 'caney-fork-river', 'center-hill-lake',
+  'barren-fork-river', 'calfkiller-river', 'cane-creek', 'caney-fork-river', 'caney-fork-upper', 'center-hill-lake',
   'charles-creek', 'collins-river', 'great-falls-lake', 'mill-creek-overton', 'north-prong-barren-fork',
   'pine-creek-dekalb', 'rocky-river', 'upper-hills-creek',
   // tn-upper-cumberland
@@ -161,7 +161,7 @@ const REQUIRED = [
   'kentucky-lake', 'pickwick-lake', 'lake-barkley', 'cumberland-river', 'old-hickory-lake',
   'j-percy-priest-lake', 'stones-river', 'east-fork-stones-river', 'west-fork-stones-river',
   'duck-river-lower', 'duck-river-tailwater', 'normandy-lake', 'buffalo-river', 'tims-ford-lake',
-  'elk-river', 'elk-river-lower', 'center-hill-lake', 'caney-fork-river', 'dale-hollow-lake',
+  'elk-river', 'elk-river-lower', 'center-hill-lake', 'caney-fork-river', 'caney-fork-upper', 'dale-hollow-lake',
   'obey-river', 'reelfoot-lake', 'woods-reservoir', 'great-falls-lake',
 ];
 

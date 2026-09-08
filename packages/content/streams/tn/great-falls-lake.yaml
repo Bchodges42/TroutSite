@@ -8,11 +8,11 @@ stockingProgram: false
 idealFlow: []
 notes: >-
   TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island
-  (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-river
-  catalog reach passes through this pool; promoted from the passive lake source so the visible
-  water is identified and selectable.
+  (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper
+  catalog reach passes through this pool, so paddlers and anglers can follow the water
+  through the impoundment.
 officialSources:
-  - label: USGS NHDPlus HR — NHDWaterbody Great Falls pool
-    url: https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer/9
+  - label: TVA — Great Falls Dam release schedule (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html

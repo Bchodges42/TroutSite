@@ -13,9 +13,11 @@ idealFlow:
   - min: 150
     max: 1500
     unit: cfs
-notes: Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy
-  rainbow management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA
-  drops releases; two gauges bracket the dam and town.
+notes: >-
+  Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow
+  management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases;
+  two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03483980
     url: https://waterdata.usgs.gov/monitoring-location/03483980/

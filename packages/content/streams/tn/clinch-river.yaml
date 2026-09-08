@@ -11,9 +11,12 @@ idealFlow:
   - min: 200
     max: 1500
     unit: cfs
-notes: "One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy
-  water below Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the
-  gauge below the dam is the wade-window truth-teller."
+notes: >-
+  One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below
+  Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is
+  the wade-window truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake down to
+  the Clinch mouth at Kingston / Watts Bar Lake.
+
 officialSources:
   - label: USGS Water Data — monitoring location 03533000
     url: https://waterdata.usgs.gov/monitoring-location/03533000/

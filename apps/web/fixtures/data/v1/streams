@@ -17,7 +17,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs — always check the TVA release schedule first.",
+    "notes": "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs — always check the TVA release schedule first. The tailwater runs from South Holston Dam down to the Boone Lake arm head.",
     "officialSources": [
       {
         "label": "USGS gauge 03481500 — verify officially",
@@ -53,7 +53,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases; two gauges bracket the dam and town.",
+    "notes": "Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases; two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.",
     "officialSources": [
       {
         "label": "USGS gauge 03466000 — verify officially",
@@ -88,7 +88,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). Two- and four-turbine releases swing flow hard — the Reliance gauge is the call.",
+    "notes": "The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). Two- and four-turbine releases swing flow hard — the Reliance gauge is the call. The tailwater runs from the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head.",
     "officialSources": [
       {
         "label": "USGS gauge 03566000 — verify officially",
@@ -184,7 +184,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is the wade-window truth-teller.",
+    "notes": "One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is the wade-window truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake down to the Clinch mouth at Kingston / Watts Bar Lake.",
     "officialSources": [
       {
         "label": "USGS gauge 03452000 — verify officially",
@@ -393,7 +393,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01326910 (two parts, dam-to-dam open water); upper slackwater arms remain river-modeled. Aliases: Boone Reservoir.",
+    "notes": "TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake. Aliases: Boone Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -478,7 +478,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water. Catalog stub pending detailed review and line geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -501,7 +501,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by Calderwood Dam (dam at the pool's downstream extremum ≈35.4987/-83.9418, from the NHD pool shape; no NWIS dam gauge). Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 00982412 (2.25 km²). The TWRA waterways reservoir layer lists this pool under the name \"Little Calderwood Reservoir\" (458 ac) — alias recorded; GNIS/NHD name is authoritative for the feature identity.",
+    "notes": "Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake. TWRA lists this pool as \"Little Calderwood Reservoir\" (458 ac) — that name is an alias here.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -584,6 +584,29 @@
     ]
   },
   {
+    "id": "caney-fork-upper",
+    "name": "Caney Fork River (above Center Hill Lake)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Free-flowing upper Caney Fork from the Cumberland County headwaters down through Rock Island to the slackwater pools pooled above Center Hill Dam — Great Falls Lake (great-falls-lake) at Rock Island and the long Center Hill Lake (center-hill-lake) arms. Warmwater water: smallmouth and bream country; no trout program is documented this far above the dams and no gauge-based condition is published for this reach. The celebrated tailwater fishery begins at the dam on the caney-fork-river reach.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
     "id": "center-hill-lake",
     "name": "Center Hill Lake",
     "stateId": "TN",
@@ -598,7 +621,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Caney Fork reservoir east of Smithville across DeKalb, Putnam, White, and Warren counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Caney Fork reservoir east of Smithville across DeKalb, Putnam, White, and Warren counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -645,7 +668,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the Holston River northeast of Knoxville across Grainger, Hamblen, Hawkins, and Jefferson counties, impounded by Cherokee Dam (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the Holston River main stem (holston-river); its dam releases the Holston Cherokee tailwater that runs to Fort Loudoun Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01280322 (single unclipped pool polygon, 119.1 km²; TWRA layer 27,029 ac; TVA 30,300 ac). The shipped polygon held 9 county-clipped fragments (99.5 km²) that stopped short of the dam.",
+    "notes": "TVA reservoir on the Holston River northeast of Knoxville across Grainger, Hamblen, Hawkins, and Jefferson counties, impounded by Cherokee Dam (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the Holston River main stem (holston-river); its dam releases the Holston Cherokee tailwater that runs to Fort Loudoun Lake. TWRA maps the pool at 27,029 ac; TVA at 30,300 ac at full pool.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -668,7 +691,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar Dam and receiving the Hiwassee River (hiwassee-river). Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01312639 (\"Dallas Lake\" — the GNIS/NHD name of the Chickamauga impoundment) plus GNIS 01289869 (Judd Slough, the Hiwassee-mouth pool section), 123.5 km² dam-to-dam; TWRA layer 33,973 ac (its outline adds riverine channel slivers up the Hiwassee that NHD models as river — not delivered). The shipped polygon held 15 county-clipped fragments (49.9 km²) missing both dam ends and the upper arm.",
+    "notes": "Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar Dam and receiving the Hiwassee River (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -691,7 +714,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reservoir on the Little Tennessee River in Blount County below the Chilhowee Mountains, impounded by Chilhowee Dam (dam at the pool's downstream extremum ≈35.5623/-84.0252, from the NHD pool shape; no NWIS dam gauge). Receives the Little Tennessee River from Calderwood Lake and discharges into Tellico Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01280464 (6.8 km²; TWRA \"Chilhowee Reservoir\" 1,738 ac). Represented on the TWRA waterways map but previously absent from the atlas.",
+    "notes": "Reservoir on the Little Tennessee River in Blount County below the Chilhowee Mountains, impounded by Chilhowee Dam. Receives the Little Tennessee River from Calderwood Lake and discharges into Tellico Lake. TWRA maps the reservoir at 1,738 ac.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -851,7 +874,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties; the South Fork Cumberland River is a separate water. Catalog stub pending detailed review and line geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties; the South Fork Cumberland River is a separate water. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -871,7 +894,7 @@
     "stockingProgram": false,
     "species": "trout",
     "idealFlow": [],
-    "notes": "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms.",
+    "notes": "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms. It runs its full named length to the Obed confluence.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -894,7 +917,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line in Clay, Pickett, and Overton counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line in Clay, Pickett, and Overton counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -969,7 +992,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater toward the Holston/French Broad confluence. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01282739 (118.3 km²; TWRA 28,738 ac). The shipped polygon held 6 fragments (64.6 km²). Aliases: Douglas Reservoir.",
+    "notes": "TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater toward the Holston/French Broad confluence. TWRA maps the reservoir at 28,738 ac. Aliases: Douglas Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1077,7 +1100,7 @@
     ],
     "stockingProgram": false,
     "idealFlow": [],
-    "notes": "The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth downstream. Plateau flashiness applies.",
+    "notes": "The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth downstream. Plateau flashiness applies. It runs to the Watts Bar embayment head, where the pool carries the water down to the Tennessee River.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1148,7 +1171,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and French Broad main stems and the Little Tennessee arm (Tellico Lake joins via the canal); discharges into Watts Bar Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01307966 (55.7 km²; TWRA 18,727 ac; TVA 14,600 ac). The shipped polygon held 6 fragments (12.5 km²) missing the dam reach and both arms. Aliases: Fort Loudoun Reservoir.",
+    "notes": "TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and French Broad main stems and the Little Tennessee arm (Tellico Lake joins via the canal); discharges into Watts Bar Lake. TVA lists the reservoir at 14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1173,7 +1196,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County), impounded by Fort Patrick Henry Dam (USGS 03487010, 36.49816/-82.50904). Receives the Boone tailwater (boone-tailwater) at its upper arm and discharges through the dam into the Fort Patrick Henry tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston River to form the Holston main stem at Kingsport. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01284672. Aliases: FPH Lake, Fort Patrick Henry Reservoir.",
+    "notes": "Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County), impounded by Fort Patrick Henry Dam (USGS 03487010, 36.49816/-82.50904). Receives the Boone tailwater (boone-tailwater) at its upper arm and discharges through the dam into the Fort Patrick Henry tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston River to form the Holston main stem at Kingsport. Aliases: FPH Lake, Fort Patrick Henry Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1200,7 +1223,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.",
+    "notes": "Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases. The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1226,7 +1249,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly.",
+    "notes": "Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the Kingsport confluence, where the Holston main stem forms.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1321,7 +1344,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-river catalog reach passes through this pool; promoted from the passive lake source so the visible water is identified and selectable.",
+    "notes": "TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper catalog reach passes through this pool, so paddlers and anglers can follow the water through the impoundment.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1389,7 +1412,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — a west-flowing river through the West Tennessee Hatchie corridor (Hardeman, Haywood, Tipton, and Lauderdale counties). Catalog stub pending detailed review and line geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a west-flowing river through the West Tennessee Hatchie corridor (Hardeman, Haywood, Tipton, and Lauderdale counties). Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1412,7 +1435,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "The main Holston below the North/South Fork confluence at Kingsport through Hawkins, Grainger, Jefferson, and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake; the South Fork Holston tailwaters are separate catalog features (south-holston-river, boone-tailwater, ft-patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake lies mid-stem (flowline continuity runs through the pool). Verified geometry: USGS NHDPlus HR NHDFlowline GNIS \"Holston River\" from the Kingsport confluence (ft-patrick-henry-tailwater terminus) to Fort Loudoun Lake, replacing the earlier line that stopped short of both ends.",
+    "notes": "The main Holston below the North/South Fork confluence at Kingsport through Hawkins, Grainger, Jefferson, and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake; the South Fork Holston tailwaters are separate catalog features (south-holston-river, boone-tailwater, ft- patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake lies mid- stem, with the river continuing through the pool.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1436,7 +1459,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cherokee National Forest creek with TWRA spring stocking and nearby Dillard Ponds put-ins. Classic bank-and-boulder small water.",
+    "notes": "Cherokee National Forest creek with TWRA spring stocking and nearby Dillard Ponds put-ins. Classic bank-and-boulder small water running down to the Nolichucky.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1484,7 +1507,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May.",
+    "notes": "TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May. It runs its full named length down toward the upper Clinch.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1507,7 +1530,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Stones River reservoir southeast of Nashville in Davidson, Rutherford, and Wilson counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Stones River reservoir southeast of Nashville in Davidson, Rutherford, and Wilson counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1554,7 +1577,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through West Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through West Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1577,7 +1600,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1744,7 +1767,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA spring stocking on the lower, out-of-park reaches near Walland and Maryville. The Townsend gauge is the wade-flow reference; park waters have special regs — verify with NPS.",
+    "notes": "The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA spring stocking on the lower, out-of-park reaches near Walland and Maryville. The Townsend gauge is the wade-flow reference; park waters have special regs — verify with NPS. It runs from the Smokies headwaters down to the Fort Loudoun Lake embayment near Maryville/Alcoa.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1792,7 +1815,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the Calderwood and Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features; no tailwater condition scoring is applied across a reservoir) to its mouth at the Tennessee River in Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main-stem sequence; the trout-stocked upper water is the reach below Chilhowee Dam — verify current TWRA schedules. Distinct from the Tellico River (tellico-river), a different tributary near Tellico Plains. USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.",
+    "notes": "Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the Calderwood and Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features; no tailwater condition scoring is applied across a reservoir) to its mouth at the Tennessee River in Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main- stem sequence; the trout-stocked upper water is the reach below Chilhowee Dam — verify current TWRA schedules. Distinct from the Tellico River (tellico-river), a different tributary near Tellico Plains. USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1887,7 +1910,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the Clinch River between Norris Dam and Watts Bar Lake (Anderson/Roane counties near Oak Ridge), impounded by Melton Hill Dam (USGS 03535912 tailwater gauge, 35.88536/-84.30076; Clinch River mile 23.1). The Norris tailwater (clinch-river) runs the length of this pool, giving year-round cold-water fishing; the dam discharges into the Clinch arm of Watts Bar Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01293571 (23.3 km²; TWRA layer 6,035 ac). Note: the shipped map did not represent this lake; it was a visible unnamed pool between the Norris tailwater and Watts Bar.",
+    "notes": "TVA reservoir on the Clinch River between Norris Dam and Watts Bar Lake (Anderson/Roane counties near Oak Ridge), impounded by Melton Hill Dam (USGS 03535912 tailwater gauge, 35.88536/-84.30076; Clinch River mile 23.1). The Norris tailwater (clinch-river) runs the length of this pool, giving year-round cold-water fishing; the dam discharges into the Clinch arm of Watts Bar Lake. TWRA maps the reservoir at 6,035 ac.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1982,7 +2005,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Catalog stub pending detailed review and line geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2026,7 +2049,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country history means check local access notices; flows are rain-driven.",
+    "notes": "Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country history means check local access notices; flows are rain-driven. It runs its full named length (Scott/Anderson counties) down to the Clear Fork confluence country.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2049,7 +2072,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge, 35.00258/-85.62108) upstream 46 miles through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake; discharges at the dam toward Guntersville Lake in Alabama (the main stem continues as tennessee-river). Verified geometry: TWRA tn_reservoirs layer (the Tennessee waterways experience source, 10,470 ac) — chosen because NHDPlus HR carries only the western gorge portion as a named waterbody (GNIS 01295741, 28.0 km²) and models the Chattanooga reach as river area. Cross-checks: NHD 01295741 and TVA published size (10,700 ac).",
+    "notes": "Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake; below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban Chattanooga reach above it. Verify TVA release schedules before paddling the gorge.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2068,7 +2091,7 @@
     ],
     "stockingProgram": false,
     "idealFlow": [],
-    "notes": "Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge matters.",
+    "notes": "Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2091,7 +2114,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of it. Promoted from the passive lake source to an authoritative NHD polygon so the visible water is identified and selectable.",
+    "notes": "TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of it.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2116,7 +2139,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger, and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge, 36.21563/-84.08214). Receives the Clinch River and Powell River (powell-river); the dam releases the Clinch River Norris tailwater (clinch-river) into Melton Hill Lake. Verified geometry: Census TIGER/Line 2024 AREAWATER assembled by pool-membership rule (NHDPlus HR carries almost no named Norris pool — the shipped name-only polygon dropped every arm piece labeled \"Clinch Riv\"/\"Powell Riv\", leaving 30 disconnected county fragments). Cross-checks: NHD medium-res GNIS 01269832 (95.5 km²), TWRA pool outline (36,149 ac incl. riverine arms), TVA published 33,840 ac at summer normal. Aliases: Norris Reservoir.",
+    "notes": "TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger, and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch River and Powell River (powell-river); the dam releases the Clinch River Norris tailwater (clinch-river) into Melton Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is about 33,840 acres, and the pool outline runs far up the Clinch and Powell arms — expect shorelines and access points to follow the impounded river channels.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2166,7 +2189,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence with the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins. The Tennessee reach is short (the fork forms the state line for its final miles); Virginia water upstream is out of scope. Recognized as a separate named river on the TWRA waterways rivers layer. Renowned smallmouth water in Virginia; verify regulations and any consumption advisories before eating fish from this reach.",
+    "notes": "The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence with the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins. The Tennessee reach is short (the fork forms the state line for its final miles); Virginia water upstream is out of scope. TWRA recognizes it as a separate named river. Renowned smallmouth water in Virginia; verify regulations and any consumption advisories before eating fish from this reach.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2210,7 +2233,7 @@
     "stockingProgram": false,
     "species": "trout",
     "idealFlow": [],
-    "notes": "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast. Stocking flag false by design — verify NPS/TWRA notices.",
+    "notes": "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast. Stocking flag false by design — verify NPS/TWRA notices. It runs its full named length across the Cumberland Plateau to the Emory confluence.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2259,7 +2282,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — a west-flowing river through Northwest Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Catalog stub pending detailed review and line geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a west-flowing river through Northwest Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2282,7 +2305,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small (≈550 acre) impoundment of the Ocoee River in Polk County upstream of Parksville Lake, created by TVA's Ocoee Dam No. 3 (dam at the pool's downstream/west extremum ≈35.0371/-84.4699, from the NHD pool shape). The upper Ocoee (ocoee-river) enters from the Copperhill end and resumes below the dam toward Parksville Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01296232 — \"Ocoee Number Three Lake\". The TWRA waterways reservoir layer lists this same pool under the historical name \"Hiwassee Lake\" (443 ac) — that TWRA label is an alias here and does NOT refer to the Hiwassee Lake in North Carolina. This is the previously unidentified lake polygon near the Parksville/Ocoee system.",
+    "notes": "Small (≈550 acre) impoundment of the Ocoee River in Polk County upstream of Parksville Lake, created by TVA's Ocoee Dam No. 3. The upper Ocoee (ocoee-river) enters from the Copperhill end and resumes below the dam toward Parksville Lake. TWRA records this same pool under the historical name \"Hiwassee Lake\" (443 ac) — that label does not refer to the Hiwassee Lake in North Carolina.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2307,7 +2330,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s stocking dataset lists Parksville Lake itself rather than this reach — set conservatively. Verify TVA release schedules before planning.",
+    "notes": "TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s stocking dataset lists Parksville Lake itself rather than this reach — set conservatively. Verify TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2330,7 +2353,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2379,7 +2402,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Ocoee River impoundment (TVA Ocoee Dam No. 1, \"Parksville Dam\") in Polk County southeast of Benton; dam at the pool's west edge (-84.655, bracketed by USGS 03564500 \"Ocoee River at Parksville\" and the NHD pool edge). Receives the upper Ocoee River (ocoee-river) below Ocoee Number Three Lake and discharges through the dam into the Parksville tailwater (parksville-tailwater), which joins the Hiwassee River. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01304751 — GNIS/NHD name \"Lake Ocoee\"; TWRA layer lists the same pool as \"Ocoee Lake\" (2,112 ac). Aliases: Ocoee Lake, Ocoee Lake No. 1, Parksville Reservoir.",
+    "notes": "Ocoee River impoundment (TVA Ocoee Dam No. 1, \"Parksville Dam\") in Polk County southeast of Benton; the dam sits at the pool's west edge. Receives the upper Ocoee River (ocoee-river) below Ocoee Number Three Lake and discharges through the dam into the Parksville tailwater (parksville-tailwater), which joins the Hiwassee River. TWRA lists the same pool as \"Ocoee Lake\" (2,112 ac). Aliases: Ocoee Lake, Ocoee Lake No. 1, Parksville Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2428,7 +2451,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at Pickwick Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the north. Catalog stub pending detailed review and polygon geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at Pickwick Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the north. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2454,7 +2477,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach — set conservatively, verify locally.",
+    "notes": "Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line down to the Douglas Lake arm.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2496,7 +2519,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout reach — rain judgment required.",
+    "notes": "TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout reach — rain judgment required. It runs down to the Watts Bar embayment head.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2516,7 +2539,7 @@
     "stockingProgram": false,
     "species": "trout",
     "idealFlow": [],
-    "notes": "A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading.",
+    "notes": "A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA line down to the Norris Lake arm.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2609,7 +2632,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West Tennessee). NHD's main-basin waterbody carries the historic gnis_name \"Reading House Slough\"; the product identity is the lake basin promoted from the passive lake source to an authoritative NHD polygon with a catalog record. Source NHDPlusIDs are recorded on the delivered feature and in docs/audits/WEST-MIDDLE-HYDROGRAPHY.md.",
+    "notes": "Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West Tennessee). Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline best fished by boat; check TWRA guides for the commercial fishing and boating rules that apply on this lake.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2633,7 +2656,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy.",
+    "notes": "TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. It runs down to the upper Clinch River above the Norris pool.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2725,7 +2748,7 @@
     "stockingProgram": true,
     "species": "trout",
     "idealFlow": [],
-    "notes": "TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far downstream — treat it as a valley-level trend, not the headwater truth.",
+    "notes": "TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far downstream — treat it as a valley-level trend, not the headwater truth. It runs the full valley from the Cumberland County headwaters down toward the Tennessee River at Shellmound.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2825,7 +2848,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood Ford. Beautiful and isolated — plan bail-outs.",
+    "notes": "Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood Ford. Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New River/Clear Fork confluence country up to the Kentucky line.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2850,7 +2873,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and Washington County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726). Discharges the South Holston tailwater (south-holston-river) toward Boone Lake. The lake crosses the state line — the verified geometry (USGS NHDPlus HR NHDWaterbody GNIS 01327073, 30.3 km²) retains the full Virginia portion north to 36.66 N; the shipped polygon was the state-clipped 18.2 km² Tennessee-only portion. Cross-checks: TWRA layer 6,019 ac (Tennessee portion), TVA published 7,580 ac (full pool).",
+    "notes": "TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and Washington County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726). Discharges the South Holston tailwater (south-holston-river) toward Boone Lake. The lake crosses the state line into Virginia, so the mapped water covers the full reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes 7,580 ac at full pool.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3007,7 +3030,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount counties, impounded by Tellico Dam at Lenoir City (dam at ≈35.7877/-84.2545, from the NHD pool extremum; no NWIS dam gauge). Receives the Little Tennessee River (little-tennessee-river) below Chilhowee Dam, the Tellico River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake through the dam and the connecting canal. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01327191 + 01304036 (61.4 km²; TWRA layer cross-check 15,788 ac). Aliases: Tellico Reservoir.",
+    "notes": "TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount counties, impounded by Tellico Dam at Lenoir City. Receives the Little Tennessee River (little-tennessee-river) below Chilhowee Dam, the Tellico River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake through the dam and the connecting canal. TWRA maps the reservoir at 15,788 ac. Aliases: Tellico Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3056,7 +3079,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424) upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the river legitimately leaves the state between mile 424 and Pickwick. Verified geometry: USGS NHDPlus HR NHDFlowline with reservoir continuity via artificial paths (no tailwater scoring applied inside the pools).",
+    "notes": "One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424) upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the river legitimately leaves the state between mile 424 and Pickwick. Warm main-stem water — the trout fishing lives in the cold tailwaters below the dams, and the moving reaches are smallmouth water.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3079,7 +3102,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir near Winchester in Franklin and Moore counties. Catalog stub pending detailed review; promotion of the passive lake polygon is a separate step.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir near Winchester in Franklin and Moore counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3199,7 +3222,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cold Johnson County water near the Virginia line, TWRA spring-stocked. Good early-season option when bigger rivers are high.",
+    "notes": "Cold Johnson County water near the Virginia line, TWRA spring-stocked. Good early-season option when bigger rivers are high. This catalog reach covers the upper creek.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3246,7 +3269,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the Watauga River in the mountains of Carter and Johnson counties, impounded by Watauga Dam (between USGS 03483450 above and 03483950 below; tailwater gauge 36.33011/-82.12596). One of the highest reservoirs in the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout fishery downstream. Outflow runs via the short Watauga River reach (watauga-river-wilbur-reach) into Wilbur Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01273873 (25.7 km², reaches the dam at the pool west end). Aliases: Watauga Reservoir.",
+    "notes": "TVA reservoir on the Watauga River in the mountains of Carter and Johnson counties, impounded by Watauga Dam (between USGS 03483450 above and 03483950 below; tailwater gauge 36.33011/-82.12596). One of the highest reservoirs in the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout fishery downstream. Outflow runs via the short Watauga River reach (watauga-river-wilbur-reach) into Wilbur Lake. The pool runs all the way to the dam at its west end. Aliases: Watauga Reservoir.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3270,7 +3293,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS 03483950 below-dam gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600) and Wilbur Lake in Carter County. Cold, clear release water that closes the Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur tailwater) chain; the celebrated trophy water begins below Wilbur Dam as watauga-river. Verified geometry: USGS NHDPlus HR NHDFlowline between the two dams, including the dam-pool connectors.",
+    "notes": "The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS 03483950 below-dam gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600) and Wilbur Lake in Carter County. Cold, clear release water that closes the Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur tailwater) chain; the celebrated trophy water begins below Wilbur Dam as watauga-river.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3293,7 +3316,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328; Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties — including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm. Discharges through Watts Bar Dam into Chickamauga Lake. Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01304421 (single unclipped pool polygon, 135.3 km²; TWRA 37,884 ac; TVA 39,090 ac). The shipped polygon held 8 fragments (120.3 km²) that stopped ~9 km short of Fort Loudoun Dam.",
+    "notes": "Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328; Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties — including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm. Discharges through Watts Bar Dam into Chickamauga Lake. TVA lists the reservoir at 39,090 ac at full pool.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3389,7 +3412,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River in Carter County. Receives Watauga Dam releases via the short riverine reach (watauga-river-wilbur-reach) and discharges through Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River (Wilbur tailwater). Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS 01327381. Represented on the TWRA waterways reservoir layer (72 ac).",
+    "notes": "Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River in Carter County. Receives Watauga Dam releases via the short riverine reach (watauga-river-wilbur-reach) and discharges through Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3436,7 +3459,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf through Fayette and Shelby counties; a different water from the Fentress County headwaters of the same name. Catalog stub pending detailed review and line geometry.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf through Fayette and Shelby counties; a different water from the Fentress County headwaters of the same name. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3459,7 +3482,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and Manchester (Franklin County), open to public fishing. Promoted from the passive lake source to an authoritative NHD polygon (GNIS \"Woods Reservoir\") with a catalog record.",
+    "notes": "AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and Manchester (Franklin County), open to public fishing.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",

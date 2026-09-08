@@ -10,13 +10,7 @@ notes: >-
   Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater
   gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea
   counties, extending up to Watts Bar Dam and receiving the Hiwassee River
-  (hiwassee-river). Verified geometry: USGS NHDPlus HR NHDWaterbody GNIS
-  01312639 ("Dallas Lake" — the GNIS/NHD name of the Chickamauga impoundment)
-  plus GNIS 01289869 (Judd Slough, the Hiwassee-mouth pool section), 123.5 km²
-  dam-to-dam; TWRA layer 33,973 ac (its outline adds riverine channel slivers
-  up the Hiwassee that NHD models as river — not delivered). The shipped
-  polygon held 15 county-clipped fragments (49.9 km²) missing both dam ends
-  and the upper arm.
+  (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac.
 officialSources:
   - label: USGS Water Data — monitoring location 03566510
     url: https://waterdata.usgs.gov/monitoring-location/03566510/

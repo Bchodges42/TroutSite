@@ -6,6 +6,7 @@
  * Staging inputs (produced by independent regional sessions — never edited here):
  *   apps/web/atlas-sources/verified/west-middle.geojson
  *   apps/web/atlas-sources/verified/east-southeast.geojson
+ *   (+ the matching .topology.json files, read for the provenance disclosure)
  *
  * Behavior:
  *   • Consumes either, both, or neither staging file. With neither it prints
@@ -24,6 +25,12 @@
  *     twice.
  *   • Regenerates riverIndex.json with the same derivation as
  *     regenerate-river-index.mjs.
+ *   • Emits public/atlas/provenance.json (trout/atlas-provenance/1) from the
+ *     staging topology records — the public provenance disclosure surface
+ *     (review M3: internal geometry evidence lives here, never in angler
+ *     catalog copy). Coverage is gated: every canonical water gets exactly one
+ *     verified/carried/legacy record; PASS requires >= 2 verificationSources;
+ *     seams over 1 km must be documented; lengthRatio must match delivered/source.
  *   • Prints before/after feature counts and every replaced/appended id.
  *   • Exits non-zero on any contract violation; `--dry-run` validates and
  *     reports without writing.
@@ -47,8 +54,14 @@ const STAGING_FILES = [
   'apps/web/atlas-sources/verified/east-southeast.geojson',
 ].map((rel) => ({ rel, path: join(repoRoot, rel) }));
 
+const TOPOLOGY_FILES = [
+  'apps/web/atlas-sources/verified/west-middle.topology.json',
+  'apps/web/atlas-sources/verified/east-southeast.topology.json',
+].map((rel) => ({ rel, region: rel.match(/([a-z-]+)\.topology\.json$/)?.[1], path: join(repoRoot, rel) }));
+
 const RIVERS_PATH = join(webRoot, 'public', 'atlas', 'rivers.geojson');
 const LAKES_PATH = join(webRoot, 'public', 'atlas', 'lakes.geojson');
+const PROVENANCE_PATH = join(webRoot, 'public', 'atlas', 'provenance.json');
 const TN_BOUNDARY_PATH = join(webRoot, 'public', 'atlas', 'tn-boundary.geojson');
 const INDEX_PATH = join(webRoot, 'src', 'features', 'map', 'riverIndex.json');
 const PACK_PATH = join(repoRoot, 'packages', 'content', 'dist', 'pack', 'streams.json');
@@ -498,6 +511,157 @@ export function regenerateIndex(features) {
   }).sort((a, b) => a.id.localeCompare(b.id));
 }
 
+// ── provenance disclosure (trout/atlas-provenance/1) ─────────────────────────
+// Unifies the staging topology records into public/atlas/provenance.json so
+// geometry evidence (source layers, ids, weld/seam narrative, verification)
+// stays available in the product without ever riding in angler catalog copy
+// (review M3). Classification per canonical water id:
+//   verified — a topology record exists (documented membership for the
+//              west-middle + geo/east-fix rebuilds)
+//   carried  — a staged feature without a topology record but with a
+//              carriedFrom marker (TWRA winter ponds verified by the
+//              STILLWATER/GEO lanes)
+//   legacy   — canonical water covered by neither staging file
+const LEGACY_PROVENANCE_NOTE = 'pre-verified canonical geometry (pre geo/east-fix build); not yet topology-verified';
+
+function loadTopologyRecords(v) {
+  const records = new Map();
+  const regions = new Map();
+  for (const file of TOPOLOGY_FILES) {
+    if (!existsSync(file.path)) {
+      v.warn('provenance', `topology file missing: ${file.rel}`);
+      continue;
+    }
+    const doc = JSON.parse(readFileSync(file.path, 'utf8'));
+    regions.set(file.region, doc.generated);
+    for (const record of doc.records ?? []) {
+      if (records.has(record.featureId)) {
+        v.add(record.featureId, `duplicate topology record across region files (also from ${records.get(record.featureId).region})`);
+        continue;
+      }
+      records.set(record.featureId, { region: file.region, generated: doc.generated, ...record });
+    }
+  }
+  return { records, regions };
+}
+
+function asSourceArray(source) {
+  if (Array.isArray(source)) return source.map(String);
+  if (typeof source === 'string' && source.trim()) return source.trim().split(/\s+/);
+  return undefined;
+}
+
+function verifiedProvenanceRecord(rec) {
+  const rebuild = {};
+  if (rec.sourceLengthKm != null || rec.deliveredLengthKm != null || rec.lengthRatio != null || rec.reachScope) {
+    rebuild.lengths = {};
+    if ('sourceLengthKm' in rec) rebuild.lengths.sourceLengthKm = rec.sourceLengthKm ?? null;
+    if ('deliveredLengthKm' in rec) rebuild.lengths.deliveredLengthKm = rec.deliveredLengthKm ?? null;
+    const ratio = rec.lengthRatio
+      ?? (rec.sourceLengthKm > 0 && rec.deliveredLengthKm != null
+        ? Math.round((rec.deliveredLengthKm / rec.sourceLengthKm) * 1000) / 1000
+        : undefined);
+    if (ratio != null) rebuild.lengths.lengthRatio = ratio;
+    if (rec.reachScope) rebuild.lengths.reachScope = rec.reachScope;
+  }
+  if (rec.sourceAreaSqKm != null || rec.deliveredAreaSqKm != null) {
+    rebuild.areas = { sourceAreaSqKm: rec.sourceAreaSqKm ?? null, deliveredAreaSqKm: rec.deliveredAreaSqKm ?? null };
+  }
+  if (rec.largestConnectionGapMeters != null) rebuild.largestConnectionGapMeters = rec.largestConnectionGapMeters;
+  if (rec.chainSeparations) rebuild.chainSeparations = rec.chainSeparations;
+  if (Array.isArray(rec.termini) && rec.termini.length > 0) rebuild.termini = rec.termini;
+  // Empty is honest: west records carry no seams by construction.
+  rebuild.midCourseSeams = Array.isArray(rec.midCourseSeams) ? rec.midCourseSeams : [];
+  if (rec.tailwaterStartDistanceM != null) {
+    rebuild.tailwater = { startDistanceM: rec.tailwaterStartDistanceM };
+    if (rec.tailwaterStartEndpointM != null) rebuild.tailwater.startEndpointM = rec.tailwaterStartEndpointM;
+  }
+  if (rec.throughLakeToleranceM) rebuild.throughLakeToleranceM = rec.throughLakeToleranceM;
+  if ((rec.upstreamFeatureIds?.length ?? 0) > 0 || (rec.downstreamFeatureIds?.length ?? 0) > 0) {
+    rebuild.flowConnectivity = {
+      upstreamFeatureIds: rec.upstreamFeatureIds ?? [],
+      downstreamFeatureIds: rec.downstreamFeatureIds ?? [],
+    };
+  }
+
+  const out = {
+    region: rec.region,
+    generated: rec.generated,
+    status: 'verified',
+    verificationState: rec.verificationState,
+    verificationSources: rec.verificationSources ?? [],
+    sourceIdentifiers: rec.sourceIdentifiers ?? [],
+  };
+  if (Object.keys(rebuild).length > 0) out.rebuild = rebuild;
+  if (rec.dam) {
+    out.dam = { ...rec.dam };
+    if (rec.damPoolDistanceM != null) out.dam.poolDistanceM = rec.damPoolDistanceM;
+  }
+  if (rec.connections) out.lake = { connections: rec.connections };
+  if (rec.notes) out.note = rec.notes;
+  return out;
+}
+
+function carriedProvenanceRecord(props, region) {
+  return { region, status: 'carried', source: asSourceArray(props.source), note: String(props.carriedFrom) };
+}
+
+function legacyProvenanceRecord(feature) {
+  return { status: 'legacy', source: asSourceArray(feature?.properties?.source), note: LEGACY_PROVENANCE_NOTE };
+}
+
+export function buildProvenanceDoc(ids, canonicalById, topoRecords, regions, carriedProps) {  const waters = {};
+  const counts = { verified: 0, carried: 0, legacy: 0 };
+  for (const id of [...ids].sort()) {
+    const topo = topoRecords.get(id);
+    if (topo) {
+      waters[id] = verifiedProvenanceRecord(topo);
+      counts.verified += 1;
+    } else if (carriedProps.has(id)) {
+      const { props, region } = carriedProps.get(id);
+      waters[id] = carriedProvenanceRecord(props, region);
+      counts.carried += 1;
+    } else {
+      waters[id] = legacyProvenanceRecord(canonicalById.get(id));
+      counts.legacy += 1;
+    }
+  }
+  const generated = [...regions.values()].sort().at(-1) ?? new Date().toISOString().slice(0, 10);
+  const doc = {
+    schema: 'trout/atlas-provenance/1',
+    generated,
+    regions: Object.fromEntries([...regions.entries()].sort()),
+    waters,
+  };
+  return { doc, counts };
+}
+
+export function validateProvenanceWaters(waters, v) {
+  for (const [id, rec] of Object.entries(waters)) {
+    if (rec.status !== 'verified') continue;
+    if (rec.verificationState !== 'PASS' && rec.verificationState !== 'UNRESOLVED') {
+      v.add(id, `provenance verificationState ${rec.verificationState} not PASS/UNRESOLVED`);
+    }
+    if (rec.verificationState === 'PASS' && rec.verificationSources.length < 2) {
+      v.add(id, 'provenance PASS requires >= 2 verificationSources');
+    }
+    if (rec.sourceIdentifiers.length === 0) v.add(id, 'provenance record has no sourceIdentifiers');
+    for (const [i, seam] of (rec.rebuild?.midCourseSeams ?? []).entries()) {
+      if (!Array.isArray(seam.at) || seam.at.length !== 2) v.add(id, `provenance midCourseSeam[${i}] missing [lon,lat]`);
+      if (seam.nearestChainM >= 1000 && !(typeof seam.documented === 'string' && seam.documented.trim())) {
+        v.add(id, `provenance midCourseSeam[${i}] over the 1 km policy without a documented note`);
+      }
+    }
+    const lengths = rec.rebuild?.lengths;
+    if (lengths?.lengthRatio != null && lengths.sourceLengthKm > 0 && lengths.deliveredLengthKm != null) {
+      const expected = lengths.deliveredLengthKm / lengths.sourceLengthKm;
+      if (Math.abs(lengths.lengthRatio - expected) > 0.005) {
+        v.add(id, `provenance lengthRatio ${lengths.lengthRatio} != delivered/source ${expected.toFixed(4)}`);
+      }
+    }
+  }
+}
+
 // ── CLI ──────────────────────────────────────────────────────────────────────
 function main() {
   const log = (...args) => console.log(...args);
@@ -562,6 +726,18 @@ function main() {
   staged.forEach((entry, index) => validateStagedFeature(entry.feature, catalog, { index, canonicalById }, v));
   validateTopology(staged, rivers.features, lakesFc.features, tnBoundary, v);
 
+  // Provenance inputs: topology records + carried markers for staged features
+  // the topology files don't cover (TWRA winter ponds).
+  const { records: topoRecords, regions: topoRegions } = loadTopologyRecords(v);
+  const carriedProps = new Map();
+  for (const s of staged) {
+    const id = s.feature.properties?.id;
+    const carriedFrom = s.feature.properties?.carriedFrom;
+    if (id && carriedFrom && !topoRecords.has(id)) {
+      carriedProps.set(id, { props: s.feature.properties, region: s.file.match(/([a-z-]+)\.geojson/)?.[1] ?? null });
+    }
+  }
+
   // Catalog coverage reports (informational — printed either way).
   const stagedIds = new Set(staged.map((s) => s.feature.properties?.id));
   const geometryIds = new Set([...rivers.features.map((f) => f.properties?.id), ...stagedIds]);
@@ -583,6 +759,10 @@ function main() {
     log(`[integrate] would append: ${staged.filter((s) => !canonicalById.has(s.feature.properties.id)).map((s) => s.feature.properties.id).join(', ') || '(none)'}`);
     log(`[integrate] catalog records without geometry: ${withoutGeometry.length ? withoutGeometry.join(', ') : '(none)'}`);
     log(`[integrate] geometry ids without catalog record: ${orphans.length ? orphans.join(', ') : '(none)'}`);
+    const dryIds = new Set([...canonicalById.keys(), ...stagedIds]);
+    const dryProv = buildProvenanceDoc(dryIds, canonicalById, topoRecords, topoRegions, carriedProps);
+    const orphanTopo = [...topoRecords.keys()].filter((id) => !dryIds.has(id));
+    log(`[integrate] would write provenance.json (trout/atlas-provenance/1): ${dryProv.counts.verified} verified, ${dryProv.counts.carried} carried, ${dryProv.counts.legacy} legacy of ${dryIds.size} waters${orphanTopo.length ? `; WARNING orphan topology records: ${orphanTopo.join(', ')}` : ''}`);
     process.exit(0);
   }
 
@@ -597,6 +777,21 @@ function main() {
     merged.set(id, mergeFeature(feature, catalog));
   }
   const outFeatures = [...merged.values()].sort((a, b) => String(a.properties.id).localeCompare(String(b.properties.id)));
+
+  // Provenance disclosure: unified from staging topology (+ carried/legacy
+  // markers), gated before anything is written. Single-shot: any violation
+  // above already exited; provenance violations exit here, still write-free.
+  const prov = buildProvenanceDoc(new Set(outFeatures.map((f) => f.properties.id)), canonicalById, topoRecords, topoRegions, carriedProps);
+  for (const id of topoRecords.keys()) {
+    if (!merged.has(id)) v.warn('provenance', `topology record without staged/canonical feature: ${id}`);
+  }
+  validateProvenanceWaters(prov.doc.waters, v);
+  if (v.list.length > 0) {
+    console.error(`[integrate] ${v.list.length} contract violation(s) while building provenance:`);
+    for (const violation of v.list) console.error(`  ✗ ${violation.id}: ${violation.message}`);
+    console.error('[integrate] FAIL — canonical atlas left unchanged.');
+    process.exit(1);
+  }
 
   // Drop passive lake twins that now render as interactive catalog features.
   const passiveTwinIds = new Set();
@@ -614,6 +809,7 @@ function main() {
   }
   const index = regenerateIndex(outFeatures);
   writeFileSync(INDEX_PATH, JSON.stringify(index, null, 2) + '\n');
+  writeFileSync(PROVENANCE_PATH, JSON.stringify(prov.doc) + '\n');
 
   log(`[integrate] features before/after: ${before}/${outFeatures.length}`);
   log(`[integrate] replaced (${replaced.length}): ${replaced.join(', ') || '(none)'}`);
@@ -622,6 +818,7 @@ function main() {
   log(`[integrate] catalog records without geometry: ${withoutGeometry.length ? withoutGeometry.join(', ') : '(none)'}`);
   log(`[integrate] geometry ids without catalog record: ${orphans.length ? orphans.join(', ') : '(none)'}`);
   log(`[integrate] riverIndex regenerated: ${index.length} entries`);
+  log(`[integrate] provenance.json written: ${prov.counts.verified} verified, ${prov.counts.carried} carried, ${prov.counts.legacy} legacy`);
   log('[integrate] OK — verify with: pnpm --filter @trout/web exec node scripts/validate-atlas.mjs && pnpm --filter @trout/web test');
 }
 
