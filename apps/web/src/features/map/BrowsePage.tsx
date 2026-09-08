@@ -59,11 +59,15 @@ export function BrowsePage() {
                       {regionName(f.stream.regionId)}
                     </span>
                   </span>
-                  {f.status !== 'no-data' && f.score !== null && f.species !== 'warmwater' ? (
+                  {f.species === 'trout' && f.status !== 'no-data' && f.score !== null ? (
                     <ScorePill score={f.score} />
                   ) : (
                     <span className="muted text-sm">
-                      {f.species === 'warmwater' ? 'Warmwater' : 'Unassessed'}
+                      {f.species === 'warmwater'
+                        ? 'Warmwater'
+                        : f.species == null
+                          ? 'Unverified'
+                          : 'Unassessed'}
                     </span>
                   )}
                 </Link>

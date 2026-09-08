@@ -101,7 +101,10 @@ export interface RiverMapFeature {
   status: ConditionStatus;
   color: string;
   score: number | null;
-  species: 'trout' | 'warmwater';
+  // Catalog species verbatim. `undefined` IS the unknown state: the catalog
+  // documents no target species, and no surface may treat that as trout.
+  // Classification (filters, colors, copy) goes through waterDecision.ts.
+  species: 'trout' | 'warmwater' | undefined;
   freshness: number | null;
   hatchChart: HatchChart | null;
   hatchDominant: HatchChart['entries'][number] | null;

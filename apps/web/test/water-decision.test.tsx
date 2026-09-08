@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  decisionColorToken,
   decisionStatusText,
   metricLabel,
   toWaterDecisionView,
@@ -9,7 +10,7 @@ import type { ConditionSnapshot } from '@trout/contracts';
 /** Minimal RiverMapFeature stand-in — only fields the adapter reads. */
 function feature(overrides: {
   id?: string;
-  species?: 'trout' | 'warmwater';
+  species?: 'trout' | 'warmwater' | undefined;
   score?: number | null;
   assessed?: boolean;
   reasons?: string[];
@@ -36,7 +37,9 @@ function feature(overrides: {
           },
           readings: Array.from({ length: overrides.readings ?? 2 }, () => ({})),
         } as unknown as ConditionSnapshot),
-    species: overrides.species ?? 'trout',
+    // H3: an explicit `undefined` species is the unknown state — it must reach
+    // the adapter as absent, never pre-defaulted to trout.
+    species: 'species' in overrides ? overrides.species : ('trout' as const),
   };
 }
 
@@ -89,6 +92,43 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(decisionStatusText(view, { species: 'warmwater', status: 'no-data' })).toBe(
       'Warmwater',
     );
+  });
+
+  // H3 (2026-09-07): 43 catalog records ship without a species field. The old
+  // `?? 'trout'` default silently entered them into trout mode with
+  // trout-assessment language; unknown must stay distinguishable.
+  it('keeps missing species unknown and discoverable, never confirmed trout', () => {
+    const unknown = feature({ species: undefined, score: null });
+    const view = toWaterDecisionView(unknown, 'trout');
+    expect(view.troutApplicability).toBe('unknown');
+    expect(view.displayMetric).toBe('unassessed');
+    // Discoverable in trout mode (unverified, labeled), not excluded.
+    expect(view.visibility).toBe('include');
+    expect(view.confidence).toBe('low');
+    expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe(
+      'Unverified',
+    );
+  });
+
+  it('withholds trout-condition language from an assessed water with unknown species', () => {
+    // Real gauge readings may exist for such a water; the trout band still
+    // must not claim it.
+    const view = toWaterDecisionView(feature({ species: undefined, score: 82, readings: 3 }), 'trout');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(view.troutApplicability).toBe('unknown');
+    expect(view.confidence).toBe('low');
+    expect(decisionStatusText(view, { species: undefined, status: 'good' })).toBe('Unverified');
+  });
+
+  it('colors unknown species as the neutral no-data tone on the map', () => {
+    const unknown = feature({ species: undefined, score: 82 });
+    expect(
+      decisionColorToken(toWaterDecisionView(unknown, 'trout'), { species: undefined, status: 'good' }),
+    ).toBe('no-data');
+    const trout = feature({ score: 82 });
+    expect(
+      decisionColorToken(toWaterDecisionView(trout, 'trout'), { species: 'trout', status: 'good' }),
+    ).toBe('good');
   });
 
   it('surfaces danger-language reasons as cautions', () => {

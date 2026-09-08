@@ -52,6 +52,14 @@ export default defineConfig({
       testMatch: /admin\/.*\.spec\.ts/,
       use: { ...devices['Desktop Chrome'], baseURL: `http://127.0.0.1:${PORTS.admin}` },
     },
+    {
+      // Fieldwork map-UI suite (ui.spec.ts, layers-conditions.spec.ts) — the
+      // specs were committed without a matching project and never ran; this
+      // wires them to the built web dist like the web project.
+      name: 'fieldwork',
+      testMatch: /fieldwork\/.*\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'], baseURL: `http://127.0.0.1:${PORTS.web}` },
+    },
   ],
 
   webServer: [

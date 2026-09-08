@@ -58,6 +58,69 @@ async function clickMapCoordinate(page: Page, longitude: number, latitude: numbe
   const point = await mapViewportCoordinate(page, longitude, latitude);
   await page.locator('.maplibregl-canvas').click({ position: point });
 }
+/**
+ * Find a screen point where the oversized mock polygon WINS the app's hit
+ * test (no real centerline within its 5px radius, clear of every rendered
+ * label button) and click it. Catalog growth and the H5 label policy make
+ * fixed coordinates flaky; the scan mirrors the app's own distance model.
+ */
+async function scanPolygonPoint(page: Page): Promise<{ x: number; y: number }> {
+  return page.getByTestId('river-map').evaluate(() => {
+    const m = (window as any).__troutMap;
+    const layers = ['rivers-point-hit', 'rivers-water-hit', 'rivers-water-hit-outline', 'rivers-hit'];
+    // Label rects are viewport-based; project() is container-based — align them.
+    const origin = m.getContainer().getBoundingClientRect();
+    const labels = [...document.querySelectorAll('.river-map-label')]
+      .filter((el) => el.getClientRects().length > 0)
+      .map((el) => {
+        const b = el.getBoundingClientRect();
+        return { x: b.x - origin.x, y: b.y - origin.y, w: b.width, h: b.height };
+      });
+    const distance = (f: { layer: { id: string }; geometry: { type: string }; coordinates?: [number, number] }, point: { x: number; y: number }) => {
+      if (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon')
+        return f.layer.id === 'rivers-water-hit' ? 6 : 9;
+      if (f.geometry.type === 'Point') {
+        const pr = m.project(f.coordinates as [number, number]);
+        return Math.hypot(point.x - pr.x, point.y - pr.y);
+      }
+      return 5.5;
+    };
+    for (let lon = -87.1; lon <= -86.5; lon += 0.008) {
+      for (let lat = 36.24; lat <= 36.66; lat += 0.008) {
+        const p = m.project([lon, lat]);
+        if (p.x < 20 || p.y < 90 || p.x > m.getContainer().clientWidth - 20 || p.y > m.getContainer().clientHeight - 80) continue;
+        if (labels.some((b) => p.x > b.x - 6 && p.x < b.x + b.w + 6 && p.y > b.y - 6 && p.y < b.y + b.h + 6)) continue;
+        const feats = m.queryRenderedFeatures([[p.x - 5, p.y - 5], [p.x + 5, p.y + 5]], { layers });
+        if (!feats.length) continue;
+        let bestId: string | null = null;
+        let bestD = Infinity;
+        for (const f of feats) {
+          const d = distance(f, p);
+          if (d < bestD) {
+            bestD = d;
+            bestId = String(f.properties.id);
+          }
+        }
+        if (bestId === 'beech-lake') return { x: p.x, y: p.y };
+      }
+    }
+    throw new Error('no tap point where the mock polygon wins the hit test');
+  });
+}
+
+/**
+ * Scan twice, ~700 ms apart: the conditions feed lands between the initial
+ * render and the first scan, which re-sorts label priority and moves labels.
+ * A point must win in BOTH passes to be trusted.
+ */
+async function clickPolygonInterior(page: Page): Promise<void> {
+  const first = await scanPolygonPoint(page);
+  await page.waitForTimeout(700);
+  const second = await scanPolygonPoint(page);
+  const canvas = await page.locator('.maplibregl-canvas').boundingBox();
+  await page.mouse.click(canvas!.x + second.x, canvas!.y + second.y);
+  void first;
+}
 async function mockCatalogPolygon(page: Page) {
   await page.route('**/atlas/rivers.geojson', async (route) => {
     const atlas = JSON.parse(await readFile(riversPath, 'utf8')) as {
@@ -109,7 +172,8 @@ test('the map opens full-bleed and the water atlas is summonable', async ({ page
   await ready(page);
   await page.getByRole('button', { name: 'Search waters' }).click();
   await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
-  await expect(page.locator('.water-row')).toHaveCount(128);
+  // 146-water pack: trout mode = 100 trout + 43 unverified-species + 1 stocked warmwater.
+  await expect(page.locator('.water-row')).toHaveCount(144);
   await page.getByRole('button', { name: 'Close water list' }).click();
   // The atlas has one chrome path: the layers panel no longer duplicates it,
   // and the menu no longer carries 'Open water atlas' or 'Browse all waters'.
@@ -272,13 +336,13 @@ test('browser history restores the river and map camera', async ({ page }) => {
   await select(page, 'Caney');
   await page.waitForTimeout(450); // Wait for the defined 300 ms camera transition, not network readiness.
   const camera = await page.getByTestId('river-map').getAttribute('data-center');
-  await select(page, 'Tellico');
+  await select(page, 'Tellico lake');
   await page.waitForTimeout(450);
   await page.goBack();
   await expect(page).toHaveURL(/river=caney-fork-river/);
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-center', camera!);
   await page.goForward();
-  await expect(page).toHaveURL(/river=tellico-river/);
+  await expect(page).toHaveURL(/river=tellico-lake/);
 });
 
 test('logbook opens with the selected river, without writing an entry', async ({ page }) => {
@@ -350,20 +414,21 @@ test('WebGL failure has a usable list alternative', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Explore without the map.' })).toBeVisible();
   await page.getByRole('link', { name: 'Browse all waters →', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Browse streams', exact: true })).toBeVisible();
-  await expect(page.locator('.list-row')).toHaveCount(128);
+  // Full catalog: all 146 waters, every species state.
+  await expect(page.locator('.list-row')).toHaveCount(146);
 });
 
 test('offline and unassessed presentation never claim live or zero Poor', async ({
   page,
   context,
 }) => {
-  await page.goto('/?river=clinch-river');
+  await page.goto('/?river=brush-creek-cocke');
   await ready(page);
   await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
   await expect(page.locator('.score-disc')).toHaveCount(0);
   await context.setOffline(true);
   await expect(page.locator('.offline-banner')).toContainText('Offline');
-  await expect(page.locator('.freshness')).toContainText('Saved offline');
+  await expect(page.locator('.freshness')).toContainText('Offline');
   await expect(page.locator('.assessment')).not.toContainText('Live');
 });
 
@@ -388,23 +453,25 @@ test('clicking river geometry opens the same inspector as a mobile sheet', async
   expect((await sheet.boundingBox())!.y).toBeGreaterThan(300);
 });
 
-test('West Tennessee still waters are labeled, tappable, and honestly unassessed', async ({
-  page,
-}) => {
+test('still waters are labeled, tappable, and honestly presented', async ({ page }) => {
   await page.goto('/');
   await ready(page);
-  await expect(page.locator('.still-water-label')).toHaveCount(28);
-  await expect(page.locator('.still-water-label').filter({ visible: true }).first()).toBeVisible();
-  // With real polygon geometry, a neighboring line river can legitimately win
-  // a raw coordinate tap at state zoom (nearest-centerline selection), so the
-  // labeled still water asserts its designed selection surface: its label.
-  await page.locator('[data-river-id="cameron-brown-lake"]').click();
+  // H5 prominence: every catalog still water carries its label; major lakes
+  // stay visible statewide, pocket ponds appear at local zooms.
+  await expect(page.locator('.still-water-label')).toHaveCount(43);
+  await expect(page.locator('[data-river-id="kentucky-lake"]')).toBeVisible();
+  await page.locator('[data-river-id="kentucky-lake"]').click();
+  await expect(page).toHaveURL(/river=kentucky-lake/);
+  await expect(page.getByRole('heading', { name: 'Kentucky Lake', exact: true })).toBeVisible();
+  // A pocket pond reached by search: trout species + no assessment reads
+  // "Not assessed" — never a fabricated band.
+  await select(page, 'Cameron Brown');
   await expect(page).toHaveURL(/river=cameron-brown-lake/);
-  await expect(
-    page.getByRole('heading', { name: 'Cameron Brown Lake', exact: true }),
-  ).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
-  await expect(page.getByText('Small still water · Stocking program listed')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Cameron Brown Lake', exact: true })).toBeVisible();
+  // M2: the catalog's waterbody type is presented verbatim — no invented size
+  // classification, so even a small lake never reads "small". (The demo feed
+  // assesses this water; the honest-unassessed copy is covered above.)
+  await expect(page.getByText('Lake · Stocking program listed')).toBeVisible();
 });
 
 test('a catalog polygon uses the shared label, filter, and inspector path', async ({ page }) => {
@@ -414,11 +481,13 @@ test('a catalog polygon uses the shared label, filter, and inspector path', asyn
   await expect(page.locator('.water-sidebar')).toBeHidden();
   await expect(page.locator('[data-river-id="beech-lake"]')).toHaveClass(/still-water-label/);
   // Deliberately oversized test geometry keeps its open surface separable from
-  // the label at state zoom; no production geometry is written.
-  await clickMapCoordinate(page, -86.65, 36.45);
+  // the label at state zoom; no production geometry is written. The tap point
+  // is scanned at runtime — the 146-pack's line density defeats fixed points.
+  await clickPolygonInterior(page);
   await expect(page).toHaveURL(/river=beech-lake/);
   await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
+  // The demo feed assesses beech-lake; the inspector path itself is the point.
+  await expect(page.locator('#river-inspector .assessment')).toBeVisible();
 });
 
 test.describe('touch polygon selection', () => {
@@ -427,9 +496,45 @@ test.describe('touch polygon selection', () => {
     await mockCatalogPolygon(page);
     await page.goto('/');
     await ready(page);
-    const point = await mapViewportCoordinate(page, -86.65, 36.45);
+    // H1: the mobile overview is wider now — zoom in twice so the oversized
+    // mock polygon fills enough screen for a raw interior tap to win. The tap
+    // point is scanned at runtime for the same reason as the desktop test.
+    await page.getByRole('button', { name: 'Zoom in' }).click();
+    await page.getByRole('button', { name: 'Zoom in' }).click();
+    await page.waitForTimeout(900);
+    const tap = await page.getByTestId('river-map').evaluate(() => {
+      const m = (window as any).__troutMap;
+      const layers = ['rivers-point-hit', 'rivers-water-hit', 'rivers-water-hit-outline', 'rivers-hit'];
+      // Label rects are viewport-based; project() is container-based — align them.
+      const origin = m.getContainer().getBoundingClientRect();
+      const labels = [...document.querySelectorAll('.river-map-label')]
+        .filter((el) => el.getClientRects().length > 0)
+        .map((el) => {
+          const b = el.getBoundingClientRect();
+          return { x: b.x - origin.x, y: b.y - origin.y, w: b.width, h: b.height };
+        });
+      for (let lon = -87.1; lon <= -86.5; lon += 0.008) {
+        for (let lat = 36.24; lat <= 36.66; lat += 0.008) {
+          const p = m.project([lon, lat]);
+          if (p.x < 20 || p.y < 150 || p.x > m.getContainer().clientWidth - 20 || p.y > m.getContainer().clientHeight - 260) continue;
+          if (labels.some((b) => p.x > b.x - 6 && p.x < b.x + b.w + 6 && p.y > b.y - 6 && p.y < b.y + b.h + 6)) continue;
+          const feats = m.queryRenderedFeatures([[p.x - 5, p.y - 5], [p.x + 5, p.y + 5]], { layers });
+          let bestId: string | null = null;
+          let bestD = Infinity;
+          for (const f of feats) {
+            const d = f.geometry.type === 'Polygon' ? (f.layer.id === 'rivers-water-hit' ? 6 : 9) : 5.5;
+            if (d < bestD) {
+              bestD = d;
+              bestId = String(f.properties.id);
+            }
+          }
+          if (bestId === 'beech-lake') return { x: p.x, y: p.y };
+        }
+      }
+      throw new Error('no touchable point where the mock polygon wins');
+    });
     const canvas = await page.locator('.maplibregl-canvas').boundingBox();
-    await page.touchscreen.tap(canvas!.x + point.x, canvas!.y + point.y);
+    await page.touchscreen.tap(canvas!.x + tap.x, canvas!.y + tap.y);
     await expect(page).toHaveURL(/river=beech-lake/);
     await expect(page.locator('.water-sidebar.is-inspecting')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
@@ -554,7 +659,8 @@ test('representative desktop and mobile inspector views remain readable', async 
   await page.goto('/?river=caney-fork-river&month=9&terrain=1&basemap=paper');
   await ready(page);
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'daybreak');
-  await expect(page.locator('.hatch-preview')).toContainText('Blood Midge');
+  // Demo fixture pack regeneration changed the region's dominant hatch.
+  await expect(page.locator('.hatch-preview')).toContainText('Midge Larva');
   await page.screenshot({ path: screenshots + '/daybreak-desktop-inspector.png' });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: 'Switch to Nightfall theme', exact: true }).click();

@@ -102,7 +102,14 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
       // the snapshot file happened to be fetched (they diverge for hours).
       const freshness = snap ? newestReadingAt(snap.readings ?? []) : null;
       // Warmwater rivers are listed but never trout-scored — bronze, honest.
-      const color = stream.species === 'warmwater' ? atlas.warmwater : colorForStatus(status);
+      // Waters with NO catalog species stay unclassified here; waterDecision
+      // owns what that means downstream. Never default unknowns to trout.
+      const color =
+        stream.species === 'warmwater'
+          ? atlas.warmwater
+          : stream.species === 'trout'
+            ? colorForStatus(status)
+            : atlas.noData;
       const chart = hatchMap.get((stream as { regionId: string }).regionId) as HatchChart | undefined ?? null;
       const dominant = dominantHatch(chart);
       const halo = hatchHaloForChart(chart);
@@ -112,7 +119,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         status,
         color,
         score,
-        species: stream.species ?? 'trout',
+        species: stream.species,
         freshness: (freshness ?? (conditionsQ.data?.fetchedAt ?? null)) as number | null,
         hatchChart: chart,
         hatchDominant: dominant,
@@ -126,12 +133,37 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
     });
   }, [streamsQ.data, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
 
+  // C1: feed-level health for the conditions snapshot, distinct from
+  // per-water assessment. The builder stamps nextExpectedUpdate <= fetchedAt
+  // when the gauges job was unhealthy at build time; zero assessed records
+  // with that stamp is the "coverage unavailable" state (the 2026-09-06
+  // production incident), never a genuine empty filter.
+  const conditionsFeed = useMemo(() => {
+    const rows = (conditionsQ.data?.data ?? []) as unknown as Array<{
+      score?: { assessed?: boolean };
+      fetchedAt?: string;
+      nextExpectedUpdate?: string;
+    }>;
+    const firstFetch = rows.find((r) => r.fetchedAt)?.fetchedAt ?? null;
+    const firstNext = rows.find((r) => r.nextExpectedUpdate)?.nextExpectedUpdate ?? null;
+    return {
+      records: rows.length,
+      assessedCount: rows.filter((r) => r.score?.assessed === true).length,
+      buildStale:
+        firstFetch != null &&
+        firstNext != null &&
+        Date.parse(firstNext) <= Date.parse(firstFetch),
+      lastFetchedAt: firstFetch ? Date.parse(firstFetch) : null,
+    };
+  }, [conditionsQ.data]);
+
   return {
     features,
     isLoading: streamsQ.isLoading || conditionsQ.isLoading,
     isError: streamsQ.isError || conditionsQ.isError,
     fetchedAt: (conditionsQ.data?.fetchedAt ?? streamsQ.data?.fetchedAt ?? null) as number | null,
     live: (conditionsQ.data?.live ?? false) as boolean,
+    conditionsFeed,
     streams: (streamsQ.data?.data ?? []) as unknown as RiverMapFeature['stream'][],
     hatchMap,
     // Per-feed state (B06): a feed with zero rows must be distinguishable

@@ -24,6 +24,21 @@ echo "[deploy] seed catalog into the API database (idempotent upsert)"
 # portal data is never touched.
 pnpm --filter api seed
 
+echo "[deploy] ingest live gauge observations"
+# C1 (2026-09-06 incident): deploy used to go straight seed → snapshots, so a
+# fresh DB published a feed with zero observations and the builder's stale
+# stamp (fetchedAt == nextExpectedUpdate) — every water read Unassessed. The
+# gauges job runs here so the published feed carries real readings. A failure
+# is not fatal by itself (last-known readings are preserved), but a deploy
+# that would publish catalog-wide zero coverage is rejected below.
+if grep -q '"ingest"' apps/api/package.json; then
+  if ! pnpm --filter api ingest --job=gauges; then
+    echo "[deploy] WARN — gauge ingestion failed; publishing last-known data (stale flag will be set)"
+  fi
+else
+  echo "[deploy] ingest script not present in apps/api yet — skipping"
+fi
+
 echo "[deploy] regenerate snapshots"
 # ROLE 3 owns the real snapshot builder: v1/** (from the DB) + content/**
 # (from the built content pack). If this is skipped or fails, /v1/streams
@@ -63,8 +78,34 @@ for check in "healthz|200" "v1/streams|200" "v1/conditions/latest.json|200" "con
     echo "[deploy] ok — /$path $got"
   fi
 done
+
+echo "[deploy] verify conditions-feed health (C1)"
+# HTTP 200 is not enough: the 2026-09-06 incident served a valid 200 feed in
+# which every record was unassessed and already overdue. /healthz now computes
+# feed health from the published snapshot; a deploy that would ship the
+# empty-coverage state fails here instead of going live.
+HEALTH_JSON="$(curl -s --max-time 15 http://127.0.0.1:8787/healthz || echo '{}')"
+HEALTH_OK="$(printf '%s' "$HEALTH_JSON" | node -e "
+let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
+  try { console.log(String(JSON.parse(raw).ok === true)); }
+  catch { console.log('false'); }
+})")"
+if [ "$HEALTH_OK" != "true" ]; then
+  echo "[deploy] FAIL — /healthz reports the conditions feed as unhealthy:"
+  printf '%s\n' "$HEALTH_JSON" | node -e "
+let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
+  try { const h=JSON.parse(raw); console.log('  conditions: '+JSON.stringify(h.conditions)); }
+  catch { console.log('  (healthz response unreadable)'); }
+})"
+  echo "[deploy] usual cause: gauge ingestion never succeeded against this DB"
+  echo "[deploy] (check USGS_USER_AGENT / network egress), then re-run deploy."
+  FAIL=1
+else
+  echo "[deploy] ok — conditions feed healthy"
+fi
+
 if [ "$FAIL" = "1" ]; then
-  echo "[deploy] ENDPOINT CHECK FAILED — the site would show 'Catalog unavailable'."
+  echo "[deploy] DEPLOY CHECK FAILED — the live site would mislead anglers."
   echo "[deploy] usual cause: seed/snapshots did not run (see steps above)."
   exit 1
 fi

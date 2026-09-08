@@ -4,7 +4,7 @@ import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&ur
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Link } from 'react-router-dom';
 import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
-import { TN_BOUNDS, TN_MAX_BOUNDS } from './mapTokens';
+import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
 import index from './riverIndex.json';
@@ -35,6 +35,8 @@ interface Props {
   visibleIds?: Set<string>;
   assessedIds?: Set<string>;
   stillWaterIds?: Set<string>;
+  /** Catalog waterbodyType label per water id (M2) — accessible names use it. */
+  waterTypes?: Map<string, string>;
   hatchActiveIds?: Set<string>;
   hatchColors?: Map<string, string>;
   fitPadding?: { top: number; bottom: number; left: number; right: number };
@@ -161,6 +163,13 @@ export function TennesseeMap(props: Props) {
     const bootstrapSelection =
       !initialSaved && index.some((river) => river.id === latest.current.selectedId);
     try {
+      // H1: one shared overview camera for the initial fit — and the zoom
+      // floor derived from it, so narrow viewports are never clamped above
+      // the framing the state actually needs.
+      const overview = statewideCamera(
+        el.clientWidth || window.innerWidth,
+        el.clientHeight || window.innerHeight,
+      );
       map = new maplibregl.Map({
         container: el,
         style: atlasStyle(latest.current.basemap, palette.current, { roads: latest.current.roads }),
@@ -169,11 +178,11 @@ export function TennesseeMap(props: Props) {
           : {
               bounds: TN_BOUNDS,
               fitBoundsOptions: {
-                padding: el.clientWidth < 650 ? 24 : 46,
-                maxZoom: 7,
+                padding: overview.padding,
+                maxZoom: overview.maxZoom,
               },
             }),
-        minZoom: 5.3,
+        minZoom: overview.minZoom,
         maxZoom: 13,
         maxBounds: TN_MAX_BOUNDS,
         attributionControl: false,
@@ -186,6 +195,9 @@ export function TennesseeMap(props: Props) {
       return;
     }
     mapRef.current = map;
+    // Debug/test handle: e2e suites use it for deterministic camera and
+    // hit-test assertions. Read-only in practice; no app code depends on it.
+    (window as unknown as Record<string, unknown>).__troutMap = map;
     appliedStyle.current = theme.id + ':' + latest.current.basemap;
     // Custom zoom buttons respect both OS and in-app reduced-motion preferences.
     const zoomGroup = document.createElement('div');
@@ -238,6 +250,10 @@ export function TennesseeMap(props: Props) {
       const c = map.getCenter();
       el.dataset.center = c.lng.toFixed(5) + ',' + c.lat.toFixed(5);
       el.dataset.zoom = String(map.getZoom());
+      // Camera diagnostics (H1): the zoom floor in effect and the viewport the
+      // map believes it occupies, for reviewable camera assertions.
+      el.dataset.minzoom = String(map.getMinZoom());
+      el.dataset.viewport = el.clientWidth + 'x' + el.clientHeight;
       const camera = {
         center: [c.lng, c.lat],
         zoom: map.getZoom(),
@@ -376,6 +392,10 @@ export function TennesseeMap(props: Props) {
     });
     const ro = new ResizeObserver(() => {
       map.resize();
+      // H1: keep the overview floor in step with the viewport so a rotate or
+      // panel change never leaves the state unfittable.
+      const overview = statewideCamera(el.clientWidth, el.clientHeight);
+      if (overview.minZoom !== map.getMinZoom()) map.setMinZoom(overview.minZoom);
       labelsRef.current();
       const wide = el.clientWidth > 900;
       if (attribution && wide !== wideAttribution) attribution.open = wide;
@@ -466,6 +486,14 @@ export function TennesseeMap(props: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
+    // H5 label prominence: geographic extent is the available signal (the
+    // index carries id/name/anchor/bounds). Major waters earn statewide
+    // identity labels regardless of assessment availability; pocket waters
+    // wait for local zooms so church ponds never outrank major rivers.
+    const extentOf = (b: readonly number[] | undefined) =>
+      b ? Math.max(b[2]! - b[0]!, b[3]! - b[1]!) : 0;
+    const MAJOR = 0.3;
+    const MINOR = 0.05;
     const markers = index.map((river) => {
       const el = document.createElement('button');
       el.type = 'button';
@@ -474,11 +502,6 @@ export function TennesseeMap(props: Props) {
       el.textContent = waterIdentity(river.name).name;
       el.dataset.riverId = river.id;
       el.dataset.waterKind = stillWater ? 'still-water' : 'river';
-      el.setAttribute(
-        'aria-label',
-        'Select ' + river.name + (stillWater ? ', small still water, Unassessed' : ''),
-      );
-      if (stillWater) el.title = 'Small still water · Unassessed';
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         latest.current.onSelect(river.id);
@@ -486,43 +509,86 @@ export function TennesseeMap(props: Props) {
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom-left', offset: [7, -7] })
         .setLngLat(river.anchor as [number, number])
         .addTo(map);
-      return { river, el, marker, width: el.offsetWidth, stillWater };
+      return {
+        river,
+        el,
+        marker,
+        width: el.offsetWidth,
+        height: el.offsetHeight,
+        stillWater,
+        extent: extentOf(river.bounds),
+      };
     });
     labelsRef.current = () => {
       const z = map.getZoom(),
         p = latest.current;
-      const height = map.getContainer().clientHeight;
+      // NOTE: named containerH — the per-label `height` in the loop below
+      // must not shadow this (that collision hid every label at once).
+      const containerH = map.getContainer().clientHeight;
       const coveredBottom =
         p.mobileSheet === 'expanded'
-          ? height * 0.82
+          ? containerH * 0.82
           : p.mobileSheet === 'compact'
-            ? height * 0.49
+            ? containerH * 0.49
             : 65;
-      const occupied: Array<{ x: number; y: number; stillWater: boolean }> = [];
+      // H2/H5: usable map rectangle — the floating chrome sits on top of the
+      // first rows on mobile, so labels must clear it to stay operable.
+      const topCover = p.layout === 'mobile' ? 192 : 80;
+      const occupied: Array<{ left: number; right: number; top: number; bottom: number }> = [];
+      // Priority: selection first, then prominence (extent), then assessment
+      // availability, then name for determinism. Big lakes and major rivers
+      // now compete on extent instead of every still water outranking every
+      // river.
       const sorted = [...markers].sort(
         (a, b) =>
           Number(b.river.id === p.selectedId) - Number(a.river.id === p.selectedId) ||
-          Number(b.stillWater) - Number(a.stillWater) ||
-          Number(p.assessedIds?.has(b.river.id)) - Number(p.assessedIds?.has(a.river.id)),
+          b.extent - a.extent ||
+          Number(p.assessedIds?.has(b.river.id)) - Number(p.assessedIds?.has(a.river.id)) ||
+          a.river.id.localeCompare(b.river.id),
       );
-      for (const { river, el, width, stillWater } of sorted) {
+      for (const { river, el, width, height, stillWater, extent } of sorted) {
         const selected = river.id === p.selectedId;
+        const assessed = p.assessedIds?.has(river.id) ?? false;
+        const typeWord = p.waterTypes?.get(river.id);
+        const kindWord = typeWord ?? (stillWater ? 'Still water' : 'River');
+        el.setAttribute(
+          'aria-label',
+          'Select ' + river.name + ', ' + kindWord + (assessed ? '' : ', Unassessed'),
+        );
+        el.title = kindWord + (assessed ? '' : ' · Unassessed');
         const point = map.project(river.anchor as [number, number]);
+        // Zoom gates: selected/assessed waters always; major waters keep
+        // their statewide name even with no observations (H5); mid-size
+        // waters appear on approach; pocket waters only when local.
         const visible =
           (!p.visibleIds || p.visibleIds.has(river.id)) &&
-          (selected || stillWater || p.assessedIds?.has(river.id) || z >= 8.5);
+          (selected ||
+            assessed ||
+            extent >= MAJOR ||
+            (extent >= MINOR ? z >= 8.5 : z >= 9.5));
+        // Rectangle collision on the actual label box — the same AABB test the
+        // places pass below already runs against these labels, not a fixed
+        // point box.
+        const rect = {
+          left: point.x + 4,
+          right: point.x + 12 + width,
+          top: point.y - 12 - height,
+          bottom: point.y - 2,
+        };
         const overlaps = occupied.some(
           (o) =>
-            Math.abs(o.x - point.x) < (stillWater && o.stillWater ? 126 : 180) &&
-            Math.abs(o.y - point.y) < (stillWater && o.stillWater ? 38 : 60),
+            rect.left < o.right &&
+            rect.right > o.left &&
+            rect.top < o.bottom &&
+            rect.bottom > o.top,
         );
         const show =
           visible &&
           (selected || !overlaps) &&
           point.x > 0 &&
-          point.y > (p.layout === 'mobile' ? 192 : 80) &&
+          point.y > topCover &&
           point.x < map.getContainer().clientWidth - width - 15 &&
-          point.y < height - coveredBottom - 8;
+          point.y < containerH - coveredBottom - 8;
         el.setAttribute('aria-pressed', String(selected));
         el.style.display = show ? 'flex' : 'none';
         el.classList.toggle('selected', selected);
@@ -530,7 +596,7 @@ export function TennesseeMap(props: Props) {
           '--marker-color',
           p.featureColors.get(river.id) ?? palette.current.noData,
         );
-        if (show) occupied.push({ ...point, stillWater });
+        if (show) occupied.push(rect);
       }
       placesRef.current();
     };

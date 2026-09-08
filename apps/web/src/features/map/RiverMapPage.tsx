@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import * as maplibregl from 'maplibre-gl';
 import { TennesseeMap, TN_BOUNDS } from './TennesseeMap';
+import { statewideCamera } from './mapTokens';
 import { RiverDrawer } from './RiverDrawer';
 import { RiverSearch } from './RiverSearch';
 import { MapControlGroup } from './MapControlGroup';
@@ -9,9 +10,10 @@ import { useRiverMapData } from './useRiverMapData';
 import { useOnline } from '../../hooks/useOnline';
 import { useTheme } from '../../theme/ThemeProvider';
 import { validMonth } from '../../lib/riverContext';
+import { waterTypeLabel } from '../../lib/presentation';
 import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
-import { decisionStatusText, toWaterDecisionView } from './waterDecision';
+import { decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
@@ -44,6 +46,16 @@ export function RiverMapPage() {
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markerRef = useRef<maplibregl.Marker | null>(null);
   const [desktop, setDesktop] = useState(() => window.matchMedia('(min-width:901px)').matches);
+  // Explicit mobile states (H2): exactly one primary surface per state.
+  // map → floating search + mode tools; atlas → the field-atlas panel's own
+  // search; inspector → the drawer (no floating chrome over its controls).
+  const mobileView: 'map' | 'atlas' | 'inspector' = desktop
+    ? 'map'
+    : selectedId
+      ? 'inspector'
+      : indexOpen
+        ? 'atlas'
+        : 'map';
   const onMapReady = useCallback((map: maplibregl.Map) => {
     mapRef.current = map;
     setMapAvailable(true);
@@ -86,7 +98,15 @@ export function RiverMapPage() {
     focusExploreControl();
   };
   const recenterTennessee = () => {
-    mapRef.current?.fitBounds(TN_BOUNDS, { padding: 45, duration: 0 });
+    const map = mapRef.current;
+    if (!map) return;
+    // H1: same shared camera as the initial load — one statewide fit.
+    const el = map.getContainer();
+    const overview = statewideCamera(
+      el.clientWidth || window.innerWidth,
+      el.clientHeight || window.innerHeight,
+    );
+    map.fitBounds(TN_BOUNDS, { padding: overview.padding, maxZoom: overview.maxZoom, duration: 0 });
     setLayers(false);
   };
   useEffect(() => {
@@ -203,14 +223,16 @@ export function RiverMapPage() {
       { maximumAge: 300000, timeout: 8000 },
     );
   };
-  const filtered = data.features.filter(
-    (f) =>
-      (species === 'all' ||
-        f.species === 'trout' ||
-        Boolean(f.stream.stockingProgram) ||
-        f.stream.id === selectedId) &&
-      (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId),
-  );
+  const filtered = data.features.filter((f) => {
+    // Visibility is the decision model's call (H3): unknown-species waters
+    // stay discoverable in trout mode but never read as confirmed trout;
+    // plain warmwater is excluded there; the stocked Harpeth is deemphasized.
+    const decision = toWaterDecisionView(f, species);
+    return (
+      (species === 'all' || decision.visibility !== 'exclude' || f.stream.id === selectedId) &&
+      (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId)
+    );
+  });
   const sorted = [...filtered].sort(
     (a, b) =>
       Number(b.status !== 'no-data') - Number(a.status !== 'no-data') ||
@@ -224,7 +246,7 @@ export function RiverMapPage() {
     () =>
       new Set(
         data.features
-          .filter((f) => f.status !== 'no-data' && f.species !== 'warmwater')
+          .filter((f) => toWaterDecisionView(f, 'trout').troutApplicability === 'confirmed-current')
           .map((f) => f.stream.id),
       ),
     [data.features.map((f) => f.stream.id + f.status + f.species).join(',')],
@@ -238,19 +260,38 @@ export function RiverMapPage() {
       ),
     [data.streams.map((stream) => stream.id + stream.waterbodyType).join(',')],
   );
+  // M2: one water-type vocabulary shared by map labels and the inspector.
+  const waterTypes = useMemo(
+    () => new Map(data.streams.map((s) => [s.id, waterTypeLabel(s.waterbodyType)] as const)),
+    [data.streams.map((s) => s.id + s.waterbodyType).join(',')],
+  );
+  // C1: "no assessed waters" has two different truths — the filter genuinely
+  // matched nothing, or the condition feed itself has no coverage (every
+  // record unassessed with the builder's stale stamp, or an empty feed). Only
+  // the feed-level state earns the coverage explainer; scores are never
+  // manufactured to fill the gap.
+  const coverageUnavailable =
+    data.live &&
+    !data.isLoading &&
+    !data.isError &&
+    (data.conditionsFeed.records === 0 ||
+      (data.conditionsFeed.assessedCount === 0 && data.conditionsFeed.buildStale));
   const colors = useMemo(
     () =>
       new Map(
-        data.features.map((f) => [
-          f.stream.id,
-          f.species === 'warmwater'
-            ? theme.map.warmwater
-            : f.status === 'no-data'
-              ? theme.map.noData
-              : theme.map[f.status],
-        ]),
+        data.features.map((f) => {
+          const token = decisionColorToken(toWaterDecisionView(f, species), f);
+          return [
+            f.stream.id,
+            token === 'warmwater'
+              ? theme.map.warmwater
+              : token === 'no-data'
+                ? theme.map.noData
+                : theme.map[token],
+          ] as const;
+        }),
       ),
-    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), theme.id],
+    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), species, theme.id],
   );
   const hatchActive = useMemo(
     () =>
@@ -448,11 +489,29 @@ export function RiverMapPage() {
                   </button>
                 </div>
               )}
-              {!data.isLoading && !data.isError && sorted.length === 0 && (
-                <p className="search-note">
-                  No waters match this filter. Choose All fish to browse the catalog.
-                </p>
+              {!data.isLoading && !data.isError && sorted.length === 0 && coverageUnavailable && (
+                <div className="empty-note">
+                  <strong>Condition coverage is unavailable</strong>
+                  <p>
+                    The gauge feed has no observations right now
+                    {data.conditionsFeed.lastFetchedAt
+                      ? ` — the feed was last checked ${new Date(data.conditionsFeed.lastFetchedAt).toLocaleString()}`
+                      : ''}
+                    , so no water can show an assessment. The full catalog is still below.
+                  </p>
+                  <button className="text-action" onClick={() => update({ assessed: null })}>
+                    Show every water →
+                  </button>
+                </div>
               )}
+              {!data.isLoading &&
+                !data.isError &&
+                sorted.length === 0 &&
+                !coverageUnavailable && (
+                  <p className="search-note">
+                    No waters match this filter. Choose All fish to browse the catalog.
+                  </p>
+                )}
               {sorted.map((f) => {
                 const decision = toWaterDecisionView(f, species);
                 return (
@@ -484,7 +543,11 @@ export function RiverMapPage() {
             </div>
             <footer className="index-footer">
               <span>
-                {online ? 'Snapshot data · check observation times' : 'Offline · saved information'}
+                {online
+                  ? coverageUnavailable
+                    ? 'Condition feed unavailable · no observations right now'
+                    : 'Snapshot data · check observation times'
+                  : 'Offline · saved information'}
               </span>
               <Link to="/browse">Full list ↗</Link>
             </footer>
@@ -499,6 +562,7 @@ export function RiverMapPage() {
           visibleIds={visibleIds}
           assessedIds={assessedIds}
           stillWaterIds={stillWaterIds}
+          waterTypes={waterTypes}
           hatchActiveIds={hatchActive}
           basemap={basemap}
           roads={roadsOn && roadsManifest ? roadsManifest : undefined}
@@ -514,37 +578,42 @@ export function RiverMapPage() {
               : { top: 185, bottom: Math.round(window.innerHeight * 0.49), left: 35, right: 55 }
           }
         />
-        <div className="mobile-explore">
-          <div className="mobile-search-row">
-            <RiverSearch streams={data.streams} onSelect={setRiver} shortcut={!desktop} />
+        {/* H2: the floating search + mode row belongs to the map state only.
+        In atlas/inspector states it would duplicate the panel's own search and
+        cover the sheet's collapse control (z-30 over the z-20 sidebar). */}
+        {mobileView === 'map' && (
+          <div className="mobile-explore">
+            <div className="mobile-search-row">
+              <RiverSearch streams={data.streams} onSelect={setRiver} shortcut={!desktop} />
+            </div>
+            <div className="mobile-map-tools">
+              <button
+                className="map-tool"
+                aria-pressed={mode === 'conditions'}
+                onClick={() => update({ mode: 'conditions' })}
+              >
+                <WavesIcon size={16} />
+                Conditions
+              </button>
+              <button
+                className="map-tool"
+                aria-pressed={mode === 'hatches'}
+                onClick={() => update({ mode: 'hatches' })}
+              >
+                <BugIcon size={16} />
+                Hatches
+              </button>
+              <button
+                className="map-tool"
+                onClick={() => {
+                  update({ species: species === 'all' ? null : 'all' });
+                }}
+              >
+                {species === 'all' ? 'All fish' : 'Trout'} ▾
+              </button>
+            </div>
           </div>
-          <div className="mobile-map-tools">
-            <button
-              className="map-tool"
-              aria-pressed={mode === 'conditions'}
-              onClick={() => update({ mode: 'conditions' })}
-            >
-              <WavesIcon size={16} />
-              Conditions
-            </button>
-            <button
-              className="map-tool"
-              aria-pressed={mode === 'hatches'}
-              onClick={() => update({ mode: 'hatches' })}
-            >
-              <BugIcon size={16} />
-              Hatches
-            </button>
-            <button
-              className="map-tool"
-              onClick={() => {
-                update({ species: species === 'all' ? null : 'all' });
-              }}
-            >
-              {species === 'all' ? 'All fish' : 'Trout'} ▾
-            </button>
-          </div>
-        </div>
+        )}
         <div className="map-topbar">
           <span className="map-view-label">
             Tennessee waters <span aria-hidden="true"> / </span>{' '}
@@ -584,7 +653,10 @@ export function RiverMapPage() {
           </div>
         )}
         <div className="map-bottom">
-          <div className="map-legend" aria-label="Condition legend">
+          <div
+            className="map-legend"
+            aria-label={mode === 'hatches' ? 'Seasonal guidance legend' : 'Condition legend'}
+          >
             <span className="legend-title">
               {mode === 'hatches'
                 ? 'Seasonal guidance'
@@ -592,10 +664,19 @@ export function RiverMapPage() {
                   ? 'Trout conditions'
                   : 'Water guide'}
             </span>
+            {/* M1: the amber halo is its own key in hatch mode — guidance can
+            no longer be mistaken for a condition band. */}
+            {mode === 'hatches' && (
+              <span data-status="hatch">
+                <i className="legend-line halo" />
+                Active hatch guidance
+              </span>
+            )}
             {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
               <span key={s} data-status={s}>
                 <i className={'legend-line' + (s === 'no-data' ? ' unknown' : '')} />
                 {s === 'no-data' ? 'Unassessed' : statusName[s]}
+                {mode === 'hatches' && <em className="legend-scope"> · condition</em>}
                 {mode !== 'hatches' && species === 'all' && s !== 'no-data' && (
                   <em className="legend-scope"> · trout waters</em>
                 )}
@@ -611,9 +692,11 @@ export function RiverMapPage() {
           <p className="map-help">
             {mode === 'hatches'
               ? 'Amber halos show regional hatch guidance, not live sightings.'
-              : species === 'all'
-                ? 'Good, Fair, and Poor describe trout waters only. Warmwater waters are shown but not scored.'
-                : 'Select a river line or named water to explore.'}{' '}
+              : coverageUnavailable
+                ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
+                : species === 'all'
+                  ? 'Good, Fair, and Poor describe trout waters only. Warmwater waters are shown but not scored.'
+                  : 'Select a river line or named water to explore.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>
         </div>
