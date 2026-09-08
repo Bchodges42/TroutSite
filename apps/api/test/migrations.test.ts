@@ -50,8 +50,9 @@ describe('migrations', () => {
     // + 003_report_photo_url (Role 6 integration, ADR 0002)
     // + 004_stream_species (B08 follow-up: species on catalog streams)
     // + 005_stocking_date_precision (legacy production compatibility)
-    // + 006_streams_waterbody_types (legacy DB CHECK rebuild for lake/pond).
-    expect(applied).toHaveLength(6);
+    // + 006_streams_waterbody_types (legacy DB CHECK rebuild for lake/pond)
+    // + 007_evidence_runs (data-sources lane: water-evidence run log).
+    expect(applied).toHaveLength(7);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);

@@ -44,6 +44,8 @@ describe('StreamSchema', () => {
   });
 
   it('rejects an unknown waterbodyType', () => {
+    // 'reservoir'/'swamp' were never valid; 'lake'/'pond' joined the enum with
+    // the TWRA winter put-and-take waters (da80558) and parse above.
     expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'reservoir' as never }))).toThrow(ZodError);
     expect(() => StreamSchema.parse(makeStream({ waterbodyType: 'swamp' as never }))).toThrow(ZodError);
   });

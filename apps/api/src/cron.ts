@@ -1,6 +1,7 @@
 // Trout cron worker (Role 3): schedules per non-negotiable #5 —
 //   gauges    hourly at :05
 //   stocking  daily 06:00
+//   evidence  daily 06:20 (data-sources lane: USGS + TVA + TWRA evidence assembly)
 //   snapshots nightly 04:30 safety net (also regenerated after each ingestion)
 // Every run lands in jobs_log; a failing job never kills the worker (soft-fail).
 import cron from 'node-cron';
@@ -14,7 +15,7 @@ const db = openDb(resolve(env.TROUT_DB_PATH));
 const cfg = pipelineConfig(env);
 
 let running = false;
-async function guarded(job: 'gauges' | 'stocking' | 'snapshots'): Promise<void> {
+async function guarded(job: 'gauges' | 'stocking' | 'evidence' | 'snapshots'): Promise<void> {
   if (running) {
     console.log(`[${new Date().toISOString()}] ${job} skipped — previous run still in flight`);
     return;
@@ -32,9 +33,10 @@ async function guarded(job: 'gauges' | 'stocking' | 'snapshots'): Promise<void> 
 
 cron.schedule('5 * * * *', () => void guarded('gauges'));
 cron.schedule('0 6 * * *', () => void guarded('stocking'));
+cron.schedule('20 6 * * *', () => void guarded('evidence'));
 cron.schedule('30 4 * * *', () => void guarded('snapshots'));
 
-console.log('trout cron scheduled: gauges hourly :05, stocking daily 06:00, snapshots nightly 04:30 (Ctrl+C to stop)');
+console.log('trout cron scheduled: gauges hourly :05, stocking daily 06:00, evidence daily 06:20, snapshots nightly 04:30 (Ctrl+C to stop)');
 
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.on(signal, () => {

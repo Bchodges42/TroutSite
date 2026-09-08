@@ -1,10 +1,12 @@
 // OWNER: ROLE 4. Build the compact bundled JSON content pack the PWA precaches
 // (CHAT-4 scope 2, §3: read path is static JSON; payload budget ≤ 20 MB).
 // Output: dist/pack/ — bugs.json, patterns.json, streams.json, shops.json, regions.json,
+// fishing.json (data-sources lane: structured fishing-information content),
 // hatch/{regionId}/{month}.json (same shape as the /v1/hatch/{regionId}/{month}.json snapshot),
 // plus meta.json. Returns non-zero if the pack exceeds the size budget.
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { FishingInformationSchema } from '@trout/contracts';
 import { loadContent, FLOORS } from './lib.js';
 import { REGIONS } from './regions.js';
 
@@ -33,6 +35,13 @@ const files: Record<string, string> = {
   'streams.json': JSON.stringify({ streams: [...streams.values()] }),
   'shops.json': JSON.stringify({ shops: [...shops.values()] }),
   'regions.json': JSON.stringify({ regions: REGIONS }),
+  // Fishing-information content (statewide rules/licenses/terminology + water-specific
+  // special regulations via appliesTo). Contract-validated before it ships.
+  'fishing.json': JSON.stringify({
+    fishing: FishingInformationSchema.parse(
+      JSON.parse(readFileSync(resolve(import.meta.dirname, '..', 'data', 'fishing-information.json'), 'utf8')),
+    ),
+  }),
 };
 
 for (const [rid, charts] of hatch) {

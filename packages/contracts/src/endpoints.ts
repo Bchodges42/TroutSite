@@ -16,6 +16,8 @@ export interface EndpointMap {
   shops: (stateId: string) => string;
   /** GET — recent attributed ShopReport[]. */
   reportsRecent: string;
+  /** GET — WaterEvidence[] (provenance-first per-water evidence; additive contracts-v1.1.0). */
+  evidenceWaters: string;
   /** POST — create a ShopReport (shop token header). The only live route. */
   portalReports: string;
   /** GET — liveness probe. */
@@ -29,6 +31,7 @@ export const ENDPOINTS: EndpointMap = {
   hatch: (regionId, month) => `/v1/hatch/${regionId}/${month}.json`,
   shops: (stateId) => `/v1/shops/${stateId}.json`,
   reportsRecent: '/v1/reports/recent.json',
+  evidenceWaters: '/v1/evidence/waters.json',
   portalReports: '/v1/portal/reports',
   healthz: '/healthz',
 };
