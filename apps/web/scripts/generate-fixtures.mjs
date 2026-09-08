@@ -329,7 +329,7 @@ const taxa = [
   taxon({
     id: 'baetis-bwo', commonName: 'Blue-Winged Olive', sciName: 'Baetis tricaudatus',
     order: 'Ephemeroptera', family: 'Baetidae', sizeRange: [16, 22],
-    keyAttributes: { tails: 2, gills: 'lamellae', bodyShape: 'slender', bodyColor: ['olive', 'olive-brown', 'gray'], mouthparts: 'herbivorous scraper' },
+    keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'slender', bodyColor: ['olive', 'olive-brown', 'gray'], mouthparts: 'herbivorous scraper' },
     habitat: ['riffles', 'moderate currents', 'weedy margins'],
     monthsActiveByRegion: regionMonths([3, 4, 5, 6, 9, 10, 11], [2, 3, 4, 5, 9, 10, 11], [3, 4, 5, 10, 11]),
     notes: 'The dependable overcast-day mayfly in every Tennessee tailwater. Nymphs dart in short bursts when disturbed.',

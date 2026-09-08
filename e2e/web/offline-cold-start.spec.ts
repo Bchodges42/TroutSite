@@ -40,11 +40,12 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
 
   // results render offline; Blue-Winged Olive leads with high confidence.
   // The real content pack corrected BWO to 3 tails, so the '2 tails' answer
-  // scores an honest 6/8 rather than the synthetic pack's perfect 8/8.
+  // misses tails: 4 attribute matches + hatching-now (+2) + in-season (+1)
+  // = an honest 7/8, not the synthetic pack's perfect 8/8.
   await expect(page.getByText('Top matches')).toBeVisible();
   const firstResult = page.locator('ol > li').first();
   await expect(firstResult).toContainText('Blue-Winged Olive');
-  await expect(firstResult).toContainText('6/8');
+  await expect(firstResult).toContainText('7/8');
   await expect(firstResult).toContainText('high confidence');
 
   // taxon detail renders offline
@@ -59,7 +60,7 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   await page.getByRole('button', { name: 'Open menu' }).click();
   await drawer.getByRole('link', { name: 'Hatch calendar' }).click();
   await page.getByRole('link', { name: /May/ }).click();
-  await expect(page.getByRole('heading', { name: /May/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /May/, level: 1 })).toBeVisible();
   await expect(page.getByText(/Sulphur/).first()).toBeVisible(); // sulphur duns hatch in May
 
   // a never-visited conditions surface: navigate in-app (a document reload
@@ -88,9 +89,9 @@ test('wizard offers a clean start-over after an unremarkable bug', async ({ page
 
   await page.getByRole('button', { name: '#8', exact: true }).click();
   await page.getByRole('button', { name: 'red', exact: true }).click();
-  await page.getByRole('button', { name: '2 tails', exact: true }).click();
+  await page.getByRole('button', { name: /2 tails/ }).click();
   await page.getByRole('button', { name: /No visible gills/ }).click();
-  await page.getByRole('button', { name: 'robust', exact: true }).click();
+  await page.getByRole('button', { name: /robust/ }).click();
   await page.getByRole('button', { name: 'See matches' }).click();
 
   await expect(page.getByText('Top matches')).toBeVisible();
@@ -102,8 +103,8 @@ test('wizard offers a clean start-over after an unremarkable bug', async ({ page
 async function runWizard(page: Page): Promise<void> {
   await page.getByRole('button', { name: '#16', exact: true }).click();
   await page.getByRole('button', { name: 'olive', exact: true }).click();
-  await page.getByRole('button', { name: '2 tails', exact: true }).click();
+  await page.getByRole('button', { name: /2 tails/ }).click();
   await page.getByRole('button', { name: /Flat plates \(lamellae\)/ }).click();
-  await page.getByRole('button', { name: 'slender', exact: true }).click();
+  await page.getByRole('button', { name: /slender/ }).click();
   await page.getByRole('button', { name: 'See matches' }).click();
 }
