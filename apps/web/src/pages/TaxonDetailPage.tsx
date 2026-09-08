@@ -1,8 +1,9 @@
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { RiverContextBar, contextUrl } from '../lib/riverContext';
 import { Card, Chip, EmptyState } from '@trout/ui';
-import type { FlyPattern } from '@trout/contracts';
+import type { BugTaxon, FlyPattern } from '@trout/contracts';
 import { patternsForTaxon, useContentPack } from '../lib/content';
+import { taxonPhoto } from '../lib/taxonImages';
 import { TaxonArt } from '../components/art/TaxonArt';
 import { monthShort, REGIONS } from '../data/regions';
 
@@ -70,6 +71,8 @@ export function TaxonDetailPage() {
           </div>
         </div>
       </div>
+
+      <TaxonPhotoCard taxon={taxon} />
 
       <h2 className="section-title">Key attributes</h2>
       <Card>
@@ -145,8 +148,35 @@ export function TaxonDetailPage() {
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+/** Approved field photo for this insect's group, with its license credit. */
+function TaxonPhotoCard({ taxon }: { taxon: BugTaxon }) {
+  const photo = taxonPhoto(taxon);
+  if (!photo) return null;
   return (
+    <figure className="taxon-photo mt-4">
+      <img
+        src={photo.src}
+        alt={`Field photograph of a ${taxon.commonName.toLowerCase()}`}
+        loading="lazy"
+        className="w-full rounded-xl"
+        style={{ border: '1px solid var(--trout-color-border)', maxHeight: '360px', objectFit: 'cover' }}
+      />
+      <figcaption className="mt-1 text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+        {photo.credit} · {photo.license} ·{' '}
+        <a
+          className="focus-ring underline"
+          href={photo.sourceUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          source
+        </a>
+      </figcaption>
+    </figure>
+  );
+}
+
+function Row({ label, value }: { label: string; value: string }) {  return (
     <div>
       <dt
         className="text-xs font-bold uppercase tracking-wide"
