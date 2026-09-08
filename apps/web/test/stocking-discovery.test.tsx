@@ -110,6 +110,24 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     expect(screen.queryByText('Tellico River')).not.toBeInTheDocument();
   });
 
+  it('sorts the browse view by date, water, or county via the URL-driven control', async () => {
+    const user = userEvent.setup();
+    renderPage();
+    await screen.findByText('Latest published');
+    await user.click(screen.getByRole('button', { name: /Browse the full schedule/ }));
+    const firstRow = () => screen.getAllByRole('listitem')[0]?.querySelector('span')?.textContent;
+
+    // Default: newest first — the 2027 Duck River schedule tops the list.
+    expect(await firstRow()).toContain('Duck River');
+    await user.click(screen.getByRole('combobox', { name: 'Sort entries' }));
+    await user.click(screen.getByRole('option', { name: 'Water (A–Z)' }));
+    await waitFor(() => expect(firstRow()).toContain('Caney Fork River'));
+    await user.click(screen.getByRole('combobox', { name: 'Sort entries' }));
+    await user.click(screen.getByRole('option', { name: 'County (A–Z)' }));
+    // Anderson County (Clinch River) sorts ahead of un-countied rows.
+    await waitFor(() => expect(firstRow()).toContain('Clinch River'));
+  });
+
   it('verifies at the official source on every row', async () => {
     renderPage();
     await screen.findByText('Latest published');
