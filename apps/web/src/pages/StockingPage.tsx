@@ -22,6 +22,36 @@ const WINDOW_DAYS = [30, 90, 3650] as const;
 const PREVIEW_COUNT = 6;
 const FILTERED_CAP = 20;
 
+/** Sort orders for the browse/filtered view (URL ?sort=; date-desc default). */
+type SortKey = 'date-desc' | 'date-asc' | 'location' | 'county';
+const SORT_LABEL: Record<SortKey, string> = {
+  'date-desc': 'Newest first',
+  'date-asc': 'Oldest first',
+  location: 'Water (A–Z)',
+  county: 'County (A–Z)',
+};
+function sortEvents(list: StockingEvent[], key: SortKey): StockingEvent[] {
+  const byName = (a: StockingEvent, b: StockingEvent) => a.streamName.localeCompare(b.streamName);
+  switch (key) {
+    case 'date-asc':
+      return [...list].sort((a, b) => a.date.localeCompare(b.date) || byName(a, b));
+    case 'location':
+      return [...list].sort(byName);
+    case 'county': {
+      // Un-countied rows sink to the end rather than masquerade as a county.
+      const rank = (e: StockingEvent) => (e.county ? 0 : 1);
+      return [...list].sort(
+        (a, b) =>
+          rank(a) - rank(b) ||
+          (a.county ?? '').localeCompare(b.county ?? '') ||
+          byName(a, b),
+      );
+    }
+    default:
+      return [...list].sort((a, b) => b.date.localeCompare(a.date) || byName(a, b));
+  }
+}
+
 const TODAY = () => new Date().toISOString().slice(0, 10);
 
 /** Data-state copy: schedules are plans; past-dated entries are reports, not field-verified facts. */
@@ -107,6 +137,7 @@ export function StockingPage() {
   const species = (searchParams.get('species') as 'all' | Species) || 'all';
   const days = Number(searchParams.get('days') ?? 90) || 90;
   const expanded = searchParams.get('all') === '1';
+  const sort = (searchParams.get('sort') ?? 'date-desc') as SortKey;
   const setFilter = (key: string, value: string) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
@@ -132,19 +163,21 @@ export function StockingPage() {
   const filtered = useMemo(() => {
     const cutoff = Date.now() - days * 24 * 3600_000;
     const q = normalize(query);
-    return [...events]
-      .filter((e) => (county === 'all' ? true : e.county === county))
-      .filter((e) => (species === 'all' ? true : e.species === species))
-      .filter((e) => Date.parse(`${e.date}T12:00:00`) >= cutoff)
-      .filter(
-        (e) =>
-          !q ||
-          normalize(e.streamName).includes(q) ||
-          normalize(SPECIES_LABEL[e.species]).includes(q) ||
-          (e.county ? normalize(e.county).includes(q) : false),
-      )
-      .sort((a, b) => b.date.localeCompare(a.date) || a.streamName.localeCompare(b.streamName));
-  }, [events, county, species, days, query]);
+    return sortEvents(
+      [...events]
+        .filter((e) => (county === 'all' ? true : e.county === county))
+        .filter((e) => (species === 'all' ? true : e.species === species))
+        .filter((e) => Date.parse(`${e.date}T12:00:00`) >= cutoff)
+        .filter(
+          (e) =>
+            !q ||
+            normalize(e.streamName).includes(q) ||
+            normalize(SPECIES_LABEL[e.species]).includes(q) ||
+            (e.county ? normalize(e.county).includes(q) : false),
+        ),
+      sort,
+    );
+  }, [events, county, species, days, query, sort]);
 
   const filtersActive = county !== 'all' || species !== 'all' || days !== WINDOW_DAYS[1] || query.trim() !== '';
   const preview = useMemo(
@@ -243,6 +276,22 @@ export function StockingPage() {
               <option value={WINDOW_DAYS[0]}>Last 30 days</option>
               <option value={WINDOW_DAYS[1]}>Last 90 days</option>
               <option value={WINDOW_DAYS[2]}>All dates</option>
+            </select>
+          </label>
+          <label className="text-sm">
+            <span className="mb-1 block font-bold">Sort</span>
+            <select
+              className="focus-ring min-h-[44px] rounded-lg border px-3"
+              style={{ borderColor: 'var(--trout-color-border)' }}
+              aria-label="Sort entries"
+              value={sort}
+              onChange={(e) => setFilter('sort', e.target.value)}
+            >
+              {(Object.keys(SORT_LABEL) as SortKey[]).map((k) => (
+                <option key={k} value={k}>
+                  {SORT_LABEL[k]}
+                </option>
+              ))}
             </select>
           </label>
         </div>
