@@ -1,3 +1,18 @@
+# SESSION 3 — Product / UX / Growth (2026-09-08)
+
+Base commit: `6d0befe` (origin/main, recovery push 2026-09-08).
+Clone: `C:\Users\Benjamin\Projects\trout-s3` (own clone; shared tree never committed).
+Scope: regulations UI, SEO infrastructure, hatch calendar, match-the-hatch imagery,
+stocking page redesign, analytics. NOT touched: TennesseeMap/mapStyle/mapTokens
+(Session 2 single-writer), geometry generators, ingest pipeline (Session 1).
+Commit tags: `grow(...)` / `ux(...)`.
+
+## Status log
+
+- [x] Setup: clone at `6d0befe`, baseline gates (see below).
+
+---
+
 # SESSION 1 — integration + data pipeline (2026-09-08) — base commit 6d0befe
 
 Base: `origin/main` = `6d0befe` (recovery push 2026-09-08). Clone: `C:\Users\Benjamin\Projects\trout-s1`.
