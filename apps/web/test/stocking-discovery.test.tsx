@@ -116,15 +116,14 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     await screen.findByText('Latest published');
     await user.click(screen.getByRole('button', { name: /Browse the full schedule/ }));
     const firstRow = () => screen.getAllByRole('listitem')[0]?.querySelector('span')?.textContent;
+    const combobox = screen.getByRole('combobox', { name: 'Sort entries' });
 
     // Default: newest first — the 2027 Duck River schedule tops the list.
     expect(await firstRow()).toContain('Duck River');
-    await user.click(screen.getByRole('combobox', { name: 'Sort entries' }));
-    await user.click(screen.getByRole('option', { name: 'Water (A–Z)' }));
+    await user.selectOptions(combobox, 'location');
     await waitFor(() => expect(firstRow()).toContain('Caney Fork River'));
-    await user.click(screen.getByRole('combobox', { name: 'Sort entries' }));
-    await user.click(screen.getByRole('option', { name: 'County (A–Z)' }));
-    // Anderson County (Clinch River) sorts ahead of un-countied rows.
+    await user.selectOptions(combobox, 'county');
+    // Anderson County (Clinch River) sorts ahead of every other fixtured row.
     await waitFor(() => expect(firstRow()).toContain('Clinch River'));
   });
 
