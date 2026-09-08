@@ -254,7 +254,7 @@ export function HatchKeyPage() {
                       aria-pressed={draft.tails === t}
                       onClick={() => pick('tails', t)}
                     >
-                      <TailsArt tails={t} size={110} />
+                      <span aria-hidden="true"><TailsArt tails={t} size={110} /></span>
                       <span className="font-bold">{t} tails</span>
                       <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
                         {t === 2 ? 'Count the filaments — a pair' : 'Three separate filaments fanned out'}
@@ -274,7 +274,7 @@ export function HatchKeyPage() {
                       aria-pressed={draft.gills === g}
                       onClick={() => pick('gills', g)}
                     >
-                      <GillsArt gills={g} size={110} />
+                      <span aria-hidden="true"><GillsArt gills={g} size={110} /></span>
                       {GILLS_LABEL[g]}
                     </button>
                   ))}
@@ -291,7 +291,7 @@ export function HatchKeyPage() {
                       aria-pressed={draft.bodyShape === s}
                       onClick={() => pick('bodyShape', s)}
                     >
-                      <ShapeArt shape={s} size={110} />
+                      <span aria-hidden="true"><ShapeArt shape={s} size={110} /></span>
                       <span className="font-bold capitalize">{s}</span>
                       <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
                         {s === 'slender' ? 'Long and thin, like a twig' : 'Stout and hump-backed'}
