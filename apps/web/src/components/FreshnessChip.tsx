@@ -14,6 +14,13 @@ export interface FreshnessChipProps {
    * a just-fetched six-hour-old reading is stale, and the chip says so.
    */
   observedAt?: number | undefined | null;
+  /**
+   * Epoch ms the feed itself promised its next update (snapshot's
+   * nextExpectedUpdate). When that time has passed, the chip says the update
+   * is overdue — an unhealthy or stalled feed is visible without expanding
+   * the source disclosure (H4/C1).
+   */
+  nextExpectedAt?: number | undefined | null;
   className?: string;
 }
 
@@ -26,9 +33,24 @@ export interface FreshnessChipProps {
  * "Offline · last known 6:40 AM" while offline, "Cached · last known" when
  * merely serving the stored snapshot while online.
  */
-export function FreshnessChip({ fetchedAt, live, observedAt, className }: FreshnessChipProps) {
+export function FreshnessChip({
+  fetchedAt,
+  live,
+  observedAt,
+  nextExpectedAt,
+  className,
+}: FreshnessChipProps) {
   const online = useOnline();
   if (fetchedAt === undefined || fetchedAt === null) {
+    // Offline with nothing stored for this surface: the old markup called
+    // this "Saved offline", which overclaimed. Say exactly what is true.
+    if (!online) {
+      return (
+        <Chip tone="neutral" className={className}>
+          Offline · nothing saved yet
+        </Chip>
+      );
+    }
     return (
       <Chip tone="neutral" className={className}>
         Never updated
@@ -37,9 +59,22 @@ export function FreshnessChip({ fetchedAt, live, observedAt, className }: Freshn
   }
   if (live && online) {
     if (observedAt == null) {
+      // The feed promised an update that never came: immediately overdue
+      // (nextExpectedUpdate <= fetchedAt) is how the builder signals an
+      // unhealthy gauges pipeline. Surface it right here, not in a <details>.
+      const overdue = nextExpectedAt != null && nextExpectedAt <= Date.now();
       return (
-        <Chip tone="neutral" className={className} title="Snapshot timestamp. A successful fetch is not a live observation — this feed carries no reading timestamps.">
+        <Chip
+          tone={overdue ? 'fair' : 'neutral'}
+          className={className}
+          title={
+            overdue
+              ? 'This snapshot is past its expected update time. The conditions feed may be unavailable — coverage information is not current.'
+              : 'Snapshot timestamp. A successful fetch is not a live observation — this feed carries no reading timestamps.'
+          }
+        >
           Snapshot · {ageMinutes(fetchedAt)}
+          {overdue ? ' · update overdue' : ''}
         </Chip>
       );
     }

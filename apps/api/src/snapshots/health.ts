@@ -1,0 +1,102 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+/**
+ * Feed-level health for the published conditions snapshot (C1 remediation,
+ * 2026-09-07). The per-record `nextExpectedUpdate <= fetchedAt` stamp is the
+ * builder's documented "gauges job unhealthy at build time" signal; combined
+ * with catalog-wide zero observations it is exactly the shape production
+ * served during the empty-feed incident. This module turns that signal into
+ * something /healthz (and deploy verification) can act on instead of
+ * reporting a green 200 while every water reads Unassessed.
+ */
+
+/** A feed older than this has missed its hourly cadence by a wide margin. */
+const MAX_AGE_MINUTES = 360;
+
+export interface ConditionsFeedVerdict {
+  /** False when the feed file is absent or webPublicDir is not wired. */
+  present: boolean;
+  /** False only when the feed cannot serve current-conditions use. */
+  healthy: boolean;
+  reason: string | null;
+  records: number;
+  assessed: number;
+  /** Builder distress signal: gauges job was unhealthy when this was built. */
+  buildStale: boolean;
+  fetchedAt: string | null;
+  ageMinutes: number | null;
+}
+
+export function conditionsFeedHealth(
+  webPublicDir: string | undefined,
+  now = new Date(),
+): ConditionsFeedVerdict {
+  const base: ConditionsFeedVerdict = {
+    present: false,
+    healthy: true,
+    reason: null,
+    records: 0,
+    assessed: 0,
+    buildStale: false,
+    fetchedAt: null,
+    ageMinutes: null,
+  };
+  // Not wired (tests / portal-only builds): nothing to judge, stay neutral.
+  if (!webPublicDir) return base;
+  const file = join(webPublicDir, 'v1', 'conditions', 'latest.json');
+  if (!existsSync(file)) {
+    return { ...base, healthy: false, reason: 'conditions feed has not been generated' };
+  }
+  let rows: Array<{
+    score?: { assessed?: boolean };
+    fetchedAt?: string;
+    nextExpectedUpdate?: string;
+  }>;
+  try {
+    rows = JSON.parse(readFileSync(file, 'utf8')) as typeof rows;
+  } catch {
+    return { ...base, healthy: false, reason: 'conditions feed is not valid JSON' };
+  }
+  if (!Array.isArray(rows)) {
+    return { ...base, healthy: false, reason: 'conditions feed is not an array' };
+  }
+  const fetchedAt = rows.find((r) => r?.fetchedAt)?.fetchedAt ?? null;
+  const nextExpectedUpdate = rows.find((r) => r?.nextExpectedUpdate)?.nextExpectedUpdate ?? null;
+  const ageMinutes = fetchedAt
+    ? Math.max(0, Math.round((now.getTime() - Date.parse(fetchedAt)) / 60_000))
+    : null;
+  const buildStale =
+    fetchedAt != null &&
+    nextExpectedUpdate != null &&
+    Date.parse(nextExpectedUpdate) <= Date.parse(fetchedAt);
+  const assessed = rows.filter((r) => r?.score?.assessed === true).length;
+  const verdict: ConditionsFeedVerdict = {
+    ...base,
+    present: true,
+    records: rows.length,
+    assessed,
+    buildStale,
+    fetchedAt,
+    ageMinutes,
+  };
+  if (rows.length === 0) {
+    return { ...verdict, healthy: false, reason: 'conditions feed is empty' };
+  }
+  if (assessed === 0 && buildStale) {
+    return {
+      ...verdict,
+      healthy: false,
+      reason:
+        'catalog-wide zero observations and the gauges job was unhealthy when the feed was built',
+    };
+  }
+  if (ageMinutes != null && ageMinutes > MAX_AGE_MINUTES) {
+    return {
+      ...verdict,
+      healthy: false,
+      reason: `conditions feed is ${ageMinutes} minutes old (limit ${MAX_AGE_MINUTES})`,
+    };
+  }
+  return verdict;
+}

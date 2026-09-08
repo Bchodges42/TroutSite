@@ -26,7 +26,7 @@ import { formatFlow, formatHeight, formatNum, formatTemp } from '../lib/units';
 import { ageMinutes } from '../lib/time';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
-import { conditionReason } from '../lib/presentation';
+import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 
@@ -122,14 +122,15 @@ export function StreamDetailPage() {
         <div>
           <h1 className="page-title">{stream.name}</h1>
           <p className="page-subtitle capitalize">
-            {stream.waterbodyType} ·{' '}
+            {waterTypeLabel(stream.waterbodyType)} ·{' '}
             {stream.stockingProgram ? 'stocking program listed' : 'no stocking program listed'}
           </p>
         </div>
         <FreshnessChip
           fetchedAt={snapshot ? Date.parse(snapshot.fetchedAt) : null}
           live={conditionsQuery.data?.live ?? false}
-          observedAt={newestReadingAt(snapshot?.readings ?? [])} />
+          observedAt={newestReadingAt(snapshot?.readings ?? [])}
+          nextExpectedAt={snapshot ? Date.parse(snapshot.nextExpectedUpdate) : null} />
       </div>
 
       {!snapshot ? (
@@ -145,17 +146,19 @@ export function StreamDetailPage() {
           <Card className="mt-4">
             <div className="flex flex-wrap items-center gap-4">
               {statusForScore(snapshot.score.value, snapshot.readings.length > 0) !== 'no-data' &&
-                stream.species !== 'warmwater' && (
+                stream.species === 'trout' && (
                   <ScorePill score={snapshot.score.value} size="lg" />
                 )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold">
                   {stream.species === 'warmwater'
                     ? 'Warmwater — trout model does not apply'
-                    : statusForScore(snapshot.score.value, snapshot.readings.length > 0) !==
-                        'no-data'
-                      ? 'Trout condition assessment'
-                      : 'Assessment unavailable in this snapshot'}
+                    : stream.species == null
+                      ? 'Species unverified — the catalog does not document trout for this water'
+                      : statusForScore(snapshot.score.value, snapshot.readings.length > 0) !==
+                          'no-data'
+                        ? 'Trout condition assessment'
+                        : 'Assessment unavailable in this snapshot'}
                   {trend !== 'unknown' && (
                     <span className="ml-2 font-semibold">{TREND_LABEL[trend]}</span>
                   )}

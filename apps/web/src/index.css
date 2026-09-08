@@ -744,10 +744,21 @@ a {
   margin-right: 5px;
   background: var(--status-color);
 }
+/* M1: the unassessed sample shows what the map actually renders — the pale
+continuous corridor under a dashed quiet line — not a bare thin dash. */
 .legend-line.unknown {
-  height: 0;
-  border-top: 2px dashed var(--ui-unknown);
-  background: none;
+  height: 6px;
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(90deg, var(--ui-unknown) 0 5px, transparent 5px 9px) center / 100%
+      2px no-repeat,
+    color-mix(in srgb, var(--map-water) 55%, var(--ui-surface));
+}
+/* M1: amber halo sample matches the rendered hatch glow. */
+.legend-line.halo {
+  height: 6px;
+  background: var(--map-sulphur);
+  box-shadow: 0 0 5px 2px color-mix(in srgb, var(--map-sulphur) 55%, transparent);
 }
 .map-help {
   color: var(--map-placeText);
@@ -1509,6 +1520,9 @@ a {
   }
   .water-sidebar.is-index-open {
     display: flex;
+    /* H2: atlas is its own state — the floating search/tools row does not
+    render, so the panel uses the full field height instead of dodging it. */
+    top: 14px;
   }
   .water-sidebar.is-inspecting {
     display: flex;
@@ -1593,6 +1607,11 @@ a {
   }
   .field-map:has(.is-inspecting) .map-bottom {
     display: none;
+  }
+  /* H2: the floating toolbar is half-buried under the atlas panel — hide it
+  while that state owns the screen. */
+  .field-map:has(.is-index-open) .map-topbar {
+    visibility: hidden;
   }
   .field-map:has(.is-inspecting) .maplibregl-ctrl-bottom-right {
     bottom: 51% !important;

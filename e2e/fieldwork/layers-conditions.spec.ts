@@ -278,12 +278,12 @@ test.describe('condition presentation', () => {
   // below reuse the committed fixture generator's values, hand-pinned here to
   // specific presentations.
   const CATALOG = [
-    { id: 'good-water', name: 'Good Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g1'], stockingProgram: true, idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
-    { id: 'zero-water', name: 'Zero Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g2'], stockingProgram: false, idealFlow: [{ min: 50, max: 250, unit: 'cfs' }], officialSources: [] },
-    { id: 'unassessed-water', name: 'Unassessed Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', gaugeIds: ['g3'], stockingProgram: false, idealFlow: [], officialSources: [] },
-    { id: 'stale-water', name: 'Stale Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g4'], stockingProgram: false, idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
+    { id: 'good-water', name: 'Good Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g1'], stockingProgram: true, species: 'trout', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
+    { id: 'zero-water', name: 'Zero Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g2'], stockingProgram: false, species: 'trout', idealFlow: [{ min: 50, max: 250, unit: 'cfs' }], officialSources: [] },
+    { id: 'unassessed-water', name: 'Unassessed Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', gaugeIds: ['g3'], stockingProgram: false, species: 'trout', idealFlow: [], officialSources: [] },
+    { id: 'stale-water', name: 'Stale Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g4'], stockingProgram: false, species: 'trout', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
     { id: 'warm-water', name: 'Warm Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: [], stockingProgram: true, species: 'warmwater', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
-    { id: 'no-snapshot-water', name: 'No Snapshot Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', gaugeIds: [], stockingProgram: false, idealFlow: [], officialSources: [] },
+    { id: 'no-snapshot-water', name: 'No Snapshot Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', gaugeIds: [], stockingProgram: false, species: 'trout', idealFlow: [], officialSources: [] },
   ];
   const minutesAgo = (m: number) => new Date(Date.now() - m * 60_000).toISOString().replace(/\.\d{3}Z$/, 'Z');
   const CONDS = [
@@ -350,7 +350,8 @@ test.describe('condition presentation', () => {
     const inspector = page.locator('#river-inspector');
     await expect(inspector.getByText('Good conditions')).toBeVisible();
     await expect(inspector.locator('.score-disc strong')).toHaveText('90');
-    await expect(inspector.locator('.freshness time')).toHaveAttribute('title', /./);
+    // H4: freshness is the shared chip — a live fetch of 10-hour-old readings says Stale.
+    await expect(inspector.locator('.freshness')).toContainText('Stale · observed');
     await page.keyboard.press('Escape');
     await expect(inspector).toBeHidden();
 

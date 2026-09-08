@@ -524,6 +524,9 @@ export function atlasStyle(
         },
       },
       // Hatch-mode halo — sulphur glow when hatchActive. LINES ONLY.
+      // M1: width and opacity scale with zoom — at statewide zooms the halo
+      // stays a narrow hint so the waterway and its condition color remain
+      // legible under it, instead of a fixed 9px amber wash dominating.
       {
         id: 'rivers-hatch-halo',
         type: 'line' as const,
@@ -537,14 +540,41 @@ export function atlasStyle(
             ['get', 'hatchColor'],
             t.sulphur,
           ],
-          'line-width': 9,
+          'line-width': [
+            'interpolate',
+            ['exponential', 2],
+            ['zoom'],
+            5.6,
+            3.5,
+            9,
+            9,
+            13,
+            13,
+          ],
+          // Zoom must be the TOP-LEVEL interpolate input (style-spec), so the
+          // per-feature case lives in each stop's output instead.
           'line-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            ['boolean', ['feature-state', 'hatchActive'], false],
-            0.5,
-            0,
+            'interpolate',
+            ['exponential', 2],
+            ['zoom'],
+            5.6,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'hatchActive'], false],
+              0.3,
+              0,
+            ],
+            9,
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'hatchActive'], false],
+              0.5,
+              0,
+            ],
           ],
           'line-blur': 1.4,
         },

@@ -18,3 +18,25 @@ export function waterIdentity(label: string): { name: string; reach?: string } {
   const match = label.match(/^(.+?)\s+\((.+)\)$/);
   return match ? { name: match[1]!, reach: match[2]! } : { name: label };
 }
+
+/**
+ * Human label for a catalog waterbodyType (M2). The catalog word is presented
+ * as-is — no size classification is invented, so Norris Lake reads "Lake",
+ * never "small". Reach names from the catalog identity outrank this label.
+ */
+export function waterTypeLabel(waterbodyType: string): string {
+  switch (waterbodyType) {
+    case 'tailrace':
+      return 'Tailwater';
+    case 'creek':
+      return 'Creek';
+    case 'lake':
+      return 'Lake';
+    case 'pond':
+      return 'Pond';
+    case 'spring':
+      return 'Spring';
+    default:
+      return 'River';
+  }
+}

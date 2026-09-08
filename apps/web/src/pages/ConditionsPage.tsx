@@ -341,7 +341,9 @@ function ConditionRow({
 }: Row & { tempUnit: 'C' | 'F' }) {
   const hasData = (snapshot?.readings.length ?? 0) > 0;
   const status = statusForScore(snapshot?.score.value ?? null, hasData, snapshot?.score?.assessed);
-  const species = stream.species ?? 'trout';
+  // Catalog species verbatim — unknown stays unknown (H3); the decision model
+  // classifies it and it never wears a trout score pill.
+  const species = stream.species;
   const decision = toWaterDecisionView(
     { stream, status, score: snapshot?.score?.value ?? null, snapshot, species },
     'trout',
@@ -371,7 +373,7 @@ function ConditionRow({
               : 'No cached readings yet'}
           </span>
         </span>
-        {hasData && status !== 'no-data' && species !== 'warmwater' ? (
+        {hasData && status !== 'no-data' && species === 'trout' ? (
           <ScorePill score={snapshot!.score.value} />
         ) : (
           <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>

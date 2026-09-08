@@ -78,6 +78,32 @@ describe('FreshnessChip', () => {
     render(<FreshnessChip fetchedAt={undefined} live={false} />);
     expect(screen.getByText('Never updated')).toBeInTheDocument();
   });
+
+  // H4/C1: the feed's own nextExpectedUpdate, when already past, must surface
+  // right on the chip — an unhealthy feed is visible without expanding the
+  // source disclosure, and a fresh fetch cannot make it look healthy.
+  it('flags update overdue when the promised next update has passed', () => {
+    render(
+      <FreshnessChip
+        fetchedAt={Date.now() - 26 * 60 * 60_000}
+        live
+        nextExpectedAt={Date.now() - 25 * 60 * 60_000}
+      />,
+    );
+    expect(screen.getByText(/Snapshot · .* · update overdue/)).toBeInTheDocument();
+  });
+
+  it('does not flag overdue while the promised update is still in the future', () => {
+    render(
+      <FreshnessChip
+        fetchedAt={Date.now() - 30 * 60_000}
+        live
+        nextExpectedAt={Date.now() + 30 * 60_000}
+      />,
+    );
+    expect(screen.getByText(/Snapshot · 30 minutes ago/)).toBeInTheDocument();
+    expect(screen.queryByText(/update overdue/)).not.toBeInTheDocument();
+  });
 });
 
 describe('TaxonArt', () => {

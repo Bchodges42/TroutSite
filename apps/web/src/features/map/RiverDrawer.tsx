@@ -2,15 +2,14 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { regionName, monthName } from '../../data/regions';
-import { ageMinutes } from '../../lib/time';
 import { formatFlow, formatTemp, formatHeight } from '../../lib/units';
 import { flowTrend, TREND_LABEL } from '../../lib/conditions';
-import { orderedReadings, conditionReason, waterIdentity } from '../../lib/presentation';
+import { orderedReadings, conditionReason, waterIdentity, waterTypeLabel } from '../../lib/presentation';
 import { useSettingsContext } from '../../lib/settings';
 import { useContentPack } from '../../lib/content';
-import { useOnline } from '../../hooks/useOnline';
 import { riverWorkflowUrl } from '../../lib/riverContext';
 import type { RiverMapFeature } from './riverMapSelectors';
+import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
 import { BookIcon, BugIcon, CloseIcon, WavesIcon } from '../../components/icons';
 const TABS = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
@@ -90,17 +89,7 @@ export function RiverDrawer({
             <p className="eyebrow">{regionName(feature.stream.regionId)}</p>
             <h2>{identity.name}</h2>
             <p className="inspector-subtitle">
-              {identity.reach ??
-                (feature.stream.waterbodyType === 'tailrace'
-                  ? 'Tailwater'
-                  : feature.stream.waterbodyType === 'creek'
-                    ? 'Creek'
-                    : feature.stream.waterbodyType === 'lake' ||
-                        feature.stream.waterbodyType === 'pond'
-                      ? 'Small still water'
-                      : feature.stream.waterbodyType === 'spring'
-                        ? 'Spring'
-                        : 'River')}{' '}
+              {identity.reach ?? waterTypeLabel(feature.stream.waterbodyType)}{' '}
               ·{' '}
               {feature.stream.stockingProgram
                 ? 'Stocking program listed'
@@ -176,7 +165,6 @@ function WaterTab({
 }) {
   const { settings } = useSettingsContext();
   const pack = useContentPack();
-  const online = useOnline();
   const snap = feature.snapshot;
   const readings = orderedReadings(snap);
   const flow = readings.find((r) => r.cfs != null),
@@ -184,35 +172,45 @@ function WaterTab({
     stage = readings.find((r) => r.heightFt != null);
   const observed = readings[0]?.timestamp;
   const warm = feature.species === 'warmwater';
+  // No catalog species: say so explicitly (H3). The water keeps its gauge
+  // readings below, but never trout-assessment language or a score disc.
+  const unverified = feature.species == null;
   const title = warm
     ? 'Warmwater fishery'
-    : feature.status === 'no-data'
-      ? 'Not assessed'
-      : feature.status === 'good'
-        ? 'Good conditions'
-        : feature.status === 'fair'
-          ? 'Fair conditions'
-          : 'Poor conditions';
+    : unverified
+      ? 'Species unverified'
+      : feature.status === 'no-data'
+        ? 'Not assessed'
+        : feature.status === 'good'
+          ? 'Good conditions'
+          : feature.status === 'fair'
+            ? 'Fair conditions'
+            : 'Poor conditions';
   const reason = warm
     ? 'Trout scores do not apply to this fishery. Check the readings and local guidance.'
-    : feature.status === 'no-data'
-      ? 'An assessment is not available in this snapshot. This does not mean fishing is poor.'
-      : (snap?.score.reasons.find((r) => /dangerously|avoid stressing/i.test(r)) ??
-        snap?.score.reasons[0] ??
-        'Assessment based on the available gauge readings.');
+    : unverified
+      ? 'The catalog does not document trout as a target species for this water. The gauge readings below still describe flow and temperature — check the fishery notes before fishing.'
+      : feature.status === 'no-data'
+        ? 'An assessment is not available in this snapshot. This does not mean fishing is poor.'
+        : (snap?.score.reasons.find((r) => /dangerously|avoid stressing/i.test(r)) ??
+          snap?.score.reasons[0] ??
+          'Assessment based on the available gauge readings.');
   const dominant = feature.hatchDominant;
   const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
   return (
     <>
-      <div className="assessment" data-status={warm ? 'warmwater' : feature.status}>
+      <div
+        className="assessment"
+        data-status={warm ? 'warmwater' : unverified || feature.status === 'no-data' ? 'no-data' : feature.status}
+      >
         <div className="assessment-top">
           <div>
             <span className="assessment-label">
-              {warm ? 'Species guidance' : 'Trout condition assessment'}
+              {warm || unverified ? 'Species guidance' : 'Trout condition assessment'}
             </span>
             <h3 className="assessment-name">{title}</h3>
           </div>
-          {feature.status !== 'no-data' && feature.score !== null && !warm && (
+          {feature.species === 'trout' && feature.status !== 'no-data' && feature.score !== null && (
             <span
               className="score-disc"
               aria-label={'Condition score ' + feature.score + ' out of 100'}
@@ -224,15 +222,12 @@ function WaterTab({
         </div>
         <p className="assessment-reason">{conditionReason(reason, settings.tempUnit)}</p>
         <div className="freshness">
-          <span>{!online ? 'Saved offline' : snap ? 'Snapshot' : 'No snapshot'}</span>
-          {observed && (
-            <>
-              <span>·</span>
-              <time dateTime={observed} title={new Date(observed).toLocaleString()}>
-                Observed {ageMinutes(Date.parse(observed))}
-              </time>
-            </>
-          )}
+          <FreshnessChip
+            fetchedAt={snap ? Date.parse(snap.fetchedAt) : null}
+            live={live}
+            observedAt={observed ? Date.parse(observed) : null}
+            nextExpectedAt={snap ? Date.parse(snap.nextExpectedUpdate) : null}
+          />
         </div>
       </div>
       <div className="metrics">
