@@ -17,11 +17,14 @@ import {
 import { ThemeToggle } from '../../theme/ThemeProvider';
 import { rememberedMapUrl, rememberMapUrl, contextUrl } from '../../lib/riverContext';
 
+// Regulations rides at position 3 of the menu (after Match the hatch and
+// Logbook) — the session-3 promotion: it answers "can I fish this legally"
+// before the utility pages below it.
 const moreLinks = [
+  { to: '/regulations', label: 'Regulations', Icon: ListIcon },
   { to: '/conditions', label: 'Conditions', Icon: WavesIcon },
   { to: '/charts', label: 'Hatch calendar', Icon: BugIcon },
   { to: '/stocking', label: 'Stocking schedules', Icon: FishIcon },
-  { to: '/fishing-info', label: 'Fishing information', Icon: ListIcon },
   { to: '/shops', label: 'Shops & reports', Icon: ShopIcon },
   { to: '/settings', label: 'Settings', Icon: GearIcon },
   { to: '/about', label: 'About & privacy', Icon: ShieldIcon },

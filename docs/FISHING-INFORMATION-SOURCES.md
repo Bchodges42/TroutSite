@@ -1,6 +1,6 @@
 # Fishing-information sources — Tennessee (data-sources lane)
 
-**Verified:** 2026-09-04 (live page fetches from this lane unless marked otherwise) ·
+**Verified:** 2026-09-08 (full special-regulations re-verification against live TWRA pages; initial verification 2026-09-04) ·
 **Machine-readable twin:** `packages/content/data/fishing-information.json` → served at
 `GET /content/fishing.json` (contract `FishingInformationSchema`, additive).
 
@@ -21,6 +21,58 @@ standing disclaimer directing users to the current official regulation.
 - The regs pages themselves carry **no effective-date line**; effective dates must be
   cited from TWRA news releases. The eRegulations mirror ("official" TWRA partner)
   was last updated July 21, 2026 at verification time — <https://www.eregulations.com/tennessee/fishing>
+
+## 2026-09-08 special-regulations re-verification log
+
+One row per item touched in `fishing-information.json` on 2026-09-08. All rows verified
+by direct live fetch of the TWRA trout regulations page and regs hub unless noted.
+
+| Water / subject | What changed | Source URL | Checked |
+|---|---|---|---|
+| Clinch River (clinch-river) | Verified unchanged (Norris Dam→Hwy 61, 14-20″ PLR, 7/day, 1 over 20); added reach boundary + reg-year effectiveFrom | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Caney Fork (caney-fork-river) | Verified; added reach boundary (Center Hill Dam→Cumberland R) and species split (rainbow/brook/cutthroat PLR, brown 24″/1-day) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Elk R / Tims Ford (elk-river) | Verified; added reach boundary (Tims Ford Dam→I-65) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Hiwassee (hiwassee-river) | Verified unchanged (Mar 1-Sep 30 7/day max 2 browns; Oct 1-Feb 28 C&R/DH) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| SF Holston (south-holston-river) | Verified; added spawning-closure boundaries (Hickory Tree Br→Bottom Cr; Boy's Island→first island above Webb Rd Br) and Boone Reservoir arm extent (to Hwy 11E) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Watauga QTA (watauga-river) | Verified unchanged (Smallings Br→CSX bridges, 14″ min, 2/day, no bait, undersized may not be possessed) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Fort Patrick Henry (ft-patrick-henry-tailwater) | Verified; added creel detail (7/day, 1 over 22) + reach (Boone Dam→Louis Milhorn Br) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Tellico R (tellico-river) | Verified; added DH reach (North River mouth→state line), permit reach (Turkey Cr confluence up), one-rod rule, Free-Fishing-Day Sourwood→dam closure to 17+ until noon | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Citico Cr (citico-creek) | Verified; added reach (Little Citico confluence→N/S Fork confluence), one-rod rule, Aug 16-Feb 28 open daily no permit | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Doe R (doe-river) | Verified unchanged (DH Oct 1-Feb 28 within Roan Mountain SP boundaries) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Buffalo Cr (buffalo-creek-grainger) | Expanded: mill-dam→Buffalo Springs WMA boundary DH Oct 1-Jan 31; ABOVE mill dam closed year-round to all fishing; below dam rod-and-reel only year-round, bait-harvest gear banned | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Piney R (piney-river-rhea) | **CORRECTED — old item had this backwards.** 2026-27 change REMOVES Piney River DH (eff. 2026-08-01) per regs hub "What's New" + TWRA 2025-12-16 proposals release; TWRA's trout page still listed Nov 1-Feb 28 C&R on 2026-09-08 (internal TWRA inconsistency, flagged in item; C&R stated as safe default) | [regs hub](https://www.tn.gov/twra/fishing-regs.html) · [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) · [proposals news](https://www.tn.gov/twra/news/2025/12/16/comment-period-open-for-fishing-regulations-proposals.html) | 2026-09-08 |
+| Clear Creek (clear-creek-obed) | **CORRECTED — name collision.** The Nov 1-Mar 31 closure "Clear Creek" on TWRA's trout page is the ANDERSON COUNTY Clinch tributary (Hwy 441 up to second dam near Norris), not the Obed-system creek; Obed-system creek now states "no special regulation — statewide rules" | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Horse Cr (horse-creek-greene) | **Filled in the actual rule** (was a vague placeholder): USFS boundary→Squibb Cr junction, 7/day except 2/day May 1-Sep 30 | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| GSMNP park streams (little-river, leconte-creek, middle-prong-little-pigeon, west-prong-little-pigeon, cosby-creek) | Unchanged; verified 2026-09-04 against NPS page (see table below) | [NPS GSMNP fishing](https://www.nps.gov/grsm/planyourvisit/fishing.htm) | 2026-09-04 |
+| Gatlinburg city waters (west-prong-little-pigeon, leconte-creek, roaring-fork) | **appliesTo fixed**: added Roaring Fork + Leconte Creek (real city-permit streams), REMOVED little-pigeon-river (catalog entry is the Sevierville reach — not a city water; Dudley Creek and its children-only reaches have no catalog entries); added Dec 1-Mar 31 C&R, Apr 1-Nov 30 5/day general + 2/day children's, Free-Fishing-Day River Rd closure to 16+ until 11 a.m. | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Wild trout streams (laurel-fork-carter, beaverdam-creek) | **NEW item**: 5/day no length limit, single-hook artificials only (one dropper fly); listed reaches Laurel Fork (Carter Co., cable crossing above Dennis Cove→USFS boundary) and Beaverdam Creek (Johnson Co., Birch Branch confluence→Tank Hollow Rd) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Fort Campbell streams (little-west-fork-creek, fletchers-fork) | **NEW item**: post fishing permit required on top of TN license + trout authorization (Dry Creek also listed by TWRA — no catalog entry) | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+| Statewide winter put-and-take program | **NEW statewide item**: cold-month rainbow stocking into small lakes/ponds (concentrated in West TN; the 13 catalog winter ponds); stockings-page schedule grid is the authority for each water's window | [stockings](https://www.tn.gov/twra/fishing/trout-information-stockings.html) | see flag below |
+| Statewide trout creel/size | Re-verified unchanged: 7/day any combination, no minimum, max 2 lake trout | [trout regs](https://www.tn.gov/twra/fishing-regs/trout-regulations.html) | 2026-09-08 |
+
+### TWRA special-reg waters with NO catalog entry (not applied to any waterId; do not invent ids)
+
+- **Big Soddy Creek** (upstream of Back Valley Rd) — delayed harvest, C&R **Nov 1 - Feb 28** (2026-27 change moved the start from Oct 1 to Nov 1; confirmed on trout page + regs hub "What's New").
+- **Paint Creek** (Greene Co.; campground downstream to French Broad mouth) — DH Oct 1 - Feb 28; its upstream reach is also a wild-trout stream (5/day, single-hook artificials).
+- **Slickrock Creek** (TN/NC boundary section) — 4 trout/day combined, 7″ min, single-hook artificials; TN or NC license valid.
+- **Montgomery Bell State Park — Acorn Lake** — trout C&R Dec 1 - Mar 31.
+- **Dillards Ponds** — 4 trout/day, one rod, sunrise-to-sunset-hours rule.
+- **Green Cove Pond** (Tellico area) — no permit; 7 trout/day + 5 catfish/day, one rod.
+- Gatlinburg **Dudley Creek** (incl. two children-only reaches) — city permit stream.
+- Wild-trout list streams not in catalog: **North River, Bald River, Sycamore Creek, Rough Ridge Creek** (Monroe Co.), **Rocky Fork** (Greene/Unicoi), **Left Prong of Hampton Creek** (Carter Co.), **Little Stony Creek** (not the same water as catalog `stoney-creek-carter`, "Stony Creek" — different name/stream).
+- Fort Campbell **Dry Creek** — stocked trout stream, no catalog entry.
+- **North Chickamauga Creek** — carries NO special trout regulation on TWRA's current trout page (checked 2026-09-08; statewide rules apply).
+
+### Reach/coverage mismatches resolved
+
+- The SF Holston special regulation extends into **Boone Reservoir** up to the Hwy 11E bridge on the Watauga arm, but only that arm segment is covered — `boone-lake`/`boone-tailwater` catalog entries deliberately NOT added to appliesTo (the rule does not cover the whole catalog water; `boone-tailwater` is below Boone Dam, outside the listed reach entirely).
+- Watauga Dam→Wilbur Lake reach (`watauga-river-wilbur-reach`) carries no special regulation; the QTA begins below Wilbur Dam.
+
+### 2026-09-08 fetch failures / not re-verified
+
+- **TWRA stockings page** (`https://www.tn.gov/twra/fishing/trout-information-stockings.html`): connection reset on every fetch attempt on 2026-09-08 (page was fetched in full 2026-09-04 and its structure is captured in the table below + lane fixtures). The new winter put-and-take item therefore cites the page without hard program dates — TWRA publishes no single official start/end date line for the program; the schedule grid is the authority. Do not add invented dates.
+- **eRegulations trout page** (`https://www.eregulations.com/tennessee/fishing/trout-regulations`): fetched 2026-09-08; still showed pre-Aug-1 values (Big Soddy Oct 1 start, Piney River DH present) — mirror last updated 2026-07-21, i.e. BEFORE the effective date. Treat tn.gov as authoritative over the mirror. (The bare `/tennessee/fishing/trout` path 404s.)
+- Licenses page, GSMNP NPS page, Cherokee NF, TVA safety: not re-fetched 2026-09-08; verified 2026-09-04 (rows below unchanged).
 
 ## Verified official pages
 

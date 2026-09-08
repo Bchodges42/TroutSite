@@ -29,6 +29,7 @@ import { ScorePill } from '../components/ScorePill';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
+import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
 const CONDITIONS_TTL_MIN = 60;
 
@@ -254,6 +255,8 @@ export function StreamDetailPage() {
         </>
       )}
 
+      <WaterRegulations streamId={streamId} />
+
       <section aria-labelledby="stocking-history-heading">
         <h2 className="section-title" id="stocking-history-heading">
           Stocking history
@@ -406,4 +409,43 @@ function statusForTemp(tempC: number): 'good' | 'fair' | 'poor' {
   if (tempC >= 6 && tempC <= 20) return 'good';
   if (tempC < 2 || tempC > 24) return 'poor';
   return 'fair';
+}
+
+/** Per-water special regulations from the fishing-information pack file —
+ *  hidden entirely when the catalog lists no special rule for this water. */
+function WaterRegulations({ streamId }: { streamId: string }) {
+  const info = useFishingInfo();
+  const items = itemsForWater(info.data?.data, 'special-regulations', streamId);
+  if (items.length === 0) return null;
+  return (
+    <section aria-labelledby="water-regs-heading">
+      <h2 className="section-title" id="water-regs-heading">
+        Special regulations on this water
+      </h2>
+      <div className="flex flex-col gap-2">
+        {items.map((item, i) => (
+          <Card key={i}>
+            <p className="text-sm font-bold">{item.title}</p>
+            <p className="mt-1 text-sm">{item.text}</p>
+            <p className="muted mt-1 text-xs">
+              {item.authority}
+              {item.effectiveFrom ? ` · effective ${item.effectiveFrom}` : ''} · verified against{' '}
+              {(() => {
+                try {
+                  return new URL(item.sourceUrl).hostname.replace(/^www\./, '');
+                } catch {
+                  return 'official source';
+                }
+              })()}
+            </p>
+          </Card>
+        ))}
+      </div>
+      <p className="mt-2">
+        <Link to="/regulations" className="focus-ring text-sm font-bold underline">
+          All Tennessee fishing regulations →
+        </Link>
+      </p>
+    </section>
+  );
 }

@@ -9,6 +9,7 @@ import { useSettingsContext } from '../../lib/settings';
 import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
+import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -166,6 +167,8 @@ function WaterTab({
 }) {
   const { settings } = useSettingsContext();
   const pack = useContentPack();
+  const fishingInfo = useFishingInfo();
+  const waterRegs = itemsForWater(fishingInfo.data?.data, 'special-regulations', feature.stream.id);
   const snap = feature.snapshot;
   const readings = orderedReadings(snap);
   const flow = readings.find((r) => r.cfs != null),
@@ -279,6 +282,33 @@ function WaterTab({
           >
             <BugIcon size={17} />
             Match the hatch <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      )}
+      {waterRegs.length > 0 && (
+        <div className="detail-section water-regs">
+          <h3>Special regulations on this water</h3>
+          {waterRegs.map((item, i) => (
+            <div key={i} className="water-regs-item">
+              <p>{item.text}</p>
+              <p className="muted text-xs">
+                {item.authority}
+                {item.effectiveFrom ? ` · effective ${item.effectiveFrom}` : ''} · verified against{' '}
+                {(() => {
+                  try {
+                    return new URL(item.sourceUrl).hostname.replace(/^www\./, '');
+                  } catch {
+                    return 'official source';
+                  }
+                })()}
+              </p>
+            </div>
+          ))}
+          <Link
+            className="text-action"
+            to={riverWorkflowUrl('/regulations', feature.stream, month)}
+          >
+            All fishing regulations →
           </Link>
         </div>
       )}
