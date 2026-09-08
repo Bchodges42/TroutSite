@@ -924,7 +924,7 @@
     "melton-hill-lake"
    ],
    "dam": {
-    "name": "Norris Dam — Clinch River below Norris Dam",
+    "name": "Norris Dam",
     "coordinates": [
      -84.08214,
      36.21563
@@ -982,7 +982,7 @@
     "boone-lake"
    ],
    "dam": {
-    "name": "South Holston Dam — South Fork Holston River below South Holston Dam",
+    "name": "South Holston Dam",
     "coordinates": [
      -82.09726,
      36.52356
@@ -1041,7 +1041,7 @@
     "fort-patrick-henry-lake"
    ],
    "dam": {
-    "name": "Boone Dam — South Fork Holston River at Boone Dam",
+    "name": "Boone Dam",
     "coordinates": [
      -82.43792,
      36.44066
@@ -1100,7 +1100,7 @@
     "north-fork-holston-river"
    ],
    "dam": {
-    "name": "Fort Patrick Henry Dam — South Fork Holston River at Fort Patrick Henry Dam",
+    "name": "Fort Patrick Henry Dam",
     "coordinates": [
      -82.50904,
      36.49816
@@ -1158,7 +1158,7 @@
     "boone-lake"
    ],
    "dam": {
-    "name": "Wilbur Dam — Watauga River below Wilbur Dam",
+    "name": "Wilbur Dam",
     "coordinates": [
      -82.12956,
      36.34411
