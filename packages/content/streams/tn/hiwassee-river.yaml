@@ -6,6 +6,7 @@ regionId: tn-se-hiwassee
 gaugeIds:
   - "03556590"
   - "03566000"
+  - "tva:HADT1"
 stockingProgram: true
 species: trout
 idealFlow:

@@ -1,6 +1,6 @@
 # Data-source coverage — per-water evidence provenance (data-sources lane)
 
-**Lane:** external-data & fishing-information · **Base:** `5648ccca5c2b6f6fb1cba95b8ae2d421a1e07c9e` · **Machine-readable twin:** [`docs/data-source-coverage.json`](data-source-coverage.json) · **Captured:** 2026-09-04 (USGS gauge audit + TVA location capture + TWRA two-grid capture + live most-recent rows)
+**Lane:** external-data & fishing-information · **Base:** `5648ccca5c2b6f6fb1cba95b8ae2d421a1e07c9e` · **Machine-readable twin:** [`docs/data-source-coverage.json`](data-source-coverage.json) · **Captured:** 2026-09-04 (USGS gauge audit + TVA location capture + TWRA two-grid capture + live most-recent rows) + 2026-09-08 (USACE A2W Nashville tailwater capture)
 
 This document is the human-readable coverage report for the evidence layer
 (`WaterEvidence[]` served at `GET /v1/evidence/waters.json`, contract
@@ -24,21 +24,31 @@ never what the UI may infer from a water's name.
 |---|---|---|---|---|
 | `usgs-nwis-iv` | USGS Waterservices NWIS | temperature-c, discharge-cfs, stage-ft | 15–60 min | Public domain; no key; batch ≤50 sites; **no TN reservoir-elevation IV sites**; two flagship tailwater gauges have no current IV data (below) |
 | `tva-restapi` | TVA | reservoir-level-ft, stage-ft (tailwater), discharge-cfs | hourly | Undocumented endpoint behind Cloudflare — browser User-Agent required, can change without notice; **no water temperature**; covers TVA dams AND the USACE Cumberland projects (`Ownership:"Cumberland"`) |
+| `usace-a2w` | USACE Nashville District (A2W reporting API, provider `lrn`) | discharge-cfs, stage-ft (tailwater elevation), temperature-c (°F→°C) | 30–60 min | No auth, plain UA + `Accept: application/json`; no CORS (server-side only); TSIDs hardcoded (never discovered at runtime); unknown TSID → HTTP 200 EMPTY body (warning, not error); series lag up to ~7 h; CETT1/DHTT1/JPPT1/CORT1 verified live 2026-09-08 |
 | `twra-stockings` | TWRA | stocking schedules | seasonal grid (616 rows on 2026-09-04) | tn.gov allows all crawlers, CDN caches ~10 h; CMS path ids change on redeploys (re-resolved every fetch); "week of" = Sunday + 5 days, postponable |
 | `twra-recent-stockings` | TWRA | reported-complete stockings | bi-weekly, ~12-row rolling window | No counts, no archive — completed history must be self-collected |
 | `twra-regulations` / `nps-gsmnp` / `tva-safety` | TWRA / NPS / TVA | regulations, safety | annual / static | Regulation year runs **Aug 1 – Jul 31** (2026-27 effective 2026-08-01); see [FISHING-INFORMATION-SOURCES.md](FISHING-INFORMATION-SOURCES.md) |
 
-USACE CWMS Data API (`cwms-data.usace.army.mil`) is reachable without auth but its
-timeseries catalog returns 501 — unusable today; the USACE Cumberland lakes are
-covered through TVA's observed-data instead. This is recorded in the coverage
-JSON's `meta.provenance.usace`.
+USACE Nashville District gages are served by the **Access to Water (A2W) reporting
+API** (`water.usace.army.mil/cda/reporting/providers/lrn`, verified live 2026-09-08) —
+`rivergages.mvr.usace.army.mil` does not carry LRN. Four dam-tailwater stations are
+registered (CETT1 Center Hill, DHTT1 Dale Hollow, JPPT1 J. Percy Priest, CORT1 Cordell
+Hull — flow + tail elevation + water temp, fixed English units, temp converted to °C).
+TSIDs are hardcoded in `usace-provider.ts` and never discovered at runtime. The older
+CWMS Data API catalog endpoint (`cwms-data.usace.army.mil`, 501 on 2026-09-04) is a
+different service and remains unused. The Cumberland main stem stays deliberately
+unwired for conditions: CORT1 is recorded for coverage only (multi-dam main stem —
+same rejection as the TVA main-stem monitors). Recorded in the coverage JSON's
+`meta.provenance.usace`.
 
 ## Known gauge-health findings (USGS audit, all 51 catalog gauge ids)
 
 - **Dead for IV (absent from the site service catalog):** 03533000 (Clinch River
   below Norris), 03424010 (Caney Fork at Center Hill Dam), 03486810 (Boone),
   03487010, 03468510, 03469000, 03483980, 03484000, 03487602, 03580750.
-  The two flagship ones are backfilled by TVA tailwater monitors (`NRST1`, `CEHT1`).
+  The flagship ones are backfilled by TVA tailwater monitors (`NRST1`, `CEHT1`)
+  and — for Center Hill and Dale Hollow — by USACE A2W dam-tailwater series
+  (`CETT1`, `DHTT1`), verified live 2026-09-08.
 - **Historical-only IV:** 03539800 (ended 2026-07-26), 03564500 (1994), 03566000 (2018).
 - **Parameter gaps:** 03432350 (Harpeth@Franklin) publishes flow/stage only since
   2014; 03556590 is temperature-only.
@@ -47,9 +57,13 @@ JSON's `meta.provenance.usace`.
 
 ## Confidence model
 
-- **high** (26): live monitor(s) + a resolved TWRA stocking alias + regulations.
+- **high** (27): live monitor(s) + a resolved TWRA stocking alias + regulations.
 - **medium** (92): monitor without resolved stocking alias, or resolved alias without monitor (typical West TN put-and-take ponds).
-- **low** (10): no monitor and no resolved alias — the big mainstems (tennessee, cumberland, holston, french broad, mississippi, obion, hatchie, buffalo) whose flow is governed by multiple dams (no single authoritative monitor — deliberately unmapped rather than misrepresented) plus wolf-river-west-tennessee and obed-river.
+- **low** (28): no monitor and no resolved alias — the big mainstems (tennessee,
+  holston, french broad, mississippi, obion, hatchie, buffalo), wolf-river-west-tennessee
+  and obed-river, plus 19 reference waters added to the catalog after the 2026-09-04
+  capture. cumberland-river moved low → medium via its recorded (but conditions-unwired)
+  USACE CORT1 monitor.
 
 ## Stocking alias resolution
 
@@ -81,8 +95,12 @@ nothing is converted to "complete", nothing is converted to "live".
 (2026-09-04); it will age — `retrievedAt`/`observedAt` in the evidence payload and
 the conditions freshness logic govern actual staleness at read time. Gauge ids
 carry `[status]` markers when they are NOT live (`[absent]`, `[historical-only]`).
+The monitors column shows TVA observed-data monitors as `ID(role)` and USACE A2W
+tailwater monitors as `STATION[usace](role)` (regenerated per the coverage JSON;
+non-numeric conditions gauge ids such as `tva:NRST1` live in the catalog's
+`gaugeIds` and surface through these monitor lists, not the USGS audit).
 
-| waterId | USGS gauges | TVA monitors | metrics | stocking sources | most recent observation | most recent stocking row | confidence | unresolved-alias candidates |
+| waterId | USGS gauges | TVA / USACE monitors | metrics | stocking sources | most recent observation | most recent stocking row | confidence | unresolved-alias candidates |
 |---|---|---|---|---|---|---|---|---|
 | barren-fork-river | — | — | — | twra-stockings | — | scheduled week 2026-05-10 | medium | — |
 | beaverdam-creek | — | — | — | twra-stockings | — | scheduled week 2026-06-21 | medium | — |
@@ -96,7 +114,7 @@ carry `[status]` markers when they are NOT live (`[absent]`, `[historical-only]`
 | calfkiller-river | 03419530 | — | discharge-cfs, stage-ft | twra-stockings | discharge-cfs @ 2026-09-04T22:00:00.000-05:00 | scheduled week 2026-03-29 | high | — |
 | cameron-brown-lake | — | — | — | twra-stockings | — | scheduled month 2026-12-01 | medium | — |
 | cane-creek | — | — | — | twra-stockings | — | scheduled week 2026-10-25 | medium | — |
-| caney-fork-river | 03424010[absent] 03424860 | CEHT1(tailwater) | discharge-cfs, stage-ft | twra-recent-stockings+twra-stockings | discharge-cfs @ 2026-09-04T21:30:00.000-05:00 | scheduled month 2027-03-01 | high | — |
+| caney-fork-river | 03424010[absent] 03424860 | CEHT1(tailwater) CETT1[usace](tailwater) | discharge-cfs, stage-ft, temperature-c | twra-recent-stockings+twra-stockings | discharge-cfs @ 2026-09-04T21:30:00.000-05:00 | scheduled month 2027-03-01 | high | — |
 | center-hill-lake | — | CEHT1(reservoir) | discharge-cfs, reservoir-level-ft | — | discharge-cfs @ 2026-09-04T18:00:00-05:00 | — | medium | — |
 | charles-creek | — | — | — | twra-stockings | — | scheduled week 2026-05-10 | medium | — |
 | cherokee-lake | — | CRKT1(reservoir) | discharge-cfs, reservoir-level-ft | — | discharge-cfs @ 2026-09-04T23:00:00-04:00 | — | medium | candidate: Cherokee TW / Holston River |
@@ -108,7 +126,7 @@ carry `[status]` markers when they are NOT live (`[absent]`, `[historical-only]`
 | collins-river | 03421000 | — | discharge-cfs, stage-ft | twra-stockings | discharge-cfs @ 2026-09-04T22:00:00.000-05:00 | scheduled week 2026-05-10 | high | — |
 | cosby-creek | — | — | — | twra-stockings | — | scheduled week 2026-06-21 | medium | — |
 | covington-fbc-pond | — | — | — | twra-stockings | — | scheduled month 2026-12-01 | medium | — |
-| cumberland-river | — | — | — | — | — | — | low | — |
+| cumberland-river | — | CORT1[usace](tailwater) | discharge-cfs, stage-ft, temperature-c | — | — | — | medium | — |
 | daddys-creek | 03539600 | — | discharge-cfs, stage-ft, temperature-c | — | discharge-cfs @ 2026-09-04T22:00:00.000-05:00 | — | medium | — |
 | dale-hollow-lake | — | DLHT1(reservoir) | discharge-cfs, reservoir-level-ft | twra-stockings | discharge-cfs @ 2026-09-04T18:00:00-05:00 | scheduled month 2027-04-01 | high | — |
 | doe-creek-johnson | — | — | — | twra-stockings | — | scheduled week 2026-05-31 | medium | — |
@@ -164,7 +182,7 @@ carry `[status]` markers when they are NOT live (`[absent]`, `[historical-only]`
 | north-chickamauga-creek | 03566535 | — | discharge-cfs, stage-ft | twra-stockings | discharge-cfs @ 2026-09-04T23:00:00.000-04:00 | scheduled week 2026-11-01 | high | — |
 | north-prong-barren-fork | — | — | — | twra-stockings | — | scheduled week 2026-04-26 | medium | — |
 | obed-river | 03539800[historical-only] | — | discharge-cfs, stage-ft | — | — | — | low | — |
-| obey-river | 03417000[absent] | DLHT1(tailwater) | discharge-cfs, stage-ft | twra-recent-stockings+twra-stockings | discharge-cfs @ 2026-09-04T18:00:00-05:00 | scheduled month 2027-01-01 | high | — |
+| obey-river | 03417000[absent] | DLHT1(tailwater) DHTT1[usace](tailwater) | discharge-cfs, stage-ft, temperature-c | twra-recent-stockings+twra-stockings | discharge-cfs @ 2026-09-04T18:00:00-05:00 | scheduled month 2027-01-01 | high | — |
 | obion-river | — | — | — | — | — | — | low | — |
 | ocoee-river | 03559500 | OCBT1(tailwater) | discharge-cfs, stage-ft | — | discharge-cfs @ 2026-09-04T23:00:00-04:00 | — | medium | — |
 | old-hickory-lake | — | OHHT1(reservoir) | discharge-cfs, reservoir-level-ft | — | discharge-cfs @ 2026-09-04T18:00:00-05:00 | — | medium | — |
@@ -192,7 +210,7 @@ carry `[status]` markers when they are NOT live (`[absent]`, `[historical-only]`
 | spring-creek-polk | — | — | — | twra-stockings | — | scheduled week 2026-11-29 | medium | — |
 | standing-rock-creek | — | — | — | twra-stockings | — | scheduled week 2026-03-29 | medium | — |
 | station-creek | — | — | — | twra-stockings | — | scheduled week 2026-04-12 | medium | — |
-| stones-river | 03430200 | — | discharge-cfs, stage-ft, temperature-c | twra-stockings | discharge-cfs @ 2026-09-04T22:00:00.000-05:00 | scheduled month 2026-12-01 | high | — |
+| stones-river | 03430200 | JPPT1[usace](tailwater) | discharge-cfs, stage-ft, temperature-c | twra-stockings | discharge-cfs @ 2026-09-04T22:00:00.000-05:00 | scheduled month 2026-12-01 | high | — |
 | stoney-creek-carter | — | — | — | twra-stockings | — | scheduled week 2026-05-31 | medium | — |
 | sulfur-fork-creek | — | — | — | twra-stockings | — | scheduled month 2026-12-01 | medium | — |
 | tellico-river | 03518500 | — | discharge-cfs, stage-ft | twra-recent-stockings+twra-stockings | discharge-cfs @ 2026-09-04T23:00:00.000-04:00 | scheduled week 2026-12-06 | high | — |

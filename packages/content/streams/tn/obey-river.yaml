@@ -5,6 +5,7 @@ waterbodyType: tailrace
 regionId: tn-upper-cumberland
 gaugeIds:
   - "03417000"
+  - "usace:DHTT1"
 stockingProgram: true
 species: trout
 idealFlow:

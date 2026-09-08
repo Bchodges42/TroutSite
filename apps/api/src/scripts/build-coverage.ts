@@ -17,9 +17,10 @@ import { parse as parseYaml } from 'yaml';
 import { fetchUsgsObservations } from '../evidence/usgs-provider.js';
 import { fetchTvaObservations } from '../evidence/tva-provider.js';
 import { fetchTwraArtifacts, parseTwraEvidence } from '../evidence/twra-evidence.js';
+import { fetchUsaceObservations } from '../evidence/usace-provider.js';
 import { resolveWaterAlias } from '../evidence/aliases.js';
 import type { CatalogWaterName } from '../evidence/aliases.js';
-import { TVA_MONITORS } from '../evidence/monitors.js';
+import { TVA_MONITORS, USACE_MONITORS } from '../evidence/monitors.js';
 import { regulationsFromFishingInfo } from '../evidence/assemble.js';
 import type { FishingInfoDocument } from '../evidence/assemble.js';
 import { staleScheduledEvents } from '../evidence/stale.js';
@@ -101,6 +102,7 @@ interface CoverageWater {
   monitors: {
     usgsGauges: { id: string; ivStatus: 'live' | 'no-current-iv' | 'historical-only' | 'absent'; ivEnd?: string; params?: string[] }[];
     tva: { locationId: string; role: string }[];
+    usace: { station: string; role: string }[];
   };
   availableMetrics: string[];
   metricsProvenance: string;
@@ -195,6 +197,15 @@ async function main(): Promise<void> {
         liveErrors.push(`TVA ${monitor.locationId}: ${(err as Error).message}`);
       }
     }
+    for (const [waterId, monitor] of Object.entries(USACE_MONITORS)) {
+      try {
+        const result = await fetchUsaceObservations(monitor.station, { userAgent: ua });
+        liveObservations.set(waterId, [...(liveObservations.get(waterId) ?? []), ...result.observations.map((o) => ({ metric: o.metric, observedAt: o.observedAt, sourceId: o.sourceId, sourceUrl: o.sourceUrl, value: o.value, qualifier: o.qualifier }))]);
+        await new Promise((r) => setTimeout(r, 1000));
+      } catch (err) {
+        liveErrors.push(`USACE ${monitor.station}: ${(err as Error).message}`);
+      }
+    }
     try {
       const artifacts = await fetchTwraArtifacts({ userAgent: ua });
       const parsed = parseTwraEvidence(artifacts, { now: new Date() });
@@ -226,7 +237,9 @@ async function main(): Promise<void> {
   };
 
   const waters: CoverageWater[] = catalog.map((w) => {
-    const gauges = w.gaugeIds.map((g) => {
+    // Only bare numeric ids are USGS gauges; tva:/usace:-prefixed ids surface via
+    // the monitor lists below (they are audited there, not in the USGS IV audit).
+    const gauges = w.gaugeIds.filter((g) => /^\d+$/.test(g)).map((g) => {
       const a = audit.sites[g] ?? {};
       const ivStatus: 'live' | 'no-current-iv' | 'historical-only' | 'absent' =
         a.absentFromCatalog ? 'absent' : !a.ivEnd ? 'absent' : a.ivEnd >= '2026-08-01' ? 'live' : a.ivEnd >= '2025-01-01' ? 'historical-only' : 'no-current-iv';
@@ -234,6 +247,8 @@ async function main(): Promise<void> {
     });
     const tvaMonitor = TVA_MONITORS[w.waterId];
     const tvaMonitors = tvaMonitor ? [{ locationId: tvaMonitor.locationId, role: tvaMonitor.role }] : [];
+    const usaceMonitor = USACE_MONITORS[w.waterId];
+    const usaceMonitors = usaceMonitor ? [{ station: usaceMonitor.station, role: usaceMonitor.role, hasTemp: Boolean(usaceMonitor.series.temp) }] : [];
     const metrics = new Set<string>();
     let metricsProvenance = '';
     for (const g of gauges) {
@@ -251,6 +266,14 @@ async function main(): Promise<void> {
         if (t.role === 'tailwater') metrics.add('discharge-cfs');
       }
       metricsProvenance = metricsProvenance ? `${metricsProvenance}; TVA monitor map (2026-09-04)` : 'TVA monitor map (2026-09-04)';
+    }
+    if (usaceMonitors.length > 0) {
+      for (const u of usaceMonitors) {
+        metrics.add('stage-ft');
+        metrics.add('discharge-cfs');
+        if (u.hasTemp) metrics.add('temperature-c');
+      }
+      metricsProvenance = metricsProvenance ? `${metricsProvenance}; USACE A2W LRN series (2026-09-08)` : 'USACE A2W LRN series (2026-09-08)';
     }
 
     const liveObs = liveObservations.get(w.waterId) ?? [];
@@ -270,7 +293,7 @@ async function main(): Promise<void> {
 
     const unresolved: CoverageWater['unresolvedAliases'] = (CANDIDATE_UNRESOLVED[w.waterId] ?? []).map((u) => ({ ...u, kind: 'candidate' as const }));
 
-    const hasMonitor = gauges.some((g) => g.ivStatus === 'live') || tvaMonitors.length > 0;
+    const hasMonitor = gauges.some((g) => g.ivStatus === 'live') || tvaMonitors.length > 0 || usaceMonitors.length > 0;
     const hasStocking = stockingSources.length > 0;
     let confidence: 'high' | 'medium' | 'low';
     let confidenceReason: string;
@@ -292,7 +315,7 @@ async function main(): Promise<void> {
       name: w.name,
       waterbodyType: w.waterbodyType,
       regionId: w.regionId,
-      monitors: { usgsGauges: gauges, tva: tvaMonitors },
+      monitors: { usgsGauges: gauges, tva: tvaMonitors, usace: usaceMonitors.map(({ station, role }) => ({ station, role })) },
       availableMetrics: [...metrics].sort(),
       metricsProvenance,
       stockingSources,
@@ -318,13 +341,19 @@ async function main(): Promise<void> {
         tvaMonitorMap: { verifiedAt: '2026-09-04', fixture: 'apps/api/fixtures/TVA/locations-2026-09-04.json', note: 'TVA /RestApi/locations — 43 locations; undocumented endpoint, verified live' },
         twraCapture: { retrievedAt: '2026-09-04', fixtures: ['apps/api/fixtures/TN/2026-09-04-stockings-page.html', 'apps/api/fixtures/TN/2026-09-04-schedule.exceldriven.json', 'apps/api/fixtures/TN/2026-09-04-recent.exceldriven.json'], note: 'two grids: schedule (616 rows) + recent report (12-row rolling window)' },
         regulations: { verifiedAt: fishing.verifiedAt, source: 'packages/content/data/fishing-information.json' },
-        usace: { note: 'CWMS CDA reachable but TSID catalog 501s — not usable; USACE Cumberland lakes covered via TVA Ownership:"Cumberland" monitors', verifiedAt: '2026-09-04' },
+        usace: {
+          verifiedAt: '2026-09-08',
+          sourceUrl: 'https://water.usace.army.mil/cda/reporting/providers/lrn',
+          fixtures: ['apps/api/fixtures/USACE/CETT1-flow.json', 'apps/api/fixtures/USACE/CETT1-stage.json', 'apps/api/fixtures/USACE/CETT1-temp.json', 'apps/api/fixtures/USACE/CORT1-flow.json'],
+          note: 'A2W reporting API, provider lrn (Nashville District): CETT1/DHTT1/JPPT1/CORT1 Flow + Elev-Tail + Temp-Water-Tail verified live 2026-09-08; TSIDs hardcoded in USACE_TAILWATER_SERIES, never discovered at runtime; unknown TSID → 200 with an empty body (warning). The 2026-09-04 finding stands for the CWMS CDA catalog endpoint (501s), which is a different service.',
+        },
       },
       totals: {
         waters: waters.length,
-        withLiveMonitor: waters.filter((w) => w.monitors.usgsGauges.some((g) => g.ivStatus === 'live') || w.monitors.tva.length > 0).length,
+        withLiveMonitor: waters.filter((w) => w.monitors.usgsGauges.some((g) => g.ivStatus === 'live') || w.monitors.tva.length > 0 || w.monitors.usace.length > 0).length,
         withUsgsGauges: waters.filter((w) => w.monitors.usgsGauges.length > 0).length,
         withTvaMonitor: waters.filter((w) => w.monitors.tva.length > 0).length,
+        withUsaceMonitor: waters.filter((w) => w.monitors.usace.length > 0).length,
         withResolvedStockingAlias: resolvedCount,
         withStockingSources: waters.filter((w) => w.stockingSources.length > 0).length,
         unresolvedTwraNames: unresolvedGlobal.length,

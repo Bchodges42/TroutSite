@@ -109,6 +109,13 @@ export function isWellFormedSvg(markup: string): boolean {
 }
 
 const GAUGE_ID_RE = /^\d{8}(\.\d+)?$/;
+/**
+ * Non-USGS conditions gauges (data-sources lane): namespaced `tva:{LocationID}` /
+ * `usace:{station}` ids (e.g. `tva:NRST1`, `usace:CETT1`). They deliberately skip
+ * the USGS-verified-fixture checks — their registries + audits live in apps/api
+ * (evidence/monitors.ts, evidence/usace-provider.ts + fixtures/USACE).
+ */
+const NON_USGS_GAUGE_ID_RE = /^(tva|usace):[A-Za-z0-9]{1,10}$/;
 
 // M3 (production review §4): `notes` and officialSources labels are angler-facing copy —
 // `notes` renders verbatim as "Know this water" in the map drawer (RiverDrawer.tsx) and on
@@ -390,6 +397,7 @@ export function loadContent(): LoadedContent {
       warnings.push({ file: `streams/${id}.yaml`, message: 'no USGS gaugeIds (documented ungauged water)' });
     }
     for (const gaugeId of stream.gaugeIds) {
+      if (NON_USGS_GAUGE_ID_RE.test(gaugeId)) continue;
       if (!GAUGE_ID_RE.test(gaugeId)) {
         issues.push({ file: `streams/${id}.yaml`, message: `gaugeId "${gaugeId}" is not a USGS site number (8 digits, optionally x.y)` });
       } else if (verified && !verified.gauges[gaugeId]) {

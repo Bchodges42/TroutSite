@@ -5,6 +5,7 @@ waterbodyType: tailrace
 regionId: tn-east-clinch
 gaugeIds:
   - "03533000"
+  - "tva:NRST1"
 stockingProgram: true
 species: trout
 idealFlow:

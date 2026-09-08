@@ -131,11 +131,13 @@ export interface TvaFetchOptions {
 }
 
 /**
- * Fetch observed data for one TVA location. Requires a browser-like User-Agent —
- * tva.com sits behind Cloudflare and answers plain programmatic agents with 403.
- * Throws on HTTP failure (caller converts to per-water error entries).
+ * Fetch the RAW observed-data rows for one TVA location (same endpoint, headers
+ * and error discipline as fetchTvaObservations, split out so the conditions
+ * bridge can keep the source row verbatim in its audit column). Requires a
+ * browser-like User-Agent — tva.com sits behind Cloudflare and answers plain
+ * programmatic agents with 403. Throws on HTTP failure.
  */
-export async function fetchTvaObservations(locationId: string, opts: TvaFetchOptions): Promise<WaterObservation[]> {
+export async function fetchTvaRows(locationId: string, opts: TvaFetchOptions): Promise<TvaRow[]> {
   const doFetch = opts.fetchImpl ?? fetch;
   const base = opts.baseUrl ?? TVA_API_BASE;
   const url = `${base}/observed-data/${encodeURIComponent(locationId)}`;
@@ -150,5 +152,14 @@ export async function fetchTvaObservations(locationId: string, opts: TvaFetchOpt
   if (!res.ok) throw new Error(`TVA request failed: HTTP ${res.status} for ${locationId}`);
   const payload = (await res.json()) as unknown;
   if (!Array.isArray(payload)) throw new Error(`TVA response for ${locationId} is not an array`);
-  return parseTvaObservations(payload as TvaRow[], { locationId });
+  return payload as TvaRow[];
+}
+
+/**
+ * Fetch observed data for one TVA location. Requires a browser-like User-Agent —
+ * tva.com sits behind Cloudflare and answers plain programmatic agents with 403.
+ * Throws on HTTP failure (caller converts to per-water error entries).
+ */
+export async function fetchTvaObservations(locationId: string, opts: TvaFetchOptions): Promise<WaterObservation[]> {
+  return parseTvaObservations(await fetchTvaRows(locationId, opts), { locationId });
 }

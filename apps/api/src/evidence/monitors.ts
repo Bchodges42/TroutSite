@@ -1,3 +1,5 @@
+import { USACE_TAILWATER_SERIES } from './usace-provider.js';
+
 /**
  * Static water → TVA monitor mapping (data-sources lane, hand-audited against the
  * TVA /RestApi/locations list captured 2026-09-04 — 43 locations, fixture
@@ -71,4 +73,49 @@ export const USGS_GAUGE_HEALTH: Record<string, { health: GaugeHealth; ivEnd?: st
   '03556590': { health: 'live', ivEnd: '2026-09-04', params: ['00010'], note: 'temperature only' },
   '03419530': { health: 'live', ivEnd: '2026-09-04', params: ['00060', '00065'] },
   '03421000': { health: 'live', ivEnd: '2026-09-04', params: ['00060', '00065'] },
+};
+
+/**
+ * Static water → USACE monitor mapping (verified live 2026-09-08 against the
+ * Nashville District "Access to Water" reporting API, provider "lrn"; fixtures
+ * apps/api/fixtures/USACE/ + .session1-research/usace/fixtures). Mirrors
+ * TVA_MONITORS; the hardcoded TSIDs live in usace-provider.ts
+ * (USACE_TAILWATER_SERIES) and are referenced here so coverage tooling sees the
+ * exact series per monitor. Non-USGS gauge ids are namespaced `usace:{STATION}`
+ * in the catalog so they can never collide with (or reach) USGS NWIS.
+ *
+ * rivergages.mvr.usace.army.mil does NOT carry Nashville District — the A2W
+ * reporting API (water.usace.army.mil) is the working source. Old Hickory (OHIT1)
+ * and Cheatham (ASHT1) have dead water-temp series and map to no trout catalog
+ * water, and Barkley (BARK2) has no temp series and is already covered via TVA —
+ * so none of them are registered.
+ */
+export const USACE_MONITORS: Record<
+  string,
+  { station: string; series: (typeof USACE_TAILWATER_SERIES)[string]; role: 'tailwater'; note?: string }
+> = {
+  'caney-fork-river': {
+    station: 'CETT1',
+    series: USACE_TAILWATER_SERIES.CETT1!,
+    role: 'tailwater',
+    note: 'Center Hill Dam tailwater at the dam — nearer than USGS 03424860 (Stonewall), which stays wired',
+  },
+  'obey-river': {
+    station: 'DHTT1',
+    series: USACE_TAILWATER_SERIES.DHTT1!,
+    role: 'tailwater',
+    note: 'Dale Hollow Dam tailwater: flow + tail elevation + water temp, all live',
+  },
+  'stones-river': {
+    station: 'JPPT1',
+    series: USACE_TAILWATER_SERIES.JPPT1!,
+    role: 'tailwater',
+    note: 'J. Percy Priest Dam tailwater above the Donelson reach (medium-high confidence mapping)',
+  },
+  'cumberland-river': {
+    station: 'CORT1',
+    series: USACE_TAILWATER_SERIES.CORT1!,
+    role: 'tailwater',
+    note: 'Cordell Hull tailwater — recorded for coverage only; NOT wired into cumberland-river gaugeIds (multi-dam main stem: one upstream dam would misrepresent the segment, same rejection as the TVA main-stem monitors)',
+  },
 };

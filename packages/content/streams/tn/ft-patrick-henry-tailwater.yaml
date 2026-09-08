@@ -5,6 +5,7 @@ waterbodyType: tailrace
 regionId: tn-east-holston
 gaugeIds:
   - "03487010"
+  - "tva:FPHT1"
 stockingProgram: true
 species: trout
 idealFlow:

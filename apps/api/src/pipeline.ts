@@ -6,6 +6,7 @@ import { runStockingJob } from './ingest/stockingJob.js';
 import { getAdapters } from './ingest/stocking/index.js';
 import { buildSnapshots } from './snapshots/build.js';
 import { runEvidenceJob } from './evidence/evidenceJob.js';
+import { runConditionsReadingsJob } from './evidence/conditionsBridge.js';
 import { parseUsgsObservations } from './evidence/usgs-provider.js';
 import { parseTvaObservations } from './evidence/tva-provider.js';
 import { parseTwraEvidence } from './evidence/twra-evidence.js';
@@ -192,6 +193,9 @@ export async function runJob(
   const now = opts.now ?? new Date();
   if (job === 'gauges') {
     await runGaugesJob(db, { userAgent: cfg.userAgent });
+    // Non-USGS gauge sources (TVA + USACE) into gauge_readings_raw — the same
+    // lane, its own jobs_log row; build.ts still keys staleness on 'gauges'.
+    await runConditionsReadingsJob(db, { userAgent: cfg.userAgent });
     const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     return { job, ok: true, detail: { ...snap, files: snap.files.length } };
   }

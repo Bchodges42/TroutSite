@@ -5,6 +5,7 @@ waterbodyType: tailrace
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03564500"
+  - "tva:OCAT1"
 stockingProgram: true
 species: trout
 idealFlow:

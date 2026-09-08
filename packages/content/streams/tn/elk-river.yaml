@@ -6,6 +6,7 @@ regionId: tn-middle-duck-elk
 gaugeIds:
   - "03580750"
   - "03578000"
+  - "tva:TMFT1"
 stockingProgram: true
 species: trout
 idealFlow:

@@ -134,12 +134,15 @@ export interface UsgsFetchOptions {
  * (a transport failure is an error, not an empty observation set).
  */
 export async function fetchUsgsObservations(siteIds: string[], opts: UsgsFetchOptions): Promise<WaterObservation[]> {
-  if (siteIds.length === 0) return [];
+  // Non-numeric ids (tva:/usace:-prefixed) belong to the conditions bridge and
+  // must never reach NWIS — filter them out here so every caller is safe.
+  const numeric = siteIds.filter((id) => /^\d+$/.test(id));
+  if (numeric.length === 0) return [];
   const doFetch = opts.fetchImpl ?? fetch;
   const base = opts.baseUrl ?? USGS_IV_URL;
   const out: WaterObservation[] = [];
-  for (let i = 0; i < siteIds.length; i += 50) {
-    const batch = siteIds.slice(i, i + 50);
+  for (let i = 0; i < numeric.length; i += 50) {
+    const batch = numeric.slice(i, i + 50);
     const url = `${base}?format=json&sites=${batch.join(',')}&parameterCd=${PARAM_CODES.join(',')}`;
     const res = await doFetch(url, {
       headers: { 'User-Agent': opts.userAgent, Accept: 'application/json' },
@@ -147,7 +150,7 @@ export async function fetchUsgsObservations(siteIds: string[], opts: UsgsFetchOp
     });
     if (!res.ok) throw new Error(`USGS request failed: HTTP ${res.status} for sites ${batch.join(',')}`);
     out.push(...parseUsgsObservations(await res.json()));
-    if (i + 50 < siteIds.length) await new Promise((r) => setTimeout(r, 1000));
+    if (i + 50 < numeric.length) await new Promise((r) => setTimeout(r, 1000));
   }
   return out;
 }

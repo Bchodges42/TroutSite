@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-05T03:35:54.029Z",
+    "generatedAt": "2026-09-08T23:34:30.769Z",
     "lane": "data-sources",
     "baseSha": "5648ccca5c2b6f6fb1cba95b8ae2d421a1e07c9e",
     "live": "offline (fixtures + audit only)",
@@ -30,23 +30,31 @@
         "source": "packages/content/data/fishing-information.json"
       },
       "usace": {
-        "note": "CWMS CDA reachable but TSID catalog 501s — not usable; USACE Cumberland lakes covered via TVA Ownership:\"Cumberland\" monitors",
-        "verifiedAt": "2026-09-04"
+        "verifiedAt": "2026-09-08",
+        "sourceUrl": "https://water.usace.army.mil/cda/reporting/providers/lrn",
+        "fixtures": [
+          "apps/api/fixtures/USACE/CETT1-flow.json",
+          "apps/api/fixtures/USACE/CETT1-stage.json",
+          "apps/api/fixtures/USACE/CETT1-temp.json",
+          "apps/api/fixtures/USACE/CORT1-flow.json"
+        ],
+        "note": "A2W reporting API, provider lrn (Nashville District): CETT1/DHTT1/JPPT1/CORT1 Flow + Elev-Tail + Temp-Water-Tail verified live 2026-09-08; TSIDs hardcoded in USACE_TAILWATER_SERIES, never discovered at runtime; unknown TSID → 200 with an empty body (warning). The 2026-09-04 finding stands for the CWMS CDA catalog endpoint (501s), which is a different service."
       }
     },
     "totals": {
-      "waters": 128,
-      "withLiveMonitor": 53,
-      "withUsgsGauges": 41,
+      "waters": 147,
+      "withLiveMonitor": 54,
+      "withUsgsGauges": 48,
       "withTvaMonitor": 27,
+      "withUsaceMonitor": 4,
       "withResolvedStockingAlias": 81,
-      "withStockingSources": 91,
+      "withStockingSources": 92,
       "unresolvedTwraNames": 261,
       "unresolvedTwraNamesDistinct": 55,
-      "staleScheduleRows": 508,
-      "confidenceHigh": 26,
+      "staleScheduleRows": 509,
+      "confidenceHigh": 27,
       "confidenceMedium": 92,
-      "confidenceLow": 10
+      "confidenceLow": 28
     },
     "unresolvedTwraNames": [
       {
@@ -386,7 +394,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -448,7 +457,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -510,7 +520,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -572,7 +583,8 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -634,7 +646,8 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -685,6 +698,67 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "boone-lake",
+      "name": "Boone Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-east-holston",
+      "monitors": {
+        "usgsGauges": [
+          {
+            "id": "03486810",
+            "ivStatus": "absent"
+          }
+        ],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "boone-tailwater",
       "name": "Boone Tailwater (South Fork Holston River)",
       "waterbodyType": "tailrace",
@@ -701,7 +775,8 @@
             "locationId": "BOOT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -766,7 +841,8 @@
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -828,7 +904,8 @@
       "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -896,7 +973,64 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
+      "waterId": "calderwood-lake",
+      "name": "Calderwood Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-east-smokies",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -961,7 +1095,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1026,7 +1161,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -1088,7 +1224,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -1169,13 +1306,20 @@
             "locationId": "CEHT1",
             "role": "tailwater"
           }
+        ],
+        "usace": [
+          {
+            "station": "CETT1",
+            "role": "tailwater"
+          }
         ]
       },
       "availableMetrics": [
         "discharge-cfs",
-        "stage-ft"
+        "stage-ft",
+        "temperature-c"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04); USACE A2W LRN series (2026-09-08)",
       "stockingSources": [
         "twra-recent-stockings",
         "twra-stockings"
@@ -1234,6 +1378,62 @@
       "confidenceReason": "live monitor(s) + resolved TWRA stocking alias + regulations"
     },
     {
+      "waterId": "caney-fork-upper",
+      "name": "Caney Fork River (above Center Hill Lake)",
+      "waterbodyType": "river",
+      "regionId": "tn-middle-caney-fork",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "center-hill-lake",
       "name": "Center Hill Lake",
       "waterbodyType": "lake",
@@ -1245,7 +1445,8 @@
             "locationId": "CEHT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1303,7 +1504,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -1362,7 +1564,7 @@
       "waterId": "cherokee-lake",
       "name": "Cherokee Lake",
       "waterbodyType": "lake",
-      "regionId": "tn-east-pigeon-frenchbroad",
+      "regionId": "tn-east-holston",
       "monitors": {
         "usgsGauges": [],
         "tva": [
@@ -1370,7 +1572,8 @@
             "locationId": "CRKT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1439,7 +1642,8 @@
             "locationId": "CKDT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1491,13 +1695,70 @@
       "confidenceReason": "live monitor(s) but no resolved TWRA stocking alias"
     },
     {
+      "waterId": "chilhowee-lake",
+      "name": "Chilhowee Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-east-smokies",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "citico-creek",
       "name": "Citico Creek",
       "waterbodyType": "creek",
       "regionId": "tn-se-hiwassee",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -1576,7 +1837,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1651,7 +1913,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1720,7 +1983,8 @@
             "locationId": "NRST1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1801,7 +2065,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -1866,7 +2131,8 @@
       "regionId": "tn-east-smokies",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -1933,7 +2199,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -1995,10 +2262,20 @@
       "regionId": "tn-middle-nashville",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": [
+          {
+            "station": "CORT1",
+            "role": "tailwater"
+          }
+        ]
       },
-      "availableMetrics": [],
-      "metricsProvenance": "",
+      "availableMetrics": [
+        "discharge-cfs",
+        "stage-ft",
+        "temperature-c"
+      ],
+      "metricsProvenance": "USACE A2W LRN series (2026-09-08)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -2040,8 +2317,8 @@
       "mostRecentObservation": null,
       "mostRecentStockingRow": null,
       "unresolvedAliases": [],
-      "confidence": "low",
-      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+      "confidence": "medium",
+      "confidenceReason": "live monitor(s) but no resolved TWRA stocking alias"
     },
     {
       "waterId": "daddys-creek",
@@ -2061,7 +2338,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2125,7 +2403,8 @@
             "locationId": "DLHT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2190,7 +2469,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -2262,7 +2542,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2331,19 +2612,25 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
-        "usgsGauges": [],
+        "usgsGauges": [
+          {
+            "id": "03468510",
+            "ivStatus": "absent"
+          }
+        ],
         "tva": [
           {
             "locationId": "DUGT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
         "reservoir-level-ft"
       ],
-      "metricsProvenance": "TVA monitor map (2026-09-04)",
+      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -2425,7 +2712,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2485,10 +2773,11 @@
       "monitors": {
         "usgsGauges": [
           {
-            "id": "03596000",
+            "id": "03597860",
             "ivStatus": "live",
             "ivEnd": "2026-09-04",
             "params": [
+              "00010",
               "00060",
               "00065"
             ]
@@ -2499,11 +2788,13 @@
             "locationId": "NRMT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
-        "stage-ft"
+        "stage-ft",
+        "temperature-c"
       ],
       "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
       "stockingSources": [
@@ -2564,7 +2855,8 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -2636,7 +2928,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2694,7 +2987,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -2775,7 +3069,8 @@
             "locationId": "TMFT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2855,7 +3150,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2925,7 +3221,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -2983,7 +3280,8 @@
       "regionId": "tn-middle-nashville",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3040,7 +3338,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3099,7 +3398,7 @@
       "waterId": "fort-loudoun-lake",
       "name": "Fort Loudoun Lake",
       "waterbodyType": "lake",
-      "regionId": "tn-se-hiwassee",
+      "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
         "tva": [
@@ -3107,7 +3406,8 @@
             "locationId": "FLDT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -3159,6 +3459,67 @@
       "confidenceReason": "live monitor(s) but no resolved TWRA stocking alias"
     },
     {
+      "waterId": "fort-patrick-henry-lake",
+      "name": "Fort Patrick Henry Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-east-holston",
+      "monitors": {
+        "usgsGauges": [
+          {
+            "id": "03487010",
+            "ivStatus": "absent"
+          }
+        ],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "french-broad-river",
       "name": "French Broad River (Douglas tailwater)",
       "waterbodyType": "tailrace",
@@ -3174,7 +3535,8 @@
             "ivStatus": "absent"
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "USGS IV audit 2026-09-04",
@@ -3239,7 +3601,8 @@
             "locationId": "FPHT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -3309,7 +3672,8 @@
       "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3371,7 +3735,8 @@
       "regionId": "tn-se-hiwassee",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3433,7 +3798,8 @@
       "regionId": "tn-se-hiwassee",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3489,13 +3855,70 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "great-falls-lake",
+      "name": "Great Falls Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-middle-caney-fork",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "gulf-fork-big-creek",
       "name": "Gulf Fork Big Creek",
       "waterbodyType": "creek",
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3578,7 +4001,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -3644,7 +4068,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3722,7 +4147,8 @@
             "locationId": "HADT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -3794,7 +4220,8 @@
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3849,7 +4276,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3916,7 +4344,8 @@
       "regionId": "tn-upper-cumberland",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -3978,7 +4407,8 @@
       "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4045,7 +4475,8 @@
             "locationId": "JPHT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -4103,7 +4534,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4170,7 +4602,8 @@
             "locationId": "KYDK2",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -4233,7 +4666,8 @@
             "locationId": "BARK2",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -4291,7 +4725,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4353,7 +4788,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4415,7 +4851,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4477,7 +4914,8 @@
       "regionId": "tn-east-smokies",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4544,7 +4982,8 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4616,14 +5055,17 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
         "stage-ft"
       ],
       "metricsProvenance": "USGS IV audit 2026-09-04",
-      "stockingSources": [],
+      "stockingSources": [
+        "twra-stockings"
+      ],
       "regulationsSources": [
         {
           "authority": "TWRA",
@@ -4669,8 +5111,8 @@
       "mostRecentObservation": null,
       "mostRecentStockingRow": null,
       "unresolvedAliases": [],
-      "confidence": "medium",
-      "confidenceReason": "live monitor(s) but no resolved TWRA stocking alias"
+      "confidence": "high",
+      "confidenceReason": "live monitor(s) + resolved TWRA stocking alias + regulations"
     },
     {
       "waterId": "little-river",
@@ -4699,7 +5141,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -4770,7 +5213,8 @@
       "regionId": "tn-se-hiwassee",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4826,13 +5270,70 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "little-tennessee-river",
+      "name": "Little Tennessee River",
+      "waterbodyType": "river",
+      "regionId": "tn-east-smokies",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "little-west-fork-creek",
       "name": "Little West Fork Creek",
       "waterbodyType": "creek",
       "regionId": "tn-middle-nashville",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4889,7 +5390,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -4951,7 +5453,8 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5007,13 +5510,70 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "melton-hill-lake",
+      "name": "Melton Hill Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-east-clinch",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "middle-prong-little-pigeon",
       "name": "Middle Prong Little Pigeon River (Tremont)",
       "waterbodyType": "creek",
       "regionId": "tn-east-smokies",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5080,7 +5640,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5142,7 +5703,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5204,7 +5766,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5259,7 +5822,8 @@
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5332,7 +5896,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -5385,6 +5950,62 @@
       "confidenceReason": "live monitor(s) but no resolved TWRA stocking alias"
     },
     {
+      "waterId": "nickajack-lake",
+      "name": "Nickajack Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-se-hiwassee",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "nolichucky-river",
       "name": "Nolichucky River",
       "waterbodyType": "river",
@@ -5401,7 +6022,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -5453,24 +6075,86 @@
       "confidenceReason": "live monitor(s) but no resolved TWRA stocking alias"
     },
     {
+      "waterId": "normandy-lake",
+      "name": "Normandy Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-middle-duck-elk",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "norris-lake",
       "name": "Norris Lake",
       "waterbodyType": "lake",
       "regionId": "tn-east-clinch",
       "monitors": {
-        "usgsGauges": [],
+        "usgsGauges": [
+          {
+            "id": "03533000",
+            "ivStatus": "absent"
+          }
+        ],
         "tva": [
           {
             "locationId": "NRST1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
         "reservoir-level-ft"
       ],
-      "metricsProvenance": "TVA monitor map (2026-09-04)",
+      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -5532,7 +6216,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -5591,13 +6276,70 @@
       "confidenceReason": "live monitor(s) + resolved TWRA stocking alias + regulations"
     },
     {
+      "waterId": "north-fork-holston-river",
+      "name": "North Fork Holston River",
+      "waterbodyType": "river",
+      "regionId": "tn-east-holston",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "north-prong-barren-fork",
       "name": "North Prong Barren Fork River",
       "waterbodyType": "creek",
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5669,7 +6411,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -5737,13 +6480,20 @@
             "locationId": "DLHT1",
             "role": "tailwater"
           }
+        ],
+        "usace": [
+          {
+            "station": "DHTT1",
+            "role": "tailwater"
+          }
         ]
       },
       "availableMetrics": [
         "discharge-cfs",
-        "stage-ft"
+        "stage-ft",
+        "temperature-c"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04); USACE A2W LRN series (2026-09-08)",
       "stockingSources": [
         "twra-recent-stockings",
         "twra-stockings"
@@ -5803,7 +6553,64 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
+      "waterId": "ocoee-number-three-lake",
+      "name": "Ocoee Number Three Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-se-hiwassee",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -5873,7 +6680,8 @@
             "locationId": "OCBT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -5936,7 +6744,8 @@
             "locationId": "OHHT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -5994,7 +6803,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6050,6 +6860,73 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "parksville-lake",
+      "name": "Parksville Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-se-hiwassee",
+      "monitors": {
+        "usgsGauges": [
+          {
+            "id": "03564500",
+            "ivStatus": "no-current-iv",
+            "ivEnd": "1994-12-31",
+            "params": [
+              "00060"
+            ]
+          }
+        ],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [
+        "discharge-cfs"
+      ],
+      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "parksville-tailwater",
       "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
       "waterbodyType": "tailrace",
@@ -6070,7 +6947,8 @@
             "locationId": "OCAT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -6140,7 +7018,8 @@
             "locationId": "PICT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -6208,7 +7087,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -6266,7 +7146,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6328,7 +7209,8 @@
       "regionId": "tn-cumberland-plateau",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6405,7 +7287,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -6463,7 +7346,8 @@
       "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6535,7 +7419,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -6600,7 +7485,8 @@
             "ivStatus": "absent"
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "USGS IV audit 2026-09-04",
@@ -6651,13 +7537,70 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "reelfoot-lake",
+      "name": "Reelfoot Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-west",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "richardson-byrd-creek",
       "name": "Richardson “Byrd” Creek",
       "waterbodyType": "creek",
       "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6719,7 +7662,8 @@
       "regionId": "tn-east-smokies",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6776,7 +7720,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6838,7 +7783,8 @@
       "regionId": "tn-upper-cumberland",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -6910,7 +7856,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -6975,7 +7922,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7047,7 +7995,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -7107,7 +8056,8 @@
       "regionId": "tn-middle-nashville",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7174,7 +8124,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -7231,19 +8182,25 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [],
+        "usgsGauges": [
+          {
+            "id": "03476500",
+            "ivStatus": "absent"
+          }
+        ],
         "tva": [
           {
             "locationId": "SHDT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
         "reservoir-level-ft"
       ],
-      "metricsProvenance": "TVA monitor map (2026-09-04)",
+      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -7305,7 +8262,8 @@
             "locationId": "SHDT1",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -7375,7 +8333,8 @@
       "regionId": "tn-se-hiwassee",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7437,7 +8396,8 @@
       "regionId": "tn-upper-cumberland",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7499,7 +8459,8 @@
       "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7572,14 +8533,20 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": [
+          {
+            "station": "JPPT1",
+            "role": "tailwater"
+          }
+        ]
       },
       "availableMetrics": [
         "discharge-cfs",
         "stage-ft",
         "temperature-c"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "metricsProvenance": "USGS IV audit 2026-09-04; USACE A2W LRN series (2026-09-08)",
       "stockingSources": [
         "twra-stockings"
       ],
@@ -7638,7 +8605,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7700,7 +8668,8 @@
       "regionId": "tn-middle-nashville",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7756,6 +8725,62 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "tellico-lake",
+      "name": "Tellico Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-east-clinch",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "tellico-river",
       "name": "Tellico River",
       "waterbodyType": "river",
@@ -7772,7 +8797,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -7843,7 +8869,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -7903,7 +8930,8 @@
             "locationId": "TMFT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -7961,7 +8989,8 @@
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8018,7 +9047,8 @@
       "regionId": "tn-se-hiwassee",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8080,7 +9110,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8142,7 +9173,8 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8204,7 +9236,8 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8266,7 +9299,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8322,6 +9356,62 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "watauga-lake",
+      "name": "Watauga Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-northeast-watauga",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "watauga-river",
       "name": "Watauga River (Wilbur tailwater)",
       "waterbodyType": "tailrace",
@@ -8351,7 +9441,8 @@
             "locationId": "WL",
             "role": "tailwater"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -8415,10 +9506,66 @@
       "confidenceReason": "live monitor(s) + resolved TWRA stocking alias + regulations"
     },
     {
+      "waterId": "watauga-river-wilbur-reach",
+      "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+      "waterbodyType": "river",
+      "regionId": "tn-northeast-watauga",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "watts-bar-lake",
       "name": "Watts Bar Lake",
       "waterbodyType": "lake",
-      "regionId": "tn-se-hiwassee",
+      "regionId": "tn-east-clinch",
       "monitors": {
         "usgsGauges": [],
         "tva": [
@@ -8426,7 +9573,8 @@
             "locationId": "WBOT1",
             "role": "reservoir"
           }
-        ]
+        ],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -8494,7 +9642,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -8569,7 +9718,8 @@
             ]
           }
         ],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [
         "discharge-cfs",
@@ -8645,7 +9795,8 @@
       "regionId": "tn-upper-cumberland",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8701,13 +9852,79 @@
       "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
+      "waterId": "wilbur-lake",
+      "name": "Wilbur Lake",
+      "waterbodyType": "lake",
+      "regionId": "tn-northeast-watauga",
+      "monitors": {
+        "usgsGauges": [
+          {
+            "id": "03484000",
+            "ivStatus": "absent"
+          },
+          {
+            "id": "03483980",
+            "ivStatus": "absent"
+          }
+        ],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "wolf-river-fentress",
       "name": "Wolf River (Fentress County headwaters)",
       "waterbodyType": "creek",
       "regionId": "tn-cumberland-plateau",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8769,7 +9986,64 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
+      "waterId": "woods-reservoir",
+      "name": "Woods Reservoir",
+      "waterbodyType": "lake",
+      "regionId": "tn-middle-duck-elk",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",
@@ -8824,7 +10098,8 @@
       "regionId": "tn-west",
       "monitors": {
         "usgsGauges": [],
-        "tva": []
+        "tva": [],
+        "usace": []
       },
       "availableMetrics": [],
       "metricsProvenance": "",

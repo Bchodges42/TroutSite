@@ -6,6 +6,7 @@ regionId: tn-middle-caney-fork
 gaugeIds:
   - "03424010"
   - "03424860"
+  - "usace:CETT1"
 stockingProgram: true
 species: trout
 idealFlow:

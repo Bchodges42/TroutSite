@@ -5,6 +5,7 @@ waterbodyType: river
 regionId: tn-middle-nashville
 gaugeIds:
   - "03430200"
+  - "usace:JPPT1"
 stockingProgram: true
 species: trout
 idealFlow:

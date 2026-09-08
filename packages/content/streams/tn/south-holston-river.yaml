@@ -5,6 +5,7 @@ waterbodyType: tailrace
 regionId: tn-east-holston
 gaugeIds:
   - "03476500"
+  - "tva:SHDT1"
 stockingProgram: true
 species: trout
 idealFlow:

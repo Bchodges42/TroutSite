@@ -155,9 +155,13 @@ export async function runGaugesJob(db: Db, opts: UsgsFetchOptions): Promise<Gaug
     const rows = db.prepare('SELECT gauge_ids FROM streams WHERE gauge_ids != ?').all('[]') as {
       gauge_ids: string;
     }[];
-    const siteIds = [...new Set(rows.flatMap((r) => JSON.parse(r.gauge_ids) as string[]))];
+    // Non-numeric ids (tva:/usace:-prefixed) belong to the conditions bridge
+    // (evidence/conditionsBridge.ts) and must never reach NWIS.
+    const siteIds = [
+      ...new Set(rows.flatMap((r) => JSON.parse(r.gauge_ids) as string[]).filter((id) => /^\d+$/.test(id))),
+    ];
     if (siteIds.length === 0) {
-      const empty = { items: 0, sites: 0, warnings: ['no streams seeded yet — nothing to fetch'] };
+      const empty = { items: 0, sites: 0, warnings: ['no numeric USGS gauges seeded — nothing to fetch'] };
       handle.ok(empty);
       return empty;
     }

@@ -5,6 +5,7 @@ waterbodyType: tailrace
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03597860"
+  - "tva:NRMT1"
 stockingProgram: true
 species: trout
 idealFlow:

@@ -7,6 +7,7 @@ gaugeIds:
   - "03483980"
   - "03484000"
   - "03486000"
+  - "tva:WL"
 stockingProgram: true
 species: trout
 idealFlow:

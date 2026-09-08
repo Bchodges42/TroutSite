@@ -5,6 +5,7 @@ waterbodyType: river
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03559500"
+  - "tva:OCBT1"
 stockingProgram: false
 idealFlow:
   - min: 800

@@ -65,6 +65,9 @@ describe('content pack validation (CI gate)', () => {
     expect(Object.keys(verified.gauges).length).toBeGreaterThan(0);
     for (const stream of streams.values()) {
       for (const gaugeId of stream.gaugeIds) {
+        // Non-USGS conditions gauges are namespaced (tva:{LocationID} / usace:{station});
+        // their registries + live-capture audits live in apps/api, not in this fixture.
+        if (/^(tva|usace):[A-Za-z0-9]{1,10}$/.test(gaugeId)) continue;
         expect(gaugeId).toMatch(/^\d{8}(\.\d+)?$/);
         expect(verified.gauges[gaugeId], `stream ${stream.id}: gauge ${gaugeId} not verified on USGS`).toBeDefined();
       }
