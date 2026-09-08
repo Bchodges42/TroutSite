@@ -138,3 +138,46 @@ the outage window (§11: laptop downtime → static + CF cache).
 | Snapshot JSON stale | Until ROLE 3's builder lands, snapshots are static skeleton files; after that, re-run `bash infra/deploy.sh` |
 | DB locked errors | Ensure only one writer (api/cron) uses WAL; never edit the DB while pm2 runs it |
 | Seed says "empty" | Content pack intentionally empty in Phase 0; `pnpm --filter api seed` is a no-op success |
+
+## 8. Snapshot-sync fallback (2026-09-08 incident)
+
+**When to use:** the host's `trout-cron` is untrusted (produced nothing since
+2026-09-06T02:23Z) and the host's snapshot trees are missing/empty
+(`/v1/conditions/latest.json` → `{"error":"not found"}`, `/v1/streams` → 503,
+`/content/*.json` + `/v1/hatch/*` → 404, `/healthz` → `ok:false`) while the
+laptop's own pipeline is healthy and hourly-fresh. Host recovery comes first —
+see `docs/SESSION1-HOST-RECOVERY.md`; sync is the bridge until it lands.
+
+Laptop-side (requires an SSH path to the host, which the owner must provide —
+there is none today; Git Bash ships `ssh`/`scp`):
+
+```bash
+bash infra/sync-snapshots.sh --dry-run                        # fails today with the unset-host error
+TROUT_SYNC_HOST=user@host bash infra/sync-snapshots.sh --dry-run
+TROUT_SYNC_HOST=user@host bash infra/sync-snapshots.sh        # real sync + verify
+# optional: TROUT_SYNC_PATH=/opt/trout TROUT_SYNC_PORT=22 TROUT_SYNC_IDENTITY=~/.ssh/id_ed25519
+#           TROUT_SYNC_PUBLIC_URL=... TROUT_SYNC_RELOAD_CMD='pm2 reload trout-api --update-env'
+#           --prune (drop remote extras)  --no-reload  --local <dir> (test seam)
+```
+
+What it does: pushes `apps/web/public/{v1,content}` to
+`$TROUT_SYNC_PATH/apps/web/public` (default `/opt/trout/...`); rsync in place if
+available, else `scp -r` into `<tree>.staging-<stamp>` + atomic rename so a
+half-copy never serves (superseded tree kept as `<tree>.prev` — rollback:
+`rm -rf v1 && mv v1.prev v1` on the host). Remote extras are untouched unless
+`--prune`. Then verifies by curling the public URL for
+`/v1/conditions/latest.json` (HTTP 200 + `fetchedAt`) and `/content/taxa.json`
+(HTTP 200) with a cache-buster, and exits non-zero on any failed check.
+
+Safety notes:
+
+- **Cloudflare edge cache** caches snapshot JSON (§4): after a sync, visitors may
+  still get stale `/v1/*` + `/content/*` until the edge TTL lapses. If the
+  script's verification shows a stale `fetchedAt` while the host files are fresh,
+  purge the CF cache for `/v1/*` and `/content/*` from the Cloudflare dashboard.
+- **Sync is a FALLBACK, not a fix.** The real fix is the host's cron + deploy
+  (§3): `bash infra/deploy.sh` on the host, `trout-cron` healthy again. The next
+  healthy host cron overwrites synced data. Syncing also bypasses the host DB —
+  the host's gauge observations stay missing until its own pipeline recovers.
+- Sync never touches `apps/api/data/trout.db` or portal writes; it only replaces
+  the two generated trees the API serves statically (ADR 0005).
