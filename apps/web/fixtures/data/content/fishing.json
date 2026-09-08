@@ -79,7 +79,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["clinch-river"]
+          "appliesTo": [
+            "clinch-river"
+          ]
         },
         {
           "title": "Caney Fork River special regulation",
@@ -88,7 +90,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["caney-fork-river"]
+          "appliesTo": [
+            "caney-fork-river"
+          ]
         },
         {
           "title": "Elk River below Tims Ford special regulation",
@@ -97,7 +101,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["elk-river"]
+          "appliesTo": [
+            "elk-river"
+          ]
         },
         {
           "title": "Hiwassee River seasonal regulation",
@@ -105,7 +111,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["hiwassee-river"],
+          "appliesTo": [
+            "hiwassee-river"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -115,7 +123,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["south-holston-river"]
+          "appliesTo": [
+            "south-holston-river"
+          ]
         },
         {
           "title": "Watauga River Quality Trout Area",
@@ -124,7 +134,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["watauga-river"]
+          "appliesTo": [
+            "watauga-river"
+          ]
         },
         {
           "title": "Fort Patrick Henry special regulation",
@@ -133,7 +145,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["ft-patrick-henry-tailwater"]
+          "appliesTo": [
+            "ft-patrick-henry-tailwater"
+          ]
         },
         {
           "title": "Tellico River delayed harvest + permit",
@@ -141,7 +155,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["tellico-river"],
+          "appliesTo": [
+            "tellico-river"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -150,7 +166,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["citico-creek"],
+          "appliesTo": [
+            "citico-creek"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -159,7 +177,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["doe-river"],
+          "appliesTo": [
+            "doe-river"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -168,7 +188,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["buffalo-creek-grainger"],
+          "appliesTo": [
+            "buffalo-creek-grainger"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -177,7 +199,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs.html",
-          "appliesTo": ["piney-river-rhea"],
+          "appliesTo": [
+            "piney-river-rhea"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -186,7 +210,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["clear-creek-obed"],
+          "appliesTo": [
+            "clear-creek-obed"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -195,7 +221,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["horse-creek-greene"],
+          "appliesTo": [
+            "horse-creek-greene"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -204,7 +232,13 @@
           "authority": "NPS",
           "sourceId": "nps-gsmnp",
           "sourceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
-          "appliesTo": ["little-river", "leconte-creek", "middle-prong-little-pigeon", "west-prong-little-pigeon", "cosby-creek"]
+          "appliesTo": [
+            "little-river",
+            "leconte-creek",
+            "middle-prong-little-pigeon",
+            "west-prong-little-pigeon",
+            "cosby-creek"
+          ]
         },
         {
           "title": "Gatlinburg city waters permit",
@@ -212,7 +246,11 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["west-prong-little-pigeon", "leconte-creek", "roaring-fork"],
+          "appliesTo": [
+            "west-prong-little-pigeon",
+            "leconte-creek",
+            "roaring-fork"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -221,7 +259,10 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["laurel-fork-carter", "beaverdam-creek"],
+          "appliesTo": [
+            "laurel-fork-carter",
+            "beaverdam-creek"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -230,7 +271,10 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["little-west-fork-creek", "fletchers-fork"],
+          "appliesTo": [
+            "little-west-fork-creek",
+            "fletchers-fork"
+          ],
           "effectiveFrom": "2026-08-01"
         }
       ]

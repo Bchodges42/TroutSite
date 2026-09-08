@@ -24,6 +24,7 @@ import {
   ShopReportSchema,
   BugTaxonSchema,
   FlyPatternSchema,
+  FishingInformationSchema,
 } from '@trout/contracts';
 
 const appRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -752,6 +753,15 @@ writeJson('v1/shops/TN.json', shops);
 writeJson('v1/reports/recent.json', reports);
 writeJson('content/taxa.json', taxa);
 writeJson('content/patterns.json', patterns);
+// The regulations page consumes the real fishing-information document (same
+// file the content pack serves) — copied verbatim so /regulations works in
+// fixture/demo mode exactly as it does against the live snapshot surface.
+const packFishingPath = join(appRoot, '..', '..', 'packages', 'content', 'data', 'fishing-information.json');
+if (!existsSync(packFishingPath)) {
+  throw new Error('fishing-information.json missing at packages/content/data — regulations fixture cannot mirror production');
+}
+validate('content/fishing', FishingInformationSchema, JSON.parse(readFileSync(packFishingPath, 'utf8')));
+writeJson('content/fishing.json', JSON.parse(readFileSync(packFishingPath, 'utf8')));
 for (const chart of chartsByRegionMonth.values()) {
   writeJson(`v1/hatch/${chart.regionId}/${chart.month}.json`, chart);
 }
