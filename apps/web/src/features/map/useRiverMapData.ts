@@ -11,7 +11,7 @@ import {
 } from '@trout/contracts';
 import type { HatchChart } from '@trout/contracts';
 import { newestReadingAt } from '@trout/contracts';
-import { snapshotUrls } from '../../lib/endpoints';
+import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
 import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
 import { db } from '../../lib/db';
 import { fetchSnapshot } from '../../lib/snapshots';
@@ -20,7 +20,6 @@ import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from
 import { atlas } from './mapTokens';
 import type { RiverMapFeature } from './riverMapSelectors';
 
-const StreamsSchema = z.array(StreamSchema);
 const ConditionsSchema = z.array(ConditionSnapshotSchema);
 const ReportsSchema = z.array(ShopReportSchema);
 const StockingSchema = z.array(StockingEventSchema);
@@ -49,6 +48,34 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   const enabled = options.enabled ?? true;
 
   const streamsQ = useSnapshotQuery(snapshotUrls.streams, StreamsSchema, 60 * 24, enabled);
+
+  // Last-resort catalog (see PACK_CATALOG_URL): only fetched when the live
+  // feed has actually failed, then kept forever (static between content
+  // deploys, precached by the service worker for offline cold starts).
+  const packCatalogQ = useQuery({
+    queryKey: ['pack-catalog', PACK_CATALOG_URL],
+    queryFn: async () => {
+      const res = await fetch(PACK_CATALOG_URL, { headers: { accept: 'application/json' } });
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${PACK_CATALOG_URL}`);
+      return PackCatalogSchema.parse(await res.json()).streams;
+    },
+    enabled: enabled && streamsQ.isError,
+    staleTime: Number.POSITIVE_INFINITY,
+    gcTime: Number.POSITIVE_INFINITY,
+    networkMode: 'offlineFirst',
+    retry: 1,
+    refetchOnWindowFocus: false,
+  });
+
+  // Effective catalog rows: live feed → bundled pack. The pack is a plain
+  // array of catalog streams (same StreamSchema the feed serves).
+  const streamsData = useMemo(
+    () => streamsQ.data?.data ?? packCatalogQ.data ?? undefined,
+    [streamsQ.data, packCatalogQ.data],
+  );
+  // A hard catalog error needs BOTH the feed and the pack to fail. While the
+  // pack fetch is in flight the page keeps its loading state (no error flash).
+  const streamsUnavailable = streamsQ.isError && !packCatalogQ.data && !packCatalogQ.isLoading;
   const conditionsQ = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsSchema, 60, enabled);
   // Reports + stocking were permanently disabled (B06): counts hardcoded to 0
   // and "never fetched" was indistinguishable from "no reports". Both feeds are
@@ -77,7 +104,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   // Canonical stocking association (B05): TWRA water names resolve through
   // normalization → curated aliases → unambiguous containment only.
-  const streamsForMatch = (streamsQ.data?.data ?? []) as unknown as Array<{ id: string; name: string }>;
+  const streamsForMatch = (streamsData ?? []) as unknown as Array<{ id: string; name: string }>;
   const stockingByStream = useMemo(() => {
     const { byStream } = matchStocking(streamsForMatch, stockings as never);
     return byStream as Map<string, Array<Record<string, unknown>>>;
@@ -92,7 +119,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   }, [reports]);
 
   const features: RiverMapFeature[] = useMemo(() => {
-    const streams = (streamsQ.data?.data ?? []) as unknown[];
+    const streams = (streamsData ?? []) as unknown[];
     return (streams as Array<{ id: string; name: string; regionId: string; species?: 'trout' | 'warmwater' } & Record<string, unknown>>).map((stream) => {
       const snap = snapshotById.get((stream as { id: string }).id) as any;
       const hasData = !!snap;
@@ -131,7 +158,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         logCount: logCountByStream.get((stream as { id: string }).id) ?? 0,
       };
     });
-  }, [streamsQ.data, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
+  }, [streamsData, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
 
   // C1: feed-level health for the conditions snapshot, distinct from
   // per-water assessment. The builder stamps nextExpectedUpdate <= fetchedAt
@@ -159,12 +186,19 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   return {
     features,
-    isLoading: streamsQ.isLoading || conditionsQ.isLoading,
-    isError: streamsQ.isError || conditionsQ.isError,
+    isLoading: streamsQ.isLoading || conditionsQ.isLoading || (streamsQ.isError && packCatalogQ.isLoading),
+    // Only a failure of BOTH the live feed and the bundled pack is a hard
+    // catalog error. A conditions outage alone degrades: waters render
+    // unassessed and the freshness chip reports offline (live:false) instead
+    // of taking the whole catalog down (the 2026-09-06+ host incident).
+    isError: streamsUnavailable,
     fetchedAt: (conditionsQ.data?.fetchedAt ?? streamsQ.data?.fetchedAt ?? null) as number | null,
     live: (conditionsQ.data?.live ?? false) as boolean,
     conditionsFeed,
-    streams: (streamsQ.data?.data ?? []) as unknown as RiverMapFeature['stream'][],
+    // Surfaced for UI/tests: the conditions feed failed (or is absent) while
+    // the catalog itself still renders.
+    conditionsUnavailable: conditionsQ.isError,
+    streams: (streamsData ?? []) as unknown as RiverMapFeature['stream'][],
     hatchMap,
     // Per-feed state (B06): a feed with zero rows must be distinguishable
     // from one that was never fetched or failed.
