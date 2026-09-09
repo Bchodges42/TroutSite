@@ -142,7 +142,6 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
     snapshotHeadersPlugin(),
     snapshotRoutesPlugin(),
     analyticsBeaconPlugin(),
-    packStreamsPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
