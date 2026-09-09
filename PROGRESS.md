@@ -3,7 +3,7 @@
 Base: `origin/main` = `6d0befe` (recovery push 2026-09-08). Clone: `C:\Users\Benjamin\Projects\trout-s1`.
 Scope: live-host pipeline recovery, hatch content pack, TVA/USACE gauges, catalog attributes, stocking window/sort.
 
-## Result (6 commits on top of 6d0befe, all gates green)
+## Result (landed on main + deployed to the laptop pipeline 2026-09-08 ~19:49 — deploy all green)
 
 - `pipe(infra)` — snapshot-sync fallback (`infra/sync-snapshots.sh`, rsync-or-scp + atomic swap +
   public URL verification, `--dry-run`/`--local` test seams), RUNBOOK §8, `docs/SESSION1-HOST-RECOVERY.md`
@@ -40,7 +40,7 @@ Scope: live-host pipeline recovery, hatch content pack, TVA/USACE gauges, catalo
 Gates: typecheck clean · api 140/140 · contracts 97/97 · content 11/11 · web 181/181 ·
 content validate/build OK (147 streams) · web build + size budget OK (10.52 MB / 25 MB).
 
-## BLOCKER for Task 1 (host deploy) — owner action required
+## Still open — host deploy (owner action required)
 
 The live host (`trout.tntechclimb.com`) is NOT reachable from this laptop (no SSH keys/config, no
 cloudflared service locally) and has REGRESSED past the findings: `/healthz` → `ok:false`
