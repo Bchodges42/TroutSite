@@ -33,7 +33,17 @@ jobs=(
 )
 
 if [ "$IS_WIN" = "1" ]; then
-  bash_exe="$(cygpath -w "$(command -v bash)" 2>/dev/null || echo bash)"
+  if [ -n "${TROUT_BASH_EXE:-}" ]; then
+    bash_exe="$TROUT_BASH_EXE"
+  elif command -v cygpath >/dev/null 2>&1; then
+    bash_exe="$(cygpath -w "$(command -v bash)")"
+  elif [ -f /c/ProgramData/TroutSite/Tools/bash.exe ]; then
+    bash_exe='C:\ProgramData\TroutSite\Tools\bash.exe'
+  else
+    bash_exe="$(command -v bash)"
+  fi
+  # MSYS otherwise rewrites schtasks switches such as /Create as POSIX paths.
+  export MSYS_NO_PATHCONV=1
 fi
 
 run_job() { # name command
@@ -71,7 +81,7 @@ case "$MODE" in
 esac
 
 for j in "${jobs[@]}"; do
-  name="${j%%|*}"; cmd="${j#*|}"
+  name="${j%%|*}"; cmd="${j##*|}"
   if run_job "$name" "$cmd"; then
     echo "[schedules] installed: $name"
   else
