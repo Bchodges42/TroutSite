@@ -1,7 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
-import { StreamSchema } from '@trout/contracts';
-import { useSnapshotQuery } from './useSnapshotQuery';
-import { snapshotUrls } from './endpoints';
+import { useStreamsCatalog } from './useStreamsCatalog';
 import { currentMonth } from './time';
 let lastMapUrl = '/';
 export function rememberMapUrl(url: string) {
@@ -37,12 +35,7 @@ export function contextUrl(
 export function useRiverContext() {
   const [params] = useSearchParams();
   const riverId = params.get('river');
-  const catalog = useSnapshotQuery(
-    snapshotUrls.streams,
-    StreamSchema.array(),
-    1440,
-    Boolean(riverId),
-  );
+  const catalog = useStreamsCatalog(1440, Boolean(riverId));
   const stream = catalog.data?.data.find((s) => s.id === riverId);
   return {
     riverId,

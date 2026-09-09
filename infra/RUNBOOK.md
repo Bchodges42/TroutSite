@@ -135,7 +135,7 @@ the outage window (§11: laptop downtime → static + CF cache).
 | `/healthz` unreachable | `pm2 logs trout-api --lines 50`; port 8787 already bound? `netstat -ano | findstr 8787` |
 | Public URL 530/timeout | `pm2 logs trout-cloudflared`; tunnel ID/credentials in `infra/cloudflared/config.yml` |
 | Cron not writing | `pm2 logs trout-cron`; check `jobs_log` table for `cron-tick` rows |
-| Snapshot JSON stale | Until ROLE 3's builder lands, snapshots are static skeleton files; after that, re-run `bash infra/deploy.sh` |
+| Snapshot JSON stale | Until ROLE 3's builder lands, snapshots are static skeleton files; after that, re-run `bash infra/deploy.sh` — or let the watchdog heal it (§9); `cat backups/watchdog.status` |
 | DB locked errors | Ensure only one writer (api/cron) uses WAL; never edit the DB while pm2 runs it |
 | Seed says "empty" | Content pack intentionally empty in Phase 0; `pnpm --filter api seed` is a no-op success |
 
@@ -181,3 +181,77 @@ Safety notes:
   the host's gauge observations stay missing until its own pipeline recovers.
 - Sync never touches `apps/api/data/trout.db` or portal writes; it only replaces
   the two generated trees the API serves statically (ADR 0005).
+
+## 9. Self-healing read path (2026-09-09 — recurring-outage fix)
+
+> **HOST REALITY (2026-09-09, confirmed by on-server inspection):** the production
+> server is a headless WINDOWS laptop running the app as a WinSW service named
+> `TroutSite` (override with `TROUT_WINDOWS_SERVICE`) — **not pm2, no crontab**.
+> The pm2/§2.4 setup describes the dev laptop. Everything in this section is
+> host-agnostic: `deploy.sh` restarts via `infra/restart-app.sh` (pm2 if present,
+> otherwise the Windows service), scheduling is installed by
+> `infra/install-schedules.sh` (schtasks as SYSTEM here, crontab on Linux), and
+> `infra/refresh-data.sh` hourly replaces the data heartbeat the dead `trout-cron`
+> used to provide. If the API is not on :8787, export `TROUT_API_URL` in the tasks.
+
+**Portable-shell constraint (learned 2026-09-09 on the server):** the server's Git
+environment is a minimal portable Bash — `sleep`, `tar`, `find`, `tee`, `curl` could not
+be relied on (the first bootstrap healed the site but died at `sleep 2`). Every entry
+script now uses ONLY bash builtins + git + pnpm + node: verification is a single node
+process (`verify-site.sh --wait 30` retries internally, replacing sleep+curl), the
+archive is a node-copied directory via `infra/snapshot-io.mjs` (no tar), and log helpers
+append instead of tee-ing.
+
+**Why this exists:** the same outage has recurred — cron goes quiet, the generated
+gitignored trees vanish or go stale, and the site serves "Catalog unavailable" until
+someone notices days later. The read path is files-on-disk: `GET /v1/streams` does
+`existsSync(apps/web/public/v1/streams.json)` per request (`apps/api/src/app.ts`), so
+**whoever controls those files controls the site** — no DB surgery, no rebuild. Four
+scripts now own that control loop:
+
+| Script | Job |
+|---|---|
+| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/streams.json`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. |
+| `infra/archive-snapshots.sh` | Snapshot the currently-served trees → `backups/snapshots-last-good.tar.gz` (refuses to archive an empty/broken state). |
+| `infra/restore-snapshots.sh` | Swap the archived trees back in (staging + atomic swap). This alone heals the read path. |
+| `infra/watchdog.sh` | Hourly loop: verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. |
+
+`deploy.sh` is wired into the same loop: it **archives the currently-served trees
+before** seed/ingest/snapshots run, and if the final verification fails it
+**automatically rolls back** to the archive, so a failed deploy leaves the previous
+good site serving instead of a broken one. (The DB is not reverted — seed/ingest are
+idempotent upserts.)
+
+### Deploy (what "ship it" means on this stack)
+
+```bash
+bash infra/deploy.sh          # archive → pull → build → seed → ingest → snapshots → reload → verify → (auto-rollback on fail)
+bash infra/verify-site.sh --public   # optional: confirm what visitors see through the edge
+```
+
+There is exactly one updater for **data** (trout-cron, hourly) and one for **code**
+(`deploy.sh`, run on releases). The gitignored trees never need to come from git —
+they are *generated on the host*, and the archive is their disaster-recovery copy.
+
+### Zero-touch updates (`infra/autoupdate.sh`)
+
+The server can ship its own releases: `autoupdate.sh` fetches origin, and when
+`main` moved it runs `deploy.sh` (which verifies and rolls back on failure). It
+refuses to run over locally-modified tracked files, and it is a no-op fetch when
+nothing changed, so any cadence is safe. On the headless server (cron, not Task
+Scheduler):
+
+```cron
+# data self-heal every 15 min + code updates hourly (server crontab -e)
+*/15 * * * * cd /opt/trout && bash infra/watchdog.sh   >> backups/cron.log 2>&1
+0 * * * *   cd /opt/trout && bash infra/autoupdate.sh  >> backups/cron.log 2>&1
+```
+
+(Adjust the path; `TROUT_DEPLOY_BRANCH` and `TROUT_DEPLOY_CMD` are overridable.
+Windows-laptop equivalent: the schtasks pattern in §5.) With both schedules
+installed plus a healthy deploy, routine operation is fully hands-off: cron
+refreshes data hourly, the watchdog heals data outages, autoupdate ships code
+releases, and the read-path archive + auto-rollback are the safety net under all
+of it. `backups/autoupdate.status` / `backups/watchdog.status` are the two files
+to glance at — anything other than `OK` / `UP-TO-DATE` / `DEPLOYED` / `HEALED-*`
+needs a human.

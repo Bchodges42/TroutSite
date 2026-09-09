@@ -17,6 +17,14 @@ pnpm -r build
 echo "[deploy] validate content pack"
 pnpm validate:content
 
+echo "[deploy] archive the currently-served snapshots (rollback point, RUNBOOK §9)"
+# Every step after this line can rewrite the generated trees; the archive is
+# what a failed verification rolls back to. Cheap, and the only copy of the
+# gitignored data this machine is currently serving.
+if ! bash infra/archive-snapshots.sh; then
+  echo "[deploy] WARN — no rollback point could be created; continuing WITHOUT a safety net"
+fi
+
 echo "[deploy] seed catalog into the API database (idempotent upsert)"
 # The streams/shops tables must match the shipped content pack before
 # snapshots are built — a stale DB regenerates stale snapshots (the live
@@ -63,58 +71,51 @@ else
   echo "[deploy] no /v1 snapshots yet — marketing stays on bundled fixtures"
 fi
 
-echo "[deploy] pm2 reload (api + cron + portal/marketing static servers)"
-if pm2 reload trout-api trout-cron trout-portal-static trout-marketing-static >/dev/null 2>&1; then
-  pm2 reload trout-api trout-cron trout-portal-static trout-marketing-static
-else
-  echo "[deploy] processes not registered yet — starting from ecosystem config"
-  pm2 start infra/pm2/ecosystem.config.cjs
+echo "[deploy] restart serving processes (host-specific: pm2 or Windows service)"
+# Host-agnostic: pm2 reload on the runbook setup, WinSW service restart on the
+# Windows server (restart-app.sh). Data-only changes need no restart at all —
+# the API reads the snapshot files per request.
+restart_rc=0
+bash infra/restart-app.sh || restart_rc=$?
+if [ "$restart_rc" = "3" ]; then
+  echo "[deploy] WARN — no process manager detected; serving processes NOT restarted."
+  echo "[deploy] Snapshot data is picked up per-request, but a CODE change needs a"
+  echo "[deploy] manual service restart (or set TROUT_WINDOWS_SERVICE)."
+elif [ "$restart_rc" != "0" ]; then
+  echo "[deploy] WARN — restart reported failure (rc=$restart_rc); verification below decides."
 fi
-pm2 save
 
-echo "[deploy] verify the live read path"
-sleep 2
+echo "[deploy] verify the live read path (retries up to 30 s; node-only, no sleep/tar needed)"
 FAIL=0
-for check in "healthz|200" "v1/streams|200" "v1/conditions/latest.json|200" "content/taxa.json|200"; do
-  path="${check%%|*}"; want="${check##*|}"
-  got="$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "http://127.0.0.1:8787/$path" || echo 000)"
-  if [ "$got" != "$want" ]; then
-    echo "[deploy] FAIL — /$path answered $got (expected $want)"
-    FAIL=1
-  else
-    echo "[deploy] ok — /$path $got"
-  fi
-done
-
-echo "[deploy] verify conditions-feed health (C1)"
-# HTTP 200 is not enough: the 2026-09-06 incident served a valid 200 feed in
-# which every record was unassessed and already overdue. /healthz now computes
-# feed health from the published snapshot; a deploy that would ship the
-# empty-coverage state fails here instead of going live.
-HEALTH_JSON="$(curl -s --max-time 15 http://127.0.0.1:8787/healthz || echo '{}')"
-HEALTH_OK="$(printf '%s' "$HEALTH_JSON" | node -e "
-let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
-  try { console.log(String(JSON.parse(raw).ok === true)); }
-  catch { console.log('false'); }
-})")"
-if [ "$HEALTH_OK" != "true" ]; then
-  echo "[deploy] FAIL — /healthz reports the conditions feed as unhealthy:"
-  printf '%s\n' "$HEALTH_JSON" | node -e "
-let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
-  try { const h=JSON.parse(raw); console.log('  conditions: '+JSON.stringify(h.conditions)); }
-  catch { console.log('  (healthz response unreadable)'); }
-})"
-  echo "[deploy] usual cause: gauge ingestion never succeeded against this DB"
-  echo "[deploy] (check USGS_USER_AGENT / network egress), then re-run deploy."
-  FAIL=1
-else
-  echo "[deploy] ok — conditions feed healthy"
-fi
+bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 || FAIL=1
 
 if [ "$FAIL" = "1" ]; then
   echo "[deploy] DEPLOY CHECK FAILED — the live site would mislead anglers."
   echo "[deploy] usual cause: seed/snapshots did not run (see steps above)."
+  echo "[deploy] rolling the read path back to the last-good snapshots (RUNBOOK §9)…"
+  # The DB is NOT reverted (seed/ingest are idempotent upserts); only the
+  # served trees go back, so visitors keep the previous good catalog instead
+  # of an empty one while the failure is fixed.
+  if bash infra/restore-snapshots.sh; then
+    bash infra/restart-app.sh || true
+    if bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 >/dev/null 2>&1; then
+      echo "[deploy] ROLLED BACK — last-good snapshots are serving again."
+      echo "[deploy] Fix the failing step above, then re-run this deploy."
+    else
+      echo "[deploy] rollback did not fully heal the read path — run:"
+      echo "[deploy]   bash infra/verify-site.sh   (details) and see RUNBOOK §4/§9."
+    fi
+  else
+    echo "[deploy] no last-good archive exists — nothing to roll back to."
+    echo "[deploy] recover per RUNBOOK §4/§9, then re-run this deploy."
+  fi
   exit 1
 fi
+
+echo "[deploy] refresh the rollback archive from the now-verified state"
+# The pre-deploy archive step is a no-op on a host whose trees were already
+# missing (the 2026-09-09 first bootstrap had nothing to archive); this is what
+# actually creates the rollback point for the NEXT deploy.
+bash infra/archive-snapshots.sh || echo "[deploy] WARN — could not refresh the archive"
 
 echo "[deploy] done — all endpoints green."

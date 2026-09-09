@@ -31,6 +31,12 @@ function precacheGlobPatterns(fixtures: boolean): string[] {
   // the precache, not fall back to system faces (B10).
   const patterns = ['**/*.{js,css,html,svg,woff2}', 'icons/*.png'];
   if (fixtures || existsSync(join(webRoot, 'public', 'content'))) patterns.push('content/**/*.json');
+  // Bundled catalog fallback (live-catalog resilience, 2026-09-09): the pack
+  // copy lands in public/content-pack before `vite build`
+  // (scripts/copy-pack-fallback.mjs) and must precache so a cold/offline
+  // install can still render the catalog when the live /v1/streams feed is
+  // down. Presence-driven like every other generated tree.
+  if (existsSync(join(webRoot, 'public', 'content-pack'))) patterns.push('content-pack/*.json');
   if (existsSync(join(webRoot, 'public', 'atlas'))) {
     // Non-recursive on purpose: every precache-worthy atlas file (rivers,
     // places, tn-boundary/counties, states-context) sits directly in atlas/.

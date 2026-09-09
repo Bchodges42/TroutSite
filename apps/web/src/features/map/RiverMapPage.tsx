@@ -289,13 +289,16 @@ export function RiverMapPage() {
   // matched nothing, or the condition feed itself has no coverage (every
   // record unassessed with the builder's stale stamp, or an empty feed). Only
   // the feed-level state earns the coverage explainer; scores are never
-  // manufactured to fill the gap.
+  // manufactured to fill the gap. live-fix: a conditions fetch that FAILED
+  // outright (host outage) is also feed-level unavailability — the catalog
+  // (pack fallback) still renders, the footer says why there are no scores.
   const coverageUnavailable =
-    data.live &&
     !data.isLoading &&
     !data.isError &&
-    (data.conditionsFeed.records === 0 ||
-      (data.conditionsFeed.assessedCount === 0 && data.conditionsFeed.buildStale));
+    ((data.live &&
+      (data.conditionsFeed.records === 0 ||
+        (data.conditionsFeed.assessedCount === 0 && data.conditionsFeed.buildStale))) ||
+      data.conditionsUnavailable);
   const colors = useMemo(
     () =>
       new Map(

@@ -185,6 +185,24 @@ Details, flags, rollback (`v1.prev`), and Cloudflare-cache caveats: RUNBOOK §8.
 This restores the read path only — it does NOT fix the host's DB or cron (§5 is
 still required); the next healthy host cron overwrites synced data.
 
+**Host-side self-healing (2026-09-09, `infra/host-selfheal`):** the read path is
+files-on-disk (`GET /v1/streams` = `existsSync(v1/streams.json)` per request), so
+`infra/` now ships an archive → verify → restore → watchdog loop (RUNBOOK §9):
+`deploy.sh` archives the served trees before regenerating and auto-rolls back when
+verification fails, and an hourly `infra/watchdog.sh` heals a dead feed by
+regenerating snapshots or restoring the last-good archive — writing
+`backups/watchdog.status` instead of waiting for an angler to report the outage.
+Once this branch lands on the host, an API restart or a dead cron degrades to
+"last-good data" instead of an empty catalog.
+
+**Client-side safety net (2026-09-09, `fix/live-catalog`):** the PWA now bundles
+the reviewed content-pack catalog (`apps/web/public/content-pack/streams.json`,
+copied at web build time and SW-precached). When `/v1/streams` 503s, visitors —
+including fresh phones with an empty Dexie cache — get the static catalog
+(unassessed waters, offline chip) instead of the "Catalog unavailable" hard
+error. This is a READ-PATH bandage only: live conditions, hatch charts, and
+stocking still require §4/§8 to restore the host's snapshot trees.
+
 ## 9. Post-incident: document what killed cron + the trees
 
 `trout-cron` going quiet AND both generated trees disappearing at once is not a

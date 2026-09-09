@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# ROLE 1 — zero-touch update poller: when origin/<branch> moves, run deploy.sh.
+# Intended for a cron/systemd schedule on the server (RUNBOOK §9). Safe at any
+# cadence: when nothing changed this is one fetch + two rev-parses.
+#
+#   bash infra/autoupdate.sh                 # check + deploy on change
+#   bash infra/autoupdate.sh --dry-run       # report what would happen, no deploy
+#
+# Env: TROUT_ROOT (repo root, tests), TROUT_DEPLOY_BRANCH (default main),
+#      TROUT_DEPLOY_CMD (default 'bash infra/deploy.sh'; override for tests).
+# Refuses to auto-deploy over a dirty working tree — the server's checkout must
+# stay pristine; local edits are an owner problem, not a cron decision.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+ROOT="${TROUT_ROOT:-$(pwd)}"
+# Track whatever branch the checkout is on (upstream = origin/<branch>): this
+# makes the poller correct both before the owner merges to main (deploys the
+# integration branch) and after finalize switches the server to main.
+BRANCH="${TROUT_DEPLOY_BRANCH:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)}"
+DEPLOY_CMD="${TROUT_DEPLOY_CMD:-bash infra/deploy.sh}"
+DRY_RUN=0
+[ "${1:-}" = "--dry-run" ] && DRY_RUN=1
+
+BACKUPS="$ROOT/backups"
+mkdir -p "$BACKUPS"
+LOG="$BACKUPS/autoupdate.log"
+STATUS="$BACKUPS/autoupdate.status"
+
+# Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
+export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
+
+log() { # tee is not guaranteed in portable shells — echo + append instead
+  local line
+  line="[autoupdate $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*"
+  echo "$line"
+  echo "$line" >> "$LOG"
+}
+set_status() { printf '%s %s\n' "$1" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" > "$STATUS"; }
+
+cd "$ROOT" || { log "FAIL — repo root $ROOT missing"; set_status "FAIL"; exit 1; }
+
+# Fetch ALL refs: 'fetch origin <branch>' updates only FETCH_HEAD, not the
+# origin/<branch> tracking ref this script compares against.
+if ! git fetch origin --quiet; then
+  log "FAIL — could not fetch origin/$BRANCH (network/credentials); leaving site as-is"
+  set_status "FAIL-FETCH"
+  exit 1
+fi
+
+local_rev="$(git rev-parse HEAD 2>/dev/null || echo unknown)"
+remote_rev="$(git rev-parse "origin/$BRANCH" 2>/dev/null || echo unknown)"
+
+if [ "$local_rev" = "$remote_rev" ]; then
+  set_status "UP-TO-DATE"
+  exit 0
+fi
+
+# Only local modifications to TRACKED files can break 'git pull' — untracked
+# files (logs, notes, local data) must not block a deploy.
+if [ -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]; then
+  log "REFUSED — tracked files modified locally; auto-deploy only runs on a clean checkout. Owner must inspect $ROOT."
+  set_status "REFUSED-DIRTY"
+  exit 1
+fi
+
+log "origin/$BRANCH moved ${local_rev:0:9}..${remote_rev:0:9} — deploying${DRY_RUN:+ (dry-run: no action)} [cmd: $DEPLOY_CMD]"
+if [ "$DRY_RUN" = "1" ]; then
+  set_status "PENDING-DRYRUN"
+  exit 2
+fi
+
+if $DEPLOY_CMD >> "$LOG" 2>&1; then
+  log "DEPLOYED — now at $(git rev-parse --short=9 HEAD)"
+  set_status "DEPLOYED"
+  exit 0
+fi
+
+log "DEPLOY FAILED — deploy.sh already attempted its own rollback; site is on the last-good read path. Inspect $LOG."
+set_status "FAIL-DEPLOY"
+exit 1
