@@ -6,6 +6,7 @@ regionId: tn-east-holston
 gaugeIds:
   - "03476500"
 stockingProgram: false
+species: warmwater
 idealFlow: []
 notes: >-
   TVA reservoir on the South Fork Holston River above Bristol (Sullivan

@@ -6,6 +6,8 @@ regionId: tn-east-pigeon-frenchbroad
 gaugeIds: []
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: false
 idealFlow:
   - min: 3
     max: 25

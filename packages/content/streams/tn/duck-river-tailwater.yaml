@@ -8,6 +8,8 @@ gaugeIds:
   - "tva:NRMT1"
 stockingProgram: true
 species: trout
+fishery: tailwater
+yearRound: true
 idealFlow:
   - min: 100
     max: 800

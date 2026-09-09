@@ -6,6 +6,8 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: false
 idealFlow:
   - min: 30
     max: 200

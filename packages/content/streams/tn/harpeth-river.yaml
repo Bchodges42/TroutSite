@@ -8,6 +8,8 @@ gaugeIds:
   - "03433500"
 stockingProgram: true
 species: warmwater
+fishery: stocked
+yearRound: false
 idealFlow:
   - min: 50
     max: 400

@@ -6,6 +6,8 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: false
 idealFlow: []
 notes: >-
   TWRA winter put-and-take pond in Munford (Tipton County). Stocked with rainbow trout in

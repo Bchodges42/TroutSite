@@ -9,11 +9,13 @@ gaugeIds:
   - "tva:TMFT1"
 stockingProgram: true
 species: trout
+fishery: tailwater
+yearRound: true
 idealFlow:
   - min: 100
     max: 700
     unit: cfs
-notes: A compact, cold Tims Ford release with put-grow-take rainbows and winter stocking in the
+notes: A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and winter stocking in the
   lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham)
   bracket the fishery.
 officialSources:

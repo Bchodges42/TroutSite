@@ -9,11 +9,13 @@ gaugeIds:
   - "usace:CETT1"
 stockingProgram: true
 species: trout
+fishery: tailwater
+yearRound: true
 idealFlow:
   - min: 200
     max: 2000
     unit: cfs
-notes: "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows plus a celebrated
+notes: "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows (stocking runs March through December) plus a celebrated
   winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic
   — Stonewall and at-dam gauges are your wade-window planners."
 officialSources:

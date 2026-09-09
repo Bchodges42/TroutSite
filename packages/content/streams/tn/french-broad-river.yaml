@@ -8,6 +8,7 @@ gaugeIds:
   - "03469000"
 stockingProgram: false
 species: trout
+fishery: tailwater
 idealFlow:
   - min: 300
     max: 2000

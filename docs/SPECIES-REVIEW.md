@@ -200,3 +200,93 @@ and striper fisheries. Recommend `warmwater` for all of them.
 A `warmwater` ruling here means the UI never trout-scores these waters (species semantics above);
 if any is confirmed to carry a real winter put-and-take program instead, it should be ruled
 `trout` with a seasonal note like the West TN ponds.
+
+---
+
+## Owner decisions 2026-09-08 (Session 1)
+
+Session 1 landed the canonical per-water fishery attributes: `fishery: wild|stocked|tailwater`
+and `yearRound: true|false` (both optional, both ABSENT — never null, never guessed — where the
+evidence does not reach) on `StreamSchema`, authored across `packages/content/streams/tn/*.yaml`
+from the two 2026-09-08 evidence bases (`.session1-research/catalog-twra/EVIDENCE.md` +
+`twra-stocking-snapshot.json` — 136 TWRA sites with per-month seasonality; and
+`.session1-research/catalog-other/EVIDENCE.md` — USFS Cherokee NF / ArcGIS storymap / norrik).
+Validator now warns (advisory, never fails the gate) on `fishery`/`yearRound` combinations that
+contradict a water's own flags and prints a coverage line: **fishery set on 101/147
+(stocked 81, tailwater 13, wild 7), yearRound on 91/147.**
+
+### Species changes (8)
+
+| id | change | evidence (one line) |
+|---|---|---|
+| calderwood-lake | unset → `trout` (+ `stockingProgram: true`) | FLIP — TWRA snapshot: "Calderwood Reservoir" (Blount/Monroe), Reservoir type, rainbow, Nov+Dec drops. |
+| chilhowee-lake | unset → `trout` (+ `stockingProgram: true`) | FLIP — TWRA snapshot: "Chilhowee Reservoir", rainbow, Feb+Nov+Dec drops. |
+| dale-hollow-lake | unset → `trout` (+ `stockingProgram: true`) | FLIP — TWRA snapshot: "Dale Hollow Reservoir" itself, Brown trout, Apr ("A" resolves April per adapter semantics) — the famous put-grow-take brown fishery; refutes the 2026-09-04 warmwater recommendation. |
+| norris-lake | unset → `warmwater` | Snapshot corroboration: the trout water is "Norris Tailwater / Clinch River" (rainbow+brown, Mar–Sep); the lake itself is absent from the 136-site schedule. |
+| cherokee-lake | unset → `warmwater` | Snapshot corroboration: "Cherokee TW / Holston River" row (rainbow+brown, Jan–Apr, Nov–Dec) is the trout water; the lake itself is absent. |
+| center-hill-lake | unset → `warmwater` | Snapshot corroboration: trout water = "Center Hill TW / Caney Fork River" (10 months); no Center Hill Lake row — also refutes norrik's "lake stocked Apr–Sep" claim. |
+| tims-ford-lake | unset → `warmwater` | Snapshot corroboration: trout water = "Tims Ford TW / Elk River" (rainbow+brown, 10 months); the lake itself is absent. |
+| south-holston-lake | unset → `warmwater` | Snapshot corroboration: trout water = "S. Holston TW / S. Fork Holston River" (Mar–Sep); the lake itself is absent — completes the 2026-09-04 "confirm with TWRA first" condition. |
+
+Interpretation note: the stub-menu corroboration rule was applied as "the snapshot affirms the
+water's trout identity lives at a separate named site (tailwater row) and the water itself has no
+trout row". The remaining 18 menu stubs (douglas-lake, fort-loudoun-lake, watts-bar-lake,
+chickamauga-lake, kentucky-lake, pickwick-lake, old-hickory-lake, j-percy-priest-lake,
+lake-barkley, cumberland-river, tennessee-river, mississippi-river, hatchie-river, obion-river,
+wolf-river-west-tennessee, buffalo-river, holston-river) have no affirmative snapshot evidence and
+stay UNSET. harpeth-river keeps its `warmwater` ruling; little-pigeon-river keeps its
+owner-confirmed `trout`.
+
+### What was applied beyond species
+
+- `fishery`: 13 tailwater (all tailrace waters + watauga-river-wilbur-reach, the below-Watauga-Dam
+  reach), 7 wild (obed-river, daddys-creek, clear-creek-obed, new-river, powell-river,
+  south-fork-cumberland, east-fork-stones-river — `stockingProgram: false` + self-sustaining notes),
+  81 stocked. `yearRound: true` only via the three evidence gates: all-12-month/tailwater programs
+  (obey-river stocked every month; caney-fork/elk 10 months Mar–Dec; Gatlinburg 12-month city
+  program → leconte-creek, roaring-fork, west-prong-little-pigeon; tailwaters with year-round
+  releases + documented fishery → boone, clinch, ft-patrick-henry, hiwassee (Oct 1–Feb 28 C&R
+  bridge), south-holston, watauga, duck-river-tailwater), delayed-harvest C&R windows
+  (buffalo-creek-grainger, doe-river, piney-river-rhea; tellico-river also 11 stocking months),
+  and the designated-wild-stream no-closed-season rule (beaverdam-creek, laurel-fork-carter —
+  regs reach named in the notes). `yearRound: false` on seasonal circuits (winter ponds, Mar–May
+  spring programs, parksville-tailwater Mar–May only, citico-creek, little-river,
+  middle-prong-little-pigeon). Notes updated surgically on 13 waters (calderwood, chilhowee,
+  dale-hollow, beaverdam, laurel-fork, tellico, citico, obey, caney-fork, elk, hiwassee,
+  parksville-tailwater, ocoee-river stale-note correction — TWRA now lists the Parksville
+  tailwater, not "Parksville Lake itself").
+
+### OWNER-DECISION LIST
+
+1. **dale-hollow-lake `yearRound`** — spring-only brown stocking on a big lake (Apr); left ABSENT.
+   Decide: false (seasonal put-grow-take) vs true (resident fish hold over). Recommendation: false.
+2. **harpeth-river `fishery` tension** — owner ruled `species: warmwater` (2026-09-04) but TWRA
+   stocks it Jan–Feb (winter put-and-take). Priority rule set `fishery: stocked`, `yearRound: false`.
+   Decide: keep stocked (honest: a real put-and-take program on a warmwater base) vs leave ABSENT
+   (fishery enum implies a trout fishery identity). Recommendation: keep `stocked`.
+3. **Wild/stocked dual identity** — beaverdam-creek, laurel-fork-carter (and future rocky-fork):
+   stocked seasonal mainstem + designated wild-trout reach in one catalog water. The enum cannot
+   express both; set `stocked` per priority rules with the wild reach named in notes and
+   `yearRound: true` from the wild designation. Decide: whether dual waters deserve a richer
+   encoding (e.g. split reaches) later.
+4. **Med-confidence `yearRound: true` calls** — boone-tailwater and ft-patrick-henry-tailwater
+   (cool-season stocking Mar/Apr/Nov–Dec; year-round call rides on documented year-round dam
+   releases), duck-river-tailwater (owner confirmation 2026-09-04 + cool-season snapshot), and the
+   three delayed-harvest waters (doe-river, piney-river-rhea, buffalo-creek-grainger — DH C&R
+   window read as a year-round fishery). Comfortable, but reversible without ceremony.
+5. **fishery left ABSENT (candidate owner calls)** — emory-river, clear-fork, nolichucky-river,
+   duck-river-lower (split/undefined-reach identities carried from 2026-09-04), pigeon-river and
+   french-broad-river-adjacent (no affirmative wild/stocked claim), and the trout-adjacent
+   reservoirs (melton-hill-lake, wilbur-lake, watauga-lake, little-tennessee-river upper reach).
+6. **Stocking claims the 2026-09-08 snapshot does NOT show** — kept `fishery: stocked` per the
+   catalog's documented programs, flagged for verification: boiling-fork-creek (nearest row is the
+   new "Cowan City Park" winter site), reedy-creek, shoal-creek (TWRA stocks East Fork Shoal
+   Creek), little-pigeon-river (owner confirmation stands; TWRA evidence still absent).
+7. **Candidate NEW waters (add-candidates — require geometry/anchor work owned by Session 2,
+   listed with their snapshot evidence):** Cherokee TW / Holston River (rainbow+brown,
+   Jan–Apr + Nov–Dec — the only destination tailwater missing from the catalog), paint-creek
+   (Mar–Oct DH + designated wild reach upstream; USFS "stocked during the summer months"),
+   bald-river + north-river (designated wild, brown/rainbow/brook), green-cove-pond
+   (TWRA pond, Feb–Dec, permit-free), rocky-fork (stocked below + designated wild above),
+   big-soddy-creek (DH Feb–Nov), plus the 18-site winter pond circuit and seasonal stream
+   candidates (Table 2 of the TWRA evidence base).

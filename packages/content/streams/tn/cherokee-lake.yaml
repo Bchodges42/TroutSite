@@ -5,6 +5,7 @@ waterbodyType: lake
 regionId: tn-east-holston
 gaugeIds: []
 stockingProgram: false
+species: warmwater
 idealFlow: []
 notes: >-
   TVA reservoir on the Holston River northeast of Knoxville across Grainger,

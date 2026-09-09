@@ -274,6 +274,23 @@ export function loadContent(): LoadedContent {
     if (!stream.officialSources?.length) {
       issues.push({ file: rel(file), message: 'streams must cite at least one officialSources entry' });
     }
+    // Fishery/yearRound cross-checks (session-1 catalog lane): advisory only — these flag
+    // attribute combinations that contradict the water's own flags/notes, they never fail the gate.
+    if (stream.fishery === 'tailwater' && stream.waterbodyType !== 'tailrace') {
+      warnings.push({
+        file: rel(file),
+        message: `fishery "tailwater" but waterbodyType is "${stream.waterbodyType}" (tailwater implies a dam-controlled release reach)`,
+      });
+    }
+    if (stream.fishery === 'stocked' && !stream.stockingProgram) {
+      warnings.push({ file: rel(file), message: 'fishery "stocked" but stockingProgram is false' });
+    }
+    if (stream.yearRound === true && !stream.stockingProgram && !/wild|self-sustaining|naturally reproduc/i.test(stream.notes ?? '')) {
+      warnings.push({
+        file: rel(file),
+        message: 'yearRound true on an unstocked water with no wild-fishery note (wild | self-sustaining | naturally reproducing)',
+      });
+    }
     // M3 anti-regression lint: keep geometry provenance out of angler-facing copy.
     for (const [re, what] of NOTE_PROVENANCE_DENYLIST) {
       if (stream.notes && re.test(stream.notes)) {

@@ -29,3 +29,20 @@ console.log(
     `${patterns.size} patterns, ${hatch.size} regions × 12 months, ${streams.size} streams, ${shops.size} shops. ` +
     `Warnings: ${warnings.length}.`,
 );
+
+// Session-1 fishery/yearRound catalog coverage line (advisory; unset = evidence has not reached).
+const streamList = [...streams.values()];
+const fisheryByValue = streamList.reduce<Record<string, number>>((acc, s) => {
+  if (s.fishery) acc[s.fishery] = (acc[s.fishery] ?? 0) + 1;
+  return acc;
+}, {});
+const fisheryCount = streamList.filter((s) => s.fishery).length;
+const yearRoundCount = streamList.filter((s) => s.yearRound !== undefined).length;
+const breakdown = (Object.keys(fisheryByValue) as Array<keyof typeof fisheryByValue>)
+  .sort()
+  .map((k) => `${k} ${fisheryByValue[k]}`)
+  .join(', ');
+console.log(
+  `[content] fishery set on ${fisheryCount}/${streams.size}${breakdown ? ` (${breakdown})` : ''}, ` +
+    `yearRound on ${yearRoundCount}/${streams.size}.`,
+);

@@ -6,6 +6,8 @@ regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: false
 idealFlow:
   - min: 3
     max: 40

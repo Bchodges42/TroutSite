@@ -6,11 +6,15 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: false
 idealFlow:
   - min: 20
     max: 150
     unit: cfs
-notes: Cherokee National Forest creek with TWRA spring stocking and wild brook trout upstream.
+notes: Cherokee National Forest creek with TWRA stocking roughly February–July (the Forest Service's catchable-rainbow
+  window upstream of Little Citico runs March 15–September 15) and wild brown, rainbow, and
+  brook trout in the tributaries.
   Remote, brushy, rain-flashy.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

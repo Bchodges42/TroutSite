@@ -6,12 +6,16 @@ regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: true
 idealFlow:
   - min: 5
     max: 60
     unit: cfs
 notes: Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite
-  small-water rainbow stop on the Shatley Springs road corridor. No USGS gauge — plan on
+  small-water rainbow stop on the Shatley Springs road corridor. The reach from the Birch Branch confluence down to Tank Hollow
+  Road is a designated TWRA wild-trout water — open year-round, single-hook artificials only.
+  No USGS gauge — plan on
   recent-rain judgment.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

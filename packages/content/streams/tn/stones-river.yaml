@@ -8,6 +8,8 @@ gaugeIds:
   - "usace:JPPT1"
 stockingProgram: true
 species: trout
+fishery: stocked
+yearRound: false
 idealFlow:
   - min: 40
     max: 400

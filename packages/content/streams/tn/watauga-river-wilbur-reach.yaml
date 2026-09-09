@@ -6,6 +6,7 @@ regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: false
 species: trout
+fishery: tailwater
 idealFlow: []
 notes: >-
   The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS

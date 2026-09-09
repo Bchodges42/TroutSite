@@ -5,6 +5,7 @@ waterbodyType: lake
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: false
+species: warmwater
 idealFlow: []
 notes: >-
   Reference waterbody from the Tennessee waterways inventory — the Caney Fork

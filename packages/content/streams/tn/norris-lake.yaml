@@ -6,6 +6,7 @@ regionId: tn-east-clinch
 gaugeIds:
   - "03533000"
 stockingProgram: false
+species: warmwater
 idealFlow: []
 notes: >-
   TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger,

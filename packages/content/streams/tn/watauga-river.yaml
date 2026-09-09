@@ -10,6 +10,8 @@ gaugeIds:
   - "tva:WL"
 stockingProgram: true
 species: trout
+fishery: tailwater
+yearRound: true
 idealFlow:
   - min: 150
     max: 1500

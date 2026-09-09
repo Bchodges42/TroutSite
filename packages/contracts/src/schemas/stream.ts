@@ -22,6 +22,15 @@ export const StreamSchema = z.object({
   /** Species focus: 'trout' waters are scored for trout fishability;
    *  'warmwater' rivers (smallmouth/panfish) are listed but never trout-scored. */
   species: z.enum(['trout', 'warmwater']).optional(),
+  /** Trout-fishery identity: 'tailwater' = dam-controlled release fishery;
+   *  'stocked' = put-and-take stocking without dam control;
+   *  'wild' = naturally reproducing (self-sustaining) fishery.
+   *  Absent = evidence does not reach — never guessed. */
+  fishery: z.enum(['wild', 'stocked', 'tailwater']).optional(),
+  /** The trout fishery (opportunity to catch trout, stocking season + regs/wild
+   *  backbone combined) is viable year-round — not merely that stocking happens
+   *  sometime during the year. Absent = undetermined. */
+  yearRound: z.boolean().optional(),
   notes: z.string().optional(),
   officialSources: z.array(OfficialSourceSchema),
 });

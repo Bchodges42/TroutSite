@@ -4,11 +4,14 @@ stateId: TN
 waterbodyType: lake
 regionId: tn-upper-cumberland
 gaugeIds: []
-stockingProgram: false
+stockingProgram: true
+species: trout
+fishery: stocked
 idealFlow: []
 notes: >-
   Reference waterbody from the Tennessee waterways inventory — the Obey River
-  reservoir at the Kentucky line in Clay, Pickett, and Overton counties. Detailed
+  reservoir at the Kentucky line in Clay, Pickett, and Overton counties. TWRA stocks brown
+  trout here each spring (put-grow-take). Detailed
   angler notes are still being prepared — check TWRA and local access areas in the
   meantime.
 officialSources:
