@@ -13,6 +13,9 @@ dist/
 apps/web/public/data/
 apps/web/public/v1/
 apps/web/public/content/
+# bundled catalog fallback copied from the content pack at web build time
+# (apps/web/scripts/copy-pack-fallback.mjs) — never edit by hand
+apps/web/public/content-pack/
 
 # build-only atlas source archives and extracted shapefiles
 apps/web/.atlas-src/
