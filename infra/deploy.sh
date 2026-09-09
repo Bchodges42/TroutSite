@@ -17,6 +17,14 @@ pnpm -r build
 echo "[deploy] validate content pack"
 pnpm validate:content
 
+echo "[deploy] archive the currently-served snapshots (rollback point, RUNBOOK §9)"
+# Every step after this line can rewrite the generated trees; the archive is
+# what a failed verification rolls back to. Cheap, and the only copy of the
+# gitignored data this machine is currently serving.
+if ! bash infra/archive-snapshots.sh; then
+  echo "[deploy] WARN — no rollback point could be created; continuing WITHOUT a safety net"
+fi
+
 echo "[deploy] seed catalog into the API database (idempotent upsert)"
 # The streams/shops tables must match the shipped content pack before
 # snapshots are built — a stale DB regenerates stale snapshots (the live
@@ -114,6 +122,26 @@ fi
 if [ "$FAIL" = "1" ]; then
   echo "[deploy] DEPLOY CHECK FAILED — the live site would mislead anglers."
   echo "[deploy] usual cause: seed/snapshots did not run (see steps above)."
+  echo "[deploy] rolling the read path back to the last-good snapshots (RUNBOOK §9)…"
+  # The DB is NOT reverted (seed/ingest are idempotent upserts); only the
+  # served trees go back, so visitors keep the previous good catalog instead
+  # of an empty one while the failure is fixed.
+  if bash infra/restore-snapshots.sh; then
+    if command -v pm2 >/dev/null 2>&1; then
+      pm2 reload trout-api >/dev/null 2>&1 || true
+    fi
+    sleep 2
+    if bash infra/verify-site.sh --url http://127.0.0.1:8787 >/dev/null 2>&1; then
+      echo "[deploy] ROLLED BACK — last-good snapshots are serving again."
+      echo "[deploy] Fix the failing step above, then re-run this deploy."
+    else
+      echo "[deploy] rollback did not fully heal the read path — run:"
+      echo "[deploy]   bash infra/verify-site.sh   (details) and see RUNBOOK §4/§9."
+    fi
+  else
+    echo "[deploy] no last-good archive exists — nothing to roll back to."
+    echo "[deploy] recover per RUNBOOK §4/§9, then re-run this deploy."
+  fi
   exit 1
 fi
 
