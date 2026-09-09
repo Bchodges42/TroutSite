@@ -194,6 +194,14 @@ Safety notes:
 > `infra/refresh-data.sh` hourly replaces the data heartbeat the dead `trout-cron`
 > used to provide. If the API is not on :8787, export `TROUT_API_URL` in the tasks.
 
+**Portable-shell constraint (learned 2026-09-09 on the server):** the server's Git
+environment is a minimal portable Bash — `sleep`, `tar`, `find`, `tee`, `curl` could not
+be relied on (the first bootstrap healed the site but died at `sleep 2`). Every entry
+script now uses ONLY bash builtins + git + pnpm + node: verification is a single node
+process (`verify-site.sh --wait 30` retries internally, replacing sleep+curl), the
+archive is a node-copied directory via `infra/snapshot-io.mjs` (no tar), and log helpers
+append instead of tee-ing.
+
 **Why this exists:** the same outage has recurred — cron goes quiet, the generated
 gitignored trees vanish or go stale, and the site serves "Catalog unavailable" until
 someone notices days later. The read path is files-on-disk: `GET /v1/streams` does

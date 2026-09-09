@@ -17,7 +17,12 @@ URL="${TROUT_API_URL:-http://127.0.0.1:8787}"
 # Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
 export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
 
-log() { echo "[refresh $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*" | tee -a "$LOG"; }
+log() { # tee is not guaranteed in portable shells — echo + append instead
+  local line
+  line="[refresh $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*"
+  echo "$line"
+  echo "$line" >> "$LOG"
+}
 
 if [ ! -f "$ROOT/apps/api/package.json" ]; then
   log "no apps/api here — nothing to refresh"

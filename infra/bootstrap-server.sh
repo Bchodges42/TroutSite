@@ -52,8 +52,8 @@ else
 fi
 
 echo "[bootstrap] 3/4 rollback archive"
-if [ -f backups/snapshots-last-good.tar.gz ]; then
-  ls -la backups/snapshots-last-good.tar.gz
+if [ -d backups/snapshots-last-good ]; then
+  ls -la backups/snapshots-last-good
 else
   echo "[bootstrap] WARN — no archive yet (the deploy step creates it; check its output)"
 fi

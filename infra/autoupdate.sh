@@ -30,7 +30,12 @@ STATUS="$BACKUPS/autoupdate.status"
 # Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
 export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
 
-log() { echo "[autoupdate $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*" | tee -a "$LOG"; }
+log() { # tee is not guaranteed in portable shells — echo + append instead
+  local line
+  line="[autoupdate $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*"
+  echo "$line"
+  echo "$line" >> "$LOG"
+}
 set_status() { printf '%s %s\n' "$1" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" > "$STATUS"; }
 
 cd "$ROOT" || { log "FAIL — repo root $ROOT missing"; set_status "FAIL"; exit 1; }
@@ -66,7 +71,7 @@ if [ "$DRY_RUN" = "1" ]; then
 fi
 
 if $DEPLOY_CMD >> "$LOG" 2>&1; then
-  log "DEPLOYED — now at $(git rev-parse HEAD | cut -c1-9)"
+  log "DEPLOYED — now at $(git rev-parse --short=9 HEAD)"
   set_status "DEPLOYED"
   exit 0
 fi

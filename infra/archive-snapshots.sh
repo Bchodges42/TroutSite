@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-# ROLE 1 — snapshot the generated, gitignored trees (apps/web/public/{v1,content,data})
-# into backups/snapshots-last-good.tar.gz so a failed deploy or a dead cron can always
-# be rolled back to the last known-good read path (RUNBOOK §9).
+# ROLE 1 — archive the generated, gitignored trees (apps/web/public/{v1,content,data})
+# into backups/snapshots-last-good/ so a failed deploy or a dead data heartbeat can
+# always be rolled back to the last known-good read path (RUNBOOK §9).
 #
 # The API reads these files from disk on every request (apps/api/src/app.ts:
 # /v1/streams does existsSync + readFileSync per call), so restoring this archive
 # IS the recovery — no database surgery, no rebuild required.
+#
+# Implementation is bash + node only: portable server shells lack coreutils
+# (sleep/tar/find were the 2026-09-09 deployment failure).
 #
 # Usage:  bash infra/archive-snapshots.sh
 # Env:    TROUT_ROOT  repo root override (tests); default: this repo
@@ -27,19 +30,4 @@ if [ "${#DIRS[@]}" -eq 0 ]; then
   exit 1
 fi
 
-total=0
-for d in "${DIRS[@]}"; do
-  n="$(find "$PUBLIC/$d" -type f 2>/dev/null | wc -l)"
-  total=$((total + n))
-done
-if [ "$total" -eq 0 ]; then
-  echo "[archive] refusing to archive — every generated tree is empty (that is the broken state, not the good one)"
-  exit 1
-fi
-
-tmp="$BACKUPS/.snapshots-last-good.tar.gz.tmp"
-tar -czf "$tmp" -C "$PUBLIC" "${DIRS[@]}" || { rm -f "$tmp"; echo "[archive] tar failed"; exit 1; }
-mv -f "$tmp" "$BACKUPS/snapshots-last-good.tar.gz"
-printf 'archived %s dirs=%s files=%s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "${DIRS[*]}" "$total" \
-  > "$BACKUPS/snapshots-last-good.stamp"
-echo "[archive] saved $total files (${DIRS[*]}) → backups/snapshots-last-good.tar.gz"
+node "$(dirname "$0")/snapshot-io.mjs" archive "$PUBLIC" "$BACKUPS/snapshots-last-good"

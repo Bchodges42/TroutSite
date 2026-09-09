@@ -85,44 +85,9 @@ elif [ "$restart_rc" != "0" ]; then
   echo "[deploy] WARN — restart reported failure (rc=$restart_rc); verification below decides."
 fi
 
-echo "[deploy] verify the live read path"
-sleep 2
+echo "[deploy] verify the live read path (retries up to 30 s; node-only, no sleep/tar needed)"
 FAIL=0
-for check in "healthz|200" "v1/streams|200" "v1/conditions/latest.json|200" "content/taxa.json|200"; do
-  path="${check%%|*}"; want="${check##*|}"
-  got="$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "http://127.0.0.1:8787/$path" || echo 000)"
-  if [ "$got" != "$want" ]; then
-    echo "[deploy] FAIL — /$path answered $got (expected $want)"
-    FAIL=1
-  else
-    echo "[deploy] ok — /$path $got"
-  fi
-done
-
-echo "[deploy] verify conditions-feed health (C1)"
-# HTTP 200 is not enough: the 2026-09-06 incident served a valid 200 feed in
-# which every record was unassessed and already overdue. /healthz now computes
-# feed health from the published snapshot; a deploy that would ship the
-# empty-coverage state fails here instead of going live.
-HEALTH_JSON="$(curl -s --max-time 15 http://127.0.0.1:8787/healthz || echo '{}')"
-HEALTH_OK="$(printf '%s' "$HEALTH_JSON" | node -e "
-let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
-  try { console.log(String(JSON.parse(raw).ok === true)); }
-  catch { console.log('false'); }
-})")"
-if [ "$HEALTH_OK" != "true" ]; then
-  echo "[deploy] FAIL — /healthz reports the conditions feed as unhealthy:"
-  printf '%s\n' "$HEALTH_JSON" | node -e "
-let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
-  try { const h=JSON.parse(raw); console.log('  conditions: '+JSON.stringify(h.conditions)); }
-  catch { console.log('  (healthz response unreadable)'); }
-})"
-  echo "[deploy] usual cause: gauge ingestion never succeeded against this DB"
-  echo "[deploy] (check USGS_USER_AGENT / network egress), then re-run deploy."
-  FAIL=1
-else
-  echo "[deploy] ok — conditions feed healthy"
-fi
+bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 || FAIL=1
 
 if [ "$FAIL" = "1" ]; then
   echo "[deploy] DEPLOY CHECK FAILED — the live site would mislead anglers."
@@ -132,11 +97,8 @@ if [ "$FAIL" = "1" ]; then
   # served trees go back, so visitors keep the previous good catalog instead
   # of an empty one while the failure is fixed.
   if bash infra/restore-snapshots.sh; then
-    if command -v pm2 >/dev/null 2>&1; then
-      pm2 reload trout-api >/dev/null 2>&1 || true
-    fi
-    sleep 2
-    if bash infra/verify-site.sh --url http://127.0.0.1:8787 >/dev/null 2>&1; then
+    bash infra/restart-app.sh || true
+    if bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 >/dev/null 2>&1; then
       echo "[deploy] ROLLED BACK — last-good snapshots are serving again."
       echo "[deploy] Fix the failing step above, then re-run this deploy."
     else
@@ -149,5 +111,11 @@ if [ "$FAIL" = "1" ]; then
   fi
   exit 1
 fi
+
+echo "[deploy] refresh the rollback archive from the now-verified state"
+# The pre-deploy archive step is a no-op on a host whose trees were already
+# missing (the 2026-09-09 first bootstrap had nothing to archive); this is what
+# actually creates the rollback point for the NEXT deploy.
+bash infra/archive-snapshots.sh || echo "[deploy] WARN — could not refresh the archive"
 
 echo "[deploy] done — all endpoints green."

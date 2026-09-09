@@ -1,95 +1,115 @@
 #!/usr/bin/env bash
 # ROLE 1 — the deploy/site read-path gate, reusable outside deploy.sh.
 #
-# Same checks as deploy.sh's verification step (plus the static /v1/streams.json
-# surface), against any origin:
-#
-#   bash infra/verify-site.sh                                   # local API (127.0.0.1:8787)
-#   bash infra/verify-site.sh --url http://127.0.0.1:8787      # explicit origin
+#   bash infra/verify-site.sh                                    # local API (127.0.0.1:8787)
+#   bash infra/verify-site.sh --url http://127.0.0.1:8787       # explicit origin
 #   SITE_PUBLIC_URL=https://trout.tntechclimb.com bash infra/verify-site.sh --public
+#   bash infra/verify-site.sh --wait 30                         # retry up to 30 s until green
 #
-# Exit 0 = every surface serves real data; exit 1 = at least one check failed
-# (details on stdout — the watchdog and deploy rollback both parse nothing,
-# they just branch on the exit code).
+# Implementation is bash + node only — portable server shells lack coreutils
+# (sleep/curl were the 2026-09-09 deployment failure), while node is proven present.
+# Checks: healthz ok:true, 200 + non-empty catalog on /v1/streams(.json),
+# /v1/conditions/latest.json, /content/taxa.json, optional public edge probe.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
 URL="http://127.0.0.1:8787"
-PUBLIC_CHECK=0
+PUBLIC_URL="${SITE_PUBLIC_URL:-}"
+WAIT=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --url) URL="${2:?--url needs a value}"; shift 2 ;;
-    --public) PUBLIC_CHECK=1; shift ;;
-    --public-url) SITE_PUBLIC_URL="${2:?--public-url needs a value}"; PUBLIC_CHECK=1; shift 2 ;;
+    --public) shift ;;
+    --public-url) PUBLIC_URL="${2:?--public-url needs a value}"; shift 2 ;;
+    --wait) WAIT="${2:?--wait needs seconds}"; shift 2 ;;
     *) echo "unknown arg: $1"; exit 2 ;;
   esac
 done
 
-fail=0
-check() {
-  local label="$1" path="$2" want="$3"
-  local got
-  got="$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$URL$path" || echo 000)"
-  if [ "$got" != "$want" ]; then
-    echo "[verify] FAIL — $label answered $got (expected $want)"
-    fail=1
-  else
-    echo "[verify] ok — $label $got"
-  fi
+# Everything (checks, retries, the wait) happens inside one node process: node is
+# present on every host that runs this stack, and its fetch+setTimeout replace the
+# curl/sleep pair portable shells cannot be relied on to provide. Per-check timeouts
+# use a manually-unref'd AbortController — AbortSignal.timeout() leaves live handles
+# that make node abort with a libuv assertion on Windows when exiting via process.exit.
+exec node -e '
+const [base, waitArg, pub] = process.argv.slice(1);
+const deadline = Date.now() + (parseInt(waitArg, 10) || 0) * 1000;
+const t = (ms) => {
+  const c = new AbortController();
+  const id = setTimeout(() => c.abort(new Error("timeout")), ms);
+  if (id && typeof id.unref === "function") id.unref();
+  return c.signal;
+};
+let attempt = 0;
+
+async function get(p) {
+  const r = await fetch(base + p, { signal: t(15000), headers: { accept: "application/json" } });
+  return { s: r.status, b: await r.text() };
 }
 
-check "GET /healthz"          "/healthz"                     200
-check "GET /v1/streams"       "/v1/streams"                  200
-check "GET /v1/streams.json"  "/v1/streams.json"             200
-check "GET /v1/conditions/latest.json" "/v1/conditions/latest.json" 200
-check "GET /content/taxa.json" "/content/taxa.json"          200
+async function check() {
+  const lines = [];
+  let fail = 0;
+  const paths = ["/healthz", "/v1/streams", "/v1/streams.json", "/v1/conditions/latest.json", "/content/taxa.json"];
+  for (const p of paths) {
+    try {
+      const { s } = await get(p);
+      lines.push((s === 200 ? "[verify] ok — GET " : "[verify] FAIL — GET ") + p + " " + s);
+      if (s !== 200) fail = 1;
+    } catch (e) {
+      lines.push("[verify] FAIL — GET " + p + " (" + (e.cause && e.cause.name || e.name || e) + ")");
+      fail = 1;
+    }
+  }
+  try {
+    const n = JSON.parse((await get("/v1/streams.json")).b).length;
+    if (n > 0) lines.push("[verify] ok — catalog has " + n + " streams");
+    else { lines.push("[verify] FAIL — catalog is empty"); fail = 1; }
+  } catch {
+    lines.push("[verify] FAIL — /v1/streams.json did not parse as an array");
+    fail = 1;
+  }
+  try {
+    const ok = JSON.parse((await get("/healthz")).b).ok === true;
+    lines.push(ok ? "[verify] ok — conditions feed healthy" : "[verify] FAIL — /healthz reports the conditions feed unhealthy (ok:false)");
+    if (!ok) fail = 1;
+  } catch {
+    lines.push("[verify] FAIL — /healthz unreadable");
+    fail = 1;
+  }
+  if (pub) {
+    for (const p of ["/v1/streams.json", "/content/taxa.json"]) {
+      try {
+        const r = await fetch(pub + p, { signal: t(20000) });
+        lines.push((r.status === 200 ? "[verify] ok — public " : "[verify] FAIL — public ") + p + " " + r.status);
+        if (r.status !== 200) fail = 1;
+      } catch (e) {
+        lines.push("[verify] FAIL — public " + p + " (" + (e.cause && e.cause.name || e.name || e) + ")");
+        fail = 1;
+      }
+    }
+  }
+  return { lines, fail };
+}
 
-# 200 is not enough: an SPA fallback or an error envelope also answers 200.
-# The catalog must parse as a non-empty JSON array of streams.
-rows="$(curl -s --max-time 15 "$URL/v1/streams.json" | node -e "
-let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
-  try { const d=JSON.parse(raw); console.log(Array.isArray(d)?d.length:-1); }
-  catch { console.log(-1); }
-})" 2>/dev/null || echo -1)"
-if [ "${rows:- -1}" -gt 0 ] 2>/dev/null; then
-  echo "[verify] ok — catalog has $rows streams"
-else
-  echo "[verify] FAIL — /v1/streams.json did not parse as a non-empty array (got: ${rows:-unreadable})"
-  fail=1
-fi
-
-# /healthz must report feed health, not merely "process up" (C1).
-health_ok="$(curl -s --max-time 15 "$URL/healthz" | node -e "
-let raw='';process.stdin.on('data',(c)=>{raw+=c}).on('end',()=>{
-  try { console.log(String(JSON.parse(raw).ok === true)); }
-  catch { console.log('false'); }
-})" 2>/dev/null || echo false)"
-if [ "$health_ok" = "true" ]; then
-  echo "[verify] ok — conditions feed healthy"
-else
-  echo "[verify] FAIL — /healthz reports the conditions feed unhealthy (ok:false)"
-  fail=1
-fi
-
-if [ "$PUBLIC_CHECK" = "1" ]; then
-  pub="${SITE_PUBLIC_URL:-}"
-  if [ -z "$pub" ]; then
-    echo "[verify] SKIP — public check requested but SITE_PUBLIC_URL/--public-url not set"
-  else
-    for path in /v1/streams.json /content/taxa.json; do
-      got="$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$pub$path" || echo 000)"
-      if [ "$got" = "200" ]; then
-        echo "[verify] ok — public $path 200"
-      else
-        echo "[verify] FAIL — public $path answered $got (edge cache may need a purge, RUNBOOK §8)"
-        fail=1
-      fi
-    done
-  fi
-fi
-
-if [ "$fail" = "1" ]; then
-  echo "[verify] READ PATH BROKEN on $URL — see RUNBOOK §9 (restore-snapshots / watchdog)"
-  exit 1
-fi
-echo "[verify] all surfaces green on $URL"
+(async () => {
+  for (;;) {
+    attempt += 1;
+    const { lines, fail } = await check();
+    if (!fail) {
+      for (const l of lines) console.log(l);
+      console.log("[verify] all surfaces green on " + base + " (attempt " + attempt + ")");
+      process.exitCode = 0;
+      return;
+    }
+    if (Date.now() >= deadline) {
+      for (const l of lines) console.log(l);
+      console.log("[verify] READ PATH BROKEN on " + base + " — see RUNBOOK §9 (restore-snapshots / watchdog)");
+      process.exitCode = 1;
+      return;
+    }
+    console.log("[verify] attempt " + attempt + " not green yet — retrying until " + new Date(deadline).toISOString());
+    await new Promise((r) => setTimeout(r, 2000));
+  }
+})();
+' "$URL" "$WAIT" "$PUBLIC_URL"

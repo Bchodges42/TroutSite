@@ -34,7 +34,12 @@ STATUS="$BACKUPS/watchdog.status"
 # Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
 export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
 
-log() { echo "[watchdog $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*" | tee -a "$LOG"; }
+log() { # tee is not guaranteed in portable shells — echo + append instead
+  local line
+  line="[watchdog $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*"
+  echo "$line"
+  echo "$line" >> "$LOG"
+}
 set_status() { printf '%s %s\n' "$1" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" > "$STATUS"; }
 
 if bash infra/verify-site.sh --url "$URL" >> "$LOG" 2>&1; then
@@ -48,8 +53,15 @@ if bash infra/verify-site.sh --url "$URL" >> "$LOG" 2>&1; then
   exit 0
 fi
 
-log "BROKEN — read path failed on $URL. Last 6 failed checks:"
-tail -6 "$LOG" | sed 's/^/    /' | tee -a "$LOG" >/dev/null
+log "BROKEN — read path failed on $URL. Details: $LOG (tail follows)"
+# no tail/sed in portable shells — read the last lines with bash only
+if [ -f "$LOG" ]; then
+  lines=()
+  while IFS= read -r l; do lines+=("$l"); done < "$LOG"
+  n=${#lines[@]}
+  start=$((n > 6 ? n - 6 : 0))
+  for ((i = start; i < n; i++)); do echo "    ${lines[$i]}" >> "$LOG"; done
+fi
 if [ "$DRY_RUN" = "1" ]; then
   log "DRY-RUN — no heal attempted (would: regen snapshots → restore last-good)"
   set_status "BROKEN-DRYRUN"
