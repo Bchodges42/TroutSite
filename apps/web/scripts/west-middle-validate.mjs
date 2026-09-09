@@ -144,7 +144,7 @@ const OWNED_YAML = new Set([
   'lake-barkley', 'little-west-fork-creek', 'old-hickory-lake', 'red-river-clarksville', 'sinking-creek-wilson',
   'stones-river', 'sulfur-fork-creek', 'west-fork-stones-river',
   // tn-middle-duck-elk
-  'big-rock-creek', 'boiling-fork-creek', 'buffalo-river', 'duck-river-lower', 'duck-river-tailwater',
+  'big-rock-creek', 'boiling-fork-creek', 'bradley-creek', 'buffalo-river', 'duck-river-lower', 'duck-river-tailwater',
   'east-fork-shoal-creek', 'elk-river', 'elk-river-lower', 'little-buffalo-river', 'mccutcheon-creek',
   'shoal-creek', 'tims-ford-lake', 'normandy-lake', 'woods-reservoir',
   // tn-middle-caney-fork

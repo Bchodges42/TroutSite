@@ -43,7 +43,11 @@ const FCODE_AREA_WIDE = '(fcode=46006 OR fcode=46003 OR fcode=43600 OR fcode=436
 const FCODE_FL = '(fcode=46006 OR fcode=46003 OR fcode=55800 OR fcode=33400)';
 const WB_FIELDS = 'OBJECTID,gnis_name,gnis_id,nhdplusid,reachcode,fcode,areasqkm';
 const AREA_FIELDS = 'OBJECTID,gnis_name,gnis_id,nhdplusid,fcode,areasqkm';
-const FL_FIELDS = 'OBJECTID,gnis_name,gnis_id,nhdplusid,reachcode,fcode,lengthkm,streamorde';
+// Geometry lane 2026-09-08: flowline takes also carry the NHDPlus VAA fields
+// (levelpathi/pathlength/divergence/dnlevelpat/hydroseq) so rebuild scripts can
+// order the mainstem deterministically from network topology instead of
+// endpoint-weld heuristics.
+const FL_FIELDS = 'OBJECTID,gnis_name,gnis_id,nhdplusid,reachcode,fcode,lengthkm,streamorde,levelpathi,pathlength,hydroseq,divergence,dnlevelpat,dnhydroseq,totdasqkm';
 
 const RETRIEVED = new Date().toISOString().slice(0, 10);
 const force = process.argv.includes('--force');
@@ -243,7 +247,21 @@ const RIVERS = [
   { key: 'river-calfkiller', nameTest: /^Calfkiller River$/i, envs: ['-85.55,35.75,-85.25,36.15'], mao: '0.0003' },
   { key: 'creek-charles', nameTest: /^Charles Creek$/i, envs: ['-86.00,35.70,-85.70,35.85'], mao: '0.0002' },
   { key: 'river-collins', nameTest: /^Collins River$/i, envs: ['-85.85,35.40,-85.50,35.85'], mao: '0.0003' },
-  { key: 'creek-mill-overton', nameTest: /^Mill Creek$/i, envs: ['-85.60,36.20,-85.30,36.55'], mao: '0.0003' },
+  // Envelope widened 2026-09-08 (geometry lane): the old window
+  // [-85.60,36.20,-85.30,36.55] matched the named reaches but the creek's
+  // middle course (lat 36.30..36.45) must also be inside so the take carries
+  // the whole named extent (whole-part fill of the documented 18.69 km
+  // interior hole is decided from this take).
+  { key: 'creek-mill-overton', nameTest: /^Mill Creek$/i, envs: ['-85.65,36.15,-84.95,36.60'], mao: '0.0003' },
+  // Geometry lane 2026-09-08: Woods Reservoir (AEDC, Franklin County) sits on
+  // Bradley Creek; the creek's course from the Woods dam to the Elk River is
+  // the source-true connector between woods-reservoir and the Elk system.
+  { key: 'creek-bradley', nameTest: /^Bradley Creek$/i, envs: ['-86.30,35.10,-85.85,35.45'], mao: '0.0003' },
+  // Unnamed NHD reaches of the Bradley Creek level path (25000200006220):
+  // the three artificial-path pieces that carry the flow from the Woods
+  // Reservoir outlet to the Elk River (fbb-braid precedent: like-less fetch,
+  // gnis_name IS NULL, envelope tight around the outlet corridor only).
+  { key: 'creek-bradley-connectors', nameTest: /^$/, envs: ['-86.01,35.31,-85.995,35.33'], mao: '0.0002' },
   { key: 'creek-north-prong-barren', nameTest: /^North Prong Barren/i, envs: ['-86.00,35.65,-85.90,35.75'], mao: '0.0002' },
   { key: 'creek-pine-dekalb', nameTest: /^Pine Creek$/i, envs: ['-85.90,35.85,-85.70,36.00'], mao: '0.0002' },
   { key: 'river-rocky', nameTest: /^Rocky River$/i, envs: ['-85.65,35.50,-85.40,35.80'], mao: '0.0003' },
