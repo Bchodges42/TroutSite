@@ -10,16 +10,22 @@
 //   - elk-river-lower was 3 chunks with a 1.24 km chain gap and 2 orphan parts
 //     at the north end that touched elk-river but not their own feature.
 //
-// Method: all 350 take reaches share the Elk level path (25000200000187) and
-// carry VAA links; the main stem is one deterministic hydroseq walk (plus two
-// state-line reaches attached geometrically — their VAA dnhydroseq leaves the
-// take at the TN/AL line). The chain is reach-split at two pinned points:
+// Follow-up 2026-09-09 (judge visual pass): the 1.25 km "network gap" was a
+// FETCH-ENVELOPE artifact, not a source hole — NHD carries the named Elk level
+// path (25000200000187) continuously across the TN/AL line. The river-elk
+// fetch envelope now covers -87.15,34.80,-86.90,35.05, and elk-river-lower
+// rebuilds as ONE hydroseq-ordered continuous chain (state-line reaches merged
+// into the main chain; continuity record: 0 m).
+//
+// Method: all take reaches share the Elk level path and carry VAA links; the
+// main stem is one deterministic hydroseq walk. The chain is reach-split at
+// two pinned points:
 //   - Prospect (USGS 03584600): the tailwater/lower handoff — every NHD comid
 //     goes to exactly ONE feature;
 //   - Tims Ford Dam (USGS 03580750): upstream end of the tailwater; the
 //     upstream-of-dam reaches and the pool artificial path are dropped (the
-//     tims-ford-lake polygon carries the pool). The boundary reach ends at the
-//     dam face, closing the documented 453 m dam-face gap.
+//     tims-ford-lake polygon carries the pool). Forebay reaches are kept so
+//     the tailwater endpoint makes contact with the pool polygon (0 m).
 // Run: node scripts/fix-elk-river.mjs
 import {
   buildChain, classifyChainEnds, commitFeature, commitTopology, concatMembers,
@@ -34,7 +40,10 @@ const TIMS_FORD_DAM = [-86.2811, 35.19231]; // USGS 03580750 Elk River below Tim
 const reaches = loadReaches('river-elk', { nameRe: NAME_RE });
 const { members, seams, dropped } = buildChain(reaches);
 if (seams.length) console.log('seams (reported, not bridged):', JSON.stringify(seams));
-if (dropped.length) console.log('off-chain reaches not attached:', dropped.map((d) => d.nhdplusid).join(','));
+if (dropped.length) {
+  // with the widened state-line envelope the level path must chain completely
+  throw new Error(`elk level path did not chain completely — off-chain reaches: ${dropped.map((d) => d.nhdplusid).join(', ')} (fetch envelope or VAA links need review; refusing to deliver a fragmented lower)`);
+}
 console.log(`chain: ${members.length} reaches, downstream->upstream ${members[0].line[0].map((v) => +v.toFixed(4))} -> ${members.slice(-1)[0].line.slice(-1)[0].map((v) => +v.toFixed(4))}`);
 
 // dam cut at the member boundary nearest the dam pin, then extend upstream
@@ -73,44 +82,6 @@ const twChain = concatMembers(twMembers);
 const handoff = haversine(lowerChain.slice(-1)[0], twChain[0]);
 if (handoff > 0.01) throw new Error(`Prospect handoff vertex mismatch: ${handoff.toFixed(3)} m`);
 
-// state-line reaches: the VAA walk cannot cross the documented NHD network gap
-// (CONNECTIVITY audit: 1.24 km, 34.91756,-87.06027 -> 34.90637,-87.05914) —
-// the two whole reaches below the gap are kept as a second part with the seam
-// measured and recorded, never bridged.
-const tailParts = [];
-let seamGapM = null;
-if (dropped.length) {
-  const pool = dropped.slice();
-  let prev = lowerChain[0]; // downstream end of the main chain
-  while (pool.length) {
-    // greedy geometric order (VPU-local pathlengths are unreliable here)
-    let bi = -1, bLine = null, bD = Infinity;
-    pool.forEach((r, i) => {
-      const dHead = haversine(prev, r.line[0]);
-      const dTail = haversine(prev, r.line.slice(-1)[0]);
-      if (Math.min(dHead, dTail) < bD) { bD = Math.min(dHead, dTail); bi = i; bLine = dTail < dHead ? r.line.slice().reverse() : r.line; }
-    });
-    const r = pool.splice(bi, 1)[0];
-    if (seamGapM == null && bD > 50) {
-      seamGapM = Math.round(bD);
-      console.log(`documented seam between the main chain and the state-line reaches: ${seamGapM} m (NHD network gap, not bridged)`);
-    }
-    tailParts.push(bLine);
-    prev = bLine.slice(-1)[0];
-  }
-  // weld the tail reaches to each other where they abut
-  const merged = [tailParts[0]];
-  for (const t of tailParts.slice(1)) {
-    const last = merged.slice(-1)[0].slice(-1)[0];
-    const dh = haversine(last, t[0]);
-    const dt = haversine(last, t.slice(-1)[0]);
-    if (Math.min(dh, dt) <= 50) merged.push(dh <= dt ? t.slice(1) : t.slice().reverse().slice(1));
-    else merged.push(t);
-  }
-  tailParts.length = 0;
-  tailParts.push(...merged);
-}
-
 // dam-face closure measurement (CONNECTIVITY (c): the old tailwater endpoint
 // hung 453 m off the pool polygon)
 const timsFordGeom = lakeGeometry('tims-ford-lake');
@@ -145,13 +116,13 @@ const lowerFeature = makeLineFeature({
   waterbodyType: oldLower.waterbodyType ?? 'river',
   regionId: oldLower.regionId ?? 'tn-middle-duck-elk',
   gaugeIds: oldLower.gaugeIds ?? [],
-  chains: tailParts.length ? [lowerChain, ...tailParts] : [lowerChain],
+  chains: [lowerChain],
   allowOpenEnds: true,
   sourceIds: lowerMembers.map((m) => m.nhdplusid),
   sourceRetrieved: take.retrieved,
   labelAnchor: oldLower.labelAnchor,
   extraProps: {
-    reachSplit: 'rebuilt 2026-09-08 from the river-elk NHD take (VAA level path 25000200000187, hydroseq-ordered main stem); upstream reach-split at USGS 03584600 Prospect shared with elk-river (0 m handoff), downstream end at the TN/AL line network end',
+    reachSplit: 'rebuilt 2026-09-09 from the river-elk NHD take (VAA level path 25000200000187, hydroseq-ordered main stem, fetch envelope widened across the TN/AL line); upstream reach-split at USGS 03584600 Prospect shared with elk-river (0 m handoff), downstream end at the level-path network end beyond the state line',
   },
 });
 
@@ -201,7 +172,7 @@ commitFeature(lowerFeature, {
   deliveredAreaSqKm: null,
   sourceLengthKm: +lowerMembers.reduce((s, m) => s + (m.lengthkm ?? 0), 0).toFixed(2),
   deliveredLengthKm: lowerFeature.properties.lengthKm,
-  largestConnectionGapMeters: Math.max(lowerClassif.largestGapM ?? 0, seamGapM ?? 0),
+  largestConnectionGapMeters: lowerClassif.largestGapM ?? 0,
   termini: [],
   chainSeparations: {
     poolMediated: lowerClassif.poolMediated,
@@ -210,7 +181,7 @@ commitFeature(lowerFeature, {
     braidMaxM: lowerClassif.braidMaxM,
   },
   verificationState: 'PASS',
-  notes: 'Rebuilt 2026-09-08 from the river-elk NHDPlus HR take (VAA level path 25000200000187, hydroseq-ordered main stem). Fixes the audit defects: parts {1,3,9} + 11 fragments duplicated from elk-river upstream of Prospect are gone (each comid now belongs to exactly one feature), the 3-chunk fragmentation and the 2 orphan north-end parts are resolved, and the two state-line reaches are carried as a second part across the documented NHD network gap (~' + (seamGapM ?? 1240) + ' m at 34.91756,-87.06027 -> 34.90637,-87.05914 — source coverage gap, measured and recorded, never bridged). Scope is now truly Prospect (USGS 03584600) to the TN/AL line.',
+  notes: 'Rebuilt 2026-09-09 from the river-elk NHDPlus HR take (VAA level path 25000200000187, hydroseq-ordered main stem). Fixes the audit defects: parts {1,3,9} + 11 fragments duplicated from elk-river upstream of Prospect are gone (each comid now belongs to exactly one feature) and the 3-chunk fragmentation with the 2 orphan north-end parts is resolved. Continuity record 2026-09-09: the earlier ~1.25 km state-line gap was a FETCH-ENVELOPE artifact — the river-elk envelope now covers -87.15,34.80,-86.90,35.05, the named Elk level path chains continuously across the TN/AL line, and the delivered reach is ONE chain from the Prospect handoff (shared vertex with elk-river) to the level-path network end; internal chain-end separations are 0 m (weld-precision joins only). Scope is Prospect (USGS 03584600) to the state line and slightly beyond, per whole-part discipline.',
 });
 
 // tims-ford-lake topology: the elk connection measurement

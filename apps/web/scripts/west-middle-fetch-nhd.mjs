@@ -221,7 +221,12 @@ const RIVERS = [
   { key: 'river-duck', nameTest: /^Duck River$/i,
     envs: ['-87.15,35.35,-86.05,35.80'], mao: '0.0004' },
   { key: 'river-elk', nameTest: /^Elk River$/i,
-    envs: ['-87.05,34.90,-86.10,35.45'], mao: '0.0004' },
+    // Second envelope added 2026-09-09 (geometry lane follow-up): the state
+    // line reach south of Prospect sat outside the first envelope, which read
+    // as a phantom 1.25 km "network gap" in elk-river-lower — NHD carries the
+    // named Elk level path (25000200000187) continuously across the TN/AL
+    // line; envelope covers it to the AL pool arm.
+    envs: ['-87.05,34.90,-86.10,35.45', '-87.15,34.80,-86.90,35.05'], mao: '0.0004' },
   { key: 'river-caney-fork', nameTest: /Caney Fork/i,
     envs: ['-86.05,35.50,-84.95,36.40'], mao: '0.0004' },
   { key: 'river-stones', nameTest: /Stones River/i,

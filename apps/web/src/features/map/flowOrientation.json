@@ -11,7 +11,7 @@
  "derivation": "Downstream orientation per water and per geometry part, derived ONLY from verified data — never from vertex order and never by hand. Priority: (a) verified topology records: upstream/downstreamFeatureIds edges accepted only when a feature endpoint lies within 900 m of the referenced water (ids normalized by stripping \"(prose)\" suffixes); dam anchors — every dammed LINE water in the atlas is the reach BELOW its dam, so the dam end is upstream; termini mouth/confluence anchors; (b) lake in/out: throughLakeIds endpoints INSIDE the lake polygon are where the water joins the pool (downstream end, flow exits toward the dam/outlet side); when both ends lie outside, the end nearer the through-lake dam is downstream; (c) confluence graph over ~50 m endpoint snaps: BFS hop-distance from the mississippi-river anchor (Cumberland and Tennessee main stems chain to it) ranks waters; a touched neighbor with smaller distance is the recipient; (d) 2-way part-junction chaining within a feature (3+ way junctions never propagate). Confidence: high = topology/dam/lake/termini evidence, medium = confluence-graph or chain evidence, low = unoriented. flags: 1 = stored coordinate order flows downstream, -1 = reversed, 0 = UNORIENTED (unknown-safe: renderers must draw no arrows for that part).",
  "stats": {
   "lineFeatures": 105,
-  "parts": 1404,
+  "parts": 1402,
   "orientedParts": 507,
   "high": 54,
   "medium": 16,
@@ -699,9 +699,7 @@
   },
   "elk-river-lower": {
    "parts": [
-    -1,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
