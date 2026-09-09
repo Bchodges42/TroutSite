@@ -233,6 +233,23 @@ There is exactly one updater for **data** (trout-cron, hourly) and one for **cod
 (`deploy.sh`, run on releases). The gitignored trees never need to come from git —
 they are *generated on the host*, and the archive is their disaster-recovery copy.
 
+### Mobile push notifications (ntfy.sh — free, no account)
+
+The watchdog and auto-updater page the owner's phone on STATUS TRANSITIONS: entering
+BROKEN, healing (with a note if serving last-good data), recovering to OK, and
+auto-deploy failures/refusals. A stalled outage stays silent — no 15-minute buzzing.
+
+One-time setup (5 minutes):
+1. Phone: install the **ntfy** app (Play Store / App Store).
+2. Subscribe to an UNGUESSABLE topic (the topic name is the only credential):
+   e.g. `trout-site-alert-4kq7z2m9` — anyone who knows it can send to you.
+3. On the server, tell the stack where to post:
+     echo "https://ntfy.sh/trout-site-alert-4kq7z2m9" > backups/push-url.txt
+4. Test from the server: bash infra/push-notify.sh "Test" "If this pops up, push works." "high"
+
+Config resolves TROUT_PUSH_URL first, then backups/push-url.txt. Same transition-dedup
+rules as the status files: one push per state change, never repeated.
+
 ### Zero-touch updates (`infra/autoupdate.sh`)
 
 The server can ship its own releases: `autoupdate.sh` fetches origin, and when
