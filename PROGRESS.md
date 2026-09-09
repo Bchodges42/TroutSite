@@ -94,6 +94,8 @@ Commit tags: `grow(...)` / `ux(...)`.
   fresh clones must generate snapshots (api seed+snapshots) or copy from
   the shared tree for that one test.
 
+---
+
 # SESSION 2 — map verification + cartography (2026-09-08) — base commit 6d0befe (rebased onto ea87fd8)
 
 Base: `origin/main` = `6d0befe`; rebased onto `ea87fd8` (Session 1's integration) before final gates.
