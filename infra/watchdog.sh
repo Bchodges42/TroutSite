@@ -31,6 +31,9 @@ mkdir -p "$BACKUPS"
 LOG="$BACKUPS/watchdog.log"
 STATUS="$BACKUPS/watchdog.status"
 
+# Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
+export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
+
 log() { echo "[watchdog $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*" | tee -a "$LOG"; }
 set_status() { printf '%s %s\n' "$1" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" > "$STATUS"; }
 

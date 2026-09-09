@@ -58,16 +58,11 @@ else
   echo "[bootstrap] WARN — no archive yet (the deploy step creates it; check its output)"
 fi
 
-echo "[bootstrap] 4/4 data watchdog cron (every 15 min, self-heals the read path)"
-if command -v crontab >/dev/null 2>&1; then
-  if crontab -l 2>/dev/null | grep -q "infra/watchdog.sh"; then
-    echo "[bootstrap]   already installed"
-  else
-    (crontab -l 2>/dev/null; echo "*/15 * * * * cd $(pwd) && bash infra/watchdog.sh >> backups/cron.log 2>&1") | crontab -
-    echo "[bootstrap]   installed"
-  fi
+echo "[bootstrap] 4/4 self-heal schedules (watchdog 15-min, data refresh + autoupdate hourly)"
+if [ "${BOOTSTRAP_SKIP_SCHEDULES:-0}" = "1" ]; then
+  echo "[bootstrap]   SKIP (BOOTSTRAP_SKIP_SCHEDULES=1)"
 else
-  echo "[bootstrap]   no crontab here — install the line from RUNBOOK §9 manually"
+  bash infra/install-schedules.sh || echo "[bootstrap] WARN — schedule installation reported a problem; install manually per RUNBOOK §9"
 fi
 
 echo
@@ -76,5 +71,4 @@ echo "[bootstrap] Remaining owner step (GitHub web, from anywhere):"
 echo "[bootstrap]   merge infra/host-selfheal into main (it contains fix/live-catalog —"
 echo "[bootstrap]   one PR ships both). After main is updated, on the server:"
 echo "[bootstrap]     git checkout main && git pull && bash infra/deploy.sh"
-echo "[bootstrap]     # then add the hourly autoupdate cron line from RUNBOOK §9"
-echo "[bootstrap]   → from then on the site updates itself from main every hour."
+echo "[bootstrap]   → the autoupdate task then tracks main and the site updates itself hourly."

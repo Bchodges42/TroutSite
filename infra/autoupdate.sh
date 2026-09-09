@@ -14,7 +14,10 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 ROOT="${TROUT_ROOT:-$(pwd)}"
-BRANCH="${TROUT_DEPLOY_BRANCH:-main}"
+# Track whatever branch the checkout is on (upstream = origin/<branch>): this
+# makes the poller correct both before the owner merges to main (deploys the
+# integration branch) and after finalize switches the server to main.
+BRANCH="${TROUT_DEPLOY_BRANCH:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)}"
 DEPLOY_CMD="${TROUT_DEPLOY_CMD:-bash infra/deploy.sh}"
 DRY_RUN=0
 [ "${1:-}" = "--dry-run" ] && DRY_RUN=1
@@ -23,6 +26,9 @@ BACKUPS="$ROOT/backups"
 mkdir -p "$BACKUPS"
 LOG="$BACKUPS/autoupdate.log"
 STATUS="$BACKUPS/autoupdate.status"
+
+# Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
+export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
 
 log() { echo "[autoupdate $(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*" | tee -a "$LOG"; }
 set_status() { printf '%s %s\n' "$1" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" > "$STATUS"; }

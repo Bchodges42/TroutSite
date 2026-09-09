@@ -71,14 +71,19 @@ else
   echo "[deploy] no /v1 snapshots yet — marketing stays on bundled fixtures"
 fi
 
-echo "[deploy] pm2 reload (api + cron + portal/marketing static servers)"
-if pm2 reload trout-api trout-cron trout-portal-static trout-marketing-static >/dev/null 2>&1; then
-  pm2 reload trout-api trout-cron trout-portal-static trout-marketing-static
-else
-  echo "[deploy] processes not registered yet — starting from ecosystem config"
-  pm2 start infra/pm2/ecosystem.config.cjs
+echo "[deploy] restart serving processes (host-specific: pm2 or Windows service)"
+# Host-agnostic: pm2 reload on the runbook setup, WinSW service restart on the
+# Windows server (restart-app.sh). Data-only changes need no restart at all —
+# the API reads the snapshot files per request.
+restart_rc=0
+bash infra/restart-app.sh || restart_rc=$?
+if [ "$restart_rc" = "3" ]; then
+  echo "[deploy] WARN — no process manager detected; serving processes NOT restarted."
+  echo "[deploy] Snapshot data is picked up per-request, but a CODE change needs a"
+  echo "[deploy] manual service restart (or set TROUT_WINDOWS_SERVICE)."
+elif [ "$restart_rc" != "0" ]; then
+  echo "[deploy] WARN — restart reported failure (rc=$restart_rc); verification below decides."
 fi
-pm2 save
 
 echo "[deploy] verify the live read path"
 sleep 2

@@ -184,6 +184,16 @@ Safety notes:
 
 ## 9. Self-healing read path (2026-09-09 — recurring-outage fix)
 
+> **HOST REALITY (2026-09-09, confirmed by on-server inspection):** the production
+> server is a headless WINDOWS laptop running the app as a WinSW service named
+> `TroutSite` (override with `TROUT_WINDOWS_SERVICE`) — **not pm2, no crontab**.
+> The pm2/§2.4 setup describes the dev laptop. Everything in this section is
+> host-agnostic: `deploy.sh` restarts via `infra/restart-app.sh` (pm2 if present,
+> otherwise the Windows service), scheduling is installed by
+> `infra/install-schedules.sh` (schtasks as SYSTEM here, crontab on Linux), and
+> `infra/refresh-data.sh` hourly replaces the data heartbeat the dead `trout-cron`
+> used to provide. If the API is not on :8787, export `TROUT_API_URL` in the tasks.
+
 **Why this exists:** the same outage has recurred — cron goes quiet, the generated
 gitignored trees vanish or go stale, and the site serves "Catalog unavailable" until
 someone notices days later. The read path is files-on-disk: `GET /v1/streams` does
