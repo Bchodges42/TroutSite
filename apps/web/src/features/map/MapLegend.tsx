@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { atlas } from './mapTokens';
 import { SPRING } from '../../components/motion/atlas-motion';
+import { FISHERY_TYPE_LABELS, type FisheryType, type FisheryTypeCounts } from './fisheryType';
 
 const OPEN_KEY = 'trout:legendOpen';
+
+/** Row order for the water-class grouping: named classes first, residual last. */
+const FISHERY_ROW_ORDER: FisheryType[] = ['tailwater', 'wild', 'stocked', 'other', 'unknown'];
 
 function LegendSwatch({ color, label }: { color: string; label: string }) {
   return (
@@ -14,18 +18,73 @@ function LegendSwatch({ color, label }: { color: string; label: string }) {
 }
 
 /**
+ * Glyphs for the water-class grouping. These rows describe water CLASSES, not
+ * condition colors, so they reuse the panel's neutral symbol language — the
+ * corridor line the map renders for flowing water and the ringed still-water
+ * dot — and never invent a new condition tone.
+ */
+function CorridorGlyph() {
+  return (
+    <span
+      className="inline-block h-[3px] w-[17px] rounded-full"
+      style={{ background: atlas.noData }}
+      aria-hidden
+    />
+  );
+}
+
+function StillWaterGlyph() {
+  return (
+    <span
+      className="inline-block h-2.5 w-2.5 rounded-full border-2"
+      style={{ borderColor: atlas.noData, background: 'transparent' }}
+      aria-hidden
+    />
+  );
+}
+
+/**
  * MapLegend — collapses to a corner chip by default and expands into a
  * compact glass panel on demand. Pure overlay: it never occupies layout
- * space, and its open/closed choice persists per device. In All-fish mode the
- * warmwater bronze is documented so the map never shows an unexplained color.
+ * space, and its open/closed choice persists per device.
+ *
+ * Conditions mode has two honest states, derived from the loaded conditions
+ * data (`hasAssessedConditions` — assessedIds.size > 0 for the current mode,
+ * never hardcoded): with live assessments it keeps the Good/Fair/Poor
+ * rating rows; when the feed carries no assessments it swaps them for a
+ * water-class grouping derived from catalog truth (fisheryType.ts). Hatch
+ * mode keeps its own halo rows.
  */
-export function MapLegend({ mode, species }: { mode: 'conditions' | 'hatches'; species: 'trout' | 'all' }) {
+export function MapLegend({
+  mode,
+  species,
+  hasAssessedConditions,
+  fisheryCounts,
+}: {
+  mode: 'conditions' | 'hatches';
+  species: 'trout' | 'all';
+  /** Whether the current snapshot has any assessed reading in view. */
+  hasAssessedConditions: boolean;
+  /** Water-class counts across the loaded catalog (fisheryTypeCounts). */
+  fisheryCounts?: FisheryTypeCounts;
+}) {
   const [open, setOpen] = useState<boolean>(() => localStorage.getItem(OPEN_KEY) === '1');
   const toggle = () =>
     setOpen((v) => {
       localStorage.setItem(OPEN_KEY, v ? '0' : '1');
       return !v;
     });
+
+  const grouping = mode === 'conditions' && !hasAssessedConditions;
+  // With counts, a class only earns a row when at least one water is in it
+  // (and "Unclassified" only appears when the catalog truly has gaps).
+  const fisheryRows = FISHERY_ROW_ORDER.filter((t) =>
+    fisheryCounts ? (fisheryCounts[t] ?? 0) > 0 : t !== 'unknown',
+  );
+  const panelLabel =
+    mode === 'hatches' ? 'Hatch legend' : grouping ? 'Water guide legend' : 'Condition legend';
+  const panelTitle =
+    mode === 'hatches' ? 'Hatch activity' : grouping ? 'Water guide' : 'Fishability';
 
   return (
     <div className="relative">
@@ -38,10 +97,10 @@ export function MapLegend({ mode, species }: { mode: 'conditions' | 'hatches'; s
             exit={{ opacity: 0, y: 6, scale: 0.96 }}
             transition={SPRING.snappy}
             className="atlas-glass w-[236px] rounded-2xl px-3.5 py-3 text-xs"
-            aria-label={mode === 'hatches' ? 'Hatch legend' : 'Condition legend'}
+            aria-label={panelLabel}
           >
             <div className="flex items-center gap-2">
-              <p className="font-bold text-[#EAF2ED]">{mode === 'hatches' ? 'Hatch activity' : 'Fishability'}</p>
+              <p className="font-bold text-[#EAF2ED]">{panelTitle}</p>
               <button
                 type="button"
                 onClick={toggle}
@@ -60,6 +119,26 @@ export function MapLegend({ mode, species }: { mode: 'conditions' | 'hatches'; s
                   <LegendSwatch color={atlas.noData} label="quiet" />
                 </div>
               </>
+            ) : grouping ? (
+              <>
+                <p className="mt-1 text-[#9FB5AA]">Every mapped water, by fishery class</p>
+                <ul className="mt-1.5 space-y-1" aria-label="Water classes">
+                  {fisheryRows.map((t) => (
+                    <li key={t} className="flex items-center gap-1.5">
+                      {t === 'other' || t === 'unknown' ? <StillWaterGlyph /> : <CorridorGlyph />}
+                      <span className="text-[#EAF2ED]">{FISHERY_TYPE_LABELS[t]}</span>
+                      {fisheryCounts && (
+                        <span className="ml-auto text-[#9FB5AA]">{fisheryCounts[t]}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                {species === 'all' && (
+                  <p className="mt-2 border-t pt-2 text-[#9FB5AA]" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                    Bass &amp; panfish waters sit under Other fish waters.
+                  </p>
+                )}
+              </>
             ) : (
               <>
                 <p className="mt-1 text-[#9FB5AA]">Flow + temp → 0–100 · Good ≥70 · Fair ≥40</p>
@@ -71,7 +150,7 @@ export function MapLegend({ mode, species }: { mode: 'conditions' | 'hatches'; s
                 </div>
               </>
             )}
-            {species === 'all' && (
+            {mode === 'conditions' && hasAssessedConditions && species === 'all' && (
               <div className="mt-2 border-t pt-2" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
                 <LegendSwatch color={atlas.warmwater} label="Warmwater — bass & panfish" />
               </div>
@@ -94,9 +173,18 @@ export function MapLegend({ mode, species }: { mode: 'conditions' | 'hatches'; s
             className="atlas-glass atlas-chip h-10 gap-2 px-3 text-xs font-bold text-[#EAF2ED]"
           >
             <span className="flex gap-1" aria-hidden>
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.good }} />
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.fair }} />
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.poor }} />
+              {grouping ? (
+                <span
+                  className="inline-block h-2.5 w-2.5 rounded-full border-2"
+                  style={{ borderColor: atlas.noData }}
+                />
+              ) : (
+                <>
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.good }} />
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.fair }} />
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.poor }} />
+                </>
+              )}
             </span>
             Legend
           </motion.button>

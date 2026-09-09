@@ -1839,26 +1839,26 @@
   {
    "featureId": "wolf-river-fentress",
    "sourceIdentifiers": [
-    "61 named NHD parts welded to 3 chains"
+    "80 named NHD parts welded to 1 chain (Fentress/Clay Counties Wolf River only; nhdplusids pinned in feature sourceIds)"
    ],
    "upstreamFeatureIds": [
-    "wolf-river-fentress (plateau headwaters)"
+    "wolf-river-fentress (plateau headwaters — NHD named terminus at 36.5262,-84.9010; upstream drainage continues only as different-named tributaries, documented source terminus)"
    ],
    "downstreamFeatureIds": [
-    "wolf-river (leaves the catalog reach toward West Tennessee — separate id wolf-river-west-tennessee)"
+    "dale-hollow-lake"
    ],
    "dam": null,
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": 57.07,
-   "deliveredLengthKm": 47.5,
+   "sourceLengthKm": 64.82,
+   "deliveredLengthKm": 63.67,
    "largestConnectionGapMeters": 0,
    "termini": [],
    "chainSeparations": {
-    "attachments": 2,
+    "attachments": 1,
     "openEnds": 1,
-    "poolMediated": 3,
-    "poolMediatedMaxM": 891,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
     "braid": 0,
     "braidMaxM": null
    },
@@ -1867,10 +1867,10 @@
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
     "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
    ],
-   "reachScope": "gated",
-   "lengthRatio": 0.832,
+   "reachScope": "full-named-extent",
+   "lengthRatio": 0.982,
    "verificationState": "PASS",
-   "notes": "Fentress County headwater reach of the Wolf River (different water from wolf-river-west-tennessee). Reach trimmed at the Dale Hollow pool margin (west-middle lane's pool)."
+   "notes": "FIX 2026-09-08 (scripts/fix-wolf-river-fentress.mjs): the first-pass delivery was trimmed at the Dale Hollow pool margin (3 strands, 40/68/85 m off the pool polygon, 665 m inter-strand gap). Rebuilt from the NHDPlus HR take as ONE chain that runs through the pool on NHD artificial paths and ends INSIDE the delivered dale-hollow-lake polygon (west-middle lane's pool; the Obey River pool carries the water past the dam). Dropped degenerate micro-connector(s): 2v 0.02km at (-85.2920,36.6345); 2v 0.01km at (-85.2677,36.6331); 2v 0.01km at (-85.2965,36.6244). Headwater end documented at the NHD named terminus (no same-water continuation)."
   },
   {
    "featureId": "piney-river-rhea",
@@ -1985,7 +1985,7 @@
   {
    "featureId": "horse-creek-greene",
    "sourceIdentifiers": [
-    "82 named NHD parts welded to 5 chains"
+    "31 named NHD parts welded to 1 chain (Greene County only; nhdplusids pinned in feature sourceIds)"
    ],
    "upstreamFeatureIds": [
     "horse-creek-greene (Cherokee NF headwaters)"
@@ -1996,44 +1996,27 @@
    "dam": null,
    "sourceAreaSqKm": null,
    "deliveredAreaSqKm": null,
-   "sourceLengthKm": 39.7,
-   "deliveredLengthKm": 38.77,
-   "largestConnectionGapMeters": 3115,
+   "sourceLengthKm": 18.55,
+   "deliveredLengthKm": 17.88,
+   "largestConnectionGapMeters": 0,
    "termini": [],
    "chainSeparations": {
-    "attachments": 6,
+    "attachments": 1,
     "openEnds": 1,
-    "poolMediated": 1,
-    "poolMediatedMaxM": 5184,
+    "poolMediated": 0,
+    "poolMediatedMaxM": null,
     "braid": 0,
     "braidMaxM": null
    },
-   "midCourseSeams": [
-    {
-     "at": [
-      -82.6571,
-      36.424
-     ],
-     "nearestChainM": 3115,
-     "documented": "Mouth terminus: named Horse Creek coverage stops ~3.1 km short of the Nolichucky confluence across a valley-mouth reach the source carries unnamed (imagery-verified valley continuity)."
-    },
-    {
-     "at": [
-      -82.7108,
-      36.1644
-     ],
-     "nearestChainM": 244,
-     "documented": null
-    }
-   ],
+   "midCourseSeams": [],
    "verificationSources": [
     "USGS NHDPlus HR MapServer layer 3 NetworkNHDFlowline (GNIS-matched, nhdplusid pinned)",
     "Junction-safe weld (arrival-bearing pairing at 3-way vertices), duplicate-part dedupe"
    ],
    "reachScope": "full-named-extent",
-   "lengthRatio": 0.977,
+   "lengthRatio": 0.964,
    "verificationState": "PASS",
-   "notes": "Horse Creek (Greene County, Cherokee National Forest) full named extent to the Nolichucky confluence."
+   "notes": "FIX 2026-09-08 (scripts/fix-horse-creek-greene.mjs): the first-pass weld fused the Greene County Horse Creek with an unrelated same-named Washington County Horse Creek (lat 36.42-36.53, Holston/Fort Patrick Henry drainage) fetched whole-part through a too-wide envelope — 5 chains sprawled 28.83 km. Rebuilt from a county-scoped NHDPlus HR take (envelope capped at 36.22 N): ONE chain, Cherokee NF headwaters to the Nolichucky confluence, mouth welded to the delivered nolichucky-river line."
   },
   {
    "featureId": "indian-creek-claiborne",

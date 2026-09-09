@@ -7,6 +7,15 @@ import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
+import { labelSpeciesNote, shouldShowLabel } from './labelPolicy';
+import {
+  buildFlowArrowSource,
+  EMPTY_FLOW_SOURCE,
+  FLOW_ARROW_ICON,
+  FLOW_ARROWS_SOURCE,
+  makeFlowArrowImage,
+  orientationFor,
+} from './flowArrows';
 import index from './riverIndex.json';
 // Preserve the existing same-origin Vite worker bundle and offline caching.
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
@@ -17,6 +26,25 @@ const stillWaterIds = new Set(
     .map((water) => water.id),
 );
 export const isStillWaterId = (id: string) => stillWaterIds.has(id);
+
+/**
+ * rivers.geojson read through the live style source (same-origin asset the
+ * map already loaded — never a second fetch). Cached once per session; the
+ * atlas geometry is static. Consumers: flow-arrow source building and the QA
+ * audit.
+ */
+let riversDataCache: Promise<unknown> | null = null;
+export function getRiversData(map: maplibregl.Map): Promise<unknown> {
+  if (!riversDataCache) {
+    const source = map.getSource('rivers') as maplibregl.GeoJSONSource | undefined;
+    if (!source) return Promise.reject(new Error('rivers source missing'));
+    riversDataCache = source.getData().catch((error) => {
+      riversDataCache = null; // allow a retry on the next selection
+      throw error;
+    });
+  }
+  return riversDataCache;
+}
 
 interface Camera {
   center: [number, number];
@@ -33,7 +61,18 @@ interface Props {
   featureColors: Map<string, string>;
   allIds?: string[];
   visibleIds?: Set<string>;
+  /** ?all=1 full-state view — render EVERY atlas feature, warts and all,
+   * regardless of the waterDecision visibility the catalog filters produce. */
+  showAllWaters?: boolean;
   assessedIds?: Set<string>;
+  /** Catalog species per water id, from the same streams snapshot the
+   * corridors join (H5 mode-aware labels) — absent means the catalog does
+   * not say, and the label policy never guesses. */
+  labelSpecies?: Map<string, 'trout' | 'warmwater'>;
+  /** Species filter mode ('trout' | 'all', from ?species=). Defaults to
+   * 'all' — the pre-mode-aware behavior — so callers that don't plumb it
+   * keep today's labels. */
+  speciesMode?: 'trout' | 'all';
   stillWaterIds?: Set<string>;
   /** Catalog waterbodyType label per water id (M2) — accessible names use it. */
   waterTypes?: Map<string, string>;
@@ -117,7 +156,7 @@ export function TennesseeMap(props: Props) {
             // and the next mousemove re-derives it.
             hover: false,
             dimmed: false,
-            hidden: p.visibleIds ? !p.visibleIds.has(river.id) : false,
+            hidden: p.showAllWaters ? false : p.visibleIds ? !p.visibleIds.has(river.id) : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
@@ -306,7 +345,12 @@ export function TennesseeMap(props: Props) {
         )
         .filter((f) => {
           const id = String(f.properties.id ?? '');
-          return id && (!latest.current.visibleIds || latest.current.visibleIds.has(id));
+          return (
+            id &&
+            (!latest.current.visibleIds ||
+              latest.current.showAllWaters ||
+              latest.current.visibleIds.has(id))
+          );
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
       // not the arbitrary source/tile order (which can pick a neighboring creek).
@@ -487,13 +531,15 @@ export function TennesseeMap(props: Props) {
     const map = mapRef.current;
     if (!map || !ready) return;
     // H5 label prominence: geographic extent is the available signal (the
-    // index carries id/name/anchor/bounds). Major waters earn statewide
-    // identity labels regardless of assessment availability; pocket waters
-    // wait for local zooms so church ponds never outrank major rivers.
+    // index carries id/name/anchor/bounds). Mode-awareness (H5 finish): the
+    // visibility rule lives in labelPolicy.ts — trout mode titles ONLY
+    // catalog-trout waters (warmwater and unknown-species waters render
+    // corridor/dot only, never a name that could read as a trout claim);
+    // all-fish mode additionally titles large waters of any species. Major
+    // trout waters keep their statewide titles; pocket waters wait for local
+    // zooms. Selection, collision, and priority mechanics are unchanged.
     const extentOf = (b: readonly number[] | undefined) =>
       b ? Math.max(b[2]! - b[0]!, b[3]! - b[1]!) : 0;
-    const MAJOR = 0.3;
-    const MINOR = 0.05;
     const markers = index.map((river) => {
       const el = document.createElement('button');
       el.type = 'button';
@@ -535,6 +581,12 @@ export function TennesseeMap(props: Props) {
       // first rows on mobile, so labels must clear it to stay operable.
       const topCover = p.layout === 'mobile' ? 192 : 80;
       const occupied: Array<{ left: number; right: number; top: number; bottom: number }> = [];
+      // Catalog-trout waters — the authoritative set the label policy gates
+      // on. Rebuilt from latest props so a species-filter change lands on the
+      // next frame without rebuilding markers.
+      const troutIds = new Set<string>();
+      if (p.labelSpecies)
+        for (const [id, s] of p.labelSpecies) if (s === 'trout') troutIds.add(id);
       // Priority: selection first, then prominence (extent), then assessment
       // availability, then name for determinism. Big lakes and major rivers
       // now compete on extent instead of every still water outranking every
@@ -549,23 +601,44 @@ export function TennesseeMap(props: Props) {
       for (const { river, el, width, height, stillWater, extent } of sorted) {
         const selected = river.id === p.selectedId;
         const assessed = p.assessedIds?.has(river.id) ?? false;
+        const species = p.labelSpecies?.get(river.id);
         const typeWord = p.waterTypes?.get(river.id);
         const kindWord = typeWord ?? (stillWater ? 'Still water' : 'River');
+        // Mode-honest naming: confirmed trout takes no species word (it is
+        // the app's default vocabulary); warmwater says so; a water whose
+        // species the catalog leaves unset reads "Unverified" in place of the
+        // assessment suffix — never an implied trout or condition claim.
+        const note = labelSpeciesNote({ id: river.id, species }, { troutIds });
+        const unassessedWord = note === 'Unverified' ? 'Unverified' : 'Unassessed';
         el.setAttribute(
           'aria-label',
-          'Select ' + river.name + ', ' + kindWord + (assessed ? '' : ', Unassessed'),
+          'Select ' +
+            river.name +
+            ', ' +
+            kindWord +
+            (note ? ', ' + note : '') +
+            (assessed ? '' : ', ' + unassessedWord),
         );
-        el.title = kindWord + (assessed ? '' : ' · Unassessed');
+        el.title =
+          kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
         const point = map.project(river.anchor as [number, number]);
-        // Zoom gates: selected/assessed waters always; major waters keep
-        // their statewide name even with no observations (H5); mid-size
-        // waters appear on approach; pocket waters only when local.
+        // Visibility: the waterDecision filter pass (visibleIds) plus the
+        // pure mode-aware prominence gate. Selected/assessed trout always
+        // compete; major trout waters keep their statewide name; everything
+        // else waits for the zoom gates.
         const visible =
           (!p.visibleIds || p.visibleIds.has(river.id)) &&
-          (selected ||
-            assessed ||
-            extent >= MAJOR ||
-            (extent >= MINOR ? z >= 8.5 : z >= 9.5));
+          shouldShowLabel(
+            { id: river.id, species },
+            {
+              mode: p.speciesMode ?? 'all',
+              troutIds,
+              extent,
+              zoom: z,
+              selected,
+              assessed,
+            },
+          );
         // Rectangle collision on the actual label box — the same AABB test the
         // places pass below already runs against these labels, not a fixed
         // point box.
@@ -609,6 +682,47 @@ export function TennesseeMap(props: Props) {
       labelsRef.current = () => {};
     };
   }, [ready, attempt]);
+  // Flow-direction arrows (selection overlay): register the runtime arrow icon
+  // with the CURRENT theme's ink/halo tones, then rebuild the carrier source
+  // from the selected feature + committed flowOrientation.json flip flags.
+  // No selection, an unoriented water, or a polygon water → empty source, so
+  // arrows appear ONLY on oriented selections and never over labels (the
+  // arrow layer sits below the DOM label markers by construction). Deps mirror
+  // the style-swap effect: every style rebuild drops the runtime image and the
+  // source data, so both are restored for the new style.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    let cancelled = false;
+    const rebuild = async () => {
+      // addImage replaces an existing image of the same name cleanly.
+      const icon = makeFlowArrowImage(theme.map.ink, theme.map.paper);
+      if (icon) map.addImage(FLOW_ARROW_ICON, icon);
+      const id = latest.current.selectedId;
+      const source = map.getSource(FLOW_ARROWS_SOURCE) as maplibregl.GeoJSONSource | undefined;
+      if (!source) return;
+      const orientation = orientationFor(id);
+      if (!id || !orientation) {
+        source.setData(EMPTY_FLOW_SOURCE as never);
+        return;
+      }
+      try {
+        const data = (await getRiversData(map)) as { features?: Array<unknown> };
+        if (cancelled || latest.current.selectedId !== id) return;
+        const feature = (data.features ?? []).find(
+          (f) => (f as { properties?: { id?: string } }).properties?.id === id,
+        );
+        source.setData(buildFlowArrowSource(feature as never, orientation) as never);
+      } catch {
+        /* source data unavailable (offline before first load): retry on the
+           next selection change — never break the map for arrows. */
+      }
+    };
+    rebuild();
+    return () => {
+      cancelled = true;
+    };
+  }, [ready, props.selectedId, theme.id, props.basemap, props.roads, attempt]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready || !props.places) return;

@@ -15,6 +15,7 @@ import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
 import { decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
+import { QaPanel } from './qa/QaPanel';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
@@ -31,6 +32,13 @@ export function RiverMapPage() {
   const species = params.get('species') === 'all' ? 'all' : 'trout';
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
+  // ?all=1 — full-state view: every mapped water renders regardless of the
+  // waterDecision visibility filters (same URL-param pattern as ?roads=1).
+  const allWatersOn = params.get('all') === '1';
+  // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
+  // while the param is present).
+  const qaOn = params.get('qa') === '1';
+  const [qaOpen, setQaOpen] = useState(true);
   const data = useRiverMapData({ month });
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
@@ -265,6 +273,16 @@ export function RiverMapPage() {
     () => new Map(data.streams.map((s) => [s.id, waterTypeLabel(s.waterbodyType)] as const)),
     [data.streams.map((s) => s.id + s.waterbodyType).join(',')],
   );
+  // H5 mode-aware labels: catalog species per water, from the same streams
+  // snapshot the corridors already join — the label policy never re-fetches
+  // and never guesses a species the catalog leaves unset.
+  const labelSpecies = useMemo(
+    () =>
+      new Map(
+        data.streams.flatMap((s) => (s.species ? [[s.id, s.species] as const] : [])),
+      ),
+    [data.streams.map((s) => s.id + (s.species ?? '')).join(',')],
+  );
   // C1: "no assessed waters" has two different truths — the filter genuinely
   // matched nothing, or the condition feed itself has no coverage (every
   // record unassessed with the builder's stale stamp, or an empty feed). Only
@@ -404,6 +422,19 @@ export function RiverMapPage() {
         {roadsManifest
           ? 'Context road network (US Census TIGER) · off by default'
           : 'Road context is not available on this device.'}
+      </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={allWatersOn}
+          onChange={(e) => update({ all: e.target.checked ? '1' : null })}
+        />
+        All waterways
+      </label>
+      <p className="muted text-xs">
+        {allWatersOn
+          ? 'Full-state view: every mapped water, including waters outside the current filter.'
+          : 'Show every mapped water, warts and all · off by default.'}
       </p>
     </>
   );
@@ -563,7 +594,10 @@ export function RiverMapPage() {
           onSelect={setRiver}
           featureColors={colors}
           visibleIds={visibleIds}
+          showAllWaters={allWatersOn}
           assessedIds={assessedIds}
+          labelSpecies={labelSpecies}
+          speciesMode={species}
           stillWaterIds={stillWaterIds}
           waterTypes={waterTypes}
           hatchActiveIds={hatchActive}
@@ -622,16 +656,37 @@ export function RiverMapPage() {
             Tennessee waters <span aria-hidden="true"> / </span>{' '}
             {mode === 'hatches' ? monthName(month) + ' hatches' : 'Conditions atlas'}
           </span>
-          <MapControlGroup
-            onRecenter={recenterTennessee}
-            layersOpen={layers}
-            onLayersToggle={() => setLayers(!layers)}
-            onLocate={locate}
-            locating={locating}
-            onOpenSearch={openIndex}
-            layersPanel={layerPanel}
-          />
+          <div className="map-topbar-right">
+            {/* Dev-only affordance: reachable only while ?qa=1 is in the URL. */}
+            {qaOn && (
+              <button
+                type="button"
+                className="qa-chip"
+                aria-pressed={qaOpen}
+                aria-label="Toggle geometry QA panel"
+                onClick={() => setQaOpen(!qaOpen)}
+              >
+                QA
+              </button>
+            )}
+            <MapControlGroup
+              onRecenter={recenterTennessee}
+              layersOpen={layers}
+              onLayersToggle={() => setLayers(!layers)}
+              onLocate={locate}
+              locating={locating}
+              onOpenSearch={openIndex}
+              layersPanel={layerPanel}
+            />
+          </div>
         </div>
+        {qaOn && qaOpen && (
+          <QaPanel
+            map={mapRef.current}
+            onSelect={setRiver}
+            onClose={() => setQaOpen(false)}
+          />
+        )}
         {locationNote && (
           <div className="map-location-note" role="status">
             {locationNote}
