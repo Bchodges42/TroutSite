@@ -46,7 +46,7 @@ The live host (`trout.tntechclimb.com`) is NOT reachable from this laptop (no SS
 cloudflared service locally) and has REGRESSED past the findings: `/healthz` → `ok:false`
 ("conditions feed has not been generated"), `/v1/streams` → 503, everything under `/v1/*` +
 `/content/*` → 404. The API process answers; the snapshot trees are GONE (worse than the recorded
-"frozen feed" state). Fix path is fully packaged: run `docs/SESSION1-HOST-RECOVERY.md` on the host
+"frozen feed" state). Landed on branch `s1-integration` in the shared repo (push to checked-out main is refused; fast-forward it from the shared tree: `git merge --ff-only s1-integration`). Fix path is fully packaged: run `docs/SESSION1-HOST-RECOVERY.md` on the host
 (deploy with the new loud-fail gates, restore cron), or from this laptop `infra/sync-snapshots.sh`
 (RUNBOOK §8) once `TROUT_SYNC_HOST` exists. Laptop pipeline is healthy (hourly gauges, 33/146
 assessed, 623 stocking rows; UA lives in repo-root `.env`).
