@@ -89,9 +89,14 @@ describe('matchStocking against the real cached TWRA feed', () => {
   const fs = require('node:fs');
   const path = require('node:path');
 
-  it('associates the published tailwater rows with their catalog reaches', () => {
-    const webRoot = path.resolve(__dirname, '..');
-    const events = JSON.parse(fs.readFileSync(path.join(webRoot, 'public/v1/stocking/TN.json'), 'utf8')) as StockingEvent[];
+  // public/v1/** is a gitignored deploy/cron artifact (ADR 0005) — the suite runs
+  // wherever the pipeline has generated it and skips honestly on fresh clones.
+  const webRoot = path.resolve(__dirname, '..');
+  const publishedFeed = path.join(webRoot, 'public/v1/stocking/TN.json');
+  const itForPublishedFeed = fs.existsSync(publishedFeed) ? it : it.skip;
+
+  itForPublishedFeed('associates the published tailwater rows with their catalog reaches', () => {
+    const events = JSON.parse(fs.readFileSync(publishedFeed, 'utf8')) as StockingEvent[];
     const streams = JSON.parse(fs.readFileSync(path.join(webRoot, 'public/v1/streams.json'), 'utf8')) as Array<{ id: string; name: string }>;
     const { byStream, unmatched } = matchStocking(streams, events);
 
