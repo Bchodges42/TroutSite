@@ -16,6 +16,8 @@ import { monthName, regionName } from '../../data/regions';
 import { decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { QaPanel } from './qa/QaPanel';
+import { MapLegend } from './MapLegend';
+import { fisheryTypeCounts } from './fisheryType';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
@@ -711,42 +713,12 @@ export function RiverMapPage() {
           </div>
         )}
         <div className="map-bottom">
-          <div
-            className="map-legend"
-            aria-label={mode === 'hatches' ? 'Seasonal guidance legend' : 'Condition legend'}
-          >
-            <span className="legend-title">
-              {mode === 'hatches'
-                ? 'Seasonal guidance'
-                : species === 'trout'
-                  ? 'Trout conditions'
-                  : 'Water guide'}
-            </span>
-            {/* M1: the amber halo is its own key in hatch mode — guidance can
-            no longer be mistaken for a condition band. */}
-            {mode === 'hatches' && (
-              <span data-status="hatch">
-                <i className="legend-line halo" />
-                Hatch guidance this month
-              </span>
-            )}
-            {(['good', 'fair', 'poor', 'no-data'] as const).map((s) => (
-              <span key={s} data-status={s}>
-                <i className={'legend-line' + (s === 'no-data' ? ' unknown' : '')} />
-                {s === 'no-data' ? 'Unassessed' : statusName[s]}
-                {mode === 'hatches' && <em className="legend-scope"> · condition</em>}
-                {mode !== 'hatches' && species === 'all' && s !== 'no-data' && (
-                  <em className="legend-scope"> · trout waters</em>
-                )}
-              </span>
-            ))}
-            {mode !== 'hatches' && species === 'all' && (
-              <span data-status="warmwater">
-                <i className="legend-line warmwater" />
-                Warmwater · no trout score
-              </span>
-            )}
-          </div>
+          <MapLegend
+            mode={mode}
+            species={species}
+            hasAssessedConditions={assessedIds.size > 0}
+            fisheryCounts={fisheryTypeCounts(data.streams ?? [])}
+          />
           <p className="map-help">
             {mode === 'hatches'
               ? 'Amber halos mark waters with regional hatch guidance for the selected month — something hatches year-round; open a water for what is expected and how strong.'

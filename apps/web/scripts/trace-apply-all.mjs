@@ -286,7 +286,24 @@ for (const crew of Object.keys(REGIONS)) {
       // canonical-only water — applied directly against canonical
       const idx = canonicalFc.features.findIndex((f) => f.properties.id === id);
       if (idx === -1) {
-        skipped.push(`canonical/${id}: not found in canonical`);
+        // NEW water: append a contract-shaped feature. The artifact must
+        // carry name/waterbodyType/regionId in properties for a new water.
+        if (!CHECK) {
+          if (!artifact.properties.name || !artifact.properties.waterbodyType) {
+            skipped.push(`canonical/${id}: new water missing name/waterbodyType`);
+            continue;
+          }
+          canonicalFc.push({
+            type: 'Feature',
+            geometry: artifact.geometry,
+            properties: {
+              crs: 'EPSG:4326',
+              coordinateOrder: 'longitude,latitude',
+              ...artifact.properties,
+            },
+          });
+        }
+        appliedCanonical += 1;
         continue;
       }
       if (!CHECK) canonicalFc.features[idx] = mergedFeature(canonicalFc.features[idx], artifact);
