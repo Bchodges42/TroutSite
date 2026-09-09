@@ -215,13 +215,25 @@ There is exactly one updater for **data** (trout-cron, hourly) and one for **cod
 (`deploy.sh`, run on releases). The gitignored trees never need to come from git —
 they are *generated on the host*, and the archive is their disaster-recovery copy.
 
-### Watchdog schedule (one-time, mirrors §5 backup pattern)
+### Zero-touch updates (`infra/autoupdate.sh`)
 
-```bash
-schtasks /Create /SC HOURLY /TN "trout-watchdog" /TR "\"C:\Program Files\Git\bin\bash.exe\" -lc 'cd /c/Users/Benjamin/Projects/trout && bash infra/watchdog.sh'"
+The server can ship its own releases: `autoupdate.sh` fetches origin, and when
+`main` moved it runs `deploy.sh` (which verifies and rolls back on failure). It
+refuses to run over locally-modified tracked files, and it is a no-op fetch when
+nothing changed, so any cadence is safe. On the headless server (cron, not Task
+Scheduler):
+
+```cron
+# data self-heal every 15 min + code updates hourly (server crontab -e)
+*/15 * * * * cd /opt/trout && bash infra/watchdog.sh   >> backups/cron.log 2>&1
+0 * * * *   cd /opt/trout && bash infra/autoupdate.sh  >> backups/cron.log 2>&1
 ```
 
-Check on it with `cat backups/watchdog.status` — anything other than `OK`/`HEALED-*`
-means both heals failed and the host needs §4. To also keep an off-laptop copy of the
-last-good archive, add `backups/snapshots-last-good.tar.gz` to whatever routine copies
-`backups/trout-*.db` off the machine.
+(Adjust the path; `TROUT_DEPLOY_BRANCH` and `TROUT_DEPLOY_CMD` are overridable.
+Windows-laptop equivalent: the schtasks pattern in §5.) With both schedules
+installed plus a healthy deploy, routine operation is fully hands-off: cron
+refreshes data hourly, the watchdog heals data outages, autoupdate ships code
+releases, and the read-path archive + auto-rollback are the safety net under all
+of it. `backups/autoupdate.status` / `backups/watchdog.status` are the two files
+to glance at — anything other than `OK` / `UP-TO-DATE` / `DEPLOYED` / `HEALED-*`
+needs a human.
