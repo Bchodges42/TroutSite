@@ -56,6 +56,7 @@ describe('buildSnapshots', () => {
     expect(written).toContain(join('v1', 'streams.json'));
     expect(written).toContain(join('v1', 'conditions', 'latest.json'));
     expect(written).toContain(join('v1', 'stocking', 'TN.json'));
+    expect(written).toContain(join('v1', 'stocking', 'TN-recent.json'));
     expect(written).toContain(join('v1', 'shops', 'TN.json'));
     expect(written).toContain(join('v1', 'reports', 'recent.json'));
     const all = listFiles(env.snapshotsDir);
@@ -65,6 +66,27 @@ describe('buildSnapshots', () => {
     const streams = JSON.parse(readOut(env.snapshotsDir, join('v1', 'streams.json'))) as unknown[];
     expect(streams).toHaveLength(2);
     streams.forEach((s) => expect(StreamSchema.safeParse(s).success).toBe(true));
+
+    // 3-month recency slice (S1 window/sort support): subset of full history,
+    // every row inside [NOW-90d, ∞) (upcoming schedules stay in-window),
+    // newest-first ordering.
+    const fullStocking = JSON.parse(readOut(env.snapshotsDir, join('v1', 'stocking', 'TN.json'))) as {
+      date: string;
+      streamName: string;
+    }[];
+    const recentStocking = JSON.parse(readOut(env.snapshotsDir, join('v1', 'stocking', 'TN-recent.json'))) as {
+      date: string;
+      streamName: string;
+    }[];
+    expect(recentStocking.length).toBeGreaterThan(0);
+    expect(recentStocking.length).toBeLessThan(fullStocking.length);
+    const cutoff = new Date(NOW.getTime() - 90 * 86_400_000).toISOString().slice(0, 10);
+    for (const e of recentStocking) expect(e.date >= cutoff).toBe(true);
+    for (let i = 1; i < recentStocking.length; i += 1) {
+      expect(recentStocking[i - 1].date >= recentStocking[i].date).toBe(true);
+    }
+    expect(result.stockingRecentByState.TN).toBe(recentStocking.length);
+
 
     const conditions = JSON.parse(readOut(env.snapshotsDir, join('v1', 'conditions', 'latest.json'))) as unknown[];
     expect(conditions).toHaveLength(2);

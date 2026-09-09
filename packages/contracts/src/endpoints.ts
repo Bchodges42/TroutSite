@@ -8,8 +8,10 @@ export interface EndpointMap {
   streams: string;
   /** GET — ConditionSnapshot[] for all monitored streams. */
   conditionsLatest: string;
-  /** GET — StockingEvent[] for one state. */
+  /** GET — StockingEvent[] for one state (full history, date-ascending). */
   stocking: (stateId: string) => string;
+  /** GET — StockingEvent[] 3-month rolling window, recency-first (additive contracts-v1.1.1; upcoming scheduled rows stay in-window, datePrecision phrasing is the consumer's job). */
+  stockingRecent: (stateId: string) => string;
   /** GET — HatchChart for one region and month (1–12). */
   hatch: (regionId: string, month: number) => string;
   /** GET — Shop[] for one state. */
@@ -28,6 +30,7 @@ export const ENDPOINTS: EndpointMap = {
   streams: '/v1/streams',
   conditionsLatest: '/v1/conditions/latest.json',
   stocking: (stateId) => `/v1/stocking/${stateId}.json`,
+  stockingRecent: (stateId) => `/v1/stocking/${stateId}-recent.json`,
   hatch: (regionId, month) => `/v1/hatch/${regionId}/${month}.json`,
   shops: (stateId) => `/v1/shops/${stateId}.json`,
   reportsRecent: '/v1/reports/recent.json',

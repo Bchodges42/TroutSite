@@ -15,6 +15,7 @@ export const snapshotUrls = {
   streams: ENDPOINTS.streams,
   conditionsLatest: ENDPOINTS.conditionsLatest,
   stocking: (stateId: string) => ENDPOINTS.stocking(stateId),
+  stockingRecent: (stateId: string) => ENDPOINTS.stockingRecent(stateId),
   hatch: (regionId: string, month: number) => ENDPOINTS.hatch(regionId, month),
   shops: (stateId: string) => ENDPOINTS.shops(stateId),
   reportsRecent: ENDPOINTS.reportsRecent,

@@ -146,6 +146,8 @@ export interface SnapshotResult {
   streams: number;
   conditions: number;
   stockingByState: Record<string, number>;
+  /** Rows per state in the 3-month recency slices ({state}-recent.json). */
+  stockingRecentByState: Record<string, number>;
   shopsByState: Record<string, number>;
   reports: number;
   hatchCharts: number;
@@ -233,6 +235,23 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     eventsByState.set(event.stateId, list);
   }
   const stockingDir = join(v1Dir, 'stocking');
+  // ── v1/stocking/{state}-recent.json — 3-month rolling window, recency-first ──
+  // Session-1 window/sort support for the stocking redesign: TWRA rows are
+  // SCHEDULES (datePrecision day|week|month), so the window keeps upcoming
+  // planned rows inside it (date >= cutoff) rather than only completed past
+  // drops, and the file is sorted newest-first for recency-first consumers.
+  // Never fabricate completion dates — phrasing stays the consumer's job.
+  const stockingRecentByState: Record<string, number> = {};
+  const recentCutoff = new Date(now.getTime() - 90 * 86_400_000).toISOString().slice(0, 10);
+  for (const [stateId, events] of eventsByState) {
+    const recent = events
+      .filter((e) => e.date >= recentCutoff)
+      .sort((a, b) => b.date.localeCompare(a.date) || a.streamName.localeCompare(b.streamName));
+    const p = join(stockingDir, `${stateId}-recent.json`);
+    writeJsonAtomic(p, recent);
+    files.push(p);
+    stockingRecentByState[stateId] = recent.length;
+  }
   for (const [stateId, events] of eventsByState) {
     const p = join(stockingDir, `${stateId}.json`);
     writeJsonAtomic(p, events);
@@ -341,6 +360,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     streams: streams.length,
     conditions: conditions.length,
     stockingByState,
+    stockingRecentByState,
     shopsByState,
     reports: reports.length,
     hatchCharts,
@@ -367,7 +387,9 @@ function pruneStateFiles(dir: string, keepStates: string[], files: string[]): vo
   }
   for (const f of existing) {
     if (!f.endsWith('.json')) continue;
-    const stateId = f.slice(0, -'.json'.length);
+    // `{state}.json` full history + `{state}-recent.json` rolling-window slices
+    // share the prune lifecycle of their state.
+    const stateId = f.slice(0, -'.json'.length).replace(/-recent$/, '');
     if (!keepStates.includes(stateId)) {
       const p = join(dir, f);
       rmSync(p);

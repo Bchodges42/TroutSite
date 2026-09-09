@@ -12,6 +12,7 @@ describe('ENDPOINTS (frozen endpoint map)', () => {
 
   it('builds the parameterized snapshot routes', () => {
     expect(ENDPOINTS.stocking('TX')).toBe('/v1/stocking/TX.json');
+    expect(ENDPOINTS.stockingRecent('TX')).toBe('/v1/stocking/TX-recent.json');
     expect(ENDPOINTS.shops('OK')).toBe('/v1/shops/OK.json');
     expect(ENDPOINTS.hatch('tx-hill-country', 4)).toBe('/v1/hatch/tx-hill-country/4.json');
   });
