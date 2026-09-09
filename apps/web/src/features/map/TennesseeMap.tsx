@@ -7,6 +7,7 @@ import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
+import { labelSpeciesNote, shouldShowLabel } from './labelPolicy';
 import {
   buildFlowArrowSource,
   EMPTY_FLOW_SOURCE,
@@ -64,6 +65,14 @@ interface Props {
    * regardless of the waterDecision visibility the catalog filters produce. */
   showAllWaters?: boolean;
   assessedIds?: Set<string>;
+  /** Catalog species per water id, from the same streams snapshot the
+   * corridors join (H5 mode-aware labels) — absent means the catalog does
+   * not say, and the label policy never guesses. */
+  labelSpecies?: Map<string, 'trout' | 'warmwater'>;
+  /** Species filter mode ('trout' | 'all', from ?species=). Defaults to
+   * 'all' — the pre-mode-aware behavior — so callers that don't plumb it
+   * keep today's labels. */
+  speciesMode?: 'trout' | 'all';
   stillWaterIds?: Set<string>;
   /** Catalog waterbodyType label per water id (M2) — accessible names use it. */
   waterTypes?: Map<string, string>;
@@ -522,13 +531,15 @@ export function TennesseeMap(props: Props) {
     const map = mapRef.current;
     if (!map || !ready) return;
     // H5 label prominence: geographic extent is the available signal (the
-    // index carries id/name/anchor/bounds). Major waters earn statewide
-    // identity labels regardless of assessment availability; pocket waters
-    // wait for local zooms so church ponds never outrank major rivers.
+    // index carries id/name/anchor/bounds). Mode-awareness (H5 finish): the
+    // visibility rule lives in labelPolicy.ts — trout mode titles ONLY
+    // catalog-trout waters (warmwater and unknown-species waters render
+    // corridor/dot only, never a name that could read as a trout claim);
+    // all-fish mode additionally titles large waters of any species. Major
+    // trout waters keep their statewide titles; pocket waters wait for local
+    // zooms. Selection, collision, and priority mechanics are unchanged.
     const extentOf = (b: readonly number[] | undefined) =>
       b ? Math.max(b[2]! - b[0]!, b[3]! - b[1]!) : 0;
-    const MAJOR = 0.3;
-    const MINOR = 0.05;
     const markers = index.map((river) => {
       const el = document.createElement('button');
       el.type = 'button';
@@ -570,6 +581,12 @@ export function TennesseeMap(props: Props) {
       // first rows on mobile, so labels must clear it to stay operable.
       const topCover = p.layout === 'mobile' ? 192 : 80;
       const occupied: Array<{ left: number; right: number; top: number; bottom: number }> = [];
+      // Catalog-trout waters — the authoritative set the label policy gates
+      // on. Rebuilt from latest props so a species-filter change lands on the
+      // next frame without rebuilding markers.
+      const troutIds = new Set<string>();
+      if (p.labelSpecies)
+        for (const [id, s] of p.labelSpecies) if (s === 'trout') troutIds.add(id);
       // Priority: selection first, then prominence (extent), then assessment
       // availability, then name for determinism. Big lakes and major rivers
       // now compete on extent instead of every still water outranking every
@@ -584,23 +601,44 @@ export function TennesseeMap(props: Props) {
       for (const { river, el, width, height, stillWater, extent } of sorted) {
         const selected = river.id === p.selectedId;
         const assessed = p.assessedIds?.has(river.id) ?? false;
+        const species = p.labelSpecies?.get(river.id);
         const typeWord = p.waterTypes?.get(river.id);
         const kindWord = typeWord ?? (stillWater ? 'Still water' : 'River');
+        // Mode-honest naming: confirmed trout takes no species word (it is
+        // the app's default vocabulary); warmwater says so; a water whose
+        // species the catalog leaves unset reads "Unverified" in place of the
+        // assessment suffix — never an implied trout or condition claim.
+        const note = labelSpeciesNote({ id: river.id, species }, { troutIds });
+        const unassessedWord = note === 'Unverified' ? 'Unverified' : 'Unassessed';
         el.setAttribute(
           'aria-label',
-          'Select ' + river.name + ', ' + kindWord + (assessed ? '' : ', Unassessed'),
+          'Select ' +
+            river.name +
+            ', ' +
+            kindWord +
+            (note ? ', ' + note : '') +
+            (assessed ? '' : ', ' + unassessedWord),
         );
-        el.title = kindWord + (assessed ? '' : ' · Unassessed');
+        el.title =
+          kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
         const point = map.project(river.anchor as [number, number]);
-        // Zoom gates: selected/assessed waters always; major waters keep
-        // their statewide name even with no observations (H5); mid-size
-        // waters appear on approach; pocket waters only when local.
+        // Visibility: the waterDecision filter pass (visibleIds) plus the
+        // pure mode-aware prominence gate. Selected/assessed trout always
+        // compete; major trout waters keep their statewide name; everything
+        // else waits for the zoom gates.
         const visible =
           (!p.visibleIds || p.visibleIds.has(river.id)) &&
-          (selected ||
-            assessed ||
-            extent >= MAJOR ||
-            (extent >= MINOR ? z >= 8.5 : z >= 9.5));
+          shouldShowLabel(
+            { id: river.id, species },
+            {
+              mode: p.speciesMode ?? 'all',
+              troutIds,
+              extent,
+              zoom: z,
+              selected,
+              assessed,
+            },
+          );
         // Rectangle collision on the actual label box — the same AABB test the
         // places pass below already runs against these labels, not a fixed
         // point box.

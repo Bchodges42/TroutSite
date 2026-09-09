@@ -273,6 +273,16 @@ export function RiverMapPage() {
     () => new Map(data.streams.map((s) => [s.id, waterTypeLabel(s.waterbodyType)] as const)),
     [data.streams.map((s) => s.id + s.waterbodyType).join(',')],
   );
+  // H5 mode-aware labels: catalog species per water, from the same streams
+  // snapshot the corridors already join — the label policy never re-fetches
+  // and never guesses a species the catalog leaves unset.
+  const labelSpecies = useMemo(
+    () =>
+      new Map(
+        data.streams.flatMap((s) => (s.species ? [[s.id, s.species] as const] : [])),
+      ),
+    [data.streams.map((s) => s.id + (s.species ?? '')).join(',')],
+  );
   // C1: "no assessed waters" has two different truths — the filter genuinely
   // matched nothing, or the condition feed itself has no coverage (every
   // record unassessed with the builder's stale stamp, or an empty feed). Only
@@ -583,6 +593,8 @@ export function RiverMapPage() {
           visibleIds={visibleIds}
           showAllWaters={allWatersOn}
           assessedIds={assessedIds}
+          labelSpecies={labelSpecies}
+          speciesMode={species}
           stillWaterIds={stillWaterIds}
           waterTypes={waterTypes}
           hatchActiveIds={hatchActive}
