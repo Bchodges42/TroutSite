@@ -1,3 +1,58 @@
+# SESSION 1 — integration + data pipeline (2026-09-08) — base commit 6d0befe
+
+Base: `origin/main` = `6d0befe` (recovery push 2026-09-08). Clone: `C:\Users\Benjamin\Projects\trout-s1`.
+Scope: live-host pipeline recovery, hatch content pack, TVA/USACE gauges, catalog attributes, stocking window/sort.
+
+## Result (6 commits on top of 6d0befe, all gates green)
+
+- `pipe(infra)` — snapshot-sync fallback (`infra/sync-snapshots.sh`, rsync-or-scp + atomic swap +
+  public URL verification, `--dry-run`/`--local` test seams), RUNBOOK §8, `docs/SESSION1-HOST-RECOVERY.md`
+  (paste-onto-host checklist).
+- `pipe(gauges)` — **TVA + USACE readings now drive conditions scoring**: `usace-provider.ts`
+  (working endpoint is `water.usace.army.mil/cda/reporting/providers/lrn/timeseries` — rivergages.mvr
+  does NOT carry Nashville District; CDA /timeseries still 501), `conditionsBridge.ts` writes
+  `tva:{id}`/`usace:{id}` rows into `gauge_readings_raw` (scorer unchanged — it was already
+  source-agnostic), NWIS guards skip non-numeric ids, 13 tailwater YAMLs wired, `USACE_MONITORS`
+  registry + coverage docs regenerated. Newly assessable waters: clinch, boone-tw, ft-patrick-henry-tw,
+  south-holston, obey, parksville-tw (+hiwassee flow); redundancy for watauga/caney/stones/elk/duck/ocoee.
+  `usace:CORT1` registered but deliberately NOT wired into cumberland-river (multi-dam mainstem would
+  mis-score — matches monitors.ts doctrine).
+- `content(catalog)` — canonical `fishery` (wild|stocked|tailwater; 101/147) + `yearRound` (91/147)
+  added to StreamSchema + YAML, evidence-driven from a fresh 2026-09-08 TWRA capture (136 sites w/
+  month seasonality), USFS Cherokee NF, ArcGIS storymap, norrik (dead site; used as corroboration only).
+  Species flips: calderwood/chilhowee/dale-hollow-lake → trout (TWRA stocks them); norris/cherokee/
+  center-hill/tims-ford/south-holston lakes → warmwater (trout water is the named tailwater row).
+  Owner-decision list in `docs/SPECIES-REVIEW.md` § 2026-09-08. Candidate new waters (Cherokee TW,
+  paint-creek, bald/north-river, green-cove-pond + ~35 more) need Session-2 geometry — listed, not added.
+- `pipe(hatch)` — root cause of "content pack not found": `pipelineConfig` resolved repo paths from
+  `process.cwd()`; pm2 runs cwd=REPO_ROOT so the cron looked at `<two up>/packages/content` (outside
+  the repo). Now anchored at the module file (cwd-independent) + `TROUT_CONTENT_DIR` added to pm2
+  API_ENV + regression tests from both cwds. Proven end-to-end in a fresh clone: seed → snapshots
+  reports `contentPack:true, hatchCharts:144`. NOTE for host: `pm2 reload` does not re-read ecosystem
+  env — after pulling, `pm2 delete trout-api trout-cron && pm2 start infra/pm2/ecosystem.config.cjs`.
+- `pipe(stocking)` — `v1/stocking/{state}-recent.json`: 3-month rolling window, recency-first
+  (newest-first; upcoming scheduled rows stay in-window), `ENDPOINTS.stockingRecent` + web
+  snapshotUrls helper. Full-history file unchanged; UI consumption left to Session 3's redesign.
+  Verified live against real TWRA data: 170/623 rows in-window.
+- `pipe(test)` — web's published-feed stockingMatch test skips honestly on fresh clones
+  (public/v1/** is a gitignored deploy artifact).
+
+Gates: typecheck clean · api 140/140 · contracts 97/97 · content 11/11 · web 181/181 ·
+content validate/build OK (147 streams) · web build + size budget OK (10.52 MB / 25 MB).
+
+## BLOCKER for Task 1 (host deploy) — owner action required
+
+The live host (`trout.tntechclimb.com`) is NOT reachable from this laptop (no SSH keys/config, no
+cloudflared service locally) and has REGRESSED past the findings: `/healthz` → `ok:false`
+("conditions feed has not been generated"), `/v1/streams` → 503, everything under `/v1/*` +
+`/content/*` → 404. The API process answers; the snapshot trees are GONE (worse than the recorded
+"frozen feed" state). Fix path is fully packaged: run `docs/SESSION1-HOST-RECOVERY.md` on the host
+(deploy with the new loud-fail gates, restore cron), or from this laptop `infra/sync-snapshots.sh`
+(RUNBOOK §8) once `TROUT_SYNC_HOST` exists. Laptop pipeline is healthy (hourly gauges, 33/146
+assessed, 623 stocking rows; UA lives in repo-root `.env`).
+
+---
+
 # ROADS lane (B12) — base commit 826e5cb
 
 Base: trout-fieldwork-20260904@826e5cb (branch codex/trout-fieldwork-20260904).
