@@ -104,11 +104,38 @@ function attachSnapshotRoutes(middlewares: Connect.Server, rootDir: () => string
   });
 }
 
+/**
+ * Cloudflare Web Analytics beacon — build-time opt-in only (Session 3, ops
+ * task). The beacon is injected into index.html ONLY when
+ * VITE_CF_ANALYTICS_TOKEN is set in the build environment, so dev, fixture,
+ * CI, and privacy-audit builds contain no analytics code at all (the
+ * zero-cross-origin e2e spec keeps passing); production enables it by adding
+ * the token to the deploy env. Cloudflare Web Analytics is cookie-free and
+ * does not fingerprint; the off switch is building without the token. See
+ * docs/OPERATIONS-ANALYTICS.md for the token + kill-switch runbook.
+ */
+export const analyticsBeaconPlugin = (): Plugin => ({
+  name: 'trout-analytics-beacon',
+  apply: 'build',
+  transformIndexHtml() {
+    const token = process.env.VITE_CF_ANALYTICS_TOKEN;
+    if (!token) return [];
+    return [
+      {
+        tag: 'script',
+        attrs: { defer: true, src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': JSON.stringify({ token }) },
+        injectTo: 'head',
+      },
+    ];
+  },
+});
+
 export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) {
   return [
     react(),
     snapshotHeadersPlugin(),
     snapshotRoutesPlugin(),
+    analyticsBeaconPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],

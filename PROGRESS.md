@@ -1,3 +1,101 @@
+# SESSION 3 — Product / UX / Growth (2026-09-08)
+
+Base commit: `6d0befe` (origin/main, recovery push 2026-09-08).
+Clone: `C:\Users\Benjamin\Projects\trout-s3` (own clone; shared tree never committed).
+Scope: regulations UI, SEO infrastructure, hatch calendar, match-the-hatch imagery,
+stocking page redesign, analytics. NOT touched: TennesseeMap/mapStyle/mapTokens
+(Session 2 single-writer), geometry generators, ingest pipeline (Session 1).
+Commit tags: `grow(...)` / `ux(...)`.
+
+## Status log
+
+- [x] Setup: clone at `6d0befe`, baseline gates (see below).
+- [x] ux(hatch): expected-activity calendar — per-taxon 12-month strips with
+      spans/peaks (`lib/hatchActivity.ts`, `useYearCharts`), activity-tinted
+      month nav on chart pages, "expected {tier}" vocabulary everywhere, dead
+      "Quiet month" state removed (pack fallback: taxa whose catalog season
+      covers the month); map hatch halos light for ANY charted guidance
+      (>=1, was >=2) + legend/help copy; drawer hatch outlook shows tier.
+      HatchMonthControl: compass metaphor was already replaced by the month
+      strip in a prior lane — no rework needed; recorded here as verified.
+- [x] grow(regs): fishing-information pack expanded by subagent (18 items /
+      24 waters; corrected Piney River DH removal effective 2026-08-01,
+      Clear Creek name collision, Gatlinburg permit streams, Horse Creek
+      rule; full docs/FISHING-INFORMATION-SOURCES.md) + Regulations page
+      rebuilt data-driven on /content/fishing.json (structured answers,
+      searchable per-water special regs, citations as text, license-only
+      outbound CTA), regs card in RiverDrawer WaterTab + StreamDetailPage,
+      menu position 3. fishing.json added to fixture generator.
+- [x] grow(seo): build-time prerender (subagent prototype in throwaway
+      trout-s3-proto, integrated) — `apps/web/scripts/prerender.mjs` emits
+      555 route pages (147 waters, 12×12 charts, 103 taxa, 155 patterns,
+      stocking, conditions, regulations) with per-route title/description/
+      canonical/OG/JSON-LD + visible snapshot content, sitemap.xml (555
+      URLs), robots.txt (noindex /logbook /settings). /fishing-info
+      canonicalizes to /regulations; regs pages carry per-water rules from
+      fishing.json; regions.ts regex fallback for Node 20 deploy hosts;
+      deploy.sh runs prerender after the snapshot job. Verified by curl +
+      browser (title swaps to client title after SPA boot; no hydration).
+- [x] ux(hatch-key): discriminator drawings (DiscriminatorArt.tsx) at the
+      tails/gills/shape steps — 2 vs 3 tails, lamellae/filaments/none,
+      slender/robust — aria-hidden so button accessible names stay textual.
+- [x] grow(imagery): subagent sourced 40 license-safe candidates
+      (.atlas-src/imagery-candidates + PROVENANCE.csv, gitignored); 14
+      visually approved by main session and shipped via
+      scripts/intake-imagery.mjs (sharp, 960px/q78) to public/img/taxa;
+      TaxonDetailPage renders photo + credit + license + source link
+      (lib/taxonImages.ts, order/family keyed); committed provenance in
+      docs/imagery-provenance.csv. Photos runtime-cached, NOT precached —
+      line art remains the offline identity. .gitignore gained `.atlas-src/`.
+- [x] ux(stocking): URL-driven sort (?sort= newest/oldest/water/county,
+      un-countied rows sink) completing the recency-first redesign that
+      already shipped (90-day default window, all-history, datePrecision
+      honesty, search-first disclosure were in Chat A's scope-5 work).
+- [x] grow(ops): Cloudflare Web Analytics as build-time opt-in —
+      `analyticsBeaconPlugin` in vite.shared.ts injects the beacon ONLY when
+      VITE_CF_ANALYTICS_TOKEN is set at build time (dev/fixtures/CI/privacy
+      e2e builds contain zero analytics code — verified in dist); privacy
+      page disclosure in the same change; token creation + WAF kill-switch
+      (`hostname eq trout.tntechclimb.com` → Managed Challenge/Block; NOT
+      applied) + ads-readiness checklist in docs/OPERATIONS-ANALYTICS.md.
+      The token itself must be created in Benjamin's Cloudflare dashboard —
+      the only remaining human step.
+
+## Gates (final state)
+
+- `pnpm --filter @trout/web typecheck` — clean.
+- `pnpm --filter @trout/web test` — 183/183 (incl. rewritten fishing-info
+  suite with fishing.json fetch mock, new stocking sort test).
+- `pnpm --filter @trout/web build` + size budget — OK, 11.84 MB / 25 MB.
+- `pnpm --filter @trout/web prerender` — 555 pages + sitemap + robots.
+- e2e `--project=web` — 28/28 (three spec alignments: menu label
+  "Regulations", regex button names after aria-hidden art, chart-page h1;
+  fixture generator BWO corrected to 3 tails per the real pack — spec drift
+  predating this session; honest score is 7/8, spec comment corrected).
+- e2e `--project=marketing` — 14/14.
+- Browser-verified (static-server on :58630, real snapshots): /regulations
+  renders sections + per-water cards + filter; menu shows Regulations 3rd;
+  /charts/tn-east-holston/5 shows activity summary, tinted month strip,
+  year strips with span/peak labels; /hatch-key tails step shows the two
+  drawings; /taxa/blue-winged-olive shows the Hexagenia photo + credit;
+  /stocking?sort=location sorts and persists in URL; /regulations serves
+  prerendered title/canonical then boots the SPA.
+
+## Coordination notes
+
+- Session 2 (map files untouched): halo intensity-by-abundance needs a
+  mapStyle change (halo is a boolean feature-state today) — flagged as
+  follow-up; stocking map-highlight remains the agreed stretch goal.
+- Session 1: stocking UI built against the current contract (datePrecision
+  honored); adapts trivially if their Task 5 contract changes land.
+- Pre-existing issue found: e2e fixture BWO (tails 2) disagreed with the
+  real pack (tails 3) — fixed in the fixture generator this session.
+- Environment note: stockingMatch.test.ts reads public/v1 artifacts —
+  fresh clones must generate snapshots (api seed+snapshots) or copy from
+  the shared tree for that one test.
+
+---
+
 # SESSION 2 — map verification + cartography (2026-09-08) — base commit 6d0befe (rebased onto ea87fd8)
 
 Base: `origin/main` = `6d0befe`; rebased onto `ea87fd8` (Session 1's integration) before final gates.

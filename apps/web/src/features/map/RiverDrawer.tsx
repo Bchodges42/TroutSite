@@ -8,6 +8,8 @@ import { orderedReadings, conditionReason, waterIdentity, waterTypeLabel } from 
 import { useSettingsContext } from '../../lib/settings';
 import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
+import { activityLabel } from '../../lib/hatchActivity';
+import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -165,6 +167,8 @@ function WaterTab({
 }) {
   const { settings } = useSettingsContext();
   const pack = useContentPack();
+  const fishingInfo = useFishingInfo();
+  const waterRegs = itemsForWater(fishingInfo.data?.data, 'special-regulations', feature.stream.id);
   const snap = feature.snapshot;
   const readings = orderedReadings(snap);
   const flow = readings.find((r) => r.cfs != null),
@@ -264,7 +268,12 @@ function WaterTab({
           <strong>{taxon?.commonName ?? 'What is on the water?'}</strong>
           <p>
             {dominant
-              ? TIMES[dominant.timeOfDay] + ' · ' + dominant.stage + ' · regional seasonal guidance'
+              ? TIMES[dominant.timeOfDay] +
+                ' · ' +
+                dominant.stage +
+                ' · expected ' +
+                activityLabel(dominant.abundance) +
+                ' (regional guidance)'
               : 'Identify the insect you find and explore matching fly patterns.'}
           </p>
           <Link
@@ -273,6 +282,33 @@ function WaterTab({
           >
             <BugIcon size={17} />
             Match the hatch <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      )}
+      {waterRegs.length > 0 && (
+        <div className="detail-section water-regs">
+          <h3>Special regulations on this water</h3>
+          {waterRegs.map((item, i) => (
+            <div key={i} className="water-regs-item">
+              <p>{item.text}</p>
+              <p className="muted text-xs">
+                {item.authority}
+                {item.effectiveFrom ? ` · effective ${item.effectiveFrom}` : ''} · verified against{' '}
+                {(() => {
+                  try {
+                    return new URL(item.sourceUrl).hostname.replace(/^www\./, '');
+                  } catch {
+                    return 'official source';
+                  }
+                })()}
+              </p>
+            </div>
+          ))}
+          <Link
+            className="text-action"
+            to={riverWorkflowUrl('/regulations', feature.stream, month)}
+          >
+            All fishing regulations →
           </Link>
         </div>
       )}
@@ -387,7 +423,9 @@ function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number 
               {TIMES[entry.timeOfDay]} · <span className="capitalize">{entry.stage}</span>
               {taxon ? ' · Hook #' + taxon.sizeRange.join('–#') : ''}
             </p>
-            <div className="hatch-abundance">Seasonal abundance {entry.abundance}/5</div>
+            <div className="hatch-abundance">
+              Expected activity: {activityLabel(entry.abundance)} ({entry.abundance}/5)
+            </div>
             <div className="hatch-patterns">
               {entry.patterns.map((id) => {
                 const pattern = pack.data?.patterns.find((p) => p.id === id);

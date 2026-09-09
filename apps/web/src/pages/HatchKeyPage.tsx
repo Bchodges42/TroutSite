@@ -11,6 +11,7 @@ import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { currentMonth } from '../lib/time';
 import { monthName, REGIONS } from '../data/regions';
 import { TaxonArt } from '../components/art/TaxonArt';
+import { TailsArt, GillsArt, ShapeArt } from '../components/art/DiscriminatorArt';
 import { RiverContextBar, useRiverContext, contextUrl } from '../lib/riverContext';
 
 /**
@@ -249,26 +250,31 @@ export function HatchKeyPage() {
                     <button
                       key={t}
                       type="button"
-                      className={`option-card focus-ring ${draft.tails === t ? 'is-selected' : ''}`}
+                      className={`option-card focus-ring flex-col gap-2 ${draft.tails === t ? 'is-selected' : ''}`}
                       aria-pressed={draft.tails === t}
                       onClick={() => pick('tails', t)}
                     >
-                      {t} tails
+                      <span aria-hidden="true"><TailsArt tails={t} size={110} /></span>
+                      <span className="font-bold">{t} tails</span>
+                      <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+                        {t === 2 ? 'Count the filaments — a pair' : 'Three separate filaments fanned out'}
+                      </span>
                     </button>
                   ))}
                 </div>
               )}
 
               {step === 'gills' && (
-                <div className="flex flex-col gap-3">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   {(Object.keys(GILLS_LABEL) as BugObservation['gills'][]).map((g) => (
                     <button
                       key={g}
                       type="button"
-                      className={`option-card focus-ring text-left ${draft.gills === g ? 'is-selected' : ''}`}
+                      className={`option-card focus-ring flex-col gap-2 text-center ${draft.gills === g ? 'is-selected' : ''}`}
                       aria-pressed={draft.gills === g}
                       onClick={() => pick('gills', g)}
                     >
+                      <span aria-hidden="true"><GillsArt gills={g} size={110} /></span>
                       {GILLS_LABEL[g]}
                     </button>
                   ))}
@@ -281,11 +287,15 @@ export function HatchKeyPage() {
                     <button
                       key={s}
                       type="button"
-                      className={`option-card focus-ring capitalize ${draft.bodyShape === s ? 'is-selected' : ''}`}
+                      className={`option-card focus-ring flex-col gap-2 ${draft.bodyShape === s ? 'is-selected' : ''}`}
                       aria-pressed={draft.bodyShape === s}
                       onClick={() => pick('bodyShape', s)}
                     >
-                      {s}
+                      <span aria-hidden="true"><ShapeArt shape={s} size={110} /></span>
+                      <span className="font-bold capitalize">{s}</span>
+                      <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+                        {s === 'slender' ? 'Long and thin, like a twig' : 'Stout and hump-backed'}
+                      </span>
                     </button>
                   ))}
                 </div>

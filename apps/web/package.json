@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit -p tsconfig.json && vite build && node scripts/size-budget.mjs",
+    "prerender": "node scripts/prerender.mjs",
+    "build:seo": "pnpm run build && pnpm run prerender",
     "build:fixtures": "tsc --noEmit -p tsconfig.json && vite build --config vite.fixtures.config.ts && node scripts/size-budget.mjs",
     "preview": "vite preview",
     "lint": "eslint .",

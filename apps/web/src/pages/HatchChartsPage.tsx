@@ -65,11 +65,12 @@ export function HatchChartsPage() {
 
       <Card className="mt-6">
         <p className="text-sm">
-          Charts summarize regional hatch timing from the content pack. Abundance is a 1–5 guide,
-          not a guarantee — always verify conditions on the water.
+          Charts summarize regional hatch timing from the content pack — expected activity, not a
+          guarantee. Something hatches year-round in Tennessee: every month lists what is moving,
+          from light to peak. Always verify conditions on the water.
         </p>
       </Card>
-      <p className="page-subtitle mt-3">Currently viewing: {monthName(now)} is pre-marked.</p>
+      <p className="page-subtitle mt-3">Viewing the {monthName(now)} chart is one tap away.</p>
     </main>
   );
 }

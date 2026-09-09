@@ -49,6 +49,13 @@ else
   echo "[deploy] snapshot script not present in apps/api yet (ROLE 3) — skipping"
 fi
 
+echo "[deploy] prerender per-route SEO pages + sitemap.xml (reads the snapshots above)"
+if [ -f apps/web/public/v1/streams.json ] || [ -f apps/web/public/v1/streams ]; then
+  pnpm --filter @trout/web prerender
+else
+  echo "[deploy] WARN — no /v1 snapshots yet; skipping prerender (deep links serve the SPA shell)"
+fi
+
 echo "[deploy] rebuild marketing from real snapshot JSON (§12 #3)"
 if [ -f apps/web/public/v1/streams.json ]; then
   MARKETING_DATA_DIR="$(pwd)/apps/web/public" pnpm --filter @trout/marketing build

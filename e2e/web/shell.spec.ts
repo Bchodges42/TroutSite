@@ -27,7 +27,7 @@ test.describe('fullscreen map shell', () => {
       'Conditions',
       'Hatch calendar',
       'Stocking schedules',
-      'Fishing information',
+      'Regulations',
       'Shops & reports',
       'Settings',
       'About & privacy',
