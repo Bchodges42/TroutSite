@@ -33,6 +33,11 @@ const STITCH_KM = 1.0;
 // docs/CONTINUITY-AUDIT.md). Every entry must cite its documentation. The
 // audit FAILS on any multi-chunk stream NOT listed here.
 const ALLOWLIST = {
+  'salt-lick-creek': {
+    kind: 'DELIBERATE',
+    reason:
+      '2026-09-09 session-2 trace: ONE catalog id covers two same-named Salt Lick Creeks — the Jackson County water and the Putnam County water (~9.2 km apart), each now a 0-seam level-path chain. Splitting the id is a catalog change owned by the content lane.',
+  },
   'tennessee-river': {
     kind: 'B15-DOCUMENTED',
     reason:

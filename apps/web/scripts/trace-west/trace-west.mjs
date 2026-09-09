@@ -23,8 +23,9 @@ import { fileURLToPath } from 'node:url';
 import {
   loadTake, levelPathGroups, traceWater, makeArtifact, beforeMetrics,
   loadCanonicalProps, westMiddleMembership, loadSelfX, lineLenKm, chunkStats,
-  OUT,
+  membersToChains, OUT,
 } from './lib.mjs';
+import { cutChainAtVertex } from '../lib-west-middle-fix.mjs';
 
 const webRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CANONICAL = join(webRoot, 'public', 'atlas', 'rivers.geojson');
@@ -193,6 +194,39 @@ const WATERS = [
     id: 'east-fork-shoal-creek', take: 'creek-east-fork-shoal', nameRe: /^East Fork Shoal Creek$/i, minKm: 2,
     notes: 'LEFT-OPEN allowlist investigation: the documented 6.06 km upper-reach hole is retraced on the VAA level path — if NHD carries no reach there the seam stays documented (never bridged); each connected stretch is delivered 0-seam.',
   },
+  // ---------------- follow-up wave 2 (orchestrator follow-up) ----------------
+  {
+    id: 'caney-fork-upper', take: 'river-caney-fork', nameRe: /^Caney Fork( River)?$/i, minKm: 5,
+    damSplit: { role: 'upstream', at: [-85.826276, 36.097941], pin: 'Center Hill Dam (USGS 03424010 / west-middle-build damCut partVertex)' },
+    notes: 'One level path traced for BOTH Caney Fork identities, reach-split at the Center Hill Dam pinned vertex (caney-fork damCut precedent — the split vertex is shared, no interior coordinate deleted). Upstream identity: full named course above the dam through the Great Falls + Center Hill pools (throughLakeIds preserved; pool artificial paths are on the level path).',
+  },
+  {
+    id: 'caney-fork-river', take: 'river-caney-fork', nameRe: /^Caney Fork( River)?$/i, minKm: 5,
+    damSplit: { role: 'downstream', at: [-85.826276, 36.097941], pin: 'Center Hill Dam (USGS 03424010 / west-middle-build damCut partVertex)' },
+    notes: 'Center Hill tailwater identity: the same level path reach-split at the dam vertex (shared with caney-fork-upper, 0 m handoff); runs from the dam face to the Cumberland confluence at Carthage.',
+    pins: [{ label: 'USGS 03424010 Caney Fork at Center Hill Dam', at: [-85.82721, 36.09784] }, { label: 'mouth at the Cumberland / Old Hickory Lake at Carthage', at: [-85.941, 36.239] }],
+  },
+  {
+    id: 'collins-river', take: 'river-collins', nameRe: /^Collins River$/i, minKm: 5,
+    notes: 'Duplicate corridor was fixed earlier; the fragmentation is rebuilt from the named Collins level path as one 0-seam chain. The through-pool relationship with great-falls-lake must survive (barren-fork/charles/upper-hills already end inside the pool) — verified by the through-lake touch check.',
+    pins: [{ label: 'USGS 03422495 Collins River at Rock Island (Great Falls pool)', at: [-85.63359, 35.80701] }],
+  },
+  {
+    id: 'little-buffalo-river', take: 'river-buffalo', nameRe: /^Little Buffalo River$/i, minKm: 3,
+    notes: 'Distinct water from buffalo-river (own level path off the same take). The catalog documents the mouth reach as swamp where the named chain ends ~1.2 km short of the Buffalo line — if the level path does not chain there, the seam stays documented.',
+  },
+  {
+    id: 'laurel-creek-johnson', take: 'creek-laurel-johnson', nameRe: /^Laurel Creek$/i, minKm: 2,
+    notes: 'Johnson County Laurel Creek (envelope-scoped against the many same-named Laurel Creeks/Forks elsewhere; NOT a Laurel Fork identity). 4 intra-feature crossings rebuilt as one 0-seam level-path chain.',
+  },
+  {
+    id: 'middle-prong-little-pigeon', take: 'creek-middle-prong-little-pigeon', nameRe: /^Middle Prong( of )?\s*Little Pigeon/i, minKm: 2,
+    notes: 'Sevier County Middle Prong of the Little Pigeon (Greenbrier). Traced on its OWN level path — distinct tributary from little-pigeon-river (just traced by the east crew); the two share only the confluence, so no double-draw of the main river.',
+  },
+  {
+    id: 'north-chickamauga-creek', take: 'creek-north-chickamauga', nameRe: /^North Chickamauga Creek$/i, minKm: 5,
+    notes: 'Hamilton County North Chickamauga Creek; 2 crossings rebuilt as one 0-seam level-path chain to the Tennessee River confluence corridor.',
+  },
 ];
 
 const onlyIds = process.argv.slice(2).filter((a) => !a.startsWith('--'));
@@ -269,12 +303,32 @@ function traceOne(w) {
     window: w.window ?? null,
     levelPathOpts: { minKm: w.minKm ?? 2 },
   });
+  let usedMembers = t.members;
+  let perLp = t.perLp;
+  if (w.damSplit) {
+    // caney-fork precedent: ONE level path serves TWO reach-scoped catalog
+    // identities; reach-split at the pinned dam vertex (shared vertex, no
+    // interior coordinate deleted).
+    const cut = cutChainAtVertex(t.members, w.damSplit.at);
+    usedMembers = w.damSplit.role === 'upstream' ? cut.up : cut.down;
+    const rebuilt = membersToChains(usedMembers);
+    t.chains = rebuilt.chains;
+    t.seamsExtra = rebuilt.seams;
+    perLp = perLp.map((p) => ({
+      ...p,
+      reachCount: usedMembers.length,
+      vaaKm: +usedMembers.reduce((s, m) => s + (m.lengthkm ?? 0), 0).toFixed(2),
+      damSplit: { role: w.damSplit.role, pin: w.damSplit.pin, splitDistanceM: cut.distanceM, splitAt: cut.splitAt },
+    }));
+    console.log(`   dam split (${w.damSplit.role}): ${usedMembers.length} reaches, split vertex ${cut.distanceM} m from ${w.damSplit.pin} (shared with the other identity)`);
+  }
   const chains = t.chains;
   if (!chains.length) throw new Error(`${w.id}: trace produced 0 chains`);
   const chainsKm = chains.map((c) => +lineLenKm(c).toFixed(2));
   const afterChunks = chunkStats(chains);
-  console.log(`   chains: ${chains.length} [${chainsKm.join(', ')}] km | reaches used ${t.members.length} (VAA ${t.vaaKm.toFixed(1)} km) | level-path seams ${t.perLp.reduce((s, p) => s + p.networkSeams + p.seams.length, 0)}`);
-  for (const p of t.perLp) {
+  const vaaKmUsed = +usedMembers.reduce((s, m) => s + (m.lengthkm ?? 0), 0).toFixed(2);
+  console.log(`   chains: ${chains.length} [${chainsKm.join(', ')}] km | reaches used ${usedMembers.length} (VAA ${vaaKmUsed} km) | level-path seams ${t.perLp.reduce((s, p) => s + p.networkSeams + p.seams.length, 0)}${(t.seamsExtra ?? []).length ? ` | dam-split seams ${JSON.stringify(t.seamsExtra)}` : ''}`);
+  for (const p of perLp) {
     if (p.networkSeamList?.length || p.seams?.length) {
       console.log(`   level path ${p.levelPath}: seams ${JSON.stringify((p.networkSeamList ?? []).concat(p.seams ?? []))}`);
     }
@@ -299,8 +353,8 @@ function traceOne(w) {
   const { file } = makeArtifact({
     id: w.id,
     chains,
-    reachesUsed: t.members,
-    perLp: t.perLp,
+    reachesUsed: usedMembers,
+    perLp,
     opts: {
       throughLakeIds: w.throughLakeIds ?? canon.properties.throughLakeIds ?? null,
       allowOpenEnds: canon.properties.allowOpenEnds ?? true,

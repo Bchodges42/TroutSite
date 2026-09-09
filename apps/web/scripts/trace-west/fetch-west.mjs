@@ -205,6 +205,18 @@ const SYSTEMS = [
   { key: 'creek-north-prong-barren', mao: '0.0002', minKm: 2, envs: ['-86.00,35.65,-85.90,35.75'], nameTest: /^North Prong Barren/i },
   { key: 'creek-sinking', mao: '0.0003', minKm: 3, envs: ['-86.60,36.00,-86.20,36.25'], nameTest: /^Sinking Creek$/i },
   { key: 'creek-east-fork-shoal', mao: '0.0002', minKm: 2, envs: ['-87.25,34.95,-87.00,35.15'], nameTest: /^East Fork Shoal Creek$/i },
+  // --- follow-up wave 2 (orchestrator follow-up, 2026-09-09) ---
+  { key: 'river-collins', mao: '0.0003', minKm: 5,
+    // south edge widened to 35.35: the canonical Collins bbox reaches 35.3927
+    envs: ['-85.85,35.35,-85.50,35.85'], nameTest: /^Collins River$/i },
+  { key: 'river-caney-fork', mao: '0.0004', minKm: 5,
+    envs: ['-86.05,35.50,-84.95,36.40'], nameTest: /^Caney Fork( River)?$/i },
+  { key: 'creek-laurel-johnson', mao: '0.0002', minKm: 2,
+    envs: ['-81.95,36.42,-81.60,36.72'], nameTest: /^Laurel Creek$/i },
+  { key: 'creek-middle-prong-little-pigeon', mao: '0.0002', minKm: 2,
+    envs: ['-83.55,35.60,-83.15,35.82'], nameTest: /^Middle Prong( of )?\s*Little Pigeon/i },
+  { key: 'creek-north-chickamauga', mao: '0.0003', minKm: 5,
+    envs: ['-85.55,35.00,-85.05,35.40'], nameTest: /^North Chickamauga Creek$/i },
 ];
 
 /** Water's named level paths from the retained attributes (same weighting as
