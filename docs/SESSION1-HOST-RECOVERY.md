@@ -102,6 +102,23 @@ non-zero instead of shipping a misleading feed. Save the full output either way 
   or network egress), re-run. Failed **before** snapshots ran? Then §1 state is
   unchanged; diagnose from the output before proceeding.
 
+
+### Hatch-pack note (S1, 2026-09-08)
+
+The hourly cron also regenerates `/v1/hatch/*` + `/content/*.json` from the built content
+pack (`packages/content/dist/pack`, produced by deploy’s `pnpm -r build`). If deploy is green
+but the next cron run still logs `content pack not found`, the process is still running the
+OLD code or env: `pipelineConfig` now resolves repo paths cwd-independently and the ecosystem
+config now sets `TROUT_CONTENT_DIR`, but **`pm2 reload <name>` does not re-read the ecosystem
+env**. After pulling this commit, force a full restart of the two API processes:
+
+```bash
+pm2 delete trout-api trout-cron && pm2 start infra/pm2/ecosystem.config.cjs && pm2 save
+```
+
+Then confirm the next hourly run’s jobs_log `snapshots`/`gauges-conditions` detail shows
+`contentPack:true` and `hatchCharts > 0` (via /healthz jobs, or `pm2 logs trout-cron`).
+
 ## 5. Restart / verify trout-cron
 
 ```bash

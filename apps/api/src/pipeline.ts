@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Db } from './db.js';
 import { parseInstantValues, runGaugesJob } from './ingest/usgs.js';
 import { runStockingJob } from './ingest/stockingJob.js';
@@ -29,20 +30,27 @@ export interface JobOutcome {
   detail: Record<string, unknown>;
 }
 
-/** Resolve pipeline paths from env (relative paths anchor at the api package root/cwd). */
+// apps/api/{src,dist}/pipeline.* sit three levels below the repo root. Anchoring
+// path defaults here (not process.cwd()) keeps every entrypoint resolving the same
+// tree: pnpm scripts run with cwd=apps/api, but the pm2 cron/api processes run with
+// cwd=REPO_ROOT — the cwd-anchored defaults made the cron look for the content pack
+// two levels ABOVE the repo (the 2026-09-08 "content pack not found" incident).
+const REPO_ROOT = fileURLToPath(new URL('../../..', import.meta.url));
+
+/** Resolve pipeline paths from env (relative paths anchor at the repo root, cwd-independent). */
 export function pipelineConfig(env: {
   TROUT_SNAPSHOTS_DIR?: string;
   TROUT_CONTENT_DIR?: string;
   TROUT_RAW_DIR?: string;
   USGS_USER_AGENT?: string;
 }, fixturesDir?: string): PipelineConfig {
-  const contentDir = resolve(env.TROUT_CONTENT_DIR ?? '../../packages/content');
+  const contentDir = resolve(REPO_ROOT, env.TROUT_CONTENT_DIR ?? 'packages/content');
   return {
-    snapshotsDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public'),
+    snapshotsDir: resolve(REPO_ROOT, env.TROUT_SNAPSHOTS_DIR ?? 'apps/web/public'),
     contentPackDir: resolve(contentDir, 'dist/pack'),
-    rawDir: resolve(env.TROUT_RAW_DIR ?? 'data/raw'),
+    rawDir: resolve(REPO_ROOT, env.TROUT_RAW_DIR ?? 'apps/api/data/raw'),
     userAgent: env.USGS_USER_AGENT ?? 'trout-local/0.1.0 (contact: set USGS_USER_AGENT in env)',
-    fixturesDir: fixturesDir ?? resolve('fixtures'),
+    fixturesDir: fixturesDir ?? resolve(REPO_ROOT, 'apps/api/fixtures'),
   };
 }
 

@@ -18,6 +18,7 @@ const API_ENV = {
   HOST: '127.0.0.1',
   TROUT_DB_PATH: path.join(REPO_ROOT, 'apps', 'api', 'data', 'trout.db'),
   TROUT_SNAPSHOTS_DIR: path.join(REPO_ROOT, 'apps', 'web', 'public'),
+  TROUT_CONTENT_DIR: path.join(REPO_ROOT, 'packages', 'content'),
   TROUT_WEB_DIST_DIR: path.join(REPO_ROOT, 'apps', 'web', 'dist'),
   TROUT_RAW_DIR: path.join(REPO_ROOT, 'apps', 'api', 'data', 'raw'),
 };
