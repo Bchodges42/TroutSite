@@ -6,7 +6,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-east-holston",
     "gaugeIds": [
-      "03476500"
+      "03476500",
+      "tva:SHDT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -42,7 +43,8 @@
     "gaugeIds": [
       "03483980",
       "03484000",
-      "03486000"
+      "03486000",
+      "tva:WL"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -77,7 +79,8 @@
     "regionId": "tn-se-hiwassee",
     "gaugeIds": [
       "03556590",
-      "03566000"
+      "03566000",
+      "tva:HADT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -88,7 +91,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). Two- and four-turbine releases swing flow hard — the Reliance gauge is the call. The tailwater runs from the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head.",
+    "notes": "The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). A winter catch-and-release season (Oct 1–Feb 28) keeps the river fishable all year. Two- and four-turbine releases swing flow hard — the Reliance gauge is the call. The tailwater runs from the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head.",
     "officialSources": [
       {
         "label": "USGS gauge 03566000 — verify officially",
@@ -108,7 +111,8 @@
     "regionId": "tn-middle-caney-fork",
     "gaugeIds": [
       "03424010",
-      "03424860"
+      "03424860",
+      "usace:CETT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -119,7 +123,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows plus a celebrated winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic — Stonewall and at-dam gauges are your wade-window planners.",
+    "notes": "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows (stocking runs March through December) plus a celebrated winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic — Stonewall and at-dam gauges are your wade-window planners.",
     "officialSources": [
       {
         "label": "USGS gauge 03430497 — verify officially",
@@ -143,7 +147,8 @@
     "regionId": "tn-middle-duck-elk",
     "gaugeIds": [
       "03580750",
-      "03578000"
+      "03578000",
+      "tva:TMFT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -154,7 +159,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "A compact, cold Tims Ford release with put-grow-take rainbows and winter stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham) bracket the fishery.",
+    "notes": "A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and winter stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham) bracket the fishery.",
     "officialSources": [
       {
         "label": "USGS gauge 03599000 — verify officially",
@@ -173,7 +178,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-east-clinch",
     "gaugeIds": [
-      "03533000"
+      "03533000",
+      "tva:NRST1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -203,7 +209,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-middle-duck-elk",
     "gaugeIds": [
-      "03597860"
+      "03597860",
+      "tva:NRMT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -296,7 +303,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite small-water rainbow stop on the Shatley Springs road corridor. No USGS gauge — plan on recent-rain judgment.",
+    "notes": "Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite small-water rainbow stop on the Shatley Springs road corridor. The reach from the Birch Branch confluence down to Tank Hollow Road is a designated TWRA wild-trout water — open year-round, single-hook artificials only. No USGS gauge — plan on recent-rain judgment.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -408,7 +415,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-east-holston",
     "gaugeIds": [
-      "03486810"
+      "03486810",
+      "tva:BOOT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -516,7 +524,8 @@
     "waterbodyType": "lake",
     "regionId": "tn-east-smokies",
     "gaugeIds": [],
-    "stockingProgram": false,
+    "stockingProgram": true,
+    "species": "trout",
     "idealFlow": [
       {
         "min": 8,
@@ -524,7 +533,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake. TWRA lists this pool as \"Little Calderwood Reservoir\" (458 ac) — that name is an alias here.",
+    "notes": "Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake. TWRA stocks the reservoir with rainbow trout in November and December. TWRA lists this pool as \"Little Calderwood Reservoir\" (458 ac) — that name is an alias here.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -637,6 +646,7 @@
     "regionId": "tn-middle-caney-fork",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -684,6 +694,7 @@
     "regionId": "tn-east-holston",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -729,7 +740,8 @@
     "waterbodyType": "lake",
     "regionId": "tn-east-smokies",
     "gaugeIds": [],
-    "stockingProgram": false,
+    "stockingProgram": true,
+    "species": "trout",
     "idealFlow": [
       {
         "min": 8,
@@ -737,7 +749,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reservoir on the Little Tennessee River in Blount County below the Chilhowee Mountains, impounded by Chilhowee Dam. Receives the Little Tennessee River from Calderwood Lake and discharges into Tellico Lake. TWRA maps the reservoir at 1,738 ac.",
+    "notes": "Reservoir on the Little Tennessee River in Blount County below the Chilhowee Mountains, impounded by Chilhowee Dam. Receives the Little Tennessee River from Calderwood Lake and discharges into Tellico Lake. TWRA stocks the reservoir with rainbow trout in February, November, and December. TWRA maps the reservoir at 1,738 ac.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -761,7 +773,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cherokee National Forest creek with TWRA spring stocking and wild brook trout upstream. Remote, brushy, rain-flashy.",
+    "notes": "Cherokee National Forest creek with TWRA stocking roughly February–July (the Forest Service's catchable-rainbow window upstream of Little Citico runs March 15–September 15) and wild brown, rainbow, and brook trout in the tributaries. Remote, brushy, rain-flashy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -932,7 +944,8 @@
     "waterbodyType": "lake",
     "regionId": "tn-upper-cumberland",
     "gaugeIds": [],
-    "stockingProgram": false,
+    "stockingProgram": true,
+    "species": "trout",
     "idealFlow": [
       {
         "min": 8,
@@ -940,7 +953,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line in Clay, Pickett, and Overton counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line in Clay, Pickett, and Overton counties. TWRA stocks brown trout here each spring (put-grow-take). Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1261,7 +1274,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-east-holston",
     "gaugeIds": [
-      "03487010"
+      "03487010",
+      "tva:FPHT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -1695,7 +1709,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Remote Carter County headwaters with TWRA stocking and native brook trout upstream. Steep, brushy, and rain-flashy.",
+    "notes": "Remote Carter County headwaters with TWRA stocking and native brook trout upstream. The reach above the Dennis Cove cable crossing is a designated TWRA wild-trout water — open year-round. Steep, brushy, and rain-flashy.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2155,6 +2169,7 @@
       "03533000"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -2271,7 +2286,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-upper-cumberland",
     "gaugeIds": [
-      "03417000"
+      "03417000",
+      "usace:DHTT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -2282,7 +2298,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery below the dam. Release-dependent wade windows — the below-dam gauge tells the story.",
+    "notes": "Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery stocked by TWRA every month of the year below the dam. Release-dependent wade windows — the below-dam gauge tells the story.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2343,7 +2359,8 @@
     "waterbodyType": "river",
     "regionId": "tn-se-hiwassee",
     "gaugeIds": [
-      "03559500"
+      "03559500",
+      "tva:OCBT1"
     ],
     "stockingProgram": false,
     "idealFlow": [
@@ -2353,7 +2370,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s stocking dataset lists Parksville Lake itself rather than this reach — set conservatively. Verify TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head.",
+    "notes": "TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s stocking dataset lists the Parksville tailwater below the dam, not this reach — set conservatively. Verify TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2440,7 +2457,8 @@
     "waterbodyType": "tailrace",
     "regionId": "tn-se-hiwassee",
     "gaugeIds": [
-      "03564500"
+      "03564500",
+      "tva:OCAT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -2451,7 +2469,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow). The reach below Parksville Dam mixes whitewater recreation schedules with cold releases — verify TVA’s Ocoee No. 1 flow before you go.",
+    "notes": "TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow), stocked March through May. The reach below Parksville Dam mixes whitewater recreation schedules with cold releases — verify TVA’s Ocoee No. 1 flow before you go.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2889,6 +2907,7 @@
       "03476500"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -2983,7 +3002,8 @@
     "waterbodyType": "river",
     "regionId": "tn-middle-nashville",
     "gaugeIds": [
-      "03430200"
+      "03430200",
+      "usace:JPPT1"
     ],
     "stockingProgram": true,
     "species": "trout",
@@ -3079,7 +3099,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Heavy TWRA stocking in the Tellico Plains corridor plus a delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters. Rain-flashy mountain river — check the gauge.",
+    "notes": "Heavy TWRA stocking in the Tellico Plains corridor (stocked roughly February–December) plus a delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters. Rain-flashy mountain river — check the gauge.",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -3118,6 +3138,7 @@
     "regionId": "tn-middle-duck-elk",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,

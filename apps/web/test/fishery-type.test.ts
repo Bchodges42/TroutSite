@@ -6,6 +6,12 @@ import {
 } from '../src/features/map/fisheryType';
 
 describe('fisheryType (catalog-truth water classes)', () => {
+  it('prefers the canonical catalog fishery attribute over the derived rules', () => {
+    expect(fisheryType({ fishery: 'tailwater', waterbodyType: 'lake', species: null, stockingProgram: false })).toBe('tailwater');
+    expect(fisheryType({ fishery: 'stocked', waterbodyType: 'tailrace' })).toBe('stocked');
+    expect(fisheryType({ fishery: 'wild', species: 'warmwater', stockingProgram: true })).toBe('wild');
+  });
+
   it('reads tailrace as Tailwater regardless of program or species', () => {
     expect(fisheryType({ waterbodyType: 'tailrace', species: 'trout', stockingProgram: true })).toBe(
       'tailwater',

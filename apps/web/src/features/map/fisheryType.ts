@@ -13,6 +13,8 @@ export type FisheryType = 'tailwater' | 'wild' | 'stocked' | 'other' | 'unknown'
 
 /** Only the catalog fields the classification reads. */
 export type FisheryTypeFields = {
+  /** Canonical catalog classification (session-1 attribute) — wins when set. */
+  fishery?: 'wild' | 'stocked' | 'tailwater' | null;
   waterbodyType?: string | null;
   species?: 'trout' | 'warmwater' | null;
   stockingProgram?: boolean | null;
@@ -32,7 +34,10 @@ export type FisheryTypeCounts = Record<FisheryType, number>;
  * - unknown: no fields at all — there is nothing honest to claim.
  */
 export function fisheryType(fields: FisheryTypeFields): FisheryType {
-  const { waterbodyType, species, stockingProgram } = fields;
+  const { fishery, waterbodyType, species, stockingProgram } = fields;
+  // The catalog's own classification is authoritative when the evidence has
+  // reached; the derived rules below only serve waters it has not yet covered.
+  if (fishery === 'tailwater' || fishery === 'wild' || fishery === 'stocked') return fishery;
   if (waterbodyType === 'tailrace') return 'tailwater';
   // Both parts must be explicit: a missing stockingProgram is never read as
   // "wild", and a missing species is never read as trout.
