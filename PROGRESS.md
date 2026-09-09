@@ -144,20 +144,6 @@ retrieved 2026-09-08); region artifacts + topology updated together, then integr
 - The legend's fishery-type state shows only when the live feed has zero assessments; on the
   current fixtures it stays in condition-rows state (covered by unit tests instead).
 - mill-creek-overton gauge evidence is wrong in the catalog (see T1.3) — content lane.
-=======
-# SESSION 3 — Product / UX / Growth (2026-09-08)
-
-Base commit: `6d0befe` (origin/main, recovery push 2026-09-08).
-Clone: `C:\Users\Benjamin\Projects\trout-s3` (own clone; shared tree never committed).
-Scope: regulations UI, SEO infrastructure, hatch calendar, match-the-hatch imagery,
-stocking page redesign, analytics. NOT touched: TennesseeMap/mapStyle/mapTokens
-(Session 2 single-writer), geometry generators, ingest pipeline (Session 1).
-Commit tags: `grow(...)` / `ux(...)`.
-
-## Status log
-
-- [x] Setup: clone at `6d0befe`, baseline gates (see below).
->>>>>>> ccc8440 (grow(seo): build-time prerender — 314 per-route pages (147 waters, 132 charts, taxa, patterns, stocking, regulations) with titles/meta/canonical/JSON-LD + visible snapshot content, sitemap.xml + robots.txt; /fishing-info canonicalizes to /regulations; regs pages carry per-water rules from fishing.json; deploy runs prerender after snapshots)
 
 ---
 
