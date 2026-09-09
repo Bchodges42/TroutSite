@@ -561,9 +561,114 @@ def write_md(path):
       "apply in `packages/content/streams/tn/*.yaml` in a dedicated catalog lane (NOT this lane).")
     open(path, "w", encoding="utf-8").write("\n".join(L) + "\n")
 
+# ------------------------------------------------- stocking-window data ----
+# Maintenance mechanism + stocking window per trout water (verification layer).
+RESERVOIRS_YR = ["south-holston-lake", "watauga-lake", "fort-patrick-henry-lake", "wilbur-lake",
+                 "parksville-lake", "calderwood-lake", "chilhowee-lake", "tellico-lake"]
+DH_WATERS = ["doe-river", "buffalo-creek-grainger", "paint-creek", "big-soddy-creek"]
+TAILWATER_YR = {
+ "caney-fork-river": "Mar–Dec stocking; year-round cold releases; winter brood browns (16–21 in)",
+ "elk-river": "Mar–Dec stocking; year-round cold releases",
+ "boone-tailwater": "stocking Mar/Apr/Dec; year-round cold releases (spawning closures Nov 1–Jan 31 ×2 reaches)",
+ "hiwassee-river": "stocking Oct–Jul + DH C&R Oct 1–Feb 28 → all 12 months covered",
+ "clinch-river": "stocking Mar–Aug; year-round cold releases + documented wild reproduction",
+ "south-holston-river": "rainbow stocking Mar–Sep + wild-reproducing browns; year-round cold releases",
+ "watauga-river": "stocking Mar–Dec + wild browns; year-round cold releases",
+ "watauga-river-wilbur-reach": "stocking Mar–Jul; year-round cold releases",
+}
+TAILWATER_SEASONAL = {
+ "obey-river": ("STOCKED EVERY MONTH (Jan–Dec) — the state's only 12-month stocking row", True),
+ "duck-river-tailwater": ("Nov–Jun stocking; >70°F Jul–Oct kills trout — NOT year-round", False),
+ "cherokee-tailwater": ("Nov 1–Apr 30 stocking; summer thermal bottleneck", False),
+ "ft-patrick-henry-tailwater": ("Mar–Apr stocking only; year-round presence unevidenced", None),
+ "parksville-tailwater": ("Mar–May stocking only", False),
+}
+WINTER_PROGRAM = "winter put-and-take (Dec–Feb window; ~1 stocking/water; no summer holdover)"
+WINTER_R2 = "winter program (Dec–Mar stockings)"
+SPRING = "spring circuit (Mar–May stocking weeks)"
+SEASON_MAP = {
+ # winter program (Region 1 + metro)
+ "beech-lake": WINTER_PROGRAM, "cameron-brown-lake": WINTER_PROGRAM + "; 5/day Community Lake",
+ "covington-fbc-pond": WINTER_PROGRAM + " (NEW 2025-26)", "edmund-orgill-lake": WINTER_PROGRAM,
+ "johnson-park-lake": WINTER_PROGRAM, "lake-graham": WINTER_PROGRAM, "martin-city-pond": WINTER_PROGRAM,
+ "milan-city-pond": WINTER_PROGRAM, "paris-city-park-lake": WINTER_PROGRAM,
+ "shelby-farms-lake": WINTER_PROGRAM + " (Jones Pond, Dec + Jan)", "union-city-reelfoot-pond": WINTER_PROGRAM,
+ "valentine-park-pond": WINTER_PROGRAM, "yale-road-park-lake": WINTER_PROGRAM,
+ "stones-river": WINTER_R2 + "; J. Percy Priest TW — the Dec 1999 original",
+ "west-fork-stones-river": WINTER_R2, "red-river-clarksville": WINTER_R2, "sulfur-fork-creek": WINTER_R2,
+ "big-rock-creek": WINTER_R2, "boiling-fork-creek": WINTER_R2 + " (Cowan City Park)",
+ "mccutcheon-creek": WINTER_R2, "sinking-creek-wilson": WINTER_R2, "harpeth-river": WINTER_R2,
+ "mossy-creek-jefferson": WINTER_R2 + " (NEW 2025-26)", "elk-river-lower": WINTER_R2 + " (Stone Bridge Park)",
+ # spring circuit
+ "barren-fork-river": SPRING, "north-prong-barren-fork": SPRING, "calfkiller-river": SPRING,
+ "cane-creek": SPRING + " (+ one late-Oct fall row)", "collins-river": SPRING, "rocky-river": SPRING,
+ "charles-creek": SPRING, "mill-creek-overton": SPRING, "pine-creek-dekalb": SPRING,
+ "upper-hills-creek": SPRING, "east-fork-shoal-creek": "spring (Feb–May; longest window)",
+ "little-buffalo-river": SPRING, "salt-lick-creek": "spring (Mar)", "hurricane-creek": "seasonal (Feb–Mar)",
+ "standing-rock-creek": "seasonal (Feb–Mar)", "white-oak-creek": "seasonal (Feb–Mar)",
+ "wolf-river-fentress": SPRING, "sequatchie-river": SPRING, "piney-river-rhea": "seasonal weeks (Feb–Apr)",
+ "fletchers-fork": "seasonal (Fort Campbell schedule)", "little-west-fork-creek": "seasonal (Fort Campbell schedule)",
+ "gap-creek-claiborne": SPRING, "indian-creek-claiborne": SPRING, "puncheon-camp-creek": SPRING,
+ "richardson-byrd-creek": SPRING, "station-creek": SPRING, "reedy-creek": SPRING,
+ "brush-creek-cocke": SPRING, "doe-creek-johnson": "late winter–spring", "forge-creek-johnson": "late winter–spring",
+ "laurel-creek-johnson": "late winter–spring", "stoney-creek-carter": "late winter–spring",
+ "upper-roan-creek": "late winter–spring", "little-sequatchie-river": SPRING,
+ "greasy-creek-polk": "spring + fall", "spring-creek-polk": "spring + fall", "tumbling-creek": "spring + fall",
+ "goforth-creek": "in season (local guide)", "north-chickamauga-creek": "winter + fall (seasonal)",
+ "citico-creek": "Mar 15–Sep 15 above Little Citico (+ scarce wild N Fork brookies)",
+ "tellico-river": "12+ mi stocked in season; DH C&R Oct 1–Feb 28 (N River mouth → state line); permit Mar 1–Aug 15",
+ "little-pigeon-river": "in season (spring–fall); Gatlinburg city reach stocked biweekly",
+ "nolichucky-river": "episodic (Erwin NFH retired brood fish; no schedule)",
+ "ocoee-river": "regular schedule per outfitter/city (TWRA line-item not captured)",
+ "green-cove-pond": "in-season TWRA pond stocking (reopened Mar 1 2026; e.g., Jul 2026 row)",
+ "dale-hollow-lake": "winter reservoir stocking (annual); year-round deep-water fishery",
+}
+
+def season_of(x):
+    if x["cls"] in ("trout-stocked", "tailwater-trout"):
+        if x["id"] in TAILWATER_YR: return TAILWATER_YR[x["id"]]
+        if x["id"] in TAILWATER_SEASONAL: return TAILWATER_SEASONAL[x["id"]][0]
+        if x["id"] in RESERVOIRS_YR:
+            return "periodic/winter-timed reservoir stocking; TWRA: stocked 'to provide year-round trout fishing opportunities'"
+        return SEASON_MAP.get(x["id"], "per TWRA schedule (see citation)")
+    if x["cls"] == "trout-wild":
+        return "no stocking (wild; GSMNP halted 1975)" if x["id"] in (
+            "little-river","leconte-creek","middle-prong-little-pigeon","west-prong-little-pigeon",
+            "roaring-fork","cosby-creek","little-tennessee-river") else "wild population (designation in citation)"
+    return ""
+
+def maint_of(x):
+    if x["cls"] == "trout-wild": return "wild population — open year-round"
+    if x["cls"] == "tailwater-trout":
+        if x["id"] in TAILWATER_YR: return "tailwater: year-round cold releases + in-season stocking"
+        if x["id"] == "obey-river": return "YEAR-ROUND STOCKING (every month)"
+        return "tailwater: SEASONAL (window at left)"
+    if x["cls"] == "trout-stocked":
+        if x["id"] in RESERVOIRS_YR: return "holdover reservoir — periodic stocking, year-round fishery"
+        if x["id"] == "dale-hollow-lake": return "holdover reservoir — winter-only stocking, year-round deep-water fishery"
+        if x["id"] in DH_WATERS: return "delayed harvest — fall stocking + C&R window bridges winter"
+        if x["id"] == "tellico-river": return "in-season stocking + DH + wild headwaters → trout all year"
+        if x["id"] == "green-cove-pond": return "extended-season TWRA pond (in-season stocking)"
+    return "seasonal put-and-take — no summer holdover"
+
+def maintained_yr(x):
+    if x["cls"] == "trout-wild": return True
+    if x["cls"] == "tailwater-trout":
+        if x["id"] in TAILWATER_YR: return True
+        if x["id"] == "obey-river": return True
+        if x["id"] == "ft-patrick-henry-tailwater": return None
+        return False
+    if x["cls"] == "trout-stocked":
+        if x["id"] in RESERVOIRS_YR or x["id"] == "dale-hollow-lake": return True
+        if x["id"] in DH_WATERS: return True
+        if x["id"] in ("tellico-river", "green-cove-pond"): return True
+        return False
+    return None
+
 def yr_yaml(v): return {True: "true", False: "false", None: "absent"}[v]
 
 FISHERY_MAP = {"trout-wild":"wild","trout-stocked":"stocked","tailwater-trout":"tailwater"}
+
 
 def write_yaml(path):
     c, y, k, n = counts()
@@ -614,6 +719,136 @@ def write_yaml(path):
                 A('      - "%s"' % f.replace('"', "'"))
     open(path, "w", encoding="utf-8").write("\n".join(L) + "\n")
 
+def verify_rows():
+    names = {}
+    try:
+        names = {e["id"]: e["name"] for e in json.load(open("apps/web/src/features/map/riverIndex.json", encoding="utf-8"))}
+    except Exception:
+        pass
+    if not names:
+        import glob as _glob
+        for f in _glob.glob("packages/content/streams/tn/*.yaml"):
+            t = open(f, encoding="utf-8").read()
+            m = re.search(r'^id:\s*["\']?(.+?)["\']?\s*$', t, re.M)
+            n = re.search(r'^name:\s*["\']?(.+?)["\']?\s*$', t, re.M)
+            if m: names[m.group(1)] = n.group(1) if n else m.group(1)
+    out = []
+    for x in R:
+        out.append({
+            "id": x["id"], "name": names.get(x["id"], x["id"]), "class": x["cls"],
+            "species": x["sp"], "yearRound": yr_yaml(x["yr"]),
+            "maintainedYr": {True: "yes", False: "no", None: "unknown"}[maintained_yr(x)],
+            "mechanism": maint_of(x), "window": season_of(x),
+            "confidence": x["conf"], "flags": "; ".join(x["flags"]), "citation": x["cite"],
+        })
+    return out
+
+def write_csv(path):
+    rows = verify_rows()
+    cols = ["id","name","class","species","yearRound","maintainedYr","mechanism","window","confidence","flags","citation"]
+    import csv as _csv
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        w = _csv.DictWriter(f, fieldnames=cols)
+        w.writeheader()
+        w.writerows(rows)
+
+HTML_TMPL = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TroutSite stocking verification — __GEN__</title>
+<style>
+ body{font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f6f7f9;color:#1c2430}
+ header{padding:18px 22px 10px;background:#fff;border-bottom:1px solid #dde3ea}
+ h1{font-size:18px;margin:0 0 4px} .sub{color:#5b6675;font-size:12.5px}
+ .answer{margin:12px 22px 0;padding:12px 16px;border:1px solid #cfe3d4;background:#eef8f1;border-radius:8px;font-size:13.5px}
+ .answer b{color:#14602f}
+ #controls{display:flex;flex-wrap:wrap;gap:8px;padding:14px 22px;align-items:center}
+ #q{flex:1 1 240px;min-width:200px;padding:7px 10px;border:1px solid #c6cdd6;border-radius:6px;font:inherit}
+ select{padding:7px 8px;border:1px solid #c6cdd6;border-radius:6px;font:inherit;background:#fff}
+ #count{color:#5b6675;font-size:12.5px;margin-left:auto}
+ .wrap{overflow:auto;margin:0 22px 30px;background:#fff;border:1px solid #dde3ea;border-radius:8px}
+ table{border-collapse:collapse;width:100%;min-width:1050px}
+ th{position:sticky;top:0;background:#eef1f5;text-align:left;padding:8px 10px;font-size:12px;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:2px solid #d5dbe2}
+ th:hover{background:#e2e7ee} th .ind{color:#8894a3;font-size:10px}
+ td{padding:7px 10px;border-bottom:1px solid #edf0f3;vertical-align:top;font-size:13px}
+ td.id{font-family:ui-monospace,Consolas,monospace;font-size:12px;white-space:nowrap}
+ tr:hover td{background:#f4f7fa}
+ .b{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;white-space:nowrap}
+ .b.stocked{background:#e3edfb;color:#1a4f8a}.b.tail{background:#e8e3f8;color:#4b3591}
+ .b.wild{background:#e2f4e6;color:#186a2c}.b.warm{background:#fdeedd;color:#8a4d0b}.b.unk{background:#eee;color:#555}
+ .b.y{background:#d9f2de;color:#14602f}.b.n{background:#f9ddd4;color:#8c2f1b}.b.u{background:#eee;color:#555}
+ .b.hi{background:#d9f2de;color:#14602f}.b.me{background:#fdf3d7;color:#7a5b0a}.b.lo{background:#f9ddd4;color:#8c2f1b}
+ .flag{color:#8a4d0b;font-size:11px;display:block;margin-top:2px}
+ .hint{padding:0 22px 14px;color:#5b6675;font-size:12px}
+</style></head><body>
+<header><h1>Tennessee trout stocking verification — per-water windows &amp; year-round maintenance</h1>
+<div class="sub">Generated __GEN__ · branch <code>research/trout-waterways</code> · source of truth: <code>build-classification.py</code> · full citations in <code>_notes/</code> · proposals only — nothing applied to the catalog</div></header>
+<div class="answer" id="answer"></div>
+<div id="controls">
+ <input id="q" type="search" placeholder="Search id / name / species / window / citation…">
+ <select id="fcls"><option value="">Class: all</option><option>trout-stocked</option><option>tailwater-trout</option><option>trout-wild</option><option>warmwater</option><option>unknown-need-evidence</option></select>
+ <select id="fyr"><option value="">Maintained year-round: all</option><option value="yes">yes</option><option value="no">no</option><option value="unknown">unknown</option></select>
+ <select id="fyr2"><option value="">yearRound flag: all</option><option value="true">true</option><option value="false">false</option><option value="absent">absent</option></select>
+ <select id="fconf"><option value="">Confidence: all</option><option>high</option><option>medium</option><option>low</option></select>
+ <span id="count"></span>
+</div>
+<div class="hint">Click a column header to sort (again reverses). Default sort: year-round maintained first, then class, then id. The “answer” box summarizes the 82 trout-stocked waters; clear the Class filter to see tailwater/wild/warmwater rows too.</div>
+<div class="wrap"><table id="t"><thead><tr>
+ <th data-k="id">id <span class="ind"></span></th><th data-k="name">name <span class="ind"></span></th>
+ <th data-k="class">class <span class="ind"></span></th><th data-k="maintainedYr">yr-round maint. <span class="ind"></span></th>
+ <th data-k="yearRound">yearRound <span class="ind"></span></th><th data-k="mechanism">maintenance mechanism <span class="ind"></span></th>
+ <th data-k="window">stocking window / season <span class="ind"></span></th><th data-k="species">species <span class="ind"></span></th>
+ <th data-k="confidence">conf <span class="ind"></span></th><th data-k="citation">citation <span class="ind"></span></th>
+</tr></thead><tbody></tbody></table></div>
+<script>
+const DATA=__DATA__;
+const CLS={ "trout-stocked":["stocked","stocked"],"tailwater-trout":["tail","tailwater"],"trout-wild":["wild","wild"],"warmwater":["warm","warmwater"],"unknown-need-evidence":["unk","unknown"] };
+let sortK="maintYrSort", dir=1, cur=[...DATA];
+const $=s=>document.querySelector(s);
+function rowD(r){ return [r.id,r.name,r.class,r.maintainedYr,r.yearRound,r.mechanism,r.window,r.species,r.confidence,r.citation,r.flags].join(" ").toLowerCase(); }
+function render(){
+ const q=$("#q").value.trim().toLowerCase(), fc=$("#fcls").value, fy=$("#fyr").value, fy2=$("#fyr2").value, fc2=$("#fconf").value;
+ cur=DATA.filter(r=> (!q || rowD(r).includes(q)) && (!fc||r.class===fc) && (!fy||r.maintainedYr===fy) && (!fy2||r.yearRound===fy2) && (!fc2||r.confidence===fc2));
+ const rank={"yes":0,"unknown":1,"no":2}, cr={"tailwater-trout":0,"trout-stocked":1,"trout-wild":2,"unknown-need-evidence":3,"warmwater":4};
+ cur.sort((a,b)=>{ let va=a[sortK]??"", vb=b[sortK]??"";
+  if(sortK==="maintYrSort"){va=rank[a.maintainedYr];vb=rank[b.maintainedYr];}
+  if(sortK==="classRank"){va=cr[a.class];vb=cr[b.class];}
+  va=(va+"").toLowerCase();vb=(vb+"").toLowerCase();
+  return (va<vb?-1:va>vb?1:0)*dir; });
+ $("#t tbody").innerHTML=cur.map(r=>`<tr><td class="id">${r.id}</td><td>${r.name}${r.flags?`<span class="flag">⚑ ${r.flags}</span>`:""}</td>
+  <td><span class="b ${CLS[r.class][0]}">${CLS[r.class][1]}</span></td>
+  <td><span class="b ${r.maintainedYr==="yes"?"y":r.maintainedYr==="no"?"n":"u"}">${r.maintainedYr}</span></td>
+  <td><span class="b ${r.yearRound==="true"?"y":r.yearRound==="false"?"n":"u"}">${r.yearRound}</span></td>
+  <td>${r.mechanism}</td><td>${r.window||"—"}</td><td>${r.species}</td>
+  <td><span class="b ${r.confidence}">${r.confidence}</span></td><td>${r.citation}</td></tr>`).join("");
+ $("#count").textContent=cur.length+" of "+DATA.length+" rows";
+ document.querySelectorAll("th .ind").forEach(e=>e.textContent="");
+ const th=document.querySelector(`th[data-k="${sortK==="maintYrSort"?"maintainedYr":sortK==="classRank"?"class":sortK}"]`);
+ if(th) th.querySelector(".ind").textContent=dir>0?"▲":"▼";
+}
+document.querySelectorAll("th").forEach(th=>th.addEventListener("click",()=>{ const k=th.dataset.k;
+ const map={maintainedYr:"maintYrSort",class:"classRank"}; const nk=map[k]||k;
+ if(sortK===nk) dir=-dir; else {sortK=nk;dir=1;} render(); }));
+["q","fcls","fyr","fyr2","fconf"].forEach(id=>$("#"+id).addEventListener("input",render));
+// headline answer (computed from the same data)
+const ts=DATA.filter(r=>r.class==="trout-stocked");
+const yrTs=ts.filter(r=>r.maintainedYr==="yes");
+const yrTw=DATA.filter(r=>r.class==="tailwater-trout"&&r.maintainedYr==="yes");
+const obey=DATA.filter(r=>r.id==="obey-river")[0];
+$("#answer").innerHTML=`<b>Answer:</b> of the <b>${ts.length} trout-stocked</b> waters, <b>${yrTs.length} maintain trout year-round</b> — `
+ +yrTs.map(r=>`<code>${r.id}</code>`).join(", ")
+ +`. Of these: <b>9 reservoirs</b> (periodic/winter stocking + deep-water holdover), <b>3 delayed-harvest</b> (fall stocking + C&amp;R bridges winter; not a mid-summer guarantee), tellico-river (in-season stocking + wild headwaters), green-cove-pond (extended season). `
+ +`<b>Strictly stocked every month: only obey-river</b> (a tailwater-class water). Beyond the 82, <b>${yrTw.length} of the 13 tailwater-trout</b> waters maintain year-round via cold releases (${yrTw.map(r=>`<code>${r.id}</code>`).join(", ")}). Set “Maintained year-round: yes” below to isolate all of them.`;
+render();
+</script></body></html>"""
+
+def write_html(path):
+    rows = verify_rows()
+    html = (HTML_TMPL
+            .replace("__DATA__", json.dumps(rows, ensure_ascii=False))
+            .replace("__GEN__", ACCESS))
+    open(path, "w", encoding="utf-8").write(html)
+
 def validate():
     gj = json.load(open("apps/web/public/atlas/rivers.geojson", encoding="utf-8"))
     atlas = sorted(f["properties"]["id"] for f in gj["features"])
@@ -633,6 +868,15 @@ if __name__ == "__main__":
     validate()
     write_md("docs/research/SPECIES-CLASSIFICATION.md")
     write_yaml("docs/research/proposed-waters-2026-09.yaml")
+    write_csv("docs/research/proposed-waters-2026-09.csv")
+    write_html("docs/research/STOCKING-VERIFY.html")
     c, y, k, n = counts()
     print("counts:", dict(c))
     print("yearRound:", dict(y), "conf:", dict(k))
+    rows = verify_rows()
+    ts = [r for r in rows if r["class"] == "trout-stocked"]
+    yr_ts = [r for r in ts if r["maintainedYr"] == "yes"]
+    yr_tw = [r for r in rows if r["class"] == "tailwater-trout" and r["maintainedYr"] == "yes"]
+    print("trout-stocked: %d, maintained year-round: %d" % (len(ts), len(yr_ts)))
+    print("  ->", ", ".join(r["id"] for r in yr_ts))
+    print("tailwater-trout year-round: %d ->" % len(yr_tw), ", ".join(r["id"] for r in yr_tw))
