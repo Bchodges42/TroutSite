@@ -428,6 +428,29 @@
     ]
   },
   {
+    "id": "bradley-creek",
+    "name": "Bradley Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Franklin County creek near Tullahoma and Manchester that drains through AEDC Woods Reservoir into the Elk River system. Open to public fishing; not a stocked trout fishery.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
     "id": "brush-creek-cocke",
     "name": "Brush Creek (Cocke County)",
     "stateId": "TN",
