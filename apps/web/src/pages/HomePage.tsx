@@ -1,10 +1,11 @@
 import { useMemo, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Chip, EmptyState } from '@trout/ui';
-import { ConditionSnapshotSchema, StreamSchema, newestReadingAt } from '@trout/contracts';
+import { ConditionSnapshotSchema, newestReadingAt } from '@trout/contracts';
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
+import { useStreamsCatalog } from '../lib/useStreamsCatalog';
 import { useSettingsContext } from '../lib/settings';
 import { flowTrend, TREND_LABEL } from '../lib/conditions';
 import { FreshnessChip } from '../components/FreshnessChip';
@@ -16,7 +17,6 @@ import { latestFlowLabel, latestTempLabel } from './ConditionsPage';
 import { monthName, REGIONS } from '../data/regions';
 import { currentMonth } from '../lib/time';
 
-const StreamListSchema = StreamSchema.array();
 const ConditionsListSchema = ConditionSnapshotSchema.array();
 
 interface TopStreamRow {
@@ -32,7 +32,7 @@ export function HomePage() {
   const now = currentMonth();
 
   const conditionsQuery = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsListSchema, 60, true);
-  const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamListSchema, 60 * 24, true);
+  const streamsQuery = useStreamsCatalog(60 * 24, true);
 
   const topStreams: TopStreamRow[] = useMemo(() => {
     const byId = new Map((streamsQuery.data?.data ?? []).map((s) => [s.id, s]));
