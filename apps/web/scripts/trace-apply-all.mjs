@@ -256,30 +256,47 @@ function midpointAnchor(geometry) {
 let appliedRegion = 0;
 let appliedCanonical = 0;
 const skipped = [];
+const canonicalFc = load(CANONICAL);
 
-for (const [crew, cfg] of Object.entries(REGIONS)) {
+// Targeting is MEMBERSHIP-driven, not crew/label-driven: a water belongs to
+// whichever region file actually contains its id (crews have mislabeled
+// region fields before — e.g. tennessee-river is east-southeast though the
+// west crew produced it); only ids in NO region file go to canonical.
+const regionFcs = Object.fromEntries(
+  Object.entries(REGIONS).map(([k, cfg]) => [k, load(cfg.geo)]),
+);
+const dirty = Object.fromEntries(Object.keys(REGIONS).map((k) => [k, false]));
+
+for (const crew of Object.keys(REGIONS)) {
+  const cfg = REGIONS[crew];
   if (!existsSync(cfg.dir)) continue;
-  for (const file of
-    (await import('node:fs')).readdirSync(cfg.dir).filter((f) => f.endsWith('.json'))
-  ) {
+  for (const file of readdirSync(cfg.dir).filter((f) => f.endsWith('.json'))) {
     const artifact = load(join(cfg.dir, file));
     const id = artifact.id;
     if (!id || !artifact.geometry) {
       skipped.push(`${crew}/${file}: no id/geometry`);
       continue;
     }
-    if (artifact.region !== `${crew === 'west' ? 'west' : 'east'}-southeast`.replace('west-southeast', 'west-middle')) {
-      // canonical-only water — handled below against canonical
+    const crewKey = crew === 'west' ? 'west' : 'east';
+    const regionKey =
+      (regionFcs.west.features.some((f) => f.properties.id === id) && 'west') ||
+      (regionFcs.east.features.some((f) => f.properties.id === id) && 'east') ||
+      null;
+    if (!regionKey) {
+      // canonical-only water — applied directly against canonical
+      const idx = canonicalFc.features.findIndex((f) => f.properties.id === id);
+      if (idx === -1) {
+        skipped.push(`canonical/${id}: not found in canonical`);
+        continue;
+      }
+      if (!CHECK) canonicalFc.features[idx] = mergedFeature(canonicalFc.features[idx], artifact);
+      appliedCanonical += 1;
       continue;
     }
-    const regionFc = load(cfg.geo);
-    const idx = regionFc.features.findIndex((f) => f.properties.id === id);
-    if (idx === -1) {
-      skipped.push(`${crew}/${id}: not in region artifact (${artifact.region})`);
-      continue;
-    }
+    const target = REGIONS[regionKey];
+    const idx = regionFcs[regionKey].features.findIndex((f) => f.properties.id === id);
     if (!CHECK) {
-      const merged = mergedFeature(regionFc.features[idx], artifact);
+      const merged = mergedFeature(regionFcs[regionKey].features[idx], artifact);
       // a stale labelAnchor from the old geometry fails the anchor gate —
       // recompute from the rebuilt chain when it drifted off
       if (merged.properties.labelAnchor && !anchorOnGeometry(merged.properties.labelAnchor, merged.geometry)) {
@@ -287,42 +304,23 @@ for (const [crew, cfg] of Object.entries(REGIONS)) {
         if (next) merged.properties.labelAnchor = next;
         else delete merged.properties.labelAnchor;
       }
-      regionFc.features[idx] = merged;
-      writeFileSync(cfg.geo, JSON.stringify(regionFc));
-      const topo = load(cfg.topo);
+      regionFcs[regionKey].features[idx] = merged;
+      dirty[regionKey] = true;
+      const topo = load(target.topo);
       const ridx = topo.records.findIndex((r) => r.featureId === id);
-      const headRecord = headTopo[crew]?.records?.find?.((r) => r.featureId === id) ?? null;
+      const headRecord = headTopo[crewKey]?.records?.find?.((r) => r.featureId === id) ?? null;
       if (ridx !== -1) topo.records[ridx] = refreshRecord(topo.records[ridx], artifact, headRecord, merged.properties);
       else
         topo.records.push(
           refreshRecord({ featureId: id, upstreamFeatureIds: [], downstreamFeatureIds: [] }, artifact, headRecord, merged.properties),
         );
-      writeFileSync(cfg.topo, JSON.stringify(topo));
+      writeFileSync(target.topo, JSON.stringify(topo));
     }
     appliedRegion += 1;
   }
 }
-
-// Canonical-only waters (artifact.region not a known region) → canonical file.
-const canonicalFc = load(CANONICAL);
-for (const crew of Object.keys(REGIONS)) {
-  const cfg = REGIONS[crew];
-  if (!existsSync(cfg.dir)) continue;
-  for (const file of
-    (await import('node:fs')).readdirSync(cfg.dir).filter((f) => f.endsWith('.json'))
-  ) {
-    const artifact = load(join(cfg.dir, file));
-    if (artifact.region === 'west-middle' || artifact.region === 'east-southeast') continue;
-    const idx = canonicalFc.features.findIndex((f) => f.properties.id === artifact.id);
-    if (idx === -1) {
-      skipped.push(`canonical/${artifact.id}: not found in canonical`);
-      continue;
-    }
-    if (!CHECK) {
-      canonicalFc.features[idx] = mergedFeature(canonicalFc.features[idx], artifact);
-    }
-    appliedCanonical += 1;
-  }
+for (const [k, isDirty] of Object.entries(dirty)) {
+  if (isDirty && !CHECK) writeFileSync(REGIONS[k].geo, JSON.stringify(regionFcs[k]));
 }
 if (!CHECK) writeFileSync(CANONICAL, JSON.stringify(canonicalFc));
 
