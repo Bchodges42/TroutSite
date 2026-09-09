@@ -1,4 +1,9 @@
 import { atlas, atlasLight } from './mapTokens';
+import {
+  EMPTY_FLOW_SOURCE,
+  FLOW_ARROW_ICON,
+  FLOW_ARROWS_SOURCE,
+} from './flowArrows';
 import type {
   StyleSpecification,
   FilterSpecification,
@@ -57,8 +62,9 @@ function mixHex(a: string, b: string, ratio: number): string {
  *   sprite/glyph path that has no real file makes it parse HTML as JSON/PBF and
  *   fail the whole style load (blank map). Only re-add those keys together with
  *   real local files AND server routes that 404 instead of falling back.
- *   (No layer below needs them: there are no icon or symbol layers — place
- *   labels render as HTML markers in TennesseeMap, not as glyph text.)
+ *   (No layer below needs them: place labels render as HTML markers in
+ *   TennesseeMap, not as glyph text, and the one symbol layer — selection flow
+ *   arrows — uses an icon registered at runtime via map.addImage.)
  * - Layers bottom→top: background (pine-black), neighbor-state context fill,
  *   TN fill, county hairlines, TN outline, river casing (paper-tone halo),
  *   river water corridor (solid muted water base for EVERY line),
@@ -97,6 +103,13 @@ export function atlasStyle(
         data: '/atlas/rivers.geojson',
         promoteId: 'id' as unknown as string,
       },
+      // Flow-direction arrow carriers — built CLIENT-SIDE from the selected
+      // feature's coordinates + flowOrientation.json flip flags (see
+      // flowArrows.ts). Starts empty; TennesseeMap fills it on selection.
+      [FLOW_ARROWS_SOURCE]: {
+        type: 'geojson',
+        data: EMPTY_FLOW_SOURCE,
+      } as GeoJSONSourceSpecification,
     },
     layers: [
       {
@@ -578,6 +591,30 @@ export function atlasStyle(
           ],
           'line-blur': 1.4,
         },
+      },
+      // Flow-direction arrows on the SELECTED water only. The source data is
+      // built client-side by TennesseeMap from flowOrientation.json flip
+      // flags (downstream-oriented carrier lines); an UNORIENTED water stays
+      // empty, so missing evidence never renders as a direction. The icon is
+      // registered at runtime (map.addImage) — still no sprite/glyph URLs.
+      // Positioned above every water render but below the transparent hit
+      // layers; labels are DOM markers and always sit above the canvas.
+      {
+        id: 'rivers-flow-arrows',
+        type: 'symbol' as const,
+        source: FLOW_ARROWS_SOURCE,
+        minzoom: 6.5,
+        layout: {
+          'symbol-placement': 'line',
+          // ~1 arrow every 150 screen px — readable cadence without clutter.
+          'symbol-spacing': 150,
+          'icon-image': FLOW_ARROW_ICON,
+          'icon-rotation-alignment': 'map',
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.5, 11, 0.9],
+        },
+        paint: { 'icon-opacity': 0.9 },
       },
       // Wide transparent hit area — last so it receives pointer events. LINES ONLY.
       {

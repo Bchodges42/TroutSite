@@ -2106,3 +2106,144 @@ html.reduce-motion *::after {
     min-height: 44px;
   }
 }
+
+/* ─── Geometry QA (?qa=1, internal) — chip + docked panel ────────────────
+   Internal verification tooling. The chip renders ONLY while ?qa=1 is in the
+   URL; the panel docks under the map topbar on desktop and becomes a bottom
+   sheet on mobile. Overlay markers/lines live in maplibre layers (QaPanel),
+   colored from the map palette, not CSS. */
+.qa-chip {
+  min-height: 44px;
+  padding: 8px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ui-poor);
+}
+.qa-chip[aria-pressed='true'] {
+  border-color: var(--ui-poor);
+  background: var(--ui-accentSoft);
+}
+.map-topbar-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.qa-panel {
+  position: absolute;
+  top: 74px;
+  right: 24px;
+  z-index: 15;
+  width: 340px;
+  max-height: min(62vh, 560px);
+  display: flex;
+  flex-direction: column;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  box-shadow: var(--ui-shadow);
+  font-size: 13px;
+  overflow: hidden;
+}
+.qa-panel-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--ui-border);
+}
+.qa-summary {
+  color: var(--ui-muted);
+  font-size: 11.5px;
+}
+.qa-close {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: none;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ui-muted);
+}
+.qa-close:hover {
+  border-color: var(--ui-border);
+  color: var(--ui-text);
+}
+.qa-note {
+  padding: 8px 14px;
+  color: var(--ui-muted);
+}
+.qa-list {
+  overflow-y: auto;
+  padding: 6px 8px 10px;
+}
+.qa-region h3 {
+  margin: 8px 6px 4px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ui-muted);
+}
+.qa-water {
+  margin: 4px 2px;
+  padding: 6px 6px 2px;
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+}
+.qa-water-name {
+  font-weight: 600;
+  padding: 0 4px 4px;
+}
+.qa-water ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.qa-defect {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  min-height: 44px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  color: inherit;
+}
+.qa-defect:hover {
+  background: var(--ui-subtle);
+}
+.qa-kind {
+  font-weight: 600;
+  font-size: 12.5px;
+}
+.qa-defect[data-kind='dangling-end'] .qa-kind,
+.qa-defect[data-kind='self-crossing'] .qa-kind,
+.qa-defect[data-kind='isolated-fragment'] .qa-kind {
+  color: var(--ui-poor);
+}
+.qa-defect[data-kind='duplicate-corridor'] .qa-kind {
+  color: var(--ui-fair);
+}
+.qa-detail {
+  color: var(--ui-muted);
+  font-size: 11.5px;
+}
+@media (max-width: 900px) {
+  .qa-panel {
+    top: auto;
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    width: auto;
+    max-height: 46vh;
+  }
+}

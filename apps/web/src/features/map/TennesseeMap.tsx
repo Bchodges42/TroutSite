@@ -7,6 +7,14 @@ import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
+import {
+  buildFlowArrowSource,
+  EMPTY_FLOW_SOURCE,
+  FLOW_ARROW_ICON,
+  FLOW_ARROWS_SOURCE,
+  makeFlowArrowImage,
+  orientationFor,
+} from './flowArrows';
 import index from './riverIndex.json';
 // Preserve the existing same-origin Vite worker bundle and offline caching.
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
@@ -17,6 +25,25 @@ const stillWaterIds = new Set(
     .map((water) => water.id),
 );
 export const isStillWaterId = (id: string) => stillWaterIds.has(id);
+
+/**
+ * rivers.geojson read through the live style source (same-origin asset the
+ * map already loaded — never a second fetch). Cached once per session; the
+ * atlas geometry is static. Consumers: flow-arrow source building and the QA
+ * audit.
+ */
+let riversDataCache: Promise<unknown> | null = null;
+export function getRiversData(map: maplibregl.Map): Promise<unknown> {
+  if (!riversDataCache) {
+    const source = map.getSource('rivers') as maplibregl.GeoJSONSource | undefined;
+    if (!source) return Promise.reject(new Error('rivers source missing'));
+    riversDataCache = source.getData().catch((error) => {
+      riversDataCache = null; // allow a retry on the next selection
+      throw error;
+    });
+  }
+  return riversDataCache;
+}
 
 interface Camera {
   center: [number, number];
@@ -33,6 +60,9 @@ interface Props {
   featureColors: Map<string, string>;
   allIds?: string[];
   visibleIds?: Set<string>;
+  /** ?all=1 full-state view — render EVERY atlas feature, warts and all,
+   * regardless of the waterDecision visibility the catalog filters produce. */
+  showAllWaters?: boolean;
   assessedIds?: Set<string>;
   stillWaterIds?: Set<string>;
   /** Catalog waterbodyType label per water id (M2) — accessible names use it. */
@@ -117,7 +147,7 @@ export function TennesseeMap(props: Props) {
             // and the next mousemove re-derives it.
             hover: false,
             dimmed: false,
-            hidden: p.visibleIds ? !p.visibleIds.has(river.id) : false,
+            hidden: p.showAllWaters ? false : p.visibleIds ? !p.visibleIds.has(river.id) : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
@@ -306,7 +336,12 @@ export function TennesseeMap(props: Props) {
         )
         .filter((f) => {
           const id = String(f.properties.id ?? '');
-          return id && (!latest.current.visibleIds || latest.current.visibleIds.has(id));
+          return (
+            id &&
+            (!latest.current.visibleIds ||
+              latest.current.showAllWaters ||
+              latest.current.visibleIds.has(id))
+          );
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
       // not the arbitrary source/tile order (which can pick a neighboring creek).
@@ -609,6 +644,47 @@ export function TennesseeMap(props: Props) {
       labelsRef.current = () => {};
     };
   }, [ready, attempt]);
+  // Flow-direction arrows (selection overlay): register the runtime arrow icon
+  // with the CURRENT theme's ink/halo tones, then rebuild the carrier source
+  // from the selected feature + committed flowOrientation.json flip flags.
+  // No selection, an unoriented water, or a polygon water → empty source, so
+  // arrows appear ONLY on oriented selections and never over labels (the
+  // arrow layer sits below the DOM label markers by construction). Deps mirror
+  // the style-swap effect: every style rebuild drops the runtime image and the
+  // source data, so both are restored for the new style.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    let cancelled = false;
+    const rebuild = async () => {
+      // addImage replaces an existing image of the same name cleanly.
+      const icon = makeFlowArrowImage(theme.map.ink, theme.map.paper);
+      if (icon) map.addImage(FLOW_ARROW_ICON, icon);
+      const id = latest.current.selectedId;
+      const source = map.getSource(FLOW_ARROWS_SOURCE) as maplibregl.GeoJSONSource | undefined;
+      if (!source) return;
+      const orientation = orientationFor(id);
+      if (!id || !orientation) {
+        source.setData(EMPTY_FLOW_SOURCE as never);
+        return;
+      }
+      try {
+        const data = (await getRiversData(map)) as { features?: Array<unknown> };
+        if (cancelled || latest.current.selectedId !== id) return;
+        const feature = (data.features ?? []).find(
+          (f) => (f as { properties?: { id?: string } }).properties?.id === id,
+        );
+        source.setData(buildFlowArrowSource(feature as never, orientation) as never);
+      } catch {
+        /* source data unavailable (offline before first load): retry on the
+           next selection change — never break the map for arrows. */
+      }
+    };
+    rebuild();
+    return () => {
+      cancelled = true;
+    };
+  }, [ready, props.selectedId, theme.id, props.basemap, props.roads, attempt]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready || !props.places) return;
