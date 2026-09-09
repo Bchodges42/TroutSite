@@ -195,6 +195,14 @@ regenerating snapshots or restoring the last-good archive — writing
 Once this branch lands on the host, an API restart or a dead cron degrades to
 "last-good data" instead of an empty catalog.
 
+**Client-side safety net (2026-09-09, `fix/live-catalog`):** the PWA now bundles
+the reviewed content-pack catalog (`apps/web/public/content-pack/streams.json`,
+copied at web build time and SW-precached). When `/v1/streams` 503s, visitors —
+including fresh phones with an empty Dexie cache — get the static catalog
+(unassessed waters, offline chip) instead of the "Catalog unavailable" hard
+error. This is a READ-PATH bandage only: live conditions, hatch charts, and
+stocking still require §4/§8 to restore the host's snapshot trees.
+
 ## 9. Post-incident: document what killed cron + the trees
 
 `trout-cron` going quiet AND both generated trees disappearing at once is not a

@@ -2,9 +2,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { motion } from 'motion/react';
 import { Button, Card, Chip, EmptyState } from '@trout/ui';
-import { StreamSchema } from '@trout/contracts';
-import { snapshotUrls } from '../lib/endpoints';
-import { useSnapshotQuery } from '../lib/useSnapshotQuery';
+import { useStreamsCatalog } from '../lib/useStreamsCatalog';
 import { shortDate } from '../lib/time';
 import { AnimatedNumber } from '../components/ui/AnimatedNumber';
 import { SPRING } from '../components/motion/atlas-motion';
@@ -176,7 +174,7 @@ function NewEntryForm({
   onDone: () => void;
   initialStreamId?: string;
 }) {
-  const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamSchema.array(), 60 * 24, true);
+  const streamsQuery = useStreamsCatalog(60 * 24, true);
   const streams = streamsQuery.data?.data ?? [];
 
   const [streamId, setStreamId] = useState(initialStreamId);

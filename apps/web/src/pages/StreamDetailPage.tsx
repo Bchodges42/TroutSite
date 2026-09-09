@@ -4,13 +4,13 @@ import { RiverContextBar, riverWorkflowUrl, validMonth } from '../lib/riverConte
 import { Card, DataBadge, EmptyState } from '@trout/ui';
 import {
   ConditionSnapshotSchema,
-  StreamSchema,
   StockingEventSchema,
   newestReadingAt,
 } from '@trout/contracts';
 import type { GaugeReading, StockingEvent } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
+import { useStreamsCatalog } from '../lib/useStreamsCatalog';
 import { useSettingsContext } from '../lib/settings';
 import { matchStocking } from '../lib/stockingMatch';
 import {
@@ -39,7 +39,7 @@ export function StreamDetailPage() {
   const [params] = useSearchParams();
   const { settings } = useSettingsContext();
 
-  const streamsQuery = useSnapshotQuery(snapshotUrls.streams, StreamSchema.array(), 60 * 24, true);
+  const streamsQuery = useStreamsCatalog(60 * 24, true);
   const conditionsQuery = useSnapshotQuery(
     snapshotUrls.conditionsLatest,
     ConditionSnapshotSchema.array(),

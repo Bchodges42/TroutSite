@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit -p tsconfig.json && vite build && node scripts/size-budget.mjs",
+    "build": "tsc --noEmit -p tsconfig.json && node scripts/copy-pack-fallback.mjs && vite build && node scripts/size-budget.mjs",
     "prerender": "node scripts/prerender.mjs",
     "build:seo": "pnpm run build && pnpm run prerender",
     "build:fixtures": "tsc --noEmit -p tsconfig.json && vite build --config vite.fixtures.config.ts && node scripts/size-budget.mjs",
@@ -35,6 +35,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
+    "@trout/content": "workspace:*",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",

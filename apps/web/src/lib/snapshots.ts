@@ -16,8 +16,12 @@ import { resolveUrl } from './endpoints';
  */
 export interface SnapshotResult<T> {
   data: T;
-  /** Epoch millis the payload was fetched from the network (not when read from cache). */
-  fetchedAt: number;
+  /**
+   * Epoch millis the payload was fetched from the network (not when read from
+   * cache). Null only for the bundled catalog fallback (useStreamsCatalog):
+   * those rows were never fetched from any host.
+   */
+  fetchedAt: number | null;
   /** True when this value came from a successful network fetch while online. */
   live: boolean;
 }

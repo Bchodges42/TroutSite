@@ -3,7 +3,6 @@ import { useQueries } from '@tanstack/react-query';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { z } from 'zod';
 import {
-  StreamSchema,
   ConditionSnapshotSchema,
   ShopReportSchema,
   StockingEventSchema,
@@ -11,8 +10,9 @@ import {
 } from '@trout/contracts';
 import type { HatchChart } from '@trout/contracts';
 import { newestReadingAt } from '@trout/contracts';
-import { snapshotUrls } from '../../lib/endpoints';
+import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
 import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
+import { snapshotUrls } from '../../lib/endpoints';
 import { db } from '../../lib/db';
 import { fetchSnapshot } from '../../lib/snapshots';
 import { matchStocking } from '../../lib/stockingMatch';
@@ -20,7 +20,6 @@ import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from
 import { atlas } from './mapTokens';
 import type { RiverMapFeature } from './riverMapSelectors';
 
-const StreamsSchema = z.array(StreamSchema);
 const ConditionsSchema = z.array(ConditionSnapshotSchema);
 const ReportsSchema = z.array(ShopReportSchema);
 const StockingSchema = z.array(StockingEventSchema);
@@ -48,7 +47,12 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   const month = options.month ?? new Date().getMonth() + 1;
   const enabled = options.enabled ?? true;
 
-  const streamsQ = useSnapshotQuery(snapshotUrls.streams, StreamsSchema, 60 * 24, enabled);
+  // Catalog with last-resort pack fallback (see useStreamsCatalog): live feed
+  // → last Dexie snapshot → bundled content-pack catalog. A hard catalog error
+  // needs BOTH the feed and the pack to fail; a conditions outage alone
+  // degrades to unassessed waters instead of taking the catalog down.
+  const streamsQ = useStreamsCatalog(60 * 24, enabled);
+  const streamsData = streamsQ.data?.data;
   const conditionsQ = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsSchema, 60, enabled);
   // Reports + stocking were permanently disabled (B06): counts hardcoded to 0
   // and "never fetched" was indistinguishable from "no reports". Both feeds are
@@ -77,7 +81,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   // Canonical stocking association (B05): TWRA water names resolve through
   // normalization → curated aliases → unambiguous containment only.
-  const streamsForMatch = (streamsQ.data?.data ?? []) as unknown as Array<{ id: string; name: string }>;
+  const streamsForMatch = (streamsData ?? []) as unknown as Array<{ id: string; name: string }>;
   const stockingByStream = useMemo(() => {
     const { byStream } = matchStocking(streamsForMatch, stockings as never);
     return byStream as Map<string, Array<Record<string, unknown>>>;
@@ -92,7 +96,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   }, [reports]);
 
   const features: RiverMapFeature[] = useMemo(() => {
-    const streams = (streamsQ.data?.data ?? []) as unknown[];
+    const streams = (streamsData ?? []) as unknown[];
     return (streams as Array<{ id: string; name: string; regionId: string; species?: 'trout' | 'warmwater' } & Record<string, unknown>>).map((stream) => {
       const snap = snapshotById.get((stream as { id: string }).id) as any;
       const hasData = !!snap;
@@ -131,7 +135,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         logCount: logCountByStream.get((stream as { id: string }).id) ?? 0,
       };
     });
-  }, [streamsQ.data, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
+  }, [streamsData, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
 
   // C1: feed-level health for the conditions snapshot, distinct from
   // per-water assessment. The builder stamps nextExpectedUpdate <= fetchedAt
@@ -160,11 +164,19 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   return {
     features,
     isLoading: streamsQ.isLoading || conditionsQ.isLoading,
-    isError: streamsQ.isError || conditionsQ.isError,
+    // Only a failure of BOTH the live feed and the bundled pack is a hard
+    // catalog error (useStreamsCatalog). A conditions outage alone degrades:
+    // waters render unassessed and the freshness chip reports offline
+    // (live:false) instead of taking the whole catalog down (the 2026-09-06+
+    // host incident).
+    isError: streamsQ.isError,
     fetchedAt: (conditionsQ.data?.fetchedAt ?? streamsQ.data?.fetchedAt ?? null) as number | null,
     live: (conditionsQ.data?.live ?? false) as boolean,
     conditionsFeed,
-    streams: (streamsQ.data?.data ?? []) as unknown as RiverMapFeature['stream'][],
+    // Surfaced for UI/tests: the conditions feed failed (or is absent) while
+    // the catalog itself still renders.
+    conditionsUnavailable: conditionsQ.isError,
+    streams: (streamsData ?? []) as unknown as RiverMapFeature['stream'][],
     hatchMap,
     // Per-feed state (B06): a feed with zero rows must be distinguishable
     // from one that was never fetched or failed.
