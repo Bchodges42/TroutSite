@@ -1,5 +1,10 @@
 # Coordination — two-lane rebuild of the Trout app
 
+> **EVERY SESSION, READ FIRST:** [`AGENTS.md`](AGENTS.md) — binding session/branch
+> discipline (own clone, own branch off `origin/main`, push to GitHub early and
+> often, never touch other lanes' work, commit as `Bchodges42`). This file is a
+> dated snapshot of the 2026-09-04 rebuild and does not carry current rules.
+
 **Date:** 2026-09-04 (updated evening) · **Base for all lanes:** `51f8803` ("Redesign: dark Tailwater identity, species toggle, full river atlas data") on `C:\Users\Benjamin\Projects\trout` (frozen reference — do not touch).
 
 ## Lane status
