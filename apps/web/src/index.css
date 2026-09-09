@@ -2247,3 +2247,18 @@ html.reduce-motion *::after {
     max-height: 46vh;
   }
 }
+
+/* QA reference overlay toggle (TWRA waterways compare layer) */
+.qa-ref-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  cursor: pointer;
+  user-select: none;
+}
+.qa-ref-toggle input {
+  accent-color: var(--marker-color, #b45309);
+}

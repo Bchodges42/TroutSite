@@ -11,35 +11,23 @@
  "derivation": "Downstream orientation per water and per geometry part, derived ONLY from verified data — never from vertex order and never by hand. Priority: (a) verified topology records: upstream/downstreamFeatureIds edges accepted only when a feature endpoint lies within 900 m of the referenced water (ids normalized by stripping \"(prose)\" suffixes); dam anchors — every dammed LINE water in the atlas is the reach BELOW its dam, so the dam end is upstream; termini mouth/confluence anchors; (b) lake in/out: throughLakeIds endpoints INSIDE the lake polygon are where the water joins the pool (downstream end, flow exits toward the dam/outlet side); when both ends lie outside, the end nearer the through-lake dam is downstream; (c) confluence graph over ~50 m endpoint snaps: BFS hop-distance from the mississippi-river anchor (Cumberland and Tennessee main stems chain to it) ranks waters; a touched neighbor with smaller distance is the recipient; (d) 2-way part-junction chaining within a feature (3+ way junctions never propagate). Confidence: high = topology/dam/lake/termini evidence, medium = confluence-graph or chain evidence, low = unoriented. flags: 1 = stored coordinate order flows downstream, -1 = reversed, 0 = UNORIENTED (unknown-safe: renderers must draw no arrows for that part).",
  "stats": {
   "lineFeatures": 105,
-  "parts": 1402,
-  "orientedParts": 507,
-  "high": 54,
-  "medium": 16,
-  "low": 35,
+  "parts": 357,
+  "orientedParts": 137,
+  "high": 57,
+  "medium": 19,
+  "low": 29,
   "byMethod": {
-   "lake": 432,
-   "confluence": 18,
-   "topo-down": 44,
-   "topo-up": 13
+   "lake": 78,
+   "confluence": 19,
+   "topo-down": 24,
+   "topo-up": 12,
+   "chain": 4
   }
  },
  "waters": {
   "barren-fork-river": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    1,
-    0,
-    1,
-    0,
-    0,
-    0,
-    1,
-    1
+    -1
    ],
    "confidence": "high"
   },
@@ -51,36 +39,15 @@
   },
   "big-rock-creek": {
    "parts": [
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "medium"
   },
   "boiling-fork-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
-   "confidence": "low"
+   "confidence": "high"
   },
   "boone-tailwater": {
    "parts": [
@@ -108,195 +75,22 @@
   },
   "buffalo-river": {
    "parts": [
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    0,
-    -1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    0,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    0
+    -1
    ],
    "confidence": "high"
   },
   "calfkiller-river": {
    "parts": [
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "medium"
   },
   "cane-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    -1,
     0
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "caney-fork-river": {
    "parts": [
@@ -341,20 +135,7 @@
   },
   "charles-creek": {
    "parts": [
-    1,
-    1,
-    0,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    1,
-    0,
-    1,
-    -1,
-    0
+    -1
    ],
    "confidence": "high"
   },
@@ -371,13 +152,13 @@
     0,
     0,
     0,
+    -1,
     0,
     0,
     0,
-    0,
-    0
+    1
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "clear-fork": {
    "parts": [
@@ -388,6 +169,7 @@
   },
   "clinch-river": {
    "parts": [
+    1,
     1
    ],
    "confidence": "high"
@@ -428,187 +210,21 @@
   "cosby-creek": {
    "parts": [
     0,
-    0,
+    1,
     0,
     0
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "cumberland-river": {
    "parts": [
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    0,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    1
+    -1
    ],
    "confidence": "high"
   },
   "daddys-creek": {
    "parts": [
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    1
    ],
    "confidence": "high"
   },
@@ -648,46 +264,13 @@
   },
   "east-fork-shoal-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
     0
    ],
    "confidence": "low"
   },
   "east-fork-stones-river": {
    "parts": [
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
@@ -705,24 +288,12 @@
   },
   "emory-river": {
    "parts": [
-    -1,
-    0,
-    1,
-    0
+    -1
    ],
-   "confidence": "high"
+   "confidence": "medium"
   },
   "fletchers-fork": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0
    ],
    "confidence": "low"
@@ -758,13 +329,7 @@
   "french-broad-river": {
    "parts": [
     1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    1,
-    1
+    -1
    ],
    "confidence": "high"
   },
@@ -788,16 +353,16 @@
   },
   "goforth-creek": {
    "parts": [
-    -1
+    0
    ],
-   "confidence": "medium"
+   "confidence": "low"
   },
   "greasy-creek-polk": {
    "parts": [
-    -1,
+    0,
     0
    ],
-   "confidence": "medium"
+   "confidence": "low"
   },
   "gulf-fork-big-creek": {
    "parts": [
@@ -813,146 +378,18 @@
   },
   "harpeth-river": {
    "parts": [
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
   "hatchie-river": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0
    ],
    "confidence": "low"
   },
   "hiwassee-river": {
    "parts": [
-    1,
-    1,
-    1,
-    -1,
     1
    ],
    "confidence": "high"
@@ -960,11 +397,6 @@
   "holston-river": {
    "parts": [
     1,
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
     -1
    ],
    "confidence": "high"
@@ -978,42 +410,6 @@
   "hurricane-creek": {
    "parts": [
     1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    -1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    1,
-    1,
-    0,
-    -1,
     -1
    ],
    "confidence": "high"
@@ -1083,54 +479,12 @@
   },
   "little-pigeon-river": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    1
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "little-river": {
    "parts": [
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
     1,
     1
    ],
@@ -1151,40 +505,12 @@
   },
   "little-west-fork-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0
    ],
    "confidence": "low"
   },
   "mccutcheon-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0
    ],
    "confidence": "low"
@@ -1230,34 +556,12 @@
   },
   "new-river": {
    "parts": [
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    1
    ],
    "confidence": "high"
   },
   "nolichucky-river": {
    "parts": [
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    -1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
     1
    ],
    "confidence": "high"
@@ -1286,25 +590,19 @@
   },
   "north-fork-holston-river": {
    "parts": [
-    1,
-    0
+    1
    ],
    "confidence": "high"
   },
   "north-prong-barren-fork": {
    "parts": [
-    0,
     0
    ],
    "confidence": "low"
   },
   "obed-river": {
    "parts": [
-    1,
-    0,
-    0,
-    0,
-    0
+    1
    ],
    "confidence": "high"
   },
@@ -1316,40 +614,7 @@
   },
   "obion-river": {
    "parts": [
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
@@ -1380,32 +645,12 @@
   },
   "pigeon-river": {
    "parts": [
-    1,
-    0,
-    0,
-    0,
-    -1,
-    0
+    1
    ],
    "confidence": "high"
   },
   "pine-creek-dekalb": {
    "parts": [
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    -1,
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
-    -1,
     -1
    ],
    "confidence": "high"
@@ -1418,9 +663,6 @@
   },
   "powell-river": {
    "parts": [
-    1,
-    1,
-    1,
     1
    ],
    "confidence": "high"
@@ -1434,26 +676,7 @@
   },
   "red-river-clarksville": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
@@ -1466,7 +689,7 @@
   },
   "richardson-byrd-creek": {
    "parts": [
-    0,
+    1,
     0,
     0,
     0,
@@ -1474,7 +697,7 @@
     0,
     0
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "roaring-fork": {
    "parts": [
@@ -1484,186 +707,63 @@
   },
   "rocky-river": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "medium"
   },
   "salt-lick-creek": {
    "parts": [
     0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "sequatchie-river": {
    "parts": [
     0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0
+    1
    ],
    "confidence": "high"
   },
   "shoal-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0
    ],
    "confidence": "low"
   },
   "sinking-creek-wilson": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    -1,
+    -1,
+    -1
    ],
-   "confidence": "medium"
+   "confidence": "high"
   },
   "south-fork-cumberland": {
    "parts": [
-    1,
-    0,
-    0,
-    0,
-    0
+    1
    ],
    "confidence": "high"
   },
   "south-holston-river": {
    "parts": [
     1,
-    0
+    1
    ],
    "confidence": "high"
   },
   "spring-creek-polk": {
    "parts": [
-    0,
-    0,
-    0,
-    0
+    -1,
+    -1,
+    1,
+    -1
    ],
-   "confidence": "low"
+   "confidence": "medium"
   },
   "standing-rock-creek": {
    "parts": [
-    1,
-    1,
-    1,
-    1
+    -1
    ],
    "confidence": "high"
   },
@@ -1691,35 +791,7 @@
   },
   "sulfur-fork-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    -1,
     0
    ],
    "confidence": "medium"
@@ -1761,32 +833,21 @@
   },
   "upper-hills-creek": {
    "parts": [
-    0,
-    0,
-    -1,
-    1,
-    0,
-    1,
-    1,
-    -1,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
   "upper-roan-creek": {
    "parts": [
     1,
-    0,
-    0,
-    0
+    1
    ],
-   "confidence": "medium"
+   "confidence": "high"
   },
   "watauga-river": {
    "parts": [
     1,
-    -1
+    1
    ],
    "confidence": "high"
   },
@@ -1802,20 +863,7 @@
   },
   "west-fork-stones-river": {
    "parts": [
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   },
@@ -1843,42 +891,9 @@
   },
   "white-oak-creek": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
-   "confidence": "medium"
+   "confidence": "high"
   },
   "wolf-river-fentress": {
    "parts": [
@@ -1888,66 +903,7 @@
   },
   "wolf-river-west-tennessee": {
    "parts": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    -1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    -1
    ],
    "confidence": "high"
   }

@@ -606,15 +606,15 @@ export function atlasStyle(
         minzoom: 6.5,
         layout: {
           'symbol-placement': 'line',
-          // ~1 arrow every 150 screen px — readable cadence without clutter.
-          'symbol-spacing': 150,
+          // ~1 arrow every 130 screen px — readable cadence without clutter.
+          'symbol-spacing': 130,
           'icon-image': FLOW_ARROW_ICON,
           'icon-rotation-alignment': 'map',
           'icon-allow-overlap': true,
           'icon-ignore-placement': true,
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.5, 11, 0.9],
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.55, 11, 1.0],
         },
-        paint: { 'icon-opacity': 0.9 },
+        paint: { 'icon-opacity': 1 },
       },
       // Wide transparent hit area — last so it receives pointer events. LINES ONLY.
       {

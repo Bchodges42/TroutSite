@@ -105,41 +105,48 @@ export function buildFlowArrowSource(
 }
 
 /**
- * Runtime arrow icon (chevron pointing +x, the direction line-placed symbols
- * align to). Drawn on a canvas with a paper-tone halo so it stays readable on
- * both light and dark water corridors; returns the payload map.addImage
- * accepts. Null when no DOM is available (tests/SSR).
+ * Runtime arrow icon (solid triangle pointing +x, the direction line-placed
+ * symbols align to). A filled glyph with a heavy halo reads at corridor
+ * scale far better than a stroked chevron; the halo keeps it separable from
+ * any water color in both themes. Returns the payload map.addImage accepts.
+ * Null when no DOM is available (tests/SSR).
  */
 export function makeFlowArrowImage(
   ink: string,
   halo: string,
 ): { width: number; height: number; data: Uint8ClampedArray } | null {
   if (typeof document === 'undefined') return null;
-  const size = 30;
+  const size = 44;
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
-  const chevron = () => {
-    ctx.beginPath();
-    ctx.moveTo(9, 7);
-    ctx.lineTo(21, 15);
-    ctx.lineTo(9, 23);
-  };
-  ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
-  // paper-tone halo first, then the ink chevron
+  ctx.lineCap = 'round';
+  // tail-heavy triangle so the glyph reads as flow, not a map pin
+  const triangle = () => {
+    ctx.beginPath();
+    ctx.moveTo(8, 9);
+    ctx.lineTo(36, 22);
+    ctx.lineTo(8, 35);
+    ctx.closePath();
+  };
+  // halo first: a thin dark rim around the paper core reads as a crisp
+  // arrow at corridor scale — a fat halo just renders as a blob
   ctx.strokeStyle = halo;
   ctx.lineWidth = 6;
-  ctx.globalAlpha = 0.85;
-  chevron();
+  triangle();
   ctx.stroke();
-  ctx.globalAlpha = 1;
-  ctx.strokeStyle = ink;
-  ctx.lineWidth = 2.6;
-  chevron();
-  ctx.stroke();
+  ctx.fillStyle = halo;
+  ctx.fill();
+  ctx.fillStyle = ink;
+  ctx.beginPath();
+  ctx.moveTo(11, 12);
+  ctx.lineTo(31.5, 22);
+  ctx.lineTo(11, 32);
+  ctx.closePath();
+  ctx.fill();
   const image = ctx.getImageData(0, 0, size, size);
   return { width: image.width, height: image.height, data: image.data };
 }

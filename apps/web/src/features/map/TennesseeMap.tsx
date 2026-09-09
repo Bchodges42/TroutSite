@@ -695,8 +695,10 @@ export function TennesseeMap(props: Props) {
     if (!map || !ready) return;
     let cancelled = false;
     const rebuild = async () => {
-      // addImage replaces an existing image of the same name cleanly.
-      const icon = makeFlowArrowImage(theme.map.ink, theme.map.paper);
+      // addImage replaces an existing image of the same name cleanly. The
+      // glyph is PAPER on an ink halo — light-on-dark reads on the rust
+      // selected corridor and on every theme's water color alike.
+      const icon = makeFlowArrowImage(theme.map.paper, theme.map.ink);
       if (icon) map.addImage(FLOW_ARROW_ICON, icon);
       const id = latest.current.selectedId;
       const source = map.getSource(FLOW_ARROWS_SOURCE) as maplibregl.GeoJSONSource | undefined;

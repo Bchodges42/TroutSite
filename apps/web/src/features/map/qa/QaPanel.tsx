@@ -4,6 +4,7 @@ import { auditRivers, type QaDefect, type QaDefectKind, type QaReport } from './
 import { getRiversData } from '../TennesseeMap';
 import { useTheme } from '../../../theme/ThemeProvider';
 import { regionName } from '../../../data/regions';
+import { referenceActive, removeReference, setTwraReference } from './reference';
 
 /**
  * QaPanel — INTERNAL verification tooling for `?qa=1` (never advertised in
@@ -59,6 +60,30 @@ export function QaPanel({ map, onSelect, onClose }: Props) {
   const [report, setReport] = useState<QaReport | null>(cachedReport);
   const [error, setError] = useState(false);
   const layersAdded = useRef(false);
+  const [refOn, setRefOn] = useState(false);
+  const [refError, setRefError] = useState(false);
+
+  // TWRA waterways reference overlay (the compare-against-reality layer).
+  useEffect(() => {
+    if (!map || !refOn) return;
+    let cancelled = false;
+    setTwraReference(map, true, theme.map.fair).then(
+      () => !cancelled && setRefError(false),
+      () => {
+        if (cancelled) return;
+        setRefOn(false);
+        setRefError(true);
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [map, refOn, theme.id]);
+
+  // Panel unmount removes the overlay (it lives only inside QA).
+  useEffect(() => () => {
+    if (map && referenceActive(map)) removeReference(map);
+  }, [map]);
 
   // Lazily compute (once per session), then overlay on the map's TOP layer.
   useEffect(() => {
@@ -197,6 +222,24 @@ export function QaPanel({ map, onSelect, onClose }: Props) {
           ×
         </button>
       </header>
+      <label className="qa-ref-toggle">
+        <input
+          type="checkbox"
+          checked={refOn}
+          onChange={(e) => {
+            setRefError(false);
+            const next = e.target.checked;
+            setRefOn(next);
+            if (!next && map) removeReference(map);
+          }}
+        />
+        TWRA waterways reference (actual TN rivers + reservoirs, dashed amber)
+      </label>
+      {refError && (
+        <p className="qa-note" role="alert">
+          Reference service unreachable — the TWRA overlay needs network access.
+        </p>
+      )}
       {error && (
         <p className="qa-note" role="alert">
           Rivers geometry unavailable — the audit needs the loaded atlas source.
