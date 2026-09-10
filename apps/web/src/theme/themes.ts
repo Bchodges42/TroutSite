@@ -12,6 +12,9 @@ export interface MapPalette {
   poor: string;
   noData: string;
   warmwater: string;
+  /** Class-outline halo colors (2026-09-10): trout vs warmwater highlight. */
+  troutOutline: string;
+  warmOutline: string;
   sulphur: string;
   selection: string;
   hover: string;
@@ -94,6 +97,8 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#bc4b45',
       noData: '#607b6e',
       warmwater: '#957246',
+      troutOutline: '#1b7fa8',
+      warmOutline: '#b06f14',
       sulphur: '#bd722c',
       selection: '#b34824',
       hover: '#233e35',
@@ -147,6 +152,8 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#ed887c',
       noData: '#7ca394',
       warmwater: '#c4a477',
+      troutOutline: '#6fd0e8',
+      warmOutline: '#f2a94f',
       sulphur: '#e5b773',
       selection: '#f0b478',
       hover: '#e5efdf',

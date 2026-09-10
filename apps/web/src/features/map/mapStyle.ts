@@ -394,6 +394,45 @@ export function atlasStyle(
           ],
         },
       },
+      // Fishery-class outline (2026-09-10): a halo AROUND the condition
+      // centerline encoding the water's CLASS — cold trout waters glow
+      // ice-blue, warmwater glows amber, unclassified waters get nothing.
+      // Drawn wider than the interior so the condition color reads inside it;
+      // hidden for the selected water (selection has its own ring).
+      {
+        id: 'rivers-class-outline',
+        type: 'line' as const,
+        source: 'rivers',
+        filter: LINES_ONLY,
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': [
+            'match',
+            ['feature-state', 'outlineClass'],
+            'trout',
+            t.troutOutline,
+            'warmwater',
+            t.warmOutline,
+            'rgba(0,0,0,0)',
+          ],
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            0,
+            ['==', ['feature-state', 'outlineClass'], 'trout'],
+            4.6,
+            3.6,
+          ],
+          'line-opacity': [
+            'case',
+            ['==', ['feature-state', 'outlineClass'], ''],
+            0,
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            0.85,
+          ],
+        },
+      },
       // Rivers — condition centerline (feature-state `color` set live by
       // TennesseeMap, static `get color` property as fallback). Rendered as a
       // NARROWER line down the center of the corridor, and only for assessed
@@ -606,13 +645,14 @@ export function atlasStyle(
         minzoom: 6.5,
         layout: {
           'symbol-placement': 'line',
-          // ~1 arrow every 130 screen px — readable cadence without clutter.
-          'symbol-spacing': 130,
+          // ~1 arrow every 105 screen px — the 2026-09-10 owner pass found
+          // the old cadence too sparse to read flow at corridor scale.
+          'symbol-spacing': 105,
           'icon-image': FLOW_ARROW_ICON,
           'icon-rotation-alignment': 'map',
           'icon-allow-overlap': true,
           'icon-ignore-placement': true,
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.55, 11, 1.0],
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.85, 11, 1.55],
         },
         paint: { 'icon-opacity': 1 },
       },

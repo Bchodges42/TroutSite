@@ -380,6 +380,125 @@ r("herb-parsons-lake","warmwater","TWRA Family Fishing Lake / Bill Dance lake, 1
 r("garrett-lake","warmwater","TWRA Family Fishing Lake, 183 ac, Weakley Co: bass/crappie/bluegill/cats/redear; NO winter trout",True,"high",
   "TWRA family-fishing page + Region-1 where-to-fish (both fetched) + absence from "+TWRA_ST,["PENDING-ADD","one of 2 TWRA lakes with no lake permit"])
 
+# ------------------------------------------------- trout calendar (months) --
+# Month windows (1=Jan..12=Dec) per water — from the 2026-09-09 research row
+# set. `months` = when the water plausibly HOLDS TROUT; `stockingMonths` = when
+# stocking events land. Emitted as packages/content/data/trout-calendar.json.
+M_ALL = list(range(1, 13))
+M_WINTER = [12, 1, 2]
+M_SPRING = [3, 4, 5]
+M_LATE_WINTER_SPRING = [2, 3]
+M_SPRING_FALL = [3, 4, 5, 10, 11]
+CAL = {}
+
+def cal(ids, months, stock=None, note=None, uncertain=False):
+    for i in ids:
+        CAL[i] = {"months": months, "stockingMonths": stock if stock is not None else months,
+                  "window": note or "", "uncertain": uncertain}
+
+# wild: year-round residents
+cal(["little-river","leconte-creek","middle-prong-little-pigeon","west-prong-little-pigeon",
+     "roaring-fork","cosby-creek","laurel-fork-carter","gulf-fork-big-creek","trail-fork-big-creek",
+     "north-river","bald-river","rocky-fork","beaverdam-creek"], M_ALL,
+    note="Wild trout — present year-round (GSMNP halted stocking 1975)")
+# tailwaters: year-round cold releases
+cal(["caney-fork-river"], M_ALL, list(range(3, 13)), "Tailwater — year-round fishery; stocked Mar–Dec (+winter brood browns)")
+cal(["elk-river"], M_ALL, list(range(3, 13)), "Tailwater — year-round fishery; stocked Mar–Dec")
+cal(["boone-tailwater"], M_ALL, [3, 4, 12], "Tailwater — year-round cold releases; stocked Mar/Apr/Dec")
+cal(["hiwassee-river"], M_ALL, M_ALL, "Tailwater — stocked Oct–Jul + DH C&R Oct 1–Feb 28 covers all 12 months")
+cal(["clinch-river"], M_ALL, list(range(3, 9)), "Tailwater — year-round fishery; stocked Mar–Aug (+wild reproduction)")
+cal(["south-holston-river"], M_ALL, list(range(3, 10)), "Tailwater — year-round wild browns + stocked rainbows Mar–Sep")
+cal(["watauga-river"], M_ALL, list(range(3, 13)), "Tailwater — year-round fishery; stocked Mar–Dec (+wild browns)")
+cal(["watauga-river-wilbur-reach"], M_ALL, list(range(3, 8)), "Tailwater reach — year-round cold releases; stocked Mar–Jul")
+cal(["obey-river"], M_ALL, M_ALL, "STOCKED EVERY MONTH (Jan–Dec) — the state's only 12-month stocking row")
+# seasonal tailwaters
+cal(["duck-river-tailwater"], [11, 12, 1, 2, 3, 4, 5, 6], note="Stocked Nov–Jun; >70°F Jul–Oct kills trout")
+cal(["cherokee-tailwater"], [11, 12, 1, 2, 3, 4], note="Stocked Nov 1–Apr 30; summer thermal bottleneck")
+cal(["ft-patrick-henry-tailwater"], [3, 4], note="Stocked Mar–Apr only; year-round presence unevidenced", uncertain=True)
+cal(["parksville-tailwater"], [3, 4, 5], note="Stocked Mar–May only (Ocoee Dam No. 1)")
+# holdover reservoirs — trout present all year in deep cold water
+cal(["south-holston-lake","watauga-lake","fort-patrick-henry-lake","calderwood-lake",
+     "chilhowee-lake","tellico-lake","parksville-lake"], M_ALL, M_WINTER,
+    note="Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout")
+cal(["wilbur-lake"], M_ALL, list(range(3, 8)), "Put-grow-take reservoir; stocked Mar–Jul")
+cal(["dale-hollow-lake"], M_ALL, M_WINTER, "Winter-stocked; year-round deep-water fishery")
+# delayed harvest
+cal(["doe-river"], list(range(10, 13)) + list(range(1, 6)), [10, 11, 12],
+    "DH Oct 1–Feb 28 C&R, harvest reopens Mar 1; summer heat ends the fish")
+cal(["buffalo-creek-grainger"], list(range(10, 13)) + list(range(1, 5)), [10, 11, 12],
+    "DH Oct 1–Jan 31; above mill dam closed year-round")
+cal(["paint-creek"], M_ALL, list(range(3, 12)), "DH Oct 1–Feb 28 + USFS summer stocking + wild reach upstream = trout all year")
+cal(["big-soddy-creek"], [11, 12, 1, 2, 3, 4, 5], [10, 11, 12], "DH Nov 1–Feb 28 C&R; harvest reopens Mar 1")
+# mixed stocked+wild year-round
+cal(["tellico-river"], M_ALL, list(range(3, 10)), "In-season stocking + DH + wild headwaters = trout all year")
+cal(["citico-creek"], list(range(3, 10)), list(range(3, 10)), "Stocked Mar 15–Sep 15 (+ scarce wild N Fork brookies)")
+cal(["green-cove-pond"], list(range(2, 13)), note="TWRA pond stocked in season Feb–Dec")
+# winter put-and-take (no summer holdover)
+cal(["beech-lake","cameron-brown-lake","covington-fbc-pond","edmund-orgill-lake","johnson-park-lake",
+     "lake-graham","martin-city-pond","milan-city-pond","paris-city-park-lake","shelby-farms-lake",
+     "union-city-reelfoot-pond","valentine-park-pond","yale-road-park-lake"], M_WINTER,
+    note="TWRA winter put-and-take (Dec–Feb); fish do not hold over summer")
+cal(["stones-river","west-fork-stones-river","red-river-clarksville","sulfur-fork-creek",
+     "big-rock-creek","boiling-fork-creek","mccutcheon-creek","sinking-creek-wilson",
+     "mossy-creek-jefferson","elk-river-lower"], M_WINTER, note="Winter program (Dec–Feb/Mar stockings)")
+cal(["harpeth-river"], [12, 1, 2, 3], note="Warmwater river; TWRA winter trout Dec–Mar (owner-ruled warmwater)")
+# spring / seasonal circuits
+cal(["barren-fork-river","north-prong-barren-fork","calfkiller-river","collins-river","rocky-river",
+     "charles-creek","mill-creek-overton","pine-creek-dekalb","upper-hills-creek","salt-lick-creek",
+     "sequatchie-river","wolf-river-fentress","little-buffalo-river","fletchers-fork",
+     "little-west-fork-creek","gap-creek-claiborne","indian-creek-claiborne","puncheon-camp-creek",
+     "richardson-byrd-creek","station-creek","reedy-creek","brush-creek-cocke","doe-creek-johnson",
+     "forge-creek-johnson","laurel-creek-johnson","stoney-creek-carter","upper-roan-creek",
+     "little-sequatchie-river"], M_SPRING, note="Spring stocking circuit (Mar–May); no summer holdover")
+cal(["east-fork-shoal-creek"], [2, 3, 4, 5], note="Spring circuit (Feb–May; longest window)")
+cal(["hurricane-creek","standing-rock-creek","white-oak-creek"], M_LATE_WINTER_SPRING, note="Seasonal (Feb–Mar)")
+cal(["piney-river-rhea"], [2, 3, 4], note="Seasonal weeks (Feb–Apr); DH removed eff 2026-08-01")
+cal(["cane-creek"], M_SPRING + [10], note="Spring weeks + one late-Oct fall row")
+cal(["greasy-creek-polk","spring-creek-polk","tumbling-creek","goforth-creek"], M_SPRING_FALL,
+    note="Spring + fall stockings")
+cal(["north-chickamauga-creek"], [1, 2, 10, 11, 12], note="Winter + fall stockings (no special regulation)")
+cal(["little-pigeon-river"], list(range(3, 11)), note="In season spring–fall; Gatlinburg reach stocked biweekly")
+# uncertain / episodic
+cal(["nolichucky-river"], [], note="Episodic Erwin NFH brood fish only — no schedule", uncertain=True)
+cal(["ocoee-river"], [], note="Stocking claimed (outfitter/city) but no TWRA line-item captured", uncertain=True)
+
+def write_calendar(path):
+    names = {}
+    try:
+        names = {e["id"]: e["name"] for e in json.load(open("apps/web/src/features/map/riverIndex.json", encoding="utf-8"))}
+    except Exception:
+        pass
+    waters = {}
+    for x in R:
+        i = x["id"]
+        if i in CAL:
+            c = CAL[i]
+            pres = "uncertain" if c["uncertain"] else ("year-round" if len(c["months"]) == 12 else ("seasonal" if c["months"] else "none"))
+        elif x["cls"] == "trout-wild":
+            c = {"months": M_ALL, "stockingMonths": [], "window": "Wild trout — present year-round", "uncertain": False}
+            pres = "year-round"
+        elif x["cls"] == "warmwater":
+            c = {"months": [], "stockingMonths": [], "window": "No trout program (warmwater fishery)", "uncertain": False}
+            pres = "none"
+        else:
+            c = {"months": [], "stockingMonths": [], "window": "Evidence does not reach — trout presence unknown", "uncertain": True}
+            pres = "uncertain"
+        waters[i] = {
+            "name": names.get(i, i),
+            "classification": x["cls"],
+            "presence": pres,
+            "months": c["months"],
+            "stockingMonths": c["stockingMonths"],
+            "window": c["window"],
+        }
+    doc = {
+        "generated": ACCESS,
+        "source": "docs/research/build-classification.py — TN trout waterways research (branch research/trout-waterways)",
+        "monthsNote": "months are 1=Jan..12=Dec local time; presence is research-proposed, not yet owner-approved catalog data",
+        "waters": dict(sorted(waters.items())),
+    }
+    json.dump(doc, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
 # ------------------------------------------------------------------ render --
 CLS_DOC = {
  "trout-wild": "self-sustaining (wild) trout population is the water's identity",
@@ -870,6 +989,7 @@ if __name__ == "__main__":
     write_yaml("docs/research/proposed-waters-2026-09.yaml")
     write_csv("docs/research/proposed-waters-2026-09.csv")
     write_html("docs/research/STOCKING-VERIFY.html")
+    write_calendar("packages/content/data/trout-calendar.json")
     c, y, k, n = counts()
     print("counts:", dict(c))
     print("yearRound:", dict(y), "conf:", dict(k))

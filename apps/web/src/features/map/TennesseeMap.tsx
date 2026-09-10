@@ -73,6 +73,9 @@ interface Props {
    * 'all' — the pre-mode-aware behavior — so callers that don't plumb it
    * keep today's labels. */
   speciesMode?: 'trout' | 'all';
+  /** Fishery-class outline per water id ('trout' | 'warmwater' | null) —
+   * drives the rivers-class-outline halo (2026-09-10). Absent = unclassified. */
+  classOutlines?: Map<string, 'trout' | 'warmwater' | null>;
   stillWaterIds?: Set<string>;
   /** Catalog waterbodyType label per water id (M2) — accessible names use it. */
   waterTypes?: Map<string, string>;
@@ -159,6 +162,7 @@ export function TennesseeMap(props: Props) {
             hidden: p.showAllWaters ? false : p.visibleIds ? !p.visibleIds.has(river.id) : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
+            outlineClass: p.classOutlines?.get(river.id) ?? '',
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
             hatchColor: palette.current.sulphur,
           },
@@ -609,7 +613,7 @@ export function TennesseeMap(props: Props) {
         // species the catalog leaves unset reads "Unverified" in place of the
         // assessment suffix — never an implied trout or condition claim.
         const note = labelSpeciesNote({ id: river.id, species }, { troutIds });
-        const unassessedWord = note === 'Unverified' ? 'Unverified' : 'Unassessed';
+        const unassessedWord = note === 'Unverified' ? 'Needs data' : 'Unassessed';
         el.setAttribute(
           'aria-label',
           'Select ' +

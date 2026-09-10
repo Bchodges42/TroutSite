@@ -29,10 +29,10 @@ describe('scoreConditions', () => {
     expect(result.reasons.join(' ')).toMatch(/ideal window/);
   });
 
-  it('leaves the score unchanged for a marginal temperature', () => {
+  it('penalizes warming water for trout — stress begins above the ideal window', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 21 })]);
-    expect(result.value).toBe(80);
-    expect(result.reasons.join(' ')).toMatch(/marginal/);
+    expect(result.value).toBe(65); // 80 flow base - 15 warming penalty
+    expect(result.reasons.join(' ')).toMatch(/stress begins/);
   });
 
   it('penalizes low flow proportionally to the deficit', () => {
@@ -80,15 +80,47 @@ describe('scoreConditions', () => {
     expect(result.reasons.join(' ')).toMatch(/near freezing/);
   });
 
-  it('penalizes dangerously warm water', () => {
+  it('penalizes dangerously warm water for trout', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 26 })]);
-    expect(result.value).toBe(50); // 80 - 30
-    expect(result.reasons.join(' ')).toMatch(/dangerously warm/);
+    expect(result.value).toBe(35); // 80 - 45
+    expect(result.reasons.join(' ')).toMatch(/dangerously warm for trout/);
   });
 
   it('clamps the final score to 0', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 10, tempC: 26 })]);
-    expect(result.value).toBe(0); // 17 - 30 → clamped
+    expect(result.value).toBe(0); // 17 - 45 → clamped
+  });
+
+  it('does not punish a warmwater river for ordinary summer warmth', () => {
+    const result = scoreConditions(makeStream({ species: 'warmwater' }), [
+      makeReading({ cfs: 250, tempC: 28 }),
+    ]);
+    expect(result.value).toBe(90); // 80 flow base + 10 warmwater activity bonus
+    expect(result.reasons.join(' ')).toMatch(/bass and panfish/);
+  });
+
+  it('penalizes cold water for warmwater species', () => {
+    const result = scoreConditions(makeStream({ species: 'warmwater' }), [
+      makeReading({ cfs: 250, tempC: 5 }),
+    ]);
+    expect(result.value).toBe(65); // 80 - 15
+    expect(result.reasons.join(' ')).toMatch(/warmwater fish are sluggish/);
+  });
+
+  it('penalizes extreme heat for warmwater species more gently than the trout curve', () => {
+    const result = scoreConditions(makeStream({ species: 'warmwater' }), [
+      makeReading({ cfs: 250, tempC: 34 }),
+    ]);
+    expect(result.value).toBe(55); // 80 - 25 (vs -45 on the trout curve)
+    expect(result.reasons.join(' ')).toMatch(/low oxygen/);
+  });
+
+  it('applies NO temperature adjustment when the species is undocumented', () => {
+    const result = scoreConditions(makeStream({ species: undefined }), [
+      makeReading({ cfs: 250, tempC: 28 }),
+    ]);
+    expect(result.value).toBe(80); // flow base only — no bonus, no penalty
+    expect(result.reasons.join(' ')).toMatch(/species not documented/);
   });
 
   it('uses the newest cfs reading when readings arrive unsorted', () => {

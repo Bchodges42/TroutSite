@@ -75,16 +75,6 @@ export function MapControls({
             aria-label="Map controls panel"
           >
             <div className="space-y-3">
-              <div className="md:hidden">
-                <p className="eyebrow mb-1.5">Species</p>
-                <Segmented
-                  ariaLabel="Species"
-                  size="sm"
-                  value={species}
-                  onChange={onSpecies}
-                  options={[{ value: 'trout', label: 'Trout' }, { value: 'all', label: 'All fish' }]}
-                />
-              </div>
               <div>
                 <p className="eyebrow mb-1.5">Show</p>
                 <Segmented

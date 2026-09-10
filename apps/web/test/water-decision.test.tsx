@@ -44,6 +44,73 @@ function feature(overrides: {
 }
 
 describe('WaterDecisionView compatibility adapter', () => {
+  /** Minimal trout-calendar stand-in keyed by water id. */
+  function calendar(waters: Record<string, { months: number[] }>) {
+    return {
+      generated: 'test',
+      source: 'test',
+      waters: Object.fromEntries(
+        Object.entries(waters).map(([id, w]) => [
+          id,
+          {
+            name: id,
+            classification: 'trout-stocked',
+            presence: w.months.length === 12 ? 'year-round' : w.months.length ? 'seasonal' : 'none',
+            months: w.months,
+            stockingMonths: w.months,
+            window: 'test window',
+          },
+        ]),
+      ),
+    } as never;
+  }
+
+  it('hides a winter-stocked trout water from trout mode in the off-season (Stones River in September)', () => {
+    const cal = calendar({ 'stones-river': { months: [12, 1, 2] } });
+    const f = feature({ id: 'stones-river', score: 80 });
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('exclude');
+    // ...but it stays discoverable in all-fish mode, marked "No trout now".
+    const allFish = toWaterDecisionView(f, 'all', cal, new Date('2026-09-15'));
+    expect(allFish.visibility).toBe('include');
+    expect(decisionStatusText(allFish, { species: 'trout', status: 'good' })).toBe('No trout now');
+  });
+
+  it('hides a calendar-unclassified warmwater lake from trout mode even when catalog species is unset', () => {
+    // kentucky-lake: the catalog never documented its species, but the
+    // research calendar says "no trout program" — it is not a trout option.
+    const cal = calendar({ 'kentucky-lake': { months: [] } });
+    const f = feature({ id: 'kentucky-lake', species: undefined, score: null });
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('exclude');
+    expect(toWaterDecisionView(f, 'all', cal, new Date('2026-09-15')).visibility).toBe('include');
+  });
+
+  it('keeps a genuinely uncertain water visible in trout mode, labeled needs-data', () => {
+    const cal = calendar({});
+    const f = feature({ id: 'obed-river', species: undefined, score: null });
+    const view = toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15'));
+    expect(view.visibility).toBe('include');
+    expect(view.presence?.state).toBe('uncertain');
+    expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe('Needs data');
+  });
+
+  it('shows the same winter water in trout mode once its season arrives', () => {
+    const cal = calendar({ 'stones-river': { months: [12, 1, 2] } });
+    const f = feature({ id: 'stones-river', score: 80 });
+    const view = toWaterDecisionView(f, 'trout', cal, new Date('2026-01-15'));
+    expect(view.visibility).toBe('include');
+    expect(view.displayMetric).toBe('trout-condition');
+  });
+
+  it('de-emphasizes a warmwater winter-program water only while its trout season is on (Harpeth)', () => {
+    const cal = calendar({ 'harpeth-river': { months: [12, 1, 2, 3] } });
+    const f = {
+      ...feature({ id: 'harpeth-river', species: 'warmwater', score: null }),
+      stream: { id: 'harpeth-river', name: 'Harpeth River', stockingProgram: true },
+    };
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-01-15')).visibility).toBe('deemphasize');
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('exclude');
+  });
+
   it('presents an assessed trout water as trout-condition with high confidence', () => {
     const view = toWaterDecisionView(feature({ score: 82, readings: 3 }), 'trout');
     expect(view.displayMetric).toBe('trout-condition');
@@ -106,7 +173,7 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(view.visibility).toBe('include');
     expect(view.confidence).toBe('low');
     expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe(
-      'Unverified',
+      'Needs data',
     );
   });
 
@@ -117,7 +184,7 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(view.displayMetric).toBe('unassessed');
     expect(view.troutApplicability).toBe('unknown');
     expect(view.confidence).toBe('low');
-    expect(decisionStatusText(view, { species: undefined, status: 'good' })).toBe('Unverified');
+    expect(decisionStatusText(view, { species: undefined, status: 'good' })).toBe('Needs data');
   });
 
   it('colors unknown species as the neutral no-data tone on the map', () => {

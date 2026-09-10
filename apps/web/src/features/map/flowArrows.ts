@@ -116,7 +116,10 @@ export function makeFlowArrowImage(
   halo: string,
 ): { width: number; height: number; data: Uint8ClampedArray } | null {
   if (typeof document === 'undefined') return null;
-  const size = 44;
+  // 2026-09-10 owner pass: the 44px glyph vanished against the corridor at
+  // overview zoom — 56px with a heavier rim and a fatter core reads at both
+  // statewide and regional scales.
+  const size = 56;
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
@@ -127,24 +130,24 @@ export function makeFlowArrowImage(
   // tail-heavy triangle so the glyph reads as flow, not a map pin
   const triangle = () => {
     ctx.beginPath();
-    ctx.moveTo(8, 9);
-    ctx.lineTo(36, 22);
-    ctx.lineTo(8, 35);
+    ctx.moveTo(10, 11);
+    ctx.lineTo(46, 28);
+    ctx.lineTo(10, 45);
     ctx.closePath();
   };
   // halo first: a thin dark rim around the paper core reads as a crisp
   // arrow at corridor scale — a fat halo just renders as a blob
   ctx.strokeStyle = halo;
-  ctx.lineWidth = 6;
+  ctx.lineWidth = 7;
   triangle();
   ctx.stroke();
   ctx.fillStyle = halo;
   ctx.fill();
   ctx.fillStyle = ink;
   ctx.beginPath();
-  ctx.moveTo(11, 12);
-  ctx.lineTo(31.5, 22);
-  ctx.lineTo(11, 32);
+  ctx.moveTo(14, 15);
+  ctx.lineTo(39.5, 28);
+  ctx.lineTo(14, 41);
   ctx.closePath();
   ctx.fill();
   const image = ctx.getImageData(0, 0, size, size);

@@ -905,6 +905,34 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
 .inspector-body > * + * {
   margin-top: 20px;
 }
+/* Season strip (2026-09-10): trout-calendar presence, above the assessment
+   card. Absent/none/uncertain states read as caution, present as fact. */
+.season-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #33494a);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.season-strip strong { font-size: 13px; }
+.season-strip[data-state='present'] {
+  background: rgb(35 113 85 / 0.14);
+  border-color: rgb(35 113 85 / 0.45);
+}
+.season-strip[data-state='absent'],
+.season-strip[data-state='none'] {
+  background: rgb(177 59 56 / 0.10);
+  border-color: rgb(177 59 56 / 0.4);
+}
+.season-strip[data-state='uncertain'] {
+  background: rgb(100 116 110 / 0.12);
+  border-color: rgb(100 116 110 / 0.45);
+}
+
 .assessment {
   border-bottom: 1px solid var(--ui-border);
   padding-bottom: 22px;

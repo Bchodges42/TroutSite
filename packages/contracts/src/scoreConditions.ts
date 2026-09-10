@@ -7,12 +7,20 @@ import type { Stream } from './schemas/stream.js';
  * Pure, deterministic fishability scoring (00-SHARED-CONTEXT §6).
  * No clock, no network, no randomness: callers pass the readings; staleness/TTL is a UI concern.
  *
- * Scoring model (frozen in contracts-v1.0.0, documented for transparency):
+ * Scoring model (frozen in contracts-v1.0.0, temperature curve made
+ * species-relative 2026-09-10 — see below; documented for transparency):
  *  - Flow is the dominant factor. Base 80 when the newest cfs reading falls inside any of the
  *    stream's idealFlow ranges; outside a range the score falls off with the relative distance
  *    from the nearest range (floor 10). With no cfs but a stage height, base 50 (low confidence).
- *  - Temperature adjusts the flow score: +10 in the 6–20°C ideal window, 0 in the 2–6 / 20–24°C
- *    marginal bands, −15 near freezing (<2°C), −30 dangerously warm (>24°C).
+ *  - Temperature adjusts the flow score, relative to the water's DOCUMENTED species:
+ *      • trout: +10 in the 6–20°C ideal window, 0 in the 2–6°C band, −15 near freezing (<2°C),
+ *        −15 warm (20–24°C — trout stress begins; caps most trout streams at Fair on ideal
+ *        flows), −45 dangerously warm (>24°C — Poor; do not fish).
+ *      • warmwater: +10 in the 18–32°C warmwater activity window (summer IS the season),
+ *        0 in the 10–18°C marginal band, −15 cold (<10°C), −25 extreme heat (>32°C — low
+ *        dissolved oxygen; a warmwater river is not punished for ordinary summer warmth).
+ *      • unset/unknown species: NO temperature adjustment at all — an undocumented fishery
+ *        never earns a temperature bonus or penalty; the reason says so.
  *  - Score is clamped to 0–100. A clamped 0 is a REAL assessment (e.g. floored
  *    flow minus the dangerous-heat penalty) and callers must render it as Poor;
  *    only `assessed: false` returns mean "no data". Empty/foreign-gauge readings
@@ -29,7 +37,20 @@ const TEMP_MARGINAL_LOW_C = 2;
 const TEMP_MARGINAL_HIGH_C = 24;
 const TEMP_IDEAL_BONUS = 10;
 const TEMP_COLD_PENALTY = 15;
-const TEMP_HEAT_PENALTY = 30;
+// Species-relative trout heat curve: stress begins at 20°C (caps ideal-flow
+// water at Fair), >24°C is dangerously warm (Poor). Owner direction 2026-09-10.
+const TEMP_WARM_PENALTY = 15;
+const TEMP_HEAT_PENALTY = 45;
+
+// Warmwater curve — summer warmth is the SEASON, not a penalty (owner
+// direction 2026-09-10: "the warm water ones shouldn't be affected that much").
+const WARM_IDEAL_MIN_C = 18;
+const WARM_IDEAL_MAX_C = 32;
+const WARM_COLD_C = 10;
+const WARM_EXTREME_C = 32;
+const WARM_IDEAL_BONUS = 10;
+const WARM_COLD_PENALTY = 15;
+const WARM_EXTREME_PENALTY = 25;
 
 function timestampMs(iso: string): number {
   const ms = Date.parse(iso);
@@ -140,17 +161,38 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
   const tempReading = byAge.find((r) => typeof r.tempC === 'number');
   if (tempReading && typeof tempReading.tempC === 'number') {
     const t = tempReading.tempC;
-    if (t >= TEMP_IDEAL_MIN_C && t <= TEMP_IDEAL_MAX_C) {
-      value += TEMP_IDEAL_BONUS;
-      reasons.push(`Water temperature ${fmt(t)}°C is in the ideal window for trout activity.`);
-    } else if (t < TEMP_MARGINAL_LOW_C) {
-      value -= TEMP_COLD_PENALTY;
-      reasons.push(`Water temperature ${fmt(t)}°C is near freezing — fish are sluggish.`);
-    } else if (t > TEMP_MARGINAL_HIGH_C) {
-      value -= TEMP_HEAT_PENALTY;
-      reasons.push(`Water temperature ${fmt(t)}°C is dangerously warm — avoid stressing trout.`);
+    if (stream.species === 'warmwater') {
+      // Warmwater curve — judged as a warmwater fishery, never by trout rules.
+      if (t >= WARM_IDEAL_MIN_C && t <= WARM_IDEAL_MAX_C) {
+        value += WARM_IDEAL_BONUS;
+        reasons.push(`Water temperature ${fmt(t)}°C is in the ideal window for bass and panfish activity.`);
+      } else if (t < WARM_COLD_C) {
+        value -= WARM_COLD_PENALTY;
+        reasons.push(`Water temperature ${fmt(t)}°C is cold — warmwater fish are sluggish.`);
+      } else if (t > WARM_EXTREME_C) {
+        value -= WARM_EXTREME_PENALTY;
+        reasons.push(`Water temperature ${fmt(t)}°C is extreme heat — low oxygen; fish go deep.`);
+      } else {
+        reasons.push(`Water temperature ${fmt(t)}°C is cool but fishable for warmwater species.`);
+      }
+    } else if (stream.species === 'trout') {
+      if (t >= TEMP_IDEAL_MIN_C && t <= TEMP_IDEAL_MAX_C) {
+        value += TEMP_IDEAL_BONUS;
+        reasons.push(`Water temperature ${fmt(t)}°C is in the ideal window for trout activity.`);
+      } else if (t < TEMP_MARGINAL_LOW_C) {
+        value -= TEMP_COLD_PENALTY;
+        reasons.push(`Water temperature ${fmt(t)}°C is near freezing — fish are sluggish.`);
+      } else if (t > TEMP_MARGINAL_HIGH_C) {
+        value -= TEMP_HEAT_PENALTY;
+        reasons.push(`Water temperature ${fmt(t)}°C is dangerously warm for trout — do not fish; you will kill them.`);
+      } else {
+        value -= TEMP_WARM_PENALTY;
+        reasons.push(`Water temperature ${fmt(t)}°C is warming — trout stress begins; fight them fast or skip it.`);
+      }
     } else {
-      reasons.push(`Water temperature ${fmt(t)}°C is marginal for trout activity.`);
+      // Undocumented species: no temperature verdict is possible — never a
+      // bonus, never a penalty (uncertainty-forward, owner direction 2026-09-10).
+      reasons.push(`Water temperature ${fmt(t)}°C recorded — species not documented, so temperature is not scored.`);
     }
   } else {
     reasons.push('No water-temperature reading is available.');

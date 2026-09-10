@@ -10,6 +10,7 @@ import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
+import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -19,6 +20,8 @@ type Tab = (typeof TABS)[number];
 const TIMES = { am: 'Morning', midday: 'Midday', pm: 'Afternoon', evening: 'Evening' };
 interface Props {
   feature: RiverMapFeature | null;
+  /** Season-aware trout presence for the selected water (trout calendar). */
+  season?: TroutPresenceNow | null;
   tab: Tab;
   onTab: (t: Tab) => void;
   onClose: () => void;
@@ -32,6 +35,7 @@ interface Props {
 }
 export function RiverDrawer({
   feature,
+  season,
   tab,
   onTab,
   onClose,
@@ -147,7 +151,7 @@ export function RiverDrawer({
         role="tabpanel"
         aria-labelledby={'river-tab-' + TABS.indexOf(tab)}
       >
-        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
+        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} season={season} />}
         {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
         {tab === 'Stocking' && <StockingTab feature={feature} error={feedErrors?.stocking} />}
         {tab === 'Reports' && <ReportsTab feature={feature} error={feedErrors?.reports} />}
@@ -160,10 +164,12 @@ function WaterTab({
   feature,
   month,
   live,
+  season,
 }: {
   feature: RiverMapFeature;
   month: number;
   live: boolean;
+  season?: TroutPresenceNow | null;
 }) {
   const { settings } = useSettingsContext();
   const pack = useContentPack();
@@ -179,17 +185,25 @@ function WaterTab({
   // No catalog species: say so explicitly (H3). The water keeps its gauge
   // readings below, but never trout-assessment language or a score disc.
   const unverified = feature.species == null;
-  const title = warm
-    ? 'Warmwater fishery'
-    : unverified
-      ? 'Species unverified'
-      : feature.status === 'no-data'
-        ? 'Not assessed'
-        : feature.status === 'good'
-          ? 'Good conditions'
-          : feature.status === 'fair'
-            ? 'Fair conditions'
-            : 'Poor conditions';
+  // Season gate (2026-09-10): when the calendar says this water holds no trout
+  // right now, the condition framing yields to the season strip — no score
+  // disc, no "Good conditions" for fish that are not there.
+  const noTroutNow = season?.state === 'absent' || season?.state === 'none';
+  const title = noTroutNow
+    ? season!.state === 'none'
+      ? 'Not a trout water'
+      : 'No trout here right now'
+    : warm
+      ? 'Warmwater fishery'
+      : unverified
+        ? 'Species unverified'
+        : feature.status === 'no-data'
+          ? 'Not assessed'
+          : feature.status === 'good'
+            ? 'Good conditions'
+            : feature.status === 'fair'
+              ? 'Fair conditions'
+              : 'Poor conditions';
   const reason = warm
     ? 'Trout scores do not apply to this fishery. Check the readings and local guidance.'
     : unverified
@@ -203,6 +217,24 @@ function WaterTab({
   const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
   return (
     <>
+      {season && season.state !== 'present' && (
+        <div className="season-strip" data-state={season.state} role="note">
+          <strong>
+            {season.state === 'absent'
+              ? 'No trout here right now'
+              : season.state === 'none'
+                ? 'Not a trout water'
+                : 'Trout presence unverified'}
+          </strong>
+          <span>{season.note}</span>
+        </div>
+      )}
+      {season && season.state === 'present' && (
+        <div className="season-strip" data-state="present" role="note">
+          <strong>{season.fresh ? 'Trout present — recently stocked' : 'Trout present now'}</strong>
+          <span>{season.note}</span>
+        </div>
+      )}
       <div
         className="assessment"
         data-status={warm ? 'warmwater' : unverified || feature.status === 'no-data' ? 'no-data' : feature.status}
@@ -214,7 +246,7 @@ function WaterTab({
             </span>
             <h3 className="assessment-name">{title}</h3>
           </div>
-          {feature.species === 'trout' && feature.status !== 'no-data' && feature.score !== null && (
+          {feature.species === 'trout' && !noTroutNow && feature.status !== 'no-data' && feature.score !== null && (
             <span
               className="score-disc"
               aria-label={'Condition score ' + feature.score + ' out of 100'}

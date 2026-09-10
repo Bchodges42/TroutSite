@@ -13,7 +13,9 @@ import { validMonth } from '../../lib/riverContext';
 import { waterTypeLabel } from '../../lib/presentation';
 import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
-import { decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
+import { classOutline, decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
+import { troutPresenceNow, useTroutCalendar } from '../../lib/troutCalendar';
+import { Segmented } from '../../components/ui/Segmented';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { QaPanel } from './qa/QaPanel';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
@@ -40,7 +42,14 @@ export function RiverMapPage() {
   const qaOn = params.get('qa') === '1';
   const [qaOpen, setQaOpen] = useState(true);
   const data = useRiverMapData({ month });
+  // Trout calendar (research lane): decides whether a documented trout water
+  // actually CONTAINS TROUT this month. null = no calendar in this bundle —
+  // every surface then falls back to catalog-only behavior, never invented
+  // seasonality.
+  const calendarQuery = useTroutCalendar();
+  const calendar = calendarQuery.data?.data ?? null;
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
+  const selectedSeason = selected && calendar ? troutPresenceNow(calendar.waters[selected.stream.id]) : null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
   const [expanded, setExpanded] = useState(false);
   const [layers, setLayers] = useState(false);
@@ -235,12 +244,12 @@ export function RiverMapPage() {
     // Visibility is the decision model's call (H3): unknown-species waters
     // stay discoverable in trout mode but never read as confirmed trout;
     // plain warmwater is excluded there; the stocked Harpeth is deemphasized.
-    const decision = toWaterDecisionView(f, species);
+    const decision = toWaterDecisionView(f, species, calendar);
     return (
       (species === 'all' || decision.visibility !== 'exclude' || f.stream.id === selectedId) &&
       (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId)
     );
-  });
+  }, [data.features, species, calendar, selectedId, assessedOnly]);
   const sorted = [...filtered].sort(
     (a, b) =>
       Number(b.status !== 'no-data') - Number(a.status !== 'no-data') ||
@@ -301,7 +310,7 @@ export function RiverMapPage() {
     () =>
       new Map(
         data.features.map((f) => {
-          const token = decisionColorToken(toWaterDecisionView(f, species), f);
+          const token = decisionColorToken(toWaterDecisionView(f, species, calendar), f);
           return [
             f.stream.id,
             token === 'warmwater'
@@ -312,7 +321,16 @@ export function RiverMapPage() {
           ] as const;
         }),
       ),
-    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), species, theme.id],
+    [data.features, species, calendar, theme.id],
+  );
+  // Class outlines (2026-09-10): the map must SHOW the trout/warmwater split,
+  // not only filter on it. Unclassified waters get no outline at all.
+  const classOutlines = useMemo(
+    () =>
+      new Map(
+        data.features.map((f) => [f.stream.id, classOutline(f, calendar)] as const),
+      ),
+    [data.features, calendar],
   );
   const hatchActive = useMemo(
     () =>
@@ -338,28 +356,17 @@ export function RiverMapPage() {
       : theme.id === 'daybreak'
         ? 'paper'
         : 'ink';
+  // 2026-09-10: the trout/all-fish choice moved to the MAP chrome (topbar on
+  // desktop, tools row on mobile) — it is a map question, not an atlas-menu
+  // question. The sidebar keeps only the assessment-scope chip.
   const filters = (
     <div className="filter-row" aria-label="Filter waters">
-      <button
-        className="filter-chip"
-        aria-pressed={species === 'trout' && !assessedOnly}
-        onClick={() => update({ species: null, assessed: null })}
-      >
-        Trout waters
-      </button>
       <button
         className="filter-chip"
         aria-pressed={assessedOnly}
         onClick={() => update({ assessed: assessedOnly ? null : '1' })}
       >
         Assessed
-      </button>
-      <button
-        className="filter-chip"
-        aria-pressed={species === 'all' && !assessedOnly}
-        onClick={() => update({ species: 'all', assessed: null })}
-      >
-        All fish
       </button>
     </div>
   );
@@ -468,6 +475,7 @@ export function RiverMapPage() {
             </button>
             <RiverDrawer
               feature={selected}
+              season={selectedSeason}
               tab={tab}
               onTab={(t) => {
                 update({ tab: t });
@@ -550,7 +558,7 @@ export function RiverMapPage() {
                   </p>
                 )}
               {sorted.map((f) => {
-                const decision = toWaterDecisionView(f, species);
+                const decision = toWaterDecisionView(f, species, calendar);
                 return (
                   <button
                     key={f.stream.id}
@@ -599,6 +607,7 @@ export function RiverMapPage() {
           visibleIds={visibleIds}
           showAllWaters={allWatersOn}
           assessedIds={assessedIds}
+          classOutlines={classOutlines}
           labelSpecies={labelSpecies}
           speciesMode={species}
           stillWaterIds={stillWaterIds}
@@ -645,11 +654,17 @@ export function RiverMapPage() {
               </button>
               <button
                 className="map-tool"
-                onClick={() => {
-                  update({ species: species === 'all' ? null : 'all' });
-                }}
+                aria-pressed={species === 'trout'}
+                onClick={() => update({ species: null })}
               >
-                {species === 'all' ? 'All fish' : 'Trout'} ▾
+                Trout
+              </button>
+              <button
+                className="map-tool"
+                aria-pressed={species === 'all'}
+                onClick={() => update({ species: 'all' })}
+              >
+                All fish
               </button>
             </div>
           </div>
@@ -671,6 +686,15 @@ export function RiverMapPage() {
               >
                 QA
               </button>
+            )}
+            {desktop && (
+              <Segmented
+                ariaLabel="Species"
+                size="sm"
+                value={species}
+                onChange={(s) => update({ species: s === 'all' ? 'all' : null })}
+                options={[{ value: 'trout', label: 'Trout' }, { value: 'all', label: 'All fish' }]}
+              />
             )}
             <MapControlGroup
               onRecenter={recenterTennessee}
@@ -756,8 +780,8 @@ export function RiverMapPage() {
               : coverageUnavailable
                 ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
                 : species === 'all'
-                  ? 'Good, Fair, and Poor describe trout waters only. Warmwater waters are shown but not scored.'
-                  : 'Select a river line or named water to explore.'}{' '}
+                  ? 'Good, Fair, and Poor describe trout waters only — and only while trout are in season there. Blue outlines mark trout waters, amber marks warmwater.'
+                  : 'Outlines mark trout waters; a water only shows a condition score while its season says trout are present. Unclassified waters say so instead of guessing.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>
         </div>

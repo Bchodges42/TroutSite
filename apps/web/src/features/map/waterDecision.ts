@@ -1,4 +1,5 @@
 import type { RiverMapFeature } from './riverMapSelectors';
+import { troutPresenceNow, type TroutCalendar, type TroutPresenceNow } from '../../lib/troutCalendar';
 
 /**
  * WaterDecisionView — the presentation view model the filter/metric UI
@@ -7,6 +8,12 @@ import type { RiverMapFeature } from './riverMapSelectors';
  * scope, and inspector copy all read from here instead of re-testing
  * `feature.species`. The catalog's own words stay the source of truth —
  * missing `species` is UNKNOWN, never trout, and is never "fixed" by guessing.
+ *
+ * Seasonality (2026-09-10, owner direction): the trout calendar decides
+ * whether a water CONTAINS TROUT THIS MONTH. A documented trout water that is
+ * out of season (a winter put-and-take pond in July) never wears a condition
+ * score — there are no fish to score. Uncertainty is surfaced, never smoothed:
+ * unclassified waters read "needs data" and stay scoreless.
  */
 export type WaterDecisionView = {
   waterId: string;
@@ -21,6 +28,8 @@ export type WaterDecisionView = {
   displayMetric: 'trout-condition' | 'fishability' | 'unassessed';
   fishability?: 'good' | 'fair' | 'poor' | 'unknown';
   confidence: 'high' | 'medium' | 'low';
+  /** Season-aware trout presence for the CURRENT month (calendar may be absent). */
+  presence: TroutPresenceNow | null;
   reasons: string[];
   cautions: string[];
 };
@@ -39,9 +48,10 @@ export type SpeciesMode = 'trout' | 'all';
  *     warmwater water WITH a stocking program (the Harpeth's December trout
  *     stocking — owner decision 2026-09-04) stays visible in trout mode,
  *     de-emphasized; plain warmwater is excluded there.
- *   - confirmed trout waters with a real assessment render `trout-condition`.
- *   - confirmed trout waters without one render `unassessed` — a missing
- *     assessment is never presented as an assessment.
+ *   - confirmed trout waters with a real assessment render `trout-condition` —
+ *     UNLESS the calendar says the water holds no trout this month.
+ *   - confirmed trout waters without an assessment render `unassessed` — a
+ *     missing assessment is never presented as an assessment.
  */
 export function toWaterDecisionView(
   feature: Pick<
@@ -49,20 +59,52 @@ export function toWaterDecisionView(
     'stream' | 'status' | 'score' | 'snapshot' | 'species'
   >,
   mode: SpeciesMode,
+  calendar?: TroutCalendar | null,
+  now?: Date,
 ): WaterDecisionView {
   const warmwater = feature.species === 'warmwater';
   const speciesUnknown = feature.species == null;
   const assessed = feature.status !== 'no-data' && feature.score !== null;
   const reasons = feature.snapshot?.score.reasons ?? [];
+  const entry = calendar?.waters[feature.stream.id];
+  const presence = calendar ? troutPresenceNow(entry, now) : null;
+  // Out of season = the calendar documents trout here, but not this month.
+  const outOfSeason = presence?.state === 'absent';
+  const noTroutNow = presence?.state === 'none' || outOfSeason;
+  // A score may only show for a CONFIRMED trout water that (a) has a real
+  // assessment and (b) actually contains trout right now.
+  const scoreable = feature.species === 'trout' && assessed && !noTroutNow;
+
+  // Trout-mode visibility (owner direction 2026-09-10, refined: only waters
+  // with trout AVAILABLE NOW). A documented trout water out of season — Stones
+  // River, a December–February stocking, in September — is NOT a trout option
+  // today and is hidden; it stays discoverable in all-fish mode. Unclassified
+  // waters stay discoverable but never read as trout. A warmwater base with a
+  // real winter program (the Harpeth) is only de-emphasized while in season.
+  let visibility: WaterDecisionView['visibility'] = 'include';
+  if (mode === 'trout') {
+    if (warmwater) {
+      if (!calendar) {
+        // No calendar in this bundle: the legacy owner ruling (2026-09-04)
+        // applies unchanged — a stocked warmwater water stays visible-but-dim.
+        visibility = feature.stream.stockingProgram ? 'deemphasize' : 'exclude';
+      } else {
+        visibility =
+          feature.stream.stockingProgram && presence?.state === 'present'
+            ? 'deemphasize'
+            : 'exclude';
+      }
+    } else if (presence?.state === 'absent' || presence?.state === 'none') {
+      // Out of season (Stones River in September) or the calendar documents no
+      // trout program at all (Kentucky Lake) — neither is a trout option now.
+      // Uncertain waters stay visible and say "needs data" instead.
+      visibility = 'exclude';
+    }
+  }
 
   return {
     waterId: feature.stream.id,
-    visibility:
-      mode === 'trout' && warmwater
-        ? feature.stream.stockingProgram
-          ? 'deemphasize'
-          : 'exclude'
-        : 'include',
+    visibility,
     troutApplicability: warmwater
       ? 'not-trout'
       : speciesUnknown
@@ -70,15 +112,14 @@ export function toWaterDecisionView(
         : assessed
           ? 'confirmed-current'
           : 'unknown',
-    // Only a CONFIRMED trout water with a real assessment may wear the trout
-    // metric. Unknown species never borrow it, even when gauges exist.
-    displayMetric: feature.species === 'trout' && assessed ? 'trout-condition' : 'unassessed',
+    displayMetric: scoreable ? 'trout-condition' : 'unassessed',
     // No generic fishability source exists in the current pipeline. The field
     // stays undefined rather than borrowing the trout score.
     fishability: undefined,
     confidence: assessed && feature.species === 'trout' ? (feature.snapshot?.readings.length ? 'high' : 'medium') : 'low',
+    presence,
     reasons,
-    cautions: reasons.filter((r) => /dangerously|avoid stressing|heat|flushing/i.test(r)),
+    cautions: reasons.filter((r) => /dangerously|avoid stressing|heat|flushing|do not fish|stress begins/i.test(r)),
   };
 }
 
@@ -90,9 +131,11 @@ export function metricLabel(view: Pick<WaterDecisionView, 'displayMetric'>): str
 }
 
 /**
- * Status text for index rows. In all-fish mode a warmwater water never wears
- * trout-condition language, an unverified-species water says so explicitly,
- * and an unassessed water never wears a band.
+ * Status text for index rows. Season-aware: an out-of-season trout water says
+ * so instead of wearing a condition band (no fish = nothing to score); a
+ * warmwater water never wears trout-condition language; an unverified-species
+ * water asks for data instead of hinting at trout; an unassessed water never
+ * wears a band.
  */
 export function decisionStatusText(
   view: WaterDecisionView,
@@ -112,10 +155,17 @@ export function decisionStatusText(
       ? view.fishability.charAt(0).toUpperCase() + view.fishability.slice(1)
       : 'Unassessed';
   }
+  // Presence-aware text outranks the generic fallbacks where the calendar speaks.
+  if (view.presence) {
+    if (view.presence.state === 'none') return 'Warmwater';
+    if (view.presence.state === 'absent') return 'No trout now';
+    if (view.presence.state === 'uncertain') return 'Needs data';
+    if (view.presence.state === 'present' && view.presence.fresh) return 'In season · fresh';
+  }
   return feature.species === 'warmwater'
     ? 'Warmwater'
     : feature.species == null
-      ? 'Unverified'
+      ? 'Needs data'
       : 'Unassessed';
 }
 
@@ -126,8 +176,32 @@ export function decisionColorToken(
   feature: Pick<RiverMapFeature, 'species' | 'status'>,
 ): DecisionColorToken {
   if (view.troutApplicability === 'not-trout') return 'warmwater';
-  // Only confirmed-trout assessed waters carry a band; unknown species and
-  // unassessed waters render the neutral no-data tone on the map.
+  // Only confirmed-trout assessed waters carrying trout NOW get a band;
+  // unknown species, unassessed, and out-of-season waters render the neutral
+  // no-data tone on the map — missing fish or missing data never render as a
+  // condition.
   if (view.displayMetric === 'trout-condition') return feature.status;
   return 'no-data';
+}
+
+/**
+ * Fishery class for the map's class-outline layer (owner direction 2026-09-10:
+ * trout vs warmwater must be legible as a highlight, not just a filter).
+ * `null` = unclassified — no outline, the water hasn't earned a class.
+ */
+export function classOutline(
+  feature: Pick<RiverMapFeature, 'stream' | 'species'>,
+  calendar: TroutCalendar | null | undefined,
+): 'trout' | 'warmwater' | null {
+  if (feature.species === 'warmwater') return 'warmwater';
+  if (feature.species === 'trout') {
+    // Uncertain calendar presence still gets the trout outline — the CLASS is
+    // documented; the outline is about fishery class, not this month's fish.
+    return 'trout';
+  }
+  // Undocumented species: the calendar's research classification may speak.
+  const cls = calendar?.waters[feature.stream.id]?.classification;
+  if (cls === 'trout-wild' || cls === 'trout-stocked' || cls === 'tailwater-trout') return 'trout';
+  if (cls === 'warmwater') return 'warmwater';
+  return null;
 }
