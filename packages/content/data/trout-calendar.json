@@ -756,11 +756,19 @@
   },
   "east-fork-stones-river": {
    "name": "East Fork Stones River",
-   "classification": "unknown-need-evidence",
-   "presence": "uncertain",
-   "months": [],
-   "stockingMonths": [],
-   "window": "Evidence does not reach — trout presence unknown"
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter-stocked (owner-confirmed 2026-09-10); TWRA line-item to capture"
   },
   "edmund-orgill-lake": {
    "name": "Edmund-Orgill Park",

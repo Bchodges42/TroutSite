@@ -75,12 +75,14 @@ export function toWaterDecisionView(
   // assessment and (b) actually contains trout right now.
   const scoreable = feature.species === 'trout' && assessed && !noTroutNow;
 
-  // Trout-mode visibility (owner direction 2026-09-10, refined: only waters
-  // with trout AVAILABLE NOW). A documented trout water out of season — Stones
-  // River, a December–February stocking, in September — is NOT a trout option
-  // today and is hidden; it stays discoverable in all-fish mode. Unclassified
-  // waters stay discoverable but never read as trout. A warmwater base with a
-  // real winter program (the Harpeth) is only de-emphasized while in season.
+  // Trout-mode visibility (owner direction 2026-09-10, refined same day:
+  // "I don't want them completely gone but MUCH easier to distinguish"). A
+  // documented trout water out of season — Stones River, a December–February
+  // stocking, in September — STAYS VISIBLE but de-emphasized: dimmed and
+  // dashed on the map, labeled "no trout now", sorted last in the list.
+  // Waters the calendar documents as having no trout program at all (Kentucky
+  // Lake) are excluded outright. Unclassified waters stay discoverable but
+  // never read as trout.
   let visibility: WaterDecisionView['visibility'] = 'include';
   if (mode === 'trout') {
     if (warmwater) {
@@ -89,15 +91,13 @@ export function toWaterDecisionView(
         // applies unchanged — a stocked warmwater water stays visible-but-dim.
         visibility = feature.stream.stockingProgram ? 'deemphasize' : 'exclude';
       } else {
-        visibility =
-          feature.stream.stockingProgram && presence?.state === 'present'
-            ? 'deemphasize'
-            : 'exclude';
+        // Stocked warmwater (the Harpeth): a real winter fishery on a warm
+        // base — always visible, de-emphasized; the season strip says when.
+        visibility = feature.stream.stockingProgram ? 'deemphasize' : 'exclude';
       }
-    } else if (presence?.state === 'absent' || presence?.state === 'none') {
-      // Out of season (Stones River in September) or the calendar documents no
-      // trout program at all (Kentucky Lake) — neither is a trout option now.
-      // Uncertain waters stay visible and say "needs data" instead.
+    } else if (presence?.state === 'absent') {
+      visibility = 'deemphasize';
+    } else if (presence?.state === 'none') {
       visibility = 'exclude';
     }
   }

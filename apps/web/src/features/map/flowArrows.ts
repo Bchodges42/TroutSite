@@ -108,17 +108,20 @@ export function buildFlowArrowSource(
  * Runtime arrow icon (solid triangle pointing +x, the direction line-placed
  * symbols align to). A filled glyph with a heavy halo reads at corridor
  * scale far better than a stroked chevron; the halo keeps it separable from
- * any water color in both themes. Returns the payload map.addImage accepts.
- * Null when no DOM is available (tests/SSR).
+ * any water color in both themes. The FRONT SLICE of the triangle is filled
+ * in the theme's tip red (2026-09-10 owner pass) so the pointing end reads
+ * at a glance without enlarging the whole glyph. Returns the payload
+ * map.addImage accepts. Null when no DOM is available (tests/SSR).
  */
 export function makeFlowArrowImage(
   ink: string,
   halo: string,
+  tip = '#c2342c',
 ): { width: number; height: number; data: Uint8ClampedArray } | null {
   if (typeof document === 'undefined') return null;
   // 2026-09-10 owner pass: the 44px glyph vanished against the corridor at
   // overview zoom — 56px with a heavier rim and a fatter core reads at both
-  // statewide and regional scales.
+  // statewide and regional scales (icon-size stops stay modest so it fits).
   const size = 56;
   const canvas = document.createElement('canvas');
   canvas.width = size;
@@ -143,11 +146,21 @@ export function makeFlowArrowImage(
   ctx.stroke();
   ctx.fillStyle = halo;
   ctx.fill();
-  ctx.fillStyle = ink;
+  // ink core, clipped to the back two-thirds…
+  ctx.save();
   ctx.beginPath();
-  ctx.moveTo(14, 15);
-  ctx.lineTo(39.5, 28);
-  ctx.lineTo(14, 41);
+  ctx.rect(0, 0, 31, size);
+  ctx.clip();
+  ctx.fillStyle = ink;
+  triangle();
+  ctx.fill();
+  ctx.restore();
+  // …then the red tip fills the front third, edge to edge.
+  ctx.fillStyle = tip;
+  ctx.beginPath();
+  ctx.moveTo(31, 20.4);
+  ctx.lineTo(46, 28);
+  ctx.lineTo(31, 35.6);
   ctx.closePath();
   ctx.fill();
   const image = ctx.getImageData(0, 0, size, size);

@@ -65,11 +65,13 @@ describe('WaterDecisionView compatibility adapter', () => {
     } as never;
   }
 
-  it('hides a winter-stocked trout water from trout mode in the off-season (Stones River in September)', () => {
+  it('de-emphasizes a winter-stocked trout water in trout mode in the off-season (Stones River in September)', () => {
+    // Owner refine 2026-09-10: "I don't want them completely gone but MUCH
+    // easier to distinguish" — off-season waters stay visible, dimmed + labeled.
     const cal = calendar({ 'stones-river': { months: [12, 1, 2] } });
     const f = feature({ id: 'stones-river', score: 80 });
-    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('exclude');
-    // ...but it stays discoverable in all-fish mode, marked "No trout now".
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('deemphasize');
+    // ...and it stays discoverable in all-fish mode, marked "No trout now".
     const allFish = toWaterDecisionView(f, 'all', cal, new Date('2026-09-15'));
     expect(allFish.visibility).toBe('include');
     expect(decisionStatusText(allFish, { species: 'trout', status: 'good' })).toBe('No trout now');
@@ -108,7 +110,7 @@ describe('WaterDecisionView compatibility adapter', () => {
       stream: { id: 'harpeth-river', name: 'Harpeth River', stockingProgram: true },
     };
     expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-01-15')).visibility).toBe('deemphasize');
-    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('exclude');
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('deemphasize');
   });
 
   it('presents an assessed trout water as trout-condition with high confidence', () => {

@@ -240,6 +240,21 @@ export function RiverMapPage() {
       { maximumAge: 300000, timeout: 8000 },
     );
   };
+  // Out-of-season trout waters (2026-09-10 refinement): visible but dimmed,
+  // dashed, label-suffixed, and sorted last — unmistakably "not now".
+  const offseasonIds = useMemo(
+    () =>
+      new Set(
+        data.features
+          .filter(
+            (f) =>
+              f.species !== 'warmwater' &&
+              toWaterDecisionView(f, 'trout', calendar).presence?.state === 'absent',
+          )
+          .map((f) => f.stream.id),
+      ),
+    [data.features, calendar],
+  );
   const filtered = data.features.filter((f) => {
     // Visibility is the decision model's call (H3): unknown-species waters
     // stay discoverable in trout mode but never read as confirmed trout;
@@ -252,6 +267,7 @@ export function RiverMapPage() {
   }, [data.features, species, calendar, selectedId, assessedOnly]);
   const sorted = [...filtered].sort(
     (a, b) =>
+      Number(offseasonIds.has(a.stream.id)) - Number(offseasonIds.has(b.stream.id)) ||
       Number(b.status !== 'no-data') - Number(a.status !== 'no-data') ||
       a.stream.name.localeCompare(b.stream.name),
   );
@@ -575,7 +591,12 @@ export function RiverMapPage() {
                       <small>{regionName(f.stream.regionId).split(' — ')[0]}</small>
                     </span>
                     <span className="water-row-meta">
-                      <span className="status-text">{decisionStatusText(decision, f)}</span>
+                      <span
+                        className="status-text"
+                        data-offseason={offseasonIds.has(f.stream.id) || undefined}
+                      >
+                        {decisionStatusText(decision, f)}
+                      </span>
                       <small>
                         {decision.displayMetric === 'trout-condition' && f.score !== null
                           ? f.score + ' / 100'
@@ -607,6 +628,7 @@ export function RiverMapPage() {
           visibleIds={visibleIds}
           showAllWaters={allWatersOn}
           assessedIds={assessedIds}
+          offseasonIds={offseasonIds}
           classOutlines={classOutlines}
           labelSpecies={labelSpecies}
           speciesMode={species}
@@ -780,8 +802,8 @@ export function RiverMapPage() {
               : coverageUnavailable
                 ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
                 : species === 'all'
-                  ? 'Good, Fair, and Poor describe trout waters only — and only while trout are in season there. Blue outlines mark trout waters, amber marks warmwater.'
-                  : 'Outlines mark trout waters; a water only shows a condition score while its season says trout are present. Unclassified waters say so instead of guessing.'}{' '}
+                  ? 'Blue outlines mark trout waters, amber marks warmwater; dimmed dashed waters hold no trout right now.'
+                  : 'Bright lines hold trout now. Dimmed dashed lines are trout waters out of season. Unclassified waters say so instead of guessing.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>
         </div>

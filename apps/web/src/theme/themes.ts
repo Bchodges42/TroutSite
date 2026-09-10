@@ -15,6 +15,11 @@ export interface MapPalette {
   /** Class-outline halo colors (2026-09-10): trout vs warmwater highlight. */
   troutOutline: string;
   warmOutline: string;
+  /** Flow-arrow glyph colors — core + rim chosen per theme so the arrow reads
+   * on both light and dark basemaps (owner direction 2026-09-10). */
+  flowArrow: string;
+  flowArrowHalo: string;
+  flowArrowTip: string;
   sulphur: string;
   selection: string;
   hover: string;
@@ -99,6 +104,9 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       warmwater: '#957246',
       troutOutline: '#1b7fa8',
       warmOutline: '#b06f14',
+      flowArrow: '#22343c',
+      flowArrowHalo: '#ffffff',
+      flowArrowTip: '#c2342c',
       sulphur: '#bd722c',
       selection: '#b34824',
       hover: '#233e35',
@@ -154,6 +162,9 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       warmwater: '#c4a477',
       troutOutline: '#6fd0e8',
       warmOutline: '#f2a94f',
+      flowArrow: '#f2f7f4',
+      flowArrowHalo: '#0d181c',
+      flowArrowTip: '#ff6b5e',
       sulphur: '#e5b773',
       selection: '#f0b478',
       hover: '#e5efdf',

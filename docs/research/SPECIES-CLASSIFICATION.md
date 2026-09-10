@@ -23,13 +23,13 @@ This file is the human-readable twin of `docs/research/proposed-waters-2026-09.y
 | classification | count |
 |---|---|
 | `trout-wild` | 13 |
-| `trout-stocked` | 82 |
+| `trout-stocked` | 83 |
 | `tailwater-trout` | 13 |
 | `warmwater` | 45 |
-| `unknown-need-evidence` | 12 |
+| `unknown-need-evidence` | 11 |
 | **total** | **165** |
 
-yearRound: true 80 · false 72 · ABSENT 13 · confidence: high 120 / medium 35 / low 10.
+yearRound: true 80 · false 73 · ABSENT 12 · confidence: high 120 / medium 36 / low 9.
 
 ## Corrections & conflicts with current catalog data (owner decisions needed)
 
@@ -93,7 +93,7 @@ yearRound: true 80 · false 72 · ABSENT 13 · confidence: high 120 / medium 35 
 | id | classification | species | yearRound | conf | evidence (1-line, access 2026-09-09) |
 |---|---|---|---|---|---|
 | `cumberland-river` | warmwater | main-stem bass/crappie/stripes; TN trout fishing lives in tributary tailwaters | true | high | Absence from all TWRA trout program lists; trout rivers named in TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) |
-| `east-fork-stones-river` | unknown-need-evidence | none documented (catalog 'wild rainbow upper fork' claim NOT corroborated; 1 angler report only) | — | low | Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) and TWRA wild-trout list; catalog note contradicted this pass <br>**FLAGS:** CONFLICT: catalog wild claim uncorroborated; re-review fishery:wild |
+| `east-fork-stones-river` | trout-stocked | rainbow (winter program, Dec-Mar) | false | medium | OWNER-CONFIRMED 2026-09-10: winter-stocked (Benjamin); TWRA line-item not captured this pass <br>**FLAGS:** OWNER-CONFIRMED 2026-09-10; VERIFY: capture TWRA schedule row |
 | `fletchers-fork` | trout-stocked | rainbow + brown (Fort Campbell; post permit + TN license + trout stamp) | false | high | TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) verbatim 'Fletcher's Fork... stocked with rainbow and brown trout' + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) Seasonal row |
 | `harpeth-river` | warmwater | none claimed (VERIFIED winter rainbow program Dec-Mar at Franklin/Eastern Flank + L.L. Burns Park) | false | high | TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Williamson/Harpeth River at Eastern Flank Battle Park) + Williamson Source/Scene coverage <br>**FLAGS:** owner-ruled warmwater 2026-09-04; tension: real Dec-Mar program verified |
 | `j-percy-priest-lake` | warmwater | bass/crappie; the winter trout site is the TW / Stones River tailwater below the dam | true | high | TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row 'J. Percy Priest TW / Stones River' = tailwater reach, not the lake; no lake trout row |
@@ -294,7 +294,6 @@ yearRound: true 80 · false 72 · ABSENT 13 · confidence: high 120 / medium 35 
 
 ## Covering the 'unknown-need-evidence' rows — exactly what is missing
 
-- **east-fork-stones-river**: Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) and TWRA wild-trout list; catalog note contradicted this pass; flags: CONFLICT: catalog wild claim uncorroborated; re-review fishery:wild
 - **caney-fork-upper**: No stocking row, no wild-list entry, no where-to-fish trout text found
 - **shoal-creek**: Schedule absence verified; confirm whether this atlas id IS East Fork Shoal Creek or a different reach; flags: identity check needed
 - **clear-creek-obed**: TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) verbatim (Anderson Co Clear Creek) + NPS Obed fishing page lists no trout; flags: reg disambiguation verified

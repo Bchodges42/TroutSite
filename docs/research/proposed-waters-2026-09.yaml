@@ -226,17 +226,17 @@ waters:
     citation: "Absence from all TWRA trout program lists; trout rivers named in TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) (access 2026-09-09)"
     speciesDetail: "main-stem bass/crappie/stripes; TN trout fishing lives in tributary tailwaters"
   - id: east-fork-stones-river
-    classification: unknown-need-evidence
-    fishery: absent
-    species: absent
-    yearRound: absent
-    stockingProgram: false
-    confidence: low
-    citation: "Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) and TWRA wild-trout list; catalog note contradicted this pass (access 2026-09-09)"
-    speciesDetail: "none documented (catalog 'wild rainbow upper fork' claim NOT corroborated; 1 angler report only)"
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "OWNER-CONFIRMED 2026-09-10: winter-stocked (Benjamin); TWRA line-item not captured this pass (access 2026-09-09)"
+    speciesDetail: "rainbow (winter program, Dec-Mar)"
     flags:
-      - "CONFLICT: catalog wild claim uncorroborated"
-      - "re-review fishery:wild"
+      - "OWNER-CONFIRMED 2026-09-10"
+      - "VERIFY: capture TWRA schedule row"
   - id: fletchers-fork
     classification: trout-stocked
     fishery: stocked

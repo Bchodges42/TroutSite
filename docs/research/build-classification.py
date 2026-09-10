@@ -71,8 +71,8 @@ r("yale-road-park-lake","trout-stocked","rainbow (winter)",False,"high",
 # --- MIDDLE / NASHVILLE (tn-middle-nashville, 13) -----------------------------
 r("cumberland-river","warmwater","main-stem bass/crappie/stripes; TN trout fishing lives in tributary tailwaters",True,"high",
   "Absence from all TWRA trout program lists; trout rivers named in "+PLAN)
-r("east-fork-stones-river","unknown-need-evidence","none documented (catalog 'wild rainbow upper fork' claim NOT corroborated; 1 angler report only)",None,"low",
-  "Absence from "+TWRA_ST+" and TWRA wild-trout list; catalog note contradicted this pass",["CONFLICT: catalog wild claim uncorroborated","re-review fishery:wild"])
+r("east-fork-stones-river","trout-stocked","rainbow (winter program, Dec-Mar)",False,"medium",
+  "OWNER-CONFIRMED 2026-09-10: winter-stocked (Benjamin); TWRA line-item not captured this pass",["OWNER-CONFIRMED 2026-09-10","VERIFY: capture TWRA schedule row"])
 r("fletchers-fork","trout-stocked","rainbow + brown (Fort Campbell; post permit + TN license + trout stamp)",False,"high",
   f"{TWRA_RG} verbatim 'Fletcher's Fork... stocked with rainbow and brown trout' + {TWRA_ST} Seasonal row")
 r("harpeth-river","warmwater","none claimed (VERIFIED winter rainbow program Dec-Mar at Franklin/Eastern Flank + L.L. Burns Park)",False,"high",
@@ -440,7 +440,9 @@ cal(["beech-lake","cameron-brown-lake","covington-fbc-pond","edmund-orgill-lake"
     note="TWRA winter put-and-take (Dec–Feb); fish do not hold over summer")
 cal(["stones-river","west-fork-stones-river","red-river-clarksville","sulfur-fork-creek",
      "big-rock-creek","boiling-fork-creek","mccutcheon-creek","sinking-creek-wilson",
-     "mossy-creek-jefferson","elk-river-lower"], M_WINTER, note="Winter program (Dec–Feb/Mar stockings)")
+     "mossy-creek-jefferson","elk-river-lower","east-fork-stones-river"], M_WINTER,
+    note="Winter program (Dec–Feb/Mar stockings)")
+cal(["east-fork-stones-river"], M_WINTER, note="Winter-stocked (owner-confirmed 2026-09-10); TWRA line-item to capture")
 cal(["harpeth-river"], [12, 1, 2, 3], note="Warmwater river; TWRA winter trout Dec–Mar (owner-ruled warmwater)")
 # spring / seasonal circuits
 cal(["barren-fork-river","north-prong-barren-fork","calfkiller-river","collins-river","rocky-river",
