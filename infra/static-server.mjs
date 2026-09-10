@@ -97,22 +97,33 @@ const server = http.createServer((req, res) => {
   }
 
   const pathname = decodeURIComponent(url.pathname);
+  // SECURITY: every candidate path must resolve INSIDE distDir. decodeURIComponent
+  // turns %2e%2e%2f into ../, and path.join alone happily escapes the root —
+  // without this containment check the server reads arbitrary files as the
+  // service user (proven 2026-09-10 audit: GET /..%2Fsecret.txt leaked a file
+  // above dist). contains() is checked before every existsSync/serve.
+  const contains = (p) => {
+    const resolved = path.resolve(p);
+    return resolved === distDir || resolved.startsWith(distDir + path.sep);
+  };
   let filePath = path.join(distDir, pathname);
-  if (existsSync(filePath) && statSync(filePath).isDirectory()) {
+  if (contains(filePath) && existsSync(filePath) && statSync(filePath).isDirectory()) {
     filePath = path.join(filePath, 'index.html');
   }
-  if (!existsSync(filePath) && !path.extname(filePath)) {
+  if (contains(filePath) && !existsSync(filePath) && !path.extname(filePath)) {
     // Frozen extensionless snapshot routes (e.g. GET /v1/streams, the stream
     // catalog) are shipped as <name>.json — resolve them before any fallback.
     const asJson = filePath + '.json';
-    if (existsSync(asJson)) filePath = asJson;
+    if (contains(asJson) && existsSync(asJson)) filePath = asJson;
   }
-  if (!existsSync(filePath)) {
-    // SPA fallback is for NAVIGATION only: a data/asset fetch must get a real
-    // 404, never index.html with status 200 (a JSON parse of HTML reads as a
-    // broken API on a fresh browser whose Dexie cache is empty).
+  if (!contains(filePath) || !existsSync(filePath)) {
+    // Outside the root (traversal attempt) or missing: identical response — a
+    // traversal probe learns nothing about the filesystem. SPA fallback is for
+    // NAVIGATION only: a data/asset fetch must get a real 404, never
+    // index.html with status 200 (a JSON parse of HTML reads as a broken API
+    // on a fresh browser whose Dexie cache is empty).
     const acceptsHtml = String(req.headers.accept ?? '').includes('text/html');
-    if (!acceptsHtml) {
+    if (!acceptsHtml || !contains(path.join(distDir, 'index.html'))) {
       res.writeHead(404, { 'content-type': 'application/json' });
       res.end(JSON.stringify({ error: `not found: ${url.pathname}` }));
       return;
@@ -123,5 +134,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, '127.0.0.1', () => {
-  console.log(`static server on http://127.0.0.1:${port} → ${distDir}${PROXY ? ` (proxy ${PROXY.prefix} → :${PROXY.port})` : ''}`);
+  // address().port is the REAL bound port (port 0 = ephemeral, used by tests).
+  const bound = server.address()?.port ?? port;
+  console.log(`static server on http://127.0.0.1:${bound} → ${distDir}${PROXY ? ` (proxy ${PROXY.prefix} → :${PROXY.port})` : ''}`);
 });

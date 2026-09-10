@@ -102,11 +102,15 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   // without touching the built app. Each tree mounts at its own prefix —
   // two prefix:'/' statics collide (find-my-way '/*' route clash, trout-api
   // crash-loop — found at integration pm2 verification, §12 #10).
-  const noStore = (res: { setHeader: (k: string, v: string) => void }, path: string): void => {
+  // @fastify/static v10 hands setHeaders a Fastify Reply (.header), older
+  // majors handed the raw ServerResponse (.setHeader) — support both so the
+  // no-store rule survives dependency majors.
+  const noStore = (res: { setHeader?: (k: string, v: string) => void; header?: (k: string, v: string) => void }, path: string): void => {
     // The service worker + Dexie are the offline layer; HTTP caching would
     // masquerade as live data (apps/web/vite.shared.ts note).
     if (/[/\\](v1|content)[/\\]/.test(path)) {
-      res.setHeader('Cache-Control', 'no-store');
+      if (typeof res.setHeader === 'function') res.setHeader('Cache-Control', 'no-store');
+      else res.header?.('Cache-Control', 'no-store');
     }
   };
   if (options.webPublicDir && existsSync(join(options.webPublicDir, 'v1'))) {
@@ -136,11 +140,15 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     app.register(fastifyStatic, {
       root: options.webDistDir,
       prefix: '/',
-      setHeaders: (res, path) => {
+      setHeaders: (res: { setHeader?: (k: string, v: string) => void; header?: (k: string, v: string) => void }, path) => {
+        const set = (k: string, v: string) => {
+          if (typeof res.setHeader === 'function') res.setHeader(k, v);
+          else res.header?.(k, v);
+        };
         if (/[/\\]assets[/\\]/.test(path)) {
-          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+          set('Cache-Control', 'public, max-age=31536000, immutable');
         } else if (path.endsWith('.html')) {
-          res.setHeader('Cache-Control', 'no-cache');
+          set('Cache-Control', 'no-cache');
         }
       },
     });

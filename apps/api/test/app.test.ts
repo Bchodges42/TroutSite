@@ -70,6 +70,38 @@ describe('static read path (ADR 0004, integration §12 #10)', () => {
     expect(shell.body).toContain('trout-pwa');
   });
 
+  it('refuses path traversal out of the static roots (audit 2026-09-10)', async () => {
+    // A file OUTSIDE both served roots must be unreachable through every
+    // encoded-../ shape (pins the @fastify/static >=10.1.1 guard + our own
+    // roots; the raw infra/static-server.mjs bug is covered by
+    // infra/static-server.test.mjs).
+    writeFileSync(join(dir, 'secret-outside-roots.txt'), 'TOO_SECRET_TO_SERVE');
+    app = buildApp({
+      logger: false,
+      webPublicDir: join(dir, 'public'),
+      webDistDir: join(dir, 'dist'),
+    });
+    await app.ready();
+    // The router (@fastify/static >=10.1.1 + find-my-way) normalizes or rejects
+    // every ../ shape; depending on shape the response is a 403/404 or the PWA
+    // shell fallback. The SECURITY property under test: the outside-the-roots
+    // file never ships — no 200 may carry file content, only the HTML shell.
+    const attempts = [
+      '/v1/../secret-outside-roots.txt',
+      '/v1/%2e%2e/secret-outside-roots.txt',
+      '/v1/..%2fsecret-outside-roots.txt',
+      '/content/..%2F..%2Fsecret-outside-roots.txt',
+      '/..%2Fsecret-outside-roots.txt',
+    ];
+    for (const url of attempts) {
+      const res = await app.inject({ method: 'GET', url, headers: { accept: 'application/json' } });
+      expect(res.body).not.toContain('TOO_SECRET');
+      if (res.statusCode === 200) {
+        expect(res.headers['content-type']).toContain('text/html');
+      }
+    }
+  });
+
   it('falls back to the PWA shell for client routes but 404s API paths', async () => {
     app = buildApp({
       logger: false,

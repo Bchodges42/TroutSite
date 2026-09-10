@@ -29,11 +29,19 @@ const server = http.createServer((req, res) => {
   const url = new URL(req.url ?? '/', 'http://localhost');
   let filePath = path.join(distDir, decodeURIComponent(url.pathname));
 
+  // SECURITY: containment — decoded ../ must never escape distDir (audit fix
+  // 2026-09-10; mirrors infra/static-server.mjs). Lighthouse-CI-only server,
+  // but same bug class, same fix.
+  const contains = (p) => {
+    const resolved = path.resolve(p);
+    return resolved === distDir || resolved.startsWith(distDir + path.sep);
+  };
+
   // Directory → index.html; fall back to SPA-ish 404 page for the app shell.
-  if (existsSync(filePath) && statSync(filePath).isDirectory()) {
+  if (contains(filePath) && existsSync(filePath) && statSync(filePath).isDirectory()) {
     filePath = path.join(filePath, 'index.html');
   }
-  if (!existsSync(filePath)) {
+  if (!contains(filePath) || !existsSync(filePath)) {
     filePath = path.join(distDir, url.pathname.endsWith('/') ? 'index.html' : '404.html');
   }
 
