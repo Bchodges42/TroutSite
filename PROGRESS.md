@@ -1,3 +1,57 @@
+Base commit: `b301570` (user-supplied source snapshot; no upstream `.git` metadata or `origin` remote was present; local `origin/main` reference created for this isolated lane).
+
+# SESSION HARDEN — origin host security (2026-09-11)
+
+Clone: `/Users/ben/Downloads/TroutSite-harden-origin-host` (isolated lane).
+Branch: `harden/origin-host`. Commit identity: `Bhodges42`.
+Production status: **not live**. The owner must merge this branch and allow the
+WinSW host's hourly self-deploy to ship it; all post-fix probes below are local.
+The branch cannot be pushed from this workspace because the supplied snapshot has
+no GitHub remote; no remote URL was invented.
+
+## Hardening status
+
+- [x] H1: optional `WATCHDOG_TOKEN` gates `/healthz` with a constant-time header
+      comparison and generic 401; `/healthz` always sends `Cache-Control: no-store`.
+- [x] H2: Fastify `onSend` security headers on all responses; CSP intentionally
+      deferred because neither supplied web template contains a CSP meta tag.
+- [x] H3: static-server final-path containment check, malformed-escape handling,
+      GET/HEAD method allowlist, and traversal regression tests.
+- [x] H4: Cloudflare rate-limit rule recorded as an owner action in `infra/RUNBOOK.md`.
+- [x] New findings: generic portal auth errors, non-GET SPA fallback returning 200,
+      and direct `/v1/streams.json` exposure fixed in code; full evidence is in
+      `docs/HARDEN-AUDIT.md`.
+- [ ] Owner actions: set `WATCHDOG_TOKEN` in WinSW/task environments and update
+      `infra/watchdog.sh` / `infra/verify-site.sh`; create the Cloudflare rule;
+      merge + self-deploy; remove/redact expired third-party JWTs in captured
+      Tennessee fixtures and review their original history.
+
+## Verification evidence
+
+- Public before-fix probes on 2026-09-11: `/healthz` returned HTTP 200 with
+  `conditions`/`jobs` telemetry and no `Cache-Control`; public responses lacked
+  all five requested security headers; `POST /healthz` returned HTTP 200 SPA HTML;
+  `/v1/streams.json` returned HTTP 200; missing and malformed portal auth returned
+  different 401 bodies. Exact probes and responses: `docs/HARDEN-AUDIT.md`.
+- Local after-fix API (`WATCHDOG_TOKEN=harden-local-token pnpm --filter api dev`):
+  missing/wrong health token → `401 {"error":"unauthorized"}` plus all headers;
+  correct token → `200` plus `Cache-Control: no-store`; `POST /healthz` → `405`
+  with `Allow: GET, HEAD`; `/v1/streams` remains the contract route while
+  `/v1/streams.json` → `404`.
+- Local static-server before/after reproduction: base snapshot served
+  `/%2e%2e%2fsecret.txt` and `/..%2fsecret.txt` as HTTP 200 with the outside
+  file; hardened server returns HTTP 404 for both and for overlong nesting.
+- `pnpm --filter api lint` — green.
+- `pnpm --filter api test` — 21 files / 146 tests green.
+- `pnpm --filter api build` — green.
+- `pnpm -r test` — green across contracts (97), content (11), API (146),
+  admin (19), and web (239 passed / 1 skipped).
+- `pnpm -r lint` — package lint is green through marketing/API, but the
+  workspace gate remains blocked by 48 pre-existing lint findings in `e2e/**`
+  (browser globals, explicit `any`, and unused variables); those files are
+  outside this hardening lane. The unrelated baseline `packages/ui` unused
+  import was removed so the package itself is clean.
+
 # SESSION 3 — Product / UX / Growth (2026-09-08)
 
 Base commit: `6d0befe` (origin/main, recovery push 2026-09-08).

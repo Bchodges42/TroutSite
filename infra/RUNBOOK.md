@@ -211,10 +211,51 @@ scripts now own that control loop:
 
 | Script | Job |
 |---|---|
-| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/streams.json`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. |
+| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. **Owner action before deploy:** remove its legacy `/v1/streams.json` probe and add the watchdog header described below. |
 | `infra/archive-snapshots.sh` | Snapshot the currently-served trees → `backups/snapshots-last-good.tar.gz` (refuses to archive an empty/broken state). |
 | `infra/restore-snapshots.sh` | Swap the archived trees back in (staging + atomic swap). This alone heals the read path. |
 | `infra/watchdog.sh` | Hourly loop: verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. |
+
+### Origin API hardening (2026-09-11)
+
+- `/healthz` always sends `Cache-Control: no-store`. When `WATCHDOG_TOKEN` is
+  set, every caller must send the exact `x-watchdog-token: <value>` header;
+  missing or incorrect values receive `401 {"error":"unauthorized"}`. When
+  the variable is unset, local development keeps the historical unauthenticated
+  behavior. Store the real value only in the WinSW `TroutSite` service
+  environment (or the task environment), never in `.env.example`, git, or logs.
+- Before deploying this branch, the owner must update `infra/watchdog.sh` and
+  `infra/verify-site.sh` to read the same `WATCHDOG_TOKEN` task environment and
+  send the header on their `/healthz` requests. Update the WinSW service env,
+  restart `TroutSite`, then run `bash infra/verify-site.sh --url
+  http://127.0.0.1:8787` and the public probe. The scheduled tasks must inherit
+  the token; otherwise the watchdog will report `401` and cannot heal.
+- The direct implementation file `/v1/streams.json` is intentionally not a
+  public endpoint; callers use `/v1/streams`. The legacy verifier probe must be
+  removed before the first deploy of this hardening branch or it will fail a
+  healthy deployment.
+- The Fastify origin sends `Strict-Transport-Security: max-age=63072000`,
+  `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`,
+  `Referrer-Policy: strict-origin-when-cross-origin`, and
+  `Permissions-Policy: geolocation=(self), camera=(), microphone=()` on every
+  response. CSP is deliberately not sent yet: the supplied web templates have
+  no CSP meta tag to port safely; add and verify a shared CSP policy before
+  enabling a response header.
+
+### Cloudflare rate-limit owner action (H4)
+
+In the Cloudflare dashboard for the `tntechclimb.com` zone, create a Rate
+Limiting Rule with this request expression:
+
+```text
+http.host eq "trout.tntechclimb.com" and starts_with(http.request.uri.path, "/v1/portal/")
+```
+
+Set the threshold to **10 requests per 1 minute per IP** and the action to
+**Block** (or the closest equivalent available on the account plan). Deploy the
+rule in the dashboard, then verify a burst against `/v1/portal/me` and confirm
+normal authorized portal traffic still works. This is intentionally not changed
+from the repository.
 
 `deploy.sh` is wired into the same loop: it **archives the currently-served trees
 before** seed/ingest/snapshots run, and if the final verification fails it
