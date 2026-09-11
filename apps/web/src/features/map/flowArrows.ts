@@ -124,27 +124,29 @@ export function makeFlowArrowImage(
   if (!ctx) return null;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-  // tail-heavy triangle so the glyph reads as flow, not a map pin
+  // Slim arrowhead sized to sit INSIDE the selected river band, not on top of
+  // it: at icon-size ~0.25 the glyph renders ~8 px on a ~9 px selected
+  // corridor, reading as flow inside the channel rather than a break in it.
   const triangle = () => {
     ctx.beginPath();
-    ctx.moveTo(8, 9);
+    ctx.moveTo(8, 12);
     ctx.lineTo(36, 22);
-    ctx.lineTo(8, 35);
+    ctx.lineTo(8, 32);
     ctx.closePath();
   };
   // halo first: a thin dark rim around the paper core reads as a crisp
   // arrow at corridor scale — a fat halo just renders as a blob
   ctx.strokeStyle = halo;
-  ctx.lineWidth = 6;
+  ctx.lineWidth = 5;
   triangle();
   ctx.stroke();
   ctx.fillStyle = halo;
   ctx.fill();
   ctx.fillStyle = ink;
   ctx.beginPath();
-  ctx.moveTo(11, 12);
-  ctx.lineTo(31.5, 22);
-  ctx.lineTo(11, 32);
+  ctx.moveTo(11, 14.5);
+  ctx.lineTo(32, 22);
+  ctx.lineTo(11, 29.5);
   ctx.closePath();
   ctx.fill();
   const image = ctx.getImageData(0, 0, size, size);

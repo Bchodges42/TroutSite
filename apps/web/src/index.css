@@ -673,6 +673,25 @@ a {
   color: var(--ui-accent);
   border-color: var(--ui-accent);
 }
+/* Desktop surfaces the same mode tools the narrow layout has (they were
+ * previously reachable only below 901px). Sits under the map view label,
+ * clear of the control cluster at the right. */
+.desktop-explore {
+  display: block;
+  position: absolute;
+  top: 54px;
+  left: 14px;
+  z-index: 30;
+}
+.desktop-map-tools {
+  display: flex;
+  gap: 8px;
+}
+.desktop-map-tools .map-tool {
+  min-height: 38px;
+  font-size: 13px;
+  padding: 7px 12px;
+}
 .map-view-label {
   font-size: 12px;
   letter-spacing: 0.12em;

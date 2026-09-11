@@ -604,13 +604,16 @@ export function atlasStyle(
         minzoom: 6.5,
         layout: {
           'symbol-placement': 'line',
-          // ~1 arrow every 130 screen px — readable cadence without clutter.
-          'symbol-spacing': 130,
+          // ~1 arrow every 90 screen px — an unmistakable cadence along the
+          // selected corridor without crowding tight bends.
+          'symbol-spacing': 75,
           'icon-image': FLOW_ARROW_ICON,
           'icon-rotation-alignment': 'map',
           'icon-allow-overlap': true,
           'icon-ignore-placement': true,
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.55, 11, 1.0],
+          // sized to the selected corridor: the glyph renders ~8-11 px —
+          // inside the amber selection band, never as a break in the line.
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.26, 11, 0.4],
         },
         paint: { 'icon-opacity': 1 },
       },

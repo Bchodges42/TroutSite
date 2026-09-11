@@ -676,10 +676,12 @@ export function RiverMapPage() {
           }
         />
         {/* The mode row belongs to the map state only. In atlas/inspector states
-        the panel owns navigation and search, keeping the map surface calm. */}
-        {mobileView === 'map' && (
-          <div className="mobile-explore">
-            <div className="mobile-map-tools">
+        the panel owns navigation and search, keeping the map surface calm.
+        Desktop surfaces the same tools (they were previously unreachable at
+        full width — the species/mode chips lived only in the narrow layout). */}
+        {(desktop || mobileView === 'map') && (
+          <div className={desktop ? 'desktop-explore' : 'mobile-explore'}>
+            <div className={desktop ? 'desktop-map-tools' : 'mobile-map-tools'}>
               <button
                 className="map-tool"
                 aria-pressed={mode === 'conditions'}
