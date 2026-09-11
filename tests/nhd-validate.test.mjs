@@ -48,7 +48,7 @@ const TERMINI_DRAFT_DIR = '/tmp/geovalid2-termini';
 
 // --- termini grammar (docs/NHD-CONVENTIONS.md §6.2) ---------------------------
 
-test('up grammar accepts dam and headwater only', () => {
+test('up grammar accepts dam, headwater, and the v2 point/confluence stops', () => {
   assert.equal(isValidUpSpec('headwater'), true);
   assert.equal(isValidUpSpec('dam:Norris Lake'), true);
   assert.equal(isValidUpSpec('dam:J. Percy Priest Lake'), true);
@@ -60,8 +60,11 @@ test('up grammar accepts dam and headwater only', () => {
   assert.equal(isValidUpSpec('dam:'), false);
   assert.equal(isValidUpSpec('dam: Norris Lake'), false);
   assert.equal(isValidUpSpec('mouth'), false);
-  assert.equal(isValidUpSpec('confluence:Obey River'), false);
-  assert.equal(isValidUpSpec('point:36.2,-84.1'), false);
+  // engine v2 upstream stops (mirror of the downstream rules) are valid
+  assert.equal(isValidUpSpec('confluence:Clear Fork'), true);
+  assert.equal(isValidUpSpec('confluence:'), false);
+  assert.equal(isValidUpSpec('point:36.2,-84.1'), true);
+  assert.equal(isValidUpSpec('point:36.2'), false);
   assert.equal(isValidUpSpec(null), false);
   assert.equal(isValidUpSpec(undefined), false);
 });
