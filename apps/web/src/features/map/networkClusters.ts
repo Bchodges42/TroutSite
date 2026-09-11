@@ -177,10 +177,21 @@ function loadManifest(): Promise<NetworkManifest | null> {
   return manifestCache;
 }
 
+/**
+ * Cluster file URL. All cluster files ship flat at /atlas/network/<id>.geojson.
+ * The shipped GEONET manifest writes `file` as `network/<id>.geojson` (atlas-root
+ * relative), the mock wrote `<id>.geojson` — resolve the basename so both load
+ * (GEOQA: the literal path 404'd and the feature failed closed statewide).
+ */
+export function clusterFileUrl(file: string): string {
+  const base = file.replace(/^.*\//, '');
+  return `/atlas/network/${base}`;
+}
+
 function loadCluster(cluster: NetworkManifestCluster) {
   let promise = dataCache.get(cluster.id);
   if (!promise) {
-    const url = '/atlas/network/' + cluster.file.replace(/^\/+/, '');
+    const url = clusterFileUrl(cluster.file);
     fetchLog.push(url);
     promise = fetch(url)
       .then((res) => (res.ok ? res.json() : null))

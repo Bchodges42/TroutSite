@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   bboxesIntersect,
+  clusterFileUrl,
   clustersForViewport,
   clustersToRelease,
   paddedBBox,
@@ -60,6 +61,13 @@ describe('parseNetworkManifest (trout/nhd-network/1)', () => {
     const manifest = parseNetworkManifest(shipped);
     expect(manifest).not.toBeNull();
     expect(manifest?.clusters[0]?.bounds).toEqual([-81.73768, 36.12577, -80.12403, 37.29861]);
+  });
+
+  it('resolves cluster file URLs from both manifest file-path conventions', () => {
+    // Shipped GEONET manifest: atlas-root relative ('network/<id>.geojson').
+    expect(clusterFileUrl('network/0505.geojson')).toBe('/atlas/network/0505.geojson');
+    // Pre-integration mock: already relative to /atlas/network/.
+    expect(clusterFileUrl('0513.geojson')).toBe('/atlas/network/0513.geojson');
   });
 
   it('rejects wrong or missing schema wholesale', () => {
