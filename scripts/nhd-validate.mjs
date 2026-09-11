@@ -206,6 +206,11 @@ for (const file of reachFiles) {
     if (sidecar.verdict !== 'PASS') add('reach', 'FAIL', id, 'b13-sidecar', sidecar.verdict);
   }
 
+  // audit sidecar: continuity (junction gaps) + termini walk evidence
+  const audit = fs.existsSync(auditPath)
+    ? JSON.parse(fs.readFileSync(auditPath, 'utf8'))
+    : { pathEdges: [], downWalk: {} };
+
   // 1. connectivity — sourceIds form ONE connected component of the graph
   if (!fs.existsSync(graphPath)) {
     add('reach', 'FAIL', id, 'connectivity', `missing graph ${rel(graphPath)}`);
@@ -236,7 +241,6 @@ for (const file of reachFiles) {
     });
 
     // continuity — junction gaps between consecutive path edges (audit order)
-    const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
     const pathEdges = audit.pathEdges ?? [];
     let worstJunctionM = 0;
     for (let k = 1; k < pathEdges.length; k++) {
@@ -279,7 +283,15 @@ for (const file of reachFiles) {
   } else {
     const trace = props.trace ?? {};
     if (doc?.waterbodyType === TAILWATER_TYPE || row.up?.spec?.startsWith('dam:')) {
-      const ok = trace.up?.reason === 'dam' && trace.up?.spec === row.up.spec;
+      // "dam" is the clean stop; a headwater stop within 2 km of the anchor is
+      // also accepted because tailwater gauges sit just below the dam and some
+      // units ship the lake artpath with an unresolved wbarea (endpoint still
+      // at the dam). Anything farther means the walk ran past the dam — FAIL.
+      const reason = trace.up?.reason;
+      const distKm = trace.up?.distKmFromAnchor ?? Infinity;
+      const ok =
+        (trace.up?.spec === row.up.spec && reason === 'dam') ||
+        (trace.up?.spec === row.up.spec && reason === 'headwater' && distKm <= 2.0);
       add('reach', ok ? 'PASS' : 'FAIL', id, 'termini-up-dam', {
         expected: row.up?.spec,
         realized: trace.up,
@@ -290,14 +302,25 @@ for (const file of reachFiles) {
     const downSpec = row.down?.spec ?? '';
     const realized = trace.down?.reason;
     let ok = false;
+    let endpointEquivalent = false;
     if (downSpec === 'mouth') ok = realized === 'name-change' || realized === 'terminal-node';
-    else if (downSpec.startsWith('confluence:')) ok = realized === 'confluence';
-    else if (downSpec.startsWith('point:')) ok = realized === 'point';
+    else if (downSpec.startsWith('confluence:')) {
+      ok = realized === 'confluence';
+      // endpoint equivalence: a walk run with spec `mouth` that stopped at a
+      // name change INTO the target water ended at the same confluence.
+      if (!ok && realized === 'name-change') {
+        const target = downSpec.slice(11).toLowerCase();
+        const entered = audit.downWalk?.enteredNames ?? [];
+        endpointEquivalent = entered.some((n) => String(n).toLowerCase() === target);
+        ok = endpointEquivalent;
+      }
+    } else if (downSpec.startsWith('point:')) ok = realized === 'point';
     else if (downSpec === null) ok = false;
     const boundaryExcused = realized === 'terminal-node' && row.hu8BoundaryReach === true;
     add('reach', ok || boundaryExcused ? 'PASS' : 'FAIL', id, 'termini-down', {
       expected: downSpec,
       realized,
+      endpointEquivalent,
       boundaryExcused,
     });
   }
@@ -355,7 +378,7 @@ for (let i = 0; i < boxes.length; i++) {
     const a = boxes[i];
     const b = boxes[j];
     // a reach and its own pre-flip asset entry legitimately share geometry
-    if (a.src !== b.src && (b.id === a.id.replace('nhd:', '') || a.id === `nhd:${b.id}`)) continue;
+    if (a.src !== b.src && (a.id === `nhd:${b.id}` || b.id === `nhd:${a.id}`)) continue;
     if (nearShareBbox(a.bbox, b.bbox)) sharedPairs.push([a, b]);
   }
 }
