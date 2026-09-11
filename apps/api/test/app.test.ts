@@ -61,6 +61,21 @@ describe('GET /healthz', () => {
     const res = await app.inject({ method: 'GET', url: '/nope' });
     expect(res.statusCode).toBe(404);
   });
+
+  it('does not let non-GET methods reach the SPA fallback', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'trout-fallback-test-'));
+    writeFileSync(join(dir, 'index.html'), '<html>shell</html>');
+    const withDist = buildApp({ logger: false, webDistDir: dir });
+    try {
+      const res = await withDist.inject({ method: 'POST', url: '/healthz' });
+      expect(res.statusCode).toBe(405);
+      expect(res.headers.allow).toBe('GET, HEAD');
+      expect(res.json()).toEqual({ error: 'method not allowed' });
+    } finally {
+      await withDist.close();
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
 });
 
 describe('static read path (ADR 0004, integration §12 #10)', () => {

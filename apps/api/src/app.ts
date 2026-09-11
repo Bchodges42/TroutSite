@@ -182,6 +182,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   if (distIndex) {
     app.setNotFoundHandler((req, reply) => {
       const url = req.url.split('?')[0] ?? '/';
+      if (req.method !== 'GET' && req.method !== 'HEAD') {
+        return reply.code(405).header('Allow', 'GET, HEAD').send({ error: 'method not allowed' });
+      }
       if (url.startsWith('/v1/') || url === '/v1' || url.startsWith('/content/') || url === '/content') {
         return reply.code(404).send({ error: 'not found' });
       }
