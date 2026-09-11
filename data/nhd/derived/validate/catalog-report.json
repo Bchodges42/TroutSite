@@ -1,0 +1,356 @@
+{
+  "generatedAt": "2026-09-11T18:18:58.299Z",
+  "lane": "GEOVALID-2",
+  "suite": "scripts/nhd-validate.mjs",
+  "mode": {
+    "strict": false,
+    "hu8Filter": "all"
+  },
+  "verdict": "PASS (pending fan-out)",
+  "counts": {
+    "catalogWaters": 148,
+    "flowingWaters": 105,
+    "stillwaters": 43,
+    "tracedReaches": 1,
+    "pending": 104,
+    "fails": 0,
+    "reviews": 0,
+    "sharedBboxPairs": 1,
+    "assetBboxOverlapsInfo": 392,
+    "terminiAutoDerivable": 30,
+    "terminiHumanReview": 75
+  },
+  "findings": [
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clinch-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 184,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clinch-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clinch-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Norris Lake",
+        "realized": {
+          "spec": "dam:Norris Lake",
+          "reason": "dam",
+          "terminus": [
+            -84.092473,
+            36.223859
+          ],
+          "distKmFromAnchor": 0.61
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clinch-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clinch-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 91.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clinch-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 15606,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "bbox",
+      "severity": "INFO",
+      "id": "watauga-river-wilbur-reach|wilbur-lake",
+      "check": "stillwater-adjacent-reach",
+      "evidence": {
+        "a": [
+          -82.127075,
+          36.329939,
+          -82.114982,
+          36.341158
+        ],
+        "b": [
+          -82.127314,
+          36.329939,
+          -82.114549,
+          36.341544
+        ],
+        "note": "a reach bounding its reservoir is geography, not duplication"
+      }
+    }
+  ],
+  "b13": [
+    {
+      "id": "boone-tailwater",
+      "cls": "duplicate",
+      "verdict": "FIXED",
+      "basis": "linework distinct from every other water; duplicate class closed",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "cane-creek",
+      "cls": "misjoined",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original misjoined signature (-87.789 35.535 -85.304 35.788 -> -87.788792 35.535389 -85.303799 35.815492); WAIVER — GEO-AUDIT: CONFIRMED but deliberate — the catalog entry intentionally covers both stocked Cane Creeks (Bledsoe/Van Buren + Hickman/Perry bands); splitting is a content-lane catalog change. The NHD trace pipeline cannot reproduce the merge (one anchor per water, one connected component enforced), and the bbox-uniqueness/multi-longitude gates keep the class closed.",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "clinch-river",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-83.349 36.447 -83.256 36.499 -> -84.5338 35.8632 -82.89 36.5925); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
+    },
+    {
+      "id": "duck-river-lower",
+      "cls": "misjoined",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -87.032699 35.464853 -86.462645 35.633044)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "duck-river-tailwater",
+      "cls": "misjoined",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -86.464112 35.443193 -86.24352 35.482591)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "elk-river-lower",
+      "cls": "duplicate",
+      "verdict": "FIXED",
+      "basis": "linework distinct from every other water; duplicate class closed",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "elk-river",
+      "cls": "misjoined",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original misjoined signature (-87.006 35.004 -85.834 35.358 -> -86.995859 35.004285 -86.27616 35.197196)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "forge-creek-johnson",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-81.771 36.442 -81.758 36.453 -> -81.7856 36.4331 -81.7023 36.5206)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "french-broad-river",
+      "cls": "missing",
+      "verdict": "FIXED",
+      "basis": "line geometry present (367 vertices, 158.5 km)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "ft-patrick-henry-tailwater",
+      "cls": "duplicate",
+      "verdict": "FIXED",
+      "basis": "linework distinct from every other water; duplicate class closed",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "hiwassee-river",
+      "cls": "missing",
+      "verdict": "FIXED",
+      "basis": "line geometry present (273 vertices, 107.4 km)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "leconte-creek",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-83.523 35.686 -83.5 35.71 -> -83.522678 35.6572 -83.4475 35.709566)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "mossy-creek-jefferson",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-83.513 36.121 -83.474 36.129 -> -83.512886 36.0944 -83.4738 36.1598)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "obey-river",
+      "cls": "missing",
+      "verdict": "FIXED",
+      "basis": "line geometry present (34 vertices, 11.97 km)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "ocoee-river",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 34.9922 -84.3805 35.2064)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "parksville-tailwater",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 35.1269 -84.67 35.1899)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "south-holston-river",
+      "cls": "duplicate",
+      "verdict": "FIXED",
+      "basis": "linework distinct from every other water; duplicate class closed",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "station-creek",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-83.626 36.596 -83.625 36.598 -> -83.626 36.5855 -83.6049 36.598395)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    },
+    {
+      "id": "watauga-river",
+      "cls": "fragment",
+      "verdict": "FIXED",
+      "basis": "bounds moved off the original fragment signature (-81.936 36.287 -81.919 36.294 -> -82.422 36.2873 -81.92 36.4481)",
+      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+    }
+  ],
+  "pending": [
+    "barren-fork-river",
+    "beaverdam-creek",
+    "big-rock-creek",
+    "boiling-fork-creek",
+    "boone-tailwater",
+    "bradley-creek",
+    "brush-creek-cocke",
+    "buffalo-creek-grainger",
+    "buffalo-river",
+    "calfkiller-river",
+    "cane-creek",
+    "caney-fork-river",
+    "caney-fork-upper",
+    "charles-creek",
+    "citico-creek",
+    "clear-creek-obed",
+    "clear-fork",
+    "collins-river",
+    "cosby-creek",
+    "cumberland-river",
+    "daddys-creek",
+    "doe-creek-johnson",
+    "doe-river",
+    "duck-river-lower",
+    "duck-river-tailwater",
+    "east-fork-shoal-creek",
+    "east-fork-stones-river",
+    "elk-river-lower",
+    "elk-river",
+    "emory-river",
+    "fletchers-fork",
+    "forge-creek-johnson",
+    "french-broad-river",
+    "ft-patrick-henry-tailwater",
+    "gap-creek-claiborne",
+    "goforth-creek",
+    "greasy-creek-polk",
+    "gulf-fork-big-creek",
+    "harpeth-river",
+    "hatchie-river",
+    "hiwassee-river",
+    "holston-river",
+    "horse-creek-greene",
+    "hurricane-creek",
+    "indian-creek-claiborne",
+    "laurel-creek-johnson",
+    "laurel-fork-carter",
+    "leconte-creek",
+    "little-buffalo-river",
+    "little-pigeon-river",
+    "little-river",
+    "little-sequatchie-river",
+    "little-tennessee-river",
+    "little-west-fork-creek",
+    "mccutcheon-creek",
+    "middle-prong-little-pigeon",
+    "mill-creek-overton",
+    "mississippi-river",
+    "mossy-creek-jefferson",
+    "new-river",
+    "nolichucky-river",
+    "north-chickamauga-creek",
+    "north-fork-holston-river",
+    "north-prong-barren-fork",
+    "obed-river",
+    "obey-river",
+    "obion-river",
+    "ocoee-river",
+    "parksville-tailwater",
+    "pigeon-river",
+    "pine-creek-dekalb",
+    "piney-river-rhea",
+    "powell-river",
+    "puncheon-camp-creek",
+    "red-river-clarksville",
+    "reedy-creek",
+    "richardson-byrd-creek",
+    "roaring-fork",
+    "rocky-river",
+    "salt-lick-creek",
+    "sequatchie-river",
+    "shoal-creek",
+    "sinking-creek-wilson",
+    "south-fork-cumberland",
+    "south-holston-river",
+    "spring-creek-polk",
+    "standing-rock-creek",
+    "station-creek",
+    "stones-river",
+    "stoney-creek-carter",
+    "sulfur-fork-creek",
+    "tellico-river",
+    "tennessee-river",
+    "trail-fork-big-creek",
+    "tumbling-creek",
+    "upper-hills-creek",
+    "upper-roan-creek",
+    "watauga-river-wilbur-reach",
+    "watauga-river",
+    "west-fork-stones-river",
+    "west-prong-little-pigeon",
+    "white-oak-creek",
+    "wolf-river-fentress",
+    "wolf-river-west-tennessee"
+  ]
+}

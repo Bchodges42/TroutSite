@@ -52,6 +52,92 @@ List + per-unit results: see `FANOUT-REPORT.md`.
 - final: geofanout(report): index.json + FANOUT-REPORT.md + PROGRESS.md closeout
 
 ---
+# SESSION GEOVALID-2 — regression gates + termini table + owner review pack (2026-09-11)
+
+Base commit: `1300194` ("geoconv0(base)") — snapshot lane with **no remote**; merged the
+conventions + engine branch `geoconv/nhd-engine` (tip `6e25818`, fast-forward) first per brief.
+**Push is DEFERRED pending owner-provided remote metadata** (same known blocker as GEOCONV-0;
+AGENTS.md rule 3 cannot run against a missing origin).
+Clone: `/Users/ben/Downloads/TroutSite-nhdvalid2` (own clone, lane `geoconv/nhd-validate`;
+announced here per AGENTS.md rule 1 — registration landed with this commit because no remote
+exists to bridge through; TroutSite-main and TroutSite-nhdconv0 were not written to).
+Branch: `geoconv/nhd-validate`. Commit tag: `geovalid(...)`.
+Scope: `scripts/nhd-validate*`, `data/nhd/termini.json`,
+`data/nhd/derived/validate/catalog-report.json` (suite output = regression evidence),
+`docs/NHD-BEFORE-AFTER.md` + `docs/nhd-before-after/` (review-pack renders),
+`tests/nhd-validate.test.mjs`, `PROGRESS.md`, `COORDINATION.md` (bridge row).
+Not touched: `apps/web/**`, `packages/**` content, production assets — the flip is a later,
+owner-approved lane.
+
+## Status log
+
+- [x] Setup: cloned the local `TroutSite-nhdconv0` repo (the only existing object store; the
+      snapshot upstream has no `.git`), removed the local origin remote, branched
+      `geoconv/nhd-validate` off `main` (`1300194`), merged `geoconv/nhd-engine`
+      (fast-forward to `6e25818`; conventions doc + trace engine available immediately).
+- [x] Catalog ground truth: 148 waters in `packages/content/streams/tn` (57 creek, 38 lake,
+      35 river, 12 tailrace, 5 pond, 1 spring) with 1:1 features in `rivers.geojson`
+      (105 flowing lines + 43 stillwater polygons). **The brief's "146 catalog waters" does
+      not match any current count; the termini table covers all 148 (a superset of any
+      146-subset).** Reconcile note recorded in `data/nhd/termini.json` meta.
+- [x] Validation suite `scripts/nhd-validate.mjs` (+ pure checks in `scripts/nhd-validate-lib.mjs`,
+      zero-dep) enforcing the six brief gates: (1) reach = one connected component (+ junction
+      continuity ≤ 50 m via audit sidecars), (2) termini assertions vs `termini.json`
+      (tailrace ⇒ `dam:*` up-spec and realized reason `dam`; non-tailwater down ends at
+      mouth/confluence; HU8-boundary ends excused only via explicit `hu8BoundaryReach`),
+      (3) bbox/linework uniqueness with a geometry-coincidence test (B13 Boone/SoHo class —
+      fails only on ≥60% duplicated linework; adjacent tailwater-vs-reservoir extents are
+      geography, not duplication), (4) multi-longitude disconnection (chord scan: FAIL > 20 km,
+      REVIEW 2–20 km; measured max legitimate artpath chord 1.3 km), (5) length sanity vs
+      stated river miles in YAML notes (±40/−30% band), (6) anchor snap ≤ 250 m per
+      conventions §6.1. Coverage model: present reaches must PASS; waters without traced
+      reaches are `pending` (listed, non-failing) until GEOFANOUT-1 lands; `--strict` turns
+      pending into FAIL for the post-fan-out mode. Report:
+      `data/nhd/derived/validate/catalog-report.json`. **Green: 0 FAIL, 0 REVIEW.**
+- [x] Termini table `data/nhd/termini.json` (schema `trout/nhd-termini/1`, grammar =
+      NHD-CONVENTIONS §6.2): all 148 waters — 105 flowing + 43 stillwater (null termini by
+      design). Drafted by six subagent batches (25/25/25/25/25/23) from YAML + streams-geo
+      anchors + asset labelAnchors, then reconciled and schema-validated (grammar, confidence
+      enum, autoDerivable⇔high/high⇔humanReview consistency, tailrace⇒dam-spec). Result:
+      30 auto-derivable, 75 with explicit human-review tokens, 12/12 tailraces with dam specs
+      (11 dam targets are catalog lakes; `dam:Apalachia Lake` for hiwassee-river and
+      `dam:Fontana Lake` for little-tennessee-river are NC reservoirs → low confidence +
+      human review). Reconciliation decisions (obed/obey naming, boone-tailwater cross-YAML
+      evidence, french-broad dam despite NC-entry sentence, town-split reaches left
+      `reach-split-ambiguous` rather than hard-coding gauge point-specs) recorded in
+      `reconciliationNotes`. clinch-river row `verified: true` from the committed reach.
+- [x] Owner review pack `docs/NHD-BEFORE-AFTER.md` + 32 panels in `docs/nhd-before-after/`
+      (all 12 tailwaters + 20 featured = stocked, gauge-anchored first): BEFORE = shipped
+      linework, AFTER = NHD reach (clinch-river) or annotated pending-fan-out plan. Renderer
+      `scripts/nhd-validate-pack.mjs` (zero-dep SVG + headless-Chrome PNG capture with an
+      in-script PNG crop — headless window-size includes a UI band that clipped the footer;
+      capture-tall-then-crop is deterministic). Visual gate (judge subagent) run 3×; final
+      verdicts PASS on all sampled panels (clinch, boone, watauga, hiwassee, obey,
+      french-broad, barren-fork, parksville).
+- [x] B13 regression: the 19-water known-bad registry (docs/GEO-AUDIT.md non-ok rows) embedded
+      in `nhd-validate-lib.mjs` with original defect signatures; suite verdict **19/19 FIXED**
+      — duplicates: linework distinct everywhere; fragments/misjoins: bounds off the original
+      signatures; missings: line geometry present (34–367 vertices). clinch-river additionally
+      has a fully validated NHD reach. cane-creek FIXED under the documented GEO-AUDIT waiver
+      (deliberate two-creek catalog entry; content-lane follow-up; the pipeline cannot
+      reproduce the merge class).
+- [x] Tests: `tests/nhd-validate.test.mjs` — 29 passing (`node --test tests/nhd-validate.test.mjs`),
+      including a 148-file parse test and the termini-draft grammar test. Fix applied during
+      testing: `parseStatedMiles` lookbehind (4-digit figures no longer mis-captured as 3-digit).
+- [x] Gates: prettier --check clean on all touched files; suite green; visual gate green.
+      Push deferred (no remote) — **owner action: provide the GitHub remote so both NHD lanes
+      can push `geoconv/*` branches** (rule 3).
+
+## Handoff notes for the consuming lanes
+
+- GEOFANOUT-1: per unit, after `nhd_build_graph`/`nhd_snap_anchors`/`nhd_trace`, run
+  `node scripts/nhd_validate.mjs` (goes strict per-reach automatically) and re-render the pack
+  (`node scripts/nhd-validate-pack.mjs --png`); assign `hu8`/`hu8BoundaryReach` in termini.json;
+  resolve the 75 human-review tokens (list in termini.json `humanReviewList`) before tracing
+  those waters; hiwassee/little-tennessee dam names must be checked against the actual NHD
+  waterbody tables of the NC-side units.
+- Integration lane (flip): after fan-out + `--strict` green + owner approval via this pack,
+  merge reach properties into `rivers.geojson` per conventions §9 and regenerate riverIndex.
 
 # SESSION GEOCONV-0 — NHD trace engine spike + conventions freeze (2026-09-11)
 

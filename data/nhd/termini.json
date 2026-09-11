@@ -1,0 +1,4124 @@
+{
+  "schema": "trout/nhd-termini/1",
+  "generatedAt": "2026-09-11T17:21:58.838Z",
+  "generatedBy": "SESSION GEOVALID-2 — six subagent draft batches (25/25/25/25/25/23) reconciled against the catalog; schema per docs/NHD-CONVENTIONS.md §6.2",
+  "sources": [
+    "packages/content/streams/tn/*.yaml (termini evidence: name, waterbodyType, notes)",
+    "apps/web/src/data/streams-geo.json (gauge anchors, 41 entries)",
+    "apps/web/public/atlas/rivers.geojson (labelAnchor fallback for non-gauge waters)",
+    "data/nhd/derived/reach-*.validate.json (verification state)"
+  ],
+  "grammar": "up: \"dam:<waterbody name>\" | \"headwater\"; down: \"mouth\" | \"confluence:<water name>\" | \"point:<lat>,<lng>\" — docs/NHD-CONVENTIONS.md §6.2 (frozen)",
+  "confidenceRubric": {
+    "high": "spec directly stated by or unambiguous from the YAML name/notes; dam spec target is a catalog water (slug matches an existing lake id)",
+    "medium": "inferred from notes geography; target water not itself in the catalog or stated approximately",
+    "low": "best-fit guess; forces autoDerivable=false + humanReview",
+    "n/a": "stillwater row (no reach will be traced)"
+  },
+  "autoDerivableRule": "flowing water with BOTH specs confidence=high, valid grammar, and no humanReview reason",
+  "humanReviewTokens": [
+    "dam-name-unverified",
+    "reach-split-ambiguous",
+    "ambiguous-notes",
+    "no-endpoint-evidence",
+    "crosses-state-line"
+  ],
+  "counts": {
+    "catalogWaters": 148,
+    "flowingWaters": 105,
+    "stillwaters": 43,
+    "tailraces": 12,
+    "tailracesWithDamSpec": 12,
+    "autoDerivable": 30,
+    "humanReview": 75,
+    "verifiedAgainstTracedReach": 1
+  },
+  "catalogCountNote": "148 catalog waters covered — the GEOVALID-2 brief says 146; the catalog (packages/content/streams/tn) contains 148 YAMLs, all with geometry features in rivers.geojson (105 flowing + 43 stillwater). 148 is a superset of any 146-subset; reconciled count recorded in PROGRESS.md.",
+  "humanReviewList": [
+    "barren-fork-river",
+    "beaverdam-creek",
+    "big-rock-creek",
+    "boiling-fork-creek",
+    "brush-creek-cocke",
+    "buffalo-creek-grainger",
+    "calfkiller-river",
+    "cane-creek",
+    "caney-fork-river",
+    "charles-creek",
+    "citico-creek",
+    "collins-river",
+    "cosby-creek",
+    "cumberland-river",
+    "doe-creek-johnson",
+    "duck-river-lower",
+    "duck-river-tailwater",
+    "east-fork-stones-river",
+    "elk-river",
+    "elk-river-lower",
+    "fletchers-fork",
+    "forge-creek-johnson",
+    "gap-creek-claiborne",
+    "goforth-creek",
+    "greasy-creek-polk",
+    "gulf-fork-big-creek",
+    "harpeth-river",
+    "hatchie-river",
+    "hiwassee-river",
+    "holston-river",
+    "hurricane-creek",
+    "laurel-creek-johnson",
+    "laurel-fork-carter",
+    "leconte-creek",
+    "little-pigeon-river",
+    "little-sequatchie-river",
+    "little-tennessee-river",
+    "little-west-fork-creek",
+    "mccutcheon-creek",
+    "mill-creek-overton",
+    "mississippi-river",
+    "mossy-creek-jefferson",
+    "nolichucky-river",
+    "north-chickamauga-creek",
+    "north-fork-holston-river",
+    "obey-river",
+    "obion-river",
+    "ocoee-river",
+    "pigeon-river",
+    "pine-creek-dekalb",
+    "powell-river",
+    "puncheon-camp-creek",
+    "red-river-clarksville",
+    "reedy-creek",
+    "roaring-fork",
+    "rocky-river",
+    "salt-lick-creek",
+    "shoal-creek",
+    "sinking-creek-wilson",
+    "south-fork-cumberland",
+    "spring-creek-polk",
+    "standing-rock-creek",
+    "station-creek",
+    "stones-river",
+    "stoney-creek-carter",
+    "sulfur-fork-creek",
+    "tellico-river",
+    "tennessee-river",
+    "trail-fork-big-creek",
+    "tumbling-creek",
+    "upper-hills-creek",
+    "upper-roan-creek",
+    "white-oak-creek",
+    "wolf-river-fentress",
+    "wolf-river-west-tennessee"
+  ],
+  "reconciliationNotes": [
+    "obed-river is the Obed River (waterbodyType river, joins the Emory); obey-river is the Dale Hollow tailwater (tailrace) — the spellings are two different waters; both per YAML.",
+    "boone-tailwater downstream terminus evidence comes from boone-lake.yaml (its own notes only say \"below Boone Dam\"); spec confluence:Fort Patrick Henry Lake.",
+    "french-broad-river keeps dam:Douglas Lake despite the NC-entry sentence in its notes — the fishery and its gauge (03468510) sit at the dam; the NC phrase describes the river above the impoundment.",
+    "hiwassee-river up spec dam:Apalachia Lake is LOW confidence: the dam is named in notes but the reservoir sits in North Carolina and may be gnis-named \"Hiwassee Lake\"; must be resolved against the actual NHD waterbody table before fan-out traces it.",
+    "little-tennessee-river up spec dam:Fontana Lake is medium confidence for the same NC-reservoir reason.",
+    "duck-river-tailwater/duck-river-lower and elk-river/elk-river-lower split at towns (Shelbyville; Prospect) pinned by in-reach gauges (03597860; 03584600). Drafted as closest-fit specs with reach-split-ambiguous; converting the split ends to point:<gauge coords> specs is a deliberate human-review decision left open (point specs hard-code today's gauge placement).",
+    "cane-creek covers two unrelated stocked Cane Creeks by catalog intent (GEO-AUDIT waiver); reach-split-ambiguous; splitting is a content-lane catalog change.",
+    "tennessee-river and south-fork-cumberland: the frozen up-grammar has no confluence spec, so entries whose upstream end is a fork confluence get headwater + low confidence; flagged humanReview.",
+    "hu8 is 06010207 only for clinch-river (the sole water with an ok-status anchor inside the reference unit, per data/nhd/derived/06010207.anchors.json); all other hu8 fields are null until GEOFANOUT-1 assigns units. hu8BoundaryReach is null everywhere (fan-out fills).",
+    "geometrySource uses the conventions §8 vocabulary: \"nhd\" for traced+validated reaches (clinch-river today), \"tiger\" for waters still carrying pre-flip linework."
+  ],
+  "waters": {
+    "barren-fork-river": {
+      "name": "Barren Fork River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6752,
+        "lon": -85.7772,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Warren County river through McMinnville' — no dam or impoundment named at the upstream end"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water (only 'through McMinnville'); region tn-middle-caney-fork"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "beaverdam-creek": {
+      "name": "Beaverdam Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.56604,
+        "lon": -81.87255,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Johnson County spring creek' — origin is the stream head, no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water; 'Birch Branch confluence down to Tank Hollow Road' is a managed-reach description, not the terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "beech-lake": {
+      "name": "Beech Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.68164,
+        "lon": -88.42117,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (TWRA winter put-and-take lake in Lexington)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "big-rock-creek": {
+      "name": "Big Rock Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.5266,
+        "lon": -86.7629,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA winter-stocked Marshall County creek near Lewisburg' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "boiling-fork-creek": {
+      "name": "Boiling Fork Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.1552,
+        "lon": -86.031,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA winter-stocked Franklin County creek near Sewanee/Cowan' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "boone-lake": {
+      "name": "Boone Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.46418,
+        "lon": -82.36649,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (TVA reservoir impounded by Boone Dam)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "boone-tailwater": {
+      "name": "Boone Tailwater (South Fork Holston River)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4407,
+        "lon": -82.4379,
+        "gauge": "03486810",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Boone Lake",
+        "confidence": "high",
+        "basis": "notes: 'Short, flashy reach below Boone Dam' — impounding reservoir is catalog boone-lake ('impounded by Boone Dam')"
+      },
+      "down": {
+        "spec": "confluence:Fort Patrick Henry Lake",
+        "confidence": "high",
+        "basis": "boone-lake.yaml notes: 'Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake' (catalog water)"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "bradley-creek": {
+      "name": "Bradley Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.3972,
+        "lon": -85.9849,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Franklin County creek near Tullahoma and Manchester' — no dam named at the upstream end"
+      },
+      "down": {
+        "spec": "confluence:Woods Reservoir",
+        "confidence": "high",
+        "basis": "notes: 'drains through AEDC Woods Reservoir into the Elk River system' — mouth is at Woods Reservoir (catalog woods-reservoir)"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "brush-creek-cocke": {
+      "name": "Brush Creek (Cocke County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9587,
+        "lon": -82.9345,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Cocke County creek in the Big Creek corridor' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give only 'in the Big Creek corridor' — corridor reference, not a named receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "buffalo-creek-grainger": {
+      "name": "Buffalo Creek (Grainger County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.22273,
+        "lon": -83.564968,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Grainger County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water ('Distinct from Buffalo Creek at Norris' is a disambiguation, not a terminus)"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "buffalo-river": {
+      "name": "Buffalo River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.5405,
+        "lon": -87.8408,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties' — no dam named; 'Little Buffalo River is a separate water'"
+      },
+      "down": {
+        "spec": "confluence:Duck River",
+        "confidence": "high",
+        "basis": "notes: 'a north-flowing Duck River tributary' — Duck River is a major catalog water (duck-river-lower/tailwater)"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "calderwood-lake": {
+      "name": "Calderwood Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.48992,
+        "lon": -83.95122,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (reservoir on the Little Tennessee River impounded by Calderwood Dam)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "calfkiller-river": {
+      "name": "Calfkiller River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9265,
+        "lon": -85.4674,
+        "gauge": "03419530",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Spring-fed-ish White County river' — origin is the stream head, no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water; only 'the Sparta gauge runs low in dry summers'"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "cameron-brown-lake": {
+      "name": "Cameron Brown Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.10007,
+        "lon": -89.77363,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (TWRA winter put-and-take lake in Germantown)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "cane-creek": {
+      "name": "Cane Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.592064,
+        "lon": -85.324608,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "notes: 'TWRA lists both Upper Cane Creek (Bledsoe/Van Buren, near Fall Creek Falls) and Cane Creek (Hickman/Perry)' — two unrelated same-named creeks in one entry, no single origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "no receiving water named; entry covers 'the stocked gorge-and-valley reaches' of both creeks (asset feature partCount=2)"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "caney-fork-river": {
+      "name": "Caney Fork River (Center Hill tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.0978,
+        "lon": -85.8272,
+        "gauge": "03424010",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Center Hill Lake",
+        "confidence": "high",
+        "basis": "name '(Center Hill tailwater)'; notes: 'below Center Hill Dam' — impounding reservoir is catalog center-hill-lake"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water below the tailwater (only 'Stonewall and at-dam gauges'); ends in the Cumberland drainage"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "caney-fork-upper": {
+      "name": "Caney Fork River (above Center Hill Lake)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.8358,
+        "lon": -85.3126,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Free-flowing upper Caney Fork from the Cumberland County headwaters'"
+      },
+      "down": {
+        "spec": "confluence:Center Hill Lake",
+        "confidence": "high",
+        "basis": "notes: 'down through Rock Island to the slackwater pools pooled above Center Hill Dam — Great Falls Lake (great-falls-lake) at Rock Island and the long Center Hill Lake (center-hill-lake) arms'; split with the tailwater reach is the dam, named in both YAMLs"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "center-hill-lake": {
+      "name": "Center Hill Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.0029,
+        "lon": -85.733,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (Caney Fork reservoir east of Smithville)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "charles-creek": {
+      "name": "Charles Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.7468,
+        "lon": -85.8594,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Warren County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "cherokee-lake": {
+      "name": "Cherokee Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.28625,
+        "lon": -83.28696,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (TVA reservoir on the Holston River impounded by Cherokee Dam)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "chickamauga-lake": {
+      "name": "Chickamauga Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.32623,
+        "lon": -85.04951,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (Tennessee River reservoir above Chickamauga Dam)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "chilhowee-lake": {
+      "name": "Chilhowee Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.54507,
+        "lon": -84.01029,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (reservoir on the Little Tennessee River impounded by Chilhowee Dam)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "citico-creek": {
+      "name": "Citico Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.511,
+        "lon": -84.1007,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Cherokee National Forest creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water ('upstream of Little Citico' is a tributary reference, not the mouth)"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "clear-creek-obed": {
+      "name": "Clear Creek (Obed system)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.1031,
+        "lon": -84.7183,
+        "gauge": "03539778",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Wild rainbows and the famous Lilly Bridge gorge' — free-flowing creek, no dam named"
+      },
+      "down": {
+        "spec": "confluence:Obed River",
+        "confidence": "high",
+        "basis": "name 'Clear Creek (Obed system)'; notes place it 'in the Obed Wild & Scenic River' — obed-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "clear-fork": {
+      "name": "Clear Fork",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3883,
+        "lon": -84.6302,
+        "gauge": "03409500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Remote gorges' wild branch — no dam named"
+      },
+      "down": {
+        "spec": "confluence:New River",
+        "confidence": "high",
+        "basis": "notes: 'The New River system's wild branch near the Big South Fork boundary' — new-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "clinch-river": {
+      "name": "Clinch River (Norris tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": "06010207",
+      "anchor": {
+        "lat": 36.2156,
+        "lon": -84.0821,
+        "gauge": "03533000",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Norris Lake",
+        "confidence": "high",
+        "basis": "Frozen reference terminus (NHD-CONVENTIONS §10). YAML: 'The tailwater runs from Norris Dam through Melton Hill Lake down to the Clinch mouth'"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "high",
+        "basis": "Frozen reference terminus. YAML: 'down to the Clinch mouth at Kingston / Watts Bar Lake'"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
+      "geometrySource": "nhd",
+      "hu8BoundaryReach": null
+    },
+    "collins-river": {
+      "name": "Collins River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.7083,
+        "lon": -85.7318,
+        "gauge": "03421000",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Notes describe only a 'Grundy/Warren County river' with a mid-basin gauge; no dam named upstream"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes name no receiving water or endpoint ('The McMinnville gauge sits mid-basin; flows track plateau rain')"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "cosby-creek": {
+      "name": "Cosby Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.845471,
+        "lon": -83.220629,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Notes: 'wild rainbows and brook trout upstream' — park stream rising in the Smokies, no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes silent on terminus ('TWRA lists spring stocking. No gauge.')"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "covington-fbc-pond": {
+      "name": "Covington First Baptist Church Pond",
+      "waterbodyType": "pond",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.53608,
+        "lon": -89.63506,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "cumberland-river": {
+      "name": "Cumberland River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.2372,
+        "lon": -86.7128,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "Notes bound the reach only as the 'Nashville-to-Lake Barkley main stem'; no dam or origin named at the upstream end (city-name extent, not a grammar terminus)"
+      },
+      "down": {
+        "spec": "confluence:Lake Barkley",
+        "confidence": "high",
+        "basis": "Notes: 'the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties' — Lake Barkley is a catalog water named as the downstream extent"
+      },
+      "autoDerivable": false,
+      "humanReview": "ambiguous-notes",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "daddys-creek": {
+      "name": "Daddy’s Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9977,
+        "lon": -84.8225,
+        "gauge": "03539600",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'It runs its full named length' — wild plateau creek origin, no dam named"
+      },
+      "down": {
+        "spec": "confluence:Obed River",
+        "confidence": "high",
+        "basis": "Notes: 'gorge water in the Obed system... runs its full named length to the Obed confluence' — Obed River is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "dale-hollow-lake": {
+      "name": "Dale Hollow Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5825,
+        "lon": -85.2862,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "doe-creek-johnson": {
+      "name": "Doe Creek (Johnson County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.402389,
+        "lon": -81.96319,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Notes describe only 'the TWRA spring-stocked Johnson County creek'; no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes give no receiving water or endpoint (only disambiguates from Carter County's Doe River)"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "doe-river": {
+      "name": "Doe River",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3445,
+        "lon": -82.2101,
+        "gauge": "03485500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'A clear Carter County mountain creek' — no dam named; TWRA stocks upper and lower sections"
+      },
+      "down": {
+        "spec": "confluence:Watauga River",
+        "confidence": "high",
+        "basis": "Notes: 'joins the Watauga at Elizabethton' — Watauga River is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "douglas-lake": {
+      "name": "Douglas Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.98941,
+        "lon": -83.38143,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "duck-river-lower": {
+      "name": "Duck River (Shelbyville to Columbia)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6181,
+        "lon": -87.0323,
+        "gauge": "03599500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "Reach begins at the Shelbyville town split with duck-river-tailwater (name 'Shelbyville to Columbia'); grammar offers no town-split spec"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Reach ends at Columbia per its name; notes give no terminus ('Below Shelbyville the Duck trends warm')"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "duck-river-tailwater": {
+      "name": "Duck River (Normandy tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.4829,
+        "lon": -86.4626,
+        "gauge": "03597860",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Normandy Lake",
+        "confidence": "high",
+        "basis": "Notes: 'Cold releases below Normandy Dam' — reservoir name Normandy Lake (not the dam) and normandy-lake is a catalog water"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Reach ends at the Shelbyville split (gauge 03597860 labeled 'Duck River at Shelbyville') where duck-river-lower begins; no grammar-compatible split terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "east-fork-shoal-creek": {
+      "name": "East Fork Shoal Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.0579,
+        "lon": -87.0747,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Notes: 'TWRA spring-stocked Lawrence County tributary' — no dam named"
+      },
+      "down": {
+        "spec": "confluence:Shoal Creek",
+        "confidence": "high",
+        "basis": "Notes: 'Lawrence County tributary of Shoal Creek' — shoal-creek is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "east-fork-stones-river": {
+      "name": "East Fork Stones River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9184,
+        "lon": -86.3339,
+        "gauge": "03427500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Notes: 'Rain-flashy plateau headwaters'; no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes name no receiving water — 'TWRA's stocking dataset lists the West Fork and Davidson reaches instead' refers to stocking, not the confluence"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "edmund-orgill-lake": {
+      "name": "Edmund-Orgill Park",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.37197,
+        "lon": -89.83825,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "elk-river": {
+      "name": "Elk River (Tims Ford tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.1923,
+        "lon": -86.2811,
+        "gauge": "03580750",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Tims Ford Lake",
+        "confidence": "high",
+        "basis": "Notes: 'A compact, cold Tims Ford release' — reservoir name Tims Ford Lake (not the dam) and tims-ford-lake is a catalog water"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "elk-river-lower notes place its start 'below the tailwater' at Prospect (gauge 03584600); no grammar-compatible split terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "elk-river-lower": {
+      "name": "Elk River (Prospect to state line)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.0142,
+        "lon": -86.9947,
+        "gauge": "03584600",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "Town split at Prospect ('Gauge at Prospect helps separate rain pulses') where elk-river reach ends; grammar offers no town-split spec"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Name bounds the reach 'Prospect to state line' — the downstream end leaves Tennessee into Alabama; no in-state terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "emory-river": {
+      "name": "Emory River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9831,
+        "lon": -84.558,
+        "gauge": "03540500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'wild trout in the upper reaches' — no dam named upstream"
+      },
+      "down": {
+        "spec": "confluence:Tennessee River",
+        "confidence": "high",
+        "basis": "Notes: 'runs to the Watts Bar embayment head, where the pool carries the water down to the Tennessee River' — major river and catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "fletchers-fork": {
+      "name": "Fletchers Fork",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5747,
+        "lon": -87.5026,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Notes: 'TWRA spring-stocked Montgomery County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes give no receiving water or endpoint"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "forge-creek-johnson": {
+      "name": "Forge Creek (Johnson County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.448508,
+        "lon": -81.763836,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked creek near Mountain City' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes give no receiving water or endpoint"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "fort-loudoun-lake": {
+      "name": "Fort Loudoun Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.84704,
+        "lon": -84.08448,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "fort-patrick-henry-lake": {
+      "name": "Fort Patrick Henry Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.48893,
+        "lon": -82.47612,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": null
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "french-broad-river": {
+      "name": "French Broad River (Douglas tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9612,
+        "lon": -83.5388,
+        "gauge": "03468510",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Douglas Lake",
+        "confidence": "high",
+        "basis": "Tailrace grammar requires the dam spec; fishery is the Douglas Dam release ('Cold Douglas Dam releases... near the dam', anchor gauge 03468510 at the dam). Reservoir name Douglas Lake is in notes and douglas-lake is a catalog water; the 'enters from North Carolina' phrase describes the river above the lake, not this managed reach"
+      },
+      "down": {
+        "spec": "confluence:Holston River",
+        "confidence": "high",
+        "basis": "Notes: 'runs through Douglas Lake down to the Holston confluence' — Holston River is a catalog water and obvious major river"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "ft-patrick-henry-tailwater": {
+      "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4982,
+        "lon": -82.509,
+        "gauge": "03487010",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Fort Patrick Henry Lake",
+        "confidence": "high",
+        "basis": "Notes: 'below Fort Patrick Henry Dam' — reservoir name Fort Patrick Henry Lake (grammar's NHD-style name) and fort-patrick-henry-lake is a catalog water"
+      },
+      "down": {
+        "spec": "confluence:Holston River",
+        "confidence": "high",
+        "basis": "Notes: 'runs from the dam to the Kingsport confluence, where the Holston main stem forms'"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "gap-creek-claiborne": {
+      "name": "Gap Creek (Claiborne County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.56524,
+        "lon": -83.674653,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked creek in the Norris watershed fringe' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "Notes give no receiving water or endpoint"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "goforth-creek": {
+      "name": "Goforth Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.096613,
+        "lon": -84.50339,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "Cherokee National Forest pocket-water creek 'along the Ocoee corridor'; no dam or impoundment mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes locate it 'along the Ocoee corridor' but never name the receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "greasy-creek-polk": {
+      "name": "Greasy Creek (Polk County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.141647,
+        "lon": -84.516562,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "TWRA spring-stocked Polk County creek 'near Coker Creek. Small and flashy'; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water ('near Coker Creek' is a place reference, not a confluence)"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "great-falls-lake": {
+      "name": "Great Falls Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6803,
+        "lon": -85.7243,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — notes: 'TVA impoundment of the Caney Fork and Collins River above Great Falls Dam'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "gulf-fork-big-creek": {
+      "name": "Gulf Fork Big Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.827203,
+        "lon": -83.090827,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Small TWRA spring-stocked tributary near the NC line in Cocke County'; no dam mentioned"
+      },
+      "down": {
+        "spec": "confluence:Big Creek",
+        "confidence": "medium",
+        "basis": "water's own name implies Big Creek parent; notes say only 'tributary' without naming the receiving water; Big Creek is not a catalog water"
+      },
+      "autoDerivable": false,
+      "humanReview": "ambiguous-notes",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "harpeth-river": {
+      "name": "Harpeth River (Williamson County reaches)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9208,
+        "lon": -86.8655,
+        "gauge": "03432350",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "warmwater river with stocked Williamson County reaches near Franklin; no upstream dam or impoundment mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes describe the stocked corridor and its two gauges but never name the receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "hatchie-river": {
+      "name": "Hatchie River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6081,
+        "lon": -89.5441,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'west-flowing river through the West Tennessee Hatchie corridor'; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes list corridor counties (Hardeman, Haywood, Tipton, Lauderdale) only; no receiving water named"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "hiwassee-river": {
+      "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.1883,
+        "lon": -84.5025,
+        "gauge": "03556590",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Apalachia Lake",
+        "confidence": "low",
+        "basis": "notes: 'runs from the Appalachia Dam release water at the NC line' — names the dam only, no reservoir name; reservoir is NC-side and may appear in NHD as 'Hiwassee Lake'"
+      },
+      "down": {
+        "spec": "confluence:Chickamauga Lake",
+        "confidence": "high",
+        "basis": "notes: 'through Reliance to the Chickamauga Lake head'"
+      },
+      "autoDerivable": false,
+      "humanReview": "dam-name-unverified",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "holston-river": {
+      "name": "Holston River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.2814,
+        "lon": -83.31355,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "notes: 'main Holston below the North/South Fork confluence at Kingsport' — upstream end is a fork of two separate catalog waters (north-fork-holston-river, south-holston-river), not a stream origin; headwater walk would over-run into a fork"
+      },
+      "down": {
+        "spec": "confluence:French Broad River",
+        "confidence": "high",
+        "basis": "notes: 'to the French Broad confluence at the head of Fort Loudoun Lake'"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "horse-creek-greene": {
+      "name": "Horse Creek (Greene County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.1587,
+        "lon": -82.6571,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Cherokee National Forest creek with TWRA spring stocking'; no dam mentioned"
+      },
+      "down": {
+        "spec": "confluence:Nolichucky River",
+        "confidence": "high",
+        "basis": "notes: 'running down to the Nolichucky'"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "hurricane-creek": {
+      "name": "Hurricane Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.0301,
+        "lon": -87.6607,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "TWRA spring-stocked creek across Houston/Humphreys counties in the western Highland Rim; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name counties only; no receiving water given"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "indian-creek-claiborne": {
+      "name": "Indian Creek (Claiborne County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.62263,
+        "lon": -83.52688,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "small stocked creek; notes: 'runs its full named length down toward the upper Clinch'; no dam mentioned"
+      },
+      "down": {
+        "spec": "confluence:Clinch River",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Clinch River tributary'"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "j-percy-priest-lake": {
+      "name": "J. Percy Priest Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.0843,
+        "lon": -86.5516,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — notes: 'the Stones River reservoir southeast of Nashville'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "johnson-park-lake": {
+      "name": "Johnson Park Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.08906,
+        "lon": -89.68139,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TWRA winter put-and-take lake in Memphis (Shelby County)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "kentucky-lake": {
+      "name": "Kentucky Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4748,
+        "lon": -88.0698,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — notes: 'the Tennessee River reservoir through West Tennessee'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "lake-barkley": {
+      "name": "Lake Barkley",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.8284,
+        "lon": -87.9858,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — notes: 'the Cumberland River reservoir at the Kentucky line'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "lake-graham": {
+      "name": "Lake Graham",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6431,
+        "lon": -88.7248,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TWRA winter put-and-take lake in Jackson (Madison County)"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "laurel-creek-johnson": {
+      "name": "Laurel Creek (Johnson County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.587929,
+        "lon": -81.753822,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Small pocket water' spring-stocked Johnson County creek; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes list stocking access points only; no receiving water named"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "laurel-fork-carter": {
+      "name": "Laurel Fork (Carter County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.279079,
+        "lon": -82.140368,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Remote Carter County headwaters' with native brook trout upstream; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes mention the Dennis Cove cable crossing and wild-trout reach but no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "leconte-creek": {
+      "name": "LeConte Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.698113,
+        "lon": -83.509013,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Small park creek near Gatlinburg' with wild fish; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "little-buffalo-river": {
+      "name": "Little Buffalo River",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.3761,
+        "lon": -87.5093,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Lawrence County creek'; no dam mentioned"
+      },
+      "down": {
+        "spec": "confluence:Buffalo River",
+        "confidence": "high",
+        "basis": "notes: 'in the Buffalo River system'"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "little-pigeon-river": {
+      "name": "Little Pigeon River (Sevierville reach)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.8785,
+        "lon": -83.5775,
+        "gauge": "03470000",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "notes cover only 'the Sevierville reach' below the Smokies; the upstream boundary with the West/Middle Prong Little Pigeon forks (separate catalog waters) is not stated, so a headwater walk would over-run into a fork"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "no receiving water named in notes; gauge 03470000 at Sevierville is the only location cue"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "little-river": {
+      "name": "Little River (Smokies / Blount County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6645,
+        "lon": -83.7113,
+        "gauge": "03497300",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'It runs from the Smokies headwaters down to the Fort Loudoun Lake embayment'"
+      },
+      "down": {
+        "spec": "confluence:Fort Loudoun Lake",
+        "confidence": "high",
+        "basis": "notes: 'down to the Fort Loudoun Lake embayment near Maryville/Alcoa'"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "little-sequatchie-river": {
+      "name": "Little Sequatchie River",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.180141,
+        "lon": -85.598403,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Marion County spring-influenced stream' with modest steady flows; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "little-tennessee-river": {
+      "name": "Little Tennessee River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.56794,
+        "lon": -84.13714,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "dam:Fontana Lake",
+        "confidence": "medium",
+        "basis": "notes: 'entering Tennessee from North Carolina below Fontana Dam' — dam named; reservoir Fontana Lake (NC) is not a catalog water"
+      },
+      "down": {
+        "spec": "confluence:Tennessee River",
+        "confidence": "high",
+        "basis": "notes: 'to its mouth at the Tennessee River in Fort Loudoun Lake below Tellico Dam'"
+      },
+      "autoDerivable": false,
+      "humanReview": "dam-name-unverified",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "little-west-fork-creek": {
+      "name": "Little West Fork Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5954,
+        "lon": -87.383,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Montgomery County creek'; no dam mentioned"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "martin-city-pond": {
+      "name": "Martin City Pond",
+      "waterbodyType": "pond",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.30787,
+        "lon": -88.8521,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater pond — TWRA winter put-and-take; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater pond — TWRA winter put-and-take; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "mccutcheon-creek": {
+      "name": "McCutcheon Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.757,
+        "lon": -86.9237,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "YAML names no upstream impoundment — 'TWRA winter-stocked Maury County creek'"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "YAML names no receiving water — only 'a Columbia-area close-to-home trout stop'"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "melton-hill-lake": {
+      "name": "Melton Hill Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.99044,
+        "lon": -84.19496,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TVA Clinch River impoundment; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TVA Clinch River impoundment; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "middle-prong-little-pigeon": {
+      "name": "Middle Prong Little Pigeon River (Tremont)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.703526,
+        "lon": -83.338255,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Tremont's classic pocket water' — park headwater stream; no impoundment named"
+      },
+      "down": {
+        "spec": "confluence:Little Pigeon River",
+        "confidence": "high",
+        "basis": "name 'Middle Prong Little Pigeon River' encodes parent water; little-pigeon-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "milan-city-pond": {
+      "name": "Milan City Pond",
+      "waterbodyType": "pond",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.92375,
+        "lon": -88.72909,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater pond — TWRA winter put-and-take; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater pond — TWRA winter put-and-take; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "mill-creek-overton": {
+      "name": "Mill Creek (Overton County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4824,
+        "lon": -85.4867,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'spring-stocked Overton County creek on the plateau's eastern rim' — no impoundment named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "YAML names no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "mississippi-river": {
+      "name": "Mississippi River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.8993,
+        "lon": -89.659,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "boundary corridor — 'forms Tennessee's western boundary'; enters from KY/MO, no in-state origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "runs past Shelby…Lake counties and leaves the state; no named in-state terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "mossy-creek-jefferson": {
+      "name": "Mossy Creek (Jefferson County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.123263,
+        "lon": -83.483734,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Small farmland creek' — no impoundment named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "YAML names no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "new-river": {
+      "name": "New River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3855,
+        "lon": -84.5547,
+        "gauge": "03408500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'runs its full named length (Scott/Anderson counties)' — plateau freestone, no upstream impoundment named"
+      },
+      "down": {
+        "spec": "confluence:Clear Fork",
+        "confidence": "high",
+        "basis": "'down to the Clear Fork confluence country'; clear-fork is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "nickajack-lake": {
+      "name": "Nickajack Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.03701,
+        "lon": -85.47436,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Tennessee River impoundment; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Tennessee River impoundment; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "nolichucky-river": {
+      "name": "Nolichucky River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.1782,
+        "lon": -82.4552,
+        "gauge": "03465500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "'runs from the NC line' — enters from North Carolina, no in-state origin"
+      },
+      "down": {
+        "spec": "confluence:Douglas Lake",
+        "confidence": "high",
+        "basis": "'to its Douglas Lake confluence'; douglas-lake is a catalog water"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "normandy-lake": {
+      "name": "Normandy Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.4574,
+        "lon": -86.2036,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TVA Duck River impoundment above Normandy Dam; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TVA Duck River impoundment above Normandy Dam; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "norris-lake": {
+      "name": "Norris Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.30355,
+        "lon": -83.8799,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TVA Clinch/Powell impoundment behind Norris Dam; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TVA Clinch/Powell impoundment behind Norris Dam; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "north-chickamauga-creek": {
+      "name": "North Chickamauga Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.2112,
+        "lon": -85.2152,
+        "gauge": "03566535",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "creek through the North Chickamauga Creek Gorge State Park — no impoundment named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "YAML names no receiving water"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "north-fork-holston-river": {
+      "name": "North Fork Holston River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.60975,
+        "lon": -82.58016,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "'entering Tennessee from Virginia… the fork forms the state line for its final miles' — no in-state origin"
+      },
+      "down": {
+        "spec": "confluence:Holston River",
+        "confidence": "high",
+        "basis": "'confluence with the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins'"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "north-prong-barren-fork": {
+      "name": "North Prong Barren Fork River",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6913,
+        "lon": -85.9551,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'upper Barren Fork water' — headwater prong, no impoundment named"
+      },
+      "down": {
+        "spec": "confluence:Barren Fork River",
+        "confidence": "high",
+        "basis": "name 'North Prong Barren Fork River' + notes 'upper Barren Fork water'; barren-fork-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "obed-river": {
+      "name": "Obed River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.0815,
+        "lon": -84.6703,
+        "gauge": "03539800",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'runs its full named length across the Cumberland Plateau' — wild freestone, no impoundment named"
+      },
+      "down": {
+        "spec": "confluence:Emory River",
+        "confidence": "high",
+        "basis": "'to the Emory confluence'; emory-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "obey-river": {
+      "name": "Obey River (Dale Hollow tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5373,
+        "lon": -85.4552,
+        "gauge": "03417000",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Dale Hollow Lake",
+        "confidence": "high",
+        "basis": "'Cold Dale Hollow releases… below the dam'; dale-hollow-lake is a catalog water"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "YAML names no receiving water below the tailwater reach"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "obion-river": {
+      "name": "Obion River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.007,
+        "lon": -89.6413,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'west-flowing river through Northwest Tennessee' — no impoundment named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "'Detailed angler notes are still being prepared' — no receiving water named"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "ocoee-number-three-lake": {
+      "name": "Ocoee Number Three Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.02753,
+        "lon": -84.43623,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Ocoee River impoundment behind Ocoee Dam No. 3; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Ocoee River impoundment behind Ocoee Dam No. 3; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "ocoee-river": {
+      "name": "Ocoee River (upper, Copperhill reach)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 34.9915,
+        "lon": -84.3766,
+        "gauge": "03559500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "'It runs from Copperhill' — border-town reach start (GA line, continues as Toccoa), not an in-state origin"
+      },
+      "down": {
+        "spec": "confluence:Parksville Lake",
+        "confidence": "high",
+        "basis": "'to the Parksville Lake head'; parksville-lake is a catalog water"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "old-hickory-lake": {
+      "name": "Old Hickory Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3327,
+        "lon": -86.427,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Cumberland River reservoir east of Nashville; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Cumberland River reservoir east of Nashville; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "paris-city-park-lake": {
+      "name": "Paris City Park",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3095,
+        "lon": -88.30902,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TWRA winter put-and-take (Green Acres Lake); termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — TWRA winter put-and-take (Green Acres Lake); termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "parksville-lake": {
+      "name": "Parksville Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.09619,
+        "lon": -84.61249,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Ocoee River impoundment behind Parksville Dam; termini not applicable"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater lake — Ocoee River impoundment behind Parksville Dam; termini not applicable"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "parksville-tailwater": {
+      "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.0969,
+        "lon": -84.6544,
+        "gauge": "03564500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Parksville Lake",
+        "confidence": "high",
+        "basis": "'The reach below Parksville Dam' (name 'Ocoee No. 1 reach'); parksville-lake is a catalog water"
+      },
+      "down": {
+        "spec": "confluence:Hiwassee River",
+        "confidence": "high",
+        "basis": "parksville-lake YAML: tailwater 'joins the Hiwassee River'; hiwassee-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "pickwick-lake": {
+      "name": "Pickwick Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 34.899,
+        "lon": -88.0313,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "waterbodyType: lake — 'the Tennessee River reservoir at Pickwick Landing in Hardin County'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater impoundment — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "pigeon-river": {
+      "name": "Pigeon River (Hartford corridor)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9606,
+        "lon": -83.1743,
+        "gauge": "03461500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "medium",
+        "basis": "'It runs the Hartford corridor from the NC line down to the Douglas Lake arm' — upstream end is the state line, not the true origin; headwater spec would over-trace into NC"
+      },
+      "down": {
+        "spec": "confluence:Douglas Lake",
+        "confidence": "high",
+        "basis": "'down to the Douglas Lake arm'; douglas-lake is a catalog water"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "pine-creek-dekalb": {
+      "name": "Pine Creek (DeKalb County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9104,
+        "lon": -85.8186,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked DeKalb County creek' — no dam named; upstream end is stream origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water — 'in the Center Hill fringe' is proximity only"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "piney-river-rhea": {
+      "name": "Piney River (Rhea County)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.69952,
+        "lon": -84.85858,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Cumberland Plateau stream in the Spring City corridor' — no dam named on the trout reach"
+      },
+      "down": {
+        "spec": "confluence:Watts Bar Lake",
+        "confidence": "high",
+        "basis": "'It runs down to the Watts Bar embayment head'; watts-bar-lake is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "powell-river": {
+      "name": "Powell River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5425,
+        "lon": -83.63,
+        "gauge": "03532000",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "medium",
+        "basis": "'It runs from the VA line down to the Norris Lake arm' — upstream end is the state line; headwater spec would over-trace into Virginia"
+      },
+      "down": {
+        "spec": "confluence:Norris Lake",
+        "confidence": "high",
+        "basis": "'down to the Norris Lake arm'; norris-lake is a catalog water"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "puncheon-camp-creek": {
+      "name": "Puncheon Camp Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.325955,
+        "lon": -83.521001,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Grainger County creek. Tiny water' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water or terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "red-river-clarksville": {
+      "name": "Red River (Montgomery County)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5547,
+        "lon": -87.1419,
+        "gauge": "03436100",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'winter-stocked reaches near Clarksville' — no dam named; upstream end is stream origin (origin lies beyond TN in KY — see summary)"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water — 'check the Port Royal gauge' is a gauge reference only"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "reedy-creek": {
+      "name": "Reedy Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5523,
+        "lon": -82.5729,
+        "gauge": "03487602",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Small Sullivan County creek' in Kingsport — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no terminus — only 'park access in Kingsport'"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "reelfoot-lake": {
+      "name": "Reelfoot Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4049,
+        "lon": -89.3792,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "waterbodyType: lake — 'Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "richardson-byrd-creek": {
+      "name": "Richardson “Byrd” Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.49353,
+        "lon": -83.12165,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Hancock County creek' — no dam named"
+      },
+      "down": {
+        "spec": "confluence:Clinch River",
+        "confidence": "high",
+        "basis": "'It runs down to the upper Clinch River above the Norris pool'; clinch-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "roaring-fork": {
+      "name": "Roaring Fork",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.688547,
+        "lon": -83.457767,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Steep, cascading park water off the Roaring Fork Motor Nature Trail' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water or terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "rocky-river": {
+      "name": "Rocky River",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.5917,
+        "lon": -85.5228,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Van Buren County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water or terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "salt-lick-creek": {
+      "name": "Salt Lick Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.626,
+        "lon": -85.9186,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Macon County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "'in the Dale Hollow fringe' is proximity only — confluence with Dale Hollow Lake not stated"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "sequatchie-river": {
+      "name": "Sequatchie River (headwaters)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.2057,
+        "lon": -85.497,
+        "gauge": "03571000",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'the full valley from the Cumberland County headwaters'"
+      },
+      "down": {
+        "spec": "confluence:Tennessee River",
+        "confidence": "high",
+        "basis": "'down toward the Tennessee River at Shellmound'; tennessee-river is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "shelby-farms-lake": {
+      "name": "Shelby Farms",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.13965,
+        "lon": -89.83386,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "waterbodyType: lake — 'TWRA winter put-and-take lake in Memphis'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "shoal-creek": {
+      "name": "Shoal Creek",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.0242,
+        "lon": -87.579,
+        "gauge": "03588500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Lawrence County's spring-fed Shoal Creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water — only the Iron City gauge is cited (stream continues into Alabama — see summary)"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "sinking-creek-wilson": {
+      "name": "Sinking Creek (Wilson County)",
+      "waterbodyType": "spring",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.1651,
+        "lon": -86.3003,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'Karst-influenced Wilson County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no terminus — 'the name is the geology lesson' only"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "south-fork-cumberland": {
+      "name": "South Fork Cumberland River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4774,
+        "lon": -84.6694,
+        "gauge": "03410210",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "'runs from the New River/Clear Fork confluence country' — source end is a named confluence; grammar has no up-confluence spec, headwater would over-trace into New River or Clear Fork"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "'up to the Kentucky line' — reach ends at the state line, not a mouth; mouth spec stops at the KY name change"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "south-holston-lake": {
+      "name": "South Holston Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.56265,
+        "lon": -82.03203,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "waterbodyType: lake — 'TVA reservoir on the South Fork Holston River above Bristol, impounded by South Holston Dam'"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "south-holston-river": {
+      "name": "South Fork Holston River (South Holston tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5236,
+        "lon": -82.0973,
+        "gauge": "03476500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:South Holston Lake",
+        "confidence": "high",
+        "basis": "'The tailwater runs from South Holston Dam'; south-holston-lake YAML: 'impounded by South Holston Dam ... Discharges the South Holston tailwater'; reservoir name used, not dam name; south-holston-lake is a catalog water"
+      },
+      "down": {
+        "spec": "confluence:Boone Lake",
+        "confidence": "high",
+        "basis": "'down to the Boone Lake arm head'; boone-lake is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "spring-creek-polk": {
+      "name": "Spring Creek (Polk County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.238587,
+        "lon": -84.471493,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked creek in the Coker Creek area' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water or terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "standing-rock-creek": {
+      "name": "Standing Rock Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.4367,
+        "lon": -87.9983,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Stewart County creek. Tiny close-to-home water' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water or terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "station-creek": {
+      "name": "Station Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5872,
+        "lon": -83.6104,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Claiborne County creek' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "'near the Powell River corridor' is proximity only — confluence not stated"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "stones-river": {
+      "name": "Stones River (Davidson County)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.1865,
+        "lon": -86.6328,
+        "gauge": "03430200",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:J. Percy Priest Lake",
+        "confidence": "high",
+        "basis": "'The Donelson gauge (below Percy Priest) is the flow reference' — reach is below J. Percy Priest Dam; reservoir named in notes and j-percy-priest-lake is a catalog water"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes name no receiving water for the Nashville-metro reach"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "stoney-creek-carter": {
+      "name": "Stoney Creek (Carter County)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.383309,
+        "lon": -82.135158,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "'TWRA spring-stocked Carter County creek near Hampton. Steep gradient' — no dam named"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "medium",
+        "basis": "notes give no receiving water or terminus"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "sulfur-fork-creek": {
+      "name": "Sulfur Fork Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5125,
+        "lon": -86.997,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA winter-stocked Robertson County creek' — no dam indicated; upstream end is the stream origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes name no receiving water — stocked-creek listing only; no endpoint evidence"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "tellico-lake": {
+      "name": "Tellico Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.61538,
+        "lon": -84.21826,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (TVA reservoir impounded by Tellico Dam) — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "tellico-river": {
+      "name": "Tellico River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.362,
+        "lon": -84.279,
+        "gauge": "03518500",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'wild brook trout in the headwaters' — upstream end is the mountain origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes mention only the 'Tellico Plains corridor' stocking reach; no receiving water named in this YAML (joins Tellico Lake only per the lake's cross-ref)"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "tennessee-river": {
+      "name": "Tennessee River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.71592,
+        "lon": -84.72121,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "notes: east reach runs 'upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad confluence at Knoxville' — a confluence-formed main-stem origin, not a dam; entry also spans a second discontiguous reach"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes: 'the river legitimately leaves the state between mile 424 and Pickwick'; West Tennessee reach runs 'from Pickwick Lake to the Kentucky line' — no exact lat/lng endpoint in notes, ends out of state"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "tims-ford-lake": {
+      "name": "Tims Ford Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.2212,
+        "lon": -86.2106,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater ('the Elk River reservoir near Winchester') — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "trail-fork-big-creek": {
+      "name": "Trail Fork (Big Creek tributary)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.900264,
+        "lon": -83.110036,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'Tiny TWRA spring-stocked headwater in Cocke County' — upstream end is the origin"
+      },
+      "down": {
+        "spec": "confluence:Big Creek",
+        "confidence": "medium",
+        "basis": "name: 'Trail Fork (Big Creek tributary)' names the receiving water, but Big Creek is not a catalog water and not a major river, so not verifiable in-catalog"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "tumbling-creek": {
+      "name": "Tumbling Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.003913,
+        "lon": -84.474001,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Polk County creek' — no dam indicated; upstream end is the origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes name no receiving water — stocked-creek listing only; no endpoint evidence"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "union-city-reelfoot-pond": {
+      "name": "Union City Reelfoot Packing Site",
+      "waterbodyType": "pond",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.41437,
+        "lon": -89.06269,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater ('TWRA winter put-and-take pond in Union City') — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "upper-hills-creek": {
+      "name": "Upper Hills Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.571,
+        "lon": -85.6751,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Warren County creek' — 'Upper' reach, no dam indicated; upstream end is the origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes name no receiving water — stocked-creek listing only; no endpoint evidence"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "upper-roan-creek": {
+      "name": "Upper Roan Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3769,
+        "lon": -81.8852,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'This catalog reach covers the upper creek' — upstream end is the origin, but it lies 'near the Virginia line' and needs confirmation it stays in TN"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes cover 'the upper creek' only; no downstream split point or receiving water named"
+      },
+      "autoDerivable": false,
+      "humanReview": "crosses-state-line",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "valentine-park-pond": {
+      "name": "Valentine Park",
+      "waterbodyType": "pond",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.46305,
+        "lon": -89.80598,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater ('TWRA winter put-and-take pond in Munford') — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "watauga-lake": {
+      "name": "Watauga Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.32934,
+        "lon": -82.02215,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (TVA reservoir impounded by Watauga Dam) — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "watauga-river": {
+      "name": "Watauga River (Wilbur tailwater)",
+      "waterbodyType": "tailrace",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.3415,
+        "lon": -82.1265,
+        "gauge": "03483980",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "dam:Wilbur Lake",
+        "confidence": "high",
+        "basis": "notes: 'tailwater below Wilbur Dam' — impounding reservoir is Wilbur Lake (catalog water, discharges through Wilbur Dam)"
+      },
+      "down": {
+        "spec": "confluence:Boone Lake",
+        "confidence": "high",
+        "basis": "notes: 'It runs from Wilbur Dam down to the Boone Lake Watauga-arm head' — Boone Lake is a catalog water"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "watauga-river-wilbur-reach": {
+      "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.33702,
+        "lon": -82.12291,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "dam:Watauga Lake",
+        "confidence": "high",
+        "basis": "name/notes: 'between Watauga Dam ... and Wilbur Lake'; notes cite the below-dam gauge 36.33011/-82.12596 — impounding reservoir is Watauga Lake (catalog water)"
+      },
+      "down": {
+        "spec": "confluence:Wilbur Lake",
+        "confidence": "high",
+        "basis": "name/notes: reach ends at 'Wilbur Lake in Carter County' (catalog water); notes: 'Outflow runs ... into Wilbur Lake' chain"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "watts-bar-lake": {
+      "name": "Watts Bar Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.75264,
+        "lon": -84.6543,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater (Tennessee River reservoir, Watts Bar Dam to Fort Loudoun Dam) — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "west-fork-stones-river": {
+      "name": "West Fork Stones River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.9029,
+        "lon": -86.43,
+        "gauge": "03428200",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "gauge at Murfreesboro on the stocked reach; no dam indicated — upstream end is the fork's origin"
+      },
+      "down": {
+        "spec": "confluence:Stones River",
+        "confidence": "high",
+        "basis": "name 'West Fork Stones River' — the named fork of Stones River (catalog water, with east-fork-stones-river also in catalog)"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "west-prong-little-pigeon": {
+      "name": "West Prong Little Pigeon River",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.6995,
+        "lon": -83.5271,
+        "gauge": "03469251",
+        "source": "streams-geo"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: wild trout water 'in the park's Chimneys/Tremont corridor' — GSMNP headwaters, upstream end is the origin"
+      },
+      "down": {
+        "spec": "confluence:Little Pigeon River",
+        "confidence": "high",
+        "basis": "name 'West Prong Little Pigeon River' — the named prong of Little Pigeon River (catalog water)"
+      },
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "white-oak-creek": {
+      "name": "White Oak Creek",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.214,
+        "lon": -87.704,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked Houston County creek' — no dam indicated; upstream end is the origin"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "notes give only 'near Land Between the Lakes' eastern edge'; no receiving water named — no endpoint evidence"
+      },
+      "autoDerivable": false,
+      "humanReview": "no-endpoint-evidence",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "wilbur-lake": {
+      "name": "Wilbur Lake",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.33862,
+        "lon": -82.11568,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater ('Small (~72 acre) TVA regulating pond ... on the Watauga River') — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "wolf-river-fentress": {
+      "name": "Wolf River (Fentress County headwaters)",
+      "waterbodyType": "creek",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 36.5365,
+        "lon": -85.0477,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "high",
+        "basis": "notes: 'TWRA spring-stocked headwaters of the Memphis-bound Wolf River, high on the plateau'"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "managed reach is only the headwater reach; no downstream split point given and the continuation of the Wolf is not a catalog water ('a different water' per wolf-river-west-tennessee notes)"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "wolf-river-west-tennessee": {
+      "name": "Wolf River",
+      "waterbodyType": "river",
+      "stillwater": false,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.0882,
+        "lon": -89.6623,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": "headwater",
+        "confidence": "low",
+        "basis": "notes: 'the west-flowing Wolf through Fayette and Shelby counties; a different water from the Fentress County headwaters of the same name' — upstream split point between the two same-named catalog waters is not stated"
+      },
+      "down": {
+        "spec": "mouth",
+        "confidence": "low",
+        "basis": "reference waterbody listing only ('Detailed angler notes are still being prepared') — no receiving water named in notes"
+      },
+      "autoDerivable": false,
+      "humanReview": "reach-split-ambiguous",
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "woods-reservoir": {
+      "name": "Woods Reservoir",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.312,
+        "lon": -86.059,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater ('AEDC ... reservoir on Bradley Creek') — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    },
+    "yale-road-park-lake": {
+      "name": "Yale Road Park",
+      "waterbodyType": "lake",
+      "stillwater": true,
+      "hu8": null,
+      "anchor": {
+        "lat": 35.21676,
+        "lon": -89.85634,
+        "gauge": null,
+        "source": "asset-label-anchor"
+      },
+      "up": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater ('TWRA winter put-and-take lake in Bartlett') — termini not derived per rules"
+      },
+      "down": {
+        "spec": null,
+        "confidence": "n/a",
+        "basis": "stillwater — termini not derived per rules"
+      },
+      "autoDerivable": false,
+      "humanReview": null,
+      "verified": false,
+      "geometrySource": "tiger",
+      "hu8BoundaryReach": null
+    }
+  }
+}

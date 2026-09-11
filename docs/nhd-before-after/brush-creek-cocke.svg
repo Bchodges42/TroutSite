@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="900" viewBox="0 0 1560 900">
+<rect width="1560" height="900" fill="#0b111c"/>
+<text x="40" y="44" fill="#e8eef7" font-size="24" font-family="Menlo,monospace" font-weight="bold">Brush Creek (Cocke County)</text>
+<text x="40" y="70" fill="#7488a5" font-size="14" font-family="Menlo,monospace">brush-creek-cocke · creek · hu8 pending · termini human review: no-endpoint-evidence</text>
+<rect x="1180" y="26" width="340" height="40" rx="20" fill="#33270f"/><text x="1350" y="52" fill="#e8b64c" font-size="16" text-anchor="middle" font-family="Menlo,monospace" font-weight="bold">PENDING FAN-OUT (PLAN SHOWN)</text>
+<g>
+<rect x="40" y="96" width="720" height="700" rx="10" fill="#111a29"/>
+<rect x="40" y="96" width="720" height="700" rx="10" fill="none" stroke="#26354e" stroke-width="1.5"/>
+<text x="58" y="130" fill="#e8b64c" font-size="17" font-family="Menlo,monospace" font-weight="bold">BEFORE</text>
+<text x="58" y="152" fill="#7488a5" font-size="13" font-family="Menlo,monospace">pre-flip linework · 1 part(s) · 6.75 km · src nhd-hr</text>
+<path d="M520.1 238.3 L522.7 307.9 L473.1 322.6 L461.1 338.5 L450.9 348.0 L406.4 368.0 L399.6 377.5 L398.7 377.5 L387.6 384.9 L352.6 381.7 L340.6 385.9 L318.4 397.5 L291.0 410.2 L284.2 424.9 L286.7 449.2 L277.3 454.4 L285.9 461.8 L288.4 477.6 L302.1 475.5 L285.9 494.5 L291.0 507.1 L283.3 511.4 L279.9 535.6 L288.4 540.9 L294.4 587.3 L295.3 589.4 L301.3 627.3 L320.1 650.5 L331.2 652.6 L335.5 653.7" fill="none" stroke="#e8b64c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"  opacity="1"/>
+<circle cx="285.9" cy="461.8" r="7" fill="#e8b64c" stroke="#0b111c" stroke-width="2"/>
+<text x="296.9" y="466.8" fill="#e8b64c" font-size="14" font-family="Menlo,monospace" font-weight="bold" text-anchor="start" paint-order="stroke" stroke="#0b111c" stroke-width="4">anchor</text>
+
+
+<g><line x1="64" y1="772" x2="111.43446752130723" y2="772" stroke="#8ea2bd" stroke-width="2"/><line x1="64" y1="768" x2="64" y2="776" stroke="#8ea2bd" stroke-width="2"/><line x1="111.43446752130723" y1="768" x2="111.43446752130723" y2="776" stroke="#8ea2bd" stroke-width="2"/><text x="87.71723376065361" y="764" fill="#8ea2bd" font-size="13" text-anchor="middle" font-family="Menlo,monospace">500 m</text></g>
+</g>
+<g>
+<rect x="800" y="96" width="720" height="700" rx="10" fill="#111a29"/>
+<rect x="800" y="96" width="720" height="700" rx="10" fill="none" stroke="#26354e" stroke-width="1.5"/>
+<text x="818" y="130" fill="#3a4a63" font-size="17" font-family="Menlo,monospace" font-weight="bold">AFTER</text>
+<text x="818" y="152" fill="#7488a5" font-size="13" font-family="Menlo,monospace">NHD reach not traced yet — ghost = current linework</text>
+<path d="M1280.1 238.3 L1282.7 307.9 L1233.1 322.6 L1221.1 338.5 L1210.9 348.0 L1166.4 368.0 L1159.6 377.5 L1158.7 377.5 L1147.6 384.9 L1112.6 381.7 L1100.6 385.9 L1078.4 397.5 L1051.0 410.2 L1044.2 424.9 L1046.7 449.2 L1037.3 454.4 L1045.9 461.8 L1048.4 477.6 L1062.1 475.5 L1045.9 494.5 L1051.0 507.1 L1043.3 511.4 L1039.9 535.6 L1048.4 540.9 L1054.4 587.3 L1055.3 589.4 L1061.3 627.3 L1080.1 650.5 L1091.2 652.6 L1095.5 653.7" fill="none" stroke="#3a4a63" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"  opacity="0.45"/>
+<circle cx="1045.9" cy="461.8" r="7" fill="#59d8a0" stroke="#0b111c" stroke-width="2"/>
+<text x="1056.9" y="466.8" fill="#59d8a0" font-size="14" font-family="Menlo,monospace" font-weight="bold" text-anchor="start" paint-order="stroke" stroke="#0b111c" stroke-width="4">anchor</text>
+<text x="1160" y="436" fill="#5b6b82" font-size="19" text-anchor="middle" font-family="Menlo,monospace">AFTER panel renders here once GEOFANOUT-1 traces this unit</text>
+<rect x="808" y="702" width="704" height="94" rx="6" fill="#0b111c" opacity="0.82"/><text x="820" y="718" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">plan  UP   headwater  (high)</text><text x="820" y="742" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">plan  DOWN mouth  (medium)</text><text x="820" y="766" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">needs human review: no-endpoint-evidence</text>
+<g><line x1="824" y1="680" x2="871.4344675213072" y2="680" stroke="#8ea2bd" stroke-width="2"/><line x1="824" y1="676" x2="824" y2="684" stroke="#8ea2bd" stroke-width="2"/><line x1="871.4344675213072" y1="676" x2="871.4344675213072" y2="684" stroke="#8ea2bd" stroke-width="2"/><text x="847.7172337606536" y="672" fill="#8ea2bd" font-size="13" text-anchor="middle" font-family="Menlo,monospace">500 m</text></g>
+</g>
+<text x="40" y="878" fill="#5b6b82" font-size="13" font-family="Menlo,monospace">GEOVALID-2 owner review pack · before/after linework · TroutSite NHD flip lane</text>
+<text x="1520" y="878" fill="#5b6b82" font-size="13" text-anchor="end" font-family="Menlo,monospace">generated 2026-09-11</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="900" viewBox="0 0 1560 900">
+<rect width="1560" height="900" fill="#0b111c"/>
+<text x="40" y="44" fill="#e8eef7" font-size="24" font-family="Menlo,monospace" font-weight="bold">Buffalo Creek (Grainger County)</text>
+<text x="40" y="70" fill="#7488a5" font-size="14" font-family="Menlo,monospace">buffalo-creek-grainger · creek · hu8 pending · termini human review: no-endpoint-evidence</text>
+<rect x="1180" y="26" width="340" height="40" rx="20" fill="#33270f"/><text x="1350" y="52" fill="#e8b64c" font-size="16" text-anchor="middle" font-family="Menlo,monospace" font-weight="bold">PENDING FAN-OUT (PLAN SHOWN)</text>
+<g>
+<rect x="40" y="96" width="720" height="700" rx="10" fill="#111a29"/>
+<rect x="40" y="96" width="720" height="700" rx="10" fill="none" stroke="#26354e" stroke-width="1.5"/>
+<text x="58" y="130" fill="#e8b64c" font-size="17" font-family="Menlo,monospace" font-weight="bold">BEFORE</text>
+<text x="58" y="152" fill="#7488a5" font-size="13" font-family="Menlo,monospace">pre-flip linework · 1 part(s) · ? km · src tiger-linear</text>
+<path d="M526.4 647.5 L526.8 618.6 L530.9 600.0 L543.6 581.8 L558.8 581.8 L570.0 577.0 L559.3 561.6 L558.4 539.5 L564.7 538.0 L573.4 541.8 L579.5 547.7 L585.6 546.7 L591.3 537.0 L586.1 523.8 L585.9 518.7 L595.4 503.2 L589.5 500.7 L586.3 496.5 L577.0 470.1 L570.9 464.1 L563.4 448.2 L552.7 437.5 L545.9 424.7 L533.1 414.6 L532.5 392.7 L526.5 382.6 L522.4 360.5 L506.2 319.9 L506.2 310.6 L494.4 288.0 L484.6 280.6 L473.1 279.6 L466.8 275.0 L450.6 269.9 L444.9 269.6 L439.7 272.9 L432.6 270.1 L424.1 272.9 L393.1 253.6 L360.5 244.5 L349.2 250.6 L344.8 255.5 L340.3 255.9 L338.4 253.2 L331.8 254.3 L324.1 248.6 L313.1 254.6 L302.3 252.3 L291.0 256.3 L276.6 264.8 L273.8 277.9 L271.4 280.7 L256.0 287.0 L250.6 280.1 L231.3 275.1 L218.6 259.6 L204.6 249.5" fill="none" stroke="#e8b64c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"  opacity="1"/>
+<circle cx="506.2" cy="310.6" r="7" fill="#e8b64c" stroke="#0b111c" stroke-width="2"/>
+<text x="517.2" y="315.6" fill="#e8b64c" font-size="14" font-family="Menlo,monospace" font-weight="bold" text-anchor="start" paint-order="stroke" stroke="#0b111c" stroke-width="4">anchor</text>
+
+
+<g><line x1="64" y1="772" x2="163.01319248550382" y2="772" stroke="#8ea2bd" stroke-width="2"/><line x1="64" y1="768" x2="64" y2="776" stroke="#8ea2bd" stroke-width="2"/><line x1="163.01319248550382" y1="768" x2="163.01319248550382" y2="776" stroke="#8ea2bd" stroke-width="2"/><text x="113.50659624275191" y="764" fill="#8ea2bd" font-size="13" text-anchor="middle" font-family="Menlo,monospace">1 km</text></g>
+</g>
+<g>
+<rect x="800" y="96" width="720" height="700" rx="10" fill="#111a29"/>
+<rect x="800" y="96" width="720" height="700" rx="10" fill="none" stroke="#26354e" stroke-width="1.5"/>
+<text x="818" y="130" fill="#3a4a63" font-size="17" font-family="Menlo,monospace" font-weight="bold">AFTER</text>
+<text x="818" y="152" fill="#7488a5" font-size="13" font-family="Menlo,monospace">NHD reach not traced yet — ghost = current linework</text>
+<path d="M1286.4 647.5 L1286.8 618.6 L1290.9 600.0 L1303.6 581.8 L1318.8 581.8 L1330.0 577.0 L1319.3 561.6 L1318.4 539.5 L1324.7 538.0 L1333.4 541.8 L1339.5 547.7 L1345.6 546.7 L1351.3 537.0 L1346.1 523.8 L1345.9 518.7 L1355.4 503.2 L1349.5 500.7 L1346.3 496.5 L1337.0 470.1 L1330.9 464.1 L1323.4 448.2 L1312.7 437.5 L1305.9 424.7 L1293.1 414.6 L1292.5 392.7 L1286.5 382.6 L1282.4 360.5 L1266.2 319.9 L1266.2 310.6 L1254.4 288.0 L1244.6 280.6 L1233.1 279.6 L1226.8 275.0 L1210.6 269.9 L1204.9 269.6 L1199.7 272.9 L1192.6 270.1 L1184.1 272.9 L1153.1 253.6 L1120.5 244.5 L1109.2 250.6 L1104.8 255.5 L1100.3 255.9 L1098.4 253.2 L1091.8 254.3 L1084.1 248.6 L1073.1 254.6 L1062.3 252.3 L1051.0 256.3 L1036.6 264.8 L1033.8 277.9 L1031.4 280.7 L1016.0 287.0 L1010.6 280.1 L991.3 275.1 L978.6 259.6 L964.6 249.5" fill="none" stroke="#3a4a63" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"  opacity="0.45"/>
+<circle cx="1266.2" cy="310.6" r="7" fill="#59d8a0" stroke="#0b111c" stroke-width="2"/>
+<text x="1277.2" y="315.6" fill="#59d8a0" font-size="14" font-family="Menlo,monospace" font-weight="bold" text-anchor="start" paint-order="stroke" stroke="#0b111c" stroke-width="4">anchor</text>
+<text x="1160" y="436" fill="#5b6b82" font-size="19" text-anchor="middle" font-family="Menlo,monospace">AFTER panel renders here once GEOFANOUT-1 traces this unit</text>
+<rect x="808" y="702" width="704" height="94" rx="6" fill="#0b111c" opacity="0.82"/><text x="820" y="718" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">plan  UP   headwater  (high)</text><text x="820" y="742" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">plan  DOWN mouth  (medium)</text><text x="820" y="766" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">needs human review: no-endpoint-evidence</text>
+<g><line x1="824" y1="680" x2="923.0131924855039" y2="680" stroke="#8ea2bd" stroke-width="2"/><line x1="824" y1="676" x2="824" y2="684" stroke="#8ea2bd" stroke-width="2"/><line x1="923.0131924855039" y1="676" x2="923.0131924855039" y2="684" stroke="#8ea2bd" stroke-width="2"/><text x="873.5065962427519" y="672" fill="#8ea2bd" font-size="13" text-anchor="middle" font-family="Menlo,monospace">1 km</text></g>
+</g>
+<text x="40" y="878" fill="#5b6b82" font-size="13" font-family="Menlo,monospace">GEOVALID-2 owner review pack · before/after linework · TroutSite NHD flip lane</text>
+<text x="1520" y="878" fill="#5b6b82" font-size="13" text-anchor="end" font-family="Menlo,monospace">generated 2026-09-11</text>
+</svg>
