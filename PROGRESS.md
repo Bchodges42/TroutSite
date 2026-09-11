@@ -41,10 +41,14 @@ no GitHub remote; no remote URL was invented.
 - Local static-server before/after reproduction: base snapshot served
   `/%2e%2e%2fsecret.txt` and `/..%2fsecret.txt` as HTTP 200 with the outside
   file; hardened server returns HTTP 404 for both and for overlong nesting.
+- Local secondary-origin proxy before/after reproduction: with the upstream
+  unavailable, the base server returned `502 {"error":"portal API
+  unreachable: connect ECONNREFUSED 127.0.0.1:1"}`; hardened server returns
+  `502 {"error":"portal API unavailable"}` and logs transport detail only.
 - `pnpm --filter api lint` — green.
-- `pnpm --filter api test` — 21 files / 146 tests green.
+- `pnpm --filter api test` — 21 files / 147 tests green.
 - `pnpm --filter api build` — green.
-- `pnpm -r test` — green across contracts (97), content (11), API (146),
+- `pnpm -r test` — green across contracts (97), content (11), API (147),
   admin (19), and web (239 passed / 1 skipped).
 - `pnpm -r lint` — the workspace gate remains blocked by the pre-existing
   unused `ButtonHTMLAttributes` import in `packages/ui` plus 48 pre-existing

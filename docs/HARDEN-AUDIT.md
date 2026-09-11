@@ -134,9 +134,9 @@ that import remains an owner follow-up.
 
 ```text
 pnpm --filter api lint  # pass
-pnpm --filter api test  # 21 files, 146 tests pass
+pnpm --filter api test  # 21 files, 147 tests pass
 pnpm --filter api build # pass
-pnpm -r test             # pass: contracts 97, content 11, API 146, admin 19,
+pnpm -r test             # pass: contracts 97, content 11, API 147, admin 19,
                          #       web 239 passed / 1 skipped
 ```
 
