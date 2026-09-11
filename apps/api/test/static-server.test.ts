@@ -20,9 +20,12 @@ async function freePort(): Promise<number> {
   return port;
 }
 
-async function startStaticServer(distDir: string): Promise<{ child: ChildProcessWithoutNullStreams; port: number }> {
+async function startStaticServer(
+  distDir: string,
+  args: string[] = [],
+): Promise<{ child: ChildProcessWithoutNullStreams; port: number }> {
   const port = await freePort();
-  const child = spawn(process.execPath, [staticServer, distDir, String(port)], {
+  const child = spawn(process.execPath, [staticServer, distDir, String(port), ...args], {
     cwd: repoRoot,
     stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -78,5 +81,18 @@ describe('secondary-origin static server path safety', () => {
     const navigation = await fetch(`${base}/client-route`, { headers: { accept: 'text/html' } });
     expect(navigation.status).toBe(200);
     expect(await navigation.text()).toContain('safe shell');
+  });
+
+  it('does not expose upstream proxy connection details', async () => {
+    tempDir = mkdtempSync(join('/tmp', 'trout-static-proxy-test-'));
+    const distDir = join(tempDir, 'dist');
+    mkdirSync(distDir, { recursive: true });
+    writeFileSync(join(distDir, 'index.html'), '<html>safe shell</html>');
+    const started = await startStaticServer(distDir, ['--proxy', 'v1/portal=http://127.0.0.1:1']);
+    child = started.child;
+
+    const response = await fetch(`http://127.0.0.1:${started.port}/v1/portal/me`);
+    expect(response.status).toBe(502);
+    expect(await response.json()).toEqual({ error: 'portal API unavailable' });
   });
 });

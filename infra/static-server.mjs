@@ -100,8 +100,10 @@ const server = http.createServer((req, res) => {
         },
       );
       upstream.on('error', (err) => {
+        console.error(`[static-server] portal proxy error: ${err instanceof Error ? err.message : String(err)}`);
+        if (res.headersSent) return;
         res.writeHead(502, { 'content-type': 'application/json' });
-        res.end(JSON.stringify({ error: `portal API unreachable: ${err.message}` }));
+        res.end(JSON.stringify({ error: 'portal API unavailable' }));
       });
       if (chunks.length > 0) upstream.write(Buffer.concat(chunks));
       upstream.end();
