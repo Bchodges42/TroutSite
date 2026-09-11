@@ -193,6 +193,9 @@ Safety notes:
 > `infra/install-schedules.sh` (schtasks as SYSTEM here, crontab on Linux), and
 > `infra/refresh-data.sh` hourly replaces the data heartbeat the dead `trout-cron`
 > used to provide. If the API is not on :8787, export `TROUT_API_URL` in the tasks.
+> The runtime scripts explicitly point production jobs at
+> `C:\ProgramData\TroutSite\Data\trout.db` and the active checkout's `apps/web/public`;
+> they must not fall back to the package-local `apps/api/data/trout.db`.
 
 **Portable-shell constraint (learned 2026-09-09 on the server):** the server's Git
 environment is a minimal portable Bash — `sleep`, `tar`, `find`, `tee`, `curl` could not
