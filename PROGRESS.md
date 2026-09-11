@@ -508,3 +508,16 @@ build && pnpm --filter @trout/ui build` before the web gates; the baseline
   riverIndex regenerated; validate-atlas + continuity audit PASS.
 - Verified by vision: stones-fixed.png (corridor), stones-confluence.png
   (forks joining), terrain-fixed-1440.png (relief + contours).
+
+## Integration phase (2026-09-11, later — owner approved in-session)
+
+Branch `geoconv/nhd-integration` (off `geoconv/nhd-fanout`). Policy (owner): swap every
+catalog stream to a validated NHD trace; old linework only as fallback. Result: **105/105
+catalog stream waters traced, validated, and shipped; 0 fallbacks**; lakes/ponds/points
+unchanged. `rivers.geojson` = 1,998,062 B (≤2.0 MB gate); validate-atlas PASS; continuity
+audit **0 unexpected multi-chunk** (baseline 40); typecheck clean; 239 web tests pass;
+build + size budget OK (10.91/25 MB). Driver: `scripts/nhd_trace_catalog.mjs`; per-water
+termini specs in `data/nhd/derived/trace-specs*.json`. Engine v2 addition (owner-approved,
+flagged for GEOCONV-0): upstream `point:`/`confluence:` termini stops. Ceilings + dropped
+throughLake slugs documented in FANOUT-REPORT.md §10. Commits: driver+specs `69b2833`,
+assembled swap `6ed55ae`, docs closeout (this commit).

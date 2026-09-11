@@ -268,3 +268,44 @@ cd /Users/ben/Downloads/TroutSite-nhdfanout1
 git remote add origin <OWNER-SUPPLIED-URL>
 url="$(git remote get-url origin)" && git push "git@github.com:$(echo "$url" | sed 's#https://github.com/##')" geoconv/nhd-fanout
 ```
+
+## 10. Integration phase (owner-approved, same session, branch `geoconv/nhd-integration`)
+
+Owner directive: swap catalog stream geometry to the new NHD traces wherever a valid trace
+exists; keep old linework only where tracing cannot honor intent. Result: **all 105 catalog
+stream waters now ship engine-traced NHD geometry** (0 fallbacks); the 43 lake/pond/point
+features keep their existing geometry.
+
+Pipeline: `scripts/nhd_trace_catalog.mjs` (driver: discover → trace → assemble, per-water
+specs in `data/nhd/derived/trace-specs*.json`, global ≤2 MB budget squeeze). Tracing ran as
+3 subagent waves (4 concurrent workers each). Wave 1: 99/105 PASS; waves 2–3 fixed the 6
+continuity failures and 19 semantic over/under-runs using the catalog YAMLs as the
+extent-of-intent source.
+
+Final gates (all green):
+
+- `validate-atlas.mjs`: **PASS** (zero structural/coordinate/geometry-integrity errors; 148 unique ids)
+- `audit-river-continuity.mjs`: **PASS — 0 unexpected multi-chunk streams** (baseline was 40)
+- `rivers.geojson`: **1,998,062 bytes ≤ 2.0 MB** statewide gate
+- web typecheck clean · 239 tests passed (1 honest fresh-clone skip) · build + size budget OK (10.91 MB / 25 MB)
+
+Engine v2 (owner-approved, additive, flagged for GEOCONV-0 review): `up: point:<lat,lng>`
+and `up: confluence:<gnis_name>` termini stops in `scripts/nhd_trace.mjs` (exact mirrors of
+the downstream rules: 150 m node snap / exact-name candidate match). Default behavior is
+unchanged unless a spec uses the new kinds; needed for state-line and reach-split cuts
+(NF Holston, Nolichucky, Powell, Red River, Elk lower, Ocoee, Duck lower, Big South Fork).
+The driver also gained spec `unit` (pin a water to the correct HU8) and spec `anchor`
+(in-corridor anchor for waters whose labelAnchor sits in a neighboring unit).
+
+Known ceilings (documented, accepted for this phase):
+
+- **Cross-unit reaches** (true stitching still pending, per conventions §9): `tennessee-river`
+  ships the 196.7 km Watts Bar unit reach (catalog reach spans more units); `cumberland-river`
+  ships 108 km (Old Hickory → unit edge); `french-broad-river` ships the 115 km in-unit
+  extent (NC gorge missing); `duck-river-lower` ends 3 km NE of Columbia (06040002 edge).
+- `ocoee-river` includes ~24 km of GA Toccoa above the state line (closest expressible bound).
+- 12 trace throughLake slugs had no matching catalog lake feature and were dropped
+  (e.g. `cordell-hull-reservoir`, `dallas-lake`) — no dangling references; see assemble log.
+- `labelAnchor` values are preserved from the old asset; the trace's own anchor is recorded
+  in the additive `trace` provenance block per feature.
+- `08010206` Forked Deer still absent (defective upstream product, §6).
