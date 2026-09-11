@@ -1,3 +1,25 @@
+# SESSION GEOCONV-0 — NHD trace engine spike + conventions freeze (2026-09-11)
+
+Base commit: `1300194` ("geoconv0(base): snapshot init from TroutSite-main 2026-09-11") — snapshot arrived
+WITHOUT .git and no remote exists in this clone, so the base commit is the snapshot-init commit itself.
+**Push is DEFERRED pending owner-provided remote metadata** (AGENTS.md rule 3 cannot run against a missing
+origin; re-run `git remote get-url origin` check when the owner supplies it).
+Clone: `/Users/ben/Downloads/TroutSite-nhdconv0` (own clone, lane `geoconv/nhd-engine`; announced here per
+AGENTS.md rule 1 — TroutSite-main is actively touched by another lane and was NOT written to).
+Branch: `geoconv/nhd-engine`. Commit tag: `geoconv0(...)`.
+Scope: `data/nhd/**`, `scripts/nhd_*`, `docs/NHD-CONVENTIONS.md`, `PROGRESS.md`. Not touched:
+`packages/contracts`, `apps/web/src`, `apps/web/public`, other lanes' files.
+
+## Status log
+
+- [x] Setup: snapshot copied (48M, node_modules excluded), `git init`, base commit `1300194`,
+      branch `geoconv/nhd-engine`. Foreign in-flight work observed in snapshot (docs/, e2e/,
+      packages/ui dated 2026-09-10/11) — taken as immutable baseline, not built upon.
+- [x] Preflight: `git remote get-url origin` → no remote (known snapshot condition) → push deferred,
+      recorded here. GDAL 3.13.3 installed via brew (maintainer tool only, never a build/CI dep).
+
+(in-progress entries appended as work lands)
+
 # SESSION 3 — Product / UX / Growth (2026-09-08)
 
 Base commit: `6d0befe` (origin/main, recovery push 2026-09-08).
