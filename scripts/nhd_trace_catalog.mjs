@@ -25,6 +25,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { collapseHairpins } from './nhd-validate-lib.mjs';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -428,7 +429,9 @@ function assemble() {
   const rebuildFeature = (id, oldFeature) => {
     const reach = readJson(path.join(DERIVED, `reach-${id}.geojson`));
     const p = reach.properties;
-    const coords = reach.geometry.coordinates; // MultiLineString coordinates: array of parts (one part), each an array of [lon,lat]
+    // hairpin-collapse each part: NHD digitizer fold-backs render as filled
+    // pills/wedges that shift with zoom (owner-reported glitch)
+    const coords = reach.geometry.coordinates.map((part) => collapseHairpins(part).coords);
     const next = {
       id: p.id,
       name: p.name,

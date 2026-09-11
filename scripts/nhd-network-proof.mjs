@@ -14,7 +14,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { dpSimplify, haversineM, lineLengthKm, roundCoords } from './nhd_lib.mjs';
+import { dpSimplify, lineLengthKm, roundCoords } from './nhd_lib.mjs';
+import { collapseHairpins } from './nhd-validate-lib.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -46,7 +47,7 @@ for (const file of fs
     const f = JSON.parse(line);
     if (!f.geometry?.coordinates || !touches(f.geometry.coordinates)) continue;
     const parts = f.geometry.coordinates
-      .map((lineCoords) => roundCoords(dpSimplify(lineCoords, tolM), 5))
+      .map((lineCoords) => collapseHairpins(roundCoords(dpSimplify(lineCoords, tolM), 5)).coords)
       .filter((lineCoords) => lineCoords.length >= 2);
     if (parts.length === 0) continue;
     features.push({
