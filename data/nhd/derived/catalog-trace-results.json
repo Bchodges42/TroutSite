@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T20:21:54.639Z",
+  "generatedAt": "2026-09-11T20:44:02.071Z",
   "results": {
     "barren-fork-river": {
       "unit": "05130107",
@@ -226,7 +226,7 @@
         "center-hill-lake"
       ],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "charles-creek": {
       "unit": "05130107",
@@ -438,7 +438,7 @@
       "vertexCount": 848,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "duck-river-tailwater": {
       "unit": "06040002",
@@ -508,7 +508,7 @@
       "vertexCount": 748,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "elk-river-lower": {
       "unit": "06030004",
@@ -708,7 +708,7 @@
       "vertexCount": 1223,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 17694
+      "finalBudget": 81920
     },
     "hatchie-river": {
       "unit": "08010208",
@@ -725,7 +725,7 @@
       "vertexCount": 2528,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 17694
+      "finalBudget": 81920
     },
     "hiwassee-river": {
       "unit": "06020002",
@@ -762,7 +762,7 @@
         "fort-loudoun-lake"
       ],
       "error": null,
-      "finalBudget": 17694
+      "finalBudget": 81920
     },
     "horse-creek-greene": {
       "unit": "06010108",
@@ -919,7 +919,7 @@
         "fort-loudoun-lake"
       ],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "little-sequatchie-river": {
       "unit": "06020004",
@@ -1043,7 +1043,7 @@
       "vertexCount": 963,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "mossy-creek-jefferson": {
       "unit": "06010104",
@@ -1099,7 +1099,7 @@
         "douglas-lake"
       ],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "north-chickamauga-creek": {
       "unit": "06020001",
@@ -1313,7 +1313,7 @@
         "norris-lake"
       ],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "puncheon-camp-creek": {
       "unit": "06010205",
@@ -1451,7 +1451,7 @@
       "vertexCount": 1393,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 17694
+      "finalBudget": 81920
     },
     "shoal-creek": {
       "unit": "06030005",
@@ -1643,7 +1643,7 @@
         "tellico-lake"
       ],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "tennessee-river": {
       "unit": "06010201",
@@ -1664,7 +1664,7 @@
         "dallas-lake"
       ],
       "error": null,
-      "finalBudget": 49152
+      "finalBudget": 81920
     },
     "trail-fork-big-creek": {
       "unit": "06010105",
@@ -1864,7 +1864,7 @@
       "vertexCount": 1710,
       "throughLakeIds": [],
       "error": null,
-      "finalBudget": 17694
+      "finalBudget": 81920
     }
   },
   "assembly": {
@@ -1889,14 +1889,12 @@
       "clinch-river",
       "collins-river",
       "cosby-creek",
-      "cumberland-river",
       "daddys-creek",
       "doe-creek-johnson",
       "doe-river",
       "duck-river-lower",
       "duck-river-tailwater",
       "east-fork-shoal-creek",
-      "east-fork-stones-river",
       "elk-river",
       "elk-river-lower",
       "emory-river",
@@ -1915,7 +1913,6 @@
       "horse-creek-greene",
       "hurricane-creek",
       "indian-creek-claiborne",
-      "laurel-creek-johnson",
       "laurel-fork-carter",
       "leconte-creek",
       "little-buffalo-river",
@@ -1946,13 +1943,11 @@
       "puncheon-camp-creek",
       "red-river-clarksville",
       "reedy-creek",
-      "richardson-byrd-creek",
       "roaring-fork",
       "rocky-river",
       "salt-lick-creek",
       "sequatchie-river",
       "shoal-creek",
-      "sinking-creek-wilson",
       "south-fork-cumberland",
       "south-holston-river",
       "spring-creek-polk",
@@ -1962,7 +1957,6 @@
       "stoney-creek-carter",
       "sulfur-fork-creek",
       "tellico-river",
-      "tennessee-river",
       "trail-fork-big-creek",
       "tumbling-creek",
       "upper-hills-creek",
@@ -1975,7 +1969,14 @@
       "wolf-river-fentress",
       "wolf-river-west-tennessee"
     ],
-    "kept": [],
+    "kept": [
+      "cumberland-river (extent-fallback)",
+      "east-fork-stones-river (extent-fallback)",
+      "laurel-creek-johnson (extent-fallback)",
+      "richardson-byrd-creek (extent-fallback)",
+      "sinking-creek-wilson (extent-fallback)",
+      "tennessee-river (extent-fallback)"
+    ],
     "totalBytes": 1993902
   }
 }

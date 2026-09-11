@@ -509,10 +509,45 @@ function assemble() {
   }
   console.log(`final total: ${(totalBytes() / 1e6).toFixed(2)} MB`);
 
+  // Extent-regression guard: these cross-unit waters historically shipped full
+  // main-stem geometry; the per-unit trace reaches only a fraction (the graph
+  // ends at the HU8 edge). Until cross-unit stitching is approved (conventions
+  // §9), ship the previous full-extent feature marked tiger-fallback — a much
+  // shorter line is a visible map regression (tennessee-river 960 -> 196 km).
+  const PENDING_STITCHING = new Set([
+    'tennessee-river',
+    'cumberland-river',
+    'east-fork-stones-river',
+    'laurel-creek-johnson',
+    'richardson-byrd-creek',
+    'sinking-creek-wilson',
+  ]);
+  const fallbackBaselineFeature = (id) => {
+    if (!PENDING_STITCHING.has(id)) return null;
+    // the on-disk asset may already be swapped; the pre-swap baseline is the
+    // shipped-extent reference
+    const baselinePath = path.join(DERIVED, 'reference', 'rivers-baseline-1300194.geojson');
+    const old = fs.existsSync(baselinePath)
+      ? JSON.parse(fs.readFileSync(baselinePath, 'utf8')).features.find(
+          (f) => f.properties.id === id,
+        )
+      : null;
+    if (!old) return null;
+    const reach = readJson(path.join(DERIVED, `reach-${id}.geojson`));
+    return (reach.properties.lengthKm ?? 0) < 0.7 * (old.properties.lengthKm ?? 0) ? old : null;
+  };
+
   const applied = [];
   const kept = [];
   const nextFeatures = asset.features.map((f) => {
     const id = f.properties.id;
+    const baselineFeature = fallbackBaselineFeature(id);
+    if (baselineFeature) {
+      kept.push(`${id} (extent-fallback)`);
+      const next = structuredClone(baselineFeature);
+      next.properties.geometrySource = 'tiger-fallback';
+      return next;
+    }
     if (!budgets.has(id)) return f;
     const r = results[id];
     if (r.verdict !== 'PASS') {

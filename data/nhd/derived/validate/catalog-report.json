@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T20:22:17.943Z",
+  "generatedAt": "2026-09-11T20:44:27.287Z",
   "lane": "GEOVALID-2",
   "suite": "scripts/nhd-validate.mjs",
   "mode": {
@@ -16,7 +16,7 @@
     "fails": 0,
     "reviews": 10,
     "sharedBboxPairs": 2,
-    "assetBboxOverlapsInfo": 251,
+    "assetBboxOverlapsInfo": 348,
     "terminiAutoDerivable": 47,
     "terminiHumanReview": 58
   },
