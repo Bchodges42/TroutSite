@@ -7,6 +7,17 @@
 
 **Date:** 2026-09-04 (updated evening) · **Base for all lanes:** `51f8803` ("Redesign: dark Tailwater identity, species toggle, full river atlas data") on `C:\Users\Benjamin\Projects\trout` (frozen reference — do not touch).
 
+## NHD geometry lanes (2026-09-11) — bridge registration
+
+No GitHub remote exists in the local object store yet, so lane registration rides the
+commits (push deferred; see PROGRESS.md top entries). Claimed clones/branches:
+
+| Lane | Clone | Branch | Status |
+|---|---|---|---|
+| GEOCONV-0 (convert + engine + conventions) | `/Users/ben/Downloads/TroutSite-nhdconv0` | `geoconv/nhd-engine` | frozen at `6e25818` — conventions + reference HU8 06010207 |
+| GEOVALID-2 (regression gates + termini + review pack) | `/Users/ben/Downloads/TroutSite-nhdvalid2` | `geoconv/nhd-validate` | suite green, termini.json (148 waters), review pack rendered, B13 19/19 FIXED |
+| GEOFANOUT-1 (fan-out to all TN HU8s) | unclaimed | `geoconv/nhd-fanout` (suggested) | consumes conventions §9 + termini.json; then `nhd-validate.mjs --strict` + pack re-render |
+
 ## Lane status
 
 | Lane | Repo | Status |
