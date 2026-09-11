@@ -77,17 +77,27 @@ export function parseNetworkManifest(json: unknown): NetworkManifest | null {
   for (const entry of record.clusters) {
     if (typeof entry !== 'object' || entry === null) return null;
     const c = entry as Record<string, unknown>;
-    const { id, file, bounds } = c;
+    const { id, file } = c;
     if (typeof id !== 'string' || !id) return null;
     if (typeof file !== 'string' || !file) return null;
+    // The shipped GEONET contract (schema trout/nhd-network/1) carries the
+    // cluster extent as `bbox`; the pre-integration mock used `bounds`.
+    // Accept both — parsing, not the field name, is what the fail-closed
+    // feature depends on (GEOQA: statewide sweep found the mismatch).
+    const rawBounds = Array.isArray(c.bounds) ? c.bounds : c.bbox;
     if (
-      !Array.isArray(bounds) ||
-      bounds.length !== 4 ||
-      bounds.some((n) => typeof n !== 'number' || !Number.isFinite(n))
+      !Array.isArray(rawBounds) ||
+      rawBounds.length !== 4 ||
+      rawBounds.some((n) => typeof n !== 'number' || !Number.isFinite(n))
     )
       return null;
     const features = typeof c.features === 'number' ? c.features : undefined;
-    clusters.push({ id, file, bounds: [bounds[0]!, bounds[1]!, bounds[2]!, bounds[3]!], features });
+    clusters.push({
+      id,
+      file,
+      bounds: [rawBounds[0]!, rawBounds[1]!, rawBounds[2]!, rawBounds[3]!],
+      features,
+    });
   }
   const manifest: NetworkManifest = { schema: String(record.schema), clusters };
   if (typeof record.attribution === 'string') manifest.attribution = record.attribution;
@@ -242,8 +252,10 @@ async function syncNetworkClusters(map: MlMap): Promise<void> {
       });
       // If 'rivers-casing' is momentarily absent (style mid-swap), append to
       // the top — the next style.load resync re-inserts in the right order.
-      map.addLayer(clusterLayerSpec(cluster) as never,
-        map.getLayer(NETWORK_BEFORE_LAYER) ? NETWORK_BEFORE_LAYER : undefined);
+      map.addLayer(
+        clusterLayerSpec(cluster) as never,
+        map.getLayer(NETWORK_BEFORE_LAYER) ? NETWORK_BEFORE_LAYER : undefined,
+      );
       state.added.add(cluster.id);
     }
   }

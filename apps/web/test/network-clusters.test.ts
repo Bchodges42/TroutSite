@@ -39,6 +39,29 @@ describe('parseNetworkManifest (trout/nhd-network/1)', () => {
     expect(manifest?.attribution).toBe('Geometry: USGS NHD');
   });
 
+  it('accepts the shipped GEONET manifest shape (bbox field, extra keys)', () => {
+    // The statewide manifest ships { id, file, units, bbox, bytes, lines, km } —
+    // GEOQA caught the parser rejecting it because the mock used `bounds`.
+    const shipped = {
+      schema: 'trout/nhd-network/1',
+      simplifyM: 20,
+      clusters: [
+        {
+          id: '0505',
+          file: 'network/0505.geojson',
+          units: ['05050001'],
+          bbox: [-81.73768, 36.12577, -80.12403, 37.29861],
+          bytes: 1894036,
+          lines: 6166,
+          km: 4517.8,
+        },
+      ],
+    };
+    const manifest = parseNetworkManifest(shipped);
+    expect(manifest).not.toBeNull();
+    expect(manifest?.clusters[0]?.bounds).toEqual([-81.73768, 36.12577, -80.12403, 37.29861]);
+  });
+
   it('rejects wrong or missing schema wholesale', () => {
     expect(parseNetworkManifest({ ...valid, schema: 'trout/nhd-network/2' })).toBeNull();
     const { schema: _schema, ...noSchema } = valid;
@@ -107,11 +130,11 @@ describe('viewport intersection (padded)', () => {
     const released = clustersToRelease(clusters, ['0513', '0601'], [-85.15, 36.2, -85.0, 36.3]);
     expect(released).toEqual(['0513']);
     // A loaded id missing from the manifest is always releasable (stale bookkeeping).
-    expect(clustersToRelease(clusters, ['ghost'], [-86.05, 35.85, -85.85, 36.0])).toEqual(['ghost']);
+    expect(clustersToRelease(clusters, ['ghost'], [-86.05, 35.85, -85.85, 36.0])).toEqual([
+      'ghost',
+    ]);
     // At statewide zooms the padded viewport spans both clusters: nothing releases.
-    expect(
-      clustersToRelease(clusters, ['0513', '0601'], [-90.3, 34.7, -81.6, 37.0]),
-    ).toEqual([]);
+    expect(clustersToRelease(clusters, ['0513', '0601'], [-90.3, 34.7, -81.6, 37.0])).toEqual([]);
   });
 
   it('treats touching edges as intersecting', () => {
