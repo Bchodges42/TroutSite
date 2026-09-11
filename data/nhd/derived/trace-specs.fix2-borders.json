@@ -1,5 +1,5 @@
 {
-  "_comment": "Wave-3 border/upper cuts using the owner-approved engine v2 upstream point/confluence stops. Overrides earlier fragments (sorts after trace-specs.fix-*).",
+  "_comment": "Wave-3 border/upper cuts using the owner-approved engine v2 upstream point/confluence stops. Overrides earlier fragments (sorts after trace-specs.fix-*). | elk-river-lower up point re-pinned to the Prospect channel node (elk-river reach down terminus) — the USGS gauge coordinate sat >150m off-graph so the up stop never fired and the walk over-ran 14.6km into elk-river (GEOVALID-2 consolidation fix).",
   "north-fork-holston-river": {
     "up": "point:36.7981,-81.9999",
     "down": "point:36.5479,-82.6119"
@@ -11,7 +11,7 @@
     "up": "point:36.072839,-82.416775"
   },
   "elk-river-lower": {
-    "up": "point:35.014052,-86.995859",
+    "up": "point:35.022886,-86.884887",
     "down": "point:34.81986,-87.158255"
   },
   "south-fork-cumberland": {

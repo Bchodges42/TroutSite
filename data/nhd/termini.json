@@ -1247,9 +1247,9 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "point:35.014052,-86.995859",
+        "spec": "point:35.022886,-86.884887",
         "confidence": "high",
-        "basis": "Town split at Prospect ('Gauge at Prospect helps separate rain pulses') where elk-river reach ends; grammar offers no town-split spec | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
+        "basis": "Town split at Prospect ('Gauge at Prospect helps separate rain pulses') where elk-river reach ends; grammar offers no town-split spec | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint) | up point re-pinned to the Prospect channel node during consolidation (gauge coord was >150m off-graph; over-walk removed)"
       },
       "down": {
         "spec": "point:34.81986,-87.158255",
@@ -3879,7 +3879,8 @@
       "humanReview": null,
       "verified": true,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": true
+      "hu8BoundaryReach": true,
+      "lengthSanityWaiver": "YAML \"~1.5 mile\" is an approximation; traced dam-to-dam riverine distance 3.84 km per NHD (GEOFANOUT-1 per-water fix)"
     },
     "watts-bar-lake": {
       "name": "Watts Bar Lake",

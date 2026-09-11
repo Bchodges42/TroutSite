@@ -13,7 +13,7 @@
     ]
   },
   "upWalk": {
-    "spec": "point:35.014052,-86.995859",
+    "spec": "point:35.022886,-86.884887",
     "path": [
       395,
       1178,
@@ -41,12 +41,10 @@
       2254,
       1473,
       1313,
-      560,
-      957,
-      956
+      560
     ],
-    "reason": "headwater",
-    "node": "n2449",
+    "reason": "point",
+    "node": "n2447",
     "edgePids": [
       "128246455",
       "128246468",
@@ -74,9 +72,7 @@
       "128246354",
       "128246342",
       "128246335",
-      "128246312",
-      "138656590",
-      "{6EEE8B46-578F-4315-B7E7-4EE3A09DB3D1}"
+      "128246312"
     ]
   },
   "downWalk": {
@@ -215,14 +211,6 @@
     ]
   },
   "pathEdges": [
-    {
-      "pid": "{6EEE8B46-578F-4315-B7E7-4EE3A09DB3D1}",
-      "dir": "up"
-    },
-    {
-      "pid": "138656590",
-      "dir": "up"
-    },
     {
       "pid": "128246312",
       "dir": "up"
@@ -752,7 +740,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 7004,
+    "bytes": 6950,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-elk-river-lower.geojson"
