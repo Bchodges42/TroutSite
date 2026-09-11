@@ -25,6 +25,9 @@ case "$(uname -s)" in MINGW*|MSYS*|CYGWIN*) IS_WIN=1 ;; esac
 
 # TROUT_API_URL can be injected per-task if the API does not listen on :8787.
 API_URL="${TROUT_API_URL:-http://127.0.0.1:8787}"
+source "$POSIX_PATH/infra/runtime-env.sh"
+trout_runtime_env "$POSIX_PATH"
+SCHEDULE_ENV="TROUT_API_URL=\"$API_URL\" TROUT_DB_PATH=\"$TROUT_DB_PATH\" TROUT_SNAPSHOTS_DIR=\"$TROUT_SNAPSHOTS_DIR\" TROUT_CONTENT_DIR=\"$TROUT_CONTENT_DIR\" TROUT_RAW_DIR=\"$TROUT_RAW_DIR\""
 
 jobs=(
   "trout-watchdog|*/15 or MINUTE/MO 15|bash infra/watchdog.sh"
@@ -40,14 +43,14 @@ run_job() { # name command
   local name="$1" cmd="$2"
   if [ "$IS_WIN" = "1" ]; then
     case "$name" in
-      trout-watchdog)     schtasks /Create /F /SC MINUTE /MO 15 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && TROUT_API_URL=$API_URL $cmd >> $LOGREL 2>&1'" ;;
-      trout-refresh-data) schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && TROUT_API_URL=$API_URL $cmd >> $LOGREL 2>&1'" ;;
-      trout-autoupdate)   schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && TROUT_API_URL=$API_URL $cmd >> $LOGREL 2>&1'" ;;
+      trout-watchdog)     schtasks /Create /F /SC MINUTE /MO 15 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
+      trout-refresh-data) schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
+      trout-autoupdate)   schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
     esac
   else
     local spec="0 * * * *"
     [ "$name" = "trout-watchdog" ] && spec="*/15 * * * *"
-    (crontab -l 2>/dev/null | grep -v "$name"; echo "$spec cd $POSIX_PATH && TROUT_API_URL=$API_URL $cmd >> $LOGREL 2>&1") | crontab -
+    (crontab -l 2>/dev/null | grep -v "$name"; echo "$spec cd $POSIX_PATH && $SCHEDULE_ENV $cmd >> $LOGREL 2>&1") | crontab -
   fi
 }
 
