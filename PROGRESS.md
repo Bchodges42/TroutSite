@@ -1,3 +1,44 @@
+# SESSION INTEGRATION (GEOVALID-2 follow-on) — all-lane consolidation dry-run (2026-09-11)
+
+Scratch integration branch in `/Users/ben/Downloads/TroutSite-integration-dryrun` (owner-directed
+consolidation review; push pending owner-provided GitHub remote). Merge chain, in order:
+
+1. `geoconv/nhd-integration` (GEOFANOUT-1; engine + 59 HU8 units + catalog trace driver) — base.
+   Closeout: GEOFANOUT-1's 321 uncommitted reach outputs committed with attribution (`9eeac21`).
+2. + `geoconv/nhd-validate` (GEOVALID-2 suite + termini.json + review pack) — **1 conflict:
+   PROGRESS.md** (both lanes prepended session entries; both kept).
+3. + `harden/origin-host` (origin-host security: api hardening, static-server containment,
+   RUNBOOK, HARDEN-AUDIT) — unrelated snapshot histories (b301570 vs 1300194 snapshot inits,
+   trees near-identical; the older snapshot had node_modules committed, excluded).
+   **13 conflicts, all mechanical**: take-theirs for harden's lane-exclusive files
+   (apps/api/**, infra/**, .env.example), take-ours COORDINATION.md, PROGRESS.md stitched.
+4. + `ui/search-and-themes` (Codex: header search + themes) — **clean, zero conflicts**
+   (9 files: AppShell header search wiring, RiverSearch, ThemeProvider, themes.ts +265 —
+   Riverstone/High contrast/Campfire + custom color overrides, SettingsPage controls, tests).
+
+## Verification on the merged tree
+
+- web: 239 passed / 1 skipped; typecheck clean; content pack: 11 passed; NHD suite tests: 29 passed.
+- Catalog suite after termini-spec reconciliation (full trace-specs.json generated from
+  termini.json, GEOFANOUT-1 driver re-run): 99/105 traces PASS, **B13 all FIXED**, bbox gate
+  caught 2 real duplicate-linework over-traces (new-river|south-fork-cumberland,
+  ocoee-river|parksville-tailwater).
+
+## Punch list (integration lane, next session)
+
+1. Dam-stop failures (lake artpath wbarea unresolved in some units): parksville-tailwater
+   (138 km over-trace), little-tennessee-river (52 km — Fontana in NC), stones-river (4.4 km),
+   watauga-river-wilbur-reach (56 km vs ~2.4 km stated). Fix stops → over-trace bbox
+   duplicates disappear with them.
+2. Continuity/cycle-guard waters: buffalo-river (157 m junction), hiwassee-river (96 m,
+   cycle-guard; dam spec unreachable — NC impoundment, needs point/state-line spec in
+   conventions v2), south-holston-river (72 m), pigeon-river (69 m), caney-fork-upper (55 m),
+   little-tennessee-river (55 m).
+3. 7 confluence targets not present as named in-unit edges (clear-fork, gulf-fork-big-creek,
+   little-river, new-river, north-prong-barren-fork, piney-river-rhea, trail-fork-big-creek) —
+   verify target gnis names per unit or flag hu8BoundaryReach with evidence.
+4. cross-unit stitching (41 waters) remains a separate, explicitly approved step (§9).
+
 # SESSION GEOFANOUT-1 — NHD fan-out: every TN-intersecting HU8 → JSONL + graph (2026-09-11)
 
 Clone: `/Users/ben/Downloads/TroutSite-nhdfanout1` (own clone per AGENTS.md rule 1; announced
