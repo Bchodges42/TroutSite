@@ -28,6 +28,8 @@ API_URL="${TROUT_API_URL:-http://127.0.0.1:8787}"
 source "$POSIX_PATH/infra/runtime-env.sh"
 trout_runtime_env "$POSIX_PATH"
 SCHEDULE_ENV="TROUT_API_URL=\"$API_URL\" TROUT_DB_PATH=\"$TROUT_DB_PATH\" TROUT_SNAPSHOTS_DIR=\"$TROUT_SNAPSHOTS_DIR\" TROUT_CONTENT_DIR=\"$TROUT_CONTENT_DIR\" TROUT_RAW_DIR=\"$TROUT_RAW_DIR\""
+WINDOWS_POWERSHELL="${TROUT_WINDOWS_POWERSHELL:-C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe}"
+WINDOWS_UPDATE_SCRIPT="${TROUT_WINDOWS_UPDATE_SCRIPT:-C:\\ProgramData\\TroutSite\\Tools\\update-trout.ps1}"
 
 jobs=(
   "trout-watchdog|*/15 or MINUTE/MO 15|bash infra/watchdog.sh"
@@ -45,7 +47,7 @@ run_job() { # name command
     case "$name" in
       trout-watchdog)     schtasks /Create /F /SC MINUTE /MO 15 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
       trout-refresh-data) schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
-      trout-autoupdate)   schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
+      trout-autoupdate)   schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$WINDOWS_POWERSHELL\" -NoProfile -ExecutionPolicy Bypass -File \"$WINDOWS_UPDATE_SCRIPT\"" ;;
     esac
   else
     local spec="0 * * * *"
