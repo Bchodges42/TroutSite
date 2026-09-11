@@ -1,3 +1,19 @@
+## Punch-list closeout (GEOVALID-2 consolidation, later on 2026-09-11)
+
+Resolved during consolidation: parksville-tailwater (NHD name is Lake Ocoee — re-traced
+19.38 km), little-tennessee-river (Chilhowee-to-mouth, 48.66 km), watauga-river-wilbur-reach
+(3.84 km), stones-river, and the new-river|south-fork-cumberland + ocoee-river|parksville
+duplicate-linework defects (gone once the over-traces were fixed). elk-river-lower's
+engine-v2 up point was re-pinned to the Prospect channel node (the gauge coordinate was
+>150 m off-graph; 14.6 km over-walk removed). Termini.json adopted the shipped reality for
+all 105 flowing waters; suite verdict: PASS (0 FAIL, 10 REVIEW artpath chords), B13 19/19
+FIXED, web 239/239 + typecheck clean, content validate OK.
+
+Still open (next lanes): cross-unit stitching (tennessee-river 197 km partial, cumberland-river
+108 km partial, ~24 km Ocoee-in-GA slice; 41 cross-unit waters end at unit edges), the 12
+dropped lake references (content lane, FANOUT-REPORT §10), Forked Deer 08010206 upstream
+(defective USGS product), and GEOCONV-0 review of the engine v2 upstream point/confluence
+stops (scripts/nhd_trace.mjs — additive, documented).
 # SESSION INTEGRATION (GEOVALID-2 follow-on) — all-lane consolidation dry-run (2026-09-11)
 
 Scratch integration branch in `/Users/ben/Downloads/TroutSite-integration-dryrun` (owner-directed
