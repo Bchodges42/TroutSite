@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { WaterEvidenceSetSchema } from '@trout/contracts';
 import { buildSnapshots } from '../src/snapshots/build.js';
 import { runEvidenceJob } from '../src/evidence/evidenceJob.js';
-import { makeEnv, fixturesDir, type TestEnv } from './helpers.js';
+import { makeEnv, type TestEnv } from './helpers.js';
 
 const NOW = new Date('2026-09-04T12:00:00Z');
 

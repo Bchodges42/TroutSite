@@ -28,6 +28,14 @@ describe('shop tokens', () => {
     expect(mintShopToken(SECRET, 'test-fly-shop', 30)).toMatch(/^v1\.test-fly-shop\./);
   });
 
+  it('rejects invalid prefixes, non-forward expiry, and oversized shop ids', () => {
+    const now = Date.now();
+    const valid = signShopToken(SECRET, 'test-fly-shop', now, now + 60_000);
+    expect(verifyShopToken(SECRET, valid.replace(/^v1\./, 'v2.'))).toBeNull();
+    expect(verifyShopToken(SECRET, signShopToken(SECRET, 'test-fly-shop', now, now))).toBeNull();
+    expect(verifyShopToken(SECRET, signShopToken(SECRET, 'x'.repeat(81), now, now + 60_000))).toBeNull();
+  });
+
   it('extracts bearer tokens case-insensitively', () => {
     expect(bearerToken('Bearer abc')).toBe('abc');
     expect(bearerToken('bearer abc')).toBe('abc');
@@ -84,9 +92,10 @@ describe('portal API', () => {
       });
     });
 
-    it('401s on missing/garbage tokens, 403 on unknown shop', async () => {
+    it('uses generic auth errors for missing, malformed, expired, and unknown-shop tokens', async () => {
       const missing = await app.inject({ method: 'GET', url: '/v1/portal/me' });
       expect(missing.statusCode).toBe(401);
+      expect(missing.json()).toEqual({ error: 'unauthorized' });
 
       const forged = await app.inject({
         method: 'GET',
@@ -94,6 +103,16 @@ describe('portal API', () => {
         headers: { authorization: `Bearer ${mintShopToken('other-secret', 'test-fly-shop', 30)}` },
       });
       expect(forged.statusCode).toBe(401);
+      expect(forged.json()).toEqual({ error: 'unauthorized' });
+
+      const now = Date.now();
+      const expired = await app.inject({
+        method: 'GET',
+        url: '/v1/portal/me',
+        headers: { authorization: `Bearer ${signShopToken(SECRET, 'test-fly-shop', now - 2_000, now - 1_000)}` },
+      });
+      expect(expired.statusCode).toBe(401);
+      expect(expired.json()).toEqual({ error: 'unauthorized' });
 
       const unknown = await app.inject({
         method: 'GET',
@@ -101,6 +120,7 @@ describe('portal API', () => {
         headers: { authorization: `Bearer ${mintShopToken(SECRET, 'no-such-shop', 30)}` },
       });
       expect(unknown.statusCode).toBe(403);
+      expect(unknown.json()).toEqual({ error: 'forbidden' });
     });
   });
 
@@ -217,6 +237,7 @@ describe('portal API', () => {
         payload: validBody,
       });
       expect(disabled.statusCode).toBe(403);
+      expect(disabled.json()).toEqual({ error: 'forbidden' });
       env.db.prepare('UPDATE shops SET reports_enabled = 1 WHERE id = ?').run('test-fly-shop');
 
       const limited = buildApp({
@@ -246,8 +267,10 @@ describe('portal API', () => {
       const unconfigured = buildApp({ db: env.db, portal: { snapshotsDir: env.snapshotsDir } });
       const me = await unconfigured.inject({ method: 'GET', url: '/v1/portal/me' });
       expect(me.statusCode).toBe(503);
+      expect(me.json()).toEqual({ error: 'service unavailable' });
       const post = await unconfigured.inject({ method: 'POST', url: '/v1/portal/reports', payload: validBody });
       expect(post.statusCode).toBe(503);
+      expect(post.json()).toEqual({ error: 'service unavailable' });
       await unconfigured.close();
     });
   });

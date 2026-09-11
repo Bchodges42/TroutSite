@@ -4,7 +4,6 @@ import { WaterEvidenceSetSchema } from '@trout/contracts';
 import type { EvidenceStockingEvent, EvidenceError, WaterObservation } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
-import { fetchWithRetry } from '../lib/retry.js';
 import { fetchUsgsObservations } from './usgs-provider.js';
 import { fetchTvaObservations } from './tva-provider.js';
 import { fetchTwraArtifacts, parseTwraEvidence } from './twra-evidence.js';

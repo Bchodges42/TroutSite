@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
+import { timingSafeEqual } from 'node:crypto';
 import { join } from 'node:path';
 import Fastify, { type FastifyInstance } from 'fastify';
 import fastifyStatic from '@fastify/static';
@@ -28,6 +29,20 @@ export interface BuildAppOptions {
   webDistDir?: string;
   /** Portal (apps/admin) origins allowed to call the live portal routes. */
   portalOrigins?: string[];
+  /** Optional shared secret for the private watchdog health probe. */
+  watchdogToken?: string;
+}
+
+function constantTimeEqual(expected: string, actual: string): boolean {
+  const expectedBytes = Buffer.from(expected, 'utf8');
+  const actualBytes = Buffer.from(actual, 'utf8');
+  const length = Math.max(expectedBytes.length, actualBytes.length);
+  const paddedExpected = Buffer.alloc(length);
+  const paddedActual = Buffer.alloc(length);
+  expectedBytes.copy(paddedExpected);
+  actualBytes.copy(paddedActual);
+  const equal = timingSafeEqual(paddedExpected, paddedActual);
+  return equal && expectedBytes.length === actualBytes.length;
 }
 
 /**
@@ -54,7 +69,23 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     bodyLimit: 128 * 1024,
   });
 
-  app.get('/healthz', async () => {
+  app.addHook('onSend', async (_req, reply, payload) => {
+    reply.header('Strict-Transport-Security', 'max-age=63072000');
+    reply.header('X-Content-Type-Options', 'nosniff');
+    reply.header('X-Frame-Options', 'DENY');
+    reply.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+    reply.header('Permissions-Policy', 'geolocation=(self), camera=(), microphone=()');
+    return payload;
+  });
+
+  app.get('/healthz', async (req, reply) => {
+    reply.header('Cache-Control', 'no-store');
+    if (options.watchdogToken) {
+      const supplied = req.headers['x-watchdog-token'];
+      if (typeof supplied !== 'string' || !constantTimeEqual(options.watchdogToken, supplied)) {
+        return reply.code(401).send({ error: 'unauthorized' });
+      }
+    }
     if (!options.db) return { ok: true };
     const jobs = latestJobRuns(options.db);
     // C1: ok now reflects conditions-feed health, not merely "the process is

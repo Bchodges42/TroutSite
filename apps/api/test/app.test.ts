@@ -21,6 +21,42 @@ describe('GET /healthz', () => {
     expect(res.json()).toEqual({ ok: true });
   });
 
+  it('sets security headers on health and error responses', async () => {
+    const health = await app.inject({ method: 'GET', url: '/healthz' });
+    const missing = await app.inject({ method: 'GET', url: '/nope' });
+    for (const res of [health, missing]) {
+      expect(res.headers['strict-transport-security']).toBe('max-age=63072000');
+      expect(res.headers['x-content-type-options']).toBe('nosniff');
+      expect(res.headers['x-frame-options']).toBe('DENY');
+      expect(res.headers['referrer-policy']).toBe('strict-origin-when-cross-origin');
+      expect(res.headers['permissions-policy']).toBe('geolocation=(self), camera=(), microphone=()');
+    }
+    expect(health.headers['cache-control']).toBe('no-store');
+  });
+
+  it('protects health telemetry when a watchdog token is configured', async () => {
+    const protectedApp = buildApp({ logger: false, watchdogToken: 'watchdog-test-secret' });
+    const missing = await protectedApp.inject({ method: 'GET', url: '/healthz' });
+    const wrong = await protectedApp.inject({
+      method: 'GET',
+      url: '/healthz',
+      headers: { 'x-watchdog-token': 'wrong' },
+    });
+    const correct = await protectedApp.inject({
+      method: 'GET',
+      url: '/healthz',
+      headers: { 'x-watchdog-token': 'watchdog-test-secret' },
+    });
+    expect(missing.statusCode).toBe(401);
+    expect(wrong.statusCode).toBe(401);
+    expect(missing.json()).toEqual({ error: 'unauthorized' });
+    expect(wrong.json()).toEqual({ error: 'unauthorized' });
+    expect(correct.statusCode).toBe(200);
+    expect(correct.json()).toEqual({ ok: true });
+    expect(missing.headers['cache-control']).toBe('no-store');
+    await protectedApp.close();
+  });
+
   it('404s on unknown routes', async () => {
     const res = await app.inject({ method: 'GET', url: '/nope' });
     expect(res.statusCode).toBe(404);
