@@ -58,7 +58,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Buffalo River",
     "path": [
       626,
       674,
@@ -80,12 +80,15 @@
       1989,
       462,
       2228,
-      1545
+      1545,
+      1877,
+      285,
+      2089
     ],
-    "reason": "name-change",
-    "node": "n1859",
+    "reason": "confluence",
+    "node": "n1798",
     "enteredNames": [
-      "Chief Creek"
+      "Buffalo River"
     ],
     "edgePids": [
       "128956273",
@@ -108,7 +111,10 @@
       "128955139",
       "128955137",
       "128954970",
-      "128954779"
+      "128954779",
+      "128954841",
+      "128954866",
+      "128954869"
     ]
   },
   "pathEdges": [
@@ -270,6 +276,18 @@
     },
     {
       "pid": "128954779",
+      "dir": "down"
+    },
+    {
+      "pid": "128954841",
+      "dir": "down"
+    },
+    {
+      "pid": "128954866",
+      "dir": "down"
+    },
+    {
+      "pid": "128954869",
       "dir": "down"
     }
   ],
@@ -516,7 +534,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 6417,
+    "bytes": 6725,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-little-buffalo-river.geojson"

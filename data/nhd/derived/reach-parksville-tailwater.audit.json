@@ -362,7 +362,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Hiwassee River",
     "path": [
       79,
       89,
@@ -2712,7 +2712,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 24980,
+    "bytes": 25000,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-parksville-tailwater.geojson"

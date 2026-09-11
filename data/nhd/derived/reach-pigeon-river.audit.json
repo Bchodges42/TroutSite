@@ -604,7 +604,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Douglas Lake",
     "path": [
       101,
       3016,
@@ -3120,7 +3120,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 16767,
+    "bytes": 16785,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-pigeon-river.geojson"

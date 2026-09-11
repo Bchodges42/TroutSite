@@ -6,7 +6,7 @@
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 65,
+        "edges": 64,
         "missingPids": [],
         "subgraphComponents": 1
       }
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 11491,
+        "bytes": 11423,
         "budgetBytes": 81920
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:13:24.209Z"
+  "generatedAt": "2026-09-11T18:46:53.625Z"
 }

@@ -23,7 +23,7 @@
     "edgePids": []
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Fort Patrick Henry Lake",
     "path": [
       1492,
       1582,
@@ -285,7 +285,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 4520,
+    "bytes": 4549,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-boone-tailwater.geojson"

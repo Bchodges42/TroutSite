@@ -136,7 +136,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Watts Bar Lake",
     "path": [
       3507,
       1306,
@@ -153,13 +153,16 @@
       2070,
       2474,
       1576,
-      2866
+      2866,
+      1837,
+      4143,
+      4263,
+      3883,
+      1015,
+      3359
     ],
-    "reason": "name-change",
-    "node": "n699",
-    "enteredNames": [
-      "Tennessee River"
-    ],
+    "reason": "terminal-node",
+    "node": "n701",
     "edgePids": [
       "132365776",
       "132365811",
@@ -176,7 +179,13 @@
       "132363496",
       "132363505",
       "132363564",
-      "132363569"
+      "132363569",
+      "132363591",
+      "132363620",
+      "132363633",
+      "132363645",
+      "{3B55802F-FD70-4537-9FA5-EDF89E764EDA}",
+      "139284151"
     ]
   },
   "pathEdges": [
@@ -474,6 +483,30 @@
     },
     {
       "pid": "132363569",
+      "dir": "down"
+    },
+    {
+      "pid": "132363591",
+      "dir": "down"
+    },
+    {
+      "pid": "132363620",
+      "dir": "down"
+    },
+    {
+      "pid": "132363633",
+      "dir": "down"
+    },
+    {
+      "pid": "132363645",
+      "dir": "down"
+    },
+    {
+      "pid": "{3B55802F-FD70-4537-9FA5-EDF89E764EDA}",
+      "dir": "down"
+    },
+    {
+      "pid": "139284151",
       "dir": "down"
     }
   ],
@@ -815,10 +848,30 @@
       ],
       "chosen": "132356703",
       "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n698",
+      "currentEdge": "132363645",
+      "candidates": [
+        {
+          "pid": "{3B55802F-FD70-4537-9FA5-EDF89E764EDA}",
+          "name": "Tennessee River",
+          "km": 0.014441453445787521
+        },
+        {
+          "pid": "139284151",
+          "name": "Tennessee River",
+          "km": 0.09923009726046932
+        }
+      ],
+      "chosen": "{3B55802F-FD70-4537-9FA5-EDF89E764EDA}",
+      "rule": "name-continuity"
     }
   ],
   "throughLakes": [
-    "Watts Bar Lake"
+    "Watts Bar Lake",
+    "Dallas Lake"
   ],
   "simplify": {
     "tried": [
@@ -827,7 +880,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 9322,
+    "bytes": 9884,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-piney-river-rhea.geojson"

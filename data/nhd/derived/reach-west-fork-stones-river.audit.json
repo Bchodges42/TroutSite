@@ -116,7 +116,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Stones River",
     "path": [
       619,
       228,
@@ -133,14 +133,12 @@
       81,
       1003,
       518,
-      1,
-      69
+      1
     ],
-    "reason": "name-change",
+    "reason": "confluence",
     "node": "n293",
     "enteredNames": [
-      "Stones River",
-      "East Fork Stones River"
+      "Stones River"
     ],
     "edgePids": [
       "51411865",
@@ -158,8 +156,7 @@
       "51411703",
       "51411689",
       "51411679",
-      "51411649",
-      "51411607"
+      "51411649"
     ]
   },
   "pathEdges": [
@@ -418,10 +415,6 @@
     {
       "pid": "51411649",
       "dir": "down"
-    },
-    {
-      "pid": "51411607",
-      "dir": "down"
     }
   ],
   "divergenceLog": [
@@ -548,35 +541,10 @@
       ],
       "chosen": "51410531",
       "rule": "name-continuity"
-    },
-    {
-      "dir": "down",
-      "atNode": "n293",
-      "currentEdge": "51411649",
-      "candidates": [
-        {
-          "pid": "51411607",
-          "name": "West Fork Stones River",
-          "km": 0.06965155690642774
-        },
-        {
-          "pid": "51411605",
-          "name": "Stones River",
-          "km": 1.7237862221766438
-        },
-        {
-          "pid": "51411609",
-          "name": "East Fork Stones River",
-          "km": 0.037499876453052354
-        }
-      ],
-      "chosen": "51411607",
-      "rule": "name-continuity"
     }
   ],
   "throughLakes": [
-    "Sterling Farmer Lake",
-    "J Percy Priest Reservoir"
+    "Sterling Farmer Lake"
   ],
   "simplify": {
     "tried": [
@@ -585,7 +553,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 11490,
+    "bytes": 11422,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-west-fork-stones-river.geojson"

@@ -24,7 +24,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Boone Lake",
     "path": [
       2422,
       1500,
@@ -386,7 +386,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 4633,
+    "bytes": 4649,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-south-holston-river.geojson"

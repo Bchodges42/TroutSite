@@ -492,7 +492,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Duck River",
     "path": [
       2144,
       827,
@@ -3965,7 +3965,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 37290,
+    "bytes": 37306,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-buffalo-river.geojson"

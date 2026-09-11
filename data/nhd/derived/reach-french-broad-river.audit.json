@@ -23,7 +23,7 @@
     "edgePids": []
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Holston River",
     "path": [
       1350,
       34,
@@ -542,7 +542,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 7211,
+    "bytes": 7230,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-french-broad-river.geojson"

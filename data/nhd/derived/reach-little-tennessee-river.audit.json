@@ -13,7 +13,7 @@
     ]
   },
   "upWalk": {
-    "spec": "headwater",
+    "spec": "dam:Fontana Lake",
     "path": [
       1730,
       3597,
@@ -378,7 +378,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Tennessee River",
     "path": [
       1324,
       3339,
@@ -2760,7 +2760,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 15609,
+    "bytes": 15637,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-little-tennessee-river.geojson"

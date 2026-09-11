@@ -42,14 +42,40 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
-    "path": [],
-    "reason": "name-change",
-    "node": "n1520",
-    "enteredNames": [
-      "Richardson Creek"
+    "spec": "confluence:Clinch River",
+    "path": [
+      3858,
+      1720,
+      3387,
+      1614,
+      1926,
+      2733,
+      3576,
+      1393,
+      479,
+      2589,
+      2963,
+      1960
     ],
-    "edgePids": []
+    "reason": "confluence",
+    "node": "n1513",
+    "enteredNames": [
+      "Clinch River"
+    ],
+    "edgePids": [
+      "44771346",
+      "44771312",
+      "44771233",
+      "44771154",
+      "44771114",
+      "44771061",
+      "44771004",
+      "44770874",
+      "44770868",
+      "44770842",
+      "44770812",
+      "44770740"
+    ]
   },
   "pathEdges": [
     {
@@ -95,6 +121,54 @@
     {
       "pid": "44771444",
       "dir": "anchor"
+    },
+    {
+      "pid": "44771346",
+      "dir": "down"
+    },
+    {
+      "pid": "44771312",
+      "dir": "down"
+    },
+    {
+      "pid": "44771233",
+      "dir": "down"
+    },
+    {
+      "pid": "44771154",
+      "dir": "down"
+    },
+    {
+      "pid": "44771114",
+      "dir": "down"
+    },
+    {
+      "pid": "44771061",
+      "dir": "down"
+    },
+    {
+      "pid": "44771004",
+      "dir": "down"
+    },
+    {
+      "pid": "44770874",
+      "dir": "down"
+    },
+    {
+      "pid": "44770868",
+      "dir": "down"
+    },
+    {
+      "pid": "44770842",
+      "dir": "down"
+    },
+    {
+      "pid": "44770812",
+      "dir": "down"
+    },
+    {
+      "pid": "44770740",
+      "dir": "down"
     }
   ],
   "divergenceLog": [
@@ -116,6 +190,25 @@
       ],
       "chosen": "44771652",
       "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1501",
+      "currentEdge": "44770868",
+      "candidates": [
+        {
+          "pid": "44770840",
+          "name": "Pressmens Flume",
+          "km": 0.2564939944443423
+        },
+        {
+          "pid": "44770842",
+          "name": "Richardson Creek",
+          "km": 0.3010756965126964
+        }
+      ],
+      "chosen": "44770842",
+      "rule": "name-continuity"
     }
   ],
   "throughLakes": [],
@@ -126,7 +219,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 2136,
+    "bytes": 3150,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-richardson-byrd-creek.geojson"

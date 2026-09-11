@@ -42,7 +42,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Shoal Creek",
     "path": [
       14,
       1011,
@@ -59,7 +59,7 @@
       566,
       2568
     ],
-    "reason": "name-change",
+    "reason": "confluence",
     "node": "n1387",
     "enteredNames": [
       "Shoal Creek"
@@ -250,7 +250,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 3713,
+    "bytes": 3729,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-east-fork-shoal-creek.geojson"

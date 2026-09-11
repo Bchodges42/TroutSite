@@ -54,7 +54,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Little Pigeon River",
     "path": [
       3208,
       1968,
@@ -69,7 +69,7 @@
       1553,
       184
     ],
-    "reason": "name-change",
+    "reason": "confluence",
     "node": "n2460",
     "enteredNames": [
       "Little Pigeon River"
@@ -350,7 +350,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 4124,
+    "bytes": 4148,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-middle-prong-little-pigeon.geojson"

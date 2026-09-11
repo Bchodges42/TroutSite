@@ -13,7 +13,7 @@
     ]
   },
   "upWalk": {
-    "spec": "headwater",
+    "spec": "dam:Watauga Lake",
     "path": [
       162
     ],
@@ -24,7 +24,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Wilbur Lake",
     "path": [
       2586,
       3290,
@@ -699,7 +699,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 9402,
+    "bytes": 9426,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-watauga-river-wilbur-reach.geojson"

@@ -186,12 +186,12 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Watauga River",
     "path": [
       920,
       1982
     ],
-    "reason": "name-change",
+    "reason": "confluence",
     "node": "n458",
     "enteredNames": [
       "Watauga River"
@@ -1001,7 +1001,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 9913,
+    "bytes": 9931,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-doe-river.geojson"

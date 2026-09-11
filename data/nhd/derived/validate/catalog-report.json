@@ -1,26 +1,1132 @@
 {
-  "generatedAt": "2026-09-11T18:18:58.299Z",
+  "generatedAt": "2026-09-11T18:47:07.047Z",
   "lane": "GEOVALID-2",
   "suite": "scripts/nhd-validate.mjs",
   "mode": {
     "strict": false,
     "hu8Filter": "all"
   },
-  "verdict": "PASS (pending fan-out)",
+  "verdict": "FAIL",
   "counts": {
     "catalogWaters": 148,
     "flowingWaters": 105,
     "stillwaters": 43,
-    "tracedReaches": 1,
-    "pending": 104,
-    "fails": 0,
-    "reviews": 0,
-    "sharedBboxPairs": 1,
+    "tracedReaches": 105,
+    "pending": 0,
+    "fails": 30,
+    "reviews": 5,
+    "sharedBboxPairs": 3,
     "assetBboxOverlapsInfo": 392,
     "terminiAutoDerivable": 30,
     "terminiHumanReview": 75
   },
   "findings": [
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "barren-fork-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 103,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "barren-fork-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "barren-fork-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "barren-fork-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "barren-fork-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "barren-fork-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 12432,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "beaverdam-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 78,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "beaverdam-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "beaverdam-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "beaverdam-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "beaverdam-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "beaverdam-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 6475,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "big-rock-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 36,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "big-rock-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "big-rock-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "big-rock-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "big-rock-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.7
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "big-rock-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 8579,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boiling-fork-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 39,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boiling-fork-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "boiling-fork-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boiling-fork-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boiling-fork-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 5.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boiling-fork-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 7059,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boone-tailwater",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 37,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boone-tailwater",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 10,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boone-tailwater",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Boone Lake",
+        "realized": {
+          "spec": "dam:Boone Lake",
+          "reason": "dam",
+          "terminus": [
+            -82.437856,
+            36.440182
+          ],
+          "distKmFromAnchor": 0.16
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boone-tailwater",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Fort Patrick Henry Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boone-tailwater",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "boone-tailwater",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4550,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "bradley-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 29,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "bradley-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "bradley-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "bradley-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Woods Reservoir",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "bradley-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "bradley-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 7297,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "brush-creek-cocke",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 18,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "brush-creek-cocke",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "brush-creek-cocke",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "brush-creek-cocke",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "brush-creek-cocke",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.4
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "brush-creek-cocke",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2627,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-creek-grainger",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 11,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-creek-grainger",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "buffalo-creek-grainger",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-creek-grainger",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-creek-grainger",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-creek-grainger",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2488,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "buffalo-river",
+      "check": "b13-sidecar",
+      "evidence": "FAIL"
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 443,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "buffalo-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 157,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "buffalo-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "buffalo-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Duck River",
+        "realized": "cycle-guard",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 1.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "buffalo-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 37307,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "calfkiller-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 35,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "calfkiller-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "REVIEW",
+      "id": "calfkiller-river",
+      "check": "long-chord",
+      "evidence": {
+        "count": 2,
+        "maxChordM": 3035,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "calfkiller-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "calfkiller-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "calfkiller-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 11.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "calfkiller-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 13775,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cane-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 70,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cane-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "cane-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cane-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cane-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cane-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 12075,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 61,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Center Hill Lake",
+        "realized": {
+          "spec": "dam:Center Hill Lake",
+          "reason": "dam",
+          "terminus": [
+            -85.826276,
+            36.097938
+          ],
+          "distKmFromAnchor": 0
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 52.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 5776,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "caney-fork-upper",
+      "check": "b13-sidecar",
+      "evidence": "FAIL"
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-upper",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 237,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "caney-fork-upper",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 55,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "caney-fork-upper",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-upper",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Center Hill Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-upper",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "caney-fork-upper",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 28887,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "charles-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 47,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "charles-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "REVIEW",
+      "id": "charles-creek",
+      "check": "long-chord",
+      "evidence": {
+        "count": 1,
+        "maxChordM": 2046,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "charles-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "charles-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "charles-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.7
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "charles-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 5314,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "citico-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 68,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "citico-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "citico-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "citico-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "citico-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 1.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "citico-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 9988,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-creek-obed",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 128,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-creek-obed",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "clear-creek-obed",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-creek-obed",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Obed River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-creek-obed",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 35.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-creek-obed",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 16525,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-fork",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 284,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-fork",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "clear-fork",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "clear-fork",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:New River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-fork",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 24.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "clear-fork",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 29207,
+        "budgetBytes": 81920
+      }
+    },
     {
       "section": "reach",
       "severity": "PASS",
@@ -68,7 +1174,8 @@
       "evidence": {
         "expected": "mouth",
         "realized": "terminal-node",
-        "boundaryExcused": false
+        "endpointEquivalent": false,
+        "boundaryExcused": true
       }
     },
     {
@@ -86,7 +1193,5588 @@
       "id": "clinch-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 15606,
+        "bytes": 15625,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "collins-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 94,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "collins-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "collins-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "collins-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "collins-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 21.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "collins-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 16957,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cosby-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 51,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cosby-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "cosby-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cosby-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cosby-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.7
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cosby-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 6724,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cumberland-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 93,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cumberland-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "REVIEW",
+      "id": "cumberland-river",
+      "check": "long-chord",
+      "evidence": {
+        "count": 2,
+        "maxChordM": 2215,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "cumberland-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cumberland-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Lake Barkley",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cumberland-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "cumberland-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 8568,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "daddys-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 106,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "daddys-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "daddys-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "daddys-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Obed River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "daddys-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 6.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "daddys-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 15398,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-creek-johnson",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 68,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-creek-johnson",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "doe-creek-johnson",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-creek-johnson",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-creek-johnson",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-creek-johnson",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 5525,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 85,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "doe-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Watauga River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 12.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "doe-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 9932,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-lower",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 411,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-lower",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "duck-river-lower",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-lower",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-lower",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 44.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-lower",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 26147,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-tailwater",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 203,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-tailwater",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-tailwater",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Normandy Lake",
+        "realized": {
+          "spec": "dam:Normandy Lake",
+          "reason": "dam",
+          "terminus": [
+            -86.246699,
+            35.465139
+          ],
+          "distKmFromAnchor": 43.96
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-tailwater",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-tailwater",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 26.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "duck-river-tailwater",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 26745,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-shoal-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 25,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-shoal-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "east-fork-shoal-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-shoal-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Shoal Creek",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-shoal-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-shoal-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3730,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-stones-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 94,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-stones-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "east-fork-stones-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-stones-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-stones-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 29.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "east-fork-stones-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 15440,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river-lower",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 122,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river-lower",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "elk-river-lower",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river-lower",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river-lower",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 31.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river-lower",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 8641,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 252,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Tims Ford Lake",
+        "realized": {
+          "spec": "dam:Tims Ford Lake",
+          "reason": "headwater",
+          "terminus": [
+            -86.277094,
+            35.194443
+          ],
+          "distKmFromAnchor": 0.67
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 29.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "elk-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 19576,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "emory-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 145,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "emory-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "emory-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "emory-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Tennessee River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "emory-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 40.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "emory-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 13251,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "fletchers-fork",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 42,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "fletchers-fork",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 50,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "fletchers-fork",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "fletchers-fork",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "fletchers-fork",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 2.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "fletchers-fork",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 7017,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "forge-creek-johnson",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 13,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "forge-creek-johnson",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "forge-creek-johnson",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "forge-creek-johnson",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "forge-creek-johnson",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "forge-creek-johnson",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2081,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "french-broad-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 80,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "french-broad-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "french-broad-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Douglas Lake",
+        "realized": {
+          "spec": "dam:Douglas Lake",
+          "reason": "dam",
+          "terminus": [
+            -83.538605,
+            35.960993
+          ],
+          "distKmFromAnchor": 0.02
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "french-broad-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Holston River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "french-broad-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 27.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "french-broad-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 7231,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ft-patrick-henry-tailwater",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 16,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ft-patrick-henry-tailwater",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ft-patrick-henry-tailwater",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Fort Patrick Henry Lake",
+        "realized": {
+          "spec": "dam:Fort Patrick Henry Lake",
+          "reason": "dam",
+          "terminus": [
+            -82.5088105,
+            36.4980065
+          ],
+          "distKmFromAnchor": 0.04
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ft-patrick-henry-tailwater",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Holston River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ft-patrick-henry-tailwater",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 16.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ft-patrick-henry-tailwater",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2671,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gap-creek-claiborne",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 10,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gap-creek-claiborne",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "gap-creek-claiborne",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gap-creek-claiborne",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gap-creek-claiborne",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gap-creek-claiborne",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3697,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "goforth-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 14,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "goforth-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "goforth-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "goforth-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "goforth-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "goforth-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2522,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "greasy-creek-polk",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 23,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "greasy-creek-polk",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "greasy-creek-polk",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "greasy-creek-polk",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "greasy-creek-polk",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "greasy-creek-polk",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4835,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gulf-fork-big-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 173,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gulf-fork-big-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "gulf-fork-big-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "gulf-fork-big-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Big Creek",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gulf-fork-big-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "gulf-fork-big-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 12741,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "harpeth-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 217,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "harpeth-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "harpeth-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "harpeth-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "harpeth-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 10.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "harpeth-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 28784,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hatchie-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 326,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hatchie-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "hatchie-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hatchie-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hatchie-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 2.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hatchie-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 57449,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "hiwassee-river",
+      "check": "b13-sidecar",
+      "evidence": "FAIL"
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hiwassee-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 278,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "hiwassee-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 96,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "hiwassee-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Apalachia Lake",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.787135,
+            35.024127
+          ],
+          "distKmFromAnchor": 119.54
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "hiwassee-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Chickamauga Lake",
+        "realized": "cycle-guard",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hiwassee-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 132.4
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hiwassee-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 24992,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "holston-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 338,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "holston-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 40,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "holston-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "holston-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:French Broad River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "holston-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "holston-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 27317,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "horse-creek-greene",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 31,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "horse-creek-greene",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "horse-creek-greene",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "horse-creek-greene",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Nolichucky River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "horse-creek-greene",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "horse-creek-greene",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4494,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hurricane-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 83,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hurricane-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "hurricane-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hurricane-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hurricane-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "hurricane-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 8539,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "indian-creek-claiborne",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 178,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "indian-creek-claiborne",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "indian-creek-claiborne",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "indian-creek-claiborne",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Clinch River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "indian-creek-claiborne",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "indian-creek-claiborne",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 25496,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-creek-johnson",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 58,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-creek-johnson",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "laurel-creek-johnson",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-creek-johnson",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-creek-johnson",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-creek-johnson",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3943,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-fork-carter",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 43,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-fork-carter",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "laurel-fork-carter",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-fork-carter",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-fork-carter",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "laurel-fork-carter",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 6831,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "leconte-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 12,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "leconte-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "leconte-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "leconte-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "leconte-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 32.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "leconte-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3401,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-buffalo-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 43,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-buffalo-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "little-buffalo-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-buffalo-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Buffalo River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-buffalo-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 4.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-buffalo-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 6726,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-pigeon-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 161,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-pigeon-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "little-pigeon-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-pigeon-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-pigeon-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 51.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-pigeon-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 12490,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 513,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "little-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "little-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Fort Loudoun Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 9.4
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 40892,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-sequatchie-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 85,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-sequatchie-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "little-sequatchie-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-sequatchie-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-sequatchie-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-sequatchie-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 9605,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "little-tennessee-river",
+      "check": "b13-sidecar",
+      "evidence": "FAIL"
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-tennessee-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 273,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "little-tennessee-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 55,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "little-tennessee-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Fontana Lake",
+        "realized": {
+          "spec": "dam:Fontana Lake",
+          "reason": "headwater",
+          "terminus": [
+            -83.804484,
+            35.451827
+          ],
+          "distKmFromAnchor": 52.84
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-tennessee-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Tennessee River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-tennessee-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-tennessee-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 15638,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "little-tennessee-river",
+      "check": "length-sanity",
+      "evidence": {
+        "statedMiles": [
+          33
+        ],
+        "statedKm": 53.1,
+        "reachKm": 92.84,
+        "ratio": 1.75,
+        "pass": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-west-fork-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 71,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-west-fork-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "little-west-fork-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-west-fork-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-west-fork-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 4.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "little-west-fork-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 11317,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mccutcheon-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 15,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mccutcheon-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "mccutcheon-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mccutcheon-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mccutcheon-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 4.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mccutcheon-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3756,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "middle-prong-little-pigeon",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 29,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "middle-prong-little-pigeon",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "middle-prong-little-pigeon",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "middle-prong-little-pigeon",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Little Pigeon River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "middle-prong-little-pigeon",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 19.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "middle-prong-little-pigeon",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4149,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mill-creek-overton",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 46,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mill-creek-overton",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "mill-creek-overton",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mill-creek-overton",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mill-creek-overton",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 5.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mill-creek-overton",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 6697,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mississippi-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 130,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mississippi-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "REVIEW",
+      "id": "mississippi-river",
+      "check": "long-chord",
+      "evidence": {
+        "count": 16,
+        "maxChordM": 3960,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "mississippi-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mississippi-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mississippi-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mississippi-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 23348,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mossy-creek-jefferson",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 10,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mossy-creek-jefferson",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "mossy-creek-jefferson",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mossy-creek-jefferson",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mossy-creek-jefferson",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "mossy-creek-jefferson",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2803,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "new-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 388,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "new-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "new-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "new-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Clear Fork",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "new-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 32.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "new-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 31903,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "nolichucky-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 554,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "nolichucky-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "nolichucky-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "nolichucky-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Douglas Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "nolichucky-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 33.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "nolichucky-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 51513,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-chickamauga-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 63,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-chickamauga-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "north-chickamauga-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-chickamauga-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-chickamauga-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-chickamauga-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 10769,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-fork-holston-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 453,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-fork-holston-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "north-fork-holston-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-fork-holston-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Holston River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-fork-holston-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-fork-holston-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 40333,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-prong-barren-fork",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 108,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-prong-barren-fork",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "north-prong-barren-fork",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "north-prong-barren-fork",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Barren Fork River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-prong-barren-fork",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "north-prong-barren-fork",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 13642,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obed-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 124,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obed-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "obed-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obed-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Emory River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obed-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 33.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obed-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 13863,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obey-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 14,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obey-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obey-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Dale Hollow Lake",
+        "realized": {
+          "spec": "dam:Dale Hollow Lake",
+          "reason": "dam",
+          "terminus": [
+            -85.451132,
+            36.537138
+          ],
+          "distKmFromAnchor": 0.79
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obey-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obey-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 66.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obey-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2328,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obion-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 121,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obion-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "obion-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obion-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obion-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 6.7
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "obion-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 13536,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ocoee-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 195,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ocoee-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "ocoee-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ocoee-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Parksville Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ocoee-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 42.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "ocoee-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 25014,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "parksville-tailwater",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 195,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "parksville-tailwater",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "parksville-tailwater",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Parksville Lake",
+        "realized": {
+          "spec": "dam:Parksville Lake",
+          "reason": "headwater",
+          "terminus": [
+            -84.118702,
+            34.664517
+          ],
+          "distKmFromAnchor": 138.33
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "parksville-tailwater",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Hiwassee River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "parksville-tailwater",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 7.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "parksville-tailwater",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 25001,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "pigeon-river",
+      "check": "b13-sidecar",
+      "evidence": "FAIL"
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pigeon-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 311,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "pigeon-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 69,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "pigeon-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "cycle-guard"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pigeon-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Douglas Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pigeon-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 21.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pigeon-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 16786,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pine-creek-dekalb",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 36,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pine-creek-dekalb",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "pine-creek-dekalb",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pine-creek-dekalb",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pine-creek-dekalb",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 6.7
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "pine-creek-dekalb",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 5586,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "piney-river-rhea",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 80,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "piney-river-rhea",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "piney-river-rhea",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "piney-river-rhea",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Watts Bar Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "piney-river-rhea",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "piney-river-rhea",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 9885,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "powell-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 370,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "powell-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "powell-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "powell-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Norris Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "powell-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 52.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "powell-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 50582,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "puncheon-camp-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 27,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "puncheon-camp-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "puncheon-camp-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "puncheon-camp-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "puncheon-camp-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "puncheon-camp-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3293,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "red-river-clarksville",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 137,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "red-river-clarksville",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "REVIEW",
+      "id": "red-river-clarksville",
+      "check": "long-chord",
+      "evidence": {
+        "count": 2,
+        "maxChordM": 3393,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "red-river-clarksville",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "red-river-clarksville",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "red-river-clarksville",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 4.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "red-river-clarksville",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 24806,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "reedy-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 49,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "reedy-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "reedy-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "reedy-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "reedy-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 5.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "reedy-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 8485,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "richardson-byrd-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 23,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "richardson-byrd-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "richardson-byrd-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "richardson-byrd-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Clinch River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "richardson-byrd-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "richardson-byrd-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3151,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "roaring-fork",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 13,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "roaring-fork",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "roaring-fork",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "roaring-fork",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "roaring-fork",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 4.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "roaring-fork",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3764,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "rocky-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 40,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "rocky-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "rocky-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "rocky-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "rocky-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "rocky-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 10380,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "salt-lick-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 63,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "salt-lick-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "salt-lick-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "salt-lick-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "salt-lick-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "salt-lick-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 7527,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sequatchie-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 219,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sequatchie-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "sequatchie-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sequatchie-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Tennessee River",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sequatchie-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 26
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sequatchie-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 32420,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "shoal-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 179,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "shoal-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "shoal-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "shoal-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "shoal-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 10
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "shoal-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 15779,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sinking-creek-wilson",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 10,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sinking-creek-wilson",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "sinking-creek-wilson",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sinking-creek-wilson",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sinking-creek-wilson",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sinking-creek-wilson",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 3464,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-fork-cumberland",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 388,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-fork-cumberland",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "south-fork-cumberland",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-fork-cumberland",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-fork-cumberland",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 34.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-fork-cumberland",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 31939,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "south-holston-river",
+      "check": "b13-sidecar",
+      "evidence": "FAIL"
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-holston-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 46,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "south-holston-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 72,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-holston-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:South Holston Lake",
+        "realized": {
+          "spec": "dam:South Holston Lake",
+          "reason": "headwater",
+          "terminus": [
+            -82.090739,
+            36.523968
+          ],
+          "distKmFromAnchor": 0.68
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "south-holston-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Boone Lake",
+        "realized": "cycle-guard",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-holston-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 28.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "south-holston-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4650,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "spring-creek-polk",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 34,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "spring-creek-polk",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "spring-creek-polk",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "spring-creek-polk",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "spring-creek-polk",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "spring-creek-polk",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 5961,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "standing-rock-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 41,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "standing-rock-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "standing-rock-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "standing-rock-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "standing-rock-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 2.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "standing-rock-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4831,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "station-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 9,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "station-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "station-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "station-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "station-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 1.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "station-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2837,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stones-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 5,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stones-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "stones-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:J. Percy Priest Lake",
+        "realized": {
+          "spec": "dam:J. Percy Priest Lake",
+          "reason": "headwater",
+          "terminus": [
+            -86.618452,
+            36.157033
+          ],
+          "distKmFromAnchor": 4.43
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stones-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stones-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 62.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stones-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2116,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stoney-creek-carter",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 72,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stoney-creek-carter",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "stoney-creek-carter",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stoney-creek-carter",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stoney-creek-carter",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "stoney-creek-carter",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 5772,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sulfur-fork-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 75,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sulfur-fork-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "sulfur-fork-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sulfur-fork-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sulfur-fork-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 3.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "sulfur-fork-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 12238,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tellico-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 186,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tellico-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "tellico-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tellico-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tellico-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 14.8
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tellico-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 18051,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tennessee-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 268,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tennessee-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "tennessee-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tennessee-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tennessee-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.5
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tennessee-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 22876,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "trail-fork-big-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 98,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "trail-fork-big-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "trail-fork-big-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "trail-fork-big-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Big Creek",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "trail-fork-big-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "trail-fork-big-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 7464,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tumbling-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 20,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tumbling-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "tumbling-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tumbling-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tumbling-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "tumbling-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 4497,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-hills-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 14,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-hills-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "upper-hills-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-hills-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-hills-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.9
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-hills-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 2804,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-roan-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 70,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-roan-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "upper-roan-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-roan-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-roan-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 4.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "upper-roan-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 6304,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river-wilbur-reach",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 103,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river-wilbur-reach",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river-wilbur-reach",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Watauga Lake",
+        "realized": {
+          "spec": "dam:Watauga Lake",
+          "reason": "headwater",
+          "terminus": [
+            -82.126345,
+            36.329939
+          ],
+          "distKmFromAnchor": 1.55
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river-wilbur-reach",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Wilbur Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river-wilbur-reach",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river-wilbur-reach",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 9427,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "FAIL",
+      "id": "watauga-river-wilbur-reach",
+      "check": "length-sanity",
+      "evidence": {
+        "statedMiles": [
+          1.5
+        ],
+        "statedKm": 2.4,
+        "reachKm": 56.22,
+        "ratio": 23.29,
+        "pass": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 98,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river",
+      "check": "termini-up-dam",
+      "evidence": {
+        "expected": "dam:Wilbur Lake",
+        "realized": {
+          "spec": "dam:Wilbur Lake",
+          "reason": "dam",
+          "terminus": [
+            -82.126357,
+            36.341158
+          ],
+          "distKmFromAnchor": 0.15
+        }
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Boone Lake",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 21.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "watauga-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 8777,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-fork-stones-river",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 64,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-fork-stones-river",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "west-fork-stones-river",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-fork-stones-river",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Stones River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-fork-stones-river",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 21.2
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-fork-stones-river",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 11423,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-prong-little-pigeon",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 118,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-prong-little-pigeon",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "west-prong-little-pigeon",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-prong-little-pigeon",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "confluence:Little Pigeon River",
+        "realized": "confluence",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-prong-little-pigeon",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 8.1
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "west-prong-little-pigeon",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 13385,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "white-oak-creek",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 116,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "white-oak-creek",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "white-oak-creek",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "white-oak-creek",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "white-oak-creek",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 1.3
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "white-oak-creek",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 10425,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-fentress",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 89,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-fentress",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "wolf-river-fentress",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-fentress",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "name-change",
+        "endpointEquivalent": false,
+        "boundaryExcused": false
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-fentress",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 0.6
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-fentress",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 10604,
+        "budgetBytes": 81920
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-west-tennessee",
+      "check": "connectivity",
+      "evidence": {
+        "edges": 371,
+        "components": 1,
+        "missingPids": []
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-west-tennessee",
+      "check": "continuity",
+      "evidence": {
+        "worstJunctionM": 0,
+        "limitM": 50
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "INFO",
+      "id": "wolf-river-west-tennessee",
+      "check": "termini-up",
+      "evidence": {
+        "spec": "headwater",
+        "realized": "headwater"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-west-tennessee",
+      "check": "termini-down",
+      "evidence": {
+        "expected": "mouth",
+        "realized": "terminal-node",
+        "endpointEquivalent": false,
+        "boundaryExcused": true
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-west-tennessee",
+      "check": "anchor-snap",
+      "evidence": {
+        "snapDistM": 1.7
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
+      "id": "wolf-river-west-tennessee",
+      "check": "byte-budget",
+      "evidence": {
+        "bytes": 43710,
         "budgetBytes": 81920
       }
     },
@@ -110,6 +6798,50 @@
         ],
         "note": "a reach bounding its reservoir is geography, not duplication"
       }
+    },
+    {
+      "section": "bbox",
+      "severity": "FAIL",
+      "id": "nhd:new-river|nhd:south-fork-cumberland",
+      "check": "shared-bbox-duplicate-linework",
+      "evidence": {
+        "a": [
+          -84.67186,
+          36.12362,
+          -84.32109,
+          36.98858
+        ],
+        "b": [
+          -84.67186,
+          36.12362,
+          -84.32109,
+          36.98858
+        ],
+        "coincidence": 1,
+        "class": "B13 boone-tailwater/south-holston-river duplicate"
+      }
+    },
+    {
+      "section": "bbox",
+      "severity": "FAIL",
+      "id": "nhd:ocoee-river|nhd:parksville-tailwater",
+      "check": "shared-bbox-duplicate-linework",
+      "evidence": {
+        "a": [
+          -84.69371,
+          34.66149,
+          -84.0671,
+          35.20643
+        ],
+        "b": [
+          -84.69371,
+          34.66149,
+          -84.0671,
+          35.20643
+        ],
+        "coincidence": 1,
+        "class": "B13 boone-tailwater/south-holston-river duplicate"
+      }
     }
   ],
   "b13": [
@@ -117,15 +6849,15 @@
       "id": "boone-tailwater",
       "cls": "duplicate",
       "verdict": "FIXED",
-      "basis": "linework distinct from every other water; duplicate class closed",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "linework distinct from every other water; duplicate class closed; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "cane-creek",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.789 35.535 -85.304 35.788 -> -87.788792 35.535389 -85.303799 35.815492); WAIVER — GEO-AUDIT: CONFIRMED but deliberate — the catalog entry intentionally covers both stocked Cane Creeks (Bledsoe/Van Buren + Hickman/Perry bands); splitting is a content-lane catalog change. The NHD trace pipeline cannot reproduce the merge (one anchor per water, one connected component enforced), and the bbox-uniqueness/multi-longitude gates keep the class closed.",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original misjoined signature (-87.789 35.535 -85.304 35.788 -> -87.788792 35.535389 -85.303799 35.815492); WAIVER — GEO-AUDIT: CONFIRMED but deliberate — the catalog entry intentionally covers both stocked Cane Creeks (Bledsoe/Van Buren + Hickman/Perry bands); splitting is a content-lane catalog change. The NHD trace pipeline cannot reproduce the merge (one anchor per water, one connected component enforced), and the bbox-uniqueness/multi-longitude gates keep the class closed.; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "clinch-river",
@@ -138,219 +6870,114 @@
       "id": "duck-river-lower",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -87.032699 35.464853 -86.462645 35.633044)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -87.032699 35.464853 -86.462645 35.633044); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "duck-river-tailwater",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -86.464112 35.443193 -86.24352 35.482591)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -86.464112 35.443193 -86.24352 35.482591); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "elk-river-lower",
       "cls": "duplicate",
       "verdict": "FIXED",
-      "basis": "linework distinct from every other water; duplicate class closed",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "linework distinct from every other water; duplicate class closed; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "elk-river",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.006 35.004 -85.834 35.358 -> -86.995859 35.004285 -86.27616 35.197196)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original misjoined signature (-87.006 35.004 -85.834 35.358 -> -86.995859 35.004285 -86.27616 35.197196); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "forge-creek-johnson",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-81.771 36.442 -81.758 36.453 -> -81.7856 36.4331 -81.7023 36.5206)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-81.771 36.442 -81.758 36.453 -> -81.7856 36.4331 -81.7023 36.5206); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "french-broad-river",
       "cls": "missing",
       "verdict": "FIXED",
-      "basis": "line geometry present (367 vertices, 158.5 km)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "line geometry present (367 vertices, 158.5 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "ft-patrick-henry-tailwater",
       "cls": "duplicate",
       "verdict": "FIXED",
-      "basis": "linework distinct from every other water; duplicate class closed",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "linework distinct from every other water; duplicate class closed; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "hiwassee-river",
       "cls": "missing",
       "verdict": "FIXED",
-      "basis": "line geometry present (273 vertices, 107.4 km)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "line geometry present (273 vertices, 107.4 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "leconte-creek",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.523 35.686 -83.5 35.71 -> -83.522678 35.6572 -83.4475 35.709566)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-83.523 35.686 -83.5 35.71 -> -83.522678 35.6572 -83.4475 35.709566); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "mossy-creek-jefferson",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.513 36.121 -83.474 36.129 -> -83.512886 36.0944 -83.4738 36.1598)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-83.513 36.121 -83.474 36.129 -> -83.512886 36.0944 -83.4738 36.1598); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "obey-river",
       "cls": "missing",
       "verdict": "FIXED",
-      "basis": "line geometry present (34 vertices, 11.97 km)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "line geometry present (34 vertices, 11.97 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "ocoee-river",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 34.9922 -84.3805 35.2064)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 34.9922 -84.3805 35.2064); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "parksville-tailwater",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 35.1269 -84.67 35.1899)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 35.1269 -84.67 35.1899); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "south-holston-river",
       "cls": "duplicate",
       "verdict": "FIXED",
-      "basis": "linework distinct from every other water; duplicate class closed",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "linework distinct from every other water; duplicate class closed; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "station-creek",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.626 36.596 -83.625 36.598 -> -83.626 36.5855 -83.6049 36.598395)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-83.626 36.596 -83.625 36.598 -> -83.626 36.5855 -83.6049 36.598395); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "watauga-river",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-81.936 36.287 -81.919 36.294 -> -82.422 36.2873 -81.92 36.4481)",
-      "prevention": "class-gated in pipeline (reach pending fan-out; queued)"
+      "basis": "bounds moved off the original fragment signature (-81.936 36.287 -81.919 36.294 -> -82.422 36.2873 -81.92 36.4481); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "prevention": "reach traced + gates enforced in suite"
     }
   ],
-  "pending": [
-    "barren-fork-river",
-    "beaverdam-creek",
-    "big-rock-creek",
-    "boiling-fork-creek",
-    "boone-tailwater",
-    "bradley-creek",
-    "brush-creek-cocke",
-    "buffalo-creek-grainger",
-    "buffalo-river",
-    "calfkiller-river",
-    "cane-creek",
-    "caney-fork-river",
-    "caney-fork-upper",
-    "charles-creek",
-    "citico-creek",
-    "clear-creek-obed",
-    "clear-fork",
-    "collins-river",
-    "cosby-creek",
-    "cumberland-river",
-    "daddys-creek",
-    "doe-creek-johnson",
-    "doe-river",
-    "duck-river-lower",
-    "duck-river-tailwater",
-    "east-fork-shoal-creek",
-    "east-fork-stones-river",
-    "elk-river-lower",
-    "elk-river",
-    "emory-river",
-    "fletchers-fork",
-    "forge-creek-johnson",
-    "french-broad-river",
-    "ft-patrick-henry-tailwater",
-    "gap-creek-claiborne",
-    "goforth-creek",
-    "greasy-creek-polk",
-    "gulf-fork-big-creek",
-    "harpeth-river",
-    "hatchie-river",
-    "hiwassee-river",
-    "holston-river",
-    "horse-creek-greene",
-    "hurricane-creek",
-    "indian-creek-claiborne",
-    "laurel-creek-johnson",
-    "laurel-fork-carter",
-    "leconte-creek",
-    "little-buffalo-river",
-    "little-pigeon-river",
-    "little-river",
-    "little-sequatchie-river",
-    "little-tennessee-river",
-    "little-west-fork-creek",
-    "mccutcheon-creek",
-    "middle-prong-little-pigeon",
-    "mill-creek-overton",
-    "mississippi-river",
-    "mossy-creek-jefferson",
-    "new-river",
-    "nolichucky-river",
-    "north-chickamauga-creek",
-    "north-fork-holston-river",
-    "north-prong-barren-fork",
-    "obed-river",
-    "obey-river",
-    "obion-river",
-    "ocoee-river",
-    "parksville-tailwater",
-    "pigeon-river",
-    "pine-creek-dekalb",
-    "piney-river-rhea",
-    "powell-river",
-    "puncheon-camp-creek",
-    "red-river-clarksville",
-    "reedy-creek",
-    "richardson-byrd-creek",
-    "roaring-fork",
-    "rocky-river",
-    "salt-lick-creek",
-    "sequatchie-river",
-    "shoal-creek",
-    "sinking-creek-wilson",
-    "south-fork-cumberland",
-    "south-holston-river",
-    "spring-creek-polk",
-    "standing-rock-creek",
-    "station-creek",
-    "stones-river",
-    "stoney-creek-carter",
-    "sulfur-fork-creek",
-    "tellico-river",
-    "tennessee-river",
-    "trail-fork-big-creek",
-    "tumbling-creek",
-    "upper-hills-creek",
-    "upper-roan-creek",
-    "watauga-river-wilbur-reach",
-    "watauga-river",
-    "west-fork-stones-river",
-    "west-prong-little-pigeon",
-    "white-oak-creek",
-    "wolf-river-fentress",
-    "wolf-river-west-tennessee"
-  ]
+  "pending": []
 }

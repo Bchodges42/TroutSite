@@ -272,12 +272,12 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Obed River",
     "path": [
       582,
       763
     ],
-    "reason": "name-change",
+    "reason": "confluence",
     "node": "n1841",
     "enteredNames": [
       "Obed River"
@@ -1431,7 +1431,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 16509,
+    "bytes": 16524,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-clear-creek-obed.geojson"

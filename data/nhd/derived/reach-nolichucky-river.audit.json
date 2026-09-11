@@ -596,7 +596,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Douglas Lake",
     "path": [
       240,
       820,
@@ -5441,7 +5441,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 51494,
+    "bytes": 51512,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-nolichucky-river.geojson"

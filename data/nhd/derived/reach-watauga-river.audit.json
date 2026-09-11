@@ -23,7 +23,7 @@
     "edgePids": []
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Boone Lake",
     "path": [
       2131,
       1664,
@@ -630,7 +630,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 8760,
+    "bytes": 8776,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-watauga-river.geojson"

@@ -13,7 +13,7 @@
     ]
   },
   "upWalk": {
-    "spec": "headwater",
+    "spec": "dam:J. Percy Priest Lake",
     "path": [
       506,
       140,
@@ -108,7 +108,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 2100,
+    "bytes": 2115,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-stones-river.geojson"

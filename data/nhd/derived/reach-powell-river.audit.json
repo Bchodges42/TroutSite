@@ -528,7 +528,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Norris Lake",
     "path": [
       605,
       493,
@@ -644,13 +644,11 @@
       1621,
       393,
       717,
-      140
+      140,
+      30
     ],
-    "reason": "name-change",
-    "node": "n40",
-    "enteredNames": [
-      "Clinch River"
-    ],
+    "reason": "terminal-node",
+    "node": "n30",
     "edgePids": [
       "44950721",
       "44951205",
@@ -766,7 +764,8 @@
       "44955299",
       "44955311",
       "44955331",
-      "44955333"
+      "44955333",
+      "{3336413D-0BFE-42E0-BE39-F86C8E00D66E}"
     ]
   },
   "pathEdges": [
@@ -2245,6 +2244,10 @@
     {
       "pid": "44955333",
       "dir": "down"
+    },
+    {
+      "pid": "{3336413D-0BFE-42E0-BE39-F86C8E00D66E}",
+      "dir": "down"
     }
   ],
   "divergenceLog": [
@@ -3183,7 +3186,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 50450,
+    "bytes": 50581,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-powell-river.geojson"

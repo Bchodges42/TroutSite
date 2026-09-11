@@ -886,7 +886,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "confluence:Holston River",
     "path": [
       2347,
       1419,
@@ -4084,7 +4084,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 40313,
+    "bytes": 40332,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-north-fork-holston-river.geojson"
