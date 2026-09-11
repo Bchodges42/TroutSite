@@ -1,3 +1,84 @@
+# SESSION GEONET — statewide NHD named-network build (2026-09-11)
+
+Branch `geonet/statewide-build`, base = integration @ **56135fd** (no remote in this
+scratch clone — commits are local; push when the owner provides the GitHub remote).
+Scope: `scripts/nhd-network-build.mjs`, `scripts/nhd-network-gates.mjs`,
+`apps/web/public/atlas/network/**`. Proof file `network-caneyfork.geojson` and
+`mapStyle.ts` untouched (map swap is SESSION B's).
+
+Delivered the owner-approved statewide architecture (named NHD network rendered as-is,
+zoom-gated, per-region on-demand files; NO per-water tracing): builder
+`scripts/nhd-network-build.mjs` consumes all 58 `data/nhd/hu8/<hu8>.jsonl` units,
+per line dpSimplify 20 m → round 5 dp → collapseHairpins → drop parts <2 vertices,
+and writes cluster files by the frozen 4-digit-HU8 cluster scheme with recursive
+alphabetical-halves splitting at 3.5 MiB (3,670,016 bytes), plus `network/manifest.json`
+(schema `trout/nhd-network/1`). Gates live in `scripts/nhd-network-gates.mjs` (G1–G9:
+manifest shape, file set, byte cap, feature properties, coordinate nesting, hairpin
+re-scan, bbox containment, pid faithfulness, coverage reconciliation) — **ALL PASS**.
+
+Per-cluster output (23 files, 196,108 lines, 111,654 km, 54.27 MB):
+
+| id | units | lines | km | MB |
+|---|---|---|---|---|
+| 0505 | 1 | 6,166 | 4,517.8 | 1.81 |
+| 0511 | 1 | 2,790 | 2,285.2 | 0.83 |
+| 0513aaa | 2 | 9,869 | 7,446.0 | 2.92 |
+| 0513aab | 2 | 5,249 | 3,997.9 | 1.54 |
+| 0513ab | 3 | 5,636 | 4,609.8 | 1.68 |
+| 0513b | 6 | 11,102 | 8,763.8 | 3.27 |
+| 0601aa | 4 | 11,601 | 6,666.0 | 3.13 |
+| 0601abaaa | 1 | 12,301 | 2,689.6 | 3.09 |
+| 0601abaab | 1 | 12,300 | 1,591.4 | 3.21 |
+| 0601abab | 1 | 3,854 | 1,578.9 | 1.03 |
+| 0601abb | 2 | 10,730 | 5,221.4 | 2.84 |
+| 0601baa | 2 | 7,171 | 4,461.3 | 1.98 |
+| 0601bab | 2 | 7,533 | 4,102.3 | 2.08 |
+| 0601bb | 4 | 11,416 | 7,414.7 | 3.18 |
+| 0602a | 2 | 10,740 | 7,037.4 | 3.02 |
+| 0602b | 2 | 2,863 | 2,376.1 | 0.86 |
+| 0603a | 3 | 11,531 | 7,974.0 | 3.29 |
+| 0603b | 2 | 8,747 | 4,834.2 | 2.39 |
+| 0604a | 3 | 12,631 | 7,734.4 | 3.50 |
+| 0604b | 3 | 9,184 | 4,924.5 | 2.51 |
+| 0801a | 6 | 8,525 | 5,443.8 | 2.31 |
+| 0801b | 5 | 10,039 | 4,504.7 | 2.71 |
+| 0803 | 1 | 4,130 | 1,477.8 | 1.08 |
+
+Coverage reconciliation: emitted-per-unit == source-JSONL count for **58/58 units**
+(196,108 = 196,108; zero degenerate drops). Verify-before-reporting evidence:
+`node scripts/nhd-network-gates.mjs` → ALL GATES PASS; `pnpm --filter @trout/web
+typecheck` clean; `node scripts/nhd-validate.mjs` → PASS (0 FAIL, 10 REVIEW, B13 all
+FIXED — its report file was restored after the run; only a generatedAt timestamp churn).
+
+Deviations/notes for the owner (both flagged, neither touches the frozen cluster
+scheme or pipeline):
+
+1. **Sub-unit split extension.** HU8 06010105 (Wheeler Lake area: 24,601 named lines,
+   3,720 reservoir artificial paths) is 6.6 MB at the frozen 20 m pipeline — the
+   unit-level split rule bottoms out before the 3.5 MB gate can be met. The recursion
+   continues inside that one unit: features split into alphabetical halves by
+   permanent_identifier (ids 0601abaaa/0601abaab/0601abab...). Manifest id scheme and
+   everything else unchanged. If the owner prefers a different resolution (coarser
+   simplify for that unit, per-unit files), the builder fails loudly at exactly this
+   point and is trivially adjusted.
+2. **90 border-shared pids ship twice.** The SOURCE JSONLs contain 90 pids twice each
+   (identical geometry in two neighboring HU8s, 48 unit pairs — e.g. 05130101+05130103).
+   The build carries them faithfully (no dedup rule exists in the contract; deduping
+   would drop real linework). Gate G8 therefore asserts pid-occurrence faithfulness
+   (shipped counts == source counts) instead of global uniqueness, and prints the
+   48-pair breakdown. If the owner wants border dedup, that's a converter-lane change.
+
+Sanity totals vs the brief's reference band (~169,869 lines / ~93,881 km / ~46 MB):
+actuals are 196,108 / 111,654 km / 54.27 MB. The line count is pinned by the coverage
+contract to the committed sources (196,108 named flowlines — all present in the JSONLs,
+0 null-geometry, 0 null-name), so the band was approximate. Cross-check that supports
+the km total: the source `lengthkm` attributes sum to 114,023 km vs 111,654 km measured
+on simplified output (−2.1%, expected for 20 m DP). innetwork=0 lines are only 6, so
+that filter can't explain the reference band either. File count is 23 vs the estimated
+9–16 because the 3.5 MiB cap is enforced strictly (largest file 3,665,246 bytes).
+
+---
+
 ## Punch-list closeout (GEOVALID-2 consolidation, later on 2026-09-11)
 
 Resolved during consolidation: parksville-tailwater (NHD name is Lake Ocoee — re-traced
