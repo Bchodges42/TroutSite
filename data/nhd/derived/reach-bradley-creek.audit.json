@@ -52,7 +52,7 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Woods Reservoir",
+    "spec": "mouth",
     "path": [
       884,
       1056,
@@ -233,7 +233,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 7296,
+    "bytes": 7275,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-bradley-creek.geojson"

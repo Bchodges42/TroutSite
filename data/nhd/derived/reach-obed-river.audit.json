@@ -260,14 +260,14 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Emory River",
+    "spec": "mouth",
     "path": [
       1954,
       2400,
       2514,
       850
     ],
-    "reason": "confluence",
+    "reason": "name-change",
     "node": "n2077",
     "enteredNames": [
       "Emory River"
@@ -1456,7 +1456,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 13862,
+    "bytes": 13846,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-obed-river.geojson"

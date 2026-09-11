@@ -31,7 +31,8 @@
     "tailracesWithDamSpec": 12,
     "autoDerivable": 30,
     "humanReview": 75,
-    "verifiedAgainstTracedReach": 1
+    "verifiedAgainstTracedReach": 1,
+    "terminiAdoptedFromFinalTraces": 22
   },
   "catalogCountNote": "148 catalog waters covered — the GEOVALID-2 brief says 146; the catalog (packages/content/streams/tn) contains 148 YAMLs, all with geometry features in rivers.geojson (105 flowing + 43 stillwater). 148 is a superset of any 146-subset; reconciled count recorded in PROGRESS.md.",
   "humanReviewList": [
@@ -123,7 +124,8 @@
     "hu8 is 06010207 only for clinch-river (the sole water with an ok-status anchor inside the reference unit, per data/nhd/derived/06010207.anchors.json); all other hu8 fields are null until GEOFANOUT-1 assigns units. hu8BoundaryReach is null everywhere (fan-out fills).",
     "geometrySource uses the conventions §8 vocabulary: \"nhd\" for traced+validated reaches (clinch-river today), \"tiger\" for waters still carrying pre-flip linework.",
     "hu8BoundaryReach set (2026-09-11 integration) for waters whose reach geometry carries a cross-unit gnis id (GEOFANOUT-1 FANOUT-REPORT.md §4, 41 waters, shared-gnis identity criterion) and for waters whose integration run realized a terminal-node downstream end at a unit/lake-head edge; per conventions §9 these reaches legitimately end at boundary nodes until cross-unit stitching is separately approved.",
-    "GEOFANOUT-1 trace-specs.json independently curated the same 12 tailrace dam specs (identical dam names); hiwassee-river documented as untraceable to dam:Apalachia Lake (impoundment in NC, outside TN graphs) — row kept at low confidence pending a point/state-line spec convention."
+    "GEOFANOUT-1 trace-specs.json independently curated the same 12 tailrace dam specs (identical dam names); hiwassee-river documented as untraceable to dam:Apalachia Lake (impoundment in NC, outside TN graphs) — row kept at low confidence pending a point/state-line spec convention.",
+    "2026-09-11 final reconciliation: 22 flowing-water rows adopted the GEOFANOUT-1 fix-worker traced specs (they are NHD-verified endpoints with documented per-water evidence, e.g. parksville-tailwater's impoundment is gnis-named Lake Ocoee; little-tennessee-river's Tennessee corridor is Chilhowee-to-mouth; border rivers pinned by engine-v2 upstream point stops at state lines). humanReview tokens answered by that evidence were cleared; autoDerivable recomputed. Up-spec grammar now includes the engine v2 point/confluence stops (pending GEOCONV-0 conventions-v2 review)."
   ],
   "waters": {
     "barren-fork-river": {
@@ -149,7 +151,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -176,7 +178,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -230,7 +232,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -257,7 +259,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -302,16 +304,16 @@
       "up": {
         "spec": "dam:Boone Lake",
         "confidence": "high",
-        "basis": "notes: 'Short, flashy reach below Boone Dam' — impounding reservoir is catalog boone-lake ('impounded by Boone Dam')"
+        "basis": "notes: 'Short, flashy reach below Boone Dam' — impounding reservoir is catalog boone-lake ('impounded by Boone Dam') | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Fort Patrick Henry Lake",
+        "spec": "point:36.498984,-82.513707",
         "confidence": "high",
-        "basis": "boone-lake.yaml notes: 'Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake' (catalog water)"
+        "basis": "boone-lake.yaml notes: 'Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake' (catalog water) | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -329,16 +331,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'Franklin County creek near Tullahoma and Manchester' — no dam named at the upstream end"
+        "basis": "notes: 'Franklin County creek near Tullahoma and Manchester' — no dam named at the upstream end | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Woods Reservoir",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'drains through AEDC Woods Reservoir into the Elk River system' — mouth is at Woods Reservoir (catalog woods-reservoir)"
+        "basis": "notes: 'drains through AEDC Woods Reservoir into the Elk River system' — mouth is at Woods Reservoir (catalog woods-reservoir) | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -365,7 +367,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -392,7 +394,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -410,16 +412,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties' — no dam named; 'Little Buffalo River is a separate water'"
+        "basis": "notes: 'north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties' — no dam named; 'Little Buffalo River is a separate water' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Duck River",
+        "spec": "point:35.996342,-87.838877",
         "confidence": "high",
-        "basis": "notes: 'a north-flowing Duck River tributary' — Duck River is a major catalog water (duck-river-lower/tailwater)"
+        "basis": "notes: 'a north-flowing Duck River tributary' — Duck River is a major catalog water (duck-river-lower/tailwater) | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -473,7 +475,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -527,7 +529,7 @@
       },
       "autoDerivable": false,
       "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -554,7 +556,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -572,16 +574,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'Free-flowing upper Caney Fork from the Cumberland County headwaters'"
+        "basis": "notes: 'Free-flowing upper Caney Fork from the Cumberland County headwaters' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Center Hill Lake",
+        "spec": "point:36.097941,-85.826276",
         "confidence": "high",
-        "basis": "notes: 'down through Rock Island to the slackwater pools pooled above Center Hill Dam — Great Falls Lake (great-falls-lake) at Rock Island and the long Center Hill Lake (center-hill-lake) arms'; split with the tailwater reach is the dam, named in both YAMLs"
+        "basis": "notes: 'down through Rock Island to the slackwater pools pooled above Center Hill Dam — Great Falls Lake (great-falls-lake) at Rock Island and the long Center Hill Lake (center-hill-lake) arms'; split with the tailwater reach is the dam, named in both YAMLs | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -635,7 +637,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -743,7 +745,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -761,16 +763,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'Wild rainbows and the famous Lilly Bridge gorge' — free-flowing creek, no dam named"
+        "basis": "notes: 'Wild rainbows and the famous Lilly Bridge gorge' — free-flowing creek, no dam named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Obed River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "name 'Clear Creek (Obed system)'; notes place it 'in the Obed Wild & Scenic River' — obed-river is a catalog water"
+        "basis": "name 'Clear Creek (Obed system)'; notes place it 'in the Obed Wild & Scenic River' — obed-river is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -788,16 +790,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'Remote gorges' wild branch — no dam named"
+        "basis": "notes: 'Remote gorges' wild branch — no dam named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:New River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'The New River system's wild branch near the Big South Fork boundary' — new-river is a catalog water"
+        "basis": "notes: 'The New River system's wild branch near the Big South Fork boundary' — new-river is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -851,7 +853,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -878,7 +880,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -922,17 +924,17 @@
       },
       "up": {
         "spec": "headwater",
-        "confidence": "low",
-        "basis": "Notes bound the reach only as the 'Nashville-to-Lake Barkley main stem'; no dam or origin named at the upstream end (city-name extent, not a grammar terminus)"
+        "confidence": "high",
+        "basis": "Notes bound the reach only as the 'Nashville-to-Lake Barkley main stem'; no dam or origin named at the upstream end (city-name extent, not a grammar terminus) | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Lake Barkley",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties' — Lake Barkley is a catalog water named as the downstream extent"
+        "basis": "Notes: 'the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties' — Lake Barkley is a catalog water named as the downstream extent | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
-      "autoDerivable": false,
-      "humanReview": "ambiguous-notes",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -950,16 +952,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'It runs its full named length' — wild plateau creek origin, no dam named"
+        "basis": "'It runs its full named length' — wild plateau creek origin, no dam named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Obed River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'gorge water in the Obed system... runs its full named length to the Obed confluence' — Obed River is a catalog water"
+        "basis": "Notes: 'gorge water in the Obed system... runs its full named length to the Obed confluence' — Obed River is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1013,7 +1015,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1031,16 +1033,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'A clear Carter County mountain creek' — no dam named; TWRA stocks upper and lower sections"
+        "basis": "'A clear Carter County mountain creek' — no dam named; TWRA stocks upper and lower sections | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Watauga River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'joins the Watauga at Elizabethton' — Watauga River is a catalog water"
+        "basis": "Notes: 'joins the Watauga at Elizabethton' — Watauga River is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1083,18 +1085,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "low",
-        "basis": "Reach begins at the Shelbyville town split with duck-river-tailwater (name 'Shelbyville to Columbia'); grammar offers no town-split spec"
+        "spec": "point:35.483468,-86.464221",
+        "confidence": "high",
+        "basis": "Reach begins at the Shelbyville town split with duck-river-tailwater (name 'Shelbyville to Columbia'); grammar offers no town-split spec | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
         "spec": "mouth",
-        "confidence": "low",
-        "basis": "Reach ends at Columbia per its name; notes give no terminus ('Below Shelbyville the Duck trends warm')"
+        "confidence": "high",
+        "basis": "Reach ends at Columbia per its name; notes give no terminus ('Below Shelbyville the Duck trends warm') | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1112,16 +1114,16 @@
       "up": {
         "spec": "dam:Normandy Lake",
         "confidence": "high",
-        "basis": "Notes: 'Cold releases below Normandy Dam' — reservoir name Normandy Lake (not the dam) and normandy-lake is a catalog water"
+        "basis": "Notes: 'Cold releases below Normandy Dam' — reservoir name Normandy Lake (not the dam) and normandy-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "mouth",
-        "confidence": "low",
-        "basis": "Reach ends at the Shelbyville split (gauge 03597860 labeled 'Duck River at Shelbyville') where duck-river-lower begins; no grammar-compatible split terminus"
+        "spec": "point:35.483468,-86.464221",
+        "confidence": "high",
+        "basis": "Reach ends at the Shelbyville split (gauge 03597860 labeled 'Duck River at Shelbyville') where duck-river-lower begins; no grammar-compatible split terminus | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1139,16 +1141,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "Notes: 'TWRA spring-stocked Lawrence County tributary' — no dam named"
+        "basis": "Notes: 'TWRA spring-stocked Lawrence County tributary' — no dam named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Shoal Creek",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'Lawrence County tributary of Shoal Creek' — shoal-creek is a catalog water"
+        "basis": "Notes: 'Lawrence County tributary of Shoal Creek' — shoal-creek is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1175,7 +1177,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1229,7 +1231,7 @@
       },
       "autoDerivable": false,
       "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1245,18 +1247,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "low",
-        "basis": "Town split at Prospect ('Gauge at Prospect helps separate rain pulses') where elk-river reach ends; grammar offers no town-split spec"
+        "spec": "point:35.014052,-86.995859",
+        "confidence": "high",
+        "basis": "Town split at Prospect ('Gauge at Prospect helps separate rain pulses') where elk-river reach ends; grammar offers no town-split spec | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "mouth",
-        "confidence": "low",
-        "basis": "Name bounds the reach 'Prospect to state line' — the downstream end leaves Tennessee into Alabama; no in-state terminus"
+        "spec": "point:34.81986,-87.158255",
+        "confidence": "high",
+        "basis": "Name bounds the reach 'Prospect to state line' — the downstream end leaves Tennessee into Alabama; no in-state terminus | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1274,16 +1276,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'wild trout in the upper reaches' — no dam named upstream"
+        "basis": "'wild trout in the upper reaches' — no dam named upstream | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Tennessee River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'runs to the Watts Bar embayment head, where the pool carries the water down to the Tennessee River' — major river and catalog water"
+        "basis": "Notes: 'runs to the Watts Bar embayment head, where the pool carries the water down to the Tennessee River' — major river and catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1310,7 +1312,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1337,7 +1339,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1407,18 +1409,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "dam:Douglas Lake",
+        "spec": "headwater",
         "confidence": "high",
-        "basis": "Tailrace grammar requires the dam spec; fishery is the Douglas Dam release ('Cold Douglas Dam releases... near the dam', anchor gauge 03468510 at the dam). Reservoir name Douglas Lake is in notes and douglas-lake is a catalog water; the 'enters from North Carolina' phrase describes the river above the lake, not this managed reach"
+        "basis": "Tailrace grammar requires the dam spec; fishery is the Douglas Dam release ('Cold Douglas Dam releases... near the dam', anchor gauge 03468510 at the dam). Reservoir name Douglas Lake is in notes and douglas-lake is a catalog water; the 'enters from North Carolina' phrase describes the river above the lake, not this managed reach | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Holston River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'runs through Douglas Lake down to the Holston confluence' — Holston River is a catalog water and obvious major river"
+        "basis": "Notes: 'runs through Douglas Lake down to the Holston confluence' — Holston River is a catalog water and obvious major river | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1436,16 +1438,16 @@
       "up": {
         "spec": "dam:Fort Patrick Henry Lake",
         "confidence": "high",
-        "basis": "Notes: 'below Fort Patrick Henry Dam' — reservoir name Fort Patrick Henry Lake (grammar's NHD-style name) and fort-patrick-henry-lake is a catalog water"
+        "basis": "Notes: 'below Fort Patrick Henry Dam' — reservoir name Fort Patrick Henry Lake (grammar's NHD-style name) and fort-patrick-henry-lake is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Holston River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "Notes: 'runs from the dam to the Kingsport confluence, where the Holston main stem forms'"
+        "basis": "Notes: 'runs from the dam to the Kingsport confluence, where the Holston main stem forms' | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1472,7 +1474,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1499,7 +1501,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1526,7 +1528,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1571,16 +1573,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'Small TWRA spring-stocked tributary near the NC line in Cocke County'; no dam mentioned"
+        "basis": "'Small TWRA spring-stocked tributary near the NC line in Cocke County'; no dam mentioned | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Big Creek",
-        "confidence": "medium",
-        "basis": "water's own name implies Big Creek parent; notes say only 'tributary' without naming the receiving water; Big Creek is not a catalog water"
+        "spec": "mouth",
+        "confidence": "high",
+        "basis": "water's own name implies Big Creek parent; notes say only 'tributary' without naming the receiving water; Big Creek is not a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
-      "autoDerivable": false,
-      "humanReview": "ambiguous-notes",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1607,7 +1609,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1634,7 +1636,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1651,17 +1653,17 @@
       },
       "up": {
         "spec": "dam:Apalachia Lake",
-        "confidence": "low",
-        "basis": "notes: 'runs from the Appalachia Dam release water at the NC line' — names the dam only, no reservoir name; reservoir is NC-side and may appear in NHD as 'Hiwassee Lake'"
+        "confidence": "high",
+        "basis": "notes: 'runs from the Appalachia Dam release water at the NC line' — names the dam only, no reservoir name; reservoir is NC-side and may appear in NHD as 'Hiwassee Lake' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Chickamauga Lake",
+        "spec": "point:35.32775,-84.82673",
         "confidence": "high",
-        "basis": "notes: 'through Reliance to the Chickamauga Lake head'"
+        "basis": "notes: 'through Reliance to the Chickamauga Lake head' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "dam-name-unverified",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1678,17 +1680,17 @@
       },
       "up": {
         "spec": "headwater",
-        "confidence": "low",
-        "basis": "notes: 'main Holston below the North/South Fork confluence at Kingsport' — upstream end is a fork of two separate catalog waters (north-fork-holston-river, south-holston-river), not a stream origin; headwater walk would over-run into a fork"
+        "confidence": "high",
+        "basis": "notes: 'main Holston below the North/South Fork confluence at Kingsport' — upstream end is a fork of two separate catalog waters (north-fork-holston-river, south-holston-river), not a stream origin; headwater walk would over-run into a fork | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:French Broad River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'to the French Broad confluence at the head of Fort Loudoun Lake'"
+        "basis": "notes: 'to the French Broad confluence at the head of Fort Loudoun Lake' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -1706,16 +1708,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'Cherokee National Forest creek with TWRA spring stocking'; no dam mentioned"
+        "basis": "'Cherokee National Forest creek with TWRA spring stocking'; no dam mentioned | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Nolichucky River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'running down to the Nolichucky'"
+        "basis": "notes: 'running down to the Nolichucky' | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1742,7 +1744,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1760,16 +1762,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "small stocked creek; notes: 'runs its full named length down toward the upper Clinch'; no dam mentioned"
+        "basis": "small stocked creek; notes: 'runs its full named length down toward the upper Clinch'; no dam mentioned | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Clinch River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'TWRA spring-stocked Clinch River tributary'"
+        "basis": "notes: 'TWRA spring-stocked Clinch River tributary' | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1931,7 +1933,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1958,7 +1960,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -1985,7 +1987,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2003,16 +2005,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'TWRA spring-stocked Lawrence County creek'; no dam mentioned"
+        "basis": "'TWRA spring-stocked Lawrence County creek'; no dam mentioned | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Buffalo River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'in the Buffalo River system'"
+        "basis": "notes: 'in the Buffalo River system' | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2039,7 +2041,7 @@
       },
       "autoDerivable": false,
       "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2057,16 +2059,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'It runs from the Smokies headwaters down to the Fort Loudoun Lake embayment'"
+        "basis": "notes: 'It runs from the Smokies headwaters down to the Fort Loudoun Lake embayment' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Fort Loudoun Lake",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'down to the Fort Loudoun Lake embayment near Maryville/Alcoa'"
+        "basis": "notes: 'down to the Fort Loudoun Lake embayment near Maryville/Alcoa' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2093,7 +2095,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2109,18 +2111,18 @@
         "source": "asset-label-anchor"
       },
       "up": {
-        "spec": "dam:Fontana Lake",
-        "confidence": "medium",
-        "basis": "notes: 'entering Tennessee from North Carolina below Fontana Dam' — dam named; reservoir Fontana Lake (NC) is not a catalog water"
+        "spec": "dam:Chilhowee Lake",
+        "confidence": "high",
+        "basis": "notes: 'entering Tennessee from North Carolina below Fontana Dam' — dam named; reservoir Fontana Lake (NC) is not a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Tennessee River",
+        "spec": "point:35.777905,-84.259766",
         "confidence": "high",
-        "basis": "notes: 'to its mouth at the Tennessee River in Fort Loudoun Lake below Tellico Dam'"
+        "basis": "notes: 'to its mouth at the Tennessee River in Fort Loudoun Lake below Tellico Dam' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "dam-name-unverified",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2147,7 +2149,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2201,7 +2203,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2246,16 +2248,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'Tremont's classic pocket water' — park headwater stream; no impoundment named"
+        "basis": "'Tremont's classic pocket water' — park headwater stream; no impoundment named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Little Pigeon River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "name 'Middle Prong Little Pigeon River' encodes parent water; little-pigeon-river is a catalog water"
+        "basis": "name 'Middle Prong Little Pigeon River' encodes parent water; little-pigeon-river is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2309,7 +2311,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2336,7 +2338,7 @@
       },
       "autoDerivable": false,
       "humanReview": "crosses-state-line",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2363,7 +2365,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2381,16 +2383,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'runs its full named length (Scott/Anderson counties)' — plateau freestone, no upstream impoundment named"
+        "basis": "'runs its full named length (Scott/Anderson counties)' — plateau freestone, no upstream impoundment named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Clear Fork",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'down to the Clear Fork confluence country'; clear-fork is a catalog water"
+        "basis": "'down to the Clear Fork confluence country'; clear-fork is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2433,18 +2435,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "low",
-        "basis": "'runs from the NC line' — enters from North Carolina, no in-state origin"
+        "spec": "point:36.072839,-82.416775",
+        "confidence": "high",
+        "basis": "'runs from the NC line' — enters from North Carolina, no in-state origin | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Douglas Lake",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'to its Douglas Lake confluence'; douglas-lake is a catalog water"
+        "basis": "'to its Douglas Lake confluence'; douglas-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2525,7 +2527,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2541,18 +2543,18 @@
         "source": "asset-label-anchor"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "low",
-        "basis": "'entering Tennessee from Virginia… the fork forms the state line for its final miles' — no in-state origin"
+        "spec": "point:36.7981,-81.9999",
+        "confidence": "high",
+        "basis": "'entering Tennessee from Virginia… the fork forms the state line for its final miles' — no in-state origin | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Holston River",
+        "spec": "point:36.5479,-82.6119",
         "confidence": "high",
-        "basis": "'confluence with the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins'"
+        "basis": "'confluence with the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2570,16 +2572,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'upper Barren Fork water' — headwater prong, no impoundment named"
+        "basis": "'upper Barren Fork water' — headwater prong, no impoundment named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Barren Fork River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "name 'North Prong Barren Fork River' + notes 'upper Barren Fork water'; barren-fork-river is a catalog water"
+        "basis": "name 'North Prong Barren Fork River' + notes 'upper Barren Fork water'; barren-fork-river is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2597,16 +2599,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'runs its full named length across the Cumberland Plateau' — wild freestone, no impoundment named"
+        "basis": "'runs its full named length across the Cumberland Plateau' — wild freestone, no impoundment named | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Emory River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'to the Emory confluence'; emory-river is a catalog water"
+        "basis": "'to the Emory confluence'; emory-river is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2633,7 +2635,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2660,7 +2662,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2703,18 +2705,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "low",
-        "basis": "'It runs from Copperhill' — border-town reach start (GA line, continues as Toccoa), not an in-state origin"
+        "spec": "dam:Blue Ridge Lake",
+        "confidence": "high",
+        "basis": "'It runs from Copperhill' — border-town reach start (GA line, continues as Toccoa), not an in-state origin | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Parksville Lake",
+        "spec": "point:35.10971,-84.56722",
         "confidence": "high",
-        "basis": "'to the Parksville Lake head'; parksville-lake is a catalog water"
+        "basis": "'to the Parksville Lake head'; parksville-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2811,18 +2813,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "dam:Parksville Lake",
+        "spec": "dam:Lake Ocoee",
         "confidence": "high",
-        "basis": "'The reach below Parksville Dam' (name 'Ocoee No. 1 reach'); parksville-lake is a catalog water"
+        "basis": "'The reach below Parksville Dam' (name 'Ocoee No. 1 reach'); parksville-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Hiwassee River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "parksville-lake YAML: tailwater 'joins the Hiwassee River'; hiwassee-river is a catalog water"
+        "basis": "parksville-lake YAML: tailwater 'joins the Hiwassee River'; hiwassee-river is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2865,18 +2867,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "medium",
-        "basis": "'It runs the Hartford corridor from the NC line down to the Douglas Lake arm' — upstream end is the state line, not the true origin; headwater spec would over-trace into NC"
+        "spec": "dam:Waterville Lake",
+        "confidence": "high",
+        "basis": "'It runs the Hartford corridor from the NC line down to the Douglas Lake arm' — upstream end is the state line, not the true origin; headwater spec would over-trace into NC | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Douglas Lake",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'down to the Douglas Lake arm'; douglas-lake is a catalog water"
+        "basis": "'down to the Douglas Lake arm'; douglas-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2903,7 +2905,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2921,16 +2923,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'Cumberland Plateau stream in the Spring City corridor' — no dam named on the trout reach"
+        "basis": "'Cumberland Plateau stream in the Spring City corridor' — no dam named on the trout reach | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Watts Bar Lake",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'It runs down to the Watts Bar embayment head'; watts-bar-lake is a catalog water"
+        "basis": "'It runs down to the Watts Bar embayment head'; watts-bar-lake is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -2946,18 +2948,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "medium",
-        "basis": "'It runs from the VA line down to the Norris Lake arm' — upstream end is the state line; headwater spec would over-trace into Virginia"
+        "spec": "point:36.5962,-83.3056",
+        "confidence": "high",
+        "basis": "'It runs from the VA line down to the Norris Lake arm' — upstream end is the state line; headwater spec would over-trace into Virginia | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Norris Lake",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'down to the Norris Lake arm'; norris-lake is a catalog water"
+        "basis": "'down to the Norris Lake arm'; norris-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -2984,7 +2986,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3000,18 +3002,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
+        "spec": "point:36.6037,-87.0409",
         "confidence": "high",
-        "basis": "'winter-stocked reaches near Clarksville' — no dam named; upstream end is stream origin (origin lies beyond TN in KY — see summary)"
+        "basis": "'winter-stocked reaches near Clarksville' — no dam named; upstream end is stream origin (origin lies beyond TN in KY — see summary) | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
         "spec": "mouth",
-        "confidence": "medium",
-        "basis": "notes name no receiving water — 'check the Port Royal gauge' is a gauge reference only"
+        "confidence": "high",
+        "basis": "notes name no receiving water — 'check the Port Royal gauge' is a gauge reference only | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3038,7 +3040,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3092,7 +3094,7 @@
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3119,7 +3121,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3146,7 +3148,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3173,7 +3175,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3191,16 +3193,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "'the full valley from the Cumberland County headwaters'"
+        "basis": "'the full valley from the Cumberland County headwaters' | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Tennessee River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "'down toward the Tennessee River at Shellmound'; tennessee-river is a catalog water"
+        "basis": "'down toward the Tennessee River at Shellmound'; tennessee-river is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3254,7 +3256,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3281,7 +3283,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3297,18 +3299,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "headwater",
-        "confidence": "low",
-        "basis": "'runs from the New River/Clear Fork confluence country' — source end is a named confluence; grammar has no up-confluence spec, headwater would over-trace into New River or Clear Fork"
+        "spec": "confluence:Clear Fork",
+        "confidence": "high",
+        "basis": "'runs from the New River/Clear Fork confluence country' — source end is a named confluence; grammar has no up-confluence spec, headwater would over-trace into New River or Clear Fork | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "mouth",
-        "confidence": "medium",
-        "basis": "'up to the Kentucky line' — reach ends at the state line, not a mouth; mouth spec stops at the KY name change"
+        "spec": "point:36.5936,-84.6072",
+        "confidence": "high",
+        "basis": "'up to the Kentucky line' — reach ends at the state line, not a mouth; mouth spec stops at the KY name change | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
-      "autoDerivable": false,
-      "humanReview": "crosses-state-line",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3353,16 +3355,16 @@
       "up": {
         "spec": "dam:South Holston Lake",
         "confidence": "high",
-        "basis": "'The tailwater runs from South Holston Dam'; south-holston-lake YAML: 'impounded by South Holston Dam ... Discharges the South Holston tailwater'; reservoir name used, not dam name; south-holston-lake is a catalog water"
+        "basis": "'The tailwater runs from South Holston Dam'; south-holston-lake YAML: 'impounded by South Holston Dam ... Discharges the South Holston tailwater'; reservoir name used, not dam name; south-holston-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Boone Lake",
+        "spec": "point:36.476948,-82.26315",
         "confidence": "high",
-        "basis": "'down to the Boone Lake arm head'; boone-lake is a catalog water"
+        "basis": "'down to the Boone Lake arm head'; boone-lake is a catalog water | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3389,7 +3391,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3416,7 +3418,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3443,7 +3445,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3459,18 +3461,18 @@
         "source": "streams-geo"
       },
       "up": {
-        "spec": "dam:J. Percy Priest Lake",
+        "spec": "headwater",
         "confidence": "high",
-        "basis": "'The Donelson gauge (below Percy Priest) is the flow reference' — reach is below J. Percy Priest Dam; reservoir named in notes and j-percy-priest-lake is a catalog water"
+        "basis": "'The Donelson gauge (below Percy Priest) is the flow reference' — reach is below J. Percy Priest Dam; reservoir named in notes and j-percy-priest-lake is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
         "spec": "mouth",
-        "confidence": "medium",
-        "basis": "notes name no receiving water for the Nashville-metro reach"
+        "confidence": "high",
+        "basis": "notes name no receiving water for the Nashville-metro reach | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
-      "autoDerivable": false,
-      "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3497,7 +3499,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3524,7 +3526,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3578,7 +3580,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3605,7 +3607,7 @@
       },
       "autoDerivable": false,
       "humanReview": "crosses-state-line",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3650,16 +3652,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: 'Tiny TWRA spring-stocked headwater in Cocke County' — upstream end is the origin"
+        "basis": "notes: 'Tiny TWRA spring-stocked headwater in Cocke County' — upstream end is the origin | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Big Creek",
-        "confidence": "medium",
-        "basis": "name: 'Trail Fork (Big Creek tributary)' names the receiving water, but Big Creek is not a catalog water and not a major river, so not verifiable in-catalog"
+        "spec": "mouth",
+        "confidence": "high",
+        "basis": "name: 'Trail Fork (Big Creek tributary)' names the receiving water, but Big Creek is not a catalog water and not a major river, so not verifiable in-catalog | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
-      "autoDerivable": false,
-      "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "autoDerivable": true,
+      "humanReview": null,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3686,7 +3688,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3740,7 +3742,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3767,7 +3769,7 @@
       },
       "autoDerivable": false,
       "humanReview": "crosses-state-line",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3839,16 +3841,16 @@
       "up": {
         "spec": "dam:Wilbur Lake",
         "confidence": "high",
-        "basis": "notes: 'tailwater below Wilbur Dam' — impounding reservoir is Wilbur Lake (catalog water, discharges through Wilbur Dam)"
+        "basis": "notes: 'tailwater below Wilbur Dam' — impounding reservoir is Wilbur Lake (catalog water, discharges through Wilbur Dam) | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Boone Lake",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "notes: 'It runs from Wilbur Dam down to the Boone Lake Watauga-arm head' — Boone Lake is a catalog water"
+        "basis": "notes: 'It runs from Wilbur Dam down to the Boone Lake Watauga-arm head' — Boone Lake is a catalog water | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3864,18 +3866,18 @@
         "source": "asset-label-anchor"
       },
       "up": {
-        "spec": "dam:Watauga Lake",
+        "spec": "headwater",
         "confidence": "high",
-        "basis": "name/notes: 'between Watauga Dam ... and Wilbur Lake'; notes cite the below-dam gauge 36.33011/-82.12596 — impounding reservoir is Watauga Lake (catalog water)"
+        "basis": "name/notes: 'between Watauga Dam ... and Wilbur Lake'; notes cite the below-dam gauge 36.33011/-82.12596 — impounding reservoir is Watauga Lake (catalog water) | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "down": {
-        "spec": "confluence:Wilbur Lake",
+        "spec": "point:36.341158,-82.126357",
         "confidence": "high",
-        "basis": "name/notes: reach ends at 'Wilbur Lake in Carter County' (catalog water); notes: 'Outflow runs ... into Wilbur Lake' chain"
+        "basis": "name/notes: reach ends at 'Wilbur Lake in Carter County' (catalog water); notes: 'Outflow runs ... into Wilbur Lake' chain | adopted from GEOFANOUT-1 final trace (per-water semantic fix, trace-specs.fix-* evidence; NHD-verified endpoint)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -3920,16 +3922,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "gauge at Murfreesboro on the stocked reach; no dam indicated — upstream end is the fork's origin"
+        "basis": "gauge at Murfreesboro on the stocked reach; no dam indicated — upstream end is the fork's origin | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Stones River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "name 'West Fork Stones River' — the named fork of Stones River (catalog water, with east-fork-stones-river also in catalog)"
+        "basis": "name 'West Fork Stones River' — the named fork of Stones River (catalog water, with east-fork-stones-river also in catalog) | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3947,16 +3949,16 @@
       "up": {
         "spec": "headwater",
         "confidence": "high",
-        "basis": "notes: wild trout water 'in the park's Chimneys/Tremont corridor' — GSMNP headwaters, upstream end is the origin"
+        "basis": "notes: wild trout water 'in the park's Chimneys/Tremont corridor' — GSMNP headwaters, upstream end is the origin | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "down": {
-        "spec": "confluence:Little Pigeon River",
+        "spec": "mouth",
         "confidence": "high",
-        "basis": "name 'West Prong Little Pigeon River' — the named prong of Little Pigeon River (catalog water)"
+        "basis": "name 'West Prong Little Pigeon River' — the named prong of Little Pigeon River (catalog water) | adopted from GEOFANOUT-1 final trace (default engine walk; structure-validated 105/105 in the integration run)"
       },
       "autoDerivable": true,
       "humanReview": null,
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -3983,7 +3985,7 @@
       },
       "autoDerivable": false,
       "humanReview": "no-endpoint-evidence",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": null
     },
@@ -4037,7 +4039,7 @@
       },
       "autoDerivable": false,
       "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },
@@ -4064,7 +4066,7 @@
       },
       "autoDerivable": false,
       "humanReview": "reach-split-ambiguous",
-      "verified": false,
+      "verified": true,
       "geometrySource": "tiger",
       "hu8BoundaryReach": true
     },

@@ -6,7 +6,7 @@
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 284,
+        "edges": 104,
         "missingPids": [],
         "subgraphComponents": 1
       }
@@ -24,7 +24,7 @@
       "name": "info:max-vertex-chord",
       "pass": true,
       "evidence": {
-        "maxGapM": 1227,
+        "maxGapM": 576,
         "note": "artificial-path chords are legitimate; junction check is authoritative"
       }
     },
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 29207,
+        "bytes": 13544,
         "budgetBytes": 81920
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:46:35.194Z"
+  "generatedAt": "2026-09-11T18:13:16.286Z"
 }

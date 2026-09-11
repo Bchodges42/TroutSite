@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T18:47:07.047Z",
+  "generatedAt": "2026-09-11T19:24:38.275Z",
   "lane": "GEOVALID-2",
   "suite": "scripts/nhd-validate.mjs",
   "mode": {
@@ -13,14 +13,21 @@
     "stillwaters": 43,
     "tracedReaches": 105,
     "pending": 0,
-    "fails": 30,
-    "reviews": 5,
-    "sharedBboxPairs": 3,
-    "assetBboxOverlapsInfo": 392,
-    "terminiAutoDerivable": 30,
-    "terminiHumanReview": 75
+    "fails": 10,
+    "reviews": 9,
+    "sharedBboxPairs": 2,
+    "assetBboxOverlapsInfo": 251,
+    "terminiAutoDerivable": 43,
+    "terminiHumanReview": 62
   },
   "findings": [
+    {
+      "section": "termini",
+      "severity": "FAIL",
+      "id": "french-broad-river",
+      "check": "tailwater-dam-spec",
+      "evidence": "up spec must be dam:* for tailrace unless a documented override exists, got headwater"
+    },
     {
       "section": "reach",
       "severity": "PASS",
@@ -44,12 +51,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "barren-fork-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.107117,
+            35.632157
+          ],
+          "distKmFromAnchor": 50.12
+        }
       }
     },
     {
@@ -106,12 +121,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "beaverdam-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -81.962416,
+            36.487197
+          ],
+          "distKmFromAnchor": 15.08
+        }
       }
     },
     {
@@ -168,12 +191,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "big-rock-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.834193,
+            35.371855
+          ],
+          "distKmFromAnchor": 26.42
+        }
       }
     },
     {
@@ -230,12 +261,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "boiling-fork-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.92777,
+            35.194512
+          ],
+          "distKmFromAnchor": 12.47
+        }
       }
     },
     {
@@ -275,7 +314,7 @@
       "id": "boone-tailwater",
       "check": "connectivity",
       "evidence": {
-        "edges": 37,
+        "edges": 22,
         "components": 1,
         "missingPids": []
       }
@@ -294,7 +333,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "boone-tailwater",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Boone Lake",
         "realized": {
@@ -314,10 +353,10 @@
       "id": "boone-tailwater",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Fort Patrick Henry Lake",
-        "realized": "terminal-node",
+        "expected": "point:36.498984,-82.513707",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -335,7 +374,7 @@
       "id": "boone-tailwater",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 4550,
+        "bytes": 2972,
         "budgetBytes": 81920
       }
     },
@@ -362,12 +401,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "bradley-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.896042,
+            35.474803
+          ],
+          "distKmFromAnchor": 16.14
+        }
       }
     },
     {
@@ -424,12 +471,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "brush-creek-cocke",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.907096,
+            35.979849
+          ],
+          "distKmFromAnchor": 5.27
+        }
       }
     },
     {
@@ -486,12 +541,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "buffalo-creek-grainger",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.598881,
+            36.228279
+          ],
+          "distKmFromAnchor": 4.53
+        }
       }
     },
     {
@@ -527,50 +590,51 @@
     },
     {
       "section": "reach",
-      "severity": "FAIL",
-      "id": "buffalo-river",
-      "check": "b13-sidecar",
-      "evidence": "FAIL"
-    },
-    {
-      "section": "reach",
       "severity": "PASS",
       "id": "buffalo-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 443,
+        "edges": 441,
         "components": 1,
         "missingPids": []
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "buffalo-river",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 157,
+        "worstJunctionM": 0,
         "limitM": 50
       }
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "buffalo-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.27753,
+            35.430691
+          ],
+          "distKmFromAnchor": 119.78
+        }
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "buffalo-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Duck River",
-        "realized": "cycle-guard",
+        "expected": "point:35.996342,-87.838877",
+        "realized": "point",
         "endpointEquivalent": false,
         "boundaryExcused": false
       }
@@ -590,7 +654,7 @@
       "id": "buffalo-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 37307,
+        "bytes": 17610,
         "budgetBytes": 81920
       }
     },
@@ -628,12 +692,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "calfkiller-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.258537,
+            36.145214
+          ],
+          "distKmFromAnchor": 47.12
+        }
       }
     },
     {
@@ -690,12 +762,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "cane-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.373475,
+            35.535388
+          ],
+          "distKmFromAnchor": 9.57
+        }
       }
     },
     {
@@ -754,7 +834,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "caney-fork-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Center Hill Lake",
         "realized": {
@@ -801,40 +881,41 @@
     },
     {
       "section": "reach",
-      "severity": "FAIL",
-      "id": "caney-fork-upper",
-      "check": "b13-sidecar",
-      "evidence": "FAIL"
-    },
-    {
-      "section": "reach",
       "severity": "PASS",
       "id": "caney-fork-upper",
       "check": "connectivity",
       "evidence": {
-        "edges": 237,
+        "edges": 176,
         "components": 1,
         "missingPids": []
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "caney-fork-upper",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 55,
+        "worstJunctionM": 0,
         "limitM": 50
       }
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "caney-fork-upper",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.157996,
+            36.045459
+          ],
+          "distKmFromAnchor": 51.42
+        }
       }
     },
     {
@@ -843,10 +924,10 @@
       "id": "caney-fork-upper",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Center Hill Lake",
-        "realized": "terminal-node",
+        "expected": "point:36.097941,-85.826276",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -864,7 +945,7 @@
       "id": "caney-fork-upper",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 28887,
+        "bytes": 15274,
         "budgetBytes": 81920
       }
     },
@@ -902,12 +983,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "charles-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.960546,
+            35.799226
+          ],
+          "distKmFromAnchor": 14.94
+        }
       }
     },
     {
@@ -964,12 +1053,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "citico-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.016977,
+            35.36728
+          ],
+          "distKmFromAnchor": 36.21
+        }
       }
     },
     {
@@ -1026,12 +1123,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "clear-creek-obed",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.18135,
+            36.051784
+          ],
+          "distKmFromAnchor": 76.07
+        }
       }
     },
     {
@@ -1088,12 +1193,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "clear-fork",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.979385,
+            36.191149
+          ],
+          "distKmFromAnchor": 65.75
+        }
       }
     },
     {
@@ -1152,7 +1265,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "clinch-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Norris Lake",
         "realized": {
@@ -1220,12 +1333,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "collins-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.585622,
+            35.317121
+          ],
+          "distKmFromAnchor": 82.28
+        }
       }
     },
     {
@@ -1282,12 +1403,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "cosby-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.180861,
+            35.743925
+          ],
+          "distKmFromAnchor": 17.84
+        }
       }
     },
     {
@@ -1355,12 +1484,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "cumberland-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.655859,
+            36.296641
+          ],
+          "distKmFromAnchor": 28.04
+        }
       }
     },
     {
@@ -1417,12 +1554,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "daddys-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.097953,
+            35.746326
+          ],
+          "distKmFromAnchor": 64.22
+        }
       }
     },
     {
@@ -1479,12 +1624,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "doe-creek-johnson",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -81.844161,
+            36.464585
+          ],
+          "distKmFromAnchor": 16.13
+        }
       }
     },
     {
@@ -1541,12 +1694,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "doe-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.14404,
+            36.146487
+          ],
+          "distKmFromAnchor": 46.26
+        }
       }
     },
     {
@@ -1586,7 +1747,7 @@
       "id": "duck-river-lower",
       "check": "connectivity",
       "evidence": {
-        "edges": 411,
+        "edges": 118,
         "components": 1,
         "missingPids": []
       }
@@ -1603,12 +1764,31 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "REVIEW",
+      "id": "duck-river-lower",
+      "check": "long-chord",
+      "evidence": {
+        "count": 2,
+        "maxChordM": 3991,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
       "id": "duck-river-lower",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "point:35.483468,-86.464221",
+        "realized": {
+          "spec": "point:35.483468,-86.464221",
+          "reason": "point",
+          "terminus": [
+            -86.464653,
+            35.48352
+          ],
+          "distKmFromAnchor": 66.72
+        }
       }
     },
     {
@@ -1629,7 +1809,7 @@
       "id": "duck-river-lower",
       "check": "anchor-snap",
       "evidence": {
-        "snapDistM": 44.8
+        "snapDistM": 0.3
       }
     },
     {
@@ -1638,7 +1818,7 @@
       "id": "duck-river-lower",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 26147,
+        "bytes": 11588,
         "budgetBytes": 81920
       }
     },
@@ -1648,7 +1828,7 @@
       "id": "duck-river-tailwater",
       "check": "connectivity",
       "evidence": {
-        "edges": 203,
+        "edges": 84,
         "components": 1,
         "missingPids": []
       }
@@ -1667,7 +1847,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "duck-river-tailwater",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Normandy Lake",
         "realized": {
@@ -1687,10 +1867,10 @@
       "id": "duck-river-tailwater",
       "check": "termini-down",
       "evidence": {
-        "expected": "mouth",
-        "realized": "terminal-node",
+        "expected": "point:35.483468,-86.464221",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -1708,7 +1888,7 @@
       "id": "duck-river-tailwater",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 26745,
+        "bytes": 7613,
         "budgetBytes": 81920
       }
     },
@@ -1735,12 +1915,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "east-fork-shoal-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.080006,
+            35.116301
+          ],
+          "distKmFromAnchor": 7.81
+        }
       }
     },
     {
@@ -1797,12 +1985,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "east-fork-stones-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.949347,
+            35.844726
+          ],
+          "distKmFromAnchor": 62.15
+        }
       }
     },
     {
@@ -1842,7 +2038,7 @@
       "id": "elk-river-lower",
       "check": "connectivity",
       "evidence": {
-        "edges": 122,
+        "edges": 93,
         "components": 1,
         "missingPids": []
       }
@@ -1859,12 +2055,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "FAIL",
       "id": "elk-river-lower",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "point:35.014052,-86.995859",
+        "realized": {
+          "spec": "point:35.014052,-86.995859",
+          "reason": "headwater",
+          "terminus": [
+            -86.884699,
+            35.023129
+          ],
+          "distKmFromAnchor": 14.6
+        }
       }
     },
     {
@@ -1873,10 +2077,10 @@
       "id": "elk-river-lower",
       "check": "termini-down",
       "evidence": {
-        "expected": "mouth",
-        "realized": "terminal-node",
+        "expected": "point:34.81986,-87.158255",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -1894,7 +2098,7 @@
       "id": "elk-river-lower",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 8641,
+        "bytes": 7005,
         "budgetBytes": 81920
       }
     },
@@ -1923,7 +2127,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "elk-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Tims Ford Lake",
         "realized": {
@@ -1964,7 +2168,7 @@
       "id": "elk-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 19576,
+        "bytes": 12513,
         "budgetBytes": 81920
       }
     },
@@ -1991,12 +2195,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "emory-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.44652,
+            36.156649
+          ],
+          "distKmFromAnchor": 53.19
+        }
       }
     },
     {
@@ -2053,12 +2265,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "fletchers-fork",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.609774,
+            36.534401
+          ],
+          "distKmFromAnchor": 13.32
+        }
       }
     },
     {
@@ -2115,12 +2335,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "forge-creek-johnson",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -81.752085,
+            36.456679
+          ],
+          "distKmFromAnchor": 1.67
+        }
       }
     },
     {
@@ -2160,7 +2388,7 @@
       "id": "french-broad-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 80,
+        "edges": 145,
         "components": 1,
         "missingPids": []
       }
@@ -2171,7 +2399,7 @@
       "id": "french-broad-river",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 0,
+        "worstJunctionM": 34,
         "limitM": 50
       }
     },
@@ -2179,17 +2407,17 @@
       "section": "reach",
       "severity": "PASS",
       "id": "french-broad-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
-        "expected": "dam:Douglas Lake",
+        "expected": "headwater",
         "realized": {
-          "spec": "dam:Douglas Lake",
-          "reason": "dam",
+          "spec": "headwater",
+          "reason": "headwater",
           "terminus": [
-            -83.538605,
-            35.960993
+            -83.191878,
+            36.014156
           ],
-          "distKmFromAnchor": 0.02
+          "distKmFromAnchor": 62.69
         }
       }
     },
@@ -2199,7 +2427,7 @@
       "id": "french-broad-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Holston River",
+        "expected": "mouth",
         "realized": "terminal-node",
         "endpointEquivalent": false,
         "boundaryExcused": true
@@ -2220,7 +2448,7 @@
       "id": "french-broad-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 7231,
+        "bytes": 12791,
         "budgetBytes": 81920
       }
     },
@@ -2249,7 +2477,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "ft-patrick-henry-tailwater",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Fort Patrick Henry Lake",
         "realized": {
@@ -2317,12 +2545,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "gap-creek-claiborne",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.658801,
+            36.599237
+          ],
+          "distKmFromAnchor": 6.61
+        }
       }
     },
     {
@@ -2379,12 +2615,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "goforth-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.479581,
+            35.114435
+          ],
+          "distKmFromAnchor": 4.24
+        }
       }
     },
     {
@@ -2441,12 +2685,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "greasy-creek-polk",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.497383,
+            35.119845
+          ],
+          "distKmFromAnchor": 6.07
+        }
       }
     },
     {
@@ -2503,12 +2755,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "gulf-fork-big-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.980686,
+            35.784286
+          ],
+          "distKmFromAnchor": 15.52
+        }
       }
     },
     {
@@ -2565,12 +2825,31 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "REVIEW",
+      "id": "harpeth-river",
+      "check": "long-chord",
+      "evidence": {
+        "count": 1,
+        "maxChordM": 2655,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
       "id": "harpeth-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.60147,
+            35.733663
+          ],
+          "distKmFromAnchor": 50.91
+        }
       }
     },
     {
@@ -2600,7 +2879,7 @@
       "id": "harpeth-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 28784,
+        "bytes": 12723,
         "budgetBytes": 81920
       }
     },
@@ -2627,12 +2906,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "hatchie-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -88.8482,
+            35.175953
+          ],
+          "distKmFromAnchor": 193.18
+        }
       }
     },
     {
@@ -2662,16 +2949,9 @@
       "id": "hatchie-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 57449,
+        "bytes": 17282,
         "budgetBytes": 81920
       }
-    },
-    {
-      "section": "reach",
-      "severity": "FAIL",
-      "id": "hiwassee-river",
-      "check": "b13-sidecar",
-      "evidence": "FAIL"
     },
     {
       "section": "reach",
@@ -2679,47 +2959,47 @@
       "id": "hiwassee-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 278,
+        "edges": 143,
         "components": 1,
         "missingPids": []
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "hiwassee-river",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 96,
+        "worstJunctionM": 0,
         "limitM": 50
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "hiwassee-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Apalachia Lake",
         "realized": {
-          "spec": "headwater",
-          "reason": "headwater",
+          "spec": "dam:Apalachia Lake",
+          "reason": "dam",
           "terminus": [
-            -83.787135,
-            35.024127
+            -84.295349,
+            35.167799
           ],
-          "distKmFromAnchor": 119.54
+          "distKmFromAnchor": 29.79
         }
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "hiwassee-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Chickamauga Lake",
-        "realized": "cycle-guard",
+        "expected": "point:35.32775,-84.82673",
+        "realized": "point",
         "endpointEquivalent": false,
         "boundaryExcused": false
       }
@@ -2739,7 +3019,7 @@
       "id": "hiwassee-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 24992,
+        "bytes": 12008,
         "budgetBytes": 81920
       }
     },
@@ -2766,12 +3046,31 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "REVIEW",
+      "id": "holston-river",
+      "check": "long-chord",
+      "evidence": {
+        "count": 1,
+        "maxChordM": 2101,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
       "id": "holston-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.614942,
+            36.554176
+          ],
+          "distKmFromAnchor": 112.15
+        }
       }
     },
     {
@@ -2780,7 +3079,7 @@
       "id": "holston-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:French Broad River",
+        "expected": "mouth",
         "realized": "terminal-node",
         "endpointEquivalent": false,
         "boundaryExcused": true
@@ -2801,7 +3100,7 @@
       "id": "holston-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 27317,
+        "bytes": 13944,
         "budgetBytes": 81920
       }
     },
@@ -2828,12 +3127,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "horse-creek-greene",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.633143,
+            36.068264
+          ],
+          "distKmFromAnchor": 12.14
+        }
       }
     },
     {
@@ -2890,12 +3197,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "hurricane-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.540518,
+            36.135062
+          ],
+          "distKmFromAnchor": 17.71
+        }
       }
     },
     {
@@ -2952,12 +3267,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "indian-creek-claiborne",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.434438,
+            36.661098
+          ],
+          "distKmFromAnchor": 24.76
+        }
       }
     },
     {
@@ -3014,12 +3337,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "laurel-creek-johnson",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -81.761661,
+            36.568895
+          ],
+          "distKmFromAnchor": 3.14
+        }
       }
     },
     {
@@ -3076,12 +3407,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "laurel-fork-carter",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.009682,
+            36.19674
+          ],
+          "distKmFromAnchor": 22.5
+        }
       }
     },
     {
@@ -3138,12 +3477,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "leconte-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.447506,
+            35.657218
+          ],
+          "distKmFromAnchor": 8.03
+        }
       }
     },
     {
@@ -3200,12 +3547,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "little-buffalo-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.474078,
+            35.298154
+          ],
+          "distKmFromAnchor": 12.33
+        }
       }
     },
     {
@@ -3262,12 +3617,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "little-pigeon-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.305277,
+            35.657567
+          ],
+          "distKmFromAnchor": 50.96
+        }
       }
     },
     {
@@ -3307,7 +3670,7 @@
       "id": "little-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 513,
+        "edges": 278,
         "components": 1,
         "missingPids": []
       }
@@ -3324,22 +3687,30 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "little-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.48141,
+            35.580003
+          ],
+          "distKmFromAnchor": 40.22
+        }
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "little-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Fort Loudoun Lake",
-        "realized": "terminal-node",
+        "expected": "mouth",
+        "realized": "name-change",
         "endpointEquivalent": false,
         "boundaryExcused": false
       }
@@ -3359,7 +3730,7 @@
       "id": "little-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 40892,
+        "bytes": 14734,
         "budgetBytes": 81920
       }
     },
@@ -3386,12 +3757,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "little-sequatchie-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.702558,
+            35.34671
+          ],
+          "distKmFromAnchor": 33.99
+        }
       }
     },
     {
@@ -3427,47 +3806,40 @@
     },
     {
       "section": "reach",
-      "severity": "FAIL",
-      "id": "little-tennessee-river",
-      "check": "b13-sidecar",
-      "evidence": "FAIL"
-    },
-    {
-      "section": "reach",
       "severity": "PASS",
       "id": "little-tennessee-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 273,
+        "edges": 110,
         "components": 1,
         "missingPids": []
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "little-tennessee-river",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 55,
+        "worstJunctionM": 0,
         "limitM": 50
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "little-tennessee-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
-        "expected": "dam:Fontana Lake",
+        "expected": "dam:Chilhowee Lake",
         "realized": {
-          "spec": "dam:Fontana Lake",
-          "reason": "headwater",
+          "spec": "dam:Chilhowee Lake",
+          "reason": "dam",
           "terminus": [
-            -83.804484,
-            35.451827
+            -84.049925,
+            35.545892
           ],
-          "distKmFromAnchor": 52.84
+          "distKmFromAnchor": 9.44
         }
       }
     },
@@ -3477,10 +3849,10 @@
       "id": "little-tennessee-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Tennessee River",
-        "realized": "terminal-node",
+        "expected": "point:35.777905,-84.259766",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -3498,13 +3870,13 @@
       "id": "little-tennessee-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 15638,
+        "bytes": 7532,
         "budgetBytes": 81920
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "little-tennessee-river",
       "check": "length-sanity",
       "evidence": {
@@ -3512,9 +3884,9 @@
           33
         ],
         "statedKm": 53.1,
-        "reachKm": 92.84,
-        "ratio": 1.75,
-        "pass": false
+        "reachKm": 48.66,
+        "ratio": 0.92,
+        "pass": true
       }
     },
     {
@@ -3540,12 +3912,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "little-west-fork-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.757755,
+            36.606857
+          ],
+          "distKmFromAnchor": 45.72
+        }
       }
     },
     {
@@ -3602,12 +3982,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "mccutcheon-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.927451,
+            35.788248
+          ],
+          "distKmFromAnchor": 5.45
+        }
       }
     },
     {
@@ -3664,12 +4052,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "middle-prong-little-pigeon",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.305277,
+            35.657567
+          ],
+          "distKmFromAnchor": 7.74
+        }
       }
     },
     {
@@ -3726,12 +4122,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "mill-creek-overton",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.352394,
+            36.439069
+          ],
+          "distKmFromAnchor": 20.19
+        }
       }
     },
     {
@@ -3792,19 +4196,27 @@
       "id": "mississippi-river",
       "check": "long-chord",
       "evidence": {
-        "count": 16,
-        "maxChordM": 3960,
+        "count": 22,
+        "maxChordM": 4094,
         "note": "legitimate reservoir artpaths; review only"
       }
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "mississippi-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -89.175452,
+            36.970957
+          ],
+          "distKmFromAnchor": 222.31
+        }
       }
     },
     {
@@ -3834,7 +4246,7 @@
       "id": "mississippi-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 23348,
+        "bytes": 14584,
         "budgetBytes": 81920
       }
     },
@@ -3861,12 +4273,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "mossy-creek-jefferson",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.48037,
+            36.094377
+          ],
+          "distKmFromAnchor": 3.37
+        }
       }
     },
     {
@@ -3923,12 +4343,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "new-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.448977,
+            36.148739
+          ],
+          "distKmFromAnchor": 80.37
+        }
       }
     },
     {
@@ -3968,7 +4396,7 @@
       "id": "nolichucky-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 554,
+        "edges": 314,
         "components": 1,
         "missingPids": []
       }
@@ -3985,12 +4413,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "nolichucky-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "point:36.072839,-82.416775",
+        "realized": {
+          "spec": "point:36.072839,-82.416775",
+          "reason": "point",
+          "terminus": [
+            -82.416775,
+            36.072839
+          ],
+          "distKmFromAnchor": 19.32
+        }
       }
     },
     {
@@ -3999,7 +4435,7 @@
       "id": "nolichucky-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Douglas Lake",
+        "expected": "mouth",
         "realized": "terminal-node",
         "endpointEquivalent": false,
         "boundaryExcused": true
@@ -4020,7 +4456,7 @@
       "id": "nolichucky-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 51513,
+        "bytes": 16653,
         "budgetBytes": 81920
       }
     },
@@ -4047,12 +4483,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "north-chickamauga-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.403003,
+            35.245697
+          ],
+          "distKmFromAnchor": 31.58
+        }
       }
     },
     {
@@ -4092,7 +4536,7 @@
       "id": "north-fork-holston-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 453,
+        "edges": 247,
         "components": 1,
         "missingPids": []
       }
@@ -4109,12 +4553,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "north-fork-holston-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "point:36.7981,-81.9999",
+        "realized": {
+          "spec": "point:36.7981,-81.9999",
+          "reason": "point",
+          "terminus": [
+            -81.999945,
+            36.79814
+          ],
+          "distKmFromAnchor": 94.65
+        }
       }
     },
     {
@@ -4123,10 +4575,10 @@
       "id": "north-fork-holston-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Holston River",
-        "realized": "terminal-node",
+        "expected": "point:36.5479,-82.6119",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -4144,7 +4596,7 @@
       "id": "north-fork-holston-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 40333,
+        "bytes": 17311,
         "budgetBytes": 81920
       }
     },
@@ -4171,12 +4623,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "north-prong-barren-fork",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.009593,
+            35.772759
+          ],
+          "distKmFromAnchor": 15.53
+        }
       }
     },
     {
@@ -4233,12 +4693,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "obed-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.114695,
+            35.916225
+          ],
+          "distKmFromAnchor": 73.25
+        }
       }
     },
     {
@@ -4297,7 +4765,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "obey-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Dale Hollow Lake",
         "realized": {
@@ -4365,12 +4833,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "obion-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -89.055637,
+            36.279012
+          ],
+          "distKmFromAnchor": 82.59
+        }
       }
     },
     {
@@ -4410,7 +4886,7 @@
       "id": "ocoee-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 195,
+        "edges": 90,
         "components": 1,
         "missingPids": []
       }
@@ -4427,12 +4903,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "ocoee-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "dam:Blue Ridge Lake",
+        "realized": {
+          "spec": "dam:Blue Ridge Lake",
+          "reason": "dam",
+          "terminus": [
+            -84.280357,
+            34.882545
+          ],
+          "distKmFromAnchor": 23.75
+        }
       }
     },
     {
@@ -4441,10 +4925,10 @@
       "id": "ocoee-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Parksville Lake",
-        "realized": "terminal-node",
+        "expected": "point:35.10971,-84.56722",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -4462,7 +4946,7 @@
       "id": "ocoee-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 25014,
+        "bytes": 9782,
         "budgetBytes": 81920
       }
     },
@@ -4472,7 +4956,7 @@
       "id": "parksville-tailwater",
       "check": "connectivity",
       "evidence": {
-        "edges": 195,
+        "edges": 25,
         "components": 1,
         "missingPids": []
       }
@@ -4489,19 +4973,19 @@
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "parksville-tailwater",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
-        "expected": "dam:Parksville Lake",
+        "expected": "dam:Lake Ocoee",
         "realized": {
-          "spec": "dam:Parksville Lake",
-          "reason": "headwater",
+          "spec": "dam:Lake Ocoee",
+          "reason": "dam",
           "terminus": [
-            -84.118702,
-            34.664517
+            -84.647821,
+            35.094739
           ],
-          "distKmFromAnchor": 138.33
+          "distKmFromAnchor": 0.68
         }
       }
     },
@@ -4511,7 +4995,7 @@
       "id": "parksville-tailwater",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Hiwassee River",
+        "expected": "mouth",
         "realized": "terminal-node",
         "endpointEquivalent": false,
         "boundaryExcused": true
@@ -4532,16 +5016,9 @@
       "id": "parksville-tailwater",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 25001,
+        "bytes": 3545,
         "budgetBytes": 81920
       }
-    },
-    {
-      "section": "reach",
-      "severity": "FAIL",
-      "id": "pigeon-river",
-      "check": "b13-sidecar",
-      "evidence": "FAIL"
     },
     {
       "section": "reach",
@@ -4549,29 +5026,37 @@
       "id": "pigeon-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 311,
+        "edges": 262,
         "components": 1,
         "missingPids": []
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "pigeon-river",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 69,
+        "worstJunctionM": 0,
         "limitM": 50
       }
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "pigeon-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "cycle-guard"
+        "expected": "dam:Waterville Lake",
+        "realized": {
+          "spec": "dam:Waterville Lake",
+          "reason": "dam",
+          "terminus": [
+            -83.05006850000001,
+            35.6947035
+          ],
+          "distKmFromAnchor": 49.87
+        }
       }
     },
     {
@@ -4580,7 +5065,7 @@
       "id": "pigeon-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Douglas Lake",
+        "expected": "mouth",
         "realized": "terminal-node",
         "endpointEquivalent": false,
         "boundaryExcused": true
@@ -4601,7 +5086,7 @@
       "id": "pigeon-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 16786,
+        "bytes": 14345,
         "budgetBytes": 81920
       }
     },
@@ -4628,12 +5113,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "pine-creek-dekalb",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.862523,
+            35.948265
+          ],
+          "distKmFromAnchor": 7.91
+        }
       }
     },
     {
@@ -4690,12 +5183,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "piney-river-rhea",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.047972,
+            35.620308
+          ],
+          "distKmFromAnchor": 35.46
+        }
       }
     },
     {
@@ -4735,7 +5236,7 @@
       "id": "powell-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 370,
+        "edges": 194,
         "components": 1,
         "missingPids": []
       }
@@ -4752,12 +5253,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "powell-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "point:36.5962,-83.3056",
+        "realized": {
+          "spec": "point:36.5962,-83.3056",
+          "reason": "point",
+          "terminus": [
+            -83.305583,
+            36.596215
+          ],
+          "distKmFromAnchor": 80.92
+        }
       }
     },
     {
@@ -4766,10 +5275,10 @@
       "id": "powell-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Norris Lake",
-        "realized": "terminal-node",
+        "expected": "mouth",
+        "realized": "name-change",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -4787,7 +5296,7 @@
       "id": "powell-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 50582,
+        "bytes": 16037,
         "budgetBytes": 81920
       }
     },
@@ -4814,12 +5323,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "puncheon-camp-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.566312,
+            36.306845
+          ],
+          "distKmFromAnchor": 5.01
+        }
       }
     },
     {
@@ -4859,7 +5376,7 @@
       "id": "red-river-clarksville",
       "check": "connectivity",
       "evidence": {
-        "edges": 137,
+        "edges": 35,
         "components": 1,
         "missingPids": []
       }
@@ -4887,12 +5404,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "red-river-clarksville",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "point:36.6037,-87.0409",
+        "realized": {
+          "spec": "point:36.6037,-87.0409",
+          "reason": "point",
+          "terminus": [
+            -87.040865,
+            36.603702
+          ],
+          "distKmFromAnchor": 29.7
+        }
       }
     },
     {
@@ -4922,7 +5447,7 @@
       "id": "red-river-clarksville",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 24806,
+        "bytes": 9144,
         "budgetBytes": 81920
       }
     },
@@ -4949,12 +5474,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "reedy-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -82.277063,
+            36.611501
+          ],
+          "distKmFromAnchor": 37.73
+        }
       }
     },
     {
@@ -5011,12 +5544,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "richardson-byrd-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.099157,
+            36.46986
+          ],
+          "distKmFromAnchor": 5.29
+        }
       }
     },
     {
@@ -5073,12 +5614,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "roaring-fork",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.44037,
+            35.655172
+          ],
+          "distKmFromAnchor": 4.35
+        }
       }
     },
     {
@@ -5135,12 +5684,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "rocky-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.484955,
+            35.533386
+          ],
+          "distKmFromAnchor": 10.47
+        }
       }
     },
     {
@@ -5197,12 +5754,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "salt-lick-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.866997,
+            36.48268
+          ],
+          "distKmFromAnchor": 27.53
+        }
       }
     },
     {
@@ -5259,12 +5824,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "sequatchie-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.999605,
+            35.808652
+          ],
+          "distKmFromAnchor": 141.7
+        }
       }
     },
     {
@@ -5273,7 +5846,7 @@
       "id": "sequatchie-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Tennessee River",
+        "expected": "mouth",
         "realized": "terminal-node",
         "endpointEquivalent": false,
         "boundaryExcused": true
@@ -5294,7 +5867,7 @@
       "id": "sequatchie-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 32420,
+        "bytes": 13920,
         "budgetBytes": 81920
       }
     },
@@ -5321,12 +5894,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "shoal-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.299489,
+            35.217174
+          ],
+          "distKmFromAnchor": 63.21
+        }
       }
     },
     {
@@ -5383,12 +5964,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "sinking-creek-wilson",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.301788,
+            36.124736
+          ],
+          "distKmFromAnchor": 4.71
+        }
       }
     },
     {
@@ -5428,7 +6017,7 @@
       "id": "south-fork-cumberland",
       "check": "connectivity",
       "evidence": {
-        "edges": 388,
+        "edges": 68,
         "components": 1,
         "missingPids": []
       }
@@ -5445,12 +6034,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "south-fork-cumberland",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "confluence:Clear Fork",
+        "realized": {
+          "spec": "confluence:Clear Fork",
+          "reason": "confluence",
+          "terminus": [
+            -84.623596,
+            36.424294
+          ],
+          "distKmFromAnchor": 11.18
+        }
       }
     },
     {
@@ -5459,10 +6056,10 @@
       "id": "south-fork-cumberland",
       "check": "termini-down",
       "evidence": {
-        "expected": "mouth",
-        "realized": "terminal-node",
+        "expected": "point:36.5936,-84.6072",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -5480,16 +6077,9 @@
       "id": "south-fork-cumberland",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 31939,
+        "bytes": 5878,
         "budgetBytes": 81920
       }
-    },
-    {
-      "section": "reach",
-      "severity": "FAIL",
-      "id": "south-holston-river",
-      "check": "b13-sidecar",
-      "evidence": "FAIL"
     },
     {
       "section": "reach",
@@ -5497,18 +6087,18 @@
       "id": "south-holston-river",
       "check": "connectivity",
       "evidence": {
-        "edges": 46,
+        "edges": 44,
         "components": 1,
         "missingPids": []
       }
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "south-holston-river",
       "check": "continuity",
       "evidence": {
-        "worstJunctionM": 72,
+        "worstJunctionM": 0,
         "limitM": 50
       }
     },
@@ -5516,7 +6106,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "south-holston-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:South Holston Lake",
         "realized": {
@@ -5532,12 +6122,12 @@
     },
     {
       "section": "reach",
-      "severity": "FAIL",
+      "severity": "PASS",
       "id": "south-holston-river",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Boone Lake",
-        "realized": "cycle-guard",
+        "expected": "point:36.476948,-82.26315",
+        "realized": "point",
         "endpointEquivalent": false,
         "boundaryExcused": false
       }
@@ -5557,7 +6147,7 @@
       "id": "south-holston-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 4650,
+        "bytes": 4550,
         "budgetBytes": 81920
       }
     },
@@ -5584,12 +6174,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "spring-creek-polk",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.37951,
+            35.258156
+          ],
+          "distKmFromAnchor": 20.12
+        }
       }
     },
     {
@@ -5646,12 +6244,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "standing-rock-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.862765,
+            36.41896
+          ],
+          "distKmFromAnchor": 15.06
+        }
       }
     },
     {
@@ -5708,12 +6314,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "station-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.612282,
+            36.63191
+          ],
+          "distKmFromAnchor": 8.26
+        }
       }
     },
     {
@@ -5772,7 +6386,7 @@
       "section": "reach",
       "severity": "FAIL",
       "id": "stones-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:J. Percy Priest Lake",
         "realized": {
@@ -5840,12 +6454,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "stoney-creek-carter",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -81.984784,
+            36.499485
+          ],
+          "distKmFromAnchor": 21.86
+        }
       }
     },
     {
@@ -5902,12 +6524,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "sulfur-fork-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.694589,
+            36.428077
+          ],
+          "distKmFromAnchor": 44.68
+        }
       }
     },
     {
@@ -5964,12 +6594,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "tellico-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.005485,
+            35.247478
+          ],
+          "distKmFromAnchor": 44.6
+        }
       }
     },
     {
@@ -5999,7 +6637,7 @@
       "id": "tellico-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 18051,
+        "bytes": 11659,
         "budgetBytes": 81920
       }
     },
@@ -6026,12 +6664,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "tennessee-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.843629,
+            35.956788
+          ],
+          "distKmFromAnchor": 176.16
+        }
       }
     },
     {
@@ -6061,7 +6707,7 @@
       "id": "tennessee-river",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 22876,
+        "bytes": 14998,
         "budgetBytes": 81920
       }
     },
@@ -6088,12 +6734,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "trail-fork-big-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.121625,
+            35.899732
+          ],
+          "distKmFromAnchor": 1.6
+        }
       }
     },
     {
@@ -6150,12 +6804,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "tumbling-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.511563,
+            34.929875
+          ],
+          "distKmFromAnchor": 14.08
+        }
       }
     },
     {
@@ -6212,12 +6874,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "upper-hills-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -85.633749,
+            35.550305
+          ],
+          "distKmFromAnchor": 5.34
+        }
       }
     },
     {
@@ -6274,12 +6944,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "upper-roan-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -81.779484,
+            36.427741
+          ],
+          "distKmFromAnchor": 15.11
+        }
       }
     },
     {
@@ -6319,7 +6997,7 @@
       "id": "watauga-river-wilbur-reach",
       "check": "connectivity",
       "evidence": {
-        "edges": 103,
+        "edges": 5,
         "components": 1,
         "missingPids": []
       }
@@ -6338,11 +7016,11 @@
       "section": "reach",
       "severity": "PASS",
       "id": "watauga-river-wilbur-reach",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
-        "expected": "dam:Watauga Lake",
+        "expected": "headwater",
         "realized": {
-          "spec": "dam:Watauga Lake",
+          "spec": "headwater",
           "reason": "headwater",
           "terminus": [
             -82.126345,
@@ -6358,10 +7036,10 @@
       "id": "watauga-river-wilbur-reach",
       "check": "termini-down",
       "evidence": {
-        "expected": "confluence:Wilbur Lake",
-        "realized": "terminal-node",
+        "expected": "point:36.341158,-82.126357",
+        "realized": "point",
         "endpointEquivalent": false,
-        "boundaryExcused": true
+        "boundaryExcused": false
       }
     },
     {
@@ -6379,7 +7057,7 @@
       "id": "watauga-river-wilbur-reach",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 9427,
+        "bytes": 1600,
         "budgetBytes": 81920
       }
     },
@@ -6393,8 +7071,8 @@
           1.5
         ],
         "statedKm": 2.4,
-        "reachKm": 56.22,
-        "ratio": 23.29,
+        "reachKm": 3.84,
+        "ratio": 1.59,
         "pass": false
       }
     },
@@ -6423,7 +7101,7 @@
       "section": "reach",
       "severity": "PASS",
       "id": "watauga-river",
-      "check": "termini-up-dam",
+      "check": "termini-up",
       "evidence": {
         "expected": "dam:Wilbur Lake",
         "realized": {
@@ -6491,12 +7169,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "west-fork-stones-river",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -86.438369,
+            35.647884
+          ],
+          "distKmFromAnchor": 46.47
+        }
       }
     },
     {
@@ -6553,12 +7239,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "west-prong-little-pigeon",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -83.415889,
+            35.635533
+          ],
+          "distKmFromAnchor": 19.51
+        }
       }
     },
     {
@@ -6615,12 +7309,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "white-oak-creek",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -87.55228,
+            36.147442
+          ],
+          "distKmFromAnchor": 18.56
+        }
       }
     },
     {
@@ -6677,12 +7379,20 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "PASS",
       "id": "wolf-river-fentress",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -84.881414,
+            36.495973
+          ],
+          "distKmFromAnchor": 26.9
+        }
       }
     },
     {
@@ -6739,12 +7449,31 @@
     },
     {
       "section": "reach",
-      "severity": "INFO",
+      "severity": "REVIEW",
+      "id": "wolf-river-west-tennessee",
+      "check": "long-chord",
+      "evidence": {
+        "count": 3,
+        "maxChordM": 3232,
+        "note": "legitimate reservoir artpaths; review only"
+      }
+    },
+    {
+      "section": "reach",
+      "severity": "PASS",
       "id": "wolf-river-west-tennessee",
       "check": "termini-up",
       "evidence": {
-        "spec": "headwater",
-        "realized": "headwater"
+        "expected": "headwater",
+        "realized": {
+          "spec": "headwater",
+          "reason": "headwater",
+          "terminus": [
+            -89.006778,
+            34.951268
+          ],
+          "distKmFromAnchor": 117.84
+        }
       }
     },
     {
@@ -6774,7 +7503,7 @@
       "id": "wolf-river-west-tennessee",
       "check": "byte-budget",
       "evidence": {
-        "bytes": 43710,
+        "bytes": 14776,
         "budgetBytes": 81920
       }
     },
@@ -6785,10 +7514,10 @@
       "check": "stillwater-adjacent-reach",
       "evidence": {
         "a": [
-          -82.127075,
-          36.329939,
-          -82.114982,
-          36.341158
+          -82.12707,
+          36.32994,
+          -82.11487,
+          36.34116
         ],
         "b": [
           -82.127314,
@@ -6801,46 +7530,23 @@
     },
     {
       "section": "bbox",
-      "severity": "FAIL",
-      "id": "nhd:new-river|nhd:south-fork-cumberland",
-      "check": "shared-bbox-duplicate-linework",
+      "severity": "INFO",
+      "id": "wilbur-lake|nhd:watauga-river-wilbur-reach",
+      "check": "stillwater-adjacent-reach",
       "evidence": {
         "a": [
-          -84.67186,
-          36.12362,
-          -84.32109,
-          36.98858
+          -82.127314,
+          36.329939,
+          -82.114549,
+          36.341544
         ],
         "b": [
-          -84.67186,
-          36.12362,
-          -84.32109,
-          36.98858
+          -82.12707,
+          36.32994,
+          -82.11487,
+          36.34116
         ],
-        "coincidence": 1,
-        "class": "B13 boone-tailwater/south-holston-river duplicate"
-      }
-    },
-    {
-      "section": "bbox",
-      "severity": "FAIL",
-      "id": "nhd:ocoee-river|nhd:parksville-tailwater",
-      "check": "shared-bbox-duplicate-linework",
-      "evidence": {
-        "a": [
-          -84.69371,
-          34.66149,
-          -84.0671,
-          35.20643
-        ],
-        "b": [
-          -84.69371,
-          34.66149,
-          -84.0671,
-          35.20643
-        ],
-        "coincidence": 1,
-        "class": "B13 boone-tailwater/south-holston-river duplicate"
+        "note": "a reach bounding its reservoir is geography, not duplication"
       }
     }
   ],
@@ -6856,28 +7562,28 @@
       "id": "cane-creek",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.789 35.535 -85.304 35.788 -> -87.788792 35.535389 -85.303799 35.815492); WAIVER — GEO-AUDIT: CONFIRMED but deliberate — the catalog entry intentionally covers both stocked Cane Creeks (Bledsoe/Van Buren + Hickman/Perry bands); splitting is a content-lane catalog change. The NHD trace pipeline cannot reproduce the merge (one anchor per water, one connected component enforced), and the bbox-uniqueness/multi-longitude gates keep the class closed.; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original misjoined signature (-87.789 35.535 -85.304 35.788 -> -85.44135 35.53539 -85.30377 35.81549); WAIVER — GEO-AUDIT: CONFIRMED but deliberate — the catalog entry intentionally covers both stocked Cane Creeks (Bledsoe/Van Buren + Hickman/Perry bands); splitting is a content-lane catalog change. The NHD trace pipeline cannot reproduce the merge (one anchor per water, one connected component enforced), and the bbox-uniqueness/multi-longitude gates keep the class closed.; residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "clinch-river",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.349 36.447 -83.256 36.499 -> -84.5338 35.8632 -82.89 36.5925); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-83.349 36.447 -83.256 36.499 -> -84.53385 35.8632 -84.07519 36.22386); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "duck-river-lower",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -87.032699 35.464853 -86.462645 35.633044); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -87.00473 35.46472 -86.46465 35.63149); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "duck-river-tailwater",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -86.464112 35.443193 -86.24352 35.482591); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original misjoined signature (-87.282 35.443 -86.081 35.7 -> -86.46423 35.44316 -86.24352 35.48347); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
@@ -6891,21 +7597,21 @@
       "id": "elk-river",
       "cls": "misjoined",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original misjoined signature (-87.006 35.004 -85.834 35.358 -> -86.995859 35.004285 -86.27616 35.197196); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original misjoined signature (-87.006 35.004 -85.834 35.358 -> -86.90213 35.02289 -86.27709 35.19713); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "forge-creek-johnson",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-81.771 36.442 -81.758 36.453 -> -81.7856 36.4331 -81.7023 36.5206); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-81.771 36.442 -81.758 36.453 -> -81.78556 36.43289 -81.75208 36.45668); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "french-broad-river",
       "cls": "missing",
       "verdict": "FIXED",
-      "basis": "line geometry present (367 vertices, 158.5 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "line geometry present (475 vertices, 115.04 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
@@ -6919,42 +7625,42 @@
       "id": "hiwassee-river",
       "cls": "missing",
       "verdict": "FIXED",
-      "basis": "line geometry present (273 vertices, 107.4 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "line geometry present (447 vertices, 87.33 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "leconte-creek",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.523 35.686 -83.5 35.71 -> -83.522678 35.6572 -83.4475 35.709566); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-83.523 35.686 -83.5 35.71 -> -83.52271 35.65722 -83.44751 35.70957); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "mossy-creek-jefferson",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.513 36.121 -83.474 36.129 -> -83.512886 36.0944 -83.4738 36.1598); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-83.513 36.121 -83.474 36.129 -> -83.508 36.09438 -83.47384 36.15975); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "obey-river",
       "cls": "missing",
       "verdict": "FIXED",
-      "basis": "line geometry present (34 vertices, 11.97 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "line geometry present (58 vertices, 12.38 km); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "ocoee-river",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 34.9922 -84.3805 35.2064); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.56721 34.88255 -84.28036 35.10971); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "parksville-tailwater",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.6936 35.1269 -84.67 35.1899); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-84.694 35.073 -84.491 35.148 -> -84.69375 35.09474 -84.64782 35.20643); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
@@ -6968,14 +7674,14 @@
       "id": "station-creek",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-83.626 36.596 -83.625 36.598 -> -83.626 36.5855 -83.6049 36.598395); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-83.626 36.596 -83.625 36.598 -> -83.63033 36.58549 -83.60491 36.63191); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     },
     {
       "id": "watauga-river",
       "cls": "fragment",
       "verdict": "FIXED",
-      "basis": "bounds moved off the original fragment signature (-81.936 36.287 -81.919 36.294 -> -82.422 36.2873 -81.92 36.4481); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
+      "basis": "bounds moved off the original fragment signature (-81.936 36.287 -81.919 36.294 -> -82.42203 36.32906 -82.12636 36.44814); residual pre-flip geometry replaced by the validated NHD reach (see reach gates)",
       "prevention": "reach traced + gates enforced in suite"
     }
   ],

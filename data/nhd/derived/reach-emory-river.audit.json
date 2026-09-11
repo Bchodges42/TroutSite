@@ -234,7 +234,7 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Tennessee River",
+    "spec": "mouth",
     "path": [
       300,
       2108,
@@ -1488,7 +1488,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 13250,
+    "bytes": 13229,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-emory-river.geojson"

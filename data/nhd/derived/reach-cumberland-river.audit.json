@@ -68,7 +68,7 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Lake Barkley",
+    "spec": "mouth",
     "path": [
       341,
       803,
@@ -693,7 +693,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 8567,
+    "bytes": 8549,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-cumberland-river.geojson"

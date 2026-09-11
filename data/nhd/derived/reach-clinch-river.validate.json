@@ -29,6 +29,74 @@
       }
     },
     {
+      "name": "upstream-span",
+      "pass": true,
+      "evidence": {
+        "first": [
+          -84.09247,
+          36.22386
+        ],
+        "expected": [
+          -84.0913,
+          36.2242
+        ],
+        "distM": 112,
+        "radiusM": 600
+      }
+    },
+    {
+      "name": "downstream-span",
+      "pass": true,
+      "evidence": {
+        "last": [
+          -84.53385,
+          35.86353
+        ],
+        "expected": [
+          -84.5085,
+          35.8809
+        ],
+        "distM": 2991,
+        "radiusM": 3000
+      }
+    },
+    {
+      "name": "separation:boone-tailwater",
+      "pass": true,
+      "evidence": {
+        "reachBounds": [
+          -84.53385,
+          35.8632,
+          -84.07519,
+          36.22386
+        ],
+        "otherBounds": [
+          -82.513707,
+          36.440183,
+          -82.437808,
+          36.508423
+        ]
+      }
+    },
+    {
+      "name": "separation:south-holston-river",
+      "pass": true,
+      "evidence": {
+        "reachBounds": [
+          -84.53385,
+          35.8632,
+          -84.07519,
+          36.22386
+        ],
+        "otherBounds": [
+          -82.4379,
+          36.4366,
+          -82.0115,
+          36.594
+        ]
+      }
+    },
+    {
       "name": "anchor-on-reach",
       "pass": true,
       "evidence": {
@@ -45,5 +113,5 @@
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:46:35.380Z"
+  "generatedAt": "2026-09-11T18:13:35.483Z"
 }

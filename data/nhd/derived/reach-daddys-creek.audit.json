@@ -178,7 +178,7 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Obed River",
+    "spec": "mouth",
     "path": [
       2107,
       2304,
@@ -208,7 +208,7 @@
       1083,
       666
     ],
-    "reason": "confluence",
+    "reason": "name-change",
     "node": "n1611",
     "enteredNames": [
       "Obed River"
@@ -1207,7 +1207,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 15397,
+    "bytes": 15382,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-daddys-creek.geojson"

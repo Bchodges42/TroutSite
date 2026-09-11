@@ -54,7 +54,7 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Nolichucky River",
+    "spec": "mouth",
     "path": [
       4421,
       4450,
@@ -71,7 +71,7 @@
       1509,
       3737
     ],
-    "reason": "confluence",
+    "reason": "name-change",
     "node": "n2539",
     "enteredNames": [
       "Nolichucky River"
@@ -267,7 +267,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 4493,
+    "bytes": 4472,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-horse-creek-greene.geojson"
