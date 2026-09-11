@@ -139,10 +139,9 @@ pnpm -r test             # pass: contracts 97, content 11, API 146, admin 19,
                          #       web 239 passed / 1 skipped
 ```
 
-`pnpm -r lint` is not fully green in the supplied baseline: package lint is
-green through marketing/API, but the e2e package reports 48 pre-existing
-findings in `e2e/**` (browser globals, explicit `any`, and unused variables).
-The hardening lane did not change those files. The unrelated baseline
-`packages/ui` unused import was removed so its package lint is clean. The
+`pnpm -r lint` is not fully green in the supplied baseline: `packages/ui` has
+one pre-existing unused `ButtonHTMLAttributes` import, and the e2e package
+reports 48 pre-existing findings in `e2e/**` (browser globals, explicit `any`,
+and unused variables). The hardening lane did not change those files. The
 remaining owner merge gate is to resolve or explicitly accept those existing
-e2e findings, then rerun the full sequence from the merged branch.
+findings, then rerun the full sequence from the merged branch.

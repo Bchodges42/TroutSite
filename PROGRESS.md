@@ -46,11 +46,10 @@ no GitHub remote; no remote URL was invented.
 - `pnpm --filter api build` — green.
 - `pnpm -r test` — green across contracts (97), content (11), API (146),
   admin (19), and web (239 passed / 1 skipped).
-- `pnpm -r lint` — package lint is green through marketing/API, but the
-  workspace gate remains blocked by 48 pre-existing lint findings in `e2e/**`
-  (browser globals, explicit `any`, and unused variables); those files are
-  outside this hardening lane. The unrelated baseline `packages/ui` unused
-  import was removed so the package itself is clean.
+- `pnpm -r lint` — the workspace gate remains blocked by the pre-existing
+  unused `ButtonHTMLAttributes` import in `packages/ui` plus 48 pre-existing
+  findings in `e2e/**` (browser globals, explicit `any`, and unused variables);
+  those files and the UI package are outside this hardening lane.
 
 # SESSION 3 — Product / UX / Growth (2026-09-08)
 
