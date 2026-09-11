@@ -19,8 +19,37 @@ List + per-unit results: see `FANOUT-REPORT.md`.
 
 - [x] Setup: clone, branch off `1300194`, merge `geoconv/nhd-engine`, B13 precondition check.
 - [x] HU8 enumeration via WBD (05/06/08 × `states` field) → 59 TN-intersecting units.
-- [ ] Per-HU8 convert + graph build (subagent fan-out, 4 concurrent).
-- [ ] `data/nhd/hu8/index.json` + cross-unit water list + FANOUT-REPORT.md.
+- [x] Per-HU8 convert + graph build: 3 waves × 4 concurrent subagents (+1 re-validated
+      rate-limit-lost batch). **58/59 ok**; 08010206 Forked Deer blocked by a defective
+      USGS source product (2.1 MB zip, 419 flowlines, 202 all-unnamed waterbodies —
+      evidence + remedies in FANOUT-REPORT.md §6); partial outputs removed `43c2eee`.
+- [x] Independent main-session full-tree re-validation of every committed unit: zero
+      problems (schema, single-part geometry, meta-vs-actual counts, graph endpoint
+      integrity, edges == flowlines, 0 zero-length edges, 0 duplicate node coords,
+      all dam bridges ≤ 100 m).
+- [x] `data/nhd/hu8/index.json` (counts, byte sizes, named waters, timestamps, provenance).
+- [x] Cross-unit waters: **41 waters share a gnis_id across ≥ 2 units** (Tennessee River 8
+      units, Cumberland 6, Clinch 4, …) — full list in FANOUT-REPORT.md §4. **2,177 name
+      strings span units but are mostly DIFFERENT waters (name collisions) — integration
+      must match by gnis_id, never by name.**
+- [x] FANOUT-REPORT.md reconciled (per-unit table, anomaly list, engine proposals for
+      GEOCONV-0: zero-named-waterbodies converter crash, empty-VAA meta artifact,
+      MultiLineString doc wording, size-tiered budgets, WBD enumeration recipe).
+- [x] Gates: no packages changed → package lint/test scope empty; prettier --check clean
+      on the files this lane authored. Scope proof: `git diff --name-only 1300194..HEAD`
+      contains only `data/nhd/**`, `FANOUT-REPORT.md`, `PROGRESS.md`.
+- [ ] **Push deferred** — no origin remote exists on this host; owner push required
+      (FANOUT-REPORT.md §9 has the exact commands).
+
+## Commits (this lane)
+
+- `4596764` geofanout(setup): merge conventions doc + engine branch into fanout lane
+- `4249016` geofanout(setup): announce lane, record base 1300194, WBD-derived 59-unit TN HU8 list
+- `c0946b9` geofanout(hu8): convert + graph wave 1 — first 20 units
+- `ebacc7b` geofanout(hu8): convert + graph wave 2 — 20 units
+- `d8e30c4` geofanout(hu8): convert + graph wave 3 — 17 units PASS, 08010206 FAIL documented
+- `43c2eee` geofanout(hu8): remove partial 08010206 outputs (defective upstream product)
+- final: geofanout(report): index.json + FANOUT-REPORT.md + PROGRESS.md closeout
 
 ---
 
@@ -77,7 +106,7 @@ Scope: `data/nhd/**`, `scripts/nhd_*`, `docs/NHD-CONVENTIONS.md`, `PROGRESS.md`.
 - [x] docs/NHD-CONVENTIONS.md written (schemas, tolerances, dam-bridge rule, trace CLI,
       budgets, B13 baseline, TIGER fallback policy, fan-out/audit/integration notes,
       reproducibility transcript). This file is the real lane deliverable.
-- [x] Gates: prettier --check clean on scripts/nhd_*; no apps/web, packages/contracts,
+- [x] Gates: prettier --check clean on scripts/nhd\_\*; no apps/web, packages/contracts,
       or apps/web/public changes (verified via git diff --name-only 1300194..HEAD).
       Push still deferred (no remote).
 
@@ -189,25 +218,25 @@ retrieved 2026-09-08); region artifacts + topology updated together, then integr
 
 ## Verdict table (final)
 
-| # | Item | Verdict | Commit (post-rebase sha) | Notes |
-|---|---|---|---|---|
-| T1.1 | Collins River duplication | NOT-PRESENT at base (verified) | geo(integrate) | Existed in defect-era `6a44063`; dropped by conformance pass `a954d51`. Canonical == west-middle (sha `bc3a08ba…`), 28 parts, 0 overlap pairs ≥2km/150m. Judged visually: single corridor. |
-| T1.2 | Duck River self-crossings | FIXED | geo(west) | Root cause: same 60 NHD comids in BOTH Duck features + out-of-order welds. One 355-reach level-path chain (VAA hydroseq order) split at Columbia/Shelbyville/Normandy Dam pins. lower 99→1 part (241.94→140.15 km), tailwater 27→1 (43.28 km); 0 crossings/dupes. |
-| T1.3 | Mill Creek + Cumberland + Obey confluence | FIXED (source overturned the audit) | geo(west) | Feature had unioned TWO different NHD "Mill Creek" level paths (24001400004894 Overton = the stocked water; 24001400012888 a different creek ~20km S). True mouth: 0m ON the Cumberland ~36.4919,-85.5642 (VAA network identity). 1 part / 32.89 km, hole gone. NOTE for content lane: `mill-creek-overton.yaml` gauge 03539778 is actually Clear Creek at Lilly Bridge. |
-| T1.4 | Obey River → Dale Hollow Lake | FIXED | geo(west) | `excludePool` had dropped the dam-face reach. Upstream end now 0m from the pool (was 936m); downstream 2m on Cumberland at Celina. |
-| T1.5 | Woods Reservoir ↔ Elk ↔ Tims Ford | FIXED (one documented gap) | geo(west), geo(west) elk | VAA walk: Woods sits on Bradley Creek (level path 25000200006220) → new bradley-creek feature (0m through-pool) + catalog YAML; Elk↔Tims Ford dam-face 453m→0m. Elk lower's 1248m "network gap" was a FETCH-ENVELOPE artifact — take widened, now one chain 40.15km across the TN/AL line. Open: ~6km uncataloged NHD Elk arm Bradley-junction→Tims Ford pool (content-lane decision). |
-| T1.6 | Tellico River/Lake area creeks | FIXED | geo(east) | tellico-river: one GNIS identity, 165 reaches → 1 chain 60.87km, lower end inside the pool via 55800 artificial paths (was 1.46km short, tiger-linear). citico-creek: 12 fragments → 1 chain 29.2km, mouth 4m to little-tennessee. Creek inventory of bbox+0.2° otherwise clean. |
-| T1.7 | Great Falls Lake orphan polygon | FIXED | geo(west) | Orphan part = shattered decimation artifact of NHDPlusID 24001400139760 (matches no real NHD polygon); kept faithful 24001400139538 (2→1 parts, 5.85 km²). |
-| T2.1 | Norris fragmentation (G1) | VERIFIED-FIXED | — | 2 parts = exactly the 2 NHD GNIS 01269832 polygons (94.23 + 1.25 km², bbox parity, 0–1m vertex match); lake gate OK 99.7 km² (window 90–100). Judged visually. |
-| T2.2 | Caney Fork split (G2) | VERIFIED-FIXED | — | upper ends inside Center Hill (5m), tailwater exits dam face (66m), chain connected end-to-end to the Cumberland. Judged visually. |
-| T2.3 | Horse Creek gaps | FIXED | geo(east) | First pass had fused the Greene County creek with an unrelated Washington County same-named creek (too-wide envelope). County-scoped take → 1 chain 17.88km (96% of source), mouth 6m to Nolichucky. |
-| T2.4 | Brush Creek sprawl | FIXED | geo(east) | Verified broken TIGER (4 fragments in a 0.7×2.6km strip). NHD true system = 6.75km chain, mouth 2m to French Broad. |
-| T2.5 | Little Sequatchie → Sequatchie → Nickajack | VERIFIED-FIXED | — | 0m exact shared vertex (35.08891,-85.57764); sequatchie→nickajack pool-margin 2682m (documented gate, OK). Judged visually. |
-| T2.6 | Wolf River ↔ Dale Hollow | FIXED | geo(east) | First pass trimmed at the pool margin. NHD full named Wolf = 1 chain 63.67km (98% of source), downstream end INSIDE dale-hollow-lake via artificial paths. True headwater terminus documented (continuation is different-named tributaries ≥425m away). |
-| T3 | Flow-direction arrows on selection | SHIPPED + judged | map(flow), map(qa) | `flowOrientation.json` derived from verified topology edges → dam anchors → lake in/out → 50m confluence graph (never vertex order, never hand-assigned): 54 high + 16 medium confident waters, 35 honest unoriented. Arrows only on selection, per-theme, unknown-safe. docs/flow-orientation.md. |
-| T4 | Full-state waterways view + QA mode | SHIPPED + judged | map(qa) | `?all=1` all-waterways toggle (roads-toggle pattern); `?qa=1` internal QA: client-side dangling/fragment/self-x/duplicate audit (361ms cached), red overlay + grouped panel, click-to-fly. |
-| T5 | Mode-aware label hierarchy | SHIPPED + judged | map(labels,legend) | Trout mode titles only catalog-trout waters (major statewide; warmwater/unknown stay corridor-only); all-fish adds major waters of any species. Judged: Memphis Wolf untitled in trout mode, titled in all-fish; Tennessee/Mississippi/Reelfoot untitled in trout mode. |
-| T6 | Legend final state | SHIPPED + judged | map(labels,legend) | Condition rows kept when assessed readings exist; else fishery-type grouping (Tailwater/Wild trout/Stocked/Other). Prefers Session-1 canonical `fishery` attribute (101/148), derivation only for uncovered waters. Legend judged in both themes (assessed state; the no-assessment state is unit-tested — fixtures carry assessments). |
+| #    | Item                                       | Verdict                             | Commit (post-rebase sha) | Notes                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---- | ------------------------------------------ | ----------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| T1.1 | Collins River duplication                  | NOT-PRESENT at base (verified)      | geo(integrate)           | Existed in defect-era `6a44063`; dropped by conformance pass `a954d51`. Canonical == west-middle (sha `bc3a08ba…`), 28 parts, 0 overlap pairs ≥2km/150m. Judged visually: single corridor.                                                                                                                                                                                              |
+| T1.2 | Duck River self-crossings                  | FIXED                               | geo(west)                | Root cause: same 60 NHD comids in BOTH Duck features + out-of-order welds. One 355-reach level-path chain (VAA hydroseq order) split at Columbia/Shelbyville/Normandy Dam pins. lower 99→1 part (241.94→140.15 km), tailwater 27→1 (43.28 km); 0 crossings/dupes.                                                                                                                       |
+| T1.3 | Mill Creek + Cumberland + Obey confluence  | FIXED (source overturned the audit) | geo(west)                | Feature had unioned TWO different NHD "Mill Creek" level paths (24001400004894 Overton = the stocked water; 24001400012888 a different creek ~20km S). True mouth: 0m ON the Cumberland ~36.4919,-85.5642 (VAA network identity). 1 part / 32.89 km, hole gone. NOTE for content lane: `mill-creek-overton.yaml` gauge 03539778 is actually Clear Creek at Lilly Bridge.                |
+| T1.4 | Obey River → Dale Hollow Lake              | FIXED                               | geo(west)                | `excludePool` had dropped the dam-face reach. Upstream end now 0m from the pool (was 936m); downstream 2m on Cumberland at Celina.                                                                                                                                                                                                                                                      |
+| T1.5 | Woods Reservoir ↔ Elk ↔ Tims Ford        | FIXED (one documented gap)          | geo(west), geo(west) elk | VAA walk: Woods sits on Bradley Creek (level path 25000200006220) → new bradley-creek feature (0m through-pool) + catalog YAML; Elk↔Tims Ford dam-face 453m→0m. Elk lower's 1248m "network gap" was a FETCH-ENVELOPE artifact — take widened, now one chain 40.15km across the TN/AL line. Open: ~6km uncataloged NHD Elk arm Bradley-junction→Tims Ford pool (content-lane decision). |
+| T1.6 | Tellico River/Lake area creeks             | FIXED                               | geo(east)                | tellico-river: one GNIS identity, 165 reaches → 1 chain 60.87km, lower end inside the pool via 55800 artificial paths (was 1.46km short, tiger-linear). citico-creek: 12 fragments → 1 chain 29.2km, mouth 4m to little-tennessee. Creek inventory of bbox+0.2° otherwise clean.                                                                                                        |
+| T1.7 | Great Falls Lake orphan polygon            | FIXED                               | geo(west)                | Orphan part = shattered decimation artifact of NHDPlusID 24001400139760 (matches no real NHD polygon); kept faithful 24001400139538 (2→1 parts, 5.85 km²).                                                                                                                                                                                                                              |
+| T2.1 | Norris fragmentation (G1)                  | VERIFIED-FIXED                      | —                        | 2 parts = exactly the 2 NHD GNIS 01269832 polygons (94.23 + 1.25 km², bbox parity, 0–1m vertex match); lake gate OK 99.7 km² (window 90–100). Judged visually.                                                                                                                                                                                                                          |
+| T2.2 | Caney Fork split (G2)                      | VERIFIED-FIXED                      | —                        | upper ends inside Center Hill (5m), tailwater exits dam face (66m), chain connected end-to-end to the Cumberland. Judged visually.                                                                                                                                                                                                                                                      |
+| T2.3 | Horse Creek gaps                           | FIXED                               | geo(east)                | First pass had fused the Greene County creek with an unrelated Washington County same-named creek (too-wide envelope). County-scoped take → 1 chain 17.88km (96% of source), mouth 6m to Nolichucky.                                                                                                                                                                                    |
+| T2.4 | Brush Creek sprawl                         | FIXED                               | geo(east)                | Verified broken TIGER (4 fragments in a 0.7×2.6km strip). NHD true system = 6.75km chain, mouth 2m to French Broad.                                                                                                                                                                                                                                                                     |
+| T2.5 | Little Sequatchie → Sequatchie → Nickajack | VERIFIED-FIXED                      | —                        | 0m exact shared vertex (35.08891,-85.57764); sequatchie→nickajack pool-margin 2682m (documented gate, OK). Judged visually.                                                                                                                                                                                                                                                             |
+| T2.6 | Wolf River ↔ Dale Hollow                  | FIXED                               | geo(east)                | First pass trimmed at the pool margin. NHD full named Wolf = 1 chain 63.67km (98% of source), downstream end INSIDE dale-hollow-lake via artificial paths. True headwater terminus documented (continuation is different-named tributaries ≥425m away).                                                                                                                                 |
+| T3   | Flow-direction arrows on selection         | SHIPPED + judged                    | map(flow), map(qa)       | `flowOrientation.json` derived from verified topology edges → dam anchors → lake in/out → 50m confluence graph (never vertex order, never hand-assigned): 54 high + 16 medium confident waters, 35 honest unoriented. Arrows only on selection, per-theme, unknown-safe. docs/flow-orientation.md.                                                                                      |
+| T4   | Full-state waterways view + QA mode        | SHIPPED + judged                    | map(qa)                  | `?all=1` all-waterways toggle (roads-toggle pattern); `?qa=1` internal QA: client-side dangling/fragment/self-x/duplicate audit (361ms cached), red overlay + grouped panel, click-to-fly.                                                                                                                                                                                              |
+| T5   | Mode-aware label hierarchy                 | SHIPPED + judged                    | map(labels,legend)       | Trout mode titles only catalog-trout waters (major statewide; warmwater/unknown stay corridor-only); all-fish adds major waters of any species. Judged: Memphis Wolf untitled in trout mode, titled in all-fish; Tennessee/Mississippi/Reelfoot untitled in trout mode.                                                                                                                 |
+| T6   | Legend final state                         | SHIPPED + judged                    | map(labels,legend)       | Condition rows kept when assessed readings exist; else fishery-type grouping (Tailwater/Wild trout/Stocked/Other). Prefers Session-1 canonical `fishery` attribute (101/148), derivation only for uncovered waters. Legend judged in both themes (assessed state; the no-assessment state is unit-tested — fixtures carry assessments).                                                 |
 
 ## Gates (final, after rebase onto ea87fd8)
 
@@ -221,7 +250,7 @@ retrieved 2026-09-08); region artifacts + topology updated together, then integr
 ## Notes for next sessions
 
 - `?qa=1` audit is client-side over shipped geometry; its self-x/fragment counts use looser
-  thresholds than the build-time detectors — expect more rows than docs/audits/S2-*.
+  thresholds than the build-time detectors — expect more rows than docs/audits/S2-\*.
 - Candidate new waters from Session 1's capture (Cherokee TW, paint-creek, ~35 more) need
   fetch keys + takes before their geometry exists — listed, not added.
 - The legend's fishery-type state shows only when the live feed has zero assessments; on the
@@ -267,7 +296,7 @@ Scope: live-host pipeline recovery, hatch content pack, TVA/USACE gauges, catalo
   snapshotUrls helper. Full-history file unchanged; UI consumption left to Session 3's redesign.
   Verified live against real TWRA data: 170/623 rows in-window.
 - `pipe(test)` — web's published-feed stockingMatch test skips honestly on fresh clones
-  (public/v1/** is a gitignored deploy artifact).
+  (public/v1/\*\* is a gitignored deploy artifact).
 
 Gates: typecheck clean · api 140/140 · contracts 97/97 · content 11/11 · web 181/181 ·
 content validate/build OK (147 streams) · web build + size budget OK (10.52 MB / 25 MB).
@@ -289,33 +318,33 @@ assessed, 623 stocking rows; UA lives in repo-root `.env`).
 
 Base: trout-fieldwork-20260904@826e5cb (branch codex/trout-fieldwork-20260904).
 Clone: C:\Users\Benjamin\Projects\trout-roads. Scope: B12 roads / contextual
-cartography — TIGER 2024 All Roads → public/atlas/roads*, fetch/build/validate
+cartography — TIGER 2024 All Roads → public/atlas/roads\*, fetch/build/validate
 scripts, docs/roads-sources.md. License gate: PROCEED (public domain), see
-docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/**
+docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/\*\*
 (other lanes own them).
 
 ## Status log
 
 - [x] Setup: clone at 826e5cb, snapshots public/v1 + public/content copied,
-  `pnpm install` green, workspace packages built, baseline green
-  (typecheck OK, 122/122 tests, build + size budget OK, dist 5.21 MB).
+      `pnpm install` green, workspace packages built, baseline green
+      (typecheck OK, 122/122 tests, build + size budget OK, dist 5.21 MB).
 - [x] License verdict documented BEFORE build: TIGER 2024 public domain
-  (17 U.S.C. § 105); OSM rejected (ODbL share-alike) — docs/roads-sources.md.
+      (17 U.S.C. § 105); OSM rejected (ODbL share-alike) — docs/roads-sources.md.
 - [x] Fetch: 95/95 TIGER 2024 ROADS county zips (105 MB) → .atlas-src/roadshp
-  (364,836 features; fetch-roads.mjs mirrors fetch-atlas-sources.mjs).
+      (364,836 features; fetch-roads.mjs mirrors fetch-atlas-sources.mjs).
 - [x] Build (build-roads.mjs): TN whole-part clip against tn-boundary + 1 km
-  (0 rejections), non-through classes dropped (40,656: alleys/private service
-  roads/driveways/parking/walkways), endpoint-exact welding with
-  straightest-continuation + anti-double-back corridor guard, per-(MTFCC,name)
-  MultiLineString collapse, RDP ladder settled at rung 3 (major 0.0005°,
-  mid 0.0016° with S1400 chains ≥ 3200 m, minor 0.0025°).
+      (0 rejections), non-through classes dropped (40,656: alleys/private service
+      roads/driveways/parking/walkways), endpoint-exact welding with
+      straightest-continuation + anti-double-back corridor guard, per-(MTFCC,name)
+      MultiLineString collapse, RDP ladder settled at rung 3 (major 0.0005°,
+      mid 0.0016° with S1400 chains ≥ 3200 m, minor 0.0025°).
 - [x] Assets: public/atlas/roads-{major,mid,minor}.geojson + roads-manifest.json
-  = 11,840 features / 158,048 verts / 4,606,657 bytes (4.39 MiB ≤ 6 MB aim).
+      = 11,840 features / 158,048 verts / 4,606,657 bytes (4.39 MiB ≤ 6 MB aim).
 - [x] validate-roads.mjs: PASS (geometry, MTFCC-per-LOD whitelist, bounds
-  +eps, lon/lat order, manifest-vs-reality, size gate).
+      +eps, lon/lat order, manifest-vs-reality, size gate).
 - [x] Full gate green: typecheck OK, 122/122 tests, build OK; size-budget OK —
-  dist 9.61 MB vs 25 MB gate (roads precached via existing `atlas/*` glob; NO
-  size-budget.mjs exclusion needed — decision documented in roads-sources.md).
+      dist 9.61 MB vs 25 MB gate (roads precached via existing `atlas/*` glob; NO
+      size-budget.mjs exclusion needed — decision documented in roads-sources.md).
 
 ## Commits (this lane)
 
@@ -340,7 +369,7 @@ docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/**
 - Long straight roads (E Shelby Dr, delta section-line roads, straight
   interstate reaches) collapse to few-vertex chords within tolerance —
   verified: every >10 km output chord has 3–52 m true deviation vs 56 m tol.
-- Scope kept: no apps/web/src/**, no e2e/**, no packages/** touched.
+- Scope kept: no apps/web/src/**, no e2e/**, no packages/\*\* touched.
 
 ---
 
@@ -357,14 +386,14 @@ web typecheck/test 122/122, web build + size budget OK). No files touched under
 
 ## Commit list
 
-| commit | subject |
-|---|---|
-| `186d41c` | content(tn-west): author honest hatch chart for the winter put-and-take region |
-| `ae09f77` | content(duck): point Normandy tailwater gauge below the dam (B13 follow-up) |
-| `2874208` | content(species): apply owner decisions 2026-09-04 (B08) |
+| commit    | subject                                                                             |
+| --------- | ----------------------------------------------------------------------------------- |
+| `186d41c` | content(tn-west): author honest hatch chart for the winter put-and-take region      |
+| `ae09f77` | content(duck): point Normandy tailwater gauge below the dam (B13 follow-up)         |
+| `2874208` | content(species): apply owner decisions 2026-09-04 (B08)                            |
 | `2902c93` | content(docs): bookkeeping — paris alias resolved, duck/elk fragmentation rows done |
-| `457d688` | content(fixtures): overlay pack catalog fields so fixtures:generate runs clean |
-| `62c5768` | content(fixtures): regenerate demo fixtures from the corrected catalog |
+| `457d688` | content(fixtures): overlay pack catalog fields so fixtures:generate runs clean      |
+| `62c5768` | content(fixtures): regenerate demo fixtures from the corrected catalog              |
 
 ## Task 1 — tn-west region + hatch chart
 
@@ -390,12 +419,12 @@ Swap target: `03597860` "Duck River at Shelbyville, TN".
 Evidence, all from USGS NWIS (waterservices.usgs.gov site/IV/DV services,
 queried live 2026-09-04):
 
-| site | name | lat/lon | drainage | position vs dam |
-|---|---|---|---|---|
-| 03596000 | DUCK RIVER BELOW MANCHESTER, TN | 35.47094 / −86.12164 | 107 mi² | east (UPSTREAM) of the dam |
-| 03596460 | NORMANDY LAKE (LK) | 35.46535 / −86.24860 | 195 mi² | the reservoir |
-| 03596470 | DUCK RIVER ABOVE NORMANDY, TN | 35.46091 / −86.24527 | 196 mi² | reservoir inlet |
-| 03596500 | DUCK RIVER AT NORMANDY, TN | 35.45730 / −86.25694 | 208 mi² | just below dam — but NO current IV/DV data (checked: zero series in last 3 days, any parameter) |
+| site         | name                              | lat/lon                  | drainage    | position vs dam                                                                                                                      |
+| ------------ | --------------------------------- | ------------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 03596000     | DUCK RIVER BELOW MANCHESTER, TN   | 35.47094 / −86.12164     | 107 mi²     | east (UPSTREAM) of the dam                                                                                                           |
+| 03596460     | NORMANDY LAKE (LK)                | 35.46535 / −86.24860     | 195 mi²     | the reservoir                                                                                                                        |
+| 03596470     | DUCK RIVER ABOVE NORMANDY, TN     | 35.46091 / −86.24527     | 196 mi²     | reservoir inlet                                                                                                                      |
+| 03596500     | DUCK RIVER AT NORMANDY, TN        | 35.45730 / −86.25694     | 208 mi²     | just below dam — but NO current IV/DV data (checked: zero series in last 3 days, any parameter)                                      |
 | **03597860** | **DUCK RIVER AT SHELBYVILLE, TN** | **35.48293 / −86.46258** | **425 mi²** | **west (DOWNSTREAM) of the dam; LIVE: 6 IV series in last 3 days + daily-value discharge (provisional ~174 cfs, 2026-08-28..09-03)** |
 
 Dam position: Normandy Lake's west edge (TIGER AREAWATER, per GEO-AUDIT) is at
@@ -440,11 +469,11 @@ Stale fixture row 03596000 removed from `packages/content/data/verified-gauges.j
   gaugeIds) — commit `457d688`. 128 streams validate cleanly.
 - Regenerated: `apps/web/fixtures/data` (committed, `62c5768`) and the
   gitignored served snapshot `apps/web/public/v1/` (streams.json from the pack
-  + new `hatch/tn-west/` 12 month files + refreshed hatch dirs). Verified in
-  the served snapshot: harpeth `species: warmwater`; little-pigeon
-  `species: trout` + `stockingProgram: true`; duck-river-tailwater gauge
-  `03597860`; paris note carries the alias; 28 waters remain species-unset
-  (5 thin-evidence + 23 stubs).
+  - new `hatch/tn-west/` 12 month files + refreshed hatch dirs). Verified in
+    the served snapshot: harpeth `species: warmwater`; little-pigeon
+    `species: trout` + `stockingProgram: true`; duck-river-tailwater gauge
+    `03597860`; paris note carries the alias; 28 waters remain species-unset
+    (5 thin-evidence + 23 stubs).
 
 ## Verification (final state)
 
@@ -458,7 +487,7 @@ Stale fixture row 03596000 removed from `packages/content/data/verified-gauges.j
 - `pnpm --filter @trout/web build` → OK + size budget (5.22 MB / 25 MB).
 - `fixtures:generate` → clean, all files validated against @trout/contracts.
 - Note for the next session: fresh clones must `pnpm --filter @trout/contracts
-  build && pnpm --filter @trout/ui build` before the web gates; the baseline
+build && pnpm --filter @trout/ui build` before the web gates; the baseline
   "failures" on a fresh checkout were only unbuilt workspace deps.
 
 ---

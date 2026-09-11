@@ -1,0 +1,1825 @@
+{
+  "generatedAt": "2026-09-11T17:25:44.967Z",
+  "lane": "GEOFANOUT-1",
+  "branch": "geoconv/nhd-fanout",
+  "baseCommit": "1300194",
+  "conventions": "docs/NHD-CONVENTIONS.md (frozen 2026-09-11, GEOCONV-0)",
+  "enumeration": {
+    "method": "USGS WBD HU2 geodatabases 05/06/08, layer WBDHU8, filter states LIKE %TN%",
+    "unitCount": 59,
+    "note": "deterministic re-derivation; WBD not committed (re-derivable)"
+  },
+  "totals": {
+    "unitsTotal": 59,
+    "unitsOk": 58,
+    "unitsFailed": 1,
+    "flowlines": 196108,
+    "namedGnisIdsStatewide": 18548
+  },
+  "units": {
+    "05050001": {
+      "wbdName": "Upper New",
+      "states": "NC,TN,VA",
+      "status": "ok",
+      "flowlines": 6166,
+      "vaaRows": 18907,
+      "waterbodies": 28,
+      "namedWaters": {
+        "gnisNames": 454,
+        "gnisIds": 553
+      },
+      "graph": {
+        "nodes": 6053,
+        "edges": 6166,
+        "components": 8,
+        "largestComponentEdges": 5950,
+        "damBridges": 9,
+        "maxDamBridgeM": 76.3,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 16425
+      },
+      "bytes": {
+        "jsonl": 7371572,
+        "vaa": 8019240,
+        "waterbodies": 4429,
+        "graph": 9146186
+      },
+      "convertedAt": "2026-09-11T16:41:40.833Z",
+      "published": "20231216",
+      "zipSha256": "217077d377ec5c99c2110e20f6ac32f46502cf9a94aa459434a79d8520a2f4ce"
+    },
+    "05110002": {
+      "wbdName": "Barren",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 2790,
+      "vaaRows": 8919,
+      "waterbodies": 12,
+      "namedWaters": {
+        "gnisNames": 197,
+        "gnisIds": 225
+      },
+      "graph": {
+        "nodes": 2732,
+        "edges": 2790,
+        "components": 15,
+        "largestComponentEdges": 1509,
+        "damBridges": 5,
+        "maxDamBridgeM": 59,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 7922
+      },
+      "bytes": {
+        "jsonl": 6312611,
+        "vaa": 3794167,
+        "waterbodies": 1984,
+        "graph": 7070962
+      },
+      "convertedAt": "2026-09-11T16:45:12.857Z",
+      "published": "20231216",
+      "zipSha256": "4b2b85267da95d6b2c08da5e883f453ed9842e569c2893e28e49491ed506c391"
+    },
+    "05130101": {
+      "wbdName": "Upper Cumberland",
+      "states": "KY,TN,VA",
+      "status": "ok",
+      "flowlines": 6566,
+      "vaaRows": 12437,
+      "waterbodies": 16,
+      "namedWaters": {
+        "gnisNames": 929,
+        "gnisIds": 1191
+      },
+      "graph": {
+        "nodes": 6406,
+        "edges": 6566,
+        "components": 19,
+        "largestComponentEdges": 5134,
+        "damBridges": 19,
+        "maxDamBridgeM": 99.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 10511
+      },
+      "bytes": {
+        "jsonl": 6978757,
+        "vaa": 5310761,
+        "waterbodies": 2606,
+        "graph": 8614242
+      },
+      "convertedAt": "2026-09-11T16:46:31.431Z",
+      "published": "20231216",
+      "zipSha256": "09ac1a15a2f72f7b44b6a677e92bb85535a7a025713e6d3a72540bced95d3059"
+    },
+    "05130103": {
+      "wbdName": "Upper Cumberland-Lake Cumberland",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 3303,
+      "vaaRows": 6908,
+      "waterbodies": 4,
+      "namedWaters": {
+        "gnisNames": 385,
+        "gnisIds": 438
+      },
+      "graph": {
+        "nodes": 3245,
+        "edges": 3303,
+        "components": 20,
+        "largestComponentEdges": 3089,
+        "damBridges": 25,
+        "maxDamBridgeM": 88.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 6235
+      },
+      "bytes": {
+        "jsonl": 3643138,
+        "vaa": 2937297,
+        "waterbodies": 642,
+        "graph": 4440970
+      },
+      "convertedAt": "2026-09-11T16:47:41.503Z",
+      "published": "20231216",
+      "zipSha256": "95310f57925d3dfef912fc68eff8a14ec83c61b757e511bdca084fa20e6a29d4"
+    },
+    "05130104": {
+      "wbdName": "South Fork Cumberland",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 3675,
+      "vaaRows": 7383,
+      "waterbodies": 19,
+      "namedWaters": {
+        "gnisNames": 474,
+        "gnisIds": 579
+      },
+      "graph": {
+        "nodes": 3598,
+        "edges": 3675,
+        "components": 25,
+        "largestComponentEdges": 3430,
+        "damBridges": 4,
+        "maxDamBridgeM": 78.3,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 7311
+      },
+      "bytes": {
+        "jsonl": 5184168,
+        "vaa": 3117206,
+        "waterbodies": 3061,
+        "graph": 6290973
+      },
+      "convertedAt": "2026-09-11T16:48:37.553Z",
+      "published": "20231216",
+      "zipSha256": "feafa598821eda812a0642f24fcde8eaa02a5a20469a586a0cca55dec21caf93"
+    },
+    "05130105": {
+      "wbdName": "Obey",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 1574,
+      "vaaRows": 3175,
+      "waterbodies": 11,
+      "namedWaters": {
+        "gnisNames": 200,
+        "gnisIds": 215
+      },
+      "graph": {
+        "nodes": 1515,
+        "edges": 1574,
+        "components": 12,
+        "largestComponentEdges": 1471,
+        "damBridges": 16,
+        "maxDamBridgeM": 94.7,
+        "nonStandardFlowdir": 1,
+        "vaaPopulated": 2976
+      },
+      "bytes": {
+        "jsonl": 2050016,
+        "vaa": 1344147,
+        "waterbodies": 1761,
+        "graph": 2519383
+      },
+      "convertedAt": "2026-09-11T16:41:43.307Z",
+      "published": "20231216",
+      "zipSha256": "e92984079511a59ff7bfe5e0352cdc23f2d635f8fcb3b227d73dc1e2f5ca5a01"
+    },
+    "05130106": {
+      "wbdName": "Upper Cumberland-Cordell Hull Reservoir",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1561,
+      "vaaRows": 4612,
+      "waterbodies": 17,
+      "namedWaters": {
+        "gnisNames": 144,
+        "gnisIds": 159
+      },
+      "graph": {
+        "nodes": 1497,
+        "edges": 1561,
+        "components": 4,
+        "largestComponentEdges": 1366,
+        "damBridges": 33,
+        "maxDamBridgeM": 99.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 6
+      },
+      "bytes": {
+        "jsonl": 2294487,
+        "vaa": 1964922,
+        "waterbodies": 2831,
+        "graph": 2203350
+      },
+      "convertedAt": "2026-09-11T16:45:24.280Z",
+      "published": "20231216",
+      "zipSha256": "5ce348c25271c344a1e0cecda2a9914ea070e91f992ae36f617ba6b2b0b6ff7c"
+    },
+    "05130107": {
+      "wbdName": "Collins",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1222,
+      "vaaRows": 3030,
+      "waterbodies": 12,
+      "namedWaters": {
+        "gnisNames": 123,
+        "gnisIds": 128
+      },
+      "graph": {
+        "nodes": 1222,
+        "edges": 1222,
+        "components": 11,
+        "largestComponentEdges": 1164,
+        "damBridges": 3,
+        "maxDamBridgeM": 95.3,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 3009
+      },
+      "bytes": {
+        "jsonl": 1063386,
+        "vaa": 1279556,
+        "waterbodies": 1902,
+        "graph": 1439032
+      },
+      "convertedAt": "2026-09-11T16:45:57.080Z",
+      "published": "20231216",
+      "zipSha256": "1b53969e7e55cf6c59a7baf82d7617ae6f30bfefb62400c43fae59741f1b8179"
+    },
+    "05130108": {
+      "wbdName": "Caney",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 2853,
+      "vaaRows": 7466,
+      "waterbodies": 38,
+      "namedWaters": {
+        "gnisNames": 304,
+        "gnisIds": 343
+      },
+      "graph": {
+        "nodes": 2792,
+        "edges": 2853,
+        "components": 16,
+        "largestComponentEdges": 2549,
+        "damBridges": 12,
+        "maxDamBridgeM": 95.5,
+        "nonStandardFlowdir": 1,
+        "vaaPopulated": 5
+      },
+      "bytes": {
+        "jsonl": 4449857,
+        "vaa": 3181686,
+        "waterbodies": 6189,
+        "graph": 4280697
+      },
+      "convertedAt": "2026-09-11T16:46:36.046Z",
+      "published": "20231216",
+      "zipSha256": "7b18ffdccd437bb37accb08796c2057a0788f4bf4cb4dc0acf22e775269dac8f"
+    },
+    "05130201": {
+      "wbdName": "Lower Cumberland-Old Hickory Lake",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1342,
+      "vaaRows": 3642,
+      "waterbodies": 14,
+      "namedWaters": {
+        "gnisNames": 156,
+        "gnisIds": 168
+      },
+      "graph": {
+        "nodes": 1329,
+        "edges": 1342,
+        "components": 16,
+        "largestComponentEdges": 967,
+        "damBridges": 0,
+        "maxDamBridgeM": 0,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2
+      },
+      "bytes": {
+        "jsonl": 1919236,
+        "vaa": 1551601,
+        "waterbodies": 2228,
+        "graph": 1837944
+      },
+      "convertedAt": "2026-09-11T16:47:28.199Z",
+      "published": "20231216",
+      "zipSha256": "06a6dee353da51f0134d08630f0cb57be1938c2177e46064c1a686878992f0c7"
+    },
+    "05130202": {
+      "wbdName": "Lower Cumberland-Sycamore",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1031,
+      "vaaRows": 2619,
+      "waterbodies": 23,
+      "namedWaters": {
+        "gnisNames": 108,
+        "gnisIds": 112
+      },
+      "graph": {
+        "nodes": 1004,
+        "edges": 1031,
+        "components": 5,
+        "largestComponentEdges": 978,
+        "damBridges": 9,
+        "maxDamBridgeM": 94.4,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2555
+      },
+      "bytes": {
+        "jsonl": 890491,
+        "vaa": 1106190,
+        "waterbodies": 3700,
+        "graph": 1203341
+      },
+      "convertedAt": "2026-09-11T16:43:02.683Z",
+      "published": "20231216",
+      "zipSha256": "011cd23e35d7be3e536f9640f5f1828de44cf672ebff7381f25906cb2b3f724e"
+    },
+    "05130203": {
+      "wbdName": "Stones",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1103,
+      "vaaRows": 3236,
+      "waterbodies": 9,
+      "namedWaters": {
+        "gnisNames": 89,
+        "gnisIds": 98
+      },
+      "graph": {
+        "nodes": 1097,
+        "edges": 1103,
+        "components": 9,
+        "largestComponentEdges": 1000,
+        "damBridges": 5,
+        "maxDamBridgeM": 75.1,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 3228
+      },
+      "bytes": {
+        "jsonl": 991649,
+        "vaa": 1365880,
+        "waterbodies": 1461,
+        "graph": 1331277
+      },
+      "convertedAt": "2026-09-11T16:44:49.444Z",
+      "published": "20231216",
+      "zipSha256": "2ab9addbaed22e4da0ec39e87092b9616b6dd80f581c811bd52664e396fc00c7"
+    },
+    "05130204": {
+      "wbdName": "Harpeth",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 2057,
+      "vaaRows": 5837,
+      "waterbodies": 35,
+      "namedWaters": {
+        "gnisNames": 224,
+        "gnisIds": 237
+      },
+      "graph": {
+        "nodes": 1989,
+        "edges": 2057,
+        "components": 10,
+        "largestComponentEdges": 1943,
+        "damBridges": 7,
+        "maxDamBridgeM": 89.5,
+        "nonStandardFlowdir": 1,
+        "vaaPopulated": 5779
+      },
+      "bytes": {
+        "jsonl": 2249248,
+        "vaa": 2464247,
+        "waterbodies": 5590,
+        "graph": 2880788
+      },
+      "convertedAt": "2026-09-11T16:45:27.318Z",
+      "published": "20231216",
+      "zipSha256": "9863497269f8471190b3230dbf8963b35076c0ae1b662aa749dcedb7d3ec2142"
+    },
+    "05130205": {
+      "wbdName": "Lower Cumberland",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 4311,
+      "vaaRows": 12698,
+      "waterbodies": 53,
+      "namedWaters": {
+        "gnisNames": 327,
+        "gnisIds": 372
+      },
+      "graph": {
+        "nodes": 4226,
+        "edges": 4311,
+        "components": 22,
+        "largestComponentEdges": 3959,
+        "damBridges": 55,
+        "maxDamBridgeM": 99.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 11754
+      },
+      "bytes": {
+        "jsonl": 4275306,
+        "vaa": 5386380,
+        "waterbodies": 8472,
+        "graph": 5544577
+      },
+      "convertedAt": "2026-09-11T16:46:24.127Z",
+      "published": "20231216",
+      "zipSha256": "0b22edba03d134632435a67b2b6235f0a41d6742c681c3a3fca18330af3c7b02"
+    },
+    "05130206": {
+      "wbdName": "Red",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 1258,
+      "vaaRows": 4513,
+      "waterbodies": 14,
+      "namedWaters": {
+        "gnisNames": 87,
+        "gnisIds": 91
+      },
+      "graph": {
+        "nodes": 1225,
+        "edges": 1258,
+        "components": 12,
+        "largestComponentEdges": 1137,
+        "damBridges": 3,
+        "maxDamBridgeM": 53.4,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 4179
+      },
+      "bytes": {
+        "jsonl": 1907828,
+        "vaa": 1923903,
+        "waterbodies": 2219,
+        "graph": 2279715
+      },
+      "convertedAt": "2026-09-11T16:47:29.419Z",
+      "published": "20231216",
+      "zipSha256": "1e0f055c81ea06e993175175902e467a20077f5ce909b426ee1fc4882ad61c23"
+    },
+    "06010101": {
+      "wbdName": "North Fork Holston",
+      "states": "TN,VA",
+      "status": "ok",
+      "flowlines": 2348,
+      "vaaRows": 8499,
+      "waterbodies": 3,
+      "namedWaters": {
+        "gnisNames": 171,
+        "gnisIds": 184
+      },
+      "graph": {
+        "nodes": 2308,
+        "edges": 2348,
+        "components": 11,
+        "largestComponentEdges": 2229,
+        "damBridges": 3,
+        "maxDamBridgeM": 72.4,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 8209
+      },
+      "bytes": {
+        "jsonl": 2138913,
+        "vaa": 3597035,
+        "waterbodies": 485,
+        "graph": 2841838
+      },
+      "convertedAt": "2026-09-11T16:42:21.574Z",
+      "published": "20231216",
+      "zipSha256": "5bfcc7e15edb62a1febf61320172680bdcf4e4549489f3ea5f413bc6d62b8e5b"
+    },
+    "06010102": {
+      "wbdName": "South Fork Holston",
+      "states": "NC,TN,VA",
+      "status": "ok",
+      "flowlines": 3178,
+      "vaaRows": 9510,
+      "waterbodies": 12,
+      "namedWaters": {
+        "gnisNames": 324,
+        "gnisIds": 363
+      },
+      "graph": {
+        "nodes": 3128,
+        "edges": 3178,
+        "components": 30,
+        "largestComponentEdges": 1711,
+        "damBridges": 28,
+        "maxDamBridgeM": 97.3,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 9207
+      },
+      "bytes": {
+        "jsonl": 3763657,
+        "vaa": 4021760,
+        "waterbodies": 1941,
+        "graph": 4724851
+      },
+      "convertedAt": "2026-09-11T16:47:00.480Z",
+      "published": "20231216",
+      "zipSha256": "48f2fb2068843e8edb3d4f2ae47628a0ac80d46be5a28fea0481bf448ada91be"
+    },
+    "06010103": {
+      "wbdName": "Watauga, North Carolina, Tennessee",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 3498,
+      "vaaRows": 9309,
+      "waterbodies": 16,
+      "namedWaters": {
+        "gnisNames": 388,
+        "gnisIds": 438
+      },
+      "graph": {
+        "nodes": 3467,
+        "edges": 3498,
+        "components": 17,
+        "largestComponentEdges": 1931,
+        "damBridges": 18,
+        "maxDamBridgeM": 99.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 9190
+      },
+      "bytes": {
+        "jsonl": 3400208,
+        "vaa": 3930336,
+        "waterbodies": 2541,
+        "graph": 4473108
+      },
+      "convertedAt": "2026-09-11T16:47:55.278Z",
+      "published": "20231216",
+      "zipSha256": "704aa3120dfccc6af3d75472e3a7da2afc1b3aa620990b3cc9f5930dc11dfdad"
+    },
+    "06010104": {
+      "wbdName": "Holston",
+      "states": "TN,VA",
+      "status": "ok",
+      "flowlines": 2577,
+      "vaaRows": 9571,
+      "waterbodies": 29,
+      "namedWaters": {
+        "gnisNames": 179,
+        "gnisIds": 189
+      },
+      "graph": {
+        "nodes": 2486,
+        "edges": 2577,
+        "components": 6,
+        "largestComponentEdges": 2439,
+        "damBridges": 49,
+        "maxDamBridgeM": 98.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 3
+      },
+      "bytes": {
+        "jsonl": 2885218,
+        "vaa": 4077407,
+        "waterbodies": 4662,
+        "graph": 2722477
+      },
+      "convertedAt": "2026-09-11T16:48:54.458Z",
+      "published": "20231216",
+      "zipSha256": "a532461cee8bd2adb34239adb93a46967eefc31dad60377240d8658ec46c98bd"
+    },
+    "06010105": {
+      "wbdName": "Upper French Broad",
+      "states": "NC,SC,TN",
+      "status": "ok",
+      "flowlines": 24601,
+      "vaaRows": 113874,
+      "waterbodies": 125,
+      "namedWaters": {
+        "gnisNames": 783,
+        "gnisIds": 970
+      },
+      "graph": {
+        "nodes": 23831,
+        "edges": 24601,
+        "components": 157,
+        "largestComponentEdges": 20629,
+        "damBridges": 147,
+        "maxDamBridgeM": 99.1,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 17367
+      },
+      "bytes": {
+        "jsonl": 23393118,
+        "vaa": 51191460,
+        "waterbodies": 20196,
+        "graph": 24518230
+      },
+      "convertedAt": "2026-09-11T16:50:16.927Z",
+      "published": "20231217",
+      "zipSha256": "0a1d4a5355762cbd12837205fd7a00fd3207667ed09840b583e72e24f4442970"
+    },
+    "06010106": {
+      "wbdName": "Pigeon",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 3854,
+      "vaaRows": 12208,
+      "waterbodies": 8,
+      "namedWaters": {
+        "gnisNames": 353,
+        "gnisIds": 392
+      },
+      "graph": {
+        "nodes": 3704,
+        "edges": 3854,
+        "components": 6,
+        "largestComponentEdges": 3634,
+        "damBridges": 13,
+        "maxDamBridgeM": 98.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 4183686,
+        "vaa": 5414106,
+        "waterbodies": 1323,
+        "graph": 3936546
+      },
+      "convertedAt": "2026-09-11T17:01:02.766Z",
+      "published": "20231216",
+      "zipSha256": "bffb3a346ae322a4f1f12b8f7b9d12331321410f356ae1ba3d18d4282fea9d72"
+    },
+    "06010107": {
+      "wbdName": "Lower French Broad",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 3403,
+      "vaaRows": 11459,
+      "waterbodies": 12,
+      "namedWaters": {
+        "gnisNames": 311,
+        "gnisIds": 331
+      },
+      "graph": {
+        "nodes": 3308,
+        "edges": 3403,
+        "components": 13,
+        "largestComponentEdges": 3003,
+        "damBridges": 26,
+        "maxDamBridgeM": 94,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 7407
+      },
+      "bytes": {
+        "jsonl": 4114404,
+        "vaa": 4967455,
+        "waterbodies": 2087,
+        "graph": 4836774
+      },
+      "convertedAt": "2026-09-11T17:02:27.594Z",
+      "published": "20231216",
+      "zipSha256": "386aa034bc8d64682bcc6a3ffac5dc437049b48d0346dd52c370e0981110c76b"
+    },
+    "06010108": {
+      "wbdName": "Nolichucky",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 7327,
+      "vaaRows": 24314,
+      "waterbodies": 31,
+      "namedWaters": {
+        "gnisNames": 625,
+        "gnisIds": 724
+      },
+      "graph": {
+        "nodes": 7153,
+        "edges": 7327,
+        "components": 12,
+        "largestComponentEdges": 7080,
+        "damBridges": 12,
+        "maxDamBridgeM": 90.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 7214615,
+        "vaa": 10358518,
+        "waterbodies": 5078,
+        "graph": 6748562
+      },
+      "convertedAt": "2026-09-11T17:03:22.930Z",
+      "published": "20231216",
+      "zipSha256": "6d4d4edbd44ed2a6a1d5d82c7d3e359557e2d11a53d721d207ff7ffd22200aa6"
+    },
+    "06010201": {
+      "wbdName": "Watts Bar Lake",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 4281,
+      "vaaRows": 12663,
+      "waterbodies": 24,
+      "namedWaters": {
+        "gnisNames": 429,
+        "gnisIds": 468
+      },
+      "graph": {
+        "nodes": 4134,
+        "edges": 4281,
+        "components": 12,
+        "largestComponentEdges": 4045,
+        "damBridges": 50,
+        "maxDamBridgeM": 99,
+        "nonStandardFlowdir": 1,
+        "vaaPopulated": 11
+      },
+      "bytes": {
+        "jsonl": 5368851,
+        "vaa": 5413969,
+        "waterbodies": 3919,
+        "graph": 5098496
+      },
+      "convertedAt": "2026-09-11T17:04:13.403Z",
+      "published": "20231216",
+      "zipSha256": "08e723a5a109e1bb6a870619681e5679ff82f1153e0e5a8fbfdfe7e9742b210b"
+    },
+    "06010202": {
+      "wbdName": "Upper Little Tennessee",
+      "states": "GA,NC,TN",
+      "status": "ok",
+      "flowlines": 2890,
+      "vaaRows": 5090,
+      "waterbodies": 31,
+      "namedWaters": {
+        "gnisNames": 549,
+        "gnisIds": 627
+      },
+      "graph": {
+        "nodes": 2806,
+        "edges": 2890,
+        "components": 11,
+        "largestComponentEdges": 2749,
+        "damBridges": 42,
+        "maxDamBridgeM": 99.8,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 4814
+      },
+      "bytes": {
+        "jsonl": 6527171,
+        "vaa": 2156999,
+        "waterbodies": 4986,
+        "graph": 7361493
+      },
+      "convertedAt": "2026-09-11T17:05:07.558Z",
+      "published": "20231216",
+      "zipSha256": "e8d9e6eefaf8af613a4fbace287d72977e9a6949c5c1d697acd4b6e2d435ab5a"
+    },
+    "06010203": {
+      "wbdName": "Tuckasegee",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 3431,
+      "vaaRows": 8870,
+      "waterbodies": 19,
+      "namedWaters": {
+        "gnisNames": 415,
+        "gnisIds": 455
+      },
+      "graph": {
+        "nodes": 3361,
+        "edges": 3431,
+        "components": 8,
+        "largestComponentEdges": 3301,
+        "damBridges": 13,
+        "maxDamBridgeM": 98,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 3771
+      },
+      "bytes": {
+        "jsonl": 6604934,
+        "vaa": 3911093,
+        "waterbodies": 3041,
+        "graph": 7167874
+      },
+      "convertedAt": "2026-09-11T17:02:33.168Z",
+      "published": "20231216",
+      "zipSha256": "10f3cdbb41e3748be0cff78b8cbded285faae95bc0f90f8a7637d4f9c1f29390"
+    },
+    "06010204": {
+      "wbdName": "Lower Little Tennessee",
+      "states": "NC,TN",
+      "status": "ok",
+      "flowlines": 4102,
+      "vaaRows": 10089,
+      "waterbodies": 27,
+      "namedWaters": {
+        "gnisNames": 493,
+        "gnisIds": 564
+      },
+      "graph": {
+        "nodes": 3960,
+        "edges": 4102,
+        "components": 9,
+        "largestComponentEdges": 3889,
+        "damBridges": 52,
+        "maxDamBridgeM": 99,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 9121
+      },
+      "bytes": {
+        "jsonl": 6778727,
+        "vaa": 4297708,
+        "waterbodies": 4396,
+        "graph": 7911321
+      },
+      "convertedAt": "2026-09-11T17:03:53.493Z",
+      "published": "20231216",
+      "zipSha256": "54752e3c97993f3e355e0c21edb503223b38b11e2fc7aeca5698766c3f31c3c8"
+    },
+    "06010205": {
+      "wbdName": "Upper Clinch, Tennessee, Virginia",
+      "states": "TN,VA,WV",
+      "status": "ok",
+      "flowlines": 4706,
+      "vaaRows": 13796,
+      "waterbodies": 19,
+      "namedWaters": {
+        "gnisNames": 409,
+        "gnisIds": 488
+      },
+      "graph": {
+        "nodes": 4622,
+        "edges": 4706,
+        "components": 15,
+        "largestComponentEdges": 4373,
+        "damBridges": 19,
+        "maxDamBridgeM": 90.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 13264
+      },
+      "bytes": {
+        "jsonl": 4815799,
+        "vaa": 5832332,
+        "waterbodies": 3057,
+        "graph": 6226799
+      },
+      "convertedAt": "2026-09-11T17:04:22.812Z",
+      "published": "20231216",
+      "zipSha256": "f071a23cf09d5c316721e28c0ea20d709cbe1e4523d03f966f6dc0fa747c0c98"
+    },
+    "06010206": {
+      "wbdName": "Powell",
+      "states": "KY,TN,VA",
+      "status": "ok",
+      "flowlines": 1908,
+      "vaaRows": 5590,
+      "waterbodies": 14,
+      "namedWaters": {
+        "gnisNames": 177,
+        "gnisIds": 200
+      },
+      "graph": {
+        "nodes": 1884,
+        "edges": 1908,
+        "components": 11,
+        "largestComponentEdges": 1794,
+        "damBridges": 2,
+        "maxDamBridgeM": 51.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 5267
+      },
+      "bytes": {
+        "jsonl": 2018026,
+        "vaa": 2360730,
+        "waterbodies": 2264,
+        "graph": 2565282
+      },
+      "convertedAt": "2026-09-11T17:04:49.225Z",
+      "published": "20231217",
+      "zipSha256": "018cca8d11051dcb42f60f356793b114dbe2448be3066c225e5b35d01efb1072"
+    },
+    "06010207": {
+      "wbdName": "Lower Clinch",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1840,
+      "vaaRows": 5981,
+      "waterbodies": 15,
+      "namedWaters": {
+        "gnisNames": 138,
+        "gnisIds": 147
+      },
+      "graph": {
+        "nodes": 1782,
+        "edges": 1840,
+        "components": 8,
+        "largestComponentEdges": 1756,
+        "damBridges": 28,
+        "maxDamBridgeM": 96.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 1
+      },
+      "bytes": {
+        "jsonl": 2260209,
+        "vaa": 2548772,
+        "waterbodies": 2441,
+        "graph": 2142236
+      },
+      "convertedAt": "2026-09-11T16:03:53.635Z",
+      "published": "20231216",
+      "zipSha256": "70580f6ac391638529b2a7d860b8cdfd33c567398f28393db11a68a5c26c5af3"
+    },
+    "06010208": {
+      "wbdName": "Emory",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 2962,
+      "vaaRows": 7416,
+      "waterbodies": 33,
+      "namedWaters": {
+        "gnisNames": 310,
+        "gnisIds": 366
+      },
+      "graph": {
+        "nodes": 2907,
+        "edges": 2962,
+        "components": 4,
+        "largestComponentEdges": 2826,
+        "damBridges": 10,
+        "maxDamBridgeM": 83.1,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2
+      },
+      "bytes": {
+        "jsonl": 2600023,
+        "vaa": 3161584,
+        "waterbodies": 5329,
+        "graph": 2409661
+      },
+      "convertedAt": "2026-09-11T17:05:22.560Z",
+      "published": "20231216",
+      "zipSha256": "6e54e2cbfbe461614342832c5287bb274bfeaaca43dfb866c24319dd4de96367"
+    },
+    "06020001": {
+      "wbdName": "Middle Tennessee-Chickamauga",
+      "states": "AL,GA,TN",
+      "status": "ok",
+      "flowlines": 4135,
+      "vaaRows": 15633,
+      "waterbodies": 68,
+      "namedWaters": {
+        "gnisNames": 365,
+        "gnisIds": 419
+      },
+      "graph": {
+        "nodes": 4057,
+        "edges": 4135,
+        "components": 18,
+        "largestComponentEdges": 3851,
+        "damBridges": 30,
+        "maxDamBridgeM": 93.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 6
+      },
+      "bytes": {
+        "jsonl": 4194956,
+        "vaa": 6659669,
+        "waterbodies": 10874,
+        "graph": 3932727
+      },
+      "convertedAt": "2026-09-11T17:00:41.938Z",
+      "published": "20231216",
+      "zipSha256": "38ad06594124f9dec5e78d43997a1e8e4e0a66db22f8bcd8a0371ebfd4cc920b"
+    },
+    "06020002": {
+      "wbdName": "Hiwassee",
+      "states": "GA,NC,TN",
+      "status": "ok",
+      "flowlines": 6605,
+      "vaaRows": 15471,
+      "waterbodies": 61,
+      "namedWaters": {
+        "gnisNames": 832,
+        "gnisIds": 997
+      },
+      "graph": {
+        "nodes": 6449,
+        "edges": 6605,
+        "components": 26,
+        "largestComponentEdges": 5626,
+        "damBridges": 50,
+        "maxDamBridgeM": 96.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 6839432,
+        "vaa": 6590646,
+        "waterbodies": 9942,
+        "graph": 6421450
+      },
+      "convertedAt": "2026-09-11T17:02:23.592Z",
+      "published": "20231216",
+      "zipSha256": "3379ff4c56b8e36626d53686eb436cc4ad1a756a9ef56249e4213e92c1f9dc28"
+    },
+    "06020003": {
+      "wbdName": "Ocoee",
+      "states": "GA,NC,TN",
+      "status": "ok",
+      "flowlines": 1674,
+      "vaaRows": 3340,
+      "waterbodies": 19,
+      "namedWaters": {
+        "gnisNames": 266,
+        "gnisIds": 299
+      },
+      "graph": {
+        "nodes": 1656,
+        "edges": 1674,
+        "components": 9,
+        "largestComponentEdges": 1582,
+        "damBridges": 12,
+        "maxDamBridgeM": 67.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 2131612,
+        "vaa": 1423739,
+        "waterbodies": 3074,
+        "graph": 2023069
+      },
+      "convertedAt": "2026-09-11T17:03:13.032Z",
+      "published": "20231216",
+      "zipSha256": "d87939598718d59b8decafbecdb8d0da094e4fbe4d230159190c4974083aa939"
+    },
+    "06020004": {
+      "wbdName": "Sequatchie",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1189,
+      "vaaRows": 2994,
+      "waterbodies": 15,
+      "namedWaters": {
+        "gnisNames": 152,
+        "gnisIds": 164
+      },
+      "graph": {
+        "nodes": 1156,
+        "edges": 1189,
+        "components": 4,
+        "largestComponentEdges": 1114,
+        "damBridges": 2,
+        "maxDamBridgeM": 98.6,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2935
+      },
+      "bytes": {
+        "jsonl": 1039191,
+        "vaa": 1265117,
+        "waterbodies": 2445,
+        "graph": 1392913
+      },
+      "convertedAt": "2026-09-11T17:03:43.054Z",
+      "published": "20231216",
+      "zipSha256": "331acc70b99cc762897e8a8ba2740f9fe326b0c94dba5a720055dbd9c1a909fe"
+    },
+    "06030001": {
+      "wbdName": "Guntersville Lake",
+      "states": "AL,GA,TN",
+      "status": "ok",
+      "flowlines": 3838,
+      "vaaRows": 12106,
+      "waterbodies": 40,
+      "namedWaters": {
+        "gnisNames": 319,
+        "gnisIds": 362
+      },
+      "graph": {
+        "nodes": 3787,
+        "edges": 3838,
+        "components": 36,
+        "largestComponentEdges": 3340,
+        "damBridges": 19,
+        "maxDamBridgeM": 98.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 7
+      },
+      "bytes": {
+        "jsonl": 4120562,
+        "vaa": 5159566,
+        "waterbodies": 6430,
+        "graph": 3877409
+      },
+      "convertedAt": "2026-09-11T17:04:08.421Z",
+      "published": "20231216",
+      "zipSha256": "bb5f4c561fb8dc0e93478223c6b91952cc1507fc72a9e5fca1f02257b8ceeef6"
+    },
+    "06030002": {
+      "wbdName": "Wheeler Lake",
+      "states": "AL,TN",
+      "status": "ok",
+      "flowlines": 5185,
+      "vaaRows": 16931,
+      "waterbodies": 88,
+      "namedWaters": {
+        "gnisNames": 384,
+        "gnisIds": 435
+      },
+      "graph": {
+        "nodes": 5103,
+        "edges": 5185,
+        "components": 27,
+        "largestComponentEdges": 4556,
+        "damBridges": 26,
+        "maxDamBridgeM": 95.9,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 16707
+      },
+      "bytes": {
+        "jsonl": 5295264,
+        "vaa": 7147242,
+        "waterbodies": 14178,
+        "graph": 6861937
+      },
+      "convertedAt": "2026-09-11T17:00:42.152Z",
+      "published": "20231216",
+      "zipSha256": "a8fcb877666b8e65fb6ce8166af3b232ba26bee8a97f58b36d4dcf25273474c1"
+    },
+    "06030003": {
+      "wbdName": "Upper Elk",
+      "states": "AL,TN",
+      "status": "ok",
+      "flowlines": 2508,
+      "vaaRows": 7600,
+      "waterbodies": 34,
+      "namedWaters": {
+        "gnisNames": 219,
+        "gnisIds": 241
+      },
+      "graph": {
+        "nodes": 2473,
+        "edges": 2508,
+        "components": 26,
+        "largestComponentEdges": 1545,
+        "damBridges": 8,
+        "maxDamBridgeM": 74.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2
+      },
+      "bytes": {
+        "jsonl": 3355188,
+        "vaa": 3239210,
+        "waterbodies": 5485,
+        "graph": 3206145
+      },
+      "convertedAt": "2026-09-11T17:03:20.987Z",
+      "published": "20231216",
+      "zipSha256": "8ee36c9f15a3941b71b464a50f3e13bdbc02da3029b399fae385a415f8371835"
+    },
+    "06030004": {
+      "wbdName": "Lower Elk",
+      "states": "AL,TN",
+      "status": "ok",
+      "flowlines": 2602,
+      "vaaRows": 7417,
+      "waterbodies": 13,
+      "namedWaters": {
+        "gnisNames": 218,
+        "gnisIds": 230
+      },
+      "graph": {
+        "nodes": 2573,
+        "edges": 2602,
+        "components": 9,
+        "largestComponentEdges": 2464,
+        "damBridges": 10,
+        "maxDamBridgeM": 98.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 2874746,
+        "vaa": 3162102,
+        "waterbodies": 2106,
+        "graph": 2720562
+      },
+      "convertedAt": "2026-09-11T17:03:52.394Z",
+      "published": "20231216",
+      "zipSha256": "6dc1898b705cd2bf316f5eb7a0c16ffb0216a0aedd7a381e214945a59af4f74d"
+    },
+    "06030005": {
+      "wbdName": "Pickwick Lake",
+      "states": "AL,MS,TN",
+      "status": "ok",
+      "flowlines": 6145,
+      "vaaRows": 20466,
+      "waterbodies": 57,
+      "namedWaters": {
+        "gnisNames": 419,
+        "gnisIds": 469
+      },
+      "graph": {
+        "nodes": 6028,
+        "edges": 6145,
+        "components": 49,
+        "largestComponentEdges": 5377,
+        "damBridges": 39,
+        "maxDamBridgeM": 93.7,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 15564
+      },
+      "bytes": {
+        "jsonl": 5787824,
+        "vaa": 8798291,
+        "waterbodies": 9057,
+        "graph": 7365747
+      },
+      "convertedAt": "2026-09-11T17:04:32.283Z",
+      "published": "20231216",
+      "zipSha256": "355649e102d500d6ccefe5af8b0a262e98ae61999d726feee003cdcf3a86e8ab"
+    },
+    "06040001": {
+      "wbdName": "Lower Tennessee-Beech",
+      "states": "MS,TN",
+      "status": "ok",
+      "flowlines": 5312,
+      "vaaRows": 14444,
+      "waterbodies": 34,
+      "namedWaters": {
+        "gnisNames": 543,
+        "gnisIds": 641
+      },
+      "graph": {
+        "nodes": 5236,
+        "edges": 5312,
+        "components": 90,
+        "largestComponentEdges": 4167,
+        "damBridges": 46,
+        "maxDamBridgeM": 99.3,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 13
+      },
+      "bytes": {
+        "jsonl": 5205526,
+        "vaa": 6184358,
+        "waterbodies": 5710,
+        "graph": 4873962
+      },
+      "convertedAt": "2026-09-11T17:05:10.428Z",
+      "published": "20231216",
+      "zipSha256": "d858f77d026ce8cdcf447463cbf237db6389bca6cc1a719b963d5b00385b7d81"
+    },
+    "06040002": {
+      "wbdName": "Upper Duck",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 2478,
+      "vaaRows": 6856,
+      "waterbodies": 38,
+      "namedWaters": {
+        "gnisNames": 219,
+        "gnisIds": 235
+      },
+      "graph": {
+        "nodes": 2421,
+        "edges": 2478,
+        "components": 8,
+        "largestComponentEdges": 2230,
+        "damBridges": 12,
+        "maxDamBridgeM": 88.6,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 3807297,
+        "vaa": 2922802,
+        "waterbodies": 6048,
+        "graph": 3647742
+      },
+      "convertedAt": "2026-09-11T17:10:32.290Z",
+      "published": "20231216",
+      "zipSha256": "482061edbb4d9b458a1ec1b922657c51c75a0ba14cfbcd5c4b62fe109dcee87a"
+    },
+    "06040003": {
+      "wbdName": "Lower Duck",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 4841,
+      "vaaRows": 14161,
+      "waterbodies": 54,
+      "namedWaters": {
+        "gnisNames": 377,
+        "gnisIds": 421
+      },
+      "graph": {
+        "nodes": 4771,
+        "edges": 4841,
+        "components": 25,
+        "largestComponentEdges": 4513,
+        "damBridges": 16,
+        "maxDamBridgeM": 94.1,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 5563315,
+        "vaa": 6034036,
+        "waterbodies": 9190,
+        "graph": 5279877
+      },
+      "convertedAt": "2026-09-11T17:12:01.391Z",
+      "published": "20231216",
+      "zipSha256": "58425ae336f508d434f4cff0cd788498ceb39c20afcc992daf26761e4135eff6"
+    },
+    "06040004": {
+      "wbdName": "Buffalo",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 2479,
+      "vaaRows": 6575,
+      "waterbodies": 15,
+      "namedWaters": {
+        "gnisNames": 181,
+        "gnisIds": 201
+      },
+      "graph": {
+        "nodes": 2415,
+        "edges": 2479,
+        "components": 7,
+        "largestComponentEdges": 2336,
+        "damBridges": 17,
+        "maxDamBridgeM": 93.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 2720521,
+        "vaa": 2801791,
+        "waterbodies": 2426,
+        "graph": 2573092
+      },
+      "convertedAt": "2026-09-11T17:12:53.050Z",
+      "published": "20231216",
+      "zipSha256": "6761cc2941e10850d5bdb27c5741f3964b13e656868b1628ac2792fc400fdd96"
+    },
+    "06040005": {
+      "wbdName": "Kentucky Lake",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 4649,
+      "vaaRows": 12634,
+      "waterbodies": 36,
+      "namedWaters": {
+        "gnisNames": 373,
+        "gnisIds": 411
+      },
+      "graph": {
+        "nodes": 4629,
+        "edges": 4649,
+        "components": 60,
+        "largestComponentEdges": 3353,
+        "damBridges": 2,
+        "maxDamBridgeM": 32.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 12255
+      },
+      "bytes": {
+        "jsonl": 3587965,
+        "vaa": 5341576,
+        "waterbodies": 5950,
+        "graph": 4867488
+      },
+      "convertedAt": "2026-09-11T17:14:00.642Z",
+      "published": "20231216",
+      "zipSha256": "22d3df743956d46586c339cbab7e85aad1dab250956417a6108c9d6aecdd16c9"
+    },
+    "06040006": {
+      "wbdName": "Lower Tennessee",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 2056,
+      "vaaRows": 5946,
+      "waterbodies": 14,
+      "namedWaters": {
+        "gnisNames": 136,
+        "gnisIds": 147
+      },
+      "graph": {
+        "nodes": 2046,
+        "edges": 2056,
+        "components": 28,
+        "largestComponentEdges": 1613,
+        "damBridges": 2,
+        "maxDamBridgeM": 46.8,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 5720
+      },
+      "bytes": {
+        "jsonl": 1532724,
+        "vaa": 2522341,
+        "waterbodies": 2217,
+        "graph": 2041520
+      },
+      "convertedAt": "2026-09-11T17:14:59.531Z",
+      "published": "20231216",
+      "zipSha256": "588d43ed955076e3cf300fec67f26996b7f8759e4f939f2266cfd4f32aeb65b2"
+    },
+    "08010100": {
+      "wbdName": "Lower Mississippi-Memphis",
+      "states": "AR,IL,KY,MO,MS,TN",
+      "status": "ok",
+      "flowlines": 686,
+      "vaaRows": 3203,
+      "waterbodies": 124,
+      "namedWaters": {
+        "gnisNames": 54,
+        "gnisIds": 57
+      },
+      "graph": {
+        "nodes": 711,
+        "edges": 686,
+        "components": 33,
+        "largestComponentEdges": 285,
+        "damBridges": 4,
+        "maxDamBridgeM": 91.8,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 550
+      },
+      "bytes": {
+        "jsonl": 631837,
+        "vaa": 1369395,
+        "waterbodies": 19748,
+        "graph": 649280
+      },
+      "convertedAt": "2026-09-11T17:11:46.244Z",
+      "published": "20231217",
+      "zipSha256": "72e07cb3fc49cda34a70070f37562004e2020f9fa34be1da50a17351a40860f9"
+    },
+    "08010201": {
+      "wbdName": "Bayou De Chien-Mayfield",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 2308,
+      "vaaRows": 10142,
+      "waterbodies": 15,
+      "namedWaters": {
+        "gnisNames": 82,
+        "gnisIds": 88
+      },
+      "graph": {
+        "nodes": 2279,
+        "edges": 2308,
+        "components": 19,
+        "largestComponentEdges": 992,
+        "damBridges": 3,
+        "maxDamBridgeM": 34.4,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 6137
+      },
+      "bytes": {
+        "jsonl": 1487225,
+        "vaa": 4410862,
+        "waterbodies": 2404,
+        "graph": 1857978
+      },
+      "convertedAt": "2026-09-11T17:13:42.479Z",
+      "published": "20231217",
+      "zipSha256": "1377ad8befbcf8e45b9f498c9e5fb1e82cbb8e419ee300c3602b7a76b3952478"
+    },
+    "08010202": {
+      "wbdName": "Obion",
+      "states": "KY,TN",
+      "status": "ok",
+      "flowlines": 1132,
+      "vaaRows": 7368,
+      "waterbodies": 54,
+      "namedWaters": {
+        "gnisNames": 86,
+        "gnisIds": 89
+      },
+      "graph": {
+        "nodes": 1155,
+        "edges": 1132,
+        "components": 44,
+        "largestComponentEdges": 572,
+        "damBridges": 1,
+        "maxDamBridgeM": 25.6,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 6842
+      },
+      "bytes": {
+        "jsonl": 818730,
+        "vaa": 3116697,
+        "waterbodies": 8831,
+        "graph": 1124748
+      },
+      "convertedAt": "2026-09-11T17:14:15.457Z",
+      "published": "20231217",
+      "zipSha256": "27029332a8fa23b7fc131f5784928ac6de5595197726915e50dc15326aafa6f7"
+    },
+    "08010203": {
+      "wbdName": "South Fork Obion",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1727,
+      "vaaRows": 7300,
+      "waterbodies": 45,
+      "namedWaters": {
+        "gnisNames": 120,
+        "gnisIds": 132
+      },
+      "graph": {
+        "nodes": 1696,
+        "edges": 1727,
+        "components": 36,
+        "largestComponentEdges": 1210,
+        "damBridges": 7,
+        "maxDamBridgeM": 72.5,
+        "nonStandardFlowdir": 1,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 1512009,
+        "vaa": 3111482,
+        "waterbodies": 7562,
+        "graph": 1408248
+      },
+      "convertedAt": "2026-09-11T17:14:39.030Z",
+      "published": "20231217",
+      "zipSha256": "17e9f598b6247b324eab40036662b18cfe654c09cdfee848a41c8a3be0486bae"
+    },
+    "08010204": {
+      "wbdName": "North Fork Forked Deer",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1283,
+      "vaaRows": 5561,
+      "waterbodies": 20,
+      "namedWaters": {
+        "gnisNames": 72,
+        "gnisIds": 79
+      },
+      "graph": {
+        "nodes": 1269,
+        "edges": 1283,
+        "components": 12,
+        "largestComponentEdges": 911,
+        "damBridges": 0,
+        "maxDamBridgeM": 0,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 981941,
+        "vaa": 2370349,
+        "waterbodies": 3296,
+        "graph": 903474
+      },
+      "convertedAt": "2026-09-11T17:14:58.679Z",
+      "published": "20231217",
+      "zipSha256": "0ac7e27179d3b6161951da0889e0c3994130f16a94ec2bfb0ed0fb1c0e1113c9"
+    },
+    "08010205": {
+      "wbdName": "South Fork Forked Deer",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 1389,
+      "vaaRows": 6447,
+      "waterbodies": 25,
+      "namedWaters": {
+        "gnisNames": 75,
+        "gnisIds": 85
+      },
+      "graph": {
+        "nodes": 1360,
+        "edges": 1389,
+        "components": 16,
+        "largestComponentEdges": 967,
+        "damBridges": 0,
+        "maxDamBridgeM": 0,
+        "nonStandardFlowdir": 1,
+        "vaaPopulated": 1
+      },
+      "bytes": {
+        "jsonl": 1204001,
+        "vaa": 2747463,
+        "waterbodies": 4060,
+        "graph": 1119010
+      },
+      "convertedAt": "2026-09-11T17:09:55.711Z",
+      "published": "20231217",
+      "zipSha256": "5c3d0954dcaedbaacb3ce225d7abf7d23d4372394bcb1d798297f36490cf89cb"
+    },
+    "08010206": {
+      "wbdName": "Forked Deer",
+      "states": "TN",
+      "status": "failed-source-product",
+      "reason": "USGS NHD_H_08010206_HU8_GDB.zip is defective (2,124,645 B; 419 total flowlines; 202 waterbodies all unnamed); converter zero-named-waterbodies crash documented; partial outputs removed; pending USGS republish + engine fix"
+    },
+    "08010207": {
+      "wbdName": "Upper Hatchie",
+      "states": "MS,TN",
+      "status": "ok",
+      "flowlines": 4701,
+      "vaaRows": 23837,
+      "waterbodies": 24,
+      "namedWaters": {
+        "gnisNames": 202,
+        "gnisIds": 219
+      },
+      "graph": {
+        "nodes": 4632,
+        "edges": 4701,
+        "components": 60,
+        "largestComponentEdges": 3638,
+        "damBridges": 7,
+        "maxDamBridgeM": 68.7,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2
+      },
+      "bytes": {
+        "jsonl": 4382945,
+        "vaa": 10610213,
+        "waterbodies": 3904,
+        "graph": 4089356
+      },
+      "convertedAt": "2026-09-11T17:18:16.685Z",
+      "published": "20231217",
+      "zipSha256": "05b5b8d4705c7f163a4ef2f80af99934a0cbe98917c1011ad037992697894c6c"
+    },
+    "08010208": {
+      "wbdName": "Lower Hatchie",
+      "states": "MS,TN",
+      "status": "ok",
+      "flowlines": 2425,
+      "vaaRows": 11834,
+      "waterbodies": 119,
+      "namedWaters": {
+        "gnisNames": 114,
+        "gnisIds": 120
+      },
+      "graph": {
+        "nodes": 2409,
+        "edges": 2425,
+        "components": 31,
+        "largestComponentEdges": 1996,
+        "damBridges": 12,
+        "maxDamBridgeM": 93.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 2
+      },
+      "bytes": {
+        "jsonl": 2389406,
+        "vaa": 5052381,
+        "waterbodies": 19379,
+        "graph": 2244736
+      },
+      "convertedAt": "2026-09-11T17:18:49.994Z",
+      "published": "20231217",
+      "zipSha256": "47669aa659b9f3ca7488d3cabb798a93e96f43cc4090a959e2004a658c1feca9"
+    },
+    "08010209": {
+      "wbdName": "Loosahatchie",
+      "states": "TN",
+      "status": "ok",
+      "flowlines": 724,
+      "vaaRows": 5864,
+      "waterbodies": 44,
+      "namedWaters": {
+        "gnisNames": 47,
+        "gnisIds": 47
+      },
+      "graph": {
+        "nodes": 723,
+        "edges": 724,
+        "components": 21,
+        "largestComponentEdges": 407,
+        "damBridges": 2,
+        "maxDamBridgeM": 43.5,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 1
+      },
+      "bytes": {
+        "jsonl": 690115,
+        "vaa": 2498670,
+        "waterbodies": 7084,
+        "graph": 645032
+      },
+      "convertedAt": "2026-09-11T17:19:16.327Z",
+      "published": "20231217",
+      "zipSha256": "ae18ac368fdd27be724686a9a17f56ec02f53c2e50d11eca72f6b4ccb8dabee4"
+    },
+    "08010210": {
+      "wbdName": "Wolf",
+      "states": "MS,TN",
+      "status": "ok",
+      "flowlines": 1690,
+      "vaaRows": 11175,
+      "waterbodies": 55,
+      "namedWaters": {
+        "gnisNames": 55,
+        "gnisIds": 57
+      },
+      "graph": {
+        "nodes": 1666,
+        "edges": 1690,
+        "components": 29,
+        "largestComponentEdges": 1497,
+        "damBridges": 5,
+        "maxDamBridgeM": 90.8,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 1722743,
+        "vaa": 4922573,
+        "waterbodies": 9140,
+        "graph": 1616718
+      },
+      "convertedAt": "2026-09-11T17:09:48.954Z",
+      "published": "20231217",
+      "zipSha256": "387df65e4992658c1663fb324967dfd348e7009b9cfe39b1ce1d6740fa162de1"
+    },
+    "08010211": {
+      "wbdName": "Horn Lake-Nonconnah",
+      "states": "MS,TN",
+      "status": "ok",
+      "flowlines": 499,
+      "vaaRows": 5149,
+      "waterbodies": 14,
+      "namedWaters": {
+        "gnisNames": 25,
+        "gnisIds": 25
+      },
+      "graph": {
+        "nodes": 505,
+        "edges": 499,
+        "components": 20,
+        "largestComponentEdges": 201,
+        "damBridges": 0,
+        "maxDamBridgeM": 0,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 420963,
+        "vaa": 2269425,
+        "waterbodies": 2272,
+        "graph": 389317
+      },
+      "convertedAt": "2026-09-11T17:11:26.896Z",
+      "published": "20231217",
+      "zipSha256": "16c84979f39c6cd3774ccd551a157ec8e4f58177c00784e3d0900b7e10d2f41c"
+    },
+    "08030204": {
+      "wbdName": "Coldwater",
+      "states": "MS,TN",
+      "status": "ok",
+      "flowlines": 4130,
+      "vaaRows": 0,
+      "waterbodies": 49,
+      "namedWaters": {
+        "gnisNames": 120,
+        "gnisIds": 122
+      },
+      "graph": {
+        "nodes": 4162,
+        "edges": 4130,
+        "components": 109,
+        "largestComponentEdges": 1225,
+        "damBridges": 5,
+        "maxDamBridgeM": 48.2,
+        "nonStandardFlowdir": 0,
+        "vaaPopulated": 0
+      },
+      "bytes": {
+        "jsonl": 3380316,
+        "vaa": 0,
+        "waterbodies": 7969,
+        "graph": 3120210
+      },
+      "convertedAt": "2026-09-11T17:12:20.906Z",
+      "published": "20240104",
+      "zipSha256": "90a2d428eb5247d82df03d4b1078c90edccfca15913def99819ea18863e50987"
+    }
+  }
+}
