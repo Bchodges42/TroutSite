@@ -199,6 +199,16 @@ describe('portal API', () => {
       expect(res.statusCode).toBe(422);
     });
 
+    it('enforces the app-wide 128 KiB body limit', async () => {
+      const res = await app.inject({
+        method: 'POST',
+        url: '/v1/portal/reports',
+        headers: { authorization: `Bearer ${token}` },
+        payload: { ...validBody, body: 'x'.repeat(130 * 1024) },
+      });
+      expect(res.statusCode).toBe(413);
+    });
+
     it('rejects unknown streamId and malformed patternIds with 422', async () => {
       const unknown = await app.inject({
         method: 'POST',

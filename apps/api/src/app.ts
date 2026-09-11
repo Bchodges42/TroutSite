@@ -145,6 +145,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
       root: join(options.webPublicDir, 'v1'),
       prefix: '/v1',
       decorateReply: false,
+      // /v1/streams is the frozen contract route. The backing JSON file is an
+      // implementation detail and must not become a second public endpoint.
+      allowedPath: (pathname) => pathname !== '/streams.json',
       setHeaders: noStore,
     });
   }

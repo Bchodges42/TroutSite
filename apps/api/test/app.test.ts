@@ -135,6 +135,9 @@ describe('static read path (ADR 0004, integration §12 #10)', () => {
 
     const missing = await app.inject({ method: 'GET', url: '/v1/reports/nope.json' });
     expect(missing.statusCode).toBe(404);
+
+    const backingFile = await app.inject({ method: 'GET', url: '/v1/streams.json' });
+    expect(backingFile.statusCode).toBe(404);
   });
 
   it('answers GET /v1/streams live from the snapshot file', async () => {
