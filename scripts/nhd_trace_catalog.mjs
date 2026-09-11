@@ -47,10 +47,31 @@ const phase = process.argv[2] ?? 'all';
 const onlyIds = (process.argv.indexOf('--only') >= 0)
   ? process.argv[process.argv.indexOf('--only') + 1].split(',')
   : null;
-const baseBudget = Number(process.argv[process.argv.indexOf('--budget') + 1] ?? 81_920);
+const budgetIdx = process.argv.indexOf('--budget');
+const baseBudget = budgetIdx >= 0 ? Number(process.argv[budgetIdx + 1]) : 81_920;
+const resultsIdx = process.argv.indexOf('--results-out');
+// per-chunk result files let parallel workers trace disjoint water sets safely
+const RESULTS_OUT = resultsIdx >= 0
+  ? path.resolve(ROOT, process.argv[resultsIdx + 1])
+  : RESULTS;
 
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const writeJson = (p, v) => fs.writeFileSync(p, JSON.stringify(v, null, 2) + '\n');
+// specs: base file + any trace-specs.<name>.json fragments (parallel workers write
+// disjoint fragments; later alphabetical fragments win on key conflicts)
+function loadSpecs() {
+  const dir = path.dirname(SPECS);
+  const base = fs.existsSync(SPECS) ? readJson(SPECS) : {};
+  const frags = fs.readdirSync(dir)
+    .filter((f) => /^trace-specs\..+\.json$/.test(f))
+    .sort();
+  const merged = { ...base };
+  for (const f of frags) Object.assign(merged, readJson(path.join(dir, f)));
+  delete merged._comment;
+  return merged;
+}
+let specsCache;
+const getSpecs = () => (specsCache ??= loadSpecs());
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const R_EARTH = 6371000;
 const hav = (a, b) => {
@@ -81,7 +102,7 @@ const segDistM = (anchor, x0, y0, x1, y1) => {
 function loadCatalogStreams() {
   const asset = readJson(ASSET);
   const anchors = readJson(ANCHORS);
-  const specs = fs.existsSync(SPECS) ? readJson(SPECS) : {};
+  const specs = getSpecs();
   const streams = asset.features.filter(
     (f) => f.geometry.type === 'MultiLineString' && TRACEABLE.has(f.properties.waterbodyType),
   );
@@ -248,7 +269,7 @@ function trace() {
     };
     console.log(`[${done}/${ids.length}] ${id}: ${results[id].verdict}${r.failures?.length ? ' (' + r.failures.join(',') + ')' : ''} ${r.err ? 'ERR:' + r.err.slice(0, 120) : ''}`);
   }
-  writeJson(RESULTS, { generatedAt: new Date().toISOString(), budget: baseBudget, results });
+  writeJson(RESULTS_OUT, { generatedAt: new Date().toISOString(), budget: baseBudget, results });
   const pass = Object.values(results).filter((r) => r.verdict === 'PASS').length;
   console.log(`trace: ${pass}/${ids.length} PASS`);
 }
@@ -316,7 +337,7 @@ function assemble() {
     if (nextBudget === big.b) { console.log(`budget floor reached at ${big.id}; total ${(total / 1e6).toFixed(2)} MB`); break; }
     budgets.set(big.id, nextBudget);
     const d = readJson(DISCOVERY).waters[big.id];
-    const spec = readJson(SPECS)[big.id] ?? {};
+    const spec = getSpecs()[big.id] ?? {};
     const feature = byId.get(big.id);
     traceOne(big.id, {
       catalogName: feature.properties.name, waterbodyType: feature.properties.waterbodyType, ...d,
