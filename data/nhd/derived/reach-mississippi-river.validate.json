@@ -24,7 +24,7 @@
       "name": "info:max-vertex-chord",
       "pass": true,
       "evidence": {
-        "maxGapM": 3960,
+        "maxGapM": 4094,
         "note": "artificial-path chords are legitimate; junction check is authoritative"
       }
     },
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 23348,
-        "budgetBytes": 81920
+        "bytes": 14584,
+        "budgetBytes": 49152
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:46:44.239Z"
+  "generatedAt": "2026-09-11T19:12:23.546Z"
 }

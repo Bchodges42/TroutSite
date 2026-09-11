@@ -1,0 +1,9 @@
+{
+  "red-river-clarksville": {
+    "up": "headwater",
+    "down": "mouth",
+    "expectDown": [36.538249, -87.372005],
+    "expectDownRadiusM": 3000,
+    "_note": "GEOFANOUT-1 trace-fix: YAML = TWRA-stocked Red River reaches near Clarksville; old asset ran [-87.040865,36.603703] (upstream cut) to the Cumberland mouth [-87.372005,36.538249] (61.3 km). down:mouth already terminates exactly at the old mouth endpoint (terminal node at the Cumberland confluence). LIMITATION: the upstream cut [-87.040865,36.603703] is not expressible in the frozen grammar (up stops only at dam/headwater; no waterbody anywhere on the up-walk), so the walk continues ~97 km beyond the cut up the Red River into Kentucky. Recommend an up:point/up:confluence engine extension or a manual clip."
+  }
+}

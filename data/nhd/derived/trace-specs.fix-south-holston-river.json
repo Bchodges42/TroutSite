@@ -1,0 +1,6 @@
+{
+  "south-holston-river": {
+    "up": "dam:South Holston Lake",
+    "down": "point:36.476948,-82.26315"
+  }
+}

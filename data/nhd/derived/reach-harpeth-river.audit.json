@@ -1957,9 +1957,9 @@
       25,
       50
     ],
-    "chosenToleranceM": 10,
-    "bytes": 28783,
-    "budgetBytes": 81920
+    "chosenToleranceM": 50,
+    "bytes": 12722,
+    "budgetBytes": 17694
   },
   "output": "data/nhd/derived/reach-harpeth-river.geojson"
 }

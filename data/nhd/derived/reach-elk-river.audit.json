@@ -1604,13 +1604,13 @@
   "throughLakes": [],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 19575,
-    "budgetBytes": 81920
+    "chosenToleranceM": 25,
+    "bytes": 12512,
+    "budgetBytes": 49152
   },
   "output": "data/nhd/derived/reach-elk-river.geojson"
 }

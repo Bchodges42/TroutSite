@@ -1,0 +1,7 @@
+{
+  "caney-fork-upper": {
+    "up": "headwater",
+    "down": "point:36.097941,-85.826276",
+    "_note": "GEOFANOUT-1 fix: YAML scopes this water to the free-flowing reach ending at the slackwater pooled above Center Hill Dam (Great Falls + Center Hill arms included); down point is the old asset's downstream terminus on the Center Hill Lake artificial path (graph node n821, 0.3 m). Default 'mouth' overran through the dam to the Cumberland (220.7 km). Up headwater terminus already equals the old upstream terminus in Cumberland County."
+  }
+}

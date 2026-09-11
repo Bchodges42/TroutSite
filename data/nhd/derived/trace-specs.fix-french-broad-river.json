@@ -1,0 +1,7 @@
+{
+  "french-broad-river": {
+    "up": "headwater",
+    "down": "mouth",
+    "_note": "GEOFANOUT-1 fix: YAML notes 'the river enters from North Carolina and runs through Douglas Lake down to the Holston confluence', so the seed up dam:Douglas Lake (started below the dam, 52.4 km) under-covered. up headwater walks up through the Douglas Lake artificial path to the in-unit head. In-unit (HU8 06010107) French Broad edges end at lon -83.192 (Pigeon confluence / lake head); the state-line gorge lives in HU8 06010105, so a single-unit trace cannot reach the NC line. down mouth already terminates exactly at the old downstream end (-83.8507,35.9586) at the Holston confluence."
+  }
+}

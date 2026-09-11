@@ -492,7 +492,7 @@
     ]
   },
   "downWalk": {
-    "spec": "confluence:Duck River",
+    "spec": "point:35.996342,-87.838877",
     "path": [
       2144,
       827,
@@ -698,12 +698,9 @@
       1386,
       1161,
       1954,
-      1156,
-      1181,
-      1207,
-      1181
+      1156
     ],
-    "reason": "cycle-guard",
+    "reason": "point",
     "node": "n98",
     "edgePids": [
       "128953640",
@@ -910,10 +907,7 @@
       "128951068",
       "{BB50376A-1AB6-47D0-BA3A-1A775C88C1B9}",
       "128951062",
-      "{D16B527D-D2AA-4DE6-9BC8-45A9C7904B8A}",
-      "136554334",
-      "136553250",
-      "136554334"
+      "{D16B527D-D2AA-4DE6-9BC8-45A9C7904B8A}"
     ]
   },
   "pathEdges": [
@@ -2680,18 +2674,6 @@
     {
       "pid": "{D16B527D-D2AA-4DE6-9BC8-45A9C7904B8A}",
       "dir": "down"
-    },
-    {
-      "pid": "136554334",
-      "dir": "down"
-    },
-    {
-      "pid": "136553250",
-      "dir": "down"
-    },
-    {
-      "pid": "136554334",
-      "dir": "down"
     }
   ],
   "divergenceLog": [
@@ -3934,39 +3916,18 @@
       ],
       "chosen": "128951262",
       "rule": "name-continuity"
-    },
-    {
-      "dir": "down",
-      "atNode": "n98",
-      "currentEdge": "{D16B527D-D2AA-4DE6-9BC8-45A9C7904B8A}",
-      "candidates": [
-        {
-          "pid": "136554334",
-          "name": "Buffalo River",
-          "km": 0.09598568406945404
-        },
-        {
-          "pid": "136553250",
-          "name": "Buffalo River",
-          "km": 0.06341685682036428
-        }
-      ],
-      "chosen": "136554334",
-      "rule": "name-continuity"
     }
   ],
-  "throughLakes": [
-    "Kentucky Lake"
-  ],
+  "throughLakes": [],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 37306,
-    "budgetBytes": 81920
+    "chosenToleranceM": 50,
+    "bytes": 17609,
+    "budgetBytes": 17694
   },
   "output": "data/nhd/derived/reach-buffalo-river.geojson"
 }

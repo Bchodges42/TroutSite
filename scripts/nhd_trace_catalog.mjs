@@ -39,7 +39,7 @@ const RIVER_INDEX_SCRIPT = path.join(ROOT, 'apps/web/scripts/regenerate-river-in
 const VALIDATE_ATLAS = path.join(ROOT, 'apps/web/scripts/validate-atlas.mjs');
 const CONTINUITY = path.join(ROOT, 'apps/web/scripts/audit-river-continuity.mjs');
 const TOTAL_BUDGET = 1_900_000; // statewide rivers.geojson target (conventions §6.5: ≤2.0 MB)
-const MIN_REACH_BUDGET = 9_000;
+const MIN_REACH_BUDGET = 6_000;
 const TRACEABLE = new Set(['river', 'creek', 'tailrace', 'spring']);
 
 const argPos = (i, def) => process.argv[i + 2] ?? def;
@@ -185,8 +185,8 @@ function run(cmd, args) {
   }
 }
 
-function traceOne(id, water, spec, budget) {
-  const unit = water.unit;
+function traceOne(id, water, spec, budget, forceRound4 = false) {
+  const unit = spec?.unit ?? water.unit; // spec.unit pins waters discovered in the wrong HU8
   const reachPath = path.join(DERIVED, `reach-${id}.geojson`);
   const up = spec?.up ?? (water.waterbodyType === 'tailrace' ? null : 'headwater');
   const down = spec?.down ?? 'mouth';
@@ -198,8 +198,10 @@ function traceOne(id, water, spec, budget) {
     '--name', water.catalogName,
     '--gnis', water.nhdName,
     '--waterbody-type', water.waterbodyType,
-    '--anchor', `${water.anchor[1]},${water.anchor[0]}`,
+    '--anchor', `${(spec?.anchor ?? water.anchor)[1]},${(spec?.anchor ?? water.anchor)[0]}`,
     '--up', up, '--down', down,
+    '--simplify-m', forceRound4 ? '150' : budget <= 12_000 ? '50,100,150' : budget <= 60_000 ? '25,50,100' : '10,25,50',
+    '--round', forceRound4 || budget <= 6_000 ? '4' : '5',
     '--budget-bytes', String(budget),
     '--out', `data/nhd/derived/reach-${id}.geojson`,
   ];
@@ -275,10 +277,42 @@ function trace() {
 }
 
 // ---------- assemble ----------
+// Trace throughLakeIds are slugs of NHD waterbody names; the asset's lake
+// features use catalog ids. Reconcile so the map never gets a dangling id.
+function buildLakeReconciler(asset) {
+  const lakes = asset.features
+    .filter((f) => ['lake', 'pond'].includes(f.properties.waterbodyType) || f.geometry.type === 'MultiPolygon' || f.geometry.type === 'Polygon')
+    .map((f) => f.properties.id);
+  const lakeTokens = new Map(lakes.map((id) => [id, new Set(norm(id).split(' '))]));
+  const GENERIC = new Set(['lake', 'pond', 'reservoir']);
+  const cache = new Map();
+  const dropped = new Set();
+  const reconcile = (slug) => {
+    if (!slug) return slug;
+    if (cache.has(slug)) return cache.get(slug);
+    let mapped = slug;
+    if (!lakes.includes(slug)) {
+      const s = new Set(norm(slug).split(' ').filter((t) => !GENERIC.has(t)));
+      let best = null;
+      for (const [id, toks] of lakeTokens) {
+        const core = [...toks].filter((t) => !GENERIC.has(t));
+        const overlap = core.filter((t) => s.has(t)).length;
+        if (overlap > 0 && (!best || overlap > best.overlap)) best = { id, overlap, coreLen: core.length };
+      }
+      if (best) mapped = best.id; else { mapped = null; dropped.add(slug); }
+    }
+    cache.set(slug, mapped);
+    return mapped;
+  };
+  reconcile.dropped = dropped;
+  return reconcile;
+}
+
 function assemble() {
   const { asset, streams } = loadCatalogStreams();
   const results = readJson(RESULTS).results;
   const byId = new Map(streams.map((f) => [f.properties.id, f]));
+  const reconcileLake = buildLakeReconciler(asset);
   const budgets = new Map(); // id -> tightened budget for the global pass
   for (const [id, r] of Object.entries(results)) if (r.verdict === 'PASS') budgets.set(id, baseBudget);
 
@@ -299,7 +333,7 @@ function assemble() {
       id: p.id,
       name: p.name,
       waterbodyType: p.waterbodyType,
-      throughLakeIds: p.throughLakeIds ?? [],
+      throughLakeIds: [...new Set((p.throughLakeIds ?? []).map(reconcileLake).filter(Boolean))],
       allowOpenEnds: oldFeature.properties.allowOpenEnds ?? false,
       source: 'nhd',
       approximate: false,
@@ -325,23 +359,31 @@ function assemble() {
 
   // Global budget pass: re-trace the largest reaches with tightened budgets.
   console.log(`initial total (approx): ${(totalBytes() / 1e6).toFixed(2)} MB`);
+  const round4 = new Set();
   let guard = 0;
+  let noProgress = 0;
   while (guard++ < 400) {
     const total = totalBytes();
     if (total <= TOTAL_BUDGET) break;
+    if (noProgress >= 3) { console.log(`no progress squeezing largest reaches; total ${(total / 1e6).toFixed(2)} MB`); break; }
     const traced = [...budgets.entries()]
       .map(([id, b]) => ({ id, b, bytes: fs.statSync(path.join(DERIVED, `reach-${id}.geojson`)).size }))
       .sort((a, b) => b.bytes - a.bytes);
     const big = traced[0];
+    const before = big.bytes;
     const nextBudget = Math.max(MIN_REACH_BUDGET, Math.floor(big.b * 0.6));
-    if (nextBudget === big.b) { console.log(`budget floor reached at ${big.id}; total ${(total / 1e6).toFixed(2)} MB`); break; }
     budgets.set(big.id, nextBudget);
+    const r4 = nextBudget === MIN_REACH_BUDGET; // at the geometric floor: squeeze with 150 m + 4 dp
+    if (r4) round4.add(big.id);
     const d = readJson(DISCOVERY).waters[big.id];
     const spec = getSpecs()[big.id] ?? {};
     const feature = byId.get(big.id);
-    traceOne(big.id, {
+    const r = traceOne(big.id, {
       catalogName: feature.properties.name, waterbodyType: feature.properties.waterbodyType, ...d,
-    }, spec, nextBudget);
+    }, spec, r4 ? 6_000 : nextBudget, r4);
+    const after = fs.statSync(path.join(DERIVED, `reach-${big.id}.geojson`)).size;
+    if (after >= before) noProgress += 1; else noProgress = 0;
+    console.log(`  squeeze ${big.id}: ${before} -> ${after} bytes (budget ${r4 ? 6_000 : nextBudget}${r4 ? ', round4' : ''})${r.ok ? '' : ' [trace failed, kept previous]'}`);
   }
   console.log(`final total: ${(totalBytes() / 1e6).toFixed(2)} MB`);
 
@@ -362,6 +404,7 @@ function assemble() {
   });
   fs.writeFileSync(ASSET, JSON.stringify({ type: 'FeatureCollection', features: nextFeatures }));
   console.log(`assembled: ${applied.length} waters replaced with NHD traces, ${kept.length} kept on fallback, ${asset.features.length - applied.length - kept.length} untouched (lakes/points)`);
+  if (reconcileLake.dropped.size) console.log(`throughLake slugs with no catalog lake match (dropped): ${[...reconcileLake.dropped].join(', ')}`);
 
   console.log('regenerating riverIndex…');
   run('node', [RIVER_INDEX_SCRIPT]);

@@ -3058,13 +3058,13 @@
   ],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 22875,
-    "budgetBytes": 81920
+    "chosenToleranceM": 25,
+    "bytes": 14997,
+    "budgetBytes": 49152
   },
   "output": "data/nhd/derived/reach-tennessee-river.geojson"
 }

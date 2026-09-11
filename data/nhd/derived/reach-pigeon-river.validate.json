@@ -1,22 +1,22 @@
 {
   "reach": "data/nhd/derived/reach-pigeon-river.geojson",
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
     {
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 311,
+        "edges": 262,
         "missingPids": [],
         "subgraphComponents": 1
       }
     },
     {
       "name": "continuity",
-      "pass": false,
+      "pass": true,
       "evidence": {
-        "worstJunctionM": 69,
-        "atPathIndex": 2,
+        "worstJunctionM": 0,
+        "atPathIndex": -1,
         "limitM": 50
       }
     },
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 16786,
+        "bytes": 14345,
         "budgetBytes": 81920
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:46:46.701Z"
+  "generatedAt": "2026-09-11T18:54:55.866Z"
 }

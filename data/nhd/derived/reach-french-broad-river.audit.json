@@ -13,17 +13,146 @@
     ]
   },
   "upWalk": {
-    "spec": "dam:Douglas Lake",
-    "path": [],
-    "reason": "dam",
-    "node": "n1173",
-    "damEdges": [
-      "51626246"
+    "spec": "headwater",
+    "path": [
+      479,
+      2620,
+      243,
+      1692,
+      1492,
+      1323,
+      2784,
+      539,
+      2901,
+      2753,
+      2797,
+      3145,
+      3029,
+      540,
+      635,
+      3078,
+      2947,
+      283,
+      3054,
+      1063,
+      421,
+      541,
+      3348,
+      2895,
+      1720,
+      1148,
+      2736,
+      636,
+      1168,
+      120,
+      504,
+      1380,
+      1228,
+      1559,
+      218,
+      840,
+      457,
+      1125,
+      3028,
+      3103,
+      3267,
+      895,
+      49,
+      1644,
+      3115,
+      2721,
+      2772,
+      2597,
+      1018,
+      3033,
+      2601,
+      807,
+      2719,
+      2624,
+      265,
+      2577,
+      703,
+      16,
+      2878,
+      1537,
+      2642,
+      1735,
+      2606,
+      2566,
+      2567
     ],
-    "edgePids": []
+    "reason": "headwater",
+    "node": "n3231",
+    "edgePids": [
+      "51626246",
+      "51626254",
+      "51626252",
+      "51626206",
+      "51626182",
+      "51626170",
+      "51625830",
+      "51625794",
+      "51625766",
+      "51625776",
+      "51625652",
+      "51625316",
+      "51624890",
+      "51624748",
+      "51624722",
+      "51624754",
+      "51625066",
+      "51625124",
+      "51625148",
+      "51625038",
+      "51624982",
+      "51624868",
+      "51624580",
+      "51624310",
+      "51624224",
+      "51624186",
+      "51624114",
+      "51624138",
+      "51624178",
+      "51624184",
+      "51624318",
+      "51624326",
+      "51624582",
+      "51624626",
+      "51624624",
+      "51624556",
+      "51624354",
+      "51624338",
+      "51624250",
+      "51624182",
+      "51623998",
+      "51623780",
+      "51623622",
+      "51623516",
+      "51623390",
+      "51623198",
+      "51623244",
+      "{9099ABEF-F39E-4CF1-91D3-95EF643D9A23}",
+      "51623344",
+      "51623372",
+      "51623446",
+      "51623452",
+      "51623488",
+      "51623546",
+      "51623600",
+      "51623702",
+      "51623764",
+      "51623776",
+      "51623908",
+      "51623920",
+      "51624102",
+      "{8845B017-BB0D-4ED7-83AA-71A141DE8797}",
+      "0e4e6132-1c4d-4415-afe3-40044526cec6",
+      "{E7C60B6A-026E-4BC3-9CEA-97CEE6DDA260}",
+      "{CE91F356-99B7-4970-B8EF-5650B5D80718}"
+    ]
   },
   "downWalk": {
-    "spec": "confluence:Holston River",
+    "spec": "mouth",
     "path": [
       1350,
       34,
@@ -190,6 +319,266 @@
     ]
   },
   "pathEdges": [
+    {
+      "pid": "{CE91F356-99B7-4970-B8EF-5650B5D80718}",
+      "dir": "up"
+    },
+    {
+      "pid": "{E7C60B6A-026E-4BC3-9CEA-97CEE6DDA260}",
+      "dir": "up"
+    },
+    {
+      "pid": "0e4e6132-1c4d-4415-afe3-40044526cec6",
+      "dir": "up"
+    },
+    {
+      "pid": "{8845B017-BB0D-4ED7-83AA-71A141DE8797}",
+      "dir": "up"
+    },
+    {
+      "pid": "51624102",
+      "dir": "up"
+    },
+    {
+      "pid": "51623920",
+      "dir": "up"
+    },
+    {
+      "pid": "51623908",
+      "dir": "up"
+    },
+    {
+      "pid": "51623776",
+      "dir": "up"
+    },
+    {
+      "pid": "51623764",
+      "dir": "up"
+    },
+    {
+      "pid": "51623702",
+      "dir": "up"
+    },
+    {
+      "pid": "51623600",
+      "dir": "up"
+    },
+    {
+      "pid": "51623546",
+      "dir": "up"
+    },
+    {
+      "pid": "51623488",
+      "dir": "up"
+    },
+    {
+      "pid": "51623452",
+      "dir": "up"
+    },
+    {
+      "pid": "51623446",
+      "dir": "up"
+    },
+    {
+      "pid": "51623372",
+      "dir": "up"
+    },
+    {
+      "pid": "51623344",
+      "dir": "up"
+    },
+    {
+      "pid": "{9099ABEF-F39E-4CF1-91D3-95EF643D9A23}",
+      "dir": "up"
+    },
+    {
+      "pid": "51623244",
+      "dir": "up"
+    },
+    {
+      "pid": "51623198",
+      "dir": "up"
+    },
+    {
+      "pid": "51623390",
+      "dir": "up"
+    },
+    {
+      "pid": "51623516",
+      "dir": "up"
+    },
+    {
+      "pid": "51623622",
+      "dir": "up"
+    },
+    {
+      "pid": "51623780",
+      "dir": "up"
+    },
+    {
+      "pid": "51623998",
+      "dir": "up"
+    },
+    {
+      "pid": "51624182",
+      "dir": "up"
+    },
+    {
+      "pid": "51624250",
+      "dir": "up"
+    },
+    {
+      "pid": "51624338",
+      "dir": "up"
+    },
+    {
+      "pid": "51624354",
+      "dir": "up"
+    },
+    {
+      "pid": "51624556",
+      "dir": "up"
+    },
+    {
+      "pid": "51624624",
+      "dir": "up"
+    },
+    {
+      "pid": "51624626",
+      "dir": "up"
+    },
+    {
+      "pid": "51624582",
+      "dir": "up"
+    },
+    {
+      "pid": "51624326",
+      "dir": "up"
+    },
+    {
+      "pid": "51624318",
+      "dir": "up"
+    },
+    {
+      "pid": "51624184",
+      "dir": "up"
+    },
+    {
+      "pid": "51624178",
+      "dir": "up"
+    },
+    {
+      "pid": "51624138",
+      "dir": "up"
+    },
+    {
+      "pid": "51624114",
+      "dir": "up"
+    },
+    {
+      "pid": "51624186",
+      "dir": "up"
+    },
+    {
+      "pid": "51624224",
+      "dir": "up"
+    },
+    {
+      "pid": "51624310",
+      "dir": "up"
+    },
+    {
+      "pid": "51624580",
+      "dir": "up"
+    },
+    {
+      "pid": "51624868",
+      "dir": "up"
+    },
+    {
+      "pid": "51624982",
+      "dir": "up"
+    },
+    {
+      "pid": "51625038",
+      "dir": "up"
+    },
+    {
+      "pid": "51625148",
+      "dir": "up"
+    },
+    {
+      "pid": "51625124",
+      "dir": "up"
+    },
+    {
+      "pid": "51625066",
+      "dir": "up"
+    },
+    {
+      "pid": "51624754",
+      "dir": "up"
+    },
+    {
+      "pid": "51624722",
+      "dir": "up"
+    },
+    {
+      "pid": "51624748",
+      "dir": "up"
+    },
+    {
+      "pid": "51624890",
+      "dir": "up"
+    },
+    {
+      "pid": "51625316",
+      "dir": "up"
+    },
+    {
+      "pid": "51625652",
+      "dir": "up"
+    },
+    {
+      "pid": "51625776",
+      "dir": "up"
+    },
+    {
+      "pid": "51625766",
+      "dir": "up"
+    },
+    {
+      "pid": "51625794",
+      "dir": "up"
+    },
+    {
+      "pid": "51625830",
+      "dir": "up"
+    },
+    {
+      "pid": "51626170",
+      "dir": "up"
+    },
+    {
+      "pid": "51626182",
+      "dir": "up"
+    },
+    {
+      "pid": "51626206",
+      "dir": "up"
+    },
+    {
+      "pid": "51626252",
+      "dir": "up"
+    },
+    {
+      "pid": "51626254",
+      "dir": "up"
+    },
+    {
+      "pid": "51626246",
+      "dir": "up"
+    },
     {
       "pid": "51626324",
       "dir": "anchor"
@@ -513,6 +902,481 @@
   ],
   "divergenceLog": [
     {
+      "dir": "up",
+      "atNode": "n1236",
+      "currentEdge": "51626246",
+      "candidates": [
+        {
+          "pid": "51626254",
+          "name": "French Broad River",
+          "km": 0.5432905597263956
+        },
+        {
+          "pid": "51626210",
+          "name": "Douglas Creek",
+          "km": 0.9704815129316944
+        }
+      ],
+      "chosen": "51626254",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1267",
+      "currentEdge": "51626254",
+      "candidates": [
+        {
+          "pid": "51626252",
+          "name": "French Broad River",
+          "km": 0.5170946687390954
+        },
+        {
+          "pid": "51627432",
+          "name": "Flat Creek",
+          "km": 6.061476175408328
+        }
+      ],
+      "chosen": "51626252",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1384",
+      "currentEdge": "51626182",
+      "candidates": [
+        {
+          "pid": "51626170",
+          "name": "French Broad River",
+          "km": 1.9036014430229502
+        },
+        {
+          "pid": "51626430",
+          "name": "McGuire Creek",
+          "km": 2.9010985577643873
+        }
+      ],
+      "chosen": "51626170",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1607",
+      "currentEdge": "51625830",
+      "candidates": [
+        {
+          "pid": "51625794",
+          "name": "French Broad River",
+          "km": 0.9596492929685644
+        },
+        {
+          "pid": "51625790",
+          "name": "Patterson Branch",
+          "km": 0.8327678033743837
+        }
+      ],
+      "chosen": "51625794",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1688",
+      "currentEdge": "51625794",
+      "candidates": [
+        {
+          "pid": "51625698",
+          "name": "Frye Branch",
+          "km": 0.8695096330773106
+        },
+        {
+          "pid": "51625766",
+          "name": "French Broad River",
+          "km": 1.167486025259495
+        }
+      ],
+      "chosen": "51625766",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2030",
+      "currentEdge": "51625776",
+      "candidates": [
+        {
+          "pid": "51625672",
+          "name": "Muddy Creek",
+          "km": 0.0704361117466347
+        },
+        {
+          "pid": "51625652",
+          "name": "French Broad River",
+          "km": 1.4722377045970105
+        }
+      ],
+      "chosen": "51625652",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2090",
+      "currentEdge": "51625652",
+      "candidates": [
+        {
+          "pid": "51625316",
+          "name": "French Broad River",
+          "km": 3.5986637877809193
+        },
+        {
+          "pid": "51625318",
+          "name": "Shadden Creek",
+          "km": 1.746230778558458
+        }
+      ],
+      "chosen": "51625316",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2322",
+      "currentEdge": "51624748",
+      "candidates": [
+        {
+          "pid": "51624722",
+          "name": "French Broad River",
+          "km": 0.771044051421029
+        },
+        {
+          "pid": "51624664",
+          "name": "Rimmer Creek",
+          "km": 1.8595473770700668
+        }
+      ],
+      "chosen": "51624722",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2387",
+      "currentEdge": "51624722",
+      "candidates": [
+        {
+          "pid": "51624720",
+          "name": "Koontz Creek",
+          "km": 0.9531590298602327
+        },
+        {
+          "pid": "51624754",
+          "name": "French Broad River",
+          "km": 0.2974854883473168
+        }
+      ],
+      "chosen": "51624754",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2765",
+      "currentEdge": "51625148",
+      "candidates": [
+        {
+          "pid": "51625038",
+          "name": "French Broad River",
+          "km": 0.3459396417792167
+        },
+        {
+          "pid": "51625072",
+          "name": "Indian Creek",
+          "km": 0.6750291972164341
+        }
+      ],
+      "chosen": "51625038",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2778",
+      "currentEdge": "51624982",
+      "candidates": [
+        {
+          "pid": "51624868",
+          "name": "French Broad River",
+          "km": 1.749518505518989
+        },
+        {
+          "pid": "51624866",
+          "name": "Moore Branch",
+          "km": 1.835013475790539
+        }
+      ],
+      "chosen": "51624868",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2731",
+      "currentEdge": "51624580",
+      "candidates": [
+        {
+          "pid": "51624312",
+          "name": "Spring Creek",
+          "km": 0.7384319842549165
+        },
+        {
+          "pid": "51624310",
+          "name": "French Broad River",
+          "km": 0.867659028653754
+        }
+      ],
+      "chosen": "51624310",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2773",
+      "currentEdge": "51624310",
+      "candidates": [
+        {
+          "pid": "51624372",
+          "name": "Seehorn Creek",
+          "km": 2.0943423420301324
+        },
+        {
+          "pid": "51624224",
+          "name": "French Broad River",
+          "km": 0.2637231506931304
+        }
+      ],
+      "chosen": "51624224",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2967",
+      "currentEdge": "51624114",
+      "candidates": [
+        {
+          "pid": "51624138",
+          "name": "French Broad River",
+          "km": 1.5370200582622153
+        },
+        {
+          "pid": "51624082",
+          "name": "Sand Branch",
+          "km": 1.227388478245931
+        }
+      ],
+      "chosen": "51624138",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3155",
+      "currentEdge": "51624624",
+      "candidates": [
+        {
+          "pid": "51624594",
+          "name": "Allen Creek",
+          "km": 0.836456181394608
+        },
+        {
+          "pid": "51624556",
+          "name": "French Broad River",
+          "km": 1.6065912618219589
+        }
+      ],
+      "chosen": "51624556",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3159",
+      "currentEdge": "51624354",
+      "candidates": [
+        {
+          "pid": "51624336",
+          "name": "Diamond Creek",
+          "km": 0.45471656490835755
+        },
+        {
+          "pid": "51624338",
+          "name": "French Broad River",
+          "km": 0.8284649698663457
+        }
+      ],
+      "chosen": "51624338",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3172",
+      "currentEdge": "51623998",
+      "candidates": [
+        {
+          "pid": "51623896",
+          "name": "Fall Rock Branch",
+          "km": 0.7363300701565851
+        },
+        {
+          "pid": "51623780",
+          "name": "French Broad River",
+          "km": 0.8091506653336218
+        }
+      ],
+      "chosen": "51623780",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3173",
+      "currentEdge": "51623780",
+      "candidates": [
+        {
+          "pid": "51623622",
+          "name": "French Broad River",
+          "km": 0.9025875836816746
+        },
+        {
+          "pid": "51623786",
+          "name": "Little Fall Rock Branch",
+          "km": 1.1875178799748403
+        }
+      ],
+      "chosen": "51623622",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3168",
+      "currentEdge": "51623390",
+      "candidates": [
+        {
+          "pid": "51623128",
+          "name": "Leadvale Creek",
+          "km": 0.6259276431289542
+        },
+        {
+          "pid": "51623198",
+          "name": "French Broad River",
+          "km": 1.189923487189201
+        }
+      ],
+      "chosen": "51623198",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3183",
+      "currentEdge": "51623244",
+      "candidates": [
+        {
+          "pid": "{15AABE1E-B6CD-4B32-B760-1AAB82083EEF}",
+          "name": "Nolichucky River",
+          "km": 0.6089722162101447
+        },
+        {
+          "pid": "{9099ABEF-F39E-4CF1-91D3-95EF643D9A23}",
+          "name": "French Broad River",
+          "km": 0.13963847525370837
+        }
+      ],
+      "chosen": "{9099ABEF-F39E-4CF1-91D3-95EF643D9A23}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3192",
+      "currentEdge": "51623372",
+      "candidates": [
+        {
+          "pid": "51623370",
+          "name": "McCowan Creek",
+          "km": 0.6716619213318897
+        },
+        {
+          "pid": "51623446",
+          "name": "French Broad River",
+          "km": 0.5222971050002453
+        }
+      ],
+      "chosen": "51623446",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3209",
+      "currentEdge": "51623600",
+      "candidates": [
+        {
+          "pid": "51623656",
+          "name": "Brown Branch",
+          "km": 0.3593868487253965
+        },
+        {
+          "pid": "51623702",
+          "name": "French Broad River",
+          "km": 0.74129336103668
+        }
+      ],
+      "chosen": "51623702",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3219",
+      "currentEdge": "51623920",
+      "candidates": [
+        {
+          "pid": "51623918",
+          "name": "Clay Creek",
+          "km": 1.1543351455879716
+        },
+        {
+          "pid": "51624102",
+          "name": "French Broad River",
+          "km": 1.6517856855952622
+        }
+      ],
+      "chosen": "51624102",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3230",
+      "currentEdge": "51624102",
+      "candidates": [
+        {
+          "pid": "51624100",
+          "name": "Haney Branch",
+          "km": 0.15010765677966517
+        },
+        {
+          "pid": "{8845B017-BB0D-4ED7-83AA-71A141DE8797}",
+          "name": "French Broad River",
+          "km": 0.22616219046449504
+        }
+      ],
+      "chosen": "{8845B017-BB0D-4ED7-83AA-71A141DE8797}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n3225",
+      "currentEdge": "0e4e6132-1c4d-4415-afe3-40044526cec6",
+      "candidates": [
+        {
+          "pid": "147535014",
+          "name": "Pigeon River",
+          "km": 0.04953986761152911
+        },
+        {
+          "pid": "{E7C60B6A-026E-4BC3-9CEA-97CEE6DDA260}",
+          "name": "French Broad River",
+          "km": 0.08362258008137463
+        }
+      ],
+      "chosen": "{E7C60B6A-026E-4BC3-9CEA-97CEE6DDA260}",
+      "rule": "name-continuity"
+    },
+    {
       "dir": "down",
       "atNode": "n310",
       "currentEdge": "51627438",
@@ -533,6 +1397,7 @@
     }
   ],
   "throughLakes": [
+    "Douglas Lake",
     "Fort Loudoun Lake"
   ],
   "simplify": {
@@ -542,7 +1407,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 7230,
+    "bytes": 12790,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-french-broad-river.geojson"

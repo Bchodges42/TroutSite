@@ -1,0 +1,9 @@
+{
+  "duck-river-lower": {
+    "up": "headwater",
+    "down": "point:35.625761,-87.03484",
+    "expectDown": [35.617849, -87.032699],
+    "expectDownRadiusM": 3000,
+    "_note": "GEOFANOUT-1 trace-fix: YAML = 'Shelbyville to Columbia'. LIMITATION: the assigned HU8 unit 06040003 only covers the Duck from ~8.6 km above Columbia down to the Kentucky Lake mouth; the intended Shelbyville->Columbia reach (old 140.2 km) lies almost entirely in unit 06040002. Constrained to the graph-supported subset: the walk ends at Columbia (old downstream endpoint [-87.032699,35.617849]; down point pinned to first Duck node below it, 901 m). Recommend re-parenting this water to unit 06040002 or a cross-unit stitch lane."
+  }
+}

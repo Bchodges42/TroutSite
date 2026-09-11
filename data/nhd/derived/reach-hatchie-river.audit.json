@@ -2614,13 +2614,13 @@
   "throughLakes": [],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 57448,
-    "budgetBytes": 81920
+    "chosenToleranceM": 100,
+    "bytes": 17281,
+    "budgetBytes": 17694
   },
   "output": "data/nhd/derived/reach-hatchie-river.geojson"
 }

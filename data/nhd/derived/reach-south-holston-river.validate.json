@@ -1,22 +1,22 @@
 {
   "reach": "data/nhd/derived/reach-south-holston-river.geojson",
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
     {
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 46,
+        "edges": 44,
         "missingPids": [],
         "subgraphComponents": 1
       }
     },
     {
       "name": "continuity",
-      "pass": false,
+      "pass": true,
       "evidence": {
-        "worstJunctionM": 72,
-        "atPathIndex": 46,
+        "worstJunctionM": 0,
+        "atPathIndex": -1,
         "limitM": 50
       }
     },
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 4650,
+        "bytes": 4550,
         "budgetBytes": 81920
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:46:50.116Z"
+  "generatedAt": "2026-09-11T18:48:10.186Z"
 }

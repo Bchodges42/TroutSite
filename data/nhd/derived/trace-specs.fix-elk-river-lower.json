@@ -1,0 +1,9 @@
+{
+  "elk-river-lower": {
+    "up": "headwater",
+    "down": "point:34.81986,-87.158255",
+    "expectDown": [34.81986, -87.158255],
+    "expectDownRadiusM": 3000,
+    "_note": "GEOFANOUT-1 trace-fix: YAML = 'Elk River (Prospect to state line)'. down point = old AL state-line endpoint [-87.158255,34.81986] (graph node 0.2 m away; stops the over-run through Wheeler Reservoir). LIMITATION: up cut at Prospect [-86.995859,35.014052] is not expressible in the frozen grammar (up stops only at dam/headwater, no waterbody at Prospect), so the reach includes the 14.6 km of Elk between the unit line and Prospect."
+  }
+}

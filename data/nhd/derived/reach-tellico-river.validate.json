@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 18051,
-        "budgetBytes": 81920
+        "bytes": 11659,
+        "budgetBytes": 49152
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:46:51.570Z"
+  "generatedAt": "2026-09-11T19:12:25.808Z"
 }

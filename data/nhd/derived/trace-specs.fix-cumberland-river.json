@@ -1,0 +1,7 @@
+{
+  "cumberland-river": {
+    "up": "headwater",
+    "down": "mouth",
+    "_note": "GEOFANOUT-1 trace-fix: YAML = 'Nashville-to-Lake Barkley main stem across Davidson to Stewart counties'. LIMITATION: that intent spans multiple HU8 units; the assigned unit 05130202 graph supports [just below Old Hickory Dam [-86.655859,36.296641] (up: headwater, graph terminus at the dam)] down to the unit's downstream edge [-87.170445,36.311726] (down: mouth, terminal node on the main stem toward Lake Barkley). This spec makes that graph-supported main stem explicit; a cross-unit stitch (05130202 -> 05130203/05130204) is needed to reach Lake Barkley."
+  }
+}

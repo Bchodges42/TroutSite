@@ -2937,13 +2937,13 @@
   "throughLakes": [],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 43709,
-    "budgetBytes": 81920
+    "chosenToleranceM": 100,
+    "bytes": 14775,
+    "budgetBytes": 17694
   },
   "output": "data/nhd/derived/reach-wolf-river-west-tennessee.geojson"
 }

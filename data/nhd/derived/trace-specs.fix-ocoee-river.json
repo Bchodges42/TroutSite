@@ -1,0 +1,7 @@
+{
+  "ocoee-river": {
+    "up": "dam:Blue Ridge Lake",
+    "down": "point:35.10971,-84.56722",
+    "_note": "YAML: 'runs from Copperhill through Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head'. The current PASS trace is wrong identity: anchor (gauge 03559500 at the TN line) snapped 42.5 m onto the GA-side 'Toccoa River' artificial path (edge 132764897), so headwater/mouth produced a Toccoa-only 97.4 km reach ending at a GA headwater, excluding the entire catalog reach. down: point at graph node n304 [-84.567215,35.109705] = junction of the No.2 gorge-pool artificial path (wbarea 132765209) with the Lake Ocoee (Parksville) artificial path = Parksville Lake head exactly. up: frozen grammar allows only headwater|dam:<waterbody>; no waterbody exists between Copperhill and Blue Ridge Dam, so dam:Blue Ridge Lake (wbarea 132765392) is the closest expressible upstream bound - the reach carries ~50 km of the GA Toccoa pool above the YAML Copperhill terminus (grammar limitation, recorded here)."
+  }
+}
