@@ -1,0 +1,7 @@
+{
+  "tennessee-river": {
+    "up": "headwater",
+    "down": "mouth",
+    "_note": "GEOFANOUT-1 trace-fix: YAML = two TN main-stem reaches, reach A 'from the Holston/French Broad confluence at Knoxville ... through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools' toward the AL line at Shellmound, reach B Pickwick Lake to the KY line. LIMITATION: both intents span multiple HU8 units and cannot be traced in the assigned unit 06010201 graph alone. The frozen grammar fully honors the upstream terminus: up: headwater stops exactly at the Holston/French Broad confluence at Knoxville [-83.843629,35.956788] (matches YAML and old endpoint [-83.850716,35.958628]), traversing Fort Loudoun and Watts Bar pools. down: mouth ends at the unit's downstream edge [-84.779237,35.621317] (graph end toward Chickamauga pool). Cross-unit stitching would be needed for the Chickamauga/Nickajack continuation, the Shellmound end, and the disjoint Pickwick->KY-line reach."
+  }
+}

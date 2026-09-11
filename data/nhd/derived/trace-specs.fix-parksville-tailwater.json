@@ -1,0 +1,7 @@
+{
+  "parksville-tailwater": {
+    "up": "dam:Lake Ocoee",
+    "down": "mouth",
+    "_note": "Overrides base spec dam:Parksville Lake, which never fired: there is NO 'Parksville*' waterbody in any committed hu8/*.waterbodies.jsonl. The NHD gnis_name of the Parksville Lake pool (Ocoee No. 1 impoundment) is 'Lake Ocoee' (GNIS 01304751, wbarea 132765201, ap extent lat 35.068-35.118 lon -84.648..-84.567; its downstream boundary node n120 [-84.647821,35.094739] is Parksville Dam). YAML: 'the reach below Parksville Dam'. down: mouth terminates at node n104 [-84.657411,35.20643], the Ocoee/Hiwassee confluence (identical to the old ocoee-river feature downstream end and just past the old 14-part parksville-tailwater TIGER fragments, lat<=35.1899). Anchor (gauge 03564500) sits on the unnamed No.1-pool artificial path (wbarea 132765193) 7.9 m snap."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "hiwassee-river": {
+    "up": "dam:Apalachia Lake",
+    "down": "point:35.32775,-84.82673",
+    "_note": "YAML: 'from the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake'. up: Apalachia Lake (NHD gnis_name, wbarea 133012368) artificial path = Appalachia Dam seam = NC-line headwater end. down: point at graph node n557 [-84.826733,35.327748], the 06020002 boundary/terminal node of the Hiwassee path at the Chickamauga Lake pool (Judd Slough slackwater); old trace's 'mouth' walk appended two self-loop slough edges there (95.6 m seam, cycle-guard). Old feature upstream end [-84.2987,35.1686]."
+  }
+}

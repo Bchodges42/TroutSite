@@ -1,0 +1,11 @@
+{
+  "duck-river-tailwater": {
+    "up": "dam:Normandy Lake",
+    "down": "point:35.483468,-86.464221",
+    "expectUp": [35.465375, -86.246872],
+    "expectUpRadiusM": 600,
+    "expectDown": [35.482591, -86.462645],
+    "expectDownRadiusM": 3000,
+    "_note": "GEOFANOUT-1 trace-fix: YAML = Normandy Dam tailwater trout water; old asset ran dam [-86.246872,35.465375] to Shelbyville [-86.462645,35.482591] (43.3 km), where duck-river-lower picks up. down point is pinned to the first graph node below the old Shelbyville endpoint (old endpoint has no graph node within 150 m; this node is 173 m past it on the Duck main stem)."
+  }
+}

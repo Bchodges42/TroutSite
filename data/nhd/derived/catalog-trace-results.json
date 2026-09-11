@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T18:17:30.286Z",
+  "generatedAt": "2026-09-11T19:07:50.655Z",
   "budget": 81920,
   "results": {
     "salt-lick-creek": {
@@ -125,17 +125,15 @@
       "nhdName": "North Fork Holston River",
       "snapDistM": 0,
       "spec": {
-        "up": "headwater",
-        "down": "mouth"
+        "up": "point:36.7981,-81.9999",
+        "down": "point:36.5479,-82.6119"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 40314,
-      "lengthKm": 224.52,
-      "vertexCount": 1648,
-      "throughLakeIds": [
-        "cherokee-lake"
-      ],
+      "bytes": 17311,
+      "lengthKm": 106.88,
+      "vertexCount": 653,
+      "throughLakeIds": [],
       "error": null
     },
     "laurel-creek-johnson": {
@@ -742,14 +740,14 @@
       "nhdName": "Powell River",
       "snapDistM": 52,
       "spec": {
-        "up": "headwater",
+        "up": "point:36.5962,-83.3056",
         "down": "mouth"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 50451,
-      "lengthKm": 321.9,
-      "vertexCount": 2185,
+      "bytes": 25323,
+      "lengthKm": 176.52,
+      "vertexCount": 1070,
       "throughLakeIds": [
         "norris-lake"
       ],
@@ -776,21 +774,15 @@
       "nhdName": "Hiwassee River",
       "snapDistM": 152,
       "spec": {
-        "up": "headwater",
-        "down": "mouth"
+        "up": "dam:Apalachia Lake",
+        "down": "point:35.32775,-84.82673"
       },
-      "verdict": "FAIL",
-      "failures": [
-        "continuity"
-      ],
-      "bytes": 24992,
-      "lengthKm": 177.04,
-      "vertexCount": 990,
-      "throughLakeIds": [
-        "apalachia-lake",
-        "persimmon-lake",
-        "judd-slough"
-      ],
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 12008,
+      "lengthKm": 87.33,
+      "vertexCount": 447,
+      "throughLakeIds": [],
       "error": null
     },
     "ocoee-river": {
@@ -798,16 +790,16 @@
       "nhdName": "Toccoa River",
       "snapDistM": 50,
       "spec": {
-        "up": "headwater",
-        "down": "mouth"
+        "up": "dam:Blue Ridge Lake",
+        "down": "point:35.10971,-84.56722"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 16348,
-      "lengthKm": 97.36,
-      "vertexCount": 688,
+      "bytes": 9782,
+      "lengthKm": 59.4,
+      "vertexCount": 370,
       "throughLakeIds": [
-        "blue-ridge-lake"
+        "ocoee-number-three-lake"
       ],
       "error": null
     },
@@ -849,13 +841,13 @@
       "snapDistM": 76,
       "spec": {
         "up": "dam:Normandy Lake",
-        "down": "mouth"
+        "down": "point:35.483468,-86.464221"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 26745,
-      "lengthKm": 178.85,
-      "vertexCount": 1112,
+      "bytes": 7613,
+      "lengthKm": 43.96,
+      "vertexCount": 268,
       "throughLakeIds": [],
       "error": null
     },
@@ -865,18 +857,14 @@
       "snapDistM": 149,
       "spec": {
         "up": "headwater",
-        "down": "mouth"
+        "down": "point:35.996342,-87.838877"
       },
-      "verdict": "FAIL",
-      "failures": [
-        "continuity"
-      ],
-      "bytes": 37291,
-      "lengthKm": 207.34,
-      "vertexCount": 1474,
-      "throughLakeIds": [
-        "kentucky-lake"
-      ],
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 37205,
+      "lengthKm": 206.93,
+      "vertexCount": 1471,
+      "throughLakeIds": [],
       "error": null
     },
     "mississippi-river": {
@@ -1002,14 +990,14 @@
       "nhdName": "Red River",
       "snapDistM": 28,
       "spec": {
-        "up": "headwater",
+        "up": "point:36.6037,-87.0409",
         "down": "mouth"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 24806,
-      "lengthKm": 166.82,
-      "vertexCount": 1071,
+      "bytes": 9144,
+      "lengthKm": 68.76,
+      "vertexCount": 372,
       "throughLakeIds": [],
       "error": null
     },
@@ -1019,16 +1007,15 @@
       "snapDistM": 2,
       "spec": {
         "up": "dam:Boone Lake",
-        "down": "mouth"
+        "down": "point:36.498984,-82.513707"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 4521,
-      "lengthKm": 29.37,
-      "vertexCount": 147,
+      "bytes": 2972,
+      "lengthKm": 16.73,
+      "vertexCount": 82,
       "throughLakeIds": [
-        "fort-patrick-henry-lake",
-        "cherokee-lake"
+        "fort-patrick-henry-lake"
       ],
       "error": null
     },
@@ -1038,18 +1025,14 @@
       "snapDistM": 34,
       "spec": {
         "up": "dam:South Holston Lake",
-        "down": "mouth"
+        "down": "point:36.476948,-82.26315"
       },
-      "verdict": "FAIL",
-      "failures": [
-        "continuity"
-      ],
-      "bytes": 4634,
-      "lengthKm": 24.82,
-      "vertexCount": 149,
-      "throughLakeIds": [
-        "boone-lake"
-      ],
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 4550,
+      "lengthKm": 24.65,
+      "vertexCount": 146,
+      "throughLakeIds": [],
       "error": null
     },
     "laurel-fork-carter": {
@@ -1074,16 +1057,15 @@
       "snapDistM": 263,
       "spec": {
         "up": "headwater",
-        "down": "mouth"
+        "down": "point:36.341158,-82.126357"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 9403,
-      "lengthKm": 56.22,
-      "vertexCount": 344,
+      "bytes": 1600,
+      "lengthKm": 3.84,
+      "vertexCount": 24,
       "throughLakeIds": [
-        "wilbur-lake",
-        "boone-lake"
+        "wilbur-lake"
       ],
       "error": null
     },
@@ -1108,19 +1090,15 @@
       "nhdName": "Pigeon River",
       "snapDistM": 22,
       "spec": {
-        "up": "headwater",
+        "up": "dam:Waterville Lake",
         "down": "mouth"
       },
-      "verdict": "FAIL",
-      "failures": [
-        "continuity"
-      ],
-      "bytes": 16768,
-      "lengthKm": 68.24,
-      "vertexCount": 368,
-      "throughLakeIds": [
-        "waterville-lake"
-      ],
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 14345,
+      "lengthKm": 60.79,
+      "vertexCount": 329,
+      "throughLakeIds": [],
       "error": null
     },
     "middle-prong-little-pigeon": {
@@ -1144,14 +1122,14 @@
       "nhdName": "Nolichucky River",
       "snapDistM": 263,
       "spec": {
-        "up": "headwater",
+        "up": "point:36.072839,-82.416775",
         "down": "mouth"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 51495,
-      "lengthKm": 301.72,
-      "vertexCount": 2106,
+      "bytes": 27564,
+      "lengthKm": 165.2,
+      "vertexCount": 1092,
       "throughLakeIds": [
         "davy-crockett-lake",
         "douglas-lake"
@@ -1182,13 +1160,13 @@
       "snapDistM": 27,
       "spec": {
         "up": "headwater",
-        "down": "mouth"
+        "down": "confluence:Clinch River"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 2137,
-      "lengthKm": 5.74,
-      "vertexCount": 50,
+      "bytes": 3151,
+      "lengthKm": 11.67,
+      "vertexCount": 92,
       "throughLakeIds": [],
       "error": null
     },
@@ -1247,19 +1225,15 @@
       "nhdName": "Ocoee River",
       "snapDistM": 52,
       "spec": {
-        "up": "dam:Parksville Lake",
+        "up": "dam:Lake Ocoee",
         "down": "mouth"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 24981,
-      "lengthKm": 156.27,
-      "vertexCount": 1037,
-      "throughLakeIds": [
-        "lake-ocoee",
-        "ocoee-number-three-lake",
-        "blue-ridge-lake"
-      ],
+      "bytes": 3545,
+      "lengthKm": 19.38,
+      "vertexCount": 107,
+      "throughLakeIds": [],
       "error": null
     },
     "boiling-fork-creek": {
@@ -1285,14 +1259,14 @@
       "nhdName": "Elk River",
       "snapDistM": 31,
       "spec": {
-        "up": "headwater",
-        "down": "mouth"
+        "up": "point:35.014052,-86.995859",
+        "down": "point:34.81986,-87.158255"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 8641,
-      "lengthKm": 71.54,
-      "vertexCount": 295,
+      "bytes": 7005,
+      "lengthKm": 55.02,
+      "vertexCount": 233,
       "throughLakeIds": [
         "wheeler-reservoir"
       ],
@@ -1303,17 +1277,15 @@
       "nhdName": "Duck River",
       "snapDistM": 230,
       "spec": {
-        "up": "headwater",
+        "up": "point:35.483468,-86.464221",
         "down": "mouth"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 26147,
-      "lengthKm": 217.17,
-      "vertexCount": 972,
-      "throughLakeIds": [
-        "kentucky-lake"
-      ],
+      "bytes": 20163,
+      "lengthKm": 142.67,
+      "vertexCount": 848,
+      "throughLakeIds": [],
       "error": null
     },
     "little-buffalo-river": {
@@ -1353,17 +1325,15 @@
       "nhdName": "Big South Fork Cumberland River",
       "snapDistM": 56,
       "spec": {
-        "up": "headwater",
-        "down": "mouth"
+        "up": "confluence:Clear Fork",
+        "down": "point:36.5936,-84.6072"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 31939,
-      "lengthKm": 216.19,
-      "vertexCount": 1273,
-      "throughLakeIds": [
-        "lake-cumberland"
-      ],
+      "bytes": 5878,
+      "lengthKm": 33.82,
+      "vertexCount": 199,
+      "throughLakeIds": [],
       "error": null
     },
     "barren-fork-river": {
@@ -1404,15 +1374,13 @@
       "snapDistM": 2,
       "spec": {
         "up": "headwater",
-        "down": "mouth"
+        "down": "point:36.097941,-85.826276"
       },
-      "verdict": "FAIL",
-      "failures": [
-        "continuity"
-      ],
-      "bytes": 28865,
-      "lengthKm": 220.74,
-      "vertexCount": 1204,
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 24090,
+      "lengthKm": 177.21,
+      "vertexCount": 1009,
       "throughLakeIds": [
         "center-hill-lake"
       ],
@@ -1555,15 +1523,16 @@
       "nhdName": "French Broad River",
       "snapDistM": 28,
       "spec": {
-        "up": "dam:Douglas Lake",
+        "up": "headwater",
         "down": "mouth"
       },
       "verdict": "PASS",
       "failures": [],
-      "bytes": 7212,
-      "lengthKm": 52.39,
-      "vertexCount": 249,
+      "bytes": 12791,
+      "lengthKm": 115.04,
+      "vertexCount": 475,
       "throughLakeIds": [
+        "douglas-lake",
         "fort-loudoun-lake"
       ],
       "error": null
@@ -1607,21 +1576,16 @@
       "nhdName": "Little Tennessee River",
       "snapDistM": 0,
       "spec": {
-        "up": "headwater",
-        "down": "mouth"
+        "up": "dam:Chilhowee Lake",
+        "down": "point:35.777905,-84.259766"
       },
-      "verdict": "FAIL",
-      "failures": [
-        "continuity"
-      ],
-      "bytes": 15610,
-      "lengthKm": 92.84,
-      "vertexCount": 460,
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 7532,
+      "lengthKm": 48.66,
+      "vertexCount": 251,
       "throughLakeIds": [
-        "tellico-lake",
-        "chilhowee-lake",
-        "calderwood-lake",
-        "watts-bar-lake"
+        "tellico-lake"
       ],
       "error": null
     },

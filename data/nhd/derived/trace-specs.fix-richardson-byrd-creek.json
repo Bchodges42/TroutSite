@@ -1,0 +1,7 @@
+{
+  "richardson-byrd-creek": {
+    "up": "headwater",
+    "down": "confluence:Clinch River",
+    "_note": "GEOFANOUT-1 fix: YAML says the stocked Hancock County creek 'runs down to the upper Clinch River above the Norris pool'. NHD names the upper stem Byrd Creek (anchor, 27 m) and the lower stem Richardson Creek; default down mouth stopped at the Byrd->Richardson name change (5.7 km, mid-system). down confluence:Clinch River walks Byrd Creek through lower Richardson Creek to its Clinch River mouth. Richardson's separate upstream branch (~9.7 km, one arm of the old shattered 7-part 21.1 km feature) is not coverable by a single linear trace."
+  }
+}

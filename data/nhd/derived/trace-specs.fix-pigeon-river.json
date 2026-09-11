@@ -1,0 +1,7 @@
+{
+  "pigeon-river": {
+    "up": "dam:Waterville Lake",
+    "down": "mouth",
+    "_note": "YAML: 'runs the Hartford corridor from the NC line down to the Douglas Lake arm' driven by 'upstream generation at Waterville (NC)'. up: dam:Waterville Lake (wbarea {5E2FAC0B-E513-4C8A-9255-3A317C327F02}, fcode 39012) stops at the Waterville Dam node at the NC line; old feature upstream end [-83.1041,35.778] is 3.3 m from graph node n955. Unconstrained 'headwater' ran deep into NC (Canton) and cycled (cycle-guard at n2386, self-loop pair with 69.1 m seam = the whole continuity failure). down: mouth already terminates at graph node n373 [-83.196788,36.024652], 53 m from the old feature downstream end at the Douglas Lake arm head."
+  }
+}

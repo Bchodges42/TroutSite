@@ -188,6 +188,26 @@ function walk(dir, spec) {
         };
       }
     }
+    // v2 (integration, owner-approved): upstream point/confluence stops mirror the
+    // downstream rules exactly — same 150 m node snap / exact-name candidate match.
+    // Behavior is unchanged unless a trace spec uses these kinds.
+    if (dir === 'up' && kind === 'point') {
+      const [plat, plon] = value.split(',').map(Number);
+      if (haversineM(nodes[nextNode], [plon, plat]) <= 150) {
+        return { path, reason: 'point', node: nextNode };
+      }
+    }
+    if (dir === 'up' && kind === 'confluence') {
+      const hit = open.filter((c) => edges[c].name.toLowerCase() === value.toLowerCase());
+      if (hit.length > 0) {
+        return {
+          path,
+          reason: 'confluence',
+          node: nextNode,
+          enteredNames: hit.map((c) => edges[c].name),
+        };
+      }
+    }
     if (dir === 'down' && kind === 'point') {
       const [plat, plon] = value.split(',').map(Number);
       if (haversineM(nodes[nextNode], [plon, plat]) <= 150) {

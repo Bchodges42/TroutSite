@@ -1,0 +1,33 @@
+{
+  "_comment": "Wave-3 border/upper cuts using the owner-approved engine v2 upstream point/confluence stops. Overrides earlier fragments (sorts after trace-specs.fix-*).",
+  "north-fork-holston-river": {
+    "up": "point:36.7981,-81.9999",
+    "down": "point:36.5479,-82.6119"
+  },
+  "powell-river": {
+    "up": "point:36.5962,-83.3056"
+  },
+  "nolichucky-river": {
+    "up": "point:36.072839,-82.416775"
+  },
+  "elk-river-lower": {
+    "up": "point:35.014052,-86.995859",
+    "down": "point:34.81986,-87.158255"
+  },
+  "south-fork-cumberland": {
+    "up": "confluence:Clear Fork",
+    "down": "point:36.5936,-84.6072"
+  },
+  "red-river-clarksville": {
+    "up": "point:36.6037,-87.0409"
+  },
+  "duck-river-lower": {
+    "unit": "06040002",
+    "anchor": [
+      -86.73307,
+      35.5823
+    ],
+    "up": "point:35.483468,-86.464221",
+    "_note": "labelAnchor sits 3km past the unit edge; anchor override = mid-corridor vertex; down ends at 06040002 terminal node 3km NE of Columbia (closest graph support to the YAML Shelbyville→Columbia intent)"
+  }
+}

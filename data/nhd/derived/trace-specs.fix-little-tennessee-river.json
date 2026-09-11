@@ -1,0 +1,7 @@
+{
+  "little-tennessee-river": {
+    "up": "dam:Chilhowee Lake",
+    "down": "point:35.777905,-84.259766",
+    "_note": "YAML: 'The 33-mile dam-to-dam corridor' = Chilhowee Dam (Little T RM 33) to Tellico Dam; 'the trout-stocked upper water is the reach below Chilhowee Dam'. up: dam:Chilhowee Lake (wbarea 112272657) stops at Chilhowee Dam node. down: point at graph node n441 [-84.259766,35.777904] = old feature downstream end at the Tellico Dam mouth (Tennessee River, Fort Loudoun pool); unconstrained 'mouth' overran through Fort Loudoun/Watts Bar (through watts-bar-lake, terminal n435). Avoids the 55.1 m junction at [-83.9362,35.4483] in the NC Fontana tailwater above Calderwood Lake (pathIndex 74), which is outside this corridor."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "buffalo-river": {
+    "up": "headwater",
+    "down": "point:35.996342,-87.838877",
+    "_note": "GEOFANOUT-1 fix: YAML defines the Buffalo as a north-flowing Duck River tributary; down point is the old asset's downstream terminus at the Duck River confluence (graph node n98, 63 m). Default 'mouth' overran the name change into the Duck/Kentucky Lake pool (cycle-guard, 207.3 km, through kentucky-lake). Up headwater follows name-continuity to the North Fork Buffalo head (old asset ended at the South Fork head, ~4.7 km shorter; longest-flow-path rule governs)."
+  }
+}

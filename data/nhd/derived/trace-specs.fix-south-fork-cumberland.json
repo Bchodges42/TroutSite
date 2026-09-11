@@ -1,0 +1,9 @@
+{
+  "south-fork-cumberland": {
+    "up": "headwater",
+    "down": "point:36.5936,-84.6072",
+    "expectDown": [36.5936, -84.6072],
+    "expectDownRadiusM": 3000,
+    "_note": "GEOFANOUT-1 trace-fix: YAML = 'Tennessee reach ... from the New River/Clear Fork confluence country up to the Kentucky line'. down point = old KY-line endpoint [-84.6072,36.5936] (graph node 17 m away; stops the over-run into Kentucky/Lake Cumberland). LIMITATION: up cut at the New River/Clear Fork confluence [-84.6236,36.4243] is not expressible in the frozen grammar (up stops only at dam/headwater; no waterbody at the confluence), so the reach includes the ~90 km in-unit New/Clear Fork headwater extension. Recommend an up:confluence/up:point engine extension or a manual clip."
+  }
+}
