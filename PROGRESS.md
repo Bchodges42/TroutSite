@@ -1,3 +1,36 @@
+## SESSION GEOMAP — statewide network map, on-demand per-cluster loading (2026-09-11)
+
+Branch `geomap/statewide-network` (base `integration` @ 56135fd), clone
+`/Users/ben/Downloads/TroutSite-network-map`. Replaces the single-region Caney Fork PROOF
+(`network-caneyfork.geojson` + static `network` source/`network-minor` layer — both deleted)
+with `networkClusters.ts`: on moveend at zoom ≥ 9.4 the loader fetches
+`/atlas/network/manifest.json` (schema `trout/nhd-network/1`, SESSION A's contract), loads every
+cluster whose padded bbox intersects the viewport (`addSource('network-<id>')` +
+`addLayer('network-minor-<id>')` with the proof layer's exact paint, minzoom 9.6, inserted
+before `rivers-casing` so catalog rivers paint on top), fetches each file once per page session,
+and releases source+layer when a loaded cluster leaves the padded viewport at zoom ≥ 8.5.
+Hover tooltip now iterates every active `network-minor-*` layer (creeks stay non-selectable —
+never in the hit layers). A missing/invalid manifest disables the feature (fail-closed).
+Note: `networkClusters.ts` belongs to the map feature dir, so when SESSION A's branch lands,
+only the `public/atlas/network/**` data files merge from their lane; no code conflict expected
+elsewhere.
+
+- SESSION A's manifest was NOT on my base: developed against a hand-written 2-cluster mock
+  (spatial split of the proof data, `atlas/network/{manifest,0513,0601}.geojson`) — **mock files
+  deliberately left UNTRACKED** (data belongs to SESSION A's lane; do not commit from here).
+- Verified: typecheck clean; web tests 248 pass / 1 pre-existing skip (239 baseline + 9 new
+  manifest/intersection unit tests in `test/network-clusters.test.ts`); `pnpm --filter @trout/web
+  build` + size budget OK (12.81/25 MB — dropping the 1.8 MB proof file shrinks precache;
+  `atlas/*` precache is non-recursive so cluster files stay runtime-fetched).
+- Browser evidence (DEV_FIXTURES=1, 1440×900): `?river=caney-fork-river` z10.5–11.6 creeks render
+  (951/313 features) and hover shows names ("Mulherrin Creek", "Hogan Creek" screenshots); state
+  z6 renders ZERO network features; hard reload @ z11.2 fetched ONLY `network/0513.geojson`
+  (single-cluster on-demand); pan east z10 → 1,173 rendered; pan back → 1,331 with zero refetches
+  (`fetchedOnce: true` seam); Memphis (no cluster) → both released, 0 rendered; `?all=1&species=all`
+  works (1,081 rendered); fiche + flow arrows + lakes + desktop toolbar intact; layer order
+  verified `network-minor-*` immediately beneath `rivers-casing`; creek-only click leaves
+  selection/URL unchanged.
+
 ## Punch-list closeout (GEOVALID-2 consolidation, later on 2026-09-11)
 
 Resolved during consolidation: parksville-tailwater (NHD name is Lake Ocoee — re-traced

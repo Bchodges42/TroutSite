@@ -106,9 +106,9 @@ export function atlasStyle(
         type: 'geojson',
         data: EMPTY_FLOW_SOURCE,
       } as GeoJSONSourceSpecification,
-      // PROOF (GEOVALID-2): full NHD named network for the Caney Fork region —
-      // zoom-gated minor-water layer under evaluation. Temporary, proof-only.
-      network: { type: 'geojson', data: '/atlas/network-caneyfork.geojson' },
+      // Named-creek network clusters are added at runtime per viewport by
+      // networkClusters.ts (on-demand, zoom-gated) — deliberately absent here
+      // so the base style never loads statewide creek data up front.
     },
     layers: [
       {
@@ -316,22 +316,10 @@ export function atlasStyle(
           ],
         },
       },
-      // PROOF (GEOVALID-2): zoom-gated named-creek network (Caney Fork region).
-      // Invisible below zoom 9.6 and fades in — the state view stays clean.
-      {
-        id: 'network-minor',
-        type: 'line' as const,
-        source: 'network',
-        minzoom: 9.6,
-        layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: {
-          'line-color': '#5f8fb8',
-          'line-opacity': ['interpolate', ['linear'], ['zoom'], 9.6, 0, 10.8, 0.95],
-          'line-width': ['interpolate', ['linear'], ['zoom'], 9.6, 0.8, 13.5, 1.8],
-        },
-      },
       // Rivers — casing (paper-tone halo) renders beneath the water corridor so
       // bends read clearly against the ground. LINESTRING ONLY — see note above.
+      // On-demand network-minor-* creek layers insert immediately before this
+      // layer (see networkClusters.ts), keeping catalog rivers on top.
       {
         id: 'rivers-casing',
         type: 'line' as const,

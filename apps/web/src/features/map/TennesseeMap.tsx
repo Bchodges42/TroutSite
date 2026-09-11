@@ -4,6 +4,7 @@ import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&ur
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Link } from 'react-router-dom';
 import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
+import { NETWORK_LAYER_PREFIX, initNetworkClusters } from './networkClusters';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
@@ -445,9 +446,13 @@ export function TennesseeMap(props: Props) {
       hovered = null;
       map.getCanvas().style.cursor = '';
     });
-    // PROOF (GEOVALID-2): name tooltip for the zoom-gated minor-water network.
-    // Hover-only — the network layer is deliberately absent from the selection
-    // hit layers, so creeks never capture clicks meant for catalog waters.
+    // PROOF (GEOVALID-2) replacement: statewide named-creek network, loaded
+    // per-cluster on demand (see networkClusters.ts). The creeks stay
+    // NON-SELECTABLE — cluster layers are never in the selection hit layers;
+    // the tooltip below is hover-only.
+    const disposeNetworkClusters = initNetworkClusters(map);
+    // Name tooltip for the zoom-gated minor-water network. Iterates every
+    // active cluster layer (network-minor-*) so hover works statewide.
     const creekTip = document.createElement('div');
     creekTip.setAttribute('data-proof', 'network-hover');
     creekTip.style.cssText =
@@ -456,17 +461,29 @@ export function TennesseeMap(props: Props) {
       'padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translate(10px,-50%)';
     el.appendChild(creekTip);
     map.on('mousemove', (e) => {
-      if (!map.getLayer('network-minor')) {
+      const layers = (map.getStyle()?.layers ?? [])
+        .map((l) => l.id)
+        .filter((id): id is string => Boolean(id) && id.startsWith(NETWORK_LAYER_PREFIX));
+      if (!layers.length) {
         creekTip.style.display = 'none';
         return;
       }
-      const hitNetwork = map.queryRenderedFeatures(
-        [
-          [e.point.x - 4, e.point.y - 4],
-          [e.point.x + 4, e.point.y + 4],
-        ],
-        { layers: ['network-minor'] },
-      )[0];
+      // A style swap can drop a cluster layer between the enumeration above
+      // and this query; maplibre throws on missing layers, and hover must
+      // never be the thing that breaks the map.
+      let hitNetwork: maplibregl.MapGeoJSONFeature | undefined;
+      try {
+        hitNetwork = map.queryRenderedFeatures(
+          [
+            [e.point.x - 4, e.point.y - 4],
+            [e.point.x + 4, e.point.y + 4],
+          ],
+          { layers },
+        )[0];
+      } catch {
+        creekTip.style.display = 'none';
+        return;
+      }
       const name = hitNetwork?.properties?.name;
       if (!name) {
         creekTip.style.display = 'none';
@@ -496,6 +513,7 @@ export function TennesseeMap(props: Props) {
       window.clearTimeout(watchdog);
       ro.disconnect();
       creekTip.remove();
+      disposeNetworkClusters();
       map.remove();
       mapRef.current = null;
     };
