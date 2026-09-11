@@ -1,0 +1,133 @@
+{
+  "waterId": "richardson-byrd-creek",
+  "graphPath": "data/nhd/graphs/06010205.graph.json",
+  "hu8": "06010205",
+  "anchorSnap": {
+    "distM": 0.2370482823786211,
+    "t": 0.07151244509517049,
+    "edgeIdx": 2663,
+    "seg": 7,
+    "point": [
+      -83.12164735756222,
+      36.49353014772182
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      3249,
+      2805,
+      2978,
+      1343,
+      1984,
+      3425,
+      3108,
+      3332,
+      779,
+      2717
+    ],
+    "reason": "headwater",
+    "node": "n1558",
+    "edgePids": [
+      "44771447",
+      "44771442",
+      "44771408",
+      "44771410",
+      "44771590",
+      "44771652",
+      "44771722",
+      "44771764",
+      "44771816",
+      "44772204"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [],
+    "reason": "name-change",
+    "node": "n1520",
+    "enteredNames": [
+      "Richardson Creek"
+    ],
+    "edgePids": []
+  },
+  "pathEdges": [
+    {
+      "pid": "44772204",
+      "dir": "up"
+    },
+    {
+      "pid": "44771816",
+      "dir": "up"
+    },
+    {
+      "pid": "44771764",
+      "dir": "up"
+    },
+    {
+      "pid": "44771722",
+      "dir": "up"
+    },
+    {
+      "pid": "44771652",
+      "dir": "up"
+    },
+    {
+      "pid": "44771590",
+      "dir": "up"
+    },
+    {
+      "pid": "44771410",
+      "dir": "up"
+    },
+    {
+      "pid": "44771408",
+      "dir": "up"
+    },
+    {
+      "pid": "44771442",
+      "dir": "up"
+    },
+    {
+      "pid": "44771447",
+      "dir": "up"
+    },
+    {
+      "pid": "44771444",
+      "dir": "anchor"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1556",
+      "currentEdge": "44771590",
+      "candidates": [
+        {
+          "pid": "44771618",
+          "name": "Valley Creek",
+          "km": 0.7611996334496306
+        },
+        {
+          "pid": "44771652",
+          "name": "Byrd Creek",
+          "km": 0.3312126785307472
+        }
+      ],
+      "chosen": "44771652",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2136,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-richardson-byrd-creek.geojson"
+}

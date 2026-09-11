@@ -1,0 +1,1273 @@
+{
+  "generatedAt": "2026-09-11T18:08:07.904Z",
+  "waters": {
+    "barren-fork-river": {
+      "anchor": [
+        -85.7772,
+        35.6752
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130107",
+      "snapDistM": 0,
+      "nhdName": "Barren Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "beaverdam-creek": {
+      "anchor": [
+        -81.87255,
+        36.56604
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010102",
+      "snapDistM": 37,
+      "nhdName": "Beaverdam Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "big-rock-creek": {
+      "anchor": [
+        -86.7629,
+        35.5266
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040002",
+      "snapDistM": 510,
+      "nhdName": "Big Rock Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "boiling-fork-creek": {
+      "anchor": [
+        -86.031,
+        35.1552
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06030003",
+      "snapDistM": 27,
+      "nhdName": "Boiling Fork Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "boone-tailwater": {
+      "anchor": [
+        -82.4379,
+        36.4407
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010102",
+      "snapDistM": 2,
+      "nhdName": "South Fork Holston River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "bradley-creek": {
+      "anchor": [
+        -85.9849,
+        35.3972
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06030003",
+      "snapDistM": 2,
+      "nhdName": "Bradley Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "brush-creek-cocke": {
+      "anchor": [
+        -82.9345,
+        35.9587
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010105",
+      "snapDistM": 83,
+      "nhdName": "Brush Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "buffalo-creek-grainger": {
+      "anchor": [
+        -83.564968,
+        36.22273
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010104",
+      "snapDistM": 36,
+      "nhdName": "Buffalo Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "buffalo-river": {
+      "anchor": [
+        -87.8408,
+        35.5405
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040004",
+      "snapDistM": 149,
+      "nhdName": "Buffalo River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "calfkiller-river": {
+      "anchor": [
+        -85.4674,
+        35.9265
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130108",
+      "snapDistM": 57,
+      "nhdName": "Calfkiller River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "cane-creek": {
+      "anchor": [
+        -85.324608,
+        35.592064
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130108",
+      "snapDistM": 62,
+      "nhdName": "Cane Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "caney-fork-river": {
+      "anchor": [
+        -85.8272,
+        36.0978
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130108",
+      "snapDistM": 54,
+      "nhdName": "Caney Fork",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "caney-fork-upper": {
+      "anchor": [
+        -85.3126,
+        35.8358
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130108",
+      "snapDistM": 2,
+      "nhdName": "Caney Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "charles-creek": {
+      "anchor": [
+        -85.8594,
+        35.7468
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130107",
+      "snapDistM": 321,
+      "nhdName": "Charles Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "citico-creek": {
+      "anchor": [
+        -84.1007,
+        35.511
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010204",
+      "snapDistM": 68,
+      "nhdName": "Citico Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "clear-creek-obed": {
+      "anchor": [
+        -84.7183,
+        36.1031
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010208",
+      "snapDistM": 23,
+      "nhdName": "Clear Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "clear-fork": {
+      "anchor": [
+        -84.6302,
+        36.3883
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130104",
+      "snapDistM": 15,
+      "nhdName": "Clear Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "clinch-river": {
+      "anchor": [
+        -84.0821,
+        36.2156
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010207",
+      "snapDistM": 9,
+      "nhdName": "Clinch River",
+      "altUnits": [
+        "06010205"
+      ],
+      "hasSpec": true
+    },
+    "collins-river": {
+      "anchor": [
+        -85.7318,
+        35.7083
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130107",
+      "snapDistM": 13,
+      "nhdName": "Collins River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "cosby-creek": {
+      "anchor": [
+        -83.220629,
+        35.845471
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010106",
+      "snapDistM": 44,
+      "nhdName": "Cosby Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "cumberland-river": {
+      "anchor": [
+        -86.7128,
+        36.2372
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130202",
+      "snapDistM": 172,
+      "nhdName": "Cumberland River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "daddys-creek": {
+      "anchor": [
+        -84.8225,
+        35.9977
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010208",
+      "snapDistM": 0,
+      "nhdName": "Daddys Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "doe-creek-johnson": {
+      "anchor": [
+        -81.96319,
+        36.402389
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010103",
+      "snapDistM": 51,
+      "nhdName": "Doe Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "doe-river": {
+      "anchor": [
+        -82.2101,
+        36.3445
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010103",
+      "snapDistM": 113,
+      "nhdName": "Doe River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "duck-river-lower": {
+      "anchor": [
+        -87.0323,
+        35.6181
+      ],
+      "anchorSource": "gauge",
+      "unit": "06040003",
+      "snapDistM": 230,
+      "nhdName": "Duck River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "duck-river-tailwater": {
+      "anchor": [
+        -86.4626,
+        35.4829
+      ],
+      "anchorSource": "gauge",
+      "unit": "06040002",
+      "snapDistM": 76,
+      "nhdName": "Duck River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "east-fork-shoal-creek": {
+      "anchor": [
+        -87.0747,
+        35.0579
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06030004",
+      "snapDistM": 151,
+      "nhdName": "East Fork Shoal Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "east-fork-stones-river": {
+      "anchor": [
+        -86.3339,
+        35.9184
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130203",
+      "snapDistM": 362,
+      "nhdName": "East Fork Stones River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "elk-river": {
+      "anchor": [
+        -86.2811,
+        35.1923
+      ],
+      "anchorSource": "gauge",
+      "unit": "06030003",
+      "snapDistM": 38,
+      "nhdName": "Elk River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "elk-river-lower": {
+      "anchor": [
+        -86.9947,
+        35.0142
+      ],
+      "anchorSource": "gauge",
+      "unit": "06030004",
+      "snapDistM": 31,
+      "nhdName": "Elk River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "emory-river": {
+      "anchor": [
+        -84.558,
+        35.9831
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010208",
+      "snapDistM": 63,
+      "nhdName": "Emory River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "fletchers-fork": {
+      "anchor": [
+        -87.5026,
+        36.5747
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130206",
+      "snapDistM": 72,
+      "nhdName": "Fletchers Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "forge-creek-johnson": {
+      "anchor": [
+        -81.763836,
+        36.448508
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010103",
+      "snapDistM": 13,
+      "nhdName": "Forge Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "french-broad-river": {
+      "anchor": [
+        -83.5388,
+        35.9612
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010107",
+      "snapDistM": 28,
+      "nhdName": "French Broad River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "ft-patrick-henry-tailwater": {
+      "anchor": [
+        -82.509,
+        36.4982
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010102",
+      "snapDistM": 17,
+      "nhdName": "South Fork Holston River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "gap-creek-claiborne": {
+      "anchor": [
+        -83.674653,
+        36.56524
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010206",
+      "snapDistM": 56,
+      "nhdName": "Gap Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "goforth-creek": {
+      "anchor": [
+        -84.50339,
+        35.096613
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06020003",
+      "snapDistM": 10,
+      "nhdName": "Goforth Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "greasy-creek-polk": {
+      "anchor": [
+        -84.516562,
+        35.141647
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06020003",
+      "snapDistM": 1,
+      "nhdName": "Greasy Creek",
+      "altUnits": [
+        "06020002"
+      ],
+      "hasSpec": false
+    },
+    "gulf-fork-big-creek": {
+      "anchor": [
+        -83.090827,
+        35.827203
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010105",
+      "snapDistM": 70,
+      "nhdName": "Gulf Fork Big Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "harpeth-river": {
+      "anchor": [
+        -86.8655,
+        35.9208
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130204",
+      "snapDistM": 68,
+      "nhdName": "Harpeth River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "hatchie-river": {
+      "anchor": [
+        -89.5441,
+        35.6081
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "08010208",
+      "snapDistM": 8,
+      "nhdName": "Hatchie River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "hiwassee-river": {
+      "anchor": [
+        -84.5025,
+        35.1883
+      ],
+      "anchorSource": "gauge",
+      "unit": "06020002",
+      "snapDistM": 152,
+      "nhdName": "Hiwassee River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "holston-river": {
+      "anchor": [
+        -83.31355,
+        36.2814
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010104",
+      "snapDistM": 50,
+      "nhdName": "Holston River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "horse-creek-greene": {
+      "anchor": [
+        -82.6571,
+        36.1587
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010108",
+      "snapDistM": 6,
+      "nhdName": "Horse Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "hurricane-creek": {
+      "anchor": [
+        -87.6607,
+        36.0301
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040003",
+      "snapDistM": 115,
+      "nhdName": "Hurricane Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "indian-creek-claiborne": {
+      "anchor": [
+        -83.52688,
+        36.62263
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010206",
+      "snapDistM": 85,
+      "nhdName": "Indian Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "laurel-creek-johnson": {
+      "anchor": [
+        -81.753822,
+        36.587929
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010102",
+      "snapDistM": 0,
+      "nhdName": "Laurel Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "laurel-fork-carter": {
+      "anchor": [
+        -82.140368,
+        36.279079
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010103",
+      "snapDistM": 101,
+      "nhdName": "Laurel Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "leconte-creek": {
+      "anchor": [
+        -83.509013,
+        35.698113
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010107",
+      "snapDistM": 15,
+      "nhdName": "Le Conte Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "little-buffalo-river": {
+      "anchor": [
+        -87.5093,
+        35.3761
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040004",
+      "snapDistM": 89,
+      "nhdName": "Little Buffalo River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "little-pigeon-river": {
+      "anchor": [
+        -83.5775,
+        35.8785
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010107",
+      "snapDistM": 138,
+      "nhdName": "Little Pigeon River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "little-river": {
+      "anchor": [
+        -83.7113,
+        35.6645
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010201",
+      "snapDistM": 23,
+      "nhdName": "Little River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "little-sequatchie-river": {
+      "anchor": [
+        -85.598403,
+        35.180141
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06020004",
+      "snapDistM": 91,
+      "nhdName": "Little Sequatchie River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "little-tennessee-river": {
+      "anchor": [
+        -84.13714,
+        35.56794
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010204",
+      "snapDistM": 0,
+      "nhdName": "Little Tennessee River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "little-west-fork-creek": {
+      "anchor": [
+        -87.383,
+        36.5954
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130206",
+      "snapDistM": 356,
+      "nhdName": "Little West Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "mccutcheon-creek": {
+      "anchor": [
+        -86.9237,
+        35.757
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040003",
+      "snapDistM": 62,
+      "nhdName": "McCutcheon Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "middle-prong-little-pigeon": {
+      "anchor": [
+        -83.338255,
+        35.703526
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010107",
+      "snapDistM": 7,
+      "nhdName": "Middle Prong Little Pigeon River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "mill-creek-overton": {
+      "anchor": [
+        -85.4867,
+        36.4824
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130106",
+      "snapDistM": 34,
+      "nhdName": "Mill Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "mississippi-river": {
+      "anchor": [
+        -89.659,
+        35.8993
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "08010100",
+      "snapDistM": 1874,
+      "nhdName": "Mississippi River",
+      "altUnits": [
+        "08010202"
+      ],
+      "hasSpec": false
+    },
+    "mossy-creek-jefferson": {
+      "anchor": [
+        -83.483734,
+        36.123263
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010104",
+      "snapDistM": 328,
+      "nhdName": "Mossy Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "new-river": {
+      "anchor": [
+        -84.5547,
+        36.3855
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130104",
+      "snapDistM": 39,
+      "nhdName": "New River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "nolichucky-river": {
+      "anchor": [
+        -82.4552,
+        36.1782
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010108",
+      "snapDistM": 263,
+      "nhdName": "Nolichucky River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "north-chickamauga-creek": {
+      "anchor": [
+        -85.2152,
+        35.2112
+      ],
+      "anchorSource": "gauge",
+      "unit": "06020001",
+      "snapDistM": 100,
+      "nhdName": "North Chickamauga Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "north-fork-holston-river": {
+      "anchor": [
+        -82.58016,
+        36.60975
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010101",
+      "snapDistM": 0,
+      "nhdName": "North Fork Holston River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "north-prong-barren-fork": {
+      "anchor": [
+        -85.9551,
+        35.6913
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130107",
+      "snapDistM": 106,
+      "nhdName": "North Prong Barren Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "obed-river": {
+      "anchor": [
+        -84.6703,
+        36.0815
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010208",
+      "snapDistM": 165,
+      "nhdName": "Obed River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "obey-river": {
+      "anchor": [
+        -85.4552,
+        36.5373
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130105",
+      "snapDistM": 59,
+      "nhdName": "Obey River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "obion-river": {
+      "anchor": [
+        -89.6413,
+        36.007
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "08010202",
+      "snapDistM": 184,
+      "nhdName": "Obion River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "ocoee-river": {
+      "anchor": [
+        -84.3766,
+        34.9915
+      ],
+      "anchorSource": "gauge",
+      "unit": "06020003",
+      "snapDistM": 50,
+      "nhdName": "Toccoa River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "parksville-tailwater": {
+      "anchor": [
+        -84.6544,
+        35.0969
+      ],
+      "anchorSource": "gauge",
+      "unit": "06020003",
+      "snapDistM": 52,
+      "nhdName": "Ocoee River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "pigeon-river": {
+      "anchor": [
+        -83.1743,
+        35.9606
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010106",
+      "snapDistM": 22,
+      "nhdName": "Pigeon River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "pine-creek-dekalb": {
+      "anchor": [
+        -85.8186,
+        35.9104
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130108",
+      "snapDistM": 5,
+      "nhdName": "Pine Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "piney-river-rhea": {
+      "anchor": [
+        -84.85858,
+        35.69952
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010201",
+      "snapDistM": 45,
+      "nhdName": "Piney River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "powell-river": {
+      "anchor": [
+        -83.63,
+        36.5425
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010206",
+      "snapDistM": 52,
+      "nhdName": "Powell River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "puncheon-camp-creek": {
+      "anchor": [
+        -83.521001,
+        36.325955
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010205",
+      "snapDistM": 6,
+      "nhdName": "Puncheon Camp Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "red-river-clarksville": {
+      "anchor": [
+        -87.1419,
+        36.5547
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130206",
+      "snapDistM": 28,
+      "nhdName": "Red River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "reedy-creek": {
+      "anchor": [
+        -82.5729,
+        36.5523
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010102",
+      "snapDistM": 46,
+      "nhdName": "Reedy Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "richardson-byrd-creek": {
+      "anchor": [
+        -83.12165,
+        36.49353
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010205",
+      "snapDistM": 27,
+      "nhdName": "Byrd Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "roaring-fork": {
+      "anchor": [
+        -83.457767,
+        35.688547
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010107",
+      "snapDistM": 49,
+      "nhdName": "Roaring Fork",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "rocky-river": {
+      "anchor": [
+        -85.5228,
+        35.5917
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130108",
+      "snapDistM": 123,
+      "nhdName": "Rocky River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "salt-lick-creek": {
+      "anchor": [
+        -85.9186,
+        36.626
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05110002",
+      "snapDistM": 748,
+      "nhdName": "Salt Lick Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "sequatchie-river": {
+      "anchor": [
+        -85.497,
+        35.2057
+      ],
+      "anchorSource": "gauge",
+      "unit": "06020004",
+      "snapDistM": 262,
+      "nhdName": "Sequatchie River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "shoal-creek": {
+      "anchor": [
+        -87.579,
+        35.0242
+      ],
+      "anchorSource": "gauge",
+      "unit": "06030005",
+      "snapDistM": 27,
+      "nhdName": "Shoal Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "sinking-creek-wilson": {
+      "anchor": [
+        -86.3003,
+        36.1651
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130201",
+      "snapDistM": 3,
+      "nhdName": "Sinking Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "south-fork-cumberland": {
+      "anchor": [
+        -84.6694,
+        36.4774
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130104",
+      "snapDistM": 56,
+      "nhdName": "Big South Fork Cumberland River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "south-holston-river": {
+      "anchor": [
+        -82.0973,
+        36.5236
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010102",
+      "snapDistM": 34,
+      "nhdName": "South Fork Holston River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "spring-creek-polk": {
+      "anchor": [
+        -84.471493,
+        35.238587
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06020002",
+      "snapDistM": 139,
+      "nhdName": "Spring Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "standing-rock-creek": {
+      "anchor": [
+        -87.9983,
+        36.4367
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040005",
+      "snapDistM": 2,
+      "nhdName": "Standing Rock Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "station-creek": {
+      "anchor": [
+        -83.6104,
+        36.5872
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010206",
+      "snapDistM": 55,
+      "nhdName": "Station Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "stones-river": {
+      "anchor": [
+        -86.6328,
+        36.1865
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130203",
+      "snapDistM": 430,
+      "nhdName": "Stones River",
+      "altUnits": [
+        "05130202"
+      ],
+      "hasSpec": false
+    },
+    "stoney-creek-carter": {
+      "anchor": [
+        -82.135158,
+        36.383309
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010103",
+      "snapDistM": 72,
+      "nhdName": "Stony Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "sulfur-fork-creek": {
+      "anchor": [
+        -86.997,
+        36.5125
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130206",
+      "snapDistM": 59,
+      "nhdName": "Sulphur Fork Red River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "tellico-river": {
+      "anchor": [
+        -84.279,
+        35.362
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010204",
+      "snapDistM": 18,
+      "nhdName": "Tellico River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "tennessee-river": {
+      "anchor": [
+        -84.72121,
+        35.71592
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010201",
+      "snapDistM": 0,
+      "nhdName": "Tennessee River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "trail-fork-big-creek": {
+      "anchor": [
+        -83.110036,
+        35.900264
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010105",
+      "snapDistM": 70,
+      "nhdName": "Fine Trail Branch",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "tumbling-creek": {
+      "anchor": [
+        -84.474001,
+        35.003913
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06020003",
+      "snapDistM": 169,
+      "nhdName": "Tumbling Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "upper-hills-creek": {
+      "anchor": [
+        -85.6751,
+        35.571
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130107",
+      "snapDistM": 149,
+      "nhdName": "Hills Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "upper-roan-creek": {
+      "anchor": [
+        -81.8852,
+        36.3769
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010103",
+      "snapDistM": 131,
+      "nhdName": "Roan Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "watauga-river": {
+      "anchor": [
+        -82.1265,
+        36.3415
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010103",
+      "snapDistM": 15,
+      "nhdName": "Watauga River",
+      "altUnits": [],
+      "hasSpec": true
+    },
+    "watauga-river-wilbur-reach": {
+      "anchor": [
+        -82.12291,
+        36.33702
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06010103",
+      "snapDistM": 263,
+      "nhdName": "Watauga River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "west-fork-stones-river": {
+      "anchor": [
+        -86.43,
+        35.9029
+      ],
+      "anchorSource": "gauge",
+      "unit": "05130203",
+      "snapDistM": 306,
+      "nhdName": "West Fork Stones River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "west-prong-little-pigeon": {
+      "anchor": [
+        -83.5271,
+        35.6995
+      ],
+      "anchorSource": "gauge",
+      "unit": "06010107",
+      "snapDistM": 29,
+      "nhdName": "West Prong Little Pigeon River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "white-oak-creek": {
+      "anchor": [
+        -87.704,
+        36.214
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "06040005",
+      "snapDistM": 1,
+      "nhdName": "Whiteoak Creek",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "wolf-river-fentress": {
+      "anchor": [
+        -85.0477,
+        36.5365
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "05130105",
+      "snapDistM": 1,
+      "nhdName": "Wolf River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "wolf-river-west-tennessee": {
+      "anchor": [
+        -89.6623,
+        35.0882
+      ],
+      "anchorSource": "labelAnchor",
+      "unit": "08010210",
+      "snapDistM": 1,
+      "nhdName": "Wolf River",
+      "altUnits": [],
+      "hasSpec": false
+    }
+  }
+}

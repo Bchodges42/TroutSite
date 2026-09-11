@@ -1,0 +1,1417 @@
+{
+  "waterId": "clear-fork",
+  "graphPath": "data/nhd/graphs/05130104.graph.json",
+  "hu8": "05130104",
+  "anchorSnap": {
+    "distM": 24.275830871618528,
+    "t": 0,
+    "edgeIdx": 2828,
+    "seg": 32,
+    "point": [
+      -84.630346,
+      36.388116
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1961,
+      2940,
+      594,
+      1355,
+      3191,
+      2941,
+      2939,
+      2051,
+      947,
+      1063,
+      2830,
+      296,
+      1794,
+      1905,
+      3046,
+      281,
+      1017,
+      3494,
+      420,
+      2504,
+      2709,
+      3074,
+      3268,
+      3542,
+      1935,
+      1357,
+      2641,
+      1568,
+      1135,
+      943,
+      1074,
+      28,
+      788,
+      2707,
+      3020,
+      2704,
+      722,
+      787,
+      1001,
+      1160,
+      1493,
+      3395,
+      3374,
+      3624,
+      1136,
+      1185,
+      2863,
+      2619,
+      3293,
+      2762,
+      3350,
+      1161,
+      677,
+      2864,
+      208,
+      1994,
+      172,
+      78,
+      171,
+      1643,
+      3072,
+      794,
+      277,
+      1713,
+      138,
+      2389,
+      3445,
+      2448,
+      1060,
+      962,
+      939,
+      2361,
+      2899,
+      3369,
+      3415,
+      361,
+      785,
+      869,
+      2354,
+      234,
+      3209,
+      1154,
+      3651,
+      2826,
+      3153,
+      565,
+      3539,
+      3038,
+      2957,
+      1452
+    ],
+    "reason": "headwater",
+    "node": "n21",
+    "edgePids": [
+      "38157636",
+      "38157633",
+      "38157643",
+      "38157647",
+      "38157649",
+      "38157645",
+      "38157626",
+      "38157618",
+      "38157566",
+      "38157472",
+      "38157411",
+      "38157477",
+      "38157500",
+      "38157542",
+      "38157547",
+      "38157588",
+      "38157610",
+      "38157624",
+      "38157733",
+      "38157764",
+      "38157818",
+      "38157851",
+      "38157856",
+      "38157918",
+      "38157965",
+      "38157998",
+      "38157997",
+      "38157993",
+      "38157942",
+      "38157897",
+      "38157905",
+      "38157917",
+      "38158008",
+      "38158076",
+      "38158132",
+      "38158292",
+      "38158348",
+      "38158383",
+      "38158392",
+      "38158389",
+      "38158376",
+      "38158462",
+      "38158545",
+      "38158625",
+      "38158645",
+      "38158683",
+      "38158716",
+      "38158856",
+      "38158864",
+      "38158855",
+      "38158970",
+      "38159091",
+      "38159352",
+      "38159396",
+      "38159538",
+      "38159556",
+      "38159662",
+      "38159626",
+      "38159656",
+      "38159821",
+      "38159818",
+      "38159754",
+      "38159747",
+      "38159740",
+      "38159898",
+      "38159931",
+      "38159950",
+      "38160035",
+      "38160182",
+      "38160312",
+      "38160590",
+      "38160734",
+      "38160712",
+      "38160807",
+      "38160846",
+      "38160865",
+      "38160959",
+      "38160968",
+      "38161009",
+      "38161047",
+      "38161098",
+      "38161173",
+      "38161229",
+      "38161259",
+      "38161270",
+      "38161268",
+      "38161317",
+      "38161312",
+      "38161336",
+      "38161339"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      445,
+      3625,
+      2374,
+      2640,
+      1962,
+      1631,
+      299,
+      2761,
+      1287,
+      1286,
+      1016,
+      367,
+      3629
+    ],
+    "reason": "name-change",
+    "node": "n1470",
+    "enteredNames": [
+      "Big South Fork Cumberland River"
+    ],
+    "edgePids": [
+      "38157427",
+      "38157357",
+      "38157253",
+      "38157239",
+      "38157235",
+      "38157140",
+      "38157098",
+      "38157075",
+      "38157051",
+      "38157048",
+      "38157006",
+      "38156928",
+      "38156891"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "38161339",
+      "dir": "up"
+    },
+    {
+      "pid": "38161336",
+      "dir": "up"
+    },
+    {
+      "pid": "38161312",
+      "dir": "up"
+    },
+    {
+      "pid": "38161317",
+      "dir": "up"
+    },
+    {
+      "pid": "38161268",
+      "dir": "up"
+    },
+    {
+      "pid": "38161270",
+      "dir": "up"
+    },
+    {
+      "pid": "38161259",
+      "dir": "up"
+    },
+    {
+      "pid": "38161229",
+      "dir": "up"
+    },
+    {
+      "pid": "38161173",
+      "dir": "up"
+    },
+    {
+      "pid": "38161098",
+      "dir": "up"
+    },
+    {
+      "pid": "38161047",
+      "dir": "up"
+    },
+    {
+      "pid": "38161009",
+      "dir": "up"
+    },
+    {
+      "pid": "38160968",
+      "dir": "up"
+    },
+    {
+      "pid": "38160959",
+      "dir": "up"
+    },
+    {
+      "pid": "38160865",
+      "dir": "up"
+    },
+    {
+      "pid": "38160846",
+      "dir": "up"
+    },
+    {
+      "pid": "38160807",
+      "dir": "up"
+    },
+    {
+      "pid": "38160712",
+      "dir": "up"
+    },
+    {
+      "pid": "38160734",
+      "dir": "up"
+    },
+    {
+      "pid": "38160590",
+      "dir": "up"
+    },
+    {
+      "pid": "38160312",
+      "dir": "up"
+    },
+    {
+      "pid": "38160182",
+      "dir": "up"
+    },
+    {
+      "pid": "38160035",
+      "dir": "up"
+    },
+    {
+      "pid": "38159950",
+      "dir": "up"
+    },
+    {
+      "pid": "38159931",
+      "dir": "up"
+    },
+    {
+      "pid": "38159898",
+      "dir": "up"
+    },
+    {
+      "pid": "38159740",
+      "dir": "up"
+    },
+    {
+      "pid": "38159747",
+      "dir": "up"
+    },
+    {
+      "pid": "38159754",
+      "dir": "up"
+    },
+    {
+      "pid": "38159818",
+      "dir": "up"
+    },
+    {
+      "pid": "38159821",
+      "dir": "up"
+    },
+    {
+      "pid": "38159656",
+      "dir": "up"
+    },
+    {
+      "pid": "38159626",
+      "dir": "up"
+    },
+    {
+      "pid": "38159662",
+      "dir": "up"
+    },
+    {
+      "pid": "38159556",
+      "dir": "up"
+    },
+    {
+      "pid": "38159538",
+      "dir": "up"
+    },
+    {
+      "pid": "38159396",
+      "dir": "up"
+    },
+    {
+      "pid": "38159352",
+      "dir": "up"
+    },
+    {
+      "pid": "38159091",
+      "dir": "up"
+    },
+    {
+      "pid": "38158970",
+      "dir": "up"
+    },
+    {
+      "pid": "38158855",
+      "dir": "up"
+    },
+    {
+      "pid": "38158864",
+      "dir": "up"
+    },
+    {
+      "pid": "38158856",
+      "dir": "up"
+    },
+    {
+      "pid": "38158716",
+      "dir": "up"
+    },
+    {
+      "pid": "38158683",
+      "dir": "up"
+    },
+    {
+      "pid": "38158645",
+      "dir": "up"
+    },
+    {
+      "pid": "38158625",
+      "dir": "up"
+    },
+    {
+      "pid": "38158545",
+      "dir": "up"
+    },
+    {
+      "pid": "38158462",
+      "dir": "up"
+    },
+    {
+      "pid": "38158376",
+      "dir": "up"
+    },
+    {
+      "pid": "38158389",
+      "dir": "up"
+    },
+    {
+      "pid": "38158392",
+      "dir": "up"
+    },
+    {
+      "pid": "38158383",
+      "dir": "up"
+    },
+    {
+      "pid": "38158348",
+      "dir": "up"
+    },
+    {
+      "pid": "38158292",
+      "dir": "up"
+    },
+    {
+      "pid": "38158132",
+      "dir": "up"
+    },
+    {
+      "pid": "38158076",
+      "dir": "up"
+    },
+    {
+      "pid": "38158008",
+      "dir": "up"
+    },
+    {
+      "pid": "38157917",
+      "dir": "up"
+    },
+    {
+      "pid": "38157905",
+      "dir": "up"
+    },
+    {
+      "pid": "38157897",
+      "dir": "up"
+    },
+    {
+      "pid": "38157942",
+      "dir": "up"
+    },
+    {
+      "pid": "38157993",
+      "dir": "up"
+    },
+    {
+      "pid": "38157997",
+      "dir": "up"
+    },
+    {
+      "pid": "38157998",
+      "dir": "up"
+    },
+    {
+      "pid": "38157965",
+      "dir": "up"
+    },
+    {
+      "pid": "38157918",
+      "dir": "up"
+    },
+    {
+      "pid": "38157856",
+      "dir": "up"
+    },
+    {
+      "pid": "38157851",
+      "dir": "up"
+    },
+    {
+      "pid": "38157818",
+      "dir": "up"
+    },
+    {
+      "pid": "38157764",
+      "dir": "up"
+    },
+    {
+      "pid": "38157733",
+      "dir": "up"
+    },
+    {
+      "pid": "38157624",
+      "dir": "up"
+    },
+    {
+      "pid": "38157610",
+      "dir": "up"
+    },
+    {
+      "pid": "38157588",
+      "dir": "up"
+    },
+    {
+      "pid": "38157547",
+      "dir": "up"
+    },
+    {
+      "pid": "38157542",
+      "dir": "up"
+    },
+    {
+      "pid": "38157500",
+      "dir": "up"
+    },
+    {
+      "pid": "38157477",
+      "dir": "up"
+    },
+    {
+      "pid": "38157411",
+      "dir": "up"
+    },
+    {
+      "pid": "38157472",
+      "dir": "up"
+    },
+    {
+      "pid": "38157566",
+      "dir": "up"
+    },
+    {
+      "pid": "38157618",
+      "dir": "up"
+    },
+    {
+      "pid": "38157626",
+      "dir": "up"
+    },
+    {
+      "pid": "38157645",
+      "dir": "up"
+    },
+    {
+      "pid": "38157649",
+      "dir": "up"
+    },
+    {
+      "pid": "38157647",
+      "dir": "up"
+    },
+    {
+      "pid": "38157643",
+      "dir": "up"
+    },
+    {
+      "pid": "38157633",
+      "dir": "up"
+    },
+    {
+      "pid": "38157636",
+      "dir": "up"
+    },
+    {
+      "pid": "38157560",
+      "dir": "anchor"
+    },
+    {
+      "pid": "38157427",
+      "dir": "down"
+    },
+    {
+      "pid": "38157357",
+      "dir": "down"
+    },
+    {
+      "pid": "38157253",
+      "dir": "down"
+    },
+    {
+      "pid": "38157239",
+      "dir": "down"
+    },
+    {
+      "pid": "38157235",
+      "dir": "down"
+    },
+    {
+      "pid": "38157140",
+      "dir": "down"
+    },
+    {
+      "pid": "38157098",
+      "dir": "down"
+    },
+    {
+      "pid": "38157075",
+      "dir": "down"
+    },
+    {
+      "pid": "38157051",
+      "dir": "down"
+    },
+    {
+      "pid": "38157048",
+      "dir": "down"
+    },
+    {
+      "pid": "38157006",
+      "dir": "down"
+    },
+    {
+      "pid": "38156928",
+      "dir": "down"
+    },
+    {
+      "pid": "38156891",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1366",
+      "currentEdge": "38157633",
+      "candidates": [
+        {
+          "pid": "38157643",
+          "name": "Clear Fork",
+          "km": 0.4634597704719307
+        },
+        {
+          "pid": "38157640",
+          "name": "Skull Creek",
+          "km": 0.022336168939160433
+        }
+      ],
+      "chosen": "38157643",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1248",
+      "currentEdge": "38157618",
+      "candidates": [
+        {
+          "pid": "38157566",
+          "name": "Clear Fork",
+          "km": 0.67410421726617
+        },
+        {
+          "pid": "38157567",
+          "name": "Bear Branch",
+          "km": 0.019135923204533962
+        }
+      ],
+      "chosen": "38157566",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1189",
+      "currentEdge": "38157477",
+      "candidates": [
+        {
+          "pid": "38157478",
+          "name": "Caney Branch",
+          "km": 0.0073628304906966065
+        },
+        {
+          "pid": "38157500",
+          "name": "Clear Fork",
+          "km": 0.3299990671643832
+        },
+        {
+          "pid": "38157474",
+          "name": "Caney Branch",
+          "km": 0.9252910329987386
+        }
+      ],
+      "chosen": "38157500",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1115",
+      "currentEdge": "38157547",
+      "candidates": [
+        {
+          "pid": "38157588",
+          "name": "Clear Fork",
+          "km": 0.8898275357180799
+        },
+        {
+          "pid": "38157548",
+          "name": "Sebands Branch",
+          "km": 0.015597990169518117
+        }
+      ],
+      "chosen": "38157588",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1056",
+      "currentEdge": "38157588",
+      "candidates": [
+        {
+          "pid": "38157610",
+          "name": "Clear Fork",
+          "km": 0.4453924449653174
+        },
+        {
+          "pid": "38157589",
+          "name": "Still Camp Branch",
+          "km": 0.019472310715611747
+        }
+      ],
+      "chosen": "38157610",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1023",
+      "currentEdge": "38157610",
+      "candidates": [
+        {
+          "pid": "38157611",
+          "name": "Wolf Branch",
+          "km": 0.022735386897404664
+        },
+        {
+          "pid": "38157624",
+          "name": "Clear Fork",
+          "km": 0.2673974534141338
+        }
+      ],
+      "chosen": "38157624",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n958",
+      "currentEdge": "38157764",
+      "candidates": [
+        {
+          "pid": "38157767",
+          "name": "Joe Branch",
+          "km": 0.02277338889844626
+        },
+        {
+          "pid": "38157818",
+          "name": "Clear Fork",
+          "km": 0.4184584569520831
+        }
+      ],
+      "chosen": "38157818",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n968",
+      "currentEdge": "38157851",
+      "candidates": [
+        {
+          "pid": "38157852",
+          "name": "White Oak Creek",
+          "km": 0.02278054584806027
+        },
+        {
+          "pid": "38157856",
+          "name": "Clear Fork",
+          "km": 0.06455325528017988
+        }
+      ],
+      "chosen": "38157856",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n745",
+      "currentEdge": "38157897",
+      "candidates": [
+        {
+          "pid": "38157887",
+          "name": "Rock Branch",
+          "km": 0.01933893249676253
+        },
+        {
+          "pid": "38157905",
+          "name": "Clear Fork",
+          "km": 0.16829911179287
+        }
+      ],
+      "chosen": "38157905",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n741",
+      "currentEdge": "38158008",
+      "candidates": [
+        {
+          "pid": "38158010",
+          "name": "Fletcher Branch",
+          "km": 0.015604778727216643
+        },
+        {
+          "pid": "38158076",
+          "name": "Clear Fork",
+          "km": 0.8946436017985626
+        }
+      ],
+      "chosen": "38158076",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n685",
+      "currentEdge": "38158076",
+      "candidates": [
+        {
+          "pid": "38158075",
+          "name": "Short Branch",
+          "km": 0.21968256558662555
+        },
+        {
+          "pid": "38158077",
+          "name": "Short Branch",
+          "km": 0.011761130026800064
+        },
+        {
+          "pid": "38158132",
+          "name": "Clear Fork",
+          "km": 0.3477800653135039
+        }
+      ],
+      "chosen": "38158132",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n684",
+      "currentEdge": "38158132",
+      "candidates": [
+        {
+          "pid": "38158133",
+          "name": "Goad Spring Branch",
+          "km": 0.013300157729170637
+        },
+        {
+          "pid": "38158292",
+          "name": "Clear Fork",
+          "km": 0.8051806357620374
+        }
+      ],
+      "chosen": "38158292",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n676",
+      "currentEdge": "38158392",
+      "candidates": [
+        {
+          "pid": "38158389",
+          "name": "Clear Fork",
+          "km": 0.15357714668825112
+        },
+        {
+          "pid": "38158391",
+          "name": "Flat Branch",
+          "km": 0.011385779684817188
+        }
+      ],
+      "chosen": "38158389",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n615",
+      "currentEdge": "38158376",
+      "candidates": [
+        {
+          "pid": "38158462",
+          "name": "Clear Fork",
+          "km": 0.9887317616242688
+        },
+        {
+          "pid": "38158343",
+          "name": "Big Creek",
+          "km": 0.01472426302269648
+        }
+      ],
+      "chosen": "38158462",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n608",
+      "currentEdge": "38158462",
+      "candidates": [
+        {
+          "pid": "38158463",
+          "name": "Cave Branch",
+          "km": 0.016673574572987404
+        },
+        {
+          "pid": "38158545",
+          "name": "Clear Fork",
+          "km": 0.5371971650070435
+        }
+      ],
+      "chosen": "38158545",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n631",
+      "currentEdge": "38158625",
+      "candidates": [
+        {
+          "pid": "38158645",
+          "name": "Clear Fork",
+          "km": 0.1925769576253546
+        },
+        {
+          "pid": "38158626",
+          "name": "Indian Creek",
+          "km": 0.011592958655218689
+        },
+        {
+          "pid": "38158706",
+          "name": "Indian Creek",
+          "km": 0.8201163666599018
+        }
+      ],
+      "chosen": "38158645",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n531",
+      "currentEdge": "38158856",
+      "candidates": [
+        {
+          "pid": "38158860",
+          "name": "Short Creek",
+          "km": 0.015500853978424628
+        },
+        {
+          "pid": "38158864",
+          "name": "Clear Fork",
+          "km": 0.19589887463116668
+        }
+      ],
+      "chosen": "38158864",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n520",
+      "currentEdge": "38158864",
+      "candidates": [
+        {
+          "pid": "38158858",
+          "name": "Still Camp Branch",
+          "km": 0.011101277956105361
+        },
+        {
+          "pid": "38158855",
+          "name": "Clear Fork",
+          "km": 1.6608213001007484
+        }
+      ],
+      "chosen": "38158855",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n478",
+      "currentEdge": "38158855",
+      "candidates": [
+        {
+          "pid": "38158766",
+          "name": "Skull Cave Creek",
+          "km": 0.009499866567964942
+        },
+        {
+          "pid": "38158799",
+          "name": "Skull Cave Creek",
+          "km": 0.5402781778494999
+        },
+        {
+          "pid": "38158970",
+          "name": "Clear Fork",
+          "km": 1.5820747512244497
+        }
+      ],
+      "chosen": "38158970",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n442",
+      "currentEdge": "38158970",
+      "candidates": [
+        {
+          "pid": "38159091",
+          "name": "Clear Fork",
+          "km": 0.8508341158811983
+        },
+        {
+          "pid": "38158971",
+          "name": "Crooked Creek",
+          "km": 0.01498743144433014
+        }
+      ],
+      "chosen": "38159091",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n413",
+      "currentEdge": "38159396",
+      "candidates": [
+        {
+          "pid": "38159538",
+          "name": "Clear Fork",
+          "km": 1.2908091019091867
+        },
+        {
+          "pid": "38159395",
+          "name": "Laurel Creek",
+          "km": 0.014346004768340843
+        }
+      ],
+      "chosen": "38159538",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n386",
+      "currentEdge": "38159538",
+      "candidates": [
+        {
+          "pid": "38159531",
+          "name": "Short Creek",
+          "km": 0.00915379744891623
+        },
+        {
+          "pid": "38159897",
+          "name": "Short Creek",
+          "km": 2.13452994105565
+        },
+        {
+          "pid": "38159556",
+          "name": "Clear Fork",
+          "km": 0.4071750218939694
+        }
+      ],
+      "chosen": "38159556",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n349",
+      "currentEdge": "38159662",
+      "candidates": [
+        {
+          "pid": "38159626",
+          "name": "Clear Fork",
+          "km": 0.9841621565412573
+        },
+        {
+          "pid": "38159627",
+          "name": "Rock Creek",
+          "km": 0.013360925398975846
+        }
+      ],
+      "chosen": "38159626",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n302",
+      "currentEdge": "38159656",
+      "candidates": [
+        {
+          "pid": "38159657",
+          "name": "Joe Branch",
+          "km": 0.012310251741669574
+        },
+        {
+          "pid": "38159821",
+          "name": "Clear Fork",
+          "km": 1.5912217801497561
+        }
+      ],
+      "chosen": "38159821",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n267",
+      "currentEdge": "38159821",
+      "candidates": [
+        {
+          "pid": "38159822",
+          "name": "Brown Branch",
+          "km": 0.009905630050676646
+        },
+        {
+          "pid": "38159924",
+          "name": "Brown Branch",
+          "km": 0.681436876942571
+        },
+        {
+          "pid": "38159818",
+          "name": "Clear Fork",
+          "km": 0.5858694974007865
+        }
+      ],
+      "chosen": "38159818",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n249",
+      "currentEdge": "38159754",
+      "candidates": [
+        {
+          "pid": "38159747",
+          "name": "Clear Fork",
+          "km": 0.7423885787770444
+        },
+        {
+          "pid": "38159726",
+          "name": "Davis Branch",
+          "km": 0.007029767063828143
+        },
+        {
+          "pid": "38159725",
+          "name": "Davis Branch",
+          "km": 3.7666887294811575
+        }
+      ],
+      "chosen": "38159747",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n238",
+      "currentEdge": "38159747",
+      "candidates": [
+        {
+          "pid": "38159898",
+          "name": "South Prong Clear Fork",
+          "km": 1.6976768946767868
+        },
+        {
+          "pid": "38159740",
+          "name": "South Prong Clear Fork",
+          "km": 0.009684517864222647
+        },
+        {
+          "pid": "38159739",
+          "name": "North Prong Clear Fork",
+          "km": 0.8048633171735571
+        }
+      ],
+      "chosen": "38159740",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "up",
+      "atNode": "n238",
+      "currentEdge": "38159740",
+      "candidates": [
+        {
+          "pid": "38159898",
+          "name": "South Prong Clear Fork",
+          "km": 1.6976768946767868
+        },
+        {
+          "pid": "38159739",
+          "name": "North Prong Clear Fork",
+          "km": 0.8048633171735571
+        }
+      ],
+      "chosen": "38159898",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n215",
+      "currentEdge": "38159898",
+      "candidates": [
+        {
+          "pid": "38159931",
+          "name": "South Prong Clear Fork",
+          "km": 0.43489163514385615
+        },
+        {
+          "pid": "38160145",
+          "name": "Hurricane Creek",
+          "km": 1.8880064775343588
+        }
+      ],
+      "chosen": "38159931",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n205",
+      "currentEdge": "38159950",
+      "candidates": [
+        {
+          "pid": "38160035",
+          "name": "South Prong Clear Fork",
+          "km": 0.6988608372199596
+        },
+        {
+          "pid": "38160002",
+          "name": "Horse Creek",
+          "km": 4.731757841668752
+        }
+      ],
+      "chosen": "38160035",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n200",
+      "currentEdge": "38160035",
+      "candidates": [
+        {
+          "pid": "38160546",
+          "name": "Shoal Creek",
+          "km": 4.115964750982568
+        },
+        {
+          "pid": "38160182",
+          "name": "South Prong Clear Fork",
+          "km": 1.9468434473452045
+        }
+      ],
+      "chosen": "38160182",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n181",
+      "currentEdge": "38160182",
+      "candidates": [
+        {
+          "pid": "38160312",
+          "name": "South Prong Clear Fork",
+          "km": 1.9189880177742313
+        },
+        {
+          "pid": "38160221",
+          "name": "Cane Branch",
+          "km": 1.9015447518541786
+        }
+      ],
+      "chosen": "38160312",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n153",
+      "currentEdge": "38160312",
+      "candidates": [
+        {
+          "pid": "38160413",
+          "name": "Long Branch",
+          "km": 1.3673256291337434
+        },
+        {
+          "pid": "38160590",
+          "name": "South Prong Clear Fork",
+          "km": 3.8947034946285175
+        }
+      ],
+      "chosen": "38160590",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n137",
+      "currentEdge": "38160807",
+      "candidates": [
+        {
+          "pid": "38160825",
+          "name": "Atkinson Branch",
+          "km": 2.0085971630410024
+        },
+        {
+          "pid": "38160846",
+          "name": "South Prong Clear Fork",
+          "km": 0.48550326276887096
+        }
+      ],
+      "chosen": "38160846",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n132",
+      "currentEdge": "38160968",
+      "candidates": [
+        {
+          "pid": "38160972",
+          "name": "Carter Branch",
+          "km": 1.6613406185927735
+        },
+        {
+          "pid": "38161009",
+          "name": "South Prong Clear Fork",
+          "km": 0.5401010595076263
+        }
+      ],
+      "chosen": "38161009",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n112",
+      "currentEdge": "38161047",
+      "candidates": [
+        {
+          "pid": "38161044",
+          "name": "Ramsey Branch",
+          "km": 0.4913487624370172
+        },
+        {
+          "pid": "38161098",
+          "name": "South Prong Clear Fork",
+          "km": 0.9334061635170589
+        }
+      ],
+      "chosen": "38161098",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n113",
+      "currentEdge": "38161098",
+      "candidates": [
+        {
+          "pid": "38161305",
+          "name": "Adams Branch",
+          "km": 2.9379630240140444
+        },
+        {
+          "pid": "38161173",
+          "name": "Bridge Creek",
+          "km": 1.2897709275203204
+        }
+      ],
+      "chosen": "38161173",
+      "rule": "longest-remaining-path"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 13543,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-clear-fork.geojson"
+}

@@ -1,0 +1,882 @@
+{
+  "waterId": "sulfur-fork-creek",
+  "graphPath": "data/nhd/graphs/05130206.graph.json",
+  "hu8": "05130206",
+  "anchorSnap": {
+    "distM": 3.5144399223341827,
+    "t": 0.1397409876839607,
+    "edgeIdx": 1170,
+    "seg": 10,
+    "point": [
+      -86.99703927948198,
+      36.51249979550593
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1129,
+      3,
+      62,
+      258,
+      533,
+      342,
+      257,
+      76,
+      744,
+      68,
+      41,
+      505,
+      1095,
+      952,
+      277,
+      1169,
+      238,
+      676,
+      482,
+      144,
+      810,
+      586,
+      905,
+      91,
+      1137,
+      145,
+      359,
+      2,
+      1027,
+      644,
+      1104,
+      885,
+      1223,
+      974,
+      417,
+      888,
+      418,
+      212,
+      146,
+      77,
+      906,
+      563,
+      915,
+      297,
+      372,
+      942,
+      1231,
+      399,
+      1208,
+      591,
+      166,
+      1182,
+      891,
+      1236,
+      1229,
+      1048,
+      797,
+      241,
+      94
+    ],
+    "reason": "headwater",
+    "node": "n1070",
+    "edgePids": [
+      "54400731",
+      "54400733",
+      "54400831",
+      "54400828",
+      "54400621",
+      "54400557",
+      "54400676",
+      "54400678",
+      "54400665",
+      "54400536",
+      "54400508",
+      "54400613",
+      "54400487",
+      "54400385",
+      "54400411",
+      "54400410",
+      "54400359",
+      "54400260",
+      "54400276",
+      "54400309",
+      "54400307",
+      "54400287",
+      "54400282",
+      "54400293",
+      "54400391",
+      "54400395",
+      "54400156",
+      "54400148",
+      "54400326",
+      "54400357",
+      "54400356",
+      "54400423",
+      "54400438",
+      "54400471",
+      "54400515",
+      "54400603",
+      "54400616",
+      "54400753",
+      "54400855",
+      "54400862",
+      "54400913",
+      "54400916",
+      "54400924",
+      "54400953",
+      "54400960",
+      "54400993",
+      "54400994",
+      "54401024",
+      "54401025",
+      "54401027",
+      "54401031",
+      "54401047",
+      "54401127",
+      "54401201",
+      "54401250",
+      "54401269",
+      "54401312",
+      "54401333",
+      "54401332"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1254,
+      928,
+      1096,
+      315,
+      597,
+      743,
+      728,
+      702,
+      305,
+      183,
+      1246,
+      197,
+      960,
+      67,
+      1103
+    ],
+    "reason": "name-change",
+    "node": "n449",
+    "enteredNames": [
+      "Red River"
+    ],
+    "edgePids": [
+      "54400757",
+      "54400771",
+      "54400585",
+      "54400582",
+      "54400416",
+      "54400620",
+      "54400630",
+      "54400550",
+      "54400401",
+      "54400399",
+      "54400263",
+      "54400063",
+      "54400053",
+      "54400035",
+      "54400011"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "54401332",
+      "dir": "up"
+    },
+    {
+      "pid": "54401333",
+      "dir": "up"
+    },
+    {
+      "pid": "54401312",
+      "dir": "up"
+    },
+    {
+      "pid": "54401269",
+      "dir": "up"
+    },
+    {
+      "pid": "54401250",
+      "dir": "up"
+    },
+    {
+      "pid": "54401201",
+      "dir": "up"
+    },
+    {
+      "pid": "54401127",
+      "dir": "up"
+    },
+    {
+      "pid": "54401047",
+      "dir": "up"
+    },
+    {
+      "pid": "54401031",
+      "dir": "up"
+    },
+    {
+      "pid": "54401027",
+      "dir": "up"
+    },
+    {
+      "pid": "54401025",
+      "dir": "up"
+    },
+    {
+      "pid": "54401024",
+      "dir": "up"
+    },
+    {
+      "pid": "54400994",
+      "dir": "up"
+    },
+    {
+      "pid": "54400993",
+      "dir": "up"
+    },
+    {
+      "pid": "54400960",
+      "dir": "up"
+    },
+    {
+      "pid": "54400953",
+      "dir": "up"
+    },
+    {
+      "pid": "54400924",
+      "dir": "up"
+    },
+    {
+      "pid": "54400916",
+      "dir": "up"
+    },
+    {
+      "pid": "54400913",
+      "dir": "up"
+    },
+    {
+      "pid": "54400862",
+      "dir": "up"
+    },
+    {
+      "pid": "54400855",
+      "dir": "up"
+    },
+    {
+      "pid": "54400753",
+      "dir": "up"
+    },
+    {
+      "pid": "54400616",
+      "dir": "up"
+    },
+    {
+      "pid": "54400603",
+      "dir": "up"
+    },
+    {
+      "pid": "54400515",
+      "dir": "up"
+    },
+    {
+      "pid": "54400471",
+      "dir": "up"
+    },
+    {
+      "pid": "54400438",
+      "dir": "up"
+    },
+    {
+      "pid": "54400423",
+      "dir": "up"
+    },
+    {
+      "pid": "54400356",
+      "dir": "up"
+    },
+    {
+      "pid": "54400357",
+      "dir": "up"
+    },
+    {
+      "pid": "54400326",
+      "dir": "up"
+    },
+    {
+      "pid": "54400148",
+      "dir": "up"
+    },
+    {
+      "pid": "54400156",
+      "dir": "up"
+    },
+    {
+      "pid": "54400395",
+      "dir": "up"
+    },
+    {
+      "pid": "54400391",
+      "dir": "up"
+    },
+    {
+      "pid": "54400293",
+      "dir": "up"
+    },
+    {
+      "pid": "54400282",
+      "dir": "up"
+    },
+    {
+      "pid": "54400287",
+      "dir": "up"
+    },
+    {
+      "pid": "54400307",
+      "dir": "up"
+    },
+    {
+      "pid": "54400309",
+      "dir": "up"
+    },
+    {
+      "pid": "54400276",
+      "dir": "up"
+    },
+    {
+      "pid": "54400260",
+      "dir": "up"
+    },
+    {
+      "pid": "54400359",
+      "dir": "up"
+    },
+    {
+      "pid": "54400410",
+      "dir": "up"
+    },
+    {
+      "pid": "54400411",
+      "dir": "up"
+    },
+    {
+      "pid": "54400385",
+      "dir": "up"
+    },
+    {
+      "pid": "54400487",
+      "dir": "up"
+    },
+    {
+      "pid": "54400613",
+      "dir": "up"
+    },
+    {
+      "pid": "54400508",
+      "dir": "up"
+    },
+    {
+      "pid": "54400536",
+      "dir": "up"
+    },
+    {
+      "pid": "54400665",
+      "dir": "up"
+    },
+    {
+      "pid": "54400678",
+      "dir": "up"
+    },
+    {
+      "pid": "54400676",
+      "dir": "up"
+    },
+    {
+      "pid": "54400557",
+      "dir": "up"
+    },
+    {
+      "pid": "54400621",
+      "dir": "up"
+    },
+    {
+      "pid": "54400828",
+      "dir": "up"
+    },
+    {
+      "pid": "54400831",
+      "dir": "up"
+    },
+    {
+      "pid": "54400733",
+      "dir": "up"
+    },
+    {
+      "pid": "54400731",
+      "dir": "up"
+    },
+    {
+      "pid": "54400719",
+      "dir": "anchor"
+    },
+    {
+      "pid": "54400757",
+      "dir": "down"
+    },
+    {
+      "pid": "54400771",
+      "dir": "down"
+    },
+    {
+      "pid": "54400585",
+      "dir": "down"
+    },
+    {
+      "pid": "54400582",
+      "dir": "down"
+    },
+    {
+      "pid": "54400416",
+      "dir": "down"
+    },
+    {
+      "pid": "54400620",
+      "dir": "down"
+    },
+    {
+      "pid": "54400630",
+      "dir": "down"
+    },
+    {
+      "pid": "54400550",
+      "dir": "down"
+    },
+    {
+      "pid": "54400401",
+      "dir": "down"
+    },
+    {
+      "pid": "54400399",
+      "dir": "down"
+    },
+    {
+      "pid": "54400263",
+      "dir": "down"
+    },
+    {
+      "pid": "54400063",
+      "dir": "down"
+    },
+    {
+      "pid": "54400053",
+      "dir": "down"
+    },
+    {
+      "pid": "54400035",
+      "dir": "down"
+    },
+    {
+      "pid": "54400011",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n696",
+      "currentEdge": "54400678",
+      "candidates": [
+        {
+          "pid": "54400666",
+          "name": "Carr Creek",
+          "km": 0.007573601185655895
+        },
+        {
+          "pid": "54400665",
+          "name": "Sulphur Fork Red River",
+          "km": 0.7156231421875178
+        },
+        {
+          "pid": "54400686",
+          "name": "Carr Creek",
+          "km": 0.36542274949853254
+        }
+      ],
+      "chosen": "54400665",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n775",
+      "currentEdge": "54400359",
+      "candidates": [
+        {
+          "pid": "54400276",
+          "name": "Sulphur Fork Red River",
+          "km": 0.12289341882626686
+        },
+        {
+          "pid": "54400260",
+          "name": "Sulphur Fork Red River",
+          "km": 0.00965421353605282
+        }
+      ],
+      "chosen": "54400260",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n788",
+      "currentEdge": "54400309",
+      "candidates": [
+        {
+          "pid": "54400311",
+          "name": "Black Branch",
+          "km": 0.009534420370467471
+        },
+        {
+          "pid": "54400307",
+          "name": "Sulphur Fork Red River",
+          "km": 0.28977110672930073
+        },
+        {
+          "pid": "54400556",
+          "name": "Black Branch",
+          "km": 1.5727207055224766
+        }
+      ],
+      "chosen": "54400307",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n813",
+      "currentEdge": "54400391",
+      "candidates": [
+        {
+          "pid": "54400395",
+          "name": "Sulphur Fork Red River",
+          "km": 2.1908314608779995
+        },
+        {
+          "pid": "54400393",
+          "name": "Wartrace Creek",
+          "km": 0.011031503167496527
+        },
+        {
+          "pid": "54400433",
+          "name": "Wartrace Creek",
+          "km": 0.4274592640186982
+        }
+      ],
+      "chosen": "54400395",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n839",
+      "currentEdge": "54400156",
+      "candidates": [
+        {
+          "pid": "54400148",
+          "name": "Sulphur Fork Red River",
+          "km": 0.006198145487723746
+        },
+        {
+          "pid": "54400145",
+          "name": "Beaver Dam Creek",
+          "km": 0.2732896658106549
+        },
+        {
+          "pid": "54400326",
+          "name": "Sulphur Fork Red River",
+          "km": 1.7314728086074673
+        }
+      ],
+      "chosen": "54400148",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n839",
+      "currentEdge": "54400148",
+      "candidates": [
+        {
+          "pid": "54400145",
+          "name": "Beaver Dam Creek",
+          "km": 0.2732896658106549
+        },
+        {
+          "pid": "54400326",
+          "name": "Sulphur Fork Red River",
+          "km": 1.7314728086074673
+        }
+      ],
+      "chosen": "54400326",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n919",
+      "currentEdge": "54400616",
+      "candidates": [
+        {
+          "pid": "54400753",
+          "name": "Sulphur Fork Red River",
+          "km": 0.8986129402604001
+        },
+        {
+          "pid": "54400615",
+          "name": "Santee Creek",
+          "km": 0.01448500293445103
+        }
+      ],
+      "chosen": "54400753",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n938",
+      "currentEdge": "54400924",
+      "candidates": [
+        {
+          "pid": "54400953",
+          "name": "Sulphur Fork Red River",
+          "km": 0.7516581971703534
+        },
+        {
+          "pid": "54400927",
+          "name": "Savage Branch",
+          "km": 0.9498466843309632
+        },
+        {
+          "pid": "54400923",
+          "name": "Savage Branch",
+          "km": 0.010091506254825498
+        }
+      ],
+      "chosen": "54400953",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n964",
+      "currentEdge": "54400993",
+      "candidates": [
+        {
+          "pid": "54401022",
+          "name": "Long Branch",
+          "km": 0.28498714114471757
+        },
+        {
+          "pid": "54400995",
+          "name": "Long Branch",
+          "km": 0.008913743315648917
+        },
+        {
+          "pid": "54401024",
+          "name": "Sulphur Fork Red River",
+          "km": 1.9111136861697933
+        },
+        {
+          "pid": "54400994",
+          "name": "Sulphur Fork Red River",
+          "km": 0.007543634319871394
+        }
+      ],
+      "chosen": "54400994",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n964",
+      "currentEdge": "54400994",
+      "candidates": [
+        {
+          "pid": "54401022",
+          "name": "Long Branch",
+          "km": 0.28498714114471757
+        },
+        {
+          "pid": "54400995",
+          "name": "Long Branch",
+          "km": 0.008913743315648917
+        },
+        {
+          "pid": "54401024",
+          "name": "Sulphur Fork Red River",
+          "km": 1.9111136861697933
+        }
+      ],
+      "chosen": "54401024",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n982",
+      "currentEdge": "54401027",
+      "candidates": [
+        {
+          "pid": "54401031",
+          "name": "Sulphur Fork Red River",
+          "km": 0.07914051624422067
+        },
+        {
+          "pid": "54401026",
+          "name": "Oppossum Fork",
+          "km": 0.3469249182705911
+        }
+      ],
+      "chosen": "54401031",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n988",
+      "currentEdge": "54401047",
+      "candidates": [
+        {
+          "pid": "54401234",
+          "name": "Peyton Branch",
+          "km": 2.0998645085158776
+        },
+        {
+          "pid": "54401127",
+          "name": "Sulphur Fork Red River",
+          "km": 1.1499082460192727
+        }
+      ],
+      "chosen": "54401127",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1003",
+      "currentEdge": "54401127",
+      "candidates": [
+        {
+          "pid": "54401126",
+          "name": "Mill Branch",
+          "km": 0.5585466612766373
+        },
+        {
+          "pid": "54401201",
+          "name": "Sulphur Fork Red River",
+          "km": 0.8908994626276485
+        }
+      ],
+      "chosen": "54401201",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1051",
+      "currentEdge": "54401333",
+      "candidates": [
+        {
+          "pid": "54401332",
+          "name": "Sulphur Fork Red River",
+          "km": 1.6738158339829687
+        },
+        {
+          "pid": "54401360",
+          "name": "Webb Branch",
+          "km": 0.3980666747906734
+        }
+      ],
+      "chosen": "54401332",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n586",
+      "currentEdge": "54400757",
+      "candidates": [
+        {
+          "pid": "54400771",
+          "name": "Sulphur Fork Red River",
+          "km": 2.3896274088905596
+        },
+        {
+          "pid": "54400756",
+          "name": "Calebs Creek",
+          "km": 0.005908432508639344
+        }
+      ],
+      "chosen": "54400771",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n572",
+      "currentEdge": "54400771",
+      "candidates": [
+        {
+          "pid": "54400586",
+          "name": "Millers Creek",
+          "km": 0.005067162713175297
+        },
+        {
+          "pid": "54400585",
+          "name": "Sulphur Fork Red River",
+          "km": 0.17373293330998882
+        }
+      ],
+      "chosen": "54400585",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n506",
+      "currentEdge": "54400630",
+      "candidates": [
+        {
+          "pid": "54400512",
+          "name": "Brush Creek",
+          "km": 0.006509497748477637
+        },
+        {
+          "pid": "54400550",
+          "name": "Sulphur Fork Red River",
+          "km": 2.542167673982441
+        }
+      ],
+      "chosen": "54400550",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n449",
+      "currentEdge": "54400035",
+      "candidates": [
+        {
+          "pid": "54400116",
+          "name": "Red River",
+          "km": 10.87965767653618
+        },
+        {
+          "pid": "54400011",
+          "name": "Sulphur Fork Red River",
+          "km": 0.007520926445698344
+        }
+      ],
+      "chosen": "54400011",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 12237,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-sulfur-fork-creek.geojson"
+}

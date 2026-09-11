@@ -1,0 +1,593 @@
+{
+  "waterId": "laurel-fork-carter",
+  "graphPath": "data/nhd/graphs/06010103.graph.json",
+  "hu8": "06010103",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 525,
+    "seg": 27,
+    "point": [
+      -82.140368,
+      36.279079
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1501,
+      298,
+      302,
+      2964,
+      2603,
+      3186,
+      593,
+      3106,
+      2816,
+      582,
+      3192,
+      1170,
+      2513,
+      2643,
+      3416,
+      2672,
+      2908,
+      1071,
+      2682,
+      739,
+      523,
+      2781,
+      2203,
+      3389,
+      465,
+      1363,
+      1915,
+      3415,
+      1509,
+      939,
+      3334
+    ],
+    "reason": "headwater",
+    "node": "n1432",
+    "edgePids": [
+      "89952191",
+      "89952241",
+      "89952365",
+      "89952371",
+      "89952453",
+      "89952501",
+      "89952547",
+      "89952555",
+      "89952735",
+      "89952849",
+      "89952857",
+      "89952923",
+      "89952955",
+      "89953067",
+      "89953075",
+      "89953073",
+      "89953059",
+      "89953107",
+      "89953159",
+      "89953137",
+      "89953195",
+      "89953211",
+      "89953217",
+      "89953353",
+      "89953369",
+      "89953527",
+      "89953553",
+      "89953557",
+      "89953573",
+      "89953687",
+      "89953953"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1827,
+      708,
+      532,
+      2993,
+      215,
+      229,
+      209,
+      188,
+      220,
+      228,
+      183
+    ],
+    "reason": "name-change",
+    "node": "n581",
+    "enteredNames": [
+      "Doe River"
+    ],
+    "edgePids": [
+      "89951915",
+      "89951891",
+      "89951889",
+      "89951695",
+      "89951721",
+      "89951717",
+      "89951719",
+      "89951709",
+      "89951743",
+      "89951753",
+      "89951679"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "89953953",
+      "dir": "up"
+    },
+    {
+      "pid": "89953687",
+      "dir": "up"
+    },
+    {
+      "pid": "89953573",
+      "dir": "up"
+    },
+    {
+      "pid": "89953557",
+      "dir": "up"
+    },
+    {
+      "pid": "89953553",
+      "dir": "up"
+    },
+    {
+      "pid": "89953527",
+      "dir": "up"
+    },
+    {
+      "pid": "89953369",
+      "dir": "up"
+    },
+    {
+      "pid": "89953353",
+      "dir": "up"
+    },
+    {
+      "pid": "89953217",
+      "dir": "up"
+    },
+    {
+      "pid": "89953211",
+      "dir": "up"
+    },
+    {
+      "pid": "89953195",
+      "dir": "up"
+    },
+    {
+      "pid": "89953137",
+      "dir": "up"
+    },
+    {
+      "pid": "89953159",
+      "dir": "up"
+    },
+    {
+      "pid": "89953107",
+      "dir": "up"
+    },
+    {
+      "pid": "89953059",
+      "dir": "up"
+    },
+    {
+      "pid": "89953073",
+      "dir": "up"
+    },
+    {
+      "pid": "89953075",
+      "dir": "up"
+    },
+    {
+      "pid": "89953067",
+      "dir": "up"
+    },
+    {
+      "pid": "89952955",
+      "dir": "up"
+    },
+    {
+      "pid": "89952923",
+      "dir": "up"
+    },
+    {
+      "pid": "89952857",
+      "dir": "up"
+    },
+    {
+      "pid": "89952849",
+      "dir": "up"
+    },
+    {
+      "pid": "89952735",
+      "dir": "up"
+    },
+    {
+      "pid": "89952555",
+      "dir": "up"
+    },
+    {
+      "pid": "89952547",
+      "dir": "up"
+    },
+    {
+      "pid": "89952501",
+      "dir": "up"
+    },
+    {
+      "pid": "89952453",
+      "dir": "up"
+    },
+    {
+      "pid": "89952371",
+      "dir": "up"
+    },
+    {
+      "pid": "89952365",
+      "dir": "up"
+    },
+    {
+      "pid": "89952241",
+      "dir": "up"
+    },
+    {
+      "pid": "89952191",
+      "dir": "up"
+    },
+    {
+      "pid": "89952015",
+      "dir": "anchor"
+    },
+    {
+      "pid": "89951915",
+      "dir": "down"
+    },
+    {
+      "pid": "89951891",
+      "dir": "down"
+    },
+    {
+      "pid": "89951889",
+      "dir": "down"
+    },
+    {
+      "pid": "89951695",
+      "dir": "down"
+    },
+    {
+      "pid": "89951721",
+      "dir": "down"
+    },
+    {
+      "pid": "89951717",
+      "dir": "down"
+    },
+    {
+      "pid": "89951719",
+      "dir": "down"
+    },
+    {
+      "pid": "89951709",
+      "dir": "down"
+    },
+    {
+      "pid": "89951743",
+      "dir": "down"
+    },
+    {
+      "pid": "89951753",
+      "dir": "down"
+    },
+    {
+      "pid": "89951679",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n758",
+      "currentEdge": "89952191",
+      "candidates": [
+        {
+          "pid": "89952241",
+          "name": "Laurel Fork",
+          "km": 0.8434775020101847
+        },
+        {
+          "pid": "89952119",
+          "name": "Pond Branch",
+          "km": 2.228767995931416
+        }
+      ],
+      "chosen": "89952241",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n781",
+      "currentEdge": "89952241",
+      "candidates": [
+        {
+          "pid": "89952365",
+          "name": "Laurel Fork",
+          "km": 0.5063003202178392
+        },
+        {
+          "pid": "89952337",
+          "name": "Big Branch",
+          "km": 0.045368742119711696
+        }
+      ],
+      "chosen": "89952365",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n829",
+      "currentEdge": "89952453",
+      "candidates": [
+        {
+          "pid": "89952459",
+          "name": "Coon Den Branch",
+          "km": 2.3029398886881793
+        },
+        {
+          "pid": "89952501",
+          "name": "Laurel Fork",
+          "km": 0.4457847436983513
+        }
+      ],
+      "chosen": "89952501",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n846",
+      "currentEdge": "89952501",
+      "candidates": [
+        {
+          "pid": "89952547",
+          "name": "Laurel Fork",
+          "km": 0.34208305380647613
+        },
+        {
+          "pid": "89952495",
+          "name": "Big Branch",
+          "km": 1.1582625157432935
+        }
+      ],
+      "chosen": "89952547",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n854",
+      "currentEdge": "89952547",
+      "candidates": [
+        {
+          "pid": "89952717",
+          "name": "Campbell Pen Branch",
+          "km": 1.6351505589174211
+        },
+        {
+          "pid": "89952555",
+          "name": "Laurel Fork",
+          "km": 1.016566568898907
+        }
+      ],
+      "chosen": "89952555",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n921",
+      "currentEdge": "89952735",
+      "candidates": [
+        {
+          "pid": "89952849",
+          "name": "Laurel Fork",
+          "km": 1.519623586323615
+        },
+        {
+          "pid": "89952961",
+          "name": "Lacy Trap Branch",
+          "km": 1.4393027556069644
+        }
+      ],
+      "chosen": "89952849",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n979",
+      "currentEdge": "89952849",
+      "candidates": [
+        {
+          "pid": "89952783",
+          "name": "Little Laurel Fork",
+          "km": 0.49523839954254417
+        },
+        {
+          "pid": "89952857",
+          "name": "Laurel Fork",
+          "km": 0.7197332437043483
+        }
+      ],
+      "chosen": "89952857",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1002",
+      "currentEdge": "89952857",
+      "candidates": [
+        {
+          "pid": "89952923",
+          "name": "Laurel Fork",
+          "km": 0.7934251791134111
+        },
+        {
+          "pid": "89953037",
+          "name": "Leonard Branch",
+          "km": 1.5832403676211269
+        }
+      ],
+      "chosen": "89952923",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1039",
+      "currentEdge": "89952923",
+      "candidates": [
+        {
+          "pid": "89952907",
+          "name": "Wagner Branch",
+          "km": 0.17764669028458746
+        },
+        {
+          "pid": "89952955",
+          "name": "Laurel Fork",
+          "km": 0.36434399644168053
+        }
+      ],
+      "chosen": "89952955",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1045",
+      "currentEdge": "89952955",
+      "candidates": [
+        {
+          "pid": "89953111",
+          "name": "Moreland Branch",
+          "km": 1.0450478311979734
+        },
+        {
+          "pid": "89953067",
+          "name": "Laurel Fork",
+          "km": 0.8220310843026267
+        }
+      ],
+      "chosen": "89953067",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1128",
+      "currentEdge": "89953073",
+      "candidates": [
+        {
+          "pid": "89952995",
+          "name": "Bunton Branch",
+          "km": 1.664143210314109
+        },
+        {
+          "pid": "89953059",
+          "name": "Laurel Fork",
+          "km": 1.0799909800127843
+        }
+      ],
+      "chosen": "89953059",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1179",
+      "currentEdge": "89953059",
+      "candidates": [
+        {
+          "pid": "89952485",
+          "name": "Cook Branch",
+          "km": 3.172556272094242
+        },
+        {
+          "pid": "89953107",
+          "name": "Laurel Fork",
+          "km": 0.3862807358976596
+        }
+      ],
+      "chosen": "89953107",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1222",
+      "currentEdge": "89953137",
+      "candidates": [
+        {
+          "pid": "89953195",
+          "name": "Laurel Fork",
+          "km": 0.6082073646145381
+        },
+        {
+          "pid": "89953129",
+          "name": "Camp Ten Branch",
+          "km": 1.501348382439765
+        }
+      ],
+      "chosen": "89953195",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1255",
+      "currentEdge": "89953195",
+      "candidates": [
+        {
+          "pid": "89953193",
+          "name": "Hays Branch",
+          "km": 1.6184012598853421
+        },
+        {
+          "pid": "89953211",
+          "name": "Laurel Fork",
+          "km": 0.14291379279451843
+        }
+      ],
+      "chosen": "89953211",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n653",
+      "currentEdge": "89951721",
+      "candidates": [
+        {
+          "pid": "89951719",
+          "name": "Laurel Fork",
+          "km": 0.3859625479066034
+        },
+        {
+          "pid": "89951717",
+          "name": "Laurel Fork",
+          "km": 0.009312273877646212
+        }
+      ],
+      "chosen": "89951717",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 6830,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-laurel-fork-carter.geojson"
+}

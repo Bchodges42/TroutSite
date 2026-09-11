@@ -1,0 +1,642 @@
+{
+  "waterId": "cosby-creek",
+  "graphPath": "data/nhd/graphs/06010106.graph.json",
+  "hu8": "06010106",
+  "anchorSnap": {
+    "distM": 0.6579132647087824,
+    "t": 0.27174164081701835,
+    "edgeIdx": 1454,
+    "seg": 74,
+    "point": [
+      -83.2206254560548,
+      35.84547617370217
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2683,
+      1453,
+      3450,
+      3348,
+      3449,
+      3417,
+      1216,
+      1276,
+      1217,
+      1266,
+      929,
+      1222,
+      1425,
+      40,
+      3793,
+      590,
+      132,
+      1253,
+      343,
+      1451,
+      657,
+      900,
+      3675,
+      1449,
+      75,
+      57,
+      3741,
+      3769,
+      243,
+      1095,
+      259,
+      748
+    ],
+    "reason": "headwater",
+    "node": "n455",
+    "edgePids": [
+      "{1D628838-850C-4F24-B518-A904FCFA6FEB}",
+      "{511F59F8-0B40-46E3-B6C5-0BB449972DD6}",
+      "{961E5052-A9B6-4709-A011-C9D9DEFF7ABB}",
+      "{2876DE71-1C0A-47EE-8B4F-7C0FF887571C}",
+      "{BC1BBDF2-4D02-4112-95FA-BABAB8D75AD2}",
+      "132645708",
+      "{AF6EC402-0F67-4597-88F6-DC5EF5101A33}",
+      "{16ECB8D7-C0E4-43BE-87F8-9FC9E6698026}",
+      "{622DCD57-474A-4070-A326-D0B555DC3AB3}",
+      "{29FB4645-6905-4F4C-9A3C-F83354B21F72}",
+      "132646122",
+      "{6018F0C2-2FB9-46DA-BF6F-0D1BDF779487}",
+      "{42871FF8-08B5-4D32-B676-0E487C6D944D}",
+      "132646291",
+      "132646303",
+      "132646461",
+      "132646906",
+      "{6A77390D-491E-4EFA-8EE0-BA2393836FFC}",
+      "132647075",
+      "{5BA5F7C6-1A7F-47F5-85C9-E6FB2E285B47}",
+      "132647264",
+      "132647470",
+      "132647693",
+      "{97142D8E-D9BF-46EB-B5C2-63E53F5DDA82}",
+      "132647845",
+      "132647851",
+      "132647948",
+      "132648036",
+      "132648076",
+      "132648131",
+      "132648142",
+      "132648146"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1452,
+      1240,
+      466,
+      110,
+      1294,
+      3831,
+      1277,
+      1211,
+      1292,
+      1241,
+      1348,
+      1333,
+      1272,
+      1242,
+      1270,
+      1271,
+      613,
+      1269
+    ],
+    "reason": "name-change",
+    "node": "n368",
+    "enteredNames": [
+      "Pigeon River"
+    ],
+    "edgePids": [
+      "{66679366-C7F2-4FA5-A72F-FFE67F1D3837}",
+      "{870955F0-3517-468B-87A6-F3215623B4BA}",
+      "132645503",
+      "132645470",
+      "{7E9DF547-DA86-4272-BE0B-DC27BE8078DA}",
+      "132645445",
+      "{7A9D1F1E-D040-49CC-84DB-CB9A6387F344}",
+      "{C3232FA0-ED39-4F39-809F-97DFBFBEC7ED}",
+      "{13C21C5C-AA50-4AAD-A7B1-DDE00AC6D227}",
+      "{E3177AB7-84B1-4498-8263-DC304945C9A9}",
+      "{4E64FE65-FD76-45A9-8B61-12C642B6BD80}",
+      "{C2491440-10FB-4B20-9EC6-17C1A90F0E49}",
+      "{2C2B9E98-C1AE-4F16-9D14-15DD08310F5A}",
+      "{82F6F8C0-2F2C-49B6-981D-4BCC508D47A0}",
+      "{8EFBEA49-450C-4FE3-A02E-3FAE1CDBC422}",
+      "{CCFCB84E-E139-457F-909E-BDB40EC1238A}",
+      "132645258",
+      "{B0629E7C-2247-41B0-B65F-A5E46B091EDF}"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "132648146",
+      "dir": "up"
+    },
+    {
+      "pid": "132648142",
+      "dir": "up"
+    },
+    {
+      "pid": "132648131",
+      "dir": "up"
+    },
+    {
+      "pid": "132648076",
+      "dir": "up"
+    },
+    {
+      "pid": "132648036",
+      "dir": "up"
+    },
+    {
+      "pid": "132647948",
+      "dir": "up"
+    },
+    {
+      "pid": "132647851",
+      "dir": "up"
+    },
+    {
+      "pid": "132647845",
+      "dir": "up"
+    },
+    {
+      "pid": "{97142D8E-D9BF-46EB-B5C2-63E53F5DDA82}",
+      "dir": "up"
+    },
+    {
+      "pid": "132647693",
+      "dir": "up"
+    },
+    {
+      "pid": "132647470",
+      "dir": "up"
+    },
+    {
+      "pid": "132647264",
+      "dir": "up"
+    },
+    {
+      "pid": "{5BA5F7C6-1A7F-47F5-85C9-E6FB2E285B47}",
+      "dir": "up"
+    },
+    {
+      "pid": "132647075",
+      "dir": "up"
+    },
+    {
+      "pid": "{6A77390D-491E-4EFA-8EE0-BA2393836FFC}",
+      "dir": "up"
+    },
+    {
+      "pid": "132646906",
+      "dir": "up"
+    },
+    {
+      "pid": "132646461",
+      "dir": "up"
+    },
+    {
+      "pid": "132646303",
+      "dir": "up"
+    },
+    {
+      "pid": "132646291",
+      "dir": "up"
+    },
+    {
+      "pid": "{42871FF8-08B5-4D32-B676-0E487C6D944D}",
+      "dir": "up"
+    },
+    {
+      "pid": "{6018F0C2-2FB9-46DA-BF6F-0D1BDF779487}",
+      "dir": "up"
+    },
+    {
+      "pid": "132646122",
+      "dir": "up"
+    },
+    {
+      "pid": "{29FB4645-6905-4F4C-9A3C-F83354B21F72}",
+      "dir": "up"
+    },
+    {
+      "pid": "{622DCD57-474A-4070-A326-D0B555DC3AB3}",
+      "dir": "up"
+    },
+    {
+      "pid": "{16ECB8D7-C0E4-43BE-87F8-9FC9E6698026}",
+      "dir": "up"
+    },
+    {
+      "pid": "{AF6EC402-0F67-4597-88F6-DC5EF5101A33}",
+      "dir": "up"
+    },
+    {
+      "pid": "132645708",
+      "dir": "up"
+    },
+    {
+      "pid": "{BC1BBDF2-4D02-4112-95FA-BABAB8D75AD2}",
+      "dir": "up"
+    },
+    {
+      "pid": "{2876DE71-1C0A-47EE-8B4F-7C0FF887571C}",
+      "dir": "up"
+    },
+    {
+      "pid": "{961E5052-A9B6-4709-A011-C9D9DEFF7ABB}",
+      "dir": "up"
+    },
+    {
+      "pid": "{511F59F8-0B40-46E3-B6C5-0BB449972DD6}",
+      "dir": "up"
+    },
+    {
+      "pid": "{1D628838-850C-4F24-B518-A904FCFA6FEB}",
+      "dir": "up"
+    },
+    {
+      "pid": "{2E424961-F33B-4F6B-BAF3-ABA6C46A8F32}",
+      "dir": "anchor"
+    },
+    {
+      "pid": "{66679366-C7F2-4FA5-A72F-FFE67F1D3837}",
+      "dir": "down"
+    },
+    {
+      "pid": "{870955F0-3517-468B-87A6-F3215623B4BA}",
+      "dir": "down"
+    },
+    {
+      "pid": "132645503",
+      "dir": "down"
+    },
+    {
+      "pid": "132645470",
+      "dir": "down"
+    },
+    {
+      "pid": "{7E9DF547-DA86-4272-BE0B-DC27BE8078DA}",
+      "dir": "down"
+    },
+    {
+      "pid": "132645445",
+      "dir": "down"
+    },
+    {
+      "pid": "{7A9D1F1E-D040-49CC-84DB-CB9A6387F344}",
+      "dir": "down"
+    },
+    {
+      "pid": "{C3232FA0-ED39-4F39-809F-97DFBFBEC7ED}",
+      "dir": "down"
+    },
+    {
+      "pid": "{13C21C5C-AA50-4AAD-A7B1-DDE00AC6D227}",
+      "dir": "down"
+    },
+    {
+      "pid": "{E3177AB7-84B1-4498-8263-DC304945C9A9}",
+      "dir": "down"
+    },
+    {
+      "pid": "{4E64FE65-FD76-45A9-8B61-12C642B6BD80}",
+      "dir": "down"
+    },
+    {
+      "pid": "{C2491440-10FB-4B20-9EC6-17C1A90F0E49}",
+      "dir": "down"
+    },
+    {
+      "pid": "{2C2B9E98-C1AE-4F16-9D14-15DD08310F5A}",
+      "dir": "down"
+    },
+    {
+      "pid": "{82F6F8C0-2F2C-49B6-981D-4BCC508D47A0}",
+      "dir": "down"
+    },
+    {
+      "pid": "{8EFBEA49-450C-4FE3-A02E-3FAE1CDBC422}",
+      "dir": "down"
+    },
+    {
+      "pid": "{CCFCB84E-E139-457F-909E-BDB40EC1238A}",
+      "dir": "down"
+    },
+    {
+      "pid": "132645258",
+      "dir": "down"
+    },
+    {
+      "pid": "{B0629E7C-2247-41B0-B65F-A5E46B091EDF}",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n155",
+      "currentEdge": "132645708",
+      "candidates": [
+        {
+          "pid": "132645747",
+          "name": "Chavis Creek",
+          "km": 0.914013140659406
+        },
+        {
+          "pid": "{AF6EC402-0F67-4597-88F6-DC5EF5101A33}",
+          "name": "Cosby Creek",
+          "km": 0.6859214640984794
+        },
+        {
+          "pid": "{5AD60B25-6117-42BE-B22C-D62E013B5601}",
+          "name": "Chavis Creek",
+          "km": 0.005354895479916667
+        }
+      ],
+      "chosen": "{AF6EC402-0F67-4597-88F6-DC5EF5101A33}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n141",
+      "currentEdge": "{6018F0C2-2FB9-46DA-BF6F-0D1BDF779487}",
+      "candidates": [
+        {
+          "pid": "{42871FF8-08B5-4D32-B676-0E487C6D944D}",
+          "name": "Cosby Creek",
+          "km": 0.13721067630061604
+        },
+        {
+          "pid": "132646433",
+          "name": "Indian Camp Creek",
+          "km": 0.786832117799484
+        }
+      ],
+      "chosen": "{42871FF8-08B5-4D32-B676-0E487C6D944D}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n149",
+      "currentEdge": "132646291",
+      "candidates": [
+        {
+          "pid": "{671D2CB9-141F-4434-BAAC-46ACDB4F0BA3}",
+          "name": "Greenbrier Creek",
+          "km": 0.2742197200730845
+        },
+        {
+          "pid": "132646303",
+          "name": "Cosby Creek",
+          "km": 0.5969476551779372
+        }
+      ],
+      "chosen": "132646303",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n175",
+      "currentEdge": "132646303",
+      "candidates": [
+        {
+          "pid": "132646301",
+          "name": "Caney Creek",
+          "km": 0.18579682296094158
+        },
+        {
+          "pid": "132646461",
+          "name": "Cosby Creek",
+          "km": 1.00047951727118
+        },
+        {
+          "pid": "{865827C0-5F93-41AA-B314-6243A4C9BDF4}",
+          "name": "Caney Creek",
+          "km": 0.0062549650110774934
+        }
+      ],
+      "chosen": "132646461",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n234",
+      "currentEdge": "132646906",
+      "candidates": [
+        {
+          "pid": "{6A77390D-491E-4EFA-8EE0-BA2393836FFC}",
+          "name": "Cosby Creek",
+          "km": 0.3668543317818792
+        },
+        {
+          "pid": "{AF5A9CB7-D8F1-4EAE-AE31-231E6EE37370}",
+          "name": "Stillhouse Branch",
+          "km": 0.0027432097605300043
+        },
+        {
+          "pid": "132647183",
+          "name": "Stillhouse Branch",
+          "km": 0.6230025172016952
+        }
+      ],
+      "chosen": "{6A77390D-491E-4EFA-8EE0-BA2393836FFC}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n277",
+      "currentEdge": "132647075",
+      "candidates": [
+        {
+          "pid": "132647226",
+          "name": "Fletcher Spring Branch",
+          "km": 0.604359916872398
+        },
+        {
+          "pid": "{5BA5F7C6-1A7F-47F5-85C9-E6FB2E285B47}",
+          "name": "Cosby Creek",
+          "km": 0.18620139998806662
+        }
+      ],
+      "chosen": "{5BA5F7C6-1A7F-47F5-85C9-E6FB2E285B47}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n304",
+      "currentEdge": "132647693",
+      "candidates": [
+        {
+          "pid": "{97142D8E-D9BF-46EB-B5C2-63E53F5DDA82}",
+          "name": "Cosby Creek",
+          "km": 0.04043352257594793
+        },
+        {
+          "pid": "{3410DAD8-0E49-4033-ADC1-61E16EB1E9AA}",
+          "name": "Rock Creek",
+          "km": 0.22843271664702394
+        }
+      ],
+      "chosen": "{97142D8E-D9BF-46EB-B5C2-63E53F5DDA82}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n308",
+      "currentEdge": "{97142D8E-D9BF-46EB-B5C2-63E53F5DDA82}",
+      "candidates": [
+        {
+          "pid": "132647845",
+          "name": "Cosby Creek",
+          "km": 0.5678461806446038
+        },
+        {
+          "pid": "132647691",
+          "name": "Toms Creek",
+          "km": 0.601719009560325
+        }
+      ],
+      "chosen": "132647845",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n361",
+      "currentEdge": "132648076",
+      "candidates": [
+        {
+          "pid": "132648131",
+          "name": "Cosby Creek",
+          "km": 0.8067203618325294
+        },
+        {
+          "pid": "132648991",
+          "name": "Camel Hump Creek",
+          "km": 3.0144027117530667
+        },
+        {
+          "pid": "132648241",
+          "name": "Dry Branch",
+          "km": 0.9291603438885289
+        }
+      ],
+      "chosen": "132648131",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n265",
+      "currentEdge": "{2E424961-F33B-4F6B-BAF3-ABA6C46A8F32}",
+      "candidates": [
+        {
+          "pid": "{66679366-C7F2-4FA5-A72F-FFE67F1D3837}",
+          "name": "Cosby Creek",
+          "km": 0.06148073391899187
+        },
+        {
+          "pid": "{2A739EA3-8994-4D02-A243-6902A521C7C0}",
+          "name": "Rabbit Branch",
+          "km": 0.008641829949972967
+        }
+      ],
+      "chosen": "{66679366-C7F2-4FA5-A72F-FFE67F1D3837}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n268",
+      "currentEdge": "{66679366-C7F2-4FA5-A72F-FFE67F1D3837}",
+      "candidates": [
+        {
+          "pid": "{870955F0-3517-468B-87A6-F3215623B4BA}",
+          "name": "Cosby Creek",
+          "km": 0.4044647825324358
+        },
+        {
+          "pid": "{B900D102-C059-488B-BD6E-1B4957BA7781}",
+          "name": "Gray Branch",
+          "km": 0.00786040642741282
+        }
+      ],
+      "chosen": "{870955F0-3517-468B-87A6-F3215623B4BA}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n249",
+      "currentEdge": "{C3232FA0-ED39-4F39-809F-97DFBFBEC7ED}",
+      "candidates": [
+        {
+          "pid": "{13C21C5C-AA50-4AAD-A7B1-DDE00AC6D227}",
+          "name": "Cosby Creek",
+          "km": 0.265583747486494
+        },
+        {
+          "pid": "{F2731A19-A304-4103-90F7-8638B7BFB9E4}",
+          "name": "Middle Creek",
+          "km": 0.00875787014839664
+        }
+      ],
+      "chosen": "{13C21C5C-AA50-4AAD-A7B1-DDE00AC6D227}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n294",
+      "currentEdge": "{C2491440-10FB-4B20-9EC6-17C1A90F0E49}",
+      "candidates": [
+        {
+          "pid": "{2C2B9E98-C1AE-4F16-9D14-15DD08310F5A}",
+          "name": "Cosby Creek",
+          "km": 0.1679584584385567
+        },
+        {
+          "pid": "{64F4E06B-67A6-45E2-8E37-E673B6CA54FB}",
+          "name": "Pheasant Branch",
+          "km": 0.00773392239965667
+        }
+      ],
+      "chosen": "{2C2B9E98-C1AE-4F16-9D14-15DD08310F5A}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n300",
+      "currentEdge": "{2C2B9E98-C1AE-4F16-9D14-15DD08310F5A}",
+      "candidates": [
+        {
+          "pid": "{82F6F8C0-2F2C-49B6-981D-4BCC508D47A0}",
+          "name": "Cosby Creek",
+          "km": 0.005118663199658123
+        },
+        {
+          "pid": "{8EFBEA49-450C-4FE3-A02E-3FAE1CDBC422}",
+          "name": "Cosby Creek",
+          "km": 0.2930295536818691
+        }
+      ],
+      "chosen": "{82F6F8C0-2F2C-49B6-981D-4BCC508D47A0}",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 6723,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-cosby-creek.geojson"
+}

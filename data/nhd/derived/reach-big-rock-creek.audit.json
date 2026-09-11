@@ -1,0 +1,529 @@
+{
+  "waterId": "big-rock-creek",
+  "graphPath": "data/nhd/graphs/06040002.graph.json",
+  "hu8": "06040002",
+  "anchorSnap": {
+    "distM": 3.7285905612514587,
+    "t": 0.2494903137318567,
+    "edgeIdx": 430,
+    "seg": 383,
+    "point": [
+      -86.76285973623847,
+      35.52660694699263
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1770,
+      2130,
+      414,
+      2148,
+      603,
+      2238,
+      1569,
+      1407,
+      2127,
+      1776,
+      1753,
+      2091,
+      1026,
+      713,
+      456,
+      1719,
+      1896,
+      427,
+      198,
+      1165,
+      1365,
+      1256,
+      1338,
+      1474,
+      1243,
+      197,
+      1782,
+      1152,
+      762,
+      1283,
+      170,
+      1400
+    ],
+    "reason": "headwater",
+    "node": "n398",
+    "edgePids": [
+      "136616495",
+      "136616496",
+      "136616740",
+      "136616498",
+      "136616499",
+      "136616500",
+      "136616501",
+      "136616502",
+      "136616811",
+      "136616503",
+      "136616504",
+      "136613938",
+      "136613939",
+      "136613940",
+      "136613941",
+      "136613942",
+      "136613943",
+      "136613944",
+      "136613945",
+      "136613946",
+      "136613947",
+      "136613948",
+      "136613949",
+      "136613950",
+      "136613951",
+      "136613952",
+      "136616183",
+      "136616185",
+      "136616186",
+      "136616187",
+      "136615684",
+      "136612530"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1445,
+      2187,
+      587
+    ],
+    "reason": "name-change",
+    "node": "n496",
+    "enteredNames": [
+      "Duck River"
+    ],
+    "edgePids": [
+      "136616493",
+      "136616492",
+      "136616491"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "136612530",
+      "dir": "up"
+    },
+    {
+      "pid": "136615684",
+      "dir": "up"
+    },
+    {
+      "pid": "136616187",
+      "dir": "up"
+    },
+    {
+      "pid": "136616186",
+      "dir": "up"
+    },
+    {
+      "pid": "136616185",
+      "dir": "up"
+    },
+    {
+      "pid": "136616183",
+      "dir": "up"
+    },
+    {
+      "pid": "136613952",
+      "dir": "up"
+    },
+    {
+      "pid": "136613951",
+      "dir": "up"
+    },
+    {
+      "pid": "136613950",
+      "dir": "up"
+    },
+    {
+      "pid": "136613949",
+      "dir": "up"
+    },
+    {
+      "pid": "136613948",
+      "dir": "up"
+    },
+    {
+      "pid": "136613947",
+      "dir": "up"
+    },
+    {
+      "pid": "136613946",
+      "dir": "up"
+    },
+    {
+      "pid": "136613945",
+      "dir": "up"
+    },
+    {
+      "pid": "136613944",
+      "dir": "up"
+    },
+    {
+      "pid": "136613943",
+      "dir": "up"
+    },
+    {
+      "pid": "136613942",
+      "dir": "up"
+    },
+    {
+      "pid": "136613941",
+      "dir": "up"
+    },
+    {
+      "pid": "136613940",
+      "dir": "up"
+    },
+    {
+      "pid": "136613939",
+      "dir": "up"
+    },
+    {
+      "pid": "136613938",
+      "dir": "up"
+    },
+    {
+      "pid": "136616504",
+      "dir": "up"
+    },
+    {
+      "pid": "136616503",
+      "dir": "up"
+    },
+    {
+      "pid": "136616811",
+      "dir": "up"
+    },
+    {
+      "pid": "136616502",
+      "dir": "up"
+    },
+    {
+      "pid": "136616501",
+      "dir": "up"
+    },
+    {
+      "pid": "136616500",
+      "dir": "up"
+    },
+    {
+      "pid": "136616499",
+      "dir": "up"
+    },
+    {
+      "pid": "136616498",
+      "dir": "up"
+    },
+    {
+      "pid": "136616740",
+      "dir": "up"
+    },
+    {
+      "pid": "136616496",
+      "dir": "up"
+    },
+    {
+      "pid": "136616495",
+      "dir": "up"
+    },
+    {
+      "pid": "136616494",
+      "dir": "anchor"
+    },
+    {
+      "pid": "136616493",
+      "dir": "down"
+    },
+    {
+      "pid": "136616492",
+      "dir": "down"
+    },
+    {
+      "pid": "136616491",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n530",
+      "currentEdge": "136616495",
+      "candidates": [
+        {
+          "pid": "136611297",
+          "name": "Dry Branch",
+          "km": 5.320698816390413
+        },
+        {
+          "pid": "136616496",
+          "name": "Big Rock Creek",
+          "km": 2.6925571956912795
+        },
+        {
+          "pid": "136616651",
+          "name": "Dry Branch",
+          "km": 0.008167565380898112
+        }
+      ],
+      "chosen": "136616496",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n514",
+      "currentEdge": "136616498",
+      "candidates": [
+        {
+          "pid": "136616499",
+          "name": "Big Rock Creek",
+          "km": 1.3123481830528376
+        },
+        {
+          "pid": "136616648",
+          "name": "Snake Creek",
+          "km": 0.009837909767991062
+        },
+        {
+          "pid": "136614240",
+          "name": "Snake Creek",
+          "km": 1.9657759891973996
+        }
+      ],
+      "chosen": "136616499",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n481",
+      "currentEdge": "136616502",
+      "candidates": [
+        {
+          "pid": "136616812",
+          "name": "Copps Branch",
+          "km": 0.021440921562554446
+        },
+        {
+          "pid": "136616811",
+          "name": "Big Rock Creek",
+          "km": 1.7989932418714734
+        }
+      ],
+      "chosen": "136616811",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n467",
+      "currentEdge": "136616811",
+      "candidates": [
+        {
+          "pid": "136614290",
+          "name": "Collins Creek",
+          "km": 0.9807813206861787
+        },
+        {
+          "pid": "136616650",
+          "name": "Collins Creek",
+          "km": 0.010539702527641949
+        },
+        {
+          "pid": "136616503",
+          "name": "Big Rock Creek",
+          "km": 1.443875987514167
+        }
+      ],
+      "chosen": "136616503",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n459",
+      "currentEdge": "136616503",
+      "candidates": [
+        {
+          "pid": "136611909",
+          "name": "Loyd Branch",
+          "km": 0.8870272379090166
+        },
+        {
+          "pid": "136616739",
+          "name": "Loyd Branch",
+          "km": 0.005597643950969905
+        },
+        {
+          "pid": "136616504",
+          "name": "Big Rock Creek",
+          "km": 0.005871213914646362
+        },
+        {
+          "pid": "136613938",
+          "name": "Big Rock Creek",
+          "km": 1.0067703698264232
+        }
+      ],
+      "chosen": "136616504",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n459",
+      "currentEdge": "136616504",
+      "candidates": [
+        {
+          "pid": "136611909",
+          "name": "Loyd Branch",
+          "km": 0.8870272379090166
+        },
+        {
+          "pid": "136616739",
+          "name": "Loyd Branch",
+          "km": 0.005597643950969905
+        },
+        {
+          "pid": "136613938",
+          "name": "Big Rock Creek",
+          "km": 1.0067703698264232
+        }
+      ],
+      "chosen": "136613938",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n444",
+      "currentEdge": "136613941",
+      "candidates": [
+        {
+          "pid": "136611917",
+          "name": "Thomas Branch",
+          "km": 2.4355668585631447
+        },
+        {
+          "pid": "136613942",
+          "name": "Big Rock Creek",
+          "km": 0.005970875304593841
+        },
+        {
+          "pid": "136613943",
+          "name": "Big Rock Creek",
+          "km": 1.0490039067927395
+        }
+      ],
+      "chosen": "136613942",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n444",
+      "currentEdge": "136613942",
+      "candidates": [
+        {
+          "pid": "136611917",
+          "name": "Thomas Branch",
+          "km": 2.4355668585631447
+        },
+        {
+          "pid": "136613943",
+          "name": "Big Rock Creek",
+          "km": 1.0490039067927395
+        }
+      ],
+      "chosen": "136613943",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n442",
+      "currentEdge": "136613943",
+      "candidates": [
+        {
+          "pid": "136613944",
+          "name": "Big Rock Creek",
+          "km": 0.18792330602503574
+        },
+        {
+          "pid": "136614449",
+          "name": "Sanders Creek",
+          "km": 0.6768758869649285
+        }
+      ],
+      "chosen": "136613944",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n441",
+      "currentEdge": "136613944",
+      "candidates": [
+        {
+          "pid": "136613945",
+          "name": "Big Rock Creek",
+          "km": 0.6764221469304443
+        },
+        {
+          "pid": "136613733",
+          "name": "New Lake Branch",
+          "km": 0.7427119675690255
+        }
+      ],
+      "chosen": "136613945",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n418",
+      "currentEdge": "136616185",
+      "candidates": [
+        {
+          "pid": "136616186",
+          "name": "Big Rock Creek",
+          "km": 0.008552778106823035
+        },
+        {
+          "pid": "136616187",
+          "name": "Big Rock Creek",
+          "km": 0.7230216486937014
+        }
+      ],
+      "chosen": "136616186",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n503",
+      "currentEdge": "136616494",
+      "candidates": [
+        {
+          "pid": "136616649",
+          "name": "Wright Branch",
+          "km": 0.008991573064591004
+        },
+        {
+          "pid": "136616493",
+          "name": "Big Rock Creek",
+          "km": 1.0858162032242293
+        }
+      ],
+      "chosen": "136616493",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 8578,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-big-rock-creek.geojson"
+}

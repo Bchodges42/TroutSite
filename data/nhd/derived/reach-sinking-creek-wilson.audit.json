@@ -1,0 +1,129 @@
+{
+  "waterId": "sinking-creek-wilson",
+  "graphPath": "data/nhd/graphs/05130201.graph.json",
+  "hu8": "05130201",
+  "anchorSnap": {
+    "distM": 3.308494960708322,
+    "t": 0.9726599389080736,
+    "edgeIdx": 522,
+    "seg": 3,
+    "point": [
+      -86.30026866451256,
+      36.165115625590225
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1115,
+      513,
+      892,
+      950,
+      787
+    ],
+    "reason": "headwater",
+    "node": "n499",
+    "edgePids": [
+      "137309160",
+      "137309162",
+      "137309164",
+      "137309166",
+      "137309018"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      618,
+      999,
+      536,
+      173
+    ],
+    "reason": "name-change",
+    "node": "n483",
+    "enteredNames": [
+      "Bartons Creek"
+    ],
+    "edgePids": [
+      "137307977",
+      "137307975",
+      "137311080",
+      "137311078"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "137309018",
+      "dir": "up"
+    },
+    {
+      "pid": "137309166",
+      "dir": "up"
+    },
+    {
+      "pid": "137309164",
+      "dir": "up"
+    },
+    {
+      "pid": "137309162",
+      "dir": "up"
+    },
+    {
+      "pid": "137309160",
+      "dir": "up"
+    },
+    {
+      "pid": "137307979",
+      "dir": "anchor"
+    },
+    {
+      "pid": "137307977",
+      "dir": "down"
+    },
+    {
+      "pid": "137307975",
+      "dir": "down"
+    },
+    {
+      "pid": "137311080",
+      "dir": "down"
+    },
+    {
+      "pid": "137311078",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "down",
+      "atNode": "n506",
+      "currentEdge": "137311080",
+      "candidates": [
+        {
+          "pid": "137311078",
+          "name": "Sinking Creek",
+          "km": 1.4865873751663812
+        },
+        {
+          "pid": "137311082",
+          "name": "Tarver Branch",
+          "km": 0.008505457683956287
+        }
+      ],
+      "chosen": "137311078",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 3463,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-sinking-creek-wilson.geojson"
+}

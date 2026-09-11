@@ -1,0 +1,900 @@
+{
+  "waterId": "citico-creek",
+  "graphPath": "data/nhd/graphs/06010204.graph.json",
+  "hu8": "06010204",
+  "anchorSnap": {
+    "distM": 1.151529924278369,
+    "t": 0.9963769857791056,
+    "edgeIdx": 2838,
+    "seg": 5,
+    "point": [
+      -84.10070912670935,
+      35.51100721023098
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      3323,
+      3270,
+      968,
+      1057,
+      764,
+      3464,
+      3518,
+      3468,
+      2605,
+      3091,
+      1777,
+      3650,
+      2112,
+      1147,
+      2617,
+      1725,
+      758,
+      3272,
+      952,
+      3004,
+      4,
+      1124,
+      329,
+      1679,
+      1587,
+      581,
+      1479,
+      63,
+      1717,
+      579,
+      769,
+      774,
+      2704,
+      3747,
+      1487,
+      150,
+      1389,
+      1833,
+      2172,
+      3775,
+      883,
+      3485,
+      1501,
+      2751,
+      2070,
+      1508,
+      956
+    ],
+    "reason": "headwater",
+    "node": "n1876",
+    "edgePids": [
+      "112261907",
+      "112262111",
+      "112262237",
+      "112262377",
+      "112262509",
+      "112262673",
+      "112262691",
+      "112262833",
+      "112263009",
+      "112263153",
+      "112263235",
+      "112263389",
+      "112263493",
+      "112263593",
+      "112263687",
+      "112263819",
+      "112263833",
+      "112263929",
+      "112264233",
+      "112264431",
+      "112264557",
+      "112264663",
+      "112264745",
+      "112264727",
+      "112265009",
+      "112265037",
+      "112265221",
+      "112265253",
+      "112265415",
+      "112265521",
+      "112265625",
+      "112265783",
+      "112265917",
+      "112265945",
+      "112265955",
+      "112266147",
+      "112266285",
+      "112266291",
+      "112266311",
+      "112266437",
+      "112266501",
+      "112266535",
+      "112266631",
+      "112266633",
+      "112266553",
+      "112266573",
+      "112266577"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      2091,
+      547,
+      3773,
+      3798,
+      239,
+      1070,
+      3401,
+      2438,
+      1128,
+      2686,
+      1432,
+      1977,
+      3398,
+      3152,
+      1910,
+      1919,
+      1665,
+      441,
+      1989,
+      2956
+    ],
+    "reason": "name-change",
+    "node": "n1421",
+    "enteredNames": [
+      "Little Tennessee River"
+    ],
+    "edgePids": [
+      "112261345",
+      "112261273",
+      "112261003",
+      "112260811",
+      "112260761",
+      "112260751",
+      "112260507",
+      "112260329",
+      "112260319",
+      "112260305",
+      "112260203",
+      "112260183",
+      "112260161",
+      "112260155",
+      "112260151",
+      "112260141",
+      "112260139",
+      "112259919",
+      "112259897",
+      "112259847"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "112266577",
+      "dir": "up"
+    },
+    {
+      "pid": "112266573",
+      "dir": "up"
+    },
+    {
+      "pid": "112266553",
+      "dir": "up"
+    },
+    {
+      "pid": "112266633",
+      "dir": "up"
+    },
+    {
+      "pid": "112266631",
+      "dir": "up"
+    },
+    {
+      "pid": "112266535",
+      "dir": "up"
+    },
+    {
+      "pid": "112266501",
+      "dir": "up"
+    },
+    {
+      "pid": "112266437",
+      "dir": "up"
+    },
+    {
+      "pid": "112266311",
+      "dir": "up"
+    },
+    {
+      "pid": "112266291",
+      "dir": "up"
+    },
+    {
+      "pid": "112266285",
+      "dir": "up"
+    },
+    {
+      "pid": "112266147",
+      "dir": "up"
+    },
+    {
+      "pid": "112265955",
+      "dir": "up"
+    },
+    {
+      "pid": "112265945",
+      "dir": "up"
+    },
+    {
+      "pid": "112265917",
+      "dir": "up"
+    },
+    {
+      "pid": "112265783",
+      "dir": "up"
+    },
+    {
+      "pid": "112265625",
+      "dir": "up"
+    },
+    {
+      "pid": "112265521",
+      "dir": "up"
+    },
+    {
+      "pid": "112265415",
+      "dir": "up"
+    },
+    {
+      "pid": "112265253",
+      "dir": "up"
+    },
+    {
+      "pid": "112265221",
+      "dir": "up"
+    },
+    {
+      "pid": "112265037",
+      "dir": "up"
+    },
+    {
+      "pid": "112265009",
+      "dir": "up"
+    },
+    {
+      "pid": "112264727",
+      "dir": "up"
+    },
+    {
+      "pid": "112264745",
+      "dir": "up"
+    },
+    {
+      "pid": "112264663",
+      "dir": "up"
+    },
+    {
+      "pid": "112264557",
+      "dir": "up"
+    },
+    {
+      "pid": "112264431",
+      "dir": "up"
+    },
+    {
+      "pid": "112264233",
+      "dir": "up"
+    },
+    {
+      "pid": "112263929",
+      "dir": "up"
+    },
+    {
+      "pid": "112263833",
+      "dir": "up"
+    },
+    {
+      "pid": "112263819",
+      "dir": "up"
+    },
+    {
+      "pid": "112263687",
+      "dir": "up"
+    },
+    {
+      "pid": "112263593",
+      "dir": "up"
+    },
+    {
+      "pid": "112263493",
+      "dir": "up"
+    },
+    {
+      "pid": "112263389",
+      "dir": "up"
+    },
+    {
+      "pid": "112263235",
+      "dir": "up"
+    },
+    {
+      "pid": "112263153",
+      "dir": "up"
+    },
+    {
+      "pid": "112263009",
+      "dir": "up"
+    },
+    {
+      "pid": "112262833",
+      "dir": "up"
+    },
+    {
+      "pid": "112262691",
+      "dir": "up"
+    },
+    {
+      "pid": "112262673",
+      "dir": "up"
+    },
+    {
+      "pid": "112262509",
+      "dir": "up"
+    },
+    {
+      "pid": "112262377",
+      "dir": "up"
+    },
+    {
+      "pid": "112262237",
+      "dir": "up"
+    },
+    {
+      "pid": "112262111",
+      "dir": "up"
+    },
+    {
+      "pid": "112261907",
+      "dir": "up"
+    },
+    {
+      "pid": "112261787",
+      "dir": "anchor"
+    },
+    {
+      "pid": "112261345",
+      "dir": "down"
+    },
+    {
+      "pid": "112261273",
+      "dir": "down"
+    },
+    {
+      "pid": "112261003",
+      "dir": "down"
+    },
+    {
+      "pid": "112260811",
+      "dir": "down"
+    },
+    {
+      "pid": "112260761",
+      "dir": "down"
+    },
+    {
+      "pid": "112260751",
+      "dir": "down"
+    },
+    {
+      "pid": "112260507",
+      "dir": "down"
+    },
+    {
+      "pid": "112260329",
+      "dir": "down"
+    },
+    {
+      "pid": "112260319",
+      "dir": "down"
+    },
+    {
+      "pid": "112260305",
+      "dir": "down"
+    },
+    {
+      "pid": "112260203",
+      "dir": "down"
+    },
+    {
+      "pid": "112260183",
+      "dir": "down"
+    },
+    {
+      "pid": "112260161",
+      "dir": "down"
+    },
+    {
+      "pid": "112260155",
+      "dir": "down"
+    },
+    {
+      "pid": "112260151",
+      "dir": "down"
+    },
+    {
+      "pid": "112260141",
+      "dir": "down"
+    },
+    {
+      "pid": "112260139",
+      "dir": "down"
+    },
+    {
+      "pid": "112259919",
+      "dir": "down"
+    },
+    {
+      "pid": "112259897",
+      "dir": "down"
+    },
+    {
+      "pid": "112259847",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1311",
+      "currentEdge": "112261907",
+      "candidates": [
+        {
+          "pid": "112261909",
+          "name": "Duncan Branch",
+          "km": 0.009889289337935262
+        },
+        {
+          "pid": "112261921",
+          "name": "Duncan Branch",
+          "km": 0.1775108803959127
+        },
+        {
+          "pid": "112262111",
+          "name": "Citico Creek",
+          "km": 1.2295453465297201
+        }
+      ],
+      "chosen": "112262111",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1245",
+      "currentEdge": "112262111",
+      "candidates": [
+        {
+          "pid": "112262109",
+          "name": "Bivens Branch",
+          "km": 0.02560318711259862
+        },
+        {
+          "pid": "112262237",
+          "name": "Citico Creek",
+          "km": 1.4249760085056793
+        },
+        {
+          "pid": "112262113",
+          "name": "Bivens Branch",
+          "km": 0.008496245881471272
+        }
+      ],
+      "chosen": "112262237",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1212",
+      "currentEdge": "112262237",
+      "candidates": [
+        {
+          "pid": "112262317",
+          "name": "Caney Branch",
+          "km": 0.5416910501131078
+        },
+        {
+          "pid": "112262377",
+          "name": "Citico Creek",
+          "km": 0.6450109983465395
+        },
+        {
+          "pid": "112262239",
+          "name": "Caney Branch",
+          "km": 0.008145091787275563
+        }
+      ],
+      "chosen": "112262377",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1272",
+      "currentEdge": "112262691",
+      "candidates": [
+        {
+          "pid": "112262787",
+          "name": "Little Citico Creek",
+          "km": 0.7677393153482739
+        },
+        {
+          "pid": "112262693",
+          "name": "Little Citico Creek",
+          "km": 0.009717898228124888
+        },
+        {
+          "pid": "112262833",
+          "name": "Citico Creek",
+          "km": 0.5927182379741868
+        }
+      ],
+      "chosen": "112262833",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1207",
+      "currentEdge": "112263009",
+      "candidates": [
+        {
+          "pid": "112263275",
+          "name": "Hells Hole Branch",
+          "km": 1.9356967829547918
+        },
+        {
+          "pid": "112263011",
+          "name": "Bear Branch",
+          "km": 0.013222414099170621
+        },
+        {
+          "pid": "112263013",
+          "name": "Hells Hole Branch",
+          "km": 0.010012917842387028
+        },
+        {
+          "pid": "112263153",
+          "name": "Citico Creek",
+          "km": 0.5512854890219219
+        }
+      ],
+      "chosen": "112263153",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1239",
+      "currentEdge": "112263389",
+      "candidates": [
+        {
+          "pid": "112263803",
+          "name": "Barkcamp Branch",
+          "km": 2.339648559706113
+        },
+        {
+          "pid": "112263493",
+          "name": "Citico Creek",
+          "km": 0.4622174249805501
+        },
+        {
+          "pid": "112263381",
+          "name": "Barkcamp Branch",
+          "km": 0.009154008270007626
+        }
+      ],
+      "chosen": "112263493",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1313",
+      "currentEdge": "112263687",
+      "candidates": [
+        {
+          "pid": "112263683",
+          "name": "Bivens Branch",
+          "km": 0.5662988144431937
+        },
+        {
+          "pid": "112263685",
+          "name": "Bivens Branch",
+          "km": 0.00944452108670896
+        },
+        {
+          "pid": "112263819",
+          "name": "Citico Creek",
+          "km": 0.4232897820099281
+        }
+      ],
+      "chosen": "112263819",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1319",
+      "currentEdge": "112263819",
+      "candidates": [
+        {
+          "pid": "112263833",
+          "name": "Citico Creek",
+          "km": 0.5763224795536165
+        },
+        {
+          "pid": "112263905",
+          "name": "Jake Best Creek",
+          "km": 0.3935675663195086
+        },
+        {
+          "pid": "112263823",
+          "name": "Jake Best Creek",
+          "km": 0.009565907159848815
+        }
+      ],
+      "chosen": "112263833",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1283",
+      "currentEdge": "112263833",
+      "candidates": [
+        {
+          "pid": "112263951",
+          "name": "Tavern Branch",
+          "km": 0.6781949012742927
+        },
+        {
+          "pid": "112263837",
+          "name": "Tavern Branch",
+          "km": 0.008632522016824382
+        },
+        {
+          "pid": "112263929",
+          "name": "Citico Creek",
+          "km": 0.25503005501947823
+        }
+      ],
+      "chosen": "112263929",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1320",
+      "currentEdge": "112264233",
+      "candidates": [
+        {
+          "pid": "112264343",
+          "name": "Burnt Station Branch",
+          "km": 0.6555042440713765
+        },
+        {
+          "pid": "112264235",
+          "name": "Burnt Station Branch",
+          "km": 0.005853287872266272
+        },
+        {
+          "pid": "112264431",
+          "name": "Citico Creek",
+          "km": 1.421037021252118
+        }
+      ],
+      "chosen": "112264431",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1323",
+      "currentEdge": "112264431",
+      "candidates": [
+        {
+          "pid": "112264557",
+          "name": "Citico Creek",
+          "km": 0.8208207287897784
+        },
+        {
+          "pid": "112264581",
+          "name": "Flats Creek",
+          "km": 0.6660667532322869
+        },
+        {
+          "pid": "112264433",
+          "name": "Flats Creek",
+          "km": 0.006281738326778326
+        }
+      ],
+      "chosen": "112264557",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1467",
+      "currentEdge": "112264727",
+      "candidates": [
+        {
+          "pid": "112264725",
+          "name": "Doublecamp Creek",
+          "km": 0.3953542604706045
+        },
+        {
+          "pid": "112265009",
+          "name": "Citico Creek",
+          "km": 1.3863525373443035
+        }
+      ],
+      "chosen": "112265009",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1546",
+      "currentEdge": "112265415",
+      "candidates": [
+        {
+          "pid": "112265521",
+          "name": "South Fork Citico Creek",
+          "km": 0.6175276901434171
+        },
+        {
+          "pid": "112265451",
+          "name": "North Fork Citico Creek",
+          "km": 1.7405491069338659
+        }
+      ],
+      "chosen": "112265521",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1535",
+      "currentEdge": "112265521",
+      "candidates": [
+        {
+          "pid": "112265625",
+          "name": "South Fork Citico Creek",
+          "km": 0.8383027031607061
+        },
+        {
+          "pid": "112265663",
+          "name": "Ike Camp Branch",
+          "km": 0.6791843420314665
+        }
+      ],
+      "chosen": "112265625",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1479",
+      "currentEdge": "112265917",
+      "candidates": [
+        {
+          "pid": "112266063",
+          "name": "Clemmer Cove",
+          "km": 1.701973455297924
+        },
+        {
+          "pid": "112265945",
+          "name": "South Fork Citico Creek",
+          "km": 0.11525533425088974
+        }
+      ],
+      "chosen": "112265945",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1485",
+      "currentEdge": "112265945",
+      "candidates": [
+        {
+          "pid": "112266173",
+          "name": "Eagle Branch",
+          "km": 1.1129140104349047
+        },
+        {
+          "pid": "112265955",
+          "name": "South Fork Citico Creek",
+          "km": 0.8653920023821987
+        }
+      ],
+      "chosen": "112265955",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1610",
+      "currentEdge": "112266285",
+      "candidates": [
+        {
+          "pid": "112266291",
+          "name": "South Fork Citico Creek",
+          "km": 0.49230479600581806
+        },
+        {
+          "pid": "112266565",
+          "name": "Falls Branch",
+          "km": 1.1353420423328535
+        }
+      ],
+      "chosen": "112266291",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1426",
+      "currentEdge": "112261787",
+      "candidates": [
+        {
+          "pid": "112261347",
+          "name": "Jakes Creek",
+          "km": 0.0076681296926069285
+        },
+        {
+          "pid": "112261345",
+          "name": "Citico Creek",
+          "km": 0.15790845769341033
+        }
+      ],
+      "chosen": "112261345",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1369",
+      "currentEdge": "112260761",
+      "candidates": [
+        {
+          "pid": "112260751",
+          "name": "Citico Creek",
+          "km": 0.7704631383371962
+        },
+        {
+          "pid": "112260759",
+          "name": "Duncan Branch",
+          "km": 0.008602841917026392
+        }
+      ],
+      "chosen": "112260751",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1397",
+      "currentEdge": "112260151",
+      "candidates": [
+        {
+          "pid": "112260139",
+          "name": "Citico Creek",
+          "km": 0.4042062249955134
+        },
+        {
+          "pid": "112260141",
+          "name": "Citico Creek",
+          "km": 0.0025593545379189904
+        }
+      ],
+      "chosen": "112260141",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [
+    "Tellico Lake"
+  ],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 9987,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-citico-creek.geojson"
+}

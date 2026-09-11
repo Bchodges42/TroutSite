@@ -1,0 +1,248 @@
+{
+  "waterId": "tumbling-creek",
+  "graphPath": "data/nhd/graphs/06020003.graph.json",
+  "hu8": "06020003",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 926,
+    "seg": 48,
+    "point": [
+      -84.474001,
+      35.003913
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1347,
+      648,
+      1450,
+      1062,
+      1602,
+      479,
+      228,
+      1463,
+      1080,
+      1434,
+      232,
+      1616,
+      165,
+      859,
+      640
+    ],
+    "reason": "headwater",
+    "node": "n459",
+    "edgePids": [
+      "132750438",
+      "132750448",
+      "132750444",
+      "132750441",
+      "132750451",
+      "132750454",
+      "132756311",
+      "132756316",
+      "132756320",
+      "132756325",
+      "132756330",
+      "132756335",
+      "132756339",
+      "132756344",
+      "132756349"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      881,
+      596,
+      37,
+      1325
+    ],
+    "reason": "name-change",
+    "node": "n657",
+    "enteredNames": [
+      "Long Branch"
+    ],
+    "edgePids": [
+      "132756301",
+      "132756296",
+      "132756292",
+      "132764734"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "132756349",
+      "dir": "up"
+    },
+    {
+      "pid": "132756344",
+      "dir": "up"
+    },
+    {
+      "pid": "132756339",
+      "dir": "up"
+    },
+    {
+      "pid": "132756335",
+      "dir": "up"
+    },
+    {
+      "pid": "132756330",
+      "dir": "up"
+    },
+    {
+      "pid": "132756325",
+      "dir": "up"
+    },
+    {
+      "pid": "132756320",
+      "dir": "up"
+    },
+    {
+      "pid": "132756316",
+      "dir": "up"
+    },
+    {
+      "pid": "132756311",
+      "dir": "up"
+    },
+    {
+      "pid": "132750454",
+      "dir": "up"
+    },
+    {
+      "pid": "132750451",
+      "dir": "up"
+    },
+    {
+      "pid": "132750441",
+      "dir": "up"
+    },
+    {
+      "pid": "132750444",
+      "dir": "up"
+    },
+    {
+      "pid": "132750448",
+      "dir": "up"
+    },
+    {
+      "pid": "132750438",
+      "dir": "up"
+    },
+    {
+      "pid": "132756306",
+      "dir": "anchor"
+    },
+    {
+      "pid": "132756301",
+      "dir": "down"
+    },
+    {
+      "pid": "132756296",
+      "dir": "down"
+    },
+    {
+      "pid": "132756292",
+      "dir": "down"
+    },
+    {
+      "pid": "132764734",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n606",
+      "currentEdge": "132750438",
+      "candidates": [
+        {
+          "pid": "132750448",
+          "name": "Tumbling Creek",
+          "km": 1.1535493041510925
+        },
+        {
+          "pid": "132750472",
+          "name": "Sholer Branch",
+          "km": 1.106943844305937
+        }
+      ],
+      "chosen": "132750448",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n533",
+      "currentEdge": "132756311",
+      "candidates": [
+        {
+          "pid": "132756378",
+          "name": "Silvermine Creek",
+          "km": 0.8275683903219091
+        },
+        {
+          "pid": "132756316",
+          "name": "Tumbling Creek",
+          "km": 0.19251556383056578
+        }
+      ],
+      "chosen": "132756316",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n528",
+      "currentEdge": "132756316",
+      "candidates": [
+        {
+          "pid": "132756320",
+          "name": "Tumbling Creek",
+          "km": 2.415090794519979
+        },
+        {
+          "pid": "132757141",
+          "name": "Five Mile Cove Branch",
+          "km": 0.7912695978897419
+        }
+      ],
+      "chosen": "132756320",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n513",
+      "currentEdge": "132756330",
+      "candidates": [
+        {
+          "pid": "132756393",
+          "name": "Walnut Creek",
+          "km": 1.0182619677599503
+        },
+        {
+          "pid": "132756335",
+          "name": "Tumbling Creek",
+          "km": 0.7742123042094621
+        }
+      ],
+      "chosen": "132756335",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [
+    "Ocoee Number Three Lake"
+  ],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 4496,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-tumbling-creek.geojson"
+}

@@ -1,0 +1,159 @@
+{
+  "waterId": "mccutcheon-creek",
+  "graphPath": "data/nhd/graphs/06040003.graph.json",
+  "hu8": "06040003",
+  "anchorSnap": {
+    "distM": 4.526847945726982,
+    "t": 0.8569374117309181,
+    "edgeIdx": 2272,
+    "seg": 45,
+    "point": [
+      -86.92365827462024,
+      35.756977442130825
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2314,
+      1783,
+      1709,
+      3380,
+      1527,
+      813,
+      3265
+    ],
+    "reason": "headwater",
+    "node": "n4651",
+    "edgePids": [
+      "136547809",
+      "136547808",
+      "136547807",
+      "136547810",
+      "136547811",
+      "136552500",
+      "136552442"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      3146,
+      2630,
+      3946,
+      4381,
+      3990,
+      92,
+      576
+    ],
+    "reason": "name-change",
+    "node": "n4670",
+    "enteredNames": [
+      "Rutherford Creek"
+    ],
+    "edgePids": [
+      "136547805",
+      "136547802",
+      "136547803",
+      "136547804",
+      "136547800",
+      "136547801",
+      "136554974"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "136552442",
+      "dir": "up"
+    },
+    {
+      "pid": "136552500",
+      "dir": "up"
+    },
+    {
+      "pid": "136547811",
+      "dir": "up"
+    },
+    {
+      "pid": "136547810",
+      "dir": "up"
+    },
+    {
+      "pid": "136547807",
+      "dir": "up"
+    },
+    {
+      "pid": "136547808",
+      "dir": "up"
+    },
+    {
+      "pid": "136547809",
+      "dir": "up"
+    },
+    {
+      "pid": "136547806",
+      "dir": "anchor"
+    },
+    {
+      "pid": "136547805",
+      "dir": "down"
+    },
+    {
+      "pid": "136547802",
+      "dir": "down"
+    },
+    {
+      "pid": "136547803",
+      "dir": "down"
+    },
+    {
+      "pid": "136547804",
+      "dir": "down"
+    },
+    {
+      "pid": "136547800",
+      "dir": "down"
+    },
+    {
+      "pid": "136547801",
+      "dir": "down"
+    },
+    {
+      "pid": "136554974",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "down",
+      "atNode": "n4670",
+      "currentEdge": "136547801",
+      "candidates": [
+        {
+          "pid": "136554974",
+          "name": "McCutcheon Creek",
+          "km": 0.006937922672953538
+        },
+        {
+          "pid": "136554881",
+          "name": "Rutherford Creek",
+          "km": 0.7705001723206417
+        }
+      ],
+      "chosen": "136554974",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 3755,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-mccutcheon-creek.geojson"
+}

@@ -1,0 +1,258 @@
+{
+  "waterId": "brush-creek-cocke",
+  "graphPath": "data/nhd/graphs/06010105.graph.json",
+  "hu8": "06010105",
+  "anchorSnap": {
+    "distM": 3.4104419574566234,
+    "t": 0.9260405479856844,
+    "edgeIdx": 2812,
+    "seg": 7,
+    "point": [
+      -82.93447348367341,
+      35.958721898187385
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      23752,
+      22769,
+      22548,
+      22187,
+      4037,
+      2701,
+      22877,
+      24052,
+      1502,
+      22205,
+      22596
+    ],
+    "reason": "headwater",
+    "node": "n1565",
+    "edgePids": [
+      "90661215",
+      "90660993",
+      "90660811",
+      "90660735",
+      "90660681",
+      "90660619",
+      "90660605",
+      "90660539",
+      "90660323",
+      "90660257",
+      "90659959"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      4496,
+      2377,
+      3552,
+      24446,
+      5189,
+      3202
+    ],
+    "reason": "name-change",
+    "node": "n1209",
+    "enteredNames": [
+      "French Broad River"
+    ],
+    "edgePids": [
+      "90661817",
+      "90662241",
+      "90662255",
+      "90662535",
+      "90662735",
+      "90662743"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "90659959",
+      "dir": "up"
+    },
+    {
+      "pid": "90660257",
+      "dir": "up"
+    },
+    {
+      "pid": "90660323",
+      "dir": "up"
+    },
+    {
+      "pid": "90660539",
+      "dir": "up"
+    },
+    {
+      "pid": "90660605",
+      "dir": "up"
+    },
+    {
+      "pid": "90660619",
+      "dir": "up"
+    },
+    {
+      "pid": "90660681",
+      "dir": "up"
+    },
+    {
+      "pid": "90660735",
+      "dir": "up"
+    },
+    {
+      "pid": "90660811",
+      "dir": "up"
+    },
+    {
+      "pid": "90660993",
+      "dir": "up"
+    },
+    {
+      "pid": "90661215",
+      "dir": "up"
+    },
+    {
+      "pid": "90661665",
+      "dir": "anchor"
+    },
+    {
+      "pid": "90661817",
+      "dir": "down"
+    },
+    {
+      "pid": "90662241",
+      "dir": "down"
+    },
+    {
+      "pid": "90662255",
+      "dir": "down"
+    },
+    {
+      "pid": "90662535",
+      "dir": "down"
+    },
+    {
+      "pid": "90662735",
+      "dir": "down"
+    },
+    {
+      "pid": "90662743",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1123",
+      "currentEdge": "90661215",
+      "candidates": [
+        {
+          "pid": "90660993",
+          "name": "Brush Creek",
+          "km": 0.5153559989810841
+        },
+        {
+          "pid": "90660995",
+          "name": "Gum Spring Branch",
+          "km": 0.15975591056340926
+        }
+      ],
+      "chosen": "90660993",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1235",
+      "currentEdge": "90660735",
+      "candidates": [
+        {
+          "pid": "90660681",
+          "name": "Brush Creek",
+          "km": 0.5798936275997355
+        },
+        {
+          "pid": "90661003",
+          "name": "West Branch Brush Creek",
+          "km": 0.6651979062104705
+        }
+      ],
+      "chosen": "90660681",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1309",
+      "currentEdge": "90660681",
+      "candidates": [
+        {
+          "pid": "90660619",
+          "name": "Brush Creek",
+          "km": 0.010643107732765581
+        },
+        {
+          "pid": "90660607",
+          "name": "Beech Branch",
+          "km": 0.3993149789498082
+        },
+        {
+          "pid": "90660605",
+          "name": "Brush Creek",
+          "km": 0.12208777813182232
+        }
+      ],
+      "chosen": "90660619",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1309",
+      "currentEdge": "90660619",
+      "candidates": [
+        {
+          "pid": "90660607",
+          "name": "Beech Branch",
+          "km": 0.3993149789498082
+        },
+        {
+          "pid": "90660605",
+          "name": "Brush Creek",
+          "km": 0.12208777813182232
+        }
+      ],
+      "chosen": "90660605",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1439",
+      "currentEdge": "90660323",
+      "candidates": [
+        {
+          "pid": "90660257",
+          "name": "Brush Creek",
+          "km": 0.763526327638307
+        },
+        {
+          "pid": "90660259",
+          "name": "Burgen Branch",
+          "km": 0.11868448447943872
+        }
+      ],
+      "chosen": "90660257",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2626,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-brush-creek-cocke.geojson"
+}

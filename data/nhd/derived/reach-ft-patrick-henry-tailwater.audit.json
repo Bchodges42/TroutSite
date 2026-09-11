@@ -1,0 +1,165 @@
+{
+  "waterId": "ft-patrick-henry-tailwater",
+  "graphPath": "data/nhd/graphs/06010102.graph.json",
+  "hu8": "06010102",
+  "anchorSnap": {
+    "distM": 16.63361974867257,
+    "t": 0.09083964509871326,
+    "edgeIdx": 23,
+    "seg": 1,
+    "point": [
+      -82.50904595333694,
+      36.498054971735556
+    ]
+  },
+  "upWalk": {
+    "spec": "dam:Fort Patrick Henry Lake",
+    "path": [],
+    "reason": "dam",
+    "node": "n273",
+    "damEdges": [
+      "43587338"
+    ],
+    "edgePids": []
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1576,
+      51,
+      77,
+      67,
+      20,
+      82,
+      31,
+      24,
+      61,
+      2073,
+      30,
+      10,
+      16,
+      48,
+      3
+    ],
+    "reason": "terminal-node",
+    "node": "n104",
+    "edgePids": [
+      "43587328",
+      "43587230",
+      "43587098",
+      "43586946",
+      "43586974",
+      "43586970",
+      "43586854",
+      "43586274",
+      "43586188",
+      "43585764",
+      "43585396",
+      "43585366",
+      "43585376",
+      "147535010",
+      "{F775F337-88D9-40DA-ABDD-00B16E6B983D}"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "43587332",
+      "dir": "anchor"
+    },
+    {
+      "pid": "43587328",
+      "dir": "down"
+    },
+    {
+      "pid": "43587230",
+      "dir": "down"
+    },
+    {
+      "pid": "43587098",
+      "dir": "down"
+    },
+    {
+      "pid": "43586946",
+      "dir": "down"
+    },
+    {
+      "pid": "43586974",
+      "dir": "down"
+    },
+    {
+      "pid": "43586970",
+      "dir": "down"
+    },
+    {
+      "pid": "43586854",
+      "dir": "down"
+    },
+    {
+      "pid": "43586274",
+      "dir": "down"
+    },
+    {
+      "pid": "43586188",
+      "dir": "down"
+    },
+    {
+      "pid": "43585764",
+      "dir": "down"
+    },
+    {
+      "pid": "43585396",
+      "dir": "down"
+    },
+    {
+      "pid": "43585366",
+      "dir": "down"
+    },
+    {
+      "pid": "43585376",
+      "dir": "down"
+    },
+    {
+      "pid": "147535010",
+      "dir": "down"
+    },
+    {
+      "pid": "{F775F337-88D9-40DA-ABDD-00B16E6B983D}",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "down",
+      "atNode": "n250",
+      "currentEdge": "43587328",
+      "candidates": [
+        {
+          "pid": "43587236",
+          "name": "Rock Springs Branch",
+          "km": 0.007717162055010516
+        },
+        {
+          "pid": "43587230",
+          "name": "South Fork Holston River",
+          "km": 0.5663376045793279
+        }
+      ],
+      "chosen": "43587230",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [
+    "Cherokee Lake"
+  ],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2651,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-ft-patrick-henry-tailwater.geojson"
+}

@@ -1,0 +1,115 @@
+{
+  "waterId": "buffalo-creek-grainger",
+  "graphPath": "data/nhd/graphs/06010104.graph.json",
+  "hu8": "06010104",
+  "anchorSnap": {
+    "distM": 0.13863410627520614,
+    "t": 0.9981873569936114,
+    "edgeIdx": 174,
+    "seg": 10,
+    "point": [
+      -83.56496923201831,
+      36.222729248332094
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1762,
+      2403,
+      545,
+      1760
+    ],
+    "reason": "headwater",
+    "node": "n670",
+    "edgePids": [
+      "138745399",
+      "138745389",
+      "138803653",
+      "138730040"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      57,
+      1781,
+      1678,
+      2434,
+      1595,
+      1652
+    ],
+    "reason": "name-change",
+    "node": "n730",
+    "enteredNames": [
+      "Holston River"
+    ],
+    "edgePids": [
+      "138745368",
+      "138745379",
+      "138745338",
+      "138745348",
+      "138745328",
+      "138803824"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "138730040",
+      "dir": "up"
+    },
+    {
+      "pid": "138803653",
+      "dir": "up"
+    },
+    {
+      "pid": "138745389",
+      "dir": "up"
+    },
+    {
+      "pid": "138745399",
+      "dir": "up"
+    },
+    {
+      "pid": "138745359",
+      "dir": "anchor"
+    },
+    {
+      "pid": "138745368",
+      "dir": "down"
+    },
+    {
+      "pid": "138745379",
+      "dir": "down"
+    },
+    {
+      "pid": "138745338",
+      "dir": "down"
+    },
+    {
+      "pid": "138745348",
+      "dir": "down"
+    },
+    {
+      "pid": "138745328",
+      "dir": "down"
+    },
+    {
+      "pid": "138803824",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2487,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-buffalo-creek-grainger.geojson"
+}

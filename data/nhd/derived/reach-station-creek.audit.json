@@ -1,0 +1,123 @@
+{
+  "waterId": "station-creek",
+  "graphPath": "data/nhd/graphs/06010206.graph.json",
+  "hu8": "06010206",
+  "anchorSnap": {
+    "distM": 1.5781582330842734,
+    "t": 0.8854441391180035,
+    "edgeIdx": 677,
+    "seg": 40,
+    "point": [
+      -83.61039735466578,
+      36.58718595954212
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      930,
+      1319,
+      186,
+      1513,
+      1062,
+      591,
+      375
+    ],
+    "reason": "headwater",
+    "node": "n463",
+    "edgePids": [
+      "44949981",
+      "44949897",
+      "44949833",
+      "44949683",
+      "44949657",
+      "44949563",
+      "44949487"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1413
+    ],
+    "reason": "name-change",
+    "node": "n471",
+    "enteredNames": [
+      "Indian Creek"
+    ],
+    "edgePids": [
+      "44949937"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "44949487",
+      "dir": "up"
+    },
+    {
+      "pid": "44949563",
+      "dir": "up"
+    },
+    {
+      "pid": "44949657",
+      "dir": "up"
+    },
+    {
+      "pid": "44949683",
+      "dir": "up"
+    },
+    {
+      "pid": "44949833",
+      "dir": "up"
+    },
+    {
+      "pid": "44949897",
+      "dir": "up"
+    },
+    {
+      "pid": "44949981",
+      "dir": "up"
+    },
+    {
+      "pid": "44949983",
+      "dir": "anchor"
+    },
+    {
+      "pid": "44949937",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "down",
+      "atNode": "n471",
+      "currentEdge": "44949983",
+      "candidates": [
+        {
+          "pid": "44949937",
+          "name": "Station Creek",
+          "km": 0.00860814101594649
+        },
+        {
+          "pid": "44950013",
+          "name": "Indian Creek",
+          "km": 1.2731704676157003
+        }
+      ],
+      "chosen": "44949937",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2836,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-station-creek.geojson"
+}

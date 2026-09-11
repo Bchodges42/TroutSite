@@ -1304,7 +1304,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 15605,
+    "bytes": 15624,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-clinch-river.geojson"

@@ -1,0 +1,523 @@
+{
+  "waterId": "little-buffalo-river",
+  "graphPath": "data/nhd/graphs/06040004.graph.json",
+  "hu8": "06040004",
+  "anchorSnap": {
+    "distM": 4.594938086237756,
+    "t": 0.22569089632579944,
+    "edgeIdx": 807,
+    "seg": 8,
+    "point": [
+      -87.50934221494425,
+      35.37607718014397
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2069,
+      2321,
+      1293,
+      567,
+      985,
+      415,
+      1503,
+      1221,
+      361,
+      1075,
+      1487,
+      2411,
+      2407,
+      1254,
+      176,
+      2330,
+      1705,
+      379
+    ],
+    "reason": "headwater",
+    "node": "n2044",
+    "edgePids": [
+      "128956464",
+      "128956532",
+      "128956562",
+      "128956651",
+      "128956723",
+      "128956756",
+      "128956777",
+      "128956912",
+      "128956962",
+      "128956996",
+      "128957018",
+      "128957071",
+      "128957087",
+      "128957102",
+      "128957107",
+      "128957143",
+      "128957170",
+      "128957294"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      626,
+      674,
+      1291,
+      2372,
+      403,
+      137,
+      1788,
+      174,
+      1959,
+      1329,
+      1113,
+      906,
+      731,
+      711,
+      2090,
+      2319,
+      2373,
+      1989,
+      462,
+      2228,
+      1545
+    ],
+    "reason": "name-change",
+    "node": "n1859",
+    "enteredNames": [
+      "Chief Creek"
+    ],
+    "edgePids": [
+      "128956273",
+      "128956177",
+      "128956074",
+      "128956053",
+      "128956042",
+      "128956009",
+      "128955949",
+      "128955713",
+      "128955557",
+      "128955522",
+      "128955507",
+      "128955489",
+      "128955459",
+      "128955429",
+      "128955331",
+      "128955275",
+      "128955227",
+      "128955139",
+      "128955137",
+      "128954970",
+      "128954779"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "128957294",
+      "dir": "up"
+    },
+    {
+      "pid": "128957170",
+      "dir": "up"
+    },
+    {
+      "pid": "128957143",
+      "dir": "up"
+    },
+    {
+      "pid": "128957107",
+      "dir": "up"
+    },
+    {
+      "pid": "128957102",
+      "dir": "up"
+    },
+    {
+      "pid": "128957087",
+      "dir": "up"
+    },
+    {
+      "pid": "128957071",
+      "dir": "up"
+    },
+    {
+      "pid": "128957018",
+      "dir": "up"
+    },
+    {
+      "pid": "128956996",
+      "dir": "up"
+    },
+    {
+      "pid": "128956962",
+      "dir": "up"
+    },
+    {
+      "pid": "128956912",
+      "dir": "up"
+    },
+    {
+      "pid": "128956777",
+      "dir": "up"
+    },
+    {
+      "pid": "128956756",
+      "dir": "up"
+    },
+    {
+      "pid": "128956723",
+      "dir": "up"
+    },
+    {
+      "pid": "128956651",
+      "dir": "up"
+    },
+    {
+      "pid": "128956562",
+      "dir": "up"
+    },
+    {
+      "pid": "128956532",
+      "dir": "up"
+    },
+    {
+      "pid": "128956464",
+      "dir": "up"
+    },
+    {
+      "pid": "128956326",
+      "dir": "anchor"
+    },
+    {
+      "pid": "128956273",
+      "dir": "down"
+    },
+    {
+      "pid": "128956177",
+      "dir": "down"
+    },
+    {
+      "pid": "128956074",
+      "dir": "down"
+    },
+    {
+      "pid": "128956053",
+      "dir": "down"
+    },
+    {
+      "pid": "128956042",
+      "dir": "down"
+    },
+    {
+      "pid": "128956009",
+      "dir": "down"
+    },
+    {
+      "pid": "128955949",
+      "dir": "down"
+    },
+    {
+      "pid": "128955713",
+      "dir": "down"
+    },
+    {
+      "pid": "128955557",
+      "dir": "down"
+    },
+    {
+      "pid": "128955522",
+      "dir": "down"
+    },
+    {
+      "pid": "128955507",
+      "dir": "down"
+    },
+    {
+      "pid": "128955489",
+      "dir": "down"
+    },
+    {
+      "pid": "128955459",
+      "dir": "down"
+    },
+    {
+      "pid": "128955429",
+      "dir": "down"
+    },
+    {
+      "pid": "128955331",
+      "dir": "down"
+    },
+    {
+      "pid": "128955275",
+      "dir": "down"
+    },
+    {
+      "pid": "128955227",
+      "dir": "down"
+    },
+    {
+      "pid": "128955139",
+      "dir": "down"
+    },
+    {
+      "pid": "128955137",
+      "dir": "down"
+    },
+    {
+      "pid": "128954970",
+      "dir": "down"
+    },
+    {
+      "pid": "128954779",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1939",
+      "currentEdge": "128956326",
+      "candidates": [
+        {
+          "pid": "128956335",
+          "name": "Short Branch",
+          "km": 0.4875891185785946
+        },
+        {
+          "pid": "128956464",
+          "name": "Little Buffalo River",
+          "km": 1.0239220499715045
+        }
+      ],
+      "chosen": "128956464",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1940",
+      "currentEdge": "128956464",
+      "candidates": [
+        {
+          "pid": "128956463",
+          "name": "Mine Branch",
+          "km": 0.9757383809893411
+        },
+        {
+          "pid": "128956532",
+          "name": "Little Buffalo River",
+          "km": 0.46983661910605323
+        }
+      ],
+      "chosen": "128956532",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1926",
+      "currentEdge": "128956532",
+      "candidates": [
+        {
+          "pid": "128956562",
+          "name": "Little Buffalo River",
+          "km": 0.5149306917467259
+        },
+        {
+          "pid": "128956545",
+          "name": "Peter Cave Creek",
+          "km": 0.21570359032008987
+        }
+      ],
+      "chosen": "128956562",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1957",
+      "currentEdge": "128956651",
+      "candidates": [
+        {
+          "pid": "128956649",
+          "name": "Weaver Branch",
+          "km": 0.35289875906725804
+        },
+        {
+          "pid": "128956723",
+          "name": "Little Buffalo River",
+          "km": 0.5606885801914753
+        }
+      ],
+      "chosen": "128956723",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1963",
+      "currentEdge": "128956756",
+      "candidates": [
+        {
+          "pid": "128956824",
+          "name": "Reed Branch",
+          "km": 0.5596581431394222
+        },
+        {
+          "pid": "128956777",
+          "name": "Little Buffalo River",
+          "km": 0.31597856946736314
+        }
+      ],
+      "chosen": "128956777",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1973",
+      "currentEdge": "128956777",
+      "candidates": [
+        {
+          "pid": "128956912",
+          "name": "Little Buffalo River",
+          "km": 1.3217841519790192
+        },
+        {
+          "pid": "128956779",
+          "name": "Wolfpen Branch",
+          "km": 0.07198037070057804
+        }
+      ],
+      "chosen": "128956912",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2001",
+      "currentEdge": "128956996",
+      "candidates": [
+        {
+          "pid": "128956995",
+          "name": "Theasing Branch",
+          "km": 0.40112720382628797
+        },
+        {
+          "pid": "128957018",
+          "name": "Little Buffalo River",
+          "km": 0.258354084530815
+        }
+      ],
+      "chosen": "128957018",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2005",
+      "currentEdge": "128957018",
+      "candidates": [
+        {
+          "pid": "128957049",
+          "name": "Burns Branch",
+          "km": 0.38556791529254075
+        },
+        {
+          "pid": "128957071",
+          "name": "Little Buffalo River",
+          "km": 1.0946809975508325
+        }
+      ],
+      "chosen": "128957071",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2019",
+      "currentEdge": "128957071",
+      "candidates": [
+        {
+          "pid": "128957067",
+          "name": "Patterson Branch",
+          "km": 1.2944206931274558
+        },
+        {
+          "pid": "128957087",
+          "name": "Little Buffalo River",
+          "km": 0.34082634867951345
+        }
+      ],
+      "chosen": "128957087",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2029",
+      "currentEdge": "128957102",
+      "candidates": [
+        {
+          "pid": "128957107",
+          "name": "Little Buffalo River",
+          "km": 0.05389002781292934
+        },
+        {
+          "pid": "128957101",
+          "name": "Kidd Branch",
+          "km": 2.3462074964719455
+        },
+        {
+          "pid": "128957211",
+          "name": "Dry Branch",
+          "km": 2.300629798199446
+        }
+      ],
+      "chosen": "128957107",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2032",
+      "currentEdge": "128957107",
+      "candidates": [
+        {
+          "pid": "128957159",
+          "name": "Sowers Branch",
+          "km": 0.6434617994635441
+        },
+        {
+          "pid": "128957143",
+          "name": "Little Buffalo River",
+          "km": 0.8846779405430923
+        }
+      ],
+      "chosen": "128957143",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2047",
+      "currentEdge": "128957143",
+      "candidates": [
+        {
+          "pid": "128957170",
+          "name": "Little Buffalo River",
+          "km": 0.46399348461366424
+        },
+        {
+          "pid": "128957194",
+          "name": "Lutts Branch",
+          "km": 2.249000973581867
+        }
+      ],
+      "chosen": "128957170",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 6417,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-little-buffalo-river.geojson"
+}

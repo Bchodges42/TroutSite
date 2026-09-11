@@ -1,0 +1,115 @@
+{
+  "waterId": "stones-river",
+  "graphPath": "data/nhd/graphs/05130203.graph.json",
+  "hu8": "05130203",
+  "anchorSnap": {
+    "distM": 62.508737738389556,
+    "t": 0.3064218032946759,
+    "edgeIdx": 969,
+    "seg": 7,
+    "point": [
+      -86.63342289535608,
+      36.18624945495362
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      506,
+      140,
+      670
+    ],
+    "reason": "headwater",
+    "node": "n37",
+    "edgePids": [
+      "51411141",
+      "51411157",
+      "51411185"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      953
+    ],
+    "reason": "terminal-node",
+    "node": "n4",
+    "edgePids": [
+      "51411149"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "51411185",
+      "dir": "up"
+    },
+    {
+      "pid": "51411157",
+      "dir": "up"
+    },
+    {
+      "pid": "51411141",
+      "dir": "up"
+    },
+    {
+      "pid": "51411119",
+      "dir": "anchor"
+    },
+    {
+      "pid": "51411149",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n16",
+      "currentEdge": "51411119",
+      "candidates": [
+        {
+          "pid": "51411121",
+          "name": "Stoners Creek",
+          "km": 0.015231134359296197
+        },
+        {
+          "pid": "51411141",
+          "name": "Stones River",
+          "km": 1.515869364536565
+        }
+      ],
+      "chosen": "51411141",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n24",
+      "currentEdge": "51411157",
+      "candidates": [
+        {
+          "pid": "51411185",
+          "name": "Stones River",
+          "km": 1.56025982607195
+        },
+        {
+          "pid": "51411159",
+          "name": "McCrory Creek",
+          "km": 0.019496468278375628
+        }
+      ],
+      "chosen": "51411185",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2100,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-stones-river.geojson"
+}

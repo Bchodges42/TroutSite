@@ -1,0 +1,1759 @@
+{
+  "waterId": "little-pigeon-river",
+  "graphPath": "data/nhd/graphs/06010107.graph.json",
+  "hu8": "06010107",
+  "anchorSnap": {
+    "distM": 51.14554778006625,
+    "t": 0.24392288856029892,
+    "edgeIdx": 1205,
+    "seg": 6,
+    "point": [
+      -83.57693932271724,
+      35.87856873764374
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1029,
+      937,
+      836,
+      13,
+      695,
+      708,
+      804,
+      1351,
+      3389,
+      1524,
+      849,
+      536,
+      1082,
+      196,
+      965,
+      1223,
+      707,
+      606,
+      1048,
+      1616,
+      1570,
+      817,
+      215,
+      1695,
+      1854,
+      979,
+      861,
+      2126,
+      505,
+      1933,
+      1052,
+      2125,
+      1329,
+      1135,
+      607,
+      574,
+      1341,
+      320,
+      350,
+      2122,
+      464,
+      2123,
+      3364,
+      2119,
+      164,
+      1493,
+      1800,
+      1853,
+      1101,
+      99,
+      2118,
+      425,
+      1626,
+      1055,
+      1704,
+      1327,
+      923,
+      897,
+      771,
+      1771,
+      1950,
+      1951,
+      990,
+      2551,
+      2552,
+      2114,
+      2153,
+      922,
+      2103,
+      2102,
+      562,
+      2101,
+      407,
+      453,
+      1036,
+      60,
+      943,
+      221,
+      1572,
+      1756,
+      1770,
+      579,
+      1769,
+      730,
+      336,
+      2243,
+      1384,
+      229,
+      482,
+      773,
+      677,
+      1649,
+      654,
+      1210,
+      1851,
+      1646,
+      3346,
+      463,
+      1290,
+      494,
+      443,
+      8,
+      1375,
+      1637,
+      1804,
+      1473,
+      2082,
+      2030,
+      2067,
+      2069,
+      751,
+      1188,
+      184,
+      1553,
+      1972,
+      1971,
+      1970,
+      1612,
+      1974,
+      1580,
+      1969,
+      1730,
+      1968,
+      3208,
+      2595,
+      130,
+      98,
+      433,
+      1554,
+      549,
+      737,
+      2066,
+      1275,
+      1788,
+      1614,
+      513,
+      2794,
+      1973,
+      160,
+      2065,
+      37
+    ],
+    "reason": "headwater",
+    "node": "n2997",
+    "edgePids": [
+      "51630074",
+      "51630346",
+      "51630292",
+      "51630282",
+      "51630068",
+      "51630182",
+      "51630278",
+      "51630392",
+      "51630450",
+      "51630446",
+      "51630438",
+      "51630360",
+      "51630256",
+      "51630226",
+      "51630066",
+      "51629928",
+      "51630048",
+      "51630124",
+      "51630218",
+      "51630528",
+      "51630582",
+      "51630594",
+      "51631238",
+      "51632312",
+      "{9FFF31D7-36FD-4EE6-8DA9-A36EC38A2CAA}",
+      "51632344",
+      "51632432",
+      "{6AD74B08-6A5A-4B42-840B-2CD4C98033C2}",
+      "51632550",
+      "{AF640D34-FB14-4432-A235-BE86F9A9AB4E}",
+      "51632736",
+      "{89B68460-665B-4B98-B160-221D9DF7B4E0}",
+      "51632886",
+      "51633000",
+      "51633116",
+      "51633144",
+      "51633202",
+      "51633212",
+      "51632800",
+      "{A6B696B7-F7C4-49AE-8810-E0B300EB8C5D}",
+      "51632984",
+      "{747DB617-218D-4DFA-8BD3-5CD451CCC877}",
+      "51632982",
+      "{B5163C41-D7D6-405D-9616-0415427DE51F}",
+      "51633244",
+      "51633262",
+      "{B29E5D15-11BF-4D1A-86D2-A09A3157CA72}",
+      "{DA2EBB30-C54F-48AB-8E7A-DB8478399985}",
+      "51633260",
+      "51633354",
+      "{B3430B63-3206-425E-8984-0D7E3B2AEA76}",
+      "51633462",
+      "51633670",
+      "51633800",
+      "51633890",
+      "51634008",
+      "51634128",
+      "51634368",
+      "51634490",
+      "{A882144B-AA0A-47B1-AB80-23C663C0D5A9}",
+      "{34978AF8-2FBB-4E80-BBB5-572C424D9C22}",
+      "{A7A18C2A-1FF0-4393-9C95-644CC94A4722}",
+      "51634416",
+      "{F6A2A369-1E32-4C2F-A5D1-8FA9E42B9721}",
+      "{4E8609DA-2D62-493B-92D8-C29303B55BA7}",
+      "{E9F55B68-EABC-4B4C-B81E-1B4002521B23}",
+      "{3E71EFA1-EFCC-46F4-A9FF-B24040C4010C}",
+      "51634544",
+      "{80461A48-50E1-440A-8897-037C9FBDC8C7}",
+      "{FA01F406-2FC3-4B13-94BF-3AE885BB8C18}",
+      "51634446",
+      "{E810EC24-7EE5-46E8-9142-C6335207C919}",
+      "51634532",
+      "51634760",
+      "51634880",
+      "51634878",
+      "51634872",
+      "51634998",
+      "51635162",
+      "{2624A135-A8C0-40CD-A492-84661CF59049}",
+      "{3635B235-F5E8-41FC-B77D-897A8E8C9B0E}",
+      "51635334",
+      "{58E4E807-0181-4D71-8EDE-A9D7EA8DDC9A}",
+      "51635454",
+      "51635750",
+      "{24F19142-5AC8-4A8D-BD51-C2E119715D3A}",
+      "51635826",
+      "51635950",
+      "51636014",
+      "51636064",
+      "51636048",
+      "51636234",
+      "51636326",
+      "51636530",
+      "{0C3D9436-F284-49E6-A7A2-1BF94ECAF5AE}",
+      "51636590",
+      "51636690",
+      "51636712",
+      "51637012",
+      "51637018",
+      "51637148",
+      "51637180",
+      "51637260",
+      "51637352",
+      "{7E17FE5E-35D9-4C17-8CBB-85A1C6B83554}",
+      "51637494",
+      "{66C2055B-8653-4AAD-8AC3-1A3BB7AFAC21}",
+      "{B1847D3B-4D9E-49D1-A65B-74695798A0DD}",
+      "{4F3C59A5-A61E-4911-B10C-C8FC1747922B}",
+      "{02944A62-F308-4903-A243-8A74C31C3B36}",
+      "51637574",
+      "51637736",
+      "51637812",
+      "51637814",
+      "{167C11B4-FDEF-4FF7-B8C1-79F1E3290DA6}",
+      "{B61FD71C-146C-4C40-986C-7DED706DB2E0}",
+      "{C1C89FE9-CBC0-4308-8401-7ADE39F72466}",
+      "51637808",
+      "{C72A64D0-8448-4DF5-8FBC-8A86230BBFC5}",
+      "51637828",
+      "{9F9D3C94-453F-490A-AEF1-0EE56A7BF7C6}",
+      "51637844",
+      "{4CAEA166-E409-4CED-B2A7-610352FF1ECE}",
+      "51637842",
+      "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+      "51637776",
+      "51637856",
+      "51637922",
+      "51637938",
+      "51638002",
+      "51638188",
+      "{66BB1F7A-2240-4AFE-B386-08FBEE5D7247}",
+      "51638378",
+      "{BC70B52D-9A6D-4ADC-9FD5-112A5388B42F}",
+      "51638448",
+      "51638458",
+      "51638582",
+      "{2B0E309C-10DB-4332-8730-B5141528E7F6}",
+      "51638600",
+      "{EEDAA708-F92D-4386-BDB7-A61C5D56D0F6}",
+      "51638700"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1481,
+      1195,
+      1054,
+      3379,
+      942,
+      1630,
+      1102,
+      868,
+      742,
+      1292,
+      468,
+      284,
+      1463,
+      351,
+      1527,
+      908,
+      335,
+      1169,
+      214
+    ],
+    "reason": "name-change",
+    "node": "n837",
+    "enteredNames": [
+      "French Broad River"
+    ],
+    "edgePids": [
+      "51629610",
+      "51629604",
+      "51629584",
+      "51629488",
+      "51629240",
+      "51629214",
+      "51628886",
+      "51628646",
+      "51628566",
+      "51628494",
+      "51628280",
+      "51628218",
+      "51628164",
+      "51628010",
+      "51627772",
+      "51627584",
+      "51627580",
+      "51627390",
+      "51627392"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "51638700",
+      "dir": "up"
+    },
+    {
+      "pid": "{EEDAA708-F92D-4386-BDB7-A61C5D56D0F6}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638600",
+      "dir": "up"
+    },
+    {
+      "pid": "{2B0E309C-10DB-4332-8730-B5141528E7F6}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638582",
+      "dir": "up"
+    },
+    {
+      "pid": "51638458",
+      "dir": "up"
+    },
+    {
+      "pid": "51638448",
+      "dir": "up"
+    },
+    {
+      "pid": "{BC70B52D-9A6D-4ADC-9FD5-112A5388B42F}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638378",
+      "dir": "up"
+    },
+    {
+      "pid": "{66BB1F7A-2240-4AFE-B386-08FBEE5D7247}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638188",
+      "dir": "up"
+    },
+    {
+      "pid": "51638002",
+      "dir": "up"
+    },
+    {
+      "pid": "51637938",
+      "dir": "up"
+    },
+    {
+      "pid": "51637922",
+      "dir": "up"
+    },
+    {
+      "pid": "51637856",
+      "dir": "up"
+    },
+    {
+      "pid": "51637776",
+      "dir": "up"
+    },
+    {
+      "pid": "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637842",
+      "dir": "up"
+    },
+    {
+      "pid": "{4CAEA166-E409-4CED-B2A7-610352FF1ECE}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637844",
+      "dir": "up"
+    },
+    {
+      "pid": "{9F9D3C94-453F-490A-AEF1-0EE56A7BF7C6}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637828",
+      "dir": "up"
+    },
+    {
+      "pid": "{C72A64D0-8448-4DF5-8FBC-8A86230BBFC5}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637808",
+      "dir": "up"
+    },
+    {
+      "pid": "{C1C89FE9-CBC0-4308-8401-7ADE39F72466}",
+      "dir": "up"
+    },
+    {
+      "pid": "{B61FD71C-146C-4C40-986C-7DED706DB2E0}",
+      "dir": "up"
+    },
+    {
+      "pid": "{167C11B4-FDEF-4FF7-B8C1-79F1E3290DA6}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637814",
+      "dir": "up"
+    },
+    {
+      "pid": "51637812",
+      "dir": "up"
+    },
+    {
+      "pid": "51637736",
+      "dir": "up"
+    },
+    {
+      "pid": "51637574",
+      "dir": "up"
+    },
+    {
+      "pid": "{02944A62-F308-4903-A243-8A74C31C3B36}",
+      "dir": "up"
+    },
+    {
+      "pid": "{4F3C59A5-A61E-4911-B10C-C8FC1747922B}",
+      "dir": "up"
+    },
+    {
+      "pid": "{B1847D3B-4D9E-49D1-A65B-74695798A0DD}",
+      "dir": "up"
+    },
+    {
+      "pid": "{66C2055B-8653-4AAD-8AC3-1A3BB7AFAC21}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637494",
+      "dir": "up"
+    },
+    {
+      "pid": "{7E17FE5E-35D9-4C17-8CBB-85A1C6B83554}",
+      "dir": "up"
+    },
+    {
+      "pid": "51637352",
+      "dir": "up"
+    },
+    {
+      "pid": "51637260",
+      "dir": "up"
+    },
+    {
+      "pid": "51637180",
+      "dir": "up"
+    },
+    {
+      "pid": "51637148",
+      "dir": "up"
+    },
+    {
+      "pid": "51637018",
+      "dir": "up"
+    },
+    {
+      "pid": "51637012",
+      "dir": "up"
+    },
+    {
+      "pid": "51636712",
+      "dir": "up"
+    },
+    {
+      "pid": "51636690",
+      "dir": "up"
+    },
+    {
+      "pid": "51636590",
+      "dir": "up"
+    },
+    {
+      "pid": "{0C3D9436-F284-49E6-A7A2-1BF94ECAF5AE}",
+      "dir": "up"
+    },
+    {
+      "pid": "51636530",
+      "dir": "up"
+    },
+    {
+      "pid": "51636326",
+      "dir": "up"
+    },
+    {
+      "pid": "51636234",
+      "dir": "up"
+    },
+    {
+      "pid": "51636048",
+      "dir": "up"
+    },
+    {
+      "pid": "51636064",
+      "dir": "up"
+    },
+    {
+      "pid": "51636014",
+      "dir": "up"
+    },
+    {
+      "pid": "51635950",
+      "dir": "up"
+    },
+    {
+      "pid": "51635826",
+      "dir": "up"
+    },
+    {
+      "pid": "{24F19142-5AC8-4A8D-BD51-C2E119715D3A}",
+      "dir": "up"
+    },
+    {
+      "pid": "51635750",
+      "dir": "up"
+    },
+    {
+      "pid": "51635454",
+      "dir": "up"
+    },
+    {
+      "pid": "{58E4E807-0181-4D71-8EDE-A9D7EA8DDC9A}",
+      "dir": "up"
+    },
+    {
+      "pid": "51635334",
+      "dir": "up"
+    },
+    {
+      "pid": "{3635B235-F5E8-41FC-B77D-897A8E8C9B0E}",
+      "dir": "up"
+    },
+    {
+      "pid": "{2624A135-A8C0-40CD-A492-84661CF59049}",
+      "dir": "up"
+    },
+    {
+      "pid": "51635162",
+      "dir": "up"
+    },
+    {
+      "pid": "51634998",
+      "dir": "up"
+    },
+    {
+      "pid": "51634872",
+      "dir": "up"
+    },
+    {
+      "pid": "51634878",
+      "dir": "up"
+    },
+    {
+      "pid": "51634880",
+      "dir": "up"
+    },
+    {
+      "pid": "51634760",
+      "dir": "up"
+    },
+    {
+      "pid": "51634532",
+      "dir": "up"
+    },
+    {
+      "pid": "{E810EC24-7EE5-46E8-9142-C6335207C919}",
+      "dir": "up"
+    },
+    {
+      "pid": "51634446",
+      "dir": "up"
+    },
+    {
+      "pid": "{FA01F406-2FC3-4B13-94BF-3AE885BB8C18}",
+      "dir": "up"
+    },
+    {
+      "pid": "{80461A48-50E1-440A-8897-037C9FBDC8C7}",
+      "dir": "up"
+    },
+    {
+      "pid": "51634544",
+      "dir": "up"
+    },
+    {
+      "pid": "{3E71EFA1-EFCC-46F4-A9FF-B24040C4010C}",
+      "dir": "up"
+    },
+    {
+      "pid": "{E9F55B68-EABC-4B4C-B81E-1B4002521B23}",
+      "dir": "up"
+    },
+    {
+      "pid": "{4E8609DA-2D62-493B-92D8-C29303B55BA7}",
+      "dir": "up"
+    },
+    {
+      "pid": "{F6A2A369-1E32-4C2F-A5D1-8FA9E42B9721}",
+      "dir": "up"
+    },
+    {
+      "pid": "51634416",
+      "dir": "up"
+    },
+    {
+      "pid": "{A7A18C2A-1FF0-4393-9C95-644CC94A4722}",
+      "dir": "up"
+    },
+    {
+      "pid": "{34978AF8-2FBB-4E80-BBB5-572C424D9C22}",
+      "dir": "up"
+    },
+    {
+      "pid": "{A882144B-AA0A-47B1-AB80-23C663C0D5A9}",
+      "dir": "up"
+    },
+    {
+      "pid": "51634490",
+      "dir": "up"
+    },
+    {
+      "pid": "51634368",
+      "dir": "up"
+    },
+    {
+      "pid": "51634128",
+      "dir": "up"
+    },
+    {
+      "pid": "51634008",
+      "dir": "up"
+    },
+    {
+      "pid": "51633890",
+      "dir": "up"
+    },
+    {
+      "pid": "51633800",
+      "dir": "up"
+    },
+    {
+      "pid": "51633670",
+      "dir": "up"
+    },
+    {
+      "pid": "51633462",
+      "dir": "up"
+    },
+    {
+      "pid": "{B3430B63-3206-425E-8984-0D7E3B2AEA76}",
+      "dir": "up"
+    },
+    {
+      "pid": "51633354",
+      "dir": "up"
+    },
+    {
+      "pid": "51633260",
+      "dir": "up"
+    },
+    {
+      "pid": "{DA2EBB30-C54F-48AB-8E7A-DB8478399985}",
+      "dir": "up"
+    },
+    {
+      "pid": "{B29E5D15-11BF-4D1A-86D2-A09A3157CA72}",
+      "dir": "up"
+    },
+    {
+      "pid": "51633262",
+      "dir": "up"
+    },
+    {
+      "pid": "51633244",
+      "dir": "up"
+    },
+    {
+      "pid": "{B5163C41-D7D6-405D-9616-0415427DE51F}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632982",
+      "dir": "up"
+    },
+    {
+      "pid": "{747DB617-218D-4DFA-8BD3-5CD451CCC877}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632984",
+      "dir": "up"
+    },
+    {
+      "pid": "{A6B696B7-F7C4-49AE-8810-E0B300EB8C5D}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632800",
+      "dir": "up"
+    },
+    {
+      "pid": "51633212",
+      "dir": "up"
+    },
+    {
+      "pid": "51633202",
+      "dir": "up"
+    },
+    {
+      "pid": "51633144",
+      "dir": "up"
+    },
+    {
+      "pid": "51633116",
+      "dir": "up"
+    },
+    {
+      "pid": "51633000",
+      "dir": "up"
+    },
+    {
+      "pid": "51632886",
+      "dir": "up"
+    },
+    {
+      "pid": "{89B68460-665B-4B98-B160-221D9DF7B4E0}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632736",
+      "dir": "up"
+    },
+    {
+      "pid": "{AF640D34-FB14-4432-A235-BE86F9A9AB4E}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632550",
+      "dir": "up"
+    },
+    {
+      "pid": "{6AD74B08-6A5A-4B42-840B-2CD4C98033C2}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632432",
+      "dir": "up"
+    },
+    {
+      "pid": "51632344",
+      "dir": "up"
+    },
+    {
+      "pid": "{9FFF31D7-36FD-4EE6-8DA9-A36EC38A2CAA}",
+      "dir": "up"
+    },
+    {
+      "pid": "51632312",
+      "dir": "up"
+    },
+    {
+      "pid": "51631238",
+      "dir": "up"
+    },
+    {
+      "pid": "51630594",
+      "dir": "up"
+    },
+    {
+      "pid": "51630582",
+      "dir": "up"
+    },
+    {
+      "pid": "51630528",
+      "dir": "up"
+    },
+    {
+      "pid": "51630218",
+      "dir": "up"
+    },
+    {
+      "pid": "51630124",
+      "dir": "up"
+    },
+    {
+      "pid": "51630048",
+      "dir": "up"
+    },
+    {
+      "pid": "51629928",
+      "dir": "up"
+    },
+    {
+      "pid": "51630066",
+      "dir": "up"
+    },
+    {
+      "pid": "51630226",
+      "dir": "up"
+    },
+    {
+      "pid": "51630256",
+      "dir": "up"
+    },
+    {
+      "pid": "51630360",
+      "dir": "up"
+    },
+    {
+      "pid": "51630438",
+      "dir": "up"
+    },
+    {
+      "pid": "51630446",
+      "dir": "up"
+    },
+    {
+      "pid": "51630450",
+      "dir": "up"
+    },
+    {
+      "pid": "51630392",
+      "dir": "up"
+    },
+    {
+      "pid": "51630278",
+      "dir": "up"
+    },
+    {
+      "pid": "51630182",
+      "dir": "up"
+    },
+    {
+      "pid": "51630068",
+      "dir": "up"
+    },
+    {
+      "pid": "51630282",
+      "dir": "up"
+    },
+    {
+      "pid": "51630292",
+      "dir": "up"
+    },
+    {
+      "pid": "51630346",
+      "dir": "up"
+    },
+    {
+      "pid": "51630074",
+      "dir": "up"
+    },
+    {
+      "pid": "51630026",
+      "dir": "anchor"
+    },
+    {
+      "pid": "51629610",
+      "dir": "down"
+    },
+    {
+      "pid": "51629604",
+      "dir": "down"
+    },
+    {
+      "pid": "51629584",
+      "dir": "down"
+    },
+    {
+      "pid": "51629488",
+      "dir": "down"
+    },
+    {
+      "pid": "51629240",
+      "dir": "down"
+    },
+    {
+      "pid": "51629214",
+      "dir": "down"
+    },
+    {
+      "pid": "51628886",
+      "dir": "down"
+    },
+    {
+      "pid": "51628646",
+      "dir": "down"
+    },
+    {
+      "pid": "51628566",
+      "dir": "down"
+    },
+    {
+      "pid": "51628494",
+      "dir": "down"
+    },
+    {
+      "pid": "51628280",
+      "dir": "down"
+    },
+    {
+      "pid": "51628218",
+      "dir": "down"
+    },
+    {
+      "pid": "51628164",
+      "dir": "down"
+    },
+    {
+      "pid": "51628010",
+      "dir": "down"
+    },
+    {
+      "pid": "51627772",
+      "dir": "down"
+    },
+    {
+      "pid": "51627584",
+      "dir": "down"
+    },
+    {
+      "pid": "51627580",
+      "dir": "down"
+    },
+    {
+      "pid": "51627390",
+      "dir": "down"
+    },
+    {
+      "pid": "51627392",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n969",
+      "currentEdge": "51630026",
+      "candidates": [
+        {
+          "pid": "51630074",
+          "name": "Little Pigeon River",
+          "km": 0.11947197907486447
+        },
+        {
+          "pid": "{6E3C7E20-A25C-40FF-B8CF-71B94B4E3DC8}",
+          "name": "West Prong Little Pigeon River",
+          "km": 0.8552600947393025
+        }
+      ],
+      "chosen": "51630074",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1026",
+      "currentEdge": "51630346",
+      "candidates": [
+        {
+          "pid": "51630292",
+          "name": "Little Pigeon River",
+          "km": 0.014749403561476672
+        },
+        {
+          "pid": "51630324",
+          "name": "Middle Creek",
+          "km": 0.030968465327078552
+        }
+      ],
+      "chosen": "51630292",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1431",
+      "currentEdge": "51630218",
+      "candidates": [
+        {
+          "pid": "51630212",
+          "name": "East Fork Little Pigeon River",
+          "km": 0.9731590799417407
+        },
+        {
+          "pid": "51630528",
+          "name": "Little Pigeon River",
+          "km": 0.5692887885120899
+        }
+      ],
+      "chosen": "51630528",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1488",
+      "currentEdge": "51631238",
+      "candidates": [
+        {
+          "pid": "51632312",
+          "name": "Little Pigeon River",
+          "km": 1.8909274722347387
+        },
+        {
+          "pid": "{0ED9CBAA-C576-45E5-9841-D86F8E7905D7}",
+          "name": "Lone Branch",
+          "km": 0.012798418096031553
+        }
+      ],
+      "chosen": "51632312",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1621",
+      "currentEdge": "51632344",
+      "candidates": [
+        {
+          "pid": "51632234",
+          "name": "Clark Branch",
+          "km": 0.1796350779524475
+        },
+        {
+          "pid": "51632432",
+          "name": "Little Pigeon River",
+          "km": 0.35068423970031254
+        },
+        {
+          "pid": "{12162069-D4BF-45F2-8317-600399D4C123}",
+          "name": "Clark Branch",
+          "km": 0.011510588685583243
+        }
+      ],
+      "chosen": "51632432",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1721",
+      "currentEdge": "{89B68460-665B-4B98-B160-221D9DF7B4E0}",
+      "candidates": [
+        {
+          "pid": "51632886",
+          "name": "Little Pigeon River",
+          "km": 0.19600446620711523
+        },
+        {
+          "pid": "{6D3C8D99-3707-42A9-9371-6C390FBB4FBA}",
+          "name": "Tattle Branch",
+          "km": 0.011072428286412304
+        },
+        {
+          "pid": "{EB186BA9-BC44-44FD-BAF0-0719AB4457D9}",
+          "name": "Tattle Branch",
+          "km": 0.01984949632523845
+        }
+      ],
+      "chosen": "51632886",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1798",
+      "currentEdge": "51633202",
+      "candidates": [
+        {
+          "pid": "51633212",
+          "name": "Little Pigeon River",
+          "km": 1.6159754158725208
+        },
+        {
+          "pid": "{FD6392D5-475B-41A8-AB77-DF9AA64D6D3A}",
+          "name": "Bird Creek",
+          "km": 0.01584911358898959
+        }
+      ],
+      "chosen": "51633212",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1971",
+      "currentEdge": "51633262",
+      "candidates": [
+        {
+          "pid": "51633704",
+          "name": "Cloverfield Branch",
+          "km": 0.7922600399549834
+        },
+        {
+          "pid": "{B29E5D15-11BF-4D1A-86D2-A09A3157CA72}",
+          "name": "Little Pigeon River",
+          "km": 0.14922301122563636
+        },
+        {
+          "pid": "{B4C04D22-5E6E-44A1-A352-2B4B7A9524A0}",
+          "name": "Cloverfield Branch",
+          "km": 0.011904213352306361
+        }
+      ],
+      "chosen": "{B29E5D15-11BF-4D1A-86D2-A09A3157CA72}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2017",
+      "currentEdge": "51633354",
+      "candidates": [
+        {
+          "pid": "51633462",
+          "name": "Little Pigeon River",
+          "km": 0.35227789732858417
+        },
+        {
+          "pid": "{B3430B63-3206-425E-8984-0D7E3B2AEA76}",
+          "name": "Little Pigeon River",
+          "km": 0.007452252765676493
+        }
+      ],
+      "chosen": "{B3430B63-3206-425E-8984-0D7E3B2AEA76}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2043",
+      "currentEdge": "51633670",
+      "candidates": [
+        {
+          "pid": "51633800",
+          "name": "Little Pigeon River",
+          "km": 0.23197454850729604
+        },
+        {
+          "pid": "51633744",
+          "name": "Mill Branch",
+          "km": 0.7231151051130935
+        },
+        {
+          "pid": "{BC0B4FE3-BFC3-4E84-A869-C0985F9322EB}",
+          "name": "Mill Branch",
+          "km": 0.00839665132379875
+        }
+      ],
+      "chosen": "51633800",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2101",
+      "currentEdge": "{F6A2A369-1E32-4C2F-A5D1-8FA9E42B9721}",
+      "candidates": [
+        {
+          "pid": "{4E8609DA-2D62-493B-92D8-C29303B55BA7}",
+          "name": "Little Pigeon River",
+          "km": 0.22370435204121042
+        },
+        {
+          "pid": "{2F60DDEA-AD07-4347-9EAA-0795E671A64F}",
+          "name": "Griffin Branch",
+          "km": 0.01155650883772964
+        }
+      ],
+      "chosen": "{4E8609DA-2D62-493B-92D8-C29303B55BA7}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2215",
+      "currentEdge": "51634532",
+      "candidates": [
+        {
+          "pid": "51634760",
+          "name": "Little Pigeon River",
+          "km": 0.9590793376646305
+        },
+        {
+          "pid": "{F5450122-3368-4DFB-9014-97792156888F}",
+          "name": "Henry Branch",
+          "km": 0.012477796053724358
+        }
+      ],
+      "chosen": "51634760",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2182",
+      "currentEdge": "51634760",
+      "candidates": [
+        {
+          "pid": "51634880",
+          "name": "Little Pigeon River",
+          "km": 0.29120151063525745
+        },
+        {
+          "pid": "{A06806D5-3BDD-47E7-8D74-F70F0186D771}",
+          "name": "Turkeypen Branch",
+          "km": 0.013640994963615425
+        }
+      ],
+      "chosen": "51634880",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2257",
+      "currentEdge": "51634998",
+      "candidates": [
+        {
+          "pid": "51635014",
+          "name": "Johnson Branch",
+          "km": 0.30184402645681696
+        },
+        {
+          "pid": "51635162",
+          "name": "Little Pigeon River",
+          "km": 0.47700690913788335
+        },
+        {
+          "pid": "{2AF941B8-799D-4C97-91FC-2C7510E6B128}",
+          "name": "Johnson Branch",
+          "km": 0.003724556397504593
+        }
+      ],
+      "chosen": "51635162",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2253",
+      "currentEdge": "{58E4E807-0181-4D71-8EDE-A9D7EA8DDC9A}",
+      "candidates": [
+        {
+          "pid": "51635454",
+          "name": "Little Pigeon River",
+          "km": 0.44808455779906337
+        },
+        {
+          "pid": "{5496D42D-FD70-4E36-AD62-2937B3D8A486}",
+          "name": "Grassy Branch",
+          "km": 0.015142020276554391
+        }
+      ],
+      "chosen": "51635454",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2266",
+      "currentEdge": "51635454",
+      "candidates": [
+        {
+          "pid": "51635750",
+          "name": "Little Pigeon River",
+          "km": 0.568640315283713
+        },
+        {
+          "pid": "{48EABAA9-74F6-415B-9A6C-43AEC73956A9}",
+          "name": "Laurel Branch",
+          "km": 0.016198946997671104
+        }
+      ],
+      "chosen": "51635750",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2261",
+      "currentEdge": "{24F19142-5AC8-4A8D-BD51-C2E119715D3A}",
+      "candidates": [
+        {
+          "pid": "51635826",
+          "name": "Little Pigeon River",
+          "km": 0.4698487188293024
+        },
+        {
+          "pid": "{D3C5D28F-4D26-4544-9657-0572C599E3A9}",
+          "name": "Fern Branch",
+          "km": 0.012515038270466343
+        }
+      ],
+      "chosen": "51635826",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2293",
+      "currentEdge": "51635950",
+      "candidates": [
+        {
+          "pid": "51636014",
+          "name": "Little Pigeon River",
+          "km": 0.14172120167080776
+        },
+        {
+          "pid": "{9B27DCED-7D4B-47D1-8787-5D7D1416F018}",
+          "name": "Webb Creek",
+          "km": 0.01396244683430587
+        }
+      ],
+      "chosen": "51636014",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2290",
+      "currentEdge": "51636014",
+      "candidates": [
+        {
+          "pid": "51636064",
+          "name": "Little Pigeon River",
+          "km": 0.46492261192195916
+        },
+        {
+          "pid": "{16A7AA80-5C4E-47A2-B9A7-0C2B00AF58A4}",
+          "name": "Copeland Creek",
+          "km": 0.05469426821097339
+        }
+      ],
+      "chosen": "51636064",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2145",
+      "currentEdge": "51636530",
+      "candidates": [
+        {
+          "pid": "{0C3D9436-F284-49E6-A7A2-1BF94ECAF5AE}",
+          "name": "Little Pigeon River",
+          "km": 0.02635135853975431
+        },
+        {
+          "pid": "{CCC7BA07-EAB9-4CEE-AB0E-7AC3464F1AF8}",
+          "name": "Hills Creek",
+          "km": 0.011797526156089531
+        }
+      ],
+      "chosen": "{0C3D9436-F284-49E6-A7A2-1BF94ECAF5AE}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2229",
+      "currentEdge": "51637018",
+      "candidates": [
+        {
+          "pid": "51637148",
+          "name": "Little Pigeon River",
+          "km": 0.6761940344397483
+        },
+        {
+          "pid": "{2F21D5D8-69B4-49FD-8835-AAD45EA1ABB1}",
+          "name": "Engine Creek",
+          "km": 0.005982285822236942
+        },
+        {
+          "pid": "51637524",
+          "name": "Engine Creek",
+          "km": 2.132008149142676
+        }
+      ],
+      "chosen": "51637148",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2286",
+      "currentEdge": "51637260",
+      "candidates": [
+        {
+          "pid": "51637352",
+          "name": "Little Pigeon River",
+          "km": 0.49518088312054936
+        },
+        {
+          "pid": "51637562",
+          "name": "Teds Branch",
+          "km": 1.7091046912084515
+        },
+        {
+          "pid": "{50BC61AB-8C0E-46B6-AA6A-ACA6F8673153}",
+          "name": "Teds Branch",
+          "km": 0.0030175928887578064
+        }
+      ],
+      "chosen": "51637352",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2312",
+      "currentEdge": "51637352",
+      "candidates": [
+        {
+          "pid": "{7E17FE5E-35D9-4C17-8CBB-85A1C6B83554}",
+          "name": "Little Pigeon River",
+          "km": 0.22510545103443624
+        },
+        {
+          "pid": "{1BB0CC16-76A2-482C-8A3C-6A5BECCD1FBF}",
+          "name": "Rhododendron Creek",
+          "km": 0.015333384943794656
+        }
+      ],
+      "chosen": "{7E17FE5E-35D9-4C17-8CBB-85A1C6B83554}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2454",
+      "currentEdge": "{B1847D3B-4D9E-49D1-A65B-74695798A0DD}",
+      "candidates": [
+        {
+          "pid": "51637498",
+          "name": "Little Bird Branch",
+          "km": 0.44919303140740924
+        },
+        {
+          "pid": "{BA481384-9057-43DF-A038-C9B32E67562F}",
+          "name": "Little Bird Branch",
+          "km": 0.008493245596870575
+        },
+        {
+          "pid": "{4F3C59A5-A61E-4911-B10C-C8FC1747922B}",
+          "name": "Little Pigeon River",
+          "km": 0.10321241501201163
+        }
+      ],
+      "chosen": "{4F3C59A5-A61E-4911-B10C-C8FC1747922B}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2459",
+      "currentEdge": "51637574",
+      "candidates": [
+        {
+          "pid": "51637736",
+          "name": "Little Pigeon River",
+          "km": 0.583111027147451
+        },
+        {
+          "pid": "{F5727C58-CB20-4FC9-9B4D-5782AC4F8918}",
+          "name": "Bird Branch",
+          "km": 0.014034860362886746
+        }
+      ],
+      "chosen": "51637736",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2460",
+      "currentEdge": "51637736",
+      "candidates": [
+        {
+          "pid": "51637812",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.5353245967000344
+        },
+        {
+          "pid": "{777BE25E-EF4C-4D51-ACA2-58AC1E0EAFEE}",
+          "name": "Porters Creek",
+          "km": 0.08301271231191722
+        }
+      ],
+      "chosen": "51637812",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2658",
+      "currentEdge": "51637828",
+      "candidates": [
+        {
+          "pid": "51638324",
+          "name": "Little Laurel Branch",
+          "km": 2.5316581582294324
+        },
+        {
+          "pid": "{9F9D3C94-453F-490A-AEF1-0EE56A7BF7C6}",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.13894599894506035
+        }
+      ],
+      "chosen": "{9F9D3C94-453F-490A-AEF1-0EE56A7BF7C6}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2692",
+      "currentEdge": "{4CAEA166-E409-4CED-B2A7-610352FF1ECE}",
+      "candidates": [
+        {
+          "pid": "51638100",
+          "name": "Laurel Branch",
+          "km": 1.3264838359661097
+        },
+        {
+          "pid": "51637842",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.801951763851372
+        }
+      ],
+      "chosen": "51637842",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2751",
+      "currentEdge": "51637842",
+      "candidates": [
+        {
+          "pid": "{57505015-A2F2-41AF-BDBB-5C612D4D5542}",
+          "name": "Devils Den Branch",
+          "km": 1.6984872342361268
+        },
+        {
+          "pid": "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.5307572506970929
+        }
+      ],
+      "chosen": "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2788",
+      "currentEdge": "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+      "candidates": [
+        {
+          "pid": "51637776",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.4923548944601413
+        },
+        {
+          "pid": "51637760",
+          "name": "Ramsey Branch",
+          "km": 1.6854540716342297
+        }
+      ],
+      "chosen": "51637776",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2812",
+      "currentEdge": "51637776",
+      "candidates": [
+        {
+          "pid": "51637856",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.7006503898744972
+        },
+        {
+          "pid": "51637774",
+          "name": "Ramsey Prong",
+          "km": 0.6513418004569442
+        }
+      ],
+      "chosen": "51637856",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2848",
+      "currentEdge": "51637856",
+      "candidates": [
+        {
+          "pid": "51637922",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.24686712587510248
+        },
+        {
+          "pid": "51638210",
+          "name": "Millfield Branch",
+          "km": 1.6267847108084856
+        }
+      ],
+      "chosen": "51637922",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2870",
+      "currentEdge": "51637938",
+      "candidates": [
+        {
+          "pid": "51638002",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.2740833993091356
+        },
+        {
+          "pid": "{B3150D7E-E441-4FC0-860F-E4B8FE920BA5}",
+          "name": "Buck Fork",
+          "km": 0.04421848291301544
+        }
+      ],
+      "chosen": "51638002",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2881",
+      "currentEdge": "51638002",
+      "candidates": [
+        {
+          "pid": "51638188",
+          "name": "Eagle Rocks Prong",
+          "km": 0.734853050490062
+        },
+        {
+          "pid": "{4953B6C1-14A1-4802-B50A-A2C4D29D0430}",
+          "name": "Chapman Prong",
+          "km": 0.4782469703520779
+        }
+      ],
+      "chosen": "51638188",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2909",
+      "currentEdge": "{BC70B52D-9A6D-4ADC-9FD5-112A5388B42F}",
+      "candidates": [
+        {
+          "pid": "51638506",
+          "name": "Shirt Tail Branch",
+          "km": 0.8893287314665931
+        },
+        {
+          "pid": "51638448",
+          "name": "Eagle Rocks Prong",
+          "km": 0.8203911810862987
+        }
+      ],
+      "chosen": "51638448",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2951",
+      "currentEdge": "51638458",
+      "candidates": [
+        {
+          "pid": "51638712",
+          "name": "Pecks branch",
+          "km": 2.0931171777998467
+        },
+        {
+          "pid": "51638582",
+          "name": "Eagle Rocks Prong",
+          "km": 0.9096956428026924
+        }
+      ],
+      "chosen": "51638582",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n946",
+      "currentEdge": "51630026",
+      "candidates": [
+        {
+          "pid": "51629604",
+          "name": "Little Pigeon River",
+          "km": 0.023205831141874002
+        },
+        {
+          "pid": "51629610",
+          "name": "Little Pigeon River",
+          "km": 0.006250343743389486
+        }
+      ],
+      "chosen": "51629610",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 12489,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-little-pigeon-river.geojson"
+}

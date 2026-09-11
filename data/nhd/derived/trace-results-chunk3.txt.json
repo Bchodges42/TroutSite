@@ -1,0 +1,456 @@
+{
+  "generatedAt": "2026-09-11T18:13:37.281Z",
+  "budget": 81920,
+  "results": {
+    "south-fork-cumberland": {
+      "unit": "05130104",
+      "nhdName": "Big South Fork Cumberland River",
+      "snapDistM": 56,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 31939,
+      "lengthKm": 216.19,
+      "vertexCount": 1273,
+      "throughLakeIds": [
+        "lake-cumberland"
+      ],
+      "error": null
+    },
+    "barren-fork-river": {
+      "unit": "05130107",
+      "nhdName": "Barren Fork",
+      "snapDistM": 0,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 12432,
+      "lengthKm": 59.67,
+      "vertexCount": 497,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "upper-hills-creek": {
+      "unit": "05130107",
+      "nhdName": "Hills Creek",
+      "snapDistM": 149,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 2804,
+      "lengthKm": 9.39,
+      "vertexCount": 81,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "caney-fork-upper": {
+      "unit": "05130108",
+      "nhdName": "Caney Fork",
+      "snapDistM": 2,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "FAIL",
+      "failures": [
+        "continuity"
+      ],
+      "bytes": 28865,
+      "lengthKm": 220.74,
+      "vertexCount": 1204,
+      "throughLakeIds": [
+        "center-hill-lake"
+      ],
+      "error": null
+    },
+    "cumberland-river": {
+      "unit": "05130202",
+      "nhdName": "Cumberland River",
+      "snapDistM": 172,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 8550,
+      "lengthKm": 108.13,
+      "vertexCount": 312,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "harpeth-river": {
+      "unit": "05130204",
+      "nhdName": "Harpeth River",
+      "snapDistM": 68,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 28784,
+      "lengthKm": 191.34,
+      "vertexCount": 1223,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "sulfur-fork-creek": {
+      "unit": "05130206",
+      "nhdName": "Sulphur Fork Red River",
+      "snapDistM": 59,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 12238,
+      "lengthKm": 74.71,
+      "vertexCount": 503,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "ft-patrick-henry-tailwater": {
+      "unit": "06010102",
+      "nhdName": "South Fork Holston River",
+      "snapDistM": 17,
+      "spec": {
+        "up": "dam:Fort Patrick Henry Lake",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 2652,
+      "lengthKm": 13.1,
+      "vertexCount": 68,
+      "throughLakeIds": [
+        "cherokee-lake"
+      ],
+      "error": null
+    },
+    "doe-creek-johnson": {
+      "unit": "06010103",
+      "nhdName": "Doe Creek",
+      "snapDistM": 51,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 5525,
+      "lengthKm": 21.69,
+      "vertexCount": 182,
+      "throughLakeIds": [
+        "watauga-lake"
+      ],
+      "error": null
+    },
+    "stoney-creek-carter": {
+      "unit": "06010103",
+      "nhdName": "Stony Creek",
+      "snapDistM": 72,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 5772,
+      "lengthKm": 27.55,
+      "vertexCount": 191,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "buffalo-creek-grainger": {
+      "unit": "06010104",
+      "nhdName": "Buffalo Creek",
+      "snapDistM": 36,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 2488,
+      "lengthKm": 9.74,
+      "vertexCount": 66,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "gulf-fork-big-creek": {
+      "unit": "06010105",
+      "nhdName": "Gulf Fork Big Creek",
+      "snapDistM": 70,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 9451,
+      "lengthKm": 43.34,
+      "vertexCount": 350,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "french-broad-river": {
+      "unit": "06010107",
+      "nhdName": "French Broad River",
+      "snapDistM": 28,
+      "spec": {
+        "up": "dam:Douglas Lake",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 7212,
+      "lengthKm": 52.39,
+      "vertexCount": 249,
+      "throughLakeIds": [
+        "fort-loudoun-lake"
+      ],
+      "error": null
+    },
+    "roaring-fork": {
+      "unit": "06010107",
+      "nhdName": "Roaring Fork",
+      "snapDistM": 49,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 3764,
+      "lengthKm": 11.54,
+      "vertexCount": 117,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "little-river": {
+      "unit": "06010201",
+      "nhdName": "Little River",
+      "snapDistM": 23,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 22355,
+      "lengthKm": 96.5,
+      "vertexCount": 762,
+      "throughLakeIds": [
+        "fort-loudoun-lake"
+      ],
+      "error": null
+    },
+    "little-tennessee-river": {
+      "unit": "06010204",
+      "nhdName": "Little Tennessee River",
+      "snapDistM": 0,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "FAIL",
+      "failures": [
+        "continuity"
+      ],
+      "bytes": 15610,
+      "lengthKm": 92.84,
+      "vertexCount": 460,
+      "throughLakeIds": [
+        "tellico-lake",
+        "chilhowee-lake",
+        "calderwood-lake",
+        "watts-bar-lake"
+      ],
+      "error": null
+    },
+    "gap-creek-claiborne": {
+      "unit": "06010206",
+      "nhdName": "Gap Creek",
+      "snapDistM": 56,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 3697,
+      "lengthKm": 11.88,
+      "vertexCount": 126,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "clinch-river": {
+      "unit": "06010207",
+      "nhdName": "Clinch River",
+      "snapDistM": 9,
+      "spec": {
+        "up": "dam:Norris Lake",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 15625,
+      "lengthKm": 125.02,
+      "vertexCount": 595,
+      "throughLakeIds": [
+        "melton-hill-lake",
+        "whiteoak-lake",
+        "watts-bar-lake"
+      ],
+      "error": null
+    },
+    "obed-river": {
+      "unit": "06010208",
+      "nhdName": "Obed River",
+      "snapDistM": 165,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 13847,
+      "lengthKm": 75.36,
+      "vertexCount": 548,
+      "throughLakeIds": [
+        "lake-holiday"
+      ],
+      "error": null
+    },
+    "goforth-creek": {
+      "unit": "06020003",
+      "nhdName": "Goforth Creek",
+      "snapDistM": 10,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 2522,
+      "lengthKm": 6.58,
+      "vertexCount": 67,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "tumbling-creek": {
+      "unit": "06020003",
+      "nhdName": "Tumbling Creek",
+      "snapDistM": 169,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 4497,
+      "lengthKm": 18.26,
+      "vertexCount": 158,
+      "throughLakeIds": [
+        "ocoee-number-three-lake"
+      ],
+      "error": null
+    },
+    "bradley-creek": {
+      "unit": "06030003",
+      "nhdName": "Bradley Creek",
+      "snapDistM": 2,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 7276,
+      "lengthKm": 27.26,
+      "vertexCount": 287,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "shoal-creek": {
+      "unit": "06030005",
+      "nhdName": "Shoal Creek",
+      "snapDistM": 27,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 15779,
+      "lengthKm": 99.33,
+      "vertexCount": 617,
+      "throughLakeIds": [
+        "new-shoal-creek-reservoir",
+        "wilson-lake"
+      ],
+      "error": null
+    },
+    "hurricane-creek": {
+      "unit": "06040003",
+      "nhdName": "Hurricane Creek",
+      "snapDistM": 115,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 8539,
+      "lengthKm": 42.42,
+      "vertexCount": 316,
+      "throughLakeIds": [
+        "sawmill-branch-lake"
+      ],
+      "error": null
+    },
+    "standing-rock-creek": {
+      "unit": "06040005",
+      "nhdName": "Standing Rock Creek",
+      "snapDistM": 2,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 4831,
+      "lengthKm": 20.29,
+      "vertexCount": 164,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "hatchie-river": {
+      "unit": "08010208",
+      "nhdName": "Hatchie River",
+      "snapDistM": 8,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 57449,
+      "lengthKm": 262.22,
+      "vertexCount": 2528,
+      "throughLakeIds": [],
+      "error": null
+    }
+  }
+}

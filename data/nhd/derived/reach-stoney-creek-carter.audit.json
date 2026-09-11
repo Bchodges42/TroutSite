@@ -1,0 +1,1128 @@
+{
+  "waterId": "stoney-creek-carter",
+  "graphPath": "data/nhd/graphs/06010103.graph.json",
+  "hu8": "06010103",
+  "anchorSnap": {
+    "distM": 0.035013285982190556,
+    "t": 0.002521918671348219,
+    "edgeIdx": 2033,
+    "seg": 35,
+    "point": [
+      -82.13515784736468,
+      36.383308709979346
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2937,
+      1567,
+      407,
+      1316,
+      3159,
+      1863,
+      2566,
+      3174,
+      1,
+      384,
+      2965,
+      1184,
+      552,
+      1757,
+      2077,
+      1707,
+      1940,
+      483,
+      699,
+      1205,
+      1200,
+      906,
+      6,
+      329,
+      93,
+      1263,
+      2103,
+      81,
+      3097,
+      2304,
+      2508,
+      1931,
+      14,
+      1500,
+      204,
+      154,
+      198,
+      178,
+      1679,
+      1525,
+      2531,
+      590,
+      2706,
+      1144,
+      972,
+      1593,
+      3444,
+      3268,
+      2415,
+      2949,
+      3034,
+      2187,
+      1859,
+      2099,
+      3210,
+      2789,
+      3470,
+      692,
+      3293,
+      745,
+      2859,
+      78,
+      1339,
+      1471,
+      1515,
+      2273,
+      1781
+    ],
+    "reason": "headwater",
+    "node": "n1613",
+    "edgePids": [
+      "89944725",
+      "89944639",
+      "89944629",
+      "89944405",
+      "89944341",
+      "89944327",
+      "89944153",
+      "89944121",
+      "89944045",
+      "89943895",
+      "89943777",
+      "89943571",
+      "89943573",
+      "89943401",
+      "89943383",
+      "89943109",
+      "89943081",
+      "89942827",
+      "89942825",
+      "89942727",
+      "89942559",
+      "89942519",
+      "89942503",
+      "89942333",
+      "89942181",
+      "89942059",
+      "89942045",
+      "89941811",
+      "89941753",
+      "89941679",
+      "89941523",
+      "89941397",
+      "89941301",
+      "89941133",
+      "89941065",
+      "{532EC515-F5D7-4D30-B2D4-D9F0209F4D9E}",
+      "89940909",
+      "89940735",
+      "89940519",
+      "89940487",
+      "89940447",
+      "89940299",
+      "89940265",
+      "89940211",
+      "89940141",
+      "89940115",
+      "89939741",
+      "89939627",
+      "89939613",
+      "89939575",
+      "89939571",
+      "89939537",
+      "89939483",
+      "89939397",
+      "89939335",
+      "89939329",
+      "89939185",
+      "89939169",
+      "89939145",
+      "89939019",
+      "89938989",
+      "89938961",
+      "89938891",
+      "89938777",
+      "89938493",
+      "89938043",
+      "89937993"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      3392,
+      643,
+      2921,
+      579
+    ],
+    "reason": "name-change",
+    "node": "n637",
+    "enteredNames": [
+      "Watauga River"
+    ],
+    "edgePids": [
+      "89945335",
+      "89945435",
+      "89945637",
+      "89946139"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "89937993",
+      "dir": "up"
+    },
+    {
+      "pid": "89938043",
+      "dir": "up"
+    },
+    {
+      "pid": "89938493",
+      "dir": "up"
+    },
+    {
+      "pid": "89938777",
+      "dir": "up"
+    },
+    {
+      "pid": "89938891",
+      "dir": "up"
+    },
+    {
+      "pid": "89938961",
+      "dir": "up"
+    },
+    {
+      "pid": "89938989",
+      "dir": "up"
+    },
+    {
+      "pid": "89939019",
+      "dir": "up"
+    },
+    {
+      "pid": "89939145",
+      "dir": "up"
+    },
+    {
+      "pid": "89939169",
+      "dir": "up"
+    },
+    {
+      "pid": "89939185",
+      "dir": "up"
+    },
+    {
+      "pid": "89939329",
+      "dir": "up"
+    },
+    {
+      "pid": "89939335",
+      "dir": "up"
+    },
+    {
+      "pid": "89939397",
+      "dir": "up"
+    },
+    {
+      "pid": "89939483",
+      "dir": "up"
+    },
+    {
+      "pid": "89939537",
+      "dir": "up"
+    },
+    {
+      "pid": "89939571",
+      "dir": "up"
+    },
+    {
+      "pid": "89939575",
+      "dir": "up"
+    },
+    {
+      "pid": "89939613",
+      "dir": "up"
+    },
+    {
+      "pid": "89939627",
+      "dir": "up"
+    },
+    {
+      "pid": "89939741",
+      "dir": "up"
+    },
+    {
+      "pid": "89940115",
+      "dir": "up"
+    },
+    {
+      "pid": "89940141",
+      "dir": "up"
+    },
+    {
+      "pid": "89940211",
+      "dir": "up"
+    },
+    {
+      "pid": "89940265",
+      "dir": "up"
+    },
+    {
+      "pid": "89940299",
+      "dir": "up"
+    },
+    {
+      "pid": "89940447",
+      "dir": "up"
+    },
+    {
+      "pid": "89940487",
+      "dir": "up"
+    },
+    {
+      "pid": "89940519",
+      "dir": "up"
+    },
+    {
+      "pid": "89940735",
+      "dir": "up"
+    },
+    {
+      "pid": "89940909",
+      "dir": "up"
+    },
+    {
+      "pid": "{532EC515-F5D7-4D30-B2D4-D9F0209F4D9E}",
+      "dir": "up"
+    },
+    {
+      "pid": "89941065",
+      "dir": "up"
+    },
+    {
+      "pid": "89941133",
+      "dir": "up"
+    },
+    {
+      "pid": "89941301",
+      "dir": "up"
+    },
+    {
+      "pid": "89941397",
+      "dir": "up"
+    },
+    {
+      "pid": "89941523",
+      "dir": "up"
+    },
+    {
+      "pid": "89941679",
+      "dir": "up"
+    },
+    {
+      "pid": "89941753",
+      "dir": "up"
+    },
+    {
+      "pid": "89941811",
+      "dir": "up"
+    },
+    {
+      "pid": "89942045",
+      "dir": "up"
+    },
+    {
+      "pid": "89942059",
+      "dir": "up"
+    },
+    {
+      "pid": "89942181",
+      "dir": "up"
+    },
+    {
+      "pid": "89942333",
+      "dir": "up"
+    },
+    {
+      "pid": "89942503",
+      "dir": "up"
+    },
+    {
+      "pid": "89942519",
+      "dir": "up"
+    },
+    {
+      "pid": "89942559",
+      "dir": "up"
+    },
+    {
+      "pid": "89942727",
+      "dir": "up"
+    },
+    {
+      "pid": "89942825",
+      "dir": "up"
+    },
+    {
+      "pid": "89942827",
+      "dir": "up"
+    },
+    {
+      "pid": "89943081",
+      "dir": "up"
+    },
+    {
+      "pid": "89943109",
+      "dir": "up"
+    },
+    {
+      "pid": "89943383",
+      "dir": "up"
+    },
+    {
+      "pid": "89943401",
+      "dir": "up"
+    },
+    {
+      "pid": "89943573",
+      "dir": "up"
+    },
+    {
+      "pid": "89943571",
+      "dir": "up"
+    },
+    {
+      "pid": "89943777",
+      "dir": "up"
+    },
+    {
+      "pid": "89943895",
+      "dir": "up"
+    },
+    {
+      "pid": "89944045",
+      "dir": "up"
+    },
+    {
+      "pid": "89944121",
+      "dir": "up"
+    },
+    {
+      "pid": "89944153",
+      "dir": "up"
+    },
+    {
+      "pid": "89944327",
+      "dir": "up"
+    },
+    {
+      "pid": "89944341",
+      "dir": "up"
+    },
+    {
+      "pid": "89944405",
+      "dir": "up"
+    },
+    {
+      "pid": "89944629",
+      "dir": "up"
+    },
+    {
+      "pid": "89944639",
+      "dir": "up"
+    },
+    {
+      "pid": "89944725",
+      "dir": "up"
+    },
+    {
+      "pid": "89945257",
+      "dir": "anchor"
+    },
+    {
+      "pid": "89945335",
+      "dir": "down"
+    },
+    {
+      "pid": "89945435",
+      "dir": "down"
+    },
+    {
+      "pid": "89945637",
+      "dir": "down"
+    },
+    {
+      "pid": "89946139",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n773",
+      "currentEdge": "89944725",
+      "candidates": [
+        {
+          "pid": "89944639",
+          "name": "Stony Creek",
+          "km": 0.02684841411374889
+        },
+        {
+          "pid": "89944641",
+          "name": "Hamilton Branch",
+          "km": 3.2516742566709627
+        }
+      ],
+      "chosen": "89944639",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n799",
+      "currentEdge": "89944629",
+      "candidates": [
+        {
+          "pid": "89944175",
+          "name": "Griffith Branch",
+          "km": 0.7085625806280631
+        },
+        {
+          "pid": "89944405",
+          "name": "Stony Creek",
+          "km": 0.08130665401901871
+        }
+      ],
+      "chosen": "89944405",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n804",
+      "currentEdge": "89944341",
+      "candidates": [
+        {
+          "pid": "89944329",
+          "name": "Pierce Branch",
+          "km": 0.1576137354968993
+        },
+        {
+          "pid": "89944327",
+          "name": "Stony Creek",
+          "km": 0.6067619932543435
+        }
+      ],
+      "chosen": "89944327",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n832",
+      "currentEdge": "89944327",
+      "candidates": [
+        {
+          "pid": "89944155",
+          "name": "Furnace Branch",
+          "km": 0.2650058699639198
+        },
+        {
+          "pid": "89944153",
+          "name": "Stony Creek",
+          "km": 0.3065643464841074
+        }
+      ],
+      "chosen": "89944153",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n848",
+      "currentEdge": "89944153",
+      "candidates": [
+        {
+          "pid": "89944123",
+          "name": "Weaver Branch",
+          "km": 0.3780689233321032
+        },
+        {
+          "pid": "89944121",
+          "name": "Stony Creek",
+          "km": 0.10765108056331857
+        }
+      ],
+      "chosen": "89944121",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n852",
+      "currentEdge": "89944121",
+      "candidates": [
+        {
+          "pid": "89944045",
+          "name": "Stony Creek",
+          "km": 0.2615996846216166
+        },
+        {
+          "pid": "89944061",
+          "name": "Dry Run",
+          "km": 0.13430486480226533
+        }
+      ],
+      "chosen": "89944045",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n884",
+      "currentEdge": "89943895",
+      "candidates": [
+        {
+          "pid": "89944133",
+          "name": "Nidifer Branch",
+          "km": 1.1461374576611332
+        },
+        {
+          "pid": "89943777",
+          "name": "Stony Creek",
+          "km": 0.535909869282235
+        }
+      ],
+      "chosen": "89943777",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n919",
+      "currentEdge": "89943571",
+      "candidates": [
+        {
+          "pid": "89943573",
+          "name": "Stony Creek",
+          "km": 0.5181997808704281
+        },
+        {
+          "pid": "89943567",
+          "name": "Hinkle Branch",
+          "km": 1.1493805868118565
+        }
+      ],
+      "chosen": "89943573",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n949",
+      "currentEdge": "89943401",
+      "candidates": [
+        {
+          "pid": "89943421",
+          "name": "Muddy Branch",
+          "km": 0.6701155750996636
+        },
+        {
+          "pid": "89943383",
+          "name": "Stony Creek",
+          "km": 0.4820327056933995
+        }
+      ],
+      "chosen": "89943383",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n966",
+      "currentEdge": "89943383",
+      "candidates": [
+        {
+          "pid": "89943111",
+          "name": "Miller Branch",
+          "km": 0.32673910344019197
+        },
+        {
+          "pid": "89943109",
+          "name": "Stony Creek",
+          "km": 0.05486047083537072
+        }
+      ],
+      "chosen": "89943109",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n967",
+      "currentEdge": "89943109",
+      "candidates": [
+        {
+          "pid": "89943081",
+          "name": "Stony Creek",
+          "km": 0.5445348579660656
+        },
+        {
+          "pid": "89943083",
+          "name": "Bartee Branch",
+          "km": 1.4168582175530735
+        }
+      ],
+      "chosen": "89943081",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1015",
+      "currentEdge": "89942825",
+      "candidates": [
+        {
+          "pid": "89942727",
+          "name": "Stony Creek",
+          "km": 0.3684748220516641
+        },
+        {
+          "pid": "89942725",
+          "name": "Horselog Branch",
+          "km": 0.20376117511156333
+        }
+      ],
+      "chosen": "89942727",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1026",
+      "currentEdge": "89942727",
+      "candidates": [
+        {
+          "pid": "89942559",
+          "name": "Stony Creek",
+          "km": 0.07159311537127439
+        },
+        {
+          "pid": "89942561",
+          "name": "Laurel Branch",
+          "km": 0.971475775748816
+        }
+      ],
+      "chosen": "89942559",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1034",
+      "currentEdge": "89942519",
+      "candidates": [
+        {
+          "pid": "89942503",
+          "name": "Stony Creek",
+          "km": 0.422376714906919
+        },
+        {
+          "pid": "89942505",
+          "name": "Rome Branch",
+          "km": 0.10309533541943514
+        }
+      ],
+      "chosen": "89942503",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1111",
+      "currentEdge": "89942181",
+      "candidates": [
+        {
+          "pid": "89942059",
+          "name": "Stony Creek",
+          "km": 0.03518867211843003
+        },
+        {
+          "pid": "89941929",
+          "name": "Mill Creek",
+          "km": 2.236139932930071
+        }
+      ],
+      "chosen": "89942059",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1115",
+      "currentEdge": "89942059",
+      "candidates": [
+        {
+          "pid": "89942085",
+          "name": "Stover Branch",
+          "km": 0.15217135157605977
+        },
+        {
+          "pid": "89942045",
+          "name": "Stony Creek",
+          "km": 0.4887518661118633
+        }
+      ],
+      "chosen": "89942045",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1155",
+      "currentEdge": "89941679",
+      "candidates": [
+        {
+          "pid": "89941523",
+          "name": "Stony Creek",
+          "km": 0.3003882586047678
+        },
+        {
+          "pid": "89941525",
+          "name": "Little Marklin Branch",
+          "km": 0.3572848769910846
+        }
+      ],
+      "chosen": "89941523",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1161",
+      "currentEdge": "89941523",
+      "candidates": [
+        {
+          "pid": "89941397",
+          "name": "Stony Creek",
+          "km": 0.22618611329839883
+        },
+        {
+          "pid": "89941399",
+          "name": "Holly Springs Branch",
+          "km": 0.6716809728849771
+        }
+      ],
+      "chosen": "89941397",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1180",
+      "currentEdge": "89941301",
+      "candidates": [
+        {
+          "pid": "89941133",
+          "name": "Stony Creek",
+          "km": 0.1131042148393801
+        },
+        {
+          "pid": "89941135",
+          "name": "Clarion Branch",
+          "km": 0.1542832267861168
+        }
+      ],
+      "chosen": "89941133",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1183",
+      "currentEdge": "89941133",
+      "candidates": [
+        {
+          "pid": "89941065",
+          "name": "Stony Creek",
+          "km": 0.288576616759455
+        },
+        {
+          "pid": "89941163",
+          "name": "Hurley Branch",
+          "km": 0.3509484986218914
+        }
+      ],
+      "chosen": "89941065",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1210",
+      "currentEdge": "{532EC515-F5D7-4D30-B2D4-D9F0209F4D9E}",
+      "candidates": [
+        {
+          "pid": "89940907",
+          "name": "Estep Branch",
+          "km": 0.18028932406732417
+        },
+        {
+          "pid": "89940909",
+          "name": "Stony Creek",
+          "km": 0.3543522406232537
+        }
+      ],
+      "chosen": "89940909",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1220",
+      "currentEdge": "89940735",
+      "candidates": [
+        {
+          "pid": "89940519",
+          "name": "Stony Creek",
+          "km": 0.08904352794407863
+        },
+        {
+          "pid": "89940531",
+          "name": "Dugger Branch",
+          "km": 0.534086862081394
+        }
+      ],
+      "chosen": "89940519",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1221",
+      "currentEdge": "89940519",
+      "candidates": [
+        {
+          "pid": "89940543",
+          "name": "Hodge Branch",
+          "km": 2.1406504202343126
+        },
+        {
+          "pid": "89940487",
+          "name": "Stony Creek",
+          "km": 0.07354632957515136
+        }
+      ],
+      "chosen": "89940487",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1249",
+      "currentEdge": "89940265",
+      "candidates": [
+        {
+          "pid": "89940211",
+          "name": "Stony Creek",
+          "km": 0.31552257744793405
+        },
+        {
+          "pid": "89940213",
+          "name": "Johns Branch",
+          "km": 0.04820786973923633
+        }
+      ],
+      "chosen": "89940211",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1265",
+      "currentEdge": "89940211",
+      "candidates": [
+        {
+          "pid": "89940143",
+          "name": "Taylor Branch",
+          "km": 0.6798439951317868
+        },
+        {
+          "pid": "89940141",
+          "name": "Stony Creek",
+          "km": 0.03391457468168288
+        }
+      ],
+      "chosen": "89940141",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1266",
+      "currentEdge": "89940141",
+      "candidates": [
+        {
+          "pid": "89940115",
+          "name": "Stony Creek",
+          "km": 1.6559653544807413
+        },
+        {
+          "pid": "89940117",
+          "name": "Blevins Branch",
+          "km": 0.42113654982656223
+        }
+      ],
+      "chosen": "89940115",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1397",
+      "currentEdge": "89939627",
+      "candidates": [
+        {
+          "pid": "89939737",
+          "name": "Richardson Branch",
+          "km": 0.7713818925034984
+        },
+        {
+          "pid": "89939613",
+          "name": "Stony Creek",
+          "km": 0.1224717736808802
+        }
+      ],
+      "chosen": "89939613",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1403",
+      "currentEdge": "89939613",
+      "candidates": [
+        {
+          "pid": "89939577",
+          "name": "Lick Branch",
+          "km": 0.1494654554610889
+        },
+        {
+          "pid": "89939575",
+          "name": "Stony Creek",
+          "km": 0.01654543084579655
+        }
+      ],
+      "chosen": "89939575",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1416",
+      "currentEdge": "89939571",
+      "candidates": [
+        {
+          "pid": "89939541",
+          "name": "Bowen Branch",
+          "km": 0.3333871359120355
+        },
+        {
+          "pid": "89939537",
+          "name": "Stony Creek",
+          "km": 0.12395625093968823
+        }
+      ],
+      "chosen": "89939537",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1480",
+      "currentEdge": "89939397",
+      "candidates": [
+        {
+          "pid": "89939429",
+          "name": "Hickory Flat Branch",
+          "km": 1.6916044511323662
+        },
+        {
+          "pid": "89939335",
+          "name": "Stony Creek",
+          "km": 0.039809852329250245
+        }
+      ],
+      "chosen": "89939335",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1482",
+      "currentEdge": "89939335",
+      "candidates": [
+        {
+          "pid": "89939331",
+          "name": "North Fork Stony Creek",
+          "km": 0.3827415684376707
+        },
+        {
+          "pid": "89939329",
+          "name": "Stony Creek",
+          "km": 0.04379910860368554
+        }
+      ],
+      "chosen": "89939329",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1632",
+      "currentEdge": "89938961",
+      "candidates": [
+        {
+          "pid": "89938897",
+          "name": "Big Spur Branch",
+          "km": 0.15363872174155338
+        },
+        {
+          "pid": "89938891",
+          "name": "Stony Creek",
+          "km": 0.4722807973708883
+        }
+      ],
+      "chosen": "89938891",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1659",
+      "currentEdge": "89938891",
+      "candidates": [
+        {
+          "pid": "89938777",
+          "name": "Stony Creek",
+          "km": 0.7934370213806873
+        },
+        {
+          "pid": "89938775",
+          "name": "Lindy Camp Branch",
+          "km": 0.3977894609648522
+        }
+      ],
+      "chosen": "89938777",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1650",
+      "currentEdge": "89938777",
+      "candidates": [
+        {
+          "pid": "89938493",
+          "name": "Stony Creek",
+          "km": 1.771051713262707
+        },
+        {
+          "pid": "89938491",
+          "name": "Water Hollow Branch",
+          "km": 0.09152771973241006
+        }
+      ],
+      "chosen": "89938493",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 5771,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-stoney-creek-carter.geojson"
+}

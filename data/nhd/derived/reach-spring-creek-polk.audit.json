@@ -1,0 +1,406 @@
+{
+  "waterId": "spring-creek-polk",
+  "graphPath": "data/nhd/graphs/06020002.graph.json",
+  "hu8": "06020002",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 2961,
+    "seg": 8,
+    "point": [
+      -84.471493,
+      35.238587
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      572,
+      2355,
+      6324,
+      3887,
+      1938,
+      834,
+      4914,
+      3517,
+      6185,
+      129,
+      2342,
+      906,
+      3247,
+      5309,
+      560,
+      3919,
+      5509,
+      1159
+    ],
+    "reason": "headwater",
+    "node": "n2274",
+    "edgePids": [
+      "132987649",
+      "132987653",
+      "132987654",
+      "132987657",
+      "132987661",
+      "132987659",
+      "132987663",
+      "132987664",
+      "132987667",
+      "132987669",
+      "132987671",
+      "132987673",
+      "132987675",
+      "133006788",
+      "133006791",
+      "133006795",
+      "133005678",
+      "133005689"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      2163,
+      1736,
+      3521,
+      4687,
+      4370,
+      5946,
+      6325,
+      5767,
+      2638,
+      5411,
+      206,
+      2309,
+      5802,
+      3899,
+      5003
+    ],
+    "reason": "name-change",
+    "node": "n1681",
+    "enteredNames": [
+      "Hiwassee River"
+    ],
+    "edgePids": [
+      "132987647",
+      "132987645",
+      "132987643",
+      "132987637",
+      "132987639",
+      "132987641",
+      "132987633",
+      "132987635",
+      "132987629",
+      "132987631",
+      "132987627",
+      "132987625",
+      "132987621",
+      "132987623",
+      "133007457"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "133005689",
+      "dir": "up"
+    },
+    {
+      "pid": "133005678",
+      "dir": "up"
+    },
+    {
+      "pid": "133006795",
+      "dir": "up"
+    },
+    {
+      "pid": "133006791",
+      "dir": "up"
+    },
+    {
+      "pid": "133006788",
+      "dir": "up"
+    },
+    {
+      "pid": "132987675",
+      "dir": "up"
+    },
+    {
+      "pid": "132987673",
+      "dir": "up"
+    },
+    {
+      "pid": "132987671",
+      "dir": "up"
+    },
+    {
+      "pid": "132987669",
+      "dir": "up"
+    },
+    {
+      "pid": "132987667",
+      "dir": "up"
+    },
+    {
+      "pid": "132987664",
+      "dir": "up"
+    },
+    {
+      "pid": "132987663",
+      "dir": "up"
+    },
+    {
+      "pid": "132987659",
+      "dir": "up"
+    },
+    {
+      "pid": "132987661",
+      "dir": "up"
+    },
+    {
+      "pid": "132987657",
+      "dir": "up"
+    },
+    {
+      "pid": "132987654",
+      "dir": "up"
+    },
+    {
+      "pid": "132987653",
+      "dir": "up"
+    },
+    {
+      "pid": "132987649",
+      "dir": "up"
+    },
+    {
+      "pid": "132987651",
+      "dir": "anchor"
+    },
+    {
+      "pid": "132987647",
+      "dir": "down"
+    },
+    {
+      "pid": "132987645",
+      "dir": "down"
+    },
+    {
+      "pid": "132987643",
+      "dir": "down"
+    },
+    {
+      "pid": "132987637",
+      "dir": "down"
+    },
+    {
+      "pid": "132987639",
+      "dir": "down"
+    },
+    {
+      "pid": "132987641",
+      "dir": "down"
+    },
+    {
+      "pid": "132987633",
+      "dir": "down"
+    },
+    {
+      "pid": "132987635",
+      "dir": "down"
+    },
+    {
+      "pid": "132987629",
+      "dir": "down"
+    },
+    {
+      "pid": "132987631",
+      "dir": "down"
+    },
+    {
+      "pid": "132987627",
+      "dir": "down"
+    },
+    {
+      "pid": "132987625",
+      "dir": "down"
+    },
+    {
+      "pid": "132987621",
+      "dir": "down"
+    },
+    {
+      "pid": "132987623",
+      "dir": "down"
+    },
+    {
+      "pid": "133007457",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1894",
+      "currentEdge": "132987649",
+      "candidates": [
+        {
+          "pid": "132987653",
+          "name": "Spring Creek",
+          "km": 1.4252241093330242
+        },
+        {
+          "pid": "132990207",
+          "name": "Carden Branch",
+          "km": 0.29750795149611287
+        }
+      ],
+      "chosen": "132987653",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1936",
+      "currentEdge": "132987653",
+      "candidates": [
+        {
+          "pid": "132990195",
+          "name": "Ellis Branch",
+          "km": 0.4267204564050487
+        },
+        {
+          "pid": "132987654",
+          "name": "Spring Creek",
+          "km": 1.251968835710699
+        }
+      ],
+      "chosen": "132987654",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1988",
+      "currentEdge": "132987657",
+      "candidates": [
+        {
+          "pid": "132987661",
+          "name": "Spring Creek",
+          "km": 3.9163186507329484
+        },
+        {
+          "pid": "132990191",
+          "name": "Sheehan Branch",
+          "km": 1.0530732295038816
+        }
+      ],
+      "chosen": "132987661",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2019",
+      "currentEdge": "132987659",
+      "candidates": [
+        {
+          "pid": "132987663",
+          "name": "Spring Creek",
+          "km": 0.6726996951953166
+        },
+        {
+          "pid": "132990187",
+          "name": "Basin Branch",
+          "km": 1.085638855845549
+        }
+      ],
+      "chosen": "132987663",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2034",
+      "currentEdge": "132987663",
+      "candidates": [
+        {
+          "pid": "132990151",
+          "name": "Hogback Branch",
+          "km": 1.1131356403151917
+        },
+        {
+          "pid": "132987664",
+          "name": "Spring Creek",
+          "km": 0.7288408030598488
+        }
+      ],
+      "chosen": "132987664",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2059",
+      "currentEdge": "132987664",
+      "candidates": [
+        {
+          "pid": "132990143",
+          "name": "Dugan Branch",
+          "km": 1.7990238346100502
+        },
+        {
+          "pid": "132987667",
+          "name": "Spring Creek",
+          "km": 0.07792892603734307
+        }
+      ],
+      "chosen": "132987667",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2179",
+      "currentEdge": "132987675",
+      "candidates": [
+        {
+          "pid": "132990149",
+          "name": "Spurling Branch",
+          "km": 2.2574572758268343
+        },
+        {
+          "pid": "133006788",
+          "name": "Spring Creek",
+          "km": 0.17284960716149927
+        }
+      ],
+      "chosen": "133006788",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2252",
+      "currentEdge": "133005678",
+      "candidates": [
+        {
+          "pid": "133005689",
+          "name": "Spring Creek",
+          "km": 2.0224610965870378
+        },
+        {
+          "pid": "133005688",
+          "name": "Edmunson Branch",
+          "km": 1.6794845860510537
+        }
+      ],
+      "chosen": "133005689",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 5960,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-spring-creek-polk.geojson"
+}

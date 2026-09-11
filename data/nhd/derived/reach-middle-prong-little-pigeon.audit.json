@@ -1,0 +1,357 @@
+{
+  "waterId": "middle-prong-little-pigeon",
+  "graphPath": "data/nhd/graphs/06010107.graph.json",
+  "hu8": "06010107",
+  "anchorSnap": {
+    "distM": 19.1405465446286,
+    "t": 0.6497179941603533,
+    "edgeIdx": 2595,
+    "seg": 5,
+    "point": [
+      -83.3383005311056,
+      35.703357796615926
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      130,
+      98,
+      433,
+      1554,
+      549,
+      737,
+      2066,
+      1275,
+      1788,
+      1614,
+      513,
+      2794,
+      1973,
+      160,
+      2065,
+      37
+    ],
+    "reason": "headwater",
+    "node": "n2997",
+    "edgePids": [
+      "51637776",
+      "51637856",
+      "51637922",
+      "51637938",
+      "51638002",
+      "51638188",
+      "{66BB1F7A-2240-4AFE-B386-08FBEE5D7247}",
+      "51638378",
+      "{BC70B52D-9A6D-4ADC-9FD5-112A5388B42F}",
+      "51638448",
+      "51638458",
+      "51638582",
+      "{2B0E309C-10DB-4332-8730-B5141528E7F6}",
+      "51638600",
+      "{EEDAA708-F92D-4386-BDB7-A61C5D56D0F6}",
+      "51638700"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      3208,
+      1968,
+      1730,
+      1969,
+      1580,
+      1974,
+      1612,
+      1970,
+      1971,
+      1972,
+      1553,
+      184
+    ],
+    "reason": "name-change",
+    "node": "n2460",
+    "enteredNames": [
+      "Little Pigeon River"
+    ],
+    "edgePids": [
+      "51637842",
+      "{4CAEA166-E409-4CED-B2A7-610352FF1ECE}",
+      "51637844",
+      "{9F9D3C94-453F-490A-AEF1-0EE56A7BF7C6}",
+      "51637828",
+      "{C72A64D0-8448-4DF5-8FBC-8A86230BBFC5}",
+      "51637808",
+      "{C1C89FE9-CBC0-4308-8401-7ADE39F72466}",
+      "{B61FD71C-146C-4C40-986C-7DED706DB2E0}",
+      "{167C11B4-FDEF-4FF7-B8C1-79F1E3290DA6}",
+      "51637814",
+      "51637812"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "51638700",
+      "dir": "up"
+    },
+    {
+      "pid": "{EEDAA708-F92D-4386-BDB7-A61C5D56D0F6}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638600",
+      "dir": "up"
+    },
+    {
+      "pid": "{2B0E309C-10DB-4332-8730-B5141528E7F6}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638582",
+      "dir": "up"
+    },
+    {
+      "pid": "51638458",
+      "dir": "up"
+    },
+    {
+      "pid": "51638448",
+      "dir": "up"
+    },
+    {
+      "pid": "{BC70B52D-9A6D-4ADC-9FD5-112A5388B42F}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638378",
+      "dir": "up"
+    },
+    {
+      "pid": "{66BB1F7A-2240-4AFE-B386-08FBEE5D7247}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638188",
+      "dir": "up"
+    },
+    {
+      "pid": "51638002",
+      "dir": "up"
+    },
+    {
+      "pid": "51637938",
+      "dir": "up"
+    },
+    {
+      "pid": "51637922",
+      "dir": "up"
+    },
+    {
+      "pid": "51637856",
+      "dir": "up"
+    },
+    {
+      "pid": "51637776",
+      "dir": "up"
+    },
+    {
+      "pid": "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+      "dir": "anchor"
+    },
+    {
+      "pid": "51637842",
+      "dir": "down"
+    },
+    {
+      "pid": "{4CAEA166-E409-4CED-B2A7-610352FF1ECE}",
+      "dir": "down"
+    },
+    {
+      "pid": "51637844",
+      "dir": "down"
+    },
+    {
+      "pid": "{9F9D3C94-453F-490A-AEF1-0EE56A7BF7C6}",
+      "dir": "down"
+    },
+    {
+      "pid": "51637828",
+      "dir": "down"
+    },
+    {
+      "pid": "{C72A64D0-8448-4DF5-8FBC-8A86230BBFC5}",
+      "dir": "down"
+    },
+    {
+      "pid": "51637808",
+      "dir": "down"
+    },
+    {
+      "pid": "{C1C89FE9-CBC0-4308-8401-7ADE39F72466}",
+      "dir": "down"
+    },
+    {
+      "pid": "{B61FD71C-146C-4C40-986C-7DED706DB2E0}",
+      "dir": "down"
+    },
+    {
+      "pid": "{167C11B4-FDEF-4FF7-B8C1-79F1E3290DA6}",
+      "dir": "down"
+    },
+    {
+      "pid": "51637814",
+      "dir": "down"
+    },
+    {
+      "pid": "51637812",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n2788",
+      "currentEdge": "{91C0D233-B356-46DC-952D-1168CAAE894A}",
+      "candidates": [
+        {
+          "pid": "51637776",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.4923548944601413
+        },
+        {
+          "pid": "51637760",
+          "name": "Ramsey Branch",
+          "km": 1.6854540716342297
+        }
+      ],
+      "chosen": "51637776",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2812",
+      "currentEdge": "51637776",
+      "candidates": [
+        {
+          "pid": "51637856",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.7006503898744972
+        },
+        {
+          "pid": "51637774",
+          "name": "Ramsey Prong",
+          "km": 0.6513418004569442
+        }
+      ],
+      "chosen": "51637856",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2848",
+      "currentEdge": "51637856",
+      "candidates": [
+        {
+          "pid": "51637922",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.24686712587510248
+        },
+        {
+          "pid": "51638210",
+          "name": "Millfield Branch",
+          "km": 1.6267847108084856
+        }
+      ],
+      "chosen": "51637922",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2870",
+      "currentEdge": "51637938",
+      "candidates": [
+        {
+          "pid": "51638002",
+          "name": "Middle Prong Little Pigeon River",
+          "km": 0.2740833993091356
+        },
+        {
+          "pid": "{B3150D7E-E441-4FC0-860F-E4B8FE920BA5}",
+          "name": "Buck Fork",
+          "km": 0.04421848291301544
+        }
+      ],
+      "chosen": "51638002",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2881",
+      "currentEdge": "51638002",
+      "candidates": [
+        {
+          "pid": "51638188",
+          "name": "Eagle Rocks Prong",
+          "km": 0.734853050490062
+        },
+        {
+          "pid": "{4953B6C1-14A1-4802-B50A-A2C4D29D0430}",
+          "name": "Chapman Prong",
+          "km": 0.4782469703520779
+        }
+      ],
+      "chosen": "51638188",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2909",
+      "currentEdge": "{BC70B52D-9A6D-4ADC-9FD5-112A5388B42F}",
+      "candidates": [
+        {
+          "pid": "51638506",
+          "name": "Shirt Tail Branch",
+          "km": 0.8893287314665931
+        },
+        {
+          "pid": "51638448",
+          "name": "Eagle Rocks Prong",
+          "km": 0.8203911810862987
+        }
+      ],
+      "chosen": "51638448",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2951",
+      "currentEdge": "51638458",
+      "candidates": [
+        {
+          "pid": "51638712",
+          "name": "Pecks branch",
+          "km": 2.0931171777998467
+        },
+        {
+          "pid": "51638582",
+          "name": "Eagle Rocks Prong",
+          "km": 0.9096956428026924
+        }
+      ],
+      "chosen": "51638582",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 4124,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-middle-prong-little-pigeon.geojson"
+}

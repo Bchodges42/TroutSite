@@ -1,0 +1,147 @@
+{
+  "waterId": "roaring-fork",
+  "graphPath": "data/nhd/graphs/06010107.graph.json",
+  "hu8": "06010107",
+  "anchorSnap": {
+    "distM": 4.644859792139595,
+    "t": 0.6639323766093645,
+    "edgeIdx": 1945,
+    "seg": 72,
+    "point": [
+      -83.45781834427049,
+      35.688548401440535
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1427,
+      1944
+    ],
+    "reason": "headwater",
+    "node": "n1960",
+    "edgePids": [
+      "51638802",
+      "{23625F39-61A2-49F0-B623-8196ABE9076A}"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      422,
+      1821,
+      1221,
+      1311,
+      1825,
+      1824,
+      586,
+      1931,
+      1586,
+      1932
+    ],
+    "reason": "name-change",
+    "node": "n1376",
+    "enteredNames": [
+      "West Prong Little Pigeon River"
+    ],
+    "edgePids": [
+      "51638428",
+      "{F781A4A2-B264-4E27-A368-D07F978079B7}",
+      "51638390",
+      "51638362",
+      "{5E3410BF-EA09-4CE2-B10F-6287F5CBFDB3}",
+      "{7D608BA1-4B60-4061-BD01-97C02F17B7E6}",
+      "51638004",
+      "{211AFE17-9BCC-4E13-A7FB-3682943B9C82}",
+      "51637980",
+      "{F97C11D5-81BF-49CF-9339-DD1FC8F45CFB}"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "{23625F39-61A2-49F0-B623-8196ABE9076A}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638802",
+      "dir": "up"
+    },
+    {
+      "pid": "{368FA95D-BAEF-4700-820F-D7052FECB292}",
+      "dir": "anchor"
+    },
+    {
+      "pid": "51638428",
+      "dir": "down"
+    },
+    {
+      "pid": "{F781A4A2-B264-4E27-A368-D07F978079B7}",
+      "dir": "down"
+    },
+    {
+      "pid": "51638390",
+      "dir": "down"
+    },
+    {
+      "pid": "51638362",
+      "dir": "down"
+    },
+    {
+      "pid": "{5E3410BF-EA09-4CE2-B10F-6287F5CBFDB3}",
+      "dir": "down"
+    },
+    {
+      "pid": "{7D608BA1-4B60-4061-BD01-97C02F17B7E6}",
+      "dir": "down"
+    },
+    {
+      "pid": "51638004",
+      "dir": "down"
+    },
+    {
+      "pid": "{211AFE17-9BCC-4E13-A7FB-3682943B9C82}",
+      "dir": "down"
+    },
+    {
+      "pid": "51637980",
+      "dir": "down"
+    },
+    {
+      "pid": "{F97C11D5-81BF-49CF-9339-DD1FC8F45CFB}",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "down",
+      "atNode": "n1376",
+      "currentEdge": "51637980",
+      "candidates": [
+        {
+          "pid": "{F97C11D5-81BF-49CF-9339-DD1FC8F45CFB}",
+          "name": "Roaring Fork",
+          "km": 0.011516820222002035
+        },
+        {
+          "pid": "{825A85D4-5C41-4EA9-9FAA-A08C95CDB3CE}",
+          "name": "West Prong Little Pigeon River",
+          "km": 1.0853056246945982
+        }
+      ],
+      "chosen": "{F97C11D5-81BF-49CF-9339-DD1FC8F45CFB}",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 3763,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-roaring-fork.geojson"
+}

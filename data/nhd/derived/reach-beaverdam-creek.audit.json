@@ -1,0 +1,955 @@
+{
+  "waterId": "beaverdam-creek",
+  "graphPath": "data/nhd/graphs/06010102.graph.json",
+  "hu8": "06010102",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 158,
+    "seg": 3,
+    "point": [
+      -81.87255,
+      36.56604
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2369,
+      1636,
+      312,
+      342,
+      1326,
+      341,
+      2091,
+      1474,
+      3137,
+      107,
+      1443,
+      817,
+      1994,
+      2878,
+      975,
+      2069,
+      168,
+      2887,
+      1564,
+      708,
+      954,
+      3072,
+      1325,
+      3166,
+      2390,
+      935,
+      1297,
+      1740,
+      1485,
+      303,
+      1079,
+      1902,
+      1917,
+      1396,
+      1291,
+      3001,
+      2044,
+      2115,
+      1113,
+      1662
+    ],
+    "reason": "headwater",
+    "node": "n1460",
+    "edgePids": [
+      "43579500",
+      "43579628",
+      "43579758",
+      "43579870",
+      "43579874",
+      "43579938",
+      "43580036",
+      "43580136",
+      "43580310",
+      "43580436",
+      "43580724",
+      "43581002",
+      "43581120",
+      "43581304",
+      "43581260",
+      "43581776",
+      "43581884",
+      "43581896",
+      "43582006",
+      "43582050",
+      "43582150",
+      "43582518",
+      "43582566",
+      "43582590",
+      "43582642",
+      "43582736",
+      "43582800",
+      "43582980",
+      "43583138",
+      "43583212",
+      "43583321",
+      "43583396",
+      "43583498",
+      "43583616",
+      "43583646",
+      "43583680",
+      "43583700",
+      "43583860",
+      "43584676",
+      "43584680"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      2875,
+      655,
+      1125,
+      2709,
+      401,
+      2442,
+      2625,
+      2982,
+      1782,
+      784,
+      2361,
+      714,
+      2891,
+      2658,
+      1470,
+      2304,
+      295,
+      2964,
+      1311,
+      1469,
+      1075,
+      487,
+      354,
+      1448,
+      2629,
+      887,
+      1231,
+      266,
+      734,
+      2615,
+      876,
+      949,
+      1885,
+      1667,
+      2085,
+      2962,
+      2448
+    ],
+    "reason": "name-change",
+    "node": "n2183",
+    "enteredNames": [
+      "Laurel Creek"
+    ],
+    "edgePids": [
+      "43579084",
+      "43578644",
+      "43578840",
+      "43578842",
+      "43578666",
+      "43578716",
+      "43578452",
+      "43578434",
+      "43578310",
+      "43578148",
+      "43578092",
+      "43578048",
+      "43577948",
+      "43577754",
+      "43577674",
+      "43577652",
+      "43577546",
+      "43577472",
+      "43577298",
+      "43577188",
+      "43577016",
+      "43576876",
+      "43576820",
+      "43576624",
+      "43576446",
+      "43576414",
+      "43576274",
+      "43576016",
+      "43576002",
+      "43575906",
+      "43575832",
+      "43575812",
+      "73a57928-d50b-4114-9d66-4d8fc3a7cb88",
+      "55315b5a-6449-4756-9281-b2ce2751ad9c",
+      "43575340",
+      "43575310",
+      "43574808"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "43584680",
+      "dir": "up"
+    },
+    {
+      "pid": "43584676",
+      "dir": "up"
+    },
+    {
+      "pid": "43583860",
+      "dir": "up"
+    },
+    {
+      "pid": "43583700",
+      "dir": "up"
+    },
+    {
+      "pid": "43583680",
+      "dir": "up"
+    },
+    {
+      "pid": "43583646",
+      "dir": "up"
+    },
+    {
+      "pid": "43583616",
+      "dir": "up"
+    },
+    {
+      "pid": "43583498",
+      "dir": "up"
+    },
+    {
+      "pid": "43583396",
+      "dir": "up"
+    },
+    {
+      "pid": "43583321",
+      "dir": "up"
+    },
+    {
+      "pid": "43583212",
+      "dir": "up"
+    },
+    {
+      "pid": "43583138",
+      "dir": "up"
+    },
+    {
+      "pid": "43582980",
+      "dir": "up"
+    },
+    {
+      "pid": "43582800",
+      "dir": "up"
+    },
+    {
+      "pid": "43582736",
+      "dir": "up"
+    },
+    {
+      "pid": "43582642",
+      "dir": "up"
+    },
+    {
+      "pid": "43582590",
+      "dir": "up"
+    },
+    {
+      "pid": "43582566",
+      "dir": "up"
+    },
+    {
+      "pid": "43582518",
+      "dir": "up"
+    },
+    {
+      "pid": "43582150",
+      "dir": "up"
+    },
+    {
+      "pid": "43582050",
+      "dir": "up"
+    },
+    {
+      "pid": "43582006",
+      "dir": "up"
+    },
+    {
+      "pid": "43581896",
+      "dir": "up"
+    },
+    {
+      "pid": "43581884",
+      "dir": "up"
+    },
+    {
+      "pid": "43581776",
+      "dir": "up"
+    },
+    {
+      "pid": "43581260",
+      "dir": "up"
+    },
+    {
+      "pid": "43581304",
+      "dir": "up"
+    },
+    {
+      "pid": "43581120",
+      "dir": "up"
+    },
+    {
+      "pid": "43581002",
+      "dir": "up"
+    },
+    {
+      "pid": "43580724",
+      "dir": "up"
+    },
+    {
+      "pid": "43580436",
+      "dir": "up"
+    },
+    {
+      "pid": "43580310",
+      "dir": "up"
+    },
+    {
+      "pid": "43580136",
+      "dir": "up"
+    },
+    {
+      "pid": "43580036",
+      "dir": "up"
+    },
+    {
+      "pid": "43579938",
+      "dir": "up"
+    },
+    {
+      "pid": "43579874",
+      "dir": "up"
+    },
+    {
+      "pid": "43579870",
+      "dir": "up"
+    },
+    {
+      "pid": "43579758",
+      "dir": "up"
+    },
+    {
+      "pid": "43579628",
+      "dir": "up"
+    },
+    {
+      "pid": "43579500",
+      "dir": "up"
+    },
+    {
+      "pid": "43579354",
+      "dir": "anchor"
+    },
+    {
+      "pid": "43579084",
+      "dir": "down"
+    },
+    {
+      "pid": "43578644",
+      "dir": "down"
+    },
+    {
+      "pid": "43578840",
+      "dir": "down"
+    },
+    {
+      "pid": "43578842",
+      "dir": "down"
+    },
+    {
+      "pid": "43578666",
+      "dir": "down"
+    },
+    {
+      "pid": "43578716",
+      "dir": "down"
+    },
+    {
+      "pid": "43578452",
+      "dir": "down"
+    },
+    {
+      "pid": "43578434",
+      "dir": "down"
+    },
+    {
+      "pid": "43578310",
+      "dir": "down"
+    },
+    {
+      "pid": "43578148",
+      "dir": "down"
+    },
+    {
+      "pid": "43578092",
+      "dir": "down"
+    },
+    {
+      "pid": "43578048",
+      "dir": "down"
+    },
+    {
+      "pid": "43577948",
+      "dir": "down"
+    },
+    {
+      "pid": "43577754",
+      "dir": "down"
+    },
+    {
+      "pid": "43577674",
+      "dir": "down"
+    },
+    {
+      "pid": "43577652",
+      "dir": "down"
+    },
+    {
+      "pid": "43577546",
+      "dir": "down"
+    },
+    {
+      "pid": "43577472",
+      "dir": "down"
+    },
+    {
+      "pid": "43577298",
+      "dir": "down"
+    },
+    {
+      "pid": "43577188",
+      "dir": "down"
+    },
+    {
+      "pid": "43577016",
+      "dir": "down"
+    },
+    {
+      "pid": "43576876",
+      "dir": "down"
+    },
+    {
+      "pid": "43576820",
+      "dir": "down"
+    },
+    {
+      "pid": "43576624",
+      "dir": "down"
+    },
+    {
+      "pid": "43576446",
+      "dir": "down"
+    },
+    {
+      "pid": "43576414",
+      "dir": "down"
+    },
+    {
+      "pid": "43576274",
+      "dir": "down"
+    },
+    {
+      "pid": "43576016",
+      "dir": "down"
+    },
+    {
+      "pid": "43576002",
+      "dir": "down"
+    },
+    {
+      "pid": "43575906",
+      "dir": "down"
+    },
+    {
+      "pid": "43575832",
+      "dir": "down"
+    },
+    {
+      "pid": "43575812",
+      "dir": "down"
+    },
+    {
+      "pid": "73a57928-d50b-4114-9d66-4d8fc3a7cb88",
+      "dir": "down"
+    },
+    {
+      "pid": "55315b5a-6449-4756-9281-b2ce2751ad9c",
+      "dir": "down"
+    },
+    {
+      "pid": "43575340",
+      "dir": "down"
+    },
+    {
+      "pid": "43575310",
+      "dir": "down"
+    },
+    {
+      "pid": "43574808",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1772",
+      "currentEdge": "43579628",
+      "candidates": [
+        {
+          "pid": "43579758",
+          "name": "Beaverdam Creek",
+          "km": 0.22308391245449527
+        },
+        {
+          "pid": "43579648",
+          "name": "Birch Branch",
+          "km": 0.03322177666563234
+        }
+      ],
+      "chosen": "43579758",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1767",
+      "currentEdge": "43579758",
+      "candidates": [
+        {
+          "pid": "43579870",
+          "name": "Beaverdam Creek",
+          "km": 0.26103655682595855
+        },
+        {
+          "pid": "43579762",
+          "name": "Old Road Branch",
+          "km": 2.2126031215034043
+        }
+      ],
+      "chosen": "43579870",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1760",
+      "currentEdge": "43579870",
+      "candidates": [
+        {
+          "pid": "43579952",
+          "name": "Parks Branch",
+          "km": 0.18606682222835808
+        },
+        {
+          "pid": "43579874",
+          "name": "Beaverdam Creek",
+          "km": 0.018860701978288194
+        }
+      ],
+      "chosen": "43579874",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1759",
+      "currentEdge": "43579874",
+      "candidates": [
+        {
+          "pid": "43579938",
+          "name": "Beaverdam Creek",
+          "km": 0.16634771860680048
+        },
+        {
+          "pid": "43579868",
+          "name": "Rutter Branch",
+          "km": 2.7015343939748893
+        }
+      ],
+      "chosen": "43579938",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1737",
+      "currentEdge": "43580036",
+      "candidates": [
+        {
+          "pid": "43580136",
+          "name": "Beaverdam Creek",
+          "km": 0.19765204046700638
+        },
+        {
+          "pid": "43580038",
+          "name": "Brinkley Branch",
+          "km": 2.0180091325332175
+        }
+      ],
+      "chosen": "43580136",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1730",
+      "currentEdge": "43580136",
+      "candidates": [
+        {
+          "pid": "43580140",
+          "name": "Marshall Branch",
+          "km": 0.39796530030352034
+        },
+        {
+          "pid": "43580310",
+          "name": "Beaverdam Creek",
+          "km": 0.254971087092943
+        }
+      ],
+      "chosen": "43580310",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1717",
+      "currentEdge": "43580436",
+      "candidates": [
+        {
+          "pid": "43580454",
+          "name": "Heaberlin Branch",
+          "km": 2.8796070562858005
+        },
+        {
+          "pid": "43580724",
+          "name": "Beaverdam Creek",
+          "km": 0.6058377416836193
+        }
+      ],
+      "chosen": "43580724",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1710",
+      "currentEdge": "43580724",
+      "candidates": [
+        {
+          "pid": "43581002",
+          "name": "Beaverdam Creek",
+          "km": 0.6610404341780439
+        },
+        {
+          "pid": "43580846",
+          "name": "Watson Branch",
+          "km": 1.6132717593493768
+        }
+      ],
+      "chosen": "43581002",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1711",
+      "currentEdge": "43581002",
+      "candidates": [
+        {
+          "pid": "43581442",
+          "name": "Grindstone Branch",
+          "km": 0.9083922084443071
+        },
+        {
+          "pid": "43581120",
+          "name": "Beaverdam Creek",
+          "km": 0.572056300543032
+        }
+      ],
+      "chosen": "43581120",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1696",
+      "currentEdge": "43581120",
+      "candidates": [
+        {
+          "pid": "43582500",
+          "name": "David Blevins Branch",
+          "km": 3.557768273215072
+        },
+        {
+          "pid": "43581304",
+          "name": "Beaverdam Creek",
+          "km": 1.1528732669754258
+        }
+      ],
+      "chosen": "43581304",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1673",
+      "currentEdge": "43581304",
+      "candidates": [
+        {
+          "pid": "43581260",
+          "name": "Beaverdam Creek",
+          "km": 0.16649088099174916
+        },
+        {
+          "pid": "43581232",
+          "name": "McQueen Branch",
+          "km": 0.7472274141104785
+        }
+      ],
+      "chosen": "43581260",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1667",
+      "currentEdge": "43581260",
+      "candidates": [
+        {
+          "pid": "43581278",
+          "name": "Scott Branch",
+          "km": 0.1886401679542419
+        },
+        {
+          "pid": "43581776",
+          "name": "Beaverdam Creek",
+          "km": 1.5507739463529253
+        }
+      ],
+      "chosen": "43581776",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1619",
+      "currentEdge": "43581896",
+      "candidates": [
+        {
+          "pid": "43582006",
+          "name": "Beaverdam Creek",
+          "km": 0.29683972286868293
+        },
+        {
+          "pid": "43582058",
+          "name": "Brickyard Branch",
+          "km": 0.7106139807046317
+        }
+      ],
+      "chosen": "43582006",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1605",
+      "currentEdge": "43582150",
+      "candidates": [
+        {
+          "pid": "43582156",
+          "name": "Gentry Branch",
+          "km": 0.053009561024954036
+        },
+        {
+          "pid": "43582518",
+          "name": "Beaverdam Creek",
+          "km": 0.8777875917048252
+        }
+      ],
+      "chosen": "43582518",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1576",
+      "currentEdge": "43582566",
+      "candidates": [
+        {
+          "pid": "43583324",
+          "name": "Green Mountain Branch",
+          "km": 4.311717923829073
+        },
+        {
+          "pid": "43582590",
+          "name": "Beaverdam Creek",
+          "km": 0.047177265009282286
+        }
+      ],
+      "chosen": "43582590",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1574",
+      "currentEdge": "43582590",
+      "candidates": [
+        {
+          "pid": "43582594",
+          "name": "Low Gap Branch",
+          "km": 0.16705963956356826
+        },
+        {
+          "pid": "43582642",
+          "name": "Beaverdam Creek",
+          "km": 0.15190528337583542
+        }
+      ],
+      "chosen": "43582642",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1568",
+      "currentEdge": "43582642",
+      "candidates": [
+        {
+          "pid": "43582736",
+          "name": "Beaverdam Creek",
+          "km": 0.3080312717909575
+        },
+        {
+          "pid": "43582686",
+          "name": "Hignite Branch",
+          "km": 1.3103963966797316
+        }
+      ],
+      "chosen": "43582736",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1544",
+      "currentEdge": "43582980",
+      "candidates": [
+        {
+          "pid": "43583010",
+          "name": "Locust Knob Branch",
+          "km": 0.2574922033615532
+        },
+        {
+          "pid": "43583138",
+          "name": "Beaverdam Creek",
+          "km": 0.4272960379550842
+        }
+      ],
+      "chosen": "43583138",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1540",
+      "currentEdge": "43583138",
+      "candidates": [
+        {
+          "pid": "43583212",
+          "name": "Beaverdam Creek",
+          "km": 0.18567605175545548
+        },
+        {
+          "pid": "43583406",
+          "name": "Milam Branch",
+          "km": 3.3612897707437783
+        }
+      ],
+      "chosen": "43583212",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1539",
+      "currentEdge": "43583212",
+      "candidates": [
+        {
+          "pid": "43583321",
+          "name": "Beaverdam Creek",
+          "km": 0.26742419132434353
+        },
+        {
+          "pid": "43583412",
+          "name": "Jim Wright Branch",
+          "km": 2.9196927198946416
+        }
+      ],
+      "chosen": "43583321",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1533",
+      "currentEdge": "43583321",
+      "candidates": [
+        {
+          "pid": "43583634",
+          "name": "Arnold Branch",
+          "km": 1.8056013001274875
+        },
+        {
+          "pid": "43583396",
+          "name": "Beaverdam Creek",
+          "km": 0.1502653128098169
+        }
+      ],
+      "chosen": "43583396",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1531",
+      "currentEdge": "43583396",
+      "candidates": [
+        {
+          "pid": "43583804",
+          "name": "Buck Ridge Branch",
+          "km": 1.3560547015728281
+        },
+        {
+          "pid": "43583498",
+          "name": "Beaverdam Creek",
+          "km": 0.2193748670939509
+        }
+      ],
+      "chosen": "43583498",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1536",
+      "currentEdge": "43583498",
+      "candidates": [
+        {
+          "pid": "43583616",
+          "name": "Beaverdam Creek",
+          "km": 0.21172960551591635
+        },
+        {
+          "pid": "43583594",
+          "name": "East Fork Beaverdam Creek",
+          "km": 0.5297816350724113
+        }
+      ],
+      "chosen": "43583616",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 6474,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-beaverdam-creek.geojson"
+}

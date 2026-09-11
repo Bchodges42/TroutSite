@@ -1,0 +1,804 @@
+{
+  "waterId": "north-chickamauga-creek",
+  "graphPath": "data/nhd/graphs/06020001.graph.json",
+  "hu8": "06020001",
+  "anchorSnap": {
+    "distM": 3.8973904887451245,
+    "t": 0.8875674427505075,
+    "edgeIdx": 529,
+    "seg": 8,
+    "point": [
+      -85.21523744323265,
+      35.21121705406966
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      771,
+      1263,
+      250,
+      440,
+      3248,
+      2883,
+      3697,
+      1334,
+      3345,
+      2995,
+      723,
+      2374,
+      1285,
+      2772,
+      2651,
+      3141,
+      3748,
+      1235,
+      2304,
+      3285,
+      3371,
+      1299,
+      2324,
+      851,
+      2307,
+      240,
+      2653,
+      3414,
+      3808,
+      3633,
+      3109,
+      2112,
+      3216,
+      884,
+      1197,
+      2244,
+      3287
+    ],
+    "reason": "headwater",
+    "node": "n749",
+    "edgePids": [
+      "139285658",
+      "139285657",
+      "139285659",
+      "139276695",
+      "139276694",
+      "139276693",
+      "139276692",
+      "139280861",
+      "139276697",
+      "139276696",
+      "139276698",
+      "139276708",
+      "139276709",
+      "139276729",
+      "139276730",
+      "139276731",
+      "139276732",
+      "139276733",
+      "139276734",
+      "139276735",
+      "139276736",
+      "139276738",
+      "139276737",
+      "139276740",
+      "139276739",
+      "139276742",
+      "139276741",
+      "139276744",
+      "139276743",
+      "139276750",
+      "139276752",
+      "139276751",
+      "139276749",
+      "139276748",
+      "139276747",
+      "139276746",
+      "139276745"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      828,
+      2779,
+      625,
+      1147,
+      2817,
+      1688,
+      487,
+      867,
+      2317,
+      905,
+      921,
+      515,
+      1882,
+      1841,
+      1189,
+      1448,
+      192,
+      548,
+      974,
+      83,
+      2698,
+      3518,
+      731,
+      3539,
+      2495
+    ],
+    "reason": "name-change",
+    "node": "n1532",
+    "enteredNames": [
+      "Tennessee River"
+    ],
+    "edgePids": [
+      "139285672",
+      "139285674",
+      "139285675",
+      "139285654",
+      "139285655",
+      "139285656",
+      "139285652",
+      "139285653",
+      "139285650",
+      "139285651",
+      "139285645",
+      "139285648",
+      "139285646",
+      "139285647",
+      "139285649",
+      "139285644",
+      "139285641",
+      "139285642",
+      "139285643",
+      "139285636",
+      "139285637",
+      "139285638",
+      "139285639",
+      "139285640",
+      "139285978"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "139276745",
+      "dir": "up"
+    },
+    {
+      "pid": "139276746",
+      "dir": "up"
+    },
+    {
+      "pid": "139276747",
+      "dir": "up"
+    },
+    {
+      "pid": "139276748",
+      "dir": "up"
+    },
+    {
+      "pid": "139276749",
+      "dir": "up"
+    },
+    {
+      "pid": "139276751",
+      "dir": "up"
+    },
+    {
+      "pid": "139276752",
+      "dir": "up"
+    },
+    {
+      "pid": "139276750",
+      "dir": "up"
+    },
+    {
+      "pid": "139276743",
+      "dir": "up"
+    },
+    {
+      "pid": "139276744",
+      "dir": "up"
+    },
+    {
+      "pid": "139276741",
+      "dir": "up"
+    },
+    {
+      "pid": "139276742",
+      "dir": "up"
+    },
+    {
+      "pid": "139276739",
+      "dir": "up"
+    },
+    {
+      "pid": "139276740",
+      "dir": "up"
+    },
+    {
+      "pid": "139276737",
+      "dir": "up"
+    },
+    {
+      "pid": "139276738",
+      "dir": "up"
+    },
+    {
+      "pid": "139276736",
+      "dir": "up"
+    },
+    {
+      "pid": "139276735",
+      "dir": "up"
+    },
+    {
+      "pid": "139276734",
+      "dir": "up"
+    },
+    {
+      "pid": "139276733",
+      "dir": "up"
+    },
+    {
+      "pid": "139276732",
+      "dir": "up"
+    },
+    {
+      "pid": "139276731",
+      "dir": "up"
+    },
+    {
+      "pid": "139276730",
+      "dir": "up"
+    },
+    {
+      "pid": "139276729",
+      "dir": "up"
+    },
+    {
+      "pid": "139276709",
+      "dir": "up"
+    },
+    {
+      "pid": "139276708",
+      "dir": "up"
+    },
+    {
+      "pid": "139276698",
+      "dir": "up"
+    },
+    {
+      "pid": "139276696",
+      "dir": "up"
+    },
+    {
+      "pid": "139276697",
+      "dir": "up"
+    },
+    {
+      "pid": "139280861",
+      "dir": "up"
+    },
+    {
+      "pid": "139276692",
+      "dir": "up"
+    },
+    {
+      "pid": "139276693",
+      "dir": "up"
+    },
+    {
+      "pid": "139276694",
+      "dir": "up"
+    },
+    {
+      "pid": "139276695",
+      "dir": "up"
+    },
+    {
+      "pid": "139285659",
+      "dir": "up"
+    },
+    {
+      "pid": "139285657",
+      "dir": "up"
+    },
+    {
+      "pid": "139285658",
+      "dir": "up"
+    },
+    {
+      "pid": "139285671",
+      "dir": "anchor"
+    },
+    {
+      "pid": "139285672",
+      "dir": "down"
+    },
+    {
+      "pid": "139285674",
+      "dir": "down"
+    },
+    {
+      "pid": "139285675",
+      "dir": "down"
+    },
+    {
+      "pid": "139285654",
+      "dir": "down"
+    },
+    {
+      "pid": "139285655",
+      "dir": "down"
+    },
+    {
+      "pid": "139285656",
+      "dir": "down"
+    },
+    {
+      "pid": "139285652",
+      "dir": "down"
+    },
+    {
+      "pid": "139285653",
+      "dir": "down"
+    },
+    {
+      "pid": "139285650",
+      "dir": "down"
+    },
+    {
+      "pid": "139285651",
+      "dir": "down"
+    },
+    {
+      "pid": "139285645",
+      "dir": "down"
+    },
+    {
+      "pid": "139285648",
+      "dir": "down"
+    },
+    {
+      "pid": "139285646",
+      "dir": "down"
+    },
+    {
+      "pid": "139285647",
+      "dir": "down"
+    },
+    {
+      "pid": "139285649",
+      "dir": "down"
+    },
+    {
+      "pid": "139285644",
+      "dir": "down"
+    },
+    {
+      "pid": "139285641",
+      "dir": "down"
+    },
+    {
+      "pid": "139285642",
+      "dir": "down"
+    },
+    {
+      "pid": "139285643",
+      "dir": "down"
+    },
+    {
+      "pid": "139285636",
+      "dir": "down"
+    },
+    {
+      "pid": "139285637",
+      "dir": "down"
+    },
+    {
+      "pid": "139285638",
+      "dir": "down"
+    },
+    {
+      "pid": "139285639",
+      "dir": "down"
+    },
+    {
+      "pid": "139285640",
+      "dir": "down"
+    },
+    {
+      "pid": "139285978",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1644",
+      "currentEdge": "139285671",
+      "candidates": [
+        {
+          "pid": "139285658",
+          "name": "North Chickamauga Creek",
+          "km": 0.5374896523313697
+        },
+        {
+          "pid": "139285662",
+          "name": "Poe Branch",
+          "km": 0.03426414801766051
+        }
+      ],
+      "chosen": "139285658",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1526",
+      "currentEdge": "139285657",
+      "candidates": [
+        {
+          "pid": "139285659",
+          "name": "North Chickamauga Creek",
+          "km": 0.5497957389182564
+        },
+        {
+          "pid": "139285667",
+          "name": "Clear Branch",
+          "km": 0.005407989660303941
+        },
+        {
+          "pid": "139277349",
+          "name": "Clear Branch",
+          "km": 0.40236760311132364
+        }
+      ],
+      "chosen": "139285659",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1499",
+      "currentEdge": "139276695",
+      "candidates": [
+        {
+          "pid": "139281000",
+          "name": "Hogskin Branch",
+          "km": 0.9947118175976007
+        },
+        {
+          "pid": "139276694",
+          "name": "North Chickamauga Creek",
+          "km": 0.6190925335590933
+        }
+      ],
+      "chosen": "139276694",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1420",
+      "currentEdge": "139276692",
+      "candidates": [
+        {
+          "pid": "139277343",
+          "name": "Rogers Creek",
+          "km": 0.008270411307972443
+        },
+        {
+          "pid": "139277344",
+          "name": "Rogers Creek",
+          "km": 0.9989390413026779
+        },
+        {
+          "pid": "139280861",
+          "name": "North Chickamauga Creek",
+          "km": 0.8426789616551381
+        },
+        {
+          "pid": "139280902",
+          "name": "Boston Branch",
+          "km": 1.8242247484882652
+        }
+      ],
+      "chosen": "139280861",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1390",
+      "currentEdge": "139276696",
+      "candidates": [
+        {
+          "pid": "139276698",
+          "name": "North Chickamauga Creek",
+          "km": 0.06940870931894084
+        },
+        {
+          "pid": "139277299",
+          "name": "Stevenson Branch",
+          "km": 1.8238028793702121
+        }
+      ],
+      "chosen": "139276698",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1385",
+      "currentEdge": "139276698",
+      "candidates": [
+        {
+          "pid": "139276702",
+          "name": "Cooper Creek",
+          "km": 4.172281205679564
+        },
+        {
+          "pid": "139276708",
+          "name": "North Chickamauga Creek",
+          "km": 1.1352873595381512
+        }
+      ],
+      "chosen": "139276708",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1344",
+      "currentEdge": "139276708",
+      "candidates": [
+        {
+          "pid": "139277303",
+          "name": "Panther Branch",
+          "km": 2.2449030438268562
+        },
+        {
+          "pid": "139276709",
+          "name": "North Chickamauga Creek",
+          "km": 1.3813948775412213
+        }
+      ],
+      "chosen": "139276709",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1314",
+      "currentEdge": "139276709",
+      "candidates": [
+        {
+          "pid": "139276711",
+          "name": "Cain Creek",
+          "km": 1.2708097050472262
+        },
+        {
+          "pid": "139276729",
+          "name": "North Chickamauga Creek",
+          "km": 2.0607510986357247
+        }
+      ],
+      "chosen": "139276729",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1262",
+      "currentEdge": "139276730",
+      "candidates": [
+        {
+          "pid": "139277338",
+          "name": "Hixson Branch",
+          "km": 1.561225315281891
+        },
+        {
+          "pid": "139276731",
+          "name": "North Chickamauga Creek",
+          "km": 0.5810615074064543
+        }
+      ],
+      "chosen": "139276731",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1219",
+      "currentEdge": "139276732",
+      "candidates": [
+        {
+          "pid": "139276733",
+          "name": "North Chickamauga Creek",
+          "km": 1.506111362238653
+        },
+        {
+          "pid": "139277320",
+          "name": "Holly Branch",
+          "km": 0.9963001283078426
+        }
+      ],
+      "chosen": "139276733",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1199",
+      "currentEdge": "139276734",
+      "candidates": [
+        {
+          "pid": "139280947",
+          "name": "Seed Tick Branch",
+          "km": 1.2946494235150598
+        },
+        {
+          "pid": "139276735",
+          "name": "North Chickamauga Creek",
+          "km": 0.7999301040707507
+        }
+      ],
+      "chosen": "139276735",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1180",
+      "currentEdge": "139276735",
+      "candidates": [
+        {
+          "pid": "139277334",
+          "name": "Hicks Branch",
+          "km": 0.8109824919063933
+        },
+        {
+          "pid": "139276736",
+          "name": "North Chickamauga Creek",
+          "km": 0.5144775381221652
+        }
+      ],
+      "chosen": "139276736",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1160",
+      "currentEdge": "139276736",
+      "candidates": [
+        {
+          "pid": "139277331",
+          "name": "Hurricane Branch",
+          "km": 1.85198968344116
+        },
+        {
+          "pid": "139276738",
+          "name": "North Chickamauga Creek",
+          "km": 1.4882915030313841
+        }
+      ],
+      "chosen": "139276738",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1094",
+      "currentEdge": "139276737",
+      "candidates": [
+        {
+          "pid": "139276740",
+          "name": "North Chickamauga Creek",
+          "km": 1.8618669442045963
+        },
+        {
+          "pid": "139277323",
+          "name": "Brock Creek",
+          "km": 0.3394210738048353
+        }
+      ],
+      "chosen": "139276740",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n945",
+      "currentEdge": "139276743",
+      "candidates": [
+        {
+          "pid": "139276936",
+          "name": "Brimer Creek",
+          "km": 2.1825188641806976
+        },
+        {
+          "pid": "139276750",
+          "name": "Standifer Creek",
+          "km": 1.0594009595228242
+        }
+      ],
+      "chosen": "139276750",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1471",
+      "currentEdge": "139285675",
+      "candidates": [
+        {
+          "pid": "139285654",
+          "name": "North Chickamauga Creek",
+          "km": 0.3526019365997261
+        },
+        {
+          "pid": "139285660",
+          "name": "Falling Water Creek",
+          "km": 0.009733652325023996
+        }
+      ],
+      "chosen": "139285654",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1484",
+      "currentEdge": "139285656",
+      "candidates": [
+        {
+          "pid": "139285652",
+          "name": "North Chickamauga Creek",
+          "km": 0.685735135898728
+        },
+        {
+          "pid": "139285661",
+          "name": "Pitts Branch",
+          "km": 0.011335039858179298
+        }
+      ],
+      "chosen": "139285652",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1652",
+      "currentEdge": "139285651",
+      "candidates": [
+        {
+          "pid": "139285645",
+          "name": "North Chickamauga Creek",
+          "km": 0.7758049724566939
+        },
+        {
+          "pid": "139285665",
+          "name": "Lick Branch",
+          "km": 0.011457827299872101
+        }
+      ],
+      "chosen": "139285645",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1643",
+      "currentEdge": "139285644",
+      "candidates": [
+        {
+          "pid": "139285641",
+          "name": "North Chickamauga Creek",
+          "km": 1.8979508805669176
+        },
+        {
+          "pid": "139285664",
+          "name": "Rogers Branch",
+          "km": 0.00634647318351657
+        }
+      ],
+      "chosen": "139285641",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 10768,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-north-chickamauga-creek.geojson"
+}

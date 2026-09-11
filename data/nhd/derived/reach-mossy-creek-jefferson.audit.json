@@ -1,0 +1,131 @@
+{
+  "waterId": "mossy-creek-jefferson",
+  "graphPath": "data/nhd/graphs/06010104.graph.json",
+  "hu8": "06010104",
+  "anchorSnap": {
+    "distM": 0.04942106327558144,
+    "t": 0.003038775036717838,
+    "edgeIdx": 2301,
+    "seg": 44,
+    "point": [
+      -83.48373449228156,
+      36.1232628022366
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      187,
+      489,
+      2238
+    ],
+    "reason": "headwater",
+    "node": "n843",
+    "edgePids": [
+      "138777355",
+      "138777418",
+      "138777475"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1293,
+      1445,
+      341,
+      22,
+      379,
+      2538
+    ],
+    "reason": "name-change",
+    "node": "n829",
+    "enteredNames": [
+      "Black Oak Creek"
+    ],
+    "edgePids": [
+      "138777217",
+      "138802741",
+      "138802740",
+      "138802739",
+      "138802918",
+      "138802900"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "138777475",
+      "dir": "up"
+    },
+    {
+      "pid": "138777418",
+      "dir": "up"
+    },
+    {
+      "pid": "138777355",
+      "dir": "up"
+    },
+    {
+      "pid": "138777288",
+      "dir": "anchor"
+    },
+    {
+      "pid": "138777217",
+      "dir": "down"
+    },
+    {
+      "pid": "138802741",
+      "dir": "down"
+    },
+    {
+      "pid": "138802740",
+      "dir": "down"
+    },
+    {
+      "pid": "138802739",
+      "dir": "down"
+    },
+    {
+      "pid": "138802918",
+      "dir": "down"
+    },
+    {
+      "pid": "138802900",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n852",
+      "currentEdge": "138777288",
+      "candidates": [
+        {
+          "pid": "138777355",
+          "name": "Mossy Creek",
+          "km": 0.02763444681330608
+        },
+        {
+          "pid": "138777661",
+          "name": "Buffalo Wallow Branch",
+          "km": 0.9263815505167592
+        }
+      ],
+      "chosen": "138777355",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [
+    "Cherokee Lake"
+  ],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2802,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-mossy-creek-jefferson.geojson"
+}

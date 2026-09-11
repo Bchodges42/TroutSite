@@ -1,0 +1,49 @@
+{
+  "reach": "data/nhd/derived/reach-tennessee-river.geojson",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "name": "connectivity",
+      "pass": true,
+      "evidence": {
+        "edges": 268,
+        "missingPids": [],
+        "subgraphComponents": 1
+      }
+    },
+    {
+      "name": "continuity",
+      "pass": true,
+      "evidence": {
+        "worstJunctionM": 0,
+        "atPathIndex": -1,
+        "limitM": 50
+      }
+    },
+    {
+      "name": "info:max-vertex-chord",
+      "pass": true,
+      "evidence": {
+        "maxGapM": 1129,
+        "note": "artificial-path chords are legitimate; junction check is authoritative"
+      }
+    },
+    {
+      "name": "anchor-on-reach",
+      "pass": true,
+      "evidence": {
+        "snapDistM": 0.5,
+        "limitM": 250
+      }
+    },
+    {
+      "name": "byte-budget",
+      "pass": true,
+      "evidence": {
+        "bytes": 22876,
+        "budgetBytes": 81920
+      }
+    }
+  ],
+  "generatedAt": "2026-09-11T18:13:19.527Z"
+}

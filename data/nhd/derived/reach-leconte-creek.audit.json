@@ -1,0 +1,160 @@
+{
+  "waterId": "leconte-creek",
+  "graphPath": "data/nhd/graphs/06010107.graph.json",
+  "hu8": "06010107",
+  "anchorSnap": {
+    "distM": 32.10137066886027,
+    "t": 0,
+    "edgeIdx": 2476,
+    "seg": 19,
+    "point": [
+      -83.509216,
+      35.697876
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2477,
+      989,
+      57,
+      961,
+      1719,
+      880,
+      1224,
+      1752
+    ],
+    "reason": "headwater",
+    "node": "n1903",
+    "edgePids": [
+      "{B34EB26A-1931-4D81-91C3-E15D57D5BC3D}",
+      "51638586",
+      "51638846",
+      "51638850",
+      "51638852",
+      "51638854",
+      "51638856",
+      "{4E0770E9-91A0-41FB-A5C3-86E03B3A668E}"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      816,
+      1058,
+      1942
+    ],
+    "reason": "name-change",
+    "node": "n1286",
+    "enteredNames": [
+      "West Prong Little Pigeon River"
+    ],
+    "edgePids": [
+      "51638412",
+      "51638268",
+      "{F6145A3F-3D69-4C1D-BF4E-EEABAB9968D7}"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "{4E0770E9-91A0-41FB-A5C3-86E03B3A668E}",
+      "dir": "up"
+    },
+    {
+      "pid": "51638856",
+      "dir": "up"
+    },
+    {
+      "pid": "51638854",
+      "dir": "up"
+    },
+    {
+      "pid": "51638852",
+      "dir": "up"
+    },
+    {
+      "pid": "51638850",
+      "dir": "up"
+    },
+    {
+      "pid": "51638846",
+      "dir": "up"
+    },
+    {
+      "pid": "51638586",
+      "dir": "up"
+    },
+    {
+      "pid": "{B34EB26A-1931-4D81-91C3-E15D57D5BC3D}",
+      "dir": "up"
+    },
+    {
+      "pid": "{3C1C4BCD-7140-43B7-B80A-02B942B19032}",
+      "dir": "anchor"
+    },
+    {
+      "pid": "51638412",
+      "dir": "down"
+    },
+    {
+      "pid": "51638268",
+      "dir": "down"
+    },
+    {
+      "pid": "{F6145A3F-3D69-4C1D-BF4E-EEABAB9968D7}",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1399",
+      "currentEdge": "{3C1C4BCD-7140-43B7-B80A-02B942B19032}",
+      "candidates": [
+        {
+          "pid": "{D5E46356-2307-48EF-AAC9-A9AB72EF756B}",
+          "name": "Watercrease Branch",
+          "km": 0.8345471774202364
+        },
+        {
+          "pid": "{B34EB26A-1931-4D81-91C3-E15D57D5BC3D}",
+          "name": "Le Conte Creek",
+          "km": 0.208956567832071
+        }
+      ],
+      "chosen": "{B34EB26A-1931-4D81-91C3-E15D57D5BC3D}",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n1286",
+      "currentEdge": "51638268",
+      "candidates": [
+        {
+          "pid": "{F6145A3F-3D69-4C1D-BF4E-EEABAB9968D7}",
+          "name": "Le Conte Creek",
+          "km": 0.0036726609139125037
+        },
+        {
+          "pid": "{996E6C19-F1BF-4635-B020-85116027A8DE}",
+          "name": "West Prong Little Pigeon River",
+          "km": 1.1270192591272683
+        }
+      ],
+      "chosen": "{F6145A3F-3D69-4C1D-BF4E-EEABAB9968D7}",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 3400,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-leconte-creek.geojson"
+}

@@ -1,0 +1,233 @@
+{
+  "waterId": "greasy-creek-polk",
+  "graphPath": "data/nhd/graphs/06020003.graph.json",
+  "hu8": "06020003",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 735,
+    "seg": 29,
+    "point": [
+      -84.516562,
+      35.141647
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      458,
+      815,
+      9,
+      373,
+      1226,
+      1085
+    ],
+    "reason": "headwater",
+    "node": "n517",
+    "edgePids": [
+      "132752250",
+      "132752255",
+      "132752259",
+      "132752264",
+      "132752269",
+      "132750141"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      562,
+      1582,
+      829,
+      1307,
+      742,
+      709,
+      1218,
+      191,
+      1654,
+      284,
+      1575,
+      772,
+      112,
+      64,
+      1397,
+      844
+    ],
+    "reason": "name-change",
+    "node": "n296",
+    "enteredNames": [
+      "Ocoee River"
+    ],
+    "edgePids": [
+      "132752240",
+      "132752235",
+      "132752231",
+      "132752226",
+      "132752221",
+      "132752216",
+      "132752211",
+      "132752202",
+      "132752207",
+      "132752197",
+      "132752192",
+      "132752187",
+      "132752182",
+      "132752177",
+      "132760678",
+      "132760694"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "132750141",
+      "dir": "up"
+    },
+    {
+      "pid": "132752269",
+      "dir": "up"
+    },
+    {
+      "pid": "132752264",
+      "dir": "up"
+    },
+    {
+      "pid": "132752259",
+      "dir": "up"
+    },
+    {
+      "pid": "132752255",
+      "dir": "up"
+    },
+    {
+      "pid": "132752250",
+      "dir": "up"
+    },
+    {
+      "pid": "132752245",
+      "dir": "anchor"
+    },
+    {
+      "pid": "132752240",
+      "dir": "down"
+    },
+    {
+      "pid": "132752235",
+      "dir": "down"
+    },
+    {
+      "pid": "132752231",
+      "dir": "down"
+    },
+    {
+      "pid": "132752226",
+      "dir": "down"
+    },
+    {
+      "pid": "132752221",
+      "dir": "down"
+    },
+    {
+      "pid": "132752216",
+      "dir": "down"
+    },
+    {
+      "pid": "132752211",
+      "dir": "down"
+    },
+    {
+      "pid": "132752202",
+      "dir": "down"
+    },
+    {
+      "pid": "132752207",
+      "dir": "down"
+    },
+    {
+      "pid": "132752197",
+      "dir": "down"
+    },
+    {
+      "pid": "132752192",
+      "dir": "down"
+    },
+    {
+      "pid": "132752187",
+      "dir": "down"
+    },
+    {
+      "pid": "132752182",
+      "dir": "down"
+    },
+    {
+      "pid": "132752177",
+      "dir": "down"
+    },
+    {
+      "pid": "132760678",
+      "dir": "down"
+    },
+    {
+      "pid": "132760694",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "down",
+      "atNode": "n293",
+      "currentEdge": "132752177",
+      "candidates": [
+        {
+          "pid": "132760694",
+          "name": "Greasy Creek",
+          "km": 1.4467022164854844
+        },
+        {
+          "pid": "132760661",
+          "name": "Rock Creek",
+          "km": 0.024425760100605213
+        },
+        {
+          "pid": "132760678",
+          "name": "Greasy Creek",
+          "km": 0.05561996145710041
+        }
+      ],
+      "chosen": "132760678",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "down",
+      "atNode": "n293",
+      "currentEdge": "132760678",
+      "candidates": [
+        {
+          "pid": "132760694",
+          "name": "Greasy Creek",
+          "km": 1.4467022164854844
+        },
+        {
+          "pid": "132760661",
+          "name": "Rock Creek",
+          "km": 0.024425760100605213
+        }
+      ],
+      "chosen": "132760694",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [
+    "Lake Ocoee"
+  ],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 4834,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-greasy-creek-polk.geojson"
+}

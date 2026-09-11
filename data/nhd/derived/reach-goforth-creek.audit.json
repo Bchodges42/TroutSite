@@ -1,0 +1,133 @@
+{
+  "waterId": "goforth-creek",
+  "graphPath": "data/nhd/graphs/06020003.graph.json",
+  "hu8": "06020003",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 695,
+    "seg": 29,
+    "point": [
+      -84.50339,
+      35.096613
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      932,
+      159,
+      1036,
+      1322,
+      354,
+      546,
+      731
+    ],
+    "reason": "headwater",
+    "node": "n577",
+    "edgePids": [
+      "132753360",
+      "132753365",
+      "132753370",
+      "132753374",
+      "132753379",
+      "132753388",
+      "132753384"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1617,
+      221,
+      91,
+      1640,
+      248,
+      1460
+    ],
+    "reason": "name-change",
+    "node": "n450",
+    "enteredNames": [
+      "Ocoee River"
+    ],
+    "edgePids": [
+      "132753355",
+      "132753352",
+      "132753347",
+      "132753337",
+      "132753342",
+      "132762173"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "132753384",
+      "dir": "up"
+    },
+    {
+      "pid": "132753388",
+      "dir": "up"
+    },
+    {
+      "pid": "132753379",
+      "dir": "up"
+    },
+    {
+      "pid": "132753374",
+      "dir": "up"
+    },
+    {
+      "pid": "132753370",
+      "dir": "up"
+    },
+    {
+      "pid": "132753365",
+      "dir": "up"
+    },
+    {
+      "pid": "132753360",
+      "dir": "up"
+    },
+    {
+      "pid": "132753356",
+      "dir": "anchor"
+    },
+    {
+      "pid": "132753355",
+      "dir": "down"
+    },
+    {
+      "pid": "132753352",
+      "dir": "down"
+    },
+    {
+      "pid": "132753347",
+      "dir": "down"
+    },
+    {
+      "pid": "132753337",
+      "dir": "down"
+    },
+    {
+      "pid": "132753342",
+      "dir": "down"
+    },
+    {
+      "pid": "132762173",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2521,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-goforth-creek.geojson"
+}

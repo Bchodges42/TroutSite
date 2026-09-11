@@ -1,0 +1,73 @@
+{
+  "waterId": "trail-fork-big-creek",
+  "graphPath": "data/nhd/graphs/06010105.graph.json",
+  "hu8": "06010105",
+  "anchorSnap": {
+    "distM": 0.10500307701922762,
+    "t": 0.9976164808319288,
+    "edgeIdx": 22230,
+    "seg": 43,
+    "point": [
+      -83.11003638136307,
+      35.90026310725837
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      22604,
+      22491
+    ],
+    "reason": "headwater",
+    "node": "n61",
+    "edgePids": [
+      "90667201",
+      "90667357"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      4406
+    ],
+    "reason": "name-change",
+    "node": "n112",
+    "enteredNames": [
+      "Carney Branch"
+    ],
+    "edgePids": [
+      "90667181"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "90667357",
+      "dir": "up"
+    },
+    {
+      "pid": "90667201",
+      "dir": "up"
+    },
+    {
+      "pid": "90667203",
+      "dir": "anchor"
+    },
+    {
+      "pid": "90667181",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 1425,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-trail-fork-big-creek.geojson"
+}

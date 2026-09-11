@@ -1,0 +1,257 @@
+{
+  "waterId": "east-fork-shoal-creek",
+  "graphPath": "data/nhd/graphs/06030004.graph.json",
+  "hu8": "06030004",
+  "anchorSnap": {
+    "distM": 2.009577277152412,
+    "t": 0.3737742465714949,
+    "edgeIdx": 104,
+    "seg": 46,
+    "point": [
+      -87.07468540684275,
+      35.05788644241644
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      361,
+      450,
+      623,
+      1005,
+      1552,
+      809,
+      2052,
+      447,
+      1843,
+      255
+    ],
+    "reason": "headwater",
+    "node": "n1494",
+    "edgePids": [
+      "128245928",
+      "128245884",
+      "128245816",
+      "128245785",
+      "128245610",
+      "128245609",
+      "128245576",
+      "128245491",
+      "128245458",
+      "128245372"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      14,
+      1011,
+      1597,
+      565,
+      2525,
+      929,
+      1109,
+      338,
+      1253,
+      734,
+      174,
+      2356,
+      566,
+      2568
+    ],
+    "reason": "name-change",
+    "node": "n1387",
+    "enteredNames": [
+      "Shoal Creek"
+    ],
+    "edgePids": [
+      "128246049",
+      "128246053",
+      "128246133",
+      "128246173",
+      "128246189",
+      "128246254",
+      "128246286",
+      "128246302",
+      "128246405",
+      "128246438",
+      "128246526",
+      "128246591",
+      "128246664",
+      "128246709"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "128245372",
+      "dir": "up"
+    },
+    {
+      "pid": "128245458",
+      "dir": "up"
+    },
+    {
+      "pid": "128245491",
+      "dir": "up"
+    },
+    {
+      "pid": "128245576",
+      "dir": "up"
+    },
+    {
+      "pid": "128245609",
+      "dir": "up"
+    },
+    {
+      "pid": "128245610",
+      "dir": "up"
+    },
+    {
+      "pid": "128245785",
+      "dir": "up"
+    },
+    {
+      "pid": "128245816",
+      "dir": "up"
+    },
+    {
+      "pid": "128245884",
+      "dir": "up"
+    },
+    {
+      "pid": "128245928",
+      "dir": "up"
+    },
+    {
+      "pid": "128246023",
+      "dir": "anchor"
+    },
+    {
+      "pid": "128246049",
+      "dir": "down"
+    },
+    {
+      "pid": "128246053",
+      "dir": "down"
+    },
+    {
+      "pid": "128246133",
+      "dir": "down"
+    },
+    {
+      "pid": "128246173",
+      "dir": "down"
+    },
+    {
+      "pid": "128246189",
+      "dir": "down"
+    },
+    {
+      "pid": "128246254",
+      "dir": "down"
+    },
+    {
+      "pid": "128246286",
+      "dir": "down"
+    },
+    {
+      "pid": "128246302",
+      "dir": "down"
+    },
+    {
+      "pid": "128246405",
+      "dir": "down"
+    },
+    {
+      "pid": "128246438",
+      "dir": "down"
+    },
+    {
+      "pid": "128246526",
+      "dir": "down"
+    },
+    {
+      "pid": "128246591",
+      "dir": "down"
+    },
+    {
+      "pid": "128246664",
+      "dir": "down"
+    },
+    {
+      "pid": "128246709",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1539",
+      "currentEdge": "128246023",
+      "candidates": [
+        {
+          "pid": "128245927",
+          "name": "Hanna Branch",
+          "km": 0.40325986561109045
+        },
+        {
+          "pid": "128245928",
+          "name": "East Fork Shoal Creek",
+          "km": 0.7829657831523946
+        }
+      ],
+      "chosen": "128245928",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1530",
+      "currentEdge": "128245928",
+      "candidates": [
+        {
+          "pid": "128245884",
+          "name": "East Fork Shoal Creek",
+          "km": 0.48300517707050933
+        },
+        {
+          "pid": "128245883",
+          "name": "Jones Branch",
+          "km": 0.8657829194178017
+        }
+      ],
+      "chosen": "128245884",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1527",
+      "currentEdge": "128245816",
+      "candidates": [
+        {
+          "pid": "128245785",
+          "name": "East Fork Shoal Creek",
+          "km": 2.006888705981627
+        },
+        {
+          "pid": "128245786",
+          "name": "Dog Branch",
+          "km": 0.14050337739257016
+        }
+      ],
+      "chosen": "128245785",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 3713,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-east-fork-shoal-creek.geojson"
+}

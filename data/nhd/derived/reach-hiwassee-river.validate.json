@@ -1,0 +1,49 @@
+{
+  "reach": "data/nhd/derived/reach-hiwassee-river.geojson",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "name": "connectivity",
+      "pass": true,
+      "evidence": {
+        "edges": 278,
+        "missingPids": [],
+        "subgraphComponents": 1
+      }
+    },
+    {
+      "name": "continuity",
+      "pass": false,
+      "evidence": {
+        "worstJunctionM": 96,
+        "atPathIndex": 277,
+        "limitM": 50
+      }
+    },
+    {
+      "name": "info:max-vertex-chord",
+      "pass": true,
+      "evidence": {
+        "maxGapM": 807,
+        "note": "artificial-path chords are legitimate; junction check is authoritative"
+      }
+    },
+    {
+      "name": "anchor-on-reach",
+      "pass": true,
+      "evidence": {
+        "snapDistM": 132.4,
+        "limitM": 250
+      }
+    },
+    {
+      "name": "byte-budget",
+      "pass": true,
+      "evidence": {
+        "bytes": 24992,
+        "budgetBytes": 81920
+      }
+    }
+  ],
+  "generatedAt": "2026-09-11T18:13:20.464Z"
+}

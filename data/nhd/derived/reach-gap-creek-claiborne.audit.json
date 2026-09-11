@@ -1,0 +1,106 @@
+{
+  "waterId": "gap-creek-claiborne",
+  "graphPath": "data/nhd/graphs/06010206.graph.json",
+  "hu8": "06010206",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 1568,
+    "seg": 11,
+    "point": [
+      -83.674653,
+      36.56524
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      1394,
+      1603,
+      160,
+      866,
+      965
+    ],
+    "reason": "headwater",
+    "node": "n420",
+    "edgePids": [
+      "44950353",
+      "44950349",
+      "44950299",
+      "44950205",
+      "44949861"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1752,
+      1355,
+      1143,
+      1847
+    ],
+    "reason": "terminal-node",
+    "node": "n392",
+    "edgePids": [
+      "44950557",
+      "44950651",
+      "44950681",
+      "44950749"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "44949861",
+      "dir": "up"
+    },
+    {
+      "pid": "44950205",
+      "dir": "up"
+    },
+    {
+      "pid": "44950299",
+      "dir": "up"
+    },
+    {
+      "pid": "44950349",
+      "dir": "up"
+    },
+    {
+      "pid": "44950353",
+      "dir": "up"
+    },
+    {
+      "pid": "44950459",
+      "dir": "anchor"
+    },
+    {
+      "pid": "44950557",
+      "dir": "down"
+    },
+    {
+      "pid": "44950651",
+      "dir": "down"
+    },
+    {
+      "pid": "44950681",
+      "dir": "down"
+    },
+    {
+      "pid": "44950749",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 3696,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-gap-creek-claiborne.geojson"
+}

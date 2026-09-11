@@ -1,0 +1,131 @@
+{
+  "waterId": "obey-river",
+  "graphPath": "data/nhd/graphs/05130105.graph.json",
+  "hu8": "05130105",
+  "anchorSnap": {
+    "distM": 66.60947083461807,
+    "t": 0.6428575614619274,
+    "edgeIdx": 946,
+    "seg": 5,
+    "point": [
+      -85.45496728666451,
+      36.53673064260556
+    ]
+  },
+  "upWalk": {
+    "spec": "dam:Dale Hollow Lake",
+    "path": [],
+    "reason": "dam",
+    "node": "n32",
+    "damEdges": [
+      "48157231"
+    ],
+    "edgePids": []
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1129,
+      138,
+      278,
+      283,
+      326,
+      959,
+      147,
+      554,
+      277,
+      311,
+      1002,
+      967,
+      245
+    ],
+    "reason": "terminal-node",
+    "node": "n0",
+    "edgePids": [
+      "48157145",
+      "48157140",
+      "48157057",
+      "48157476",
+      "48157703",
+      "48157756",
+      "48157721",
+      "48157654",
+      "48157589",
+      "48156727",
+      "48156687",
+      "48156631",
+      "48156753"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "48157243",
+      "dir": "anchor"
+    },
+    {
+      "pid": "48157145",
+      "dir": "down"
+    },
+    {
+      "pid": "48157140",
+      "dir": "down"
+    },
+    {
+      "pid": "48157057",
+      "dir": "down"
+    },
+    {
+      "pid": "48157476",
+      "dir": "down"
+    },
+    {
+      "pid": "48157703",
+      "dir": "down"
+    },
+    {
+      "pid": "48157756",
+      "dir": "down"
+    },
+    {
+      "pid": "48157721",
+      "dir": "down"
+    },
+    {
+      "pid": "48157654",
+      "dir": "down"
+    },
+    {
+      "pid": "48157589",
+      "dir": "down"
+    },
+    {
+      "pid": "48156727",
+      "dir": "down"
+    },
+    {
+      "pid": "48156687",
+      "dir": "down"
+    },
+    {
+      "pid": "48156631",
+      "dir": "down"
+    },
+    {
+      "pid": "48156753",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2327,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-obey-river.geojson"
+}

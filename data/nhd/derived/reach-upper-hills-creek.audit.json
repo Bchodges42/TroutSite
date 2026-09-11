@@ -1,0 +1,153 @@
+{
+  "waterId": "upper-hills-creek",
+  "graphPath": "data/nhd/graphs/05130107.graph.json",
+  "hu8": "05130107",
+  "anchorSnap": {
+    "distM": 0.937569543409324,
+    "t": 0.10786395271595757,
+    "edgeIdx": 158,
+    "seg": 12,
+    "point": [
+      -85.67510499733578,
+      35.570992611048716
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      969,
+      160,
+      526,
+      363,
+      35,
+      449,
+      1010,
+      283,
+      1020,
+      233,
+      599,
+      600
+    ],
+    "reason": "headwater",
+    "node": "n1018",
+    "edgePids": [
+      "51182513",
+      "51182479",
+      "51182499",
+      "51182573",
+      "51182585",
+      "51182587",
+      "51182599",
+      "51182609",
+      "51182621",
+      "51182647",
+      "51182701",
+      "51182785"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      938
+    ],
+    "reason": "name-change",
+    "node": "n853",
+    "enteredNames": [
+      "Collins River"
+    ],
+    "edgePids": [
+      "51182501"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "51182785",
+      "dir": "up"
+    },
+    {
+      "pid": "51182701",
+      "dir": "up"
+    },
+    {
+      "pid": "51182647",
+      "dir": "up"
+    },
+    {
+      "pid": "51182621",
+      "dir": "up"
+    },
+    {
+      "pid": "51182609",
+      "dir": "up"
+    },
+    {
+      "pid": "51182599",
+      "dir": "up"
+    },
+    {
+      "pid": "51182587",
+      "dir": "up"
+    },
+    {
+      "pid": "51182585",
+      "dir": "up"
+    },
+    {
+      "pid": "51182573",
+      "dir": "up"
+    },
+    {
+      "pid": "51182499",
+      "dir": "up"
+    },
+    {
+      "pid": "51182479",
+      "dir": "up"
+    },
+    {
+      "pid": "51182513",
+      "dir": "up"
+    },
+    {
+      "pid": "51182611",
+      "dir": "anchor"
+    },
+    {
+      "pid": "51182501",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n961",
+      "currentEdge": "51182585",
+      "candidates": [
+        {
+          "pid": "51182583",
+          "name": "Dry Creek",
+          "km": 0.8032784917871024
+        },
+        {
+          "pid": "51182587",
+          "name": "Hills Creek",
+          "km": 0.01684217087714789
+        }
+      ],
+      "chosen": "51182587",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2803,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-upper-hills-creek.geojson"
+}

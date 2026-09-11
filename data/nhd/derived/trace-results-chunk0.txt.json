@@ -1,0 +1,457 @@
+{
+  "generatedAt": "2026-09-11T18:13:35.906Z",
+  "budget": 81920,
+  "results": {
+    "salt-lick-creek": {
+      "unit": "05110002",
+      "nhdName": "Salt Lick Creek",
+      "snapDistM": 748,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 7527,
+      "lengthKm": 34.85,
+      "vertexCount": 283,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "obey-river": {
+      "unit": "05130105",
+      "nhdName": "Obey River",
+      "snapDistM": 59,
+      "spec": {
+        "up": "dam:Dale Hollow Lake",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 2328,
+      "lengthKm": 12.38,
+      "vertexCount": 58,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "charles-creek": {
+      "unit": "05130107",
+      "nhdName": "Charles Creek",
+      "snapDistM": 321,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 5314,
+      "lengthKm": 29.4,
+      "vertexCount": 185,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "calfkiller-river": {
+      "unit": "05130108",
+      "nhdName": "Calfkiller River",
+      "snapDistM": 57,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 13775,
+      "lengthKm": 80.96,
+      "vertexCount": 596,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "pine-creek-dekalb": {
+      "unit": "05130108",
+      "nhdName": "Pine Creek",
+      "snapDistM": 5,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 5586,
+      "lengthKm": 23.06,
+      "vertexCount": 200,
+      "throughLakeIds": [
+        "center-hill-lake"
+      ],
+      "error": null
+    },
+    "east-fork-stones-river": {
+      "unit": "05130203",
+      "nhdName": "East Fork Stones River",
+      "snapDistM": 362,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 15440,
+      "lengthKm": 87.03,
+      "vertexCount": 643,
+      "throughLakeIds": [
+        "j-percy-priest-reservoir"
+      ],
+      "error": null
+    },
+    "fletchers-fork": {
+      "unit": "05130206",
+      "nhdName": "Fletchers Fork",
+      "snapDistM": 72,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 7017,
+      "lengthKm": 24.47,
+      "vertexCount": 268,
+      "throughLakeIds": [
+        "lake-taal"
+      ],
+      "error": null
+    },
+    "north-fork-holston-river": {
+      "unit": "06010101",
+      "nhdName": "North Fork Holston River",
+      "snapDistM": 0,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 40314,
+      "lengthKm": 224.52,
+      "vertexCount": 1648,
+      "throughLakeIds": [
+        "cherokee-lake"
+      ],
+      "error": null
+    },
+    "laurel-creek-johnson": {
+      "unit": "06010102",
+      "nhdName": "Laurel Creek",
+      "snapDistM": 0,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 3943,
+      "lengthKm": 16.77,
+      "vertexCount": 110,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "doe-river": {
+      "unit": "06010103",
+      "nhdName": "Doe River",
+      "snapDistM": 113,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 9914,
+      "lengthKm": 47.49,
+      "vertexCount": 387,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "upper-roan-creek": {
+      "unit": "06010103",
+      "nhdName": "Roan Creek",
+      "snapDistM": 131,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 6304,
+      "lengthKm": 31.92,
+      "vertexCount": 219,
+      "throughLakeIds": [
+        "watauga-lake"
+      ],
+      "error": null
+    },
+    "holston-river": {
+      "unit": "06010104",
+      "nhdName": "Holston River",
+      "snapDistM": 50,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 27293,
+      "lengthKm": 221.41,
+      "vertexCount": 1068,
+      "throughLakeIds": [
+        "cherokee-lake",
+        "fort-loudoun-lake"
+      ],
+      "error": null
+    },
+    "trail-fork-big-creek": {
+      "unit": "06010105",
+      "nhdName": "Fine Trail Branch",
+      "snapDistM": 70,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 1426,
+      "lengthKm": 2.6,
+      "vertexCount": 19,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "leconte-creek": {
+      "unit": "06010107",
+      "nhdName": "Le Conte Creek",
+      "snapDistM": 15,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 3401,
+      "lengthKm": 10.29,
+      "vertexCount": 104,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "west-prong-little-pigeon": {
+      "unit": "06010107",
+      "nhdName": "West Prong Little Pigeon River",
+      "snapDistM": 29,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 13361,
+      "lengthKm": 50.57,
+      "vertexCount": 379,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "piney-river-rhea": {
+      "unit": "06010201",
+      "nhdName": "Piney River",
+      "snapDistM": 45,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 9323,
+      "lengthKm": 46.17,
+      "vertexCount": 358,
+      "throughLakeIds": [
+        "watts-bar-lake"
+      ],
+      "error": null
+    },
+    "tellico-river": {
+      "unit": "06010204",
+      "nhdName": "Tellico River",
+      "snapDistM": 18,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 18051,
+      "lengthKm": 88.36,
+      "vertexCount": 713,
+      "throughLakeIds": [
+        "tellico-lake"
+      ],
+      "error": null
+    },
+    "indian-creek-claiborne": {
+      "unit": "06010206",
+      "nhdName": "Indian Creek",
+      "snapDistM": 85,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 12162,
+      "lengthKm": 50.28,
+      "vertexCount": 507,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "clear-creek-obed": {
+      "unit": "06010208",
+      "nhdName": "Clear Creek",
+      "snapDistM": 23,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 16510,
+      "lengthKm": 78.17,
+      "vertexCount": 675,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "north-chickamauga-creek": {
+      "unit": "06020001",
+      "nhdName": "North Chickamauga Creek",
+      "snapDistM": 100,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 10769,
+      "lengthKm": 57.7,
+      "vertexCount": 434,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "greasy-creek-polk": {
+      "unit": "06020003",
+      "nhdName": "Greasy Creek",
+      "snapDistM": 1,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 4835,
+      "lengthKm": 17.31,
+      "vertexCount": 172,
+      "throughLakeIds": [
+        "lake-ocoee"
+      ],
+      "error": null
+    },
+    "little-sequatchie-river": {
+      "unit": "06020004",
+      "nhdName": "Little Sequatchie River",
+      "snapDistM": 91,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 9605,
+      "lengthKm": 49.17,
+      "vertexCount": 370,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "elk-river": {
+      "unit": "06030003",
+      "nhdName": "Elk River",
+      "snapDistM": 38,
+      "spec": {
+        "up": "dam:Tims Ford Lake",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 19576,
+      "lengthKm": 140.41,
+      "vertexCount": 748,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "big-rock-creek": {
+      "unit": "06040002",
+      "nhdName": "Big Rock Creek",
+      "snapDistM": 510,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 8579,
+      "lengthKm": 42.97,
+      "vertexCount": 345,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "mccutcheon-creek": {
+      "unit": "06040003",
+      "nhdName": "McCutcheon Creek",
+      "snapDistM": 62,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 3756,
+      "lengthKm": 11.38,
+      "vertexCount": 125,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "white-oak-creek": {
+      "unit": "06040005",
+      "nhdName": "Whiteoak Creek",
+      "snapDistM": 1,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 10425,
+      "lengthKm": 50.42,
+      "vertexCount": 392,
+      "throughLakeIds": [],
+      "error": null
+    },
+    "wolf-river-west-tennessee": {
+      "unit": "08010210",
+      "nhdName": "Wolf River",
+      "snapDistM": 1,
+      "spec": {
+        "up": "headwater",
+        "down": "mouth"
+      },
+      "verdict": "PASS",
+      "failures": [],
+      "bytes": 43710,
+      "lengthKm": 164.74,
+      "vertexCount": 1710,
+      "throughLakeIds": [],
+      "error": null
+    }
+  }
+}

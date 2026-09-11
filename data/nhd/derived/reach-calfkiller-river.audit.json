@@ -1,0 +1,537 @@
+{
+  "waterId": "calfkiller-river",
+  "graphPath": "data/nhd/graphs/05130108.graph.json",
+  "hu8": "05130108",
+  "anchorSnap": {
+    "distM": 11.297964179761054,
+    "t": 0.1891580063596077,
+    "edgeIdx": 1050,
+    "seg": 424,
+    "point": [
+      -85.46750831949099,
+      35.926551141870625
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      2775,
+      1262,
+      2017,
+      2659,
+      231,
+      266,
+      208,
+      62,
+      1072,
+      2303,
+      112,
+      2707,
+      676,
+      373,
+      59,
+      580,
+      2188,
+      1412,
+      381,
+      1168,
+      1863,
+      1617,
+      1844,
+      686,
+      2834,
+      2250,
+      2787,
+      291,
+      1257
+    ],
+    "reason": "headwater",
+    "node": "n2123",
+    "edgePids": [
+      "136994150",
+      "136994151",
+      "136994152",
+      "136994154",
+      "136994153",
+      "136993454",
+      "136993455",
+      "136993456",
+      "136993457",
+      "136993458",
+      "136993459",
+      "136993460",
+      "136993461",
+      "136993462",
+      "136993463",
+      "136993464",
+      "136990754",
+      "136990753",
+      "136990755",
+      "136990756",
+      "136990757",
+      "136990758",
+      "136990759",
+      "136990760",
+      "136983802",
+      "136983807",
+      "136990761",
+      "136993396",
+      "136990762"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1383,
+      908,
+      1365,
+      2763,
+      295
+    ],
+    "reason": "name-change",
+    "node": "n1534",
+    "enteredNames": [
+      "Caney Fork"
+    ],
+    "edgePids": [
+      "136994148",
+      "136994158",
+      "136994163",
+      "136994164",
+      "136994596"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "136990762",
+      "dir": "up"
+    },
+    {
+      "pid": "136993396",
+      "dir": "up"
+    },
+    {
+      "pid": "136990761",
+      "dir": "up"
+    },
+    {
+      "pid": "136983807",
+      "dir": "up"
+    },
+    {
+      "pid": "136983802",
+      "dir": "up"
+    },
+    {
+      "pid": "136990760",
+      "dir": "up"
+    },
+    {
+      "pid": "136990759",
+      "dir": "up"
+    },
+    {
+      "pid": "136990758",
+      "dir": "up"
+    },
+    {
+      "pid": "136990757",
+      "dir": "up"
+    },
+    {
+      "pid": "136990756",
+      "dir": "up"
+    },
+    {
+      "pid": "136990755",
+      "dir": "up"
+    },
+    {
+      "pid": "136990753",
+      "dir": "up"
+    },
+    {
+      "pid": "136990754",
+      "dir": "up"
+    },
+    {
+      "pid": "136993464",
+      "dir": "up"
+    },
+    {
+      "pid": "136993463",
+      "dir": "up"
+    },
+    {
+      "pid": "136993462",
+      "dir": "up"
+    },
+    {
+      "pid": "136993461",
+      "dir": "up"
+    },
+    {
+      "pid": "136993460",
+      "dir": "up"
+    },
+    {
+      "pid": "136993459",
+      "dir": "up"
+    },
+    {
+      "pid": "136993458",
+      "dir": "up"
+    },
+    {
+      "pid": "136993457",
+      "dir": "up"
+    },
+    {
+      "pid": "136993456",
+      "dir": "up"
+    },
+    {
+      "pid": "136993455",
+      "dir": "up"
+    },
+    {
+      "pid": "136993454",
+      "dir": "up"
+    },
+    {
+      "pid": "136994153",
+      "dir": "up"
+    },
+    {
+      "pid": "136994154",
+      "dir": "up"
+    },
+    {
+      "pid": "136994152",
+      "dir": "up"
+    },
+    {
+      "pid": "136994151",
+      "dir": "up"
+    },
+    {
+      "pid": "136994150",
+      "dir": "up"
+    },
+    {
+      "pid": "136994149",
+      "dir": "anchor"
+    },
+    {
+      "pid": "136994148",
+      "dir": "down"
+    },
+    {
+      "pid": "136994158",
+      "dir": "down"
+    },
+    {
+      "pid": "136994163",
+      "dir": "down"
+    },
+    {
+      "pid": "136994164",
+      "dir": "down"
+    },
+    {
+      "pid": "136994596",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n1612",
+      "currentEdge": "136994150",
+      "candidates": [
+        {
+          "pid": "136994155",
+          "name": "Wildcat Creek",
+          "km": 0.013207370711851326
+        },
+        {
+          "pid": "136994151",
+          "name": "Calfkiller River",
+          "km": 2.6301977222248594
+        }
+      ],
+      "chosen": "136994151",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1647",
+      "currentEdge": "136994152",
+      "candidates": [
+        {
+          "pid": "136990898",
+          "name": "Blue Spring Creek",
+          "km": 1.295388685553308
+        },
+        {
+          "pid": "136994156",
+          "name": "Blue Spring Creek",
+          "km": 0.010717850177926565
+        },
+        {
+          "pid": "136994154",
+          "name": "Calfkiller River",
+          "km": 0.15363874945985195
+        }
+      ],
+      "chosen": "136994154",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1631",
+      "currentEdge": "136993454",
+      "candidates": [
+        {
+          "pid": "136993455",
+          "name": "Calfkiller River",
+          "km": 4.288816476595447
+        },
+        {
+          "pid": "136993466",
+          "name": "Cherry Creek",
+          "km": 0.01446411012038057
+        }
+      ],
+      "chosen": "136993455",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1698",
+      "currentEdge": "136993455",
+      "candidates": [
+        {
+          "pid": "136993456",
+          "name": "Calfkiller River",
+          "km": 1.1873016015675923
+        },
+        {
+          "pid": "136991192",
+          "name": "Plum Creek",
+          "km": 1.003847170250842
+        },
+        {
+          "pid": "136993473",
+          "name": "Plum Creek",
+          "km": 0.010013268806757698
+        }
+      ],
+      "chosen": "136993456",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1725",
+      "currentEdge": "136993456",
+      "candidates": [
+        {
+          "pid": "136993457",
+          "name": "Calfkiller River",
+          "km": 3.9107009060029565
+        },
+        {
+          "pid": "136993468",
+          "name": "Simms Branch",
+          "km": 0.008876634936474496
+        },
+        {
+          "pid": "136985323",
+          "name": "Simms Branch",
+          "km": 2.6369461775000897
+        }
+      ],
+      "chosen": "136993457",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1783",
+      "currentEdge": "136993458",
+      "candidates": [
+        {
+          "pid": "136993459",
+          "name": "Calfkiller River",
+          "km": 0.5446755881694686
+        },
+        {
+          "pid": "136993467",
+          "name": "Doe Creek",
+          "km": 0.011355691645639673
+        },
+        {
+          "pid": "136990959",
+          "name": "Doe Creek",
+          "km": 2.27512546436121
+        }
+      ],
+      "chosen": "136993459",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1887",
+      "currentEdge": "136993461",
+      "candidates": [
+        {
+          "pid": "136993462",
+          "name": "Calfkiller River",
+          "km": 5.923990632910971
+        },
+        {
+          "pid": "136993465",
+          "name": "England Cove",
+          "km": 0.009587632432604088
+        },
+        {
+          "pid": "136990911",
+          "name": "England Cove",
+          "km": 0.6767008310975827
+        }
+      ],
+      "chosen": "136993462",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1895",
+      "currentEdge": "136993463",
+      "candidates": [
+        {
+          "pid": "136985477",
+          "name": "Dark Hollow Branch",
+          "km": 2.972777565265952
+        },
+        {
+          "pid": "136993464",
+          "name": "Calfkiller River",
+          "km": 1.350001185719125
+        },
+        {
+          "pid": "136993469",
+          "name": "Dark Hollow Branch",
+          "km": 0.00732364594469969
+        }
+      ],
+      "chosen": "136993464",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1907",
+      "currentEdge": "136990753",
+      "candidates": [
+        {
+          "pid": "136990755",
+          "name": "Calfkiller River",
+          "km": 0.4606986069820543
+        },
+        {
+          "pid": "136983983",
+          "name": "Davidson Cove",
+          "km": 1.5660068649004055
+        }
+      ],
+      "chosen": "136990755",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1900",
+      "currentEdge": "136990755",
+      "candidates": [
+        {
+          "pid": "136990756",
+          "name": "Calfkiller River",
+          "km": 1.7476616549155377
+        },
+        {
+          "pid": "136991187",
+          "name": "Mill Creek",
+          "km": 1.4599455264638022
+        }
+      ],
+      "chosen": "136990756",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n1967",
+      "currentEdge": "136990758",
+      "candidates": [
+        {
+          "pid": "136985517",
+          "name": "Whittaker Branch",
+          "km": 0.39282587558523485
+        },
+        {
+          "pid": "136990759",
+          "name": "Stamps Hollow Creek",
+          "km": 1.5149766032511447
+        }
+      ],
+      "chosen": "136990759",
+      "rule": "longest-remaining-path"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2022",
+      "currentEdge": "136990760",
+      "candidates": [
+        {
+          "pid": "136991180",
+          "name": "Whetstone Creek",
+          "km": 0.6664624316634801
+        },
+        {
+          "pid": "136983802",
+          "name": "Stamps Hollow Creek",
+          "km": 1.347045205401079
+        }
+      ],
+      "chosen": "136983802",
+      "rule": "name-continuity"
+    },
+    {
+      "dir": "up",
+      "atNode": "n2042",
+      "currentEdge": "136983802",
+      "candidates": [
+        {
+          "pid": "136985502",
+          "name": "Brady Branch",
+          "km": 0.855812808808123
+        },
+        {
+          "pid": "136983807",
+          "name": "Stamps Hollow Creek",
+          "km": 0.4514415441352531
+        }
+      ],
+      "chosen": "136983807",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 13774,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-calfkiller-river.geojson"
+}

@@ -1,0 +1,147 @@
+{
+  "waterId": "forge-creek-johnson",
+  "graphPath": "data/nhd/graphs/06010103.graph.json",
+  "hu8": "06010103",
+  "anchorSnap": {
+    "distM": 0,
+    "t": 1,
+    "edgeIdx": 106,
+    "seg": 4,
+    "point": [
+      -81.763836,
+      36.448508
+    ]
+  },
+  "upWalk": {
+    "spec": "headwater",
+    "path": [
+      569,
+      746,
+      453,
+      2597,
+      543
+    ],
+    "reason": "headwater",
+    "node": "n3302",
+    "edgePids": [
+      "89938669",
+      "89938611",
+      "89938487",
+      "89938475",
+      "89938417"
+    ]
+  },
+  "downWalk": {
+    "spec": "mouth",
+    "path": [
+      1659,
+      417,
+      479,
+      2889,
+      935,
+      2243,
+      3239
+    ],
+    "reason": "name-change",
+    "node": "n2972",
+    "enteredNames": [
+      "Roan Creek"
+    ],
+    "edgePids": [
+      "89938893",
+      "89939049",
+      "89939177",
+      "89939221",
+      "89939519",
+      "89939523",
+      "89939607"
+    ]
+  },
+  "pathEdges": [
+    {
+      "pid": "89938417",
+      "dir": "up"
+    },
+    {
+      "pid": "89938475",
+      "dir": "up"
+    },
+    {
+      "pid": "89938487",
+      "dir": "up"
+    },
+    {
+      "pid": "89938611",
+      "dir": "up"
+    },
+    {
+      "pid": "89938669",
+      "dir": "up"
+    },
+    {
+      "pid": "89938721",
+      "dir": "anchor"
+    },
+    {
+      "pid": "89938893",
+      "dir": "down"
+    },
+    {
+      "pid": "89939049",
+      "dir": "down"
+    },
+    {
+      "pid": "89939177",
+      "dir": "down"
+    },
+    {
+      "pid": "89939221",
+      "dir": "down"
+    },
+    {
+      "pid": "89939519",
+      "dir": "down"
+    },
+    {
+      "pid": "89939523",
+      "dir": "down"
+    },
+    {
+      "pid": "89939607",
+      "dir": "down"
+    }
+  ],
+  "divergenceLog": [
+    {
+      "dir": "up",
+      "atNode": "n3169",
+      "currentEdge": "89938721",
+      "candidates": [
+        {
+          "pid": "89938669",
+          "name": "Forge Creek",
+          "km": 0.1550730022514681
+        },
+        {
+          "pid": "89938667",
+          "name": "McEwen Branch",
+          "km": 0.07501671014833712
+        }
+      ],
+      "chosen": "89938669",
+      "rule": "name-continuity"
+    }
+  ],
+  "throughLakes": [],
+  "simplify": {
+    "tried": [
+      10,
+      25,
+      50
+    ],
+    "chosenToleranceM": 10,
+    "bytes": 2080,
+    "budgetBytes": 81920
+  },
+  "output": "data/nhd/derived/reach-forge-creek-johnson.geojson"
+}
