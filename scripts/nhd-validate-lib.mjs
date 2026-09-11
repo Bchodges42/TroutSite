@@ -230,6 +230,50 @@ export function multiLongitudeDisconnection(parts, minSpanDeg = 0.5) {
 }
 
 // ---------------------------------------------------------------------------
+// Line sanitation — hairpin collapse (rendering sanitizer)
+// ---------------------------------------------------------------------------
+
+// Collapse "hairpin" vertices: A -> B -> C where the line doubles back on
+// itself within a few tens of meters (a digitization artifact in NHD
+// flowlines). Rendered with round caps/joins these spikes become filled
+// pills/wedges whose shape shifts with zoom (owner-reported map glitch).
+// Removing the apex vertex keeps the line visually identical at rendering
+// widths while eliminating the artifact. Also drops duplicate consecutive
+// vertices. Pure; returns a new array plus the removal count for audit.
+export function collapseHairpins(coords, opts = {}) {
+  const pinM = opts.pinM ?? 60;
+  const minAngleDeg = opts.minAngleDeg ?? 135;
+  const out = coords.map((c) => [c[0], c[1]]);
+  let removed = 0;
+  const angleAt = (a, b, c) => {
+    const v1 = [a[0] - b[0], a[1] - b[1]];
+    const v2 = [c[0] - b[0], c[1] - b[1]];
+    const m = Math.hypot(v1[0], v1[1]) * Math.hypot(v2[0], v2[1]);
+    if (m === 0) return 0;
+    const dot = v1[0] * v2[0] + v1[1] * v2[1];
+    return (Math.acos(Math.max(-1, Math.min(1, dot / m))) * 180) / Math.PI;
+  };
+  let i = 1;
+  while (i < out.length - 1) {
+    const dAB = haversineM(out[i - 1], out[i]);
+    if (dAB < 0.5) {
+      out.splice(i, 1); // duplicate consecutive vertex
+      removed++;
+      continue;
+    }
+    const dBC = haversineM(out[i], out[i + 1]);
+    if (dAB < pinM && dBC < pinM && angleAt(out[i - 1], out[i], out[i + 1]) > minAngleDeg) {
+      out.splice(i, 1);
+      removed++;
+      if (i > 1) i--;
+      continue;
+    }
+    i++;
+  }
+  return { coords: out, removed };
+}
+
+// ---------------------------------------------------------------------------
 // Length sanity vs stated river miles (YAML notes)
 // ---------------------------------------------------------------------------
 
