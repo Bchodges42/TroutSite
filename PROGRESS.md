@@ -1,3 +1,29 @@
+# SESSION GEOFANOUT-1 — NHD fan-out: every TN-intersecting HU8 → JSONL + graph (2026-09-11)
+
+Clone: `/Users/ben/Downloads/TroutSite-nhdfanout1` (own clone per AGENTS.md rule 1; announced
+here — the only session bridge available is this file). Branch: `geoconv/nhd-fanout`,
+**base commit `1300194`** (same base as GEOCONV-0), conventions doc + engine branch
+`geoconv/nhd-engine` merged in as the first act (merge commit `4596764`).
+Commit tag: `geofanout(...)`. **No origin remote exists anywhere on this host (TroutSite-main
+is a plain snapshot without .git) — push DEFERRED pending owner-provided remote metadata,
+same known blocker as GEOCONV-0.**
+Precondition verified: `docs/NHD-CONVENTIONS.md` frozen by GEOCONV-0 present at merge;
+reference HU8 06010207 B13 gate `reach-clinch-river.validate.json` verdict PASS.
+Scope: `data/nhd/**`, `FANOUT-REPORT.md`, `PROGRESS.md` only — no engine or app changes.
+
+TN-intersecting HU8 enumeration (authoritative): USGS WBD HU2 geodatabases 05/06/08,
+WBDHU8 layer, `states LIKE '%TN%'` → **59 units** (58 remaining after 06010207).
+List + per-unit results: see `FANOUT-REPORT.md`.
+
+## Status log
+
+- [x] Setup: clone, branch off `1300194`, merge `geoconv/nhd-engine`, B13 precondition check.
+- [x] HU8 enumeration via WBD (05/06/08 × `states` field) → 59 TN-intersecting units.
+- [ ] Per-HU8 convert + graph build (subagent fan-out, 4 concurrent).
+- [ ] `data/nhd/hu8/index.json` + cross-unit water list + FANOUT-REPORT.md.
+
+---
+
 # SESSION GEOCONV-0 — NHD trace engine spike + conventions freeze (2026-09-11)
 
 Base commit: `1300194` ("geoconv0(base): snapshot init from TroutSite-main 2026-09-11") — snapshot arrived
