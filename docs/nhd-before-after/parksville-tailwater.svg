@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="900" viewBox="0 0 1560 900">
+<rect width="1560" height="900" fill="#0b111c"/>
+<text x="40" y="44" fill="#e8eef7" font-size="24" font-family="Menlo,monospace" font-weight="bold">Parksville Lake Tailwater (Ocoee No. 1 reach)</text>
+<text x="40" y="70" fill="#7488a5" font-size="14" font-family="Menlo,monospace">parksville-tailwater · tailrace · hu8 pending · termini auto-derivable</text>
+<rect x="1180" y="26" width="340" height="40" rx="20" fill="#33270f"/><text x="1350" y="52" fill="#e8b64c" font-size="16" text-anchor="middle" font-family="Menlo,monospace" font-weight="bold">PENDING FAN-OUT (PLAN SHOWN)</text>
+<g>
+<rect x="40" y="96" width="720" height="700" rx="10" fill="#111a29"/>
+<rect x="40" y="96" width="720" height="700" rx="10" fill="none" stroke="#26354e" stroke-width="1.5"/>
+<text x="58" y="130" fill="#e8b64c" font-size="17" font-family="Menlo,monospace" font-weight="bold">BEFORE</text>
+<text x="58" y="152" fill="#7488a5" font-size="13" font-family="Menlo,monospace">pre-flip linework · 14 part(s) · ? km · src tiger-linear,nhd-hr,n…</text>
+<path d="M321.6 476.2 L320.9 475.8 L321.0 469.4 L319.8 463.6 L315.9 456.6 L311.7 443.4 L306.4 434.6 L307.2 420.0 L308.2 418.0 M419.1 542.3 L410.5 530.6 M410.5 530.6 L397.6 513.7 M306.3 389.4 L328.3 366.1 L359.9 363.7 L379.9 353.2 M379.9 353.2 L383.8 348.0 L383.8 326.4 M342.7 473.4 L336.9 502.6 M369.9 491.5 L357.0 484.5 L350.8 473.4 L342.7 473.4 M378.5 245.9 L381.8 217.3 L411.0 174.7 M379.0 306.0 L368.9 282.7 L378.5 245.9 M397.6 513.7 L385.2 494.4 M383.8 326.4 L379.0 306.0 M378.5 245.9 L378.5 245.9 M385.2 494.4 L369.9 491.5 M336.9 502.6 L326.4 502.0 L323.5 482.2" fill="none" stroke="#e8b64c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="10 6" opacity="1"/>
+<circle cx="493.7" cy="717.3" r="7" fill="#e8b64c" stroke="#0b111c" stroke-width="2"/>
+<text x="504.7" y="722.3" fill="#e8b64c" font-size="14" font-family="Menlo,monospace" font-weight="bold" text-anchor="start" paint-order="stroke" stroke="#0b111c" stroke-width="4">anchor</text>
+
+
+<g><line x1="64" y1="772" x2="116.49235186435726" y2="772" stroke="#8ea2bd" stroke-width="2"/><line x1="64" y1="768" x2="64" y2="776" stroke="#8ea2bd" stroke-width="2"/><line x1="116.49235186435726" y1="768" x2="116.49235186435726" y2="776" stroke="#8ea2bd" stroke-width="2"/><text x="90.24617593217863" y="764" fill="#8ea2bd" font-size="13" text-anchor="middle" font-family="Menlo,monospace">1 km</text></g>
+</g>
+<g>
+<rect x="800" y="96" width="720" height="700" rx="10" fill="#111a29"/>
+<rect x="800" y="96" width="720" height="700" rx="10" fill="none" stroke="#26354e" stroke-width="1.5"/>
+<text x="818" y="130" fill="#3a4a63" font-size="17" font-family="Menlo,monospace" font-weight="bold">AFTER</text>
+<text x="818" y="152" fill="#7488a5" font-size="13" font-family="Menlo,monospace">NHD reach not traced yet — ghost = current linework</text>
+<path d="M1093.6 471.6 L1093.0 471.3 L1093.0 465.8 L1092.1 460.9 L1088.7 455.0 L1085.2 443.8 L1080.6 436.3 L1081.4 424.0 L1082.2 422.3 M1176.2 527.6 L1168.9 517.7 M1168.9 517.7 L1158.0 503.3 M1080.6 398.0 L1099.3 378.3 L1126.0 376.3 L1143.0 367.4 M1143.0 367.4 L1146.2 362.9 L1146.2 344.7 M1111.4 469.2 L1106.5 494.0 M1134.5 484.6 L1123.6 478.6 L1118.3 469.2 L1111.4 469.2 M1141.8 276.4 L1144.6 252.2 L1169.3 216.1 M1142.2 327.3 L1133.7 307.6 L1141.8 276.4 M1158.0 503.3 L1147.4 487.0 M1146.2 344.7 L1142.2 327.3 M1141.8 276.4 L1141.8 276.4 M1147.4 487.0 L1134.5 484.6 M1106.5 494.0 L1097.6 493.5 L1095.2 476.7" fill="none" stroke="#3a4a63" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"  opacity="0.45"/>
+<circle cx="1239.4" cy="675.9" r="7" fill="#59d8a0" stroke="#0b111c" stroke-width="2"/>
+<text x="1250.4" y="680.9" fill="#59d8a0" font-size="14" font-family="Menlo,monospace" font-weight="bold" text-anchor="start" paint-order="stroke" stroke="#0b111c" stroke-width="4">anchor</text>
+<text x="1160" y="436" fill="#5b6b82" font-size="19" text-anchor="middle" font-family="Menlo,monospace">AFTER panel renders here once GEOFANOUT-1 traces this unit</text>
+<rect x="808" y="702" width="704" height="94" rx="6" fill="#0b111c" opacity="0.82"/><text x="820" y="718" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">plan  UP   dam:Parksville Lake  (high)</text><text x="820" y="742" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">plan  DOWN confluence:Hiwassee River  (high)</text><text x="820" y="766" fill="#93a6c2" font-size="15" font-family="Menlo,monospace" paint-order="stroke" stroke="#0b111c" stroke-width="4">termini auto-derivable from catalog YAML</text>
+<g><line x1="824" y1="680" x2="868.4860325297327" y2="680" stroke="#8ea2bd" stroke-width="2"/><line x1="824" y1="676" x2="824" y2="684" stroke="#8ea2bd" stroke-width="2"/><line x1="868.4860325297327" y1="676" x2="868.4860325297327" y2="684" stroke="#8ea2bd" stroke-width="2"/><text x="846.2430162648664" y="672" fill="#8ea2bd" font-size="13" text-anchor="middle" font-family="Menlo,monospace">1 km</text></g>
+</g>
+<text x="40" y="878" fill="#5b6b82" font-size="13" font-family="Menlo,monospace">GEOVALID-2 owner review pack · before/after linework · TroutSite NHD flip lane</text>
+<text x="1520" y="878" fill="#5b6b82" font-size="13" text-anchor="end" font-family="Menlo,monospace">generated 2026-09-11</text>
+</svg>
