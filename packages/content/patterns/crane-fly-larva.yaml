@@ -1,0 +1,16 @@
+id: crane-fly-larva
+name: Crane Fly Larva
+type: nymph
+imitates:
+  - crane-fly
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 1
+materials:
+  - cream-tan dubbing
+  - leather-look segmentation
+  - soft hen collar
+notes: A fat, creamy larva for leafy banks.
+license: public-domain

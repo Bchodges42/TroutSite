@@ -1,0 +1,11 @@
+# ROLE 5 — affiliate partner registry (v1: reserved but inert, all entries disabled).
+# Schema per entry: id | name | url | category | enabled | note
+# Rules + go-live checklist: see GROWTH.md. The component renders links only
+# for `enabled: true`; every v1 entry ships false so zero sponsored links render.
+partners:
+  - id: example-fly-shop
+    name: Example Fly Shop
+    url: https://example.com/aff/example-fly-shop
+    category: shop
+    enabled: false
+    note: Placeholder entry that documents the registry shape; no live affiliate relationships exist in v1.

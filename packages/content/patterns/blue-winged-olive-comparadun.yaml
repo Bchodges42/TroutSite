@@ -1,0 +1,18 @@
+id: blue-winged-olive-comparadun
+name: BWO Comparadun
+type: dry
+imitates:
+  - blue-winged-olive
+  - tiny-blue-winged-olive
+hookSizes:
+  - 18
+  - 20
+  - 22
+difficulty: 3
+materials:
+  - olive dubbing
+  - natural deer hair wing
+  - z-lon shuck
+notes: No hackle, just a spent-wing silhouette — the flat-water specialist.
+license: attributed
+attribution: Comparadun style developed by Al Caucci & Bob Nastasi

@@ -1,0 +1,103 @@
+id: slate-drake
+commonName: Slate Drake
+sciName: Isonychia bicolor
+order: Ephemeroptera
+family: Isonychiidae
+sizeRange:
+  - 8
+  - 12
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - mahogany
+    - dark-brown
+    - slate-gray
+  mouthparts: filtering-collector
+habitat:
+  - riffles
+  - current seams
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/slate-drake.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Fast-swimming, mahogany-bodied crawlers with white gill tufts that dart in short bursts.
+  Duns hatch in fast water and spinners return in swirling evening clouds — a premier Tennessee
+  summer hatch.
+sources:
+  - https://en.wikipedia.org/wiki/Isonychia
+  - https://bugguide.net

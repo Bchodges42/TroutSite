@@ -1,0 +1,27 @@
+id: south-holston-lake
+name: South Holston Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-holston
+gaugeIds:
+  - "03476500"
+stockingProgram: false
+species: warmwater
+idealFlow: []
+notes: >-
+  TVA reservoir on the South Fork Holston River above Bristol (Sullivan
+  County, Tennessee, and Washington County, Virginia), impounded by South
+  Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726). Discharges
+  the South Holston tailwater (south-holston-river) toward Boone Lake. The
+  lake crosses the state line into Virginia, so the mapped water covers the
+  full reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes
+  7,580 ac at full pool.
+officialSources:
+  - label: USGS Water Data — monitoring location 03476500
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+  - label: TVA — South Holston Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

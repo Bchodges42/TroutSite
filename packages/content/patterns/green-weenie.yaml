@@ -1,0 +1,17 @@
+id: green-weenie
+name: Green Weenie
+type: terrestrial
+imitates:
+  - inchworm
+  - green-sedge
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 1
+materials:
+  - bright green chenille
+  - hackled collar
+notes: A legendary Appalachian pattern that happens to look exactly like an inchworm.
+license: public-domain

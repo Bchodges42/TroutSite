@@ -1,0 +1,59 @@
+id: snail-case-caddis
+commonName: Snail-Case Caddis
+sciName: Helicopsyche borealis
+order: Trichoptera
+family: Helicopsychidae
+sizeRange:
+  - 16
+  - 20
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - cream-speckled
+    - gray-cream
+  mouthparts: grazing-scraper
+habitat:
+  - sand and gravel flats
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/snail-case-caddis.svg
+stages:
+  - larva
+notes: Larvae glue spiral sand cases that look exactly like tiny snail shells — an angler’s
+  first "snail" is usually this caddis. Gray-cream pupa patterns on gravel flats work in late
+  summer.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

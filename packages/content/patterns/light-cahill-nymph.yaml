@@ -1,0 +1,18 @@
+id: light-cahill-nymph
+name: Light Cahill Nymph
+type: nymph
+imitates:
+  - light-cahill
+  - cream-cahill
+  - golden-flathead
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - pale ginger dubbing
+  - ginger hen hackle
+  - cream antron
+notes: A pale, cream-ginger nymph for summer cahill water.
+license: public-domain

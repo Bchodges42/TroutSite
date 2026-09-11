@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import AffiliateLink from '../../components/AffiliateLink.astro';
+import { POSTS } from '../../data/posts';
+
+const post = POSTS.find((p) => p.slug === 'why-offline-first')!;
+---
+
+<Base title={post.title} description={post.description} path="/blog/why-offline-first/">
+  <p class="kicker"><time datetime={post.date}>{post.date}</time> · launch notes</p>
+  <h1>{post.title}</h1>
+  <p class="lead">
+    "Offline-first" sounds like a performance feature. It's really the privacy architecture — and
+    the reason the app is useful at the exact moment you built it for.
+  </p>
+
+  <h2>The test is airplane mode</h2>
+  <p>
+    The rule for every core feature is simple: turn the radio off, cold-start the app, and see if it
+    still answers. The hatch key, the ID flow, the hatch charts, and your last-known conditions all
+    pass. Anything that can't pass that test is an enhancement, not a feature — and it gets designed
+    so its absence is graceful (a timestamped "last updated" chip, not a spinner of doom).
+  </p>
+
+  <h2>Why that's the privacy story too</h2>
+  <p>
+    An app that works offline makes almost no network requests, so there's almost nothing to
+    over-collect. Location matching happens on the device against the stream catalog. Scoring and
+    hatch matching are pure functions in a shared contracts package — the same code the site and app
+    use, with no server in the loop. And the automated privacy test in the QA suite fails the build
+    if a third-party request or a coordinate ever shows up in the request log. That's a stronger
+    guarantee than any policy paragraph.
+  </p>
+
+  <h2>What "deep not wide" bought us</h2>
+  <p>
+    One launch state (Tennessee) means the hatch charts, ideal-flow ranges, and stocking pages can
+    be genuinely useful instead of a half-empty atlas. The programmatic templates on this site are
+    data-driven — a second state later is data entry, not a rewrite.
+  </p>
+
+  <h2>Gear note (no affiliate links yet)</h2>
+  <p>
+    People ask what to tie on while learning the key: a box of pheasant tails, zebra midges, and
+    olive scuds covers most tailwater situations. We'll list trusted shops here when the affiliate
+    program goes live in v2 — the slots exist and are deliberately inert:
+    <AffiliateLink partnerId="example-fly-shop" />.
+  </p>
+</Base>

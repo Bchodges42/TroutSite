@@ -1,0 +1,47 @@
+id: dark-blue-sedge
+commonName: Dark Blue Sedge
+sciName: Psilotreta labida
+order: Trichoptera
+family: Odontoceridae
+sizeRange:
+  - 10
+  - 14
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - dark-blue-gray
+    - black-gray
+  mouthparts: shredding-detritivore
+habitat:
+  - riffles
+  - gravel runs
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 6
+    - 7
+    - 8
+illustration: illustrations/dark-blue-sedge.svg
+stages:
+  - adult
+notes: "Larvae build slightly curved gravel cases; adults are distinctive slate-blue-gray sedges
+  of summer riffles. A dark-gray #12 caddis dry earns strikes in mountain rivers."
+sources:
+  - https://bugguide.net

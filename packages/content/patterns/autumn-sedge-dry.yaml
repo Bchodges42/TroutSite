@@ -1,0 +1,17 @@
+id: autumn-sedge-dry
+name: Autumn Sedge Dry
+type: dry
+imitates:
+  - great-autumn-sedge
+  - autumn-mottled-sedge
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - orange-brown dubbing
+  - mottled deer hair wing
+  - brown palmer hackle
+notes: The October caddis dry — big, orange, and unapologetic along dark banks.
+license: public-domain

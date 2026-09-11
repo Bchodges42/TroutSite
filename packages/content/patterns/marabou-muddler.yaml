@@ -1,0 +1,18 @@
+id: marabou-muddler
+name: Marabou Muddler
+type: streamer
+imitates:
+  - sculpin
+  - creek-chub
+  - stoneroller
+hookSizes:
+  - 4
+  - 6
+  - 8
+difficulty: 2
+materials:
+  - marabou wing
+  - spun deer hair head
+  - turkey quill
+notes: A breathier muddler — the pulse of marabou sells it on the swing.
+license: public-domain

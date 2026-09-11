@@ -1,0 +1,16 @@
+id: october-caddis-larva
+name: October Caddis Larva
+type: nymph
+imitates:
+  - great-autumn-sedge
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - mottled orange-brown dubbing
+  - dark turkey case
+  - partridge
+notes: A big cased-caddis profile for fall nymphing.
+license: public-domain

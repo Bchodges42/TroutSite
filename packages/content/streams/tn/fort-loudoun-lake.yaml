@@ -1,0 +1,24 @@
+id: fort-loudoun-lake
+name: Fort Loudoun Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-clinch
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  TVA reservoir at Knoxville across Knox, Blount, and Loudon counties,
+  impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge,
+  35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and
+  French Broad main stems and the Little Tennessee arm (Tellico Lake joins via
+  the canal); discharges into Watts Bar Lake. TVA lists the reservoir at
+  14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.
+officialSources:
+  - label: USGS Water Data — monitoring location 03499510
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+  - label: TVA — Fort Loudoun Reservoir lake levels
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

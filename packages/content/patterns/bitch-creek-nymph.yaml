@@ -1,0 +1,18 @@
+id: bitch-creek-nymph
+name: Bitch Creek Nymph
+type: nymph
+imitates:
+  - giant-black-stone
+  - hellgrammite
+hookSizes:
+  - 4
+  - 6
+  - 8
+difficulty: 2
+materials:
+  - yellow and black chenille
+  - rubber legs
+  - brown hackle
+notes: A big-legged Western original that reads as a stonefly or hellgrammite — great big-fish
+  insurance.
+license: public-domain

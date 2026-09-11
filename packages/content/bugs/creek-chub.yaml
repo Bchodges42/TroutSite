@@ -1,0 +1,108 @@
+id: creek-chub
+commonName: Creek Chub
+sciName: Semotilus atromaculatus
+order: Cypriniformes
+family: Cyprinidae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive-brown
+    - dusky-olive
+  mouthparts: omnivorous
+habitat:
+  - pools
+  - creeks
+  - " undercut banks"
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/creek-chub.svg
+stages:
+  - adult
+notes: Robust little chubs with a dark front spot, ubiquitous in every creek. Small olive-brown
+  streamers in pocket water take trout that are tired of tiny dries.
+sources:
+  - https://en.wikipedia.org/wiki/Semotilus_atromaculatus

@@ -1,0 +1,18 @@
+id: henryville-special
+name: Henryville Special
+type: dry
+imitates:
+  - little-yellow-quill
+  - light-cahill
+  - little-sister-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 3
+materials:
+  - pale ginger body
+  - wood duck flank wings
+  - palmered hackle
+notes: A beloved Eastern creek fly that reads as cahill or small caddis.
+license: public-domain

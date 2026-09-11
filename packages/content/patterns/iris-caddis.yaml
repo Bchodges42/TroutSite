@@ -1,0 +1,18 @@
+id: iris-caddis
+name: Iris Caddis
+type: emerger
+imitates:
+  - spotted-sedge
+  - little-sister-sedge
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 3
+materials:
+  - white Antron bubble
+  - pale dubbing
+  - soft hackle
+notes: Gary LaFontaine’s white-bubble emerger — the secret handshake of caddis emergence.
+license: attributed
+attribution: Designed by Gary LaFontaine

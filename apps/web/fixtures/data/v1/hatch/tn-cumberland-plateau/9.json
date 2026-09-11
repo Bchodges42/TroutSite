@@ -1,0 +1,42 @@
+{
+  "regionId": "tn-cumberland-plateau",
+  "month": 9,
+  "entries": [
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "green-rock-worm"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "elk-hair-caddis"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    }
+  ]
+}

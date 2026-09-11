@@ -1,0 +1,52 @@
+id: black-dancer-caddis
+commonName: Black Dancer
+sciName: Mystacides sepulchralis
+order: Trichoptera
+family: Leptoceridae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - black
+    - iridescent-dark
+  mouthparts: collector-gatherer
+habitat:
+  - tailwaters
+  - weedy runs
+  - slack water
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+illustration: illustrations/black-dancer-caddis.svg
+stages:
+  - adult
+notes: Jet-black adults with iridescent blue-purple wings that bob and dance over tailwater
+  flats in summer dusk. Skitter a small black dry and watch boils follow.
+sources:
+  - https://bugguide.net

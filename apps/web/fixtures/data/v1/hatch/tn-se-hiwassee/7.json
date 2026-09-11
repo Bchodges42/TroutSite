@@ -1,0 +1,97 @@
+{
+  "regionId": "tn-se-hiwassee",
+  "month": 7,
+  "entries": [
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "golden-stone-nymph"
+      ]
+    },
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "dun",
+      "timeOfDay": "evening",
+      "abundance": 4,
+      "patterns": [
+        "slate-drake-dun"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "green-rock-worm"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 4,
+      "patterns": [
+        "elk-hair-caddis"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    },
+    {
+      "taxonId": "gammarus-scud",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 2,
+      "patterns": [
+        "olive-scud"
+      ]
+    },
+    {
+      "taxonId": "caecidotea-sowbug",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 2,
+      "patterns": [
+        "gray-sowbug"
+      ]
+    },
+    {
+      "taxonId": "acroneuria-golden-stone",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "golden-stone-nymph",
+        "pats-rubber-legs"
+      ]
+    },
+    {
+      "taxonId": "acroneuria-golden-stone",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 4,
+      "patterns": [
+        "stimulator"
+      ]
+    }
+  ]
+}

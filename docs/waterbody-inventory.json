@@ -1,0 +1,980 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-09-04",
+  "referenceDocument": "Tennessee-Lakes-Rivers-Map.jpg",
+  "statusVocabulary": ["exists-ok", "fragmented", "missing-line", "missing-polygon", "needs-trace"],
+  "crossCheckSources": {
+    "streamsJson": "apps/web/public/v1/streams.json",
+    "contentYaml": "packages/content/streams/tn/*.yaml",
+    "riversGeojson": "apps/web/public/atlas/rivers.geojson",
+    "lakesGeojson": "apps/web/public/atlas/lakes.geojson"
+  },
+  "waterbodies": [
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Mississippi River",
+      "normalizedName": "Mississippi River",
+      "type": "river",
+      "countyOrRegion": "West Tennessee boundary; Shelby, Tipton, Lauderdale, Dyer, and Lake counties",
+      "approximateLocation": {
+        "longitude": -90.05,
+        "latitude": 35.4,
+        "description": "western Tennessee state boundary"
+      },
+      "proposedFeatureId": "mississippi-river",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "No canonical interactive catalog feature or line geometry exists.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Obion R",
+      "normalizedName": "Obion River",
+      "type": "river",
+      "countyOrRegion": "Northwest Tennessee; Obion, Dyer, and Lake counties",
+      "approximateLocation": {
+        "longitude": -89.15,
+        "latitude": 36.2,
+        "description": "west-flowing river north of the Hatchie"
+      },
+      "proposedFeatureId": "obion-river",
+      "aliases": ["Obion R"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "No canonical interactive catalog feature or line geometry exists.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Hatchie",
+      "normalizedName": "Hatchie River",
+      "type": "river",
+      "countyOrRegion": "West Tennessee; Hardeman, Haywood, Tipton, and Lauderdale counties",
+      "approximateLocation": {
+        "longitude": -89.15,
+        "latitude": 35.55,
+        "description": "west-flowing river through the Hatchie corridor"
+      },
+      "proposedFeatureId": "hatchie-river",
+      "aliases": ["Hatchie"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "No canonical interactive catalog feature or line geometry exists.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Wolf R",
+      "normalizedName": "Wolf River",
+      "type": "river",
+      "countyOrRegion": "Southwest Tennessee; Fayette and Shelby counties",
+      "approximateLocation": {
+        "longitude": -89.75,
+        "latitude": 35.1,
+        "description": "west-flowing Wolf River through Memphis"
+      },
+      "proposedFeatureId": "wolf-river-west-tennessee",
+      "aliases": ["Wolf R"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "The existing wolf-river-fentress is a different Cumberland Plateau waterbody and must not be reused.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Tennessee River",
+      "normalizedName": "Tennessee River",
+      "type": "river",
+      "countyOrRegion": "East and West Tennessee; Chattanooga-to-Kentucky Lake corridor",
+      "approximateLocation": {
+        "longitude": -87.95,
+        "latitude": 35.6,
+        "description": "main Tennessee River corridor, shown in both East and West Tennessee"
+      },
+      "proposedFeatureId": "tennessee-river",
+      "aliases": ["River (west of Kentucky Lake)"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "The reference repeats one continuous named river; create one canonical feature, not east/west duplicates.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Cumberland",
+      "normalizedName": "Cumberland River",
+      "type": "river",
+      "countyOrRegion": "Middle and Northwest Tennessee; Davidson to Stewart counties",
+      "approximateLocation": {
+        "longitude": -87.05,
+        "latitude": 36.2,
+        "description": "Nashville-to-Lake Barkley corridor"
+      },
+      "proposedFeatureId": "cumberland-river",
+      "aliases": ["Cumberland"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "South Fork Cumberland River is distinct and is not an alias for this main-stem feature.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Duck R",
+      "normalizedName": "Duck River",
+      "type": "river",
+      "countyOrRegion": "South-central and West Tennessee; Bedford, Maury, Hickman, Perry, and Humphreys counties",
+      "approximateLocation": {
+        "longitude": -86.474041,
+        "latitude": 35.475431,
+        "description": "lower Duck River west of Shelbyville"
+      },
+      "proposedFeatureId": "duck-river-lower",
+      "aliases": ["Duck R", "Duck River (Shelbyville to Columbia)"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "DONE 2026-09-04: GEO lane corrected duck-river-lower to its catalog reach Shelbyville-to-Columbia (GEO-AUDIT) and rebuilt duck-river-tailwater to one continuous chunk (30 parts/3 chunks -> 126 parts/1 chunk per CONTINUITY-AUDIT before/after); tailwater remains a distinct managed reach.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Buffalo R",
+      "normalizedName": "Buffalo River",
+      "type": "river",
+      "countyOrRegion": "West Middle Tennessee; Lewis, Perry, and Humphreys counties",
+      "approximateLocation": {
+        "longitude": -87.65,
+        "latitude": 35.55,
+        "description": "north-flowing tributary to the Duck River"
+      },
+      "proposedFeatureId": "buffalo-river",
+      "aliases": ["Buffalo R"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "Little Buffalo River is a distinct catalog feature and must not be treated as this river.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "River (at Center Hill outlet)",
+      "normalizedName": "Caney Fork River",
+      "type": "river",
+      "countyOrRegion": "Middle Tennessee; DeKalb, Smith, and adjacent counties",
+      "approximateLocation": {
+        "longitude": -85.7264,
+        "latitude": 35.9783,
+        "description": "Center Hill tailwater and lower Caney Fork corridor"
+      },
+      "proposedFeatureId": "caney-fork-river",
+      "aliases": ["Caney Fork River (Center Hill tailwater)"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "fragmented",
+      "verdict": "Placement identifies the partially rendered reference label as Caney Fork River. Existing geometry is the managed tailwater/corridor, not a verified full main stem.",
+      "locationConfidence": "medium"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Elk R",
+      "normalizedName": "Elk River",
+      "type": "river",
+      "countyOrRegion": "South Middle Tennessee; Franklin, Lincoln, and Giles counties",
+      "approximateLocation": {
+        "longitude": -86.764022,
+        "latitude": 35.100085,
+        "description": "Tims Ford tailwater west toward the Alabama line"
+      },
+      "proposedFeatureId": "elk-river",
+      "aliases": ["Elk R", "Elk River (Tims Ford tailwater)"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "DONE 2026-09-04: elk-river rebuilt continuous below Tims Ford Dam to Prospect (114 parts/9 chunks -> 372 parts/1 chunk per CONTINUITY-AUDIT before/after, GEO-AUDIT reach correction); elk-river-lower remains a distinct catalog reach.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Sequatchie",
+      "normalizedName": "Sequatchie River",
+      "type": "river",
+      "countyOrRegion": "Sequatchie Valley; Bledsoe, Sequatchie, and Marion counties",
+      "approximateLocation": {
+        "longitude": -85.017803,
+        "latitude": 35.765544,
+        "description": "existing headwater anchor in the Sequatchie Valley"
+      },
+      "proposedFeatureId": "sequatchie-river",
+      "aliases": ["Sequatchie", "Sequatchie River (headwaters)"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "fragmented",
+      "verdict": "Only the catalog headwater reach exists; the reference depicts the longer valley river.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Hiwassee R",
+      "normalizedName": "Hiwassee River",
+      "type": "river",
+      "countyOrRegion": "Southeast Tennessee; Polk, Bradley, McMinn, and Meigs counties",
+      "approximateLocation": {
+        "longitude": -84.4479,
+        "latitude": 35.1897,
+        "description": "Appalachia tailwater and Reliance corridor"
+      },
+      "proposedFeatureId": "hiwassee-river",
+      "aliases": ["Hiwassee R", "Hiwassee River (Appalachia tailwater / Reliance)"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "fragmented",
+      "verdict": "The trout corridor exists; the full reference main stem is not represented continuously.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Clinch R",
+      "normalizedName": "Clinch River",
+      "type": "river",
+      "countyOrRegion": "East Tennessee; Anderson, Campbell, and Knox counties",
+      "approximateLocation": {
+        "longitude": -84.0702,
+        "latitude": 36.2321,
+        "description": "Norris tailwater corridor"
+      },
+      "proposedFeatureId": "clinch-river",
+      "aliases": ["Clinch R", "Clinch River (Norris tailwater)"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "fragmented",
+      "verdict": "The Norris tailwater exists; the reference river extends beyond that managed reach.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Holston R",
+      "normalizedName": "Holston River",
+      "type": "river",
+      "countyOrRegion": "Northeast and East Tennessee; Hawkins, Grainger, Jefferson, and Knox counties",
+      "approximateLocation": {
+        "longitude": -83.35,
+        "latitude": 36.2,
+        "description": "main Holston below the North/South Fork confluence"
+      },
+      "proposedFeatureId": "holston-river",
+      "aliases": ["Holston R"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-line",
+      "verdict": "South Fork Holston and its tailwaters are distinct existing features; none is the reference main stem.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Lake Barkley",
+      "normalizedName": "Lake Barkley",
+      "type": "lake",
+      "countyOrRegion": "Northwest Middle Tennessee; Stewart and Montgomery counties",
+      "approximateLocation": {
+        "longitude": -87.8972,
+        "latitude": 36.5674,
+        "description": "Cumberland River reservoir at the Kentucky line"
+      },
+      "proposedFeatureId": "lake-barkley",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "A MultiPolygon and label anchor exist in passive lakes.geojson; a matching catalog record is still required before promotion to interaction.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Kentucky Lake",
+      "normalizedName": "Kentucky Lake",
+      "type": "lake",
+      "countyOrRegion": "West Tennessee; Hardin, Decatur, Benton, Houston, and Stewart counties",
+      "approximateLocation": {
+        "longitude": -87.9442,
+        "latitude": 36.1258,
+        "description": "Tennessee River reservoir through West Tennessee"
+      },
+      "proposedFeatureId": "kentucky-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "A MultiPolygon and label anchor exist in passive lakes.geojson; a matching catalog record is still required before promotion to interaction.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Old Hickory Lake",
+      "normalizedName": "Old Hickory Lake",
+      "type": "lake",
+      "countyOrRegion": "Middle Tennessee; Davidson, Sumner, Wilson, Smith, and Trousdale counties",
+      "approximateLocation": {
+        "longitude": -86.634,
+        "latitude": 36.2621,
+        "description": "Cumberland River reservoir east of Nashville"
+      },
+      "proposedFeatureId": "old-hickory-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "J Percy Priest Lake",
+      "normalizedName": "J. Percy Priest Lake",
+      "type": "lake",
+      "countyOrRegion": "Middle Tennessee; Davidson, Rutherford, and Wilson counties",
+      "approximateLocation": {
+        "longitude": -86.5786,
+        "latitude": 36.1083,
+        "description": "Stones River reservoir southeast of Nashville"
+      },
+      "proposedFeatureId": "j-percy-priest-lake",
+      "aliases": ["J Percy Priest Lake", "Percy Priest Lake"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is canonical; preserve punctuation only in the display name, not the ID.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Tims Ford Lake",
+      "normalizedName": "Tims Ford Lake",
+      "type": "lake",
+      "countyOrRegion": "South Middle Tennessee; Franklin and Moore counties",
+      "approximateLocation": {
+        "longitude": -86.1926,
+        "latitude": 35.228,
+        "description": "Elk River reservoir near Winchester"
+      },
+      "proposedFeatureId": "tims-ford-lake",
+      "aliases": ["Tim's Ford Lake"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon resolves the reference's apostrophe variant to the official catalog-style spelling.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Pickwick Lake",
+      "normalizedName": "Pickwick Lake",
+      "type": "lake",
+      "countyOrRegion": "Southwest Tennessee; Hardin County",
+      "approximateLocation": {
+        "longitude": -88.25,
+        "latitude": 35.05,
+        "description": "Tennessee River reservoir at Pickwick Landing"
+      },
+      "proposedFeatureId": "pickwick-lake",
+      "aliases": ["Pickwick Landing Lake"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Do not treat the Kentucky Lake polygon, whose southern bound is 35.2505, as Pickwick Lake.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Center Hill Lake",
+      "normalizedName": "Center Hill Lake",
+      "type": "lake",
+      "countyOrRegion": "Middle Tennessee; DeKalb, Putnam, White, and Warren counties",
+      "approximateLocation": {
+        "longitude": -85.8124,
+        "latitude": 36.0451,
+        "description": "Caney Fork reservoir east of Smithville"
+      },
+      "proposedFeatureId": "center-hill-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Dale Hollow Lake",
+      "normalizedName": "Dale Hollow Lake",
+      "type": "lake",
+      "countyOrRegion": "Upper Cumberland; Clay, Pickett, and Overton counties",
+      "approximateLocation": {
+        "longitude": -85.3784,
+        "latitude": 36.5727,
+        "description": "Obey River reservoir at the Kentucky line"
+      },
+      "proposedFeatureId": "dale-hollow-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Watts Bar Lake",
+      "normalizedName": "Watts Bar Lake",
+      "type": "lake",
+      "countyOrRegion": "East Tennessee; Roane, Meigs, Rhea, and Loudon counties",
+      "approximateLocation": {
+        "longitude": -84.6151,
+        "latitude": 35.811,
+        "description": "Tennessee River reservoir between Fort Loudoun and Watts Bar dams"
+      },
+      "proposedFeatureId": "watts-bar-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Chickamauga Lake",
+      "normalizedName": "Chickamauga Lake",
+      "type": "lake",
+      "countyOrRegion": "Southeast Tennessee; Hamilton, Bradley, Meigs, and Rhea counties",
+      "approximateLocation": {
+        "longitude": -84.935,
+        "latitude": 35.411,
+        "description": "Tennessee River reservoir north of Chattanooga"
+      },
+      "proposedFeatureId": "chickamauga-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Norris Lake",
+      "normalizedName": "Norris Lake",
+      "type": "lake",
+      "countyOrRegion": "East Tennessee; Anderson, Campbell, Claiborne, Grainger, and Union counties",
+      "approximateLocation": {
+        "longitude": -83.9242,
+        "latitude": 36.2748,
+        "description": "Clinch River reservoir above Norris Dam"
+      },
+      "proposedFeatureId": "norris-lake",
+      "aliases": ["Norris Reservoir"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Fort Loudoun Lake",
+      "normalizedName": "Fort Loudoun Lake",
+      "type": "lake",
+      "countyOrRegion": "East Tennessee; Knox, Blount, and Loudon counties",
+      "approximateLocation": {
+        "longitude": -84.0599,
+        "latitude": 35.8485,
+        "description": "upper Tennessee River reservoir southwest of Knoxville"
+      },
+      "proposedFeatureId": "fort-loudoun-lake",
+      "aliases": ["Fort Loudon Lake"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon resolves the common Loudon/Loudoun spelling variant to Loudoun.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Cherokee L",
+      "normalizedName": "Cherokee Lake",
+      "type": "lake",
+      "countyOrRegion": "East Tennessee; Grainger, Hamblen, Hawkins, and Jefferson counties",
+      "approximateLocation": {
+        "longitude": -83.3249,
+        "latitude": 36.3,
+        "description": "Holston River reservoir northeast of Knoxville"
+      },
+      "proposedFeatureId": "cherokee-lake",
+      "aliases": ["Cherokee L", "Cherokee Reservoir"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "Douglas Lake",
+      "normalizedName": "Douglas Lake",
+      "type": "lake",
+      "countyOrRegion": "East Tennessee; Cocke, Jefferson, Sevier, and Hamblen counties",
+      "approximateLocation": {
+        "longitude": -83.3564,
+        "latitude": 36.0121,
+        "description": "French Broad River reservoir east of Knoxville"
+      },
+      "proposedFeatureId": "douglas-lake",
+      "aliases": ["Douglas Reservoir"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "reference-document",
+      "referenceLabel": "S Holston Lake",
+      "normalizedName": "South Holston Lake",
+      "type": "lake",
+      "countyOrRegion": "Northeast Tennessee; Sullivan County and adjacent Virginia",
+      "approximateLocation": {
+        "longitude": -82.0576,
+        "latitude": 36.5242,
+        "description": "South Fork Holston reservoir east of Bristol"
+      },
+      "proposedFeatureId": "south-holston-lake",
+      "aliases": ["S Holston Lake", "South Holston Reservoir"],
+      "crossCheck": {
+        "streamsJson": false,
+        "contentYaml": false,
+        "riversGeojson": false,
+        "lakesGeojson": true
+      },
+      "geometryStatus": "exists-ok",
+      "verdict": "Existing passive MultiPolygon is suitable for catalog promotion after source/provenance confirmation.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Shelby Farms Lake",
+      "type": "lake",
+      "countyOrRegion": "Memphis, Shelby County",
+      "approximateLocation": {
+        "longitude": -89.83274,
+        "latitude": 35.13617,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "shelby-farms-lake",
+      "aliases": ["Shelby Farms"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Cameron Brown Lake",
+      "type": "lake",
+      "countyOrRegion": "Germantown, Shelby County",
+      "approximateLocation": {
+        "longitude": -89.77231,
+        "latitude": 35.10075,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "cameron-brown-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Edmund-Orgill Park Lake",
+      "type": "lake",
+      "countyOrRegion": "Millington, Shelby County",
+      "approximateLocation": {
+        "longitude": -89.83304,
+        "latitude": 35.37218,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "edmund-orgill-lake",
+      "aliases": ["Edmund-Orgill Park"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Yale Road Park Lake",
+      "type": "lake",
+      "countyOrRegion": "Bartlett, Shelby County",
+      "approximateLocation": {
+        "longitude": -89.85666,
+        "latitude": 35.21675,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "yale-road-park-lake",
+      "aliases": ["Yale Road Park"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Johnson Park Lake",
+      "type": "lake",
+      "countyOrRegion": "Memphis, Shelby County",
+      "approximateLocation": {
+        "longitude": -90.049,
+        "latitude": 35.149,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "johnson-park-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Valentine Park Pond",
+      "type": "pond",
+      "countyOrRegion": "Munford, Tipton County",
+      "approximateLocation": {
+        "longitude": -89.80061,
+        "latitude": 35.46365,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "valentine-park-pond",
+      "aliases": ["Valentine Park"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Covington First Baptist Church Pond",
+      "type": "pond",
+      "countyOrRegion": "Covington, Tipton County",
+      "approximateLocation": {
+        "longitude": -89.64875,
+        "latitude": 35.55623,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "covington-fbc-pond",
+      "aliases": ["Covington FBC Pond"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Martin City Pond",
+      "type": "pond",
+      "countyOrRegion": "Martin, Weakley County",
+      "approximateLocation": {
+        "longitude": -88.84881,
+        "latitude": 36.30979,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "martin-city-pond",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Milan City Pond",
+      "type": "pond",
+      "countyOrRegion": "Milan, Gibson County",
+      "approximateLocation": {
+        "longitude": -88.7302,
+        "latitude": 35.92169,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "milan-city-pond",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Paris City Park Lake",
+      "type": "lake",
+      "countyOrRegion": "Paris, Henry County",
+      "approximateLocation": {
+        "longitude": -88.31,
+        "latitude": 36.302,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "paris-city-park-lake",
+      "aliases": ["Paris City Park"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Beech Lake",
+      "type": "lake",
+      "countyOrRegion": "Lexington, Henderson County",
+      "approximateLocation": {
+        "longitude": -88.42272,
+        "latitude": 35.68474,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "beech-lake",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Lake Graham",
+      "type": "lake",
+      "countyOrRegion": "Jackson, Madison County",
+      "approximateLocation": {
+        "longitude": -88.835,
+        "latitude": 35.614,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "lake-graham",
+      "aliases": [],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    },
+    {
+      "inventoryBasis": "explicit-point-upgrade",
+      "referenceLabel": null,
+      "normalizedName": "Union City Reelfoot Packing Site Pond",
+      "type": "pond",
+      "countyOrRegion": "Union City, Obion County",
+      "approximateLocation": {
+        "longitude": -89.055,
+        "latitude": 36.426,
+        "description": "current TWRA winter-water point anchor"
+      },
+      "proposedFeatureId": "union-city-reelfoot-pond",
+      "aliases": ["Union City Reelfoot Packing Site"],
+      "crossCheck": {
+        "streamsJson": true,
+        "contentYaml": true,
+        "riversGeojson": true,
+        "lakesGeojson": false
+      },
+      "geometryStatus": "missing-polygon",
+      "verdict": "Upgrade the current Point in place; preserve its ID and catalog record.",
+      "locationConfidence": "high"
+    }
+  ]
+}

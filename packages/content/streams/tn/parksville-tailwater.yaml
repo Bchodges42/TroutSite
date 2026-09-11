@@ -1,0 +1,28 @@
+id: parksville-tailwater
+name: Parksville Lake Tailwater (Ocoee No. 1 reach)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-se-hiwassee
+gaugeIds:
+  - "03564500"
+  - "tva:OCAT1"
+stockingProgram: true
+species: trout
+fishery: tailwater
+yearRound: false
+idealFlow:
+  - min: 100
+    max: 800
+    unit: cfs
+notes: TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow), stocked
+  March through May. The reach below Parksville Dam mixes whitewater recreation schedules with
+  cold releases — verify TVA’s Ocoee No. 1 flow before you go.
+officialSources:
+  - label: USGS Water Data — monitoring location 03564500
+    url: https://waterdata.usgs.gov/monitoring-location/03564500/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

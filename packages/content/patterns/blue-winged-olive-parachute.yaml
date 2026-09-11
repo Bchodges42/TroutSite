@@ -1,0 +1,20 @@
+id: blue-winged-olive-parachute
+name: Blue-Winged Olive Parachute
+type: dry
+imitates:
+  - blue-winged-olive
+  - tiny-blue-winged-olive
+  - little-blue-winged-olive
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 2
+materials:
+  - olive dubbing
+  - blue dun parachute hackle
+  - white poly wingpost
+notes: The modern default BWO — lands flush, visible, and universal on Tennessee tailwaters.
+license: public-domain

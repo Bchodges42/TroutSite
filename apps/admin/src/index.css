@@ -1,0 +1,188 @@
+/* OWNER: ROLE 4 — portal layout styles on top of @trout/ui tokens (no Tailwind here). */
+
+body {
+  background: var(--trout-color-bg);
+  color: var(--trout-color-text);
+  font-family: var(--trout-font-body);
+}
+
+.portal-shell {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.portal-shell--narrow {
+  max-width: 560px;
+}
+
+.portal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.portal-header h1 {
+  margin: 0 0 0.15rem;
+  font-size: 1.4rem;
+}
+
+.portal-header p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.portal-header__side {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.portal-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.portal-muted {
+  color: var(--trout-color-text-muted);
+}
+
+.portal-error {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0;
+}
+
+.portal-success {
+  color: var(--trout-green-700);
+  font-size: 0.9rem;
+}
+
+.portal-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.field__label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.field__hint {
+  color: var(--trout-color-text-muted);
+  font-size: 0.75rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid var(--trout-color-border);
+  border-radius: var(--trout-radius-md, 8px);
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  background: var(--trout-color-surface);
+  color: var(--trout-color-text);
+}
+
+.portal-fieldset {
+  border: 1px solid var(--trout-color-border);
+  border-radius: var(--trout-radius-md, 8px);
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.portal-pattern-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.portal-pattern-row select {
+  flex: 1;
+  border: 1px solid var(--trout-color-border);
+  border-radius: var(--trout-radius-md, 8px);
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  background: var(--trout-color-surface);
+}
+
+.portal-pattern-row input {
+  width: 5.5rem;
+  border: 1px solid var(--trout-color-border);
+  border-radius: var(--trout-radius-md, 8px);
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+}
+
+.portal-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.portal-history {
+  display: grid;
+  gap: 1rem;
+}
+
+.portal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.portal-list__item {
+  border: 1px solid var(--trout-color-border);
+  border-radius: var(--trout-radius-md, 8px);
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.4rem;
+  background: var(--trout-color-surface);
+}
+
+.portal-list__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.portal-list__meta span {
+  color: var(--trout-color-text-muted);
+}
+
+.portal-list__body {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.portal-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.portal-footnote {
+  margin-top: 0.5rem;
+}

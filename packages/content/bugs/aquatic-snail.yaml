@@ -1,0 +1,107 @@
+id: aquatic-snail
+commonName: Aquatic Snail
+sciName: Physidae / Pleuroceridae
+order: Gastropoda
+family: Physidae / Pleuroceridae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive
+    - brown
+    - black
+  mouthparts: grazing-scraper
+habitat:
+  - weeds
+  - rock and gravel
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+illustration: illustrations/aquatic-snail.svg
+stages:
+  - larva
+notes: Abundant on tailwater weeds; dislodged snails ride the drift like tiny olive-black
+  commas. Most "weird small black thing" refusals on the SOHO are snail-curious trout.
+sources:
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

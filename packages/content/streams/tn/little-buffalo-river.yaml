@@ -1,0 +1,20 @@
+id: little-buffalo-river
+name: Little Buffalo River
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 20
+    max: 120
+    unit: cfs
+notes: TWRA spring-stocked Lawrence County creek in the Buffalo River system.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,75 @@
+id: grasshopper
+commonName: Grasshopper
+sciName: Melanoplus spp.
+order: Orthoptera
+family: Acrididae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - yellow-olive
+    - tan
+    - brown
+  mouthparts: chewing
+habitat:
+  - meadows
+  - grass banks
+  - farm-field rivers
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-nashville:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-upper-cumberland:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/grasshopper.svg
+stages:
+  - adult
+notes: Grass-bank rivers in Middle Tennessee are hopper country from July to frost. A
+  hopper-dropper rig — foam hopper over a small nymph — is the workhorse of late summer.
+sources:
+  - https://en.wikipedia.org/wiki/Melanoplus
+  - https://bugguide.net

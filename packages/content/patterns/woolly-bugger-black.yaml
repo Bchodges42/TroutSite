@@ -1,0 +1,20 @@
+id: woolly-bugger-black
+name: Woolly Bugger (Black)
+type: streamer
+imitates:
+  - leech
+  - sculpin
+  - hellgrammite
+hookSizes:
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 1
+materials:
+  - black marabou tail
+  - black chenille
+  - black saddle hackle
+notes: The low-light and cold-water bugger.
+license: attributed
+attribution: Designed by Russell Blessing (1967)

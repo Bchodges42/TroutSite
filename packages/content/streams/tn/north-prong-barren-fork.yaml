@@ -1,0 +1,20 @@
+id: north-prong-barren-fork
+name: North Prong Barren Fork River
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-caney-fork
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 10
+    max: 70
+    unit: cfs
+notes: TWRA spring-stocked upper Barren Fork water.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

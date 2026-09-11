@@ -1,0 +1,20 @@
+id: griffiths-gnat
+name: Griffith’s Gnat
+type: dry
+imitates:
+  - little-black-midge
+  - olive-midge
+  - tiny-winter-stone
+  - trico
+hookSizes:
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 1
+materials:
+  - grizzly hackle palmered
+  - peacock herl
+notes: George Griffith’s two-material marvel — a midge cluster, a spent trico, a winter stone, a gnat.
+license: attributed
+attribution: Designed by George Griffith (Boardman, Michigan; founders of TU)

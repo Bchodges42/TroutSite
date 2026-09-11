@@ -1,0 +1,35 @@
+id: hiwassee-river
+name: Hiwassee River (Appalachia tailwater / Reliance)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-se-hiwassee
+gaugeIds:
+  - "03556590"
+  - "03566000"
+  - "tva:HADT1"
+stockingProgram: true
+species: trout
+fishery: tailwater
+yearRound: true
+idealFlow:
+  - min: 500
+    max: 3500
+    unit: cfs
+notes: >-
+  The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength
+  rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). A winter catch-and-release season
+  (Oct 1–Feb 28) keeps the river fishable all year. Two-
+  and four-turbine releases swing flow hard — the Reliance gauge is the call. The tailwater runs
+  from the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head.
+
+officialSources:
+  - label: USGS Water Data — monitoring location 03556590
+    url: https://waterdata.usgs.gov/monitoring-location/03556590/
+  - label: USGS Water Data — monitoring location 03566000
+    url: https://waterdata.usgs.gov/monitoring-location/03566000/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

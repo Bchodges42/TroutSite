@@ -1,0 +1,20 @@
+id: chickamauga-lake
+name: Chickamauga Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-se-hiwassee
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater
+  gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea
+  counties, extending up to Watts Bar Dam and receiving the Hiwassee River
+  (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac.
+officialSources:
+  - label: USGS Water Data — monitoring location 03566510
+    url: https://waterdata.usgs.gov/monitoring-location/03566510/
+  - label: TVA — Chickamauga Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

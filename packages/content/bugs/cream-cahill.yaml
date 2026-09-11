@@ -1,0 +1,59 @@
+id: cream-cahill
+commonName: Cream Cahill
+sciName: Maccaffertium modestum
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - cream
+    - pale-yellow
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - runs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/cream-cahill.svg
+stages:
+  - nymph
+  - dun
+notes: A paler cousin of the Light Cahill with delicate cream wings. Late-day hatches bring
+  rising fish in soft glides.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

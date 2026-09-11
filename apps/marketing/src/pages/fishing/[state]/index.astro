@@ -1,0 +1,137 @@
+---
+/**
+ * /fishing/{state}/ — programmatic fishing-information guide (UI redesign lane).
+ * Answers the common questions (license, seasons, stocking terms, access,
+ * safety) with an official source behind every claim, canonical SEO metadata,
+ * FAQ JSON-LD, and links back to the app. Adding a state = one more entry in
+ * states.ts. This page never restates regulations — it points at them.
+ */
+import Base from '../../../layouts/Base.astro';
+import Disclaimer from '../../../components/Disclaimer.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import { LAUNCH_STATES } from '../../../data/states';
+import { faqLd, breadcrumbLd } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  return LAUNCH_STATES.map((state) => ({
+    params: { state: state.slug },
+    props: { state },
+  }));
+}
+
+const { state } = Astro.props;
+const reviewed = '2026-09-04';
+
+const faqs = [
+  {
+    question: `Do I need a license to trout fish in ${state.name}?`,
+    answer: `Yes — fishing ${state.name}'s public waters requires a state fishing license, and trout fishing carries additional license requirements beyond the base license. Categories, costs, and exemptions change, so confirm the current requirements with ${state.agency.name} before you buy.`,
+  },
+  {
+    question: `When is trout season in ${state.name}?`,
+    answer: `${state.name} has no single statewide trout season: the major tailwaters are stocked year-round, while the winter put-and-take program runs roughly December through early March. Current open periods and stocking windows are published by ${state.agency.short}.`,
+  },
+  {
+    question: 'Where can I find the official trout rules?',
+    answer: `Creel limits, size limits, and gear restrictions are set annually by ${state.agency.short} and vary by water — including special-regulation reaches. This guide does not restate the numbers; the official regulation pages linked below are the only authoritative versions.`,
+  },
+];
+
+const title = `Trout fishing in ${state.name} — licenses, seasons, stocking & official sources`;
+const description = `A plain-English guide to trout fishing in ${state.name}: licenses, seasons, stocking terminology, access, and safety — every answer linked to the official ${state.agency.short} source. Free, no trackers.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/fishing/${state.slug}/`}
+  ld={[
+    faqLd(faqs),
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: `${state.name} fishing`, url: `/fishing/${state.slug}/` },
+    ]),
+  ]}
+>
+  <p class="kicker">{state.name}</p>
+  <h1>Trout fishing in {state.name}</h1>
+  <p class="lead">
+    The questions to ask before you go, answered with a link to the official source every time.
+    This guide is a starting point, never a legal summary — the agency pages in force are always
+    the authority. Guide reviewed {reviewed}.
+  </p>
+
+  <h2>Do I need a license?</h2>
+  <p>
+    Yes — {state.name}'s public waters require a state fishing license, and trout fishing carries
+    additional requirements beyond the base license. The exact categories, costs, and exemptions
+    change; the license you need depends on residency, age, and how you fish. Buy from the
+    official licensing portal and the requirements are stated at purchase time.
+  </p>
+  <p><a href={state.agency.url} rel="nofollow">{state.agency.name} — fishing</a> · <a href="https://license.gooutdoorstennessee.com/" rel="nofollow">Buy a license (official portal)</a></p>
+
+  <h2>When can I fish for trout?</h2>
+  <p>
+    There is no single statewide "trout season": the major tailwaters are managed and stocked
+    year-round, while the winter put-and-take program runs roughly December through early March on
+    selected streams and small impoundments. Open sections and stocking windows are published and
+    revised by the agency during the season — {state.stockingSummary}
+  </p>
+  <p>
+    See also: <a href={`/stocking/${state.id.toLowerCase()}/`}>{state.name} stocking schedule</a>
+    (recent published entries, with the official source linked on every row).
+  </p>
+
+  <h2>What do the stocking terms mean?</h2>
+  <dl>
+    <dt><strong>Put-and-take</strong></dt>
+    <dd>Waters stocked to be fished over a season under the current rules.</dd>
+    <dt><strong>Scheduled</strong></dt>
+    <dd>A published plan — schedules change, and a plan is not a confirmed event.</dd>
+    <dt><strong>Reported</strong></dt>
+    <dd>A past-dated published entry. It says the schedule planned it — not that anyone verified it streamside.</dd>
+    <dt><strong>Date precision</strong></dt>
+    <dd>Agencies publish exact days, "week of" dates, and month windows; a summary should keep that precision, not flatten it.</dd>
+  </dl>
+
+  <h2>Where can I legally get in?</h2>
+  <p>
+    Public access comes from agency access areas, public bridges and right-of-ways, and designated
+    public lands. Much riverbank is private — landing on private property is a trespass issue even
+    when the water is navigable. Access-area openings, closures, and parking rules can change
+    without notice; check the agency pages and on-site signage.
+  </p>
+  <p><a href={state.agency.url} rel="nofollow">{state.agency.name} — access &amp; fishing locations</a></p>
+
+  <h2>What should I check before I wade in?</h2>
+  <ul>
+    <li><strong>Dam releases.</strong> Tailwaters can rise fast and without local warning — check the generation schedule for the dam above you.</li>
+    <li><strong>Flow and temperature.</strong> Live gauge data: <a href="https://waterdata.usgs.gov/tn/nwis" rel="nofollow">USGS Tennessee water data</a>.</li>
+    <li><strong>Cold water.</strong> Tailwater discharges are cold enough to disable a swimmer in minutes, in summer as well as winter.</li>
+    <li><strong>Weather upstream.</strong> Rain far upstream can move a river hours after your skies cleared.</li>
+  </ul>
+
+  <h2>Official sources</h2>
+  <p>
+    Everything regulatory on this page lives on an agency page. If this guide and an official
+    source ever disagree, the official source wins.
+  </p>
+  <p>
+    <a href={state.agency.url} rel="nofollow">{state.agency.url}</a><br />
+    <a href={state.agency.stockingUrl} rel="nofollow">{state.agency.stockingUrl}</a>
+  </p>
+
+  <h2>Take it to the water</h2>
+  <p>
+    The Trout field atlas app puts the map, current gauge-fed conditions, and the stocking schedule
+    on your phone — offline, with no accounts and no tracking. Start at
+    <a href="/install/">install the app</a>, or browse the
+    <a href={`/streams/${state.id.toLowerCase()}/`}>{state.name} water list</a> and
+    <a href={`/fishing/${state.slug}/`} aria-current="page">fishing guide</a> /
+    <a href={`/regulations/${state.slug}/`}>regulations pointers</a> here on the web.
+  </p>
+
+  <AdSlot label="Sponsored listing" />
+
+  <Disclaimer agency={state.agency.short} topic="licenses, seasons, and regulations" />
+</Base>

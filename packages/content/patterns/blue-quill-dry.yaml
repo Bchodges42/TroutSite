@@ -1,0 +1,17 @@
+id: blue-quill-dry
+name: Blue Quill
+type: dry
+imitates:
+  - blue-quill
+  - black-quill
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - mahogany quill or dubbing
+  - blue dun hackle
+  - wood duck flank
+notes: Slim, dark, and delicate — the Appalachian spring mayfly dry.
+license: public-domain

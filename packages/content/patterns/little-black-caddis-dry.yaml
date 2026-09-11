@@ -1,0 +1,18 @@
+id: little-black-caddis-dry
+name: Little Black Caddis Dry
+type: dry
+imitates:
+  - little-black-sedge
+  - early-black-caddis
+  - black-dancer-caddis
+hookSizes:
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - black dubbing
+  - black elk hair
+  - dark hackle
+notes: Small black evening caddis — dead simple, dead effective.
+license: public-domain

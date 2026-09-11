@@ -1,0 +1,70 @@
+id: hellgrammite
+commonName: Hellgrammite (Dobsonfly Larva)
+sciName: Corydalus cornutus
+order: Megaloptera
+family: Corydalidae
+sizeRange:
+  - 2
+  - 8
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - dark-brown
+    - black-brown
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - boulders
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/hellgrammite.svg
+stages:
+  - larva
+notes: "The nightmare of the rock-flip: a three-inch armored predator with pinching mandibles.
+  Trout eat them — a #6 dark bushy nymph with rubber legs fished slow through boulders is a
+  big-fish play."
+sources:
+  - https://en.wikipedia.org/wiki/Corydalus
+  - https://bugguide.net

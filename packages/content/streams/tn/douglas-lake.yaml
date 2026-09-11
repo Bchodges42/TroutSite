@@ -1,0 +1,25 @@
+id: douglas-lake
+name: Douglas Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-pigeon-frenchbroad
+gaugeIds:
+  - "03468510"
+stockingProgram: false
+idealFlow: []
+notes: >-
+  TVA reservoir on the French Broad River east of Knoxville across Cocke,
+  Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS
+  03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad
+  River and the Pigeon River; discharges through the dam into the French Broad
+  tailwater toward the Holston/French Broad confluence. TWRA maps the
+  reservoir at 28,738 ac. Aliases: Douglas Reservoir.
+officialSources:
+  - label: USGS Water Data — monitoring location 03468510
+    url: https://waterdata.usgs.gov/monitoring-location/03468510/
+  - label: TVA — Douglas Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

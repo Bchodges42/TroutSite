@@ -1,0 +1,17 @@
+# Test/bootstrap fixture content (ROLE 3) — explicitly FICTIONAL stream that exists only
+# to exercise the no-gauge-data path (empty gaugeIds → score 0 with explanatory reason).
+id: test-tailrace-b
+name: Pipeline Test Stream B (no gauge wired)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-east-tailwaters
+gaugeIds: []
+stockingProgram: false
+idealFlow:
+  - min: 100
+    max: 500
+    unit: cfs
+notes: Not a real waterbody — bootstrap fixture for pipeline tests and demos.
+officialSources:
+  - label: TWRA trout stocking information
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

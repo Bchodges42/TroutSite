@@ -1,0 +1,22 @@
+id: north-fork-holston-river
+name: North Fork Holston River
+stateId: TN
+waterbodyType: river
+regionId: tn-east-holston
+gaugeIds: []
+stockingProgram: false
+species: warmwater
+idealFlow: []
+notes: >-
+  The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence with
+  the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river)
+  begins. The Tennessee reach is short (the fork forms the state line for its final miles); Virginia
+  water upstream is out of scope. TWRA recognizes it as a separate named river. Renowned smallmouth
+  water in Virginia; verify regulations and any consumption advisories before eating fish from this
+  reach.
+
+officialSources:
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html
+  - label: USGS Water Data — Tennessee monitoring locations
+    url: https://waterdata.usgs.gov/tn/nwis

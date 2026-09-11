@@ -1,0 +1,150 @@
+{
+  "//": "West TN TWRA winter put-and-take trout waters (BACKEND-ISSUES: West TN blank map). First-party curated anchor points for catalog streams that have NO NHD/TIGER linear geometry — they are small impoundments and park ponds, not mapped flowlines. Coordinates: 'osm-nominatim' anchors were resolved against OpenStreetMap (© OpenStreetMap contributors, ODbL) in 2026-09 and land inside the named park/lake; 'approx-town-anchor' anchors sit at the named town because OSM has no park polygon yet — the UI must render them as approximate. Stocking names are verbatim TWRA published-schedule rows (sourceUrl on each stream), which is what matchStocking resolves against.",
+  "crs": "EPSG:4326",
+  "coordinateOrder": "longitude,latitude",
+  "features": [
+    {
+      "id": "shelby-farms-lake",
+      "name": "Shelby Farms",
+      "county": "Shelby",
+      "town": "Memphis",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -89.83274,
+      "lat": 35.13617,
+      "note": "TWRA winter put-and-take lake in Shelby Farms Park, Memphis. Rainbow trout in the cold months only — they do not hold over summer."
+    },
+    {
+      "id": "cameron-brown-lake",
+      "name": "Cameron Brown Lake",
+      "county": "Shelby",
+      "town": "Germantown",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -89.77231,
+      "lat": 35.10075,
+      "note": "TWRA winter put-and-take lake in Cameron Brown Park, Germantown. Winter-only rainbow fishery; check the schedule window."
+    },
+    {
+      "id": "edmund-orgill-lake",
+      "name": "Edmund-Orgill Park",
+      "county": "Shelby",
+      "town": "Millington",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -89.83304,
+      "lat": 35.37218,
+      "note": "TWRA winter put-and-take lake in Edmund-Orgill Park, Millington. Cold-month rainbows; does not hold over summer."
+    },
+    {
+      "id": "yale-road-park-lake",
+      "name": "Yale Road Park",
+      "county": "Shelby",
+      "town": "Bartlett",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -89.85666,
+      "lat": 35.21675,
+      "note": "TWRA winter put-and-take lake in Yale Road Park, Bartlett. Winter-only rainbow fishery."
+    },
+    {
+      "id": "johnson-park-lake",
+      "name": "Johnson Park Lake",
+      "county": "Shelby",
+      "town": "Memphis",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "approx-town-anchor",
+      "lon": -90.049,
+      "lat": 35.149,
+      "note": "TWRA winter put-and-take lake in Johnson Park, Memphis. Cold-month rainbows only; anchor approximate until field-verified."
+    },
+    {
+      "id": "valentine-park-pond",
+      "name": "Valentine Park",
+      "county": "Tipton",
+      "town": "Munford",
+      "waterbodyType": "pond",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -89.80061,
+      "lat": 35.46365,
+      "note": "TWRA winter put-and-take pond in Valentine Regional Park, Munford. Winter-only rainbow fishery."
+    },
+    {
+      "id": "covington-fbc-pond",
+      "name": "Covington First Baptist Church Pond",
+      "county": "Tipton",
+      "town": "Covington",
+      "waterbodyType": "pond",
+      "coordinateCertainty": "approx-town-anchor",
+      "lon": -89.64875,
+      "lat": 35.55623,
+      "note": "TWRA winter put-and-take pond at Covington First Baptist Church, Covington. Winter-only rainbows; anchor approximate."
+    },
+    {
+      "id": "martin-city-pond",
+      "name": "Martin City Pond",
+      "county": "Weakley",
+      "town": "Martin",
+      "waterbodyType": "pond",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -88.84881,
+      "lat": 36.30979,
+      "note": "TWRA winter put-and-take pond at Martin City Park, Martin. Cold-month rainbows; does not hold over summer."
+    },
+    {
+      "id": "milan-city-pond",
+      "name": "Milan City Pond",
+      "county": "Gibson",
+      "town": "Milan",
+      "waterbodyType": "pond",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -88.7302,
+      "lat": 35.92169,
+      "note": "TWRA winter put-and-take pond in Milan City Park, Milan. Winter-only rainbow fishery."
+    },
+    {
+      "id": "paris-city-park-lake",
+      "name": "Paris City Park",
+      "county": "Henry",
+      "town": "Paris",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "approx-town-anchor",
+      "lon": -88.31,
+      "lat": 36.302,
+      "note": "TWRA winter put-and-take lake in Paris City Park, Paris. Cold-month rainbows; anchor approximate until field-verified."
+    },
+    {
+      "id": "beech-lake",
+      "name": "Beech Lake",
+      "county": "Henderson",
+      "town": "Lexington",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "osm-nominatim",
+      "lon": -88.42272,
+      "lat": 35.68474,
+      "note": "TWRA winter put-and-take lake on Beech Lake, Lexington. Winter-only rainbow fishery on an otherwise warmwater lake."
+    },
+    {
+      "id": "lake-graham",
+      "name": "Lake Graham",
+      "county": "Madison",
+      "town": "Jackson",
+      "waterbodyType": "lake",
+      "coordinateCertainty": "approx-town-anchor",
+      "lon": -88.835,
+      "lat": 35.614,
+      "note": "TWRA winter put-and-take lake in Jackson (Madison County). Winter-only rainbows; anchor approximate until field-verified."
+    },
+    {
+      "id": "union-city-reelfoot-pond",
+      "name": "Union City Reelfoot Packing Site",
+      "county": "Obion",
+      "town": "Union City",
+      "waterbodyType": "pond",
+      "coordinateCertainty": "approx-town-anchor",
+      "lon": -89.055,
+      "lat": 36.426,
+      "note": "TWRA winter put-and-take pond at the Reelfoot Packing Site, Union City. Cold-month rainbows; anchor approximate."
+    }
+  ]
+}

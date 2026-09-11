@@ -1,0 +1,16 @@
+id: long-horn-sedge-dry
+name: Long-Horned Sedge Dry
+type: dry
+imitates:
+  - long-horned-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - golden-olive dubbing
+  - pale deer hair
+  - knotted-klinkhammer style
+notes: A pale-gold skating dry for dusk long-horn flights.
+license: public-domain

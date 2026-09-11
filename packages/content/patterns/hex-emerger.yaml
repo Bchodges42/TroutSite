@@ -1,0 +1,16 @@
+id: hex-emerger
+name: Hex Emerger
+type: emerger
+imitates:
+  - burrowing-hex
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - tan dubbing
+  - z-lon shuck
+  - deer hair wing
+notes: The struggle-and-shuck look trout key on during hex dawns.
+license: public-domain

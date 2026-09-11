@@ -1,0 +1,16 @@
+id: white-fly-spinner
+name: White Fly Spinner
+type: spinner
+imitates:
+  - white-fly
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - white dubbing
+  - spent white hackle
+  - clear antron wings
+notes: For the spent clouds after the evening Ephoron storm.
+license: public-domain

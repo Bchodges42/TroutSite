@@ -1,0 +1,21 @@
+id: royal-wulff
+name: Royal Wulff
+type: dry
+imitates:
+  - light-cahill
+  - march-brown
+  - spotted-sedge
+hookSizes:
+  - 8
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - red floss body
+  - white calf tail wings
+  - brown hackle
+notes: Lee Wulff’s buoyant royal — an attractor that fools when "matching the hatch" becomes a theory.
+license: attributed
+attribution: Designed by Lee Wulff (1930s)

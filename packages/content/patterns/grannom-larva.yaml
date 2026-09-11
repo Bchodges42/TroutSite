@@ -1,0 +1,16 @@
+id: grannom-larva
+name: Grannom Larva
+type: nymph
+imitates:
+  - grannom
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - olive-black dubbing
+  - dark turkey case
+  - peacock herl
+notes: A cased-caddis look for the spring grannom build-up.
+license: public-domain

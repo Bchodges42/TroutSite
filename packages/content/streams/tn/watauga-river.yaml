@@ -1,0 +1,36 @@
+id: watauga-river
+name: Watauga River (Wilbur tailwater)
+stateId: TN
+waterbodyType: tailrace
+regionId: tn-northeast-watauga
+gaugeIds:
+  - "03483980"
+  - "03484000"
+  - "03486000"
+  - "tva:WL"
+stockingProgram: true
+species: trout
+fishery: tailwater
+yearRound: true
+idealFlow:
+  - min: 150
+    max: 1500
+    unit: cfs
+notes: >-
+  Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow
+  management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases;
+  two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.
+
+officialSources:
+  - label: USGS Water Data — monitoring location 03483980
+    url: https://waterdata.usgs.gov/monitoring-location/03483980/
+  - label: USGS Water Data — monitoring location 03484000
+    url: https://waterdata.usgs.gov/monitoring-location/03484000/
+  - label: USGS Water Data — monitoring location 03486000
+    url: https://waterdata.usgs.gov/monitoring-location/03486000/
+  - label: TVA — lake levels & dam release schedules (verify before you wade)
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,354 @@
+{
+  "scope": "statewide-tn",
+  "verifiedAt": "2026-09-08",
+  "disclaimer": "Informational summary for anglers, not legal advice and not a guarantee of current law. Regulations change annually and rules are water-specific; always verify against the official TWRA/TVA/NPS source linked on every item before you fish.",
+  "sections": [
+    {
+      "id": "statewide-rules",
+      "title": "Tennessee statewide fishing rules (2026-27)",
+      "summary": "Statewide rules apply to every catalog water unless a water-specific rule overrides them. Water-specific rules appear in the special-regulations section with the exact waters they cover.",
+      "items": [
+        {
+          "title": "Statewide trout creel and size limits",
+          "text": "Any combination of trout species: daily limit seven (7); minimum length limit none. Exception: only two (2) trout in a creel may be lake trout. There is NO statewide 14-inch trout minimum — 14-inch minimums are water-specific (e.g. the Watauga Quality Trout Area).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+        },
+        {
+          "title": "2026-27 regulation year effective date",
+          "text": "The Tennessee fishing regulation year runs August 1 through July 31. TWRA announced that approved 2026-27 regulations went into effect August 1, 2026 (and that approved 2027-28 regulations will take effect August 1, 2027).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Trout season: no statewide closed season on the regulations page",
+          "text": "TWRA's trout regulations page lists no statewide closed trout season; restrictions are water-specific (delayed-harvest catch-and-release windows, winter closure areas, seasonal closures on named waters). Verify the specific water before assuming open season.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+        },
+        {
+          "title": "Winter put-and-take trout program",
+          "text": "TWRA stocks rainbow trout into small lakes and ponds — concentrated in West Tennessee — that cannot hold trout through summer, so the fishery is put-and-take: catch them within the cold-water season. The schedule grid on the official stockings page (with its Sunday 'week of' dates) is the authority for each water's winter stocking window; check it before traveling.",
+          "authority": "TWRA",
+          "sourceId": "twra-stockings",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+        },
+        {
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week",
+          "text": "Free Fishing Day 2026 was Saturday, June 6 (Free Fishing Week for ages 15 and under, June 6-12, 2026). Free Fishing Day 2027 is Saturday, June 12, 2027 (ages 15 and under free June 12-18, 2027). It always falls the Saturday of the first full week in June. Note: one Tellico River section is closed on Free Fishing Day to anglers 17+ until 12 p.m.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html"
+        },
+        {
+          "title": "Resident licenses",
+          "text": "Residents 16-64: annual Combination Hunt & Fish $33 is the minimum license required to fish; the annual Trout Supplemental $21 is additionally required to fish for trout (residents 65+ are exempt from the trout permit). Other resident options: 1-Day All Species $11, 1-Day No Trout $6, County-of-Residence No Trout $10, Junior (13-15) $9, Senior Annual (65+) $4, Permanent Senior $49. Annual licenses are valid 365 days from purchase.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html"
+        },
+        {
+          "title": "Nonresident licenses",
+          "text": "Nonresidents: Annual All Species (includes trout) $98; Annual No Trout $49; 3-day $20 (no trout) / $40 (all species); 10-day $30 / $61; Junior (13-15) $10. Under 13 requires no license (resident or nonresident).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html"
+        },
+        {
+          "title": "Where to buy; no 'Type 22' trout license",
+          "text": "Buy online at GoOutdoorsTennessee.com, from county clerks, regional TWRA offices, or license agents. There is no 'Type 22 trout conservation license' on the current official fee schedule — that name is obsolete; the trout requirement is the Trout Supplemental described above.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html"
+        }
+      ]
+    },
+    {
+      "id": "special-regulations",
+      "title": "Water-specific special regulations",
+      "summary": "Rules that override statewide limits on named catalog waters. Each item lists the exact catalog waters it governs (appliesTo) and names the water reach it covers; delayed-harvest catch-and-release windows differ by water, so check the dates for the specific water. Summaries are abbreviated — the TWRA trout regulations page is the authority.",
+      "items": [
+        {
+          "title": "Clinch River (Norris tailwater) special regulation",
+          "text": "Clinch River from Norris Dam downstream to the Hwy 61 bridge (including tributaries): all trout carry a 14-20 inch protected length range; 7 trout/day with only one fish over 20 inches.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": ["clinch-river"]
+        },
+        {
+          "title": "Caney Fork River special regulation",
+          "text": "Caney Fork River from Center Hill Dam to the Cumberland River (including tributaries): 5 trout/day combined creel; rainbow, brook and cutthroat trout carry a 14-20 inch protected range with only one over 20 inches; brown trout are 1/day with a 24-inch minimum.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": ["caney-fork-river"]
+        },
+        {
+          "title": "Elk River below Tims Ford special regulation",
+          "text": "Elk River from Tims Ford Dam to the I-65 bridge (including tributaries): brown trout 20-inch minimum, 1/day; 7 trout/day all species combined.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": ["elk-river"]
+        },
+        {
+          "title": "Hiwassee River seasonal regulation",
+          "text": "Hiwassee River below Appalachia powerhouse: March 1 - September 30, 7 trout/day with only 2 brown trout; October 1 - February 28, catch-and-release only (artificials only, bait prohibited).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["hiwassee-river"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "South Fork Holston (South Holston tailwater) special regulation",
+          "text": "South Fork Holston River from South Holston Dam downstream into Boone Reservoir (up to the Hwy 11E bridge on the Watauga arm): 16-22 inch protected length range on all trout; 7 trout/day with only one over 22 inches. Two spawning reaches — Hickory Tree Bridge upstream to the Bottom Creek confluence, and from Boy's Island's downstream point upstream to the top of the first island above Webb Road Bridge — are closed to ALL fishing November 1 - January 31.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": ["south-holston-river"]
+        },
+        {
+          "title": "Watauga River Quality Trout Area",
+          "text": "Watauga River Quality Trout Area from Smallings Bridge to the CSX railroad bridges: 14-inch minimum length and 2 trout/day; bait use and possession prohibited, and trout under 14 inches may not be possessed.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": ["watauga-river"]
+        },
+        {
+          "title": "Fort Patrick Henry special regulation",
+          "text": "Fort Patrick Henry Reservoir from Boone Dam to the Louis Milhorn Bridge (Beulah Church Drive): 16-22 inch protected length range on rainbow and brown trout; 7 trout/day combined with only one over 22 inches.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": ["ft-patrick-henry-tailwater"]
+        },
+        {
+          "title": "Tellico River delayed harvest + permit",
+          "text": "Tellico River: delayed-harvest catch-and-release October 1 - February 28 from the mouth of North River upstream to the state line (no harvest or possession; artificials only; bait prohibited). From the Turkey Creek confluence upstream, a Tellico-Citico permit is required March 1 - August 15 and the river is closed Thursdays and Fridays in that window (except holidays); when open, 7 trout/day with no size limit and one rod per angler. On Free Fishing Day the reach from Sourwood Campground to the dam is closed to anglers 17 and older until noon.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["tellico-river"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Citico Creek permit season",
+          "text": "Citico Creek from the Little Citico confluence upstream to the North/South Fork confluence: Tellico-Citico permit required March 1 - August 15 and closed Thursdays and Fridays in that window (except holidays). When open, 7 trout/day with no size limit and one rod/pole; from August 16 through the end of February it is open daily with no permit.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["citico-creek"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Doe River delayed harvest",
+          "text": "Doe River in Roan Mountain State Park: delayed-harvest catch-and-release October 1 - February 28 (no harvest or possession, artificials only, bait prohibited).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["doe-river"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Buffalo Creek delayed harvest + gear rules",
+          "text": "Buffalo Creek (Grainger County): delayed-harvest catch-and-release October 1 - January 31 from the mill dam downstream to the Buffalo Springs WMA boundary (no harvest or possession; artificials only; bait prohibited). Above the mill dam the creek is closed to all fishing year-round; below the dam it is open year-round to rod-and-reel only, with bait harvest prohibited and seines, cast nets, and minnow/crayfish traps banned.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["buffalo-creek-grainger"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Piney River delayed harvest REMOVED for 2026-27",
+          "text": "Piney River (Rhea County; Cumberland Trail State Park downstream to the Hwy 27 bridge): TWRA's approved 2026-27 regulation changes REMOVE the delayed-harvest rule effective August 1, 2026, leaving statewide trout limits. Note: TWRA's trout-regulations page still displayed a November 1 - February 28 catch-and-release window for this water when checked on 2026-09-08, so treat catch-and-release as the safe default and verify before keeping fish.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs.html",
+          "appliesTo": ["piney-river-rhea"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Clear Creek: no special regulation (same-name Clinch tributary carries one)",
+          "text": "No special trout regulation is listed for the Obed-system Clear Creek (Cumberland County) on TWRA's 2026-27 trout page; statewide trout rules apply. The 'Clear Creek' with a November 1 - March 31 fishing closure on that page (Hwy 441 upstream to the second dam near Norris) is the Anderson County Clinch tributary of the same name — a different stream.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["clear-creek-obed"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Horse Creek creel window",
+          "text": "Horse Creek (Greene County) from the USFS boundary to the Squibb Creek junction: 7 trout/day, reduced to 2 trout/day May 1 - September 30.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["horse-creek-greene"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Great Smoky Mountains National Park fishing rules",
+          "text": "In the park (Tennessee or North Carolina side): age 16+ must hold a valid TN or NC fishing license — either is valid parkwide; no trout stamp required. Limit: 5 brook/rainbow/brown trout plus smallmouth bass combined per day; 20 rock bass additional; 7-inch minimum on trout and smallmouth. One hand-held rod, single hook only (up to 2 dropper flies); treble/gang hooks banned; live or preserved bait banned. Open year-round, 30 minutes before sunrise to 30 minutes after sunset. Separate permits apply inside Gatlinburg and Cherokee, NC boundaries.",
+          "authority": "NPS",
+          "sourceId": "nps-gsmnp",
+          "sourceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+          "appliesTo": ["little-river", "leconte-creek", "middle-prong-little-pigeon", "west-prong-little-pigeon", "cosby-creek"]
+        },
+        {
+          "title": "Gatlinburg city waters permit",
+          "text": "The four Gatlinburg permit streams — West Prong Little Pigeon, Dudley Creek, Roaring Fork and Leconte Creek within city limits — require the city permit, close on Thursdays, and restrict anglers to one rod with a single hook; some reaches are reserved for anglers 12 and under. December 1 - March 31 every trout must be released immediately (single-hook flies, spinners or spoons only, one dropper fly permitted); April 1 - November 30 general streams allow 5 trout/day and children's streams 2/day. On Free Fishing Day the River Road stretch of the West Prong is closed to anglers 16 and older until 11 a.m.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["west-prong-little-pigeon", "leconte-creek", "roaring-fork"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Wild trout stream rules (listed reaches)",
+          "text": "On TWRA's wild-trout list the rule is 5 trout/day with no length limit, single-hook artificials only — bait and multi-hook lures banned, one dropper fly permitted. This applies to the listed reaches of Laurel Fork (Carter County, from the cable crossing a half-mile above Dennis Cove Recreation Area to the USFS boundary) and Beaverdam Creek (Johnson County, from the Birch Branch confluence downstream to Tank Hollow Road/USFS 300).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["laurel-fork-carter", "beaverdam-creek"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Fort Campbell stocked streams",
+          "text": "Fort Campbell's stocked trout streams (Dry Creek, Little West Fork, Fletcher's Fork) carry special rules: a Fort Campbell post fishing permit is required in addition to the Tennessee fishing license and trout authorization.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["little-west-fork-creek", "fletchers-fork"],
+          "effectiveFrom": "2026-08-01"
+        }
+      ]
+    },
+    {
+      "id": "stocking-terminology",
+      "title": "Stocking terminology (what TWRA publishes actually means)",
+      "summary": "How to read stocking rows honestly: schedules are plans, not events.",
+      "items": [
+        {
+          "title": "Schedule vs. recent stocking report",
+          "text": "TWRA publishes a forward-looking Trout Stocking Schedule AND a bi-weekly Recent Stocking Locations Report. A schedule row means TWRA PLANNED a stocking; only the Recent Report says adult trout were recently stocked at a water (its dates represent when the water was last stocked). This app never renders a scheduled row as a completed stocking.",
+          "authority": "TWRA",
+          "sourceId": "twra-stockings",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+        },
+        {
+          "title": "'Week of' dates",
+          "text": "TWRA 'week of' dates are Sundays; the stocking event occurs within five days after that date, and can be postponed or cancelled due to weather or warm water. Treat a week-of date as a window, never a day.",
+          "authority": "TWRA",
+          "sourceId": "twra-stockings",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+        },
+        {
+          "title": "'TBD' and month-only windows",
+          "text": "Rows published as 'TBD <month>' or month initials are month-precision windows: TWRA has committed to a month, not a day. This app preserves that precision and never upgrades it to a specific date.",
+          "authority": "TWRA",
+          "sourceId": "twra-stockings",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+        },
+        {
+          "title": "Put-and-take and delayed harvest",
+          "text": "Put-and-take waters are stocked to be harvested within the season (many West TN ponds are winter put-and-take only). Delayed-harvest waters are stocked in fall and must be released unharmed (artificials only, no bait) during their catch-and-release season, then open to harvest under statewide rules.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+        }
+      ]
+    },
+    {
+      "id": "access-safety",
+      "title": "Access and tailwater safety",
+      "summary": "Tailwater discharges are the top hazard on Tennessee trout water.",
+      "items": [
+        {
+          "title": "TVA dam release hazard",
+          "text": "Water releases from TVA dams can occur at any time, with little or no warning, and single-generator releases can quickly turn a wadeable river dangerous. Check the generation/release schedule before entering a TVA tailwater and exit the water when flows rise.",
+          "authority": "TVA",
+          "sourceId": "tva-safety",
+          "sourceUrl": "https://www.tva.com/environment/lake-levels/hazardous-waters"
+        },
+        {
+          "title": "USACE water safety",
+          "text": "The U.S. Army Corps of Engineers' national water safety program stresses wearing a life jacket around dam discharges and rapidly changing tailrace water on Cumberland project waters (Center Hill, Dale Hollow, J. Percy Priest, Old Hickory).",
+          "authority": "USACE",
+          "sourceUrl": "https://www.usace.army.mil/Missions/Civil-Works/Recreation/National-Water-Safety_Program/"
+        },
+        {
+          "title": "Tennessee State Parks fishing",
+          "text": "State park waters require a license for anglers 13+ (Free Fishing Day/Week coverage includes state parks). Park-specific rules and the Bill Dance Signature Lakes program are published on the official state parks fishing page.",
+          "authority": "Tennessee State Parks",
+          "sourceUrl": "https://tnstateparks.com/activities/fishing"
+        },
+        {
+          "title": "Cherokee National Forest fishing",
+          "text": "Cherokee National Forest (Tellico River, Citico Creek, Paint Creek, Beaverdam Creek and others) defers seasons/limits/licenses to the TWRA Tennessee Fishing Guide; the Forest Service notes rainbow trout stocking roughly March-September on major streams and the Tellico-Citico permit requirement.",
+          "authority": "USFS",
+          "sourceUrl": "https://www.fs.usda.gov/r08/cherokee/recreation/opportunities/fishing"
+        }
+      ]
+    },
+    {
+      "id": "verification-links",
+      "title": "Official verification links",
+      "summary": "The pages this content was verified against — always the final word.",
+      "items": [
+        {
+          "title": "TWRA fishing hub and regulations",
+          "text": "Fishing hub: tn.gov/twra/fishing.html. Regulations: tn.gov/twra/fishing-regs.html (statewide limits, exceptions, trout regulations pages).",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs.html"
+        },
+        {
+          "title": "TWRA trout stockings",
+          "text": "Trout stocking schedule and recent stocking locations report: tn.gov/twra/fishing/trout-information-stockings.html.",
+          "authority": "TWRA",
+          "sourceId": "twra-stockings",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+        },
+        {
+          "title": "Licenses",
+          "text": "License fees and requirements: tn.gov/twra/fishing/fishing-licenses.html. Purchase: GoOutdoorsTennessee.com.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://gooutdoorstennessee.com/"
+        },
+        {
+          "title": "TVA lake levels and release schedules",
+          "text": "Reservoir levels, operating guides and generation schedules: tva.com/environment/lake-levels; recreation release schedules: tva.com/environment/recreation/recreation-release-schedules.",
+          "authority": "TVA",
+          "sourceId": "tva-restapi",
+          "sourceUrl": "https://www.tva.com/environment/lake-levels"
+        },
+        {
+          "title": "eRegulations Tennessee (official mirror)",
+          "text": "TWRA-partnered online regulations summary (2026-27 guide; last updated July 21, 2026 at verification time): eregulations.com/tennessee/fishing.",
+          "authority": "TWRA",
+          "sourceUrl": "https://www.eregulations.com/tennessee/fishing"
+        },
+        {
+          "title": "Great Smoky Mountains National Park",
+          "text": "Park fishing rules: nps.gov/grsm/planyourvisit/fishing.htm.",
+          "authority": "NPS",
+          "sourceId": "nps-gsmnp",
+          "sourceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+        }
+      ]
+    }
+  ]
+}

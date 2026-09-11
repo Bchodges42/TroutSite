@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Privacy, in plain English — Trout';
+const description =
+  'No accounts, no location tracking, no third-party trackers, no cookies. Trout is offline-first, so the strongest privacy policy is the architecture itself. Here is exactly what leaves your device.';
+---
+
+<Base title={title} description={description} path="/privacy/">
+  <h1>Privacy, in plain English</h1>
+  <p class="lead">
+    Most privacy policies are a list of exceptions. This page is short because the architecture
+    removes the exceptions: Trout works offline, so there is almost nothing to collect in the first
+    place.
+  </p>
+
+  <h2>What leaves your device</h2>
+  <p>Almost nothing, and nothing personal:</p>
+  <ul>
+    <li>
+      <strong>The app requests public data:</strong> USGS gauge readings and the weekly stocking
+      schedule are fetched as public, pre-generated JSON files. Those requests contain no account
+      identifier (there are none), no precise coordinates, and no device fingerprint.
+    </li>
+    <li>
+      <strong>Shop reports you read</strong> load from the same public snapshots, attributed to the
+      shop that wrote them.
+    </li>
+  </ul>
+
+  <h2>What never leaves your device</h2>
+  <ul>
+    <li>
+      <strong>Your location.</strong> "Nearest stream" is computed on your device from the stream
+      catalog. Your coordinates are never included in any request — this is enforced by an automated
+      privacy test in our QA suite, not just by policy.
+    </li>
+    <li>
+      <strong>Your logbook.</strong> Catch notes live in your browser's local storage (IndexedDB).
+      They are never synced, never uploaded, and there is no server that could receive them.
+    </li>
+    <li>
+      <strong>Bug identifications.</strong> The match-the-hatch key is pure, offline logic — your
+      observation never travels.
+    </li>
+  </ul>
+
+  <h2>What we don't do</h2>
+  <ul>
+    <li>No accounts in v1 — nothing to sign up for, nothing to leak.</li>
+    <li>No third-party analytics, ad scripts, or trackers in the app or on this website.</li>
+    <li>No cookies on this site; the app stores your offline data in your browser, locally.</li>
+    <li>We never sell data, because we don't collect any to sell.</li>
+  </ul>
+
+  <h2>How you can verify this</h2>
+  <p>
+    Turn on airplane mode: the hatch key, ID flow, hatch charts, and last-known conditions keep
+    working. A privacy-audit test in our public QA suite intercepts every network request the app
+    makes and fails the build if any request goes to a third-party domain or contains location data.
+    Architecture is a stronger guarantee than a promise.
+  </p>
+
+  <h2>Self-hosted analytics (planned, optional, and aggregate)</h2>
+  <p>
+    If we ever need to understand traffic, the documented plan in{' '}
+    <code>apps/marketing/ANALYTICS.md</code> is a <em>self-hosted</em>, cookie-free, aggregate-only
+    counter (Umami) on our own infrastructure — never Google Analytics, never a data broker. No such
+    tooling runs in v1.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this page? See <a href="/about/">About</a> for how the project is run. This page
+    describes v1 and lives in the same repository as the code it describes, so it can be audited
+    alongside the app.
+  </p>
+</Base>

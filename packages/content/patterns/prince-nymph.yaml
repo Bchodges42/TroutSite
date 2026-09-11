@@ -1,0 +1,22 @@
+id: prince-nymph
+name: Prince Nymph
+type: nymph
+imitates:
+  - golden-stone
+  - spiny-crawler-mayfly
+  - march-brown
+hookSizes:
+  - 8
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - brown and white biot tails
+  - peacock herl
+  - brown hen hackle
+  - gold tinsel
+notes: The white biot "antennae" trigger takes that pure imitations miss — a legendary search nymph.
+license: attributed
+attribution: Designed by Doug Prince (California, 1940s)

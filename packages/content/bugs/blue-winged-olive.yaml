@@ -1,0 +1,156 @@
+id: blue-winged-olive
+commonName: Blue-Winged Olive
+sciName: Baetis tricaudatus
+order: Ephemeroptera
+family: Baetidae
+sizeRange:
+  - 16
+  - 22
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - olive
+    - gray-olive
+    - brown-olive
+  mouthparts: chewing-scraper
+habitat:
+  - riffles
+  - tailwaters
+  - weed beds
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-smokies:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-east-pigeon-frenchbroad:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-se-hiwassee:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-cumberland-plateau:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-upper-cumberland:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+illustration: illustrations/blue-winged-olive.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: "The single most important mayfly on Tennessee tailwaters: small, quick swimmers that
+  hatch on gray, damp days and again in fall. Look for a slight brilliant-blue sheen on the
+  dun’s wings. Rarely exceeds a #16 in Tennessee."
+sources:
+  - https://en.wikipedia.org/wiki/Baetis
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)
+  - https://bugguide.net

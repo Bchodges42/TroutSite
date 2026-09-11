@@ -1,0 +1,84 @@
+id: little-golden-stone
+commonName: Little Golden Stone
+sciName: Perlesta placida
+order: Plecoptera
+family: Perlidae
+sizeRange:
+  - 10
+  - 16
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - golden-yellow
+    - cream-yellow
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - runs
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-golden-stone.svg
+stages:
+  - nymph
+  - adult
+notes: 'Summertime "golden clouds": thousands of small yellow-gold adults jitter over afternoon
+  riffles. Yellow Sally-style dries and small stone nymphs both score.'
+sources:
+  - https://bugguide.net

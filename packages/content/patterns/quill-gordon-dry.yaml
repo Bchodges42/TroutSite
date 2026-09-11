@@ -1,0 +1,16 @@
+id: quill-gordon-dry
+name: Quill Gordon
+type: dry
+imitates:
+  - quill-gordon
+hookSizes:
+  - 12
+  - 14
+difficulty: 3
+materials:
+  - peacock quill body
+  - wood duck flank
+  - dark dun hackle
+notes: A Theodore Gordon–era classic that still tops the list for first-hatch-of-spring Smokies
+  creeks.
+license: public-domain

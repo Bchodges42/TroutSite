@@ -1,0 +1,76 @@
+id: march-brown
+commonName: March Brown
+sciName: Maccaffertium vicarium
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 10
+  - 14
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - mottled-brown
+    - tan-brown
+    - brown
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - boulders
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/march-brown.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Big, blotchy flatheads that hatch into a ruffed, tobacco-colored dun — often in cool
+  afternoons with a light drizzle. A defining hatch of Tennessee freestone rivers.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

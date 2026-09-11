@@ -1,0 +1,60 @@
+{
+  "regionId": "tn-northeast-watauga",
+  "month": 2,
+  "entries": [
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 4,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    },
+    {
+      "taxonId": "gammarus-scud",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 2,
+      "patterns": [
+        "olive-scud"
+      ]
+    },
+    {
+      "taxonId": "caecidotea-sowbug",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 4,
+      "patterns": [
+        "gray-sowbug"
+      ]
+    },
+    {
+      "taxonId": "tipula-cranefly",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "woolly-bugger"
+      ]
+    },
+    {
+      "taxonId": "tipula-cranefly",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "stimulator"
+      ]
+    }
+  ]
+}

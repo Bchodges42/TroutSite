@@ -1,0 +1,18 @@
+id: early-black-stone-dry
+name: Early Black Stone Dry (Winter)
+type: dry
+imitates:
+  - early-black-stone
+  - tiny-winter-stone
+  - needlefly
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - black dubbing
+  - dark elk hair
+  - dun hackle
+notes: The midwinter stonefly — small, black, and perfect on 55-degree January afternoons.
+license: public-domain

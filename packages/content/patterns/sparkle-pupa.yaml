@@ -1,0 +1,21 @@
+id: sparkle-pupa
+name: Sparkle Pupa
+type: emerger
+imitates:
+  - spotted-sedge
+  - green-sedge
+  - little-sister-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 3
+materials:
+  - Antron yarn "bubble" shell
+  - green or tan dubbing
+  - deer hair wing
+notes: Gary LaFontaine’s discovery that caddis emergers carry a gas bubble — the Antron bubble
+  is the whole trick.
+license: attributed
+attribution: Designed by Gary LaFontaine (Caddisflies, 1981)

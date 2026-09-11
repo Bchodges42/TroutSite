@@ -1,0 +1,3561 @@
+[
+  {
+    "id": "south-holston-river",
+    "name": "South Holston River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03476500",
+      "tva:SHDT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs — always check the TVA release schedule first. The tailwater runs from South Holston Dam down to the Boone Lake arm head.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03481500 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03481500"
+      },
+      {
+        "label": "TVA dam release schedule — verify officially",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "watauga-river",
+    "name": "Watauga River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [
+      "03483980",
+      "03484000",
+      "03486000",
+      "tva:WL"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 150,
+        "max": 600,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases; two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03466000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03466000"
+      },
+      {
+        "label": "TVA dam release schedule — verify officially",
+        "url": "https://www.tva.com/environment/lake-levels"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "hiwassee-river",
+    "name": "Hiwassee River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03556590",
+      "03566000",
+      "tva:HADT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 250,
+        "max": 1200,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). A winter catch-and-release season (Oct 1–Feb 28) keeps the river fishable all year. Two- and four-turbine releases swing flow hard — the Reliance gauge is the call. The tailwater runs from the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03566000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03566000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "caney-fork-river",
+    "name": "Caney Fork River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [
+      "03424010",
+      "03424860",
+      "usace:CETT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 800,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows (stocking runs March through December) plus a celebrated winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic — Stonewall and at-dam gauges are your wade-window planners.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03430497 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03430497"
+      },
+      {
+        "label": "USACE Center Hill release schedule — verify officially",
+        "url": "https://www.lrn.usace.army.mil"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "elk-river",
+    "name": "Elk River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [
+      "03580750",
+      "03578000",
+      "tva:TMFT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 500,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and winter stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham) bracket the fishery.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03599000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03599000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "clinch-river",
+    "name": "Clinch River",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [
+      "03533000",
+      "tva:NRST1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 1000,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is the wade-window truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake down to the Clinch mouth at Kingston / Watts Bar Lake.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03452000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03452000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "duck-river-tailwater",
+    "name": "Duck River (Normandy tailwater)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [
+      "03597860",
+      "tva:NRMT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 60,
+        "max": 300,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cold releases below Normandy Dam give the Duck its trout identity — TWRA stocks this tailwater with rainbow trout year-round (owner confirmation, September 2026). Release-dependent; verify schedules before wading.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03537000 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03537000"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "east-fork-stones-river",
+    "name": "East Fork Stones River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [
+      "03427500"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 50,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.",
+    "officialSources": [
+      {
+        "label": "USGS gauge 03427500 — verify officially",
+        "url": "https://waterdata.usgs.gov/monitoring-location/03427500"
+      },
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "barren-fork-river",
+    "name": "Barren Fork River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Warren County river through McMinnville. Gentle gradient; flows track rain closely.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "beaverdam-creek",
+    "name": "Beaverdam Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite small-water rainbow stop on the Shatley Springs road corridor. The reach from the Birch Branch confluence down to Tank Hollow Road is a designated TWRA wild-trout water — open year-round, single-hook artificials only. No USGS gauge — plan on recent-rain judgment.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "beech-lake",
+    "name": "Beech Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Lexington (Henderson County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "big-rock-creek",
+    "name": "Big Rock Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter-stocked Marshall County creek near Lewisburg.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "boiling-fork-creek",
+    "name": "Boiling Fork Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter-stocked Franklin County creek near Sewanee/Cowan.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "boone-lake",
+    "name": "Boone Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03486810"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake. Aliases: Boone Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "boone-tailwater",
+    "name": "Boone Tailwater (South Fork Holston River)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03486810",
+      "tva:BOOT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 800,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and brown trout. Flow swings hard with TVA generation; treat the ideal band as a guideline and verify releases.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "bradley-creek",
+    "name": "Bradley Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "brush-creek-cocke",
+    "name": "Brush Creek (Cocke County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA spring-stocked Cocke County creek in the Big Creek corridor.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "buffalo-creek-grainger",
+    "name": "Buffalo Creek (Grainger County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows track rain.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "buffalo-river",
+    "name": "Buffalo River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "calderwood-lake",
+    "name": "Calderwood Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake. TWRA stocks the reservoir with rainbow trout in November and December. TWRA lists this pool as \"Little Calderwood Reservoir\" (458 ac) — that name is an alias here.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "calfkiller-river",
+    "name": "Calfkiller River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [
+      "03419530"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Spring-fed-ish White County river with TWRA spring stocking and a loyal following; the Sparta gauge runs low in dry summers.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "cameron-brown-lake",
+    "name": "Cameron Brown Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Germantown (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "cane-creek",
+    "name": "Cane Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA lists both Upper Cane Creek (Bledsoe/Van Buren, near Fall Creek Falls) and Cane Creek (Hickman/Perry) under spring stocking — this entry covers the stocked gorge-and-valley reaches; flows respond fast to plateau rain.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "caney-fork-upper",
+    "name": "Caney Fork River (above Center Hill Lake)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Free-flowing upper Caney Fork from the Cumberland County headwaters down through Rock Island to the slackwater pools pooled above Center Hill Dam — Great Falls Lake (great-falls-lake) at Rock Island and the long Center Hill Lake (center-hill-lake) arms. Warmwater water: smallmouth and bream country; no trout program is documented this far above the dams and no gauge-based condition is published for this reach. The celebrated tailwater fishery begins at the dam on the caney-fork-river reach.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "center-hill-lake",
+    "name": "Center Hill Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Caney Fork reservoir east of Smithville across DeKalb, Putnam, White, and Warren counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "charles-creek",
+    "name": "Charles Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Warren County creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "cherokee-lake",
+    "name": "Cherokee Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the Holston River northeast of Knoxville across Grainger, Hamblen, Hawkins, and Jefferson counties, impounded by Cherokee Dam (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the Holston River main stem (holston-river); its dam releases the Holston Cherokee tailwater that runs to Fort Loudoun Lake. TWRA maps the pool at 27,029 ac; TVA at 30,300 ac at full pool.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "chickamauga-lake",
+    "name": "Chickamauga Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar Dam and receiving the Hiwassee River (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "chilhowee-lake",
+    "name": "Chilhowee Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reservoir on the Little Tennessee River in Blount County below the Chilhowee Mountains, impounded by Chilhowee Dam. Receives the Little Tennessee River from Calderwood Lake and discharges into Tellico Lake. TWRA stocks the reservoir with rainbow trout in February, November, and December. TWRA maps the reservoir at 1,738 ac.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "citico-creek",
+    "name": "Citico Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cherokee National Forest creek with TWRA stocking roughly February–July (the Forest Service's catchable-rainbow window upstream of Little Citico runs March 15–September 15) and wild brown, rainbow, and brook trout in the tributaries. Remote, brushy, rain-flashy.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "clear-creek-obed",
+    "name": "Clear Creek (Obed system)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03539778"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "Wild rainbows and the famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at Lilly Bridge is the go/no-go read.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "clear-fork",
+    "name": "Clear Fork",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03409500"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [],
+    "notes": "The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your wading to stable flows.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "collins-river",
+    "name": "Collins River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [
+      "03421000"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Grundy/Warren County river with TWRA spring stocking and a strong small-water feel. The McMinnville gauge sits mid-basin; flows track plateau rain.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "cosby-creek",
+    "name": "Cosby Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA lists spring stocking. No gauge.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "covington-fbc-pond",
+    "name": "Covington First Baptist Church Pond",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take pond in Covington (Tipton County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "cumberland-river",
+    "name": "Cumberland River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties; the South Fork Cumberland River is a separate water. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "daddys-creek",
+    "name": "Daddy’s Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03539600"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms. It runs its full named length to the Obed confluence.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "dale-hollow-lake",
+    "name": "Dale Hollow Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-upper-cumberland",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line in Clay, Pickett, and Overton counties. TWRA stocks brown trout here each spring (put-grow-take). Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "doe-creek-johnson",
+    "name": "Doe Creek (Johnson County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Not to be confused with Carter County’s Doe River — this is the TWRA spring-stocked Johnson County creek. Pocket water with roadside access.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "doe-river",
+    "name": "Doe River",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [
+      "03485500"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks upper and lower sections in spring. Gentle gradient, easy wading, town access.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "douglas-lake",
+    "name": "Douglas Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [
+      "03468510"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater toward the Holston/French Broad confluence. TWRA maps the reservoir at 28,738 ac. Aliases: Douglas Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "duck-river-lower",
+    "name": "Duck River (Shelbyville to Columbia)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [
+      "03597860",
+      "03598000",
+      "03599500"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [],
+    "notes": "Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper reaches seasonally. Conservative flag; verify current TWRA stocking before planning a trout trip here.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "east-fork-shoal-creek",
+    "name": "East Fork Shoal Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Lawrence County tributary of Shoal Creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "edmund-orgill-lake",
+    "name": "Edmund-Orgill Park",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Millington (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "elk-river-lower",
+    "name": "Elk River (Prospect to state line)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [
+      "03584600"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "Wider, warmer Elk below the tailwater with TWRA winter rainbow stocking in Lincoln County reaches. Gauge at Prospect helps separate rain pulses from baseline.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "emory-river",
+    "name": "Emory River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03540500"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [],
+    "notes": "The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth downstream. Plateau flashiness applies. It runs to the Watts Bar embayment head, where the pool carries the water down to the Tennessee River.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "fletchers-fork",
+    "name": "Fletchers Fork",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Montgomery County creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "forge-creek-johnson",
+    "name": "Forge Creek (Johnson County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked creek near Mountain City. Small, brushy, and rain-flashy; conservative flow band reflects its size.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "fort-loudoun-lake",
+    "name": "Fort Loudoun Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and French Broad main stems and the Little Tennessee arm (Tellico Lake joins via the canal); discharges into Watts Bar Lake. TVA lists the reservoir at 14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "fort-patrick-henry-lake",
+    "name": "Fort Patrick Henry Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03487010"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County), impounded by Fort Patrick Henry Dam (USGS 03487010, 36.49816/-82.50904). Receives the Boone tailwater (boone-tailwater) at its upper arm and discharges through the dam into the Fort Patrick Henry tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston River to form the Holston main stem at Kingsport. Aliases: FPH Lake, Fort Patrick Henry Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "french-broad-river",
+    "name": "French Broad River (Douglas tailwater)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [
+      "03468510",
+      "03469000"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 400,
+        "max": 1600,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases. The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "ft-patrick-henry-tailwater",
+    "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03487010",
+      "tva:FPHT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 80,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked rainbow and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the Kingsport confluence, where the Holston main stem forms.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "gap-creek-claiborne",
+    "name": "Gap Creek (Claiborne County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked creek in the Norris watershed fringe. Rain-dependent flows.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "goforth-creek",
+    "name": "Goforth Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cherokee National Forest creek along the Ocoee corridor with TWRA spring stocking. Steep, scenic pocket water.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "greasy-creek-polk",
+    "name": "Greasy Creek (Polk County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Polk County creek near Coker Creek. Small and flashy.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "great-falls-lake",
+    "name": "Great Falls Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper catalog reach passes through this pool, so paddlers and anglers can follow the water through the impoundment.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "gulf-fork-big-creek",
+    "name": "Gulf Fork Big Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small TWRA spring-stocked tributary near the NC line in Cocke County.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "harpeth-river",
+    "name": "Harpeth River (Williamson County reaches)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [
+      "03432350",
+      "03433500"
+    ],
+    "stockingProgram": true,
+    "species": "warmwater",
+    "idealFlow": [],
+    "notes": "Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches near Franklin with catchable trout each December (the winter put-and-take season runs December–February; check the TWRA schedule for the current window). Two gauges bracket the stocked corridor; summer water is smallmouth country.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "hatchie-river",
+    "name": "Hatchie River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a west-flowing river through the West Tennessee Hatchie corridor (Hardeman, Haywood, Tipton, and Lauderdale counties). Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "holston-river",
+    "name": "Holston River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "The main Holston below the North/South Fork confluence at Kingsport through Hawkins, Grainger, Jefferson, and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake; the South Fork Holston tailwaters are separate catalog features (south-holston-river, boone-tailwater, ft- patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake lies mid- stem, with the river continuing through the pool.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "horse-creek-greene",
+    "name": "Horse Creek (Greene County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cherokee National Forest creek with TWRA spring stocking and nearby Dillard Ponds put-ins. Classic bank-and-boulder small water running down to the Nolichucky.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "hurricane-creek",
+    "name": "Hurricane Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-upper-cumberland",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked creek across Houston/Humphreys counties in the western Highland Rim.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "indian-creek-claiborne",
+    "name": "Indian Creek (Claiborne County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May. It runs its full named length down toward the upper Clinch.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "j-percy-priest-lake",
+    "name": "J. Percy Priest Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Stones River reservoir southeast of Nashville in Davidson, Rutherford, and Wilson counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "johnson-park-lake",
+    "name": "Johnson Park Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "kentucky-lake",
+    "name": "Kentucky Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through West Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "lake-barkley",
+    "name": "Lake Barkley",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "lake-graham",
+    "name": "Lake Graham",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "laurel-creek-johnson",
+    "name": "Laurel Creek (Johnson County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Spring-stocked Johnson County creek listed by TWRA for both Johnson and Van Buren county access points. Small pocket water.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "laurel-fork-carter",
+    "name": "Laurel Fork (Carter County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Remote Carter County headwaters with TWRA stocking and native brook trout upstream. The reach above the Dennis Cove cable crossing is a designated TWRA wild-trout water — open year-round. Steep, brushy, and rain-flashy.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "leconte-creek",
+    "name": "LeConte Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small park creek near Gatlinburg with wild fish and TWRA spring stocking listed. Pocket water under heavy canopy.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "little-buffalo-river",
+    "name": "Little Buffalo River",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Lawrence County creek in the Buffalo River system.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "little-pigeon-river",
+    "name": "Little Pigeon River (Sevierville reach)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [
+      "03470000"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "A consistent trout water below the Smokies — TWRA stocks the Sevierville reach regularly (confirmed by the owner against local knowledge, September 2026, supplementing the TWRA dataset, which does not list the reach), and the upper park reaches hold wild fish. Verify current schedules with TWRA before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "little-river",
+    "name": "Little River (Smokies / Blount County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [
+      "03497300",
+      "03498500"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA spring stocking on the lower, out-of-park reaches near Walland and Maryville. The Townsend gauge is the wade-flow reference; park waters have special regs — verify with NPS. It runs from the Smokies headwaters down to the Fort Loudoun Lake embayment near Maryville/Alcoa.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "little-sequatchie-river",
+    "name": "Little Sequatchie River",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by Highland Rim standards.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "little-tennessee-river",
+    "name": "Little Tennessee River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the Calderwood and Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features; no tailwater condition scoring is applied across a reservoir) to its mouth at the Tennessee River in Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main- stem sequence; the trout-stocked upper water is the reach below Chilhowee Dam — verify current TWRA schedules. Distinct from the Tellico River (tellico-river), a different tributary near Tellico Plains. USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "little-west-fork-creek",
+    "name": "Little West Fork Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Montgomery County creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "martin-city-pond",
+    "name": "Martin City Pond",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take pond in Martin (Weakley County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "mccutcheon-creek",
+    "name": "McCutcheon Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter-stocked Maury County creek — a Columbia-area close-to-home trout stop.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "melton-hill-lake",
+    "name": "Melton Hill Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the Clinch River between Norris Dam and Watts Bar Lake (Anderson/Roane counties near Oak Ridge), impounded by Melton Hill Dam (USGS 03535912 tailwater gauge, 35.88536/-84.30076; Clinch River mile 23.1). The Norris tailwater (clinch-river) runs the length of this pool, giving year-round cold-water fishing; the dam discharges into the Clinch arm of Watts Bar Lake. TWRA maps the reservoir at 6,035 ac.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "middle-prong-little-pigeon",
+    "name": "Middle Prong Little Pigeon River (Tremont)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking noted by TWRA on the Middle Prong. No gauge; recent-rain judgment applies.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "milan-city-pond",
+    "name": "Milan City Pond",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take pond in Milan (Gibson County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "mill-creek-overton",
+    "name": "Mill Creek (Overton County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Overton County creek on the plateau’s eastern rim.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "mississippi-river",
+    "name": "Mississippi River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "mossy-creek-jefferson",
+    "name": "Mossy Creek (Jefferson County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows track rain and groundwater closely.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "new-river",
+    "name": "New River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03408500"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country history means check local access notices; flows are rain-driven. It runs its full named length (Scott/Anderson counties) down to the Clear Fork confluence country.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "nickajack-lake",
+    "name": "Nickajack Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake; below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban Chattanooga reach above it. Verify TVA release schedules before paddling the gorge.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "nolichucky-river",
+    "name": "Nolichucky River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [
+      "03465500"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [],
+    "notes": "Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "normandy-lake",
+    "name": "Normandy Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of it.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "norris-lake",
+    "name": "Norris Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [
+      "03533000"
+    ],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger, and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch River and Powell River (powell-river); the dam releases the Clinch River Norris tailwater (clinch-river) into Melton Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is about 33,840 acres, and the pool outline runs far up the Clinch and Powell arms — expect shorelines and access points to follow the impounded river channels.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "north-chickamauga-creek",
+    "name": "North Chickamauga Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03566535"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring stocking in the valley reaches. The Mile Straight gauge helps separate rain events from baseline.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "north-fork-holston-river",
+    "name": "North Fork Holston River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence with the South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins. The Tennessee reach is short (the fork forms the state line for its final miles); Virginia water upstream is out of scope. TWRA recognizes it as a separate named river. Renowned smallmouth water in Virginia; verify regulations and any consumption advisories before eating fish from this reach.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "north-prong-barren-fork",
+    "name": "North Prong Barren Fork River",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked upper Barren Fork water.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "obed-river",
+    "name": "Obed River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03539800"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast. Stocking flag false by design — verify NPS/TWRA notices. It runs its full named length across the Cumberland Plateau to the Emory confluence.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "obey-river",
+    "name": "Obey River (Dale Hollow tailwater)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-upper-cumberland",
+    "gaugeIds": [
+      "03417000",
+      "usace:DHTT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 700,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery stocked by TWRA every month of the year below the dam. Release-dependent wade windows — the below-dam gauge tells the story.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "obion-river",
+    "name": "Obion River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a west-flowing river through Northwest Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "ocoee-number-three-lake",
+    "name": "Ocoee Number Three Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small (≈550 acre) impoundment of the Ocoee River in Polk County upstream of Parksville Lake, created by TVA's Ocoee Dam No. 3. The upper Ocoee (ocoee-river) enters from the Copperhill end and resumes below the dam toward Parksville Lake. TWRA records this same pool under the historical name \"Hiwassee Lake\" (443 ac) — that label does not refer to the Hiwassee Lake in North Carolina.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "ocoee-river",
+    "name": "Ocoee River (upper, Copperhill reach)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03559500",
+      "tva:OCBT1"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s stocking dataset lists the Parksville tailwater below the dam, not this reach — set conservatively. Verify TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "old-hickory-lake",
+    "name": "Old Hickory Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "paris-city-park-lake",
+    "name": "Paris City Park",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. TWRA lists the site as Paris City Park; the mapped water is the city-run Green Acres Lake (aka Williams Lake) — the secondary Eiffel Tower Park pond is a different water. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "parksville-lake",
+    "name": "Parksville Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03564500"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Ocoee River impoundment (TVA Ocoee Dam No. 1, \"Parksville Dam\") in Polk County southeast of Benton; the dam sits at the pool's west edge. Receives the upper Ocoee River (ocoee-river) below Ocoee Number Three Lake and discharges through the dam into the Parksville tailwater (parksville-tailwater), which joins the Hiwassee River. TWRA lists the same pool as \"Ocoee Lake\" (2,112 ac). Aliases: Ocoee Lake, Ocoee Lake No. 1, Parksville Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "parksville-tailwater",
+    "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+    "stateId": "TN",
+    "waterbodyType": "tailrace",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03564500",
+      "tva:OCAT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 50,
+        "max": 250,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow), stocked March through May. The reach below Parksville Dam mixes whitewater recreation schedules with cold releases — verify TVA’s Ocoee No. 1 flow before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "pickwick-lake",
+    "name": "Pickwick Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at Pickwick Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the north. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "pigeon-river",
+    "name": "Pigeon River (Hartford corridor)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [
+      "03461500"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line down to the Douglas Lake arm.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "pine-creek-dekalb",
+    "name": "Pine Creek (DeKalb County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked DeKalb County creek in the Center Hill fringe.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "piney-river-rhea",
+    "name": "Piney River (Rhea County)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout reach — rain judgment required. It runs down to the Watts Bar embayment head.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "powell-river",
+    "name": "Powell River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [
+      "03532000"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA line down to the Norris Lake arm.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "puncheon-camp-creek",
+    "name": "Puncheon Camp Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Grainger County creek. Tiny water; a close-to-home stocking option.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "red-river-clarksville",
+    "name": "Red River (Montgomery County)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [
+      "03436100"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter-stocked reaches near Clarksville. Mud-prone watershed — check the Port Royal gauge after any rain.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "reedy-creek",
+    "name": "Reedy Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03487602"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small Sullivan County creek receiving TWRA spring rainbow stocking. Spring-fed pockets and park access in Kingsport; flows track rain closely.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "reelfoot-lake",
+    "name": "Reelfoot Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West Tennessee). Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline best fished by boat; check TWRA guides for the commercial fishing and boating rules that apply on this lake.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "richardson-byrd-creek",
+    "name": "Richardson “Byrd” Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. It runs down to the upper Clinch River above the Norris pool.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "roaring-fork",
+    "name": "Roaring Fork",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and brook trout, with TWRA listing spring stocking for the Roaring Fork area. No gauge; treat flows as rain events.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "rocky-river",
+    "name": "Rocky River",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Van Buren County creek. Karst-influenced flows can change quickly.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "salt-lick-creek",
+    "name": "Salt Lick Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-upper-cumberland",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Macon County creek in the Dale Hollow fringe.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "sequatchie-river",
+    "name": "Sequatchie River (headwaters)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03571000"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far downstream — treat it as a valley-level trend, not the headwater truth. It runs the full valley from the Cumberland County headwaters down toward the Tennessee River at Shellmound.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "shelby-farms-lake",
+    "name": "Shelby Farms",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "shoal-creek",
+    "name": "Shoal Creek",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [
+      "03588500"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Lawrence County’s spring-fed Shoal Creek with TWRA spring stocking — the southern Highland Rim’s nicest surprise. Gauge at Iron City reads the groundwater mood.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "sinking-creek-wilson",
+    "name": "Sinking Creek (Wilson County)",
+    "stateId": "TN",
+    "waterbodyType": "spring",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Karst-influenced Wilson County creek in TWRA’s winter program — the name is the geology lesson. Steady-ish flows by creek standards.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "south-fork-cumberland",
+    "name": "South Fork Cumberland River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [
+      "03410210"
+    ],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood Ford. Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New River/Clear Fork confluence country up to the Kentucky line.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "south-holston-lake",
+    "name": "South Holston Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-holston",
+    "gaugeIds": [
+      "03476500"
+    ],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and Washington County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726). Discharges the South Holston tailwater (south-holston-river) toward Boone Lake. The lake crosses the state line into Virginia, so the mapped water covers the full reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes 7,580 ac at full pool.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "spring-creek-polk",
+    "name": "Spring Creek (Polk County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked creek in the Coker Creek area.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "standing-rock-creek",
+    "name": "Standing Rock Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-upper-cumberland",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Stewart County creek. Tiny close-to-home water.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "station-creek",
+    "name": "Station Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Claiborne County creek. Small pocket water near the Powell River corridor.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "stones-river",
+    "name": "Stones River (Davidson County)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [
+      "03430200",
+      "usace:JPPT1"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from roughly December through February. The Donelson gauge (below Percy Priest) is the flow reference.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "stoney-creek-carter",
+    "name": "Stoney Creek (Carter County)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Carter County creek near Hampton. Steep gradient; save it for clear water.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "sulfur-fork-creek",
+    "name": "Sulfur Fork Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "TWRA winter-stocked Robertson County creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "tellico-lake",
+    "name": "Tellico Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount counties, impounded by Tellico Dam at Lenoir City. Receives the Little Tennessee River (little-tennessee-river) below Chilhowee Dam, the Tellico River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake through the dam and the connecting canal. TWRA maps the reservoir at 15,788 ac. Aliases: Tellico Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "tellico-river",
+    "name": "Tellico River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [
+      "03518500"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Heavy TWRA stocking in the Tellico Plains corridor (stocked roughly February–December) plus a delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters. Rain-flashy mountain river — check the gauge.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "tennessee-river",
+    "name": "Tennessee River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424) upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the river legitimately leaves the state between mile 424 and Pickwick. Warm main-stem water — the trout fishing lives in the cold tailwaters below the dams, and the moving reaches are smallmouth water.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "tims-ford-lake",
+    "name": "Tims Ford Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "species": "warmwater",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir near Winchester in Franklin and Moore counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "trail-fork-big-creek",
+    "name": "Trail Fork (Big Creek tributary)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-pigeon-frenchbroad",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Tiny TWRA spring-stocked headwater in Cocke County near the Big Creek trail system.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "tumbling-creek",
+    "name": "Tumbling Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-se-hiwassee",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Polk County creek. Gradient earns the name.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "union-city-reelfoot-pond",
+    "name": "Union City Reelfoot Packing Site",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take pond in Union City (Obion County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "upper-hills-creek",
+    "name": "Upper Hills Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-middle-caney-fork",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Warren County creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "upper-roan-creek",
+    "name": "Upper Roan Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Cold Johnson County water near the Virginia line, TWRA spring-stocked. Good early-season option when bigger rivers are high. This catalog reach covers the upper creek.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "valentine-park-pond",
+    "name": "Valentine Park",
+    "stateId": "TN",
+    "waterbodyType": "pond",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take pond in Munford (Tipton County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "watauga-lake",
+    "name": "Watauga Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TVA reservoir on the Watauga River in the mountains of Carter and Johnson counties, impounded by Watauga Dam (between USGS 03483450 above and 03483950 below; tailwater gauge 36.33011/-82.12596). One of the highest reservoirs in the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout fishery downstream. Outflow runs via the short Watauga River reach (watauga-river-wilbur-reach) into Wilbur Lake. The pool runs all the way to the dam at its west end. Aliases: Watauga Reservoir.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "watauga-river-wilbur-reach",
+    "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS 03483950 below-dam gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600) and Wilbur Lake in Carter County. Cold, clear release water that closes the Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur tailwater) chain; the celebrated trophy water begins below Wilbur Dam as watauga-river.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "watts-bar-lake",
+    "name": "Watts Bar Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-east-clinch",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328; Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties — including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm. Discharges through Watts Bar Dam into Chickamauga Lake. TVA lists the reservoir at 39,090 ac at full pool.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "west-fork-stones-river",
+    "name": "West Fork Stones River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-middle-nashville",
+    "gaugeIds": [
+      "03428200"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [],
+    "notes": "Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting, December–February. Gauge at Murfreesboro.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "west-prong-little-pigeon",
+    "name": "West Prong Little Pigeon River",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-east-smokies",
+    "gaugeIds": [
+      "03469251"
+    ],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Wild rainbow and brook trout water in the park’s Chimneys/Tremont corridor, with TWRA spring stocking on lower reaches. Steep, flashy watershed — check the gauge before committing.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "white-oak-creek",
+    "name": "White Oak Creek",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-upper-cumberland",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked Houston County creek near Land Between the Lakes’ eastern edge.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "wilbur-lake",
+    "name": "Wilbur Lake",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-northeast-watauga",
+    "gaugeIds": [
+      "03484000",
+      "03483980"
+    ],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River in Carter County. Receives Watauga Dam releases via the short riverine reach (watauga-river-wilbur-reach) and discharges through Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "wolf-river-fentress",
+    "name": "Wolf River (Fentress County headwaters)",
+    "stateId": "TN",
+    "waterbodyType": "creek",
+    "regionId": "tn-cumberland-plateau",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA spring-stocked headwaters of the Memphis-bound Wolf River, high on the plateau. Small riffly water; no gauge this far up.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "wolf-river-west-tennessee",
+    "name": "Wolf River",
+    "stateId": "TN",
+    "waterbodyType": "river",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 70,
+        "max": 350,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf through Fayette and Shelby counties; a different water from the Fentress County headwaters of the same name. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "woods-reservoir",
+    "name": "Woods Reservoir",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-middle-duck-elk",
+    "gaugeIds": [],
+    "stockingProgram": false,
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and Manchester (Franklin County), open to public fishing.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  },
+  {
+    "id": "yale-road-park-lake",
+    "name": "Yale Road Park",
+    "stateId": "TN",
+    "waterbodyType": "lake",
+    "regionId": "tn-west",
+    "gaugeIds": [],
+    "stockingProgram": true,
+    "species": "trout",
+    "idealFlow": [
+      {
+        "min": 8,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
+    "notes": "TWRA winter put-and-take lake in Bartlett (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go.",
+    "officialSources": [
+      {
+        "label": "TWRA trout stocking — verify officially",
+        "url": "https://www.tn.gov/twra/fishing/stocking.html"
+      }
+    ]
+  }
+]

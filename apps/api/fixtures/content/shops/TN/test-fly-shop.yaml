@@ -1,0 +1,7 @@
+# Test/bootstrap fixture content (ROLE 3) — fictional shop, used only for tests/demos.
+id: test-fly-shop
+name: Test Fly Shop (fixture)
+stateId: TN
+town: Elizabethton
+websiteUrl: https://example.com/test-fly-shop
+reportsEnabled: true

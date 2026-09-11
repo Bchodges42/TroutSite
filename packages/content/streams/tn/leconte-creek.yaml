@@ -1,0 +1,23 @@
+id: leconte-creek
+name: LeConte Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-smokies
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: true
+idealFlow:
+  - min: 10
+    max: 80
+    unit: cfs
+notes: Small park creek near Gatlinburg with wild fish and TWRA spring stocking listed. Pocket
+  water under heavy canopy.
+officialSources:
+  - label: NPS — Great Smoky Mountains National Park fishing information
+    url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

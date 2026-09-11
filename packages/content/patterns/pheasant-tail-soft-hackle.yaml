@@ -1,0 +1,18 @@
+id: pheasant-tail-soft-hackle
+name: Pheasant Tail Soft Hackle
+type: wet
+imitates:
+  - blue-winged-olive
+  - sulphur-dun
+  - trico
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - pheasant tail fibers
+  - partridge hackle
+  - peacock herl
+notes: A PT nymph that swam away — the emerging-mayfly answer.
+license: public-domain

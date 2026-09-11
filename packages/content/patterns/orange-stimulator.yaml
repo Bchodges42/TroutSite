@@ -1,0 +1,18 @@
+id: orange-stimulator
+name: Orange Stimulator
+type: dry
+imitates:
+  - golden-stone
+  - great-autumn-sedge
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 3
+materials:
+  - orange elk hair
+  - palmered brown hackle
+  - orange dubbing
+notes: The autumn version — reads as a big golden stone or October caddis.
+license: attributed
+attribution: Stimulator style credited to Jim Slattery, popularized by Randall Kaufmann

@@ -1,0 +1,26 @@
+id: pigeon-river
+name: Pigeon River (Hartford corridor)
+stateId: TN
+waterbodyType: river
+regionId: tn-east-pigeon-frenchbroad
+gaugeIds:
+  - "03461500"
+stockingProgram: false
+species: trout
+idealFlow:
+  - min: 300
+    max: 1500
+    unit: cfs
+notes: >-
+  Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is
+  popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list
+  the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line
+  down to the Douglas Lake arm.
+
+officialSources:
+  - label: USGS Water Data — monitoring location 03461500
+    url: https://waterdata.usgs.gov/monitoring-location/03461500/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

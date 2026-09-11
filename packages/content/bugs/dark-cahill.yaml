@@ -1,0 +1,52 @@
+id: dark-cahill
+commonName: Dark Cahill
+sciName: Maccaffertium femoratum
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - gray-brown
+    - dark-tan
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - runs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 6
+    - 7
+    - 8
+  tn-east-smokies:
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 6
+    - 7
+    - 8
+illustration: illustrations/dark-cahill.svg
+stages:
+  - nymph
+  - dun
+notes: Dusky summer flatheads whose duns carry slate-gray wings. When cahill-style hatches look
+  muddy and dark, this is usually the culprit.
+sources:
+  - https://bugguide.net

@@ -1,0 +1,26 @@
+id: stones-river
+name: Stones River (Davidson County)
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-nashville
+gaugeIds:
+  - "03430200"
+  - "usace:JPPT1"
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 40
+    max: 400
+    unit: cfs
+notes: TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from
+  roughly December through February. The Donelson gauge (below Percy Priest) is the flow
+  reference.
+officialSources:
+  - label: USGS Water Data — monitoring location 03430200
+    url: https://waterdata.usgs.gov/monitoring-location/03430200/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

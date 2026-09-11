@@ -1,0 +1,82 @@
+id: little-brown-sedge
+commonName: Little Brown Sedge
+sciName: Lepidostoma spp.
+order: Trichoptera
+family: Lepidostomatidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - brown
+    - tan-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - leaf packs
+  - riffles
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-brown-sedge.svg
+stages:
+  - adult
+notes: Square-log-case builders abundant in leafy runs. Their tidy brown adults favor late-day
+  flights; small brown elkhairs cover them.
+sources:
+  - https://bugguide.net

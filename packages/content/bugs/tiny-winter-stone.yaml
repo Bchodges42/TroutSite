@@ -1,0 +1,64 @@
+id: tiny-winter-stone
+commonName: Tiny Winter Black Stone
+sciName: Allocapnia spp.
+order: Plecoptera
+family: Capniidae
+sizeRange:
+  - 16
+  - 22
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - black
+    - gray-black
+  mouthparts: shredding-detritivore
+habitat:
+  - tailwaters
+  - riffles
+  - leaf packs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-east-smokies:
+    - 1
+    - 2
+    - 3
+    - 4
+  tn-east-pigeon-frenchbroad:
+    - 1
+    - 2
+    - 3
+    - 4
+illustration: illustrations/tiny-winter-stone.svg
+stages:
+  - nymph
+  - adult
+notes: Micro winter stones — males are wingless crawlers you’ll spot on bridge pilings in
+  January. Tiny black midge-adjacent dries imitate the adults on calm cold afternoons.
+sources:
+  - https://bugguide.net

@@ -1,0 +1,21 @@
+id: doe-creek-johnson
+name: Doe Creek (Johnson County)
+stateId: TN
+waterbodyType: creek
+regionId: tn-northeast-watauga
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 5
+    max: 50
+    unit: cfs
+notes: Not to be confused with Carter County’s Doe River — this is the TWRA spring-stocked
+  Johnson County creek. Pocket water with roadside access.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,20 @@
+id: meat-whistle
+name: Meat Whistle
+type: streamer
+imitates:
+  - sculpin
+  - crayfish
+  - leech
+hookSizes:
+  - 2
+  - 4
+  - 6
+  - 8
+difficulty: 2
+materials:
+  - rabbit strip
+  - diamond braid body
+  - cone head
+notes: John Barr’s jigged bunny — the deep, slow, winter-time answer.
+license: attributed
+attribution: Designed by John Barr

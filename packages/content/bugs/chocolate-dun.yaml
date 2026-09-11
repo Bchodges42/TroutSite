@@ -1,0 +1,50 @@
+id: chocolate-dun
+commonName: Chocolate Dun
+sciName: Eurylophella spp.
+order: Ephemeroptera
+family: Ephemerellidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - chocolate-brown
+    - brown
+  mouthparts: chewing-collector
+habitat:
+  - riffles
+  - leaf packs
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/chocolate-dun.svg
+stages:
+  - nymph
+  - dun
+notes: Rich brown early-season Ephemerellid of leaf-litter reaches in Appalachian creeks.
+  Chocolate-bodied parachutes work in the first warm weeks of spring.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

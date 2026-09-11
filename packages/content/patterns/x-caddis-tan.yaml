@@ -1,0 +1,18 @@
+id: x-caddis-tan
+name: X-Caddis (Tan)
+type: dry
+imitates:
+  - spotted-sedge
+  - little-sister-sedge
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - tan dubbing
+  - elk hair shuck-wing
+  - z-lon trailing shuck
+notes: Craig Mathews’ trailing-shuck caddis — better on picky fish than the full-winged original.
+license: attributed
+attribution: Designed by Craig Mathews (Yellowstone Angler)

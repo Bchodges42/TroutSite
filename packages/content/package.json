@@ -1,0 +1,27 @@
+{
+  "//": "OWNER: ROLE 4 — YAML content pack (bugs, patterns, hatch charts, streams, shops) per §7. ROLE 1 created the shell + validate stub; ROLE 4 owns everything here.",
+  "name": "@trout/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./pack/*": "./dist/pack/*"
+  },
+  "scripts": {
+    "validate": "tsx scripts/validate.ts",
+    "build": "tsx scripts/build.ts",
+    "report": "tsx scripts/report.ts",
+    "test": "vitest run",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@trout/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3",
+    "yaml": "^2.5.1"
+  }
+}

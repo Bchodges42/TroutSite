@@ -1,0 +1,23 @@
+id: calderwood-lake
+name: Calderwood Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-smokies
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow: []
+notes: >-
+  Small reservoir on the Little Tennessee River along the North Carolina line
+  in Blount County, impounded by Calderwood Dam. Receives Little Tennessee
+  flow from Fontana Lake (NC) and discharges into Chilhowee Lake. TWRA stocks the
+  reservoir with rainbow trout in November and December. TWRA lists
+  this pool as "Little Calderwood Reservoir" (458 ac) — that name is an alias
+  here.
+officialSources:
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html
+  - label: Tapoco/Calderwood area access (verify locally)
+    url: https://www.tn.gov/twra.html

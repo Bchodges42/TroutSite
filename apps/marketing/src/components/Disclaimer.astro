@@ -1,0 +1,18 @@
+---
+/**
+ * "Verify officially" disclaimer — ROLE 5 (non-negotiable #2).
+ * Used on every page that republishes government data.
+ */
+export interface Props {
+  agency?: string;
+  topic?: string;
+}
+
+const { agency = 'TWRA', topic = 'stocking schedules' } = Astro.props;
+---
+
+<aside class="disclaimer">
+  <strong>Always verify with {agency}.</strong> This page is a convenience summary of public
+  {topic}, republished with attribution. Schedules, regulations, and fees change without notice —
+  we are not authoritative. Follow the official links on this page before you plan a trip.
+</aside>

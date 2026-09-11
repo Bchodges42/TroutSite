@@ -1,0 +1,83 @@
+id: little-black-sedge
+commonName: Little Black Sedge
+sciName: Chimarra aterrima
+order: Trichoptera
+family: Philopotamidae
+sizeRange:
+  - 18
+  - 22
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - black
+    - dark-brown
+  mouthparts: filtering-net
+habitat:
+  - riffles
+  - tailwaters
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/little-black-sedge.svg
+stages:
+  - larva
+  - adult
+notes: Finger-net spinners whose black adults flutter in slow evening clouds all summer. Tiny
+  black dries fished high in the film fool steady risers.
+sources:
+  - https://bugguide.net

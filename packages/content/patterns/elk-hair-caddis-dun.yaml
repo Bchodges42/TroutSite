@@ -1,0 +1,20 @@
+id: elk-hair-caddis-dun
+name: Elk Hair Caddis (Dun Gray)
+type: dry
+imitates:
+  - dark-blue-sedge
+  - little-sister-sedge
+  - little-gray-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - dun gray elk hair
+  - palmered dun hackle
+  - gray dubbing
+notes: The gray variant for slate-colored sedges of summer riffles.
+license: attributed
+attribution: Designed by Al Troth

@@ -1,0 +1,17 @@
+id: lake-barkley
+name: Lake Barkley
+stateId: TN
+waterbodyType: lake
+regionId: tn-middle-nashville
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Reference waterbody from the Tennessee waterways inventory — the Cumberland River
+  reservoir at the Kentucky line in Stewart and Montgomery counties. Detailed angler
+  notes are still being prepared — check TWRA and local access areas in the meantime.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

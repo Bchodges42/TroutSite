@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    # Windows mirrors the actual deployment target (laptop + Git Bash, §15).
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4   # reads packageManager (pnpm 9) from package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (all packages)
+        run: pnpm -r lint
+
+      - name: Content validation gate
+        run: pnpm validate:content
+
+      - name: Test (contracts with >=90% coverage gate + api)
+        run: pnpm -r test
+
+      - name: Build (all packages)
+        run: pnpm -r build

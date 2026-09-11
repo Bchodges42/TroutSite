@@ -1,0 +1,17 @@
+id: normandy-lake
+name: Normandy Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater
+  catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of
+  it.
+officialSources:
+  - label: TVA — Normandy Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

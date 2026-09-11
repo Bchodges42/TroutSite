@@ -1,0 +1,19 @@
+id: renegade
+name: Renegade
+type: dry
+imitates:
+  - little-black-midge
+  - olive-midge
+  - trico
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - peacock herl
+  - white and brown hackles
+notes: The Creede, Colorado classic — an attractor that reads as a midge cluster.
+license: public-domain

@@ -1,0 +1,15 @@
+id: little-sulphur-dun-dry
+name: Little Sulphur Dun Dry
+type: dry
+imitates:
+  - little-sulphur
+hookSizes:
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - pale-yellow dubbing
+  - light dun hackle
+  - cream poly wing
+notes: The brighter, earlier sulphur of freestone rivers.
+license: public-domain

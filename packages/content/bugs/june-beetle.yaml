@@ -1,0 +1,55 @@
+id: june-beetle
+commonName: June Beetle
+sciName: Phyllophaga spp.
+order: Coleoptera
+family: Scarabaeidae
+sizeRange:
+  - 8
+  - 12
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - brown
+    - reddish-brown
+  mouthparts: chewing
+habitat:
+  - banks
+  - lit water near lights
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+illustration: illustrations/june-beetle.svg
+stages:
+  - adult
+notes: "Big, buzzy May-and-June beetles crash-land on rivers at dusk. A size #10 brown foam
+  beetle bumps along nicely in their honor."
+sources:
+  - https://bugguide.net

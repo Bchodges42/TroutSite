@@ -1,0 +1,18 @@
+id: black-ghost
+name: Black Ghost
+type: streamer
+imitates:
+  - common-shiner
+  - creek-chub
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - black bucktail
+  - yellow floss body
+  - grizzly hackle
+notes: Herbert Welch’s 1927 classic — simple, elegant, and still hungry.
+license: attributed
+attribution: Designed by Herbert L. Welch (Maine, 1927)

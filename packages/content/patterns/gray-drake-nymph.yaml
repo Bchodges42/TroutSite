@@ -1,0 +1,16 @@
+id: gray-drake-nymph
+name: Gray Drake Nymph
+type: nymph
+imitates:
+  - gray-drake
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - pale gray-olive dubbing
+  - hen hackle
+  - olive biot
+notes: Slender swimmer nymph for weedy margins.
+license: public-domain

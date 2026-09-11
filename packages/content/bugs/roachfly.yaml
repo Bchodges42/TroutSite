@@ -1,0 +1,53 @@
+id: roachfly
+commonName: Roachfly
+sciName: Tallaperla / Peltoperla spp.
+order: Plecoptera
+family: Peltoperlidae
+sizeRange:
+  - 10
+  - 14
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - brown
+    - dark-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - leaf packs
+  - headwater creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+illustration: illustrations/roachfly.svg
+stages:
+  - nymph
+notes: Appalachian specialty — roach-like leaf-shredders of brook-trout headwaters. Flip a leaf
+  pack in a first-order creek and you’ll find dozens.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

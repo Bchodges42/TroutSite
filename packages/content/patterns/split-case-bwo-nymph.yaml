@@ -1,0 +1,20 @@
+id: split-case-bwo-nymph
+name: Split-Case BWO Nymph
+type: nymph
+imitates:
+  - blue-winged-olive
+  - tiny-blue-winged-olive
+  - little-spiny-crawler
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+difficulty: 2
+materials:
+  - olive dubbing
+  - medium pheasant tail fibers split for the case
+  - pearl flashback
+notes: The split wingcase reads as a nymph ready to emerge — the reason it out-fishes standard
+  cases on flat water.
+license: public-domain

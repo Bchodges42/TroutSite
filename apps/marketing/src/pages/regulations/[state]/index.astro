@@ -1,0 +1,112 @@
+---
+/**
+ * /regulations/{state}/ — programmatic regulations pointer (UI redesign lane).
+ * Deliberately does NOT restate any rule: it explains where the authoritative
+ * rules live (agency proclamations, special-regulation lists, tailwater
+ * authorities), why summaries go stale, and links back to the app. Every
+ * regulatory claim carries an official source and effective-date language.
+ */
+import Base from '../../../layouts/Base.astro';
+import Disclaimer from '../../../components/Disclaimer.astro';
+import { LAUNCH_STATES } from '../../../data/states';
+import { faqLd, breadcrumbLd } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  return LAUNCH_STATES.map((state) => ({
+    params: { state: state.slug },
+    props: { state },
+  }));
+}
+
+const { state } = Astro.props;
+const reviewed = '2026-09-04';
+
+const faqs = [
+  {
+    question: `Is this page the official ${state.name} trout regulation?`,
+    answer: `No — and no convenience site should claim to be. ${state.agency.name} sets trout rules annually; this page only points at the official sources and explains how to read them. Always verify with the agency before you fish.`,
+  },
+  {
+    question: 'Why doesn\'t this page list creel and size limits?',
+    answer: 'Because a summarized limit that is one year out of date is worse than none. Limits and special regulations change by water and by season; the official regulation summary in force is the only safe source for the numbers.',
+  },
+  {
+    question: 'What are special-regulation trout waters?',
+    answer: 'Waters where the default statewide rules do not apply — delayed-harvest streams, quality zones on tailwaters, gear-restricted reaches. The agency lists them by name in the current regulation summary.',
+  },
+];
+
+const title = `${state.name} trout regulations — official sources, special waters & effective dates`;
+const description = `Where the authoritative ${state.name} trout rules live: annual ${state.agency.short} proclamations, special-regulation waters, tailwater release schedules, and how to verify before you fish. No restated rules, no trackers.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/regulations/${state.slug}/`}
+  ld={[
+    faqLd(faqs),
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: `${state.name} regulations`, url: `/regulations/${state.slug}/` },
+    ]),
+  ]}
+>
+  <p class="kicker">{state.name}</p>
+  <h1>{state.name} trout regulations — start at the source</h1>
+  <p class="lead">
+    This page will never quote a creel limit at you. Rules are set annually by {state.agency.name}
+    and change by water and season — what this page does is put the official sources in one place
+    and explain how to read them. Reviewed {reviewed}; the proclamation in force at the agency
+    link is the only authoritative version.
+  </p>
+
+  <h2>Where the rules actually live</h2>
+  <p>
+    {state.agency.short} publishes its fishing regulations and the annual proclamation on its own
+    site. License requirements, seasons, creel and size limits, and gear restrictions are all
+    defined there, with effective dates printed on each document.
+  </p>
+  <p>
+    <a href={state.agency.url} rel="nofollow">{state.agency.name} — fishing</a><br />
+    <a href={state.agency.stockingUrl} rel="nofollow">{state.agency.short} — trout information &amp; stockings</a>
+  </p>
+
+  <h2>Special-regulation waters</h2>
+  <p>
+    Some of the best-known trout waters — delayed-harvest streams, quality zones on tailwaters,
+    gear-restricted reaches — do not follow the statewide defaults. The agency lists these waters
+    by name in the current regulation summary, with reach boundaries described in legal detail.
+    Confirm the specific reach you plan to fish against the current list; the special-regulation
+    roster can change year to year.
+  </p>
+
+  <h2>Tailwaters: releases change everything</h2>
+  <p>
+    On dam-fed rivers, the generation schedule is as important as the regulation book: releases
+    can raise the river fast and without local warning, and discharges run dangerously cold. Check
+    the dam authority's schedule and the live gauges before you wade.
+  </p>
+  <p>
+    <a href="https://www.tva.com/environment/lake-levels" rel="nofollow">TVA — lake levels &amp; release schedules</a> ·
+    <a href="https://waterdata.usgs.gov/tn/nwis" rel="nofollow">USGS — Tennessee water data</a>
+  </p>
+
+  <h2>How to verify before a trip</h2>
+  <ol>
+    <li>Read the regulation summary for your water in the current proclamation — note its effective period.</li>
+    <li>Check the stocking schedule if you fish put-and-take water: <a href={`/stocking/${state.id.toLowerCase()}/`}>{state.name} stocking mirror</a> (every row links the official source).</li>
+    <li>Check generation schedules and gauges for dam-fed water.</li>
+    <li>Confirm access areas are open — closures change without notice.</li>
+  </ol>
+
+  <h2>Take it to the water</h2>
+  <p>
+    The Trout field atlas app keeps the map, gauge-fed conditions, and the published stocking
+    schedule on your phone — offline, private, free:
+    <a href="/install/">install the app</a>. The plain-English companion guide lives at
+    <a href={`/fishing/${state.slug}/`}>trout fishing in {state.name}</a>.
+  </p>
+
+  <Disclaimer agency={state.agency.short} topic="regulations" />
+</Base>

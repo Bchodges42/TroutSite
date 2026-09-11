@@ -1,0 +1,16 @@
+id: foam-ant-black
+name: Foam Ant (Black)
+type: terrestrial
+imitates:
+  - ant
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - black foam
+  - round hackle
+notes: Two foam bumps and a hackle — the Smokies bank fly.
+license: public-domain

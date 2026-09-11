@@ -1,0 +1,19 @@
+id: double-bunny-black
+name: Double Bunny (Black)
+type: streamer
+imitates:
+  - leech
+  - sculpin
+  - threadfin-shad
+hookSizes:
+  - 2
+  - 4
+  - 6
+difficulty: 2
+materials:
+  - two stacked rabbit strips
+  - dumbbell eyes
+  - flash
+notes: Kelly Galloup’s double-strip pusher — the evening big-brown fly.
+license: attributed
+attribution: Designed by Kelly Galloup

@@ -1,0 +1,46 @@
+id: grannom
+commonName: Grannom (American Caddisfly)
+sciName: Brachycentrus numerosus
+order: Trichoptera
+family: Brachycentridae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - olive-black
+    - dark-olive
+  mouthparts: filtering-net
+habitat:
+  - tailwaters
+  - riffles
+  - runs
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+  tn-northeast-watauga:
+    - 4
+    - 5
+  tn-east-clinch:
+    - 4
+    - 5
+  tn-middle-caney-fork:
+    - 4
+    - 5
+  tn-middle-duck-elk:
+    - 4
+    - 5
+illustration: illustrations/grannom.svg
+stages:
+  - larva
+  - adult
+notes: Case-building larvae that square-dance to the surface in spring — egg-laying clouds
+  literally swarm anglers on big tailwaters. The famous "Mother’s Day" caddis of eastern
+  tailwaters.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

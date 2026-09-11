@@ -1,0 +1,26 @@
+[
+  {
+    "id": "shop-watauga-river-outfitters",
+    "name": "Watauga River Outfitters (sample)",
+    "stateId": "TN",
+    "town": "Elizabethton",
+    "websiteUrl": "https://example.com/shops/watauga-river-outfitters",
+    "reportsEnabled": true
+  },
+  {
+    "id": "shop-south-holston-fly-co",
+    "name": "South Holston Fly Co. (sample)",
+    "stateId": "TN",
+    "town": "Bristol",
+    "websiteUrl": "https://example.com/shops/south-holston-fly-co",
+    "reportsEnabled": true
+  },
+  {
+    "id": "shop-caney-fork-outfitters",
+    "name": "Caney Fork Outfitters (sample)",
+    "stateId": "TN",
+    "town": "Smithville",
+    "websiteUrl": "https://example.com/shops/caney-fork-outfitters",
+    "reportsEnabled": true
+  }
+]

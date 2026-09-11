@@ -1,0 +1,121 @@
+// OWNER: ROLE 4. The CI content gate as a Vitest suite (same loader as scripts/validate.ts).
+// Covers: schema validity, orphan references, gauge-ID lint, SVG well-formedness,
+// hatch-chart month coverage, and the CHAT-4 Definition-of-Done floors.
+import { describe, expect, it } from 'vitest';
+import { loadContent, loadVerifiedGauges, isWellFormedSvg, FLOORS } from '../scripts/lib.js';
+import { REGIONS } from '../scripts/regions.js';
+
+const { bugs, patterns, streams, shops, hatch, illustrations, issues, warnings } = loadContent();
+
+describe('content pack validation (CI gate)', () => {
+  it('has no validation issues', () => {
+    expect(issues, issues.map((i) => `${i.file}: ${i.message}`).join('\n')).toEqual([]);
+  });
+
+  it('validates every bug taxon against BugTaxonSchema with cited sources', () => {
+    expect(bugs.size).toBeGreaterThan(0);
+    for (const [id, taxon] of bugs) {
+      expect(taxon.sources.length, `${id} must cite sources`).toBeGreaterThanOrEqual(1);
+      expect(taxon.notes.length, `${id} needs original notes`).toBeGreaterThan(20);
+    }
+  });
+
+  it('ships one well-formed SVG illustration per taxon', () => {
+    for (const [id, taxon] of bugs) {
+      const svg = illustrations.get(`${id}.svg`);
+      expect(svg, `missing SVG for ${id} (${taxon.illustration})`).toBeTruthy();
+      expect(isWellFormedSvg(svg as string), `malformed SVG for ${id}`).toBe(true);
+      expect((svg as string).length, `SVG for ${id} suspiciously large`).toBeLessThan(10_000);
+    }
+    expect(illustrations.size).toBe(bugs.size);
+  });
+
+  it('has no orphan pattern → taxon references', () => {
+    for (const [id, pattern] of patterns) {
+      for (const taxonId of pattern.imitates) {
+        expect(bugs.has(taxonId), `patterns/${id}.yaml → unknown taxon ${taxonId}`).toBe(true);
+      }
+    }
+  });
+
+  it('has no orphan hatch chart references', () => {
+    for (const [rid, charts] of hatch) {
+      for (const chart of charts) {
+        for (const entry of chart.entries) {
+          expect(bugs.has(entry.taxonId), `hatch/${rid} month ${chart.month} → unknown taxon ${entry.taxonId}`).toBe(true);
+          for (const pid of entry.patterns) {
+            expect(patterns.has(pid), `hatch/${rid} month ${chart.month} → unknown pattern ${pid}`).toBe(true);
+          }
+        }
+      }
+    }
+  });
+
+  it('covers all 12 months for every launch region', () => {
+    expect(hatch.size).toBe(REGIONS.length);
+    for (const region of REGIONS) {
+      const charts = hatch.get(region.id);
+      expect(charts, `no hatch file for ${region.id}`).toBeDefined();
+      expect(charts?.map((c) => c.month).sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    }
+  });
+
+  it('lints every gaugeId against the USGS-verified fixture', () => {
+    const verified = loadVerifiedGauges();
+    expect(Object.keys(verified.gauges).length).toBeGreaterThan(0);
+    for (const stream of streams.values()) {
+      for (const gaugeId of stream.gaugeIds) {
+        // Non-USGS conditions gauges are namespaced (tva:{LocationID} / usace:{station});
+        // their registries + live-capture audits live in apps/api, not in this fixture.
+        if (/^(tva|usace):[A-Za-z0-9]{1,10}$/.test(gaugeId)) continue;
+        expect(gaugeId).toMatch(/^\d{8}(\.\d+)?$/);
+        expect(verified.gauges[gaugeId], `stream ${stream.id}: gauge ${gaugeId} not verified on USGS`).toBeDefined();
+      }
+    }
+  });
+
+  it('cites official sources on every stream and shop', () => {
+    for (const stream of streams.values()) {
+      expect(stream.officialSources.length, `${stream.id} needs officialSources`).toBeGreaterThanOrEqual(1);
+    }
+    for (const shop of shops.values()) {
+      expect(shop.websiteUrl).toMatch(/^https:\/\//);
+      expect(shop.reportsEnabled, 'shops ship un-onboarded').toBe(false);
+    }
+  });
+});
+
+describe('CHAT-4 Definition of Done floors', () => {
+  it('meets the content-count floors', () => {
+    expect(bugs.size).toBeGreaterThanOrEqual(FLOORS.bugs);
+    expect(patterns.size).toBeGreaterThanOrEqual(FLOORS.patterns);
+    expect(streams.size).toBeGreaterThanOrEqual(FLOORS.streams);
+    expect(shops.size).toBeGreaterThanOrEqual(FLOORS.shops);
+  });
+
+  it('documents (does not fail on) ungauged waters', () => {
+    // Ungauged streams are allowed with a warning, but the majority of the catalog must carry gauges.
+    // Floor lowered from 0.4 when the 13 West TN winter put-and-take ponds
+    // joined the catalog — program ponds are ungauged by nature. Lowered again
+    // from 0.35 when the 23 Tennessee waterways inventory stubs joined (8
+    // missing-line rivers + 15 reference lakes): reference waters stay honest
+    // with gaugeIds: [] until their geometry/review lands — gauges are never guessed.
+    const ungauged = [...streams.values()].filter((s) => s.gaugeIds.length === 0);
+    expect(warnings.some((w) => w.message.startsWith('no USGS gaugeIds'))).toBe(true);
+    expect(gauged_ratio()).toBeGreaterThan(0.3);
+    function gauged_ratio() {
+      return (streams.size - ungauged.length) / streams.size;
+    }
+  });
+
+  it('spreads hatch-chart activity across regions and seasons', () => {
+    // Guard against a degenerate chart: every region-month must list something, and no
+    // region-month may list absurdly many entries (payload/noise budget).
+    for (const [rid, charts] of hatch) {
+      for (const chart of charts) {
+        expect(chart.entries.length, `hatch/${rid} month ${chart.month} is empty`).toBeGreaterThan(0);
+        expect(chart.entries.length, `hatch/${rid} month ${chart.month} is bloated`).toBeLessThanOrEqual(130);
+      }
+    }
+  });
+});

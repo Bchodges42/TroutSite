@@ -1,0 +1,16 @@
+id: cinnamon-ant
+name: Cinnamon Ant
+type: terrestrial
+imitates:
+  - ant
+  - flying-ant
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - cinnamon dubbing
+  - round brown hackle
+notes: The flying-ant-season brown sibling of the fur ant.
+license: public-domain

@@ -1,0 +1,1412 @@
+[
+  {
+    "id": "baetis-bwo",
+    "commonName": "Blue-Winged Olive",
+    "sciName": "Baetis tricaudatus",
+    "order": "Ephemeroptera",
+    "family": "Baetidae",
+    "sizeRange": [
+      16,
+      22
+    ],
+    "keyAttributes": {
+      "tails": 3,
+      "gills": "lamellae",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "olive",
+        "olive-brown",
+        "gray"
+      ],
+      "mouthparts": "herbivorous scraper"
+    },
+    "habitat": [
+      "riffles",
+      "moderate currents",
+      "weedy margins"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-northeast-watauga": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-east-clinch": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-east-smokies": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "tn-se-hiwassee": [
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11
+      ],
+      "tn-cumberland-plateau": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-upper-cumberland": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-middle-caney-fork": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-middle-duck-elk": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "tn-middle-nashville": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ]
+    },
+    "notes": "The dependable overcast-day mayfly in every Tennessee tailwater. Nymphs dart in short bursts when disturbed.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America",
+      "Troutnut.com hatch reference (verify officially)",
+      "BugGuide.net family Baetidae (verify officially)"
+    ]
+  },
+  {
+    "id": "ephemerella-sulphur",
+    "commonName": "Sulphur Mayfly",
+    "sciName": "Ephemerella dorothea",
+    "order": "Ephemeroptera",
+    "family": "Ephemerellidae",
+    "sizeRange": [
+      14,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 3,
+      "gills": "lamellae",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "cream",
+        "pale-yellow",
+        "sulphur-orange"
+      ],
+      "mouthparts": "shredder / grazer"
+    },
+    "habitat": [
+      "moderate riffles",
+      "pool tails",
+      "undercut seams"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        4,
+        5,
+        6
+      ],
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6
+      ],
+      "tn-cumberland-plateau": [
+        5,
+        6
+      ],
+      "tn-upper-cumberland": [
+        5,
+        6
+      ],
+      "tn-middle-caney-fork": [
+        5,
+        6
+      ],
+      "tn-middle-duck-elk": [
+        5,
+        6
+      ],
+      "tn-middle-nashville": [
+        5,
+        6
+      ]
+    },
+    "notes": "The South Holston signature hatch. Duns ride high on sunny afternoons; spinners fall at dusk.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America",
+      "Troutnut.com Ephemerella dorothea (verify officially)"
+    ]
+  },
+  {
+    "id": "isonychia-slate",
+    "commonName": "Slate Drake",
+    "sciName": "Isonychia bicolor",
+    "order": "Ephemeroptera",
+    "family": "Isonychiidae",
+    "sizeRange": [
+      10,
+      14
+    ],
+    "keyAttributes": {
+      "tails": 3,
+      "gills": "lamellae",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "dark-brown",
+        "mahogany",
+        "black"
+      ],
+      "mouthparts": "active filter-feeder"
+    },
+    "habitat": [
+      "fast riffles",
+      "rocky runs",
+      "seams below rapids"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-northeast-watauga": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-clinch": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-smokies": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-cumberland-plateau": [
+        6,
+        7,
+        8
+      ],
+      "tn-upper-cumberland": [
+        6,
+        7,
+        8
+      ],
+      "tn-middle-caney-fork": [
+        6,
+        7,
+        8
+      ],
+      "tn-middle-duck-elk": [
+        6,
+        7,
+        8
+      ],
+      "tn-middle-nashville": [
+        6,
+        7,
+        8
+      ]
+    },
+    "notes": "Strong summer hatch on the Hiwassee. Fast-swimming nymph — fish them with motion, not dead drift.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America",
+      "BugGuide.net Isonychiidae (verify officially)"
+    ]
+  },
+  {
+    "id": "heptagenia-march-brown",
+    "commonName": "March Brown",
+    "sciName": "Stenonema vicarium",
+    "order": "Ephemeroptera",
+    "family": "Heptageniidae",
+    "sizeRange": [
+      10,
+      14
+    ],
+    "keyAttributes": {
+      "tails": 3,
+      "gills": "lamellae",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "brown",
+        "tan",
+        "mottled"
+      ],
+      "mouthparts": "grazer / scraper"
+    },
+    "habitat": [
+      "fast riffles",
+      "boulder gardens",
+      "cobble bars"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        4,
+        5,
+        6
+      ],
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6
+      ],
+      "tn-cumberland-plateau": [
+        4,
+        5
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5
+      ],
+      "tn-middle-nashville": [
+        4,
+        5
+      ]
+    },
+    "notes": "Flat-headed clinger mayfly; the mottled legs and broad head separate it from the Isonychia.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America"
+    ]
+  },
+  {
+    "id": "hydropsyche-caddis",
+    "commonName": "Net-Spinning Caddis",
+    "sciName": "Hydropsyche spp.",
+    "order": "Trichoptera",
+    "family": "Hydropsychidae",
+    "sizeRange": [
+      12,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "filaments",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "tan",
+        "olive",
+        "cream"
+      ],
+      "mouthparts": "net-spinning filter-feeder"
+    },
+    "habitat": [
+      "riffles",
+      "current seams",
+      "below dams"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-cumberland-plateau": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-nashville": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "notes": "The long spring–summer caddis season on the Hiwassee. Look for tethered cases under cobbles.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America",
+      "BugGuide.net Hydropsychidae (verify officially)"
+    ]
+  },
+  {
+    "id": "rhyacophila-green-sedge",
+    "commonName": "Green Sedge Caddis",
+    "sciName": "Rhyacophila fuscula",
+    "order": "Trichoptera",
+    "family": "Rhyacophilidae",
+    "sizeRange": [
+      10,
+      16
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "filaments",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "green",
+        "bright-green"
+      ],
+      "mouthparts": "free-living predator"
+    },
+    "habitat": [
+      "fast oxygenated riffles",
+      "steep runs"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        4,
+        5,
+        6
+      ],
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "tn-cumberland-plateau": [
+        4,
+        5
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5
+      ],
+      "tn-middle-nashville": [
+        4,
+        5
+      ]
+    },
+    "notes": "Bright-green free-living larva with no case — a dead giveaway when you flip cobble in spring.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America"
+    ]
+  },
+  {
+    "id": "chironomid-midge",
+    "commonName": "Midge Larva",
+    "sciName": "Chironomidae spp.",
+    "order": "Diptera",
+    "family": "Chironomidae",
+    "sizeRange": [
+      18,
+      26
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "none",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "red",
+        "cream",
+        "black",
+        "olive"
+      ],
+      "mouthparts": "collector-gatherer"
+    },
+    "habitat": [
+      "slow pools",
+      "weedy backwaters",
+      "tailout silt"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "Year-round trout food in every tailwater. Blood-red \"bloodworms\" live in the silt of slow pools.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America",
+      "BugGuide.net Chironomidae (verify officially)"
+    ]
+  },
+  {
+    "id": "gammarus-scud",
+    "commonName": "Scud",
+    "sciName": "Gammarus fasciatus",
+    "order": "Amphipoda",
+    "family": "Gammaridae",
+    "sizeRange": [
+      12,
+      20
+    ],
+    "keyAttributes": {
+      "tails": 3,
+      "gills": "lamellae",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "olive",
+        "gray",
+        "translucent",
+        "pink"
+      ],
+      "mouthparts": "scavenger"
+    },
+    "habitat": [
+      "weedy runs",
+      "spring-fed margins",
+      "slow pools"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "Freshwater shrimp that scull sideways. Orange or pink tint often means the scud is dead — trout still eat them.",
+    "sources": [
+      "Pennak — Freshwater Invertebrates of the United States",
+      "Troutnut.com Amphipoda (verify officially)"
+    ]
+  },
+  {
+    "id": "caecidotea-sowbug",
+    "commonName": "Sowbug",
+    "sciName": "Caecidotea spp.",
+    "order": "Isopoda",
+    "family": "Asellidae",
+    "sizeRange": [
+      12,
+      20
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "lamellae",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "tan",
+        "gray",
+        "cream"
+      ],
+      "mouthparts": "scavenger"
+    },
+    "habitat": [
+      "weedy pools",
+      "slow margins",
+      "detritus banks"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "Flat, hump-backed crustacean common in fertile tailwaters; fish them deep and slow.",
+    "sources": [
+      "Pennak — Freshwater Invertebrates of the United States"
+    ]
+  },
+  {
+    "id": "pteronarcys-giant-stone",
+    "commonName": "Giant Black Stonefly",
+    "sciName": "Pteronarcys proteus",
+    "order": "Plecoptera",
+    "family": "Pteronarcyidae",
+    "sizeRange": [
+      4,
+      10
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "filaments",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "black",
+        "dark-brown"
+      ],
+      "mouthparts": "shredder"
+    },
+    "habitat": [
+      "clean riffles",
+      "under cobble",
+      "woody debris"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        4,
+        5,
+        6
+      ],
+      "tn-northeast-watauga": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-clinch": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-smokies": [
+        4,
+        5,
+        6
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        4,
+        5,
+        6
+      ],
+      "tn-se-hiwassee": [
+        3,
+        4,
+        5
+      ],
+      "tn-cumberland-plateau": [
+        4,
+        5
+      ],
+      "tn-upper-cumberland": [
+        4,
+        5
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5
+      ],
+      "tn-middle-duck-elk": [
+        4,
+        5
+      ],
+      "tn-middle-nashville": [
+        4,
+        5
+      ]
+    },
+    "notes": "Salmonfly-sized rubber-legs bait. Nymphs wander toward the banks before the spring hatch.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America",
+      "BugGuide.net Pteronarcyidae (verify officially)"
+    ]
+  },
+  {
+    "id": "acroneuria-golden-stone",
+    "commonName": "Golden Stone",
+    "sciName": "Acroneuria abnormis",
+    "order": "Plecoptera",
+    "family": "Perlidae",
+    "sizeRange": [
+      8,
+      14
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "filaments",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "golden-brown",
+        "tan",
+        "yellow"
+      ],
+      "mouthparts": "ambush predator"
+    },
+    "habitat": [
+      "boulder runs",
+      "fast riffles",
+      "deep seams"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-northeast-watauga": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-clinch": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-smokies": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-cumberland-plateau": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-upper-cumberland": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-middle-caney-fork": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-middle-duck-elk": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-middle-nashville": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "notes": "Summer staple on the Hiwassee. Big nymphs fish well dead-drifted through boulder seams.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America"
+    ]
+  },
+  {
+    "id": "tipula-cranefly",
+    "commonName": "Crane Fly Larva",
+    "sciName": "Tipula spp.",
+    "order": "Diptera",
+    "family": "Tipulidae",
+    "sizeRange": [
+      8,
+      16
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "none",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "tan",
+        "brown",
+        "gray"
+      ],
+      "mouthparts": "shredder"
+    },
+    "habitat": [
+      "soft banks",
+      "silted pool tails",
+      "detritus beds"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-northeast-watauga": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-clinch": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-smokies": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-east-pigeon-frenchbroad": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11
+      ],
+      "tn-cumberland-plateau": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-upper-cumberland": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-duck-elk": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-nashville": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "Fat, leggy larvae in the silt. A olive woolly bugger stripped slowly is the honest stand-in.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America"
+    ]
+  }
+]

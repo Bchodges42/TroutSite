@@ -1,0 +1,73 @@
+id: spiny-crawler-mayfly
+commonName: Great Spiny Crawler
+sciName: Drunella cornutella / D. cornuta
+order: Ephemeroptera
+family: Ephemerellidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - olive-brown
+    - dark-brown
+    - mottled-olive
+  mouthparts: chewing-collector
+habitat:
+  - riffles
+  - boulders
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/spiny-crawler-mayfly.svg
+stages:
+  - nymph
+  - dun
+notes: Squat, tank-like nymphs with head and thoracic spines, found clinging to rubble in
+  Smokies-area creeks. Their "hunchback" kick distinguishes them from flat-headed mayflies.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

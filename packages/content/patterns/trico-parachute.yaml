@@ -1,0 +1,17 @@
+id: trico-parachute
+name: Trico Parachute
+type: dry
+imitates:
+  - trico
+hookSizes:
+  - 20
+  - 22
+  - 24
+  - 26
+difficulty: 3
+materials:
+  - black and cream dubbing
+  - dun parachute hackle
+  - white poly post
+notes: Tiny morning trico duns — cream bodies read better on females.
+license: public-domain

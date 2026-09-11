@@ -1,0 +1,20 @@
+id: charles-creek
+name: Charles Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-caney-fork
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 5
+    max: 50
+    unit: cfs
+notes: TWRA spring-stocked Warren County creek.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

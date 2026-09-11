@@ -1,0 +1,53 @@
+id: black-quill
+commonName: Black Quill
+sciName: Leptophlebia cupida
+order: Ephemeroptera
+family: Leptophlebiidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - black-brown
+    - dark-brown
+  mouthparts: collector-gatherer
+habitat:
+  - peat-stained creeks
+  - riffles
+  - backwaters
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 3
+    - 4
+    - 5
+  tn-east-pigeon-frenchbroad:
+    - 3
+    - 4
+    - 5
+  tn-northeast-watauga:
+    - 3
+    - 4
+    - 5
+  tn-cumberland-plateau:
+    - 3
+    - 4
+    - 5
+  tn-se-hiwassee:
+    - 3
+    - 4
+    - 5
+  tn-upper-cumberland:
+    - 3
+    - 4
+    - 5
+illustration: illustrations/black-quill.svg
+stages:
+  - nymph
+  - dun
+notes: Early-spring Leptophlebiid of dark, tannin-stained water. Black-bodied duns ride low in
+  cold foam lines.
+sources:
+  - https://bugguide.net

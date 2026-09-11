@@ -1,0 +1,25 @@
+# cloudflared tunnel config TEMPLATE (see infra/RUNBOOK.md §2 for setup steps).
+# Copy values from `cloudflared tunnel create trout`, then replace APP.YOUR-DOMAIN.com.
+#
+# Do NOT commit real tunnel IDs or credentials paths — fill them in on the laptop only.
+#
+# Ingress completed at integration (ROLE 6, ADR 0004):
+#   APP     → :8787  Fastify — PWA dist + live /v1 snapshot tree + portal write routes
+#   PORTAL  → :8788  static server for apps/admin/dist (proxies /v1/portal/* to :8787)
+#   WWW     → :8789  static server for apps/marketing/dist
+
+tunnel: REPLACE_WITH_TUNNEL_ID
+credentials-file: C:\Users\Benjamin\.cloudflared\REPLACE_WITH_TUNNEL_ID.json
+
+ingress:
+  # Main app entry (PWA + snapshot JSON + portal API). §9: domain → localhost:8787.
+  - hostname: APP.YOUR-DOMAIN.com
+    service: http://localhost:8787
+  # Shop portal (ROLE 4 build) — same-origin API via infra/static-server.mjs proxy.
+  - hostname: PORTAL.YOUR-DOMAIN.com
+    service: http://localhost:8788
+  # Marketing site (ROLE 5 build output).
+  - hostname: WWW.YOUR-DOMAIN.com
+    service: http://localhost:8789
+  # Always last:
+  - service: http_status:404

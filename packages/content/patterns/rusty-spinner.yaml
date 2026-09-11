@@ -1,0 +1,21 @@
+id: rusty-spinner
+name: Rusty Spinner
+type: spinner
+imitates:
+  - blue-winged-olive
+  - sulphur-dun
+  - slate-drake
+  - march-brown
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - rusty dun spinner hackle
+  - rusty dubbing
+  - white poly wings spent
+notes: The spent-wing finish to nearly every evening hatch — have it in three sizes.
+license: public-domain

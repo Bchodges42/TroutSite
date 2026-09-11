@@ -1,0 +1,197 @@
+{
+  "regionId": "tn-northeast-watauga",
+  "month": 6,
+  "entries": [
+    {
+      "taxonId": "baetis-bwo",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "pheasant-tail-nymph",
+        "rs2"
+      ]
+    },
+    {
+      "taxonId": "baetis-bwo",
+      "stage": "dun",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "blue-winged-olive-dun"
+      ]
+    },
+    {
+      "taxonId": "baetis-bwo",
+      "stage": "spinner",
+      "timeOfDay": "evening",
+      "abundance": 1,
+      "patterns": [
+        "blue-winged-olive-dun"
+      ]
+    },
+    {
+      "taxonId": "ephemerella-sulphur",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "pheasant-tail-nymph"
+      ]
+    },
+    {
+      "taxonId": "ephemerella-sulphur",
+      "stage": "dun",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "sulphur-parachute"
+      ]
+    },
+    {
+      "taxonId": "ephemerella-sulphur",
+      "stage": "spinner",
+      "timeOfDay": "evening",
+      "abundance": 1,
+      "patterns": [
+        "spent-sulphur-spinner"
+      ]
+    },
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "golden-stone-nymph"
+      ]
+    },
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "dun",
+      "timeOfDay": "evening",
+      "abundance": 4,
+      "patterns": [
+        "slate-drake-dun"
+      ]
+    },
+    {
+      "taxonId": "heptagenia-march-brown",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "pheasant-tail-nymph"
+      ]
+    },
+    {
+      "taxonId": "heptagenia-march-brown",
+      "stage": "dun",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "march-brown-soft-hackle"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "green-rock-worm"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 4,
+      "patterns": [
+        "elk-hair-caddis"
+      ]
+    },
+    {
+      "taxonId": "rhyacophila-green-sedge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "green-rock-worm"
+      ]
+    },
+    {
+      "taxonId": "rhyacophila-green-sedge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "elk-hair-caddis"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    },
+    {
+      "taxonId": "gammarus-scud",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 2,
+      "patterns": [
+        "olive-scud"
+      ]
+    },
+    {
+      "taxonId": "pteronarcys-giant-stone",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "pats-rubber-legs"
+      ]
+    },
+    {
+      "taxonId": "pteronarcys-giant-stone",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "stimulator"
+      ]
+    },
+    {
+      "taxonId": "acroneuria-golden-stone",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 3,
+      "patterns": [
+        "golden-stone-nymph",
+        "pats-rubber-legs"
+      ]
+    },
+    {
+      "taxonId": "acroneuria-golden-stone",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 4,
+      "patterns": [
+        "stimulator"
+      ]
+    }
+  ]
+}

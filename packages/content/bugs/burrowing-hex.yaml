@@ -1,0 +1,65 @@
+id: burrowing-hex
+commonName: Great Hexagenia (Hex)
+sciName: Hexagenia limbata
+order: Ephemeroptera
+family: Ephemeridae
+sizeRange:
+  - 4
+  - 8
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - tan
+    - olive-buff
+    - cream
+  mouthparts: burrowing-collector
+habitat:
+  - silt flats
+  - tailwaters
+  - slack water
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+  tn-upper-cumberland:
+    - 6
+    - 7
+    - 8
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 6
+    - 7
+    - 8
+illustration: illustrations/burrowing-hex.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: "Massive burrowing mayflies of silt flats below dams. Hex nights bring the biggest trout
+  in the river to the surface after dark — fish cream-and-tan sized #6-8 flies with a loud
+  plop."
+sources:
+  - https://en.wikipedia.org/wiki/Hexagenia
+  - https://bugguide.net

@@ -1,0 +1,51 @@
+id: little-green-stone
+commonName: Little Green Stone
+sciName: Sweltsa / Alloperla spp.
+order: Plecoptera
+family: Chloroperlidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - green-yellow
+    - bright-green
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+illustration: illustrations/little-green-stone.svg
+stages:
+  - adult
+notes: Small, vivid chartreuse stoneflies of clean mountain creeks. They frequently hatch
+  alongside yellow sallies — check size and color before committing to a dry.
+sources:
+  - https://bugguide.net

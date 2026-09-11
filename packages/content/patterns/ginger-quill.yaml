@@ -1,0 +1,17 @@
+id: ginger-quill
+name: Ginger Quill
+type: dry
+imitates:
+  - light-cahill
+  - golden-flathead
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - ginger quill or dubbing
+  - ginger hackle
+  - dark brown tail
+notes: One of the oldest American dries still earning its keep in summer cahill water.
+license: public-domain
