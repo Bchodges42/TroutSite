@@ -1,0 +1,27 @@
+{
+  "_comment": "Per-water termini overrides for scripts/nhd_trace_catalog.mjs. up: dam:<NHD waterbody gnis_name> | headwater; down: mouth | confluence:<gnis_name> | point:<lat,lng>. expectUp/expectDown are lat,lng + radius (B13 validator). Coordinates/verdicts for clinch-river are the frozen GEOCONV-0 regression baseline (docs/NHD-CONVENTIONS.md §7).",
+  "clinch-river": {
+    "up": "dam:Norris Lake",
+    "down": "mouth",
+    "expectUp": [36.2242, -84.0913],
+    "expectUpRadiusM": 600,
+    "expectDown": [35.8809, -84.5085],
+    "expectDownRadiusM": 3000,
+    "separateFrom": ["boone-tailwater", "south-holston-river"]
+  },
+  "south-holston-river": { "up": "dam:South Holston Lake", "down": "mouth" },
+  "boone-tailwater": { "up": "dam:Boone Lake", "down": "mouth" },
+  "watauga-river": { "up": "dam:Wilbur Lake", "down": "mouth" },
+  "ft-patrick-henry-tailwater": { "up": "dam:Fort Patrick Henry Lake", "down": "mouth" },
+  "duck-river-tailwater": { "up": "dam:Normandy Lake", "down": "mouth" },
+  "elk-river": { "up": "dam:Tims Ford Lake", "down": "mouth" },
+  "caney-fork-river": { "up": "dam:Center Hill Lake", "down": "mouth" },
+  "obey-river": { "up": "dam:Dale Hollow Lake", "down": "mouth" },
+  "french-broad-river": { "up": "dam:Douglas Lake", "down": "mouth" },
+  "parksville-tailwater": { "up": "dam:Parksville Lake", "down": "mouth" },
+  "hiwassee-river": {
+    "up": "headwater",
+    "down": "mouth",
+    "_note": "Appalachia Dam impoundment (Hiwassee Lake) sits in NC outside the graph; the in-unit upstream terminus is the NC state line (YAML: 'from the Appalachia Dam release water at the NC line')."
+  }
+}
