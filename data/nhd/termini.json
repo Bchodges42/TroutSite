@@ -121,7 +121,9 @@
     "cane-creek covers two unrelated stocked Cane Creeks by catalog intent (GEO-AUDIT waiver); reach-split-ambiguous; splitting is a content-lane catalog change.",
     "tennessee-river and south-fork-cumberland: the frozen up-grammar has no confluence spec, so entries whose upstream end is a fork confluence get headwater + low confidence; flagged humanReview.",
     "hu8 is 06010207 only for clinch-river (the sole water with an ok-status anchor inside the reference unit, per data/nhd/derived/06010207.anchors.json); all other hu8 fields are null until GEOFANOUT-1 assigns units. hu8BoundaryReach is null everywhere (fan-out fills).",
-    "geometrySource uses the conventions §8 vocabulary: \"nhd\" for traced+validated reaches (clinch-river today), \"tiger\" for waters still carrying pre-flip linework."
+    "geometrySource uses the conventions §8 vocabulary: \"nhd\" for traced+validated reaches (clinch-river today), \"tiger\" for waters still carrying pre-flip linework.",
+    "hu8BoundaryReach set (2026-09-11 integration) for waters whose reach geometry carries a cross-unit gnis id (GEOFANOUT-1 FANOUT-REPORT.md §4, 41 waters, shared-gnis identity criterion) and for waters whose integration run realized a terminal-node downstream end at a unit/lake-head edge; per conventions §9 these reaches legitimately end at boundary nodes until cross-unit stitching is separately approved.",
+    "GEOFANOUT-1 trace-specs.json independently curated the same 12 tailrace dam specs (identical dam names); hiwassee-river documented as untraceable to dam:Apalachia Lake (impoundment in NC, outside TN graphs) — row kept at low confidence pending a point/state-line spec convention."
   ],
   "waters": {
     "barren-fork-river": {
@@ -311,7 +313,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "bradley-creek": {
       "name": "Bradley Creek",
@@ -338,7 +340,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "brush-creek-cocke": {
       "name": "Brush Creek (Cocke County)",
@@ -419,7 +421,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "calderwood-lake": {
       "name": "Calderwood Lake",
@@ -527,7 +529,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "caney-fork-river": {
       "name": "Caney Fork River (Center Hill tailwater)",
@@ -554,7 +556,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "caney-fork-upper": {
       "name": "Caney Fork River (above Center Hill Lake)",
@@ -581,7 +583,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "center-hill-lake": {
       "name": "Center Hill Lake",
@@ -824,7 +826,7 @@
       "humanReview": null,
       "verified": true,
       "geometrySource": "nhd",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "collins-river": {
       "name": "Collins River",
@@ -851,7 +853,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "cosby-creek": {
       "name": "Cosby Creek",
@@ -932,7 +934,7 @@
       "humanReview": "ambiguous-notes",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "daddys-creek": {
       "name": "Daddy’s Creek",
@@ -1094,7 +1096,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "duck-river-tailwater": {
       "name": "Duck River (Normandy tailwater)",
@@ -1121,7 +1123,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "east-fork-shoal-creek": {
       "name": "East Fork Shoal Creek",
@@ -1229,7 +1231,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "elk-river-lower": {
       "name": "Elk River (Prospect to state line)",
@@ -1256,7 +1258,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "emory-river": {
       "name": "Emory River",
@@ -1283,7 +1285,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "fletchers-fork": {
       "name": "Fletchers Fork",
@@ -1418,7 +1420,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "ft-patrick-henry-tailwater": {
       "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
@@ -1445,7 +1447,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "gap-creek-claiborne": {
       "name": "Gap Creek (Claiborne County)",
@@ -1607,7 +1609,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "hatchie-river": {
       "name": "Hatchie River",
@@ -1634,7 +1636,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "hiwassee-river": {
       "name": "Hiwassee River (Appalachia tailwater / Reliance)",
@@ -1661,7 +1663,7 @@
       "humanReview": "dam-name-unverified",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "holston-river": {
       "name": "Holston River",
@@ -1688,7 +1690,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "horse-creek-greene": {
       "name": "Horse Creek (Greene County)",
@@ -2120,7 +2122,7 @@
       "humanReview": "dam-name-unverified",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "little-west-fork-creek": {
       "name": "Little West Fork Creek",
@@ -2444,7 +2446,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "normandy-lake": {
       "name": "Normandy Lake",
@@ -2552,7 +2554,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "north-prong-barren-fork": {
       "name": "North Prong Barren Fork River",
@@ -2633,7 +2635,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "obion-river": {
       "name": "Obion River",
@@ -2660,7 +2662,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "ocoee-number-three-lake": {
       "name": "Ocoee Number Three Lake",
@@ -2714,7 +2716,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "old-hickory-lake": {
       "name": "Old Hickory Lake",
@@ -2822,7 +2824,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "pickwick-lake": {
       "name": "Pickwick Lake",
@@ -2876,7 +2878,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "pine-creek-dekalb": {
       "name": "Pine Creek (DeKalb County)",
@@ -2957,7 +2959,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "puncheon-camp-creek": {
       "name": "Puncheon Camp Creek",
@@ -3011,7 +3013,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "reedy-creek": {
       "name": "Reedy Creek",
@@ -3200,7 +3202,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "shelby-farms-lake": {
       "name": "Shelby Farms",
@@ -3308,7 +3310,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "south-holston-lake": {
       "name": "South Holston Lake",
@@ -3362,7 +3364,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "spring-creek-polk": {
       "name": "Spring Creek (Polk County)",
@@ -3470,7 +3472,7 @@
       "humanReview": "no-endpoint-evidence",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "stoney-creek-carter": {
       "name": "Stoney Creek (Carter County)",
@@ -3605,7 +3607,7 @@
       "humanReview": "crosses-state-line",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "tims-ford-lake": {
       "name": "Tims Ford Lake",
@@ -3848,7 +3850,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "watauga-river-wilbur-reach": {
       "name": "Watauga River (Watauga Dam to Wilbur Lake)",
@@ -3875,7 +3877,7 @@
       "humanReview": null,
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "watts-bar-lake": {
       "name": "Watts Bar Lake",
@@ -4037,7 +4039,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "wolf-river-west-tennessee": {
       "name": "Wolf River",
@@ -4064,7 +4066,7 @@
       "humanReview": "reach-split-ambiguous",
       "verified": false,
       "geometrySource": "tiger",
-      "hu8BoundaryReach": null
+      "hu8BoundaryReach": true
     },
     "woods-reservoir": {
       "name": "Woods Reservoir",
