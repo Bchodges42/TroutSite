@@ -2,6 +2,7 @@
   {
     "id": "barren-fork-river",
     "name": "Barren Fork River",
+    "waterbodyType": "river",
     "anchor": [
       -85.7772,
       35.6752
@@ -16,6 +17,7 @@
   {
     "id": "beaverdam-creek",
     "name": "Beaverdam Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -81.87255,
       36.56604
@@ -30,6 +32,7 @@
   {
     "id": "beech-lake",
     "name": "Beech Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -88.42117,
       35.68164
@@ -44,6 +47,7 @@
   {
     "id": "big-rock-creek",
     "name": "Big Rock Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -86.7629,
       35.5266
@@ -58,6 +62,7 @@
   {
     "id": "boiling-fork-creek",
     "name": "Boiling Fork Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -86.031,
       35.1552
@@ -72,6 +77,7 @@
   {
     "id": "boone-lake",
     "name": "Boone Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -82.36649,
       36.46418
@@ -86,6 +92,7 @@
   {
     "id": "boone-tailwater",
     "name": "Boone Tailwater (South Fork Holston River)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -82.47469,
       36.47943
@@ -100,6 +107,7 @@
   {
     "id": "bradley-creek",
     "name": "Bradley Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -85.9849,
       35.3972
@@ -114,6 +122,7 @@
   {
     "id": "brush-creek-cocke",
     "name": "Brush Creek (Cocke County)",
+    "waterbodyType": "creek",
     "anchor": [
       -82.9345,
       35.9587
@@ -128,6 +137,7 @@
   {
     "id": "buffalo-creek-grainger",
     "name": "Buffalo Creek (Grainger County)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.564968,
       36.22273
@@ -142,6 +152,7 @@
   {
     "id": "buffalo-river",
     "name": "Buffalo River",
+    "waterbodyType": "river",
     "anchor": [
       -87.8408,
       35.5405
@@ -156,6 +167,7 @@
   {
     "id": "calderwood-lake",
     "name": "Calderwood Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -83.95122,
       35.48992
@@ -170,6 +182,7 @@
   {
     "id": "calfkiller-river",
     "name": "Calfkiller River",
+    "waterbodyType": "river",
     "anchor": [
       -85.4741,
       35.8991
@@ -184,6 +197,7 @@
   {
     "id": "cameron-brown-lake",
     "name": "Cameron Brown Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -89.77363,
       35.10007
@@ -198,6 +212,7 @@
   {
     "id": "cane-creek",
     "name": "Cane Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -85.324608,
       35.592064
@@ -212,6 +227,7 @@
   {
     "id": "caney-fork-river",
     "name": "Caney Fork River (Center Hill tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -85.8437,
       36.1176
@@ -226,6 +242,7 @@
   {
     "id": "caney-fork-upper",
     "name": "Caney Fork River (above Center Hill Lake)",
+    "waterbodyType": "river",
     "anchor": [
       -85.3126,
       35.8358
@@ -240,6 +257,7 @@
   {
     "id": "center-hill-lake",
     "name": "Center Hill Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -85.733,
       36.0029
@@ -254,6 +272,7 @@
   {
     "id": "charles-creek",
     "name": "Charles Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -85.8594,
       35.7468
@@ -268,6 +287,7 @@
   {
     "id": "cherokee-lake",
     "name": "Cherokee Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -83.28696,
       36.28625
@@ -282,6 +302,7 @@
   {
     "id": "chickamauga-lake",
     "name": "Chickamauga Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -85.04951,
       35.32623
@@ -296,6 +317,7 @@
   {
     "id": "chilhowee-lake",
     "name": "Chilhowee Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.01029,
       35.54507
@@ -310,6 +332,7 @@
   {
     "id": "citico-creek",
     "name": "Citico Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -84.1007,
       35.511
@@ -324,6 +347,7 @@
   {
     "id": "clear-creek-obed",
     "name": "Clear Creek (Obed system)",
+    "waterbodyType": "creek",
     "anchor": [
       -85.03468,
       36.16489
@@ -338,6 +362,7 @@
   {
     "id": "clear-fork",
     "name": "Clear Fork",
+    "waterbodyType": "creek",
     "anchor": [
       -84.73099,
       36.35617
@@ -352,6 +377,7 @@
   {
     "id": "clinch-river",
     "name": "Clinch River (Norris tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -84.22326,
       35.94619
@@ -366,6 +392,7 @@
   {
     "id": "collins-river",
     "name": "Collins River",
+    "waterbodyType": "river",
     "anchor": [
       -85.7135,
       35.763
@@ -380,6 +407,7 @@
   {
     "id": "cosby-creek",
     "name": "Cosby Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -83.220629,
       35.845471
@@ -394,6 +422,7 @@
   {
     "id": "covington-fbc-pond",
     "name": "Covington First Baptist Church Pond",
+    "waterbodyType": "pond",
     "anchor": [
       -89.63506,
       35.53608
@@ -408,6 +437,7 @@
   {
     "id": "cumberland-river",
     "name": "Cumberland River",
+    "waterbodyType": "river",
     "anchor": [
       -86.7128,
       36.2372
@@ -422,6 +452,7 @@
   {
     "id": "daddys-creek",
     "name": "Daddy’s Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -84.9396,
       35.8983
@@ -436,6 +467,7 @@
   {
     "id": "dale-hollow-lake",
     "name": "Dale Hollow Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -85.2862,
       36.5825
@@ -450,6 +482,7 @@
   {
     "id": "doe-creek-johnson",
     "name": "Doe Creek (Johnson County)",
+    "waterbodyType": "creek",
     "anchor": [
       -81.96319,
       36.402389
@@ -464,6 +497,7 @@
   {
     "id": "doe-river",
     "name": "Doe River",
+    "waterbodyType": "creek",
     "anchor": [
       -82.175584,
       36.286848
@@ -478,6 +512,7 @@
   {
     "id": "douglas-lake",
     "name": "Douglas Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -83.38143,
       35.98941
@@ -492,6 +527,7 @@
   {
     "id": "duck-river-lower",
     "name": "Duck River (Shelbyville to Columbia)",
+    "waterbodyType": "river",
     "anchor": [
       -86.7113,
       35.5813
@@ -506,6 +542,7 @@
   {
     "id": "duck-river-tailwater",
     "name": "Duck River (Normandy tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -86.3877,
       35.4446
@@ -520,6 +557,7 @@
   {
     "id": "east-fork-shoal-creek",
     "name": "East Fork Shoal Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -87.0747,
       35.0579
@@ -534,6 +572,7 @@
   {
     "id": "east-fork-stones-river",
     "name": "East Fork Stones River",
+    "waterbodyType": "river",
     "anchor": [
       -86.3079,
       35.9238
@@ -548,6 +587,7 @@
   {
     "id": "edmund-orgill-lake",
     "name": "Edmund-Orgill Park",
+    "waterbodyType": "lake",
     "anchor": [
       -89.83825,
       35.37197
@@ -562,6 +602,7 @@
   {
     "id": "elk-river",
     "name": "Elk River (Tims Ford tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -86.6664,
       35.1303
@@ -576,6 +617,7 @@
   {
     "id": "elk-river-lower",
     "name": "Elk River (Prospect to state line)",
+    "waterbodyType": "river",
     "anchor": [
       -87.029,
       35.0008
@@ -590,6 +632,7 @@
   {
     "id": "emory-river",
     "name": "Emory River",
+    "waterbodyType": "river",
     "anchor": [
       -84.63414,
       36.09467
@@ -604,6 +647,7 @@
   {
     "id": "fletchers-fork",
     "name": "Fletchers Fork",
+    "waterbodyType": "creek",
     "anchor": [
       -87.5026,
       36.5747
@@ -618,6 +662,7 @@
   {
     "id": "forge-creek-johnson",
     "name": "Forge Creek (Johnson County)",
+    "waterbodyType": "creek",
     "anchor": [
       -81.763836,
       36.448508
@@ -632,6 +677,7 @@
   {
     "id": "fort-loudoun-lake",
     "name": "Fort Loudoun Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.08448,
       35.84704
@@ -646,6 +692,7 @@
   {
     "id": "fort-patrick-henry-lake",
     "name": "Fort Patrick Henry Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -82.47612,
       36.48893
@@ -660,6 +707,7 @@
   {
     "id": "french-broad-river",
     "name": "French Broad River (Douglas tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -83.35829,
       35.98494
@@ -674,6 +722,7 @@
   {
     "id": "ft-patrick-henry-tailwater",
     "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -82.55471,
       36.51875
@@ -688,6 +737,7 @@
   {
     "id": "gap-creek-claiborne",
     "name": "Gap Creek (Claiborne County)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.674653,
       36.56524
@@ -702,6 +752,7 @@
   {
     "id": "goforth-creek",
     "name": "Goforth Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -84.50339,
       35.096613
@@ -716,6 +767,7 @@
   {
     "id": "greasy-creek-polk",
     "name": "Greasy Creek (Polk County)",
+    "waterbodyType": "creek",
     "anchor": [
       -84.516562,
       35.141647
@@ -730,6 +782,7 @@
   {
     "id": "great-falls-lake",
     "name": "Great Falls Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -85.7243,
       35.6803
@@ -744,6 +797,7 @@
   {
     "id": "gulf-fork-big-creek",
     "name": "Gulf Fork Big Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -83.090827,
       35.827203
@@ -758,6 +812,7 @@
   {
     "id": "harpeth-river",
     "name": "Harpeth River (Williamson County reaches)",
+    "waterbodyType": "river",
     "anchor": [
       -86.911,
       35.991
@@ -772,6 +827,7 @@
   {
     "id": "hatchie-river",
     "name": "Hatchie River",
+    "waterbodyType": "river",
     "anchor": [
       -89.5441,
       35.6081
@@ -786,6 +842,7 @@
   {
     "id": "hiwassee-river",
     "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -84.64154,
       35.21175
@@ -800,6 +857,7 @@
   {
     "id": "holston-river",
     "name": "Holston River",
+    "waterbodyType": "river",
     "anchor": [
       -83.31355,
       36.2814
@@ -814,6 +872,7 @@
   {
     "id": "horse-creek-greene",
     "name": "Horse Creek (Greene County)",
+    "waterbodyType": "creek",
     "anchor": [
       -82.6571,
       36.1587
@@ -828,6 +887,7 @@
   {
     "id": "hurricane-creek",
     "name": "Hurricane Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -87.6607,
       36.0301
@@ -842,6 +902,7 @@
   {
     "id": "indian-creek-claiborne",
     "name": "Indian Creek (Claiborne County)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.52688,
       36.62263
@@ -856,6 +917,7 @@
   {
     "id": "j-percy-priest-lake",
     "name": "J. Percy Priest Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -86.5516,
       36.0843
@@ -870,6 +932,7 @@
   {
     "id": "johnson-park-lake",
     "name": "Johnson Park Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -89.68139,
       35.08906
@@ -884,6 +947,7 @@
   {
     "id": "kentucky-lake",
     "name": "Kentucky Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -88.0698,
       36.4748
@@ -898,6 +962,7 @@
   {
     "id": "lake-barkley",
     "name": "Lake Barkley",
+    "waterbodyType": "lake",
     "anchor": [
       -87.9858,
       36.8284
@@ -912,6 +977,7 @@
   {
     "id": "lake-graham",
     "name": "Lake Graham",
+    "waterbodyType": "lake",
     "anchor": [
       -88.7248,
       35.6431
@@ -926,6 +992,7 @@
   {
     "id": "laurel-creek-johnson",
     "name": "Laurel Creek (Johnson County)",
+    "waterbodyType": "creek",
     "anchor": [
       -81.753822,
       36.587929
@@ -940,6 +1007,7 @@
   {
     "id": "laurel-fork-carter",
     "name": "Laurel Fork (Carter County)",
+    "waterbodyType": "creek",
     "anchor": [
       -82.140368,
       36.279079
@@ -954,6 +1022,7 @@
   {
     "id": "leconte-creek",
     "name": "LeConte Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -83.509013,
       35.698113
@@ -968,6 +1037,7 @@
   {
     "id": "little-buffalo-river",
     "name": "Little Buffalo River",
+    "waterbodyType": "creek",
     "anchor": [
       -87.5093,
       35.3761
@@ -982,6 +1052,7 @@
   {
     "id": "little-pigeon-river",
     "name": "Little Pigeon River (Sevierville reach)",
+    "waterbodyType": "river",
     "anchor": [
       -83.405968,
       35.778759
@@ -996,6 +1067,7 @@
   {
     "id": "little-river",
     "name": "Little River (Smokies / Blount County)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.79709,
       35.68692
@@ -1010,6 +1082,7 @@
   {
     "id": "little-sequatchie-river",
     "name": "Little Sequatchie River",
+    "waterbodyType": "creek",
     "anchor": [
       -85.598403,
       35.180141
@@ -1024,6 +1097,7 @@
   {
     "id": "little-tennessee-river",
     "name": "Little Tennessee River",
+    "waterbodyType": "river",
     "anchor": [
       -84.13714,
       35.56794
@@ -1038,6 +1112,7 @@
   {
     "id": "little-west-fork-creek",
     "name": "Little West Fork Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -87.383,
       36.5954
@@ -1052,6 +1127,7 @@
   {
     "id": "martin-city-pond",
     "name": "Martin City Pond",
+    "waterbodyType": "pond",
     "anchor": [
       -88.8521,
       36.30787
@@ -1066,6 +1142,7 @@
   {
     "id": "mccutcheon-creek",
     "name": "McCutcheon Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -86.9237,
       35.757
@@ -1080,6 +1157,7 @@
   {
     "id": "melton-hill-lake",
     "name": "Melton Hill Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.19496,
       35.99044
@@ -1094,6 +1172,7 @@
   {
     "id": "middle-prong-little-pigeon",
     "name": "Middle Prong Little Pigeon River (Tremont)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.338255,
       35.703526
@@ -1108,6 +1187,7 @@
   {
     "id": "milan-city-pond",
     "name": "Milan City Pond",
+    "waterbodyType": "pond",
     "anchor": [
       -88.72909,
       35.92375
@@ -1122,6 +1202,7 @@
   {
     "id": "mill-creek-overton",
     "name": "Mill Creek (Overton County)",
+    "waterbodyType": "creek",
     "anchor": [
       -85.4867,
       36.4824
@@ -1136,6 +1217,7 @@
   {
     "id": "mississippi-river",
     "name": "Mississippi River",
+    "waterbodyType": "river",
     "anchor": [
       -89.659,
       35.8993
@@ -1150,6 +1232,7 @@
   {
     "id": "mossy-creek-jefferson",
     "name": "Mossy Creek (Jefferson County)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.483734,
       36.123263
@@ -1164,6 +1247,7 @@
   {
     "id": "new-river",
     "name": "New River",
+    "waterbodyType": "river",
     "anchor": [
       -84.37493,
       36.32239
@@ -1178,6 +1262,7 @@
   {
     "id": "nickajack-lake",
     "name": "Nickajack Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -85.47436,
       35.03701
@@ -1192,6 +1277,7 @@
   {
     "id": "nolichucky-river",
     "name": "Nolichucky River",
+    "waterbodyType": "river",
     "anchor": [
       -82.82646,
       36.0862
@@ -1206,6 +1292,7 @@
   {
     "id": "normandy-lake",
     "name": "Normandy Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -86.2036,
       35.4574
@@ -1220,6 +1307,7 @@
   {
     "id": "norris-lake",
     "name": "Norris Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -83.8799,
       36.30355
@@ -1234,6 +1322,7 @@
   {
     "id": "north-chickamauga-creek",
     "name": "North Chickamauga Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -85.216696,
       35.145616
@@ -1248,6 +1337,7 @@
   {
     "id": "north-fork-holston-river",
     "name": "North Fork Holston River",
+    "waterbodyType": "river",
     "anchor": [
       -82.58016,
       36.60975
@@ -1262,6 +1352,7 @@
   {
     "id": "north-prong-barren-fork",
     "name": "North Prong Barren Fork River",
+    "waterbodyType": "creek",
     "anchor": [
       -85.9551,
       35.6913
@@ -1276,6 +1367,7 @@
   {
     "id": "obed-river",
     "name": "Obed River",
+    "waterbodyType": "river",
     "anchor": [
       -84.98281,
       36.05633
@@ -1290,6 +1382,7 @@
   {
     "id": "obey-river",
     "name": "Obey River (Dale Hollow tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -85.4819,
       36.5423
@@ -1304,6 +1397,7 @@
   {
     "id": "obion-river",
     "name": "Obion River",
+    "waterbodyType": "river",
     "anchor": [
       -89.6413,
       36.007
@@ -1318,6 +1412,7 @@
   {
     "id": "ocoee-number-three-lake",
     "name": "Ocoee Number Three Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.43623,
       35.02753
@@ -1332,6 +1427,7 @@
   {
     "id": "ocoee-river",
     "name": "Ocoee River (upper, Copperhill reach)",
+    "waterbodyType": "river",
     "anchor": [
       -84.4632,
       35.05144
@@ -1346,6 +1442,7 @@
   {
     "id": "old-hickory-lake",
     "name": "Old Hickory Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -86.427,
       36.3327
@@ -1360,6 +1457,7 @@
   {
     "id": "paris-city-park-lake",
     "name": "Paris City Park",
+    "waterbodyType": "lake",
     "anchor": [
       -88.30902,
       36.3095
@@ -1374,6 +1472,7 @@
   {
     "id": "parksville-lake",
     "name": "Parksville Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.61249,
       35.09619
@@ -1388,6 +1487,7 @@
   {
     "id": "parksville-tailwater",
     "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -84.691595,
       35.141575
@@ -1402,6 +1502,7 @@
   {
     "id": "pickwick-lake",
     "name": "Pickwick Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -88.0313,
       34.899
@@ -1416,6 +1517,7 @@
   {
     "id": "pigeon-river",
     "name": "Pigeon River (Hartford corridor)",
+    "waterbodyType": "river",
     "anchor": [
       -83.18572,
       35.89181
@@ -1430,6 +1532,7 @@
   {
     "id": "pine-creek-dekalb",
     "name": "Pine Creek (DeKalb County)",
+    "waterbodyType": "creek",
     "anchor": [
       -85.8186,
       35.9104
@@ -1444,6 +1547,7 @@
   {
     "id": "piney-river-rhea",
     "name": "Piney River (Rhea County)",
+    "waterbodyType": "river",
     "anchor": [
       -84.85858,
       35.69952
@@ -1458,6 +1562,7 @@
   {
     "id": "powell-river",
     "name": "Powell River",
+    "waterbodyType": "river",
     "anchor": [
       -83.64903,
       36.52633
@@ -1472,6 +1577,7 @@
   {
     "id": "puncheon-camp-creek",
     "name": "Puncheon Camp Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -83.521001,
       36.325955
@@ -1486,6 +1592,7 @@
   {
     "id": "red-river-clarksville",
     "name": "Red River (Montgomery County)",
+    "waterbodyType": "river",
     "anchor": [
       -87.162,
       36.5503
@@ -1500,6 +1607,7 @@
   {
     "id": "reedy-creek",
     "name": "Reedy Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -82.496993,
       36.547049
@@ -1514,6 +1622,7 @@
   {
     "id": "reelfoot-lake",
     "name": "Reelfoot Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -89.3792,
       36.4049
@@ -1528,6 +1637,7 @@
   {
     "id": "richardson-byrd-creek",
     "name": "Richardson “Byrd” Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -83.12165,
       36.49353
@@ -1542,6 +1652,7 @@
   {
     "id": "roaring-fork",
     "name": "Roaring Fork",
+    "waterbodyType": "creek",
     "anchor": [
       -83.457767,
       35.688547
@@ -1556,6 +1667,7 @@
   {
     "id": "rocky-river",
     "name": "Rocky River",
+    "waterbodyType": "creek",
     "anchor": [
       -85.5228,
       35.5917
@@ -1570,6 +1682,7 @@
   {
     "id": "salt-lick-creek",
     "name": "Salt Lick Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -85.9186,
       36.626
@@ -1584,6 +1697,7 @@
   {
     "id": "sequatchie-river",
     "name": "Sequatchie River (headwaters)",
+    "waterbodyType": "river",
     "anchor": [
       -85.21226,
       35.57877
@@ -1598,6 +1712,7 @@
   {
     "id": "shelby-farms-lake",
     "name": "Shelby Farms",
+    "waterbodyType": "lake",
     "anchor": [
       -89.83386,
       35.13965
@@ -1612,6 +1727,7 @@
   {
     "id": "shoal-creek",
     "name": "Shoal Creek",
+    "waterbodyType": "river",
     "anchor": [
       -87.4281,
       35.1406
@@ -1626,6 +1742,7 @@
   {
     "id": "sinking-creek-wilson",
     "name": "Sinking Creek (Wilson County)",
+    "waterbodyType": "spring",
     "anchor": [
       -86.3003,
       36.1651
@@ -1640,6 +1757,7 @@
   {
     "id": "south-fork-cumberland",
     "name": "South Fork Cumberland River",
+    "waterbodyType": "river",
     "anchor": [
       -84.63112,
       36.50163
@@ -1654,6 +1772,7 @@
   {
     "id": "south-holston-lake",
     "name": "South Holston Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -82.03203,
       36.56265
@@ -1668,6 +1787,7 @@
   {
     "id": "south-holston-river",
     "name": "South Fork Holston River (South Holston tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -82.15053,
       36.50361
@@ -1682,6 +1802,7 @@
   {
     "id": "spring-creek-polk",
     "name": "Spring Creek (Polk County)",
+    "waterbodyType": "creek",
     "anchor": [
       -84.471493,
       35.238587
@@ -1696,6 +1817,7 @@
   {
     "id": "standing-rock-creek",
     "name": "Standing Rock Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -87.9983,
       36.4367
@@ -1710,6 +1832,7 @@
   {
     "id": "station-creek",
     "name": "Station Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -83.6104,
       36.5872
@@ -1724,6 +1847,7 @@
   {
     "id": "stones-river",
     "name": "Stones River (Davidson County)",
+    "waterbodyType": "river",
     "anchor": [
       -86.6336,
       36.1865
@@ -1738,6 +1862,7 @@
   {
     "id": "stoney-creek-carter",
     "name": "Stoney Creek (Carter County)",
+    "waterbodyType": "creek",
     "anchor": [
       -82.135158,
       36.383309
@@ -1752,6 +1877,7 @@
   {
     "id": "sulfur-fork-creek",
     "name": "Sulfur Fork Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -86.997,
       36.5125
@@ -1766,6 +1892,7 @@
   {
     "id": "tellico-lake",
     "name": "Tellico Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.21826,
       35.61538
@@ -1780,6 +1907,7 @@
   {
     "id": "tellico-river",
     "name": "Tellico River",
+    "waterbodyType": "river",
     "anchor": [
       -84.1636,
       35.3256
@@ -1794,6 +1922,7 @@
   {
     "id": "tennessee-river",
     "name": "Tennessee River",
+    "waterbodyType": "river",
     "anchor": [
       -84.72121,
       35.71592
@@ -1808,6 +1937,7 @@
   {
     "id": "tims-ford-lake",
     "name": "Tims Ford Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -86.2106,
       35.2212
@@ -1822,6 +1952,7 @@
   {
     "id": "trail-fork-big-creek",
     "name": "Trail Fork (Big Creek tributary)",
+    "waterbodyType": "creek",
     "anchor": [
       -83.110036,
       35.900264
@@ -1836,6 +1967,7 @@
   {
     "id": "tumbling-creek",
     "name": "Tumbling Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -84.474001,
       35.003913
@@ -1850,6 +1982,7 @@
   {
     "id": "union-city-reelfoot-pond",
     "name": "Union City Reelfoot Packing Site",
+    "waterbodyType": "pond",
     "anchor": [
       -89.06269,
       36.41437
@@ -1864,6 +1997,7 @@
   {
     "id": "upper-hills-creek",
     "name": "Upper Hills Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -85.6751,
       35.571
@@ -1878,6 +2012,7 @@
   {
     "id": "upper-roan-creek",
     "name": "Upper Roan Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -81.8852,
       36.3769
@@ -1892,6 +2027,7 @@
   {
     "id": "valentine-park-pond",
     "name": "Valentine Park",
+    "waterbodyType": "pond",
     "anchor": [
       -89.80598,
       35.46305
@@ -1906,6 +2042,7 @@
   {
     "id": "watauga-lake",
     "name": "Watauga Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -82.02215,
       36.32934
@@ -1920,6 +2057,7 @@
   {
     "id": "watauga-river",
     "name": "Watauga River (Wilbur tailwater)",
+    "waterbodyType": "tailrace",
     "anchor": [
       -82.25131,
       36.35116
@@ -1934,6 +2072,7 @@
   {
     "id": "watauga-river-wilbur-reach",
     "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+    "waterbodyType": "river",
     "anchor": [
       -82.12291,
       36.33702
@@ -1948,6 +2087,7 @@
   {
     "id": "watts-bar-lake",
     "name": "Watts Bar Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -84.6543,
       35.75264
@@ -1962,6 +2102,7 @@
   {
     "id": "west-fork-stones-river",
     "name": "West Fork Stones River",
+    "waterbodyType": "river",
     "anchor": [
       -86.4152,
       35.8517
@@ -1976,6 +2117,7 @@
   {
     "id": "west-prong-little-pigeon",
     "name": "West Prong Little Pigeon River",
+    "waterbodyType": "creek",
     "anchor": [
       -83.576154,
       35.826257
@@ -1990,6 +2132,7 @@
   {
     "id": "white-oak-creek",
     "name": "White Oak Creek",
+    "waterbodyType": "creek",
     "anchor": [
       -87.704,
       36.214
@@ -2004,6 +2147,7 @@
   {
     "id": "wilbur-lake",
     "name": "Wilbur Lake",
+    "waterbodyType": "lake",
     "anchor": [
       -82.11568,
       36.33862
@@ -2018,6 +2162,7 @@
   {
     "id": "wolf-river-fentress",
     "name": "Wolf River (Fentress County headwaters)",
+    "waterbodyType": "creek",
     "anchor": [
       -85.0477,
       36.5365
@@ -2032,6 +2177,7 @@
   {
     "id": "wolf-river-west-tennessee",
     "name": "Wolf River",
+    "waterbodyType": "river",
     "anchor": [
       -89.6623,
       35.0882
@@ -2046,6 +2192,7 @@
   {
     "id": "woods-reservoir",
     "name": "Woods Reservoir",
+    "waterbodyType": "lake",
     "anchor": [
       -86.059,
       35.312
@@ -2060,6 +2207,7 @@
   {
     "id": "yale-road-park-lake",
     "name": "Yale Road Park",
+    "waterbodyType": "lake",
     "anchor": [
       -89.85634,
       35.21676

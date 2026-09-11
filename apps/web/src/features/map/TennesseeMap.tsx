@@ -156,7 +156,18 @@ export function TennesseeMap(props: Props) {
             // and the next mousemove re-derives it.
             hover: false,
             dimmed: false,
-            hidden: p.showAllWaters ? false : p.visibleIds ? !p.visibleIds.has(river.id) : false,
+            // Stillwaters (lakes/reservoirs) are orientation landmarks — the
+            // species filter never hides them, only flowing waters.
+            hidden:
+              river.waterbodyType === 'lake' ||
+              river.waterbodyType === 'pond' ||
+              river.waterbodyType === 'reservoir'
+                ? false
+                : p.showAllWaters
+                  ? false
+                  : p.visibleIds
+                    ? !p.visibleIds.has(river.id)
+                    : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
@@ -434,6 +445,41 @@ export function TennesseeMap(props: Props) {
       hovered = null;
       map.getCanvas().style.cursor = '';
     });
+    // PROOF (GEOVALID-2): name tooltip for the zoom-gated minor-water network.
+    // Hover-only — the network layer is deliberately absent from the selection
+    // hit layers, so creeks never capture clicks meant for catalog waters.
+    const creekTip = document.createElement('div');
+    creekTip.setAttribute('data-proof', 'network-hover');
+    creekTip.style.cssText =
+      'position:absolute;pointer-events:none;z-index:10;display:none;' +
+      'background:#0b111c;color:#dfe8f2;font:12px/1.35 ui-monospace,monospace;' +
+      'padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translate(10px,-50%)';
+    el.appendChild(creekTip);
+    map.on('mousemove', (e) => {
+      if (!map.getLayer('network-minor')) {
+        creekTip.style.display = 'none';
+        return;
+      }
+      const hitNetwork = map.queryRenderedFeatures(
+        [
+          [e.point.x - 4, e.point.y - 4],
+          [e.point.x + 4, e.point.y + 4],
+        ],
+        { layers: ['network-minor'] },
+      )[0];
+      const name = hitNetwork?.properties?.name;
+      if (!name) {
+        creekTip.style.display = 'none';
+        return;
+      }
+      creekTip.textContent = String(name);
+      creekTip.style.left = `${e.point.x}px`;
+      creekTip.style.top = `${e.point.y}px`;
+      creekTip.style.display = 'block';
+    });
+    map.on('mouseout', () => {
+      creekTip.style.display = 'none';
+    });
     const ro = new ResizeObserver(() => {
       map.resize();
       // H1: keep the overview floor in step with the viewport so a rotate or
@@ -449,6 +495,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       window.clearTimeout(watchdog);
       ro.disconnect();
+      creekTip.remove();
       map.remove();
       mapRef.current = null;
     };
@@ -585,8 +632,7 @@ export function TennesseeMap(props: Props) {
       // on. Rebuilt from latest props so a species-filter change lands on the
       // next frame without rebuilding markers.
       const troutIds = new Set<string>();
-      if (p.labelSpecies)
-        for (const [id, s] of p.labelSpecies) if (s === 'trout') troutIds.add(id);
+      if (p.labelSpecies) for (const [id, s] of p.labelSpecies) if (s === 'trout') troutIds.add(id);
       // Priority: selection first, then prominence (extent), then assessment
       // availability, then name for determinism. Big lakes and major rivers
       // now compete on extent instead of every still water outranking every
@@ -619,8 +665,7 @@ export function TennesseeMap(props: Props) {
             (note ? ', ' + note : '') +
             (assessed ? '' : ', ' + unassessedWord),
         );
-        el.title =
-          kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
+        el.title = kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
         const point = map.project(river.anchor as [number, number]);
         // Visibility: the waterDecision filter pass (visibleIds) plus the
         // pure mode-aware prominence gate. Selected/assessed trout always

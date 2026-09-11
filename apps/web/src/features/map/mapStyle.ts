@@ -317,17 +317,17 @@ export function atlasStyle(
         },
       },
       // PROOF (GEOVALID-2): zoom-gated named-creek network (Caney Fork region).
-      // Invisible below zoom 10.8 and fades in — the state view stays clean.
+      // Invisible below zoom 9.6 and fades in — the state view stays clean.
       {
         id: 'network-minor',
         type: 'line' as const,
         source: 'network',
-        minzoom: 10.8,
+        minzoom: 9.6,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': '#5f8fb8',
-          'line-opacity': ['interpolate', ['linear'], ['zoom'], 10.8, 0, 12, 0.95],
-          'line-width': ['interpolate', ['linear'], ['zoom'], 10.8, 1, 13.5, 1.8],
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 9.6, 0, 10.8, 0.95],
+          'line-width': ['interpolate', ['linear'], ['zoom'], 9.6, 0.8, 13.5, 1.8],
         },
       },
       // Rivers — casing (paper-tone halo) renders beneath the water corridor so
