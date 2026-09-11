@@ -288,10 +288,7 @@ export function RiverMapPage() {
   // snapshot the corridors already join — the label policy never re-fetches
   // and never guesses a species the catalog leaves unset.
   const labelSpecies = useMemo(
-    () =>
-      new Map(
-        data.streams.flatMap((s) => (s.species ? [[s.id, s.species] as const] : [])),
-      ),
+    () => new Map(data.streams.flatMap((s) => (s.species ? [[s.id, s.species] as const] : []))),
     [data.streams.map((s) => s.id + (s.species ?? '')).join(',')],
   );
   // C1: "no assessed waters" has two different truths — the filter genuinely
@@ -552,14 +549,11 @@ export function RiverMapPage() {
                   </button>
                 </div>
               )}
-              {!data.isLoading &&
-                !data.isError &&
-                sorted.length === 0 &&
-                !coverageUnavailable && (
-                  <p className="search-note">
-                    No waters match this filter. Choose All fish to browse the catalog.
-                  </p>
-                )}
+              {!data.isLoading && !data.isError && sorted.length === 0 && !coverageUnavailable && (
+                <p className="search-note">
+                  No waters match this filter. Choose All fish to browse the catalog.
+                </p>
+              )}
               {sorted.map((f) => {
                 const decision = toWaterDecisionView(f, species);
                 return (
@@ -600,8 +594,7 @@ export function RiverMapPage() {
               <Link to="/browse">Full list ↗</Link>
             </footer>
           </>
-        )
-          : null}
+        ) : null}
       </aside>
       {!desktop && (
         // Non-modal bottom sheet: the map above stays pannable/zoomable,
@@ -682,14 +675,10 @@ export function RiverMapPage() {
               : { top: 185, bottom: Math.round(window.innerHeight * 0.49), left: 35, right: 55 }
           }
         />
-        {/* H2: the floating search + mode row belongs to the map state only.
-        In atlas/inspector states it would duplicate the panel's own search and
-        cover the sheet's collapse control (z-30 over the z-20 sidebar). */}
+        {/* The mode row belongs to the map state only. In atlas/inspector states
+        the panel owns navigation and search, keeping the map surface calm. */}
         {mobileView === 'map' && (
           <div className="mobile-explore">
-            <div className="mobile-search-row">
-              <RiverSearch streams={data.streams} onSelect={setRiver} shortcut={!desktop} />
-            </div>
             <div className="mobile-map-tools">
               <button
                 className="map-tool"
@@ -742,17 +731,12 @@ export function RiverMapPage() {
               onLayersToggle={() => setLayers(!layers)}
               onLocate={locate}
               locating={locating}
-              onOpenSearch={openIndex}
               layersPanel={layerPanel}
             />
           </div>
         </div>
         {qaOn && qaOpen && (
-          <QaPanel
-            map={mapRef.current}
-            onSelect={setRiver}
-            onClose={() => setQaOpen(false)}
-          />
+          <QaPanel map={mapRef.current} onSelect={setRiver} onClose={() => setQaOpen(false)} />
         )}
         {locationNote && (
           <div className="map-location-note" role="status">

@@ -1,10 +1,10 @@
 import { useEffect, useRef, type ReactNode } from 'react';
-import { CompassIcon, LayersIcon, LocationIcon, SearchIcon } from '../../components/icons';
+import { CompassIcon, LayersIcon, LocationIcon } from '../../components/icons';
 
 /**
  * MapControlGroup — ONE restrained floating cluster, top-right, replacing the
- * old same-sized pill row. Four 44×44 controls:
- *   Tennessee · Layers · Near me · Search.
+ * old same-sized pill row. Three 44×44 controls:
+ *   Tennessee · Layers · Near me.
  *
  * Tooltips are fluid (spring ease, soft rise) but pure CSS via `data-tip`:
  * they appear on hover AND keyboard focus, are never required for
@@ -22,7 +22,6 @@ export function MapControlGroup({
   onLayersToggle,
   onLocate,
   locating,
-  onOpenSearch,
   layersPanel,
 }: {
   onRecenter: () => void;
@@ -30,7 +29,6 @@ export function MapControlGroup({
   onLayersToggle: () => void;
   onLocate: () => void;
   locating: boolean;
-  onOpenSearch: () => void;
   layersPanel?: ReactNode;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -117,15 +115,6 @@ export function MapControlGroup({
           onClick={onLocate}
         >
           <LocationIcon size={20} />
-        </button>
-        <button
-          type="button"
-          className="map-fab map-fab-search"
-          data-tip="Search waters"
-          aria-label="Search waters"
-          onClick={onOpenSearch}
-        >
-          <SearchIcon size={20} />
         </button>
       </div>
       {layersOpen && layersPanel && (

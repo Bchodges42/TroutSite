@@ -1,15 +1,79 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { applyTheme, initialTheme, themes, THEME_KEY, type ThemeId } from './themes';
+import {
+  applyTheme,
+  customColorKeys,
+  initialTheme,
+  isThemeId,
+  resolveTheme,
+  themes,
+  THEME_KEY,
+  type ColorOverrides,
+  type CustomColorKey,
+  type ThemeId,
+} from './themes';
 
-const ThemeContext = createContext({ theme: themes.daybreak, setTheme: (_id: ThemeId) => {} });
+const OVERRIDES_KEY = 'trout:theme-overrides';
+type ThemeOverrides = Partial<Record<ThemeId, ColorOverrides>>;
+
+interface ThemeContextValue {
+  theme: (typeof themes)[ThemeId];
+  setTheme: (id: ThemeId) => void;
+  customColors: ColorOverrides;
+  setCustomColor: (key: CustomColorKey, value: string) => void;
+  resetCustomColors: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextValue>({
+  theme: themes.daybreak,
+  setTheme: () => {},
+  customColors: {},
+  setCustomColor: () => {},
+  resetCustomColors: () => {},
+});
+
+function readOverrides(): ThemeOverrides {
+  try {
+    const raw = JSON.parse(localStorage.getItem(OVERRIDES_KEY) ?? '{}') as Record<string, unknown>;
+    const parsed: ThemeOverrides = {};
+    for (const [themeId, values] of Object.entries(raw)) {
+      if (!isThemeId(themeId) || typeof values !== 'object' || values === null) continue;
+      const safe: ColorOverrides = {};
+      for (const [key, value] of Object.entries(values)) {
+        if (
+          customColorKeys.includes(key as CustomColorKey) &&
+          typeof value === 'string' &&
+          /^#[0-9a-f]{6}$/i.test(value)
+        ) {
+          safe[key as CustomColorKey] = value;
+        }
+      }
+      if (Object.keys(safe).length) parsed[themeId] = safe;
+    }
+    return parsed;
+  } catch {
+    return {};
+  }
+}
+
+function persistOverrides(overrides: ThemeOverrides): void {
+  try {
+    localStorage.setItem(OVERRIDES_KEY, JSON.stringify(overrides));
+  } catch {
+    /* usable without storage */
+  }
+}
+
 // Runs before the first React render, not in an effect after paint.
 const bootTheme = typeof document !== 'undefined' ? initialTheme() : 'daybreak';
-if (typeof document !== 'undefined') applyTheme(bootTheme);
+const bootOverrides = typeof window !== 'undefined' ? readOverrides() : {};
+if (typeof document !== 'undefined') applyTheme(bootTheme, bootOverrides[bootTheme]);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [id, setId] = useState<ThemeId>(bootTheme);
+  const [overrides, setOverrides] = useState<ThemeOverrides>(bootOverrides);
+  const theme = useMemo(() => resolveTheme(themes[id], overrides[id]), [id, overrides]);
   const setTheme = (next: ThemeId) => {
-    applyTheme(next);
+    applyTheme(next, overrides[next]);
     setId(next);
     try {
       localStorage.setItem(THEME_KEY, next);
@@ -17,8 +81,34 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       /* usable without storage */
     }
   };
+  const setCustomColor = (key: CustomColorKey, value: string) => {
+    if (!customColorKeys.includes(key) || !/^#[0-9a-f]{6}$/i.test(value)) return;
+    setOverrides((previous) => {
+      const next = { ...previous, [id]: { ...previous[id], [key]: value } };
+      applyTheme(id, next[id]);
+      persistOverrides(next);
+      return next;
+    });
+  };
+  const resetCustomColors = () => {
+    setOverrides((previous) => {
+      const next = { ...previous };
+      delete next[id];
+      applyTheme(id, {});
+      persistOverrides(next);
+      return next;
+    });
+  };
   return (
-    <ThemeContext.Provider value={{ theme: themes[id], setTheme }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        setTheme,
+        customColors: overrides[id] ?? {},
+        setCustomColor,
+        resetCustomColors,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

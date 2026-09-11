@@ -249,6 +249,28 @@ a {
   color: var(--ui-accent);
   background: var(--ui-accentSoft);
 }
+.header-search {
+  display: flex;
+  flex: 1 1 360px;
+  min-width: 180px;
+  justify-content: center;
+}
+.header-search .search-wrap {
+  width: min(100%, 480px);
+}
+.header-search .search-input {
+  height: 50px;
+  background: var(--ui-subtle);
+  border-color: var(--ui-border);
+  box-shadow: none;
+}
+.header-search .search-input:focus {
+  background: var(--ui-surface);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ui-accent) 18%, transparent);
+}
+.header-search .search-results {
+  max-height: min(60dvh, 460px);
+}
 .header-actions {
   display: flex;
   align-items: center;
@@ -750,8 +772,8 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   height: 6px;
   border-radius: 4px;
   background:
-    repeating-linear-gradient(90deg, var(--ui-unknown) 0 5px, transparent 5px 9px) center / 100%
-      2px no-repeat,
+    repeating-linear-gradient(90deg, var(--ui-unknown) 0 5px, transparent 5px 9px) center / 100% 2px
+      no-repeat,
     color-mix(in srgb, var(--map-water) 55%, var(--ui-surface));
 }
 /* M1: amber halo sample matches the rendered hatch glow. */
@@ -1385,6 +1407,57 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   border-color: var(--ui-accent);
   color: var(--ui-accent);
 }
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+.custom-color-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+.color-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  padding: 10px 12px;
+  border: 1px solid var(--ui-border);
+  border-radius: 10px;
+  background: var(--ui-subtle);
+}
+.color-control span {
+  min-width: 0;
+}
+.color-control strong {
+  display: block;
+  font-size: 14px;
+}
+.color-control small {
+  display: block;
+  margin-top: 3px;
+  color: var(--ui-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.color-control input[type='color'] {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  padding: 3px;
+  border: 1px solid var(--ui-borderStrong);
+  border-radius: 8px;
+  background: var(--ui-surface);
+}
+.custom-color-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
 .score-track {
   display: block;
   height: 6px;
@@ -1550,6 +1623,9 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
     padding: 0 20px;
     gap: 20px;
   }
+  .header-search {
+    flex-basis: 280px;
+  }
   .water-sidebar {
     width: 320px;
   }
@@ -1570,6 +1646,7 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   .app-header {
     height: 64px;
     padding: 0 18px;
+    gap: 12px;
   }
   .brand-word {
     font-size: 29px;
@@ -1583,6 +1660,15 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   }
   .header-actions {
     gap: 14px;
+  }
+  .header-search {
+    min-width: 0;
+    flex-basis: auto;
+  }
+  .header-search .search-input {
+    height: 44px;
+    padding-left: 36px;
+    padding-right: 12px;
   }
   .water-sidebar {
     position: absolute;
@@ -1635,17 +1721,6 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
     left: 14px;
     right: 14px;
     z-index: 30;
-  }
-  .mobile-search-row {
-    display: flex;
-    gap: 8px;
-  }
-  .mobile-search-row .search-wrap {
-    flex: 1;
-  }
-  .mobile-search-row .search-input {
-    background: var(--ui-surface);
-    box-shadow: var(--ui-shadow);
   }
   .mobile-map-tools {
     display: flex;
@@ -1776,6 +1851,14 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
 @media (max-width: 360px) {
   .app-header {
     padding: 0 12px;
+  }
+  .header-search .search-input {
+    padding-left: 35px;
+    padding-right: 10px;
+    font-size: 13px;
+  }
+  .header-search .search-icon {
+    left: 10px;
   }
   .mobile-map-tools .map-tool {
     font-size: 12px;

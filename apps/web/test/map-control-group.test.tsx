@@ -11,7 +11,6 @@ function base(overrides: Partial<Parameters<typeof MapControlGroup>[0]> = {}) {
     onLayersToggle: vi.fn(),
     onLocate: vi.fn(),
     locating: false,
-    onOpenSearch: vi.fn(),
     layersPanel: <p>terrain relief controls</p>,
     ...overrides,
   };
@@ -27,32 +26,18 @@ describe('MapControlGroup', () => {
   it('exposes one restrained toolbar where every control has an accessible name', () => {
     renderGroup();
     expect(screen.getByRole('toolbar', { name: 'Map controls' })).toBeInTheDocument();
-    for (const name of [
-      'Center map on Tennessee',
-      'Map layers',
-      'Use my location',
-      'Search waters',
-    ]) {
+    for (const name of ['Center map on Tennessee', 'Map layers', 'Use my location']) {
       expect(screen.getByRole('button', { name })).toBeInTheDocument();
     }
   });
 
   it('carries fluid tooltips that appear on hover and keyboard focus without trapping focus', () => {
     renderGroup();
-    for (const name of [
-      'Center map on Tennessee',
-      'Map layers',
-      'Use my location',
-      'Search waters',
-    ]) {
+    for (const name of ['Center map on Tennessee', 'Map layers', 'Use my location']) {
       const button = screen.getByRole('button', { name });
       // data-tip drives the CSS ::after tooltip for hover and :focus-visible.
       expect(button).toHaveAttribute('data-tip');
     }
-    const search = screen.getByRole('button', { name: 'Search waters' });
-    search.focus();
-    expect(search).toHaveFocus(); // focus passes straight through — no trap
-    fireEvent.focus(search);
   });
 
   it('keeps every touch target at the 44px minimum', async () => {
@@ -74,8 +59,6 @@ describe('MapControlGroup', () => {
     const props = renderGroup();
     fireEvent.click(screen.getByRole('button', { name: 'Center map on Tennessee' }));
     expect(props.onRecenter).toHaveBeenCalledTimes(1);
-    fireEvent.click(screen.getByRole('button', { name: 'Search waters' }));
-    expect(props.onOpenSearch).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByRole('button', { name: 'Use my location' }));
     expect(props.onLocate).toHaveBeenCalledTimes(1);
   });

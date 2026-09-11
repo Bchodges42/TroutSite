@@ -6,11 +6,36 @@ import { clearCachedSnapshots } from '../lib/db';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { V1_STATES } from '../lib/endpoints';
 import { useTheme } from '../theme/ThemeProvider';
-import { themes } from '../theme/themes';
+import { colorValue, customColorControls, themes, type CustomColorKey } from '../theme/themes';
 
-/** Settings (scope 8): units, default state, reduce-motion — persisted in Dexie. */
+function CustomColorField({
+  theme,
+  control,
+  onChange,
+}: {
+  theme: (typeof themes)[keyof typeof themes];
+  control: (typeof customColorControls)[number];
+  onChange: (key: CustomColorKey, value: string) => void;
+}) {
+  return (
+    <label className="color-control">
+      <span>
+        <strong>{control.label}</strong>
+        <small>{control.description}</small>
+      </span>
+      <input
+        type="color"
+        value={colorValue(theme, control.key)}
+        aria-label={`${control.label} color`}
+        onChange={(event) => onChange(control.key, event.target.value)}
+      />
+    </label>
+  );
+}
+
+/** Settings (scope 8): units, appearance, default state, and reduce-motion. */
 export function SettingsPage() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, customColors, setCustomColor, resetCustomColors } = useTheme();
   const { settings, update } = useSettingsContext();
   const { canInstall, installed, promptInstall } = useInstallPrompt();
   const [cleared, setCleared] = useState(false);
@@ -19,7 +44,7 @@ export function SettingsPage() {
     <main className="page">
       <h1 className="page-title">Settings</h1>
       <p className="page-subtitle mt-1">
-        Preferences live in this browser's IndexedDB. No cookies, no accounts, no server.
+        Preferences live in this browser. No cookies, no accounts, no server.
       </p>
 
       <h2 className="section-title">Field appearance</h2>
@@ -27,7 +52,7 @@ export function SettingsPage() {
         <p className="page-subtitle">
           One palette for the map and every page. Saved on this device.
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="theme-grid mt-4">
           {Object.values(themes).map((preset) => (
             <button
               key={preset.id}
@@ -42,6 +67,36 @@ export function SettingsPage() {
               {preset.name}
             </button>
           ))}
+        </div>
+        <p className="page-subtitle mt-4">
+          Start with a preset, then tune the colors below. Your choices stay on this device and do
+          not change the shared site.
+        </p>
+      </Card>
+
+      <h2 className="section-title">Custom colors</h2>
+      <Card>
+        <div className="custom-color-grid">
+          {customColorControls.map((control) => (
+            <CustomColorField
+              key={control.key}
+              theme={theme}
+              control={control}
+              onChange={setCustomColor}
+            />
+          ))}
+        </div>
+        <div className="custom-color-actions">
+          <Button
+            variant="secondary"
+            onClick={resetCustomColors}
+            disabled={!Object.keys(customColors).length}
+          >
+            Reset {theme.name} colors
+          </Button>
+          <span className="page-subtitle">
+            High contrast is a good starting point for low vision or color-vision differences.
+          </span>
         </div>
       </Card>
       <h2 className="section-title">Units</h2>

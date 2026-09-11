@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, Outlet, useLocation, useOutletContext } from 'react-router-dom';
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+} from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Toaster } from '@trout/ui';
 import { useOnline } from '../../hooks/useOnline';
@@ -19,6 +26,8 @@ import {
 } from '../icons';
 import { ThemeToggle } from '../../theme/ThemeProvider';
 import { rememberedMapUrl, rememberMapUrl, contextUrl } from '../../lib/riverContext';
+import { RiverSearch } from '../../features/map/RiverSearch';
+import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
 
 // Regulations rides at position 3 of the menu (after Match the hatch and
 // Logbook) — the session-3 promotion: it answers "can I fish this legally"
@@ -36,9 +45,12 @@ const moreLinks = [
 export function AppShell() {
   const online = useOnline();
   const location = useLocation();
+  const navigate = useNavigate();
   const isMap = location.pathname === '/';
   const { settings } = useSettingsContext();
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerCatalog = useStreamsCatalog(1440);
+  const headerStreams = headerCatalog.data?.data ?? [];
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   if (isMap) rememberMapUrl('/' + location.search);
@@ -47,6 +59,10 @@ export function AppShell() {
   const contextParams =
     currentParams.has('river') || isMap ? currentParams : new URLSearchParams(mapUrl.split('?')[1]);
   const contextual = (path: string) => contextUrl(path, contextParams);
+  const selectHeaderWater = (riverId: string) => {
+    const params = new URLSearchParams({ river: riverId, tab: 'Water' });
+    navigate('/?' + params.toString());
+  };
   useEffect(() => {
     document.documentElement.classList.toggle('reduce-motion', settings.reduceMotion);
   }, [settings.reduceMotion]);
@@ -117,6 +133,15 @@ export function AppShell() {
             Logbook
           </NavLink>
         </nav>
+        <div className="header-search">
+          <RiverSearch
+            streams={headerStreams}
+            onSelect={selectHeaderWater}
+            placeholder="Search any water…"
+            shortcut={false}
+            showShortcut={false}
+          />
+        </div>
         <div className="header-actions">
           <span className="privacy-note">
             <ShieldIcon size={15} />
