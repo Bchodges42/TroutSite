@@ -1,0 +1,275 @@
+{
+  "hu8": "06010207",
+  "anchorsPath": "apps/web/src/data/streams-geo.json",
+  "maxSnapM": 250,
+  "anchors": {
+    "boone-tailwater": {
+      "lat": 36.4407,
+      "lon": -82.4379,
+      "gauge": "03486810",
+      "status": "out-of-hu8"
+    },
+    "calfkiller-river": {
+      "lat": 35.9265,
+      "lon": -85.4674,
+      "gauge": "03419530",
+      "status": "out-of-hu8"
+    },
+    "caney-fork-river": {
+      "lat": 36.0978,
+      "lon": -85.8272,
+      "gauge": "03424010",
+      "status": "out-of-hu8"
+    },
+    "clear-creek-obed": {
+      "lat": 36.1031,
+      "lon": -84.7183,
+      "gauge": "03539778",
+      "status": "out-of-hu8"
+    },
+    "clear-fork": {
+      "lat": 36.3883,
+      "lon": -84.6302,
+      "gauge": "03409500",
+      "status": "out-of-hu8"
+    },
+    "clinch-river": {
+      "lat": 36.2156,
+      "lon": -84.0821,
+      "gauge": "03533000",
+      "status": "ok",
+      "snap": {
+        "distM": 91.3,
+        "snappedPoint": [
+          -84.08228025502602,
+          36.214791571120294
+        ],
+        "edgeId": "e1641",
+        "edgePid": "139448534",
+        "edgeName": "Clinch River",
+        "ftype": 558
+      }
+    },
+    "collins-river": {
+      "lat": 35.7083,
+      "lon": -85.7318,
+      "gauge": "03421000",
+      "status": "out-of-hu8"
+    },
+    "daddys-creek": {
+      "lat": 35.9977,
+      "lon": -84.8225,
+      "gauge": "03539600",
+      "status": "out-of-hu8"
+    },
+    "doe-river": {
+      "lat": 36.3445,
+      "lon": -82.2101,
+      "gauge": "03485500",
+      "status": "out-of-hu8"
+    },
+    "duck-river-lower": {
+      "lat": 35.6181,
+      "lon": -87.0323,
+      "gauge": "03599500",
+      "status": "out-of-hu8"
+    },
+    "duck-river-tailwater": {
+      "lat": 35.4829,
+      "lon": -86.4626,
+      "gauge": "03597860",
+      "status": "out-of-hu8"
+    },
+    "east-fork-stones-river": {
+      "lat": 35.9184,
+      "lon": -86.3339,
+      "gauge": "03427500",
+      "status": "out-of-hu8"
+    },
+    "elk-river-lower": {
+      "lat": 35.0142,
+      "lon": -86.9947,
+      "gauge": "03584600",
+      "status": "out-of-hu8"
+    },
+    "elk-river": {
+      "lat": 35.1923,
+      "lon": -86.2811,
+      "gauge": "03580750",
+      "status": "out-of-hu8"
+    },
+    "emory-river": {
+      "lat": 35.9831,
+      "lon": -84.558,
+      "gauge": "03540500",
+      "status": "far",
+      "snap": {
+        "distM": 10151.5,
+        "snappedPoint": [
+          -84.533121,
+          35.894013
+        ],
+        "edgeId": "e977",
+        "edgePid": "139446030",
+        "edgeName": "King Creek",
+        "ftype": 460
+      }
+    },
+    "french-broad-river": {
+      "lat": 35.9612,
+      "lon": -83.5388,
+      "gauge": "03468510",
+      "status": "out-of-hu8"
+    },
+    "ft-patrick-henry-tailwater": {
+      "lat": 36.4982,
+      "lon": -82.509,
+      "gauge": "03487010",
+      "status": "out-of-hu8"
+    },
+    "harpeth-river": {
+      "lat": 35.9208,
+      "lon": -86.8655,
+      "gauge": "03432350",
+      "status": "out-of-hu8"
+    },
+    "hiwassee-river": {
+      "lat": 35.1883,
+      "lon": -84.5025,
+      "gauge": "03556590",
+      "status": "out-of-hu8"
+    },
+    "little-pigeon-river": {
+      "lat": 35.8785,
+      "lon": -83.5775,
+      "gauge": "03470000",
+      "status": "out-of-hu8"
+    },
+    "little-river": {
+      "lat": 35.6645,
+      "lon": -83.7113,
+      "gauge": "03497300",
+      "status": "out-of-hu8"
+    },
+    "new-river": {
+      "lat": 36.3855,
+      "lon": -84.5547,
+      "gauge": "03408500",
+      "status": "out-of-hu8"
+    },
+    "nolichucky-river": {
+      "lat": 36.1782,
+      "lon": -82.4552,
+      "gauge": "03465500",
+      "status": "out-of-hu8"
+    },
+    "north-chickamauga-creek": {
+      "lat": 35.2112,
+      "lon": -85.2152,
+      "gauge": "03566535",
+      "status": "out-of-hu8"
+    },
+    "obed-river": {
+      "lat": 36.0815,
+      "lon": -84.6703,
+      "gauge": "03539800",
+      "status": "out-of-hu8"
+    },
+    "obey-river": {
+      "lat": 36.5373,
+      "lon": -85.4552,
+      "gauge": "03417000",
+      "status": "out-of-hu8"
+    },
+    "ocoee-river": {
+      "lat": 34.9915,
+      "lon": -84.3766,
+      "gauge": "03559500",
+      "status": "out-of-hu8"
+    },
+    "parksville-tailwater": {
+      "lat": 35.0969,
+      "lon": -84.6544,
+      "gauge": "03564500",
+      "status": "out-of-hu8"
+    },
+    "pigeon-river": {
+      "lat": 35.9606,
+      "lon": -83.1743,
+      "gauge": "03461500",
+      "status": "out-of-hu8"
+    },
+    "powell-river": {
+      "lat": 36.5425,
+      "lon": -83.63,
+      "gauge": "03532000",
+      "status": "out-of-hu8"
+    },
+    "red-river-clarksville": {
+      "lat": 36.5547,
+      "lon": -87.1419,
+      "gauge": "03436100",
+      "status": "out-of-hu8"
+    },
+    "reedy-creek": {
+      "lat": 36.5523,
+      "lon": -82.5729,
+      "gauge": "03487602",
+      "status": "out-of-hu8"
+    },
+    "sequatchie-river": {
+      "lat": 35.2057,
+      "lon": -85.497,
+      "gauge": "03571000",
+      "status": "out-of-hu8"
+    },
+    "shoal-creek": {
+      "lat": 35.0242,
+      "lon": -87.579,
+      "gauge": "03588500",
+      "status": "out-of-hu8"
+    },
+    "south-fork-cumberland": {
+      "lat": 36.4774,
+      "lon": -84.6694,
+      "gauge": "03410210",
+      "status": "out-of-hu8"
+    },
+    "south-holston-river": {
+      "lat": 36.5236,
+      "lon": -82.0973,
+      "gauge": "03476500",
+      "status": "out-of-hu8"
+    },
+    "stones-river": {
+      "lat": 36.1865,
+      "lon": -86.6328,
+      "gauge": "03430200",
+      "status": "out-of-hu8"
+    },
+    "tellico-river": {
+      "lat": 35.362,
+      "lon": -84.279,
+      "gauge": "03518500",
+      "status": "out-of-hu8"
+    },
+    "watauga-river": {
+      "lat": 36.3415,
+      "lon": -82.1265,
+      "gauge": "03483980",
+      "status": "out-of-hu8"
+    },
+    "west-fork-stones-river": {
+      "lat": 35.9029,
+      "lon": -86.43,
+      "gauge": "03428200",
+      "status": "out-of-hu8"
+    },
+    "west-prong-little-pigeon": {
+      "lat": 35.6995,
+      "lon": -83.5271,
+      "gauge": "03469251",
+      "status": "out-of-hu8"
+    }
+  }
+}
