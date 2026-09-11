@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-09-11T23:17:20.752Z",
+  "lane": "GEOQA",
+  "suite": "scripts/nhd-network-validate.mjs",
+  "verdict": "PASS",
+  "summary": {
+    "clusters": 23,
+    "filesOnDisk": 23,
+    "lines": 196108,
+    "km": 111654,
+    "units": 58,
+    "gapUnits": 0,
+    "degenerateDrops": 0,
+    "sourceLines": 196108,
+    "reconciliation": "196108/196108",
+    "subUnitSplits": [
+      {
+        "hu8": "06010105",
+        "clusters": [
+          "0601abaaa",
+          "0601abaab"
+        ]
+      }
+    ]
+  },
+  "failures": []
+}

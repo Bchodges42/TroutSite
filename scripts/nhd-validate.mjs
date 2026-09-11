@@ -509,6 +509,22 @@ if (strict) {
   }
 }
 
+// --- section 6: statewide network gate (--strict) --------------------------------
+// Under --strict the suite also runs the QA network validator over
+// apps/web/public/atlas/network — future rebuilds gate on it automatically.
+// Never run without --strict: keeps the catalog suite's default behavior and
+// runtime unchanged for lanes that don't ship network data.
+let network = null;
+if (strict) {
+  const { runNetworkValidation } = await import('./nhd-network-validate.mjs');
+  network = runNetworkValidation({
+    outDir: path.join(repoRoot, 'apps/web/public/atlas/network'),
+    hu8Dir: path.join(repoRoot, 'data/nhd/hu8'),
+  });
+  for (const f of network.failures)
+    add('network', 'FAIL', `${f.check}/${f.id}`, 'network-cluster', String(f.evidence));
+}
+
 // --- verdict + report ------------------------------------------------------------
 const fails = findings.filter((f) => f.severity === 'FAIL');
 const reviews = findings.filter((f) => f.severity === 'REVIEW');
@@ -538,6 +554,13 @@ const report = {
     terminiAutoDerivable: [...terminiRows.values()].filter((r) => r.autoDerivable).length,
     terminiHumanReview: [...terminiRows.values()].filter((r) => r.humanReview).length,
   },
+  network: network
+    ? {
+        suite: 'scripts/nhd-network-validate.mjs',
+        verdict: network.ok ? 'PASS' : 'FAIL',
+        summary: network.summary,
+      }
+    : undefined,
   findings,
   b13,
   pending,
@@ -565,5 +588,13 @@ for (const row of b13) {
     `  B13 ${row.verdict.padEnd(5)} ${row.id.padEnd(26)} ${row.cls.padEnd(10)} ${row.basis.slice(0, 110)}`,
   );
 }
+if (network)
+  console.log(
+    `  network ${network.ok ? 'PASS' : 'FAIL'} — ${network.summary.clusters} clusters, ` +
+      `${network.summary.lines.toLocaleString()} lines, reconciliation ${network.summary.reconciliation}` +
+      (network.summary.subUnitSplits.length
+        ? `, sub-unit splits: ${network.summary.subUnitSplits.map((s) => s.hu8).join(',')}`
+        : ''),
+  );
 console.log(`report: ${rel(outPath)}`);
 process.exit(green ? 0 : 1);
