@@ -246,10 +246,12 @@ export function collapseHairpins(coords, opts = {}) {
   const out = coords.map((c) => [c[0], c[1]]);
   let removed = 0;
   const angleAt = (a, b, c) => {
-    const v1 = [a[0] - b[0], a[1] - b[1]];
+    // turn angle at b between incoming (a->b) and outgoing (b->c):
+    // straight = 0 deg, full reversal (fold-back) = 180 deg
+    const v1 = [b[0] - a[0], b[1] - a[1]];
     const v2 = [c[0] - b[0], c[1] - b[1]];
     const m = Math.hypot(v1[0], v1[1]) * Math.hypot(v2[0], v2[1]);
-    if (m === 0) return 0;
+    if (m === 0) return 180;
     const dot = v1[0] * v2[0] + v1[1] * v2[1];
     return (Math.acos(Math.max(-1, Math.min(1, dot / m))) * 180) / Math.PI;
   };
