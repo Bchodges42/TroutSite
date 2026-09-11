@@ -28,6 +28,8 @@ export const EnvSchema = z.object({
     .default('trout-local/0.1.0 (contact: set USGS_USER_AGENT in env)'),
   /** HMAC secret for shop portal tokens. Portal routes fail closed (503) without it. */
   PORTAL_SECRET: z.string().min(1).optional(),
+  /** Shared secret required by /healthz when set; never expose the value in git. */
+  WATCHDOG_TOKEN: z.string().min(1).optional(),
   /**
    * Comma-separated list of portal (apps/admin) origins allowed to call the live
    * portal routes cross-origin, e.g. "https://portal.example.com". Unset = no CORS

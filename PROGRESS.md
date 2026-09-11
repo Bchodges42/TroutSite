@@ -196,6 +196,64 @@ Scope: `data/nhd/**`, `scripts/nhd_*`, `docs/NHD-CONVENTIONS.md`, `PROGRESS.md`.
       or apps/web/public changes (verified via git diff --name-only 1300194..HEAD).
       Push still deferred (no remote).
 
+
+Base commit: `b301570` (user-supplied source snapshot; no upstream `.git` metadata or `origin` remote was present; local `origin/main` reference created for this isolated lane).
+
+# SESSION HARDEN — origin host security (2026-09-11)
+
+Clone: `/Users/ben/Downloads/TroutSite-harden-origin-host` (isolated lane).
+Branch: `harden/origin-host`. Commit identity: `Bhodges42`.
+Production status: **not live**. The owner must merge this branch and allow the
+WinSW host's hourly self-deploy to ship it; all post-fix probes below are local.
+The branch cannot be pushed from this workspace because the supplied snapshot has
+no GitHub remote; no remote URL was invented.
+
+## Hardening status
+
+- [x] H1: optional `WATCHDOG_TOKEN` gates `/healthz` with a constant-time header
+      comparison and generic 401; `/healthz` always sends `Cache-Control: no-store`.
+- [x] H2: Fastify `onSend` security headers on all responses; CSP intentionally
+      deferred because neither supplied web template contains a CSP meta tag.
+- [x] H3: static-server final-path containment check, malformed-escape handling,
+      GET/HEAD method allowlist, and traversal regression tests.
+- [x] H4: Cloudflare rate-limit rule recorded as an owner action in `infra/RUNBOOK.md`.
+- [x] New findings: generic portal auth errors, non-GET SPA fallback returning 200,
+      direct `/v1/streams.json` exposure, and secondary-proxy transport-error
+      disclosure fixed in code; full evidence is in `docs/HARDEN-AUDIT.md`.
+- [ ] Owner actions: set `WATCHDOG_TOKEN` in WinSW/task environments and update
+      `infra/watchdog.sh` / `infra/verify-site.sh`; create the Cloudflare rule;
+      merge + self-deploy; remove/redact expired third-party JWTs in captured
+      Tennessee fixtures and review their original history.
+
+## Verification evidence
+
+- Public before-fix probes on 2026-09-11: `/healthz` returned HTTP 200 with
+  `conditions`/`jobs` telemetry and no `Cache-Control`; public responses lacked
+  all five requested security headers; `POST /healthz` returned HTTP 200 SPA HTML;
+  `/v1/streams.json` returned HTTP 200; missing and malformed portal auth returned
+  different 401 bodies. Exact probes and responses: `docs/HARDEN-AUDIT.md`.
+- Local after-fix API (`WATCHDOG_TOKEN=harden-local-token pnpm --filter api dev`):
+  missing/wrong health token → `401 {"error":"unauthorized"}` plus all headers;
+  correct token → `200` plus `Cache-Control: no-store`; `POST /healthz` → `405`
+  with `Allow: GET, HEAD`; `/v1/streams` remains the contract route while
+  `/v1/streams.json` → `404`.
+- Local static-server before/after reproduction: base snapshot served
+  `/%2e%2e%2fsecret.txt` and `/..%2fsecret.txt` as HTTP 200 with the outside
+  file; hardened server returns HTTP 404 for both and for overlong nesting.
+- Local secondary-origin proxy before/after reproduction: with the upstream
+  unavailable, the base server returned `502 {"error":"portal API
+  unreachable: connect ECONNREFUSED 127.0.0.1:1"}`; hardened server returns
+  `502 {"error":"portal API unavailable"}` and logs transport detail only.
+- `pnpm --filter api lint` — green.
+- `pnpm --filter api test` — 21 files / 147 tests green.
+- `pnpm --filter api build` — green.
+- `pnpm -r test` — green across contracts (97), content (11), API (147),
+  admin (19), and web (239 passed / 1 skipped).
+- `pnpm -r lint` — the workspace gate remains blocked by the pre-existing
+  unused `ButtonHTMLAttributes` import in `packages/ui` plus 48 pre-existing
+  findings in `e2e/**` (browser globals, explicit `any`, and unused variables);
+  those files and the UI package are outside this hardening lane.
+
 # SESSION 3 — Product / UX / Growth (2026-09-08)
 
 Base commit: `6d0befe` (origin/main, recovery push 2026-09-08).
@@ -324,6 +382,7 @@ retrieved 2026-09-08); region artifacts + topology updated together, then integr
 | T5   | Mode-aware label hierarchy                 | SHIPPED + judged                    | map(labels,legend)       | Trout mode titles only catalog-trout waters (major statewide; warmwater/unknown stay corridor-only); all-fish adds major waters of any species. Judged: Memphis Wolf untitled in trout mode, titled in all-fish; Tennessee/Mississippi/Reelfoot untitled in trout mode.                                                                                                                 |
 | T6   | Legend final state                         | SHIPPED + judged                    | map(labels,legend)       | Condition rows kept when assessed readings exist; else fishery-type grouping (Tailwater/Wild trout/Stocked/Other). Prefers Session-1 canonical `fishery` attribute (101/148), derivation only for uncovered waters. Legend judged in both themes (assessed state; the no-assessment state is unit-tested — fixtures carry assessments).                                                 |
 
+
 ## Gates (final, after rebase onto ea87fd8)
 
 - validate-atlas PASS (148 features) · west-middle-validate PASS · validate-east-southeast PASS (0/0)
@@ -337,6 +396,7 @@ retrieved 2026-09-08); region artifacts + topology updated together, then integr
 
 - `?qa=1` audit is client-side over shipped geometry; its self-x/fragment counts use looser
   thresholds than the build-time detectors — expect more rows than docs/audits/S2-\*.
+
 - Candidate new waters from Session 1's capture (Cherokee TW, paint-creek, ~35 more) need
   fetch keys + takes before their geometry exists — listed, not added.
 - The legend's fishery-type state shows only when the live feed has zero assessments; on the
@@ -384,6 +444,7 @@ Scope: live-host pipeline recovery, hatch content pack, TVA/USACE gauges, catalo
 - `pipe(test)` — web's published-feed stockingMatch test skips honestly on fresh clones
   (public/v1/\*\* is a gitignored deploy artifact).
 
+
 Gates: typecheck clean · api 140/140 · contracts 97/97 · content 11/11 · web 181/181 ·
 content validate/build OK (147 streams) · web build + size budget OK (10.52 MB / 25 MB).
 
@@ -407,6 +468,7 @@ Clone: C:\Users\Benjamin\Projects\trout-roads. Scope: B12 roads / contextual
 cartography — TIGER 2024 All Roads → public/atlas/roads\*, fetch/build/validate
 scripts, docs/roads-sources.md. License gate: PROCEED (public domain), see
 docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/\*\*
+
 (other lanes own them).
 
 ## Status log
@@ -431,6 +493,7 @@ docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/\*\*
 - [x] Full gate green: typecheck OK, 122/122 tests, build OK; size-budget OK —
       dist 9.61 MB vs 25 MB gate (roads precached via existing `atlas/*` glob; NO
       size-budget.mjs exclusion needed — decision documented in roads-sources.md).
+
 
 ## Commits (this lane)
 
@@ -457,6 +520,7 @@ docs/roads-sources.md. NOT touched: apps/web/src/**, e2e/**, packages/\*\*
   verified: every >10 km output chord has 3–52 m true deviation vs 56 m tol.
 - Scope kept: no apps/web/src/**, no e2e/**, no packages/\*\* touched.
 
+
 ---
 
 # Session B — catalog & content corrections (2026-09-04)
@@ -480,6 +544,7 @@ web typecheck/test 122/122, web build + size budget OK). No files touched under
 | `2902c93` | content(docs): bookkeeping — paris alias resolved, duck/elk fragmentation rows done |
 | `457d688` | content(fixtures): overlay pack catalog fields so fixtures:generate runs clean      |
 | `62c5768` | content(fixtures): regenerate demo fixtures from the corrected catalog              |
+
 
 ## Task 1 — tn-west region + hatch chart
 
@@ -511,6 +576,7 @@ queried live 2026-09-04):
 | 03596460     | NORMANDY LAKE (LK)                | 35.46535 / −86.24860     | 195 mi²     | the reservoir                                                                                                                        |
 | 03596470     | DUCK RIVER ABOVE NORMANDY, TN     | 35.46091 / −86.24527     | 196 mi²     | reservoir inlet                                                                                                                      |
 | 03596500     | DUCK RIVER AT NORMANDY, TN        | 35.45730 / −86.25694     | 208 mi²     | just below dam — but NO current IV/DV data (checked: zero series in last 3 days, any parameter)                                      |
+
 | **03597860** | **DUCK RIVER AT SHELBYVILLE, TN** | **35.48293 / −86.46258** | **425 mi²** | **west (DOWNSTREAM) of the dam; LIVE: 6 IV series in last 3 days + daily-value discharge (provisional ~174 cfs, 2026-08-28..09-03)** |
 
 Dam position: Normandy Lake's west edge (TIGER AREAWATER, per GEO-AUDIT) is at
@@ -561,6 +627,7 @@ Stale fixture row 03596000 removed from `packages/content/data/verified-gauges.j
     `03597860`; paris note carries the alias; 28 waters remain species-unset
     (5 thin-evidence + 23 stubs).
 
+
 ## Verification (final state)
 
 - `pnpm --filter @trout/content validate` → OK — 103 taxa, 155 patterns,
@@ -574,6 +641,7 @@ Stale fixture row 03596000 removed from `packages/content/data/verified-gauges.j
 - `fixtures:generate` → clean, all files validated against @trout/contracts.
 - Note for the next session: fresh clones must `pnpm --filter @trout/contracts
 build && pnpm --filter @trout/ui build` before the web gates; the baseline
+
   "failures" on a fresh checkout were only unbuilt workspace deps.
 
 ---

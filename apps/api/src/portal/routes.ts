@@ -99,28 +99,28 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
     reply: FastifyReply,
   ): Promise<void> => {
     if (!deps.secret) {
-      await deny(reply, 503, 'portal is not configured (missing PORTAL_SECRET)');
+      await deny(reply, 503, 'service unavailable');
       return;
     }
     const token = bearerToken(req.headers.authorization);
     if (!token) {
-      await deny(reply, 401, 'missing portal token');
+      await deny(reply, 401, 'unauthorized');
       return;
     }
     const shopId = verifyShopToken(deps.secret, token, Date.now(), (reason) => {
       req.log.info({ tokenFail: reason }, 'portal token rejected');
     });
     if (!shopId) {
-      await deny(reply, 401, 'invalid portal token');
+      await deny(reply, 401, 'unauthorized');
       return;
     }
     const shop = deps.db.prepare('SELECT * FROM shops WHERE id = ?').get(shopId) as ShopRow | undefined;
     if (!shop) {
-      await deny(reply, 403, 'unknown shop');
+      await deny(reply, 403, 'forbidden');
       return;
     }
     if (shop.reports_enabled !== 1) {
-      await deny(reply, 403, 'reports are not enabled for this shop');
+      await deny(reply, 403, 'forbidden');
       return;
     }
     req.shopId = shopId;

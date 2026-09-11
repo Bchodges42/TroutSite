@@ -12,6 +12,7 @@ const app = buildApp({
   webPublicDir: resolve(env.TROUT_SNAPSHOTS_DIR ?? '../web/public'),
   webDistDir: resolve(env.TROUT_WEB_DIST_DIR ?? '../web/dist'),
   portalOrigins: portalOrigins(env),
+  watchdogToken: env.WATCHDOG_TOKEN,
 });
 
 app

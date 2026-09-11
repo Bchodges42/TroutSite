@@ -63,7 +63,20 @@ function serveFile(req, res, filePath) {
     // Static assets are fingerprinted by the build; HTML must revalidate.
     'cache-control': ext === '.html' ? 'no-cache' : snapshot ? 'no-store' : 'public, max-age=3600',
   });
+  if (req.method === 'HEAD') {
+    res.end();
+    return;
+  }
   createReadStream(filePath).pipe(res);
+}
+
+function sendNotFound(req, res, pathname) {
+  res.writeHead(404, { 'content-type': 'application/json' });
+  if (req.method === 'HEAD') {
+    res.end();
+    return;
+  }
+  res.end(JSON.stringify({ error: `not found: ${pathname}` }));
 }
 
 const server = http.createServer((req, res) => {
@@ -87,8 +100,10 @@ const server = http.createServer((req, res) => {
         },
       );
       upstream.on('error', (err) => {
+        console.error(`[static-server] portal proxy error: ${err instanceof Error ? err.message : String(err)}`);
+        if (res.headersSent) return;
         res.writeHead(502, { 'content-type': 'application/json' });
-        res.end(JSON.stringify({ error: `portal API unreachable: ${err.message}` }));
+        res.end(JSON.stringify({ error: 'portal API unavailable' }));
       });
       if (chunks.length > 0) upstream.write(Buffer.concat(chunks));
       upstream.end();
@@ -96,7 +111,20 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  const pathname = decodeURIComponent(url.pathname);
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    res.writeHead(405, { Allow: 'GET, HEAD', 'content-type': 'application/json' });
+    res.end(JSON.stringify({ error: 'method not allowed' }));
+    return;
+  }
+
+  let pathname;
+  try {
+    pathname = decodeURIComponent(url.pathname);
+  } catch {
+    sendNotFound(req, res, url.pathname);
+    return;
+  }
+
   let filePath = path.join(distDir, pathname);
   if (existsSync(filePath) && statSync(filePath).isDirectory()) {
     filePath = path.join(filePath, 'index.html');
@@ -113,13 +141,23 @@ const server = http.createServer((req, res) => {
     // broken API on a fresh browser whose Dexie cache is empty).
     const acceptsHtml = String(req.headers.accept ?? '').includes('text/html');
     if (!acceptsHtml) {
-      res.writeHead(404, { 'content-type': 'application/json' });
-      res.end(JSON.stringify({ error: `not found: ${url.pathname}` }));
+      sendNotFound(req, res, url.pathname);
       return;
     }
     filePath = path.join(distDir, 'index.html');
   }
-  serveFile(req, res, filePath);
+
+  // URL decoding happens after WHATWG URL normalization. Encoded separators
+  // therefore reintroduce `..` segments that path.join would otherwise carry
+  // outside the document root. Verify the final candidate after directory,
+  // snapshot, and SPA resolution, before touching the filesystem again.
+  const resolved = path.resolve(filePath);
+  const relative = path.relative(distDir, resolved);
+  if (!relative || relative.startsWith('..') || path.isAbsolute(relative) || !existsSync(resolved)) {
+    sendNotFound(req, res, url.pathname);
+    return;
+  }
+  serveFile(req, res, resolved);
 });
 
 server.listen(port, '127.0.0.1', () => {

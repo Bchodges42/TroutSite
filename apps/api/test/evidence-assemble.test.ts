@@ -1,12 +1,11 @@
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-import { mkdtempSync, readFileSync, rmSync, existsSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { mkdtempSync, rmSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { WaterEvidenceSchema } from '@trout/contracts';
 import { assembleWaterEvidence, regulationsFromFishingInfo } from '../src/evidence/assemble.js';
 import type { FishingInfoDocument } from '../src/evidence/assemble.js';
 import { runEvidenceJob } from '../src/evidence/evidenceJob.js';
-import { makeEnv, readFixture, fixturesDir, type TestEnv } from './helpers.js';
+import { makeEnv, fixturesDir, type TestEnv } from './helpers.js';
 
 const fishingDoc: FishingInfoDocument = {
   scope: 'statewide-tn',
