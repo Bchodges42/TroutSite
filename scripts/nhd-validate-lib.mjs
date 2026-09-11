@@ -11,8 +11,10 @@ import path from 'node:path';
 import { haversineM, mPerDegLon } from './nhd_lib.mjs';
 
 // ---------------------------------------------------------------------------
-// Termini grammar (docs/NHD-CONVENTIONS.md §6.2 — frozen)
-//   up:   "dam:<waterbody gnis_name>" | "headwater"
+// Termini grammar (docs/NHD-CONVENTIONS.md §6.2, extended by the engine v2
+// integration note: upstream point/confluence stops mirror the downstream
+// rules — additive, inert unless a spec uses them; pending GEOCONV-0 review)
+//   up:   "dam:<waterbody gnis_name>" | "headwater" | "confluence:<name>" | "point:<lat>,<lng>"
 //   down: "mouth" | "confluence:<gnis_name>" | "point:<lat>,<lng>"
 // ---------------------------------------------------------------------------
 
@@ -22,6 +24,12 @@ export function isValidUpSpec(spec) {
     const name = spec.slice(4);
     return name.length > 0 && !/^\s|\s$/.test(name) && !name.includes(',');
   }
+  // v2 upstream stops (mirror of the downstream rules)
+  if (typeof spec === 'string' && spec.startsWith('confluence:')) {
+    const name = spec.slice(11);
+    return name.length > 0 && !/^\s|\s$/.test(name);
+  }
+  if (typeof spec === 'string' && spec.startsWith('point:')) return isValidDownSpec(spec);
   return false;
 }
 
