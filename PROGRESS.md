@@ -19,8 +19,8 @@ no GitHub remote; no remote URL was invented.
       GET/HEAD method allowlist, and traversal regression tests.
 - [x] H4: Cloudflare rate-limit rule recorded as an owner action in `infra/RUNBOOK.md`.
 - [x] New findings: generic portal auth errors, non-GET SPA fallback returning 200,
-      and direct `/v1/streams.json` exposure fixed in code; full evidence is in
-      `docs/HARDEN-AUDIT.md`.
+      direct `/v1/streams.json` exposure, and secondary-proxy transport-error
+      disclosure fixed in code; full evidence is in `docs/HARDEN-AUDIT.md`.
 - [ ] Owner actions: set `WATCHDOG_TOKEN` in WinSW/task environments and update
       `infra/watchdog.sh` / `infra/verify-site.sh`; create the Cloudflare rule;
       merge + self-deploy; remove/redact expired third-party JWTs in captured
