@@ -39,7 +39,7 @@ const RIVER_INDEX_SCRIPT = path.join(ROOT, 'apps/web/scripts/regenerate-river-in
 const VALIDATE_ATLAS = path.join(ROOT, 'apps/web/scripts/validate-atlas.mjs');
 const CONTINUITY = path.join(ROOT, 'apps/web/scripts/audit-river-continuity.mjs');
 const TOTAL_BUDGET = 1_900_000; // statewide rivers.geojson target (conventions §6.5: ≤2.0 MB)
-const MIN_REACH_BUDGET = 9_000;
+const MIN_REACH_BUDGET = 6_000;
 const TRACEABLE = new Set(['river', 'creek', 'tailrace', 'spring']);
 
 const argPos = (i, def) => process.argv[i + 2] ?? def;
@@ -185,7 +185,7 @@ function run(cmd, args) {
   }
 }
 
-function traceOne(id, water, spec, budget) {
+function traceOne(id, water, spec, budget, forceRound4 = false) {
   const unit = spec?.unit ?? water.unit; // spec.unit pins waters discovered in the wrong HU8
   const reachPath = path.join(DERIVED, `reach-${id}.geojson`);
   const up = spec?.up ?? (water.waterbodyType === 'tailrace' ? null : 'headwater');
@@ -200,6 +200,8 @@ function traceOne(id, water, spec, budget) {
     '--waterbody-type', water.waterbodyType,
     '--anchor', `${(spec?.anchor ?? water.anchor)[1]},${(spec?.anchor ?? water.anchor)[0]}`,
     '--up', up, '--down', down,
+    '--simplify-m', forceRound4 ? '150' : budget <= 12_000 ? '50,100,150' : budget <= 60_000 ? '25,50,100' : '10,25,50',
+    '--round', forceRound4 || budget <= 6_000 ? '4' : '5',
     '--budget-bytes', String(budget),
     '--out', `data/nhd/derived/reach-${id}.geojson`,
   ];
@@ -303,6 +305,7 @@ function buildLakeReconciler(asset) {
     return mapped;
   };
   reconcile.dropped = dropped;
+  return reconcile;
 }
 
 function assemble() {
@@ -356,23 +359,31 @@ function assemble() {
 
   // Global budget pass: re-trace the largest reaches with tightened budgets.
   console.log(`initial total (approx): ${(totalBytes() / 1e6).toFixed(2)} MB`);
+  const round4 = new Set();
   let guard = 0;
+  let noProgress = 0;
   while (guard++ < 400) {
     const total = totalBytes();
     if (total <= TOTAL_BUDGET) break;
+    if (noProgress >= 3) { console.log(`no progress squeezing largest reaches; total ${(total / 1e6).toFixed(2)} MB`); break; }
     const traced = [...budgets.entries()]
       .map(([id, b]) => ({ id, b, bytes: fs.statSync(path.join(DERIVED, `reach-${id}.geojson`)).size }))
       .sort((a, b) => b.bytes - a.bytes);
     const big = traced[0];
+    const before = big.bytes;
     const nextBudget = Math.max(MIN_REACH_BUDGET, Math.floor(big.b * 0.6));
-    if (nextBudget === big.b) { console.log(`budget floor reached at ${big.id}; total ${(total / 1e6).toFixed(2)} MB`); break; }
     budgets.set(big.id, nextBudget);
+    const r4 = nextBudget === MIN_REACH_BUDGET; // at the geometric floor: squeeze with 150 m + 4 dp
+    if (r4) round4.add(big.id);
     const d = readJson(DISCOVERY).waters[big.id];
     const spec = getSpecs()[big.id] ?? {};
     const feature = byId.get(big.id);
-    traceOne(big.id, {
+    const r = traceOne(big.id, {
       catalogName: feature.properties.name, waterbodyType: feature.properties.waterbodyType, ...d,
-    }, spec, nextBudget);
+    }, spec, r4 ? 6_000 : nextBudget, r4);
+    const after = fs.statSync(path.join(DERIVED, `reach-${big.id}.geojson`)).size;
+    if (after >= before) noProgress += 1; else noProgress = 0;
+    console.log(`  squeeze ${big.id}: ${before} -> ${after} bytes (budget ${r4 ? 6_000 : nextBudget}${r4 ? ', round4' : ''})${r.ok ? '' : ' [trace failed, kept previous]'}`);
   }
   console.log(`final total: ${(totalBytes() / 1e6).toFixed(2)} MB`);
 

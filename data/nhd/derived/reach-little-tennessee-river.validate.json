@@ -1,22 +1,22 @@
 {
   "reach": "data/nhd/derived/reach-little-tennessee-river.geojson",
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
     {
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 273,
+        "edges": 110,
         "missingPids": [],
         "subgraphComponents": 1
       }
     },
     {
       "name": "continuity",
-      "pass": false,
+      "pass": true,
       "evidence": {
-        "worstJunctionM": 55,
-        "atPathIndex": 74,
+        "worstJunctionM": 0,
+        "atPathIndex": -1,
         "limitM": 50
       }
     },
@@ -24,7 +24,7 @@
       "name": "info:max-vertex-chord",
       "pass": true,
       "evidence": {
-        "maxGapM": 882,
+        "maxGapM": 831,
         "note": "artificial-path chords are legitimate; junction check is authoritative"
       }
     },
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 15610,
+        "bytes": 7532,
         "budgetBytes": 81920
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:13:34.989Z"
+  "generatedAt": "2026-09-11T18:54:33.045Z"
 }

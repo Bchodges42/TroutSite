@@ -2275,13 +2275,13 @@
   "throughLakes": [],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 32398,
-    "budgetBytes": 81920
+    "chosenToleranceM": 50,
+    "bytes": 13919,
+    "budgetBytes": 17694
   },
   "output": "data/nhd/derived/reach-sequatchie-river.geojson"
 }

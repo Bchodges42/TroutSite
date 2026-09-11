@@ -1,22 +1,22 @@
 {
   "reach": "data/nhd/derived/reach-caney-fork-upper.geojson",
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
     {
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 237,
+        "edges": 176,
         "missingPids": [],
         "subgraphComponents": 1
       }
     },
     {
       "name": "continuity",
-      "pass": false,
+      "pass": true,
       "evidence": {
-        "worstJunctionM": 55,
-        "atPathIndex": 176,
+        "worstJunctionM": 0,
+        "atPathIndex": -1,
         "limitM": 50
       }
     },
@@ -40,10 +40,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 28865,
-        "budgetBytes": 81920
+        "bytes": 15274,
+        "budgetBytes": 49152
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:13:30.837Z"
+  "generatedAt": "2026-09-11T19:12:22.023Z"
 }

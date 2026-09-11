@@ -24,7 +24,7 @@
     ]
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "point:36.476948,-82.26315",
     "path": [
       2422,
       1500,
@@ -67,12 +67,9 @@
       990,
       213,
       2249,
-      2383,
-      1539,
-      2765,
-      1539
+      2383
     ],
-    "reason": "cycle-guard",
+    "reason": "point",
     "node": "n689",
     "edgePids": [
       "43583402",
@@ -116,10 +113,7 @@
       "43587200",
       "43587146",
       "43587102",
-      "43587068",
-      "167741403",
-      "43587060",
-      "167741403"
+      "43587068"
     ]
   },
   "pathEdges": [
@@ -298,87 +292,10 @@
     {
       "pid": "43587068",
       "dir": "down"
-    },
-    {
-      "pid": "167741403",
-      "dir": "down"
-    },
-    {
-      "pid": "43587060",
-      "dir": "down"
-    },
-    {
-      "pid": "167741403",
-      "dir": "down"
     }
   ],
-  "divergenceLog": [
-    {
-      "dir": "down",
-      "atNode": "n689",
-      "currentEdge": "43587068",
-      "candidates": [
-        {
-          "pid": "43587484",
-          "name": "South Fork Holston River",
-          "km": 1.4992526428585091
-        },
-        {
-          "pid": "167741403",
-          "name": "South Fork Holston River",
-          "km": 0.023782914831367307
-        },
-        {
-          "pid": "43587060",
-          "name": "South Fork Holston River",
-          "km": 0.048024481605407295
-        }
-      ],
-      "chosen": "167741403",
-      "rule": "name-continuity"
-    },
-    {
-      "dir": "down",
-      "atNode": "n689",
-      "currentEdge": "167741403",
-      "candidates": [
-        {
-          "pid": "43587484",
-          "name": "South Fork Holston River",
-          "km": 1.4992526428585091
-        },
-        {
-          "pid": "43587060",
-          "name": "South Fork Holston River",
-          "km": 0.048024481605407295
-        }
-      ],
-      "chosen": "43587060",
-      "rule": "name-continuity"
-    },
-    {
-      "dir": "down",
-      "atNode": "n689",
-      "currentEdge": "43587060",
-      "candidates": [
-        {
-          "pid": "43587484",
-          "name": "South Fork Holston River",
-          "km": 1.4992526428585091
-        },
-        {
-          "pid": "167741403",
-          "name": "South Fork Holston River",
-          "km": 0.023782914831367307
-        }
-      ],
-      "chosen": "167741403",
-      "rule": "name-continuity"
-    }
-  ],
-  "throughLakes": [
-    "Boone Lake"
-  ],
+  "divergenceLog": [],
+  "throughLakes": [],
   "simplify": {
     "tried": [
       10,
@@ -386,7 +303,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 4633,
+    "bytes": 4549,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-south-holston-river.geojson"

@@ -2014,13 +2014,13 @@
   ],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
-    "chosenToleranceM": 10,
-    "bytes": 18050,
-    "budgetBytes": 81920
+    "chosenToleranceM": 25,
+    "bytes": 11658,
+    "budgetBytes": 49152
   },
   "output": "data/nhd/derived/reach-tellico-river.geojson"
 }

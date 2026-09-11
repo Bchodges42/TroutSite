@@ -23,7 +23,7 @@
     "edgePids": []
   },
   "downWalk": {
-    "spec": "mouth",
+    "spec": "point:36.498984,-82.513707",
     "path": [
       1492,
       1582,
@@ -45,25 +45,10 @@
       2746,
       2119,
       1530,
-      23,
-      1576,
-      51,
-      77,
-      67,
-      20,
-      82,
-      31,
-      24,
-      61,
-      2073,
-      30,
-      10,
-      16,
-      48,
-      3
+      23
     ],
-    "reason": "terminal-node",
-    "node": "n104",
+    "reason": "point",
+    "node": "n261",
     "edgePids": [
       "43588916",
       "43588904",
@@ -85,22 +70,7 @@
       "43587090",
       "43586994",
       "43587338",
-      "43587332",
-      "43587328",
-      "43587230",
-      "43587098",
-      "43586946",
-      "43586974",
-      "43586970",
-      "43586854",
-      "43586274",
-      "43586188",
-      "43585764",
-      "43585396",
-      "43585366",
-      "43585376",
-      "147535010",
-      "{F775F337-88D9-40DA-ABDD-00B16E6B983D}"
+      "43587332"
     ]
   },
   "pathEdges": [
@@ -191,92 +161,11 @@
     {
       "pid": "43587332",
       "dir": "down"
-    },
-    {
-      "pid": "43587328",
-      "dir": "down"
-    },
-    {
-      "pid": "43587230",
-      "dir": "down"
-    },
-    {
-      "pid": "43587098",
-      "dir": "down"
-    },
-    {
-      "pid": "43586946",
-      "dir": "down"
-    },
-    {
-      "pid": "43586974",
-      "dir": "down"
-    },
-    {
-      "pid": "43586970",
-      "dir": "down"
-    },
-    {
-      "pid": "43586854",
-      "dir": "down"
-    },
-    {
-      "pid": "43586274",
-      "dir": "down"
-    },
-    {
-      "pid": "43586188",
-      "dir": "down"
-    },
-    {
-      "pid": "43585764",
-      "dir": "down"
-    },
-    {
-      "pid": "43585396",
-      "dir": "down"
-    },
-    {
-      "pid": "43585366",
-      "dir": "down"
-    },
-    {
-      "pid": "43585376",
-      "dir": "down"
-    },
-    {
-      "pid": "147535010",
-      "dir": "down"
-    },
-    {
-      "pid": "{F775F337-88D9-40DA-ABDD-00B16E6B983D}",
-      "dir": "down"
     }
   ],
-  "divergenceLog": [
-    {
-      "dir": "down",
-      "atNode": "n250",
-      "currentEdge": "43587328",
-      "candidates": [
-        {
-          "pid": "43587236",
-          "name": "Rock Springs Branch",
-          "km": 0.007717162055010516
-        },
-        {
-          "pid": "43587230",
-          "name": "South Fork Holston River",
-          "km": 0.5663376045793279
-        }
-      ],
-      "chosen": "43587230",
-      "rule": "name-continuity"
-    }
-  ],
+  "divergenceLog": [],
   "throughLakes": [
-    "Fort Patrick Henry Lake",
-    "Cherokee Lake"
+    "Fort Patrick Henry Lake"
   ],
   "simplify": {
     "tried": [
@@ -285,7 +174,7 @@
       50
     ],
     "chosenToleranceM": 10,
-    "bytes": 4520,
+    "bytes": 2971,
     "budgetBytes": 81920
   },
   "output": "data/nhd/derived/reach-boone-tailwater.geojson"

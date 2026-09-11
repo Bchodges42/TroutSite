@@ -6,7 +6,7 @@
       "name": "connectivity",
       "pass": true,
       "evidence": {
-        "edges": 203,
+        "edges": 84,
         "missingPids": [],
         "subgraphComponents": 1
       }
@@ -24,8 +24,40 @@
       "name": "info:max-vertex-chord",
       "pass": true,
       "evidence": {
-        "maxGapM": 756,
+        "maxGapM": 690,
         "note": "artificial-path chords are legitimate; junction check is authoritative"
+      }
+    },
+    {
+      "name": "upstream-span",
+      "pass": true,
+      "evidence": {
+        "first": [
+          -86.2467,
+          35.46514
+        ],
+        "expected": [
+          -86.246872,
+          35.465375
+        ],
+        "distM": 30,
+        "radiusM": 600
+      }
+    },
+    {
+      "name": "downstream-span",
+      "pass": true,
+      "evidence": {
+        "last": [
+          -86.46422,
+          35.48347
+        ],
+        "expected": [
+          -86.462645,
+          35.482591
+        ],
+        "distM": 173,
+        "radiusM": 3000
       }
     },
     {
@@ -40,10 +72,10 @@
       "name": "byte-budget",
       "pass": true,
       "evidence": {
-        "bytes": 26745,
+        "bytes": 7613,
         "budgetBytes": 81920
       }
     }
   ],
-  "generatedAt": "2026-09-11T18:13:21.225Z"
+  "generatedAt": "2026-09-11T18:47:49.617Z"
 }
