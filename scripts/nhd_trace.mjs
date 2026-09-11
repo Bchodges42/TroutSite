@@ -27,8 +27,8 @@
 //     node is where the reservoir impoundment begins. Other reservoirs on the
 //     path (e.g. Melton Hill Lake for clinch-river) are traversed, not stops.
 
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   bboxOf,
   dpSimplify,
@@ -39,7 +39,7 @@ import {
   roundCoords,
   slugify,
   writeJson,
-} from "./nhd_lib.mjs";
+} from './nhd_lib.mjs';
 
 const args = process.argv.slice(2);
 const argOf = (flag, def) => {
@@ -53,22 +53,20 @@ const need = (flag, v) => {
   }
   return v;
 };
-const graphPath = need("--graph", argOf("--graph"));
-const waterId = need("--id", argOf("--id"));
-const waterName = argOf("--name", waterId);
-const gnisName = argOf("--gnis", waterName);
-const waterbodyType = argOf("--waterbody-type", "river");
-const [anchorLat, anchorLon] = need("--anchor", argOf("--anchor"))
-  .split(",")
-  .map(Number);
-const upSpec = argOf("--up", "headwater");
-const downSpec = argOf("--down", "mouth");
-const outPath = need("--out", argOf("--out"));
-const simplifyTols = (argOf("--simplify-m", "10,25,50")).split(",").map(Number);
-const budgetBytes = Number(argOf("--budget-bytes", "81920"));
-const roundDecimals = Number(argOf("--round", "5"));
+const graphPath = need('--graph', argOf('--graph'));
+const waterId = need('--id', argOf('--id'));
+const waterName = argOf('--name', waterId);
+const gnisName = argOf('--gnis', waterName);
+const waterbodyType = argOf('--waterbody-type', 'river');
+const [anchorLat, anchorLon] = need('--anchor', argOf('--anchor')).split(',').map(Number);
+const upSpec = argOf('--up', 'headwater');
+const downSpec = argOf('--down', 'mouth');
+const outPath = need('--out', argOf('--out'));
+const simplifyTols = argOf('--simplify-m', '10,25,50').split(',').map(Number);
+const budgetBytes = Number(argOf('--budget-bytes', '81920'));
+const roundDecimals = Number(argOf('--round', '5'));
 
-const graph = JSON.parse(fs.readFileSync(graphPath, "utf8"));
+const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8'));
 const { nodes, edges } = graph;
 const meta = graph.meta;
 
@@ -76,7 +74,7 @@ const meta = graph.meta;
 const hu8 = meta.hu8;
 const dataDir = path.dirname(path.dirname(graphPath));
 const waterbodies = new Map();
-for (const row of readJsonl(path.join(dataDir, "hu8", `${hu8}.waterbodies.jsonl`))) {
+for (const row of readJsonl(path.join(dataDir, 'hu8', `${hu8}.waterbodies.jsonl`))) {
   waterbodies.set(String(row.properties.permanent_identifier), row.properties);
 }
 
@@ -128,7 +126,7 @@ function upstreamLen(i, seen = new Set()) {
 function pick(cands, currentName, dir) {
   const rank = (i) => [
     edges[i].name === currentName ? 0 : 1,
-    -(dir === "down" ? downstreamLen(i) : upstreamLen(i)),
+    -(dir === 'down' ? downstreamLen(i) : upstreamLen(i)),
     String(edges[i].pid),
   ];
   return cands.slice().sort((a, b) => {
@@ -168,45 +166,56 @@ function walk(dir, spec) {
   let cur = anchorBest.edgeIdx;
   const guard = new Set();
   while (true) {
-    if (guard.has(cur + ":" + dir)) {
-      return { path, reason: "cycle-guard", node: dir === "up" ? edges[cur].from : edges[cur].to };
+    if (guard.has(cur + ':' + dir)) {
+      return { path, reason: 'cycle-guard', node: dir === 'up' ? edges[cur].from : edges[cur].to };
     }
-    guard.add(cur + ":" + dir);
-    const nextNode = dir === "up" ? edges[cur].from : edges[cur].to;
-    const cands = (dir === "up" ? inEdges : outEdges).get(nextNode) ?? [];
+    guard.add(cur + ':' + dir);
+    const nextNode = dir === 'up' ? edges[cur].from : edges[cur].to;
+    const cands = (dir === 'up' ? inEdges : outEdges).get(nextNode) ?? [];
     const open = cands.filter((c) => c !== cur);
-    if (open.length === 0) return { path, reason: dir === "up" ? "headwater" : "terminal-node", node: nextNode };
+    if (open.length === 0)
+      return { path, reason: dir === 'up' ? 'headwater' : 'terminal-node', node: nextNode };
 
-    const [kind, value] = spec.split(":");
-    if (dir === "up" && kind === "dam") {
+    const [kind, value] = spec.split(':');
+    if (dir === 'up' && kind === 'dam') {
       const damCandidates = open.filter((c) => isDamStop(c, value));
       if (damCandidates.length > 0) {
-        return { path, reason: "dam", node: nextNode, damEdges: damCandidates.map((c) => edges[c].pid) };
+        return {
+          path,
+          reason: 'dam',
+          node: nextNode,
+          damEdges: damCandidates.map((c) => edges[c].pid),
+        };
       }
     }
-    if (dir === "down" && kind === "point") {
-      const [plat, plon] = value.split(",").map(Number);
+    if (dir === 'down' && kind === 'point') {
+      const [plat, plon] = value.split(',').map(Number);
       if (haversineM(nodes[nextNode], [plon, plat]) <= 150) {
-        return { path, reason: "point", node: nextNode };
+        return { path, reason: 'point', node: nextNode };
       }
     }
 
     let choice;
-    if (dir === "down" && kind === "mouth") {
+    if (dir === 'down' && kind === 'mouth') {
       const sameName = open.filter((c) => edges[c].name === edges[cur].name);
       if (sameName.length === 0) {
         return {
           path,
-          reason: "name-change",
+          reason: 'name-change',
           node: nextNode,
           enteredNames: [...new Set(open.map((c) => edges[c].name))],
         };
       }
       choice = pick(sameName, edges[cur].name, dir);
-    } else if (dir === "down" && kind === "confluence") {
+    } else if (dir === 'down' && kind === 'confluence') {
       const hit = open.filter((c) => edges[c].name.toLowerCase() === value.toLowerCase());
       if (hit.length > 0) {
-        return { path, reason: "confluence", node: nextNode, enteredNames: hit.map((c) => edges[c].name) };
+        return {
+          path,
+          reason: 'confluence',
+          node: nextNode,
+          enteredNames: hit.map((c) => edges[c].name),
+        };
       }
       choice = pick(open, edges[cur].name, dir);
     } else {
@@ -220,7 +229,7 @@ function walk(dir, spec) {
         currentEdge: edges[cur].pid,
         candidates: open.map((c) => ({ pid: edges[c].pid, name: edges[c].name, km: edges[c].km })),
         chosen: edges[choice].pid,
-        rule: edges[choice].name === edges[cur].name ? "name-continuity" : "longest-remaining-path",
+        rule: edges[choice].name === edges[cur].name ? 'name-continuity' : 'longest-remaining-path',
       });
     }
     path.push(choice);
@@ -228,8 +237,8 @@ function walk(dir, spec) {
   }
 }
 
-const up = walk("up", upSpec);
-const down = walk("down", downSpec);
+const up = walk('up', upSpec);
+const down = walk('down', downSpec);
 
 // --- path assembly -----------------------------------------------------------
 // Output runs upstream terminus → anchor → downstream terminus. Edges are all
@@ -259,10 +268,8 @@ pushCoords(startHeadPart);
 pushCoords(startTailPart);
 for (const i of down.path) pushCoords(edges[i].coords);
 
-const upDistKm =
-  up.path.reduce((s, i) => s + edges[i].km, 0) + startEdge.km * t;
-const downDistKm =
-  down.path.reduce((s, i) => s + edges[i].km, 0) + startEdge.km * (1 - t);
+const upDistKm = up.path.reduce((s, i) => s + edges[i].km, 0) + startEdge.km * t;
+const downDistKm = down.path.reduce((s, i) => s + edges[i].km, 0) + startEdge.km * (1 - t);
 
 // terminus coords
 const upNode = up.node ? nodes[up.node] : null;
@@ -298,7 +305,7 @@ function buildReach(coords, tol) {
   const pidsDown = down.path.map((i) => edges[i].pid);
   const vertexCount = coords.length;
   return {
-    type: "Feature",
+    type: 'Feature',
     properties: {
       id: waterId,
       name: waterName,
@@ -309,15 +316,15 @@ function buildReach(coords, tol) {
       approximate: false,
       labelAnchor: anchorBest.point.map((v) => Math.round(v * 1e5) / 1e5),
       bounds: bboxOf(coords),
-      crs: "EPSG:4326",
-      coordinateOrder: "longitude,latitude",
+      crs: 'EPSG:4326',
+      coordinateOrder: 'longitude,latitude',
       partCount: 1,
       vertexCount,
       lengthKm: Math.round(lineLengthKm(coords) * 100) / 100,
       sourceIds: [...new Set([startEdge.pid, ...pidsUp, ...pidsDown])],
       sourceRetrieved: meta.generatedAt.slice(0, 10),
       // additive properties (rivers.geojson schema unchanged otherwise):
-      geometrySource: "nhd",
+      geometrySource: 'nhd',
       hu8,
       simplification: {
         toleranceM: tol,
@@ -326,7 +333,11 @@ function buildReach(coords, tol) {
         budgetBytes,
       },
       trace: {
-        anchor: { lat: anchorLat, lon: anchorLon, snapDistM: Math.round(anchorBest.distM * 10) / 10 },
+        anchor: {
+          lat: anchorLat,
+          lon: anchorLon,
+          snapDistM: Math.round(anchorBest.distM * 10) / 10,
+        },
         up: {
           spec: upSpec,
           reason: up.reason,
@@ -344,12 +355,12 @@ function buildReach(coords, tol) {
         toleranceM: meta.toleranceM,
       },
     },
-    geometry: { type: "MultiLineString", coordinates: [coords] },
+    geometry: { type: 'MultiLineString', coordinates: [coords] },
   };
 }
 
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, JSON.stringify(chosen.candidate) + "\n");
+fs.writeFileSync(outPath, JSON.stringify(chosen.candidate) + '\n');
 const audit = {
   waterId,
   graphPath,
@@ -359,16 +370,19 @@ const audit = {
   downWalk: { spec: downSpec, ...down, edgePids: down.path.map((i) => edges[i].pid) },
   // ordered directed path, upstream terminus → anchor → downstream terminus
   pathEdges: [
-    ...up.path.slice().reverse().map((i) => ({ pid: edges[i].pid, dir: "up" })),
-    { pid: startEdge.pid, dir: "anchor" },
-    ...down.path.map((i) => ({ pid: edges[i].pid, dir: "down" })),
+    ...up.path
+      .slice()
+      .reverse()
+      .map((i) => ({ pid: edges[i].pid, dir: 'up' })),
+    { pid: startEdge.pid, dir: 'anchor' },
+    ...down.path.map((i) => ({ pid: edges[i].pid, dir: 'down' })),
   ],
   divergenceLog,
   throughLakes,
   simplify: { tried: simplifyTols, chosenToleranceM: chosen.tol, bytes: chosen.bytes, budgetBytes },
   output: outPath,
 };
-writeJson(outPath.replace(/\.geojson$/, ".audit.json"), audit, true);
+writeJson(outPath.replace(/\.geojson$/, '.audit.json'), audit, true);
 console.log(
   JSON.stringify(
     {

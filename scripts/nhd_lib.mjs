@@ -2,13 +2,13 @@
 // Conventions frozen in docs/NHD-CONVENTIONS.md. Pure Node stdlib; GDAL is never
 // imported here (conversion happens once, upstream, via scripts/nhd_convert_gdb.sh).
 
-import fs from "node:fs";
+import fs from 'node:fs';
 
 export function readJsonl(path) {
   return fs
-    .readFileSync(path, "utf8")
+    .readFileSync(path, 'utf8')
     .trimEnd()
-    .split("\n")
+    .split('\n')
     .filter(Boolean)
     .map((line) => JSON.parse(line));
 }
@@ -25,8 +25,7 @@ export function haversineM(a, b) {
   const dLat = (b[1] - a[1]) * rad;
   const dLon = (b[0] - a[0]) * rad;
   const s =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(a[1] * rad) * Math.cos(b[1] * rad) * Math.sin(dLon / 2) ** 2;
+    Math.sin(dLat / 2) ** 2 + Math.cos(a[1] * rad) * Math.cos(b[1] * rad) * Math.sin(dLon / 2) ** 2;
   return 2 * 6371008.8 * Math.asin(Math.sqrt(s));
 }
 
@@ -85,10 +84,7 @@ export function dpSimplify(coords, tolM) {
 
 export function roundCoords(coords, decimals) {
   const f = 10 ** decimals;
-  return coords.map(([lon, lat]) => [
-    Math.round(lon * f) / f,
-    Math.round(lat * f) / f,
-  ]);
+  return coords.map(([lon, lat]) => [Math.round(lon * f) / f, Math.round(lat * f) / f]);
 }
 
 export function bboxOf(coords) {
@@ -108,10 +104,10 @@ export function bboxOf(coords) {
 export function slugify(name) {
   return name
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 export function writeJson(path, obj, pretty = false) {
-  fs.writeFileSync(path, JSON.stringify(obj, null, pretty ? 2 : 0) + "\n");
+  fs.writeFileSync(path, JSON.stringify(obj, null, pretty ? 2 : 0) + '\n');
 }

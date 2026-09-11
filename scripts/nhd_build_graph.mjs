@@ -18,27 +18,29 @@
 //   - multipart flowlines are rejected (measured: 0 in 06010207); a future
 //     converter change must explode collections before committing JSONL.
 
-import fs from "node:fs";
-import path from "node:path";
-import { haversineM, lineLengthKm, readJsonl, writeJson } from "./nhd_lib.mjs";
+import fs from 'node:fs';
+import path from 'node:path';
+import { haversineM, lineLengthKm, readJsonl, writeJson } from './nhd_lib.mjs';
 
 const args = process.argv.slice(2);
 const argOf = (flag, def) => {
   const i = args.indexOf(flag);
   return i >= 0 ? args[i + 1] : def;
 };
-const hu8 = argOf("--hu8");
+const hu8 = argOf('--hu8');
 if (!hu8) {
-  console.error("usage: nhd_build_graph.mjs --hu8 <code> [--tolerance-m 12] [--dam-gap-m 100] [--data-dir data/nhd]");
+  console.error(
+    'usage: nhd_build_graph.mjs --hu8 <code> [--tolerance-m 12] [--dam-gap-m 100] [--data-dir data/nhd]',
+  );
   process.exit(2);
 }
-const tolM = Number(argOf("--tolerance-m", "12"));
-const damGapM = Number(argOf("--dam-gap-m", "100"));
-const dataDir = argOf("--data-dir", "data/nhd");
+const tolM = Number(argOf('--tolerance-m', '12'));
+const damGapM = Number(argOf('--dam-gap-m', '100'));
+const dataDir = argOf('--data-dir', 'data/nhd');
 
-const flowFeatures = readJsonl(path.join(dataDir, "hu8", `${hu8}.jsonl`));
-const vaaRows = readJsonl(path.join(dataDir, "hu8", `${hu8}.vaa.jsonl`));
-const wbRows = readJsonl(path.join(dataDir, "hu8", `${hu8}.waterbodies.jsonl`));
+const flowFeatures = readJsonl(path.join(dataDir, 'hu8', `${hu8}.jsonl`));
+const vaaRows = readJsonl(path.join(dataDir, 'hu8', `${hu8}.vaa.jsonl`));
+const wbRows = readJsonl(path.join(dataDir, 'hu8', `${hu8}.waterbodies.jsonl`));
 const waterbodies = new Map(
   wbRows.map((r) => [String(r.properties.permanent_identifier), r.properties]),
 );
@@ -49,7 +51,7 @@ let vaaPopulated = 0;
 for (const row of vaaRows) {
   const p = row.properties;
   const hasAny = Object.entries(p).some(
-    ([k, v]) => k !== "permanent_identifier" && v !== null && v !== undefined,
+    ([k, v]) => k !== 'permanent_identifier' && v !== null && v !== undefined,
   );
   if (hasAny) {
     vaaPopulated++;
@@ -89,15 +91,15 @@ const cellKey = ([lon, lat]) => {
 const endpoints = []; // {coord, edgeIdx, end: "from"|"to"}
 for (let i = 0; i < flowFeatures.length; i++) {
   const g = flowFeatures[i].geometry;
-  if (g.type !== "MultiLineString" || g.coordinates.length !== 1) {
+  if (g.type !== 'MultiLineString' || g.coordinates.length !== 1) {
     console.error(
       `error: multipart flowline pid=${flowFeatures[i].properties.permanent_identifier} — explode collections at convert time`,
     );
     process.exit(1);
   }
   const coords = g.coordinates[0];
-  endpoints.push({ coord: coords[0], edgeIdx: i, end: "from" });
-  endpoints.push({ coord: coords.at(-1), edgeIdx: i, end: "to" });
+  endpoints.push({ coord: coords[0], edgeIdx: i, end: 'from' });
+  endpoints.push({ coord: coords.at(-1), edgeIdx: i, end: 'to' });
 }
 
 const dsu = new DSU();
@@ -108,7 +110,7 @@ for (let e = 0; e < endpoints.length; e++) {
   const k = cellKey(coord);
   let near = -1;
   let nearD = Infinity;
-  const [cx, cy] = k.split(":").map(Number);
+  const [cx, cy] = k.split(':').map(Number);
   const clon = tolM / (111320 * Math.cos((coord[1] * Math.PI) / 180));
   for (let dx = -1; dx <= 1; dx++) {
     for (let dy = -1; dy <= 1; dy++) {
@@ -295,8 +297,8 @@ const meta = {
   generatedAt: new Date().toISOString(),
   toleranceM: tolM,
   damGapM,
-  nodeScheme: "snapped-endpoint union-find, deterministic ids by sorted coord",
-  directionRule: "flowdir 1=as-digitized (downstream), 2=reversed, other=as-digitized+counted",
+  nodeScheme: 'snapped-endpoint union-find, deterministic ids by sorted coord',
+  directionRule: 'flowdir 1=as-digitized (downstream), 2=reversed, other=as-digitized+counted',
   vaaPopulated,
   counts: {
     nodes: Object.keys(nodes).length,
@@ -316,7 +318,7 @@ if (vaaPopulated > 0) {
   );
 }
 
-const outDir = path.join(dataDir, "graphs");
+const outDir = path.join(dataDir, 'graphs');
 fs.mkdirSync(outDir, { recursive: true });
 const outPath = path.join(outDir, `${hu8}.graph.json`);
 writeJson(outPath, { meta, nodes, edges });

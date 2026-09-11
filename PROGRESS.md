@@ -18,7 +18,42 @@ Scope: `data/nhd/**`, `scripts/nhd_*`, `docs/NHD-CONVENTIONS.md`, `PROGRESS.md`.
 - [x] Preflight: `git remote get-url origin` → no remote (known snapshot condition) → push deferred,
       recorded here. GDAL 3.13.3 installed via brew (maintainer tool only, never a build/CI dep).
 
-(in-progress entries appended as work lands)
+- [x] Reference HU8 identified + converted: 06010207 "Lower Clinch" (Norris Lake/Dam,
+      Clinch tailwater, Melton Hill Lake, mouth at Kingston). Best Resolution product
+      published 20231216, zip sha256 70580f6a...; converted via scripts/nhd_convert_gdb.sh
+      (ogr2ogr, GeoJSONSeq RS=no, 6dp): 1,840 named flowlines (2.2MB) + 5,981 VAA rows
+      (2.4MB) + 15 geometry-free waterbodies (2.4KB) + meta.json. Committed ec4f198.
+- [x] Key data findings (drive the design, frozen in docs/NHD-CONVENTIONS.md):
+      (1) the VAA table joins perfectly (1840/1840 pids) but ALL attribute columns are
+      NULL in this product -> snapping + heuristics are primary, VAA recorded only;
+      (2) flowdir==1 on every named feature -> geometry digitization is downstream;
+      (3) FType 558 = Artificial Path (not 336 = Canal/Ditch);
+      (4) NHDPoint has springs only, no dams -> dam termini detect via reservoir
+      artpaths (wbarea -> named LakePond/Reservoir);
+      (5) NHD leaves dams unmapped: Norris Dam gap measured 43.4m between the Norris
+      Lake artpath end and the tailwater start -> narrow auditable dam-junction bridge
+      (<=100m, lake-artpath endpoints only, 28 recorded in graph meta).
+- [x] Engine (all zero-dep Node): nhd_lib.mjs, nhd_build_graph.mjs (endpoint-snap
+      union-find @12m: 1,831 exact merges + 39 <=12m; 1,810 nodes; largest component
+      1,756 edges; small components = genuine boundary fragments), nhd_snap_anchors.mjs
+      (clinch-river ok 91.3m; emory-river far = gauge in neighboring HU8; 39 out-of-hu8),
+      nhd_trace.mjs (termini specs dam:<name>/headwater/mouth/confluence/point; fork
+      rule name-continuity -> longest-remaining-path DFS -> pid; 7 divergences logged
+      on the Clinch; DP simplify 10->25->50m ladder + hard 80KB budget, actual 15.6KB),
+      nhd_validate.mjs (B13 gate). Committed e1ecb96.
+- [x] Clinch traced dam->mouth as ONE connected component: 184 edges, 125km, 595
+      vertices, bounds [-84.5339,35.8632,-84.0752,36.2239]; upstream terminus 112m from
+      geocoded Norris Dam; downstream terminus at the Kingston mouth; bbox disjoint from
+      boone-tailwater + south-holston-river; all junction gaps 0m. B13 validation PASS
+      (reach-clinch-river.validate.json committed). Bug found+fixed during validation:
+      up-walk edges were emitted in walk orientation, producing a backtrack spur at the
+      dam; now emitted stored-orientation (terminus-first output).
+- [x] docs/NHD-CONVENTIONS.md written (schemas, tolerances, dam-bridge rule, trace CLI,
+      budgets, B13 baseline, TIGER fallback policy, fan-out/audit/integration notes,
+      reproducibility transcript). This file is the real lane deliverable.
+- [x] Gates: prettier --check clean on scripts/nhd_*; no apps/web, packages/contracts,
+      or apps/web/public changes (verified via git diff --name-only 1300194..HEAD).
+      Push still deferred (no remote).
 
 # SESSION 3 — Product / UX / Growth (2026-09-08)
 
