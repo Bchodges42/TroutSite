@@ -10,12 +10,14 @@ export function RiverSearch({
   onSelect,
   placeholder = 'Search rivers, creeks…',
   shortcut = true,
+  showShortcut = true,
 }: {
   streams?: SearchStream[];
   onSelect: (id: string) => void;
   selectedId?: string | null;
   placeholder?: string;
   shortcut?: boolean;
+  showShortcut?: boolean;
 }) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
@@ -136,9 +138,11 @@ export function RiverSearch({
             }
           }}
         />
-        <kbd className="search-key" aria-hidden="true">
-          /
-        </kbd>
+        {showShortcut && (
+          <kbd className="search-key" aria-hidden="true">
+            /
+          </kbd>
+        )}
       </div>
       {open && (
         <div id={id} role="listbox" aria-label="River results" className="search-results">
