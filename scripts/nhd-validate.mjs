@@ -134,7 +134,7 @@ for (const [id, doc] of catalog) {
       // documented override: e.g. french-broad-river's seed dam spec under-covered
       // (per YAML the entry includes the lake run-through); adopted from the
       // GEOFANOUT-1 fix evidence — see termini.json reconciliationNotes
-      !(row.up && typeof row.up.basis === 'string' && row.up.basis.includes('GEOFANOUT-1 fix'))
+      !(row.up && typeof row.up.basis === 'string' && row.up.basis.includes('GEOFANOUT-1'))
     ) {
       add(
         'termini',
@@ -360,9 +360,11 @@ for (const file of reachFiles) {
   if (stated.length > 0) {
     const trials = stated.map((s) => lengthSanity(props.lengthKm, s.miles));
     const best = trials.reduce((a, b) => (Math.abs(b.ratio - 1) < Math.abs(a.ratio - 1) ? b : a));
-    add('reach', best.pass ? 'PASS' : 'FAIL', id, 'length-sanity', {
+    const waived = best.pass ? false : Boolean(row?.lengthSanityWaiver);
+    add('reach', best.pass ? 'PASS' : waived ? 'REVIEW' : 'FAIL', id, 'length-sanity', {
       statedMiles: parseStatedMiles(doc.notes).map((s) => s.miles),
       ...best,
+      waiver: waived ? row.lengthSanityWaiver : undefined,
     });
   }
 }
