@@ -1,0 +1,23 @@
+{
+  "hu8": "06030003",
+  "convertedAt": "2026-09-11T17:03:20.987Z",
+  "gdal": "GDAL 3.13.3 \"Iowa City\", released 2026/08/13",
+  "source": {
+    "product": "USGS National Hydrography Dataset Best Resolution, HU8 FileGDB",
+    "index": "https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Hydrography/NHD/HU8/GDB/",
+    "object": "StagedProducts/Hydrography/NHD/HU8/GDB/NHD_H_06030003_HU8_GDB.zip",
+    "zipSha256": "8ee36c9f15a3941b71b464a50f3e13bdbc02da3029b399fae385a415f8371835",
+    "published": "20231216"
+  },
+  "filter": {
+    "flowlines": "ftype IN (460, 558) AND gnis_name IS NOT NULL",
+    "vaa": "all flowlines in HU8 (join by permanent_identifier)"
+  },
+  "coordinatePrecision": 6,
+  "crs": "EPSG:4326 (source NAD83/EPSG:4269, transformed on convert)",
+  "counts": {
+    "flowlines": 2508,
+    "vaa": 7600,
+    "waterbodies": 34
+  }
+}
