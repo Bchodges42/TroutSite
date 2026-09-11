@@ -2283,13 +2283,13 @@
   ],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
     "chosenToleranceM": 25,
     "bytes": 16652,
-    "budgetBytes": 17694
+    "budgetBytes": 49152
   },
   "output": "data/nhd/derived/reach-nolichucky-river.geojson"
 }

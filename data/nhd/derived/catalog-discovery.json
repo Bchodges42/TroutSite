@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T18:08:07.904Z",
+  "generatedAt": "2026-09-11T20:21:08.830Z",
   "waters": {
     "barren-fork-river": {
       "anchor": [
@@ -107,7 +107,7 @@
       "snapDistM": 149,
       "nhdName": "Buffalo River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "calfkiller-river": {
       "anchor": [
@@ -155,7 +155,7 @@
       "snapDistM": 2,
       "nhdName": "Caney Fork",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "charles-creek": {
       "anchor": [
@@ -253,7 +253,7 @@
       "snapDistM": 172,
       "nhdName": "Cumberland River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "daddys-creek": {
       "anchor": [
@@ -301,7 +301,7 @@
       "snapDistM": 230,
       "nhdName": "Duck River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "duck-river-tailwater": {
       "anchor": [
@@ -361,7 +361,7 @@
       "snapDistM": 31,
       "nhdName": "Elk River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "emory-river": {
       "anchor": [
@@ -651,7 +651,7 @@
       "snapDistM": 0,
       "nhdName": "Little Tennessee River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "little-west-fork-creek": {
       "anchor": [
@@ -749,7 +749,7 @@
       "snapDistM": 263,
       "nhdName": "Nolichucky River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "north-chickamauga-creek": {
       "anchor": [
@@ -773,7 +773,7 @@
       "snapDistM": 0,
       "nhdName": "North Fork Holston River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "north-prong-barren-fork": {
       "anchor": [
@@ -833,7 +833,7 @@
       "snapDistM": 50,
       "nhdName": "Toccoa River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "parksville-tailwater": {
       "anchor": [
@@ -857,7 +857,7 @@
       "snapDistM": 22,
       "nhdName": "Pigeon River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "pine-creek-dekalb": {
       "anchor": [
@@ -893,7 +893,7 @@
       "snapDistM": 52,
       "nhdName": "Powell River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "puncheon-camp-creek": {
       "anchor": [
@@ -917,7 +917,7 @@
       "snapDistM": 28,
       "nhdName": "Red River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "reedy-creek": {
       "anchor": [
@@ -941,7 +941,7 @@
       "snapDistM": 27,
       "nhdName": "Byrd Creek",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "roaring-fork": {
       "anchor": [
@@ -1025,7 +1025,7 @@
       "snapDistM": 56,
       "nhdName": "Big South Fork Cumberland River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "south-holston-river": {
       "anchor": [
@@ -1135,7 +1135,7 @@
       "snapDistM": 0,
       "nhdName": "Tennessee River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "trail-fork-big-creek": {
       "anchor": [
@@ -1207,7 +1207,7 @@
       "snapDistM": 263,
       "nhdName": "Watauga River",
       "altUnits": [],
-      "hasSpec": false
+      "hasSpec": true
     },
     "west-fork-stones-river": {
       "anchor": [

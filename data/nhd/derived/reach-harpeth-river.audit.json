@@ -1953,9 +1953,9 @@
   "throughLakes": [],
   "simplify": {
     "tried": [
-      10,
       25,
-      50
+      50,
+      100
     ],
     "chosenToleranceM": 50,
     "bytes": 12722,
