@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type HTMLAttributes } from 'react';
+import { useEffect, useRef, useState, type ButtonHTMLAttributes, type HTMLAttributes } from 'react';
 import { cx } from './cx.js';
 
 export interface ConfirmButtonProps
