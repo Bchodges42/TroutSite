@@ -1,0 +1,50 @@
+[
+  {
+    "id": "high-country-fly",
+    "name": "High Country Fly Shop",
+    "stateId": "TN",
+    "town": "Johnson City",
+    "websiteUrl": "https://example.com/high-country-fly-shop",
+    "reportsEnabled": true
+  },
+  {
+    "id": "tailwater-outfitters",
+    "name": "Tailwater Outfitters",
+    "stateId": "TN",
+    "town": "Knoxville",
+    "websiteUrl": "https://example.com/tailwater-outfitters",
+    "reportsEnabled": true
+  },
+  {
+    "id": "hiwassee-trading",
+    "name": "Hiwassee Trading Company",
+    "stateId": "TN",
+    "town": "Reliance",
+    "websiteUrl": "https://example.com/hiwassee-trading-company",
+    "reportsEnabled": true
+  },
+  {
+    "id": "caney-fork-fly",
+    "name": "Caney Fork Fly Shop",
+    "stateId": "TN",
+    "town": "Smithville",
+    "websiteUrl": "https://example.com/caney-fork-fly-shop",
+    "reportsEnabled": true
+  },
+  {
+    "id": "elk-river-anglers",
+    "name": "Elk River Anglers",
+    "stateId": "TN",
+    "town": "Lynchburg",
+    "websiteUrl": "https://example.com/elk-river-anglers",
+    "reportsEnabled": true
+  },
+  {
+    "id": "chattanooga-fly-goods",
+    "name": "Chattanooga Fly Goods",
+    "stateId": "TN",
+    "town": "Chattanooga",
+    "websiteUrl": "https://example.com/chattanooga-fly-goods",
+    "reportsEnabled": true
+  }
+]

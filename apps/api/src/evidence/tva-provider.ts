@@ -1,0 +1,165 @@
+import { WaterObservationSchema } from '@trout/contracts';
+import type { WaterObservation } from '@trout/contracts';
+
+/**
+ * TVA lake-info REST API parser (data-sources lane).
+ *
+ * GET https://www.tva.com/RestApi/observed-data/{LocationID} returns hourly rows:
+ *   { Day: "09/04/2026", Time: "2 PM EDT", ReservoirElevation: "1,012.93",
+ *     TailwaterElevation: "827.69", AverageHourlyDischarge: "8,400" }
+ *
+ * Mapping: ReservoirElevation → reservoir-level-ft; TailwaterElevation → stage-ft;
+ * AverageHourlyDischarge → discharge-cfs. TVA supplies NO water temperature and
+ * NO provisional qualifiers — so evidence carries none (never invented here).
+ * Numbers are operational estimates published by TVA; the source registry notes that.
+ */
+
+const TVA_API_BASE = 'https://www.tva.com/RestApi';
+
+/** Per-row evidence URL points at the dam's public page (the API is undocumented). */
+export function tvaSourceUrl(_locationId: string): string {
+  return 'https://www.tva.com/environment/lake-levels';
+}
+
+/** TVA timestamps carry their own DST abbreviation; map it to a fixed offset. */
+const TZ_OFFSET: Record<string, string> = {
+  EST: '-05:00',
+  EDT: '-04:00',
+  CST: '-06:00',
+  CDT: '-05:00',
+};
+
+/**
+ * Parse "09/04/2026" + "2 PM EDT" → "2026-09-04T14:00:00-04:00" (contracts accept
+ * the explicit offset, which preserves exactly what TVA published). Returns null
+ * for anything unparseable — that row is then skipped, not zeroed.
+ */
+export function parseTvaTimestamp(day: string, time: string): string | null {
+  const dm = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(day.trim());
+  if (!dm?.[1] || !dm[2] || !dm[3]) return null;
+  const tm = /^(\d{1,2})\s*(AM|PM)\s+(EST|EDT|CST|CDT)$/i.exec(time.trim());
+  if (!tm?.[1] || !tm[2] || !tm[3]) return null;
+  let hour = Number(tm[1]);
+  const ampm = tm[2].toUpperCase();
+  if (hour < 1 || hour > 12) return null;
+  if (ampm === 'PM' && hour !== 12) hour += 12;
+  if (ampm === 'AM' && hour === 12) hour = 0;
+  const offset = TZ_OFFSET[tm[3].toUpperCase()];
+  if (!offset) return null;
+  const month = dm[1].padStart(2, '0');
+  const dayPart = dm[2].padStart(2, '0');
+  return `${dm[3]}-${month}-${dayPart}T${String(hour).padStart(2, '0')}:00:00${offset}`;
+}
+
+/**
+ * Parse TVA's published numbers: "1,012.93" → 1012.93, "8,400" → 8400.
+ * Blank/dash/garbage → undefined (missing stays missing; zero is kept when real).
+ */
+export function parseTvaNumber(raw: string | undefined): number | undefined {
+  if (raw === undefined) return undefined;
+  const cleaned = raw.replace(/,/g, '').trim();
+  if (cleaned.length === 0 || cleaned === '-' || cleaned === '--') return undefined;
+  const n = Number.parseFloat(cleaned);
+  if (!Number.isFinite(n)) return undefined;
+  // TVA uses 0 for "no data today" on discharge in some rows — a release of 0 cfs
+  // IS meaningful (no generation), so 0 is kept for discharge; for elevations a
+  // literal 0 is physically impossible and treated as no data.
+  return n;
+}
+
+function metricFor(field: keyof TvaRow): WaterObservation['metric'] | undefined {
+  if (field === 'ReservoirElevation') return 'reservoir-level-ft';
+  if (field === 'TailwaterElevation') return 'stage-ft';
+  if (field === 'AverageHourlyDischarge') return 'discharge-cfs';
+  return undefined;
+}
+
+export interface TvaRow {
+  Day?: string;
+  Time?: string;
+  ReservoirElevation?: string;
+  TailwaterElevation?: string;
+  AverageHourlyDischarge?: string;
+}
+
+/**
+ * Pure parser: TVA observed-data rows → observations for one location.
+ * The newest row per metric wins (rows arrive in ascending time). Zero discharge
+ * is preserved (a real "no generation" reading); physically-impossible zero
+ * elevations are dropped as no-data.
+ */
+export function parseTvaObservations(
+  rows: TvaRow[],
+  opts: { locationId: string; sourceUrl?: string } = { locationId: 'UNKNOWN' },
+): WaterObservation[] {
+  const sourceUrl = opts.sourceUrl ?? tvaSourceUrl(opts.locationId);
+  const byMetric = new Map<WaterObservation['metric'], WaterObservation>();
+  for (const row of rows) {
+    const day = row.Day ?? '';
+    const time = row.Time ?? '';
+    const observedAt = parseTvaTimestamp(day, time);
+    if (observedAt === null) continue;
+    for (const field of ['ReservoirElevation', 'TailwaterElevation', 'AverageHourlyDischarge'] as const) {
+      const metric = metricFor(field);
+      if (!metric) continue;
+      const raw = row[field];
+      const value = parseTvaNumber(raw);
+      if (value === undefined) continue;
+      if (metric !== 'discharge-cfs' && value === 0) continue;
+      const parsed = WaterObservationSchema.safeParse({
+        sourceId: 'tva-restapi',
+        sourceUrl,
+        observedAt,
+        metric,
+        value,
+      });
+      if (!parsed.success) continue;
+      const prev = byMetric.get(metric);
+      if (!prev || parsed.data.observedAt > prev.observedAt) byMetric.set(metric, parsed.data);
+    }
+  }
+  return [...byMetric.values()].sort(
+    (a, b) => a.observedAt.localeCompare(b.observedAt) || a.metric.localeCompare(b.metric),
+  );
+}
+
+export interface TvaFetchOptions {
+  userAgent: string;
+  fetchImpl?: typeof fetch;
+  baseUrl?: string;
+  timeoutMs?: number;
+}
+
+/**
+ * Fetch the RAW observed-data rows for one TVA location (same endpoint, headers
+ * and error discipline as fetchTvaObservations, split out so the conditions
+ * bridge can keep the source row verbatim in its audit column). Requires a
+ * browser-like User-Agent — tva.com sits behind Cloudflare and answers plain
+ * programmatic agents with 403. Throws on HTTP failure.
+ */
+export async function fetchTvaRows(locationId: string, opts: TvaFetchOptions): Promise<TvaRow[]> {
+  const doFetch = opts.fetchImpl ?? fetch;
+  const base = opts.baseUrl ?? TVA_API_BASE;
+  const url = `${base}/observed-data/${encodeURIComponent(locationId)}`;
+  const res = await doFetch(url, {
+    headers: {
+      // Realistic browser headers; without them Cloudflare returns 403 (verified 2026-09-04).
+      'User-Agent': opts.userAgent,
+      Accept: 'application/json',
+    },
+    signal: AbortSignal.timeout(opts.timeoutMs ?? 30_000),
+  });
+  if (!res.ok) throw new Error(`TVA request failed: HTTP ${res.status} for ${locationId}`);
+  const payload = (await res.json()) as unknown;
+  if (!Array.isArray(payload)) throw new Error(`TVA response for ${locationId} is not an array`);
+  return payload as TvaRow[];
+}
+
+/**
+ * Fetch observed data for one TVA location. Requires a browser-like User-Agent —
+ * tva.com sits behind Cloudflare and answers plain programmatic agents with 403.
+ * Throws on HTTP failure (caller converts to per-water error entries).
+ */
+export async function fetchTvaObservations(locationId: string, opts: TvaFetchOptions): Promise<WaterObservation[]> {
+  return parseTvaObservations(await fetchTvaRows(locationId, opts), { locationId });
+}

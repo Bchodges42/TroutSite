@@ -1,0 +1,57 @@
+---
+/**
+ * Newsletter form — ROLE 5 scaffolding (reserved but inert, §2 out-list).
+ *
+ * The form POSTs to the documented stub endpoint /api/newsletter. In v1 nothing
+ * serves that route on this static site, so the client script handles the 404
+ * gracefully in demo mode. Sending is explicitly NOT implemented in v1 — the
+ * Resend plan lives in GROWTH.md (§13 wire-up notes for the Integration role).
+ */
+export interface Props {
+  heading?: string;
+}
+
+const { heading = 'Weekly stocking digest' } = Astro.props;
+---
+
+<section class="newsletter" aria-label={heading}>
+  <form id="nl-form" method="post" action="/api/newsletter">
+    <label for="nl-email">Email address</label>
+    <div class="row">
+      <input id="nl-email" name="email" type="email" required placeholder="you@example.com" />
+      <button type="submit">Notify me</button>
+    </div>
+  </form>
+  <p class="note" id="nl-result" role="status"></p>
+  <p class="note">
+    v1 ships this form as inert scaffolding — nothing is stored or sent anywhere yet. When the
+    digest launches (v2), it runs self-hosted with the same no-trackers policy.
+  </p>
+</section>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('nl-form');
+    const result = document.getElementById('nl-result');
+    if (!form || !result) return;
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = /** @type {HTMLInputElement | null} */ (
+        form.querySelector('input[name="email"]')
+      )?.value;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        result.textContent =
+          res.status === 501 || res.status === 404
+            ? 'Demo mode: the digest endpoint is stubbed in v1 — see GROWTH.md for the v2 plan.'
+            : "Thanks — you're on the list.";
+      } catch {
+        result.textContent = 'Demo mode: the digest endpoint is stubbed in v1 (offline).';
+      }
+    });
+  })();
+</script>

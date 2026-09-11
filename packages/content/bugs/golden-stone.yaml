@@ -1,0 +1,87 @@
+id: golden-stone
+commonName: Golden Stonefly
+sciName: Acroneuria abnormis
+order: Plecoptera
+family: Perlidae
+sizeRange:
+  - 6
+  - 12
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - golden-brown
+    - tan-brown
+    - brown-yellow
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - boulders
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+illustration: illustrations/golden-stone.svg
+stages:
+  - nymph
+  - adult
+notes: "The classic big golden stone of warm-season riffles; nymphs are ferocious little
+  predators. A #8-10 stonefly nymph with rubber legs plus a dropper is standard Tennessee summer
+  rigging."
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

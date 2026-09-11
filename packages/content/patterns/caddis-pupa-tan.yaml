@@ -1,0 +1,20 @@
+id: caddis-pupa-tan
+name: Caddis Pupa (Tan)
+type: nymph
+imitates:
+  - spotted-sedge
+  - little-sister-sedge
+  - snail-case-caddis
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - tan dubbing
+  - hare’s ear thorax
+  - olive partridge hackle
+  - glass bead
+notes: Drift it rising through the water column — the pupa is where caddis fishing is won.
+license: public-domain

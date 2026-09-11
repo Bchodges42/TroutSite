@@ -1,0 +1,51 @@
+id: white-fly
+commonName: White Fly
+sciName: Ephoron leukon
+order: Ephemeroptera
+family: Polymitarcyidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - white
+    - cream
+  mouthparts: burrowing-collector
+habitat:
+  - tailwaters
+  - silt flats
+  - runs
+monthsActiveByRegion:
+  tn-se-hiwassee:
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 7
+    - 8
+    - 9
+illustration: illustrations/white-fly.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Cream-white burrowers that emerge in explosive, blizzard-like evening hatches from late
+  July into September — one of the most spectacular shows on the Hiwassee and Caney Fork.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

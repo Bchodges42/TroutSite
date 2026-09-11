@@ -1,0 +1,27 @@
+{
+  "patterns": [
+    {
+      "id": "sulphur-parachute",
+      "name": "Sulphur Parachute",
+      "type": "dry",
+      "imitates": ["sulphur-dun"],
+      "hookSizes": [14, 16, 18],
+      "difficulty": 2,
+      "materials": ["sulphur dubbing", "light dun parachute hackle"],
+      "notes": "Test fixture.",
+      "license": "public-domain"
+    },
+    {
+      "id": "elk-hair-caddis-tan",
+      "name": "Elk Hair Caddis (Tan)",
+      "type": "dry",
+      "imitates": ["spotted-sedge"],
+      "hookSizes": [12, 14, 16, 18],
+      "difficulty": 1,
+      "materials": ["tan elk hair", "brown hackle"],
+      "notes": "Test fixture.",
+      "license": "attributed",
+      "attribution": "Designed by Al Troth"
+    }
+  ]
+}

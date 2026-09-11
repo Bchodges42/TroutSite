@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'About — Trout';
+const description =
+  'Why Trout exists: the on-the-water decision tool that works offline and respects privacy. Built in the open as a small, deep v1 for Tennessee.';
+---
+
+<Base title={title} description={description} path="/about/">
+  <h1>About</h1>
+  <p class="lead">
+    Trout exists because the moment you actually need an answer on the water — <em>what is this
+      bug, is this flow fishable, what got stocked?</em> — is usually the moment you have no cell
+    signal and no patience for a 40-page forum thread.
+  </p>
+
+  <h2>The idea</h2>
+  <p>
+    Fishbrain owns community. TroutRoutes owns navigation and access. Nobody owns the
+    <em>decision tool</em>: the structured bug key that runs with no signal, the fishability score
+    that speaks English instead of CFS, and the stocking schedule that arrives weekly and honestly
+    links its official source. That's the gap this project fills.
+  </p>
+
+  <h2>Principles we don't bend</h2>
+  <ul>
+    <li><strong>Offline-first.</strong> Every core feature works in airplane mode. Online data enhances; nothing core requires it.</li>
+    <li><strong>Privacy by architecture.</strong> No accounts, no location uploads, no trackers. Not "we value your privacy" — we never take it.</li>
+    <li><strong>Attribution culture.</strong> Every number on this site names its official source and tells you to verify there. We are a convenience layer, never the authority.</li>
+    <li><strong>Small v1, deep not wide.</strong> One launch state (Tennessee), no lakes, no maps, no photo-AI, no social feed. Depth beats a half-finished atlas.</li>
+  </ul>
+
+  <h2>How it's built</h2>
+  <p>
+    The site you're reading is static HTML — no JavaScript required to read any answer on it. The
+    app is an installable PWA: the hatch key and scoring run as pure functions on your device, the
+    offline payload is text and SVG line art, and the whole thing is sized to fit on a phone without
+    asking forgiveness. Government data comes from the USGS and state wildlife agencies; the only
+    server component is a small pipeline that keeps public snapshots fresh.
+  </p>
+
+  <h2>Roadmap discipline</h2>
+  <p>
+    The v1 out-list is binding and written down: no user accounts or social features, no lakes or
+    maps, no paid tier yet, no ads beyond reserved placeholders, and nothing that ever uploads your
+    location. The <a href="/blog/">launch notes</a> are where changes to that list get argued.
+  </p>
+</Base>

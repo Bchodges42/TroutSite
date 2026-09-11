@@ -1,0 +1,79 @@
+# QA harness (ROLE 5) — e2e + Lighthouse against fixture builds.
+# Complements ci.yml (lint/content/test/build): this workflow proves BEHAVIOR —
+# offline cold start, privacy audit, SEO hygiene — without the live API.
+name: QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  e2e:
+    # Windows mirrors the actual deployment target (laptop + Git Bash, §15).
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install chromium
+        working-directory: e2e
+
+      - name: Build all packages (fixture dists for every server)
+        run: pnpm -r build
+
+      - name: E2E suite (offline hatch, privacy audit, fixtures, portal, SEO)
+        run: pnpm run e2e
+        working-directory: e2e
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: e2e/test-results/
+          retention-days: 7
+
+  lighthouse:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build contracts + sites (fixture data, no live API)
+        run: |
+          pnpm --filter @trout/contracts build
+          pnpm --filter @trout/ui build
+          pnpm --filter @trout/marketing build
+          pnpm --filter @trout/web build
+
+      - name: Lighthouse CI — marketing (SEO ≥ 95, a11y ≥ 90)
+        run: pnpm exec lhci autorun --config=lighthouserc.marketing.cjs
+        working-directory: e2e
+        env:
+          CHROME_PATH: 'C:\Program Files\Google\Chrome\Application\chrome.exe'
+
+      - name: Lighthouse CI — web PWA (a11y ≥ 90; PWA gate warns pre-integration)
+        run: pnpm exec lhci autorun --config=lighthouserc.web.cjs
+        working-directory: e2e
+        env:
+          CHROME_PATH: 'C:\Program Files\Google\Chrome\Application\chrome.exe'

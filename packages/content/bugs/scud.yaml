@@ -1,0 +1,134 @@
+id: scud
+commonName: Scud (Freshwater Shrimp)
+sciName: Gammarus spp.
+order: Amphipoda
+family: Gammaridae
+sizeRange:
+  - 12
+  - 18
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive
+    - gray
+    - translucent-orange
+  mouthparts: scavenging-grazing
+habitat:
+  - tailwaters
+  - weedy runs
+  - spring-fed creeks
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-upper-cumberland:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+illustration: illustrations/scud.svg
+stages:
+  - larva
+notes: "Constant scuds in weed-rich tailwaters — orange tint means the scud is dead or dying and
+  trout relish those. Tuck a #14 olive scud behind any mayfly nymph in winter."
+sources:
+  - https://en.wikipedia.org/wiki/Gammarus
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

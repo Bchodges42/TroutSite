@@ -1,0 +1,5 @@
+# Normalize everything to LF — Git Bash scripts (.sh) and YAML must keep LF on Windows.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

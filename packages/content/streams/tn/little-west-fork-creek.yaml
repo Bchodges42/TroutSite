@@ -1,0 +1,20 @@
+id: little-west-fork-creek
+name: Little West Fork Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-nashville
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 3
+    max: 30
+    unit: cfs
+notes: TWRA spring-stocked Montgomery County creek.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

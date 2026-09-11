@@ -1,0 +1,18 @@
+id: trico-spinner
+name: Trico Spinner
+type: spinner
+imitates:
+  - trico
+  - anglers-curse
+hookSizes:
+  - 20
+  - 22
+  - 24
+  - 26
+difficulty: 3
+materials:
+  - black dubbing
+  - spent white poly wings
+  - grizzly hackle
+notes: The dense morning spinner-fall fly — patience and a downstream drift make the difference.
+license: public-domain

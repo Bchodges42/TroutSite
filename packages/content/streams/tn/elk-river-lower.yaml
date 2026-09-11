@@ -1,0 +1,24 @@
+id: elk-river-lower
+name: Elk River (Prospect to state line)
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-duck-elk
+gaugeIds:
+  - "03584600"
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 150
+    max: 1000
+    unit: cfs
+notes: Wider, warmer Elk below the tailwater with TWRA winter rainbow stocking in Lincoln County
+  reaches. Gauge at Prospect helps separate rain pulses from baseline.
+officialSources:
+  - label: USGS Water Data — monitoring location 03584600
+    url: https://waterdata.usgs.gov/monitoring-location/03584600/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

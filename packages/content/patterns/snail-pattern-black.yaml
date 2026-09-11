@@ -1,0 +1,16 @@
+id: snail-pattern-black
+name: Snail (Olive-Black)
+type: nymph
+imitates:
+  - aquatic-snail
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - olive-black dubbing
+  - clear shell coil
+  - lead underbody
+notes: A subtle olive-black comma — the mystery bite on weed-lined tailwaters.
+license: public-domain

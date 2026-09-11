@@ -1,0 +1,16 @@
+id: little-yellow-quill-dry
+name: Little Yellow Quill Dry
+type: dry
+imitates:
+  - little-yellow-quill
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - pale lemon dubbing
+  - light dun hackle
+  - cream deer hair
+notes: A lemon-tinged dry for Appalachian riffles in summer.
+license: public-domain

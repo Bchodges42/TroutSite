@@ -1,0 +1,47 @@
+id: mottled-willowfly
+commonName: Mottled Willowfly
+sciName: Strophopteryx fasciata
+order: Plecoptera
+family: Taeniopterygidae
+sizeRange:
+  - 10
+  - 14
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - dark-mottled
+    - black-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - riffles
+  - leaf packs
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 2
+    - 3
+    - 4
+  tn-east-pigeon-frenchbroad:
+    - 2
+    - 3
+    - 4
+  tn-northeast-watauga:
+    - 2
+    - 3
+    - 4
+  tn-east-clinch:
+    - 2
+    - 3
+    - 4
+  tn-cumberland-plateau:
+    - 2
+    - 3
+    - 4
+illustration: illustrations/mottled-willowfly.svg
+stages:
+  - nymph
+notes: Larger taeniopterygid with bold dark banding, out in late winter. Nymphs crush leaf
+  litter all winter and become trout candy by March.
+sources:
+  - https://bugguide.net

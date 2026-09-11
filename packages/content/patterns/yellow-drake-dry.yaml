@@ -1,0 +1,16 @@
+id: yellow-drake-dry
+name: Yellow Drake Dry
+type: dry
+imitates:
+  - yellow-drake
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - yellow-olive dubbing
+  - pale ginger hackle
+  - wood duck flank
+notes: For the erratic afternoon Ephemera flights of early summer.
+license: public-domain

@@ -1,0 +1,17 @@
+id: crane-fly-adult-dry
+name: Crane Fly Adult Dry
+type: dry
+imitates:
+  - crane-fly
+  - moth
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - tan deer hair
+  - rubber legs
+  - brown dubbing
+notes: A big, flat, buggy flopper — the summertime change-up fly.
+license: public-domain

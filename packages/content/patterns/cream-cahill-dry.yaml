@@ -1,0 +1,16 @@
+id: cream-cahill-dry
+name: Cream Cahill
+type: dry
+imitates:
+  - cream-cahill
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - pale cream dubbing
+  - light ginger hackle
+  - cream poly wing
+notes: The paler summer variant for soft glides.
+license: public-domain

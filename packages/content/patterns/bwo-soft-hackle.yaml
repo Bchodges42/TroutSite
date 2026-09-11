@@ -1,0 +1,17 @@
+id: bwo-soft-hackle
+name: BWO Soft Hackle
+type: wet
+imitates:
+  - blue-winged-olive
+  - little-blue-winged-olive
+hookSizes:
+  - 16
+  - 18
+  - 20
+difficulty: 1
+materials:
+  - olive dubbing
+  - partridge soft hackle
+  - dun hen collar
+notes: Swing it through the hatch — takes come mid-current, hard.
+license: public-domain

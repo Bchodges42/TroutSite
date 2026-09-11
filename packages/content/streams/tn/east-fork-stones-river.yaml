@@ -1,0 +1,24 @@
+id: east-fork-stones-river
+name: East Fork Stones River
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-nashville
+gaugeIds:
+  - "03427500"
+stockingProgram: false
+species: trout
+fishery: wild
+idealFlow:
+  - min: 50
+    max: 400
+    unit: cfs
+notes: The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s
+  stocking dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau
+  headwaters.
+officialSources:
+  - label: USGS Water Data — monitoring location 03427500
+    url: https://waterdata.usgs.gov/monitoring-location/03427500/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

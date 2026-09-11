@@ -1,0 +1,71 @@
+id: needlefly
+commonName: Needlefly (Rolled-Winged Stone)
+sciName: Leuctra spp.
+order: Plecoptera
+family: Leuctridae
+sizeRange:
+  - 16
+  - 22
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - dark-brown
+    - black-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - riffles
+  - leaf packs
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/needlefly.svg
+stages:
+  - nymph
+  - adult
+notes: Cigar-slim brown stoneflies whose wings wrap the body like a needle sheath. On summer
+  afternoons they flutter at eye level over riffles; slender brown dries match.
+sources:
+  - https://bugguide.net

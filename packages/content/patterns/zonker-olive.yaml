@@ -1,0 +1,19 @@
+id: zonker-olive
+name: Zonker (Olive)
+type: streamer
+imitates:
+  - stoneroller
+  - sculpin
+  - creek-chub
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - olive rabbit strip
+  - dubbed body
+  - cone head optional
+notes: A pulsing rabbit strip — deadly twitched through riffle tails.
+license: public-domain

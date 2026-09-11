@@ -1,0 +1,124 @@
+{
+  "regionId": "tn-se-hiwassee",
+  "month": 9,
+  "entries": [
+    {
+      "taxonId": "baetis-bwo",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "pheasant-tail-nymph",
+        "rs2"
+      ]
+    },
+    {
+      "taxonId": "baetis-bwo",
+      "stage": "dun",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "blue-winged-olive-dun"
+      ]
+    },
+    {
+      "taxonId": "baetis-bwo",
+      "stage": "spinner",
+      "timeOfDay": "evening",
+      "abundance": 1,
+      "patterns": [
+        "blue-winged-olive-dun"
+      ]
+    },
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "nymph",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "golden-stone-nymph"
+      ]
+    },
+    {
+      "taxonId": "isonychia-slate",
+      "stage": "dun",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "slate-drake-dun"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "green-rock-worm"
+      ]
+    },
+    {
+      "taxonId": "hydropsyche-caddis",
+      "stage": "adult",
+      "timeOfDay": "evening",
+      "abundance": 2,
+      "patterns": [
+        "elk-hair-caddis"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "zebra-midge"
+      ]
+    },
+    {
+      "taxonId": "chironomid-midge",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "griffiths-gnat"
+      ]
+    },
+    {
+      "taxonId": "gammarus-scud",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 2,
+      "patterns": [
+        "olive-scud"
+      ]
+    },
+    {
+      "taxonId": "caecidotea-sowbug",
+      "stage": "adult",
+      "timeOfDay": "am",
+      "abundance": 2,
+      "patterns": [
+        "gray-sowbug"
+      ]
+    },
+    {
+      "taxonId": "tipula-cranefly",
+      "stage": "larva",
+      "timeOfDay": "am",
+      "abundance": 1,
+      "patterns": [
+        "woolly-bugger"
+      ]
+    },
+    {
+      "taxonId": "tipula-cranefly",
+      "stage": "adult",
+      "timeOfDay": "midday",
+      "abundance": 2,
+      "patterns": [
+        "stimulator"
+      ]
+    }
+  ]
+}

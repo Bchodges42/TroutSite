@@ -1,0 +1,71 @@
+id: gizzard-shad
+commonName: Gizzard Shad
+sciName: Dorosoma cepedianum
+order: Clupeiformes
+family: Clupeidae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - silver
+    - blue-gray
+  mouthparts: filtering-planktivore
+habitat:
+  - tailwaters
+  - reservoir outflows
+  - deep pools
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+illustration: illustrations/gizzard-shad.svg
+stages:
+  - adult
+notes: Bigger, deeper-bodied cousin of the threadfin shad; winter die-offs below big dams put
+  large silvery morsels in front of browns. A weighted white-and-gray streamer on slow swings
+  matches.
+sources:
+  - https://en.wikipedia.org/wiki/Dorosoma_cepedianum

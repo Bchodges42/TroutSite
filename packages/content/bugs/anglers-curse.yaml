@@ -1,0 +1,56 @@
+id: anglers-curse
+commonName: Angler’s Curse (Caenis)
+sciName: Caenis spp.
+order: Ephemeroptera
+family: Caenidae
+sizeRange:
+  - 20
+  - 26
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - pale-gray
+    - cream
+    - pale-olive
+  mouthparts: collector-gatherer
+habitat:
+  - tailwaters
+  - silt flats
+  - slack water
+monthsActiveByRegion:
+  tn-east-holston:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/anglers-curse.svg
+stages:
+  - nymph
+  - spinner
+notes: 'Minute square-gill mayflies that erupt in low-light clouds and drive tailwater trout to
+  surface sipping — the "curse" because matching something #24 and pale is maddening. Second
+  gill covers the rest like a shell.'
+sources:
+  - https://bugguide.net

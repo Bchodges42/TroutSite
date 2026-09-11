@@ -1,0 +1,58 @@
+id: damselfly-nymph
+commonName: Damselfly Nymph
+sciName: Argia / Enallagma spp.
+order: Odonata
+family: Coenagrionidae
+sizeRange:
+  - 8
+  - 14
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - olive
+    - tan-olive
+  mouthparts: predatory-grasping
+habitat:
+  - weeds
+  - slack margins
+monthsActiveByRegion:
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-nashville:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/damselfly-nymph.svg
+stages:
+  - nymph
+notes: Slender paddler nymphs with three leaf-shaped tail gills, common in weedbeds near slack
+  water. An olive damsel fished with short strips near grassy margins finds cruising fish.
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

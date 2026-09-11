@@ -1,0 +1,21 @@
+id: zebra-midge-black
+name: Zebra Midge (Black)
+type: nymph
+imitates:
+  - little-black-midge
+  - olive-midge
+  - trico
+  - black-fly
+hookSizes:
+  - 16
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 1
+materials:
+  - black thread body
+  - silver wire rib
+  - bead head optional
+notes: One thread-and-wire wrap job that outfishes everything in January. Fish it behind a BWO nymph.
+license: public-domain

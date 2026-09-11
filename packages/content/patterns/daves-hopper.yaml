@@ -1,0 +1,20 @@
+id: daves-hopper
+name: Dave’s Hopper
+type: terrestrial
+imitates:
+  - grasshopper
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 3
+materials:
+  - yellow dubbing
+  - tan elk hair wing
+  - knotted rubber legs
+  - foam underbody
+notes: Dave Whitlock’s benchmark hopper — still the measure of every grass-bank river in Tennessee.
+license: attributed
+attribution: Designed by Dave Whitlock (1980s)

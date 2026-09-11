@@ -1,0 +1,19 @@
+id: hex-nymph
+name: Hex Nymph
+type: nymph
+imitates:
+  - burrowing-hex
+  - yellow-drake
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - tan or olive-brown dubbing
+  - mottled turkey tail
+  - monofilament rib
+  - bead chain eyes
+notes: A fat burrower pattern for silt flats — fish it dead-drifted into dusk hedges before the
+  hex hatch.
+license: public-domain

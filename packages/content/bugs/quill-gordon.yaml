@@ -1,0 +1,57 @@
+id: quill-gordon
+commonName: Quill Gordon
+sciName: Epeorus pleuralis
+order: Ephemeroptera
+family: Heptageniidae
+sizeRange:
+  - 12
+  - 14
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - dark-gray
+    - mottled-brown
+    - gray
+  mouthparts: grazing-scraper
+habitat:
+  - mountain creeks
+  - boulders
+  - riffles
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 3
+    - 4
+    - 5
+  tn-east-pigeon-frenchbroad:
+    - 3
+    - 4
+    - 5
+  tn-northeast-watauga:
+    - 3
+    - 4
+    - 5
+  tn-east-clinch:
+    - 3
+    - 4
+    - 5
+  tn-cumberland-plateau:
+    - 3
+    - 4
+    - 5
+  tn-se-hiwassee:
+    - 3
+    - 4
+    - 5
+illustration: illustrations/quill-gordon.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: The first serious mayfly hatch of spring in Smokies creeks. Flat-headed nymphs cling to
+  boulders; duns take flight almost instantly off the surface, so the dries need a clean,
+  high-riding silhouette.
+sources:
+  - https://en.wikipedia.org/wiki/Epeorus
+  - https://bugguide.net

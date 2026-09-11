@@ -1,0 +1,22 @@
+id: melton-hill-lake
+name: Melton Hill Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-clinch
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  TVA reservoir on the Clinch River between Norris Dam and Watts Bar Lake
+  (Anderson/Roane counties near Oak Ridge), impounded by Melton Hill Dam
+  (USGS 03535912 tailwater gauge, 35.88536/-84.30076; Clinch River mile 23.1).
+  The Norris tailwater (clinch-river) runs the length of this pool, giving
+  year-round cold-water fishing; the dam discharges into the Clinch arm of
+  Watts Bar Lake. TWRA maps the reservoir at 6,035 ac.
+officialSources:
+  - label: USGS Water Data — monitoring location 03535912
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+  - label: TVA — Melton Hill Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

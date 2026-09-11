@@ -1,0 +1,97 @@
+id: threadfin-shad
+commonName: Threadfin Shad
+sciName: Dorosoma petenense
+order: Clupeiformes
+family: Clupeidae
+sizeRange:
+  - 6
+  - 12
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - silver-blue
+    - silver
+  mouthparts: filtering-planktivore
+habitat:
+  - tailwaters
+  - reservoir outflows
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+illustration: illustrations/threadfin-shad.svg
+stages:
+  - adult
+notes: Cold snaps trigger shad kills below Tennessee dams, and winter shad-die-off feeding
+  binges are legendary. Slim white-and-blue streamers swung on cold mornings match the meal.
+sources:
+  - https://en.wikipedia.org/wiki/Dorosoma_petenense

@@ -1,0 +1,93 @@
+id: saddle-case-caddis
+commonName: Saddle-Case Caddis
+sciName: Glossosoma spp.
+order: Trichoptera
+family: Glossosomatidae
+sizeRange:
+  - 16
+  - 20
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - olive-tan
+    - dark-brown
+    - gray-olive
+  mouthparts: grazing-scraper
+habitat:
+  - riffles
+  - tailwaters
+  - boulders
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+illustration: illustrations/saddle-case-caddis.svg
+stages:
+  - larva
+  - adult
+notes: Turtle-like larvae grazing algae under dome-shaped sand cases. Numerous and small;
+  olive-tan pupa patterns dead-drifted in riffles catch fish all summer.
+sources:
+  - https://bugguide.net

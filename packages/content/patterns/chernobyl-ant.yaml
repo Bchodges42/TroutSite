@@ -1,0 +1,19 @@
+id: chernobyl-ant
+name: Chernobyl Ant
+type: terrestrial
+imitates:
+  - ant
+  - grasshopper
+  - cricket
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+difficulty: 2
+materials:
+  - black and tan foam
+  - rubber legs
+notes: Alan Grajeda’s foam barge — a hopper-ant beetle mishmash that floats through everything.
+license: attributed
+attribution: Designed by Alan Grajeda (Utah)

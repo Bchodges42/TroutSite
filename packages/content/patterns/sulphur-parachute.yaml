@@ -1,0 +1,17 @@
+id: sulphur-parachute
+name: Sulphur Parachute
+type: dry
+imitates:
+  - sulphur-dun
+  - pale-evening-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - sulphur dubbing
+  - light dun parachute hackle
+  - white poly post
+notes: Tennessee’s May–June evening answer — fish it high through soft seams.
+license: public-domain

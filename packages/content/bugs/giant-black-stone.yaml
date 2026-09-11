@@ -1,0 +1,54 @@
+id: giant-black-stone
+commonName: Giant Black Stonefly
+sciName: Pteronarcys biloba / P. proteus
+order: Plecoptera
+family: Pteronarcyidae
+sizeRange:
+  - 4
+  - 8
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: robust
+  bodyColor:
+    - black
+    - dark-brown
+  mouthparts: shredding-detritivore
+habitat:
+  - leaf packs
+  - riffles
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/giant-black-stone.svg
+stages:
+  - nymph
+  - adult
+notes: "Tennessee’s biggest stonefly — thumb-length nymphs in leaf packs, adults shuffling on
+  riverside foliage in spring. A #6 black stone nymph is a heavyweight anchor fly all spring."
+sources:
+  - https://en.wikipedia.org/wiki/Pteronarcys
+  - https://bugguide.net

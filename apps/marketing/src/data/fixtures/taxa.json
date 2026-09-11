@@ -1,0 +1,459 @@
+[
+  {
+    "id": "blue-winged-olive",
+    "commonName": "Blue-Winged Olive",
+    "sciName": "Baetis spp.",
+    "order": "Ephemeroptera",
+    "family": "Baetidae",
+    "sizeRange": [
+      16,
+      22
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "lamellae",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "olive",
+        "brown"
+      ],
+      "mouthparts": "chewing"
+    },
+    "habitat": [
+      "riffles",
+      "tailwaters",
+      "spring creeks"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        11,
+        12
+      ]
+    },
+    "notes": "The classic cold-water hatch on Tennessee tailwaters. Overcast, drizzly days are prime; duns ride low and are often best imitated with a size 18–20 parachute.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)",
+      "LaFontaine — The Dry Fly: New Angles"
+    ]
+  },
+  {
+    "id": "midge",
+    "commonName": "Midge",
+    "sciName": "Chironomidae spp.",
+    "order": "Diptera",
+    "family": "Chironomidae",
+    "sizeRange": [
+      18,
+      26
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "none",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "black",
+        "gray",
+        "olive",
+        "red"
+      ],
+      "mouthparts": "reduced (non-feeding adults)"
+    },
+    "habitat": [
+      "tailwaters",
+      "slow pools",
+      "spring creeks"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        1,
+        2,
+        3,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "Hatches every month on the tailwaters — often the only game in town in winter. Larva/pupa imitations dead-drifted under an indicator out-fish dries except on glassy banks. Key tip: the tail set is inconspicuous; treat midges as 2-tailed in this ID key.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)"
+    ]
+  },
+  {
+    "id": "sulphur",
+    "commonName": "Sulphur Mayfly",
+    "sciName": "Ephemerella dorothea",
+    "order": "Ephemeroptera",
+    "family": "Ephemerellidae",
+    "sizeRange": [
+      14,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 3,
+      "gills": "lamellae",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "cream",
+        "yellow",
+        "orange"
+      ],
+      "mouthparts": "chewing"
+    },
+    "habitat": [
+      "tailwaters",
+      "moderate riffles",
+      " Current seams"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "tn-se-hiwassee": [
+        5,
+        6
+      ],
+      "tn-middle-caney-fork": [
+        5,
+        6
+      ]
+    },
+    "notes": "The South Holston's signature hatch — evening clouds of duns from May into August bring the biggest browns to the surface. Compare-duns and emergers fished in the last hour of light.",
+    "sources": [
+      "LaFontaine — The Dry Fly: New Angles",
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)"
+    ]
+  },
+  {
+    "id": "spotted-sedge",
+    "commonName": "Spotted Sedge (net-spinning caddis)",
+    "sciName": "Hydropsyche spp.",
+    "order": "Trichoptera",
+    "family": "Hydropsychidae",
+    "sizeRange": [
+      12,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "filaments",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "tan",
+        "brown",
+        "olive"
+      ],
+      "mouthparts": "filtering/scleritized head (larva)"
+    },
+    "habitat": [
+      "riffles",
+      "tailwaters",
+      "runs"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "tn-middle-caney-fork": [
+        4,
+        5,
+        6
+      ]
+    },
+    "notes": "Tan afternoon caddis flights in late spring; look for swarms over riffle seams. Elk-hair caddis skated at dusk, cased or bare larva dead-drifted in the morning.",
+    "sources": [
+      "LaFontaine — Caddisflies",
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)"
+    ]
+  },
+  {
+    "id": "scud",
+    "commonName": "Freshwater Scud",
+    "sciName": "Gammarus spp.",
+    "order": "Amphipoda",
+    "family": "Gammaridae",
+    "sizeRange": [
+      12,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "none",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "gray",
+        "olive",
+        "orange"
+      ],
+      "mouthparts": "scraper"
+    },
+    "habitat": [
+      "weed beds",
+      "tailwaters",
+      "spring creeks"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "Year-round tailwater forage — a dead-drifted olive or gray scud with a shrimp-style twitch is a staple on the Caney Fork and the SoHo. Key tip: crustacean, no true tails; treat as 2-tailed (uropods) in this ID key.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)"
+    ]
+  },
+  {
+    "id": "sowbug",
+    "commonName": "Sowbug",
+    "sciName": "Lirceus/Asellus spp.",
+    "order": "Isopoda",
+    "family": "Asellidae",
+    "sizeRange": [
+      14,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "none",
+      "bodyShape": "robust",
+      "bodyColor": [
+        "gray",
+        "tan",
+        "cream"
+      ],
+      "mouthparts": "scraper"
+    },
+    "habitat": [
+      "tailwaters",
+      "slow runs",
+      "weedy shallows"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "tn-se-hiwassee": [
+        1,
+        2,
+        3
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "notes": "A Middle-Tennessee-tailwater staple (Caney Fork, Elk River). Fish it dead-drifted just off the bottom, often behind a scud. Key tip: crustacean, no true tails; treat as 2-tailed (uropods) in this ID key.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)"
+    ]
+  },
+  {
+    "id": "black-fly-larva",
+    "commonName": "Black Fly Larva",
+    "sciName": "Simulium spp.",
+    "order": "Diptera",
+    "family": "Simuliidae",
+    "sizeRange": [
+      18,
+      24
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "filaments",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "black",
+        "gray"
+      ],
+      "mouthparts": "filter fans (larva)"
+    },
+    "habitat": [
+      "tailwaters",
+      "fast riffles",
+      "dam outflows"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "tn-se-hiwassee": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "tn-middle-caney-fork": [
+        1,
+        2,
+        12
+      ]
+    },
+    "notes": "Dense winter larvae mats on dam outflows; a size 20–22 black larva/pupa drifted near the dam can be the ticket when nothing moves. Key tip: prolegs read as 2 'tails' at the rear in this ID key.",
+    "sources": [
+      "Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America (4th ed.)"
+    ]
+  },
+  {
+    "id": "terrestrial-ant",
+    "commonName": "Flying Ant / Field Ant (terrestrial)",
+    "sciName": "Formica spp.",
+    "order": "Hymenoptera",
+    "family": "Formicidae",
+    "sizeRange": [
+      14,
+      18
+    ],
+    "keyAttributes": {
+      "tails": 2,
+      "gills": "none",
+      "bodyShape": "slender",
+      "bodyColor": [
+        "black",
+        "cinnamon"
+      ],
+      "mouthparts": "chewing"
+    },
+    "habitat": [
+      "banks",
+      "grass banks",
+      "under overhangs"
+    ],
+    "monthsActiveByRegion": {
+      "tn-east-holston": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-se-hiwassee": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "tn-middle-caney-fork": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "notes": "Summer term: ant falls and mating-flight blow-ins pick apart spooky flat-water fish on all the tailwaters, especially around muggy August afternoons. Key tip: insect has no gills or true tails; treat as 2-tailed in this ID key.",
+    "sources": [
+      "LaFontaine — The Dry Fly: New Angles (terrestrial chapters)"
+    ]
+  }
+]

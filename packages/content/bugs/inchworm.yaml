@@ -1,0 +1,48 @@
+id: inchworm
+commonName: Inchworm (Looper Caterpillar)
+sciName: Geometridae (family)
+order: Lepidoptera
+family: Geometridae
+sizeRange:
+  - 10
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - bright-green
+    - yellow-green
+  mouthparts: chewing
+habitat:
+  - forest canopy over creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/inchworm.svg
+stages:
+  - adult
+notes: 'Late-spring canopies rain looper caterpillars into Smokies creeks — the famous "inchworm
+  hatch." A #14 bright-green floating worm pattern drifted under rhododendron is as Smoky
+  Mountains as it gets.'
+sources:
+  - https://bugguide.net
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

@@ -1,0 +1,17 @@
+id: white-fly-dry
+name: White Fly Dry
+type: dry
+imitates:
+  - white-fly
+  - white-miller-caddis
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - white dubbing
+  - white hackle
+  - cream deer hair wing
+notes: A bright white profile for the blizzard hatches — skated or dead-drifted.
+license: public-domain

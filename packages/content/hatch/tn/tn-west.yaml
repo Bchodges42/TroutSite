@@ -1,0 +1,386 @@
+# tn-west — West TN — TWRA winter put-and-take lakes & park ponds.
+# Editorial seasonal guidance, kept deliberately sparse: these 13 waters are
+# winter put-and-take program lakes (stocked in the cold months; the stocked
+# fish do not hold over summer). Cold months carry the stillwater staples a
+# freshly stocked trout meets in a small lake or park pond (midges, scuds,
+# sowbugs, leeches, aquatic worms) — the same fare the tn-middle-nashville
+# winter-program chart carries. Warm months (Apr–Oct) list ONLY the permanent
+# pond residents at minimum abundance: no trout guidance exists for a
+# fishless warm season, so nothing is inflated. Abundance is seasonal
+# guidance, not observed activity.
+# Provenance: packages/content/streams/tn/*.yaml (regionId tn-west) notes and
+# https://www.tn.gov/twra/fishing/trout-information-stockings.html
+regionId: tn-west
+months:
+  - month: 1
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-red
+      - taxonId: blood-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - griffiths-gnat
+      - taxonId: olive-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+          - brassie
+      - taxonId: aquatic-worm
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - san-juan-worm
+      - taxonId: scud
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - scud-olive
+          - scud-gray
+      - taxonId: sowbug
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - sowbug-gray
+          - ray-charles
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+          - woolly-bugger-brown
+  - month: 2
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-red
+      - taxonId: blood-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - griffiths-gnat
+      - taxonId: olive-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+          - brassie
+      - taxonId: aquatic-worm
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - san-juan-worm
+      - taxonId: scud
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - scud-olive
+          - scud-gray
+      - taxonId: sowbug
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - sowbug-gray
+          - ray-charles
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+          - woolly-bugger-brown
+  - month: 3
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-red
+      - taxonId: olive-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: scud
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - scud-gray
+      - taxonId: sowbug
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - sowbug-gray
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 4
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 5
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: damselfly-nymph
+        stage: nymph
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - damsel-nymph-olive
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 6
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: damselfly-nymph
+        stage: nymph
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - damsel-nymph-olive
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 7
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: damselfly-nymph
+        stage: nymph
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - damsel-nymph-olive
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 8
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: damselfly-nymph
+        stage: nymph
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - damsel-nymph-olive
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 9
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 10
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: aquatic-snail
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - snail-pattern-black
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 11
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-red
+      - taxonId: olive-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - zebra-midge-black
+      - taxonId: scud
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - scud-gray
+      - taxonId: sowbug
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - sowbug-gray
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+  - month: 12
+    entries:
+      - taxonId: blood-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-red
+      - taxonId: blood-midge
+        stage: adult
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - griffiths-gnat
+      - taxonId: olive-midge
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - zebra-midge-black
+          - brassie
+      - taxonId: aquatic-worm
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - san-juan-worm
+      - taxonId: scud
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - scud-olive
+          - scud-gray
+      - taxonId: sowbug
+        stage: larva
+        timeOfDay: midday
+        abundance: 2
+        patterns:
+          - sowbug-gray
+          - ray-charles
+      - taxonId: leech
+        stage: larva
+        timeOfDay: midday
+        abundance: 1
+        patterns:
+          - woolly-bugger-black
+          - woolly-bugger-brown

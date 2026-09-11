@@ -1,0 +1,16 @@
+id: sowbug-gray
+name: Sowbug (Gray)
+type: nymph
+imitates:
+  - sowbug
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - gray dubbing
+  - clear shellback
+  - gray ostrich herl
+notes: Flat, subtle, and deadly on the Caney Fork in winter.
+license: public-domain

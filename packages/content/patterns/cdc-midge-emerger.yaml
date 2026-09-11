@@ -1,0 +1,18 @@
+id: cdc-midge-emerger
+name: CDC Midge Emerger
+type: emerger
+imitates:
+  - olive-midge
+  - little-black-midge
+  - blood-midge
+hookSizes:
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 2
+materials:
+  - CDC puff wing
+  - black or olive thread body
+notes: Cork-like CDC keeps the fly suspended in the film where pupa hang.
+license: public-domain

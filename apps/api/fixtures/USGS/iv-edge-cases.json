@@ -1,0 +1,217 @@
+{
+ "value": {
+  "timeSeries": [
+   {
+    "sourceInfo": {
+     "siteName": "EDGE CASE SITE 01234500",
+     "siteCode": [
+      {
+       "value": "01234500",
+       "network": "NWIS",
+       "agencyCode": "USGS"
+      }
+     ]
+    },
+    "variable": {
+     "variableCode": [
+      {
+       "value": "00060",
+       "network": "NWIS",
+       "vocabulary": "NWIS:UnitValues",
+       "variableID": 1,
+       "default": true
+      }
+     ],
+     "variableName": "Streamflow, ft&#179;/s",
+     "unit": {
+      "unitCode": "ft3/s"
+     },
+     "noDataValue": -999999.0
+    },
+    "values": [
+     {
+      "value": [
+       {
+        "value": "242",
+        "qualifiers": [
+         "P"
+        ],
+        "dateTime": "2026-09-02T15:00:00.000-04:00"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "sourceInfo": {
+     "siteName": "EDGE CASE SITE 01234500",
+     "siteCode": [
+      {
+       "value": "01234500",
+       "network": "NWIS",
+       "agencyCode": "USGS"
+      }
+     ]
+    },
+    "variable": {
+     "variableCode": [
+      {
+       "value": "00010",
+       "network": "NWIS",
+       "vocabulary": "NWIS:UnitValues",
+       "variableID": 1,
+       "default": true
+      }
+     ],
+     "variableName": "Temperature, water, degrees Celsius",
+     "unit": {
+      "unitCode": "deg C"
+     },
+     "noDataValue": -999999.0
+    },
+    "values": [
+     {
+      "value": [
+       {
+        "value": "16.5",
+        "qualifiers": [
+         "P"
+        ],
+        "dateTime": "2026-09-02T15:00:00.000-04:00"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "sourceInfo": {
+     "siteName": "EDGE CASE SITE 01234501",
+     "siteCode": [
+      {
+       "value": "01234501",
+       "network": "NWIS",
+       "agencyCode": "USGS"
+      }
+     ]
+    },
+    "variable": {
+     "variableCode": [
+      {
+       "value": "00060",
+       "network": "NWIS",
+       "vocabulary": "NWIS:UnitValues",
+       "variableID": 1,
+       "default": true
+      }
+     ],
+     "variableName": "Streamflow, ft&#179;/s",
+     "unit": {
+      "unitCode": "ft3/s"
+     },
+     "noDataValue": -999999.0
+    },
+    "values": [
+     {
+      "value": [
+       {
+        "value": "-999999",
+        "qualifiers": [
+         "P"
+        ],
+        "dateTime": "2026-09-02T15:00:00.000-04:00"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "sourceInfo": {
+     "siteName": "EDGE CASE SITE 01234502",
+     "siteCode": [
+      {
+       "value": "01234502",
+       "network": "NWIS",
+       "agencyCode": "USGS"
+      }
+     ]
+    },
+    "variable": {
+     "variableCode": [
+      {
+       "value": "00065",
+       "network": "NWIS",
+       "vocabulary": "NWIS:UnitValues",
+       "variableID": 1,
+       "default": true
+      }
+     ],
+     "variableName": "Gage height, ft",
+     "unit": {
+      "unitCode": "ft"
+     },
+     "noDataValue": -999999.0
+    },
+    "values": [
+     {
+      "value": [
+       {
+        "value": "3.10",
+        "qualifiers": [
+         "P"
+        ],
+        "dateTime": "2026-09-02T13:00:00.000-04:00"
+       },
+       {
+        "value": "3.45",
+        "qualifiers": [
+         "P"
+        ],
+        "dateTime": "2026-09-02T14:00:00.000-04:00"
+       },
+       {
+        "value": "3.22",
+        "qualifiers": [
+         "P"
+        ],
+        "dateTime": "2026-09-02T15:00:00.000-04:00"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "sourceInfo": {
+     "siteName": "EDGE CASE SITE 01234503",
+     "siteCode": [
+      {
+       "value": "01234503",
+       "network": "NWIS",
+       "agencyCode": "USGS"
+      }
+     ]
+    },
+    "variable": {
+     "variableCode": [
+      {
+       "value": "00060",
+       "network": "NWIS",
+       "vocabulary": "NWIS:UnitValues",
+       "variableID": 1,
+       "default": true
+      }
+     ],
+     "variableName": "Streamflow, ft&#179;/s",
+     "unit": {
+      "unitCode": "ft3/s"
+     },
+     "noDataValue": -999999.0
+    },
+    "values": [
+     {
+      "value": []
+     }
+    ]
+   }
+  ]
+ }
+}

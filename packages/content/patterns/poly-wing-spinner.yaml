@@ -1,0 +1,21 @@
+id: poly-wing-spinner
+name: Poly-Wing Spinner
+type: spinner
+imitates:
+  - blue-winged-olive
+  - pale-evening-dun
+  - march-brown
+  - quill-gordon
+  - blue-quill
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - rusty or cream dubbing
+  - white poly spent wings
+  - grizzly spinner hackle
+notes: Bright poly wings make spent spinners visible in last light.
+license: public-domain

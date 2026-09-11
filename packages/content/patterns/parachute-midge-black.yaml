@@ -1,0 +1,19 @@
+id: parachute-midge-black
+name: Parachute Midge (Black)
+type: dry
+imitates:
+  - little-black-midge
+  - moth
+  - blood-midge
+hookSizes:
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 2
+materials:
+  - black dubbing
+  - dun parachute hackle
+  - white poly post
+notes: A visible single-midge dry — the step down from a Griffith’s Gnat.
+license: public-domain

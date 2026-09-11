@@ -1,0 +1,43 @@
+---
+/**
+ * Affiliate link component — ROLE 5 scaffolding (§2: reserved but inert in v1).
+ *
+ * Renders a sponsored link ONLY for partners with `enabled: true` in
+ * partners.yaml. Every v1 entry ships disabled, so the component renders a
+ * plain-text fallback and the page makes zero network calls.
+ */
+import { parse } from 'yaml';
+import partnersYaml from '../../partners.yaml?raw';
+
+interface Partner {
+  id: string;
+  name: string;
+  url: string;
+  category: string;
+  enabled: boolean;
+  note?: string;
+}
+
+const registry = (parse(partnersYaml) as { partners?: Partner[] }).partners ?? [];
+
+export interface Props {
+  partnerId: string;
+  /** Optional override of the anchor text. */
+  label?: string;
+}
+
+const { partnerId, label } = Astro.props;
+const partner = registry.find((p) => p.id === partnerId);
+---
+
+{
+  partner?.enabled ? (
+    <a href={partner.url} rel="sponsored nofollow" data-affiliate={partner.id}>
+      {label ?? partner.name}
+    </a>
+  ) : (
+    <span data-affiliate-disabled={partnerId}>
+      {(label ?? partner?.name ?? partnerId) + ' (link reserved — affiliate program inactive in v1)'}
+    </span>
+  )
+}

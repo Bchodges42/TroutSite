@@ -1,0 +1,129 @@
+---
+/**
+ * /stocking/{state}/ — programmatic template (ROLE 5).
+ * Renders a real stocking calendar table from build-time snapshot data, the
+ * official agency link, a Dataset JSON-LD block, and the verify-officially
+ * disclaimer. Adding a second state later = one more entry in states.ts.
+ */
+import Base from '../../../layouts/Base.astro';
+import StockingTable from '../../../components/StockingTable.astro';
+import Disclaimer from '../../../components/Disclaimer.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import { LAUNCH_STATES } from '../../../data/states';
+import { getStockingEvents } from '../../../data/load';
+import { monthName, formatDate } from '../../../lib/format';
+import { datasetLd, faqLd, breadcrumbLd, absoluteUrl } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  return LAUNCH_STATES.map((state) => ({
+    params: { state: state.id.toLowerCase() },
+    props: { state },
+  }));
+}
+
+const { state } = Astro.props;
+const events = getStockingEvents(state.id);
+
+// Season calendar: month → event count, species set, latest date (real data, not filler).
+const byMonth = new Map<number, { count: number; species: Set<string>; latest: string }>();
+for (const e of events) {
+  const m = Number.parseInt(e.date.slice(5, 7), 10);
+  const entry = byMonth.get(m) ?? { count: 0, species: new Set<string>(), latest: e.date };
+  entry.count += 1;
+  entry.species.add(e.species);
+  if (e.date > entry.latest) entry.latest = e.date;
+  byMonth.set(m, entry);
+}
+const calendarMonths = [...byMonth.keys()].sort((a, b) => a - b);
+
+const faqs = [
+  {
+    question: `When does ${state.agency.short} stock trout in ${state.name}?`,
+    answer: `${state.stockingSummary} The weekly schedule is published by ${state.agency.name} at ${state.agency.stockingUrl} — verify there before planning a trip.`,
+  },
+  {
+    question: 'What species are stocked?',
+    answer:
+      'Rainbow trout are the backbone of the put-and-take program, with brown and brook trout stocked in selected tailwaters. Species mix varies by water and season.',
+  },
+  {
+    question: 'Is this page the official schedule?',
+    answer:
+      'No — and no convenience site should claim to be. This page summarizes public stocking data with attribution and links to the official source. Always verify with the agency before you go.',
+  },
+];
+
+const title = `${state.name} trout stocking schedule — calendar, waters & official links`;
+const description = `${state.agency.short} trout stocking in ${state.name}: recent stocking events by water and month, what species to expect, and the official ${state.agency.short} schedule to verify. Free, no trackers.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/stocking/${state.id.toLowerCase()}/`}
+  ld={[
+    datasetLd({
+      name: `${state.name} trout stocking schedule`,
+      description: `Recent trout stocking events in ${state.name}, republished with attribution to ${state.agency.name}.`,
+      path: `/stocking/${state.id.toLowerCase()}/`,
+    }),
+    faqLd(faqs),
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: `${state.name} stocking`, url: `/stocking/${state.id.toLowerCase()}/` },
+    ]),
+  ]}
+>
+  <p class="kicker">{state.name}</p>
+  <h1>{state.name} trout stocking schedule</h1>
+  <p class="lead">
+    {state.agency.short} publishes stocking schedules weekly during the season. This page mirrors
+    the recent events in a readable calendar with attribution — then sends you to the official
+    source to verify.
+  </p>
+
+  <h2>Season calendar</h2>
+  <table class="data-table">
+    <caption>Stocking activity by month (from the event feed below)</caption>
+    <thead>
+      <tr>
+        <th scope="col">Month</th>
+        <th scope="col" class="num">Events</th>
+        <th scope="col">Species</th>
+        <th scope="col">Most recent event</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        calendarMonths.map((m) => {
+          const entry = byMonth.get(m)!;
+          return (
+            <tr>
+              <th scope="row">{monthName(m)}</th>
+              <td class="num">{entry.count}</td>
+              <td>{[...entry.species].join(', ')}</td>
+              <td>{formatDate(entry.latest)}</td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+
+  <h2>Recent stocking events</h2>
+  <StockingTable events={events} />
+
+  <AdSlot label="Sponsored listing" />
+
+  <h2>Frequently asked questions</h2>
+  {faqs.map((f) => <div><h3>{f.question}</h3><p>{f.answer}</p></div>)}
+
+  <h2>Verify with {state.agency.name}</h2>
+  <p>
+    Official schedule: <a href={state.agency.stockingUrl} rel="nofollow">{state.agency.stockingUrl}</a>
+    <br />
+    Agency home: <a href={state.agency.url} rel="nofollow">{state.agency.url}</a>
+  </p>
+
+  <Disclaimer agency={state.agency.short} topic="stocking schedules" />
+</Base>

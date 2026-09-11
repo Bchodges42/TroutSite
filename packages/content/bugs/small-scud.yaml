@@ -1,0 +1,92 @@
+id: small-scud
+commonName: Small Scud
+sciName: Hyalella azteca
+order: Amphipoda
+family: Hyalellidae
+sizeRange:
+  - 16
+  - 22
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - olive-gray
+    - pale-gray
+  mouthparts: scavenging-grazing
+habitat:
+  - weedy runs
+  - slack margins
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-nashville:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+illustration: illustrations/small-scud.svg
+stages:
+  - larva
+notes: A half-size scud of dense vegetation beds. On picky tailwater fish, go smaller and paler
+  rather than bigger and brighter.
+sources:
+  - Voshell, A Guide to Common Freshwater Invertebrates of North America

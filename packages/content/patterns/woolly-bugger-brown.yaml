@@ -1,0 +1,19 @@
+id: woolly-bugger-brown
+name: Woolly Bugger (Brown)
+type: streamer
+imitates:
+  - sculpin
+  - crayfish
+  - creek-chub
+hookSizes:
+  - 6
+  - 8
+  - 10
+difficulty: 1
+materials:
+  - brown marabou tail
+  - brown chenille
+  - grizzly and brown hackle
+notes: Crayfish-and-sculpin brown — Middle Tennessee banks.
+license: attributed
+attribution: Designed by Russell Blessing (1967)

@@ -1,0 +1,21 @@
+id: elk-hair-caddis-tan
+name: Elk Hair Caddis (Tan)
+type: dry
+imitates:
+  - spotted-sedge
+  - little-sister-sedge
+  - saddle-case-caddis
+  - little-brown-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - tan elk hair
+  - palmered brown hackle
+  - tan dubbing
+notes: Al Troth’s 1950s invention remains the world’s most-used caddis dry — skitter it at dusk.
+license: attributed
+attribution: Designed by Al Troth (first tied on the Elk River, Pennsylvania)

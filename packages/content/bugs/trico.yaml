@@ -1,0 +1,52 @@
+id: trico
+commonName: Trico
+sciName: Tricorythodes spp.
+order: Ephemeroptera
+family: Ephemerellidae (Leptohyphidae)
+sizeRange:
+  - 20
+  - 26
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - black
+    - olive-gray
+    - dark-olive
+  mouthparts: collector-gatherer
+habitat:
+  - tailwaters
+  - sluggish runs
+  - weed beds
+monthsActiveByRegion:
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-caney-fork:
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-middle-duck-elk:
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/trico.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Micro-mayfly famous for dense morning spinner falls on big Tennessee tailwaters — black
+  males, cream-bodied females. The middle tail is distinctly shorter, a key ID point.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

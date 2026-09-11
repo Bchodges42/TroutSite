@@ -1,0 +1,2074 @@
+[
+  {
+    "id": "barren-fork-river",
+    "name": "Barren Fork River",
+    "anchor": [
+      -85.7772,
+      35.6752
+    ],
+    "bounds": [
+      -85.942586,
+      35.655189,
+      -85.726997,
+      35.699196
+    ]
+  },
+  {
+    "id": "beaverdam-creek",
+    "name": "Beaverdam Creek",
+    "anchor": [
+      -81.87255,
+      36.56604
+    ],
+    "bounds": [
+      -81.944337,
+      36.500602,
+      -81.80441,
+      36.613681
+    ]
+  },
+  {
+    "id": "beech-lake",
+    "name": "Beech Lake",
+    "anchor": [
+      -88.42117,
+      35.68164
+    ],
+    "bounds": [
+      -88.438,
+      35.66068,
+      -88.40832,
+      35.70797
+    ]
+  },
+  {
+    "id": "big-rock-creek",
+    "name": "Big Rock Creek",
+    "anchor": [
+      -86.7629,
+      35.5266
+    ],
+    "bounds": [
+      -86.834193,
+      35.371857,
+      -86.753545,
+      35.576539
+    ]
+  },
+  {
+    "id": "boiling-fork-creek",
+    "name": "Boiling Fork Creek",
+    "anchor": [
+      -86.031,
+      35.1552
+    ],
+    "bounds": [
+      -86.151995,
+      35.154698,
+      -85.92777,
+      35.204449
+    ]
+  },
+  {
+    "id": "boone-lake",
+    "name": "Boone Lake",
+    "anchor": [
+      -82.36649,
+      36.46418
+    ],
+    "bounds": [
+      -82.439445,
+      36.379198,
+      -82.262605,
+      36.499562
+    ]
+  },
+  {
+    "id": "boone-tailwater",
+    "name": "Boone Tailwater (South Fork Holston River)",
+    "anchor": [
+      -82.47469,
+      36.47943
+    ],
+    "bounds": [
+      -82.513707,
+      36.440183,
+      -82.437808,
+      36.508423
+    ]
+  },
+  {
+    "id": "bradley-creek",
+    "name": "Bradley Creek",
+    "anchor": [
+      -85.9849,
+      35.3972
+    ],
+    "bounds": [
+      -86.002703,
+      35.319686,
+      -85.932459,
+      35.456434
+    ]
+  },
+  {
+    "id": "brush-creek-cocke",
+    "name": "Brush Creek (Cocke County)",
+    "anchor": [
+      -82.9345,
+      35.9587
+    ],
+    "bounds": [
+      -82.9355,
+      35.9405,
+      -82.9068,
+      35.9799
+    ]
+  },
+  {
+    "id": "buffalo-creek-grainger",
+    "name": "Buffalo Creek (Grainger County)",
+    "anchor": [
+      -83.564968,
+      36.22273
+    ],
+    "bounds": [
+      -83.598881,
+      36.192111,
+      -83.554935,
+      36.228732
+    ]
+  },
+  {
+    "id": "buffalo-river",
+    "name": "Buffalo River",
+    "anchor": [
+      -87.8408,
+      35.5405
+    ],
+    "bounds": [
+      -87.865044,
+      35.389084,
+      -87.291166,
+      35.996342
+    ]
+  },
+  {
+    "id": "calderwood-lake",
+    "name": "Calderwood Lake",
+    "anchor": [
+      -83.95122,
+      35.48992
+    ],
+    "bounds": [
+      -83.980881,
+      35.447675,
+      -83.93669,
+      35.502505
+    ]
+  },
+  {
+    "id": "calfkiller-river",
+    "name": "Calfkiller River",
+    "anchor": [
+      -85.4741,
+      35.8991
+    ],
+    "bounds": [
+      -85.490117,
+      35.819741,
+      -85.308188,
+      36.105642
+    ]
+  },
+  {
+    "id": "cameron-brown-lake",
+    "name": "Cameron Brown Lake",
+    "anchor": [
+      -89.77363,
+      35.10007
+    ],
+    "bounds": [
+      -89.77411,
+      35.09938,
+      -89.77306,
+      35.10064
+    ]
+  },
+  {
+    "id": "cane-creek",
+    "name": "Cane Creek",
+    "anchor": [
+      -85.324608,
+      35.592064
+    ],
+    "bounds": [
+      -87.788792,
+      35.535389,
+      -85.303799,
+      35.815492
+    ]
+  },
+  {
+    "id": "caney-fork-river",
+    "name": "Caney Fork River (Center Hill tailwater)",
+    "anchor": [
+      -85.8437,
+      36.1176
+    ],
+    "bounds": [
+      -85.951584,
+      36.097941,
+      -85.802311,
+      36.248674
+    ]
+  },
+  {
+    "id": "caney-fork-upper",
+    "name": "Caney Fork River (above Center Hill Lake)",
+    "anchor": [
+      -85.3126,
+      35.8358
+    ],
+    "bounds": [
+      -85.847378,
+      35.791412,
+      -85.154845,
+      36.097941
+    ]
+  },
+  {
+    "id": "center-hill-lake",
+    "name": "Center Hill Lake",
+    "anchor": [
+      -85.733,
+      36.0029
+    ],
+    "bounds": [
+      -85.880583,
+      35.804475,
+      -85.599391,
+      36.098472
+    ]
+  },
+  {
+    "id": "charles-creek",
+    "name": "Charles Creek",
+    "anchor": [
+      -85.8594,
+      35.7468
+    ],
+    "bounds": [
+      -85.960545,
+      35.716079,
+      -85.741241,
+      35.801218
+    ]
+  },
+  {
+    "id": "cherokee-lake",
+    "name": "Cherokee Lake",
+    "anchor": [
+      -83.28696,
+      36.28625
+    ],
+    "bounds": [
+      -83.516082,
+      36.126827,
+      -82.608374,
+      36.548397
+    ]
+  },
+  {
+    "id": "chickamauga-lake",
+    "name": "Chickamauga Lake",
+    "anchor": [
+      -85.04951,
+      35.32623
+    ],
+    "bounds": [
+      -85.229039,
+      35.09343,
+      -84.760489,
+      35.622256
+    ]
+  },
+  {
+    "id": "chilhowee-lake",
+    "name": "Chilhowee Lake",
+    "anchor": [
+      -84.01029,
+      35.54507
+    ],
+    "bounds": [
+      -84.050382,
+      35.486697,
+      -83.979486,
+      35.562173
+    ]
+  },
+  {
+    "id": "citico-creek",
+    "name": "Citico Creek",
+    "anchor": [
+      -84.1007,
+      35.511
+    ],
+    "bounds": [
+      -84.1257,
+      35.3981,
+      -84.0745,
+      35.5472
+    ]
+  },
+  {
+    "id": "clear-creek-obed",
+    "name": "Clear Creek (Obed system)",
+    "anchor": [
+      -85.03468,
+      36.16489
+    ],
+    "bounds": [
+      -85.168734,
+      36.064322,
+      -84.698343,
+      36.170575
+    ]
+  },
+  {
+    "id": "clear-fork",
+    "name": "Clear Fork",
+    "anchor": [
+      -84.73099,
+      36.35617
+    ],
+    "bounds": [
+      -84.859158,
+      36.287051,
+      -84.619602,
+      36.424295
+    ]
+  },
+  {
+    "id": "clinch-river",
+    "name": "Clinch River (Norris tailwater)",
+    "anchor": [
+      -84.22326,
+      35.94619
+    ],
+    "bounds": [
+      -84.5338,
+      35.8632,
+      -82.89,
+      36.5925
+    ]
+  },
+  {
+    "id": "collins-river",
+    "name": "Collins River",
+    "anchor": [
+      -85.7135,
+      35.763
+    ],
+    "bounds": [
+      -85.741953,
+      35.38634,
+      -85.555318,
+      35.805913
+    ]
+  },
+  {
+    "id": "cosby-creek",
+    "name": "Cosby Creek",
+    "anchor": [
+      -83.220629,
+      35.845471
+    ],
+    "bounds": [
+      -83.249729,
+      35.733527,
+      -83.182307,
+      35.883132
+    ]
+  },
+  {
+    "id": "covington-fbc-pond",
+    "name": "Covington First Baptist Church Pond",
+    "anchor": [
+      -89.63506,
+      35.53608
+    ],
+    "bounds": [
+      -89.63602,
+      35.53562,
+      -89.63404,
+      35.53657
+    ]
+  },
+  {
+    "id": "cumberland-river",
+    "name": "Cumberland River",
+    "anchor": [
+      -86.7128,
+      36.2372
+    ],
+    "bounds": [
+      -88.232457,
+      36.135537,
+      -85.187108,
+      37.153881
+    ]
+  },
+  {
+    "id": "daddys-creek",
+    "name": "Daddy’s Creek",
+    "anchor": [
+      -84.9396,
+      35.8983
+    ],
+    "bounds": [
+      -85.0991,
+      35.7463,
+      -84.7656,
+      36.0796
+    ]
+  },
+  {
+    "id": "dale-hollow-lake",
+    "name": "Dale Hollow Lake",
+    "anchor": [
+      -85.2862,
+      36.5825
+    ],
+    "bounds": [
+      -85.462395,
+      36.450296,
+      -85.109918,
+      36.702111
+    ]
+  },
+  {
+    "id": "doe-creek-johnson",
+    "name": "Doe Creek (Johnson County)",
+    "anchor": [
+      -81.96319,
+      36.402389
+    ],
+    "bounds": [
+      -81.968974,
+      36.381692,
+      -81.862549,
+      36.460846
+    ]
+  },
+  {
+    "id": "doe-river",
+    "name": "Doe River",
+    "anchor": [
+      -82.175584,
+      36.286848
+    ],
+    "bounds": [
+      -82.213523,
+      36.171098,
+      -82.06673,
+      36.35671
+    ]
+  },
+  {
+    "id": "douglas-lake",
+    "name": "Douglas Lake",
+    "anchor": [
+      -83.38143,
+      35.98941
+    ],
+    "bounds": [
+      -83.539112,
+      35.902507,
+      -83.190803,
+      36.092136
+    ]
+  },
+  {
+    "id": "duck-river-lower",
+    "name": "Duck River (Shelbyville to Columbia)",
+    "anchor": [
+      -86.7113,
+      35.5813
+    ],
+    "bounds": [
+      -87.032699,
+      35.464853,
+      -86.462645,
+      35.633044
+    ]
+  },
+  {
+    "id": "duck-river-tailwater",
+    "name": "Duck River (Normandy tailwater)",
+    "anchor": [
+      -86.3877,
+      35.4446
+    ],
+    "bounds": [
+      -86.464112,
+      35.443193,
+      -86.24352,
+      35.482591
+    ]
+  },
+  {
+    "id": "east-fork-shoal-creek",
+    "name": "East Fork Shoal Creek",
+    "anchor": [
+      -87.0747,
+      35.0579
+    ],
+    "bounds": [
+      -87.099969,
+      35.004634,
+      -87.064065,
+      35.116302
+    ]
+  },
+  {
+    "id": "east-fork-stones-river",
+    "name": "East Fork Stones River",
+    "anchor": [
+      -86.3079,
+      35.9238
+    ],
+    "bounds": [
+      -86.667208,
+      35.810309,
+      -85.998462,
+      36.192792
+    ]
+  },
+  {
+    "id": "edmund-orgill-lake",
+    "name": "Edmund-Orgill Park",
+    "anchor": [
+      -89.83825,
+      35.37197
+    ],
+    "bounds": [
+      -89.84293,
+      35.3687,
+      -89.83423,
+      35.37758
+    ]
+  },
+  {
+    "id": "elk-river",
+    "name": "Elk River (Tims Ford tailwater)",
+    "anchor": [
+      -86.6664,
+      35.1303
+    ],
+    "bounds": [
+      -86.995859,
+      35.004285,
+      -86.27616,
+      35.197196
+    ]
+  },
+  {
+    "id": "elk-river-lower",
+    "name": "Elk River (Prospect to state line)",
+    "anchor": [
+      -87.029,
+      35.0008
+    ],
+    "bounds": [
+      -87.158255,
+      34.81986,
+      -86.995859,
+      35.014197
+    ]
+  },
+  {
+    "id": "emory-river",
+    "name": "Emory River",
+    "anchor": [
+      -84.63414,
+      36.09467
+    ],
+    "bounds": [
+      -84.6624,
+      35.888,
+      -84.4465,
+      36.1777
+    ]
+  },
+  {
+    "id": "fletchers-fork",
+    "name": "Fletchers Fork",
+    "anchor": [
+      -87.5026,
+      36.5747
+    ],
+    "bounds": [
+      -87.550383,
+      36.546144,
+      -87.423163,
+      36.60047
+    ]
+  },
+  {
+    "id": "forge-creek-johnson",
+    "name": "Forge Creek (Johnson County)",
+    "anchor": [
+      -81.763836,
+      36.448508
+    ],
+    "bounds": [
+      -81.7856,
+      36.4331,
+      -81.7023,
+      36.5206
+    ]
+  },
+  {
+    "id": "fort-loudoun-lake",
+    "name": "Fort Loudoun Lake",
+    "anchor": [
+      -84.08448,
+      35.84704
+    ],
+    "bounds": [
+      -84.244564,
+      35.740664,
+      -83.849457,
+      35.968749
+    ]
+  },
+  {
+    "id": "fort-patrick-henry-lake",
+    "name": "Fort Patrick Henry Lake",
+    "anchor": [
+      -82.47612,
+      36.48893
+    ],
+    "bounds": [
+      -82.510454,
+      36.440628,
+      -82.437252,
+      36.511881
+    ]
+  },
+  {
+    "id": "french-broad-river",
+    "name": "French Broad River (Douglas tailwater)",
+    "anchor": [
+      -83.35829,
+      35.98494
+    ],
+    "bounds": [
+      -83.8507,
+      35.9078,
+      -82.8995,
+      36.0884
+    ]
+  },
+  {
+    "id": "ft-patrick-henry-tailwater",
+    "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+    "anchor": [
+      -82.55471,
+      36.51875
+    ],
+    "bounds": [
+      -82.611726,
+      36.498018,
+      -82.508866,
+      36.550746
+    ]
+  },
+  {
+    "id": "gap-creek-claiborne",
+    "name": "Gap Creek (Claiborne County)",
+    "anchor": [
+      -83.674653,
+      36.56524
+    ],
+    "bounds": [
+      -83.693161,
+      36.511637,
+      -83.664364,
+      36.597854
+    ]
+  },
+  {
+    "id": "goforth-creek",
+    "name": "Goforth Creek",
+    "anchor": [
+      -84.50339,
+      35.096613
+    ],
+    "bounds": [
+      -84.514984,
+      35.083758,
+      -84.486063,
+      35.108066
+    ]
+  },
+  {
+    "id": "greasy-creek-polk",
+    "name": "Greasy Creek (Polk County)",
+    "anchor": [
+      -84.516562,
+      35.141647
+    ],
+    "bounds": [
+      -84.573407,
+      35.11744,
+      -84.488426,
+      35.146523
+    ]
+  },
+  {
+    "id": "great-falls-lake",
+    "name": "Great Falls Lake",
+    "anchor": [
+      -85.7243,
+      35.6803
+    ],
+    "bounds": [
+      -85.942323,
+      35.527178,
+      -85.619255,
+      35.818886
+    ]
+  },
+  {
+    "id": "gulf-fork-big-creek",
+    "name": "Gulf Fork Big Creek",
+    "anchor": [
+      -83.090827,
+      35.827203
+    ],
+    "bounds": [
+      -83.109194,
+      35.808195,
+      -83.022536,
+      35.875099
+    ]
+  },
+  {
+    "id": "harpeth-river",
+    "name": "Harpeth River (Williamson County reaches)",
+    "anchor": [
+      -86.911,
+      35.991
+    ],
+    "bounds": [
+      -87.194005,
+      35.733665,
+      -86.599377,
+      36.304798
+    ]
+  },
+  {
+    "id": "hatchie-river",
+    "name": "Hatchie River",
+    "anchor": [
+      -89.5441,
+      35.6081
+    ],
+    "bounds": [
+      -89.862249,
+      34.946523,
+      -88.775587,
+      35.652346
+    ]
+  },
+  {
+    "id": "hiwassee-river",
+    "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+    "anchor": [
+      -84.64154,
+      35.21175
+    ],
+    "bounds": [
+      -85.0109,
+      35.167,
+      -84.2941,
+      35.4127
+    ]
+  },
+  {
+    "id": "holston-river",
+    "name": "Holston River",
+    "anchor": [
+      -83.31355,
+      36.2814
+    ],
+    "bounds": [
+      -83.8578,
+      35.9586,
+      -82.6088,
+      36.5479
+    ]
+  },
+  {
+    "id": "horse-creek-greene",
+    "name": "Horse Creek (Greene County)",
+    "anchor": [
+      -82.6571,
+      36.1587
+    ],
+    "bounds": [
+      -82.7108,
+      36.0683,
+      -82.6331,
+      36.1644
+    ]
+  },
+  {
+    "id": "hurricane-creek",
+    "name": "Hurricane Creek",
+    "anchor": [
+      -87.6607,
+      36.0301
+    ],
+    "bounds": [
+      -87.969029,
+      35.959942,
+      -87.558386,
+      36.350888
+    ]
+  },
+  {
+    "id": "indian-creek-claiborne",
+    "name": "Indian Creek (Claiborne County)",
+    "anchor": [
+      -83.52688,
+      36.62263
+    ],
+    "bounds": [
+      -83.609326,
+      36.382693,
+      -83.300119,
+      36.663989
+    ]
+  },
+  {
+    "id": "j-percy-priest-lake",
+    "name": "J. Percy Priest Lake",
+    "anchor": [
+      -86.5516,
+      36.0843
+    ],
+    "bounds": [
+      -86.629707,
+      35.987104,
+      -86.421296,
+      36.163781
+    ]
+  },
+  {
+    "id": "johnson-park-lake",
+    "name": "Johnson Park Lake",
+    "anchor": [
+      -89.68139,
+      35.08906
+    ],
+    "bounds": [
+      -89.68363,
+      35.0876,
+      -89.67907,
+      35.09031
+    ]
+  },
+  {
+    "id": "kentucky-lake",
+    "name": "Kentucky Lake",
+    "anchor": [
+      -88.0698,
+      36.4748
+    ],
+    "bounds": [
+      -88.319715,
+      35.061656,
+      -87.817354,
+      37.020641
+    ]
+  },
+  {
+    "id": "lake-barkley",
+    "name": "Lake Barkley",
+    "anchor": [
+      -87.9858,
+      36.8284
+    ],
+    "bounds": [
+      -88.233953,
+      36.380459,
+      -87.500012,
+      37.07789
+    ]
+  },
+  {
+    "id": "lake-graham",
+    "name": "Lake Graham",
+    "anchor": [
+      -88.7248,
+      35.6431
+    ],
+    "bounds": [
+      -88.73162,
+      35.62954,
+      -88.7069,
+      35.66148
+    ]
+  },
+  {
+    "id": "laurel-creek-johnson",
+    "name": "Laurel Creek (Johnson County)",
+    "anchor": [
+      -81.753822,
+      36.587929
+    ],
+    "bounds": [
+      -81.832663,
+      36.522606,
+      -81.749878,
+      36.650595
+    ]
+  },
+  {
+    "id": "laurel-fork-carter",
+    "name": "Laurel Fork (Carter County)",
+    "anchor": [
+      -82.140368,
+      36.279079
+    ],
+    "bounds": [
+      -82.174558,
+      36.267182,
+      -82.124753,
+      36.288884
+    ]
+  },
+  {
+    "id": "leconte-creek",
+    "name": "LeConte Creek",
+    "anchor": [
+      -83.509013,
+      35.698113
+    ],
+    "bounds": [
+      -83.522678,
+      35.6572,
+      -83.4475,
+      35.709566
+    ]
+  },
+  {
+    "id": "little-buffalo-river",
+    "name": "Little Buffalo River",
+    "anchor": [
+      -87.5093,
+      35.3761
+    ],
+    "bounds": [
+      -87.531566,
+      35.298155,
+      -87.470262,
+      35.450302
+    ]
+  },
+  {
+    "id": "little-pigeon-river",
+    "name": "Little Pigeon River (Sevierville reach)",
+    "anchor": [
+      -83.405968,
+      35.778759
+    ],
+    "bounds": [
+      -83.5963,
+      35.7083,
+      -83.3825,
+      35.9316
+    ]
+  },
+  {
+    "id": "little-river",
+    "name": "Little River (Smokies / Blount County)",
+    "anchor": [
+      -83.79709,
+      35.68692
+    ],
+    "bounds": [
+      -83.9865,
+      35.5788,
+      -83.4814,
+      35.8794
+    ]
+  },
+  {
+    "id": "little-sequatchie-river",
+    "name": "Little Sequatchie River",
+    "anchor": [
+      -85.598403,
+      35.180141
+    ],
+    "bounds": [
+      -85.644818,
+      35.088913,
+      -85.573064,
+      35.302144
+    ]
+  },
+  {
+    "id": "little-tennessee-river",
+    "name": "Little Tennessee River",
+    "anchor": [
+      -84.13714,
+      35.56794
+    ],
+    "bounds": [
+      -84.265075,
+      35.463634,
+      -83.938499,
+      35.777905
+    ]
+  },
+  {
+    "id": "little-west-fork-creek",
+    "name": "Little West Fork Creek",
+    "anchor": [
+      -87.383,
+      36.5954
+    ],
+    "bounds": [
+      -87.510961,
+      36.581904,
+      -87.363937,
+      36.620175
+    ]
+  },
+  {
+    "id": "martin-city-pond",
+    "name": "Martin City Pond",
+    "anchor": [
+      -88.8521,
+      36.30787
+    ],
+    "bounds": [
+      -88.85287,
+      36.30559,
+      -88.85068,
+      36.30902
+    ]
+  },
+  {
+    "id": "mccutcheon-creek",
+    "name": "McCutcheon Creek",
+    "anchor": [
+      -86.9237,
+      35.757
+    ],
+    "bounds": [
+      -86.927451,
+      35.713963,
+      -86.920876,
+      35.78825
+    ]
+  },
+  {
+    "id": "melton-hill-lake",
+    "name": "Melton Hill Lake",
+    "anchor": [
+      -84.19496,
+      35.99044
+    ],
+    "bounds": [
+      -84.300611,
+      35.873481,
+      -84.074012,
+      36.217502
+    ]
+  },
+  {
+    "id": "middle-prong-little-pigeon",
+    "name": "Middle Prong Little Pigeon River (Tremont)",
+    "anchor": [
+      -83.338255,
+      35.703526
+    ],
+    "bounds": [
+      -83.382537,
+      35.694296,
+      -83.32335,
+      35.708296
+    ]
+  },
+  {
+    "id": "milan-city-pond",
+    "name": "Milan City Pond",
+    "anchor": [
+      -88.72909,
+      35.92375
+    ],
+    "bounds": [
+      -88.72964,
+      35.92329,
+      -88.7286,
+      35.92416
+    ]
+  },
+  {
+    "id": "mill-creek-overton",
+    "name": "Mill Creek (Overton County)",
+    "anchor": [
+      -85.4867,
+      36.4824
+    ],
+    "bounds": [
+      -85.565171,
+      36.43907,
+      -85.352394,
+      36.500536
+    ]
+  },
+  {
+    "id": "mississippi-river",
+    "name": "Mississippi River",
+    "anchor": [
+      -89.659,
+      35.8993
+    ],
+    "bounds": [
+      -90.305239,
+      34.954571,
+      -89.417958,
+      36.508186
+    ]
+  },
+  {
+    "id": "mossy-creek-jefferson",
+    "name": "Mossy Creek (Jefferson County)",
+    "anchor": [
+      -83.483734,
+      36.123263
+    ],
+    "bounds": [
+      -83.512886,
+      36.0944,
+      -83.4738,
+      36.1598
+    ]
+  },
+  {
+    "id": "new-river",
+    "name": "New River",
+    "anchor": [
+      -84.37493,
+      36.32239
+    ],
+    "bounds": [
+      -84.6236,
+      36.1236,
+      -84.3211,
+      36.4339
+    ]
+  },
+  {
+    "id": "nickajack-lake",
+    "name": "Nickajack Lake",
+    "anchor": [
+      -85.47436,
+      35.03701
+    ],
+    "bounds": [
+      -85.622526,
+      34.9852,
+      -85.227411,
+      35.123372
+    ]
+  },
+  {
+    "id": "nolichucky-river",
+    "name": "Nolichucky River",
+    "anchor": [
+      -82.82646,
+      36.0862
+    ],
+    "bounds": [
+      -83.2464,
+      36.0508,
+      -82.4168,
+      36.211
+    ]
+  },
+  {
+    "id": "normandy-lake",
+    "name": "Normandy Lake",
+    "anchor": [
+      -86.2036,
+      35.4574
+    ],
+    "bounds": [
+      -86.248215,
+      35.412565,
+      -86.124989,
+      35.503577
+    ]
+  },
+  {
+    "id": "norris-lake",
+    "name": "Norris Lake",
+    "anchor": [
+      -83.8799,
+      36.30355
+    ],
+    "bounds": [
+      -84.194197,
+      36.223746,
+      -83.428127,
+      36.418769
+    ]
+  },
+  {
+    "id": "north-chickamauga-creek",
+    "name": "North Chickamauga Creek",
+    "anchor": [
+      -85.216696,
+      35.145616
+    ],
+    "bounds": [
+      -85.363367,
+      35.105719,
+      -85.21312,
+      35.26726
+    ]
+  },
+  {
+    "id": "north-fork-holston-river",
+    "name": "North Fork Holston River",
+    "anchor": [
+      -82.58016,
+      36.60975
+    ],
+    "bounds": [
+      -82.6176,
+      36.5479,
+      -81.9999,
+      36.7984
+    ]
+  },
+  {
+    "id": "north-prong-barren-fork",
+    "name": "North Prong Barren Fork River",
+    "anchor": [
+      -85.9551,
+      35.6913
+    ],
+    "bounds": [
+      -85.963257,
+      35.68068,
+      -85.942586,
+      35.719033
+    ]
+  },
+  {
+    "id": "obed-river",
+    "name": "Obed River",
+    "anchor": [
+      -84.98281,
+      36.05633
+    ],
+    "bounds": [
+      -85.1147,
+      35.9162,
+      -84.6492,
+      36.0987
+    ]
+  },
+  {
+    "id": "obey-river",
+    "name": "Obey River (Dale Hollow tailwater)",
+    "anchor": [
+      -85.4819,
+      36.5423
+    ],
+    "bounds": [
+      -85.5125,
+      36.524812,
+      -85.451132,
+      36.558408
+    ]
+  },
+  {
+    "id": "obion-river",
+    "name": "Obion River",
+    "anchor": [
+      -89.6413,
+      36.007
+    ],
+    "bounds": [
+      -89.687646,
+      35.875189,
+      -88.940747,
+      36.28193
+    ]
+  },
+  {
+    "id": "ocoee-number-three-lake",
+    "name": "Ocoee Number Three Lake",
+    "anchor": [
+      -84.43623,
+      35.02753
+    ],
+    "bounds": [
+      -84.469869,
+      35.01239,
+      -84.409341,
+      35.042378
+    ]
+  },
+  {
+    "id": "ocoee-river",
+    "name": "Ocoee River (upper, Copperhill reach)",
+    "anchor": [
+      -84.4632,
+      35.05144
+    ],
+    "bounds": [
+      -84.6936,
+      34.9922,
+      -84.3805,
+      35.2064
+    ]
+  },
+  {
+    "id": "old-hickory-lake",
+    "name": "Old Hickory Lake",
+    "anchor": [
+      -86.427,
+      36.3327
+    ],
+    "bounds": [
+      -86.662108,
+      36.236869,
+      -85.938684,
+      36.403486
+    ]
+  },
+  {
+    "id": "paris-city-park-lake",
+    "name": "Paris City Park",
+    "anchor": [
+      -88.30902,
+      36.3095
+    ],
+    "bounds": [
+      -88.30999,
+      36.30888,
+      -88.3082,
+      36.31019
+    ]
+  },
+  {
+    "id": "parksville-lake",
+    "name": "Parksville Lake",
+    "anchor": [
+      -84.61249,
+      35.09619
+    ],
+    "bounds": [
+      -84.651239,
+      35.06753,
+      -84.567146,
+      35.118008
+    ]
+  },
+  {
+    "id": "parksville-tailwater",
+    "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+    "anchor": [
+      -84.691595,
+      35.141575
+    ],
+    "bounds": [
+      -84.6936,
+      35.1269,
+      -84.67,
+      35.1899
+    ]
+  },
+  {
+    "id": "pickwick-lake",
+    "name": "Pickwick Lake",
+    "anchor": [
+      -88.0313,
+      34.899
+    ],
+    "bounds": [
+      -88.261685,
+      34.728074,
+      -87.624684,
+      35.089716
+    ]
+  },
+  {
+    "id": "pigeon-river",
+    "name": "Pigeon River (Hartford corridor)",
+    "anchor": [
+      -83.18572,
+      35.89181
+    ],
+    "bounds": [
+      -83.2034,
+      35.778,
+      -83.1041,
+      36.0261
+    ]
+  },
+  {
+    "id": "pine-creek-dekalb",
+    "name": "Pine Creek (DeKalb County)",
+    "anchor": [
+      -85.8186,
+      35.9104
+    ],
+    "bounds": [
+      -85.864278,
+      35.90245,
+      -85.711852,
+      35.948267
+    ]
+  },
+  {
+    "id": "piney-river-rhea",
+    "name": "Piney River (Rhea County)",
+    "anchor": [
+      -84.85858,
+      35.69952
+    ],
+    "bounds": [
+      -84.911825,
+      35.652893,
+      -84.779539,
+      35.716929
+    ]
+  },
+  {
+    "id": "powell-river",
+    "name": "Powell River",
+    "anchor": [
+      -83.64903,
+      36.52633
+    ],
+    "bounds": [
+      -84.026,
+      36.2885,
+      -83.3056,
+      36.5973
+    ]
+  },
+  {
+    "id": "puncheon-camp-creek",
+    "name": "Puncheon Camp Creek",
+    "anchor": [
+      -83.521001,
+      36.325955
+    ],
+    "bounds": [
+      -83.543974,
+      36.303654,
+      -83.501398,
+      36.350471
+    ]
+  },
+  {
+    "id": "red-river-clarksville",
+    "name": "Red River (Montgomery County)",
+    "anchor": [
+      -87.162,
+      36.5503
+    ],
+    "bounds": [
+      -87.372005,
+      36.524293,
+      -87.040865,
+      36.608993
+    ]
+  },
+  {
+    "id": "reedy-creek",
+    "name": "Reedy Creek",
+    "anchor": [
+      -82.496993,
+      36.547049
+    ],
+    "bounds": [
+      -82.577174,
+      36.538683,
+      -82.292807,
+      36.595697
+    ]
+  },
+  {
+    "id": "reelfoot-lake",
+    "name": "Reelfoot Lake",
+    "anchor": [
+      -89.3792,
+      36.4049
+    ],
+    "bounds": [
+      -89.448054,
+      36.351894,
+      -89.30639,
+      36.503094
+    ]
+  },
+  {
+    "id": "richardson-byrd-creek",
+    "name": "Richardson “Byrd” Creek",
+    "anchor": [
+      -83.12165,
+      36.49353
+    ],
+    "bounds": [
+      -83.188336,
+      36.454861,
+      -83.097777,
+      36.537277
+    ]
+  },
+  {
+    "id": "roaring-fork",
+    "name": "Roaring Fork",
+    "anchor": [
+      -83.457767,
+      35.688547
+    ],
+    "bounds": [
+      -83.468731,
+      35.664077,
+      -83.443718,
+      35.695114
+    ]
+  },
+  {
+    "id": "rocky-river",
+    "name": "Rocky River",
+    "anchor": [
+      -85.5228,
+      35.5917
+    ],
+    "bounds": [
+      -85.615146,
+      35.533388,
+      -85.477725,
+      35.794717
+    ]
+  },
+  {
+    "id": "salt-lick-creek",
+    "name": "Salt Lick Creek",
+    "anchor": [
+      -85.9186,
+      36.626
+    ],
+    "bounds": [
+      -85.930828,
+      36.309586,
+      -85.77674,
+      36.662952
+    ]
+  },
+  {
+    "id": "sequatchie-river",
+    "name": "Sequatchie River (headwaters)",
+    "anchor": [
+      -85.21226,
+      35.57877
+    ],
+    "bounds": [
+      -85.6373,
+      35.0252,
+      -84.9782,
+      35.8308
+    ]
+  },
+  {
+    "id": "shelby-farms-lake",
+    "name": "Shelby Farms",
+    "anchor": [
+      -89.83386,
+      35.13965
+    ],
+    "bounds": [
+      -89.83453,
+      35.1394,
+      -89.83323,
+      35.13992
+    ]
+  },
+  {
+    "id": "shoal-creek",
+    "name": "Shoal Creek",
+    "anchor": [
+      -87.4281,
+      35.1406
+    ],
+    "bounds": [
+      -87.602892,
+      34.949391,
+      -87.29938,
+      35.24488
+    ]
+  },
+  {
+    "id": "sinking-creek-wilson",
+    "name": "Sinking Creek (Wilson County)",
+    "anchor": [
+      -86.3003,
+      36.1651
+    ],
+    "bounds": [
+      -86.541336,
+      36.03265,
+      -86.286003,
+      36.220505
+    ]
+  },
+  {
+    "id": "south-fork-cumberland",
+    "name": "South Fork Cumberland River",
+    "anchor": [
+      -84.63112,
+      36.50163
+    ],
+    "bounds": [
+      -84.6717,
+      36.4243,
+      -84.6072,
+      36.5936
+    ]
+  },
+  {
+    "id": "south-holston-lake",
+    "name": "South Holston Lake",
+    "anchor": [
+      -82.03203,
+      36.56265
+    ],
+    "bounds": [
+      -82.106555,
+      36.484779,
+      -81.902224,
+      36.655383
+    ]
+  },
+  {
+    "id": "south-holston-river",
+    "name": "South Fork Holston River (South Holston tailwater)",
+    "anchor": [
+      -82.15053,
+      36.50361
+    ],
+    "bounds": [
+      -82.4379,
+      36.4366,
+      -82.0115,
+      36.594
+    ]
+  },
+  {
+    "id": "spring-creek-polk",
+    "name": "Spring Creek (Polk County)",
+    "anchor": [
+      -84.471493,
+      35.238587
+    ],
+    "bounds": [
+      -84.516504,
+      35.219955,
+      -84.37711,
+      35.277381
+    ]
+  },
+  {
+    "id": "standing-rock-creek",
+    "name": "Standing Rock Creek",
+    "anchor": [
+      -87.9983,
+      36.4367
+    ],
+    "bounds": [
+      -88.048998,
+      36.40988,
+      -87.862764,
+      36.439283
+    ]
+  },
+  {
+    "id": "station-creek",
+    "name": "Station Creek",
+    "anchor": [
+      -83.6104,
+      36.5872
+    ],
+    "bounds": [
+      -83.626,
+      36.5855,
+      -83.6049,
+      36.598395
+    ]
+  },
+  {
+    "id": "stones-river",
+    "name": "Stones River (Davidson County)",
+    "anchor": [
+      -86.6336,
+      36.1865
+    ],
+    "bounds": [
+      -86.667208,
+      36.156073,
+      -86.618452,
+      36.192792
+    ]
+  },
+  {
+    "id": "stoney-creek-carter",
+    "name": "Stoney Creek (Carter County)",
+    "anchor": [
+      -82.135158,
+      36.383309
+    ],
+    "bounds": [
+      -82.145801,
+      36.379708,
+      -82.12752,
+      36.389058
+    ]
+  },
+  {
+    "id": "sulfur-fork-creek",
+    "name": "Sulfur Fork Creek",
+    "anchor": [
+      -86.997,
+      36.5125
+    ],
+    "bounds": [
+      -87.141268,
+      36.428078,
+      -86.364507,
+      36.702798
+    ]
+  },
+  {
+    "id": "tellico-lake",
+    "name": "Tellico Lake",
+    "anchor": [
+      -84.21826,
+      35.61538
+    ],
+    "bounds": [
+      -84.291303,
+      35.345424,
+      -84.049707,
+      35.781409
+    ]
+  },
+  {
+    "id": "tellico-river",
+    "name": "Tellico River",
+    "anchor": [
+      -84.1636,
+      35.3256
+    ],
+    "bounds": [
+      -84.2916,
+      35.2606,
+      -84.0813,
+      35.5109
+    ]
+  },
+  {
+    "id": "tennessee-river",
+    "name": "Tennessee River",
+    "anchor": [
+      -84.72121,
+      35.71592
+    ],
+    "bounds": [
+      -88.31822,
+      34.6,
+      -83.850716,
+      36.916368
+    ]
+  },
+  {
+    "id": "tims-ford-lake",
+    "name": "Tims Ford Lake",
+    "anchor": [
+      -86.2106,
+      35.2212
+    ],
+    "bounds": [
+      -86.313527,
+      35.184464,
+      -86.10642,
+      35.275657
+    ]
+  },
+  {
+    "id": "trail-fork-big-creek",
+    "name": "Trail Fork (Big Creek tributary)",
+    "anchor": [
+      -83.110036,
+      35.900264
+    ],
+    "bounds": [
+      -83.11855,
+      35.900085,
+      -83.102561,
+      35.901854
+    ]
+  },
+  {
+    "id": "tumbling-creek",
+    "name": "Tumbling Creek",
+    "anchor": [
+      -84.474001,
+      35.003913
+    ],
+    "bounds": [
+      -84.488942,
+      34.988167,
+      -84.46129,
+      35.023678
+    ]
+  },
+  {
+    "id": "union-city-reelfoot-pond",
+    "name": "Union City Reelfoot Packing Site",
+    "anchor": [
+      -89.06269,
+      36.41437
+    ],
+    "bounds": [
+      -89.06327,
+      36.41385,
+      -89.06213,
+      36.41486
+    ]
+  },
+  {
+    "id": "upper-hills-creek",
+    "name": "Upper Hills Creek",
+    "anchor": [
+      -85.6751,
+      35.571
+    ],
+    "bounds": [
+      -85.700312,
+      35.550307,
+      -85.633749,
+      35.572011
+    ]
+  },
+  {
+    "id": "upper-roan-creek",
+    "name": "Upper Roan Creek",
+    "anchor": [
+      -81.8852,
+      36.3769
+    ],
+    "bounds": [
+      -81.9985,
+      36.3271,
+      -81.711,
+      36.4339
+    ]
+  },
+  {
+    "id": "valentine-park-pond",
+    "name": "Valentine Park",
+    "anchor": [
+      -89.80598,
+      35.46305
+    ],
+    "bounds": [
+      -89.80671,
+      35.46228,
+      -89.80506,
+      35.46374
+    ]
+  },
+  {
+    "id": "watauga-lake",
+    "name": "Watauga Lake",
+    "anchor": [
+      -82.02215,
+      36.32934
+    ],
+    "bounds": [
+      -82.131998,
+      36.276977,
+      -81.928231,
+      36.381692
+    ]
+  },
+  {
+    "id": "watauga-river",
+    "name": "Watauga River (Wilbur tailwater)",
+    "anchor": [
+      -82.25131,
+      36.35116
+    ],
+    "bounds": [
+      -82.422,
+      36.2873,
+      -81.92,
+      36.4481
+    ]
+  },
+  {
+    "id": "watauga-river-wilbur-reach",
+    "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+    "anchor": [
+      -82.12291,
+      36.33702
+    ],
+    "bounds": [
+      -82.127075,
+      36.329939,
+      -82.114982,
+      36.341158
+    ]
+  },
+  {
+    "id": "watts-bar-lake",
+    "name": "Watts Bar Lake",
+    "anchor": [
+      -84.6543,
+      35.75264
+    ],
+    "bounds": [
+      -84.862416,
+      35.615422,
+      -84.242055,
+      35.876518
+    ]
+  },
+  {
+    "id": "west-fork-stones-river",
+    "name": "West Fork Stones River",
+    "anchor": [
+      -86.4152,
+      35.8517
+    ],
+    "bounds": [
+      -86.481841,
+      35.647885,
+      -86.409992,
+      35.985917
+    ]
+  },
+  {
+    "id": "west-prong-little-pigeon",
+    "name": "West Prong Little Pigeon River",
+    "anchor": [
+      -83.576154,
+      35.826257
+    ],
+    "bounds": [
+      -83.593508,
+      35.63492,
+      -83.4702,
+      35.874405
+    ]
+  },
+  {
+    "id": "white-oak-creek",
+    "name": "White Oak Creek",
+    "anchor": [
+      -87.704,
+      36.214
+    ],
+    "bounds": [
+      -87.943072,
+      36.147444,
+      -87.55228,
+      36.264581
+    ]
+  },
+  {
+    "id": "wilbur-lake",
+    "name": "Wilbur Lake",
+    "anchor": [
+      -82.11568,
+      36.33862
+    ],
+    "bounds": [
+      -82.127314,
+      36.329939,
+      -82.114549,
+      36.341544
+    ]
+  },
+  {
+    "id": "wolf-river-fentress",
+    "name": "Wolf River (Fentress County headwaters)",
+    "anchor": [
+      -85.0477,
+      36.5365
+    ],
+    "bounds": [
+      -85.2983,
+      36.5219,
+      -84.901,
+      36.6347
+    ]
+  },
+  {
+    "id": "wolf-river-west-tennessee",
+    "name": "Wolf River",
+    "anchor": [
+      -89.6623,
+      35.0882
+    ],
+    "bounds": [
+      -90.061979,
+      34.898389,
+      -89.120268,
+      35.202484
+    ]
+  },
+  {
+    "id": "woods-reservoir",
+    "name": "Woods Reservoir",
+    "anchor": [
+      -86.059,
+      35.312
+    ],
+    "bounds": [
+      -86.107785,
+      35.293297,
+      -85.983954,
+      35.334095
+    ]
+  },
+  {
+    "id": "yale-road-park-lake",
+    "name": "Yale Road Park",
+    "anchor": [
+      -89.85634,
+      35.21676
+    ],
+    "bounds": [
+      -89.85678,
+      35.21615,
+      -89.85574,
+      35.21725
+    ]
+  }
+]

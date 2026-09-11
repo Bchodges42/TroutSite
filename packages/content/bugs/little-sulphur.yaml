@@ -1,0 +1,66 @@
+id: little-sulphur
+commonName: Little Sulphur
+sciName: Ephemerella invaria
+order: Ephemeroptera
+family: Ephemerellidae
+sizeRange:
+  - 14
+  - 16
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - sulphur-yellow
+    - pale-cream
+  mouthparts: chewing-collector
+habitat:
+  - riffles
+  - runs
+  - freestone rivers
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+illustration: illustrations/little-sulphur.svg
+stages:
+  - nymph
+  - dun
+notes: The larger, brighter sister of the classic sulphur, hatching a few weeks earlier on
+  freestone rivers. Pale-yellow parachutes a size up from the dorothea match cover it.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

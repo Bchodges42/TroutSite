@@ -1,0 +1,17 @@
+id: sulphur-spinner
+name: Sulphur Spinner
+type: spinner
+imitates:
+  - sulphur-dun
+  - little-sulphur
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - pale sulphur dubbing
+  - spent clear wings
+  - light ginger hackle
+notes: The spent end of the sulphur cycle — flat on the water, invisible to you, obvious to them.
+license: public-domain

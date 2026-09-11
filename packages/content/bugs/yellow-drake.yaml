@@ -1,0 +1,54 @@
+id: yellow-drake
+commonName: Yellow Drake
+sciName: Ephemera varia
+order: Ephemeroptera
+family: Ephemeridae
+sizeRange:
+  - 8
+  - 12
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: robust
+  bodyColor:
+    - yellow-olive
+    - tan-yellow
+  mouthparts: burrowing-collector
+habitat:
+  - silt flats
+  - tailwaters
+  - slack water
+monthsActiveByRegion:
+  tn-east-holston:
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 5
+    - 6
+    - 7
+  tn-east-clinch:
+    - 5
+    - 6
+    - 7
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+illustration: illustrations/yellow-drake.svg
+stages:
+  - nymph
+  - dun
+notes: Mid-size burrower whose duns hatch erratically through early summer afternoons. The
+  yellow-olive body with dark tails separates it from the bigger Hex.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

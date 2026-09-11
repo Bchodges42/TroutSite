@@ -1,0 +1,58 @@
+id: dog-day-cicada
+commonName: Dog-Day Cicada
+sciName: Neotibicen spp.
+order: Hemiptera
+family: Cicadidae
+sizeRange:
+  - 2
+  - 6
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - green-black
+    - olive-black
+  mouthparts: piercing-sucking
+habitat:
+  - forested banks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 7
+    - 8
+    - 9
+  tn-east-pigeon-frenchbroad:
+    - 7
+    - 8
+    - 9
+  tn-se-hiwassee:
+    - 7
+    - 8
+    - 9
+  tn-cumberland-plateau:
+    - 7
+    - 8
+    - 9
+  tn-middle-caney-fork:
+    - 7
+    - 8
+    - 9
+  tn-middle-duck-elk:
+    - 7
+    - 8
+    - 9
+  tn-east-holston:
+    - 7
+    - 8
+    - 9
+  tn-northeast-watauga:
+    - 7
+    - 8
+    - 9
+illustration: illustrations/dog-day-cicada.svg
+stages:
+  - adult
+notes: Annual green-black cicadas droning through late summer; wind and rain knock them into the
+  drink regularly. Green-bodied foam cicadas fished tight to trees produce every August.
+sources:
+  - https://en.wikipedia.org/wiki/Neotibicen

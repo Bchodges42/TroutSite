@@ -1,0 +1,19 @@
+id: grey-ghost
+name: Grey Ghost
+type: streamer
+imitates:
+  - common-shiner
+  - threadfin-shad
+hookSizes:
+  - 4
+  - 6
+  - 8
+difficulty: 4
+materials:
+  - bucktail underwing
+  - peacock herl
+  - grizzly hackle cheeks
+  - silver body
+notes: Carrie Stevens’ 1924 Rangeley masterpiece — a beautiful choice for shad-kill water.
+license: attributed
+attribution: Designed by Carrie G. Stevens (Maine, 1924)

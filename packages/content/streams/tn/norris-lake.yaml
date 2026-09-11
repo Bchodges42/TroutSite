@@ -1,0 +1,27 @@
+id: norris-lake
+name: Norris Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-east-clinch
+gaugeIds:
+  - "03533000"
+stockingProgram: false
+species: warmwater
+idealFlow: []
+notes: >-
+  TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger,
+  and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch
+  River and Powell River (powell-river); the dam releases the Clinch River Norris tailwater
+  (clinch-river) into Melton Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is
+  about 33,840 acres, and the pool outline runs far up the Clinch and Powell arms — expect shorelines
+  and access points to follow the impounded river channels.
+
+officialSources:
+  - label: USGS Water Data — monitoring location 03533000
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+  - label: TVA — Norris Reservoir lake levels & release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,73 @@
+id: sucker
+commonName: White Sucker
+sciName: Catostomus commersonii
+order: Cypriniformes
+family: Catostomidae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - bronze-gray
+    - olive-bronze
+  mouthparts: sucking-deposit
+habitat:
+  - riffle tails
+  - runs
+  - gravel flats
+monthsActiveByRegion:
+  tn-east-holston:
+    - 3
+    - 4
+    - 5
+  tn-northeast-watauga:
+    - 3
+    - 4
+    - 5
+  tn-east-clinch:
+    - 3
+    - 4
+    - 5
+  tn-east-smokies:
+    - 3
+    - 4
+    - 5
+  tn-east-pigeon-frenchbroad:
+    - 3
+    - 4
+    - 5
+  tn-se-hiwassee:
+    - 3
+    - 4
+    - 5
+  tn-cumberland-plateau:
+    - 3
+    - 4
+    - 5
+  tn-upper-cumberland:
+    - 3
+    - 4
+    - 5
+  tn-middle-caney-fork:
+    - 3
+    - 4
+    - 5
+  tn-middle-duck-elk:
+    - 3
+    - 4
+    - 5
+  tn-middle-nashville:
+    - 3
+    - 4
+    - 5
+illustration: illustrations/sucker.svg
+stages:
+  - adult
+notes: "Sucker spawning runs in March and April pepper gravel with loose eggs that trout hoover.
+  A #10-12 pale orange egg or sucker-spawn pattern drifted the seam behind staging suckers is
+  devastating."
+sources:
+  - https://en.wikipedia.org/wiki/Catostomus_commersonii

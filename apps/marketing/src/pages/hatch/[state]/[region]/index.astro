@@ -1,0 +1,118 @@
+---
+/**
+ * /hatch/{state}/{region}/ — programmatic template (ROLE 5).
+ * Renders the actual 12-month hatch chart for the region (non-negotiable #1:
+ * the page answers its query on the first screen — no thin pages).
+ */
+import Base from '../../../../layouts/Base.astro';
+import HatchChartTable from '../../../../components/HatchChartTable.astro';
+import { LAUNCH_STATES, stateById, regionBySlug, regionsForState } from '../../../../data/states';
+import { getStreams, getYearlyHatch, getPatterns } from '../../../../data/load';
+import { monthName } from '../../../../lib/format';
+import { breadcrumbLd, faqLd } from '../../../../lib/seo';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const state of LAUNCH_STATES) {
+    for (const region of regionsForState(state.id)) {
+      paths.push({
+        params: { state: state.id.toLowerCase(), region: region.slug },
+        props: { state, region },
+      });
+    }
+  }
+  return paths;
+}
+
+const { state, region } = Astro.props;
+const charts = getYearlyHatch(region.id);
+const streams = getStreams(state.id).filter((s) => s.regionId === region.id);
+
+// Region's most-recommended patterns: count chart-entry pattern references.
+const patternCounts = new Map<string, number>();
+for (const chart of charts) {
+  for (const entry of chart.entries) {
+    for (const pid of entry.patterns) {
+      patternCounts.set(pid, (patternCounts.get(pid) ?? 0) + entry.abundance);
+    }
+  }
+}
+const topPatterns = [...patternCounts.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 6)
+  .map(([pid]) => getPatterns().find((p) => p.id === pid))
+  .filter((p) => p !== undefined);
+
+const currentMonth = new Date().getMonth() + 1;
+
+const faqs = [
+  {
+    question: `What hatches on ${region.name} in ${monthName(currentMonth)}?`,
+    answer: `The chart below shows month-by-month insect activity for ${region.name}. In ${monthName(currentMonth)}, the highest-abundance activity is ${(charts.find((c) => c.month === currentMonth)?.entries ?? [])
+      .slice()
+      .sort((a, b) => b.abundance - a.abundance)
+      .slice(0, 2)
+      .map((e) => e.taxonId.replace(/-/g, ' '))
+      .join(' and ') || 'typically limited to midges'}. Verify local conditions before you go.`,
+  },
+  {
+    question: 'How is this hatch chart built?',
+    answer:
+      'From the same structured hatch database the Trout app uses offline — taxa keyed by size, tails, gills, body shape, and color, with fly patterns mapped to each insect. Sources are cited per insect in the app.',
+  },
+];
+
+const title = `${region.name} hatch chart — month-by-month (${state.name})`;
+const description = `12-month hatch chart for ${region.name}, ${state.name}: what hatches each month, the fly patterns that imitate it, and the streams it covers. ${region.blurb}`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={`/hatch/${state.id.toLowerCase()}/${region.slug}/`}
+  ld={[
+    faqLd(faqs),
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: `${state.name} hatch charts`, url: `/hatch/${state.id.toLowerCase()}/${region.slug}/` },
+      { name: region.name, url: `/hatch/${state.id.toLowerCase()}/${region.slug}/` },
+    ]),
+  ]}
+>
+  <p class="kicker">{state.name} · hatch chart</p>
+  <h1>{region.name} hatch chart</h1>
+  <p class="lead">{region.blurb}</p>
+
+  <HatchChartTable charts={charts} />
+
+  <h2>Patterns that cover this region</h2>
+  <p>
+    The patterns below show up most often in this region's chart (with their imitated insects). The
+    app adds hook sizes, difficulty ratings, and materials.
+  </p>
+  <ul>
+    {
+      topPatterns.map((p) => (
+        <li>
+          <strong>{p!.name}</strong> ({p!.type}) — imitates:{' '}
+          {p!.imitates.length > 0 ? p!.imitates.map((t) => t.replace(/-/g, ' ')).join(', ') : 'general prey'}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Streams in this region</h2>
+  <ul>
+    {
+      streams.map((s) => (
+        <li>
+          <a href={`/streams/${state.id.toLowerCase()}/${s.id}/`}>{s.name}</a> — {s.waterbodyType}
+          {s.stockingProgram ? ', stocked' : ''}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Frequently asked questions</h2>
+  {faqs.map((f) => <div><h3>{f.question}</h3><p>{f.answer}</p></div>)}
+</Base>

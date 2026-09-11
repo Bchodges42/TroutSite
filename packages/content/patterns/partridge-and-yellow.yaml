@@ -1,0 +1,17 @@
+id: partridge-and-yellow
+name: Partridge & Yellow
+type: wet
+imitates:
+  - yellow-sally
+  - light-cahill
+  - sulphur-dun
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 1
+materials:
+  - yellow silk body
+  - grey partridge soft hackle
+notes: The pale sibling for cahill and sally water.
+license: public-domain

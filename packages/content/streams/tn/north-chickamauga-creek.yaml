@@ -1,0 +1,25 @@
+id: north-chickamauga-creek
+name: North Chickamauga Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-se-hiwassee
+gaugeIds:
+  - "03566535"
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 40
+    max: 250
+    unit: cfs
+notes: Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring
+  stocking in the valley reaches. The Mile Straight gauge helps separate rain events from
+  baseline.
+officialSources:
+  - label: USGS Water Data — monitoring location 03566535
+    url: https://waterdata.usgs.gov/monitoring-location/03566535/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

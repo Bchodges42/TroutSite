@@ -1,0 +1,16 @@
+id: hares-ear-soft-hackle
+name: Hare’s Ear Soft Hackle
+type: wet
+imitates:
+  - march-brown
+  - light-cahill
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 1
+materials:
+  - hare’s ear dubbing
+  - partridge hackle
+notes: Buggy and breathing — good on the dangle at hatch’s end.
+license: public-domain

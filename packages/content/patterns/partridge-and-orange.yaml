@@ -1,0 +1,18 @@
+id: partridge-and-orange
+name: Partridge & Orange
+type: wet
+imitates:
+  - spotted-sedge
+  - blue-winged-olive
+  - little-sister-sedge
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 1
+materials:
+  - orange silk body
+  - grey partridge soft hackle
+notes: The oldest spider pattern in the book — and still a trout assassin on the swing.
+license: public-domain

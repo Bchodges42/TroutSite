@@ -1,0 +1,14 @@
+id: squirmy-wormy
+name: Squirmy Wormy
+type: nymph
+imitates:
+  - aquatic-worm
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - squirmy worm material (red or earthworm brown)
+notes: The notorious wiggling worm — when flows bump, it is simply the truthful fly.
+license: public-domain

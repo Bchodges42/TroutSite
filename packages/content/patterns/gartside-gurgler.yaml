@@ -1,0 +1,19 @@
+id: gartside-gurgler
+name: Gartside Gurgler
+type: streamer
+imitates:
+  - threadfin-shad
+  - common-shiner
+  - fishing-spider
+hookSizes:
+  - 4
+  - 6
+  - 8
+difficulty: 2
+materials:
+  - foam lip
+  - bucktail tail
+  - dubbed body
+notes: Jack Gartside’s topwater waker — gurgle it through dusk flats for surface eats.
+license: attributed
+attribution: Designed by Jack Gartside

@@ -1,0 +1,17 @@
+---
+/**
+ * Inert ad placeholder — ROLE 5 (§2 out-list: no live ads in v1; scaffolding only).
+ * Reserves layout space and makes ZERO network calls. When ads go live in v2
+ * (§13), the provider script mounts into this reserved box on content pages only.
+ */
+export interface Props {
+  /** Where on the page the slot sits — purely descriptive. */
+  label?: string;
+}
+
+const { label = 'Advertisement' } = Astro.props;
+---
+
+<div class="adslot" role="complementary" aria-label={`${label} slot (reserved, inactive in v1)`}>
+  <span>{label} — reserved slot · no ads in v1 · zero network calls</span>
+</div>

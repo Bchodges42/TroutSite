@@ -1,0 +1,17 @@
+id: foam-cicada
+name: Foam Cicada
+type: terrestrial
+imitates:
+  - periodical-cicada
+  - dog-day-cicada
+hookSizes:
+  - 4
+  - 6
+  - 8
+difficulty: 2
+materials:
+  - black and orange foam
+  - rubber legs
+  - wide elk wing
+notes: A big black-and-orange blob — magical in brood years, an August trick every other year.
+license: public-domain

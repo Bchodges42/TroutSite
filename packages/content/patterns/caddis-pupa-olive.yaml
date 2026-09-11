@@ -1,0 +1,20 @@
+id: caddis-pupa-olive
+name: Caddis Pupa (Olive)
+type: nymph
+imitates:
+  - little-sister-sedge
+  - saddle-case-caddis
+  - little-black-sedge
+  - micro-caddis
+  - grannom
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - olive dubbing
+  - partridge hackle
+  - peacock herl head
+notes: The olive pupa — standard equipment below Tennessee dams.
+license: public-domain

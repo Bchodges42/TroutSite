@@ -1,0 +1,85 @@
+id: yellow-sally
+commonName: Yellow Sally
+sciName: Isoperla spp.
+order: Plecoptera
+family: Perlodidae
+sizeRange:
+  - 12
+  - 16
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - yellow
+    - pale-yellow
+  mouthparts: predatory-grasping
+habitat:
+  - riffles
+  - runs
+  - tailwaters
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-upper-cumberland:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-middle-caney-fork:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-middle-duck-elk:
+    - 4
+    - 5
+    - 6
+    - 7
+  tn-middle-nashville:
+    - 4
+    - 5
+    - 6
+    - 7
+illustration: illustrations/yellow-sally.svg
+stages:
+  - nymph
+  - adult
+notes: Bright little yellow stoneflies whose afternoon hatches are a favorite of rising trout in
+  May and June. Slim yellow elk-hair dries are the whole game.
+sources:
+  - https://bugguide.net
+  - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

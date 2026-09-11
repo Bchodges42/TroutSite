@@ -1,0 +1,51 @@
+id: early-black-caddis
+commonName: Early Black Caddis
+sciName: Diplectrona modesta
+order: Trichoptera
+family: Hydropsychidae
+sizeRange:
+  - 18
+  - 22
+keyAttributes:
+  tails: 2
+  gills: filaments
+  bodyShape: slender
+  bodyColor:
+    - black
+    - dark-gray
+  mouthparts: filtering-net
+habitat:
+  - riffles
+  - mountain creeks
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 3
+    - 4
+    - 5
+  tn-east-pigeon-frenchbroad:
+    - 3
+    - 4
+    - 5
+  tn-northeast-watauga:
+    - 3
+    - 4
+    - 5
+  tn-east-clinch:
+    - 3
+    - 4
+    - 5
+  tn-se-hiwassee:
+    - 3
+    - 4
+    - 5
+  tn-cumberland-plateau:
+    - 3
+    - 4
+    - 5
+illustration: illustrations/early-black-caddis.svg
+stages:
+  - adult
+notes: "One of the first caddisfly hatches of the Appalachian year, flying in raw early-spring
+  afternoons. Black #18-20 dries bring creek trout up when mayflies are still absent."
+sources:
+  - https://bugguide.net

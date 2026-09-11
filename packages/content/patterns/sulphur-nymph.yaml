@@ -1,0 +1,17 @@
+id: sulphur-nymph
+name: Sulphur Nymph
+type: nymph
+imitates:
+  - sulphur-dun
+  - pale-evening-dun
+hookSizes:
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - sulphur-orange dubbing
+  - pheasant tail
+  - pale yellow antron
+notes: A slim sulphur-orange crawler nymph — swing it in the last hour before the evening hatch.
+license: public-domain

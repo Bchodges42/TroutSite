@@ -1,0 +1,19 @@
+id: march-brown-nymph
+name: March Brown Nymph
+type: nymph
+imitates:
+  - march-brown
+  - quill-gordon
+  - dark-cahill
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 2
+materials:
+  - mottled brown dubbing
+  - hen hackle legs
+  - mottled turkey wingcase
+  - hare’s ear thorax
+notes: Mottled and squat, matching the big flatheads of spring riffles.
+license: public-domain

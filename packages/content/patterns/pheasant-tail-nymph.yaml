@@ -1,0 +1,27 @@
+id: pheasant-tail-nymph
+name: Pheasant Tail Nymph
+type: nymph
+imitates:
+  - blue-winged-olive
+  - tiny-blue-winged-olive
+  - little-blue-winged-olive
+  - sulphur-dun
+  - pale-evening-dun
+  - little-spiny-crawler
+  - blue-quill
+  - trico
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
+  - 22
+difficulty: 1
+materials:
+  - pheasant tail fibers
+  - peacock herl
+  - copper wire
+notes: The single most useful nymph in the state — slim, dark, and suggestive of nearly every
+  small mayfly.
+license: public-domain

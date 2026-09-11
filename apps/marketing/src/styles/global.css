@@ -1,0 +1,289 @@
+/* ROLE 5 — marketing site styles. Zero JS; system fonts. The shared design
+   tokens from @trout/ui are imported in Base.astro frontmatter (Vite resolves
+   the package specifier from JS; bare @import in CSS doesn't). */
+
+:root {
+  --maxw: 46rem;
+  --maxw-wide: 64rem;
+  --text: var(--trout-color-text, #1e293b);
+  --muted: var(--trout-color-text-muted, #64748b);
+  --primary: var(--trout-color-primary, #15803d);
+  --surface: var(--trout-color-surface, #f8fafc);
+  --line: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--trout-font-body, system-ui, sans-serif);
+  color: var(--text);
+  background: #fff;
+  line-height: 1.65;
+}
+
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+main.wide {
+  max-width: var(--maxw-wide);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  color: var(--text);
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 2.25rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+a {
+  color: var(--primary);
+}
+
+p,
+ul,
+ol {
+  margin: 0.75rem 0;
+}
+
+code {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  font-size: 0.9em;
+}
+
+/* --- header / footer -------------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.site-header .inner {
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: baseline;
+}
+
+.site-header .brand {
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.925rem;
+}
+
+.site-header nav a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-header nav a:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  margin-top: 3rem;
+}
+
+.site-footer .inner {
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2.5rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.site-footer ul {
+  padding-left: 1.1rem;
+}
+
+/* --- data tables ------------------------------------------------------- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.data-table caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.35rem 0;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table thead th {
+  background: var(--surface);
+}
+
+.data-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- cards, badges, disclaimers --------------------------------------- */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+.disclaimer {
+  border-left: 3px solid #f59e0b;
+  background: #fffbeb;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.875rem;
+  margin: 1rem 0;
+}
+
+.score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.score .dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.kicker {
+  color: var(--muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+.lead {
+  font-size: 1.12rem;
+  color: var(--text);
+}
+
+.asof {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* --- ad slot (inert) ---------------------------------------------------- */
+.adslot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  height: 90px;
+  margin: 1.5rem 0;
+}
+
+/* --- newsletter --------------------------------------------------------- */
+.newsletter {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  margin: 1.5rem 0;
+  background: var(--surface);
+}
+
+.newsletter label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.newsletter .row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.newsletter input[type='email'] {
+  flex: 1 1 14rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.newsletter button {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  background: var(--primary);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.newsletter .note {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.newsletter [hidden] {
+  display: none;
+}
+
+abbr[data-title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}

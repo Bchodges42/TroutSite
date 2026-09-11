@@ -1,0 +1,61 @@
+id: periodical-cicada
+commonName: Periodical Cicada
+sciName: Magicicada spp.
+order: Hemiptera
+family: Cicadidae
+sizeRange:
+  - 2
+  - 6
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - black
+    - orange-veined
+  mouthparts: piercing-sucking
+habitat:
+  - forested banks
+  - flooded timber during brood years
+monthsActiveByRegion:
+  tn-east-smokies:
+    - 5
+    - 6
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+  tn-northeast-watauga:
+    - 5
+    - 6
+  tn-east-clinch:
+    - 5
+    - 6
+  tn-se-hiwassee:
+    - 5
+    - 6
+  tn-cumberland-plateau:
+    - 5
+    - 6
+  tn-upper-cumberland:
+    - 5
+    - 6
+  tn-middle-caney-fork:
+    - 5
+    - 6
+  tn-middle-duck-elk:
+    - 5
+    - 6
+  tn-middle-nashville:
+    - 5
+    - 6
+  tn-east-holston:
+    - 5
+    - 6
+illustration: illustrations/periodical-cicada.svg
+stages:
+  - adult
+notes: "Broods emerge on 13- and 17-year cycles (Brood XIX blanketed Tennessee in 2024; next
+  great overlap is 2037). In brood years a size #4-6 black-and-orange cicada is the biggest
+  dry-fly event of a lifetime."
+sources:
+  - https://en.wikipedia.org/wiki/Magicicada

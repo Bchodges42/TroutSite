@@ -1,0 +1,17 @@
+id: bwo-emerger
+name: BWO Emerger (Loop Wing)
+type: emerger
+imitates:
+  - blue-winged-olive
+  - little-blue-winged-olive
+hookSizes:
+  - 18
+  - 20
+  - 22
+difficulty: 3
+materials:
+  - olive dubbing
+  - looped dun microfibbet
+  - flashback shellback
+notes: The trapped-look loop wing suggests a dun struggling at the film.
+license: public-domain

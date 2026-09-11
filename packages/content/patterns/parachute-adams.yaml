@@ -1,0 +1,23 @@
+id: parachute-adams
+name: Parachute Adams
+type: dry
+imitates:
+  - blue-winged-olive
+  - march-brown
+  - sulphur-dun
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 2
+materials:
+  - gray dubbing
+  - grizzly parachute hackle
+  - white poly post
+notes: The parachute retune of the Adams — the single most-rigged dry on Tennessee tailwaters.
+license: public-domain

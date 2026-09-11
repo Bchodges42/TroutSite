@@ -1,0 +1,14 @@
+id: woods-reservoir
+name: Woods Reservoir
+stateId: TN
+waterbodyType: lake
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and
+  Manchester (Franklin County), open to public fishing.
+officialSources:
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

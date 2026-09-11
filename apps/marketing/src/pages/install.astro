@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const title = 'Add Trout to your home screen (iOS, Android, desktop)';
+const description =
+  'Install the Trout PWA on iPhone, Android, or desktop in under a minute. No app store, no account — it works offline once installed.';
+---
+
+<Base title={title} description={description} path="/install/">
+  <h1>Add Trout to your home screen</h1>
+  <p class="lead">
+    Trout is a PWA — a web app that installs from the browser itself. No app store, no download
+    page, no account. Once installed it launches full-screen and works in airplane mode.
+  </p>
+
+  <h2>iPhone / iPad (Safari)</h2>
+  <ol>
+    <li>Open the Trout app URL in <strong>Safari</strong> (the share-sheet install only works in Safari).</li>
+    <li>Tap the <strong>Share</strong> button (square with an arrow).</li>
+    <li>Scroll and tap <strong>Add to Home Screen</strong>.</li>
+    <li>Name it and tap <strong>Add</strong>. <em>(Placeholder screenshot: SVG icon of a phone with the share sheet open.)</em></li>
+  </ol>
+  <p>
+    Note: on iOS, keep the app installed for offline use — opening it inside a browser tab may not
+    use the offline cache.
+  </p>
+
+  <h2>Android (Chrome, Edge, Samsung Internet)</h2>
+  <ol>
+    <li>Open the Trout app URL.</li>
+    <li>Tap the browser menu (⋮) and choose <strong>Add to Home screen</strong> / <strong>Install app</strong>.</li>
+    <li>Confirm. <em>(Placeholder screenshot: SVG icon of the Android install banner.)</em></li>
+  </ol>
+
+  <h2>Windows / macOS / Linux (desktop)</h2>
+  <ol>
+    <li>Open the Trout app URL in Chrome or Edge.</li>
+    <li>Click the <strong>install icon</strong> in the address bar (a monitor with a down-arrow), or find "Install Trout" in the browser menu.</li>
+    <li>The app opens in its own window and keeps working offline.</li>
+  </ol>
+
+  <h2>First launch checklist (before you lose signal)</h2>
+  <ul>
+    <li>Open the app once <strong>with signal</strong> — it precaches the hatch database and the latest conditions.</li>
+    <li>Wait for the "data updated" chip to confirm the offline payload is stored.</li>
+    <li>Try it: airplane mode on, open the hatch key, work an observation. That's how it works at the river.</li>
+  </ul>
+
+  <NewsletterForm heading="Get the launch notes (and later, the stocking digest)" />
+</Base>

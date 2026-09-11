@@ -1,0 +1,20 @@
+id: rs2-emerger
+name: RS2 Emerger
+type: emerger
+imitates:
+  - blue-winged-olive
+  - tiny-blue-winged-olive
+  - olive-midge
+hookSizes:
+  - 18
+  - 20
+  - 22
+  - 24
+difficulty: 2
+materials:
+  - grey microfibbet tails
+  - olive dubbing
+  - dun CDC or antron wing
+notes: Rim Chung’s sparse Devonshire-silk-style emerger — an eternal pick for picky tailwater risers.
+license: attributed
+attribution: Designed by Rim Chung (Colorado)

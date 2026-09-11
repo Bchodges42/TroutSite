@@ -1,0 +1,20 @@
+id: mccutcheon-creek
+name: McCutcheon Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 5
+    max: 40
+    unit: cfs
+notes: TWRA winter-stocked Maury County creek — a Columbia-area close-to-home trout stop.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

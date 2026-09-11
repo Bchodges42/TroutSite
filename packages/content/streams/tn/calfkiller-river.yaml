@@ -1,0 +1,24 @@
+id: calfkiller-river
+name: Calfkiller River
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-caney-fork
+gaugeIds:
+  - "03419530"
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 30
+    max: 200
+    unit: cfs
+notes: Spring-fed-ish White County river with TWRA spring stocking and a loyal following; the
+  Sparta gauge runs low in dry summers.
+officialSources:
+  - label: USGS Water Data — monitoring location 03419530
+    url: https://waterdata.usgs.gov/monitoring-location/03419530/
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

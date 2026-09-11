@@ -1,0 +1,18 @@
+id: yellow-sally-dry
+name: Yellow Sally Dry
+type: dry
+imitates:
+  - yellow-sally
+  - little-golden-stone
+  - little-green-stone
+hookSizes:
+  - 12
+  - 14
+  - 16
+difficulty: 2
+materials:
+  - yellow dubbing
+  - pale yellow elk hair
+  - light ginger hackle
+notes: Bright, slim and high-riding — the June afternoon dry fly.
+license: public-domain

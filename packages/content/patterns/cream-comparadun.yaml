@@ -1,0 +1,20 @@
+id: cream-comparadun
+name: Cream Comparadun
+type: dry
+imitates:
+  - cream-cahill
+  - pale-evening-dun
+  - anglers-curse
+hookSizes:
+  - 14
+  - 16
+  - 18
+  - 20
+difficulty: 3
+materials:
+  - cream dubbing
+  - cream deer hair wing
+  - z-lon shuck
+notes: The pale-water version of the comparadun silhouette.
+license: attributed
+attribution: Comparadun style developed by Al Caucci & Bob Nastasi

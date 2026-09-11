@@ -1,0 +1,19 @@
+id: clouser-crayfish
+name: Clouser Crayfish
+type: nymph
+imitates:
+  - crayfish
+hookSizes:
+  - 4
+  - 6
+  - 8
+  - 10
+difficulty: 3
+materials:
+  - olive or rust dubbing
+  - polarfiber claws
+  - dumbbell eyes
+  - mottled shellback
+notes: Bob Clouser’s crayfish — dead-drift it, then hop it off the bottom.
+license: attributed
+attribution: Designed by Bob Clouser (Pennsylvania)

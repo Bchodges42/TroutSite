@@ -1,0 +1,1217 @@
+[
+  {
+    "regionId": "tn-east-holston",
+    "month": 1,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "pheasant-tail-nymph",
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge",
+          "mercury-midge"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 2,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2",
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge",
+          "mercury-midge"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 3,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 4,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 4,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "sulphur",
+        "stage": "nymph",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 5,
+    "entries": [
+      {
+        "taxonId": "sulphur",
+        "stage": "dun",
+        "timeOfDay": "evening",
+        "abundance": 5,
+        "patterns": [
+          "sulphur-comparadun",
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "adult",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "elk-hair-caddis"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "rs2"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 6,
+    "entries": [
+      {
+        "taxonId": "sulphur",
+        "stage": "dun",
+        "timeOfDay": "evening",
+        "abundance": 4,
+        "patterns": [
+          "sulphur-comparadun"
+        ]
+      },
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "adult",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "elk-hair-caddis"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "flying-ant"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 7,
+    "entries": [
+      {
+        "taxonId": "sulphur",
+        "stage": "spinner",
+        "timeOfDay": "evening",
+        "abundance": 3,
+        "patterns": [
+          "sulphur-comparadun"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "adult",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "mercury-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 8,
+    "entries": [
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 4,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "adult",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "sulphur",
+        "stage": "dun",
+        "timeOfDay": "evening",
+        "abundance": 2,
+        "patterns": [
+          "sulphur-comparadun"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 9,
+    "entries": [
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 10,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 11,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 4,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge",
+          "mercury-midge"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-east-holston",
+    "month": 12,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "pheasant-tail-nymph",
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 1,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 2,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 3,
+    "entries": [
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 4,
+    "entries": [
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 4,
+        "patterns": [
+          "elk-hair-caddis"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 5,
+    "entries": [
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 4,
+        "patterns": [
+          "elk-hair-caddis"
+        ]
+      },
+      {
+        "taxonId": "sulphur",
+        "stage": "dun",
+        "timeOfDay": "evening",
+        "abundance": 2,
+        "patterns": [
+          "sulphur-comparadun"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "flying-ant"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 6,
+    "entries": [
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "elk-hair-caddis"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "adult",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "mercury-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 7,
+    "entries": [
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 8,
+    "entries": [
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "adult",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 9,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "flying-ant"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 10,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 11,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-se-hiwassee",
+    "month": 12,
+    "entries": [
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 1,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge",
+          "mercury-midge"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 2,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      },
+      {
+        "taxonId": "black-fly-larva",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 3,
+    "entries": [
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "rs2"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 4,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "larva",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 5,
+    "entries": [
+      {
+        "taxonId": "sulphur",
+        "stage": "dun",
+        "timeOfDay": "evening",
+        "abundance": 3,
+        "patterns": [
+          "sulphur-comparadun"
+        ]
+      },
+      {
+        "taxonId": "spotted-sedge",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "elk-hair-caddis"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 6,
+    "entries": [
+      {
+        "taxonId": "sulphur",
+        "stage": "dun",
+        "timeOfDay": "evening",
+        "abundance": 2,
+        "patterns": [
+          "sulphur-comparadun"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 7,
+    "entries": [
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "olive-scud"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 8,
+    "entries": [
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 3,
+        "patterns": [
+          "flying-ant"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "olive-scud"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 9,
+    "entries": [
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "olive-scud"
+        ]
+      },
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 2,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "terrestrial-ant",
+        "stage": "adult",
+        "timeOfDay": "pm",
+        "abundance": 2,
+        "patterns": [
+          "flying-ant"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 10,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "olive-scud"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "nymph",
+        "timeOfDay": "am",
+        "abundance": 2,
+        "patterns": [
+          "pheasant-tail-nymph"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 11,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge",
+          "mercury-midge"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      },
+      {
+        "taxonId": "blue-winged-olive",
+        "stage": "dun",
+        "timeOfDay": "am",
+        "abundance": 3,
+        "patterns": [
+          "rs2"
+        ]
+      }
+    ]
+  },
+  {
+    "regionId": "tn-middle-caney-fork",
+    "month": 12,
+    "entries": [
+      {
+        "taxonId": "midge",
+        "stage": "larva",
+        "timeOfDay": "midday",
+        "abundance": 4,
+        "patterns": [
+          "zebra-midge"
+        ]
+      },
+      {
+        "taxonId": "sowbug",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "gray-sowbug"
+        ]
+      },
+      {
+        "taxonId": "scud",
+        "stage": "nymph",
+        "timeOfDay": "midday",
+        "abundance": 3,
+        "patterns": [
+          "olive-scud"
+        ]
+      }
+    ]
+  }
+]

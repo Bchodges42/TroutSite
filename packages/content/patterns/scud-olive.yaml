@@ -1,0 +1,18 @@
+id: scud-olive
+name: Scud (Olive)
+type: nymph
+imitates:
+  - scud
+  - small-scud
+hookSizes:
+  - 12
+  - 14
+  - 16
+  - 18
+difficulty: 2
+materials:
+  - olive dubbing
+  - clear shellback
+  - hare’s ear
+notes: The standard weedbed scud — fish it slow, near the bottom.
+license: public-domain

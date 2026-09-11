@@ -1,0 +1,23 @@
+id: wilbur-lake
+name: Wilbur Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-northeast-watauga
+gaugeIds:
+  - "03484000"
+  - "03483980"
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on
+  the Watauga River in Carter County. Receives Watauga Dam releases via the
+  short riverine reach (watauga-river-wilbur-reach) and discharges through
+  Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River
+  (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).
+officialSources:
+  - label: USGS Water Data — monitoring location 03484000
+    url: https://waterdata.usgs.gov/monitoring-location/03484000/
+  - label: TVA — Watauga/Wilbur dam release schedule
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

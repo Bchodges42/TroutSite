@@ -1,0 +1,79 @@
+id: sulphur-dun
+commonName: Sulphur Dun
+sciName: Ephemerella dorothea
+order: Ephemeroptera
+family: Ephemerellidae
+sizeRange:
+  - 14
+  - 18
+keyAttributes:
+  tails: 3
+  gills: lamellae
+  bodyShape: slender
+  bodyColor:
+    - cream
+    - pale-yellow
+    - sulphur-orange
+  mouthparts: chewing-collector
+habitat:
+  - riffles
+  - tailwaters
+  - seams
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  tn-middle-caney-fork:
+    - 5
+    - 6
+    - 7
+  tn-middle-duck-elk:
+    - 5
+    - 6
+    - 7
+  tn-east-smokies:
+    - 5
+    - 6
+    - 7
+  tn-east-pigeon-frenchbroad:
+    - 5
+    - 6
+    - 7
+  tn-se-hiwassee:
+    - 5
+    - 6
+    - 7
+  tn-upper-cumberland:
+    - 5
+    - 6
+    - 7
+  tn-cumberland-plateau:
+    - 5
+    - 6
+    - 7
+illustration: illustrations/sulphur-dun.svg
+stages:
+  - nymph
+  - dun
+  - spinner
+notes: Tennessee’s signature late-spring hatch — pale duns drift long and lazy in low light, and
+  the South Holston and Watauga carry famously long sulphur seasons. Nymphs are clumsy drifters
+  during emergence, so swing soft hackles.
+sources:
+  - https://en.wikipedia.org/wiki/Ephemerella
+  - https://bugguide.net

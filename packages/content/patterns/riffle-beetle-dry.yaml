@@ -1,0 +1,16 @@
+id: riffle-beetle-dry
+name: Riffle Beetle Dry
+type: dry
+imitates:
+  - riffle-beetle
+hookSizes:
+  - 16
+  - 18
+  - 20
+difficulty: 2
+materials:
+  - black dubbing
+  - black elk hair wing
+  - grizzly hackle
+notes: A tiny black beetle silhouette for the tailwater riffle-beetle hatch.
+license: public-domain

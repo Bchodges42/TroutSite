@@ -1,0 +1,145 @@
+id: sculpin
+commonName: Banded Sculpin
+sciName: Cottus carolinae
+order: Scorpaeniformes
+family: Cottidae
+sizeRange:
+  - 4
+  - 10
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: robust
+  bodyColor:
+    - mottled-brown-gray
+    - olive-gray
+  mouthparts: predatory-grasping
+habitat:
+  - boulders
+  - riffles
+  - under rocks
+monthsActiveByRegion:
+  tn-east-holston:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-northeast-watauga:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-clinch:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-smokies:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-east-pigeon-frenchbroad:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-se-hiwassee:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-cumberland-plateau:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-caney-fork:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+  tn-middle-duck-elk:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+illustration: illustrations/sculpin.svg
+stages:
+  - adult
+notes: Big-mouthed, big-headed bottom huggers — a favorite large-trout meal on tailwaters and
+  freestones alike. Mottled sculpin patterns fished tight to the bottom produce year-round.
+sources:
+  - https://en.wikipedia.org/wiki/Cottus_carolinae

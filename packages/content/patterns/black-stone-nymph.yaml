@@ -1,0 +1,23 @@
+id: black-stone-nymph
+name: Black Stone Nymph
+type: nymph
+imitates:
+  - giant-black-stone
+  - early-black-stone
+  - mottled-willowfly
+  - needlefly
+  - roachfly
+  - little-brown-stone
+hookSizes:
+  - 6
+  - 8
+  - 10
+  - 12
+difficulty: 2
+materials:
+  - black dubbing
+  - black goose biots
+  - dark hen hackle
+  - lead-free wire
+notes: The heavyweight dark stone for spring freestones and winter tailwaters alike.
+license: public-domain

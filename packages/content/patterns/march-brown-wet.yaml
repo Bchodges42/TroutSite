@@ -1,0 +1,15 @@
+id: march-brown-wet
+name: March Brown Wet (Spider)
+type: wet
+imitates:
+  - march-brown
+hookSizes:
+  - 10
+  - 12
+  - 14
+difficulty: 1
+materials:
+  - mottled brown dubbing
+  - ginger hen soft hackle
+notes: The traditional swung-fly answer during the hatch.
+license: public-domain

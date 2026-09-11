@@ -1,0 +1,83 @@
+id: longnose-dace
+commonName: Longnose Dace
+sciName: Rhinichthys cataractae
+order: Cypriniformes
+family: Cyprinidae
+sizeRange:
+  - 10
+  - 16
+keyAttributes:
+  tails: 2
+  gills: none
+  bodyShape: slender
+  bodyColor:
+    - olive-gray
+    - dark-olive
+  mouthparts: omnivorous
+habitat:
+  - fast riffles
+  - boulders
+monthsActiveByRegion:
+  tn-east-holston:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-northeast-watauga:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-clinch:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-smokies:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-east-pigeon-frenchbroad:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-se-hiwassee:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  tn-cumberland-plateau:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+illustration: illustrations/longnose-dace.svg
+stages:
+  - adult
+notes: Suction-mouthed riffle specialists hugging the fastest water. Dark olive mini-streamers
+  dead-drifted through heavy seams imitate them.
+sources:
+  - https://en.wikipedia.org/wiki/Rhinichthys

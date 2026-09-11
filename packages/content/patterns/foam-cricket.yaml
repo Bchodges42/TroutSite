@@ -1,0 +1,15 @@
+id: foam-cricket
+name: Foam Cricket
+type: terrestrial
+imitates:
+  - cricket
+hookSizes:
+  - 8
+  - 10
+  - 12
+difficulty: 1
+materials:
+  - black foam
+  - rubber legs
+notes: Black, chunky, high-floating — the change-up after hopper refusals.
+license: public-domain

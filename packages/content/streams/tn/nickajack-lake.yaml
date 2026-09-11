@@ -1,0 +1,22 @@
+id: nickajack-lake
+name: Nickajack Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-se-hiwassee
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: >-
+  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles
+  through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;
+  below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA
+  lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban
+  Chattanooga reach above it. Verify TVA release schedules before paddling the gorge.
+
+officialSources:
+  - label: USGS Water Data — monitoring location 03570525
+    url: https://waterdata.usgs.gov/monitoring-location/03570525/
+  - label: TVA — Nickajack Reservoir lake levels
+    url: https://www.tva.com/environment/lake-levels
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

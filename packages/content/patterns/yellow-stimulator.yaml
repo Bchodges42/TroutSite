@@ -1,0 +1,20 @@
+id: yellow-stimulator
+name: Yellow Stimulator
+type: dry
+imitates:
+  - yellow-sally
+  - golden-stone
+  - little-golden-stone
+hookSizes:
+  - 10
+  - 12
+  - 14
+  - 16
+difficulty: 3
+materials:
+  - yellow elk hair
+  - palmered ginger hackle
+  - orange dubbing
+notes: Randall Kaufmann’s high-floating stonefly attractor — doubles as a hopper in a pinch.
+license: attributed
+attribution: Stimulator style credited to Jim Slattery, popularized by Randall Kaufmann
