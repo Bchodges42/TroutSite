@@ -1,9 +1,5 @@
 import { atlas, atlasLight } from './mapTokens';
-import {
-  EMPTY_FLOW_SOURCE,
-  FLOW_ARROW_ICON,
-  FLOW_ARROWS_SOURCE,
-} from './flowArrows';
+import { EMPTY_FLOW_SOURCE, FLOW_ARROW_ICON, FLOW_ARROWS_SOURCE } from './flowArrows';
 import type {
   StyleSpecification,
   FilterSpecification,
@@ -110,6 +106,9 @@ export function atlasStyle(
         type: 'geojson',
         data: EMPTY_FLOW_SOURCE,
       } as GeoJSONSourceSpecification,
+      // PROOF (GEOVALID-2): full NHD named network for the Caney Fork region —
+      // zoom-gated minor-water layer under evaluation. Temporary, proof-only.
+      network: { type: 'geojson', data: '/atlas/network-caneyfork.geojson' },
     },
     layers: [
       {
@@ -317,6 +316,20 @@ export function atlasStyle(
           ],
         },
       },
+      // PROOF (GEOVALID-2): zoom-gated named-creek network (Caney Fork region).
+      // Invisible below zoom 10.8 and fades in — the state view stays clean.
+      {
+        id: 'network-minor',
+        type: 'line' as const,
+        source: 'network',
+        minzoom: 10.8,
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#5f8fb8',
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 10.8, 0, 12, 0.95],
+          'line-width': ['interpolate', ['linear'], ['zoom'], 10.8, 1, 13.5, 1.8],
+        },
+      },
       // Rivers — casing (paper-tone halo) renders beneath the water corridor so
       // bends read clearly against the ground. LINESTRING ONLY — see note above.
       {
@@ -422,12 +435,7 @@ export function atlasStyle(
             ['boolean', ['feature-state', 'hidden'], false],
             0,
             ['boolean', ['feature-state', 'assessed'], false],
-            [
-              'case',
-              ['boolean', ['feature-state', 'dimmed'], false],
-              0.4,
-              1,
-            ],
+            ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.4, 1],
             0,
           ],
         },
@@ -553,17 +561,7 @@ export function atlasStyle(
             ['get', 'hatchColor'],
             t.sulphur,
           ],
-          'line-width': [
-            'interpolate',
-            ['exponential', 2],
-            ['zoom'],
-            5.6,
-            3.5,
-            9,
-            9,
-            13,
-            13,
-          ],
+          'line-width': ['interpolate', ['exponential', 2], ['zoom'], 5.6, 3.5, 9, 9, 13, 13],
           // Zoom must be the TOP-LEVEL interpolate input (style-spec), so the
           // per-feature case lives in each stop's output instead.
           'line-opacity': [
@@ -772,21 +770,25 @@ export function atlasStyle(
       } as GeoJSONSourceSpecification;
       // minzoom/maxzoom are TOP-LEVEL layer properties in MapLibre, never
       // layout properties (an invalid spec fails the whole style load).
-      style.layers.splice(style.layers.findIndex((l) => l.id === 'lakes-fill'), 0, {
-        id: `roads-${i}`,
-        type: 'line' as const,
-        source: `roads-${i}`,
-        ...(minZoom ? { minzoom: minZoom } : {}),
-        layout: {
-          'line-cap': 'round' as const,
-          'line-join': 'round' as const,
+      style.layers.splice(
+        style.layers.findIndex((l) => l.id === 'lakes-fill'),
+        0,
+        {
+          id: `roads-${i}`,
+          type: 'line' as const,
+          source: `roads-${i}`,
+          ...(minZoom ? { minzoom: minZoom } : {}),
+          layout: {
+            'line-cap': 'round' as const,
+            'line-join': 'round' as const,
+          },
+          paint: {
+            'line-color': t.road,
+            'line-width': ['interpolate', ['linear'], ['zoom'], 8, 0.6, 11, 1.6],
+            'line-opacity': 0.85,
+          },
         },
-        paint: {
-          'line-color': t.road,
-          'line-width': ['interpolate', ['linear'], ['zoom'], 8, 0.6, 11, 1.6],
-          'line-opacity': 0.85,
-        },
-      });
+      );
     });
   }
 
