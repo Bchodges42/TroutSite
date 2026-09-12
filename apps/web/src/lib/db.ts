@@ -38,6 +38,11 @@ export interface LogbookEntry {
 
 export interface SettingsRecord {
   tempUnit: 'C' | 'F';
+  /** F6 site-wide species mode: 'trout' (default) shows trout-condition scores
+   *  for trout waters; 'all' shows every water and, where the snapshot has it,
+   *  the water's cataloged species fishability. The map's ?species= URL param
+   *  overrides this per link (shareable views). */
+  speciesMode: 'trout' | 'all';
   reduceMotion: boolean;
   // T2-33: `defaultState` removed — the setting silently emptied every
   // state-scoped page when changed. Tennessee is the only served state.

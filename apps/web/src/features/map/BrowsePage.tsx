@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSettingsContext } from '../../lib/settings';
 import { useRiverMapData } from './useRiverMapData';
 import { regionName } from '../../data/regions';
 import { ScorePill } from '../../components/ScorePill';
@@ -7,6 +8,8 @@ import { rememberedMapUrl } from '../../lib/riverContext';
 import { decisionStatusText, toWaterDecisionView } from './waterDecision';
 export function BrowsePage() {
   const data = useRiverMapData();
+  const { settings } = useSettingsContext();
+  const speciesMode = settings.speciesMode;
   const [search, setSearch] = useState('');
   const rows = data.features
     .filter((f) =>
@@ -63,13 +66,13 @@ export function BrowsePage() {
                   {f.species === 'trout' &&
                   f.status !== 'no-data' &&
                   f.score !== null &&
-                  toWaterDecisionView(f, 'trout', new Date().getMonth() + 1).displayMetric ===
+                  toWaterDecisionView(f, speciesMode, new Date().getMonth() + 1).displayMetric ===
                     'trout-condition' ? (
                     <ScorePill score={f.score} />
                   ) : (
                     <span className="muted text-sm">
                       {decisionStatusText(
-                        toWaterDecisionView(f, 'trout', new Date().getMonth() + 1),
+                        toWaterDecisionView(f, speciesMode, new Date().getMonth() + 1),
                         f,
                       )}
                     </span>

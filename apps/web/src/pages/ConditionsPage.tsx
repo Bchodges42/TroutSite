@@ -274,7 +274,7 @@ export function ConditionsPage() {
           </p>
           <ul className="mt-3 flex flex-col gap-2">
             {searchRows.map((row) => (
-              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} />
+              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} speciesMode={settings.speciesMode} />
             ))}
           </ul>
         </section>
@@ -285,7 +285,7 @@ export function ConditionsPage() {
           </p>
           <ul className="mt-3 flex flex-col gap-2">
             {nearRows.map((row) => (
-              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} />
+              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} speciesMode={settings.speciesMode} />
             ))}
           </ul>
         </section>
@@ -296,12 +296,14 @@ export function ConditionsPage() {
             note="Big water, gauged around the clock — best scores first."
             rows={tailwaterRows}
             tempUnit={settings.tempUnit}
+            speciesMode={settings.speciesMode}
           />
           <WaterSection
             title="Recently observed"
             note="Newest gauge observations across the state."
             rows={recentRows}
             tempUnit={settings.tempUnit}
+            speciesMode={settings.speciesMode}
           />
           <p className="muted text-sm mt-6">
             Looking for a specific creek? Search above — {totalCount} waters are in the catalog and
@@ -325,11 +327,13 @@ function WaterSection({
   note,
   rows,
   tempUnit,
+  speciesMode,
 }: {
   title: string;
   note: string;
   rows: Row[];
   tempUnit: 'C' | 'F';
+  speciesMode: 'trout' | 'all';
 }) {
   if (rows.length === 0) return null;
   return (
@@ -338,7 +342,12 @@ function WaterSection({
       <p className="muted text-sm">{note}</p>
       <ul className="mt-3 flex flex-col gap-2">
         {rows.map((row) => (
-          <ConditionRow key={row.stream.id} {...row} tempUnit={tempUnit} />
+          <ConditionRow
+            key={row.stream.id}
+            {...row}
+            tempUnit={tempUnit}
+            speciesMode={speciesMode}
+          />
         ))}
       </ul>
     </section>
@@ -350,7 +359,8 @@ function ConditionRow({
   snapshot,
   miles,
   tempUnit,
-}: Row & { tempUnit: 'C' | 'F' }) {
+  speciesMode,
+}: Row & { tempUnit: 'C' | 'F'; speciesMode: 'trout' | 'all' }) {
   const hasData = (snapshot?.readings.length ?? 0) > 0;
   const status = statusForScore(snapshot?.score.value ?? null, hasData, snapshot?.score?.assessed);
   // Catalog species verbatim — unknown stays unknown (H3); the decision model
@@ -358,9 +368,11 @@ function ConditionRow({
   const species = stream.species;
   // The selected-month signal rides the decision: seasonal waters read
   // "Out of season"/"Seasonal" instead of a trout band (T1-18/19).
+  // F6: the site-wide species mode drives the decision everywhere (the
+  // fishability metric itself lands with the data layer).
   const decision = toWaterDecisionView(
     { stream, status, score: snapshot?.score?.value ?? null, snapshot, species },
-    'trout',
+    speciesMode,
     new Date().getMonth() + 1,
   );
   const observedAt = newestReadingAt(snapshot?.readings ?? []);

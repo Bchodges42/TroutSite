@@ -5,6 +5,7 @@ import type { SettingsRecord } from './db';
 
 export const DEFAULT_SETTINGS: SettingsRecord = {
   tempUnit: 'F',
+  speciesMode: 'trout',
   reduceMotion: false,
 };
 

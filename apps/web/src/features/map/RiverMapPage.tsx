@@ -16,6 +16,7 @@ import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
 import { decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
+import { useSettingsContext } from '../../lib/settings';
 import { QaPanel } from './qa/QaPanel';
 import { MapLegend } from './MapLegend';
 import { fisheryTypeCounts } from './fisheryType';
@@ -25,6 +26,7 @@ const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
 export function RiverMapPage() {
   const [params, setParams] = useSearchParams();
+  const { settings } = useSettingsContext();
   const location = useLocation();
   const { theme, setTheme } = useTheme();
   const online = useOnline();
@@ -32,7 +34,15 @@ export function RiverMapPage() {
   const tab = tabs.find((t) => t === params.get('tab')) ?? 'Water';
   const month = validMonth(params.get('month'));
   const mode = params.get('mode') === 'hatches' ? 'hatches' : 'conditions';
-  const species = params.get('species') === 'all' ? 'all' : 'trout';
+  // F6: species mode is a site-wide setting; the shareable ?species= URL
+  // override wins when present. ?focus= (TASK 2) picks the species whose
+  // fishability all-fish mode surfaces.
+  const urlSpecies = params.get('species');
+  const species: 'trout' | 'all' =
+    urlSpecies === 'all' || urlSpecies === 'trout'
+      ? urlSpecies
+      : (settings.speciesMode ?? 'trout');
+  const focusSpecies = params.get('focus');
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
   // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
