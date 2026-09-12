@@ -1,3 +1,4 @@
+/* global console, process */
 // Structural validator for public/atlas/rivers.geojson.
 // Checks: WGS84 lon/lat order, regional clip, no empty parts, no NaN,
 // MultiLineString / MultiPolygon / Polygon (interactive lakes) / Point (the

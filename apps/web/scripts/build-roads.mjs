@@ -1,3 +1,4 @@
+/* global Buffer, console, process */
 // Build public/atlas/roads-{major,mid,minor}.geojson + roads-manifest.json
 // from Census TIGER/Line 2024 ROADS ("All Roads") — public domain (US
 // Government work; verdict in docs/roads-sources.md). Context cartography for
@@ -78,9 +79,9 @@ function buildPointInRing(ring) {
   const closed = ring[0] === ring[ring.length - 2] && ring[1] === ring[ring.length - 1];
   const last = ring.length - (closed ? 2 : 0);
   for (let i = 0; i < last; i += 2) {
-    const x1 = ring[i], y1 = ring[i + 1];
+    const _x1 = ring[i], y1 = ring[i + 1];
     const j = (i + 2) % ring.length;
-    const x2 = ring[j], y2 = ring[j + 1];
+    const _x2 = ring[j], y2 = ring[j + 1];
     if (y1 === y2) continue;
     const b0 = Math.max(0, Math.floor((Math.min(y1, y2) - minLat) / BAND));
     const b1 = Math.min(nBands - 1, Math.floor((Math.max(y1, y2) - minLat) / BAND));

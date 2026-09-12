@@ -16,22 +16,27 @@
 //  G6 0 fold-backs + 0 duplicate vertices: collapseHairpins re-run per part
 //     removes nothing (turn angle >135° on segments <60 m)
 //  G7 feature bounds inside its manifest cluster bbox
-//  G8 pid faithfulness: shipped per-pid occurrence counts == source counts
+//  G8 pid faithfulness: shipped per-pid occurrence counts == source counts,
+//     EXCEPT catalog pids (rivers.geojson sourceIds) which the build excludes
+//     by design (T2-55: the network only adds what the catalog does not draw;
+//     shipped pid counts must not leak)
 //     (source ships 90 border-shared pids twice — inherited, not build-added)
 //  G9 coverage reconciliation: emitted-per-unit (from shipped files, grouped
 //     by properties.hu8) == source named-flowline count per JSONL, minus
-//     degenerate drops (units with a gap are re-run through the pipeline)
+//     degenerate drops and catalog-pid exclusions (gapped units re-run the
+//     pipeline)
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { dpSimplify, lineLengthKm, roundCoords } from './nhd_lib.mjs';
+import { catalogPidsFromAsset, dpSimplify, lineLengthKm, roundCoords } from './nhd_lib.mjs';
 import { collapseHairpins } from './nhd-validate-lib.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(repoRoot, 'apps/web/public/atlas/network');
 const hu8Dir = path.join(repoRoot, 'data/nhd/hu8');
 const MAX_FILE_BYTES = 3.5 * 1024 * 1024;
+const catalogPids = catalogPidsFromAsset(path.join(repoRoot, 'apps/web/public/atlas/rivers.geojson'));
 
 const failures = [];
 const fail = (msg) => failures.push(msg);
@@ -175,12 +180,23 @@ for (const [pid, n] of shippedPidCounts) {
   }
 }
 for (const [pid, n] of sourcePidCounts) {
+  if (catalogPids.has(pid)) continue; // excluded by design (T2-55) — must be absent
   if ((shippedPidCounts.get(pid) ?? 0) !== n) {
     pidMismatches++;
     if (pidMismatches <= 5) fail(`G8 pid ${pid}: source ${n}x, shipped ${shippedPidCounts.get(pid) ?? 0}x`);
   }
 }
 check(pidMismatches === 0, `G8 pid occurrence mismatch vs source: ${pidMismatches} pid(s)`);
+{
+  // T2-55 leak check: a catalog pid present in the network layer is exactly the
+  // gray-shadow bug this exclusion exists to kill.
+  const leaked = [...shippedPidCounts.keys()].filter((p) => catalogPids.has(p));
+  check(
+    leaked.length === 0,
+    `G8 ${leaked.length} catalog pid(s) leaked into the network layer, e.g. ${leaked[0] ?? '—'}`,
+  );
+  console.log(`G8 note: ${catalogPids.size} catalog pids (rivers.geojson sourceIds) excluded from the network layer by design (T2-55)`);
+}
 const borderPairs = new Map();
 let borderPidTotal = 0;
 for (const [, units] of sourcePidUnits) {
@@ -209,16 +225,23 @@ for (const [hu8, src] of sourceCounts) {
   if (emitted !== src) gapUnits.push({ hu8, src, emitted });
 }
 check(gapUnits.every(({ src, emitted }) => emitted < src), 'G9 emitted > source is never legitimate');
-// A gap is only legitimate when the missing lines are degenerate: re-run the
-// builder pipeline for gapped units and require an exact count match.
+// A gap is only legitimate when the missing lines are degenerate OR excluded
+// catalog pids (T2-55): re-run the builder pipeline for gapped units and
+// require an exact count match.
 let degenerateTotal = 0;
+let excludedTotal = 0;
 for (const { hu8, src, emitted } of gapUnits) {
   const raw = fs.readFileSync(path.join(hu8Dir, `${hu8}.jsonl`), 'utf8').split('\n').filter(Boolean);
   let expected = 0;
+  let excluded = 0;
   for (const line of raw) {
     const f = JSON.parse(line);
     const coords = f.geometry?.coordinates;
     if (!coords || !f.properties.gnis_name) continue;
+    if (catalogPids.has(String(f.properties.permanent_identifier))) {
+      excluded++;
+      continue;
+    }
     const parts = coords
       .map((c) => collapseHairpins(roundCoords(dpSimplify(c, 20), 5)).coords)
       .filter((c) => c.length >= 2);
@@ -228,15 +251,16 @@ for (const { hu8, src, emitted } of gapUnits) {
     expected === emitted,
     `G9 ${hu8}: pipeline expects ${expected} surviving lines, shipped files carry ${emitted}`,
   );
-  degenerateTotal += src - emitted;
-  console.log(`G9 ${hu8}: source ${src}, emitted ${emitted}, degenerate drops ${src - emitted} (verified by re-run)`);
+  degenerateTotal += src - emitted - excluded;
+  excludedTotal += excluded;
+  console.log(`G9 ${hu8}: source ${src}, emitted ${emitted}, degenerate drops ${src - emitted - excluded}, catalog-excluded ${excluded} (verified by re-run)`);
 }
 for (const [hu8, emitted] of perUnitEmitted) {
   if (!sourceCounts.has(hu8)) fail(`G9 emitted hu8 ${hu8} has no source JSONL`);
 }
 check(
-  totalLines + degenerateTotal === sourceTotal,
-  `G9 totals do not reconcile: ${totalLines} emitted + ${degenerateTotal} drops != ${sourceTotal}`,
+  totalLines + degenerateTotal + excludedTotal === sourceTotal,
+  `G9 totals do not reconcile: ${totalLines} emitted + ${degenerateTotal} drops + ${excludedTotal} catalog-excluded != ${sourceTotal}`,
 );
 
 console.log(
@@ -245,8 +269,8 @@ console.log(
     `${hairpinRemoved} hairpins/duplicates found, total ${Math.round(totalKm).toLocaleString()} km`,
 );
 console.log(
-  `coverage: ${perUnitEmitted.size}/${sourceCounts.size} units emitted, ${gapUnits.length} unit(s) with degenerate-only gaps, ` +
-    `reconciliation ${totalLines + degenerateTotal}/${sourceTotal}`,
+  `coverage: ${perUnitEmitted.size}/${sourceCounts.size} units emitted, ${gapUnits.length} unit(s) with degenerate/catalog-exclusion gaps, ` +
+    `reconciliation ${totalLines + degenerateTotal + excludedTotal}/${sourceTotal} (${excludedTotal} catalog-excluded)`,
 );
 
 if (failures.length > 0) {

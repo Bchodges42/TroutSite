@@ -162,7 +162,7 @@ async function main() {
       if (x < b[0]) b[0] = x; if (y < b[1]) b[1] = y;
       if (x > b[2]) b[2] = x; if (y > b[3]) b[3] = y;
     }
-    const R = ring.map(([x]) => x), Ry = ring.map(([, y]) => y);
+    const _R = ring.map(([x]) => x), _Ry = ring.map(([, y]) => y);
     // area centroid (visual), with first-interior-vertex fallback
     let cx = 0, cy = 0;
     for (let i = 0; i < ring.length - 1; i++) {

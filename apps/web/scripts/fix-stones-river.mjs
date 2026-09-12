@@ -1,3 +1,4 @@
+/* global URL, console */
 // Rebuild the three Stones River waters from the NHDPlus HR take
 // (.atlas-src/nhd/stones.geojson, fetched via fetch-nhd-targets.mjs stones).
 //
@@ -19,7 +20,7 @@ const SNAP = 2e-4; // ~22 m endpoint snap (source is 4 dp ≈ 11 m)
 const atlas = JSON.parse(readFileSync(RIVERS, 'utf8'));
 const take = JSON.parse(readFileSync(TAKE, 'utf8'));
 
-const key = (p) => `${p[0].toFixed(4)},${p[1].toFixed(4)}`;
+const _key = (p) => `${p[0].toFixed(4)},${p[1].toFixed(4)}`;
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 const lineLen = (line) => {
   let sum = 0;

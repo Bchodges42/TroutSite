@@ -55,7 +55,7 @@ const notes = [];
 function fail(id, msg) { errors.push(`FAIL ${id}: ${msg}`); }
 function warn(id, msg) { warns.push(`WARN ${id}: ${msg}`); }
 
-const KM2 = 12392 * Math.cos((36 * Math.PI) / 180);
+const _KM2 = 12392 * Math.cos((36 * Math.PI) / 180);
 function walkPts(r, out) { if (typeof r[0] === 'number') out.push(r); else for (const c of r) walkPts(c, out); }
 function geomPts(geom) { const out = []; walkPts(geom.coordinates, out); return out; }
 function distM(a, b) {
@@ -290,7 +290,7 @@ const CHAINS = [
 for (const c of CHAINS) {
   const f = rivers.get(c.line);
   if (!f) { fail(c.line, 'chain reach missing'); continue; }
-  const targetGeom = c.target.dam
+  const _targetGeom = c.target.dam
     ? { type: 'Point-ish', coords: [DAMS[c.target.dam].coords] }
     : null;
   let best = Infinity;

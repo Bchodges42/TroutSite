@@ -20,7 +20,7 @@ const fc = JSON.parse(readFileSync(join(VERIFIED, 'west-middle.geojson'), 'utf8'
 const topo = JSON.parse(readFileSync(join(VERIFIED, 'west-middle.topology.json'), 'utf8'));
 const topoById = new Map(topo.records.map((r) => [r.featureId, r]));
 
-const LAKE_NOTES = {
+const _LAKE_NOTES = {
   'kentucky-lake': 'Previous: 34 Census county-clip fragments starting at lat 35.25 (Hardin County reach missing). Now: full NHD pool Pickwick Dam → Kentucky Dam (KY line crossed by design); two independent dam sources agree to ~60 m.',
   'pickwick-lake': 'Previous: TN-clipped Census fragment (35.0–35.09 only). Now: full reservoir Wilson Dam (AL) → Pickwick Landing Dam incl. Yellow Creek/Bear Creek arms.',
   'lake-barkley': 'Previous: 9 Census fragments ending at lat 36.40. Now: full NHD pool Barkley Dam → Cheatham tailwater approach, KY line crossed by design. Pool is unnamed in NHD; selected by area + corridor, NHDPlusIDs pinned.',
@@ -85,7 +85,7 @@ for (const spec of ['kentucky-lake', 'pickwick-lake', 'lake-barkley', 'old-hicko
 }
 P('');
 for (const spec of ['shelby-farms-lake', 'cameron-brown-lake', 'edmund-orgill-lake', 'yale-road-park-lake', 'johnson-park-lake', 'valentine-park-pond', 'covington-fbc-pond', 'martin-city-pond', 'milan-city-pond', 'paris-city-park-lake', 'beech-lake', 'lake-graham', 'union-city-reelfoot-pond']) {
-  const e = log.find((x) => x.id === spec);
+  const _e = log.find((x) => x.id === spec);
   P(`- \`${spec}\` — carried over unchanged from the verified STILLWATER lane polygon (aerial-trace/NHD, preview-verified there); re-nested to valid MultiPolygon where the source shipped ring-level coordinates. PASS.`);
 }
 P('');

@@ -1,3 +1,4 @@
+/* global console, process */
 // Fetch + extract official Census TIGER/Line 2024 sources for the atlas.
 // Public domain (U.S. Census Bureau). Downloads once into .atlas-src/
 // (git-ignored); re-runs skip archives that already exist.
@@ -11,7 +12,7 @@
 //
 // Run: node scripts/fetch-atlas-sources.mjs [--check]
 //   --check only lists what is missing (no downloads).
-import { createWriteStream, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { _createWriteStream, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';

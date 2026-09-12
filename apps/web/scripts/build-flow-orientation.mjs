@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global console */
 /**
  * build-flow-orientation.mjs — deterministic downstream-orientation generator.
  *

@@ -42,6 +42,15 @@ export type SpeciesMode = 'trout' | 'all';
  *   - confirmed trout waters with a real assessment render `trout-condition`.
  *   - confirmed trout waters without one render `unassessed` — a missing
  *     assessment is never presented as an assessment.
+ *   - trout waters authored `yearRound: false` are SEASONAL (T1-18/19): the
+ *     catalog documents a winter/cold-months program (see beech-lake.yaml),
+ *     so applicability follows the selected month. The catalog carries the
+ *     fact "not year-round" but no authored month window; the adapter treats
+ *     Nov–Mar as the winter window (conservative, never claims presence in
+ *     summer). Outside it the water is `seasonal-likely-absent`; inside it
+ *     (or with no month given) `seasonal-uncertain`. A seasonal water never
+ *     wears the trout-condition metric — a July "Good" trout score on a
+ *     winter-only pond is exactly the incoherence this state exists to stop.
  */
 export function toWaterDecisionView(
   feature: Pick<
@@ -49,12 +58,27 @@ export function toWaterDecisionView(
     'stream' | 'status' | 'score' | 'snapshot' | 'species'
   >,
   mode: SpeciesMode,
+  month?: number,
 ): WaterDecisionView {
   const warmwater = feature.species === 'warmwater';
   const speciesUnknown = feature.species == null;
   const assessed = feature.status !== 'no-data' && feature.score !== null;
   const reasons = feature.snapshot?.score.reasons ?? [];
-
+  // Winter window for yearRound:false programs. 1-based months.
+  const winterMonth = month === undefined || [11, 12, 1, 2, 3].includes(month);
+  const seasonal =
+    feature.species === 'trout' && feature.stream.yearRound === false
+      ? winterMonth
+        ? ('seasonal-uncertain' as const)
+        : ('seasonal-likely-absent' as const)
+      : null;
+  const troutApplicability = seasonal ?? (warmwater
+    ? ('not-trout' as const)
+    : speciesUnknown
+      ? ('unknown' as const)
+      : assessed
+        ? ('confirmed-current' as const)
+        : ('unknown' as const));
   return {
     waterId: feature.stream.id,
     visibility:
@@ -63,23 +87,29 @@ export function toWaterDecisionView(
           ? 'deemphasize'
           : 'exclude'
         : 'include',
-    troutApplicability: warmwater
-      ? 'not-trout'
-      : speciesUnknown
-        ? 'unknown'
-        : assessed
-          ? 'confirmed-current'
-          : 'unknown',
-    // Only a CONFIRMED trout water with a real assessment may wear the trout
-    // metric. Unknown species never borrow it, even when gauges exist.
-    displayMetric: feature.species === 'trout' && assessed ? 'trout-condition' : 'unassessed',
+    troutApplicability,
+    // Only a CONFIRMED, in-season trout water with a real assessment may wear
+    // the trout metric. Unknown species and out-of-season waters never borrow
+    // it, even when gauges exist.
+    displayMetric: troutApplicability === 'confirmed-current' && assessed ? 'trout-condition' : 'unassessed',
     // No generic fishability source exists in the current pipeline. The field
     // stays undefined rather than borrowing the trout score.
     fishability: undefined,
-    confidence: assessed && feature.species === 'trout' ? (feature.snapshot?.readings.length ? 'high' : 'medium') : 'low',
+    confidence: troutApplicability === 'confirmed-current' && assessed
+      ? (feature.snapshot?.readings.length ? 'high' : 'medium')
+      : 'low',
     reasons,
     cautions: reasons.filter((r) => /dangerously|avoid stressing|heat|flushing/i.test(r)),
   };
+}
+
+/** The catalog's seasonal fact, phrased for the surface the visitor is on. */
+export function seasonalChipText(view: Pick<WaterDecisionView, 'troutApplicability'>): string | null {
+  if (view.troutApplicability === 'seasonal-likely-absent')
+    return 'Winter program — out of season';
+  if (view.troutApplicability === 'seasonal-uncertain')
+    return 'Winter program — seasonal fishery';
+  return null;
 }
 
 /** Plain-language label for the metric a surface is displaying. */
@@ -107,6 +137,8 @@ export function decisionStatusText(
           ? 'Poor'
           : 'Unassessed';
   }
+  if (view.troutApplicability === 'seasonal-likely-absent') return 'Out of season';
+  if (view.troutApplicability === 'seasonal-uncertain') return 'Seasonal';
   if (view.displayMetric === 'fishability') {
     return view.fishability && view.fishability !== 'unknown'
       ? view.fishability.charAt(0).toUpperCase() + view.fishability.slice(1)

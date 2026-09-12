@@ -1,3 +1,4 @@
+/* global URL, console */
 // Rebuild tellico-river + citico-creek (canonical-only legacy TIGER LINEARWATER
 // features) from the NHDPlus HR takes in .atlas-src/nhd/{tellico,citico}.geojson
 // (fetched by scripts/fetch-nhd-fixes.mjs). Public domain (USGS).

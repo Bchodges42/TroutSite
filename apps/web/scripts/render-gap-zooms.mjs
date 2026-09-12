@@ -6,7 +6,7 @@
  * endpoints marked, plus the delivered lakes and imagery context.
  * QA artifact only. Run: node scripts/render-gap-zooms.mjs [id …]
  */
-import { readFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, mkdirSync, _existsSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -96,7 +96,7 @@ for (const seam of SEAMS) {
   }
   // mark every chain endpoint near the gap
   for (const l of f.geometry.coordinates) {
-    for (const [k, e] of [[0, l[0]], [1, l[l.length - 1]]]) {
+    for (const [_k, e] of [[0, l[0]], [1, l[l.length - 1]]]) {
       const d = Math.hypot((e[0] - gx) * 88, (e[1] - gy) * 111);
       if (d > 0.035) continue;
       const [x, y] = proj(e);

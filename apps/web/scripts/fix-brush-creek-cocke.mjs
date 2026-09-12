@@ -1,3 +1,4 @@
+/* global URL, console */
 // Rebuild brush-creek-cocke (canonical-only legacy TIGER LINEARWATER feature)
 // from the NHDPlus HR take .atlas-src/nhd/brush-cocke.geojson (fetched by
 // scripts/fetch-nhd-fixes.mjs, Cocke-County-scoped envelope). Public domain

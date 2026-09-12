@@ -235,7 +235,7 @@ async function loadCensusPool(counties) {
   return feats;
 }
 const nw = loadJson('nwis-gauges.json');
-function gauge(site) {
+function _gauge(site) {
   const s = nw[site];
   if (!s) throw new Error(`missing NWIS site ${site}`);
   return { coords: [s.lon, s.lat], name: s.name, site };
@@ -701,7 +701,7 @@ function continuity(parts) {
   const used = new Array(parts.length).fill(false);
   const gaps = [];
   let islands = 0;
-  for (const [pt, idx] of endpoints) {
+  for (const [_pt, idx] of endpoints) {
     if (used[idx]) continue;
     // start a new island here
     islands++;
@@ -726,7 +726,7 @@ function continuity(parts) {
   }
   return { islands, maxGapM: gaps.length ? Math.max(...gaps) : 0 };
 }
-function buildRiver(cfg) {
+function _buildRiver(cfg) {
   const { parts, sourceIds } = collectFlowline(cfg);
   if (!parts.length) throw new Error(`no flowline parts for ${cfg.id}`);
   const { islands, maxGapM } = continuity(parts);

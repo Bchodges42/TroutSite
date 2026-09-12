@@ -1,3 +1,4 @@
+/* global console, process */
 // Rebuild the caney-fork-river atlas feature from USGS NHDPlus HR flowlines.
 //
 // SUPERSEDED (2026-09-07, review G2): the single full-course caney-fork-river

@@ -1,8 +1,9 @@
+/* global console */
 // Match Trout's 92 streams to real TIGER/Line linear-water geometry.
 // REAL DATA ONLY: U.S. Census Bureau TIGER/Line 2024 LINEARWATER, Tennessee
 // (public domain). No synthetic coordinates anywhere in this pipeline.
 // Run: node scripts/match-rivers-tiger.mjs
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, _existsSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { open as openShapefile } from 'shapefile';

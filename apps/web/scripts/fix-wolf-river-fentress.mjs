@@ -1,3 +1,4 @@
+/* global URL, console */
 // Rebuild wolf-river-fentress in the east/southeast REGION artifact
 // (atlas-sources/verified/east-southeast.geojson + .topology.json) from the
 // NHDPlus HR take .atlas-src/nhd/wolf-fentress.geojson (fetched by

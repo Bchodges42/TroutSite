@@ -22,7 +22,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   haversine, lineLenKm, geomBBox, outwardBounds, countVerts, buildChain,
-  concatMembers, makeLineFeature,
+  _concatMembers, makeLineFeature,
 } from '../lib-west-middle-fix.mjs';
 
 const webRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');

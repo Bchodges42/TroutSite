@@ -115,7 +115,7 @@ for (const id of ids) {
 }
 
 // ---- 3: promote reference lakes ----
-let promoted = 0, removedPassive = 0;
+let promoted = 0, _removedPassive = 0;
 if (doLakes) {
   const lakes = JSON.parse(readFileSync(lakesPath, 'utf8'));
   const keep = [];
@@ -127,7 +127,7 @@ if (doLakes) {
       if (idx >= 0) rivers.features[idx] = feat;
       else rivers.features.push(feat);
       promoted++;
-      removedPassive++;
+      _removedPassive++;
       console.log(`promoted ${id} (Census AREAWATER → interactive; removed from passive lakes.geojson)`);
     } else {
       keep.push(f);

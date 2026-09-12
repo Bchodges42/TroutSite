@@ -1,3 +1,4 @@
+/* global console, process */
 // Fetch + extract Census TIGER/Line 2024 ROADS ("All Roads") for the 95 TN
 // counties. Public domain (US Government work) — license verdict and source
 // URLs in docs/roads-sources.md. Downloads once into .atlas-src/ (git-ignored);

@@ -1,3 +1,4 @@
+/* global URL, console */
 // fix-woods-elk-system.mjs — connect Woods Reservoir to the Elk River system.
 //
 // Defect (CONNECTIVITY-REPORT §3/§4(c) — 2026-09-08): woods-reservoir had NO
@@ -26,7 +27,7 @@
 // integrate-verified-atlas rejects staged ids without one).
 // Run: node scripts/fix-woods-elk-system.mjs
 import {
-  buildChain, classifyChainEnds, commitFeature, commitTopology, concatMembers,
+  buildChain, _classifyChainEnds, commitFeature, commitTopology, concatMembers,
   haversine, lakeGeometry, lineLenKm, loadReaches, makeLineFeature,
   pointToPolygonM, readRegion,
 } from './lib-west-middle-fix.mjs';
@@ -72,7 +73,7 @@ let poolTouch = null;
 if (woodsGeom) poolTouch = Math.min(...chain.map((p) => pointToPolygonM(p, woodsGeom)));
 console.log(`chain -> woods-reservoir polygon: ${poolTouch == null ? 'n/a' : Math.round(poolTouch) + ' m at closest vertex'}`);
 
-const { fc } = readRegion();
+const { _fc } = readRegion();
 const take = JSON.parse((await import('node:fs')).readFileSync(new URL('../.atlas-src/west-middle/creek-bradley.json', import.meta.url), 'utf8'));
 
 const feature = makeLineFeature({

@@ -112,7 +112,7 @@ function outwardBounds(b) {
     Math.ceil(b[3] * 1e6) / 1e6,
   ];
 }
-function unionBBox(list) {
+function _unionBBox(list) {
   const b = [Infinity, Infinity, -Infinity, -Infinity];
   for (const bb of list) {
     b[0] = Math.min(b[0], bb[0]); b[1] = Math.min(b[1], bb[1]);
@@ -120,7 +120,7 @@ function unionBBox(list) {
   }
   return b;
 }
-function inBBox(b, p) { return p[0] >= b[0] && p[0] <= b[2] && p[1] >= b[1] && p[1] <= b[3]; }
+function _inBBox(b, p) { return p[0] >= b[0] && p[0] <= b[2] && p[1] >= b[1] && p[1] <= b[3]; }
 function countVerts(coords) {
   let n = 0;
   (function walk(a) {
@@ -178,7 +178,7 @@ function rdp(coords, tolM) {
   if (coords.length <= 3) return coords;
   const kx = M_PER_DEG_LAT * Math.cos(rad((coords[0][1] + coords[coords.length - 1][1]) / 2));
   const ky = M_PER_DEG_LAT;
-  const pts = coords.map(([x, y]) => [x * kx, y * ky]);
+  const _pts = coords.map(([x, y]) => [x * kx, y * ky]);
   const keep = new Array(coords.length).fill(false);
   keep[0] = keep[coords.length - 1] = true;
   const stack = [[0, coords.length - 1]];
@@ -640,7 +640,7 @@ const LAKE_SPECS = [
 // ---------------------------------------------------------------------------
 // river specs — reach windows keep whole NHD parts only
 // ---------------------------------------------------------------------------
-const RW = (key, gate) => ({ cache: key, gate });
+const _RW = (key, gate) => ({ cache: key, gate });
 const RIVER_SPECS = [
   { id: 'mississippi-river', cache: 'river-mississippi', name: 'Mississippi River', region: 'tn-west', allowOpenEnds: true,
     gate: 'corridor', gauge: null,
@@ -1041,7 +1041,7 @@ function buildLake(spec, log) {
   // ("Great Falls Lake"), carried in the passive lake source.
   if (spec.id === 'great-falls-lake') return buildGreatFalls(spec, log);
   const { attrs, polys, meta } = cachePolys(spec.cache);
-  const feats = (() => { const j = JSON.parse(readFileSync(join(CACHE, `${spec.cache}.json`), 'utf8')); return j.features ?? []; })();
+  const _feats = (() => { const j = JSON.parse(readFileSync(join(CACHE, `${spec.cache}.json`), 'utf8')); return j.features ?? []; })();
   // selection: whole polygons (outer ring + holes travel together)
   let selected = [];
   if (spec.areaFloor != null) {
@@ -1073,7 +1073,7 @@ function buildLake(spec, log) {
     const [w, so, e, n] = spec.poolCore;
     const corePt = spec.poolCorePoint;
     selected = selected.filter((s2) => {
-      const b = geomBBox(s2.poly[0]);
+      const _b = geomBBox(s2.poly[0]);
       if (corePt && pointInRings(corePt, s2.poly)) return true;
       // ring centroid inside the core box
       const r = s2.poly[0];
@@ -1123,7 +1123,7 @@ function buildLake(spec, log) {
   return { feature, logEntry: log[log.length - 1], rings: polysArr };
 }
 
-const GREAT_FALLS_CORE_POINTS = [
+const _GREAT_FALLS_CORE_POINTS = [
   // Collins River arm (contains the dam-adjacent pool)
   [-85.62, 35.80],
   // Caney Fork arm (grid-verified interior point)
@@ -1168,7 +1168,7 @@ function buildGreatFalls(spec, log) {
     const d4 = (d[0] - c[0]) * (b[1] - c[1]) - (d[1] - c[1]) * (b[0] - c[0]);
     return ((d1 > 0) !== (d2 > 0)) && ((d3 > 0) !== (d4 > 0));
   };
-  const M2 = 111320;
+  const _M2 = 111320;
   const decimateRingSafe = (ring, maxKeep) => {
     // stride covers the WHOLE ring (truncating at the budget would cut off
     // the return bank); candidates whose chord crosses the already-built
@@ -1244,7 +1244,7 @@ function buildGreatFalls(spec, log) {
   });
   return { feature, logEntry: log[log.length - 1], rings: geom.coordinates };
 }
-function unusedGreatFallsCensus(spec, log) {
+function _unusedGreatFallsCensus(spec, log) {
   const passivePath = join(webRoot, 'public', 'atlas', 'lakes.geojson');
   const passive = JSON.parse(readFileSync(passivePath, 'utf8'));
   const src = passive.features.find((f) => (f.properties?.name ?? f.properties?.NAME ?? '') === 'Great Falls Lake');

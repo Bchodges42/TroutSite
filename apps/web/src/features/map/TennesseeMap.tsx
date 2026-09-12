@@ -62,9 +62,6 @@ interface Props {
   featureColors: Map<string, string>;
   allIds?: string[];
   visibleIds?: Set<string>;
-  /** ?all=1 full-state view — render EVERY atlas feature, warts and all,
-   * regardless of the waterDecision visibility the catalog filters produce. */
-  showAllWaters?: boolean;
   assessedIds?: Set<string>;
   /** Catalog species per water id, from the same streams snapshot the
    * corridors join (H5 mode-aware labels) — absent means the catalog does
@@ -164,11 +161,9 @@ export function TennesseeMap(props: Props) {
               river.waterbodyType === 'pond' ||
               river.waterbodyType === 'reservoir'
                 ? false
-                : p.showAllWaters
-                  ? false
-                  : p.visibleIds
-                    ? !p.visibleIds.has(river.id)
-                    : false,
+                : p.visibleIds
+                  ? !p.visibleIds.has(river.id)
+                  : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
@@ -177,10 +172,10 @@ export function TennesseeMap(props: Props) {
         );
       }
       if (el) el.dataset.mapSelected = p.selectedId ?? '';
-      labelsRef.current();
-      // Test/verification seam: the live style inventory (which sources and
-      // layers exist right now) so Terrain/Roads activation is observable
-      // from outside the canvas, not inferred from the URL.
+      // Test/verification seam FIRST: the live style inventory (which sources
+      // and layers exist right now) so Terrain/Roads activation is observable
+      // from outside the canvas. Refreshing it before the label pass means a
+      // label-pass exception can never leave a stale inventory behind.
       if (el) {
         try {
           el.dataset.mapSources = Object.keys(map.getStyle().sources).join(' ');
@@ -192,6 +187,11 @@ export function TennesseeMap(props: Props) {
           /* a torn-down style can throw here; the next apply refreshes it */
         }
       }
+      try {
+        labelsRef.current();
+      } catch {
+        /* label collision passes are best-effort presentation */
+      }
       const renderedStyle = appliedStyle.current;
       map.once('render', () => {
         if (container.current && appliedStyle.current === renderedStyle)
@@ -199,7 +199,12 @@ export function TennesseeMap(props: Props) {
       });
     };
     if (map.isStyleLoaded()) run();
-    else map.once('idle', run);
+    // Same static-map deadlock as the style swap: a pending `idle` never
+    // arrives without a render — nudge one so the inventory refresh lands.
+    else {
+      map.once('idle', run);
+      map.triggerRepaint();
+    }
   };
   useEffect(() => {
     const el = container.current;
@@ -249,6 +254,24 @@ export function TennesseeMap(props: Props) {
     // Debug/test handle: e2e suites use it for deterministic camera and
     // hit-test assertions. Read-only in practice; no app code depends on it.
     (window as unknown as Record<string, unknown>).__troutMap = map;
+    // Style-inventory seam: keep the live sources/layers inventory on the
+    // container, independent of the presentation apply — a diffed setStyle
+    // with no visual change otherwise never re-renders and the inventory
+    // goes stale. `styledata` fires exactly when style data changes; `idle`
+    // covers the initial load.
+    const syncStyleInventory = () => {
+      try {
+        container.current!.dataset.mapSources = Object.keys(map.getStyle().sources).join(' ');
+        container.current!.dataset.mapLayers = map
+          .getStyle()
+          .layers.map((l) => l.id)
+          .join(' ');
+      } catch {
+        /* style mid-teardown; the next styledata refreshes it */
+      }
+    };
+    map.on('styledata', syncStyleInventory);
+    map.on('idle', syncStyleInventory);
     appliedStyle.current = theme.id + ':' + latest.current.basemap;
     // Custom zoom buttons respect both OS and in-app reduced-motion preferences.
     const zoomGroup = document.createElement('div');
@@ -359,9 +382,7 @@ export function TennesseeMap(props: Props) {
           const id = String(f.properties.id ?? '');
           return (
             id &&
-            (!latest.current.visibleIds ||
-              latest.current.showAllWaters ||
-              latest.current.visibleIds.has(id))
+            (!latest.current.visibleIds || latest.current.visibleIds.has(id))
           );
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
@@ -522,6 +543,7 @@ export function TennesseeMap(props: Props) {
     const map = mapRef.current;
     if (!map || !ready) return;
     const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
+    if (container.current) container.current.dataset.mapStyleKey = styleKey;
     if (appliedStyle.current === styleKey) return;
     // Swap token: rapid toggles (Terrain ⇄ Roads ⇄ theme) must never apply an
     // older swap after a newer one — only the latest scheduled swap runs, and
@@ -536,16 +558,24 @@ export function TennesseeMap(props: Props) {
       map.setStyle(atlasStyle(props.basemap, theme.map, { roads: props.roads }));
       // Diffed styles can skip style.load; reapply feature presentation once
       // the (possibly diffed) style is ready. applyRef re-arms internally
-      // until the style is genuinely loaded.
+      // until the style is genuinely loaded. A diffed swap with no visual
+      // change never renders again on its own — nudge the render.
       map.once('idle', () => {
         if (token !== swapToken.current) return;
         applyRef.current();
       });
+      map.triggerRepaint();
     };
     if (map.isStyleLoaded()) swap();
     // A theme can change while a previous diffed style or resize is loading.
     // `load` fires only once per map; `idle` also covers subsequent style work.
-    else map.once('idle', swap);
+    // A STATIC map never fires `idle` on its own, so nudge one render —
+    // otherwise the pending swap waits forever (intermittent dead Terrain/
+    // Roads toggle on first load).
+    else {
+      map.once('idle', swap);
+      map.triggerRepaint();
+    }
     return () => {
       map.off('idle', swap);
     };
@@ -663,11 +693,21 @@ export function TennesseeMap(props: Props) {
           a.river.id.localeCompare(b.river.id),
       );
       for (const { river, el, width, height, stillWater, extent } of sorted) {
+        // Catalog truth arrives asynchronously (the streams snapshot) —
+        // re-derive the still-water classification each pass so a water
+        // classified 'river' at marker creation (catalog not loaded yet, and
+        // non-degenerate index bounds) corrects itself. The static index set
+        // never downgrades: point-bounds waters are point waters.
+        const isStill = stillWater || Boolean(p.stillWaterIds?.has(river.id));
+        if (isStill !== stillWater) {
+          el.classList.add('still-water-label');
+          el.dataset.waterKind = 'still-water';
+        }
         const selected = river.id === p.selectedId;
         const assessed = p.assessedIds?.has(river.id) ?? false;
         const species = p.labelSpecies?.get(river.id);
         const typeWord = p.waterTypes?.get(river.id);
-        const kindWord = typeWord ?? (stillWater ? 'Still water' : 'River');
+        const kindWord = typeWord ?? (isStill ? 'Still water' : 'River');
         // Mode-honest naming: confirmed trout takes no species word (it is
         // the app's default vocabulary); warmwater says so; a water whose
         // species the catalog leaves unset reads "Unverified" in place of the

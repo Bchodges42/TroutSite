@@ -1,10 +1,10 @@
-# F2 research notes — per-species comfort & activity reference data (DRAFT)
+# F2 research notes — per-species comfort & activity reference data
 
-Stage-2 scope. Nothing here is wired into builds or validators yet; the draft
-YAML lives beside this file (`f2-species-reference.yaml`). Status: research
-draft for the F2 content pack. Every shippable value must carry a `sourceUrl`;
-values still lacking a verified source are marked `citationStatus: pending` and
-MUST NOT be promoted into the content pack.
+**The canonical data file now lives at `packages/content/species/species-reference.yaml`**
+(schema `trout/species-reference/1`), wired into validate:content (citation gate)
+and emitted into the pack as `species.json`. The draft YAML that used to sit
+here was superseded and removed. This file remains the evidence trail: how each
+value was found, and what is still missing.
 
 ## What the fishability model needs (per F2 in KNOWN-ISSUES)
 

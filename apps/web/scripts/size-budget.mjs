@@ -1,3 +1,4 @@
+/* global URL */
 /* global console, process */
 /**
  * Size budget, install-time semantics (T0-4 redesign).
@@ -104,7 +105,7 @@ export function onDemandBreakdown(files, sizeOf) {
 
 const mb = (bytes) => (bytes / (1024 * 1024)).toFixed(2);
 
-export function judge({ installBytes, onDemandBytes, topoBytes }) {
+export function judge({ installBytes, _onDemandBytes, topoBytes }) {
   const problems = [];
   if (installBytes > INSTALL_LIMIT_BYTES) {
     problems.push(

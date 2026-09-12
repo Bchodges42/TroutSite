@@ -1,3 +1,4 @@
+/* global console, document, getComputedStyle, process, window */
 // UX remediation reproduction/verification sweep (fix/production-review-a)
 // Usage: node scripts-ux/repro.mjs <baseUrl> <outDir> [before|after]
 // Captures the review findings H1/H2/H3/H5/M1/M2 as screenshots + JSON measurements.
@@ -47,7 +48,7 @@ for (const [w, h] of [[390, 844], [320, 568]]) {
   await page.waitForTimeout(1200);
   const cam = await page.evaluate(() => {
     const el = document.querySelector('.maplibregl-map');
-    const map = el?.map ?? window.__troutMap ?? null;
+    const _map = el?.map ?? window.__troutMap ?? null;
     // Fallback: read dataset written by syncCamera
     const ds = el?.dataset ?? {};
     return { center: ds.center ?? null, zoom: ds.zoom ?? null };

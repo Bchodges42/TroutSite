@@ -1,3 +1,4 @@
+/* global AbortSignal, Buffer, console, fetch, process, setTimeout */
 // Fetch USGS 1 arc-second DEM GeoTIFF tiles (The National Map / 3DEP "NED"
 // staged products, public domain) covering the Tennessee clip
 // [-90.6, 34.98, -81.45, 36.75] plus ~0.4 deg margin, into
@@ -191,7 +192,8 @@ for (const t of TILE_IDS) {
     confirmedPresent.add(t);
     report.push({ tile: t, status: 'present', bytes: size });
   } catch (e) {
-    try { unlinkSync(p); } catch {}
+    try { unlinkSync(p); } catch { /* best-effort cleanup */ }
+    // upstream DEM gap at this tile — nothing to fetch, skip
     hardFail++;
     report.push({ tile: t, status: 'FAILED', bytes: 0 });
     console.log(`GAP: ${t} failed after retries: ${String(e.message || e).slice(0, 160)}`);

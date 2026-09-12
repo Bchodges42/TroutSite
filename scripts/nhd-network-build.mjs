@@ -31,12 +31,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { dpSimplify, lineLengthKm, roundCoords } from './nhd_lib.mjs';
+import { catalogPidsFromAsset, dpSimplify, lineLengthKm, roundCoords } from './nhd_lib.mjs';
 import { collapseHairpins } from './nhd-validate-lib.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const args = process.argv.slice(2);
+const argOf = (flag, def) => (args.includes(flag) ? args[args.indexOf(flag) + 1] : def);
 const hu8Dir = path.join(repoRoot, 'data/nhd/hu8');
 const outDir = path.join(repoRoot, 'apps/web/public/atlas/network');
+// Catalog pids (rivers.geojson sourceIds) are excluded so the network only adds
+// what the catalog does not draw — d51f307 proved the fix on Caney Fork; T2-55
+// makes it statewide (raw NHD shadows under simplified catalog lines otherwise).
+const catalogAsset = path.resolve(repoRoot, argOf('--asset', 'apps/web/public/atlas/rivers.geojson'));
+const catalogPids = catalogPidsFromAsset(catalogAsset);
 
 const SIMPLIFY_M = 20;
 const ROUND_DP = 5;
@@ -57,12 +64,17 @@ function processUnit(hu8File) {
   const raw = fs.readFileSync(path.join(hu8Dir, hu8File), 'utf8').split('\n').filter(Boolean);
   const feats = []; // { pid, km, bbox, json } — json is the serialized Feature
   let droppedDegenerate = 0;
+  let excludedCatalog = 0;
   let km = 0;
 
   for (const line of raw) {
     const f = JSON.parse(line);
     const coords = f.geometry?.coordinates;
     if (!coords || !f.properties.gnis_name) continue; // named flowlines with geometry only
+    if (catalogPids.has(String(f.properties.permanent_identifier))) {
+      excludedCatalog++;
+      continue;
+    }
     const parts = coords
       .map((lineCoords) => collapseHairpins(roundCoords(dpSimplify(lineCoords, SIMPLIFY_M), ROUND_DP)).coords)
       .filter((lineCoords) => lineCoords.length >= 2);
@@ -106,6 +118,7 @@ function processUnit(hu8File) {
     source: raw.length,
     emitted: feats.length,
     droppedDegenerate,
+    excludedCatalog,
     km,
     bbox: feats.length
       ? feats.reduce(
@@ -229,6 +242,14 @@ const manifest = {
   schema: SCHEMA,
   generated: new Date().toISOString(),
   simplifyM: SIMPLIFY_M,
+  // Additive T2-55 provenance: catalog pids (rivers.geojson sourceIds) are
+  // excluded from the network layer so it only adds what the catalog does not
+  // draw. Count is advisory (the shipped files are the ground truth).
+  catalogExcluded: {
+    asset: path.relative(repoRoot, catalogAsset),
+    pids: catalogPids.size,
+    lines: units.reduce((s, u) => s + u.excludedCatalog, 0),
+  },
   clusters,
 };
 fs.writeFileSync(path.join(outDir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n');
@@ -251,19 +272,20 @@ console.log(
   `total (${clusters.length} files) ${String(units.length).padStart(5)} ${String(totLines).padStart(6)} ${String(Math.round(totKm)).padStart(7)} ${(totBytes / 1024 / 1024).toFixed(2)}  (reference band: ~${REF.lines.toLocaleString()} lines / ~${REF.km.toLocaleString()} km / ~${REF.mb} MB)`,
 );
 
-console.log('\ncoverage reconciliation (source named flowlines vs emitted per unit):');
+console.log('\ncoverage reconciliation (source named flowlines vs emitted/excluded per unit):');
 const mismatches = [];
 for (const u of units) {
-  const ok = u.emitted + u.droppedDegenerate === u.source;
+  const ok = u.emitted + u.droppedDegenerate + u.excludedCatalog === u.source;
   if (!ok) mismatches.push(u);
   console.log(
-    `${u.hu8}: source ${String(u.source).padStart(5)} emitted ${String(u.emitted).padStart(5)} dropped ${String(u.droppedDegenerate).padStart(3)} ${ok ? 'ok' : 'MISMATCH'}`,
+    `${u.hu8}: source ${String(u.source).padStart(5)} emitted ${String(u.emitted).padStart(5)} dropped ${String(u.droppedDegenerate).padStart(3)} catalog-excluded ${String(u.excludedCatalog).padStart(4)} ${ok ? 'ok' : 'MISMATCH'}`,
   );
 }
 if (mismatches.length > 0) {
   throw new Error(`coverage reconciliation failed for ${mismatches.length} unit(s)`);
 }
+const totalExcluded = units.reduce((s, u) => s + u.excludedCatalog, 0);
 console.log(
-  `reconciliation: ${units.length}/${units.length} units ok — every named flowline landed in exactly one cluster ` +
-    `(${totLines} emitted + ${totalDropped} degenerate drops = ${totLines + totalDropped} source lines)`,
+  `reconciliation: ${units.length}/${units.length} units ok — every named flowline landed in exactly one cluster or was excluded as a catalog pid ` +
+    `(${totLines} emitted + ${totalDropped} degenerate drops + ${totalExcluded} catalog-excluded = ${totLines + totalDropped + totalExcluded} source lines)`,
 );

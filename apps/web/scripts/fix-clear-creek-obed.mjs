@@ -1,3 +1,4 @@
+/* global URL, console, process */
 // fix-clear-creek-obed.mjs — drop double-imported parts from clear-creek-obed.
 //
 // Defect (DUPLICATES-REPORT 2026-09-08, pair findings #1/#6/#7 + sub-threshold

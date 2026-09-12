@@ -1,3 +1,4 @@
+/* global console */
 // Shared library for the west/middle geometry fix scripts (geometry lane
 // 2026-09-08). Each scripts/fix-*.mjs rebuilds ONE affected water from its
 // NHDPlus HR take (apps/web/.atlas-src/west-middle/<key>.json, fetched by

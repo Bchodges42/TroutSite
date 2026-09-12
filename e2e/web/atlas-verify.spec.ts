@@ -42,9 +42,10 @@ test('select East Fork Stones via search, desktop panel', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/?v=atlasqa', { waitUntil: 'domcontentloaded' });
   await waitForMap(page);
-  // The atlas opens through the search control (the only chrome path).
-  await page.getByRole('button', { name: 'Search waters' }).click();
-  await page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true }).fill('East Fork Stones');
+  // The header search is the always-visible atlas path on fresh load (the
+  // sidebar — and its own search — stays hidden until a water is open).
+  const search = page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' });
+  await search.fill('East Fork Stones');
   await page.getByRole('option', { name: /east fork stones/i }).first().click();
   await expect(page.getByRole('heading', { name: 'East Fork Stones River' }).first()).toBeVisible({ timeout: 15_000 });
   // the inspector shows the water's metrics and every tab

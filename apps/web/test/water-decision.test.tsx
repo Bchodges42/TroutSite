@@ -3,6 +3,7 @@ import {
   decisionColorToken,
   decisionStatusText,
   metricLabel,
+  seasonalChipText,
   toWaterDecisionView,
 } from '../src/features/map/waterDecision';
 import type { ConditionSnapshot } from '@trout/contracts';
@@ -150,5 +151,67 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(metricLabel(assessed)).toBe('Trout conditions');
     expect(metricLabel(unassessed)).toBe('Unassessed');
     expect(decisionStatusText(assessed, { species: 'trout', status: 'good' })).toBe('Good');
+  });
+});
+
+describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
+  // beech-lake shape: a catalog trout water with an honest winter-only program.
+  function seasonalFeature(overrides: { score?: number | null; assessed?: boolean; yearRound?: boolean; species?: 'trout' | 'warmwater' | undefined } = {}) {
+    const f = feature({
+      score: overrides.score ?? 82,
+      assessed: overrides.assessed,
+      species: 'species' in overrides ? overrides.species : 'trout',
+    });
+    return {
+      ...f,
+      stream: { ...f.stream, yearRound: overrides.yearRound ?? false },
+    };
+  }
+
+  it('a yearRound:false trout water in a summer month is seasonal-likely-absent and never wears the trout metric', () => {
+    const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout', 7);
+    expect(view.troutApplicability).toBe('seasonal-likely-absent');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(view.confidence).toBe('low');
+    expect(seasonalChipText(view)).toBe('Winter program — out of season');
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Out of season');
+  });
+
+  it('the same water inside the winter window is seasonal-uncertain, not confirmed', () => {
+    const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout', 1);
+    expect(view.troutApplicability).toBe('seasonal-uncertain');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(seasonalChipText(view)).toBe('Winter program — seasonal fishery');
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Seasonal');
+  });
+
+  it('without a month the seasonal water stays uncertain — absence is never claimed blind', () => {
+    const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout');
+    expect(view.troutApplicability).toBe('seasonal-uncertain');
+  });
+
+  it('a yearRound:true (or unset) trout water keeps confirmed-current behavior', () => {
+    const yearRound = toWaterDecisionView(seasonalFeature({ score: 82, yearRound: true }), 'trout', 7);
+    expect(yearRound.troutApplicability).toBe('confirmed-current');
+    expect(yearRound.displayMetric).toBe('trout-condition');
+    const unset = toWaterDecisionView(feature({ score: 82 }), 'trout', 7);
+    expect(unset.troutApplicability).toBe('confirmed-current');
+    expect(unset.displayMetric).toBe('trout-condition');
+  });
+
+  it('an unassessed seasonal water stays out-of-season with no fabricated band', () => {
+    const view = toWaterDecisionView(seasonalFeature({ score: null }), 'trout', 7);
+    expect(view.troutApplicability).toBe('seasonal-likely-absent');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(decisionStatusText(view, { species: 'trout', status: 'no-data' })).toBe('Out of season');
+  });
+
+  it('seasonal state never reaches warmwater or unknown-species waters', () => {
+    const warm = toWaterDecisionView(seasonalFeature({ species: 'warmwater', score: null }), 'trout', 7);
+    expect(warm.troutApplicability).toBe('not-trout');
+    expect(seasonalChipText(warm)).toBeNull();
+    const unknown = toWaterDecisionView(seasonalFeature({ species: undefined, score: null }), 'trout', 7);
+    expect(unknown.troutApplicability).toBe('unknown');
+    expect(seasonalChipText(unknown)).toBeNull();
   });
 });

@@ -1,3 +1,4 @@
+/* global console, process */
 // Structural validator for public/atlas/roads-*.geojson + roads-manifest.json
 // (B12). Checks: LineString/MultiLineString geometry only, per-file MTFCC
 // whitelist, WGS84 lon/lat order + in-Tennessee bounds (+buffer), no

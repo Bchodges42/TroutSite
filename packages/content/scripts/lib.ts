@@ -447,3 +447,115 @@ export const FLOORS = {
   /** Megabytes — CHAT-4 scope 2: compact bundled JSON content pack (§ shared context: ≤ 25 MB offline). */
   packMaxMb: 20,
 } as const;
+
+// ---------------------------------------------------------------------------
+// Species reference (F2) — comfort + activity data with a hard citation gate.
+// Every shipped numeric value must carry ≥1 https source URL; a band with no
+// values must be explicitly flagged citationStatus: needs-source. Anything
+// else is an issue (validate.ts fails the build on it).
+// ---------------------------------------------------------------------------
+
+export interface CitedValue {
+  value?: number | null;
+  min?: number | null;
+  max?: number | null;
+  basis?: string;
+  note?: string;
+  citationStatus?: 'cited' | 'needs-source';
+  sources?: string[];
+}
+
+export interface SpeciesSpawn {
+  onsetC?: CitedValue;
+  endC?: CitedValue;
+}
+
+export interface SpeciesReference {
+  displayName?: string;
+  comfort: {
+    optimalC?: CitedValue;
+    avoidanceC?: CitedValue;
+    lethalC?: CitedValue;
+    lowerActiveC?: CitedValue;
+    note?: string;
+  };
+  activity?: Record<string, unknown>;
+  spawn?: SpeciesSpawn;
+  flowTrend?: CitedValue;
+  pressureTrend?: CitedValue;
+}
+
+export interface LoadedSpeciesReference {
+  species: Map<string, SpeciesReference>;
+  issues: Issue[];
+}
+
+/** Numeric payload actually present on a cited-value node (value or min/max). */
+function citedValues(v: CitedValue): number[] {
+  const out: number[] = [];
+  if (typeof v.value === 'number') out.push(v.value);
+  if (typeof v.min === 'number') out.push(v.min);
+  if (typeof v.max === 'number') out.push(v.max);
+  return out;
+}
+
+function checkCitedNode(file: string, path: string, v: CitedValue, issues: Issue[]): void {
+  const values = citedValues(v);
+  const sources = (v.sources ?? []).filter((s) => typeof s === 'string');
+  if (values.length > 0) {
+    if (sources.length === 0) {
+      issues.push({ file, message: `${path}: value(s) [${values.join(', ')}] with no source URL — cite it or mark citationStatus: needs-source` });
+      return;
+    }
+    for (const s of sources) {
+      if (!/^https:\/\//.test(s)) issues.push({ file, message: `${path}: source ${JSON.stringify(s)} is not an https URL` });
+    }
+    if (v.citationStatus === 'needs-source') {
+      issues.push({ file, message: `${path}: has values but citationStatus is needs-source — either cite (drop the flag) or null the values` });
+    }
+  } else if (sources.length === 0 && v.citationStatus !== 'needs-source') {
+    issues.push({ file, message: `${path}: no value and no sources — add citationStatus: needs-source (never guess)` });
+  }
+}
+
+/** Citation-gate one species document's entries (exported for the negative
+ * regression tests — the loader calls this per YAML file). */
+export function checkSpeciesDoc(file: string, entries: Record<string, SpeciesReference>, issues: Issue[]): void {
+  for (const [id, ref] of Object.entries(entries)) {
+    const comfort = ref.comfort ?? {};
+    for (const band of ['optimalC', 'avoidanceC', 'lethalC', 'lowerActiveC'] as const) {
+      if (comfort[band] !== undefined) checkCitedNode(file, `${id}.comfort.${band}`, comfort[band]!, issues);
+    }
+    if (ref.spawn?.onsetC !== undefined) checkCitedNode(file, `${id}.spawn.onsetC`, ref.spawn.onsetC, issues);
+    if (ref.spawn?.endC !== undefined) checkCitedNode(file, `${id}.spawn.endC`, ref.spawn.endC, issues);
+    if (ref.flowTrend !== undefined) checkCitedNode(file, `${id}.flowTrend`, ref.flowTrend, issues);
+    if (ref.pressureTrend !== undefined) checkCitedNode(file, `${id}.pressureTrend`, ref.pressureTrend, issues);
+  }
+}
+
+export function loadSpeciesReference(): LoadedSpeciesReference {
+  const species = new Map<string, SpeciesReference>();
+  const issues: Issue[] = [];
+  const dir = join(CONTENT_ROOT, 'species');
+  if (!existsSync(dir)) return { species, issues };
+  for (const file of collectYamlFiles(dir)) {
+    const rel = file.slice(CONTENT_ROOT.length + 1);
+    let doc: { schema?: string; species?: Record<string, SpeciesReference> };
+    try {
+      doc = parse(readFileSync(file, 'utf8'));
+    } catch (err) {
+      issues.push({ file: rel, message: `does not parse as YAML (${(err as Error).message})` });
+      continue;
+    }
+    if (doc?.schema !== 'trout/species-reference/1') {
+      issues.push({ file: rel, message: `schema ${JSON.stringify(doc?.schema)} !== "trout/species-reference/1"` });
+      continue;
+    }
+    for (const [id, ref] of Object.entries(doc.species ?? {})) {
+      if (species.has(id)) issues.push({ file: rel, message: `duplicate species id ${id}` });
+      species.set(id, ref);
+    }
+    checkSpeciesDoc(rel, doc.species ?? {}, issues);
+  }
+  return { species, issues };
+}

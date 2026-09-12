@@ -1,5 +1,4 @@
 /* global console, process */
-/* eslint-disable no-undef */
 /**
  * SEO prerender (post-vite-build). Reads the frozen /v1 + /content snapshots
  * and emits per-route HTML shells into dist/ so crawlers and first-time
@@ -114,7 +113,7 @@ const fishing = readJson(['public/content/fishing.json', 'fixtures/data/content/
 let REGIONS = [];
 try {
   ({ REGIONS } = await import(pathToFileURL(join(appRoot, 'src', 'data', 'regions.ts')).href));
-} catch (err) {
+} catch {
   try {
     const text = readFileSync(join(appRoot, 'src', 'data', 'regions.ts'), 'utf8');
     REGIONS = [...text.matchAll(/id:\s*'([^']+)',\s*\n\s*name:\s*'([^']+)'/g)].map((m) => ({
@@ -206,7 +205,7 @@ const pristineShell = shell.replace(INJECTED_TAGS_RE, '').replace(TITLE_RE, DEFA
  * alias of another (/fishing-info → /regulations) so duplicates converge.
  */
 function renderPage({ title, description, path, canonical, jsonLdObjs = [], contentHtml = '' }) {
-  const url = `${ORIGIN}${path}`;
+  const _url = `${ORIGIN}${path}`;
   const canonicalUrl = `${ORIGIN}${canonical ?? path}`;
   const head = [
     `<title>${escapeHtml(title)}</title>`,

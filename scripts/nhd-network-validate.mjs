@@ -23,9 +23,12 @@
 //     by U4 instead
 //  U2 every source HU8 JSONL is claimed by some cluster (and vice versa)
 //  U3 coverage reconciliation vs data/nhd/hu8/*.jsonl named-flowline counts:
-//     every named line ships in exactly one cluster; a per-unit gap is only
-//     legitimate when the missing lines are degenerate (pipeline re-run proves it)
-//  U4 per-unit pid multiset equality: shipped (pid→count) == source — this is
+//     every named line ships in exactly one cluster OR is an excluded catalog
+//     pid (rivers.geojson sourceIds — T2-55, the network only adds what the
+//     catalog does not draw); a per-unit gap is only legitimate when the
+//     missing lines are degenerate or catalog-excluded (pipeline re-run proves it)
+//  U4 per-unit pid multiset equality: shipped (pid→count) == source except
+//     catalog-excluded pids (which must be absent — leak check) — this is
 //     the real "every named line in exactly one cluster" guarantee; it also
 //     proves sub-unit-split siblings partition their unit (no pid instance in
 //     two clusters). Gap units require shipped ≤ source per pid.
@@ -36,7 +39,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { dpSimplify, roundCoords } from './nhd_lib.mjs';
+import { catalogPidsFromAsset, dpSimplify, roundCoords } from './nhd_lib.mjs';
 import { collapseHairpins } from './nhd-validate-lib.mjs';
 
 export const MAX_CLUSTER_BYTES = 3.5 * 1024 * 1024;
@@ -49,9 +52,11 @@ export const NETWORK_SCHEMA = 'trout/nhd-network/1';
 export function runNetworkValidation({
   outDir,
   hu8Dir,
+  catalogAsset = null,
   maxFileBytes = MAX_CLUSTER_BYTES,
   onProgress = null,
 }) {
+  const catalogPids = catalogAsset ? catalogPidsFromAsset(catalogAsset) : new Set();
   const failures = [];
   const fail = (check, id, evidence) => failures.push({ check, id, evidence });
   const perCluster = [];
@@ -270,20 +275,27 @@ export function runNetworkValidation({
     if (emitted > src) fail('U3', hu8, `emitted ${emitted} > source ${src} — never legitimate`);
     else if (emitted < src) gapUnits.push({ hu8, src, emitted });
   }
-  // A gap is only legitimate when the missing lines are degenerate (collapse to
-  // nothing under the frozen pipeline): re-run the pipeline per gapped unit and
-  // require an exact count match.
+  // A gap is only legitimate when the missing lines are degenerate OR excluded
+  // catalog pids (T2-55; collapse to nothing under the frozen pipeline / already
+  // drawn by the catalog): re-run the pipeline per gapped unit and require an
+  // exact count match.
   let degenerateTotal = 0;
+  let excludedTotal = 0;
   for (const { hu8, src, emitted } of gapUnits) {
     const raw = fs
       .readFileSync(path.join(hu8Dir, `${hu8}.jsonl`), 'utf8')
       .split('\n')
       .filter(Boolean);
     let expected = 0;
+    let excluded = 0;
     for (const line of raw) {
       const f = JSON.parse(line);
       const coords = f.geometry?.coordinates;
       if (!coords || !f.properties.gnis_name) continue;
+      if (catalogPids.has(String(f.properties.permanent_identifier))) {
+        excluded++;
+        continue;
+      }
       const parts = coords
         .map((c) => collapseHairpins(roundCoords(dpSimplify(c, 20), 5)).coords)
         .filter((c) => c.length >= 2);
@@ -295,7 +307,8 @@ export function runNetworkValidation({
         hu8,
         `pipeline expects ${expected} surviving lines, shipped files carry ${emitted}`,
       );
-    degenerateTotal += src - emitted;
+    degenerateTotal += src - emitted - excluded;
+    excludedTotal += excluded;
   }
   // U4 — per-unit pid multiset: the line-level "every named line in exactly one
   // cluster" guarantee. Non-gap units must match the source exactly; gap units
@@ -311,6 +324,11 @@ export function runNetworkValidation({
     const isGap = gapByUnit.has(hu8);
     let mismatches = 0;
     for (const [pid, n] of shipped) {
+      if (catalogPids.has(pid)) {
+        mismatches++;
+        if (mismatches <= 3) fail('U4', `${hu8}/${pid}`, `catalog pid leaked into network output (${n}x)`);
+        continue;
+      }
       const src = source.get(pid) ?? 0;
       if (n > src || (!isGap && n !== src)) {
         mismatches++;
@@ -319,6 +337,7 @@ export function runNetworkValidation({
     }
     if (!isGap)
       for (const [pid, n] of source) {
+        if (catalogPids.has(pid)) continue; // excluded by design (T2-55)
         if (!shipped.has(pid)) {
           mismatches++;
           if (mismatches <= 3) fail('U4', `${hu8}/${pid}`, `source ${n}x, shipped 0x`);
@@ -327,11 +346,11 @@ export function runNetworkValidation({
     if (mismatches > 3) fail('U4', hu8, `... ${mismatches} pid mismatch(es) total in unit`);
   }
   const sourceTotal = [...sourceCounts.values()].reduce((a, b) => a + b, 0);
-  if (totalLines + degenerateTotal !== sourceTotal)
+  if (totalLines + degenerateTotal + excludedTotal !== sourceTotal)
     fail(
       'U3',
       'totals',
-      `${totalLines} emitted + ${degenerateTotal} degenerate drops != ${sourceTotal} source`,
+      `${totalLines} emitted + ${degenerateTotal} degenerate drops + ${excludedTotal} catalog-excluded != ${sourceTotal} source`,
     );
 
   const summary = {
@@ -342,8 +361,9 @@ export function runNetworkValidation({
     units: sourceCounts.size,
     gapUnits: gapUnits.length,
     degenerateDrops: degenerateTotal,
+    catalogExcluded: excludedTotal,
     sourceLines: sourceTotal,
-    reconciliation: `${totalLines + degenerateTotal}/${sourceTotal}`,
+    reconciliation: `${totalLines + degenerateTotal + excludedTotal}/${sourceTotal}`,
     subUnitSplits,
   };
   return { ok: failures.length === 0, failures, perCluster, summary };
@@ -360,9 +380,10 @@ function main() {
     repoRoot,
     argOf('--out', 'data/nhd/derived/validate/network-report.json'),
   );
+  const catalogAsset = path.resolve(repoRoot, argOf('--asset', 'apps/web/public/atlas/rivers.geojson'));
 
   console.log(`network validation — ${path.relative(repoRoot, outDir)}`);
-  const { ok, failures, perCluster, summary } = runNetworkValidation({ outDir, hu8Dir });
+  const { ok, failures, perCluster, summary } = runNetworkValidation({ outDir, hu8Dir, catalogAsset });
 
   console.log('id         lines      MB');
   for (const row of perCluster)

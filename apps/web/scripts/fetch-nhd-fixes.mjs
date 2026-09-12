@@ -1,3 +1,4 @@
+/* global AbortSignal, URL, URLSearchParams, console, fetch, process, setTimeout */
 // East/southeast geometry-fix crew — targeted NHDPlus HR takes for the waters
 // being rebuilt from source (tellico area, horse-creek-greene, brush-creek-cocke,
 // wolf-river-fentress) plus an NHDWaterbody take for the norris-lake membership

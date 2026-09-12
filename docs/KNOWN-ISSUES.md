@@ -104,20 +104,20 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   the water's applicable species score once the fishability program lands (F6).
 - [x] **T1-15 [LOGIC-4]** Winter ponds render a nonsense `" cfs"` ideal-flow badge —
   guard the empty `idealFlow: []` array (`:193-199`; verified in `beech-lake.yaml`).
-- [ ] **T1-16 [LOGIC-5]** Map legend titled "Fishability" (`MapLegend.tsx:87`) with no
+- [x] **T1-16 [LOGIC-5]** Map legend titled "Fishability" (`MapLegend.tsx:87`) with no
   real metric behind it. Interim: title from species mode ("Trout conditions" /
   "Water guide"). Final: "Fishability" becomes an honest title once the per-species
   metric ships (F6).
-- [ ] **T1-17 [LOGIC-6]** HatchTab shows "{{month}} hatch outlook" + "Match this water"
+- [x] **T1-17 [LOGIC-6]** HatchTab shows "{{month}} hatch outlook" + "Match this water"
   bug-key CTA on warmwater ponds (`RiverDrawer.tsx:398-457`). Suppress or reframe for
   `not-trout` waters; for seasonal waters gate on `yearRound` (T1-19).
 
 **Seasonal applicability: the data exists, no UI reads it**
 
-- [ ] **T1-18 [LOGIC-7]** `yearRound` is dead data — authored honestly
+- [x] **T1-18 [LOGIC-7]** `yearRound` is dead data — authored honestly
   (`beech-lake.yaml`: winter-only program) and consumed by ZERO UI code. Highest-value
   fix in the audit.
-- [ ] **T1-19 [LOGIC-8]** The decision model defines `seasonal-uncertain` /
+- [x] **T1-19 [LOGIC-8]** The decision model defines `seasonal-uncertain` /
   `seasonal-likely-absent` applicability that the adapter can never produce
   (`waterDecision.ts:14-20,66-72`). Combine `species` + `yearRound` + selected month →
   first-class "Winter program — out of season" chip on map, drawer, detail, lists.
@@ -132,9 +132,9 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   `RiverMapPage.tsx:36`); no other page honors it and Settings has no such preference.
   DECIDED 2026-09-12: site-wide setting — Dexie-persisted, default **Trout**, filters
   and re-words data on every surface. Implementation rides the fishability program (F6).
-- [ ] **T2-23 [LOGIC-11]** The "Trout waters" chip conflates species and assessed-only
+- [x] **T2-23 [LOGIC-11]** The "Trout waters" chip conflates species and assessed-only
   into one toggle (`RiverMapPage.tsx:356`). Rework the filter row as independent dims.
-- [ ] **T2-24 [LOGIC-12]** Conditions list sorts by a score it hides — non-trout rows
+- [x] **T2-24 [LOGIC-12]** Conditions list sorts by a score it hides — non-trout rows
   reorder by an invisible number (`ConditionsPage.tsx:130`). Sort by displayed state.
 
 **Dead data — served/authored, zero consumers (all DECIDED 2026-09-12 — see items)**
@@ -159,21 +159,21 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 
 **Copy & removals**
 
-- [ ] **T2-29 [LOGIC-24 + PRE halo follow-up]** Three stories about hatch halos:
+- [x] **T2-29 [LOGIC-24 + PRE halo follow-up]** Three stories about hatch halos:
   legend says "dominant hatch" (`MapLegend.tsx:116`), code draws one amber halo for ANY
   charted guidance ≥1 (`RiverMapPage.tsx:337-341`), map help says "regional hatch
   guidance" (`:789`). Rewrite copy to match behavior — or implement the
   intensity-by-abundance ramp (the long-standing follow-up) and keep dominance copy.
-- [ ] **T2-30 [LOGIC-13]** "Live · observed" freshness chip implies live fishability on
+- [x] **T2-30 [LOGIC-13]** "Live · observed" freshness chip implies live fishability on
   gauge-only warmwater water. Reword ("Gauge live · observed").
-- [ ] **T2-31 [LOGIC-25]** Conditions subtitle "Gauge-fed trout assessments" overclaims
+- [x] **T2-31 [LOGIC-25]** Conditions subtitle "Gauge-fed trout assessments" overclaims
   — rows include warmwater/unverified water with honest per-row status.
-- [ ] **T2-32 [LOGIC-26]** Drawer stocking "· 1,500 fish" → "· 1,500 fish scheduled"
+- [x] **T2-32 [LOGIC-26]** Drawer stocking "· 1,500 fish" → "· 1,500 fish scheduled"
   when `datePrecision != 'day'`.
-- [ ] **T2-33 [LOGIC-15 + 27]** REMOVE the "Default state" setting and pin TN. NOT
+- [x] **T2-33 [LOGIC-15 + 27]** REMOVE the "Default state" setting and pin TN. NOT
   vestigial: it actively filters Conditions/Stocking/other state-scoped pages
   (`ConditionsPage.tsx:75,111`) — set to anything else, pages silently empty.
-- [ ] **T2-34 [LOGIC-16]** REMOVE `?all=1` full-state toggle (`useMapState.ts:16`,
+- [x] **T2-34 [LOGIC-16]** REMOVE `?all=1` full-state toggle (`useMapState.ts:16`,
   `RiverMapPage.tsx:39,664`, `TennesseeMap.tsx:64-66,159,351`) — owner decision: it
   bypasses the decision model, a leftover from blank-region days. Keep `?qa=1`
   (different thing); consider a dev flag for it.
@@ -221,10 +221,10 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 - [ ] **T2-47 [REVIEW audit]** Dependency advisories: 1 critical / 9 high / 19 moderate
   / 5 low — complete the reachability triage; schedule recurring audit.
 
-- [ ] **T2-55 [NEW 2026-09-12]** Statewide network builder (`scripts/nhd-network-build.mjs`) lacks the catalog-pid exclusion that d51f307 added to `nhd-network-proof.mjs` — raw NHD linework can draw gray shadows over catalog rivers statewide. Apply the same sourceIds exclusion and regenerate.
+- [x] **T2-55 [NEW 2026-09-12]** Statewide network builder (`scripts/nhd-network-build.mjs`) lacks the catalog-pid exclusion that d51f307 added to `nhd-network-proof.mjs` — raw NHD linework can draw gray shadows over catalog rivers statewide. Apply the same sourceIds exclusion and regenerate.
 
-- [ ] **T2-56 [CHECKPOINT 2026-09-12] — duplicate visible dialog on water select (ASSIGNED: Session C, Stage 2).** After selecting a water via search, `[role="dialog"]:visible` containing the water's heading resolves to TWO elements (`web/atlas-verify.spec.ts` strict-mode failure at desktop AND mobile 390px). Three role="dialog" sites: AppShell.tsx:197 (nav menu — not the culprit), RiverDrawer.tsx:51/:81. RiverDrawer is rendered twice and both instances are :visible — find the render condition/CSS regression (likely from the search-themes integration) and fix.
-- [ ] **T2-57 [CHECKPOINT 2026-09-12] — fieldwork e2e suite is stale (ASSIGNED: Session C, Stage 2).** 23 of 25 checkpoint e2e failures are `e2e/fieldwork/ui.spec.ts` specs written against the pre-evolution UI (e.g. expecting the hatch key's "2 tails" step before the current first step). For each: fix the spec if the app is right, fix the app if the spec is right. The other 2 failures are T2-56. Note: `pnpm e2e` (and qa.yml) stay red on these until Session C lands the fixes — expected.
+- [x] **T2-56 [CHECKPOINT 2026-09-12] — duplicate visible dialog on water select (ASSIGNED: Session C, Stage 2).** After selecting a water via search, `[role="dialog"]:visible` containing the water's heading resolves to TWO elements (`web/atlas-verify.spec.ts` strict-mode failure at desktop AND mobile 390px). Three role="dialog" sites: AppShell.tsx:197 (nav menu — not the culprit), RiverDrawer.tsx:51/:81. RiverDrawer is rendered twice and both instances are :visible — find the render condition/CSS regression (likely from the search-themes integration) and fix.
+- [x] **T2-57 [CHECKPOINT 2026-09-12] — fieldwork e2e suite is stale (ASSIGNED: Session C, Stage 2).** 23 of 25 checkpoint e2e failures are `e2e/fieldwork/ui.spec.ts` specs written against the pre-evolution UI (e.g. expecting the hatch key's "2 tails" step before the current first step). For each: fix the spec if the app is right, fix the app if the spec is right. The other 2 failures are T2-56. Note: `pnpm e2e` (and qa.yml) stay red on these until Session C lands the fixes — expected.
 
 ## T3 — Owner actions, backlog, accepted limitations
 
@@ -286,12 +286,12 @@ each factor shows its value, its contribution, and its source. Ranked catch-all
 Sequencing: T0/T1 ship FIRST with neutral non-trout presentation; this program lands
 after; then neutral swaps to species-colored comfort + activity.
 
-- [ ] **F1 · Contract v2 (ADR + tag bump).** `FishabilityScore` (species-keyed comfort,
+- [x] **F1 · Contract v2 (ADR + tag bump).** `FishabilityScore` (species-keyed comfort,
   value 0–100 + reasons + assessed) PLUS `ActivityOutlook` schema: total 0–100 +
   ordered `ActivityComponent[]` — `{ factor, value, contribution, weight, evidenceUrl,
   confidence: measured|derived|heuristic, label }`. Deterministic; additive
   `ENDPOINTS`; contracts coverage gate applies.
-- [ ] **F2 · Per-species reference data (content pack).** For each species: comfort
+- [x] **F2 · Per-species reference data (content pack).** For each species: comfort
   bands (lower/upper active, optimal range, avoidance, lethal) AND activity profile —
   pre-spawn/spawn/post-spawn water-temp thresholds, flow-trend preference (stable/
   falling favorable; hard-rising unfavorable), pressure-trend sensitivity. Every band
@@ -300,7 +300,7 @@ after; then neutral swaps to species-colored comfort + activity.
   species they hold, authored from TWRA evidence (2026-09-08 capture already has
   species-adjacent notes). Unknown stays unknown — never guessed. Pair with T3-52
   (candidate waters enter with species data from day one).
-- [ ] **F4 · Scorer.** `scoreFishability(readings, species, bands)` for comfort
+- [x] **F4 · Scorer.** `scoreFishability(readings, species, bands)` for comfort
   (mirrors `scoreConditions`: clamped-0 lethal vs cannot-assess, per-metric
   observation age) and `scoreActivity(components)` — deterministic, client-side,
   total = weighted components, never mutates inputs. Property tests + coverage gate.

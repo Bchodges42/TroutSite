@@ -244,7 +244,7 @@ async function waterbody() {
 }
 
 async function flowline() {
-  const where = 'fcode IN (46006, 46003, 55800, 33400, 46003)';
+  const _where = 'fcode IN (46006, 46003, 55800, 33400, 46003)';
   const outFields = 'gnis_name,gnis_id,nhdplusid,reachcode,fcode,lengthkm,streamorde';
   for (const t of FLOWLINE_TARGETS) {
     const file = `fl-${t.key}.geojson`;

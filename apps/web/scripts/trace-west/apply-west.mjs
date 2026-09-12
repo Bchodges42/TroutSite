@@ -52,7 +52,7 @@ function bboxOf(lines) {
   return b;
 }
 
-function countVerts(coords) {
+function _countVerts(coords) {
   let n = 0;
   (function walk(a) {
     if (Array.isArray(a[0]) && typeof a[0][0] === 'number') { n += a.length; return; }

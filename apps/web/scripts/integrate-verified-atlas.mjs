@@ -72,7 +72,7 @@ const POLY_TYPES = ['Polygon', 'MultiPolygon'];
 const POINT_TYPES = ['Point', 'MultiPoint'];
 const LINE_CLASSES = new Set(['river', 'creek', 'tailrace', 'spring']);
 const STILL_CLASSES = new Set(['lake', 'pond']);
-const ALLOWED_WB_TYPES = new Set([...LINE_CLASSES, ...STILL_CLASSES]);
+const _ALLOWED_WB_TYPES = new Set([...LINE_CLASSES, ...STILL_CLASSES]);
 
 /** Tolerances (meters). Verification-grade geometry still meets real-world tolerance. */
 const M = {
@@ -103,7 +103,7 @@ class Violations {
 
 // ── geometry primitives (dependency-free; planar degree math with a cosine
 //    latitude correction — accurate to ~0.2% at Tennessee latitudes) ──────────
-const R_EARTH = 6_371_000;
+const _R_EARTH = 6_371_000;
 function metersPerDegree(lat) {
   const rad = (lat * Math.PI) / 180;
   return { lat: 111_132.92 - 559.82 * Math.cos(2 * rad) + 1.175 * Math.cos(4 * rad), lon: 111_412.84 * Math.cos(rad) };
@@ -164,7 +164,7 @@ export function flattenLines(geom) {
   if (geom.type === 'MultiLineString') return geom.coordinates;
   return [];
 }
-function flattenPoints(geom) {
+function _flattenPoints(geom) {
   if (geom.type === 'Point') return [geom.coordinates];
   if (geom.type === 'MultiPoint') return geom.coordinates;
   return [];

@@ -28,7 +28,7 @@ const { chromium } = createRequire(path.join(pwStore, pwDir, 'package.json'))('p
 
 
 const fc = JSON.parse(readFileSync(path.join(webRoot, 'atlas-sources', 'verified', 'east-southeast.geojson'), 'utf8'));
-const byId = Object.fromEntries(fc.features.map((f) => [f.properties.id, f]));
+const _byId = Object.fromEntries(fc.features.map((f) => [f.properties.id, f]));
 const buildReport = existsSync(path.join(CACHE, 'build-report.json'))
   ? JSON.parse(readFileSync(path.join(CACHE, 'build-report.json'), 'utf8'))
   : [];

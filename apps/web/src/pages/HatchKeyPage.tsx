@@ -8,7 +8,6 @@ import type { BugTaxon } from '@trout/contracts';
 import { useContentPack } from '../lib/content';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
-import { currentMonth } from '../lib/time';
 import { monthName, REGIONS } from '../data/regions';
 import { TaxonArt } from '../components/art/TaxonArt';
 import { TailsArt, GillsArt, ShapeArt } from '../components/art/DiscriminatorArt';

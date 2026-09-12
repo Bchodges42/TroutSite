@@ -1,3 +1,4 @@
+/* global console, process */
 // fix-great-falls-lake.mjs — drop the orphan part from great-falls-lake.
 //
 // Defect (tasking 2026-09-08, verified against the lake-great-falls NHD take):
@@ -21,7 +22,7 @@
 // and re-measure the lake topology record (dam pool distance, connections).
 // Run: node scripts/fix-great-falls-lake.mjs
 import {
-  commitFeature, commitTopology, countVerts, geomBBox, haversine, outwardBounds,
+  commitFeature, _commitTopology, countVerts, geomBBox, _haversine, outwardBounds,
   pointInRings, pointToPolygonM, polyAreaKm2, readRegion,
 } from './lib-west-middle-fix.mjs';
 
@@ -51,7 +52,6 @@ const inside = (p) => pointInRings(p, kept);
 if (!Array.isArray(anchor) || !inside(anchor)) {
   const b = geomBBox([kept[0]]);
   let best = null, bestD = Infinity;
-  outer:
   for (let gx = 0; gx <= 60; gx++) {
     for (let gy = 0; gy <= 60; gy++) {
       const p = [b[0] + ((b[2] - b[0]) * gx) / 60, b[1] + ((b[3] - b[1]) * gy) / 60];

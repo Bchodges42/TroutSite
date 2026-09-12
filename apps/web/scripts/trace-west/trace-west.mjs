@@ -22,7 +22,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   loadTake, levelPathGroups, traceWater, makeArtifact, beforeMetrics,
-  loadCanonicalProps, westMiddleMembership, loadSelfX, lineLenKm, chunkStats,
+  _loadCanonicalProps, westMiddleMembership, loadSelfX, lineLenKm, chunkStats,
   membersToChains, OUT,
 } from './lib.mjs';
 import { cutChainAtVertex } from '../lib-west-middle-fix.mjs';

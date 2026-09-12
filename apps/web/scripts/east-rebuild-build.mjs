@@ -578,7 +578,7 @@ function loadYaml(id) {
   return { region, gaugeIds: gauges, name, waterbodyType };
 }
 const LINE_TYPES = ['river', 'creek', 'stream', 'tailrace', 'spring'];
-const STILL_TYPES = ['lake', 'pond'];
+const _STILL_TYPES = ['lake', 'pond'];
 
 // state polygons for documented state cuts (flat lists of RINGS)
 const stateRings = new Map(); // lowercased state name -> [ring, ...]
@@ -657,8 +657,8 @@ function trimInsideLake(parts, lakeGeom) {
 // the already-kept parts' polylines is a redundant second digitization of the
 // same water — whole-part discipline keeps the first copy
 const __nearDupes = new Map();
-function trimmedDebugDupes(id, n) { __nearDupes.set(id, n); }
-function dedupeNearDuplicateParts(parts) {
+function _trimmedDebugDupes(id, n) { __nearDupes.set(id, n); }
+function _dedupeNearDuplicateParts(parts) {
   const accepted = [];
   const acceptedBBoxes = [];
   const nearAccepted = (pt) => {
@@ -977,7 +977,7 @@ const DAM_BY_RIVER = {
 };
 
 // ---------------------------------------------------------------------------
-async function buildLake(spec, lakeIndexForGaps) {
+async function buildLake(spec, _lakeIndexForGaps) {
   const report = { id: spec.id, kind: 'lake', action: 'rebuilt' };
   let rawRings = []; // each: [outerRing, ...holes]
   let sourceIds = [];
@@ -1589,7 +1589,7 @@ async function main() {
   console.log(`\nwrote ${outFeatures.length} features -> ${join(OUT_DIR, 'east-southeast.geojson')}`);
 }
 
-function rebuildTopoRecord(rep, feature, spec, baseRec) {
+function rebuildTopoRecord(rep, feature, spec, _baseRec) {
   if (rep.kind === 'lake') {
     return {
       featureId: rep.id,
