@@ -26,6 +26,10 @@ interface Props {
   modeMonth: number;
   live: boolean;
   fetchedAt: number | null;
+  /** 'panel' = standalone side panel (owns the dialog role); 'sheet' =
+   *  nested inside the vaul bottom sheet, whose Drawer.Content already IS
+   *  the role="dialog" — a second dialog here made assistive tech and
+   *  Playwright see two visible dialogs for one surface (stage-2 fix). */
   layout?: 'sheet' | 'panel';
   loading?: boolean;
   feedErrors?: { reports: boolean; stocking: boolean };
@@ -40,16 +44,17 @@ export function RiverDrawer({
   live,
   loading,
   feedErrors,
+  layout = 'panel',
 }: Props) {
   const body = useRef<HTMLDivElement>(null);
+  const dialogAttrs = layout === 'sheet' ? {} : { role: 'dialog' as const, 'aria-modal': false };
   if (!feature)
     return (
       <section
         className="inspector p-6"
         id="river-inspector"
         tabIndex={-1}
-        role="dialog"
-        aria-modal="false"
+        {...dialogAttrs}
         aria-label="River details"
       >
         <button className="icon-button self-end" aria-label="Close river details" onClick={onClose}>
@@ -78,8 +83,7 @@ export function RiverDrawer({
       className="inspector"
       id="river-inspector"
       tabIndex={-1}
-      role="dialog"
-      aria-modal="false"
+      {...dialogAttrs}
       aria-label={feature.stream.name + ' details'}
     >
       <div className="inspector-header">

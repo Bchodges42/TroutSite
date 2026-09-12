@@ -612,8 +612,14 @@ export function RiverMapPage() {
         >
           <Drawer.Portal>
             <Drawer.Content className="river-sheet" aria-label="River inspector">
-              <Drawer.Title className="trout-sr-only">
-                {(selected ?? lastFeature.current)?.stream.name ?? 'River details'}
+              {/* The sheet's accessible name. NOT an h2: the drawer body has the
+              visible water heading, and a second heading inside the same
+              dialog made locator("[role=dialog]").getByRole("heading")
+              resolve twice (stage-2 atlas-verify strict-mode fix). */}
+              <Drawer.Title asChild>
+                <span className="trout-sr-only">
+                  {(selected ?? lastFeature.current)?.stream.name ?? 'River details'}
+                </span>
               </Drawer.Title>
               <div className="river-sheet-grab" aria-hidden="true" />
               <button
@@ -635,7 +641,9 @@ export function RiverMapPage() {
                 modeMonth={month}
                 live={data.live}
                 fetchedAt={data.fetchedAt}
-                layout="panel"
+                // Inside the vaul sheet the Drawer.Content is already the
+                // dialog; a second role="dialog" here duplicated the surface.
+                layout="sheet"
                 loading={data.isLoading}
               />
             </Drawer.Content>
