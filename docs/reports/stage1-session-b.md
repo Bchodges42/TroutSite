@@ -7,7 +7,7 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - [x] SETUP — clone/config/push
 - [x] STEP 0 — baseline (install, seed, ingest, snapshots)
 - [x] STEP 1 — T1-5 POSIX hatch-chart build
-- [ ] STEP 2 — T0-4 size-budget redesign
+- [x] STEP 2 — T0-4 size-budget redesign
 - [ ] STEP 3 — T1-8 prerender fixture fallback
 - [ ] STEP 4 — T1-11 atlas/topo manifest regeneration
 - [ ] STEP 5 — T1-7 wolf-river-fentress.yaml correction
@@ -51,9 +51,42 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
     25 files / 251 tests passed (after the real install above); web build gated with
     `vite build` (exit 0) per the pre-STEP-2 cadence.
 
+### STEP 2 — T0-4: size-budget redesign (install-time semantics)
+
+- `apps/web/scripts/size-budget.mjs` rewritten. The old script counted the whole
+  `dist/` (minus `atlas/topo`) against a 25 MB gate — 67.08 MB measured — while the
+  service worker only precaches ~10 MB. New semantics:
+  - **Install-time set (HARD GATE ≤ 25 MB):** parsed from the generated Workbox
+    precache manifest inlined in `dist/sw.js` (`precacheAndRoute([...])` — extracted
+    by bracket balance, since the minified call carries a trailing options object
+    and unquoted object keys, so it is not JSON), plus `sw.js` itself. Every
+    manifest entry must exist on disk or the build fails (stale-manifest guard).
+  - **On-demand / runtime-cached set (reported, not gated):** everything else in
+    `dist/`, aggregated per top-level directory; topo keeps its 100 MB warn line.
+  - Doc-comment at the top of the script documents the new semantics.
+- Unit tests: `apps/web/scripts/size-budget.test.mjs` (node:test — see note below),
+  10 tests over fixture file lists/manifests: manifest parse (incl. real minified
+  shape with options object), budget split (manifest + sw.js = install),
+  pass/fail/warn judgment, per-directory aggregation.
+- Measured on this build: **install-time 10.80 MB / 25 MB budget (OK)**; on-demand
+  82.26 MB (atlas/ 80.52 MB, img/ 1.23 MB, v1/ 0.49 MB) — reported, not gated.
+- Gates: `pnpm --filter @trout/web build` now passes FULLY (tsc → copy-pack-fallback
+  → vite build → size-budget OK); validate:content OK; content tests 11/11; web
+  tests 25 files / 251 tests green.
+- **Note for Sessions A/C (out of my slice):** web's vitest include is
+  `test/**/*.test.{ts,tsx}` (vite.shared.ts, Session C) and `apps/web/package.json`
+  is outside my ownership, so the size-budget unit test runs standalone via
+  `node --test apps/web/scripts/size-budget.test.mjs` and is NOT picked up by
+  `pnpm --filter @trout/web test`. Proposed wiring (either one):
+  - Session C: extend vitest `include` with `scripts/**/*.test.mjs`, or
+  - Session A CI step: `- run: node --test apps/web/scripts/size-budget.test.mjs`
+    (and/or a package.json script `test:scripts`).
+
 ## Verification summary
 
 STEP 1: all gates green (details above).
+STEP 2: size-budget unit tests 10/10; full `pnpm --filter @trout/web build` green
+(install-time 10.80 MB of 25 MB); all cadence gates green.
 
 ## Blockers
 
