@@ -8,7 +8,7 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - [x] STEP 0 — baseline (install, seed, ingest, snapshots)
 - [x] STEP 1 — T1-5 POSIX hatch-chart build
 - [x] STEP 2 — T0-4 size-budget redesign
-- [ ] STEP 3 — T1-8 prerender fixture fallback
+- [x] STEP 3 — T1-8 prerender fixture fallback
 - [ ] STEP 4 — T1-11 atlas/topo manifest regeneration
 - [ ] STEP 5 — T1-7 wolf-river-fentress.yaml correction
 - [ ] FINAL verification
@@ -82,11 +82,40 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
   - Session A CI step: `- run: node --test apps/web/scripts/size-budget.test.mjs`
     (and/or a package.json script `test:scripts`).
 
+### STEP 3 — T1-8: prerender fixture fallback
+
+- `apps/web/scripts/prerender.mjs`:
+  - New `--allow-fixtures` flag. Every data feed that falls back to
+    `fixtures/**` is recorded; if any did and the flag is absent, prerender
+    exits 1 with a clear error naming the feeds and how to generate real
+    snapshots (or pass the flag for fixture-flavor builds).
+  - With the flag, a warning lists the fixture-backed feeds, and the /stocking
+    page built from fixtures says "sample data / NOT live TWRA data" — never
+    "reported releases".
+  - Honest unavailability: with zero stocking rows, /stocking renders a
+    "data currently unavailable" page instead of silently disappearing.
+  - datePrecision wording carried into all generated stocking copy (per-water
+    "Recent stocking" lists and the /stocking page): day → "reported released
+    YYYY-MM-DD"; week → "scheduled for the week of …"; month → "scheduled for
+    <Month Year>" (verified in real output: 9 "scheduled for March 2027" etc.).
+  - Real-snapshot run: 556 route pages, 148 waters, 12 regions × charts.
+- Regression tests: `apps/web/scripts/prerender.test.mjs` (node:test; hides
+  `public/v1` + `public/content`, restores in finally, re-renders real data
+  afterwards): (1) no snapshots + no flag → exit 1 with "refusing to publish
+  fixture data" + "--allow-fixtures" in stderr; (2) with the flag → exit 0,
+  /stocking page contains no "reported releases" and says sample data. 2/2 green.
+- **Note (out of my slice):** `e2e/global-setup.mjs` is not in my ownership and
+  does not currently run prerender; if it ever does (fixture flavor), it must
+  call `node scripts/prerender.mjs --allow-fixtures`. Same wiring note as STEP 2
+  for adding the node:test files to CI (Session A).
+
 ## Verification summary
 
 STEP 1: all gates green (details above).
 STEP 2: size-budget unit tests 10/10; full `pnpm --filter @trout/web build` green
 (install-time 10.80 MB of 25 MB); all cadence gates green.
+STEP 3: prerender regression tests 2/2; real prerender 556 pages; all cadence
+gates green (content 11/11, web 251/251, full web build + size-budget OK).
 
 ## Blockers
 

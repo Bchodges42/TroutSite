@@ -16,8 +16,15 @@
  * wrote the precache manifest — they are intentionally NOT precached (the
  * offline path keeps using the precached shell via navigateFallback).
  *
- *   node scripts/prerender.mjs            # after vite build
+ *   node scripts/prerender.mjs            # after vite build (real snapshots only)
+ *   node scripts/prerender.mjs --allow-fixtures   # fixture flavor (e2e/preview)
  *   pnpm --filter @trout/web prerender
+ *
+ * Factual pages must never publish fixture data as real (T1-8): if the
+ * public/v1 + public/content snapshots are absent, the script fails loudly
+ * unless --allow-fixtures is passed — and even then the generated copy says
+ * "sample data", never "reported releases", and carries each row's
+ * datePrecision (scheduled week/month vs released day).
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -57,11 +64,15 @@ const longMonth = new Intl.DateTimeFormat('en-US', { month: 'long' });
 const monthName = (m) => longMonth.format(new Date(2000, m - 1, 1));
 
 /** First existing candidate wins; production snapshots (public/v1) beat fixtures. */
-function readJson(candidates, fallback = null) {
+const ALLOW_FIXTURES = process.argv.includes('--allow-fixtures');
+const fixtureFeeds = new Set();
+
+function readJson(candidates, fallback = null, label = '') {
   for (const rel of candidates) {
     const p = join(appRoot, rel);
     if (existsSync(p)) {
       try {
+        if (rel.startsWith('fixtures/') && label) fixtureFeeds.add(label);
         return JSON.parse(readFileSync(p, 'utf8'));
       } catch (err) {
         console.warn(`prerender: could not parse ${rel}: ${err.message}`);
@@ -72,7 +83,7 @@ function readJson(candidates, fallback = null) {
 }
 
 function readJsonArray(candidates, label) {
-  const v = readJson(candidates, []);
+  const v = readJson(candidates, [], label);
   if (!Array.isArray(v)) {
     console.warn(`prerender: ${label} missing or malformed — skipping dependent pages.`);
     return [];
@@ -95,7 +106,7 @@ const taxa = readJsonArray(['public/content/taxa.json', 'fixtures/data/content/t
 const patterns = readJsonArray(['public/content/patterns.json', 'fixtures/data/content/patterns.json'], 'patterns');
 // The fishing-information document (statewide + per-water special regulations)
 // — the per-water rules are real, keyword-relevant content for the regs pages.
-const fishing = readJson(['public/content/fishing.json', 'fixtures/data/content/fishing.json'], null);
+const fishing = readJson(['public/content/fishing.json', 'fixtures/data/content/fishing.json'], null, 'fishing');
 
 // Region metadata lives in TS (src/data/regions.ts). Node ≥ 23.6 strips types
 // natively; older Node (the deploy host runs 20 LTS) falls back to a regex
@@ -120,6 +131,7 @@ const regionName = (id) => REGIONS.find((r) => r.id === id)?.name ?? id;
 // Hatch chart regions/months: whatever actually exists in the snapshots.
 const hatchRoots = ['public/v1/hatch', 'fixtures/data/v1/hatch'].map((r) => join(appRoot, r));
 const hatchRoot = hatchRoots.find(existsSync);
+if (hatchRoot === hatchRoots[1]) fixtureFeeds.add('hatch charts');
 const hatch = { regionIds: [], monthsByRegion: new Map() };
 if (hatchRoot) {
   for (const dir of readdirSync(hatchRoot, { withFileTypes: true }).filter((d) => d.isDirectory())) {
@@ -142,6 +154,36 @@ for (const row of stocking) {
   stockingByStream.get(row.streamName).push(row);
 }
 const taxaById = new Map(taxa.map((t) => [t.id, t]));
+
+// T1-8: fixture data may never silently stand in for real snapshots on factual
+// pages. Without --allow-fixtures (the e2e/preview escape hatch), using any
+// fixture feed is a hard error naming what is missing and where it should be.
+if (fixtureFeeds.size > 0 && !ALLOW_FIXTURES) {
+  console.error(
+    `prerender: FAILED — real public/ snapshots are missing, refusing to publish fixture data as factual pages.\n` +
+      `  Feeds that would fall back to fixtures: ${[...fixtureFeeds].sort().join(', ')}.\n` +
+      `  Generate the snapshots first (pnpm --filter api seed && pnpm --filter api ingest && pnpm --filter api snapshots),\n` +
+      `  or pass --allow-fixtures explicitly for fixture-flavor builds (e2e global-setup).`,
+  );
+  process.exit(1);
+}
+if (fixtureFeeds.size > 0) {
+  console.warn(
+    `prerender: WARN — --allow-fixtures in effect; the following pages use fixture data and say so: ${[...fixtureFeeds].sort().join(', ')}.`,
+  );
+}
+const stockingFromFixtures = fixtureFeeds.has('stocking');
+
+/** datePrecision-aware stocking wording: day-precision rows are reported
+ * releases; week/month rows are scheduled events and must say so. */
+const monthYear = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+function stockingWhen(r) {
+  const [y, m, d] = String(r.date ?? '').split('-').map(Number);
+  const day = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  if (r.datePrecision === 'month') return `scheduled for ${monthYear.format(new Date(Date.UTC(y, m - 1, 1)))}`;
+  if (r.datePrecision === 'week') return `scheduled for the week of ${day}`;
+  return `reported released ${day}`;
+}
 
 /* ------------------------------------------------------- shell injection */
 
@@ -227,7 +269,7 @@ function waterPage(stream) {
     const items = stockingRows
       .map(
         (r) =>
-          `<li>${escapeHtml(r.date)} — ${escapeHtml(String(r.count ?? '?').replace(/\B(?=(\d{3})+(?!\d))/g, ','))} ${escapeHtml(r.species ?? 'trout')} (${escapeHtml(r.county ?? '')} County)</li>`,
+          `<li>${escapeHtml(stockingWhen(r))} — ${escapeHtml(String(r.count ?? '?').replace(/\B(?=(\d{3})+(?!\d))/g, ','))} ${escapeHtml(r.species ?? 'trout')} (${escapeHtml(r.county ?? '')} County)</li>`,
       )
       .join('');
     parts.push(`<h2>Recent stocking</h2><ul>${items}</ul>`);
@@ -424,21 +466,43 @@ pages.push(
 
 if (stocking.length > 0) {
   const sorted = stocking.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+  const reported = sorted.filter((r) => r.datePrecision === 'day').length;
+  const scheduled = sorted.length - reported;
   const rows = sorted
     .slice(0, 10)
     .map(
       (r) =>
-        `<li>${escapeHtml(r.date)} — ${escapeHtml(r.streamName)} (${escapeHtml(r.county ?? '')} County): ${escapeHtml(String(r.count ?? '?').replace(/\B(?=(\d{3})+(?!\d))/g, ','))} ${escapeHtml(r.species ?? 'trout')}</li>`,
+        `<li>${escapeHtml(stockingWhen(r))} — ${escapeHtml(r.streamName)} (${escapeHtml(r.county ?? '')} County): ${escapeHtml(String(r.count ?? '?').replace(/\B(?=(\d{3})+(?!\d))/g, ','))} ${escapeHtml(r.species ?? 'trout')}</li>`,
     )
     .join('');
+  const counts = [
+    `${reported} reported release${reported === 1 ? '' : 's'}`,
+    `${scheduled} scheduled event${scheduled === 1 ? '' : 's'}`,
+  ].join(' and ');
   pages.push(
     simplePage({
       path: '/stocking',
-      title: 'Tennessee trout stocking schedule — recent TWRA releases',
-      description: `Recent TWRA trout stocking across Tennessee waters: ${sorted.length} reported releases with dates, counties, species and counts.`,
+      title: 'Tennessee trout stocking schedule — TWRA releases & scheduled events',
+      description: stockingFromFixtures
+        ? `Sample TWRA-style trout stocking data (${sorted.length} sample entries) used for preview builds — not live agency releases.`
+        : `Recent TWRA trout stocking across Tennessee waters: ${counts} with dates, counties, species and counts.`,
       h1: 'Tennessee trout stocking schedule',
-      intro: `The ${sorted.length} most recent TWRA stocking events Trout tracks, newest first.`,
-      sections: [['Recent releases', `<ul>${rows}</ul>`]],
+      intro: stockingFromFixtures
+        ? `Preview build from bundled sample data (${sorted.length} sample stocking entries) — this is NOT live TWRA data. The production page lists real releases and scheduled events, newest first.`
+        : `The ${counts} Trout tracks across Tennessee waters, newest first. Day-dated rows are reported releases; week/month rows are TWRA-scheduled events.`,
+      sections: [['Recent activity', `<ul>${rows}</ul>`]],
+    }),
+  );
+} else {
+  // Honest unavailability instead of a silently missing page (T1-8).
+  pages.push(
+    simplePage({
+      path: '/stocking',
+      title: 'Tennessee trout stocking schedule — data currently unavailable',
+      description:
+        'TWRA stocking data is temporarily unavailable. The Trout app resumes its published stocking schedule as soon as the feed returns.',
+      h1: 'Tennessee trout stocking schedule',
+      intro: 'Stocking data is currently unavailable — this page updates automatically when the TWRA feed returns. The app shows nothing rather than guess.',
     }),
   );
 }
