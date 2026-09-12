@@ -1,6 +1,6 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { ConditionSnapshotSchema } from '@trout/contracts';
+import { ConditionSnapshotSchema, FishabilitySnapshotSchema } from '@trout/contracts';
 import type { ConditionSnapshot } from '@trout/contracts';
 
 /**
@@ -118,6 +118,53 @@ export function conditionsFeedHealth(
       ...verdict,
       healthy: false,
       reason: `conditions feed is ${ageMinutes} minutes old (limit ${MAX_AGE_MINUTES})`,
+    };
+  }
+  return verdict;
+}
+
+export interface FishabilityFeedVerdict {
+  /** False when no fishability snapshots have ever been emitted (feature off — healthy). */
+  present: boolean;
+  /** False when emitted snapshots exist but any fails its contract. */
+  healthy: boolean;
+  reason: string | null;
+  files: number;
+}
+
+/**
+ * F5 malformation detector (contract v2, ADR 0007): every emitted
+ * /v1/fishability/*.json must satisfy the frozen FishabilitySnapshotSchema.
+ * A missing directory is the honest "no water is cataloged for scoring" state
+ * — healthy. A directory that exists (emission ran) must contain only
+ * contract-valid snapshots; any malformed file fails health, exactly the
+ * T1-10 discipline the conditions feed follows.
+ */
+export function fishabilityFeedHealth(webPublicDir: string | undefined): FishabilityFeedVerdict {
+  const base: FishabilityFeedVerdict = { present: false, healthy: true, reason: null, files: 0 };
+  if (!webPublicDir) return base;
+  const dir = join(webPublicDir, 'v1', 'fishability');
+  if (!existsSync(dir)) return base;
+  const files = readdirSync(dir).filter((f) => f.endsWith('.json'));
+  if (files.length === 0) {
+    return { ...base, present: true, healthy: false, reason: 'fishability snapshot directory exists but is empty' };
+  }
+  let malformed = 0;
+  for (const f of files) {
+    let ok = false;
+    try {
+      ok = FishabilitySnapshotSchema.safeParse(JSON.parse(readFileSync(join(dir, f), 'utf8'))).success;
+    } catch {
+      ok = false;
+    }
+    if (!ok) malformed += 1;
+  }
+  const verdict: FishabilityFeedVerdict = { present: true, healthy: malformed === 0, reason: null, files: files.length };
+  if (malformed > 0) {
+    return {
+      ...verdict,
+      healthy: false,
+      reason: `${malformed} of ${files.length} fishability snapshots fail the FishabilitySnapshot contract`,
     };
   }
   return verdict;

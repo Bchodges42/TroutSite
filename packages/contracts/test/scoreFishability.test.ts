@@ -97,6 +97,33 @@ describe('scoreFishability boundaries', () => {
     expect(score).toMatchObject({ species: 'bluegill', value: 0, assessed: false, freshness: null });
     expect(score.reasons.join(' ')).toMatch(/smallmouth-bass/);
   });
+
+  // Stage 3 amendment: high-side-only bands (no sourced cold side) — cold water
+  // is avoidance, never lethal, and the warm side scores exactly as before.
+  const highOnly: SpeciesComfortBands = {
+    species: 'largemouth-bass',
+    unit: 'degC',
+    optimalLow: 26.7,
+    optimalHigh: 30,
+    avoidanceHigh: 32,
+    lethalHigh: 34,
+  };
+
+  it('scores cold water as avoidance (40), never lethal, when no cold side is authored', () => {
+    const cold = scoreFishability([reading({ tempC: 5 })], 'largemouth-bass', highOnly, NOW);
+    expect(cold).toMatchObject({ value: 40, assessed: true });
+    expect(cold.reasons.join(' ')).toMatch(/below/);
+    const freezing = scoreFishability([reading({ tempC: -2 })], 'largemouth-bass', highOnly, NOW);
+    expect(freezing.value).toBe(40);
+    expect(freezing.reasons.join(' ')).not.toMatch(/lethal/i);
+  });
+
+  it('warm-side zones unchanged for high-side-only bands', () => {
+    expect(scoreFishability([reading({ tempC: 28 })], 'largemouth-bass', highOnly, NOW).value).toBe(90);
+    expect(scoreFishability([reading({ tempC: 31 })], 'largemouth-bass', highOnly, NOW).value).toBe(40);
+    const lethal = scoreFishability([reading({ tempC: 35 })], 'largemouth-bass', highOnly, NOW);
+    expect(lethal).toMatchObject({ value: 0, assessed: true });
+  });
 });
 
 describe('scoreFishability properties (seeded, deterministic)', () => {

@@ -52,10 +52,12 @@ describe('migrations', () => {
     // + 005_stocking_date_precision (legacy production compatibility)
     // + 006_streams_waterbody_types (legacy DB CHECK rebuild for lake/pond)
     // + 007_evidence_runs (data-sources lane: water-evidence run log).
-    expect(applied).toHaveLength(7);
+    // + 008_streams_target_species (F5 fishability, contract v2 / ADR 0007).
+    expect(applied).toHaveLength(8);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
+    expect(applied[7]!.name).toMatch(/^008_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

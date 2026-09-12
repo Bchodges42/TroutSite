@@ -19,6 +19,7 @@ interface StreamRow {
   notes: string | null;
   official_sources: string;
   species: string | null;
+  target_species: string | null;
 }
 
 interface ShopRow {
@@ -38,13 +39,13 @@ interface ShopRow {
 export function seedContent(db: Db, contentDir: string): SeedResult {
   const insertStream = db.prepare(`
     INSERT INTO streams (id, name, state_id, waterbody_type, region_id, gauge_ids,
-                         stocking_program, ideal_flow, notes, official_sources, species)
+                         stocking_program, ideal_flow, notes, official_sources, species, target_species)
     VALUES (@id, @name, @state_id, @waterbody_type, @region_id, @gauge_ids,
-            @stocking_program, @ideal_flow, @notes, @official_sources, @species)
+            @stocking_program, @ideal_flow, @notes, @official_sources, @species, @target_species)
     ON CONFLICT(id) DO UPDATE SET
       name=@name, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
       gauge_ids=@gauge_ids, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
-      notes=@notes, official_sources=@official_sources, species=@species
+      notes=@notes, official_sources=@official_sources, species=@species, target_species=@target_species
   `);
   const insertShop = db.prepare(`
     INSERT INTO shops (id, name, state_id, town, website_url, reports_enabled)
@@ -75,6 +76,7 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
       notes: s.notes ?? null,
       official_sources: JSON.stringify(s.officialSources),
       species: s.species ?? null,
+      target_species: s.targetSpecies ? JSON.stringify(s.targetSpecies) : null,
     };
     insertStream.run(row);
     streams += 1;

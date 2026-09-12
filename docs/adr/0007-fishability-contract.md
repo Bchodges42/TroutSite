@@ -152,3 +152,15 @@ reject paths and scorer boundaries are tested explicitly.
 - `nowMs` optional / freshness omitted when absent — rejected: two output shapes for
   one function invites consumers to forget the freshness contract; a required clock
   argument keeps every output complete and deterministic.
+
+## Amendment (2026-09-12, Stage 3 — cold side optional)
+
+F2's authoring landed with every cited value on the HIGH side: `optimalC {min,max}`,
+`avoidanceC` (chronic-stress ceiling), `lethalC` (acute ceiling) — agency MWAT/MDMT-style
+values that have no cold-side counterpart, and `lowerActiveC` explicitly
+`needs-source` for every species. Inventing cold-side numbers would violate the citation
+discipline, so `SpeciesComfortBands.lethalLow` and `.avoidanceLow` became OPTIONAL
+(schema-refined to order toward the optimal range when present). Scoring rule: below
+the optimal range is avoidance (value 40 — cold-inactive, honest "poor"); cold water is
+never scored lethal unless a cited `lethalLow` exists. Fully-authored cold sides score
+exactly as before. Additive and backward-compatible; no consumer change required.

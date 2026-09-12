@@ -22,19 +22,20 @@ export type SpeciesKey = z.infer<typeof SpeciesKeySchema>;
 
 /**
  * One species' thermal comfort ladder in °C (authored by F2 with citations;
- * consumed by scoreFishability). Six ordered boundaries, five contiguous zones:
- * lethalLow < avoidanceLow < optimalLow <= optimalHigh < avoidanceHigh < lethalHigh.
- * The avoidance boundaries ARE the lower/upper active limits — below/above them
- * the species is largely inactive. Temperature is the comfort metric because
- * thermal tolerance is what differs between these species; flow suitability
- * stays per-stream (idealFlow / scoreConditions) and is not duplicated here.
+ * consumed by scoreFishability). The WARM side is always a full contiguous
+ * ladder: optimalLow <= optimalHigh < avoidanceHigh < lethalHigh. The COLD side
+ * (lethalLow, avoidanceLow) is OPTIONAL: F2's cited sources are chronic/acute
+ * HIGH-side ceilings, and no cold-side value is sourced for the contract's
+ * warmwater species (Stage 3 amendment to ADR 0007 — cold-side numbers must not
+ * be invented). When absent, temperatures below the optimal range score as
+ * avoidance (inactive) and can never be lethal.
  */
 export const SpeciesComfortBandsSchema = z
   .object({
     species: SpeciesKeySchema,
     unit: z.literal('degC'),
-    lethalLow: z.number(),
-    avoidanceLow: z.number(),
+    lethalLow: z.number().optional(),
+    avoidanceLow: z.number().optional(),
     optimalLow: z.number(),
     optimalHigh: z.number(),
     avoidanceHigh: z.number(),
@@ -42,12 +43,17 @@ export const SpeciesComfortBandsSchema = z
   })
   .refine(
     (b) =>
-      b.lethalLow < b.avoidanceLow &&
-      b.avoidanceLow < b.optimalLow &&
       b.optimalLow <= b.optimalHigh &&
       b.optimalHigh < b.avoidanceHigh &&
-      b.avoidanceHigh < b.lethalHigh,
-    { message: 'comfort bands must satisfy lethalLow < avoidanceLow < optimalLow <= optimalHigh < avoidanceHigh < lethalHigh' },
+      b.avoidanceHigh < b.lethalHigh &&
+      // Cold side, when present, must order toward the optimal range.
+      (b.avoidanceLow === undefined || b.avoidanceLow < b.optimalLow) &&
+      (b.lethalLow === undefined || b.avoidanceLow === undefined || b.lethalLow < b.avoidanceLow) &&
+      (b.lethalLow === undefined || b.avoidanceLow !== undefined || b.lethalLow < b.optimalLow),
+    {
+      message:
+        'comfort bands must satisfy (lethalLow <) avoidanceLow (<) optimalLow <= optimalHigh < avoidanceHigh < lethalHigh',
+    },
   );
 export type SpeciesComfortBands = z.infer<typeof SpeciesComfortBandsSchema>;
 

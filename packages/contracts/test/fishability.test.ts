@@ -84,6 +84,33 @@ describe('SpeciesComfortBandsSchema', () => {
   it('rejects a non-celsius unit', () => {
     expect(() => SpeciesComfortBandsSchema.parse({ ...smallmouthBands, unit: 'degF' })).toThrow(ZodError);
   });
+
+  // Stage 3 amendment (ADR 0007): F2's cited values are high-side only, so the
+  // cold side is optional — but it must still order toward optimal when present.
+  it('accepts high-side-only bands (no lethalLow / avoidanceLow)', () => {
+    const highOnly = {
+      species: 'largemouth-bass',
+      unit: 'degC',
+      optimalLow: 26.7,
+      optimalHigh: 30,
+      avoidanceHigh: 32,
+      lethalHigh: 34,
+    };
+    expect(SpeciesComfortBandsSchema.parse(highOnly)).toBeDefined();
+  });
+
+  it('rejects a stray lethalLow above optimalLow when avoidanceLow is absent', () => {
+    const stray = {
+      species: 'largemouth-bass',
+      unit: 'degC',
+      lethalLow: 15,
+      optimalLow: 10,
+      optimalHigh: 30,
+      avoidanceHigh: 32,
+      lethalHigh: 34,
+    };
+    expect(() => SpeciesComfortBandsSchema.parse(stray)).toThrow(ZodError);
+  });
 });
 
 describe('ActivityComponentSchema', () => {

@@ -8,6 +8,7 @@ import {
   HatchChartSchema,
   ShopReportSchema,
   ShopSchema,
+  SpeciesKeySchema,
   StreamSchema,
   StockingEventSchema,
   WaterEvidenceSetSchema,
@@ -18,6 +19,8 @@ import type {
   HatchChart,
   Shop,
   ShopReport,
+  SpeciesComfortBands,
+  SpeciesKey,
   Stream,
   StockingEvent,
   WaterEvidence,
@@ -26,6 +29,7 @@ import type { Db } from '../db.js';
 import { latestReadings } from '../ingest/usgs.js';
 import { jobHealthy } from '../jobs/run.js';
 import { writeJsonAtomic } from '../lib/jsonFile.js';
+import { bandsFromReference, buildFishabilitySnapshot, type SpeciesReferenceLike } from './fishability.js';
 
 export interface BuildOptions {
   db: Db;
@@ -56,6 +60,7 @@ interface StreamRow {
   stocking_program: number;
   ideal_flow: string;
   species: string | null;
+  target_species: string | null;
   notes: string | null;
   official_sources: string;
 }
@@ -94,6 +99,7 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       idealFlow: JSON.parse(r.ideal_flow),
       ...(r.notes ? { notes: r.notes } : {}),
       ...(r.species ? { species: r.species as 'trout' | 'warmwater' } : {}),
+      ...(r.target_species ? { targetSpecies: JSON.parse(r.target_species) } : {}),
       officialSources: JSON.parse(r.official_sources),
     }),
   );
@@ -145,6 +151,7 @@ export interface SnapshotResult {
   files: string[];
   streams: number;
   conditions: number;
+  fishabilityWaters: number;
   stockingByState: Record<string, number>;
   /** Rows per state in the 3-month recency slices ({state}-recent.json). */
   stockingRecentByState: Record<string, number>;
@@ -199,6 +206,16 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   const conditionsPath = join(v1Dir, 'conditions', 'latest.json');
   writeJsonAtomic(conditionsPath, conditions);
   files.push(conditionsPath);
+
+  // ── v1/fishability/{streamId}.json (FishabilitySnapshot, contract v2 / ADR 0007) ──
+  // One file per water whose catalog entry names targetSpecies; waters without
+  // targetSpecies emit nothing. Bands come from the content pack's species.json
+  // (F2, cited values — high-side-only ladders per the ADR Stage 3 amendment);
+  // species whose warm-side values are not fully sourced emit an honest
+  // assessed:false row instead of a guess. Live activity carries exactly one
+  // factor today (water temperature); flow-trend/pressure/spawn join as their
+  // sources land (F8/F9).
+  const fishabilityWaters = emitFishability({ streams, readings, v1Dir, packDir: opts.contentPackDir, now, files, warnings });
 
   // ── v1/stocking/{state}.json (StockingEvent[]) ─────────────────────────────
   const stockingByState: Record<string, number> = {};
@@ -359,6 +376,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     files,
     streams: streams.length,
     conditions: conditions.length,
+    fishabilityWaters,
     stockingByState,
     stockingRecentByState,
     shopsByState,
@@ -375,6 +393,76 @@ function readPackEntities<T>(path: string, key: string, schema: { parse: (v: unk
   const list = raw[key];
   if (!Array.isArray(list)) throw new Error(`${path}: expected a "${key}" array`);
   return list.map((entry) => schema.parse(entry));
+}
+
+/**
+ * Emit /v1/fishability/{streamId}.json for every water with targetSpecies and
+ * prune files for waters that no longer have any. Returns the waters emitted.
+ */
+function emitFishability(
+  ctx: {
+    streams: Stream[];
+    readings: ReturnType<typeof latestReadings>;
+    v1Dir: string;
+    packDir?: string;
+    now: Date;
+    files: string[];
+    warnings: string[];
+  },
+): number {
+  const scoring = ctx.streams.filter((s) => (s.targetSpecies?.length ?? 0) > 0);
+  // Prune FIRST: a water that lost its targetSpecies must lose its file even
+  // when no water qualifies anymore (otherwise the last emission lingers).
+  pruneFishabilityFiles(join(ctx.v1Dir, 'fishability'), scoring.map((s) => s.id), ctx.files);
+  if (scoring.length === 0) return 0;
+
+  const bandsBySpecies = new Map<SpeciesKey, SpeciesComfortBands>();
+  const speciesPackPath = ctx.packDir ? join(ctx.packDir, 'species.json') : undefined;
+  if (speciesPackPath && existsSync(speciesPackPath)) {
+    const raw = JSON.parse(readFileSync(speciesPackPath, 'utf8')) as {
+      species?: Array<{ id: string } & SpeciesReferenceLike>;
+    };
+    for (const entry of raw.species ?? []) {
+      const parsed = SpeciesKeySchema.safeParse(entry.id);
+      if (!parsed.success) continue;
+      const bands = bandsFromReference(parsed.data, entry);
+      if (bands) bandsBySpecies.set(parsed.data, bands);
+    }
+  } else {
+    ctx.warnings.push('content pack has no species.json — fishability rows emit as cannot-assess (honest)');
+  }
+
+  const fishDir = join(ctx.v1Dir, 'fishability');
+  let emitted = 0;
+  for (const stream of scoring) {
+    const streamReadings =
+      stream.gaugeIds.length > 0 ? ctx.readings.filter((r) => stream.gaugeIds.includes(r.gaugeId)) : [];
+    const snapshot = buildFishabilitySnapshot(stream, streamReadings, bandsBySpecies, ctx.now.getTime());
+    const p = join(fishDir, `${stream.id}.json`);
+    writeJsonAtomic(p, snapshot);
+    ctx.files.push(p);
+    emitted += 1;
+  }
+  return emitted;
+}
+
+/** Remove fishability files for waters that no longer carry targetSpecies. */
+function pruneFishabilityFiles(fishDir: string, keepStreamIds: string[], files: string[]): void {
+  let existing: string[];
+  try {
+    existing = readdirSync(fishDir);
+  } catch {
+    return;
+  }
+  for (const f of existing) {
+    if (!f.endsWith('.json')) continue;
+    const streamId = f.slice(0, -'.json'.length);
+    if (!keepStreamIds.includes(streamId)) {
+      const p = join(fishDir, f);
+      rmSync(p);
+      files.push(`${p} (removed)`);
+    }
+  }
 }
 
 /** Remove state files that no longer correspond to data (keeps the dir == contract). */

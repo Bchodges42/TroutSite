@@ -8,7 +8,7 @@ import { StreamSchema } from '@trout/contracts';
 import type { Stream } from '@trout/contracts';
 import type { Db } from './db.js';
 import { latestJobRuns } from './jobs/run.js';
-import { conditionsFeedHealth } from './snapshots/health.js';
+import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
 
 export interface BuildAppOptions {
@@ -112,7 +112,11 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     // up". A served feed with catalog-wide zero observations and the builder's
     // stale stamp (the 2026-09-06 incident) reports ok:false with a reason.
     const conditions = conditionsFeedHealth(options.webPublicDir);
-    return { ok: conditions.healthy, conditions, jobs };
+    // F5 (contract v2): the fishability snapshots join the same gate. A
+    // missing fishability directory is the honest "nothing cataloged" state
+    // (healthy); an emitted snapshot that fails its contract fails health.
+    const fishability = fishabilityFeedHealth(options.webPublicDir);
+    return { ok: conditions.healthy && fishability.healthy, conditions, fishability, jobs };
   });
 
   // The one dynamic GET: /v1/streams?state=TN filters the regenerated snapshot.

@@ -66,8 +66,12 @@ export function scoreFishability(
   const t = tempReading.tempC;
   const speciesName = species.replaceAll('-', ' ');
 
-  // Contiguous zones, low → high: lethal | avoidance | optimal | avoidance | lethal.
-  if (t <= bands.lethalLow || t >= bands.lethalHigh) {
+  // Contiguous zones. Warm side (always authored): optimal | avoidance | lethal.
+  // Cold side: lethal/avoidance boundaries are OPTIONAL (ADR 0007 Stage 3
+  // amendment — F2's cited values are high-side only); without them, anything
+  // below the optimal range is avoidance (fish are cold-inactive) and can
+  // never be scored lethal.
+  if (t >= bands.lethalHigh || (bands.lethalLow !== undefined && t <= bands.lethalLow)) {
     return {
       species,
       value: 0,
