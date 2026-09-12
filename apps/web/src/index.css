@@ -2462,6 +2462,22 @@ html.reduce-motion *::after {
   border-radius: 18px 18px 0 0;
   box-shadow: var(--ui-shadow);
 }
+/* Seasonal applicability (T1-18/19): the winter-program state, surfaced at
+   the water's title instead of bottom-of-page prose. */
+.seasonal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-subtle);
+  color: var(--ui-muted);
+}
+
 .river-sheet > .inspector {
   flex: 1;
   min-height: 0;

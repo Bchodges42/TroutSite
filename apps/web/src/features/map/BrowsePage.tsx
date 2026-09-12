@@ -4,6 +4,7 @@ import { useRiverMapData } from './useRiverMapData';
 import { regionName } from '../../data/regions';
 import { ScorePill } from '../../components/ScorePill';
 import { rememberedMapUrl } from '../../lib/riverContext';
+import { decisionStatusText, toWaterDecisionView } from './waterDecision';
 export function BrowsePage() {
   const data = useRiverMapData();
   const [search, setSearch] = useState('');
@@ -59,15 +60,18 @@ export function BrowsePage() {
                       {regionName(f.stream.regionId)}
                     </span>
                   </span>
-                  {f.species === 'trout' && f.status !== 'no-data' && f.score !== null ? (
+                  {f.species === 'trout' &&
+                  f.status !== 'no-data' &&
+                  f.score !== null &&
+                  toWaterDecisionView(f, 'trout', new Date().getMonth() + 1).displayMetric ===
+                    'trout-condition' ? (
                     <ScorePill score={f.score} />
                   ) : (
                     <span className="muted text-sm">
-                      {f.species === 'warmwater'
-                        ? 'Warmwater'
-                        : f.species == null
-                          ? 'Unverified'
-                          : 'Unassessed'}
+                      {decisionStatusText(
+                        toWaterDecisionView(f, 'trout', new Date().getMonth() + 1),
+                        f,
+                      )}
                     </span>
                   )}
                 </Link>

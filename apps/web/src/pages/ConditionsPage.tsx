@@ -72,7 +72,9 @@ const NEAR_ME_COUNT = 8;
 /** Conditions browser (scope 4) — search-first, disclosed progressively. */
 export function ConditionsPage() {
   const { settings } = useSettingsContext();
-  const stateId = settings.defaultState;
+  // T2-33: the Default-state setting is gone — Tennessee is the only served
+  // state; other stateIds silently emptied every scoped page.
+  const stateId = 'TN' as const;
   const [params, setParams] = useSearchParams();
   const query = params.get('q') ?? '';
   const [nearMe, setNearMe] = useState<{ lat: number; lon: number } | null>(null);
@@ -121,13 +123,23 @@ export function ConditionsPage() {
 
   // Relevance strip — the major tailwaters, best score first. A small,
   // editorial answer to "where do I go" that never grows into the catalog.
+  // T2-24: rows sort by the score they DISPLAY — a non-trout row never wears
+  // the trout pill, so it can't be ordered by that hidden number.
   const tailwaterRows = useMemo(() => {
+    const visibleScore = (s: Stream): number => {
+      if (s.species !== 'trout') return -1;
+      const snap = snapshotByStream.get(s.id);
+      if (!snap) return -1;
+      const hasData = (snap.readings.length ?? 0) > 0;
+      const status = statusForScore(snap.score.value, hasData, snap.score.assessed);
+      return status !== 'no-data' ? snap.score.value : -1;
+    };
     return streams
       .filter((s) => s.waterbodyType === 'tailrace' && snapshotByStream.has(s.id))
       .map((stream) => ({ stream, snapshot: snapshotByStream.get(stream.id)! }))
       .sort(
         (a, b) =>
-          (b.snapshot?.score.value ?? -1) - (a.snapshot?.score.value ?? -1) ||
+          visibleScore(b.stream) - visibleScore(a.stream) ||
           a.stream.name.localeCompare(b.stream.name),
       )
       .slice(0, 4);
@@ -189,8 +201,8 @@ export function ConditionsPage() {
         />
       </div>
       <p className="page-subtitle mt-1">
-        Gauge-fed trout assessments for {stateId} waters. Search a water, or start from the
-        waters below — the full catalog never opens on its own.
+        Gauge readings with honest status for every water we track. Search a water, or start from
+        the waters below — the full catalog never opens on its own.
       </p>
 
       <div className="discovery-search mt-4">
@@ -344,9 +356,12 @@ function ConditionRow({
   // Catalog species verbatim — unknown stays unknown (H3); the decision model
   // classifies it and it never wears a trout score pill.
   const species = stream.species;
+  // The selected-month signal rides the decision: seasonal waters read
+  // "Out of season"/"Seasonal" instead of a trout band (T1-18/19).
   const decision = toWaterDecisionView(
     { stream, status, score: snapshot?.score?.value ?? null, snapshot, species },
     'trout',
+    new Date().getMonth() + 1,
   );
   const observedAt = newestReadingAt(snapshot?.readings ?? []);
   const stateText = decisionStatusText(decision, { species, status });

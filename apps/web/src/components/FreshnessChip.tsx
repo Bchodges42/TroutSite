@@ -80,13 +80,15 @@ export function FreshnessChip({
     }
     const dataAgeMs = Math.max(0, Date.now() - observedAt);
     const stale = dataAgeMs > READING_STALE_MINUTES * 60_000;
+    // T2-30: "Gauge live", not "Live" — the live thing is the gauge feed, and
+    // on a warmwater water a bare "Live" reads as live fishability.
     return stale ? (
       <Chip tone="fair" className={className} title="Fetched just now, but the newest gauge reading is this old — conditions may have changed.">
-        Stale · observed {ageMinutes(observedAt)}
+        Gauge stale · observed {ageMinutes(observedAt)}
       </Chip>
     ) : (
       <Chip tone="good" className={className} title="Reading age from the gauge — fetched live just now and cached on this device.">
-        Live · observed {ageMinutes(observedAt)}
+        Gauge live · observed {ageMinutes(observedAt)}
       </Chip>
     );
   }
