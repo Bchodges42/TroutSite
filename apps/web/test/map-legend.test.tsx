@@ -91,7 +91,7 @@ describe('MapLegend final state', () => {
   it('keeps hatch mode rows regardless of condition coverage', () => {
     openPanel({ mode: 'hatches', hasAssessedConditions: false });
     expect(screen.getByText('Hatch activity')).toBeInTheDocument();
-    expect(screen.getByText('active')).toBeInTheDocument();
+    expect(screen.getByText('guidance')).toBeInTheDocument();
     expect(screen.queryByText('Tailwater')).not.toBeInTheDocument();
   });
 

@@ -10,6 +10,7 @@ import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
+import { toWaterDecisionView, seasonalChipText } from './waterDecision';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -94,6 +95,7 @@ export function RiverDrawer({
           <div>
             <p className="eyebrow">{regionName(feature.stream.regionId)}</p>
             <h2>{identity.name}</h2>
+            <SeasonChip month={modeMonth} feature={feature} />
             <p className="inspector-subtitle">
               {identity.reach ?? waterTypeLabel(feature.stream.waterbodyType)}{' '}
               ·{' '}
@@ -153,7 +155,9 @@ export function RiverDrawer({
       >
         {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
         {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
-        {tab === 'Stocking' && <StockingTab feature={feature} error={feedErrors?.stocking} />}
+        {tab === 'Stocking' && (
+          <StockingTab feature={feature} month={modeMonth} error={feedErrors?.stocking} />
+ )}
         {tab === 'Reports' && <ReportsTab feature={feature} error={feedErrors?.reports} />}
         {tab === 'Your Log' && <LogTab feature={feature} month={modeMonth} />}
       </div>
@@ -183,33 +187,45 @@ function WaterTab({
   // No catalog species: say so explicitly (H3). The water keeps its gauge
   // readings below, but never trout-assessment language or a score disc.
   const unverified = feature.species == null;
+  // T1-18/19: the decision model owns seasonal applicability — a
+  // yearRound:false trout water out of its winter window never wears trout
+  // language, and the seasonal state shows as a first-class chip.
+  const decision = toWaterDecisionView(feature, 'trout', month);
+  const seasonal = seasonalChipText(decision);
+  const outOfSeason = decision.troutApplicability === 'seasonal-likely-absent';
   const title = warm
     ? 'Warmwater fishery'
     : unverified
       ? 'Species unverified'
-      : feature.status === 'no-data'
-        ? 'Not assessed'
-        : feature.status === 'good'
-          ? 'Good conditions'
-          : feature.status === 'fair'
-            ? 'Fair conditions'
-            : 'Poor conditions';
+      : outOfSeason
+        ? 'Winter program — out of season'
+        : decision.troutApplicability === 'seasonal-uncertain'
+          ? 'Winter program — seasonal fishery'
+          : feature.status === 'no-data'
+            ? 'Not assessed'
+            : feature.status === 'good'
+              ? 'Good conditions'
+              : feature.status === 'fair'
+                ? 'Fair conditions'
+                : 'Poor conditions';
   const reason = warm
     ? 'Trout scores do not apply to this fishery. Check the readings and local guidance.'
     : unverified
       ? 'The catalog does not document trout as a target species for this water. The gauge readings below still describe flow and temperature — check the fishery notes before fishing.'
-      : feature.status === 'no-data'
-        ? 'An assessment is not available in this snapshot. This does not mean fishing is poor.'
-        : (snap?.score.reasons.find((r) => /dangerously|avoid stressing/i.test(r)) ??
-          snap?.score.reasons[0] ??
-          'Assessment based on the available gauge readings.');
+      : seasonal
+        ? 'The catalog documents this fishery as a winter program: stocked in the cold months, not holding through summer. The gauge readings below still describe flow and temperature — verify the season with the official source.'
+        : feature.status === 'no-data'
+          ? 'An assessment is not available in this snapshot. This does not mean fishing is poor.'
+          : (snap?.score.reasons.find((r) => /dangerously|avoid stressing/i.test(r)) ??
+            snap?.score.reasons[0] ??
+            'Assessment based on the available gauge readings.');
   const dominant = feature.hatchDominant;
   const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
   return (
     <>
       <div
         className="assessment"
-        data-status={warm ? 'warmwater' : unverified || feature.status === 'no-data' ? 'no-data' : feature.status}
+        data-status={warm ? 'warmwater' : unverified || seasonal || feature.status === 'no-data' ? 'no-data' : feature.status}
       >
         <div className="assessment-top">
           <div>
@@ -218,7 +234,7 @@ function WaterTab({
             </span>
             <h3 className="assessment-name">{title}</h3>
           </div>
-          {feature.species === 'trout' && feature.status !== 'no-data' && feature.score !== null && (
+          {decision.displayMetric === 'trout-condition' && feature.score !== null && (
             <span
               className="score-disc"
               aria-label={'Condition score ' + feature.score + ' out of 100'}
@@ -263,7 +279,7 @@ function WaterTab({
           <small>{temp ? 'USGS ' + temp.gaugeId : 'Check water before fishing'}</small>
         </div>
       </div>
-      {!warm && (
+      {!warm && !seasonal && (
         <div className="hatch-preview">
           <span className="eyebrow">
             <BugIcon size={16} />
@@ -286,6 +302,22 @@ function WaterTab({
           >
             <BugIcon size={17} />
             Match the hatch <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      )}
+      {seasonal && (
+        <div className="detail-section seasonal-note">
+          <h3>{seasonal}</h3>
+          <p>
+            {outOfSeason
+              ? 'This water’s trout program runs in the cold months. The regional hatch calendar below the surface still describes insect activity, but the stocked fishery is likely absent until next winter.'
+              : 'This water’s trout program runs in the cold months; presence depends on where you are in the season. Verify stocking timing with the official source.'}
+          </p>
+          <Link
+            className="text-action"
+            to={riverWorkflowUrl('/charts/' + feature.stream.regionId + '/' + month, feature.stream, month)}
+          >
+            Open regional hatch calendar →
           </Link>
         </div>
       )}
@@ -399,18 +431,40 @@ function WaterTab({
     </>
   );
 }
+/** T1-18/19/T2-21 — the catalog's seasonal fact as a first-class chip;
+ *  renders nothing for waters the decision model keeps in-season. */
+function SeasonChip({ month, feature }: { month: number; feature: RiverMapFeature }) {
+  const text = seasonalChipText(toWaterDecisionView(feature, 'trout', month));
+  if (!text) return null;
+  return <p className="seasonal-chip">{text}</p>;
+}
+
 function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number }) {
   const pack = useContentPack();
   const chart = feature.hatchChart;
+  // T1-17/T1-19: the trout hatch outlook and its "Match this water" CTA only
+  // make sense where the trout metric applies. Warmwater and seasonal waters
+  // get the honest seasonal state instead; the regional calendar stays.
+  const decision = toWaterDecisionView(feature, 'trout', month);
+  const seasonal = seasonalChipText(decision);
+  const applies = decision.displayMetric === 'trout-condition';
   return (
     <>
       <div className="detail-section">
         <h3>{monthName(month)} on this water</h3>
-        <p>
-          Regional seasonal guidance, not live sightings. Match the insects you actually observe.
-        </p>
+        {applies ? (
+          <p>
+            Regional seasonal guidance, not live sightings. Match the insects you actually
+            observe.
+          </p>
+        ) : (
+          <p>
+            {seasonal ??
+              'The trout hatch model does not apply to this fishery — the regional calendar below still describes insect activity for the area.'}
+          </p>
+        )}
       </div>
-      {!chart?.entries.length && (
+      {!applies ? null : !chart?.entries.length && (
         <div className="empty-note">
           <strong>No seasonal chart available</strong>
           <p>
@@ -443,10 +497,12 @@ function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number 
           </div>
         );
       })}
-      <Link className="primary-action" to={riverWorkflowUrl('/hatch-key', feature.stream, month)}>
-        <BugIcon size={17} />
-        Match this water
-      </Link>
+      {applies && (
+        <Link className="primary-action" to={riverWorkflowUrl('/hatch-key', feature.stream, month)}>
+          <BugIcon size={17} />
+          Match this water
+        </Link>
+      )}
       <Link
         className="text-action"
         to={riverWorkflowUrl(
@@ -460,8 +516,11 @@ function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number 
     </>
   );
 }
-function StockingTab({ feature, error }: { feature: RiverMapFeature; error?: boolean }) {
+function StockingTab({ feature, error, month }: { feature: RiverMapFeature; error?: boolean; month: number }) {
   const event = feature.stocking;
+  // T2-20/21: matched entries carry the water's seasonal state, so a winter
+  // program's rows never read as current stock on a July visit.
+  const seasonal = seasonalChipText(toWaterDecisionView(feature, 'trout', month));
   if (!event)
     return (
       <div className="empty-note">
@@ -480,6 +539,7 @@ function StockingTab({ feature, error }: { feature: RiverMapFeature; error?: boo
     <>
       <div className="detail-section">
         <p className="eyebrow">Published schedule</p>
+        {seasonal && <p className="seasonal-chip">{seasonal}</p>}
         <h3 className="capitalize mt-2">{event.species} trout</h3>
         <p>{event.streamName}</p>
         <p className="mt-2">
@@ -487,7 +547,12 @@ function StockingTab({ feature, error }: { feature: RiverMapFeature; error?: boo
             month: 'long',
             year: 'numeric',
           })}
-          {event.count != null ? ' · ' + event.count.toLocaleString() + ' fish' : ''}
+          {event.count != null
+            ? // T2-32: a coarse date is a schedule, not an observed stocking.
+              event.datePrecision && event.datePrecision !== 'day'
+              ? ' · ' + event.count.toLocaleString() + ' fish scheduled'
+              : ' · ' + event.count.toLocaleString() + ' fish'
+            : ''}
         </p>
       </div>
       <div className="empty-note">
@@ -510,7 +575,7 @@ function StockingTab({ feature, error }: { feature: RiverMapFeature; error?: boo
     </>
   );
 }
-function ReportsTab({ feature, error }: { feature: RiverMapFeature; error?: boolean }) {
+function ReportsTab({ feature }: { feature: RiverMapFeature; error?: boolean }) {
   const report = feature.report;
   if (!report)
     return (

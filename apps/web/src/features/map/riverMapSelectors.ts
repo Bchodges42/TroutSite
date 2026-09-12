@@ -84,10 +84,10 @@ export function freshnessLabel(
   }
   if (dataAgeMin <= READING_STALE_MINUTES) {
     const age = dataAgeMin < 1 ? 'just now' : dataAgeMin < 90 ? `${Math.round(dataAgeMin)} min ago` : `${Math.round(dataAgeMin / 60)} hr ago`;
-    return `Live · observed ${age}`;
+    return `Gauge live · observed ${age}`;
   }
   const hrs = Math.round(dataAgeMin / 60);
-  return `Stale · observed ${hrs} hr ago`;
+  return `Gauge stale · observed ${hrs} hr ago`;
 }
 
 export function isFresh(fetchedAt: number | null | undefined, ttlMinutes: number): boolean {

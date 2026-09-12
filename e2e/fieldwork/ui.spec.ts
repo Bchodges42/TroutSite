@@ -24,14 +24,17 @@ test.beforeEach(async ({ page }) => {
     }),
   );
 });
-async function select(page: Page, name: string) {
-  let search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
-  if ((await search.count()) === 0) {
-    await page.getByRole('button', { name: 'Search waters', exact: true }).click();
-    search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
-  }
-  await search.fill(name);
-  await search.press('Enter');
+/** The header search is the one search surface visible in every state and at
+ * every width (the sidebar search mounts hidden until a water/index opens).
+ * Stage-2 update: the old "Search waters" FAB no longer exists. */
+function headerSearch(page: Page) {
+  return page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' });
+}
+async function select(page: Page, name: string, optionName?: RegExp) {
+  await headerSearch(page).fill(name);
+  // The best match can be ambiguous ('Caney' matches the tailwater AND the
+  // upper reach) — an explicit option pattern pins the water.
+  await page.getByRole('option', { name: optionName ?? new RegExp(name, 'i') }).first().click();
   await expect(page.locator('#river-inspector')).toBeVisible();
 }
 async function ready(page: Page) {
@@ -57,6 +60,48 @@ async function mapViewportCoordinate(page: Page, longitude: number, latitude: nu
 async function clickMapCoordinate(page: Page, longitude: number, latitude: number) {
   const point = await mapViewportCoordinate(page, longitude, latitude);
   await page.locator('.maplibregl-canvas').click({ position: point });
+}
+/**
+ * Find a screen point where the river LINE wins the app's hit test, clear of
+ * every rendered label button (the H5 label pass puts name buttons directly
+ * over corridor geometry, which intercepts fixed-coordinate clicks). Mirrors
+ * the app's distance model, as scanPolygonPoint does for polygons.
+ */
+async function scanLinePoint(
+  page: Page,
+  riverId: string,
+  window_: { lonMin: number; lonMax: number; latMin: number; latMax: number },
+): Promise<{ x: number; y: number }> {
+  return page.getByTestId('river-map').evaluate(
+    (el, target) => {
+      const m = (window as any).__troutMap;
+      const layers = ['rivers-point-hit', 'rivers-water-hit', 'rivers-water-hit-outline', 'rivers-hit'];
+      const origin = m.getContainer().getBoundingClientRect();
+      const labels = [...document.querySelectorAll('.river-map-label')]
+        .filter((el: Element) => el.getClientRects().length > 0)
+        .map((el: Element) => {
+          const b = el.getBoundingClientRect();
+          return { x: b.x - origin.x, y: b.y - origin.y, w: b.width, h: b.height };
+        });
+      for (let lon = target.lonMin; lon <= target.lonMax; lon += 0.004) {
+        for (let lat = target.latMin; lat <= target.latMax; lat += 0.004) {
+          const p = m.project([lon, lat]);
+          if (p.x < 20 || p.y < 90 || p.x > m.getContainer().clientWidth - 20 || p.y > m.getContainer().clientHeight - 80) continue;
+          if (labels.some((b: any) => p.x > b.x - 6 && p.x < b.x + b.w + 6 && p.y > b.y - 6 && p.y < b.y + b.h + 6)) continue;
+          const feats = m.queryRenderedFeatures([[p.x - 5, p.y - 5], [p.x + 5, p.y + 5]], { layers });
+          if (!feats.length) continue;
+          // Corridor lines all share the 5px tolerance — a line feature of the
+          // target id present in the query is a win (points resolve closer).
+          const best = feats
+            .map((f: any) => ({ id: String(f.properties.id), d: f.geometry.type === 'Point' ? Math.hypot(p.x - m.project(f.coordinates).x, p.y - m.project(f.coordinates).y) : 5.5 }))
+            .sort((a: any, b: any) => a.d - b.d)[0];
+          if (best?.id === target.riverId) return { x: p.x, y: p.y };
+        }
+      }
+      throw new Error('no tap point where the target line wins the hit test');
+    },
+    { riverId, ...window_ },
+  );
 }
 /**
  * Find a screen point where the oversized mock polygon WINS the app's hit
@@ -168,12 +213,18 @@ test('the map opens full-bleed and the water atlas is summonable', async ({ page
   await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Center map on Tennessee' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Search waters' })).toBeVisible();
+  // Stage-2 UI: search lives in the header, always visible — it is the atlas'
+  // single path (DESIGN §identity), and typing summons results over the map.
+  await expect(headerSearch(page)).toBeVisible();
   await ready(page);
-  await page.getByRole('button', { name: 'Search waters' }).click();
+  await headerSearch(page).fill('Caney');
+  await expect(page.getByRole('option', { name: /caney/i }).first()).toBeVisible();
+  await page.keyboard.press('Escape');
+  // The field-atlas index (list + filters) remains reachable at ?atlas=1.
+  await page.goto('/?atlas=1');
   await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
-  // 146-water pack: trout mode = 100 trout + 43 unverified-species + 1 stocked warmwater.
-  await expect(page.locator('.water-row')).toHaveCount(144);
+  // 148-water pack: trout mode = 103 trout + 37 unverified-species + 1 stocked warmwater.
+  await expect(page.locator('.water-row')).toHaveCount(141);
   await page.getByRole('button', { name: 'Close water list' }).click();
   // The atlas has one chrome path: the layers panel no longer duplicates it,
   // and the menu no longer carries 'Open water atlas' or 'Browse all waters'.
@@ -217,7 +268,7 @@ test('fluid tooltips appear on hover and keyboard focus and never trap focus', a
 test('control group buttons meet the 44px touch minimum', async ({ page }) => {
   await page.goto('/');
   await ready(page);
-  for (const name of ['Center map on Tennessee', 'Map layers', 'Use my location', 'Search waters']) {
+  for (const name of ['Center map on Tennessee', 'Map layers', 'Use my location']) {
     const box = (await page.getByRole('button', { name }).boundingBox())!;
     expect(box.width).toBeGreaterThanOrEqual(44);
     expect(box.height).toBeGreaterThanOrEqual(44);
@@ -262,17 +313,17 @@ test('search, inspector tabs, Escape hierarchy, and focus restoration', async ({
   await expect(page.locator('#river-inspector')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#river-inspector')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Search waters' })).toBeFocused();
+  // Focus lands back on the visible search surface (the header search).
+  await expect(headerSearch(page)).toBeFocused();
 });
 
 test('legend speaks trout conditions in trout mode and stays honest in all-fish mode', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?atlas=1');
   await ready(page);
   await expect(page.locator('.map-legend .legend-title')).toHaveText('Trout conditions');
   await expect(page.locator('.map-legend')).not.toContainText('Warmwater');
-  await page.getByRole('button', { name: 'Search waters' }).click();
   await page.getByRole('button', { name: 'All fish', exact: true }).click();
   await expect(page.locator('.map-legend .legend-title')).toHaveText('Water guide');
   await expect(page.locator('.map-legend')).toContainText('trout waters');
@@ -333,7 +384,7 @@ test('hatch and pattern workflows retain river and month', async ({ page }) => {
 test('browser history restores the river and map camera', async ({ page }) => {
   await page.goto('/');
   await ready(page);
-  await select(page, 'Caney');
+  await select(page, 'Caney', /center hill tailwater/i);
   await page.waitForTimeout(450); // Wait for the defined 300 ms camera transition, not network readiness.
   const camera = await page.getByTestId('river-map').getAttribute('data-center');
   await select(page, 'Tellico lake');
@@ -362,7 +413,9 @@ for (const width of [768, 390, 320]) {
     await select(page, 'Caney');
     await ready(page);
     await noOverflow(page);
-    const sheet = page.locator('.water-sidebar.is-inspecting');
+    // Stage-2 UI: the mobile inspector is the vaul bottom sheet (.river-sheet),
+    // not the old CSS .water-sidebar.is-inspecting panel.
+    const sheet = page.locator('.river-sheet');
     const box = await sheet.boundingBox();
     expect(box!.y).toBeGreaterThan(300);
     for (const label of ['Conditions', 'Hatches', 'Stocking', 'Reports', 'Log'])
@@ -370,9 +423,7 @@ for (const width of [768, 390, 320]) {
     await page.getByRole('button', { name: 'Expand details', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Show map', exact: true })).toBeVisible();
     await page.getByRole('button', { name: 'Close river details', exact: true }).click();
-    await expect(
-      page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true }),
-    ).toBeFocused();
+    await expect(headerSearch(page)).toBeFocused();
   });
 }
 
@@ -414,8 +465,8 @@ test('WebGL failure has a usable list alternative', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Explore without the map.' })).toBeVisible();
   await page.getByRole('link', { name: 'Browse all waters →', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Browse streams', exact: true })).toBeVisible();
-  // Full catalog: all 146 waters, every species state.
-  await expect(page.locator('.list-row')).toHaveCount(146);
+  // Full catalog: all 148 waters, every species state.
+  await expect(page.locator('.list-row')).toHaveCount(148);
 });
 
 test('offline and unassessed presentation never claim live or zero Poor', async ({
@@ -436,7 +487,15 @@ test('clicking actual river geometry opens its inspector', async ({ page }) => {
   await page.goto('/');
   await ready(page);
   await expect(page.locator('.water-sidebar')).toBeHidden();
-  await clickMapCoordinate(page, -85.7264, 35.9783);
+  // The tap point is scanned at runtime: fixed coordinates now sit under the
+  // H5 label buttons, which correctly win the pointer.
+  const point = await scanLinePoint(page, 'caney-fork-river', {
+    lonMin: -85.96,
+    lonMax: -85.79,
+    latMin: 36.09,
+    latMax: 36.26,
+  });
+  await page.locator('.maplibregl-canvas').click({ position: point });
   await expect(page).toHaveURL(/river=caney-fork-river/);
   await expect(page.locator('#river-inspector')).toBeVisible();
 });
@@ -446,9 +505,15 @@ test('clicking river geometry opens the same inspector as a mobile sheet', async
   await page.goto('/');
   await ready(page);
   await expect(page.locator('.water-sidebar')).toBeHidden();
-  await clickMapCoordinate(page, -85.7264, 35.9783);
+  const point = await scanLinePoint(page, 'caney-fork-river', {
+    lonMin: -85.96,
+    lonMax: -85.79,
+    latMin: 36.09,
+    latMax: 36.26,
+  });
+  await page.locator('.maplibregl-canvas').click({ position: point });
   await expect(page).toHaveURL(/river=caney-fork-river/);
-  const sheet = page.locator('.water-sidebar.is-inspecting');
+  const sheet = page.locator('.river-sheet');
   await expect(sheet).toBeVisible();
   expect((await sheet.boundingBox())!.y).toBeGreaterThan(300);
 });
@@ -459,10 +524,13 @@ test('still waters are labeled, tappable, and honestly presented', async ({ page
   // H5 prominence: every catalog still water carries its label; major lakes
   // stay visible statewide, pocket ponds appear at local zooms.
   await expect(page.locator('.still-water-label')).toHaveCount(43);
-  await expect(page.locator('[data-river-id="kentucky-lake"]')).toBeVisible();
-  await page.locator('[data-river-id="kentucky-lake"]').click();
-  await expect(page).toHaveURL(/river=kentucky-lake/);
-  await expect(page.getByRole('heading', { name: 'Kentucky Lake', exact: true })).toBeVisible();
+  // Dale Hollow Lake: the catalog's major TROUT still water — the statewide
+  // title the mode-honest label policy grants. (Kentucky Lake is now
+  // unverified-species and correctly titles only in all-fish mode.)
+  await expect(page.locator('[data-river-id="dale-hollow-lake"]')).toBeVisible();
+  await page.locator('[data-river-id="dale-hollow-lake"]').click();
+  await expect(page).toHaveURL(/river=dale-hollow-lake/);
+  await expect(page.getByRole('heading', { name: 'Dale Hollow Lake', exact: true })).toBeVisible();
   // A pocket pond reached by search: trout species + no assessment reads
   // "Not assessed" — never a fabricated band.
   await select(page, 'Cameron Brown');
@@ -536,7 +604,7 @@ test.describe('touch polygon selection', () => {
     const canvas = await page.locator('.maplibregl-canvas').boundingBox();
     await page.touchscreen.tap(canvas!.x + tap.x, canvas!.y + tap.y);
     await expect(page).toHaveURL(/river=beech-lake/);
-    await expect(page.locator('.water-sidebar.is-inspecting')).toBeVisible();
+    await expect(page.locator('.river-sheet')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
   });
 });
@@ -560,11 +628,13 @@ test('guided hatch choices move focus and carry context into results', async ({ 
   await page.getByRole('button', { name: '#16', exact: true }).click();
   await expect(page.locator('#hatch-step-heading')).toBeFocused();
   await page.getByRole('button', { name: 'olive', exact: true }).click();
-  await page.getByRole('button', { name: '2 tails', exact: true }).click();
+  // The tails and shape cards carry descriptive sub-lines, so their accessible
+  // names extend past the headline — match the headline prefix.
+  await page.getByRole('button', { name: /^2 tails/ }).click();
   await page
     .getByRole('button', { name: 'Flat plates (lamellae) along the sides', exact: true })
     .click();
-  await page.getByRole('button', { name: 'slender', exact: true }).click();
+  await page.getByRole('button', { name: /^slender/ }).click();
   await expect(page.getByRole('combobox', { name: 'Month', exact: true })).toHaveValue('5');
   await page.getByRole('button', { name: 'See matches', exact: true }).click();
   await expect(page.locator('#hatch-results-heading')).toBeFocused();
@@ -659,7 +729,8 @@ test('representative desktop and mobile inspector views remain readable', async 
   await page.goto('/?river=caney-fork-river&month=9&terrain=1&basemap=paper');
   await ready(page);
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'daybreak');
-  // Demo fixture pack regeneration changed the region's dominant hatch.
+  // Month 9 has an abundance tie; dominantHatch breaks it by taxonId, which
+  // lands on the midge — deterministic against the committed fixture pack.
   await expect(page.locator('.hatch-preview')).toContainText('Midge Larva');
   await page.screenshot({ path: screenshots + '/daybreak-desktop-inspector.png' });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -668,19 +739,20 @@ test('representative desktop and mobile inspector views remain readable', async 
   const selectedLabel = page.locator('.river-map-label.selected');
   await expect(selectedLabel).toBeVisible();
   const labelBounds = await selectedLabel.boundingBox();
-  const sheetBounds = await page.locator('.water-sidebar.is-inspecting').boundingBox();
+  const sheetBounds = await page.locator('.river-sheet').boundingBox();
   expect(labelBounds!.y + labelBounds!.height).toBeLessThan(sheetBounds!.y);
   await expect(page.getByRole('tab', { name: 'Log', exact: true })).toBeInViewport();
   await noOverflow(page);
   await page.screenshot({ path: screenshots + '/nightfall-mobile-inspector.png' });
   await page.getByRole('button', { name: 'Expand details', exact: true }).click();
   await expect(page.locator('.river-map-label').filter({ visible: true })).toHaveCount(0);
-  const fullMapHeight = (await page.locator('.field-map').boundingBox())!.height;
+  // Stage-2 UI: the vaul sheet's expanded snap point is 0.82 of the viewport.
+  const viewportHeight = page.viewportSize()!.height;
   await expect
     .poll(async () =>
-      Math.round((await page.locator('.water-sidebar.is-expanded').boundingBox())!.height),
+      Math.round((await page.locator('.river-sheet').boundingBox())!.height / viewportHeight * 100),
     )
-    .toBe(Math.round(fullMapHeight * 0.82));
+    .toBe(82);
   await expect(page.locator('.metrics')).toBeInViewport();
   await page.screenshot({ path: screenshots + '/nightfall-mobile-expanded.png' });
 });

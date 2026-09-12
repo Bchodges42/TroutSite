@@ -13,8 +13,8 @@ export interface MapState {
   tab: DrawerTab;
   mode: MapMode;
   month: number; // 1..12
-  /** ?all=1 — full-state view: every atlas water renders, filters aside. */
-  all: boolean;
+  // T2-34: the ?all=1 full-state toggle is REMOVED — it bypassed the
+  // waterDecision visibility model. ?qa=1 (a different thing) stays.
   /** ?qa=1 — internal geometry QA overlay (not advertised in normal UI). */
   qa: boolean;
 }
@@ -30,9 +30,8 @@ export function useMapState() {
     const mode = modeRaw && VALID_MODES.includes(modeRaw) ? modeRaw : 'conditions';
     const monthRaw = Number(params.get('month'));
     const month = monthRaw >= 1 && monthRaw <= 12 ? monthRaw : currentMonth();
-    const all = params.get('all') === '1';
     const qa = params.get('qa') === '1';
-    return { river, tab, mode, month, all, qa };
+    return { river, tab, mode, month, qa };
   }, [params]);
 
   const update = useCallback(
@@ -48,10 +47,6 @@ export function useMapState() {
           if (patch.tab !== undefined) next.set('tab', patch.tab);
           if (patch.mode !== undefined) next.set('mode', patch.mode);
           if (patch.month !== undefined) next.set('month', String(patch.month));
-          if (patch.all !== undefined) {
-            if (patch.all) next.set('all', '1');
-            else next.delete('all');
-          }
           if (patch.qa !== undefined) {
             if (patch.qa) next.set('qa', '1');
             else next.delete('qa');

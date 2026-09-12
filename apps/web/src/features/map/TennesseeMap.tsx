@@ -62,9 +62,6 @@ interface Props {
   featureColors: Map<string, string>;
   allIds?: string[];
   visibleIds?: Set<string>;
-  /** ?all=1 full-state view — render EVERY atlas feature, warts and all,
-   * regardless of the waterDecision visibility the catalog filters produce. */
-  showAllWaters?: boolean;
   assessedIds?: Set<string>;
   /** Catalog species per water id, from the same streams snapshot the
    * corridors join (H5 mode-aware labels) — absent means the catalog does
@@ -164,11 +161,9 @@ export function TennesseeMap(props: Props) {
               river.waterbodyType === 'pond' ||
               river.waterbodyType === 'reservoir'
                 ? false
-                : p.showAllWaters
-                  ? false
-                  : p.visibleIds
-                    ? !p.visibleIds.has(river.id)
-                    : false,
+                : p.visibleIds
+                  ? !p.visibleIds.has(river.id)
+                  : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
@@ -359,9 +354,7 @@ export function TennesseeMap(props: Props) {
           const id = String(f.properties.id ?? '');
           return (
             id &&
-            (!latest.current.visibleIds ||
-              latest.current.showAllWaters ||
-              latest.current.visibleIds.has(id))
+            (!latest.current.visibleIds || latest.current.visibleIds.has(id))
           );
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
@@ -663,11 +656,21 @@ export function TennesseeMap(props: Props) {
           a.river.id.localeCompare(b.river.id),
       );
       for (const { river, el, width, height, stillWater, extent } of sorted) {
+        // Catalog truth arrives asynchronously (the streams snapshot) —
+        // re-derive the still-water classification each pass so a water
+        // classified 'river' at marker creation (catalog not loaded yet, and
+        // non-degenerate index bounds) corrects itself. The static index set
+        // never downgrades: point-bounds waters are point waters.
+        const isStill = stillWater || Boolean(p.stillWaterIds?.has(river.id));
+        if (isStill !== stillWater) {
+          el.classList.add('still-water-label');
+          el.dataset.waterKind = 'still-water';
+        }
         const selected = river.id === p.selectedId;
         const assessed = p.assessedIds?.has(river.id) ?? false;
         const species = p.labelSpecies?.get(river.id);
         const typeWord = p.waterTypes?.get(river.id);
-        const kindWord = typeWord ?? (stillWater ? 'Still water' : 'River');
+        const kindWord = typeWord ?? (isStill ? 'Still water' : 'River');
         // Mode-honest naming: confirmed trout takes no species word (it is
         // the app's default vocabulary); warmwater says so; a water whose
         // species the catalog leaves unset reads "Unverified" in place of the

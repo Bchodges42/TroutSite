@@ -23,7 +23,6 @@ import type { RiverMapFeature } from './riverMapSelectors';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
-const statusName = { good: 'Good', fair: 'Fair', poor: 'Poor', 'no-data': 'Unassessed' };
 export function RiverMapPage() {
   const [params, setParams] = useSearchParams();
   const location = useLocation();
@@ -36,9 +35,6 @@ export function RiverMapPage() {
   const species = params.get('species') === 'all' ? 'all' : 'trout';
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
-  // ?all=1 — full-state view: every mapped water renders regardless of the
-  // waterDecision visibility filters (same URL-param pattern as ?roads=1).
-  const allWatersOn = params.get('all') === '1';
   // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
   // while the param is present).
   const qaOn = params.get('qa') === '1';
@@ -246,7 +242,9 @@ export function RiverMapPage() {
     // Visibility is the decision model's call (H3): unknown-species waters
     // stay discoverable in trout mode but never read as confirmed trout;
     // plain warmwater is excluded there; the stocked Harpeth is deemphasized.
-    const decision = toWaterDecisionView(f, species);
+    // The selected month rides along: seasonal waters keep their row but the
+    // decision drops the trout metric out of season (T1-18/19).
+    const decision = toWaterDecisionView(f, species, month);
     return (
       (species === 'all' || decision.visibility !== 'exclude' || f.stream.id === selectedId) &&
       (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId)
@@ -309,7 +307,7 @@ export function RiverMapPage() {
     () =>
       new Map(
         data.features.map((f) => {
-          const token = decisionColorToken(toWaterDecisionView(f, species), f);
+          const token = decisionColorToken(toWaterDecisionView(f, species, month), f);
           return [
             f.stream.id,
             token === 'warmwater'
@@ -320,7 +318,7 @@ export function RiverMapPage() {
           ] as const;
         }),
       ),
-    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), species, theme.id],
+    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), species, month, theme.id],
   );
   const hatchActive = useMemo(
     () =>
@@ -330,6 +328,10 @@ export function RiverMapPage() {
               .filter(
                 (f) =>
                   f.species !== 'warmwater' &&
+                  // T1-17/19: the halo advertises trout hatch guidance — a
+                  // water the decision model takes out of the trout metric
+                  // (unverified, out-of-season) never lights one.
+                  toWaterDecisionView(f, species, month).displayMetric === 'trout-condition' &&
                   // Expected-activity rework: any charted guidance lights the
                   // halo (abundance >= 1). The old >= 2 cut produced dead
                   // "nothing is hatching" months; something hatches year-round.
@@ -338,7 +340,7 @@ export function RiverMapPage() {
               .map((f) => f.stream.id)
           : [],
       ),
-    [mode, month, data.hatchMap.size, visibleIds],
+    [mode, month, data.hatchMap.size, visibleIds, species],
   );
   const basemap =
     topoAvailable && (params.get('terrain') === '1' || params.get('basemap') === 'topo')
@@ -348,12 +350,22 @@ export function RiverMapPage() {
         : 'ink';
   const filters = (
     <div className="filter-row" aria-label="Filter waters">
+      {/* T2-23: species and assessed are INDEPENDENT dimensions — each chip
+      toggles only its own URL param, so "assessed-only warmwater" is
+      expressible and no chip silently resets the other. */}
       <button
         className="filter-chip"
-        aria-pressed={species === 'trout' && !assessedOnly}
-        onClick={() => update({ species: null, assessed: null })}
+        aria-pressed={species === 'trout'}
+        onClick={() => update({ species: null })}
       >
-        Trout waters
+        Trout
+      </button>
+      <button
+        className="filter-chip"
+        aria-pressed={species === 'all'}
+        onClick={() => update({ species: 'all' })}
+      >
+        All fish
       </button>
       <button
         className="filter-chip"
@@ -361,13 +373,6 @@ export function RiverMapPage() {
         onClick={() => update({ assessed: assessedOnly ? null : '1' })}
       >
         Assessed
-      </button>
-      <button
-        className="filter-chip"
-        aria-pressed={species === 'all' && !assessedOnly}
-        onClick={() => update({ species: 'all', assessed: null })}
-      >
-        All fish
       </button>
     </div>
   );
@@ -433,19 +438,6 @@ export function RiverMapPage() {
         {roadsManifest
           ? 'Context road network (US Census TIGER) · off by default'
           : 'Road context is not available on this device.'}
-      </p>
-      <label>
-        <input
-          type="checkbox"
-          checked={allWatersOn}
-          onChange={(e) => update({ all: e.target.checked ? '1' : null })}
-        />
-        All waterways
-      </label>
-      <p className="muted text-xs">
-        {allWatersOn
-          ? 'Full-state view: every mapped water, including waters outside the current filter.'
-          : 'Show every mapped water, warts and all · off by default.'}
       </p>
     </>
   );
@@ -662,7 +654,6 @@ export function RiverMapPage() {
           onSelect={setRiver}
           featureColors={colors}
           visibleIds={visibleIds}
-          showAllWaters={allWatersOn}
           assessedIds={assessedIds}
           labelSpecies={labelSpecies}
           speciesMode={species}

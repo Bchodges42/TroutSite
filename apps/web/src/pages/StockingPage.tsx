@@ -129,7 +129,8 @@ function EventRow({ event }: { event: StockingEvent }) {
  */
 export function StockingPage() {
   const { settings } = useSettingsContext();
-  const stateId = settings.defaultState;
+  // T2-33: Default-state setting removed; Tennessee is the only served state.
+  const stateId = 'TN' as const;
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('q') ?? '';
   // Filters live in the URL so a filtered view is shareable and survives reload.

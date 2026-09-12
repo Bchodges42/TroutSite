@@ -4,7 +4,6 @@ import { Button, Card } from '@trout/ui';
 import { useSettingsContext } from '../lib/settings';
 import { clearCachedSnapshots } from '../lib/db';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
-import { V1_STATES } from '../lib/endpoints';
 import { useTheme } from '../theme/ThemeProvider';
 import { colorValue, customColorControls, themes, type CustomColorKey } from '../theme/themes';
 
@@ -118,24 +117,6 @@ export function SettingsPage() {
         <p className="page-subtitle mt-2">
           Flow is always shown in cfs — gauge data is reported that way.
         </p>
-      </Card>
-
-      <h2 className="section-title">Default state</h2>
-      <Card>
-        <select
-          className="focus-ring min-h-[48px] w-full max-w-xs rounded-lg border px-3"
-          style={{ borderColor: 'var(--trout-color-border)' }}
-          value={settings.defaultState}
-          onChange={(e) => update({ defaultState: e.target.value })}
-          aria-label="Default state"
-        >
-          {V1_STATES.map((s) => (
-            <option key={s} value={s}>
-              {s} (available now)
-            </option>
-          ))}
-          <option disabled>More states — v2</option>
-        </select>
       </Card>
 
       <h2 className="section-title">Accessibility</h2>

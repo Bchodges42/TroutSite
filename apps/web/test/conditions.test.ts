@@ -165,9 +165,9 @@ describe('freshnessLabel observed-age semantics', () => {
     vi.setSystemTime(Date.parse('2026-09-01T15:00Z'));
     const fetchedAt = Date.parse('2026-09-01T14:59Z');
     const observedAt = Date.parse('2026-09-01T14:45Z'); // 15 min old reading
-    expect(freshnessLabel(fetchedAt, true, observedAt)).toBe('Live · observed 15 min ago');
+    expect(freshnessLabel(fetchedAt, true, observedAt)).toBe('Gauge live · observed 15 min ago');
     const old = Date.parse('2026-09-01T08:00Z'); // 7 h old reading
-    expect(freshnessLabel(fetchedAt, true, old)).toBe('Stale · observed 7 hr ago');
+    expect(freshnessLabel(fetchedAt, true, old)).toBe('Gauge stale · observed 7 hr ago');
     expect(freshnessLabel(fetchedAt, false, old)).toContain('Offline · last known');
     expect(freshnessLabel(null, true)).toBe('Never updated');
   });

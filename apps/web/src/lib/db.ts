@@ -38,8 +38,9 @@ export interface LogbookEntry {
 
 export interface SettingsRecord {
   tempUnit: 'C' | 'F';
-  defaultState: string;
   reduceMotion: boolean;
+  // T2-33: `defaultState` removed — the setting silently emptied every
+  // state-scoped page when changed. Tennessee is the only served state.
 }
 
 export interface SeenRecord {

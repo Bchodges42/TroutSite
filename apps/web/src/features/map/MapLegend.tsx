@@ -81,10 +81,21 @@ export function MapLegend({
   const fisheryRows = FISHERY_ROW_ORDER.filter((t) =>
     fisheryCounts ? (fisheryCounts[t] ?? 0) > 0 : t !== 'unknown',
   );
+  // T1-16: the conditions title names the metric that actually exists —
+  // "Trout conditions" in trout mode, "Water guide" in all-fish mode. The
+  // word "Fishability" returns only when a real per-species metric ships (F6).
   const panelLabel =
-    mode === 'hatches' ? 'Hatch legend' : grouping ? 'Water guide legend' : 'Condition legend';
+    mode === 'hatches'
+      ? 'Hatch legend'
+      : grouping || species === 'all'
+        ? 'Water guide legend'
+        : 'Trout conditions legend';
   const panelTitle =
-    mode === 'hatches' ? 'Hatch activity' : grouping ? 'Water guide' : 'Fishability';
+    mode === 'hatches'
+      ? 'Hatch activity'
+      : grouping || species === 'all'
+        ? 'Water guide'
+        : 'Trout conditions';
 
   return (
     <div className="relative">
@@ -113,10 +124,14 @@ export function MapLegend({
             </div>
             {mode === 'hatches' ? (
               <>
-                <p className="mt-1 text-[#9FB5AA]">Halo shows dominant hatch for selected month</p>
+                {/* T2-29: the halo marks ANY charted regional guidance (the
+                map help says the same) — no "dominant hatch" claim. */}
+                <p className="mt-1 text-[#9FB5AA]">
+                  Amber halo = the water's region has hatch guidance for the selected month
+                </p>
                 <div className="mt-1.5 flex gap-2">
-                  <LegendSwatch color={atlas.sulphur} label="active" />
-                  <LegendSwatch color={atlas.noData} label="quiet" />
+                  <LegendSwatch color={atlas.sulphur} label="guidance" />
+                  <LegendSwatch color={atlas.noData} label="no chart" />
                 </div>
               </>
             ) : grouping ? (

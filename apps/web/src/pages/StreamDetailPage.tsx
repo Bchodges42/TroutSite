@@ -7,7 +7,7 @@ import {
   StockingEventSchema,
   newestReadingAt,
 } from '@trout/contracts';
-import type { GaugeReading, StockingEvent } from '@trout/contracts';
+import type { ConditionSnapshot, GaugeReading, Stream, StockingEvent } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useStreamsCatalog } from '../lib/useStreamsCatalog';
@@ -28,7 +28,7 @@ import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
-import { toWaterDecisionView } from '../features/map/waterDecision';
+import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
@@ -48,7 +48,7 @@ export function StreamDetailPage() {
     true,
   );
   const stockingQuery = useSnapshotQuery(
-    snapshotUrls.stocking(settings.defaultState),
+    snapshotUrls.stocking('TN'),
     StockingEventSchema.array(),
     60 * 24,
     true,
@@ -127,6 +127,13 @@ export function StreamDetailPage() {
             {waterTypeLabel(stream.waterbodyType)} ·{' '}
             {stream.stockingProgram ? 'stocking program listed' : 'no stocking program listed'}
           </p>
+          {snapshot != null && (
+            <DetailSeasonChip
+              stream={stream}
+              snapshot={snapshot}
+              month={validMonth(params.get('month'))}
+            />
+          )}
         </div>
         <FreshnessChip
           fetchedAt={snapshot ? Date.parse(snapshot.fetchedAt) : null}
@@ -154,6 +161,7 @@ export function StreamDetailPage() {
                 snapshot.readings.length > 0,
                 snapshot.score.assessed,
               );
+              const month = validMonth(params.get('month'));
               const decision = toWaterDecisionView(
                 {
                   stream,
@@ -163,8 +171,10 @@ export function StreamDetailPage() {
                   species: stream.species,
                 },
                 'trout',
+                month,
               );
               const troutMetric = decision.displayMetric === 'trout-condition';
+              const seasonal = seasonalChipText(decision);
               return (
                 <div className="flex flex-wrap items-center gap-4">
                   {troutMetric && <ScorePill score={snapshot.score.value} size="lg" />}
@@ -174,9 +184,13 @@ export function StreamDetailPage() {
                         ? 'Warmwater — raw readings shown; the trout model does not apply'
                         : stream.species == null
                           ? 'Species unverified — the catalog does not document trout for this water; raw readings shown'
-                          : troutMetric
-                            ? 'Trout condition assessment'
-                            : 'Assessment unavailable in this snapshot'}
+                          : seasonal === 'Winter program — out of season'
+                            ? 'Winter program — out of season; raw readings shown'
+                            : seasonal
+                              ? 'Winter program — seasonal fishery'
+                              : troutMetric
+                                ? 'Trout condition assessment'
+                                : 'Assessment unavailable in this snapshot'}
                       {troutMetric && trend !== 'unknown' && (
                         <span className="ml-2 font-semibold">{TREND_LABEL[trend]}</span>
                       )}
@@ -412,6 +426,35 @@ export function StreamDetailPage() {
       </Card>
     </main>
   );
+}
+
+/** T1-18/19 — the water's seasonal state as a first-class chip. */
+function DetailSeasonChip({
+  stream,
+  snapshot,
+  month,
+}: {
+  stream: Stream;
+  snapshot: ConditionSnapshot;
+  month: number;
+}) {
+  const hasData = snapshot.readings.length > 0;
+  const status = statusForScore(snapshot.score.value, hasData, snapshot.score.assessed);
+  const text = seasonalChipText(
+    toWaterDecisionView(
+      {
+        stream,
+        status,
+        score: status !== 'no-data' ? snapshot.score.value : null,
+        snapshot,
+        species: stream.species,
+      },
+      'trout',
+      month,
+    ),
+  );
+  if (!text) return null;
+  return <p className="seasonal-chip">{text}</p>;
 }
 
 function newestValue(readings: GaugeReading[], key: 'cfs' | 'tempC' | 'heightFt'): number | null {

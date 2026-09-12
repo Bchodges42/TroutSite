@@ -35,6 +35,14 @@ async function openLayersPanel(page: Page) {
   await expect(page.getByRole('group', { name: 'Map layers' })).toBeVisible();
 }
 
+/** The header search is the one search surface visible in every state
+ * (stage-2 update: the old "Search waters" FAB no longer exists). */
+async function selectViaHeaderSearch(page: Page, name: string) {
+  await page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' }).fill(name);
+  await page.getByRole('option', { name: new RegExp(name, 'i') }).first().click();
+  await expect(page.locator('#river-inspector')).toBeVisible();
+}
+
 test.describe('Layers panel', () => {
   test('activating Terrain keeps the panel open and adds the real MapLibre layers', async ({
     page,
@@ -130,30 +138,27 @@ test.describe('Layers panel', () => {
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
 
-    // Reload.
+    // Reload. The terrain/roads style rebuild waits on the availability
+    // probe, which can resolve either side of map-ready — assert with retry.
     await page.reload();
     await ready(page);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 15_000 });
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
 
     // Select a water (pushes a history entry), go back — the restored entry
     // carried terrain=1&roads=1 and the layers must come back with it.
     await openLayersPanel(page); // keep the panel open across the navigation
-    await page.getByRole('button', { name: 'Search waters', exact: true }).click();
-    const search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
-    await search.fill('Doe River');
-    await search.press('Enter');
-    await expect(page.locator('#river-inspector')).toBeVisible();
+    await selectViaHeaderSearch(page, 'Doe River');
     await page.goBack();
     await ready(page);
     await expect(page).not.toHaveURL(/river=/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 15_000 });
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
 
     // Theme change rebuilds the style and must rebuild BOTH optional layers.
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 15_000 });
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
     const layers = (await mapLayers(page)) ?? '';
     expect(layers).toContain('topo-hillshade');
@@ -246,12 +251,8 @@ test.describe('Layers panel', () => {
     await page.goto('/?terrain=1');
     await ready(page);
 
-    // Select a river by clicking its geometry.
-    await page.getByRole('button', { name: 'Search waters', exact: true }).click();
-    const search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
-    await search.fill('Doe River');
-    await search.press('Enter');
-    await expect(page.locator('#river-inspector')).toBeVisible();
+    // Select a river via the header search.
+    await selectViaHeaderSearch(page, 'Doe River');
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river');
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-hit/);
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-water-hit/);
@@ -336,13 +337,7 @@ test.describe('condition presentation', () => {
     await page.goto('/');
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-ready', '1');
 
-    const open = async (name: string) => {
-      await page.getByRole('button', { name: 'Search waters', exact: true }).click();
-      const search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
-      await search.fill(name);
-      await search.press('Enter');
-      await expect(page.locator('#river-inspector')).toBeVisible();
-    };
+    const open = async (name: string) => selectViaHeaderSearch(page, name);
 
     // Stale case in the inspector: the score survives and the observation age
     // is honest about its hours-old reading.
@@ -351,7 +346,7 @@ test.describe('condition presentation', () => {
     await expect(inspector.getByText('Good conditions')).toBeVisible();
     await expect(inspector.locator('.score-disc strong')).toHaveText('90');
     // H4: freshness is the shared chip — a live fetch of 10-hour-old readings says Stale.
-    await expect(inspector.locator('.freshness')).toContainText('Stale · observed');
+    await expect(inspector.locator('.freshness')).toContainText('Gauge stale · observed');
     await page.keyboard.press('Escape');
     await expect(inspector).toBeHidden();
 
@@ -372,7 +367,7 @@ test.describe('condition presentation', () => {
   }) => {
     await page.goto('/conditions/stale-water');
     await expect(page.getByRole('heading', { name: 'Stale Water' })).toBeVisible();
-    await expect(page.getByText(/Stale · observed/)).toBeVisible();
+    await expect(page.getByText(/Gauge stale · observed/)).toBeVisible();
     // The stale assessment is still a score on this page — staleness is a
     // freshness label, never a retraction of the assessment.
     await expect(page.getByText(/90/).first()).toBeVisible();
@@ -385,11 +380,7 @@ test.describe('condition presentation', () => {
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-ready', '1');
     // With snapshots applied, assessed waters exist and the condition centerline
     // layer is present; select + theme-swap + confirm the selection survives.
-    await page.getByRole('button', { name: 'Search waters', exact: true }).click();
-    const search = page.getByRole('combobox', { name: 'Search rivers' }).filter({ visible: true });
-    await search.fill('Good Water');
-    await search.press('Enter');
-    await expect(page.locator('#river-inspector')).toBeVisible();
+    await selectViaHeaderSearch(page, 'Good Water');
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'good-water');
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
