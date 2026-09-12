@@ -214,7 +214,7 @@ scripts now own that control loop:
 
 | Script | Job |
 |---|---|
-| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. **Owner action before deploy:** remove its legacy `/v1/streams.json` probe and add the watchdog header described below. |
+| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. Reads `WATCHDOG_TOKEN` from the environment and sends it as `x-watchdog-token`, so it verifies hardened instances. |
 | `infra/archive-snapshots.sh` | Snapshot the currently-served trees → `backups/snapshots-last-good.tar.gz` (refuses to archive an empty/broken state). |
 | `infra/restore-snapshots.sh` | Swap the archived trees back in (staging + atomic swap). This alone heals the read path. |
 | `infra/watchdog.sh` | Hourly loop: verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. |
@@ -227,16 +227,14 @@ scripts now own that control loop:
   the variable is unset, local development keeps the historical unauthenticated
   behavior. Store the real value only in the WinSW `TroutSite` service
   environment (or the task environment), never in `.env.example`, git, or logs.
-- Before deploying this branch, the owner must update `infra/watchdog.sh` and
-  `infra/verify-site.sh` to read the same `WATCHDOG_TOKEN` task environment and
-  send the header on their `/healthz` requests. Update the WinSW service env,
-  restart `TroutSite`, then run `bash infra/verify-site.sh --url
-  http://127.0.0.1:8787` and the public probe. The scheduled tasks must inherit
-  the token; otherwise the watchdog will report `401` and cannot heal.
+- `infra/verify-site.sh` (and therefore `watchdog.sh` and `deploy.sh`, which
+  call it) reads the same `WATCHDOG_TOKEN` task/service environment and sends it
+  as `x-watchdog-token` on every probe automatically. The scheduled tasks and
+  the WinSW service must inherit the token; otherwise the verifier sees `401`
+  and cannot verify or heal.
 - The direct implementation file `/v1/streams.json` is intentionally not a
-  public endpoint; callers use `/v1/streams`. The legacy verifier probe must be
-  removed before the first deploy of this hardening branch or it will fail a
-  healthy deployment.
+  public endpoint; callers use `/v1/streams`. The verifier checks the public
+  `/v1/streams` contract route, not the blocked implementation file.
 - The Fastify origin sends `Strict-Transport-Security: max-age=63072000`,
   `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`,
   `Referrer-Policy: strict-origin-when-cross-origin`, and

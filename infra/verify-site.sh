@@ -7,6 +7,10 @@
 #   bash infra/verify-site.sh --deep                            # include hatch slices
 #   bash infra/verify-site.sh --wait 30                         # retry up to 30 s
 #
+# Env: WATCHDOG_TOKEN — when set (the same value the API's /healthz requires),
+# every probe sends `x-watchdog-token`, so the verifier works against a
+# hardened instance. Unset = unauthenticated local development.
+#
 # Implementation is bash + node only. Checks status, JSON content, and shape for
 # every required read surface. --deep additionally audits every TN hatch region
 # and month from the committed content inventory.
@@ -35,6 +39,11 @@ const path = require("node:path");
 const [base, waitArg, pub, deepArg] = process.argv.slice(1);
 const deep = deepArg === "1";
 const deadline = Date.now() + (parseInt(waitArg, 10) || 0) * 1000;
+// T0-3: the hardened origin answers /healthz 401 without the watchdog token.
+// WATCHDOG_TOKEN comes from the task/service environment (same variable the
+// API reads); without it the probe relies on the origin being unauthenticated
+// (local development).
+const watchdogToken = process.env.WATCHDOG_TOKEN || "";
 const signalFor = (ms) => {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(new Error("timeout")), ms);
@@ -50,8 +59,10 @@ function join(origin, p) {
 function expectedPaths() {
   const paths = [
     ["/healthz", "object", 0],
+    // /v1/streams.json is the deliberately-blocked implementation file behind
+    // the frozen /v1/streams contract route (T0-3): probing it fails a healthy
+    // hardened instance. The public contract endpoint is the one to check.
     ["/v1/streams", "array", 1],
-    ["/v1/streams.json", "array", 1],
     ["/v1/conditions/latest.json", "array", 1],
     ["/v1/stocking/TN.json", "array", 1],
     ["/v1/stocking/TN-recent.json", "array", 1],
@@ -91,7 +102,10 @@ async function checkOrigin(origin, label) {
     try {
       const response = await fetch(join(origin, p), {
         signal: signalFor(label === "public" ? 20000 : 15000),
-        headers: { accept: "application/json" },
+        headers: {
+          accept: "application/json",
+          ...(watchdogToken ? { "x-watchdog-token": watchdogToken } : {}),
+        },
       });
       const contentType = response.headers.get("content-type") || "";
       let value;
