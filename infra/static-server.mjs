@@ -79,35 +79,105 @@ function sendNotFound(req, res, pathname) {
   res.end(JSON.stringify({ error: `not found: ${pathname}` }));
 }
 
+// T2-45 (review PASS1-2): the proxy used to buffer the ENTIRE request body
+// before forwarding, so an unauthenticated client could pump unbounded bytes
+// into this process's memory ahead of the API's 401 / 128 KiB body limit.
+// The proxied path now enforces a streaming byte cap (rejecting before the
+// body is consumed, including when Content-Length is missing or lying) and a
+// bounded body deadline.
+const PROXY_MAX_BODY_BYTES = Number(process.env.TROUT_PROXY_MAX_BODY_BYTES ?? 128 * 1024);
+const PROXY_BODY_TIMEOUT_MS = Number(process.env.TROUT_PROXY_BODY_TIMEOUT_MS ?? 10_000);
+
+function rejectProxied(req, res, status, error) {
+  if (res.headersSent) {
+    req.destroy();
+    return;
+  }
+  // Consume whatever is still inbound so the client can finish sending and
+  // actually READ the rejection — destroying a socket with unread data sends
+  // a TCP RST and the rejection is lost. Bounded by the body deadline so a
+  // client that never stops cannot hold the socket either.
+  req.removeAllListeners('data');
+  req.removeAllListeners('end');
+  const drainDeadline = setTimeout(() => req.destroy(), PROXY_BODY_TIMEOUT_MS);
+  req.on('error', () => {});
+  req.on('end', () => {
+    clearTimeout(drainDeadline);
+    req.destroy();
+  });
+  req.resume();
+  res.writeHead(status, { 'content-type': 'application/json', 'connection': 'close' });
+  res.end(JSON.stringify({ error }));
+}
+
+function proxyRequest(req, res, url) {
+  const declared = Number(req.headers['content-length']);
+  if (Number.isFinite(declared) && declared > PROXY_MAX_BODY_BYTES) {
+    rejectProxied(req, res, 413, 'portal request body too large');
+    return;
+  }
+
+  const chunks = [];
+  let received = 0;
+  let settled = false;
+
+  const abortForwarding = () => {
+    if (settled) return;
+    settled = true;
+    clearTimeout(deadline);
+  };
+
+  const deadline = setTimeout(() => {
+    abortForwarding();
+    rejectProxied(req, res, 408, 'portal request body timed out');
+  }, PROXY_BODY_TIMEOUT_MS);
+
+  req.on('data', (c) => {
+    if (settled) return;
+    received += c.length;
+    if (received > PROXY_MAX_BODY_BYTES) {
+      abortForwarding();
+      rejectProxied(req, res, 413, 'portal request body too large');
+      return;
+    }
+    chunks.push(c);
+  });
+
+  req.on('end', () => {
+    if (settled) return;
+    abortForwarding();
+    const upstream = http.request(
+      {
+        hostname: PROXY.hostname,
+        port: PROXY.port,
+        path: url.pathname + url.search,
+        method: req.method,
+        headers: { ...req.headers, host: `${PROXY.hostname}:${PROXY.port}` },
+      },
+      (up) => {
+        res.writeHead(up.statusCode ?? 502, up.headers);
+        up.pipe(res);
+      },
+    );
+    upstream.on('error', (err) => {
+      console.error(`[static-server] portal proxy error: ${err instanceof Error ? err.message : String(err)}`);
+      if (res.headersSent) return;
+      res.writeHead(502, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ error: 'portal API unavailable' }));
+    });
+    if (chunks.length > 0) upstream.write(Buffer.concat(chunks));
+    upstream.end();
+  });
+
+  req.on('aborted', abortForwarding);
+  req.on('error', abortForwarding);
+}
+
 const server = http.createServer((req, res) => {
   const url = new URL(req.url ?? '/', 'http://localhost');
 
   if (PROXY && url.pathname.startsWith(PROXY.prefix)) {
-    const chunks = [];
-    req.on('data', (c) => chunks.push(c));
-    req.on('end', () => {
-      const upstream = http.request(
-        {
-          hostname: PROXY.hostname,
-          port: PROXY.port,
-          path: url.pathname + url.search,
-          method: req.method,
-          headers: { ...req.headers, host: `${PROXY.hostname}:${PROXY.port}` },
-        },
-        (up) => {
-          res.writeHead(up.statusCode ?? 502, up.headers);
-          up.pipe(res);
-        },
-      );
-      upstream.on('error', (err) => {
-        console.error(`[static-server] portal proxy error: ${err instanceof Error ? err.message : String(err)}`);
-        if (res.headersSent) return;
-        res.writeHead(502, { 'content-type': 'application/json' });
-        res.end(JSON.stringify({ error: 'portal API unavailable' }));
-      });
-      if (chunks.length > 0) upstream.write(Buffer.concat(chunks));
-      upstream.end();
-    });
+    proxyRequest(req, res, url);
     return;
   }
 
