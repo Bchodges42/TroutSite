@@ -11,7 +11,7 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - [x] STEP 3 — T1-8 prerender fixture fallback
 - [x] STEP 4 — T1-11 atlas/topo manifest regeneration
 - [x] STEP 5 — T1-7 wolf-river-fentress.yaml correction
-- [ ] FINAL verification
+- [x] FINAL verification
 
 ## Per-item evidence
 
@@ -156,6 +156,25 @@ STEP 3: prerender regression tests 2/2; real prerender 556 pages; all cadence
 gates green (content 11/11, web 251/251, full web build + size-budget OK).
 STEP 4: all five asset validators PASS; all cadence gates green.
 STEP 5: content test 12/12 incl. the new T1-7 regression; all gates green.
+
+## Final agent verification (pass/fail, run 2026-09-12 on session-b @ e4fd4f1+)
+
+1. **PASS** — content build on this POSIX machine leaves 144 readable chart files
+   at correct paths (`self-check: 144 hatch chart files readable`;
+   `find …/pack/hatch -name '*.json' | wc -l` = 144; snapshots ingest then
+   reports `hatchCharts:144`).
+2. **PASS** — size-budget unit test 10/10; budgeted build green (install-time
+   SW precache 10.80 MB of 25 MB; on-demand 82.26 MB reported, not gated).
+3. **PASS** — prerender without snapshots and without the flag exits 1 with
+   "refusing to publish fixture data" + the --allow-fixtures hint.
+4. **PASS** — prerender with the flag: /stocking contains no "reported
+   releases" wording on fixture data and says "sample data / NOT live TWRA data".
+5. **PASS** — all five asset validators green on regenerated manifests:
+   validate-atlas, validate-topo, validate-roads, validate-east-southeast,
+   west-middle-validate (1 pre-existing documented NHD-seam WARN only).
+6. **PASS** — full gates green: validate:content OK; content tests 12/12;
+   web tests 25 files / 251 tests; `pnpm --filter @trout/web build` (tsc →
+   copy-pack-fallback → vite build → size-budget) exit 0.
 
 ## Blockers
 
