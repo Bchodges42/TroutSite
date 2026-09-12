@@ -1,4 +1,4 @@
-import { GaugeReadingSchema } from '@trout/contracts';
+import { GaugeReadingSchema, READING_STALE_MINUTES } from '@trout/contracts';
 import type { GaugeReading, WaterObservation } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
@@ -57,8 +57,12 @@ export interface ConditionsReading {
  * Merge one gauge's newest-wins observations into a single GaugeReading the way
  * parseInstantValues merges USGS parameters: newest observation per metric wins,
  * the reading timestamp is the newest INCLUDED metric's observedAt, and
- * reservoir-level-ft (and any metric without a column) is skipped. Returns null
- * when nothing conditions-relevant survived validation.
+ * reservoir-level-ft (and any metric without a column) is skipped. T1-6: a
+ * metric whose own observation is older than the freshness window
+ * (READING_STALE_MINUTES, the scorer's staleness contract) relative to the
+ * gauge's newest observation is dropped instead of merged — a dead discharge
+ * sensor must not ride along under a fresh stage timestamp. Returns null when
+ * nothing conditions-relevant survived validation.
  */
 export function buildConditionsReading(
   gaugeId: string,
@@ -67,12 +71,22 @@ export function buildConditionsReading(
   rawByMetric: Partial<Record<WaterObservation['metric'], unknown>> = {},
 ): ConditionsReading | null {
   const sorted = [...obs].sort((a, b) => b.observedAt.localeCompare(a.observedAt));
+  const newest = sorted[0]?.observedAt;
+  const newestMs = newest ? Date.parse(newest) : Number.NaN;
   const fields: { cfs?: number; heightFt?: number; tempC?: number } = {};
   const rows: Record<string, unknown> = {};
   let timestamp: string | undefined;
   for (const o of sorted) {
     const field = METRIC_FIELD[o.metric];
     if (!field || fields[field] !== undefined) continue;
+    const observedMs = Date.parse(o.observedAt);
+    if (
+      !Number.isNaN(newestMs) &&
+      !Number.isNaN(observedMs) &&
+      newestMs - observedMs > READING_STALE_MINUTES * 60_000
+    ) {
+      continue;
+    }
     fields[field] = o.value;
     rows[o.metric] = rawByMetric[o.metric] ?? { observedAt: o.observedAt, value: o.value };
     if (timestamp === undefined || o.observedAt > timestamp) timestamp = o.observedAt;

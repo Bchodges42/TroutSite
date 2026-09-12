@@ -121,10 +121,22 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
     const result = buildConditionsReading('tva:WL', 'tva-restapi', [
       obs({ metric: 'discharge-cfs', value: 100, observedAt: '2026-09-08T14:00:00-04:00' }),
       obs({ metric: 'discharge-cfs', value: 300, observedAt: '2026-09-08T15:00:00-04:00' }),
-      obs({ metric: 'stage-ft', value: 827.69, observedAt: '2026-09-08T10:00:00-04:00' }),
+      obs({ metric: 'stage-ft', value: 827.69, observedAt: '2026-09-08T13:00:00-04:00' }),
     ]);
     expect(result?.reading.cfs).toBe(300);
     expect(result?.reading.heightFt).toBe(827.69);
+    expect(result?.reading.timestamp).toBe('2026-09-08T15:00:00-04:00');
+  });
+
+  it('drops metrics older than the freshness window instead of merging them (T1-6)', () => {
+    // Stage is 5 h older than discharge: beyond READING_STALE_MINUTES, so it
+    // must not ride along under the fresh discharge timestamp.
+    const result = buildConditionsReading('tva:WL', 'tva-restapi', [
+      obs({ metric: 'discharge-cfs', value: 300, observedAt: '2026-09-08T15:00:00-04:00' }),
+      obs({ metric: 'stage-ft', value: 827.69, observedAt: '2026-09-08T10:00:00-04:00' }),
+    ]);
+    expect(result?.reading.cfs).toBe(300);
+    expect(result?.reading.heightFt).toBeUndefined();
     expect(result?.reading.timestamp).toBe('2026-09-08T15:00:00-04:00');
   });
 });

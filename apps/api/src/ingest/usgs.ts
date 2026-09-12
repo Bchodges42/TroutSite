@@ -1,4 +1,4 @@
-import { GaugeReadingSchema } from '@trout/contracts';
+import { GaugeReadingSchema, READING_STALE_MINUTES } from '@trout/contracts';
 import type { GaugeReading } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
@@ -65,44 +65,65 @@ function latestValue(series: UsgsSeriesJson): UsgsValueJson | undefined {
 }
 
 /**
- * Pure parser for the USGS Waterservices instant-values JSON (format=json).
- * One merged GaugeReading per site: the newest value of each available parameter.
- * Tolerates missing parameters, missing series, empty value arrays, and sentinel values.
+ * T1-6: a parameter series that stopped reporting (gauge moved to provisional,
+ * sensor outage) keeps serving its last value for months. Merging it into a
+ * reading stamped with a NEWER parameter's time launders old flow/temperature
+ * as current data and the scorer publishes a confident score from it. Each
+ * parameter older than the shared freshness window (READING_STALE_MINUTES,
+ * the same 3 h the scorer's staleness contract uses) relative to the newest
+ * observation for the site is dropped instead of merged.
  */
 export function parseInstantValues(payload: unknown): GaugeReading[] {
   const series = (payload as UsgsResponseJson)?.value?.timeSeries ?? [];
-  const bySite = new Map<string, { cfs?: number; heightFt?: number; tempC?: number; timestamp: string }>();
+  interface MetricValue {
+    value: number;
+    ts: string;
+  }
+  interface SiteMetrics {
+    cfs?: MetricValue;
+    heightFt?: MetricValue;
+    tempC?: MetricValue;
+  }
+  const bySite = new Map<string, SiteMetrics>();
 
+  // Pass 1: newest usable value per parameter (each series keeps its OWN time —
+  // the timestamp is not merged away).
   for (const s of series) {
     const site = s.sourceInfo?.siteCode?.[0]?.value;
     if (!site) continue;
     const code = (s.variable?.variableCode ?? []).find((vc) => typeof vc.value === 'string')?.value;
     const latest = latestValue(s);
     if (!code || !latest) continue;
-
-    const entry = bySite.get(site) ?? { timestamp: normalizeTimestamp(latest.dateTime) };
     const value = parseMetric(latest.value);
-    if (value !== undefined) {
-      if (code === '00060') entry.cfs = value;
-      else if (code === '00065') entry.heightFt = value;
-      else if (code === '00010') entry.tempC = value;
-    }
-    // Timestamps differ per series by seconds; keep the newest across merged parameters.
-    const ts = normalizeTimestamp(latest.dateTime);
-    if (ts > entry.timestamp) entry.timestamp = ts;
+    if (value === undefined) continue;
+    const field = code === '00060' ? 'cfs' : code === '00065' ? 'heightFt' : code === '00010' ? 'tempC' : null;
+    if (!field) continue;
+    const entry = bySite.get(site) ?? {};
+    entry[field] = { value, ts: normalizeTimestamp(latest.dateTime) };
     bySite.set(site, entry);
   }
 
+  // Pass 2 (T1-6): parameters older than the shared freshness window
+  // (READING_STALE_MINUTES — the same 3 h the scorer's staleness contract
+  // uses) relative to the site's newest observation are dropped; the reading
+  // carries only what survived, stamped with the newest surviving time.
   const readings: GaugeReading[] = [];
-  for (const [gaugeId, e] of bySite) {
-    const candidate: GaugeReading = {
-      gaugeId,
-      ...(e.cfs !== undefined ? { cfs: e.cfs } : {}),
-      ...(e.heightFt !== undefined ? { heightFt: e.heightFt } : {}),
-      ...(e.tempC !== undefined ? { tempC: e.tempC } : {}),
-      timestamp: e.timestamp,
-    };
-    const parsed = GaugeReadingSchema.safeParse(candidate);
+  for (const [gaugeId, entry] of bySite) {
+    const times = Object.values(entry)
+      .map((m) => (m ? Date.parse(m.ts) : Number.NaN))
+      .filter((ms) => !Number.isNaN(ms));
+    if (times.length === 0) continue;
+    const newest = Math.max(...times);
+    const merged: { cfs?: number; heightFt?: number; tempC?: number } = {};
+    let timestamp: string | undefined;
+    for (const [field, metric] of Object.entries(entry) as [keyof SiteMetrics, MetricValue][]) {
+      if (!metric) continue;
+      if (newest - Date.parse(metric.ts) > READING_STALE_MINUTES * 60_000) continue;
+      merged[field] = metric.value;
+      if (timestamp === undefined || metric.ts > timestamp) timestamp = metric.ts;
+    }
+    if (timestamp === undefined) continue;
+    const parsed = GaugeReadingSchema.safeParse({ gaugeId, ...merged, timestamp });
     if (parsed.success) readings.push(parsed.data);
   }
   return readings;
