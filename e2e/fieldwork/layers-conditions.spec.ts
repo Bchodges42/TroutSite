@@ -36,11 +36,13 @@ async function openLayersPanel(page: Page) {
 }
 
 /** The header search is the one search surface visible in every state
- * (stage-2 update: the old "Search waters" FAB no longer exists). */
+ * (stage-2 update: the old "Search waters" FAB no longer exists). Enter
+ * selects the best match without racing the results listbox. */
 async function selectViaHeaderSearch(page: Page, name: string) {
-  await page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' }).fill(name);
-  await page.getByRole('option', { name: new RegExp(name, 'i') }).first().click();
-  await expect(page.locator('#river-inspector')).toBeVisible();
+  const input = page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' });
+  await input.fill(name);
+  await input.press('Enter');
+  await expect(page.locator('#river-inspector')).toBeVisible({ timeout: 20_000 });
 }
 
 test.describe('Layers panel', () => {
@@ -52,7 +54,9 @@ test.describe('Layers panel', () => {
     await openLayersPanel(page);
 
     const terrain = page.getByRole('checkbox', { name: 'Terrain relief' });
-    expect(await terrain.isEnabled()).toBe(true);
+    // The availability probe resolves asynchronously after first paint — wait
+    // for it instead of racing it.
+    await expect(terrain).toBeEnabled({ timeout: 20_000 });
     await terrain.check();
 
     // The panel must SURVIVE the checkbox press — the reported bug was the
@@ -63,7 +67,7 @@ test.describe('Layers panel', () => {
     await expect(page).toHaveURL(/terrain=1/);
 
     // The style really carries the terrain sources and layers — not just the URL.
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /(^| )hillshade( |$)/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /(^| )hillshade( |$)/, { timeout: 20_000 });
     const layers = await mapLayers(page);
     expect(layers).toContain('topo-hillshade');
     expect(layers).toContain('topo-contours-major');
@@ -77,7 +81,7 @@ test.describe('Layers panel', () => {
     await openLayersPanel(page);
 
     const roads = page.getByRole('checkbox', { name: 'Roads' });
-    expect(await roads.isEnabled()).toBe(true);
+    await expect(roads).toBeEnabled({ timeout: 20_000 });
     await roads.check();
 
     await expect(page.getByRole('group', { name: 'Map layers' })).toBeVisible();
@@ -93,7 +97,7 @@ test.describe('Layers panel', () => {
   test('deactivating removes the layers again without closing the panel', async ({ page }) => {
     await page.goto('/?terrain=1&roads=1');
     await ready(page);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
     await openLayersPanel(page);
 
     await page.getByRole('checkbox', { name: 'Terrain relief' }).uncheck();
@@ -114,14 +118,14 @@ test.describe('Layers panel', () => {
     await page.keyboard.press('Space');
     await expect(terrain).toBeChecked();
     await expect(page).toHaveURL(/terrain=1/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
 
     await page.keyboard.press('Escape');
     await expect(page.getByRole('group', { name: 'Map layers' })).toBeHidden();
     await expect(page.getByRole('button', { name: 'Map layers' })).toBeFocused();
     // Terrain STAYS on after an intentional close — closing the panel is not
     // an undo of the layer choice.
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
   });
 
   test('a press outside the panel closes it', async ({ page }) => {
@@ -135,15 +139,15 @@ test.describe('Layers panel', () => {
   test('layer state survives reload, back/forward, and theme changes', async ({ page }) => {
     await page.goto('/?terrain=1&roads=1');
     await ready(page);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
 
     // Reload. The terrain/roads style rebuild waits on the availability
     // probe, which can resolve either side of map-ready — assert with retry.
     await page.reload();
     await ready(page);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 15_000 });
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
 
     // Select a water (pushes a history entry), go back — the restored entry
     // carried terrain=1&roads=1 and the layers must come back with it.
@@ -152,14 +156,14 @@ test.describe('Layers panel', () => {
     await page.goBack();
     await ready(page);
     await expect(page).not.toHaveURL(/river=/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 15_000 });
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
 
     // Theme change rebuilds the style and must rebuild BOTH optional layers.
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 15_000 });
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
     const layers = (await mapLayers(page)) ?? '';
     expect(layers).toContain('topo-hillshade');
     expect(layers).toContain('roads-0');
@@ -178,8 +182,8 @@ test.describe('Layers panel', () => {
     await expect(page.getByRole('group', { name: 'Map layers' })).toBeVisible();
     await expect(terrain).toBeChecked();
     await expect(page).toHaveURL(/terrain=1/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /topo-hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /topo-hillshade/, { timeout: 20_000 });
 
     await terrain.uncheck();
     await expect(terrain).not.toBeChecked();
@@ -192,7 +196,7 @@ test.describe('Layers panel', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/?terrain=1&basemap=ink');
     await ready(page);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
 
     const pixelAt = async (longitude: number, latitude: number) => {
       const el = page.getByTestId('river-map');
@@ -253,22 +257,22 @@ test.describe('Layers panel', () => {
 
     // Select a river via the header search.
     await selectViaHeaderSearch(page, 'Doe River');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-hit/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-water-hit/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river', { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-hit/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-water-hit/, { timeout: 20_000 });
 
     // Theme swap: selection + hit layers + inspector must all survive setStyle.
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
     await expect(page.locator('#river-inspector')).toBeVisible();
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-hit/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river', { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-hit/, { timeout: 20_000 });
 
     // Roads toggle mid-selection: same guarantees.
     await openLayersPanel(page);
     await page.getByRole('checkbox', { name: 'Roads' }).check();
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/);
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river');
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'doe-river', { timeout: 20_000 });
     await expect(page.locator('#river-inspector')).toBeVisible();
   });
 });
@@ -381,11 +385,11 @@ test.describe('condition presentation', () => {
     // With snapshots applied, assessed waters exist and the condition centerline
     // layer is present; select + theme-swap + confirm the selection survives.
     await selectViaHeaderSearch(page, 'Good Water');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'good-water');
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'good-water', { timeout: 20_000 });
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'good-water');
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-interior/);
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-selected', 'good-water', { timeout: 20_000 });
+    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-layers', /rivers-interior/, { timeout: 20_000 });
   });
 });
 

@@ -172,10 +172,10 @@ export function TennesseeMap(props: Props) {
         );
       }
       if (el) el.dataset.mapSelected = p.selectedId ?? '';
-      labelsRef.current();
-      // Test/verification seam: the live style inventory (which sources and
-      // layers exist right now) so Terrain/Roads activation is observable
-      // from outside the canvas, not inferred from the URL.
+      // Test/verification seam FIRST: the live style inventory (which sources
+      // and layers exist right now) so Terrain/Roads activation is observable
+      // from outside the canvas. Refreshing it before the label pass means a
+      // label-pass exception can never leave a stale inventory behind.
       if (el) {
         try {
           el.dataset.mapSources = Object.keys(map.getStyle().sources).join(' ');
@@ -187,6 +187,11 @@ export function TennesseeMap(props: Props) {
           /* a torn-down style can throw here; the next apply refreshes it */
         }
       }
+      try {
+        labelsRef.current();
+      } catch {
+        /* label collision passes are best-effort presentation */
+      }
       const renderedStyle = appliedStyle.current;
       map.once('render', () => {
         if (container.current && appliedStyle.current === renderedStyle)
@@ -194,7 +199,12 @@ export function TennesseeMap(props: Props) {
       });
     };
     if (map.isStyleLoaded()) run();
-    else map.once('idle', run);
+    // Same static-map deadlock as the style swap: a pending `idle` never
+    // arrives without a render — nudge one so the inventory refresh lands.
+    else {
+      map.once('idle', run);
+      map.triggerRepaint();
+    }
   };
   useEffect(() => {
     const el = container.current;
@@ -244,6 +254,24 @@ export function TennesseeMap(props: Props) {
     // Debug/test handle: e2e suites use it for deterministic camera and
     // hit-test assertions. Read-only in practice; no app code depends on it.
     (window as unknown as Record<string, unknown>).__troutMap = map;
+    // Style-inventory seam: keep the live sources/layers inventory on the
+    // container, independent of the presentation apply — a diffed setStyle
+    // with no visual change otherwise never re-renders and the inventory
+    // goes stale. `styledata` fires exactly when style data changes; `idle`
+    // covers the initial load.
+    const syncStyleInventory = () => {
+      try {
+        container.current!.dataset.mapSources = Object.keys(map.getStyle().sources).join(' ');
+        container.current!.dataset.mapLayers = map
+          .getStyle()
+          .layers.map((l) => l.id)
+          .join(' ');
+      } catch {
+        /* style mid-teardown; the next styledata refreshes it */
+      }
+    };
+    map.on('styledata', syncStyleInventory);
+    map.on('idle', syncStyleInventory);
     appliedStyle.current = theme.id + ':' + latest.current.basemap;
     // Custom zoom buttons respect both OS and in-app reduced-motion preferences.
     const zoomGroup = document.createElement('div');
@@ -515,6 +543,7 @@ export function TennesseeMap(props: Props) {
     const map = mapRef.current;
     if (!map || !ready) return;
     const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
+    if (container.current) container.current.dataset.mapStyleKey = styleKey;
     if (appliedStyle.current === styleKey) return;
     // Swap token: rapid toggles (Terrain ⇄ Roads ⇄ theme) must never apply an
     // older swap after a newer one — only the latest scheduled swap runs, and
@@ -529,16 +558,24 @@ export function TennesseeMap(props: Props) {
       map.setStyle(atlasStyle(props.basemap, theme.map, { roads: props.roads }));
       // Diffed styles can skip style.load; reapply feature presentation once
       // the (possibly diffed) style is ready. applyRef re-arms internally
-      // until the style is genuinely loaded.
+      // until the style is genuinely loaded. A diffed swap with no visual
+      // change never renders again on its own — nudge the render.
       map.once('idle', () => {
         if (token !== swapToken.current) return;
         applyRef.current();
       });
+      map.triggerRepaint();
     };
     if (map.isStyleLoaded()) swap();
     // A theme can change while a previous diffed style or resize is loading.
     // `load` fires only once per map; `idle` also covers subsequent style work.
-    else map.once('idle', swap);
+    // A STATIC map never fires `idle` on its own, so nudge one render —
+    // otherwise the pending swap waits forever (intermittent dead Terrain/
+    // Roads toggle on first load).
+    else {
+      map.once('idle', swap);
+      map.triggerRepaint();
+    }
     return () => {
       map.off('idle', swap);
     };

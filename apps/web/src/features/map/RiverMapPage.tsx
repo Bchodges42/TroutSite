@@ -130,6 +130,23 @@ export function RiverMapPage() {
     media.addEventListener('change', change);
     return () => media.removeEventListener('change', change);
   }, []);
+  // The mobile sheet is NON-modal by design: the map and the header above it
+  // stay visible and operable. vaul mounts on Radix Dialog, whose modal
+  // side-effect sets aria-hidden on everything outside the sheet — hiding
+  // the header (search, theme, menu) from assistive tech while the sheet is
+  // open. Undo that attribute for as long as the sheet exists.
+  useEffect(() => {
+    if (desktop || !selectedId) return;
+    const header = document.querySelector('.app-header');
+    if (!header) return;
+    const undo = () => {
+      if (header.getAttribute('aria-hidden') === 'true') header.removeAttribute('aria-hidden');
+    };
+    undo();
+    const observer = new MutationObserver(undo);
+    observer.observe(header, { attributes: true, attributeFilter: ['aria-hidden'] });
+    return () => observer.disconnect();
+  }, [desktop, selectedId]);
   useEffect(() => {
     if (selectedId)
       requestAnimationFrame(() =>

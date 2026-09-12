@@ -29,7 +29,7 @@ export interface RoadsManifest {
 
 const PROBE_TIMEOUT_MS = 6_000;
 
-async function probe(url: string): Promise<boolean> {
+async function probeOnce(url: string): Promise<boolean> {
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
@@ -39,6 +39,21 @@ async function probe(url: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/**
+ * Up to three attempts with backoff: on a cold start the service worker
+ * precache saturates the same connection pool the probe uses, and aborted
+ * HEADs would disable terrain/roads for the whole session even though the
+ * deployment serves them fine.
+ */
+async function probe(url: string): Promise<boolean> {
+  const backoffs = [0, 1_200, 2_400];
+  for (const wait of backoffs) {
+    if (wait) await new Promise((r) => setTimeout(r, wait));
+    if (await probeOnce(url)) return true;
+  }
+  return false;
 }
 
 async function fetchJson(url: string): Promise<unknown> {
