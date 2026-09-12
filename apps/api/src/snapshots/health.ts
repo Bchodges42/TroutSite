@@ -1,5 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { ConditionSnapshotSchema } from '@trout/contracts';
+import type { ConditionSnapshot } from '@trout/contracts';
 
 /**
  * Feed-level health for the published conditions snapshot (C1 remediation,
@@ -61,8 +63,21 @@ export function conditionsFeedHealth(
   if (!Array.isArray(rows)) {
     return { ...base, healthy: false, reason: 'conditions feed is not an array' };
   }
-  const fetchedAt = rows.find((r) => r?.fetchedAt)?.fetchedAt ?? null;
-  const nextExpectedUpdate = rows.find((r) => r?.nextExpectedUpdate)?.nextExpectedUpdate ?? null;
+  // T1-10: a row that does not satisfy the frozen ConditionSnapshot contract
+  // (missing fields, invalid fetchedAt, garbage scores) is exactly the kind of
+  // feed the app cannot honestly render. Previously `[{}]` or rows with
+  // non-ISO timestamps passed as healthy because the checks below only looked
+  // at fields they happened to read.
+  const validRows: ConditionSnapshot[] = [];
+  let malformed = 0;
+  for (const row of rows) {
+    const parsed = ConditionSnapshotSchema.safeParse(row);
+    if (parsed.success) validRows.push(parsed.data);
+    else malformed += 1;
+  }
+  const rowsForSignals = validRows;
+  const fetchedAt = rowsForSignals.find((r) => r?.fetchedAt)?.fetchedAt ?? null;
+  const nextExpectedUpdate = rowsForSignals.find((r) => r?.nextExpectedUpdate)?.nextExpectedUpdate ?? null;
   const ageMinutes = fetchedAt
     ? Math.max(0, Math.round((now.getTime() - Date.parse(fetchedAt)) / 60_000))
     : null;
@@ -70,7 +85,7 @@ export function conditionsFeedHealth(
     fetchedAt != null &&
     nextExpectedUpdate != null &&
     Date.parse(nextExpectedUpdate) <= Date.parse(fetchedAt);
-  const assessed = rows.filter((r) => r?.score?.assessed === true).length;
+  const assessed = validRows.filter((r) => r?.score?.assessed === true).length;
   const verdict: ConditionsFeedVerdict = {
     ...base,
     present: true,
@@ -82,6 +97,13 @@ export function conditionsFeedHealth(
   };
   if (rows.length === 0) {
     return { ...verdict, healthy: false, reason: 'conditions feed is empty' };
+  }
+  if (malformed > 0) {
+    return {
+      ...verdict,
+      healthy: false,
+      reason: `${malformed} of ${rows.length} conditions rows fail the ConditionSnapshot contract`,
+    };
   }
   if (assessed === 0 && buildStale) {
     return {

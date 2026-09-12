@@ -110,6 +110,67 @@ describe('conditionsFeedHealth', () => {
       rmSync(dir, { recursive: true, force: true });
     }
   });
+
+  // T1-10 (review PASS2-3): rows that fail the frozen ConditionSnapshot
+  // contract used to count as healthy because the checks only read the fields
+  // they happened to know about.
+  it('rejects a feed of empty objects as malformed (T1-10)', () => {
+    const dir = makeTempDir();
+    try {
+      writeFeed(dir, [{}]);
+      const v = conditionsFeedHealth(dir, new Date('2026-09-06T03:00:00Z'));
+      expect(v.present).toBe(true);
+      expect(v.records).toBe(1);
+      expect(v.healthy).toBe(false);
+      expect(v.reason).toMatch(/fail the ConditionSnapshot contract/);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects rows with invalid fetchedAt / nextExpectedUpdate timestamps (T1-10)', () => {
+    const dir = makeTempDir();
+    try {
+      writeFeed(dir, [
+        {
+          streamId: 's',
+          readings: [],
+          score: { value: 50, assessed: true, reasons: [] },
+          fetchedAt: 'not-a-timestamp',
+          nextExpectedUpdate: 'also-not-a-timestamp',
+        },
+      ]);
+      const v = conditionsFeedHealth(dir);
+      expect(v.healthy).toBe(false);
+      expect(v.reason).toMatch(/fail the ConditionSnapshot contract/);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects a feed when even one row is malformed (T1-10)', () => {
+    const dir = makeTempDir();
+    try {
+      const t = '2026-09-06T02:23:49.255Z';
+      writeFeed(dir, [
+        {
+          streamId: 'good',
+          readings: [{ gaugeId: '03533000', timestamp: t, cfs: 100 }],
+          score: { value: 70, assessed: true, reasons: [] },
+          fetchedAt: t,
+          nextExpectedUpdate: t,
+        },
+        { streamId: 'bad' },
+      ]);
+      const v = conditionsFeedHealth(dir, new Date('2026-09-06T03:00:00Z'));
+      expect(v.records).toBe(2);
+      expect(v.assessed).toBe(1);
+      expect(v.healthy).toBe(false);
+      expect(v.reason).toMatch(/1 of 2/);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
 });
 
 describe('GET /healthz conditions verdict', () => {
