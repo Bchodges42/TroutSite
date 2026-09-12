@@ -83,6 +83,15 @@ describe('content pack validation (CI gate)', () => {
       expect(shop.reportsEnabled, 'shops ship un-onboarded').toBe(false);
     }
   });
+
+  it('describes the Fentress Wolf River as a Dale Hollow arm, not Memphis-bound (T1-7)', () => {
+    const wolf = streams.get('wolf-river-fentress');
+    expect(wolf, 'wolf-river-fentress must stay in the catalog').toBeDefined();
+    const notes = String(wolf!.notes);
+    expect(notes).not.toMatch(/Memphis-bound/);
+    expect(notes).toMatch(/Dale Hollow/);
+    expect(wolf!.officialSources.some((s) => s.url.includes('dale-hollow-reservoir')), 'must cite TWRA Dale Hollow').toBe(true);
+  });
 });
 
 describe('CHAT-4 Definition of Done floors', () => {

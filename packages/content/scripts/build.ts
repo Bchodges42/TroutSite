@@ -4,7 +4,7 @@
 // fishing.json (data-sources lane: structured fishing-information content),
 // hatch/{regionId}/{month}.json (same shape as the /v1/hatch/{regionId}/{month}.json snapshot),
 // plus meta.json. Returns non-zero if the pack exceeds the size budget.
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { accessSync, mkdirSync, readFileSync, rmSync, writeFileSync, constants } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { FishingInformationSchema } from '@trout/contracts';
 import { loadContent, FLOORS } from './lib.js';
@@ -53,10 +53,37 @@ for (const [rid, charts] of hatch) {
 
 let total = 0;
 for (const [name, body] of Object.entries(files)) {
-  const p = join(OUT, name.replaceAll('/', '\\'));
+  // Keys use '/' as a logical separator; join real directories per-platform
+  // (T1-5: a literal backslash in the joined name wrote unusable files on POSIX).
+  const p = join(OUT, ...name.split('/'));
   mkdirSync(join(p, '..'), { recursive: true });
   writeFileSync(p, body);
   total += body.length;
+}
+
+// Self-check (T1-5 regression): every hatch chart must exist and be readable at its
+// intended path — 12 regions × 12 months. A silent writer bug must fail the build,
+// not surface later as hatchCharts:0 in the app.
+{
+  let checked = 0;
+  const missing: string[] = [];
+  for (const region of REGIONS) {
+    for (let month = 1; month <= 12; month++) {
+      const p = join(OUT, 'hatch', region.id, `${month}.json`);
+      try {
+        accessSync(p, constants.R_OK);
+        checked++;
+      } catch {
+        missing.push(`hatch/${region.id}/${month}.json`);
+      }
+    }
+  }
+  if (missing.length > 0) {
+    console.error(`[content] FAILED: ${missing.length} hatch chart(s) unreadable at their intended paths:`);
+    for (const m of missing) console.error(`[content]   ${m}`);
+    process.exit(1);
+  }
+  console.log(`[content] self-check: ${checked} hatch chart files readable`);
 }
 
 const meta = {

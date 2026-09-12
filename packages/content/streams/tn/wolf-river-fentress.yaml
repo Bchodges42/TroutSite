@@ -13,10 +13,13 @@ idealFlow:
     max: 100
     unit: cfs
 notes: >-
-  TWRA spring-stocked headwaters of the Memphis-bound Wolf River, high on the plateau. Small riffly
-  water; no gauge this far up.
+  TWRA spring-stocked headwaters of the Wolf River that feeds Dale Hollow Reservoir (Obey River
+  system, Upper Cumberland) — not to be confused with the West Tennessee Wolf River that runs to
+  Memphis. Small riffly water high on the plateau; no gauge this far up.
 
 officialSources:
+  - label: TWRA — Dale Hollow Reservoir (the impoundment this Wolf River feeds)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
