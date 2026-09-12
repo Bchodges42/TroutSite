@@ -33,6 +33,8 @@ STATUS="$BACKUPS/watchdog.status"
 
 # Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
 export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
+source "$ROOT/infra/runtime-env.sh"
+trout_runtime_env "$ROOT"
 
 log() { # tee is not guaranteed in portable shells — echo + append instead
   local line

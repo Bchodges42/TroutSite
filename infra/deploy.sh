@@ -5,6 +5,10 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+ROOT="$(pwd)"
+source "$ROOT/infra/runtime-env.sh"
+trout_runtime_env "$ROOT"
+
 echo "[deploy] git pull"
 git pull --ff-only
 
@@ -87,7 +91,7 @@ fi
 
 echo "[deploy] verify the live read path (retries up to 30 s; node-only, no sleep/tar needed)"
 FAIL=0
-bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 || FAIL=1
+bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 --deep || FAIL=1
 
 if [ "$FAIL" = "1" ]; then
   echo "[deploy] DEPLOY CHECK FAILED — the live site would mislead anglers."
@@ -98,7 +102,7 @@ if [ "$FAIL" = "1" ]; then
   # of an empty one while the failure is fixed.
   if bash infra/restore-snapshots.sh; then
     bash infra/restart-app.sh || true
-    if bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 >/dev/null 2>&1; then
+    if bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 --deep >/dev/null 2>&1; then
       echo "[deploy] ROLLED BACK — last-good snapshots are serving again."
       echo "[deploy] Fix the failing step above, then re-run this deploy."
     else

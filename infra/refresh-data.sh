@@ -16,6 +16,8 @@ URL="${TROUT_API_URL:-http://127.0.0.1:8787}"
 
 # Best-effort PATH for scheduled contexts (SYSTEM account lacks the user PATH)
 export PATH="$PATH:/c/Program Files/nodejs:/c/Program Files (x86)/nodejs:$HOME/AppData/Roaming/npm"
+source "$ROOT/infra/runtime-env.sh"
+trout_runtime_env "$ROOT"
 
 log() { # tee is not guaranteed in portable shells — echo + append instead
   local line
@@ -28,6 +30,8 @@ if [ ! -f "$ROOT/apps/api/package.json" ]; then
   log "no apps/api here — nothing to refresh"
   exit 1
 fi
+
+log "runtime paths: db=$TROUT_DB_PATH snapshots=$TROUT_SNAPSHOTS_DIR"
 
 if pnpm --filter api ingest --job=gauges >> "$LOG" 2>&1; then
   log "gauge ingestion ok"
