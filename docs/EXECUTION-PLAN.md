@@ -71,6 +71,14 @@ together and none ever idles.** Two rules make that work:
    gates the scorer (F4), pipeline (F5), and UI wiring (F6) — those wait for the
    schema to be settled and reported, nothing else does.
 
+**The even-split rule (owner directive, 2026-09-12 — learned in Stage 2, where
+Session C carried the e2e debt plus the largest feature while A and B idled):**
+stage handouts must be BALANCED. Before pasting any stage brief: estimate each
+assignment's weight; if one session holds more than roughly 1.5× another, move
+items, split items into smaller task groups, or attach overflow tasks to the
+lighter sessions AT HANDOUT TIME — not after they finish. An unbalanced handout is
+a coordinator error, not a session problem.
+
 **Protocol (same every stage):**
 
 1. Each session pushes its branch after every task group, once its own checks are
