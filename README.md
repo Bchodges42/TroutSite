@@ -1,81 +1,103 @@
 # Trout — match the hatch & stream conditions, offline
 
-Offline-first, privacy-first web tool for trout anglers: **match the hatch** offline (bug ID key →
-fly suggestions), live **USGS stream conditions** with fishability scores, state **stocking
-schedules** (TX/OK/AR), and **attributed fly-shop reports**. Free, no accounts, no location
-tracking.
+Offline-first, privacy-first web tool for trout anglers: **match the hatch** offline (bug
+ID key → fly suggestions), live **USGS/TVA/USACE stream conditions** with fishability
+scores, **TWRA stocking schedules**, attributed **fly-shop reports**, regulations, and a
+full Tennessee river/lake atlas on a MapLibre map. Free, no accounts, no location
+tracking. Live at **trout.tntechclimb.com**.
 
-Positioning: Fishbrain = community. TroutRoutes = navigation/land. **Trout = the on-the-water
-decision tool** that works with no signal and doesn't want your data.
+Positioning: Fishbrain = community. TroutRoutes = navigation/land. **Trout = the
+on-the-water decision tool** that works with no signal and doesn't want your data.
 
-## Status — Phase 0 (Foundation, ROLE 1) ✅
+## Status
 
-Repo skeleton, frozen contracts (`contracts-v1.0.0`), UI tokens/primitives, api seed path, infra,
-CI, and docs are in place. Phases 1–2 (roles 2–6) build on top. See `docs/ASSUMPTIONS.md` for every
-decision/deviation made so far.
+Live in production (self-deploying, self-healing — see `infra/RUNBOOK.md` §9). The
+catalog covers ~148 Tennessee waters (rivers, tailwaters, lakes, West-TN winter ponds);
+conditions score from USGS + TVA + USACE gauges; hatch charts cover all 12 regions × 12
+months; 555 routes are prerendered for SEO. Open items live in
+[`docs/KNOWN-ISSUES.md`](docs/KNOWN-ISSUES.md); the doc map is
+[`docs/INDEX.md`](docs/INDEX.md).
 
-## Repository layout & ownership (§5 — never edit another role's files)
+## Repository layout
 
-| Path | Purpose | Owner |
-|---|---|---|
-| `packages/contracts` | Zod schemas, `ENDPOINTS`, `scoreConditions`, `matchHatch` — **frozen** | ROLE 1 |
-| `packages/ui` | Design tokens + base primitives (shell) | ROLE 1 shell; 2/4/5 add |
-| `packages/content` | YAML content pack + validate/build scripts | ROLE 4 |
-| `apps/web` | React 18 + Vite 5 PWA (Workbox, Dexie, Tailwind) | ROLE 2 |
-| `apps/api` | Fastify + better-sqlite3 + scrapers + cron + snapshots | ROLE 3 |
-| `apps/admin` | Shop portal SPA (token auth) | ROLE 4 |
-| `apps/marketing` | Astro programmatic-SEO site | ROLE 5 |
-| `e2e` | Playwright (offline + online flows) | ROLE 5 |
-| `infra` | cloudflared, pm2, `deploy.sh`, `backup.sh`, RUNBOOK | ROLE 1 |
-| `docs` | ADRs, ASSUMPTIONS, BACKLOG | shared |
+| Path | Purpose |
+|---|---|
+| `packages/contracts` | Zod schemas, `ENDPOINTS`, `scoreConditions`, `matchHatch` — shared truth (additive changes only, via ADR + tag bump) |
+| `packages/ui` | Design tokens + base primitives |
+| `packages/content` | YAML content pack (streams, hatch charts, taxa, patterns, shops, regs) + validate/build scripts |
+| `apps/web` | React 18 + Vite 5 PWA (MapLibre, Workbox, Dexie, Tailwind) — the product |
+| `apps/api` | Fastify + better-sqlite3: ingest jobs, snapshot builder, the only live routes |
+| `apps/admin` | Shop portal SPA (HMAC token auth — see `apps/admin/TOKENS.md`) |
+| `apps/marketing` | Astro programmatic-SEO site |
+| `e2e` | Playwright (offline flows, privacy audit, portal vs real API, SEO) + Lighthouse |
+| `infra` | deploy / watchdog / verify / backup scripts, static-server, pm2 config, RUNBOOK |
+| `docs` | ADRs, data-source provenance, KNOWN-ISSUES, INDEX, review prompt |
 
-## Quickstart (Windows / Git Bash)
+## Quickstart
 
 ```bash
-pnpm install            # pnpm 9 + Node >= 20
-pnpm -r lint            # ESLint (flat config) across packages
-pnpm -r test            # Vitest — contracts runs with an enforced >=90% coverage gate
-pnpm -r build           # builds contracts/ui dist + app bundles (api dist, web/admin vite, astro)
-pnpm --filter api seed  # migrations + seed from packages/content YAML (succeeds while empty)
-pnpm dev                # all dev servers in parallel (web :5173, admin :5174, api :8787, astro :4321)
+pnpm install                # pnpm 9 + Node >= 20
+pnpm -r lint                # ESLint (flat config) across packages
+pnpm -r test                # Vitest; contracts enforces a >=90% coverage gate
+pnpm -r build               # contracts/ui dists + app bundles
+pnpm --filter api seed      # SQLite migrations + seed from the content YAML
+pnpm --filter api snapshots # generate apps/web/public/v1 + /content (gitignored artifacts)
+pnpm dev                    # web :5173 · admin :5174 · api :8787 · marketing :4321
 ```
 
-API health: `curl http://127.0.0.1:8787/healthz` → `{"ok":true}`. The SQLite database lives at
-`apps/api/data/trout.db` (gitignored).
+API health: `curl http://127.0.0.1:8787/healthz` → `{"ok":true}`. SQLite DB lives at
+`apps/api/data/trout.db` (gitignored), snapshots in `apps/web/public/{v1,content}`
+(gitignored, generated). Build `@trout/contracts` first (`pnpm -r build`) — runtime
+imports resolve its built dist.
 
-> Note: run `pnpm -r build` (or `pnpm --filter @trout/contracts build`) before using the api seed
-> CLI directly — runtime imports resolve the built `@trout/contracts` dist.
+E2E (Playwright boots every server itself from built dists, including a temp API with a
+minted portal token):
 
-## Contracts (frozen — `packages/contracts`)
+```bash
+pnpm --filter @trout/e2e exec playwright install chromium
+pnpm e2e
+```
 
-Consumed by every role; additively changeable only via ADR + tag bump:
+## Architecture invariants
 
-- **Schemas/types:** `Stream`, `GaugeReading`, `ConditionSnapshot`, `ConditionScore`, `StockingEvent`,
-  `BugTaxon`, `FlyPattern`, `HatchChart`, `Shop`, `ShopReport`, `BugObservation` (+ `*Schema` Zod
-  validators and shared primitives).
-- **`ENDPOINTS`** — the frozen endpoint map (GET snapshot routes + the single POST portal route +
-  `/healthz`).
-- **Pure functions:** `scoreConditions(stream, readings)` → `{ value: 0–100, reasons: string[] }`;
-  `matchHatch(observation, charts, taxa)` → `RankedTaxon[]` — deterministic, no AI, run client-side
-  so they work offline.
+- **Read path is static files.** `/v1/*` and `/content/*` are JSON snapshots regenerated
+  hourly by the data job; the one dynamic GET is `/v1/streams?state=`; the one write
+  surface is `POST /v1/portal/reports` (HMAC shop token). ADRs 0004–0006 record why.
+- **Offline layer** = Workbox service worker + Dexie in the browser. Snapshot routes are
+  served `no-store` so HTTP caching can never masquerade as live data.
+- **Privacy by architecture.** No accounts, no cookies, no analytics unless compiled in
+  at build time (`VITE_CF_ANALYTICS_TOKEN`), no third-party requests, no location leaves
+  the device. `e2e/web/privacy.spec.ts` enforces this on every shipped route.
 
-See `packages/contracts/README.md` for the exact export list and semantics.
+## Contracts (`packages/contracts`)
 
-## Deployment
+Schemas: `Stream`, `GaugeReading`, `ConditionSnapshot`, `ConditionScore`, `StockingEvent`,
+`BugTaxon`, `FlyPattern`, `HatchChart`, `Shop`, `ShopReport`, `BugObservation`. `ENDPOINTS`
+is the frozen route map. Pure functions `scoreConditions` and `matchHatch` are
+deterministic and run client-side so they work offline. Additive changes only, via ADR +
+tag bump — see `packages/contracts/README.md`.
 
-Laptop + Git Bash + pm2 + cloudflared tunnel. First-time setup, routine deploy
-(`bash infra/deploy.sh`), reboot recovery (§12 #10), backups, and hygiene live in
-[`infra/RUNBOOK.md`](infra/RUNBOOK.md).
+## Deployment & operations
+
+Production is a separate headless Windows laptop (WinSW service `TroutSite`, schtasks
+watchdog/refresh/autoupdate, Cloudflare tunnel) that self-deploys `main` hourly and
+self-heals; dev machines use the pm2 stack. First-time setup, routine deploy, reboot
+recovery, backups, and the self-healing loop: [`infra/RUNBOOK.md`](infra/RUNBOOK.md).
+**Never hand-run deploys on the production host** unless the owner asks.
 
 ## CI
 
-`.github/workflows/ci.yml` runs on **windows-latest**: install → lint → content-validate → test
-(coverage gate) → build. **Remote pending:** no GitHub remote was provided at Phase-0 exit; once
-`git remote add origin … && git push -u origin main` happens, Actions runs the same gates.
+- `.github/workflows/ci.yml` — install → lint → content-validate → test (coverage gate)
+  → build, on `windows-latest` (mirrors the deployment target).
+- `.github/workflows/qa.yml` — the Playwright behavioral suite (offline cold start,
+  privacy audit, portal, SEO) against fixture builds.
 
-## Core rules (short form — full text in the plan docs)
+## Core rules
 
-1. Offline-first; 2. privacy by architecture (no accounts, no location leaves the device);
-3. static-first read path; 4. free base usage (monetization inert in v1); 5. attribution culture
-(every fact cites `sources:`); 6. small v1: TX/OK/AR only, no lakes/maps/social.
-Out-of-scope ideas go to `docs/BACKLOG.md` — don't build them.
+1. Offline-first; 2. privacy by architecture (no accounts, no location leaves the
+device); 3. static-first read path; 4. free base usage (monetization inert in v1);
+5. attribution culture (every fact cites `sources:`); 6. small v1 scope — Tennessee
+only, no social. Out-of-scope ideas go to `docs/BACKLOG.md` — don't build them.
+
+Agent sessions: `AGENTS.md` is binding. Full-review instructions (single session, all
+dimensions): `docs/REVIEW-PROMPT.md`.

@@ -20,7 +20,7 @@ module.exports = {
         // upstream, so 'categories:pwa' can never assert — the gate is covered
         // instead by Playwright: e2e/web/manifest.spec.ts (manifest complete,
         // SW registers + takes control) and offline-cold-start/offline-hatch
-        // specs (airplane-mode flows). See docs/integration-report.md.
+        // specs (airplane-mode flows).
         'categories:seo': 'off', // the app shell is not the SEO surface
         'categories:performance': ['warn', { minScore: 0.8 }],
         'uses-long-cache-ttl': 'off',

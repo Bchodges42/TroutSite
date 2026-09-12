@@ -85,7 +85,8 @@ node apps/web/scripts/validate-roads.mjs          # structural gate (must PASS)
 - **Welding:** segments are grouped by (MTFCC, FULLNAME) and chained where
   endpoints coincide exactly after 5-decimal rounding (~1 m). Only existing
   TIGER endpoints are joined — no coordinates are invented. Three walk rules
-  keep chains honest (each added after a measured defect, see `PROGRESS.md`):
+  keep chains honest (each added after a measured defect during the 2026-09 roads
+  lane — see git history):
   straightest continuation at forks (greedy pick zigzagged between parallel
   carriageways), refusal of sharp reversals that land back on the chain's own
   corridor (forced reverse-carriageway steps created out-and-back paths), and

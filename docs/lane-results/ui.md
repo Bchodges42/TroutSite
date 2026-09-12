@@ -2,7 +2,8 @@
 
 **Lane:** UI/UX redesign · **Branch:** `codex/trout-fieldwork-20260904`
 **BASE_SHA:** `5648ccc` · **Commit:** see git log (single commit on top of base)
-**Design rationale:** [`../UI-DISCOVERY-REDESIGN.md`](../UI-DISCOVERY-REDESIGN.md)
+**Design rationale:** [`../DESIGN.md`](../DESIGN.md) (consolidated 2026-09-11 from the
+original UI-discovery rationale)
 
 ## Scope delivered
 

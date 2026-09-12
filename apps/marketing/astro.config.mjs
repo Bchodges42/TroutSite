@@ -2,7 +2,7 @@ import process from 'node:process';
 import { defineConfig } from 'astro/config';
 
 // Canonical origin for SEO (canonical URLs, sitemap.xml, og:url).
-// Set SITE_URL to the production domain before launch (see docs/integration-checklist.md).
+// Set SITE_URL to the production domain before launch.
 // The default is a placeholder so builds are deterministic everywhere.
 const site = process.env.SITE_URL ?? 'https://trout.example';
 
