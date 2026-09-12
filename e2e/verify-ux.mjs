@@ -1,3 +1,4 @@
+/* global console, document, fetch, getComputedStyle, localStorage, process */
 // After-fix verification sweep for fix/production-review-a.
 // Usage: node verify-ux.mjs <baseUrl> <outDir>
 // Re-measures every finding + captures evidence screenshots (both themes).
@@ -178,7 +179,7 @@ for (const theme of [null, 'nightfall']) {
   await page.goto(`${BASE}/?river=caney-fork-river`);
   await page.waitForTimeout(1500);
   results['c1-drawer-chip'] = await page.evaluate(() => {
-    const chip = document.querySelector('.freshness [class*=chip], .freshness span, .freshness *');
+    const _chip = document.querySelector('.freshness [class*=chip], .freshness span, .freshness *');
     return { freshness: document.querySelector('.freshness')?.textContent ?? null };
   });
   // map-state help line
