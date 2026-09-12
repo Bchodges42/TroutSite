@@ -10,6 +10,8 @@ import type { StockingEvent, Stream } from '@trout/contracts';
  * Shoal Creek; Sequatchie vs Little Sequatchie; both Duck reaches; both Elk
  * reaches), so resolution runs in strict tiers:
  *
+ *   0. county disambiguation — names claimed by multiple catalog waters,
+ *      where the TWRA row's county is the identity signal (T1-7)
  *   1. exact normalized name equality
  *   2. the curated alias table below (TWRA names ↔ catalog ids, from the real
  *      published schedule — add rows, never guess)
@@ -30,6 +32,15 @@ const ABBREV: Array<[RegExp, string]> = [
   [/\bn\.(?=\s)/g, 'north '],
   [/\bw\.(?=\s)/g, 'west '],
   [/\be\.(?=\s)/g, 'east '],
+  // The alias table below also uses the bare-letter spellings ("S Fork");
+  // expand them the same way so table entries and live rows normalize alike
+  // (T1-7: "Ft. Patrick Henry TW / S. Fork Holston River" missed its alias
+  // because the alias said "s fork" and the row normalized to "south fork").
+  [/\bs fork\b/g, 'south fork'],
+  [/\bn fork\b/g, 'north fork'],
+  [/\bw fork\b/g, 'west fork'],
+  [/\be fork\b/g, 'east fork'],
+  [/\bs holston\b/g, 'south holston'],
   [/\bmtn\b/g, 'mountain'],
   [/\(new\)/g, ''],
   [/\*/g, ''],
@@ -63,6 +74,19 @@ export const TWRA_ALIASES: Readonly<Record<string, readonly string[]>> = {
 };
 
 const byId = new Map(Object.entries(TWRA_ALIASES).map(([id, names]) => [id, names.map(normalizeWaterName)]));
+
+/**
+ * County disambiguation (T1-7): TWRA rows whose bare name exact-matches or
+ * contains MULTIPLE distinct catalog waters. The row's county is the identity
+ * signal — it outranks exact-name matching and containment, both of which
+ * ignored it and mis-assigned (TWRA "Wolf River" (Fentress) used to land on
+ * the Memphis-bound wolf-river-west-tennessee). Provenance: the published TWRA
+ * schedule's county column cross-checked against the catalog water's county —
+ * add rows, never guess.
+ */
+const COUNTY_RESOLVES: Readonly<Record<string, Readonly<Record<string, string>>>> = {
+  'wolf river': { fentress: 'wolf-river-fentress' },
+};
 
 function aliasTierFor(eventNorm: string): string[] {
   const hits: string[] = [];
@@ -101,11 +125,22 @@ export function matchStocking(
     const eventNorm = normalizeWaterName(event.streamName);
     let resolved: string | null = null;
 
+    // Tier 0 — county disambiguation for names claimed by more than one
+    // catalog water. Runs BEFORE exact/containment so a same-named water in
+    // the wrong county can never win (T1-7).
+    if (event.county) {
+      const byCounty = COUNTY_RESOLVES[eventNorm];
+      const hit = byCounty?.[event.county.toLowerCase()];
+      if (hit) resolved = hit;
+    }
+
     // Tier 1 — exact normalized equality against a catalog name.
-    for (const [id, meta] of streamNorm) {
-      if (meta.norm === eventNorm) {
-        resolved = id;
-        break;
+    if (!resolved) {
+      for (const [id, meta] of streamNorm) {
+        if (meta.norm === eventNorm) {
+          resolved = id;
+          break;
+        }
       }
     }
 

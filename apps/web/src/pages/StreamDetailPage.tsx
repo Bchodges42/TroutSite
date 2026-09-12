@@ -28,6 +28,7 @@ import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
+import { toWaterDecisionView } from '../features/map/waterDecision';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
@@ -145,46 +146,74 @@ export function StreamDetailPage() {
       ) : (
         <>
           <Card className="mt-4">
-            <div className="flex flex-wrap items-center gap-4">
-              {statusForScore(snapshot.score.value, snapshot.readings.length > 0) !== 'no-data' &&
-                stream.species === 'trout' && (
-                  <ScorePill score={snapshot.score.value} size="lg" />
-                )}
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-bold">
-                  {stream.species === 'warmwater'
-                    ? 'Warmwater — trout model does not apply'
-                    : stream.species == null
-                      ? 'Species unverified — the catalog does not document trout for this water'
-                      : statusForScore(snapshot.score.value, snapshot.readings.length > 0) !==
-                          'no-data'
-                        ? 'Trout condition assessment'
-                        : 'Assessment unavailable in this snapshot'}
-                  {trend !== 'unknown' && (
-                    <span className="ml-2 font-semibold">{TREND_LABEL[trend]}</span>
-                  )}
-                </p>
-                <ul className="mt-2 list-disc pl-5 text-sm">
-                  {snapshot.score.reasons.map((r) => (
-                    <li key={r}>{conditionReason(r, settings.tempUnit)}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            {(() => {
+              // Same classification the map and list use (waterDecision is the
+              // single authority): an assessed clamped-0 score is Poor here too.
+              const status = statusForScore(
+                snapshot.score.value,
+                snapshot.readings.length > 0,
+                snapshot.score.assessed,
+              );
+              const decision = toWaterDecisionView(
+                {
+                  stream,
+                  status,
+                  score: status !== 'no-data' ? snapshot.score.value : null,
+                  snapshot,
+                  species: stream.species,
+                },
+                'trout',
+              );
+              const troutMetric = decision.displayMetric === 'trout-condition';
+              return (
+                <div className="flex flex-wrap items-center gap-4">
+                  {troutMetric && <ScorePill score={snapshot.score.value} size="lg" />}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-bold">
+                      {stream.species === 'warmwater'
+                        ? 'Warmwater — raw readings shown; the trout model does not apply'
+                        : stream.species == null
+                          ? 'Species unverified — the catalog does not document trout for this water; raw readings shown'
+                          : troutMetric
+                            ? 'Trout condition assessment'
+                            : 'Assessment unavailable in this snapshot'}
+                      {troutMetric && trend !== 'unknown' && (
+                        <span className="ml-2 font-semibold">{TREND_LABEL[trend]}</span>
+                      )}
+                    </p>
+                    {troutMetric && (
+                      <ul className="mt-2 list-disc pl-5 text-sm">
+                        {snapshot.score.reasons.map((r) => (
+                          <li key={r}>{conditionReason(r, settings.tempUnit)}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
           </Card>
 
           <div className="mt-4 flex flex-wrap gap-2">
             <DataBadge
               label="Flow"
               value={newestCfs != null ? formatFlow(newestCfs) : 'Not reported'}
-              status={newestCfs != null ? statusForFlow(stream, newestCfs) : 'unknown'}
+              status={
+                stream.species === 'trout' && newestCfs != null
+                  ? statusForFlow(stream, newestCfs)
+                  : 'unknown'
+              }
             />
             <DataBadge
               label="Water temp"
               value={
                 newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : 'Not reported'
               }
-              status={newestTemp != null ? statusForTemp(newestTemp) : 'unknown'}
+              status={
+                stream.species === 'trout' && newestTemp != null
+                  ? statusForTemp(newestTemp)
+                  : 'unknown'
+              }
             />
             {newestHeight != null && (
               <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />
@@ -192,8 +221,11 @@ export function StreamDetailPage() {
             <DataBadge
               label="Ideal flow"
               value={
-                stream.idealFlow.map((r) => `${formatNum(r.min)}–${formatNum(r.max)}`).join(', ') +
-                ' cfs'
+                stream.idealFlow.length
+                  ? stream.idealFlow
+                      .map((r) => `${formatNum(r.min)}–${formatNum(r.max)}`)
+                      .join(', ') + ' cfs'
+                  : 'Not listed'
               }
               status="unknown"
             />

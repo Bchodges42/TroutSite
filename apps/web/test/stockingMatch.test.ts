@@ -112,3 +112,70 @@ describe('matchStocking against the real cached TWRA feed', () => {
     expect(unmatched).toBeGreaterThan(0);
   });
 });
+
+describe('T1-7 — county disambiguation against the captured 623-row TWRA feed', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+
+  // Permanent capture of the 2026-09-12 TWRA schedule pull (623 rows) — the
+  // regression set for the matcher. Rows are compact; the loader restores the
+  // fields every row shares but the schema requires.
+  const capture = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, 'fixtures/stocking-tn-2026-09-12.json'), 'utf8'),
+  ) as { count: number; events: Array<Partial<StockingEvent>> };
+  const capturedEvents: StockingEvent[] = capture.events.map((e) => ({
+    stateId: 'TN',
+    sourceUrl: 'https://www.tn.gov/twra/fishing/trout-information-stockings.html',
+    fetchedAt: '2026-09-12T00:00:00Z',
+    ...e,
+  })) as StockingEvent[];
+
+  // Real catalog names (packages/content/streams/tn/) for every water the
+  // mis-attribution cases and controls touch.
+  const catalog = [
+    { id: 'wolf-river-fentress', name: 'Wolf River (Fentress County headwaters)' },
+    { id: 'wolf-river-west-tennessee', name: 'Wolf River' },
+    { id: 'holston-river', name: 'Holston River' },
+    { id: 'ft-patrick-henry-tailwater', name: 'Fort Patrick Henry Tailwater (South Fork Holston River)' },
+    { id: 'south-holston-river', name: 'South Fork Holston River (South Holston tailwater)' },
+    { id: 'boone-tailwater', name: 'Boone Tailwater (South Fork Holston River)' },
+    { id: 'caney-fork-river', name: 'Caney Fork River (Center Hill tailwater)' },
+    { id: 'duck-river-tailwater', name: 'Duck River (Normandy tailwater)' },
+    { id: 'duck-river-lower', name: 'Duck River (Shelbyville to Columbia)' },
+  ];
+
+  it('captures the full 623-row review set', () => {
+    expect(capture.count).toBe(623);
+    expect(capturedEvents).toHaveLength(623);
+  });
+
+  it('resolves TWRA "Wolf River" (Fentress) to the Fentress headwaters, not the west-Tennessee Wolf', () => {
+    const { byStream } = matchStocking(catalog, capturedEvents);
+    const fentress = byStream.get('wolf-river-fentress') ?? [];
+    expect(fentress.length).toBeGreaterThan(0);
+    expect(fentress.every((e) => e.county === 'Fentress')).toBe(true);
+    expect(byStream.get('wolf-river-west-tennessee')).toBeUndefined();
+  });
+
+  it('resolves "Ft. Patrick Henry TW / S. Fork Holston River" to its tailwater, not the generic Holston River', () => {
+    const { byStream } = matchStocking(catalog, capturedEvents);
+    const patrick = byStream.get('ft-patrick-henry-tailwater') ?? [];
+    expect(patrick.length).toBeGreaterThan(0);
+    expect(patrick.every((e) => /patrick henry/i.test(e.streamName))).toBe(true);
+    const holston = byStream.get('holston-river') ?? [];
+    expect(
+      holston.filter((e) => /patrick henry|boone|holston tw|s\. holston/i.test(e.streamName)),
+    ).toHaveLength(0);
+  });
+
+  it('keeps the controls correct: Center Hill → Caney Fork, Normandy → Duck tailwater (never the lower reach)', () => {
+    const { byStream } = matchStocking(catalog, capturedEvents);
+    const caney = byStream.get('caney-fork-river') ?? [];
+    expect(caney.length).toBeGreaterThan(0);
+    expect(caney.every((e) => /center hill/i.test(e.streamName))).toBe(true);
+    const duck = byStream.get('duck-river-tailwater') ?? [];
+    expect(duck.length).toBeGreaterThan(0);
+    expect(duck.every((e) => /normandy/i.test(e.streamName))).toBe(true);
+    expect(byStream.get('duck-river-lower')).toBeUndefined();
+  });
+});
