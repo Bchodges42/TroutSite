@@ -3,6 +3,18 @@ import { readFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
+type GeoFeature = {
+  properties: { id?: string; source?: string } & Record<string, unknown>;
+  geometry: { type: string; coordinates: number[][] | number[][][] };
+};
+type MapLike = {
+  getContainer(): { clientWidth: number; clientHeight: number };
+  queryRenderedFeatures(): GeoFeature[];
+};
+const mapWindow = (w: Window): MapLike =>
+  (w as Window & { __troutMap?: MapLike }).__troutMap as MapLike;
+
+
 // Existing image library, used only to inspect rendered pixels in this UI regression.
 const sharp = createRequire(new URL('../../apps/web/package.json', import.meta.url))('sharp');
 
@@ -57,7 +69,7 @@ async function mapViewportCoordinate(page: Page, longitude: number, latitude: nu
     { longitude, latitude },
   );
 }
-async function clickMapCoordinate(page: Page, longitude: number, latitude: number) {
+async function _clickMapCoordinate(page: Page, longitude: number, latitude: number) {
   const point = await mapViewportCoordinate(page, longitude, latitude);
   await page.locator('.maplibregl-canvas').click({ position: point });
 }
@@ -85,14 +97,14 @@ async function scanLinePoint(page: Page, riverId: string): Promise<{ x: number; 
 }
 async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: number; y: number }> {
   return page.getByTestId('river-map').evaluate(async (el, target) => {
-    const atlas = await (await fetch('/atlas/rivers.geojson')).json();
-    const feature = atlas.features.find((f: any) => f.properties.id === target);
+    const atlas = await (await fetch('/atlas/rivers.geojson')).json() as { features: GeoFeature[] };
+    const feature = atlas.features.find((f) => f.properties.id === target);
     if (!feature) throw new Error('target water missing from rivers.geojson');
     const coords: Array<[number, number]> =
       feature.geometry.type === 'LineString'
         ? feature.geometry.coordinates
         : feature.geometry.coordinates.flat() as Array<[number, number]>;
-    const m = (window as any).__troutMap;
+    const m = mapWindow(window);
     // Bring the target corridor into view deterministically (zoom clicks keep
     // the statewide center, which can be nowhere near the water under test).
     const lons = coords.map((c) => c[0]!);
@@ -116,7 +128,7 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
     for (const [lon, lat] of coords) {
       const p = m.project([lon, lat]);
       if (p.x < 20 || p.y < 90 || p.x > m.getContainer().clientWidth - 20 || p.y > m.getContainer().clientHeight - 80) continue;
-      if (labels.some((b: any) => p.x > b.x - 6 && p.x < b.x + b.w + 6 && p.y > b.y - 6 && p.y < b.y + b.h + 6)) continue;
+      if (labels.some((b: { x: number; y: number; w: number; h: number }) => p.x > b.x - 6 && p.x < b.x + b.w + 6 && p.y > b.y - 6 && p.y < b.y + b.h + 6)) continue;
       // Overlays (legend, chrome) cover the canvas — the app never sees a click here.
       const hitEl = document.elementFromPoint(origin.x + p.x, origin.y + p.y);
       if (!hitEl || !String(hitEl.className).includes('maplibregl-canvas')) continue;
@@ -137,7 +149,7 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
         return nearest;
       };
       const best = feats
-        .map((f: any) => ({
+        .map((f) => ({
           id: String(f.properties.id),
           d:
             f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon'
@@ -152,7 +164,7 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
                     : f.geometry.coordinates,
                 ),
         }))
-        .sort((a: any, b: any) => a.d - b.d)[0];
+        .sort((a, b) => a.d - b.d)[0];
       if (best?.id === target) return { x: p.x, y: p.y };
     }
     throw new Error(
@@ -177,11 +189,11 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
  */
 async function scanPolygonPoint(page: Page): Promise<{ x: number; y: number }> {
   return page.getByTestId('river-map').evaluate(async () => {
-    const m = (window as any).__troutMap;
+    const m = mapWindow(window);
     // Verify the mock polygon actually reached the map (the SW can serve the
     // cached original, bypassing page.route — hence serviceWorkers:'block').
-    const atlas = await (await fetch('/atlas/rivers.geojson')).json();
-    const mock = atlas.features.find((f: any) => f.properties.id === 'beech-lake');
+    const atlas = await (await fetch('/atlas/rivers.geojson')).json() as { features: GeoFeature[] };
+    const mock = atlas.features.find((f) => f.properties.id === 'beech-lake');
     if (mock?.properties?.source !== 'test-only-architecture-fixture')
       throw new Error('mock polygon not served (source=' + (mock?.properties?.source ?? 'none') + ')');
     // Fit the oversized mock polygon deterministically before scanning.
@@ -234,7 +246,7 @@ async function scanPolygonPoint(page: Page): Promise<{ x: number; y: number }> {
     }
     throw new Error(
         'no tap point; renderedBeech=' +
-          m.queryRenderedFeatures().filter((f: any) => f.properties.id === 'beech-lake').length +
+          m.queryRenderedFeatures().filter((f) => f.properties.id === 'beech-lake').length +
           ' labels=' +
           labels.length +
           ' zoom=' +
@@ -693,7 +705,7 @@ test.describe('touch polygon selection', () => {
     for (let attempt = 0; attempt < 6 && !tap; attempt++) {
       try {
         tap = await page.getByTestId('river-map').evaluate(() => {
-          const m = (window as any).__troutMap;
+          const m = mapWindow(window);
           const layers = ['rivers-point-hit', 'rivers-water-hit', 'rivers-water-hit-outline', 'rivers-hit'];
           const origin = m.getContainer().getBoundingClientRect();
           const labels = [...document.querySelectorAll('.river-map-label')]

@@ -26,7 +26,7 @@ async function ready(page: Page) {
 function mapLayers(page: Page) {
   return page.getByTestId('river-map').getAttribute('data-map-layers');
 }
-function mapSources(page: Page) {
+function _mapSources(page: Page) {
   return page.getByTestId('river-map').getAttribute('data-map-sources');
 }
 
