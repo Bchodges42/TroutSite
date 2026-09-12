@@ -1,0 +1,270 @@
+# Species reference — F2 comfort + activity data (Stage 2, canonical).
+# Supersedes research/f2-species-reference.yaml (draft): every shipped value here
+# is cited; values without a verified source are null + citationStatus:
+# needs-source and MUST NOT be given numbers without adding a real source URL.
+# The validator (validate.ts) FAILS on any uncited value, any citation that is
+# not https, or any all-null band missing the needs-source flag.
+#
+# Conventions:
+#   comfort.optimalC   — temperatures where the fish is at its best (basis says
+#                        whether lab-preferred, field-activity, or occupied-range)
+#   comfort.avoidanceC — chronic-stress ceiling (agency MWAT-style chronic value)
+#   comfort.lethalC    — acute lethal ceiling (MDMT-style acute value)
+#   spawn.onsetC/endC  — spawning activity temperature window
+#   flowTrend          — response to flow trend (stable/falling/rising)
+#   pressureTrend      — barometric-trend sensitivity
+schema: trout/species-reference/1
+updatedAt: '2026-09-12'
+
+species:
+  largemouth-bass:
+    displayName: Largemouth bass
+    comfort:
+      optimalC:
+        min: 26.7
+        max: 30.0
+        basis: lab-preferred
+        # NDEP thermal tolerance analysis: preferred-temperature modes 30.0°C (day)
+        # / 26.7°C (night); corroborated by In-Fisherman's cited 82–84°F optimum.
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/LargemouthBassTTA.pdf
+          - https://www.in-fisherman.com/editorial/largemouth-bass-temperature-thermoclines/494247
+      avoidanceC:
+        value: 32
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/LargemouthBassTTA.pdf
+      lethalC:
+        value: 34
+        basis: acute-mdmt
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/LargemouthBassTTA.pdf
+      lowerActiveC:
+        citationStatus: needs-source
+        note: Lower activity onset not yet sourced — do not author without a citation.
+    activity:
+      feedC:
+        min: 18.3
+        max: 28.9
+        basis: field-activity
+        # 65–75°F comfort/activity zone through the 82–84°F optimum (In-Fisherman).
+        sources:
+          - https://www.in-fisherman.com/editorial/largemouth-bass-temperature-thermoclines/494247
+    spawn:
+      onsetC:
+        value: 15.6
+        sources:
+          - https://www.fishusa.com/learn/when-do-bass-spawn/
+      endC:
+        value: 23.9
+        sources:
+          - https://www.fishusa.com/learn/when-do-bass-spawn/
+    flowTrend:
+      citationStatus: needs-source
+    pressureTrend:
+      citationStatus: needs-source
+
+  smallmouth-bass:
+    displayName: Smallmouth bass
+    comfort:
+      optimalC:
+        min: 20.0
+        max: 26.7
+        basis: field-activity
+        # Most active feeding 68–80°F (Little River Outfitters, TN smallmouth water).
+        sources:
+          - https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html
+      avoidanceC:
+        value: 29
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/SmallmouthBassTTA.pdf
+      lethalC:
+        value: 31
+        basis: acute-mdmt
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/SmallmouthBassTTA.pdf
+      lowerActiveC:
+        citationStatus: needs-source
+    spawn:
+      onsetC:
+        value: 12.8
+        sources:
+          - https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html
+          - https://www.fishusa.com/learn/when-do-bass-spawn/
+      endC:
+        value: 21.1
+        sources:
+          - https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html
+    flowTrend:
+      citationStatus: needs-source
+    pressureTrend:
+      citationStatus: needs-source
+
+  spotted-bass:
+    displayName: Spotted bass
+    comfort:
+      optimalC:
+        citationStatus: needs-source
+        note: No species-specific preferred-temperature study extracted yet.
+      avoidanceC:
+        value: 32
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/SpottedBassTTA.pdf
+      lethalC:
+        citationStatus: needs-source
+        # NDEP: "no acute thermal tolerance is recommended for spotted bass at this
+        # time" — no UILT studies near the chronic criterion.
+        note: NDEP recommends no acute value; leave null until a primary lethal study is cited.
+    spawn:
+      onsetC:
+        value: 13.9
+        sources:
+          - https://tpwd.texas.gov/huntwild/wild/species/spb/
+      endC:
+        value: 23.3
+        sources:
+          - https://tpwd.texas.gov/huntwild/wild/species/spb/
+    flowTrend:
+      citationStatus: needs-source
+    pressureTrend:
+      citationStatus: needs-source
+
+  crappie:
+    displayName: Crappie (white & black)
+    comfort:
+      optimalC:
+        citationStatus: needs-source
+      avoidanceC:
+        value: 28
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/WhiteCrappieTTA.pdf
+      lethalC:
+        value: 31
+        basis: acute-mdmt
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/WhiteCrappieTTA.pdf
+      lowerActiveC:
+        citationStatus: needs-source
+    spawn:
+      # TWRA (Watts Bar Reservoir page): white crappie spawn 60–65°F, black
+      # crappie 62–68°F — window is the union; keep the split in mind for
+      # per-subspecies work.
+      onsetC:
+        value: 15.6
+        sources:
+          - https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+      endC:
+        value: 20.0
+        sources:
+          - https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    flowTrend:
+      citationStatus: needs-source
+    pressureTrend:
+      citationStatus: needs-source
+
+  bluegill:
+    displayName: Bluegill
+    comfort:
+      optimalC:
+        citationStatus: needs-source
+      avoidanceC:
+        value: 32
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/BluegillTTA.pdf
+      lethalC:
+        value: 35
+        basis: acute-mdmt
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/BluegillTTA.pdf
+      lowerActiveC:
+        citationStatus: needs-source
+    spawn:
+      # MU Extension G9473: most bluegill spawn at a minimum of 74°F and repeat
+      # through summer — onset is cited; the upper end of the spawning season
+      # has no temperature figure in the source, so it stays null.
+      onsetC:
+        value: 23.3
+        sources:
+          - https://extension.missouri.edu/publications/g9473
+      endC:
+        citationStatus: needs-source
+    flowTrend:
+      citationStatus: needs-source
+    pressureTrend:
+      citationStatus: needs-source
+
+  channel-catfish:
+    displayName: Channel catfish
+    comfort:
+      optimalC:
+        citationStatus: needs-source
+      avoidanceC:
+        value: 32
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/ChannelCatfishTTA.pdf
+      lethalC:
+        value: 35
+        basis: acute-mdmt
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/ChannelCatfishTTA.pdf
+      lowerActiveC:
+        citationStatus: needs-source
+    spawn:
+      onsetC:
+        value: 21.1
+        sources:
+          - https://catfishnow.com/spawning-time-facts/
+      endC:
+        value: 29.4
+        sources:
+          - https://catfishnow.com/spawning-time-facts/
+    flowTrend:
+      citationStatus: needs-source
+      note: Rising-water feeding is folklore-grade here — needs a citation before any value ships.
+    pressureTrend:
+      citationStatus: needs-source
+
+  striped-bass:
+    displayName: Striped bass
+    comfort:
+      optimalC:
+        min: 14.6
+        max: 22.0
+        basis: occupied-range
+        # NDEP striped bass TTA citing Coutant et al. (1984): full occupied range
+        # 14.6–28.2°C; 22.0°C = upper temperature limit for 90% of fish.
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/StripedBassTTA.pdf
+      avoidanceC:
+        value: 30
+        basis: chronic-mwat
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/StripedBassTTA.pdf
+      lethalC:
+        value: 32
+        basis: acute-mdmt
+        sources:
+          - https://ndep.nv.gov/uploads/water-wqs-docs/StripedBassTTA.pdf
+      lowerActiveC:
+        citationStatus: needs-source
+      note: >-
+        TN reservoir stripeds depend on cool, oxygenated summer refuges (the
+        temperature–oxygen squeeze); TWRA's Cherokee Reservoir page documents the
+        refuge behavior the scorer must respect in July–Sept.
+    activity:
+      refugeNote: summer thermal refuge behavior — see comfort.note
+    spawn:
+      onsetC:
+        citationStatus: needs-source
+        note: Freshwater spawning-temperature window not yet cited — never guessed.
+      endC:
+        citationStatus: needs-source
+    flowTrend:
+      citationStatus: needs-source
+    pressureTrend:
+      citationStatus: needs-source

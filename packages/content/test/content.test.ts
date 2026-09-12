@@ -2,10 +2,19 @@
 // Covers: schema validity, orphan references, gauge-ID lint, SVG well-formedness,
 // hatch-chart month coverage, and the CHAT-4 Definition-of-Done floors.
 import { describe, expect, it } from 'vitest';
-import { loadContent, loadVerifiedGauges, isWellFormedSvg, FLOORS } from '../scripts/lib.js';
+import {
+  loadContent,
+  loadSpeciesReference,
+  loadVerifiedGauges,
+  checkSpeciesDoc,
+  isWellFormedSvg,
+  FLOORS,
+  type SpeciesReference,
+} from '../scripts/lib.js';
 import { REGIONS } from '../scripts/regions.js';
 
 const { bugs, patterns, streams, shops, hatch, illustrations, issues, warnings } = loadContent();
+const { species, issues: speciesIssues } = loadSpeciesReference();
 
 describe('content pack validation (CI gate)', () => {
   it('has no validation issues', () => {
@@ -91,6 +100,66 @@ describe('content pack validation (CI gate)', () => {
     expect(notes).not.toMatch(/Memphis-bound/);
     expect(notes).toMatch(/Dale Hollow/);
     expect(wolf!.officialSources.some((s) => s.url.includes('dale-hollow-reservoir')), 'must cite TWRA Dale Hollow').toBe(true);
+  });
+});
+
+describe('species reference — F2 citation gate', () => {
+  it('loads all seven species with zero citation issues', () => {
+    expect([...species.keys()].sort()).toEqual([
+      'bluegill',
+      'channel-catfish',
+      'crappie',
+      'largemouth-bass',
+      'smallmouth-bass',
+      'spotted-bass',
+      'striped-bass',
+    ]);
+    expect(speciesIssues, speciesIssues.map((i) => `${i.file}: ${i.message}`).join('\n')).toEqual([]);
+    for (const [id, ref] of species) {
+      expect(ref.comfort, `${id} needs a comfort block`).toBeDefined();
+      expect(ref.comfort.avoidanceC, `${id} needs an avoidance ceiling`).toBeDefined();
+    }
+  });
+
+  it('FAILS an uncited numeric value (needs-source is the only uncited escape)', () => {
+    const bad: Record<string, SpeciesReference> = {
+      'test-species': {
+        comfort: {
+          avoidanceC: { value: 30, basis: 'chronic-mwat' }, // no sources
+        },
+      },
+    };
+    const out: { file: string; message: string }[] = [];
+    checkSpeciesDoc('fixture.yaml', bad, out);
+    expect(out.some((i) => i.message.includes('no source URL'))).toBe(true);
+  });
+
+  it('FAILS an all-null band that is not flagged needs-source', () => {
+    const out: { file: string; message: string }[] = [];
+    checkSpeciesDoc('fixture.yaml', {
+      'test-species': { comfort: { lethalC: {} } },
+    }, out);
+    expect(out.some((i) => i.message.includes('citationStatus: needs-source'))).toBe(true);
+  });
+
+  it('FAILS a needs-source band that carries values anyway', () => {
+    const out: { file: string; message: string }[] = [];
+    checkSpeciesDoc('fixture.yaml', {
+      'test-species': {
+        comfort: {
+          optimalC: { min: 10, max: 20, citationStatus: 'needs-source', sources: ['https://example.gov/x.pdf'] },
+        },
+      },
+    }, out);
+    expect(out.some((i) => i.message.includes('needs-source — either cite'))).toBe(true);
+  });
+
+  it('FAILS a non-https source URL', () => {
+    const out: { file: string; message: string }[] = [];
+    checkSpeciesDoc('fixture.yaml', {
+      'test-species': { comfort: { avoidanceC: { value: 30, sources: ['http://insecure.example/x'] } } },
+    }, out);
+    expect(out.some((i) => i.message.includes('not an https URL'))).toBe(true);
   });
 });
 
