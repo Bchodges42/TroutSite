@@ -10,6 +10,8 @@ idealFlow:
   - min: 100
     max: 600
     unit: cfs
+targetSpecies:
+  - smallmouth-bass
 notes: >-
   The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth
   downstream. Plateau flashiness applies. It runs to the Watts Bar embayment head, where the pool
