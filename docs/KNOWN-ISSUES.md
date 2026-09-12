@@ -22,24 +22,24 @@ traceability. `[export]` = verified present in this working tree as well as the 
 
 ## T0 — Release blockers (in fix order)
 
-- [ ] **T0-1 [REVIEW PASS1-1] · P0 — Conditional HEAD terminates the API.** A cache-
+- [x] **T0-1 [REVIEW PASS1-1] · P0 — Conditional HEAD terminates the API.** A cache-
   revalidation `HEAD` with `If-None-Match` on a static asset reproducibly kills the
   process (`ERR_HTTP_HEADERS_SENT`, Fastify 4.29.1 + @fastify/static 7.0.4;
   `apps/api/src/app.ts:72`). Nothing ships until this is fixed.
   → Fix + regression test: GET/HEAD × with/without conditional headers on every static mount.
-- [ ] **T0-2 [REVIEW PASS7-3] · P1 — Failed deploy can skip rollback AND block retry.**
+- [x] **T0-2 [REVIEW PASS7-3] · P1 — Failed deploy can skip rollback AND block retry.**
   `deploy.sh` pulls before build under `set -e`; early failure exits before the
   verify/rollback block (archive only happens after build), and `autoupdate.sh` treats
   `HEAD == origin` as UP-TO-DATE without checking the last failure.
   → Stage + verify before switching served output; cover all mutation failures with
   rollback; track last-good revision separately from HEAD; report rollback only after
   verifying it.
-- [ ] **T0-3 [REVIEW PASS7-1] · P1 — Healing verifier rejects the hardened API.**
+- [x] **T0-3 [REVIEW PASS7-1] · P1 — Healing verifier rejects the hardened API.**
   `verify-site.sh:45` sends no watchdog token and requires the deliberately blocked
   `/v1/streams.json` file, so a healthy hardened instance fails verification.
   → Send the configured token; check the public `/v1/streams` contract; drop the
   implementation-file requirement.
-- [ ] **T0-4 [REVIEW PASS4-1] · P1 — Production build fails its own 25 MB size gate**
+- [x] **T0-4 [REVIEW PASS4-1] · P1 — Production build fails its own 25 MB size gate**
   (65.36 MB on the review branch; the gate counts more than the actual SW precache set
   of ~10 MB).
   → Slim the assets AND redesign the budget to distinguish install-time/offline bytes
@@ -48,40 +48,40 @@ traceability. `[export]` = verified present in this working tree as well as the 
 
 ## T1a — Data honesty & correctness (user-facing lies; ship with T0)
 
-- [ ] **T1-5 [REVIEW PASS2-2] [export] · P1 — POSIX builds silently lose ALL hatch
+- [x] **T1-5 [REVIEW PASS2-2] [export] · P1 — POSIX builds silently lose ALL hatch
   charts.** `packages/content/scripts/build.ts:56` writes `name.replaceAll('/', '\\')`
   → literal-backslash filenames on macOS/Linux → `hatchCharts:0` downstream.
   → Join with the platform path API; assert all 144 region/month outputs readable.
-- [ ] **T1-6 [REVIEW PASS2-1] · P1 — Stale gauge metrics wear a fresh timestamp.**
+- [x] **T1-6 [REVIEW PASS2-1] · P1 — Stale gauge metrics wear a fresh timestamp.**
   Metric aggregation in the ingest/bridge stamps month-old flow/temp with a current
   reading's time; old data scores 90 (`apps/api/src/ingest/usgs.ts:69`,
   `conditionsBridge.ts`).
   → Preserve per-metric observation time, or filter stale metrics before scoring.
-- [ ] **T1-7 [REVIEW PASS6-1] [export] · P1 — Stocking attaches to the WRONG water.**
+- [x] **T1-7 [REVIEW PASS6-1] [export] · P1 — Stocking attaches to the WRONG water.**
   Exact-name matching ignores county: TWRA "Wolf River" (Fentress) →
   `wolf-river-west-tennessee`; "Ft. Patrick Henry TW / S. Fork Holston River" →
   `holston-river` (`apps/web/src/lib/stockingMatch.ts:56,104,125`). Also fix
   `wolf-river-fentress.yaml:16` ("Memphis-bound" conflation).
   → County/reach disambiguation before generic containment; repaired aliases; keep the
   captured rows as permanent regression cases.
-- [ ] **T1-8 [REVIEW PASS5-2] [export] · P1 — Prerender publishes fixture stocking as
+- [x] **T1-8 [REVIEW PASS5-2] [export] · P1 — Prerender publishes fixture stocking as
   real releases.** With `public/v1/stocking/TN.json` absent, production prerender
   renders 15 fixture events as "15 reported releases" (`apps/web/scripts/prerender.mjs:93,425`).
   → Disable fixture fallback on factual pages; honest "unavailable" state; carry
   datePrecision + scheduled-vs-released wording into generated copy.
-- [ ] **T1-9 [LOGIC-22] [export] · P1 — Detail page regresses the B02 assessed-flag
+- [x] **T1-9 [LOGIC-22] [export] · P1 — Detail page regresses the B02 assessed-flag
   fix.** `StreamDetailPage.tsx:149` calls `statusForScore(value, hasData)` without
   `assessed` (ConditionsPage passes all three) → a genuine clamped-0 lethal assessment
   shows "Assessment unavailable" on detail while map + list show Poor.
   → Pass `snapshot.score.assessed`; add a test pinning all surfaces to identical status logic.
-- [ ] **T1-10 [REVIEW PASS2-3] · P2 — Feed-health detector accepts malformed rows.**
+- [x] **T1-10 [REVIEW PASS2-3] · P2 — Feed-health detector accepts malformed rows.**
   `[{}]` and invalid timestamps → `healthy:true` (`apps/api/src/snapshots/health.ts:39`).
   → Validate rows against the contract; malformed-feed detection tests.
-- [ ] **T1-11 [REVIEW PASS2-4] · P2 — Shipped atlas/topo metadata fails its own
+- [x] **T1-11 [REVIEW PASS2-4] · P2 — Shipped atlas/topo metadata fails its own
   validators.** Vertex-count drift (Duck tailwater 268 vs 267, +2 more); topo manifest
   531 tiles vs 1,021 files, 2 byte-total mismatches, 5 fully transparent tiles.
   → Regenerate manifests from final artifacts; omit empty tiles; gate the validators.
-- [ ] **T1-12 [REVIEW PASS7-2] · P2 — DB-copy backup fallback drops committed WAL
+- [x] **T1-12 [REVIEW PASS7-2] · P2 — DB-copy backup fallback drops committed WAL
   data.** `infra/backup.sh:18` no-sqlite3 fallback copies the main file with the
   connection open (verified: committed insert lost).
   → Always use a supported online backup; fail loudly if unavailable; validate restores
@@ -95,14 +95,14 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 
 **The trout model leaks onto non-trout waters**
 
-- [ ] **T1-13 [LOGIC-1]** Detail page renders trout-score reasons ("dangerously warm —
+- [x] **T1-13 [LOGIC-1]** Detail page renders trout-score reasons ("dangerously warm —
   avoid stressing trout") and the hidden score's trend on warmwater/unverified water —
   the pill is gated, the reasons list isn't (`StreamDetailPage.tsx:167-171`).
-- [ ] **T1-14 [LOGIC-3]** Trout physiology baked into shared badges: `statusForTemp`
+- [x] **T1-14 [LOGIC-3]** Trout physiology baked into shared badges: `statusForTemp`
   (6–20 good, >24 poor) colors every water; 26°C summer pond reads "poor" (`:408-412`).
   Interim: color only when a trout score applies, neutral otherwise. Final: color by
   the water's applicable species score once the fishability program lands (F6).
-- [ ] **T1-15 [LOGIC-4]** Winter ponds render a nonsense `" cfs"` ideal-flow badge —
+- [x] **T1-15 [LOGIC-4]** Winter ponds render a nonsense `" cfs"` ideal-flow badge —
   guard the empty `idealFlow: []` array (`:193-199`; verified in `beech-lake.yaml`).
 - [ ] **T1-16 [LOGIC-5]** Map legend titled "Fishability" (`MapLegend.tsx:87`) with no
   real metric behind it. Interim: title from species mode ("Trout conditions" /
@@ -210,11 +210,11 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 - [ ] **T2-44 [REVIEW PASS4-3] · P2 (branch-only)** Creek-network clusters lack
   persistent offline caching (`networkClusters.ts:191`). → Bounded persistent cache for
   visited clusters or label the layer "requires connectivity."
-- [ ] **T2-45 [REVIEW PASS1-2] · P1 — Portal proxy buffers unauthenticated bodies
+- [x] **T2-45 [REVIEW PASS1-2] · P1 — Portal proxy buffers unauthenticated bodies
   before auth** (`infra/static-server.mjs:85`): 1 MiB accepted before the API's 401/
   128 KiB limit. → Early streaming byte limit + bounded duration, incl. missing
   Content-Length.
-- [ ] **T2-46 [REVIEW PASS7-4] · P2** Dependency symlinks with absolute machine-local
+- [x] **T2-46 [REVIEW PASS7-4] · P2** Dependency symlinks with absolute machine-local
   targets are TRACKED in git — clones follow them into the original machine's
   node_modules (already bit the review session). → Untrack; add a tracked-artifact
   check for absolute links.
@@ -222,6 +222,9 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   / 5 low — complete the reachability triage; schedule recurring audit.
 
 - [ ] **T2-55 [NEW 2026-09-12]** Statewide network builder (`scripts/nhd-network-build.mjs`) lacks the catalog-pid exclusion that d51f307 added to `nhd-network-proof.mjs` — raw NHD linework can draw gray shadows over catalog rivers statewide. Apply the same sourceIds exclusion and regenerate.
+
+- [ ] **T2-56 [CHECKPOINT 2026-09-12] — duplicate visible dialog on water select (ASSIGNED: Session C, Stage 2).** After selecting a water via search, `[role="dialog"]:visible` containing the water's heading resolves to TWO elements (`web/atlas-verify.spec.ts` strict-mode failure at desktop AND mobile 390px). Three role="dialog" sites: AppShell.tsx:197 (nav menu — not the culprit), RiverDrawer.tsx:51/:81. RiverDrawer is rendered twice and both instances are :visible — find the render condition/CSS regression (likely from the search-themes integration) and fix.
+- [ ] **T2-57 [CHECKPOINT 2026-09-12] — fieldwork e2e suite is stale (ASSIGNED: Session C, Stage 2).** 23 of 25 checkpoint e2e failures are `e2e/fieldwork/ui.spec.ts` specs written against the pre-evolution UI (e.g. expecting the hatch key's "2 tails" step before the current first step). For each: fix the spec if the app is right, fix the app if the spec is right. The other 2 failures are T2-56. Note: `pnpm e2e` (and qa.yml) stay red on these until Session C lands the fixes — expected.
 
 ## T3 — Owner actions, backlog, accepted limitations
 
