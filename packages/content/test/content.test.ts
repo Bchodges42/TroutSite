@@ -2,6 +2,8 @@
 // Covers: schema validity, orphan references, gauge-ID lint, SVG well-formedness,
 // hatch-chart month coverage, and the CHAT-4 Definition-of-Done floors.
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   loadContent,
   loadSpeciesReference,
@@ -160,6 +162,71 @@ describe('species reference — F2 citation gate', () => {
       'test-species': { comfort: { avoidanceC: { value: 30, sources: ['http://insecure.example/x'] } } },
     }, out);
     expect(out.some((i) => i.message.includes('not an https URL'))).toBe(true);
+  });
+});
+
+describe('catalog targetSpecies — F3 evidence trail', () => {
+  // F3 rule (ADR 0007): targetSpecies records which of the seven contract game
+  // species the water is managed FOR, authored from evidence — never guessed.
+  // Every authored water must carry the evidence in its own catalog note or in
+  // a special-regulations item that applies to it (the two sanctioned evidence
+  // sources from the 2026-09-08 TWRA capture).
+  const KEY_EVIDENCE_RE: Record<string, RegExp> = {
+    'largemouth-bass': /largemouth/i,
+    'smallmouth-bass': /smallmouth/i,
+    'spotted-bass': /spotted bass|spotted\b/i,
+    crappie: /crappie/i,
+    bluegill: /bluegill|bream/i,
+    'channel-catfish': /channel catfish|catfish/i,
+    'striped-bass': /striped bass|striper|rockfish/i,
+  };
+
+  function regsEvidenceFor(streamId: string): string {
+    const doc = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'data', 'fishing-information.json'), 'utf8'));
+    const fishing = doc.fishing ?? doc;
+    const texts: string[] = [];
+    for (const section of fishing.sections ?? []) {
+      for (const item of section.items ?? []) {
+        if ((item.appliesTo ?? []).includes(streamId)) texts.push(String(item.text ?? ''));
+      }
+    }
+    return texts.join(' ');
+  }
+
+  it('every targetSpecies water carries note-or-regulation evidence per key', () => {
+    for (const [id, stream] of streams) {
+      const target = (stream as { targetSpecies?: string[] }).targetSpecies;
+      if (!target) continue;
+      const note = String(stream.notes ?? '');
+      const regs = regsEvidenceFor(id);
+      for (const key of target) {
+        const re = KEY_EVIDENCE_RE[key];
+        expect(re, `${id}: ${key} needs a KEY_EVIDENCE_RE entry`).toBeDefined();
+        const inNote = re.test(note);
+        const inRegs = re.test(regs);
+        expect(inNote || inRegs, `${id}: targetSpecies ${key} has no evidence trail — its note and applied regulations never mention the species (never guessed)`).toBe(true);
+      }
+    }
+  });
+
+  it('targetSpecies keys stay inside the frozen contract enum (schema-validated) and the program species field is untouched', () => {
+    const ALLOWED = new Set([
+      'largemouth-bass',
+      'smallmouth-bass',
+      'spotted-bass',
+      'crappie',
+      'bluegill',
+      'channel-catfish',
+      'striped-bass',
+    ]);
+    for (const [, stream] of streams) {
+      const target = (stream as { targetSpecies?: string[] }).targetSpecies ?? [];
+      for (const key of target) expect(ALLOWED.has(key), `unknown species key ${key}`).toBe(true);
+      if (target.length > 0) {
+        // targetSpecies never replaces the program-type field.
+        expect(['trout', 'warmwater', undefined]).toContain((stream as { species?: string }).species);
+      }
+    }
   });
 });
 
