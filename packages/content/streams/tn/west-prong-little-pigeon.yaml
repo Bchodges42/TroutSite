@@ -13,6 +13,8 @@ idealFlow:
   - min: 15
     max: 150
     unit: cfs
+targetSpecies:
+  - smallmouth-bass
 notes: Wild rainbow and brook trout water in the park’s Chimneys/Tremont corridor, with TWRA
   spring stocking on lower reaches. Steep, flashy watershed — check the gauge before committing.
 officialSources:
