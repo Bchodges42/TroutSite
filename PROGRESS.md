@@ -1,3 +1,61 @@
+# SESSION GEOQA — statewide network verification + closeout (2026-09-11)
+
+Branch `geoqa/statewide-verify`, clone `/Users/ben/Downloads/TroutSite-network-qa`
+(no remote: commits are local; the merged tip `geoqa/statewide-verify` is what the
+owner pushes). Scope: `scripts/nhd-network-validate.mjs`, `tests/`,
+`docs/NETWORK-ROLLOUT.md`, `docs/reports/network-sweep/**`, two web-loader fixes,
+merge commits. Runs LAST — merged `geonet/statewide-build` (07160a8) then
+`geomap/statewide-network` (8d3c651) into this branch (PROGRESS stitched both
+entries; data files taken from the producing lane).
+
+**Delivered verify-before-done for the statewide network, and the sweep caught the
+thing neither lane could see: the merged feature was silently dead.** GEONET and
+GEOMAP never ran against each other's real artifacts (GEOMAP built against an
+untracked 2-cluster mock), so on the merged branch the network fail-closed with no
+error and no render. Two cross-lane fixes, both with regression tests and written
+reasons per the merge policy:
+
+1. `geoqa(fix): parseNetworkManifest accepts the shipped bbox field` — GEONET's
+   manifest carries cluster extents as `bbox`; GEOMAP's parser demanded `bounds`
+   and rejected the manifest wholesale (parse → null → feature disabled).
+2. `geoqa(fix): cluster file URL resolves basename` — manifest `file` is
+   `network/<id>.geojson` (atlas-root relative); the loader prefixed
+   `/atlas/network/` so every cluster fetch 404'd.
+
+Verification harness (D1): `scripts/nhd-network-validate.mjs` — independent QA
+gate over the committed bytes: JSON parse, coordinate nesting (coordinates[i][j]
+must be a [lon,lat] position), 0 fold-backs + 0 duplicate vertices (collapseHairpins
+re-run, turn >135° on <60 m), byte cap 3.5 MB + manifest bytes match, name+pid+hu8
+(+kind/ftype/lengthKm) per feature, manifest bbox vs contents, unit partition +
+per-unit pid-multiset coverage reconciliation vs `data/nhd/hu8/*.jsonl` (every
+named line in exactly one cluster; gaps only as proven-degenerate drops; sub-unit
+split 06010105 gated as documented deviation #1). Wired into the catalog suite's
+`--strict` path so future rebuilds gate on it. 16 fixture tests in
+`tests/nhd-network-validate.test.mjs`.
+
+Statewide browser sweep (D2): 23/23 clusters GREEN with evidence in
+`docs/NETWORK-ROLLOUT.md` + `docs/reports/network-sweep/<id>.png` (tooltip visible
+on-map) + `docs/reports/network-sweep-results.json`. Per cluster at z 11.5:
+on-demand fetch fires, `network-minor-<id>` added, rendered count 155–1,546 (> 0),
+hover tooltip populates with the real NHD name at a rendered creek coordinate; at
+state zoom 0 network features render (minzoom gate) while 1,252 catalog river
+features render; `fetchedOnce === true` across all 23 files (one fetch per file
+per session). Sweep method: camera placed on the network vertex nearest the cluster
+centroid — raw bbox centroids can sit in line-free backcountry (0601baa: 22 km
+away; loader behavior identical, not a defect).
+
+Final integration green on ONE branch (D3), all re-run on the merged tip:
+`node scripts/nhd-network-validate.mjs` → PASS · `node scripts/nhd-validate.mjs`
+→ PASS (0 FAIL, 10 REVIEW, B13 all FIXED) · `--strict` → PASS with network gate
+PASS (23 clusters, 196,108 lines, reconciliation 196108/196108) ·
+`node --test tests/nhd-validate.test.mjs` → 29/29 · `node --test tests/` → 45/45 ·
+`pnpm --filter @trout/web test` → 250 pass / 1 pre-existing skip (239 baseline +
+9 geomap + 2 geoqa regression) · typecheck clean · prettier clean. Known ceilings
+unchanged and documented (cross-unit stitching, 12 throughLake slugs, Forked Deer
+08010206 defective USGS product, engine v2 stops pending GEOCONV-0 review).
+
+---
+
 # SESSION GEONET — statewide NHD named-network build (2026-09-11)
 
 Branch `geonet/statewide-build`, base = integration @ **56135fd** (no remote in this
