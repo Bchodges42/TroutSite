@@ -176,6 +176,25 @@ STEP 5: content test 12/12 incl. the new T1-7 regression; all gates green.
    web tests 25 files / 251 tests; `pnpm --filter @trout/web build` (tsc →
    copy-pack-fallback → vite build → size-budget) exit 0.
 
+## Overflow — F2 species-reference research (Stage-2 draft started)
+
+- `packages/content/research/f2-species-reference.md` (evidence notes) and
+  `f2-species-reference.yaml` (draft, `schema: draft/.../0`) for all seven
+  species (largemouth, smallmouth, spotted, crappie, bluegill, channel catfish,
+  striped bass): comfort bands, spawn windows, flow-trend preference, pressure
+  sensitivity. NOT wired into builds — the loader only reads bugs/streams/
+  patterns/shops/hatch dirs, confirmed by validate:content + tests staying green
+  with the draft present.
+- Verified citations landed: crappie spawn (TWRA Watts Bar page), smallmouth
+  spawn + feeding temps (Little River Outfitters), largemouth optimum (In-
+  Fisherman) + bass spawn windows (FishUSA), channel catfish spawn (CatfishNow),
+  bluegill spawn (MU Extension g9473).
+- Honestly pending (flagged `citationStatus: pending`, must not ship): spotted
+  bass bands, striped bass everything (needs TWRA/primary citation for the
+  ≤72°F preference + tailwater-refuge summer stress), all lethal/avoidance
+  temps, and every flow-trend/pressure value (heuristic-grade; pressure stays
+  F12-adjacent low-confidence). Gap list in the notes file.
+
 ## Blockers
 
 None. Note for Session A: T2-46 absolute `node_modules` symlinks reproduced here —
