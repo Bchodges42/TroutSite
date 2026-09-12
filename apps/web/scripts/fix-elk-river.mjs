@@ -1,3 +1,4 @@
+/* global URL, console */
 // fix-elk-river.mjs — rebuild elk-river (Tims Ford tailwater) + elk-river-lower
 // (Prospect to state line) from the river-elk NHDPlus HR take.
 //
@@ -126,7 +127,7 @@ const lowerFeature = makeLineFeature({
   },
 });
 
-function endpointTerminus(label, at, maxM, chain) {
+function _endpointTerminus(label, at, maxM, chain) {
   const d = Math.min(haversine(chain[0], at), haversine(chain.slice(-1)[0], at));
   return { anchor: label, coordinates: at, distanceM: Math.round(d), maxM, poolMediated: null, ok: d <= maxM, informational: false };
 }

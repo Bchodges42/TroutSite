@@ -1,3 +1,4 @@
+/* global console */
 // Build atlas context intermediates (.atlas-src/out/) from the official Census
 // 2024 cartographic boundary (cb_) shapefiles that fetch-atlas-sources.mjs
 // downloads + extracts. Deterministic: fixed name tables, codepoint sort, 4dp

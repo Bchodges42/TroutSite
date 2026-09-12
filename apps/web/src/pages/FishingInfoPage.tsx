@@ -15,7 +15,7 @@ import { Card, Chip, EmptyState } from '@trout/ui';
 import type { FishingInfoItem } from '@trout/contracts';
 import {
   LICENSE_URL,
-  itemsForWater,
+  
   useFishingInfo,
   waterRegulationItems,
 } from '../lib/fishingInfo';

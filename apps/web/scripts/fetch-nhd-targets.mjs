@@ -1,3 +1,4 @@
+/* global AbortSignal, URL, URLSearchParams, console, fetch, process, setTimeout */
 // Build-time fetch of USGS NHDPlus HR geometry for named waters that TIGER
 // LINEARWATER omits or fragments (wide main stems, a few creeks).
 // Baked to static files — zero runtime requests. Public domain (USGS).

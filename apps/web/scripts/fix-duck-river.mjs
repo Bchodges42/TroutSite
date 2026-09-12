@@ -1,3 +1,4 @@
+/* global URL, console */
 // fix-duck-river.mjs — rebuild duck-river-tailwater + duck-river-lower from the
 // river-duck NHDPlus HR take with a clean reach split.
 //
@@ -123,7 +124,7 @@ const twFeature = makeLineFeature({
 
 function terminus(a, chain) {
   const d = Math.min(haversine(chain[0], a.at), haversine(chain.slice(-1)[0], a.at));
-  let v = d === haversine(chain[0], a.at) ? chain[0] : chain.slice(-1)[0];
+  let _v = d === haversine(chain[0], a.at) ? chain[0] : chain.slice(-1)[0];
   for (const p of chain) { const dv = haversine(p, a.at); if (dv < d) { /* keep endpoints semantics */ } }
   return { anchor: a.label, coordinates: a.at, distanceM: Math.round(d), maxM: a.maxM, poolMediated: null, ok: d <= a.maxM, informational: false };
 }

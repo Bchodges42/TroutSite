@@ -1,3 +1,4 @@
+/* global URL, console, process */
 // trace-east/apply-east.mjs — deterministic, idempotent VALIDATOR over the EAST
 // crew's rebuild artifacts (.atlas-src/trace/east/out/<id>.json).
 //
@@ -22,7 +23,7 @@
 // Run: node scripts/trace-east/apply-east.mjs --validate
 import {
   loadCanonical, loadRegion, loadTNBoundary,
-  countSelfCrossings, lineLenKm, boundsOf, ptInGeom, nearestDistM, dM,
+  countSelfCrossings, lineLenKm, boundsOf, ptInGeom, nearestDistM, _dM,
 } from './lib.mjs';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 
@@ -35,7 +36,7 @@ if (!VALIDATE) {
 const OUT_DIR = new URL('../../.atlas-src/trace/east/out/', import.meta.url);
 const canon = loadCanonical();
 const region = loadRegion();
-const tn = loadTNBoundary();
+const _tn = loadTNBoundary();
 
 // downstream weld targets from the trace config (mirrored here so validation
 // does not depend on the tracer module)

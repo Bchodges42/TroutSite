@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Card, Chip, EmptyState } from '@trout/ui';
 import { StockingEventSchema } from '@trout/contracts';
@@ -128,7 +128,7 @@ function EventRow({ event }: { event: StockingEvent }) {
  * so a filtered view is shareable and survives reload.
  */
 export function StockingPage() {
-  const { settings } = useSettingsContext();
+  const _settings = useSettingsContext().settings;
   // T2-33: Default-state setting removed; Tennessee is the only served state.
   const stateId = 'TN' as const;
   const [searchParams, setSearchParams] = useSearchParams();

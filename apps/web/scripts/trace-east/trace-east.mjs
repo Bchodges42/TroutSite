@@ -1,3 +1,4 @@
+/* global URL, console, process */
 // trace-east/trace-east.mjs — rebuild defective east/southeast LINE waters by
 // tracing their NHDPlus HR level path (VAA hydroseq/levelpathi), the proven
 // fix-tellico-area / fix-horse-creek-greene / fix-wolf-river-fentress technique:
@@ -18,10 +19,10 @@
 //
 // Run: node scripts/trace-east/trace-east.mjs [id ...]
 import {
-  loadCanonical, loadRegion, loadTake, loadTNBoundary,
+  loadCanonical, loadRegion, _loadTake, loadTNBoundary,
   weldTracked, levelPathChain, countSelfCrossings, stateCutTN,
   lineLenKm, boundsOf, ptInGeom, nearestDistM, multiParts,
-  OUT_DIR, SNAP,
+  OUT_DIR, _SNAP,
 } from './lib.mjs';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 
@@ -62,7 +63,7 @@ const canon = loadCanonical();
 const region = loadRegion();
 const tnBoundary = loadTNBoundary();
 
-function chainToParts(c) {
+function _chainToParts(c) {
   const g = c.geometry.type === 'LineString' ? [c.geometry.coordinates] : c.geometry.coordinates;
   return g;
 }
@@ -97,7 +98,7 @@ function buildMainChain(take, canonParts) {
 function vaaEvidence(segments, mainIds, mainPts) {
   // group the take by levelpathi; report LPs contributing to the main chain and
   // verify a hydroseq-ordered assembly reproduces the welded chain ends
-  const byId = new Map(segments.map((s) => [s.id + ':' + s.pts[0].join(','), s]));
+  const _byId = new Map(segments.map((s) => [s.id + ':' + s.pts[0].join(','), s]));
   const main = segments.filter((s) => mainIds.has(s.id + ':' + s.pts[0].join(',')));
   const lps = {};
   for (const s of main) {
@@ -156,7 +157,7 @@ function throughLakeEvidence(parts, lakeIds) {
   });
 }
 
-function nearestOnLine(pt, parts) {
+function _nearestOnLine(pt, parts) {
   let b = Infinity;
   for (const part of parts) for (const p of part) b = Math.min(b, Math.hypot(pt[0] - p[0], pt[1] - p[1]));
   return b;
@@ -252,7 +253,7 @@ function traceOne(id) {
   const beforeLenKm = cf.properties.lengthKm ?? +lineLenKm(beforeParts.flat()).toFixed(2);
   const beforeCross = countSelfCrossings(beforeParts);
 
-  const { kept, dropped, sourceLen, segments } = buildMainChain(take, beforeParts);
+  const { kept, dropped, _sourceLen, segments } = buildMainChain(take, beforeParts);
   if (!kept.length) throw new Error(`${id}: no surviving chain`);
   const notes = [];
 
@@ -377,7 +378,7 @@ function traceOne(id) {
 
 const only = process.argv.slice(2);
 let n = 0;
-for (const [id, cfg] of Object.entries(CONFIG)) {
+for (const [id, _cfg] of Object.entries(CONFIG)) {
   if (only.length && !only.includes(id)) continue;
   try { if (traceOne(id)) n++; }
   catch (e) { console.log(`!! ${id}: ${e.message}`); }

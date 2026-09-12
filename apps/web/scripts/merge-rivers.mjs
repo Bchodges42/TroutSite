@@ -1,3 +1,4 @@
+/* global console, process */
 // Final atlas assembly: TIGER LINEARWATER lines + TIGER AREAWATER wide-river
 // polygons + USGS NHDPlus HR named reaches -> public/atlas/rivers.geojson.
 // REAL DATA ONLY (Census TIGER/Line 2024 + USGS NHDPlus HR, both public
@@ -26,8 +27,8 @@ function stem(n) {
 const report = JSON.parse(readFileSync(path.join(OUT, 'match-report.json'), 'utf8'));
 const catalog = JSON.parse(readFileSync(path.join(ROOT, '..', '..', 'packages', 'content', 'dist', 'pack', 'streams.json'), 'utf8'));
 const streams = catalog.streams ?? catalog;
-const byId = new Map(streams.map((s) => [s.id, s]));
-const repById = new Map(report.map((r) => [r.id, r]));
+const _byId = new Map(streams.map((s) => [s.id, s]));
+const _repById = new Map(report.map((r) => [r.id, r]));
 // ---- TIGER lines (from rivers-real.geojson, keyed by stream id) ----
 const tigerLines = new Map(); // id -> {parts, names:Set}
 {
@@ -324,7 +325,7 @@ function chunkCount(parts) {
   }
   return new Set(parts.map((_, i) => find(i))).size;
 }
-const countVerts = (parts) => parts.reduce((n, p) => n + p.length, 0);
+const _countVerts = (parts) => parts.reduce((n, p) => n + p.length, 0);
 function partBbox(part) {
   const b = [Infinity, Infinity, -Infinity, -Infinity];
   for (const [x, y] of part) {

@@ -14,7 +14,7 @@
  *
  * Run: node scripts/west-middle-render.mjs
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, _writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -122,7 +122,7 @@ function framesFor(f) {
 }
 
 async function main() {
-  const lakeFeats = fc.features.filter((f) => f.geometry.type.includes('Polygon') && f.properties.partCount !== undefined);
+  const _lakeFeats = fc.features.filter((f) => f.geometry.type.includes('Polygon') && f.properties.partCount !== undefined);
   const riverFeats = fc.features.filter((f) => f.geometry.type.includes('LineString'));
   const stillFeats = fc.features.filter((f) => f.geometry.type.includes('Polygon'));
 

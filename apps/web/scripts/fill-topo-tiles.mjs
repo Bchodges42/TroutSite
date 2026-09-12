@@ -1,3 +1,4 @@
+/* global console, process */
 // Fill missing hillshade tiles with fully transparent WebP padding.
 //
 // The TOPO build skips tiles whose masked (TN+3 km) neighborhood contains no

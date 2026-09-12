@@ -1,3 +1,4 @@
+/* global AbortSignal, URL, URLSearchParams, console, fetch, setTimeout */
 // trace-east/lib.mjs — shared helpers for the EAST trace crew.
 // Copied from the proven fix scripts (fix-tellico-area.mjs, fix-horse-creek-greene.mjs,
 // fix-wolf-river-fentress.mjs, fetch-nhd-fixes.mjs) plus VAA level-path ordering.
@@ -212,7 +213,7 @@ export function countSelfCrossings(parts) {
       arr.push(si);
     }
   });
-  const pointSegDist = (px, py, s) => {
+  const _pointSegDist = (px, py, s) => {
     const dx = s.bx - s.ax, dy = s.by - s.ay, L2 = dx * dx + dy * dy;
     let t = L2 ? ((px - s.ax) * dx + (py - s.ay) * dy) / L2 : 0;
     t = Math.max(0, Math.min(1, t));

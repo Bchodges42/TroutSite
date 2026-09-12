@@ -1,3 +1,4 @@
+/* global console, process */
 // Session-2 trace apply — merges the per-water rebuild artifacts from the
 // trace crews (apps/web/.atlas-src/trace/{west,east}/out/<id>.json) into the
 // region artifacts (atlas-sources/verified/{west-middle,east-southeast}.geojson

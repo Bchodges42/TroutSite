@@ -15,7 +15,7 @@
  *
  * Run: node scripts/west-middle-fetch-connectors.mjs   (after west-middle-build.mjs)
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, _existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

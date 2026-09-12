@@ -1,3 +1,4 @@
+/* global URL, console, process */
 // trace-east/fetch-east.mjs — EAST crew NHDPlus HR takes (own copy of the
 // scripts/fetch-nhd-fixes.mjs pattern; shared files are not edited).
 //

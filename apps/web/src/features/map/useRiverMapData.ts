@@ -18,6 +18,22 @@ import { fetchSnapshot } from '../../lib/snapshots';
 import { matchStocking } from '../../lib/stockingMatch';
 import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from './riverMapSelectors';
 import { atlas } from './mapTokens';
+
+type ConditionRow = {
+  streamId: string;
+  score?: { value: number; assessed?: boolean; reasons?: string[] };
+  readings?: Array<{
+    gaugeId: string;
+    timestamp: string;
+    cfs?: number;
+    heightFt?: number;
+    tempC?: number;
+  }>;
+  fetchedAt?: string;
+  nextExpectedUpdate?: string;
+} & Record<string, unknown>;
+type ReportRow = { streamId?: string } & Record<string, unknown>;
+type StockingRow = Record<string, unknown>;
 import type { RiverMapFeature } from './riverMapSelectors';
 
 const ConditionsSchema = z.array(ConditionSnapshotSchema);
@@ -70,14 +86,14 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   }, [logbookRows]);
 
   const snapshotById = useMemo(() => {
-    const m = new Map<string, any>();
+    const m = new Map<string, ConditionRow>();
     const data = (conditionsQ.data?.data ?? []) as unknown[];
-    for (const s of data as Array<{ streamId: string } & Record<string, unknown>>) m.set(s.streamId, s as any);
-    return m as Map<string, any>;
+    for (const s of data as Array<{ streamId: string } & Record<string, unknown>>) m.set(s.streamId, s);
+    return m;
   }, [conditionsQ.data]);
 
-  const reports = (reportsQ.data?.data ?? []) as unknown as Array<Record<string, unknown>>;
-  const stockings = (stockingQ.data?.data ?? []) as unknown as Array<Record<string, unknown>>;
+  const reports = (reportsQ.data?.data ?? []) as unknown as ReportRow[];
+  const stockings = (stockingQ.data?.data ?? []) as unknown as StockingRow[];
 
   // Canonical stocking association (B05): TWRA water names resolve through
   // normalization → curated aliases → unambiguous containment only.
@@ -98,7 +114,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   const features: RiverMapFeature[] = useMemo(() => {
     const streams = (streamsData ?? []) as unknown[];
     return (streams as Array<{ id: string; name: string; regionId: string; species?: 'trout' | 'warmwater' } & Record<string, unknown>>).map((stream) => {
-      const snap = snapshotById.get((stream as { id: string }).id) as any;
+      const snap = snapshotById.get((stream as { id: string }).id);
       const hasData = !!snap;
       const score = snap?.score?.value ?? null;
       const status = statusForScore(score, hasData, snap?.score?.assessed);
@@ -128,9 +144,9 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         hatchChart: chart,
         hatchDominant: dominant,
         hatchHalo: halo,
-        stocking: stockingByStream.get((stream as { id: string }).id)?.[0] as any ?? null,
+        stocking: stockingByStream.get((stream as { id: string }).id)?.[0] as RiverMapFeature['stocking'] | null,
         stockingCount: stockingByStream.get((stream as { id: string }).id)?.length ?? 0,
-        report: reports.find((r) => (r as any).streamId === (stream as any).id) as any ?? null,
+        report: reports.find((r) => r.streamId === (stream as { id: string }).id) as RiverMapFeature['report'] | null,
         reportCount: reportCountByStream.get((stream as { id: string }).id) ?? 0,
         logCount: logCountByStream.get((stream as { id: string }).id) ?? 0,
       };

@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { matchStocking, normalizeWaterName } from '../src/lib/stockingMatch';
 import type { StockingEvent } from '@trout/contracts';
@@ -86,8 +88,6 @@ describe('matchStocking', () => {
 });
 
 describe('matchStocking against the real cached TWRA feed', () => {
-  const fs = require('node:fs');
-  const path = require('node:path');
 
   // public/v1/** is a gitignored deploy/cron artifact (ADR 0005) — the suite runs
   // wherever the pipeline has generated it and skips honestly on fresh clones.
@@ -114,8 +114,6 @@ describe('matchStocking against the real cached TWRA feed', () => {
 });
 
 describe('T1-7 — county disambiguation against the captured 623-row TWRA feed', () => {
-  const fs = require('node:fs');
-  const path = require('node:path');
 
   // Permanent capture of the 2026-09-12 TWRA schedule pull (623 rows) — the
   // regression set for the matcher. Rows are compact; the loader restores the

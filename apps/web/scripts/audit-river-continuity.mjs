@@ -1,3 +1,4 @@
+/* global process, console */
 // Continuity audit: counts how many disconnected "chunks" each line river in
 // public/atlas/rivers.geojson renders as on the map.
 //
@@ -189,7 +190,7 @@ const g = JSON.parse(readFileSync(ATLAS, 'utf8'));
 const lineFeatures = g.features.filter((f) => f.geometry.type === 'MultiLineString');
 const skipped = g.features.filter((f) => f.geometry.type !== 'MultiLineString');
 const rows = [];
-let failures = 0;
+let _failures = 0;
 for (const f of lineFeatures) {
   const id = f.properties.id;
   const parts = f.geometry.coordinates.filter((p) => Array.isArray(p) && p.length >= 2);
@@ -198,7 +199,7 @@ for (const f of lineFeatures) {
   const allowReason = allow?.reason ?? null;
   const allowKind = allow?.kind ?? null;
   const bad = a.chunks > 1 && !allowReason;
-  if (bad) failures++;
+  if (bad) _failures++;
   rows.push({ id, parts: parts.length, ...a, allowReason, allowKind, bad });
 }
 rows.sort((x, y) => y.chunks - x.chunks || x.id.localeCompare(y.id));
@@ -238,7 +239,7 @@ lines.push('27 of the 92 line rivers in `apps/web/public/atlas/rivers.geojson` r
 lines.push('');
 lines.push('## Method');
 lines.push('');
-lines.push(`A **chunk** is a maximal set of a feature\'s parts stitched end-to-end, where two parts`);
+lines.push(`A **chunk** is a maximal set of a feature's parts stitched end-to-end, where two parts`);
 lines.push(`are stitched when any endpoint of one lies within ${STITCH_KM.toFixed(1)} km (haversine) of an`);
 lines.push('endpoint of the other. Chunks are separated by real coverage gaps in the committed');
 lines.push('geometry. This reproduces what the map renders: parts of the same chunk touch (or');

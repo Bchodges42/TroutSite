@@ -1,3 +1,4 @@
+/* global console */
 // Build public/atlas/lakes.geojson — the major lakes and reservoirs the
 // mapped rivers connect to — from real Census TIGER/Line AREAWATER polygons
 // (public domain). Same source family as the river atlas; all geometry comes
@@ -5,7 +6,7 @@
 // matched by name fragment and labeled with its common display name.
 //
 // Run: node scripts/build-lakes.mjs
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { _readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { open as openShapefile } from 'shapefile';

@@ -1,3 +1,4 @@
+/* global console, process */
 // B15: real channel geometry for the 8 inventory rivers whose geometryStatus is
 // 'missing-line' (docs/waterbody-inventory.json: mississippi-river, obion-river,
 // hatchie-river, wolf-river-west-tennessee, tennessee-river, cumberland-river,
@@ -278,7 +279,7 @@ function weldParts(parts) {
   // accepted pairs; chains = edges between the two vertices at their ends.
   const N = chains.length;
   const ends = [];
-  chains.forEach((c, ci) => {
+  chains.forEach((c, _ci) => {
     ends.push([c[0][0], c[0][1]]);
     ends.push([c[c.length - 1][0], c[c.length - 1][1]]);
   });

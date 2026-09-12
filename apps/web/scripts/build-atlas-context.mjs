@@ -1,3 +1,4 @@
+/* global console */
 // Build published atlas context files from the raw `out/` intermediates.
 // Slims feature properties (privacy + bytes), rounds coordinates to 4dp, and
 // writes compact JSON to public/atlas/. Deterministic: same inputs, same bytes.

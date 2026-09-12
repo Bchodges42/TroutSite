@@ -17,9 +17,7 @@ import {
   flowTrend,
   rememberSeen,
   readSeen,
-  scoreLabel,
-  scoreBand,
-  TREND_LABEL,
+      TREND_LABEL,
   whatChanged,
 } from '../lib/conditions';
 import { formatFlow, formatHeight, formatNum, formatTemp } from '../lib/units';

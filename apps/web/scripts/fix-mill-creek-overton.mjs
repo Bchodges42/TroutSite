@@ -1,3 +1,4 @@
+/* global URL, console */
 // fix-mill-creek-overton.mjs — rebuild mill-creek-overton from the
 // creek-mill-overton NHDPlus HR take (envelope widened 2026-09-08).
 //
@@ -21,7 +22,7 @@
 // chain, whole reaches, seams measured (0 expected with the widened envelope).
 // Run: node scripts/fix-mill-creek-overton.mjs
 import {
-  buildChain, classifyChainEnds, commitFeature, concatMembers, haversine,
+  buildChain, classifyChainEnds, commitFeature, concatMembers, _haversine,
   lineLenKm, loadReaches, makeLineFeature, readRegion,
 } from './lib-west-middle-fix.mjs';
 

@@ -1,3 +1,4 @@
+/* global URL, console */
 // fix-obey-river.mjs — rebuild obey-river (Dale Hollow tailwater) from the
 // river-obey NHDPlus HR take INCLUDING the NHD artificial path, so the river
 // reaches into Dale Hollow Lake to the dam.

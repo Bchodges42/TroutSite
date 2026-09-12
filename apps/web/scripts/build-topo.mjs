@@ -1,3 +1,4 @@
+/* global Buffer, console, process, setTimeout */
 // build-topo.mjs — Task 6e Phase B step 2: build the local Topo basemap data
 // (contours + hillshade + manifest) from the 1 arc-second USGS 3DEP DEM tiles
 // that scripts/fetch-tn-dem.mjs stages into apps/web/.atlas-src/dem/
@@ -160,7 +161,7 @@ const fmtMB = (b) => `${(b / MB).toFixed(2)} MB`;
 const DEG = Math.PI / 180;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const t0 = Date.now();
-const since = (label) => `${((Date.now() - t0) / 1000).toFixed(1)}s`;
+const since = (_label) => `${((Date.now() - t0) / 1000).toFixed(1)}s`;
 const clampInt = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
 const r5 = (x) => Math.round(x * 1e5) / 1e5;
 const sleepSync = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
@@ -820,8 +821,8 @@ function buildShade(values) {
   const valid = new Uint8Array(W * H);
   // Light from azimuth 315° (NW), altitude 45°. Surface normal
   // N = (-dz/dx, -dz/dy_north, 1); intensity = N·L / |N|, clamped to [0,1].
-  const LE = -0.5; // sin(315°)·cos(45°)
-  const LN = 0.5; //  cos(315°)·cos(45°)
+  const _LE = -0.5; // sin(315°)·cos(45°)
+  const _LN = 0.5; //  cos(315°)·cos(45°)
   const LU = Math.SQRT1_2; //  sin(45°)
   const dym = METERS_PER_DEG * CELL_DEG;
   for (let r = 0; r < H; r++) {

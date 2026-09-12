@@ -1,3 +1,4 @@
+/* global Buffer, console, process */
 // Structural validator for public/atlas/topo (Task 6e Phase B, guide steps 6–7;
 // B14 additions noted). Checks: manifest-vs-reality (band byte counts, feature
 // counts, hillshade tile count and byte sum, top-level bytes), contour

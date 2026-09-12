@@ -377,7 +377,7 @@ function waterbodyTypeFor(properties, target) {
 
 function rounded(v) { return Math.round(v * 1e5) / 1e5; }
 
-function emitFeature(target, chosen, { how, approximate }) {
+function emitFeature(target, chosen, { _how, approximate }) {
   const merged = thinGeometry(mergeFeatures(chosen), 3000);
   const clipped = clipToTN(merged) ?? merged; // TN clip never empties these targets; keep guard anyway
   const coords = clipped.coordinates
