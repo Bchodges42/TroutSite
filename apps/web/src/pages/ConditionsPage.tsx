@@ -17,6 +17,8 @@ import { formatMiles, getCurrentPosition, nearestStreams } from '../lib/geo';
 import { ageMinutes } from '../lib/time';
 import geoJson from '../data/streams-geo.json';
 import { statusForScore } from '../features/map/riverMapSelectors';
+import { useFishabilityIndex } from '../lib/fishability';
+import type { FishabilityFocus } from '../features/map/waterDecision';
 import { decisionStatusText, toWaterDecisionView } from '../features/map/waterDecision';
 
 /** Bundled coordinates (public USGS gauge locations) for the on-device "near me". */
@@ -108,6 +110,13 @@ export function ConditionsPage() {
     for (const s of conditionsQuery.data?.data ?? []) map.set(s.streamId, s);
     return map;
   }, [conditionsQuery.data]);
+
+  // F6 all-fish mode: the persisted focus species' comfort snapshots feed the
+  // rows that wear the fishability metric.
+  const allFish = settings.speciesMode === 'all';
+  const focus = (settings.speciesFocus || null) as import('@trout/contracts').SpeciesKey | null;
+  const fishabilityIndexQ = useFishabilityIndex(streamsQuery.data?.data, focus, allFish);
+  const fishabilityByWater = fishabilityIndexQ.data ?? {};
 
   const streams = useMemo(
     () => (streamsQuery.data?.data ?? []).filter((s) => s.stateId === stateId),
@@ -274,7 +283,14 @@ export function ConditionsPage() {
           </p>
           <ul className="mt-3 flex flex-col gap-2">
             {searchRows.map((row) => (
-              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} speciesMode={settings.speciesMode} />
+              <ConditionRow
+                key={row.stream.id}
+                {...row}
+                tempUnit={settings.tempUnit}
+                speciesMode={settings.speciesMode}
+                fishabilityByWater={fishabilityByWater}
+                focus={focus}
+              />
             ))}
           </ul>
         </section>
@@ -285,7 +301,14 @@ export function ConditionsPage() {
           </p>
           <ul className="mt-3 flex flex-col gap-2">
             {nearRows.map((row) => (
-              <ConditionRow key={row.stream.id} {...row} tempUnit={settings.tempUnit} speciesMode={settings.speciesMode} />
+              <ConditionRow
+                key={row.stream.id}
+                {...row}
+                tempUnit={settings.tempUnit}
+                speciesMode={settings.speciesMode}
+                fishabilityByWater={fishabilityByWater}
+                focus={focus}
+              />
             ))}
           </ul>
         </section>
@@ -297,6 +320,8 @@ export function ConditionsPage() {
             rows={tailwaterRows}
             tempUnit={settings.tempUnit}
             speciesMode={settings.speciesMode}
+            fishabilityByWater={fishabilityByWater}
+            focus={focus}
           />
           <WaterSection
             title="Recently observed"
@@ -304,6 +329,8 @@ export function ConditionsPage() {
             rows={recentRows}
             tempUnit={settings.tempUnit}
             speciesMode={settings.speciesMode}
+            fishabilityByWater={fishabilityByWater}
+            focus={focus}
           />
           <p className="muted text-sm mt-6">
             Looking for a specific creek? Search above — {totalCount} waters are in the catalog and
@@ -328,12 +355,16 @@ function WaterSection({
   rows,
   tempUnit,
   speciesMode,
+  fishabilityByWater,
+  focus,
 }: {
   title: string;
   note: string;
   rows: Row[];
   tempUnit: 'C' | 'F';
   speciesMode: 'trout' | 'all';
+  fishabilityByWater: Record<string, import('@trout/contracts').FishabilitySnapshot>;
+  focus: string | null;
 }) {
   if (rows.length === 0) return null;
   return (
@@ -347,6 +378,8 @@ function WaterSection({
             {...row}
             tempUnit={tempUnit}
             speciesMode={speciesMode}
+            fishabilityByWater={fishabilityByWater}
+            focus={focus}
           />
         ))}
       </ul>
@@ -360,7 +393,14 @@ function ConditionRow({
   miles,
   tempUnit,
   speciesMode,
-}: Row & { tempUnit: 'C' | 'F'; speciesMode: 'trout' | 'all' }) {
+  fishabilityByWater,
+  focus,
+}: Row & {
+  tempUnit: 'C' | 'F';
+  speciesMode: 'trout' | 'all';
+  fishabilityByWater: Record<string, import('@trout/contracts').FishabilitySnapshot>;
+  focus: string | null;
+}) {
   const hasData = (snapshot?.readings.length ?? 0) > 0;
   const status = statusForScore(snapshot?.score.value ?? null, hasData, snapshot?.score?.assessed);
   // Catalog species verbatim — unknown stays unknown (H3); the decision model
@@ -370,13 +410,20 @@ function ConditionRow({
   // "Out of season"/"Seasonal" instead of a trout band (T1-18/19).
   // F6: the site-wide species mode drives the decision everywhere (the
   // fishability metric itself lands with the data layer).
+  const focusScore = focus
+    ? fishabilityByWater[stream.id]?.bySpecies[focus as import('@trout/contracts').SpeciesKey]
+    : undefined;
+  const fishability: FishabilityFocus | undefined = focusScore
+    ? { species: focus as never, comfort: focusScore.comfort }
+    : undefined;
   const decision = toWaterDecisionView(
     { stream, status, score: snapshot?.score?.value ?? null, snapshot, species },
     speciesMode,
     new Date().getMonth() + 1,
+    fishability,
   );
   const observedAt = newestReadingAt(snapshot?.readings ?? []);
-  const stateText = decisionStatusText(decision, { species, status });
+  const stateText = decisionStatusText(decision, { species, status }, fishability);
   return (
     <li key={stream.id}>
       <Link
@@ -400,8 +447,10 @@ function ConditionRow({
               : 'No cached readings yet'}
           </span>
         </span>
-        {hasData && status !== 'no-data' && species === 'trout' ? (
-          <ScorePill score={snapshot!.score.value} />
+        {decision.displayMetric === 'trout-condition' && snapshot ? (
+          <ScorePill score={snapshot.score.value} />
+        ) : decision.displayMetric === 'fishability' && fishability ? (
+          <ScorePill score={fishability.comfort.value} />
         ) : (
           <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
             {stateText}

@@ -538,7 +538,17 @@ a {
   font-weight: 600;
   color: var(--ui-muted);
 }
-.filter-chip[aria-pressed='true'] {
+.filter-select {
+  min-height: 36px;
+  padding: 4px 10px;
+  border: 1px solid var(--ui-border);
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-muted);
+  background: var(--ui-surface);
+}
+.filter-select[aria-pressed='true'] {
   background: var(--ui-text);
   border-color: var(--ui-text);
   color: var(--ui-surface);

@@ -215,3 +215,62 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     expect(seasonalChipText(unknown)).toBeNull();
   });
 });
+
+describe('F6 TASK 3 — fishability displayMetric from real snapshot data', () => {
+  const comfort = (value: number, assessed = true) => ({
+    species: 'largemouth-bass' as const,
+    value,
+    reasons: ['Temperature is in the optimal range'],
+    assessed,
+    freshness: assessed ? { observedAt: '2026-09-14T10:00:00Z', ageMinutes: 30 } : null,
+  });
+  const focus = { species: 'largemouth-bass' as const, comfort: comfort(84) };
+  const warmwaterF = feature({ species: 'warmwater', score: null });
+
+  it('all-fish mode wears the focus species fishability when assessed', () => {
+    const view = toWaterDecisionView(warmwaterF, 'all', 9, focus);
+    expect(view.displayMetric).toBe('fishability');
+    expect(view.confidence).toBe('high');
+    expect(decisionStatusText(view, { species: 'warmwater', status: 'good' }, focus)).toBe('Good');
+  });
+
+  it('comfort bands map to Good/Fair/Poor and map colors', () => {
+    for (const [value, text] of [[84, 'Good'], [55, 'Fair'], [22, 'Poor']] as const) {
+      const v = toWaterDecisionView(warmwaterF, 'all', 9, { ...focus, comfort: comfort(value) });
+      expect(decisionStatusText(v, { species: 'warmwater', status: 'no-data' }, { ...focus, comfort: comfort(value) })).toBe(text);
+      expect(decisionColorToken(v, warmwaterF, { ...focus, comfort: comfort(value) })).toBe(
+        text.toLowerCase(),
+      );
+    }
+  });
+
+  it('unassessed comfort and missing data stay honestly unassessed', () => {
+    const noData = { species: 'largemouth-bass' as const, comfort: comfort(0, false) };
+    const view = toWaterDecisionView(warmwaterF, 'all', 9, noData);
+    expect(view.displayMetric).toBe('unassessed');
+    expect(decisionStatusText(view, { species: 'warmwater', status: 'no-data' }, noData)).toBe(
+      'Warmwater',
+    );
+    const none = toWaterDecisionView(warmwaterF, 'all', 9, undefined);
+    expect(none.displayMetric).toBe('unassessed');
+    expect(decisionColorToken(none, warmwaterF)).toBe('warmwater');
+  });
+
+  it('trout mode is untouched: trout-condition behavior holds with comfort present', () => {
+    const troutF = feature({ species: 'trout', score: 82 });
+    const view = toWaterDecisionView(troutF, 'trout', 9, focus);
+    expect(view.displayMetric).toBe('trout-condition');
+    const warm = toWaterDecisionView(warmwaterF, 'trout', 9, focus);
+    expect(warm.displayMetric).toBe('unassessed');
+    expect(warm.troutApplicability).toBe('not-trout');
+  });
+
+  it('unknown-species waters stay unassessed even with comfort data', () => {
+    const unknownF = feature({ species: undefined, score: null });
+    const view = toWaterDecisionView(unknownF, 'all', 9, focus);
+    expect(view.troutApplicability).toBe('unknown');
+    // The water still wears the focus species' real score — the metric comes
+    // from the snapshot, not a species guess.
+    expect(view.displayMetric).toBe('fishability');
+  });
+});

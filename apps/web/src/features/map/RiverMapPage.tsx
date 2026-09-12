@@ -17,16 +17,19 @@ import { monthName, regionName } from '../../data/regions';
 import { decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { useSettingsContext } from '../../lib/settings';
+import { catalogFocusSpecies } from '../../lib/fishability';
+import type { SpeciesKey } from '@trout/contracts';
 import { QaPanel } from './qa/QaPanel';
 import { MapLegend } from './MapLegend';
 import { fisheryTypeCounts } from './fisheryType';
+import { SPECIES_LABELS } from '../../lib/fishability';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
 export function RiverMapPage() {
   const [params, setParams] = useSearchParams();
-  const { settings } = useSettingsContext();
+  const { settings, update: updateSettings } = useSettingsContext();
   const location = useLocation();
   const { theme, setTheme } = useTheme();
   const online = useOnline();
@@ -42,14 +45,17 @@ export function RiverMapPage() {
     urlSpecies === 'all' || urlSpecies === 'trout'
       ? urlSpecies
       : (settings.speciesMode ?? 'trout');
-  const focusSpecies = params.get('focus');
+  // Focus species: the map's shareable ?focus= override wins; otherwise the
+  // persisted picker choice drives every all-fish surface.
+  const focusSpecies =
+    (params.get('focus') as SpeciesKey | null) ?? (settings.speciesFocus || null);
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
   // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
   // while the param is present).
   const qaOn = params.get('qa') === '1';
   const [qaOpen, setQaOpen] = useState(true);
-  const data = useRiverMapData({ month });
+  const data = useRiverMapData({ month, focusSpecies: species === 'all' ? focusSpecies : null });
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
   const [expanded, setExpanded] = useState(false);
@@ -271,7 +277,7 @@ export function RiverMapPage() {
     // plain warmwater is excluded there; the stocked Harpeth is deemphasized.
     // The selected month rides along: seasonal waters keep their row but the
     // decision drops the trout metric out of season (T1-18/19).
-    const decision = toWaterDecisionView(f, species, month);
+    const decision = toWaterDecisionView(f, species, month, f.fishability);
     return (
       (species === 'all' || decision.visibility !== 'exclude' || f.stream.id === selectedId) &&
       (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId)
@@ -334,7 +340,7 @@ export function RiverMapPage() {
     () =>
       new Map(
         data.features.map((f) => {
-          const token = decisionColorToken(toWaterDecisionView(f, species, month), f);
+          const token = decisionColorToken(toWaterDecisionView(f, species, month, f.fishability), f, f.fishability);
           return [
             f.stream.id,
             token === 'warmwater'
@@ -354,11 +360,11 @@ export function RiverMapPage() {
           ? filtered
               .filter(
                 (f) =>
-                  f.species !== 'warmwater' &&
-                  // T1-17/19: the halo advertises trout hatch guidance — a
-                  // water the decision model takes out of the trout metric
-                  // (unverified, out-of-season) never lights one.
-                  toWaterDecisionView(f, species, month).displayMetric === 'trout-condition' &&
+                  // T1-17/19: the halo advertises TROUT hatch guidance — only
+                  // waters wearing the trout metric light one (the fishability
+                  // metric has no hatch model; that lands with Stage 4).
+                  toWaterDecisionView(f, species, month, f.fishability).displayMetric ===
+                    'trout-condition' &&
                   // Expected-activity rework: any charted guidance lights the
                   // halo (abundance >= 1). The old >= 2 cut produced dead
                   // "nothing is hatching" months; something hatches year-round.
@@ -401,6 +407,25 @@ export function RiverMapPage() {
       >
         Assessed
       </button>
+      {species === 'all' && (
+        <select
+          className="filter-select"
+          aria-label="Fishability species"
+          value={focusSpecies ?? ''}
+          onChange={(e) => {
+            update({ focus: e.target.value || null });
+            updateSettings({ speciesFocus: (e.target.value || '') as never });
+          }}
+          data-testid="focus-picker"
+        >
+          <option value="">All species</option>
+          {catalogFocusSpecies(data.streams).map((sp) => (
+            <option key={sp} value={sp}>
+              {SPECIES_LABELS[sp]}
+            </option>
+          ))}
+        </select>
+      )}
     </div>
   );
   const layerPanel = (
@@ -574,13 +599,15 @@ export function RiverMapPage() {
                 </p>
               )}
               {sorted.map((f) => {
-                const decision = toWaterDecisionView(f, species);
+                const decision = toWaterDecisionView(f, species, month, f.fishability);
                 return (
                   <button
                     key={f.stream.id}
                     className="water-row"
                     onClick={() => setRiver(f.stream.id)}
-                    aria-label={'Select ' + f.stream.name + ' — ' + decisionStatusText(decision, f)}
+                    aria-label={
+                      'Select ' + f.stream.name + ' — ' + decisionStatusText(decision, f, f.fishability)
+                    }
                     data-status={f.status}
                   >
                     <span className="water-symbol">
@@ -591,11 +618,15 @@ export function RiverMapPage() {
                       <small>{regionName(f.stream.regionId).split(' — ')[0]}</small>
                     </span>
                     <span className="water-row-meta">
-                      <span className="status-text">{decisionStatusText(decision, f)}</span>
+                      <span className="status-text">
+                        {decisionStatusText(decision, f, f.fishability)}
+                      </span>
                       <small>
                         {decision.displayMetric === 'trout-condition' && f.score !== null
                           ? f.score + ' / 100'
-                          : 'No score'}
+                          : decision.displayMetric === 'fishability' && f.fishability
+                            ? f.fishability.comfort.value + ' / 100'
+                            : 'No score'}
                       </small>
                     </span>
                   </button>
@@ -799,7 +830,9 @@ export function RiverMapPage() {
           <p className="map-help">
             {mode === 'hatches'
               ? 'Amber halos mark waters with regional hatch guidance for the selected month — something hatches year-round; open a water for what is expected and how strong.'
-              : coverageUnavailable
+              : species === 'all' && focusSpecies
+                ? `Colors show ${SPECIES_LABELS[focusSpecies]} fishability from the latest snapshots — pick the species in the filter row.`
+                : coverageUnavailable
                 ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
                 : species === 'all'
                   ? 'Good, Fair, and Poor describe trout waters only. Warmwater waters are shown but not scored.'

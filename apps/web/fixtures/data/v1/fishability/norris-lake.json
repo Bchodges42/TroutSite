@@ -1,0 +1,55 @@
+{
+  "streamId": "norris-lake",
+  "fetchedAt": "2026-09-14T12:00:00Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 91,
+        "reasons": [
+          "Temperature is in the optimal range for largemouth bass"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "crappie": {
+      "comfort": {
+        "species": "crappie",
+        "value": 45,
+        "reasons": [
+          "Temperature sits between the optimal and avoidance bands for crappie"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "bluegill": {
+      "comfort": {
+        "species": "bluegill",
+        "value": 0,
+        "reasons": [],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

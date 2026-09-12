@@ -11,6 +11,7 @@ import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import { toWaterDecisionView, seasonalChipText } from './waterDecision';
+import { FishabilityCard } from '../../components/FishabilityCard';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -254,6 +255,7 @@ function WaterTab({
           />
         </div>
       </div>
+      <FishabilityCard streamId={feature.stream.id} compact />
       <div className="metrics">
         <div className="metric">
           <span className="metric-label">

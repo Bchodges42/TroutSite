@@ -27,6 +27,7 @@ import { ScorePill } from '../components/ScorePill';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
+import { FishabilityCard } from '../components/FishabilityCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
@@ -206,6 +207,7 @@ export function StreamDetailPage() {
             })()}
           </Card>
 
+          <FishabilityCard streamId={stream.id} />
           <div className="mt-4 flex flex-wrap gap-2">
             <DataBadge
               label="Flow"

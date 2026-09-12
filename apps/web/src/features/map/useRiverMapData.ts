@@ -8,7 +8,7 @@ import {
   StockingEventSchema,
   HatchChartSchema,
 } from '@trout/contracts';
-import type { HatchChart } from '@trout/contracts';
+import type { HatchChart, Stream } from '@trout/contracts';
 import { newestReadingAt } from '@trout/contracts';
 import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
 import { useSnapshotQuery } from '../../lib/useSnapshotQuery';
@@ -35,6 +35,9 @@ type ConditionRow = {
 type ReportRow = { streamId?: string } & Record<string, unknown>;
 type StockingRow = Record<string, unknown>;
 import type { RiverMapFeature } from './riverMapSelectors';
+import type { FishabilityFocus } from './waterDecision';
+import type { SpeciesKey } from '@trout/contracts';
+import { useFishabilityIndex } from '../../lib/fishability';
 
 const ConditionsSchema = z.array(ConditionSnapshotSchema);
 const ReportsSchema = z.array(ShopReportSchema);
@@ -57,11 +60,14 @@ const TN_REGIONS = [
 export interface UseRiverMapDataOptions {
   month?: number;
   enabled?: boolean;
+  /** F6 all-fish focus species — fetches that species' per-water snapshots. */
+  focusSpecies?: SpeciesKey | null;
 }
 
 export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
   const month = options.month ?? new Date().getMonth() + 1;
   const enabled = options.enabled ?? true;
+  const focusSpecies = options.focusSpecies ?? null;
 
   // Catalog with last-resort pack fallback (see useStreamsCatalog): live feed
   // → last Dexie snapshot → bundled content-pack catalog. A hard catalog error
@@ -111,6 +117,12 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
     return m;
   }, [reports]);
 
+  // F6 all-fish mode: the focus species' per-water comfort snapshots (absent
+  // files = waters simply not scored — honest unassessed downstream).
+  const streamsForFishability = streamsData as unknown as Stream[] | undefined;
+  const fishabilityIndexQ = useFishabilityIndex(streamsForFishability, focusSpecies, enabled);
+  const fishabilityByWater = fishabilityIndexQ.data ?? {};
+
   const features: RiverMapFeature[] = useMemo(() => {
     const streams = (streamsData ?? []) as unknown[];
     return (streams as Array<{ id: string; name: string; regionId: string; species?: 'trout' | 'warmwater' } & Record<string, unknown>>).map((stream) => {
@@ -133,6 +145,13 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
       const chart = hatchMap.get((stream as { regionId: string }).regionId) as HatchChart | undefined ?? null;
       const dominant = dominantHatch(chart);
       const halo = hatchHaloForChart(chart);
+      const fish: FishabilityFocus | undefined = (() => {
+        if (!focusSpecies) return undefined;
+        const snap = fishabilityByWater[(stream as { id: string }).id];
+        const scored = snap?.bySpecies[focusSpecies];
+        if (!scored) return undefined;
+        return { species: focusSpecies, comfort: scored.comfort };
+      })();
       return {
         stream: stream as unknown as RiverMapFeature['stream'],
         snapshot: snap as unknown as RiverMapFeature['snapshot'],
@@ -149,9 +168,10 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         report: reports.find((r) => r.streamId === (stream as { id: string }).id) as RiverMapFeature['report'] | null,
         reportCount: reportCountByStream.get((stream as { id: string }).id) ?? 0,
         logCount: logCountByStream.get((stream as { id: string }).id) ?? 0,
+        fishability: fish,
       };
     });
-  }, [streamsData, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream]);
+  }, [streamsData, snapshotById, hatchMap, stockings, reports, logCountByStream, conditionsQ.data, stockingByStream, reportCountByStream, fishabilityByWater, focusSpecies]);
 
   // C1: feed-level health for the conditions snapshot, distinct from
   // per-water assessment. The builder stamps nextExpectedUpdate <= fetchedAt
@@ -179,6 +199,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   return {
     features,
+    fishabilityIndex: fishabilityByWater,
     isLoading: streamsQ.isLoading || conditionsQ.isLoading,
     // Only a failure of BOTH the live feed and the bundled pack is a hard
     // catalog error (useStreamsCatalog). A conditions outage alone degrades:

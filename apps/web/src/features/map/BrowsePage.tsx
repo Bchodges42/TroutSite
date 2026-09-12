@@ -6,10 +6,15 @@ import { regionName } from '../../data/regions';
 import { ScorePill } from '../../components/ScorePill';
 import { rememberedMapUrl } from '../../lib/riverContext';
 import { decisionStatusText, toWaterDecisionView } from './waterDecision';
+import type { FishabilityFocus } from './waterDecision';
+import { useFishabilityIndex } from '../../lib/fishability';
 export function BrowsePage() {
   const data = useRiverMapData();
   const { settings } = useSettingsContext();
   const speciesMode = settings.speciesMode;
+  const focus = (settings.speciesFocus || null) as import('@trout/contracts').SpeciesKey | null;
+  const fishabilityIndexQ = useFishabilityIndex(data.streams, focus, speciesMode === 'all');
+  const fishabilityByWater = fishabilityIndexQ.data ?? {};
   const [search, setSearch] = useState('');
   const rows = data.features
     .filter((f) =>
@@ -63,20 +68,27 @@ export function BrowsePage() {
                       {regionName(f.stream.regionId)}
                     </span>
                   </span>
-                  {f.species === 'trout' &&
-                  f.status !== 'no-data' &&
-                  f.score !== null &&
-                  toWaterDecisionView(f, speciesMode, new Date().getMonth() + 1).displayMetric ===
-                    'trout-condition' ? (
-                    <ScorePill score={f.score} />
-                  ) : (
-                    <span className="muted text-sm">
-                      {decisionStatusText(
-                        toWaterDecisionView(f, speciesMode, new Date().getMonth() + 1),
-                        f,
-                      )}
-                    </span>
-                  )}
+                  {(() => {
+                    const comfort = focus
+                      ? fishabilityByWater[f.stream.id]?.bySpecies[focus]
+                      : undefined;
+                    const fishability: FishabilityFocus | undefined = comfort
+                      ? { species: focus as never, comfort: comfort.comfort }
+                      : undefined;
+                    const decision = toWaterDecisionView(
+                      f,
+                      speciesMode,
+                      new Date().getMonth() + 1,
+                      fishability,
+                    );
+                    if (decision.displayMetric === 'fishability' && fishability)
+                      return <ScorePill score={fishability.comfort.value} />;
+                    return (
+                      <span className="muted text-sm">
+                        {decisionStatusText(decision, f, fishability)}
+                      </span>
+                    );
+                  })()}
                 </Link>
               </li>
             ))}
