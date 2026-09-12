@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { StateIdSchema, WaterbodyTypeSchema, OfficialSourceSchema, RegionIdSchema } from './shared.js';
+import { SpeciesKeySchema } from './fishability.js';
 
 export const IdealFlowSchema = z
   .object({
@@ -22,6 +23,11 @@ export const StreamSchema = z.object({
   /** Species focus: 'trout' waters are scored for trout fishability;
    *  'warmwater' rivers (smallmouth/panfish) are listed but never trout-scored. */
   species: z.enum(['trout', 'warmwater']).optional(),
+  /** Which of the seven contract game species the water is managed FOR, authored
+   *  from TWRA evidence (F3 catalog). Contract v2 (ADR 0007). Absent = not
+   *  cataloged — never guessed. Unrelated to the program-type `species` above,
+   *  which is unchanged. */
+  targetSpecies: z.array(SpeciesKeySchema).optional(),
   /** Trout-fishery identity: 'tailwater' = dam-controlled release fishery;
    *  'stocked' = put-and-take stocking without dam control;
    *  'wild' = naturally reproducing (self-sustaining) fishery.

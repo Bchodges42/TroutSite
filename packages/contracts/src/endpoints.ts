@@ -20,6 +20,9 @@ export interface EndpointMap {
   reportsRecent: string;
   /** GET — WaterEvidence[] (provenance-first per-water evidence; additive contracts-v1.1.0). */
   evidenceWaters: string;
+  /** GET — FishabilitySnapshot for one water: species-keyed comfort + activity
+   *  (additive contract v2, ADR 0007; emitted by the F5 pipeline). */
+  fishabilityForWater: (streamId: string) => string;
   /** POST — create a ShopReport (shop token header). The only live route. */
   portalReports: string;
   /** GET — liveness probe. */
@@ -35,6 +38,7 @@ export const ENDPOINTS: EndpointMap = {
   shops: (stateId) => `/v1/shops/${stateId}.json`,
   reportsRecent: '/v1/reports/recent.json',
   evidenceWaters: '/v1/evidence/waters.json',
+  fishabilityForWater: (streamId) => `/v1/fishability/${streamId}.json`,
   portalReports: '/v1/portal/reports',
   healthz: '/healthz',
 };
