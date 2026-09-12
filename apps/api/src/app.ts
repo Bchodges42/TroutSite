@@ -69,6 +69,26 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     bodyLimit: 128 * 1024,
   });
 
+  // T0-1: @fastify/static 7.0.4 (the last Fastify-4 line) answers a conditional
+  // HEAD 304 by calling reply.send TWICE — once from its PassThrough flush()
+  // with '' and once from the 'finish' listener with the stream. The second
+  // send reaches Fastify's writeHead after headers went out and throws
+  // ERR_HTTP_HEADERS_SENT, killing the process. Keep the first (correct, empty
+  // 304) send and drop duplicates.
+  app.addHook('onRequest', async (req, reply) => {
+    if (req.method !== 'HEAD') return;
+    const originalSend = reply.send.bind(reply);
+    let sent = false;
+    reply.send = ((payload?: unknown) => {
+      if (sent) {
+        req.log.warn({ url: req.url }, 'suppressed duplicate reply.send on HEAD (fastify-static conditional-304 double-send)');
+        return reply;
+      }
+      sent = true;
+      return originalSend(payload);
+    }) as typeof reply.send;
+  });
+
   app.addHook('onSend', async (_req, reply, payload) => {
     reply.header('Strict-Transport-Security', 'max-age=63072000');
     reply.header('X-Content-Type-Options', 'nosniff');
