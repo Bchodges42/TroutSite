@@ -9,7 +9,7 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - [x] STEP 1 — T1-5 POSIX hatch-chart build
 - [x] STEP 2 — T0-4 size-budget redesign
 - [x] STEP 3 — T1-8 prerender fixture fallback
-- [ ] STEP 4 — T1-11 atlas/topo manifest regeneration
+- [x] STEP 4 — T1-11 atlas/topo manifest regeneration
 - [ ] STEP 5 — T1-7 wolf-river-fentress.yaml correction
 - [ ] FINAL verification
 
@@ -109,6 +109,29 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
   call `node scripts/prerender.mjs --allow-fixtures`. Same wiring note as STEP 2
   for adding the node:test files to CI (Session A).
 
+### STEP 4 — T1-11: regenerate atlas/topo metadata from final artifacts
+
+- New `apps/web/scripts/rebuild-manifests.mjs` (regenerates metadata from what is
+  on disk instead of rerunning network-bound builders):
+  - rivers.geojson: recomputed every feature's `vertexCount` (+ `bounds` where
+    drifted) from delivered geometry — 3 features corrected (duck-river-tailwater
+    268→267, indian-creek-claiborne 507→506, little-buffalo-river 239→238).
+  - topo: decoded every hillshade tile's alpha plane and removed the 490
+    fully-transparent tiles that carried no shadow signal (the "manifest 531 vs
+    1,021 files" gap was exactly these); regenerated manifest tiles/bytes/band
+    byte counts and the top-level total (531 tiles · 12.83 MB hillshade ·
+    11.67 MB bands · 24.50 MB total). Pinned contract fields preserved.
+- Command outputs (all five green):
+  - `validate-atlas.mjs` → `PASS (zero structural/coordinate/geometry-integrity errors)` (148 features)
+  - `validate-topo.mjs` → `validate-topo: PASS`
+  - `validate-roads.mjs` → `PASS (structure, bounds, provenance, manifest agreement, size gate)`
+  - `validate-east-southeast.mjs` → `east-southeast validation: PASS` (48 features · 18 lakes · 30 reaches)
+  - `west-middle-validate.mjs` → `west-middle-validate: PASS` (1 documented NHD-seam WARN, unchanged)
+- Artifact deltas committed under `apps/web/public/atlas/**` (my slice):
+  rivers.geojson properties, topo manifest.json, 490 deleted empty tiles.
+- Gates after regeneration: full web build + size-budget OK (on-demand atlas/
+  shrank accordingly), web tests 25/251 green, content gates green.
+
 ## Verification summary
 
 STEP 1: all gates green (details above).
@@ -116,6 +139,7 @@ STEP 2: size-budget unit tests 10/10; full `pnpm --filter @trout/web build` gree
 (install-time 10.80 MB of 25 MB); all cadence gates green.
 STEP 3: prerender regression tests 2/2; real prerender 556 pages; all cadence
 gates green (content 11/11, web 251/251, full web build + size-budget OK).
+STEP 4: all five asset validators PASS; all cadence gates green.
 
 ## Blockers
 
