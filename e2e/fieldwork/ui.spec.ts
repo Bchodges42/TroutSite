@@ -11,8 +11,9 @@ type MapLike = {
   getContainer(): { clientWidth: number; clientHeight: number };
   queryRenderedFeatures(): GeoFeature[];
 };
-const mapWindow = (w: Window): MapLike =>
-  (w as Window & { __troutMap?: MapLike }).__troutMap as MapLike;
+declare global {
+  interface Window { __troutMap?: MapLike }
+}
 
 
 // Existing image library, used only to inspect rendered pixels in this UI regression.
@@ -104,7 +105,8 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
       feature.geometry.type === 'LineString'
         ? feature.geometry.coordinates
         : feature.geometry.coordinates.flat() as Array<[number, number]>;
-    const m = mapWindow(window);
+    const m = window.__troutMap;
+    if (!m) throw new Error('__troutMap not ready');
     // Bring the target corridor into view deterministically (zoom clicks keep
     // the statewide center, which can be nowhere near the water under test).
     const lons = coords.map((c) => c[0]!);
@@ -189,7 +191,8 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
  */
 async function scanPolygonPoint(page: Page): Promise<{ x: number; y: number }> {
   return page.getByTestId('river-map').evaluate(async () => {
-    const m = mapWindow(window);
+    const m = window.__troutMap;
+    if (!m) throw new Error('__troutMap not ready');
     // Verify the mock polygon actually reached the map (the SW can serve the
     // cached original, bypassing page.route — hence serviceWorkers:'block').
     const atlas = await (await fetch('/atlas/rivers.geojson')).json() as { features: GeoFeature[] };
@@ -563,18 +566,22 @@ test('reduced motion keeps zoom usable', async ({ page }) => {
     .toBeGreaterThan(before);
 });
 
-test.describe('a missing catalog keeps map tools and a clear error state', () => {
+test.describe('a missing served catalog falls back to the bundled catalog', () => {
   // The SW runtime-caches /v1/streams (B10 fix made that route live) and SW
   // fetches bypass page.route — block the worker so the 503 mock is honored.
   test.use({ serviceWorkers: 'block' });
 
-  test('keeps map tools and shows a clear error', async ({ page }) => {
+  // 2026-09-08 outage fix: when the served catalog is unavailable the app loads
+  // the BUNDLED client catalog and keeps working — it must NOT show the old
+  // "Catalog unavailable" error state.
+  test('keeps map tools and serves the bundled catalog fallback', async ({ page }) => {
     await page.route('**/v1/streams', (route) =>
       route.fulfill({ status: 503, body: 'Unavailable' }),
     );
     await page.goto('/');
     await expect(page.getByRole('button', { name: 'Map layers', exact: true })).toBeVisible();
-    await expect(page.getByRole('alert')).toContainText('Catalog unavailable');
+    await expect(page.locator('canvas').first()).toBeVisible();
+    await expect(page.getByRole('alert')).toHaveCount(0);
   });
 });
 
@@ -705,7 +712,8 @@ test.describe('touch polygon selection', () => {
     for (let attempt = 0; attempt < 6 && !tap; attempt++) {
       try {
         tap = await page.getByTestId('river-map').evaluate(() => {
-          const m = mapWindow(window);
+          const m = window.__troutMap;
+    if (!m) throw new Error('__troutMap not ready');
           const layers = ['rivers-point-hit', 'rivers-water-hit', 'rivers-water-hit-outline', 'rivers-hit'];
           const origin = m.getContainer().getBoundingClientRect();
           const labels = [...document.querySelectorAll('.river-map-label')]
