@@ -20,6 +20,9 @@ export const WaterMetricSchema = z.enum([
   'discharge-cfs',
   'stage-ft',
   'reservoir-level-ft',
+  /** Barometric (sea-level) pressure, hectopascals (F8, contract v2 additive):
+   *  NWS ASOS stations mapped to catalog REGIONS — area-level, never per-water. */
+  'pressure-hpa',
 ]);
 export type WaterMetric = z.infer<typeof WaterMetricSchema>;
 

@@ -53,6 +53,23 @@ export const SOURCES: Record<string, EvidenceSource> = {
       'No water temperature. Generation-release schedules: /RestApi/generation-releases/{id}. ' +
       'Covers TVA dams and the USACE Cumberland projects (Ownership "Cumberland").',
   },
+  'nws-api': {
+    sourceId: 'nws-api',
+    label: 'NWS station observations (barometric pressure)',
+    authority: 'National Weather Service (NOAA)',
+    infoUrl: 'https://www.weather.gov/documentation/services-web-api',
+    endpoint: 'https://api.weather.gov/stations/{station}/observations?limit=12',
+    license: 'Public domain (US Government; NWS API policy requires a declared User-Agent)',
+    provides: ['pressure-hpa'],
+    freshness: 'Hourly METAR observations (some stations more often)',
+    notes:
+      'AREA-LEVEL signal: one representative ASOS station per catalog region ' +
+      '(mapping in evidence/nws-provider.ts) — never presented as per-water data, ' +
+      'and never fetched by the browser. barometricPressure arrives in Pa, stored ' +
+      'as hPa. 3-hour trend is DERIVED (latest minus the observation closest to ' +
+      '3 h earlier inside a 2-4 h window); observations older than 180 min are ' +
+      'stale and yield no row.',
+  },
   'twra-stockings': {
     sourceId: 'twra-stockings',
     label: 'TWRA trout stocking schedule',

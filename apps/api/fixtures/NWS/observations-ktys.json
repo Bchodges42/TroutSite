@@ -1,0 +1,88 @@
+{
+  "features": [
+    {
+      "properties": {
+        "timestamp": "2026-09-12T13:00:00+00:00",
+        "barometricPressure": {
+          "value": 101900,
+          "unitCode": "unit:Pa"
+        },
+        "textDescription": "Clear"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T14:00:00+00:00",
+        "barometricPressure": {
+          "value": 101700,
+          "unitCode": "unit:Pa"
+        },
+        "textDescription": "Clear"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T15:00:00+00:00",
+        "barometricPressure": {
+          "value": 101600,
+          "unitCode": "unit:Pa"
+        },
+        "seaLevelPressure": {
+          "value": 101550,
+          "unitCode": "unit:Pa"
+        },
+        "textDescription": "Mostly Clear"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T16:00:00+00:00",
+        "barometricPressure": {
+          "value": null,
+          "unitCode": "unit:Pa"
+        },
+        "seaLevelPressure": {
+          "value": 101500,
+          "unitCode": "unit:Pa"
+        },
+        "textDescription": "Fair"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T16:30:00+00:00",
+        "textDescription": "Fair"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T16:45:00+00:00",
+        "barometricPressure": {
+          "value": 41000,
+          "unitCode": "unit:Pa"
+        },
+        "textDescription": "Bogus"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T16:55:00+00:00",
+        "barometricPressure": {
+          "value": 101450,
+          "unitCode": "unit:degC"
+        },
+        "textDescription": "Bad unit"
+      }
+    },
+    {
+      "properties": {
+        "timestamp": "2026-09-12T17:00:00+00:00",
+        "barometricPressure": {
+          "value": 101450,
+          "unitCode": "wmoUnit:Pa"
+        },
+        "textDescription": "Fair"
+      }
+    }
+  ]
+}
