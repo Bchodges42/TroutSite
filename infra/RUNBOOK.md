@@ -26,8 +26,10 @@ pnpm 9, repo at `C:\Users\Benjamin\Projects\trout`. **No Docker. No systemd.**
 - **Git Bash** — all scripts are bash (`infra/deploy.sh`, `infra/backup.sh`).
 - **cloudflared** — install the Windows binary and put it on PATH (`cloudflared --version`).
 - **pm2** — `npm install -g pm2`.
-- Optional but recommended: **sqlite3 CLI** on PATH so `infra/backup.sh` takes consistent
-  online backups; otherwise it falls back to a plain file copy.
+- The **sqlite3 CLI** is NOT required: `infra/backup.sh` prefers it when present and
+  otherwise runs a consistent online backup through node + better-sqlite3 (node is on
+  every host). A plain file copy is never taken — the database runs in WAL mode, and a
+  raw copy of the main file drops committed data (T1-12).
 
 ## 2. First-time setup
 
