@@ -10,7 +10,7 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - [x] STEP 2 — T0-4 size-budget redesign
 - [x] STEP 3 — T1-8 prerender fixture fallback
 - [x] STEP 4 — T1-11 atlas/topo manifest regeneration
-- [ ] STEP 5 — T1-7 wolf-river-fentress.yaml correction
+- [x] STEP 5 — T1-7 wolf-river-fentress.yaml correction
 - [ ] FINAL verification
 
 ## Per-item evidence
@@ -132,6 +132,21 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - Gates after regeneration: full web build + size-budget OK (on-demand atlas/
   shrank accordingly), web tests 25/251 green, content gates green.
 
+### STEP 5 — T1-7 (content half): wolf-river-fentress.yaml correction
+
+- `packages/content/streams/tn/wolf-river-fentress.yaml`: notes no longer call
+  the Fentress Wolf "Memphis-bound" (the West Tennessee Wolf River conflation).
+  Rewritten per TWRA: the Fentress Wolf River feeds Dale Hollow Reservoir (Obey
+  River system, Upper Cumberland), explicitly disambiguated from the
+  Memphis-bound West TN Wolf. Added TWRA's Dale Hollow Reservoir page as first
+  officialSource: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html
+- Regression test added in `packages/content/test/content.test.ts` (12/12 green):
+  notes must mention Dale Hollow, must NOT match /Memphis-bound/, and
+  officialSources must cite the TWRA Dale Hollow page. Matcher half of T1-7
+  (stockingMatch.ts county disambiguation) is Session C's — untouched here.
+- Gates: content build + validate OK, content tests 12/12, web 25/251, full web
+  build + size-budget OK.
+
 ## Verification summary
 
 STEP 1: all gates green (details above).
@@ -140,6 +155,7 @@ STEP 2: size-budget unit tests 10/10; full `pnpm --filter @trout/web build` gree
 STEP 3: prerender regression tests 2/2; real prerender 556 pages; all cadence
 gates green (content 11/11, web 251/251, full web build + size-budget OK).
 STEP 4: all five asset validators PASS; all cadence gates green.
+STEP 5: content test 12/12 incl. the new T1-7 regression; all gates green.
 
 ## Blockers
 
