@@ -1,0 +1,28 @@
+{
+  "schema": "trout/nhd-network/1",
+  "attribution": "Geometry: USGS NHD",
+  "clusters": [
+    {
+      "id": "0513",
+      "file": "0513.geojson",
+      "bounds": [
+        -86.11735,
+        35.54173,
+        -85.48761,
+        36.31289
+      ],
+      "features": 2871
+    },
+    {
+      "id": "0601",
+      "file": "0601.geojson",
+      "bounds": [
+        -85.50963,
+        35.53279,
+        -84.98409,
+        36.33041
+      ],
+      "features": 2876
+    }
+  ]
+}
