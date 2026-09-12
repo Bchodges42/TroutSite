@@ -12,6 +12,7 @@ Base SHA: `80cd2cad916608c9dddcfcef0f98be3b10591c46` (origin/main, session-b bra
 - [x] STEP 4 — T1-11 atlas/topo manifest regeneration
 - [x] STEP 5 — T1-7 wolf-river-fentress.yaml correction
 - [x] FINAL verification
+- [x] OVERFLOW — F2 species-reference research (draft)
 
 ## Per-item evidence
 
