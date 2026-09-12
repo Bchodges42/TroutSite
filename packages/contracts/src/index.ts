@@ -22,5 +22,7 @@ export * from './schemas/fishability.js';
 
 export * from './endpoints.js';
 export * from './scoreConditions.js';
+export * from './scoreFishability.js';
+export * from './scoreActivity.js';
 export * from './matchHatch.js';
 export * from './readingFreshness.js';
