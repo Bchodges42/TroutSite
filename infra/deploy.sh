@@ -9,7 +9,59 @@ ROOT="$(pwd)"
 source "$ROOT/infra/runtime-env.sh"
 trout_runtime_env "$ROOT"
 
-echo "[deploy] git pull"
+# T0-2: nothing below may mutate the checkout or the served trees until the
+# rollback point exists. The FIRST mutation is the git pull; from there on,
+# ANY uncaught failure (set -e) runs rollback() via the EXIT trap: restore the
+# archived snapshot trees, reset the checkout to where this deploy started,
+# rebuild + restart so the service isn't running half-new artifacts, verify.
+START_REV="$(git rev-parse HEAD)"
+MUTATED=0
+HAD_ROLLBACK=0
+BACKUPS="$ROOT/backups"
+LASTGOOD_REV_FILE="$BACKUPS/last-good-rev"
+VERIFY_URL="${TROUT_VERIFY_URL:-http://127.0.0.1:8787}"
+mkdir -p "$BACKUPS"
+
+rollback() {
+  # Called from the EXIT trap (MUTATED=1) or the failed final verification —
+  # both mean: new state was staged but never proven. Best-effort by design:
+  # every step is guarded so the trap itself can never fail its way out.
+  echo "[deploy] ROLLBACK — returning the served state to the pre-deploy point ($START_REV)"
+  if [ "$HAD_ROLLBACK" = "1" ]; then
+    bash infra/restore-snapshots.sh || echo "[deploy] WARN — snapshot restore failed; generated trees left as-is"
+  else
+    echo "[deploy] no pre-deploy rollback point existed; generated trees left as-is"
+  fi
+  if git reset --hard "$START_REV" >/dev/null 2>&1; then
+    echo "[deploy] checkout back at $START_REV"
+  else
+    echo "[deploy] WARN — git reset to $START_REV failed; inspect the checkout manually"
+  fi
+  pnpm -r build >/dev/null 2>&1 || echo "[deploy] WARN — rebuild of $START_REV failed; dist may not match the checkout"
+  bash infra/restart-app.sh || true
+  if bash infra/verify-site.sh --url "$VERIFY_URL" --wait 30 --deep >/dev/null 2>&1; then
+    echo "[deploy] ROLLED BACK — last-good state is serving again (checkout at $START_REV)."
+    echo "[deploy] Fix the failing step above, then re-run this deploy."
+  else
+    echo "[deploy] rollback did not fully heal the read path — run:"
+    echo "[deploy]   bash infra/verify-site.sh   (details) and see RUNBOOK §4/§9."
+  fi
+}
+
+trap 'rc=$?; if [ "$rc" != "0" ] && [ "$MUTATED" = "1" ]; then rollback; fi' EXIT
+
+echo "[deploy] archive the currently-served snapshots BEFORE any mutation (rollback point, RUNBOOK §9)"
+# Everything after this line can rewrite the checkout and the generated trees;
+# the archive is what a failed deploy rolls back to. Cheap, and the only copy
+# of the gitignored data this machine is currently serving.
+if bash infra/archive-snapshots.sh; then
+  HAD_ROLLBACK=1
+else
+  echo "[deploy] WARN — no rollback point could be created; continuing WITHOUT a safety net"
+fi
+
+echo "[deploy] git pull (first mutation — the EXIT trap owns everything from here)"
+MUTATED=1
 git pull --ff-only
 
 echo "[deploy] pnpm install"
@@ -20,14 +72,6 @@ pnpm -r build
 
 echo "[deploy] validate content pack"
 pnpm validate:content
-
-echo "[deploy] archive the currently-served snapshots (rollback point, RUNBOOK §9)"
-# Every step after this line can rewrite the generated trees; the archive is
-# what a failed verification rolls back to. Cheap, and the only copy of the
-# gitignored data this machine is currently serving.
-if ! bash infra/archive-snapshots.sh; then
-  echo "[deploy] WARN — no rollback point could be created; continuing WITHOUT a safety net"
-fi
 
 echo "[deploy] seed catalog into the API database (idempotent upsert)"
 # The streams/shops tables must match the shipped content pack before
@@ -91,28 +135,17 @@ fi
 
 echo "[deploy] verify the live read path (retries up to 30 s; node-only, no sleep/tar needed)"
 FAIL=0
-bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 --deep || FAIL=1
+bash infra/verify-site.sh --url "$VERIFY_URL" --wait 30 --deep || FAIL=1
 
 if [ "$FAIL" = "1" ]; then
   echo "[deploy] DEPLOY CHECK FAILED — the live site would mislead anglers."
   echo "[deploy] usual cause: seed/snapshots did not run (see steps above)."
-  echo "[deploy] rolling the read path back to the last-good snapshots (RUNBOOK §9)…"
-  # The DB is NOT reverted (seed/ingest are idempotent upserts); only the
-  # served trees go back, so visitors keep the previous good catalog instead
-  # of an empty one while the failure is fixed.
-  if bash infra/restore-snapshots.sh; then
-    bash infra/restart-app.sh || true
-    if bash infra/verify-site.sh --url http://127.0.0.1:8787 --wait 30 --deep >/dev/null 2>&1; then
-      echo "[deploy] ROLLED BACK — last-good snapshots are serving again."
-      echo "[deploy] Fix the failing step above, then re-run this deploy."
-    else
-      echo "[deploy] rollback did not fully heal the read path — run:"
-      echo "[deploy]   bash infra/verify-site.sh   (details) and see RUNBOOK §4/§9."
-    fi
-  else
-    echo "[deploy] no last-good archive exists — nothing to roll back to."
-    echo "[deploy] recover per RUNBOOK §4/§9, then re-run this deploy."
-  fi
+  # The DB is NOT reverted (seed/ingest are idempotent upserts); the served
+  # trees AND the checkout go back, so visitors keep the previous good catalog
+  # and code while the failure is fixed. rollback() is the same routine the
+  # EXIT trap uses; MUTATED=0 keeps the trap from running it a second time.
+  MUTATED=0
+  rollback
   exit 1
 fi
 
@@ -122,4 +155,9 @@ echo "[deploy] refresh the rollback archive from the now-verified state"
 # actually creates the rollback point for the NEXT deploy.
 bash infra/archive-snapshots.sh || echo "[deploy] WARN — could not refresh the archive"
 
+# T0-2: autoupdate.sh compares HEAD against this file to tell "deployed and
+# verified" from "pull happened but the deploy failed" — the retry signal.
+git rev-parse HEAD > "$LASTGOOD_REV_FILE"
+
+MUTATED=0
 echo "[deploy] done — all endpoints green."

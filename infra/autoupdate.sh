@@ -67,9 +67,24 @@ fi
 local_rev="$(git rev-parse HEAD 2>/dev/null || echo unknown)"
 remote_rev="$(git rev-parse "origin/$BRANCH" 2>/dev/null || echo unknown)"
 
-if [ "$local_rev" = "$remote_rev" ]; then
+# T0-2: HEAD == origin only means "up to date" if the deploy of that revision
+# also PASSED verification (deploy.sh writes backups/last-good-rev on its
+# green exit). A failed deploy leaves HEAD at the new revision with no
+# last-good entry — treating that as UP-TO-DATE suppressed every retry, so
+# the server sat on a broken/rolled-back state until origin moved again.
+last_good_rev=""
+if [ -f "$BACKUPS/last-good-rev" ]; then
+  IFS= read -r last_good_rev _ < "$BACKUPS/last-good-rev" || true
+  last_good_rev="${last_good_rev%% *}"
+fi
+
+if [ "$local_rev" = "$remote_rev" ] && [ "$last_good_rev" = "$local_rev" ]; then
   set_status "UP-TO-DATE"
   exit 0
+fi
+
+if [ "$local_rev" = "$remote_rev" ]; then
+  log "HEAD == origin/$BRANCH but last verified-good rev is '${last_good_rev:-none}' — a previous deploy failed; retrying"
 fi
 
 # Only local modifications to TRACKED files can break 'git pull' — untracked
@@ -81,7 +96,7 @@ if [ -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]; then
   exit 1
 fi
 
-log "origin/$BRANCH moved ${local_rev:0:9}..${remote_rev:0:9} — deploying${DRY_RUN:+ (dry-run: no action)} [cmd: $DEPLOY_CMD]"
+log "origin/$BRANCH moved ${local_rev:0:9}..${remote_rev:0:9} — deploying$([ "$DRY_RUN" = "1" ] && echo ' (dry-run: no action)') [cmd: $DEPLOY_CMD]"
 if [ "$DRY_RUN" = "1" ]; then
   set_status "PENDING-DRYRUN"
   exit 2
