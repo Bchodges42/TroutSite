@@ -1,0 +1,2013 @@
+schema: draft/f3-species-mapping/0
+updatedAt: 2026-09-12T18:32:32.162Z
+gated: DRAFT — do not author stream YAML species fields from this until Session A lands the F1 species enum (contracts).
+stats:
+  waters: 148
+  evidenced: 80
+  inferred: 11
+  needsEvidence: 57
+  candidateWaters: 58
+waters:
+  - id: barren-fork-river
+    name: Barren Fork River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: beaverdam-creek
+    name: Beaverdam Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: beech-lake
+    name: Beech Lake
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: big-rock-creek
+    name: Big Rock Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: boiling-fork-creek
+    name: Boiling Fork Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: boone-lake
+    name: Boone Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-holston
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: boone-tailwater
+    name: Boone Tailwater (South Fork Holston River)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-east-holston
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: bradley-creek
+    name: Bradley Creek
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: brush-creek-cocke
+    name: Brush Creek (Cocke County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-pigeon-frenchbroad
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: buffalo-creek-grainger
+    name: Buffalo Creek (Grainger County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-clinch
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 30
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: buffalo-river
+    name: Buffalo River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: calderwood-lake
+    name: Calderwood Lake
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-east-smokies
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: calfkiller-river
+    name: Calfkiller River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: cameron-brown-lake
+    name: Cameron Brown Lake
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: cane-creek
+    name: Cane Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 14
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: caney-fork-river
+    name: Caney Fork River (Center Hill tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-middle-caney-fork
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: caney-fork-upper
+    name: Caney Fork River (above Center Hill Lake)
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-middle-caney-fork
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: center-hill-lake
+    name: Center Hill Lake
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-caney-fork
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: charles-creek
+    name: Charles Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: cherokee-lake
+    name: Cherokee Lake
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-holston
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: chickamauga-lake
+    name: Chickamauga Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-se-hiwassee
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: chilhowee-lake
+    name: Chilhowee Lake
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-east-smokies
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: citico-creek
+    name: Citico Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 22
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: clear-creek-obed
+    name: Clear Creek (Obed system)
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: creek
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: clear-fork
+    name: Clear Fork
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: creek
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: clinch-river
+    name: Clinch River (Norris tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-east-clinch
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: collins-river
+    name: Collins River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: cosby-creek
+    name: Cosby Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-smokies
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 9
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: covington-fbc-pond
+    name: Covington First Baptist Church Pond
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: pond
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: cumberland-river
+    name: Cumberland River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: daddys-creek
+    name: Daddy’s Creek
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: creek
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: dale-hollow-lake
+    name: Dale Hollow Lake
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-upper-cumberland
+    proposed:
+      - brown-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: doe-creek-johnson
+    name: Doe Creek (Johnson County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 7
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: doe-river
+    name: Doe River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 9
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: douglas-lake
+    name: Douglas Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-pigeon-frenchbroad
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: duck-river-lower
+    name: Duck River (Shelbyville to Columbia)
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: duck-river-tailwater
+    name: Duck River (Normandy tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-middle-duck-elk
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: east-fork-shoal-creek
+    name: East Fork Shoal Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: east-fork-stones-river
+    name: East Fork Stones River
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: river
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: edmund-orgill-lake
+    name: Edmund-Orgill Park
+    catalogSpecies: trout
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: elk-river-lower
+    name: Elk River (Prospect to state line)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: elk-river
+    name: Elk River (Tims Ford tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-middle-duck-elk
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: emory-river
+    name: Emory River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: fletchers-fork
+    name: Fletchers Fork
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: forge-creek-johnson
+    name: Forge Creek (Johnson County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: fort-loudoun-lake
+    name: Fort Loudoun Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-clinch
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: fort-patrick-henry-lake
+    name: Fort Patrick Henry Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-holston
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: french-broad-river
+    name: French Broad River (Douglas tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-east-pigeon-frenchbroad
+    proposed:
+      - rainbow-trout
+      - brown-trout
+    basis: tailwater-program-inference
+    note: No resolved TWRA stocking rows yet — program inference pending evidence (see T1-7 matcher workstream).
+    stockingEvidence: []
+  - id: ft-patrick-henry-tailwater
+    name: Fort Patrick Henry Tailwater (South Fork Holston River)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-east-holston
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: gap-creek-claiborne
+    name: Gap Creek (Claiborne County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-clinch
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: goforth-creek
+    name: Goforth Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: greasy-creek-polk
+    name: Greasy Creek (Polk County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: great-falls-lake
+    name: Great Falls Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-caney-fork
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: gulf-fork-big-creek
+    name: Gulf Fork Big Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-pigeon-frenchbroad
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: harpeth-river
+    name: Harpeth River (Williamson County reaches)
+    catalogSpecies: warmwater
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-nashville
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: hatchie-river
+    name: Hatchie River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: hiwassee-river
+    name: Hiwassee River (Appalachia tailwater / Reliance)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-se-hiwassee
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: holston-river
+    name: Holston River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-east-pigeon-frenchbroad
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: horse-creek-greene
+    name: Horse Creek (Greene County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 8
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: hurricane-creek
+    name: Hurricane Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-upper-cumberland
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: indian-creek-claiborne
+    name: Indian Creek (Claiborne County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-clinch
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: j-percy-priest-lake
+    name: J. Percy Priest Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: johnson-park-lake
+    name: Johnson Park Lake
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: kentucky-lake
+    name: Kentucky Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: lake-barkley
+    name: Lake Barkley
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: lake-graham
+    name: Lake Graham
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: laurel-creek-johnson
+    name: Laurel Creek (Johnson County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: laurel-fork-carter
+    name: Laurel Fork (Carter County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 8
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: leconte-creek
+    name: LeConte Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-smokies
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: little-buffalo-river
+    name: Little Buffalo River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: little-pigeon-river
+    name: Little Pigeon River (Sevierville reach)
+    catalogSpecies: trout
+    fishery: null
+    waterbodyType: river
+    regionId: tn-east-smokies
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: little-river
+    name: Little River (Smokies / Blount County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-smokies
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 10
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: little-sequatchie-river
+    name: Little Sequatchie River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: little-tennessee-river
+    name: Little Tennessee River
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: river
+    regionId: tn-east-smokies
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: little-west-fork-creek
+    name: Little West Fork Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: martin-city-pond
+    name: Martin City Pond
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: pond
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: mccutcheon-creek
+    name: McCutcheon Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: melton-hill-lake
+    name: Melton Hill Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-clinch
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: middle-prong-little-pigeon
+    name: Middle Prong Little Pigeon River (Tremont)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-smokies
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 10
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: milan-city-pond
+    name: Milan City Pond
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: pond
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: mill-creek-overton
+    name: Mill Creek (Overton County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: mississippi-river
+    name: Mississippi River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: mossy-creek-jefferson
+    name: Mossy Creek (Jefferson County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-pigeon-frenchbroad
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: new-river
+    name: New River
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: river
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: nickajack-lake
+    name: Nickajack Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-se-hiwassee
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: nolichucky-river
+    name: Nolichucky River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-east-pigeon-frenchbroad
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: normandy-lake
+    name: Normandy Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: norris-lake
+    name: Norris Lake
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-clinch
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: north-chickamauga-creek
+    name: North Chickamauga Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: north-fork-holston-river
+    name: North Fork Holston River
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: river
+    regionId: tn-east-holston
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: north-prong-barren-fork
+    name: North Prong Barren Fork River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: obed-river
+    name: Obed River
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: river
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: obey-river
+    name: Obey River (Dale Hollow tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-upper-cumberland
+    proposed:
+      - brown-trout
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      - species: brown-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: obion-river
+    name: Obion River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: ocoee-number-three-lake
+    name: Ocoee Number Three Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-se-hiwassee
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: ocoee-river
+    name: Ocoee River (upper, Copperhill reach)
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-se-hiwassee
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: old-hickory-lake
+    name: Old Hickory Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: paris-city-park-lake
+    name: Paris City Park
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: parksville-lake
+    name: Parksville Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-se-hiwassee
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: parksville-tailwater
+    name: Parksville Lake Tailwater (Ocoee No. 1 reach)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: pickwick-lake
+    name: Pickwick Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: pigeon-river
+    name: Pigeon River (Hartford corridor)
+    catalogSpecies: trout
+    fishery: null
+    waterbodyType: river
+    regionId: tn-east-pigeon-frenchbroad
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: pine-creek-dekalb
+    name: Pine Creek (DeKalb County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: piney-river-rhea
+    name: Piney River (Rhea County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-cumberland-plateau
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: powell-river
+    name: Powell River
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: river
+    regionId: tn-east-clinch
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: puncheon-camp-creek
+    name: Puncheon Camp Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-clinch
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: red-river-clarksville
+    name: Red River (Montgomery County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: reedy-creek
+    name: Reedy Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-holston
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: reelfoot-lake
+    name: Reelfoot Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: richardson-byrd-creek
+    name: Richardson “Byrd” Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-clinch
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: roaring-fork
+    name: Roaring Fork
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-smokies
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: rocky-river
+    name: Rocky River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: salt-lick-creek
+    name: Salt Lick Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-upper-cumberland
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: sequatchie-river
+    name: Sequatchie River (headwaters)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-cumberland-plateau
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: shelby-farms-lake
+    name: Shelby Farms
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: shoal-creek
+    name: Shoal Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: sinking-creek-wilson
+    name: Sinking Creek (Wilson County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: spring
+    regionId: tn-middle-nashville
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: south-fork-cumberland
+    name: South Fork Cumberland River
+    catalogSpecies: trout
+    fishery: wild
+    waterbodyType: river
+    regionId: tn-cumberland-plateau
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: south-holston-lake
+    name: South Holston Lake
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-holston
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: south-holston-river
+    name: South Fork Holston River (South Holston tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-east-holston
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: spring-creek-polk
+    name: Spring Creek (Polk County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 6
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: standing-rock-creek
+    name: Standing Rock Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-upper-cumberland
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: station-creek
+    name: Station Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-clinch
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 5
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: stones-river
+    name: Stones River (Davidson County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-nashville
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: stoney-creek-carter
+    name: Stoney Creek (Carter County)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: sulfur-fork-creek
+    name: Sulfur Fork Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-nashville
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: tellico-lake
+    name: Tellico Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-clinch
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: tellico-river
+    name: Tellico River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 32
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: tennessee-river
+    name: Tennessee River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: tims-ford-lake
+    name: Tims Ford Lake
+    catalogSpecies: warmwater
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-duck-elk
+    proposed:
+      - largemouth-bass
+      - bluegill
+    basis: warmwater-review-needed
+    note: Typed from warmwater catalog marker/notes — confirm the assemblage per TWRA lake page before shipping.
+    stockingEvidence: []
+  - id: trail-fork-big-creek
+    name: Trail Fork (Big Creek tributary)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-pigeon-frenchbroad
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: tumbling-creek
+    name: Tumbling Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-se-hiwassee
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: union-city-reelfoot-pond
+    name: Union City Reelfoot Packing Site
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: pond
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: upper-hills-creek
+    name: Upper Hills Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-caney-fork
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: upper-roan-creek
+    name: Upper Roan Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 4
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: valentine-park-pond
+    name: Valentine Park
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: pond
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: watauga-lake
+    name: Watauga Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-northeast-watauga
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: watauga-river-wilbur-reach
+    name: Watauga River (Watauga Dam to Wilbur Lake)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: river
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+      - brown-trout
+    basis: tailwater-program-inference
+    note: No resolved TWRA stocking rows yet — program inference pending evidence (see T1-7 matcher workstream).
+    stockingEvidence: []
+  - id: watauga-river
+    name: Watauga River (Wilbur tailwater)
+    catalogSpecies: trout
+    fishery: tailwater
+    waterbodyType: tailrace
+    regionId: tn-northeast-watauga
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 1
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: watts-bar-lake
+    name: Watts Bar Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-east-clinch
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: west-fork-stones-river
+    name: West Fork Stones River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: river
+    regionId: tn-middle-nashville
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: west-prong-little-pigeon
+    name: West Prong Little Pigeon River
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-east-smokies
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 10
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: white-oak-creek
+    name: White Oak Creek
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-upper-cumberland
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: wilbur-lake
+    name: Wilbur Lake
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-northeast-watauga
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: wolf-river-fentress
+    name: Wolf River (Fentress County headwaters)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-cumberland-plateau
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 3
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: wolf-river-west-tennessee
+    name: Wolf River
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: river
+    regionId: tn-west
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: woods-reservoir
+    name: Woods Reservoir
+    catalogSpecies: null
+    fishery: null
+    waterbodyType: lake
+    regionId: tn-middle-duck-elk
+    proposed: []
+    basis: needs-evidence
+    note: "No TWRA evidence in the capture — species stays unknown (F3: unknown stays unknown)."
+    stockingEvidence: []
+  - id: yale-road-park-lake
+    name: Yale Road Park
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: lake
+    regionId: tn-west
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+candidateWatersFromUnresolvedAliases:
+  - name: Gatlinburg Streams
+    county: Sevier
+    reason: no catalog water matches this name
+    rows: 52
+  - name: Green Cove Pond
+    county: Monroe
+    reason: no catalog water matches this name
+    rows: 29
+  - name: Paint Creek
+    county: Greene
+    reason: no catalog water matches this name
+    rows: 10
+  - name: Big Soddy Creek
+    county: Hamilton
+    reason: no catalog water matches this name
+    rows: 9
+  - name: North Indian Creek
+    county: Unicoi
+    reason: no catalog water matches this name
+    rows: 9
+  - name: Rocky Fork
+    county: Unicoi
+    reason: no catalog water matches this name
+    rows: 9
+  - name: South Indian Creek
+    county: Unicoi
+    reason: no catalog water matches this name
+    rows: 9
+  - name: Dillard Ponds
+    county: Greene
+    reason: no catalog water matches this name
+    rows: 7
+  - name: Clark Creek
+    county: Unicoi
+    reason: no catalog water matches this name
+    rows: 7
+  - name: Fort Campbell Streams
+    county: Montgomery
+    reason: no catalog water matches this name
+    rows: 6
+  - name: Panther Creek
+    county: Hamblen
+    reason: no catalog water matches this name
+    rows: 6
+  - name: Goose Creek / Town Creek
+    county: Johnson
+    reason: no catalog water matches this name
+    rows: 6
+  - name: Fishery Park Pond
+    county: Unicoi
+    reason: no catalog water matches this name
+    rows: 6
+  - name: Pickett Lake
+    county: Pickett
+    reason: no catalog water matches this name
+    rows: 5
+  - name: Trail Fork Big Creek
+    county: Cocke
+    reason: no catalog water matches this name
+    rows: 5
+  - name: Flat Fork Creek
+    county: Morgan
+    reason: no catalog water matches this name
+    rows: 4
+  - name: Alexander Creek
+    county: Hawkins
+    reason: no catalog water matches this name
+    rows: 4
+  - name: Big Creek
+    county: Hawkins
+    reason: no catalog water matches this name
+    rows: 4
+  - name: Cedar Hill Park Pond
+    county: Davidson
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Shelby Bottoms
+    county: Davidson
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Cowan City Park
+    county: Franklin
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Mill Creek
+    county: Hickman
+    reason: 'county mismatch: TWRA "hickman" vs catalog overton'
+    rows: 3
+  - name: Nice Mill
+    county: Rutherford
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Coops Creek
+    county: Sequatchie
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Laurel Creek
+    county: Van Buren
+    reason: 'county mismatch: TWRA "van buren" vs catalog johnson'
+    rows: 3
+  - name: Pistol Creek/Greenbelt Lake
+    county: Blount
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Ralph Stout Park Pond
+    county: Johnson
+    reason: no catalog water matches this name
+    rows: 3
+  - name: Fountain City Lake
+    county: Knox
+    reason: no catalog water matches this name
+    rows: 3
+  - name: McKenzie City Park
+    county: Caroll
+    reason: no catalog water matches this name
+    rows: 2
+  - name: L.L. Burns Park
+    county: Cheatham
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Marrowbone Lake
+    county: Davidson
+    reason: no catalog water matches this name
+    rows: 2
+  - name: J.D. Buckner Park
+    county: Dickson
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Stone Bridge Park
+    county: Lincoln
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Billy Dunlop Park
+    county: Montgomery
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Don Fox Park Community Park
+    county: Wilson
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Cumberland Mountain State Park
+    county: Cumberland
+    reason: no catalog water matches this name
+    rows: 2
+  - name: "Grundy Lake #4 / Fiery Gizzard SP"
+    county: Grundy
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Dickert Pond / Camp Jordan
+    county: Hamilton
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Lake Junior
+    county: Hamilton
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Pocket Creek
+    county: Marion
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Athens City Park Pond
+    county: McMinn
+    reason: no catalog water matches this name
+    rows: 2
+  - name: McKamy Lake
+    county: Polk
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Laurel Fork
+    county: Campbell
+    reason: 'county mismatch: TWRA "campbell" vs catalog carter'
+    rows: 2
+  - name: Tackett Creek
+    county: Campbell
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Mantooth Pond
+    county: Hancock
+    reason: no catalog water matches this name
+    rows: 2
+  - name: Acorn Lake (Montgomery Bell SP)
+    county: Dickson
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Lafayette City Park
+    county: Macon
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Cane Creek Park
+    county: Putnam
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Calderwood Reservoir
+    county: Blount/Monroe
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Chilhowee Reservoir
+    county: Blount/Monroe
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Cherokee TW / Holston River
+    county: Jefferson/Grainger
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Oneida City Park Lake
+    county: Scott
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Ft. Campbell
+    county: null
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Tims Ford TW
+    county: null
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Ft. Patrick Henry TW
+    county: null
+    reason: no catalog water matches this name
+    rows: 1
+  - name: South Holston TW
+    county: null
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Wilbur
+    county: null
+    reason: no catalog water matches this name
+    rows: 1
+  - name: Wilbur TW
+    county: null
+    reason: no catalog water matches this name
+    rows: 1

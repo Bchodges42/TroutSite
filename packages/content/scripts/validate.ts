@@ -1,9 +1,33 @@
 // OWNER: ROLE 4. CI content gate (00-SHARED-CONTEXT §7): schema validation against the frozen
 // @trout/contracts schemas + orphan references + gauge-ID lint (offline via the USGS-verified
 // fixture) + SVG well-formedness + Definition-of-Done floors. Exit 1 on any issue.
-import { loadContent, FLOORS } from './lib.js';
+import { loadContent, loadSpeciesReference, FLOORS } from './lib.js';
 
 const { bugs, patterns, streams, shops, hatch, issues, warnings } = loadContent();
+const { species, issues: speciesIssues } = loadSpeciesReference();
+issues.push(...speciesIssues);
+
+// Species-reference coherence gate (F2): where bands are present they must be
+// monotone — optimal at or below the avoidance ceiling, avoidance below lethal;
+// spawn onset <= end.
+const num = (v: { value?: number | null; min?: number | null; max?: number | null } | undefined, key: 'value' | 'min' | 'max') =>
+  v && typeof v[key] === 'number' ? (v[key] as number) : undefined;
+for (const [id, ref] of species) {
+  const optimalMax = num(ref.comfort?.optimalC, 'max');
+  const avoidance = num(ref.comfort?.avoidanceC, 'value');
+  const lethal = num(ref.comfort?.lethalC, 'value');
+  if (optimalMax !== undefined && avoidance !== undefined && optimalMax > avoidance) {
+    issues.push({ file: 'species/', message: `${id}: optimal max ${optimalMax}°C is above the avoidance ceiling ${avoidance}°C` });
+  }
+  if (avoidance !== undefined && lethal !== undefined && avoidance >= lethal) {
+    issues.push({ file: 'species/', message: `${id}: avoidance ${avoidance}°C is not below lethal ${lethal}°C` });
+  }
+  const onset = num(ref.spawn?.onsetC, 'value');
+  const end = num(ref.spawn?.endC, 'value');
+  if (onset !== undefined && end !== undefined && onset > end) {
+    issues.push({ file: 'species/', message: `${id}: spawn onset ${onset}°C is above spawn end ${end}°C` });
+  }
+}
 
 for (const w of warnings) console.warn(`[content] WARN ${w.file}: ${w.message}`);
 
@@ -26,8 +50,8 @@ if (floorFails.length > 0) {
 
 console.log(
   `[content] OK — ${bugs.size} taxa (+${[...bugs.values()].filter((b) => b.illustration).length} SVGs), ` +
-    `${patterns.size} patterns, ${hatch.size} regions × 12 months, ${streams.size} streams, ${shops.size} shops. ` +
-    `Warnings: ${warnings.length}.`,
+    `${patterns.size} patterns, ${hatch.size} regions × 12 months, ${streams.size} streams, ${shops.size} shops, ` +
+    `${species.size} species references. Warnings: ${warnings.length}.`,
 );
 
 // Session-1 fishery/yearRound catalog coverage line (advisory; unset = evidence has not reached).

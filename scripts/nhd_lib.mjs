@@ -111,3 +111,16 @@ export function slugify(name) {
 export function writeJson(path, obj, pretty = false) {
   fs.writeFileSync(path, JSON.stringify(obj, null, pretty ? 2 : 0) + '\n');
 }
+
+// Pids the catalog already ships as its own traced/simplified linework
+// (rivers.geojson properties.sourceIds). The network layer must only ADD what
+// the catalog does not draw: every pid here is excluded from network output,
+// or the raw NHD line peeks out from under the simplified catalog line as
+// gray "shadows" that scale with zoom (T2-55; d51f307 is the region proof).
+export function catalogPidsFromAsset(assetPath) {
+  const pids = new Set();
+  for (const f of JSON.parse(fs.readFileSync(assetPath, 'utf8')).features) {
+    for (const pid of f.properties.sourceIds ?? []) pids.add(String(pid));
+  }
+  return pids;
+}

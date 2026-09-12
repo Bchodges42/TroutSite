@@ -7,11 +7,13 @@
 import { accessSync, mkdirSync, readFileSync, rmSync, writeFileSync, constants } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { FishingInformationSchema } from '@trout/contracts';
-import { loadContent, FLOORS } from './lib.js';
+import { loadContent, loadSpeciesReference, FLOORS } from './lib.js';
 import { REGIONS } from './regions.js';
 
 const OUT = resolve(import.meta.dirname, '..', 'dist', 'pack');
 const { bugs, patterns, streams, shops, hatch, illustrations, issues } = loadContent();
+const { species, issues: speciesIssues } = loadSpeciesReference();
+issues.push(...speciesIssues);
 
 if (issues.length > 0) {
   for (const i of issues) console.error(`[content] FAIL ${i.file}: ${i.message}`);
@@ -42,6 +44,9 @@ const files: Record<string, string> = {
       JSON.parse(readFileSync(resolve(import.meta.dirname, '..', 'data', 'fishing-information.json'), 'utf8')),
     ),
   }),
+  // F2 species reference (comfort + activity bands, every value cited) — the
+  // fishability scorer's data source once contracts v2 lands (Session A).
+  'species.json': JSON.stringify({ species: [...species.entries()].map(([id, ref]) => ({ id, ...ref })) }),
 };
 
 for (const [rid, charts] of hatch) {
@@ -88,7 +93,7 @@ for (const [name, body] of Object.entries(files)) {
 
 const meta = {
   generatedAt: new Date().toISOString(),
-  counts: { bugs: bugs.size, patterns: patterns.size, streams: streams.size, shops: shops.size, regions: hatch.size },
+  counts: { bugs: bugs.size, patterns: patterns.size, streams: streams.size, shops: shops.size, regions: hatch.size, species: species.size },
   packBytes: total,
   packMaxBytes: FLOORS.packMaxMb * 1024 * 1024,
 };

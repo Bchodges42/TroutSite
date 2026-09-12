@@ -1,16 +1,17 @@
 {
-  "generatedAt": "2026-09-12T00:03:53.487Z",
+  "generatedAt": "2026-09-12T18:18:48.958Z",
   "lane": "GEOQA",
   "suite": "scripts/nhd-network-validate.mjs",
   "verdict": "PASS",
   "summary": {
     "clusters": 23,
     "filesOnDisk": 23,
-    "lines": 196108,
-    "km": 111654,
+    "lines": 186800,
+    "km": 105540,
     "units": 58,
-    "gapUnits": 0,
+    "gapUnits": 44,
     "degenerateDrops": 0,
+    "catalogExcluded": 9308,
     "sourceLines": 196108,
     "reconciliation": "196108/196108",
     "subUnitSplits": [
