@@ -7,7 +7,7 @@ Base SHA: `3c329601e22facb755fdbbe0fd786d07579c3617` (origin/main; branch `sessi
 - [x] SETUP — branch/report/push
 - [x] TASK 1 — T2-55: catalog-pid exclusion in nhd-network-build.mjs + regenerate
 - [x] TASK 2 — F2 finish: sourced per-species reference data + validator gate
-- [ ] TASK 3 — F3 prep: 148-water species mapping + unresolvedAlias fold-in (draft only)
+- [x] TASK 3 — F3 prep: 148-water species mapping + unresolvedAlias fold-in (draft only)
 
 ## Per-item evidence
 
@@ -81,12 +81,39 @@ Base SHA: `3c329601e22facb755fdbbe0fd786d07579c3617` (origin/main; branch `sessi
 - Tests: content suite 17/17 (7 new: full-load + 4 negative gate cases +
   structure). Full build green.
 
+### TASK 3 — F3 prep: species mapping (gated draft)
+
+- New generator `packages/content/scripts/f3-species-mapping.mjs` (rerunnable;
+  reads streams YAML + the shipped evidence feed + an `--unresolved` JSON from
+  the ingest log). Writes `packages/content/research/f3-species-mapping.yaml`
+  (schema `draft/f3-species-mapping/0`). **No stream YAML species field touched**
+  — the file is explicitly gated on Session A's F1 species enum.
+- Result over the 148 catalog waters:
+  - **80 evidenced** — proposed species = the exact trout species in resolved
+    TWRA stocking rows (each carrying event counts + the TWRA source URL);
+  - **11 inferred (review-flagged)** — tailwaters with no resolved rows yet get
+    the documented rainbow+brown program inference (carries the T1-7 caveat:
+    the unresolved "South Holston TW"-style rows are why the evidence is
+    missing), plus warmwater-marker waters typed largemouth+bluegill pending
+    per-lake confirmation;
+  - **57 needs-evidence** — no TWRA evidence in the capture: species stays
+    unknown (F3 rule: unknown stays unknown).
+- UnresolvedAliasRows folded in: captured 264 rows from a fresh ingest run,
+  deduped by name+county to **58 candidate waters** (top: Gatlinburg Streams ×52,
+  Green Cove Pond ×29, Paint Creek ×13 …) shipped inside the mapping file as
+  `candidateWatersFromUnresolvedAliases` — the T3-52 expansion worklist with
+  counties, ready for F3 catalog authoring once the enum lands.
+- Gates: validate:content OK (research/ is inert to the loader), content 17/17,
+  `pnpm -r build` green.
+
 ## Verification
 
 - TASK 1: gates + validator PASS (evidence above); content 12/12 at push time;
   `pnpm -r build` green.
 - TASK 2: validate:content OK (incl. 7 species references); content tests 17/17;
   `pnpm -r build` green (size-budget OK; species.json adds ~11 KB on-demand).
+- TASK 3: draft generator + mapping committed; all cadence gates green;
+  final cadence re-run after TASK 3: content 17/17, build green.
 
 ## Blockers
 
