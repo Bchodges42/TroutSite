@@ -31,10 +31,23 @@ const outPath = path.resolve(
 );
 const hu8Dir = path.join(repoRoot, 'data/nhd/hu8');
 
+// Catalog waters already ship their own (traced/simplified) linework in
+// rivers.geojson. The network layer must only ADD what the catalog does not
+// draw — otherwise the raw NHD line peeks out from under the simplified
+// catalog line wherever the two diverge, as gray "shadows" that scale with
+// zoom (owner-reported). Exclusion set = every pid in the shipped asset's
+// sourceIds.
+const assetPath = path.resolve(repoRoot, argOf('--asset', 'apps/web/public/atlas/rivers.geojson'));
+const catalogPids = new Set();
+for (const f of JSON.parse(fs.readFileSync(assetPath, 'utf8')).features) {
+  for (const pid of f.properties.sourceIds ?? []) catalogPids.add(String(pid));
+}
+
 const inBbox = (lon, lat) => lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1;
 const touches = (coords) => coords.some((line) => line.some(([lon, lat]) => inBbox(lon, lat)));
 
 const features = [];
+let excluded = 0;
 let units = 0;
 for (const file of fs
   .readdirSync(hu8Dir)
@@ -46,6 +59,10 @@ for (const file of fs
   for (const line of lines) {
     const f = JSON.parse(line);
     if (!f.geometry?.coordinates || !touches(f.geometry.coordinates)) continue;
+    if (catalogPids.has(String(f.properties.permanent_identifier))) {
+      excluded++;
+      continue;
+    }
     const parts = f.geometry.coordinates
       .map((lineCoords) => collapseHairpins(roundCoords(dpSimplify(lineCoords, tolM), 5)).coords)
       .filter((lineCoords) => lineCoords.length >= 2);
@@ -71,6 +88,7 @@ const totalKm = features.reduce((s, f) => s + f.properties.lengthKm, 0);
 const payload = JSON.stringify({ type: 'FeatureCollection', features });
 fs.writeFileSync(outPath, payload);
 console.log(
-  `network proof: ${features.length} named lines across ${units} unit files, ` +
-    `${Math.round(totalKm)} km, ${Math.round(payload.length / 1024)} KB -> ${path.relative(repoRoot, outPath)}`,
+  `network proof: ${features.length} named lines kept, ${excluded} excluded as catalog pids, ` +
+    `across ${units} unit files, ${Math.round(totalKm)} km, ` +
+    `${Math.round(payload.length / 1024)} KB -> ${path.relative(repoRoot, outPath)}`,
 );
