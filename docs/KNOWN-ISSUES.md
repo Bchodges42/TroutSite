@@ -145,11 +145,11 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   owner use; no main-app UI (redundant in-app, scrape-exposure concern); add a
   low-key marketing "our data & sources" page (methodology summary, raw evidence one
   click deeper) → new item T2-54 below.
-- [ ] **T2-26 [LOGIC-19]** `stockingRecent` endpoint mapped but never fetched;
+- [x] **T2-26 [LOGIC-19]** `stockingRecent` endpoint mapped but never fetched;
   StockingPage downloads full history (623+ rows, grows forever) and re-filters
   client-side (`StockingPage.tsx:150,165-171`). DECIDED 2026-09-12: consume it —
   default view reads the rolling file; full history fetch only on "show all history."
-- [ ] **T2-27 [LOGIC-20]** Shop report `photoUrl` renders only in the admin composer —
+- [x] **T2-27 [LOGIC-20]** Shop report `photoUrl` renders only in the admin composer —
   no public surface shows photos (ShopsPage, drawer ReportsTab). DECIDED 2026-09-12:
   render them publicly alongside the attribution block, per ADR 0002.
 - [ ] **T2-28 [LOGIC-2]** TRANSITION RULE — keep the trout score fully suppressed on
@@ -183,28 +183,28 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 
 ## T2 — UX, accessibility, offline, security hardening
 
-- [ ] **T2-36 [REVIEW PASS3-1] · P2** Global `/` search shortcut focuses a hidden input
+- [x] **T2-36 [REVIEW PASS3-1] · P2** Global `/` search shortcut focuses a hidden input
   at desktop width (`AppShell.tsx:141` vs hidden map search, 0 px vs 325 px). Visible
   search owns the shortcut; hidden instances drop listeners.
-- [ ] **T2-37 [REVIEW PASS3-2] · P2** Mobile water detail buries the decision: long
+- [x] **T2-37 [REVIEW PASS3-2] · P2** Mobile water detail buries the decision: long
   assessment card, split badges, clipped empty gauge table before the useful source.
   → Compact status header (state, age, flow, temp, one action); gauge history in a
   disclosure; purposeful empty states.
-- [ ] **T2-38 [REVIEW PASS3-3] · P2** Browse/detail spend space on low-value repetition
+- [x] **T2-38 [REVIEW PASS3-3] · P2** Browse/detail spend space on low-value repetition
   (large low-info cards, repeated unavailable states). → Denser comparable rows; first
   viewport = the answer; one expandable caveat block.
-- [ ] **T2-39 [REVIEW PASS3-4] · P2** Hatch key opens with expert hook-size jargon, no
+- [x] **T2-39 [REVIEW PASS3-4] · P2** Hatch key opens with expert hook-size jargon, no
   uncertainty path (`HatchKeyPage.tsx:203`). → "Not sure" option, visual size
   reference, plain-language sizes, preserve unknowns in the matcher, "Step 1 of 6".
-- [ ] **T2-40 [REVIEW PASS3-5] · P2** App/portal/marketing read as three products.
+- [x] **T2-40 [REVIEW PASS3-5] · P2** App/portal/marketing read as three products.
   → Share the token system, type, radii, button states; replace emoji empty states.
-- [ ] **T2-41 [REVIEW PASS3-6] · P3** Shared dialog/close controls 36–38 px — raise hit
+- [x] **T2-41 [REVIEW PASS3-6] · P3** Shared dialog/close controls 36–38 px — raise hit
   areas to ≥44 px while keeping glyphs compact (`packages/ui/tokens.css:288,346`).
-- [ ] **T2-42 [REVIEW PASS4-2] · P2** Offline hatch key ignores SW-cached content —
+- [x] **T2-42 [REVIEW PASS4-2] · P2** Offline hatch key ignores SW-cached content —
   Dexie cleared + offline → "not on this device" while the SW serves the pack 200.
   → Try cache-backed fetch / bundled pack before declaring unavailable; test
   SW-present/Dexie-absent separately.
-- [ ] **T2-43 [LOGIC-23]** matchHatch silently drops the +2 chart signal when the
+- [x] **T2-43 [LOGIC-23]** matchHatch silently drops the +2 chart signal when the
   region-month chart isn't cached (`HatchKeyPage.tsx:133-135`) — results re-rank with
   no notice. Show "chart not cached — matching by key features and season only."
 - [ ] **T2-44 [REVIEW PASS4-3] · P2 (branch-only)** Creek-network clusters lack
@@ -218,7 +218,7 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   targets are TRACKED in git — clones follow them into the original machine's
   node_modules (already bit the review session). → Untrack; add a tracked-artifact
   check for absolute links.
-- [ ] **T2-47 [REVIEW audit]** Dependency advisories: 1 critical / 9 high / 19 moderate
+- [x] **T2-47 [REVIEW audit]** Dependency advisories: 1 critical / 9 high / 19 moderate
   / 5 low — complete the reachability triage; schedule recurring audit.
 
 - [x] **T2-55 [NEW 2026-09-12]** Statewide network builder (`scripts/nhd-network-build.mjs`) lacks the catalog-pid exclusion that d51f307 added to `nhd-network-proof.mjs` — raw NHD linework can draw gray shadows over catalog rivers statewide. Apply the same sourceIds exclusion and regenerate.
