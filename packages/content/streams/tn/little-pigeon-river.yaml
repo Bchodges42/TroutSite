@@ -11,7 +11,7 @@ idealFlow:
   - min: 100
     max: 500
     unit: cfs
-notes: A consistent trout water below the Smokies — TWRA stocks the Sevierville reach
+notes: A consistent trout water below the Smokies — TWRA stocks the Sevierville reach TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources).
   regularly (confirmed by the owner against local knowledge, September 2026, supplementing
   the TWRA dataset, which does not list the reach), and the upper park reaches hold wild
   fish. Verify current schedules with TWRA before you go.
@@ -22,3 +22,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html

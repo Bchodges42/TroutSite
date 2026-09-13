@@ -17,6 +17,7 @@ notes: >-
   Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking
   dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.
   The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence.
+  TWRA's statewide regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17 in protected length range upstream. (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03468510
@@ -29,3 +30,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html

@@ -14,9 +14,12 @@ notes: >-
   water upstream is out of scope. TWRA recognizes it as a separate named river. Renowned smallmouth
   water in Virginia; verify regulations and any consumption advisories before eating fish from this
   reach.
+  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
 
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
   - label: USGS Water Data — Tennessee monitoring locations
     url: https://waterdata.usgs.gov/tn/nwis
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html

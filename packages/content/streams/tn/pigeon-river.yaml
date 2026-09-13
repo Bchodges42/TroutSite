@@ -16,6 +16,7 @@ notes: >-
   popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list
   the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line
   down to the Douglas Lake arm.
+  TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03461500
@@ -24,3 +25,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
