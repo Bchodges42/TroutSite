@@ -141,7 +141,9 @@ describe('FishabilityCard', () => {
   it('renders the focus species comfort pill and reasons in all-fish + focus', async () => {
     await seedSettings('all');
     renderCard('/?focus=largemouth-bass');
-    expect(await screen.findByText('Largemouth bass')).toBeInTheDocument();
+    expect(
+      await screen.findByRole('heading', { name: 'Largemouth bass' }),
+    ).toBeInTheDocument();
     expect(
       screen.getByLabelText('Largemouth bass fishability 84 out of 100 — Good'),
     ).toBeInTheDocument();
@@ -173,7 +175,9 @@ describe('FishabilityCard', () => {
 
   it('renders honest no-activity-data when the outlook is empty — never a zero score', async () => {
     renderCard('/?focus=bluegill');
-    expect(await screen.findByText('Bluegill')).toBeInTheDocument();
+    expect(
+      await screen.findByRole('heading', { name: 'Bluegill' }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/No activity data yet/i)).toBeInTheDocument();
     expect(screen.queryByText(/Activity outlook:/)).not.toBeInTheDocument();
   });
@@ -181,7 +185,9 @@ describe('FishabilityCard', () => {
   it('renders honest No data when the species carried no assessment', async () => {
     await seedSettings('all');
     renderCard('/?focus=bluegill');
-    expect(await screen.findByText('Bluegill')).toBeInTheDocument();
+    expect(
+      await screen.findByRole('heading', { name: 'Bluegill' }),
+    ).toBeInTheDocument();
     expect(screen.getByText('No data')).toBeInTheDocument();
   });
 
