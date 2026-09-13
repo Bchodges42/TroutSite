@@ -167,8 +167,9 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
     expect(screen.queryByText(/rising|falling|steady/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/dangerously warm|avoid stressing/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/ideal range/i)).not.toBeInTheDocument();
-    // Raw readings still shown, neutrally framed.
-    expect(screen.getByText(/raw readings shown/i)).toBeInTheDocument();
+    // Raw readings still shown, neutrally framed. Awaited: the conditions
+    // query resolves async and Stage 4's cards add render latency.
+    expect(await screen.findByText(/raw readings shown/i)).toBeInTheDocument();
   });
 
   it('T1-14 — temp and flow badges stay neutral on warmwater water (no trout physiology colors)', async () => {

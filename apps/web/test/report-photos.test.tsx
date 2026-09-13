@@ -50,7 +50,7 @@ vi.stubGlobal(
 );
 
 function renderShops() {
-  const client = new QueryClient({
+  const _client = new QueryClient({
     defaultOptions: { queries: { networkMode: 'offlineFirst', retry: false } },
   });
   return render(
