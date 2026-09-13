@@ -200,6 +200,67 @@ describe('F5 fishability emission', () => {
     return snapshot.bySpecies['smallmouth-bass']!;
   }
 
+  it('pressure-trend component: falling area pressure is positive, hard rise negative, with the area-level caveat', () => {
+    setTargetSpecies('watauga-river', ['smallmouth-bass']);
+    const pack = writeSpeciesPack();
+    // The fixture stream's region (tn-east-tailwaters) is fixture-only — the
+    // honest behavior for a region with no F8 row is omission (covered below).
+    const regionId = (env.db.prepare('SELECT region_id FROM streams WHERE id = ?').get('watauga-river') as { region_id: string }).region_id;
+    const upsert = env.db.prepare(
+      `INSERT INTO region_pressure (region_id, observed_at, retrieved_at, pressure_hpa, trend_hpa_3h, trend_direction, station)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    );
+
+    // Falling 2.5 hPa/3h (synthetic): value 75, contribution +3.75 (w 0.15).
+    insertReading(24); // comfort 90; spawn state at 24 °C: POST_SPAWN shoulder
+    upsert.run(regionId, new Date(NOW_MS - 30 * 60_000).toISOString(), NOW.toISOString(), 1014.5, -2.5, 'falling', 'KTRI');
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    let smallmouth = readSmallmouth();
+    expect(smallmouth.activity.components).toHaveLength(3);
+    const falling = smallmouth.activity.components.find((c) => c.factor === 'pressure-trend')!;
+    expect(falling).toMatchObject({ value: 75, weight: 0.15, contribution: 3.8, confidence: 'derived' }); // 3.75 rounded to 0.1
+    expect(falling.evidenceUrl).toBe('https://www.weather.gov/wrh/timeseries?site=KTRI');
+    expect(falling.label).toMatch(/Area pressure/i);
+    expect(falling.label).toMatch(/not this water/);
+    // 50 + 0.6×(90−50) + 0.25×(30−50) + 0.15×(75−50) = 72.75 → 73.
+    expect(smallmouth.activity.total).toBe(73);
+
+    // Hard rise +4 hPa/3h: value 10, contribution −6 (w 0.15).
+    env.db.prepare('DELETE FROM region_pressure').run();
+    upsert.run(regionId, new Date(NOW_MS - 30 * 60_000).toISOString(), NOW.toISOString(), 1018.5, 4, 'rising', 'KTRI');
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    smallmouth = readSmallmouth();
+    const rising = smallmouth.activity.components.find((c) => c.factor === 'pressure-trend')!;
+    expect(rising).toMatchObject({ value: 10, contribution: -6 });
+  }, 30_000);
+
+  it('pressure component is omitted when the row is stale or absent, and weights stay normalized', () => {
+    setTargetSpecies('watauga-river', ['smallmouth-bass']);
+    const pack = writeSpeciesPack();
+    const regionId = (env.db.prepare('SELECT region_id FROM streams WHERE id = ?').get('watauga-river') as { region_id: string }).region_id;
+
+    // No row at all → temp + spawn only (0.7 / 0.3).
+    insertReading(24);
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    let smallmouth = readSmallmouth();
+    expect(smallmouth.activity.components.map((c) => c.weight).sort()).toEqual([0.3, 0.7]);
+    expect(smallmouth.activity.components.some((c) => c.factor === 'pressure-trend')).toBe(false);
+
+    // Stale row (4 h old observation) → honestly omitted, weights stay normalized.
+    env.db.prepare('DELETE FROM region_pressure').run();
+    env.db
+      .prepare(
+        `INSERT INTO region_pressure (region_id, observed_at, retrieved_at, pressure_hpa, trend_hpa_3h, trend_direction, station)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .run(regionId, new Date(NOW_MS - 240 * 60_000).toISOString(), NOW.toISOString(), 1014.5, -2.5, 'falling', 'KTRI');
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    smallmouth = readSmallmouth();
+    expect(smallmouth.activity.components.some((c) => c.factor === 'pressure-trend')).toBe(false);
+    const weightSum = smallmouth.activity.components.reduce((s, c) => s + c.weight, 0);
+    expect(Math.abs(weightSum - 1)).toBeLessThanOrEqual(0.01);
+  }, 30_000);
+
   it('emits nothing when no water has targetSpecies (honest absence)', () => {
     const pack = writeSpeciesPack();
     const result = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });

@@ -29,7 +29,7 @@ import type { Db } from '../db.js';
 import { latestReadings } from '../ingest/usgs.js';
 import { jobHealthy } from '../jobs/run.js';
 import { writeJsonAtomic } from '../lib/jsonFile.js';
-import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
+import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type PressureInfo, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
 
 export interface BuildOptions {
   db: Db;
@@ -215,7 +215,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   // assessed:false row instead of a guess. Live activity carries exactly one
   // factor today (water temperature); flow-trend/pressure/spawn join as their
   // sources land (F8/F9).
-  const fishabilityWaters = emitFishability({ streams, readings, v1Dir, packDir: opts.contentPackDir, now, files, warnings });
+  const fishabilityWaters = emitFishability(db, { streams, readings, v1Dir, packDir: opts.contentPackDir, now, files, warnings });
 
   // ── v1/stocking/{state}.json (StockingEvent[]) ─────────────────────────────
   const stockingByState: Record<string, number> = {};
@@ -400,6 +400,7 @@ function readPackEntities<T>(path: string, key: string, schema: { parse: (v: unk
  * prune files for waters that no longer have any. Returns the waters emitted.
  */
 function emitFishability(
+  db: Db,
   ctx: {
     streams: Stream[];
     readings: ReturnType<typeof latestReadings>;
@@ -436,11 +437,34 @@ function emitFishability(
   }
 
   const fishDir = join(ctx.v1Dir, 'fishability');
+  // F8 area pressure: fresh rows only at read time (the provider refuses stale
+  // rows on write, but time passes between jobs — re-checked in the emitter).
+  const pressureByRegion = new Map<string, PressureInfo>();
+  try {
+    const rows = db.prepare('SELECT region_id, observed_at, pressure_hpa, trend_hpa_3h, station FROM region_pressure').all() as {
+      region_id: string;
+      observed_at: string;
+      pressure_hpa: number;
+      trend_hpa_3h: number | null;
+      station: string;
+    }[];
+    for (const r of rows) {
+      if (r.trend_hpa_3h === null) continue; // no derivable trend — no component
+      pressureByRegion.set(r.region_id, {
+        deltaHpa: r.trend_hpa_3h,
+        station: r.station,
+        observedAt: r.observed_at,
+      });
+    }
+  } catch {
+    // Table missing (pre-009 DB) — pressure is honestly absent.
+  }
+
   let emitted = 0;
   for (const stream of scoring) {
     const streamReadings =
       stream.gaugeIds.length > 0 ? ctx.readings.filter((r) => stream.gaugeIds.includes(r.gaugeId)) : [];
-    const snapshot = buildFishabilitySnapshot(stream, streamReadings, bandsBySpecies, ctx.now.getTime(), spawnBySpecies);
+    const snapshot = buildFishabilitySnapshot(stream, streamReadings, bandsBySpecies, ctx.now.getTime(), spawnBySpecies, pressureByRegion);
     const p = join(fishDir, `${stream.id}.json`);
     writeJsonAtomic(p, snapshot);
     ctx.files.push(p);

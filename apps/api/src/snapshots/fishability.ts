@@ -15,6 +15,7 @@ import {
   type SpawnThresholds,
   type Stream,
 } from '@trout/contracts';
+import { PRESSURE_STALE_MINUTES } from '../evidence/nws-provider.js';
 
 /**
  * F5 fishability emission (contract v2, ADR 0007): per-water snapshots at
@@ -114,10 +115,11 @@ export function temperatureEvidenceUrl(gaugeId: string): string | null {
 /**
  * Build one water's snapshot. `readings` are the stream's own gauge readings
  * (the same slice conditions are scored from); `bandsBySpecies` and
- * `spawnBySpecies` carry only species with scoreable, sourced values. Every
- * targetSpecies the water names gets an entry — scoreable species scored, the
- * rest an honest assessed:false row ("no cited bands yet"), never a fabricated
- * number.
+ * `spawnBySpecies` carry only species with scoreable, sourced values;
+ * `pressureByRegion` carries fresh F8 area-pressure rows keyed by regionId.
+ * Every targetSpecies the water names gets an entry — scoreable species
+ * scored, the rest an honest assessed:false row ("no cited bands yet"), never
+ * a fabricated number.
  */
 export function buildFishabilitySnapshot(
   stream: Stream,
@@ -125,6 +127,7 @@ export function buildFishabilitySnapshot(
   bandsBySpecies: ReadonlyMap<SpeciesKey, SpeciesComfortBands>,
   nowMs: number,
   spawnBySpecies: ReadonlyMap<SpeciesKey, SpawnInfo> = new Map(),
+  pressureByRegion: ReadonlyMap<string, PressureInfo> = new Map(),
 ): FishabilitySnapshot {
   const target = stream.targetSpecies ?? [];
   const bySpecies: FishabilitySnapshot['bySpecies'] = {};
@@ -140,7 +143,14 @@ export function buildFishabilitySnapshot(
     const comfort = scoreFishability(readings, species, bands, nowMs);
     bySpecies[species] = {
       comfort,
-      activity: activityFor(readings, comfort, species, spawnBySpecies.get(species) ?? null),
+      activity: activityFor(
+        readings,
+        comfort,
+        species,
+        spawnBySpecies.get(species) ?? null,
+        pressureByRegion.get(stream.regionId) ?? null,
+        nowMs,
+      ),
     };
   }
   return FishabilitySnapshotSchema.parse({
@@ -160,18 +170,32 @@ function cannotAssess(species: SpeciesKey): FishabilityScore {
   };
 }
 
+/** Fresh F8 area-pressure row for a region (only rows with a derivable trend). */
+export interface PressureInfo {
+  /** latest − ~3 h baseline, hPa (a number — null-trend rows are omitted upstream). */
+  deltaHpa: number;
+  station: string;
+  observedAt: string;
+}
+
 /**
  * Activity assembly (weights always sum to exactly 1):
- *   water-temperature alone                          → 1.0
- *   water-temperature + spawn-state (F9)             → 0.7 / 0.3
- * Both components derive from the SAME fresh temperature observation the
+ *   water-temperature only                            → 1.0
+ *   + spawn-state (F9)                                → 0.7 / 0.3
+ *   + pressure-trend (F8)                             → 0.8 / 0.2
+ *   + both                                            → 0.6 / 0.25 / 0.15
+ * All components derive from the SAME fresh temperature observation the
  * comfort row cites (cross-checked below) — no assessment, no components.
+ * The pressure component reflects the REGION's station trend (area-level:
+ * the label says so), never a per-water claim.
  */
 function activityFor(
   readings: GaugeReading[],
   comfort: FishabilityScore,
   species: SpeciesKey,
   spawn: SpawnInfo | null,
+  pressure: PressureInfo | null,
+  nowMs: number,
 ): { total: number; components: ActivityComponent[]; spawnState?: SpawnState } {
   if (!comfort.assessed || !comfort.freshness) return { total: 0, components: [] };
   const byAge = [...readings].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
@@ -186,42 +210,55 @@ function activityFor(
   const evidenceUrl = temperatureEvidenceUrl(tempReading.gaugeId);
   if (!evidenceUrl) return { total: 0, components: [] };
 
+  // A stored pressure row ages like any observation: past the provider's
+  // staleness window it stops being area context (T1-6 discipline).
+  const pressureFresh =
+    pressure !== null && nowMs - Date.parse(pressure.observedAt) <= PRESSURE_STALE_MINUTES * 60_000;
+
   const speciesName = species.replaceAll('-', ' ');
   const components: ActivityComponent[] = [];
   let spawnState: SpawnState | undefined;
+
+  const tempWeight = spawn ? (pressureFresh ? 0.6 : 0.7) : pressureFresh ? 0.8 : 1;
+  components.push(
+    component({
+      factor: 'water-temperature',
+      value: comfort.value,
+      weight: tempWeight,
+      evidenceUrl,
+      confidence: 'measured',
+      label: 'Water temperature',
+    }),
+  );
 
   if (spawn) {
     const state = spawnStateFor(tempC, spawn.thresholds);
     spawnState = state;
     components.push(
       component({
-        factor: 'water-temperature',
-        value: comfort.value,
-        weight: 0.7,
-        evidenceUrl,
-        confidence: 'measured',
-        label: 'Water temperature',
-      }),
-    );
-    components.push(
-      component({
         factor: 'spawn-state',
         value: spawnStateValue(state),
-        weight: 0.3,
+        weight: pressureFresh ? 0.25 : 0.3,
         evidenceUrl: spawn.evidenceUrl,
         confidence: 'derived',
         label: spawnStateLabel(state, speciesName),
       }),
     );
-  } else {
+  }
+
+  if (pressureFresh && pressure) {
+    // Falling pressure → positive (fish feed ahead of fronts); a hard rise →
+    // negative. 10 value-points per hPa is the normalization (documented in
+    // the report; F2's per-species pressure sensitivity is still needs-source).
+    const value = Math.round(Math.min(100, Math.max(0, 50 - 10 * pressure.deltaHpa)));
     components.push(
       component({
-        factor: 'water-temperature',
-        value: comfort.value,
-        weight: 1,
-        evidenceUrl,
-        confidence: 'measured',
-        label: 'Water temperature',
+        factor: 'pressure-trend',
+        value,
+        weight: spawn ? 0.15 : 0.2,
+        evidenceUrl: `https://www.weather.gov/wrh/timeseries?site=${encodeURIComponent(pressure.station)}`,
+        confidence: 'derived',
+        label: 'Area pressure trend (nearby regional station, not this water)',
       }),
     );
   }
