@@ -101,9 +101,71 @@ disk) has enormous headroom against the nightly 03:30 schedule.
 now demonstrated end-to-end on the exact production code path (T1-12's node fallback)
 with schema, recency, and parity evidence.
 
+### TASK 3 — infra closeout
+
+**RUNBOOK §9 vs scripts (drift found and fixed this stage):**
+- RUNBOOK claimed the archive is `backups/snapshots-last-good.tar.gz` — actually a
+  node-copied DIRECTORY (`snapshot-io.mjs`; tar doesn't exist on the server, which is
+  the whole point of the portable-shell constraint). Fixed.
+- RUNBOOK called the watchdog an "hourly loop" — `install-schedules.sh` registers it
+  every 15 minutes (`schtasks /SC MINUTE /MO 15`). Fixed.
+- The zero-touch-updates section now documents T0-2's retry semantics: HEAD==origin is
+  a no-op only when `backups/last-good-rev` matches (the last deploy of that revision
+  verified green); a FAILED deploy is retried on the next poll.
+- The backup-task guidance referenced a hardcoded user path (`/c/Users/Benjamin/…`);
+  replaced with the installer (which now registers the task) plus a generic manual form.
+- `install-schedules.sh` header claimed "verify/restore need only bash+curl" — curl is
+  exactly what the server lacks; verification is a single node process. Fixed, and the
+  installer now registers a fourth task: `trout-db-backup` daily 03:30 (aligning it
+  with RUNBOOK §5, which previously required manual creation). `--dry-run` verified:
+  watchdog */15, refresh-data hourly, autoupdate hourly, db-backup daily 03:30.
+- `verify-site.sh` (T0-3 state) matches the RUNBOOK hardening section: sends
+  `WATCHDOG_TOKEN` when set, probes the public `/v1/streams` contract, not the blocked
+  file. `deploy.sh`/`autoupdate.sh` match their documented behavior (archive before
+  first mutation, EXIT-trap rollback, last-good-rev, retry-on-failure).
+
+**schtasks guidance:** accurate after the fixes above — four tasks, all four registered
+by the one idempotent installer (SYSTEM account; env injected per task via
+`runtime-env.sh`; the autoupdate task goes through the PowerShell wrapper
+`update-trout.ps1` as before).
+
+**Public verification (post-autoupdate):** `bash infra/verify-site.sh --url
+https://trout.tntechclimb.com --deep` → **ALL SURFACES GREEN on attempt 1** —
+/healthz ok:true (conditions healthy, 146 records, 31 assessed, fetchedAt fresh),
+/contract /v1/streams 146 rows, every /v1/hatch/<region>/<month>.json for all regions
+and months, /content/*, stocking, shops, reports. **The Release 3 deploy landed clean.**
+
+**Findings recorded for the owner:**
+1. **`WATCHDOG_TOKEN` is not configured in the production service environment** —
+   `/healthz` answered 200 `ok:true` without any token from this probe. The hardening
+   code is deployed but inert. Owner action (RUNBOOK §9): set `WATCHDOG_TOKEN` in the
+   WinSW `TroutSite` service env AND the scheduled-task environments, restart the
+   service, then re-run the verifier with the token set.
+2. Fishability data flow: origin/main gained Session B's F3 `targetSpecies` authoring
+   (39 stream YAMLs) AFTER the release this probe confirmed; production's hourly
+   autoupdate carries it (seed → DB → snapshot → `/v1/fishability/*.json`) with no
+   further changes needed — the emission machinery is fixture-proven end to end
+   (Stage 3 + Stage 4) and the restore drill verified the `target_species` round trip.
+   A follow-up probe after the next autoupdate should show nonzero waters with
+   `targetSpecies` in `/v1/streams` and fishability files at their ENDPOINTS URLs.
+   Follow-up probe (~1 h after the first): production still serving the 17:46:53Z
+   snapshot (0 targetSpecies) — the hourly autoupdate/refresh had not yet fired with
+   the F3 commit; in-flight by design, nothing broken. Re-check: nonzero
+   `targetSpecies` in `/v1/streams` is the success signal.
+
 ## Verification
 
-(gates per task recorded here)
+- TASK 1: api build ✓, api tests **199/199** ✓ (adds the T2-47 guard regression test),
+  api lint ✓; `pnpm -r lint` clean.
+- TASK 2: drill RESULT PASS (see table); api suite unaffected (no code change — drill
+  script ran from /tmp, scratch cleaned).
+- TASK 3: `bash -n install-schedules.sh` ✓; `install-schedules.sh --dry-run` lists all
+  four tasks ✓; public deep verification ALL GREEN on attempt 1 ✓.
+- Final (branch rebased onto origin/main `75ec084` — B's F3 data — before closeout):
+  `pnpm -r lint` ✓; api build ✓; api tests 199/199 ✓; workspace build green on the
+  base (verified at setup and in Stage 4's closeout state).
+- Branch hygiene: rebased onto moved main with `--force-with-lease` push; working tree
+  clean; never merged to main; nothing deployed by hand.
 
 ## Blockers
 
