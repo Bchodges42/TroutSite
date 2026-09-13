@@ -71,3 +71,15 @@ test('stocking browser filters by county and species, newest first', async ({ pa
   await page.getByLabel('County', { exact: true }).selectOption('Polk');
   await expect(page.getByText(/Hiwassee River/).first()).toBeVisible();
 });
+
+test('T2-27 — shop report photos render on /shops from the same-origin fixture', async ({
+  page,
+}) => {
+  await page.goto('/shops');
+  await expect(page.getByRole('heading', { name: /Shops/i })).toBeVisible();
+  const photo = page.locator('img.report-photo');
+  await expect(photo.first()).toBeVisible();
+  // Same-origin fixture asset — the privacy audit stays green (zero
+  // cross-origin requests) while the photo path is exercised end-to-end.
+  await expect(photo.first()).toHaveAttribute('src', '/img/report-1.jpg');
+});
