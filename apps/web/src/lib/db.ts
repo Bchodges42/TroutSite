@@ -43,8 +43,9 @@ export interface SettingsRecord {
    *  the water's cataloged species fishability. The map's ?species= URL param
    *  overrides this per link (shareable views). */
   speciesMode: 'trout' | 'all';
-  /** F6 all-fish focus species ('' = no focus — honest labels everywhere). */
-  speciesFocus: '';
+  /** F6 all-fish focus species ('' = no focus — honest labels everywhere;
+   *  a SpeciesKey pins the species across map, lists, detail, and drawer). */
+  speciesFocus: string;
   reduceMotion: boolean;
   // T2-33: `defaultState` removed — the setting silently emptied every
   // state-scoped page when changed. Tennessee is the only served state.

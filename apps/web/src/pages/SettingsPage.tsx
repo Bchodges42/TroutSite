@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card } from '@trout/ui';
 import { useSettingsContext } from '../lib/settings';
+import { SPECIES_LABELS } from '../lib/fishability';
 import { clearCachedSnapshots } from '../lib/db';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { useTheme } from '../theme/ThemeProvider';
@@ -114,6 +115,30 @@ export function SettingsPage() {
             </button>
           ))}
         </div>
+        {settings.speciesMode === 'all' && (
+          <label className="mt-3 block">
+            <span className="block text-sm font-bold">Fishability species</span>
+            <select
+              className="focus-ring mt-1 min-h-[44px] w-full max-w-xs rounded-lg border px-3"
+              style={{ borderColor: 'var(--trout-color-border)' }}
+              value={settings.speciesFocus}
+              onChange={(e) => update({ speciesFocus: e.target.value })}
+              aria-label="Fishability species"
+              data-testid="settings-species-focus"
+            >
+              <option value="">Water's cataloged species (auto)</option>
+              {(Object.keys(SPECIES_LABELS) as Array<keyof typeof SPECIES_LABELS>).map((sp) => (
+                <option key={sp} value={sp}>
+                  {SPECIES_LABELS[sp]}
+                </option>
+              ))}
+            </select>
+            <span className="page-subtitle mt-1 block">
+              Used on waters whose snapshots carry this species; waters without it stay
+              unassessed.
+            </span>
+          </label>
+        )}
         <p className="page-subtitle mt-2">
           {settings.speciesMode === 'trout'
             ? 'Trout condition scores on trout waters; warmwater waters stay listed but unscored.'

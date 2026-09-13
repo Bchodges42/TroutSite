@@ -121,9 +121,8 @@ function ActivityBreakdown({ activity }: { activity: { total: number; components
  * the water has no snapshot/score for the focus species.
  */
 export function FishabilityCard({ streamId, compact = false }: { streamId: string; compact?: boolean }) {
-  const { settings } = useSettingsContext();
-  const [params] = useSearchParams();
-  const focus = params.get('focus') as SpeciesKey | null;
+  const { settings, update: updateSettings } = useSettingsContext();
+  const [params, setParams] = useSearchParams();
   const query = useFishabilityForWater(streamId);
   const snap = query.data?.data;
 
@@ -131,6 +130,29 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
   const mode = params.get('species') === 'all' || params.get('species') === 'trout'
     ? params.get('species')
     : settings.speciesMode;
+  // F6 focus wiring hotfix: the focus species comes from the shareable
+  // ?focus= param, else the persisted setting, else the first species the
+  // snapshot actually carries — the card shows something useful immediately
+  // instead of requiring a URL param nothing in the app ever set.
+  const urlFocus = params.get('focus') as SpeciesKey | null;
+  const snapSpecies = snap ? (Object.keys(snap.bySpecies) as SpeciesKey[]) : [];
+  const preferred = urlFocus ?? ((settings.speciesFocus || null) as SpeciesKey | null);
+  // A preferred species this water's snapshot doesn't carry falls back to the
+  // first carried species — the card renders what the water actually has.
+  const focus: SpeciesKey | null =
+    (preferred && snapSpecies.includes(preferred) ? preferred : snapSpecies[0]) ?? null;
+
+  const chooseFocus = (species: SpeciesKey) => {
+    // Persist site-wide (map colors, lists, conditions/browse follow) and keep
+    // the URL shareable: replace any ?focus= override with the new choice.
+    updateSettings({ speciesFocus: species });
+    if (params.has('focus')) {
+      const next = new URLSearchParams(params);
+      next.set('focus', species);
+      setParams(next, { replace: true });
+    }
+  };
+
   if (mode !== 'all' || !focus || !snap) return null;
   const scored = snap.bySpecies[focus];
   if (!scored) return null;
@@ -152,6 +174,21 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
             {label}
           </h3>
         </div>
+        {snapSpecies.length > 1 && (
+          <select
+            className="filter-select"
+            aria-label="Fishability species"
+            value={focus}
+            onChange={(e) => chooseFocus(e.target.value as SpeciesKey)}
+            data-testid="fishability-species-picker"
+          >
+            {snapSpecies.map((sp) => (
+              <option key={sp} value={sp}>
+                {SPECIES_LABELS[sp]}
+              </option>
+            ))}
+          </select>
+        )}
         {scored.comfort.assessed ? (
           <span
             className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-extrabold"
