@@ -1,7 +1,9 @@
 # Trout accuracy campaign — orchestrator audit
 
-**Date:** 2026-09-13  
-**Audited revision:** `origin/main` at `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7`  
+**Date:** 2026-09-13
+
+**Audited revision:** `origin/main` at `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7`
+
 **Scope:** repository and public upstream research only; no production access; no code,
 content, configuration, or deployment changes
 
