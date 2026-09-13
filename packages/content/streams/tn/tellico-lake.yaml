@@ -6,6 +6,14 @@ regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount
   counties, impounded by Tellico Dam at Lenoir City. Receives the Little
@@ -13,6 +21,7 @@ notes: >-
   River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake
   through the dam and the connecting canal. TWRA maps the reservoir at
   15,788 ac. Aliases: Tellico Reservoir.
+  TWRA's Tellico Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 officialSources:
   - label: TVA — Tellico Reservoir lake levels
     url: https://www.tva.com/environment/lake-levels
@@ -20,3 +29,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Tellico Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html

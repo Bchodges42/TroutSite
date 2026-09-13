@@ -7,6 +7,14 @@ gaugeIds: []
 stockingProgram: false
 species: warmwater
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   TVA reservoir on the Holston River northeast of Knoxville across Grainger,
   Hamblen, Hawkins, and Jefferson counties, impounded by Cherokee Dam
@@ -14,6 +22,7 @@ notes: >-
   River main stem (holston-river); its dam releases the Holston Cherokee
   tailwater that runs to Fort Loudoun Lake. TWRA maps the pool at 27,029 ac;
   TVA at 30,300 ac at full pool.
+  TWRA's Cherokee Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03493510
     url: https://waterdata.usgs.gov/monitoring-location/03493510/
@@ -23,3 +32,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Cherokee Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html
