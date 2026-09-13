@@ -105,6 +105,15 @@ describe('secondary-origin static server path safety', () => {
  * (honest, missing, or lying Content-Length) and a bounded body deadline, and
  * a rejected request never reaches the upstream API.
  */
+/** Terminal-transport outcomes a rejected oversized body can surface as: the
+ *  proxy's socket destroy reaches the client as ECONNRESET, EPIPE (a write into
+ *  the already-destroyed socket), or Node's "socket hang up" — all the same
+ *  event, observed from different sides of the race. */
+function isTerminalReset(err: NodeJS.ErrnoException): boolean {
+  if (err.code === 'ECONNRESET' || err.code === 'EPIPE') return true;
+  return /socket hang up|read ECONNRESET|aborted/i.test(String(err.message ?? ''));
+}
+
 describe('portal proxy body limits (T2-45)', () => {
   let tempDir: string | undefined;
   let child: ChildProcessWithoutNullStreams | undefined;
@@ -206,7 +215,10 @@ describe('portal proxy body limits (T2-45)', () => {
       );
       req.on('error', (err) => {
         // The proxy destroys the socket after rejecting; the response may or
-        // may not have been delivered before destruction.
+        // may not have been delivered before destruction. Stop the pump first:
+        // writes into a destroyed socket surface as secondary errors that would
+        // otherwise race the real outcome (observed once under full-suite load).
+        clearInterval(pump);
         rejectRaw(err);
       });
       const total = opts.bodyBytes ?? 0;
@@ -249,7 +261,7 @@ describe('portal proxy body limits (T2-45)', () => {
     expect(upstream!.seen).toHaveLength(0);
   }, 30_000);
 
-  it('caps a lying Content-Length: 413 or a parser RST, never upstream traffic, never a hang', async () => {
+  it('caps a lying Content-Length: 413 or a terminal RST, never upstream traffic, never a hang', async () => {
     // A body LONGER than the declared content-length is an HTTP protocol
     // violation Node's own parser handles by resetting the socket — sometimes
     // before our handler can deliver its 413. Either way the proxy must not
@@ -257,7 +269,7 @@ describe('portal proxy body limits (T2-45)', () => {
     const port = await startProxy({ maxBodyBytes: 128 * 1024 });
     const outcome = await rawRequest(port, { headers: { 'content-length': '10' }, bodyBytes: 512 * 1024 }).then(
       (r) => ({ status: r.status }),
-      (err: NodeJS.ErrnoException) => ({ status: err.code === 'ECONNRESET' ? 'reset' : 'other-error' }),
+      (err: NodeJS.ErrnoException) => ({ status: isTerminalReset(err) ? 'reset' : `other-error:${String(err.code ?? err.message)}` }),
     );
     expect([413, 'reset']).toContain(outcome.status);
     expect(upstream!.seen).toHaveLength(0);
