@@ -12,6 +12,8 @@ idealFlow:
   - min: 10
     max: 80
     unit: cfs
+targetSpecies:
+  - smallmouth-bass
 notes: Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA lists spring
   stocking. No gauge.
 officialSources:

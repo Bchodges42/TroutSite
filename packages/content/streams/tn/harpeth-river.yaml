@@ -14,6 +14,8 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
+targetSpecies:
+  - smallmouth-bass
 notes: Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches
   near Franklin with catchable trout each December (the winter put-and-take season runs
   December–February; check the TWRA schedule for the current window). Two gauges bracket the
