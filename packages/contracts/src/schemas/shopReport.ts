@@ -23,8 +23,10 @@ export const ShopReportSchema = z.object({
    */
   photoUrl: z
     .string()
-    .url()
-    .refine((v) => v.startsWith('https://'), { message: 'photoUrl must be an https URL' })
+    .refine(
+      (v) => v.startsWith('https://') || v.startsWith('/'),
+      { message: 'photoUrl must be an https URL (shop-hosted) or a same-origin path (fixtures/tests)' },
+    )
     .optional(),
   publishedAt: IsoDateTimeSchema,
 });

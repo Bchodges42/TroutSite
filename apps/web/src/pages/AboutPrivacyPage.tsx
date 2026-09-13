@@ -18,13 +18,15 @@ export function AboutPrivacyPage() {
             into. You are not a user profile to us — you are not on the server at all.
           </li>
           <li>
-            <Chip tone="good">No cookies, no trackers</Chip> The app makes <strong>zero</strong>{' '}
-            third-party network requests by default. Everything it fetches comes from its own
-            origin. There are no ads and no embeds. If aggregate traffic measurement is switched on
-            for the live site, it runs on Cloudflare Web Analytics — cookie-free, no fingerprinting,
-            no cross-site tracking, no personal data — and this page is the place it is disclosed.
-            No analytics code ships in this build unless the operator enabled it; the offline
-            install makes no third-party requests either way.
+            <Chip tone="good">No cookies, no trackers</Chip> The app makes{' '}
+            <strong>no third-party trackers or analytics</strong> requests by default, and has no
+            ads and no embeds. Everything else it fetches comes from its own origin, with one
+            exception by design: shop report photos load from the shop's own attributed site, so
+            that host sees the photo request. If aggregate traffic measurement is switched on for
+            the live site, it runs on Cloudflare Web Analytics — cookie-free, no fingerprinting, no
+            cross-site tracking, no personal data — and this page is the place it is disclosed. No
+            analytics code ships in this build unless the operator enabled it; the offline install
+            makes no third-party requests either way.
           </li>
           <li>
             <Chip tone="good">Location never leaves the device</Chip> "Near me" uses your browser's

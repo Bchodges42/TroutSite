@@ -79,6 +79,16 @@ describe('T2-27 — shop report photos render with attribution', () => {
     expect(card?.textContent).toContain('Creek Side Anglers');
   });
 
+  it('accepts same-origin photo paths (fixtures/tests) per the schema', async () => {
+    const { ShopReportSchema } = await import('@trout/contracts');
+    expect(
+      ShopReportSchema.shape.photoUrl.safeParse('/img/report-1.jpg').success,
+    ).toBe(true);
+    expect(
+      ShopReportSchema.shape.photoUrl.safeParse('http://insecure.example.com/x.jpg').success,
+    ).toBe(false);
+  });
+
   it('reports without a photo render no image', async () => {
     renderShops();
     const noPhoto = await screen.findByText('No photo report.');
