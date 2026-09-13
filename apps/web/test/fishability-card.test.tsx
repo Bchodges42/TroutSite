@@ -138,3 +138,30 @@ describe('FishabilityCard', () => {
     expect(c2.container.querySelector('.fishability-card')).toBeNull();
   });
 });
+
+/** F11 — the solar windows card mounts on the detail surface. */
+import { SolarWindowsCard } from '../src/components/SolarWindowsCard';
+
+describe('SolarWindowsCard', () => {
+  it('renders today’s dawn and dusk windows for a water with coordinates', () => {
+    // caney-fork-river has an anchor in the bundled river index.
+    const { container } = render(
+      <MemoryRouter>
+        <SolarWindowsCard streamId="caney-fork-river" />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText(/Today's windows/i)).toBeInTheDocument();
+    expect(container.textContent).toMatch(/Dawn \d/);
+    expect(container.textContent).toMatch(/Dusk \d/);
+    expect(container.textContent).toMatch(/Heuristic/i);
+  });
+
+  it('renders nothing for a water without bundled coordinates', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <SolarWindowsCard streamId="does-not-exist" />
+      </MemoryRouter>,
+    );
+    expect(container.querySelector('.solar-windows')).toBeNull();
+  });
+});
