@@ -48,7 +48,8 @@ export function RiverMapPage() {
   // Focus species: the map's shareable ?focus= override wins; otherwise the
   // persisted picker choice drives every all-fish surface.
   const focusSpecies =
-    (params.get('focus') as SpeciesKey | null) ?? (settings.speciesFocus || null);
+    (params.get('focus') as SpeciesKey | null) ??
+    ((settings.speciesFocus || null) as SpeciesKey | null);
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
   // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
