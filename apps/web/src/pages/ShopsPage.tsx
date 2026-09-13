@@ -93,6 +93,15 @@ function ReportCard({ report, patternName }: { report: ShopReport; patternName: 
           )}
         </div>
         <p className="mt-2 text-sm">{report.body}</p>
+        {report.photoUrl && (
+          <img
+            src={report.photoUrl}
+            alt={`Photo from ${report.shopName}'s report`}
+            loading="lazy"
+            className="report-photo mt-2 w-full rounded-lg"
+            style={{ border: '1px solid var(--ui-border)' }}
+          />
+        )}
         {report.hotPatterns.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {report.hotPatterns.map((hp) => (

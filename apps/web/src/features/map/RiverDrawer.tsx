@@ -597,6 +597,15 @@ function ReportsTab({ feature }: { feature: RiverMapFeature; error?: boolean }) 
       <p className="eyebrow">{report.date}</p>
       <h3>{report.shopName}</h3>
       <p>{report.body}</p>
+      {report.photoUrl && (
+        <img
+          src={report.photoUrl}
+          alt={`Photo from ${report.shopName}'s report`}
+          loading="lazy"
+          className="report-photo mt-2 w-full rounded-lg"
+          style={{ border: '1px solid var(--ui-border)' }}
+        />
+      )}
       <a className="text-action" href={report.attributionUrl} target="_blank" rel="noreferrer">
         Read the attributed report ↗
       </a>

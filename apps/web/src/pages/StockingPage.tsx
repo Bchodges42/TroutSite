@@ -147,13 +147,24 @@ export function StockingPage() {
     }, { replace: true });
   };
 
-  const stockingQuery = useSnapshotQuery(
+  // T2-26: the default view reads the small rolling file; the full history
+  // (which grows forever) is fetched only when "All dates" or "show history"
+  // asks for it. The rolling file is also kept as a fallback for the 30-day
+  // window, which it always covers.
+  const needsFullHistory = expanded || days === WINDOW_DAYS[2];
+  const fullQuery = useSnapshotQuery(
     snapshotUrls.stocking(stateId),
     StockingEventSchema.array(),
     60 * 24,
-    true,
+    needsFullHistory,
   );
-
+  const recentQuery = useSnapshotQuery(
+    snapshotUrls.stockingRecent(stateId),
+    StockingEventSchema.array(),
+    60 * 24,
+    !needsFullHistory,
+  );
+  const stockingQuery = needsFullHistory ? fullQuery : recentQuery;
   const events = useMemo(() => stockingQuery.data?.data ?? [], [stockingQuery.data]);
   const counties = useMemo(
     () => Array.from(new Set(events.map((e) => e.county).filter((c): c is string => Boolean(c)))).sort(),

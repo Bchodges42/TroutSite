@@ -2546,6 +2546,11 @@ html.reduce-motion *::after {
   cursor: pointer;
   list-style: revert;
 }
+.report-photo {
+  max-height: 320px;
+  object-fit: cover;
+}
+
 .browse-row-dense {
   min-height: 0;
   padding-top: 8px;

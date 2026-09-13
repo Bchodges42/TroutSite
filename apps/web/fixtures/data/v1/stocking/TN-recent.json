@@ -1,0 +1,57 @@
+[
+  {
+    "id": "twra-putnam-1",
+    "stateId": "TN",
+    "streamName": "Caney Fork River",
+    "county": "Putnam",
+    "species": "rainbow",
+    "count": 5200,
+    "date": "2026-09-05",
+    "sourceUrl": "https://www.tn.gov/twra/fishing/stocking.html",
+    "fetchedAt": "2026-09-09T00:50:04Z"
+  },
+  {
+    "id": "twra-polk-1",
+    "stateId": "TN",
+    "streamName": "Hiwassee River",
+    "county": "Polk",
+    "species": "rainbow",
+    "count": 4000,
+    "date": "2026-09-04",
+    "sourceUrl": "https://www.tn.gov/twra/fishing/stocking.html",
+    "fetchedAt": "2026-09-09T00:50:04Z"
+  },
+  {
+    "id": "twra-sullivan-1",
+    "stateId": "TN",
+    "streamName": "South Holston River",
+    "county": "Sullivan",
+    "species": "rainbow",
+    "count": 3500,
+    "date": "2026-09-03",
+    "sourceUrl": "https://www.tn.gov/twra/fishing/stocking.html",
+    "fetchedAt": "2026-09-09T00:50:04Z"
+  },
+  {
+    "id": "twra-carter-1",
+    "stateId": "TN",
+    "streamName": "Watauga River",
+    "county": "Carter",
+    "species": "rainbow",
+    "count": 2800,
+    "date": "2026-09-02",
+    "sourceUrl": "https://www.tn.gov/twra/fishing/stocking.html",
+    "fetchedAt": "2026-09-09T00:50:04Z"
+  },
+  {
+    "id": "twra-franklin-1",
+    "stateId": "TN",
+    "streamName": "Elk River",
+    "county": "Franklin",
+    "species": "rainbow",
+    "count": 2100,
+    "date": "2026-09-01",
+    "sourceUrl": "https://www.tn.gov/twra/fishing/stocking.html",
+    "fetchedAt": "2026-09-09T00:50:04Z"
+  }
+]
