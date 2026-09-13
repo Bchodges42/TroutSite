@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { ENDPOINTS, FishabilitySnapshotSchema } from '@trout/contracts';
 import type { FishabilitySnapshot, SpeciesKey, Stream } from '@trout/contracts';
 import { fetchSnapshot, type SnapshotResult } from './snapshots';
-import { resolveUrl } from './endpoints';
 
 /**
  * F6 fishability data (ADR 0007): per-water snapshots at
@@ -22,7 +21,7 @@ export function useFishabilityForWater(streamId: string | undefined) {
     staleTime: FISHABILITY_TTL_MIN * 60_000,
     gcTime: Number.POSITIVE_INFINITY,
     networkMode: 'offlineFirst',
-    retry: 0,
+    retry: 1,
     refetchOnWindowFocus: false,
   });
 }
@@ -49,24 +48,32 @@ export function useFishabilityIndex(
     queryKey: ['fishability-index', key],
     queryFn: async () => {
       const out: Record<string, FishabilitySnapshot> = {};
-      const pool = 6;
-      let cursor = 0;
-      const workers = Array.from({ length: Math.min(pool, ids.length) }, async () => {
-        while (cursor < ids.length) {
-          const id = ids[cursor++]!;
-          try {
-            const res = await fetchSnapshot(
-              resolveUrl(ENDPOINTS.fishabilityForWater(id)),
-              FishabilitySnapshotSchema,
-              FISHABILITY_TTL_MIN,
-            );
-            out[id] = res.data;
-          } catch {
-            /* absent file = not scored; the decision model renders unassessed */
-          }
+      const load = async (id: string): Promise<boolean> => {
+        try {
+          const res = await fetchSnapshot(
+            ENDPOINTS.fishabilityForWater(id),
+            FishabilitySnapshotSchema,
+            FISHABILITY_TTL_MIN,
+          );
+          out[id] = res.data;
+          return true;
+        } catch {
+          // Absent file = not scored (honest unassessed); a transient failure
+          // gets one more pass below (the SW precache can starve first loads).
+          return false;
         }
-      });
-      await Promise.all(workers);
+      };
+      const runPool = async (pending: string[]) => {
+        const pool = 6;
+        let cursor = 0;
+        const workers = Array.from({ length: Math.min(pool, pending.length) }, async () => {
+          while (cursor < pending.length) await load(pending[cursor++]!);
+        });
+        await Promise.all(workers);
+      };
+      await runPool(ids);
+      const missed = ids.filter((id) => !out[id]);
+      if (missed.length) await runPool(missed);
       return out;
     },
     enabled: enabled && Boolean(focus) && ids.length > 0,

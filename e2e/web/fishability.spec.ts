@@ -1,0 +1,80 @@
+import { test, expect } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+
+/**
+ * F6 fishability UI (fixture data): the fixture catalog marks warmwater waters
+ * with targetSpecies and the fixture tree ships per-water fishability
+ * snapshots (dist/v1/fishability/<id>.json). These specs pin the species-mode
+ * setting, the focus picker, and the comfort-only presentation end-to-end.
+ *
+ * The catalog is served via page.route from the fixture file: the static
+ * server resolves '/v1/streams' to the generated public/v1/streams.json
+ * (gitignored, regenerated from the real content pack — no targetSpecies
+ * until Session B's F3 lands), which would starve the fishability UI.
+ */
+const fixtureCatalog = fileURLToPath(new URL('../../apps/web/fixtures/data/v1/streams', import.meta.url));
+
+test.beforeEach(async ({ page }) => {
+  await page.route('**/v1/streams', async (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: await readFile(fixtureCatalog, 'utf8'),
+    }),
+  );
+});
+
+test('all-fish mode + focus: map rows wear the species fishability', async ({ page }) => {
+  await page.goto('/?species=all&focus=largemouth-bass&atlas=1');
+  await page.waitForSelector('[data-map-ready], [data-map-failed]', { timeout: 25_000 });
+  const row = page.locator('.water-row', { hasText: 'Harpeth River' }).first();
+  // The fixture snapshot scores Harpeth largemouth bass 84 — Good. The index
+  // fetch (6 per-water files) lands after first paint under the SW precache.
+  await expect(row.locator('.status-text')).toHaveText('Good', { timeout: 15_000 });
+  await expect(row.locator('.water-row-meta small')).toHaveText('84 / 100');
+  // A trout water with no focus-species entry keeps its OWN trout-condition
+  // metric (fixture: Doe River scores Poor) — no fishability borrow.
+  const doe = page.locator('.water-row', { hasText: 'Doe River' }).first();
+  await expect(doe.locator('.status-text')).toHaveText('Poor');
+});
+
+test('picker writes the shareable ?focus= param and persists the choice', async ({ page }) => {
+  await page.goto('/?atlas=1&species=all');
+  await page.waitForSelector('[data-map-ready], [data-map-failed]', { timeout: 25_000 });
+  const picker = page.getByTestId('focus-picker');
+  await expect(picker).toContainText('Largemouth bass', { timeout: 15_000 });
+  await picker.selectOption('largemouth-bass');
+  await expect(page).toHaveURL(/focus=largemouth-bass/);
+  // The persisted setting drives the conditions page too.
+  await page.goto('/conditions');
+  await expect(page.getByRole('heading', { name: 'Conditions' })).toBeVisible();
+});
+
+test('detail page shows the comfort-only fishability card', async ({ page }) => {
+  await page.goto('/settings');
+  const allFish = page.getByRole('button', { name: 'All fish' }).first();
+  await allFish.click();
+  await expect(allFish).toHaveAttribute('aria-pressed', 'true');
+  await page.waitForTimeout(300); // let the Dexie write land before navigating
+  await page.goto('/conditions/harpeth-river?focus=largemouth-bass');
+  await expect(page.getByRole('heading', { name: /Harpeth/i })).toBeVisible();
+  const card = page.locator('.fishability-card');
+  await expect(card.getByRole('heading', { name: 'Largemouth bass' })).toBeVisible();
+  await expect(
+    page.locator('[aria-label="Largemouth bass fishability 84 out of 100 — Good"]'),
+  ).toBeVisible();
+  // Comfort only: the activity breakdown is Stage 4 and stays out.
+  await expect(page.getByText(/activity components?/i)).toHaveCount(0);
+});
+
+test('drawer shows the fishability card on an inspected water', async ({ page }) => {
+  await page.goto('/?river=harpeth-river&species=all&focus=largemouth-bass');
+  await page.waitForTimeout(300);
+  await page.waitForSelector('[data-map-ready], [data-map-failed]', { timeout: 25_000 });
+  const inspector = page.locator('#river-inspector');
+  await expect(inspector).toBeVisible();
+  await expect(
+    inspector.locator('[aria-label="Largemouth bass fishability 84 out of 100 — Good"]'),
+  ).toBeVisible();
+});

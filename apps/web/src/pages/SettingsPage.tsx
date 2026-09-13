@@ -101,7 +101,7 @@ export function SettingsPage() {
       <h2 className="section-title">Waters</h2>
       <Card>
         <p className="font-bold">Species mode</p>
-        <div className="mt-2 flex gap-2" role="group" aria-label="Species mode">
+        <div className="mt-2 flex gap-2" role="group" aria-label="Fish mode">
           {(['trout', 'all'] as const).map((mode) => (
             <button
               key={mode}

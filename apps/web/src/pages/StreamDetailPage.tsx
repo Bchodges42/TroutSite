@@ -141,6 +141,9 @@ export function StreamDetailPage() {
           nextExpectedAt={snapshot ? Date.parse(snapshot.nextExpectedUpdate) : null} />
       </div>
 
+      {/* F6: the focus species' fishability card — independent of the trout
+      conditions snapshot; a water can carry one, both, or neither. */}
+      <FishabilityCard streamId={stream.id} />
       {!snapshot ? (
         <div className="mt-6">
           <EmptyState
@@ -207,7 +210,6 @@ export function StreamDetailPage() {
             })()}
           </Card>
 
-          <FishabilityCard streamId={stream.id} />
           <div className="mt-4 flex flex-wrap gap-2">
             <DataBadge
               label="Flow"

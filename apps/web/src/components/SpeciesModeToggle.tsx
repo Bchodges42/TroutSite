@@ -22,7 +22,7 @@ export function SpeciesModeToggle() {
   };
 
   return (
-    <div className="species-mode-toggle" role="group" aria-label="Species mode">
+    <div className="species-mode-toggle" role="group" aria-label="Fish mode">
       {(['trout', 'all'] as const).map((mode) => (
         <button
           key={mode}

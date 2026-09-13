@@ -25,7 +25,11 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
   const query = useFishabilityForWater(streamId);
   const snap = query.data?.data;
 
-  if (settings.speciesMode !== 'all' || !focus || !snap) return null;
+  // Same override rule as the map: the shareable ?species= URL param wins.
+  const mode = params.get('species') === 'all' || params.get('species') === 'trout'
+    ? params.get('species')
+    : settings.speciesMode;
+  if (mode !== 'all' || !focus || !snap) return null;
   const scored = snap.bySpecies[focus];
   if (!scored) return null;
 
