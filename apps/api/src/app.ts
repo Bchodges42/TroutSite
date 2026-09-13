@@ -69,6 +69,18 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     bodyLimit: 128 * 1024,
   });
 
+  // T2-47 (audit GHSA-83w8-p2f5-377r reachability probe): double-slash paths
+  // route differently through @fastify/static 7 and bypass the static mount's
+  // allowedPath guard ('/v1//streams.json' served the blocked implementation
+  // file). No legitimate surface uses '//' or encoded slashes in the path;
+  // reject instead of rewriting (rewriting changes what every later hook sees).
+  app.addHook('onRequest', async (req, reply) => {
+    const path = (req.raw.url ?? '').split('?')[0] ?? '';
+    if (path.includes('//') || /%2f/i.test(path)) {
+      return reply.code(404).send({ error: 'not found' });
+    }
+  });
+
   // T0-1: @fastify/static 7.0.4 (the last Fastify-4 line) answers a conditional
   // HEAD 304 by calling reply.send TWICE — once from its PassThrough flush()
   // with '' and once from the 'finish' listener with the stream. The second
@@ -171,7 +183,10 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
       decorateReply: false,
       // /v1/streams is the frozen contract route. The backing JSON file is an
       // implementation detail and must not become a second public endpoint.
-      allowedPath: (pathname) => pathname !== '/streams.json',
+      // Case-insensitive comparison: on case-insensitive filesystems (NTFS in
+      // production) '/v1/STREAMS.JSON' would otherwise resolve the same file
+      // (T2-47 audit probe).
+      allowedPath: (pathname) => pathname.toLowerCase() !== '/streams.json',
       setHeaders: noStore,
     });
   }

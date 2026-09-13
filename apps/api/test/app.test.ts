@@ -153,4 +153,36 @@ describe('static read path (ADR 0004, integration §12 #10)', () => {
     expect(res.statusCode).toBe(200);
     expect(res.json()).toEqual([]);
   });
+
+  it('holds the allowedPath guard against static route-guard bypass vectors (T2-47)', async () => {
+    // Audit probe (GHSA-83w8-p2f5-377r): '//'-prefixed paths routed differently
+    // through @fastify/static 7 and served the blocked implementation file.
+    app = buildApp({
+      logger: false,
+      webPublicDir: join(dir, 'public'),
+      webDistDir: join(dir, 'dist'),
+    });
+    await app.ready();
+
+    const vectors = [
+      '/v1/streams.json',
+      '/v1/streams.json/',
+      '/v1/./streams.json',
+      '/v1/%2e/streams.json',
+      '/v1//streams.json',
+      '/v1/streams%2ejson',
+      '/v1/STREAMS.JSON',
+      '/v1/streams.json?x=1',
+      '/./v1/streams.json',
+      '/content//taxa.json',
+    ];
+    for (const v of vectors) {
+      const res = await app.inject({ method: 'GET', url: v });
+      expect(res.statusCode, v).not.toBe(200);
+      expect(res.body, v).not.toContain('streams');
+    }
+    // The frozen contract route still answers normally.
+    const ok = await app.inject({ method: 'GET', url: '/v1/streams' });
+    expect(ok.statusCode).toBe(200);
+  });
 });
