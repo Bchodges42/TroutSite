@@ -16,6 +16,7 @@ notes: >-
   TWRA spring-stocked headwaters of the Wolf River that feeds Dale Hollow Reservoir (Obey River
   system, Upper Cumberland) — not to be confused with the West Tennessee Wolf River that runs to
   Memphis. Small riffly water high on the plateau; no gauge this far up.
+  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 2 per day within a 16–21 in protected length range. (see officialSources).
 
 officialSources:
   - label: TWRA — Dale Hollow Reservoir (the impoundment this Wolf River feeds)
@@ -24,3 +25,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html

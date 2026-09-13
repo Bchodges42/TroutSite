@@ -79,8 +79,8 @@ const description =
       <em>water temperature</em> (measured at the gauge),
       <em>flow trend</em> (derived from gauge history),
       <em>area pressure</em> (derived from NWS observations, reported per area — never per water),
-      and <em>spawn state</em> (derived from water temperature crossing the species' cited
-      thresholds).
+      and <em>spawn state</em> (derived from observed water temperature crossing the species' cited
+      thresholds — never from a calendar date; the label says pre-spawn, spawning, or post-spawn).
     </li>
   </ul>
   <p>
@@ -93,8 +93,9 @@ const description =
   </ul>
   <p>
     Factors we deliberately don't score: water clarity and rain-stain (not remotely measurable), and
-    solunar/lunar tables (evidence too weak for a citation culture). Where rain matters we show a
-    plain context note instead of a fake number.
+    solunar/lunar tables (evidence too weak for a citation culture). Where rain matters the app shows
+    a plain context note — "expect stain and rising water" — labeled context only, not part of the
+    score.
   </p>
 
   <h2>Rules the data follows</h2>

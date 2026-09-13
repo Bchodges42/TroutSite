@@ -16,9 +16,12 @@ notes: >-
   A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout
   in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA
   line down to the Norris Lake arm.
+  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03532000
     url: https://waterdata.usgs.gov/monitoring-location/03532000/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html

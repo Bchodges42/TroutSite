@@ -14,6 +14,7 @@ notes: >-
   Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking
   dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the
   Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence.
+  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03465500
@@ -22,3 +23,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html

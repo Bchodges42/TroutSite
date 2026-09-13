@@ -12,9 +12,12 @@ notes: >-
   South Fork Holston tailwaters are separate catalog features (south-holston-river, boone-tailwater, ft-
   patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake lies mid-
   stem, with the river continuing through the pool.
+  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
 
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Statewide fishing regulation exceptions (species rule)
+    url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
