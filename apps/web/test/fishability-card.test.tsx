@@ -32,6 +32,44 @@ const COMPONENTS = [
     label: 'Area pressure falling 2.1 hPa over 3 h',
   },
 ];
+const NORRIS = {
+  streamId: 'norris-lake',
+  fetchedAt: '2026-09-14T12:00:00Z',
+  bySpecies: {
+    crappie: {
+      comfort: {
+        species: 'crappie',
+        value: 54,
+        reasons: ['Temperature sits between the optimal and avoidance bands for crappie'],
+        assessed: true,
+        freshness: { observedAt: '2026-09-14T10:00:00Z', ageMinutes: 45 },
+      },
+      activity: {
+        total: 54,
+        components: [
+          {
+            factor: 'water-temperature',
+            value: 54,
+            contribution: 2.4,
+            weight: 0.6,
+            evidenceUrl: 'https://waterdata.usgs.gov/monitoring-location/03477200',
+            confidence: 'measured',
+            label: 'Water temperature',
+          },
+          {
+            factor: 'pressure-trend',
+            value: 58,
+            contribution: 3.2,
+            weight: 0.4,
+            evidenceUrl: 'https://api.weather.gov/stations/KTPA/observations/latest',
+            confidence: 'derived',
+            label: 'Area pressure steady',
+          },
+        ],
+      },
+    },
+  },
+};
 const SNAPSHOT = {
   streamId: 'w',
   fetchedAt: '2026-09-14T12:00:00Z',
@@ -66,15 +104,19 @@ async function seedSettings(speciesMode: 'trout' | 'all') {
   });
 }
 
-function renderCard(route: string) {
+function renderCard(route: string, streamId = 'w') {
   vi.stubGlobal(
     'fetch',
-    vi.fn(async () =>
-      new Response(JSON.stringify(SNAPSHOT), {
+    vi.fn(async (url: string) => {
+      const body =
+        url.includes('norris-lake')
+          ? NORRIS
+          : SNAPSHOT;
+      return new Response(JSON.stringify(body), {
         status: 200,
         headers: { 'content-type': 'application/json' },
-      }),
-    ) as unknown as typeof fetch,
+      });
+    }) as unknown as typeof fetch,
   );
   const client = new QueryClient({
     defaultOptions: { queries: { networkMode: 'offlineFirst', retry: false } },
@@ -83,7 +125,7 @@ function renderCard(route: string) {
     <QueryClientProvider client={client}>
       <SettingsProvider>
         <MemoryRouter initialEntries={[route]}>
-          <FishabilityCard streamId="w" />
+          <FishabilityCard streamId={streamId} />
         </MemoryRouter>
       </SettingsProvider>
     </QueryClientProvider>,
@@ -112,6 +154,21 @@ describe('FishabilityCard', () => {
     expect(screen.getByLabelText('Confidence: measured')).toBeInTheDocument();
     expect(screen.getByLabelText('Confidence: derived')).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /source/ }).length).toBe(2);
+  });
+
+  it('F12 — shows the rain context note when area pressure is falling, and says it is not scored', async () => {
+    renderCard('/?focus=largemouth-bass');
+    expect(await screen.findByRole('note', { name: 'Rain context note' })).toHaveTextContent(
+      /Recent rain is likely in the area — expect stain and rising water/i,
+    );
+    expect(screen.getByText(/context only, not part of the score/i)).toBeInTheDocument();
+  });
+
+  it('F12 — hides the rain note when area pressure is not falling', async () => {
+    // Norris crappie's fixture pressure is steady/rising (58 > 45 threshold).
+    renderCard('/?focus=crappie', 'norris-lake');
+    expect(await screen.findByText('Crappie')).toBeInTheDocument();
+    expect(screen.queryByRole('note', { name: 'Rain context note' })).toBeNull();
   });
 
   it('renders honest no-activity-data when the outlook is empty — never a zero score', async () => {

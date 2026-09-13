@@ -66,7 +66,7 @@ test('detail page shows the comfort-only fishability card', async ({ page }) => 
   ).toBeVisible();
   // F10: the activity outlook renders as transparent per-factor rows.
   await expect(card.getByText(/Activity outlook: 56 \/ 100/)).toBeVisible();
-  await expect(card.getByText('Area pressure')).toBeVisible();
+  await expect(card.getByText('Area pressure', { exact: true })).toBeVisible();
   await expect(card.getByText('measured')).toBeVisible();
   await expect(card.getByText('derived')).toBeVisible();
   await expect(card.locator('a[href*="api.weather.gov"]')).toBeVisible();

@@ -24,6 +24,32 @@ function rowLabel(component: ActivityComponent): string {
 }
 
 /**
+ * F12: the rain context note. A materially low pressure-trend value (the NWS
+ * area signal, 50 = neutral) is the standard meteorological sign that a wet
+ * system is moving in, so the note says rain is likely and the water may
+ * stain and rise. CONTEXT ONLY — it is never a scored factor, and the note
+ * says so. Hidden until the pipeline carries an area-pressure factor.
+ */
+function RainContextNote({ activity }: { activity: { total: number; components: ActivityComponent[] } }) {
+  const pressure = activity.components.find((c) => c.factor === 'pressure-trend');
+  if (!pressure || pressure.value > 45) return null;
+  return (
+    <p
+      className="mt-2 rounded-lg px-3 py-2 text-sm"
+      style={{ background: 'var(--trout-slate-100)', border: '1px solid var(--ui-border)' }}
+      role="note"
+      aria-label="Rain context note"
+    >
+      Recent rain is likely in the area — expect stain and rising water on
+      rain-fed reaches.{' '}
+      <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+        From area pressure (NWS) — context only, not part of the score.
+      </span>
+    </p>
+  );
+}
+
+/**
  * F10 (stage 4): the transparent activity outlook — one ordered row per
  * factor with its value, its weighted contribution, its source link, and a
  * confidence label. The wording is "activity outlook", never a claim that
@@ -162,6 +188,7 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
           Observed {new Date(scored.comfort.freshness.observedAt).toLocaleString()}
         </p>
       )}
+      <RainContextNote activity={scored.activity} />
       <ActivityBreakdown activity={scored.activity} />
     </div>
   );
