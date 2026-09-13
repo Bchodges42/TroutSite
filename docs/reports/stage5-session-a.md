@@ -55,6 +55,52 @@ size caps at two layers, and the HTTP/1.1 origin — and has a single documented
 clearance path (Fastify 5 migration, recommended as its own work item next cycle).
 Everything else is build/dev-time only or not reachable in our configuration.
 
+### TASK 2 — restore drill (2026-09-13, dev machine; production paths untouched)
+
+Procedure (drill script run from the session clone):
+1. Opened the source DB through the API's own `openDb` (applies pending migrations —
+   exactly what the production service does at startup), wrote a dated marker row into
+   `jobs_log` (`job = 'restore-drill'`).
+2. Fresh backup via `infra/backup.sh` with `TROUT_BACKUP_NO_SQLITE3=1` — the
+   production path (the server has no sqlite3 CLI; node + better-sqlite3 `.backup()`).
+3. Restore = file copy of the backup into a `mktemp -d` SCRATCH directory (never any
+   production or repo path), opened read-only.
+4. Verification: full table inventory, required-table presence, marker-row presence,
+   per-table row-count parity against the live source, applied-migration count.
+
+Results (timings on the dev laptop):
+
+| Step | Result | Time |
+|---|---|---|
+| Migration + marker write | 9 migrations applied, marker written | — |
+| Backup (`backup.sh`, node fallback, 524,288 bytes) | wrote `backups/trout-20260913-132228.db` | **126 ms** |
+| Restore (copy to scratch) | 524,288 bytes | **55 ms** |
+| Schema check | 10/10 tables present incl. `region_pressure` (009) | <5 ms |
+| Recent-row check | drill markers PRESENT (5 — every marker from every drill run this session survived) | <5 ms |
+| Row parity vs source | streams 148/148 · shops 23/23 · stocking_events 623/623 · gauge_readings_raw 88/88 — all OK | <10 ms |
+
+**What worked:** the entire chain — production-mirroring online backup, scratch
+restore, schema completeness (all 9 migrations reflected), recent-row survival, exact
+row-count parity on every checked table. Total drill time: under 1 second of actual
+work (dominated by node startup), so a production-scale run (larger DB, slower laptop
+disk) has enormous headroom against the nightly 03:30 schedule.
+
+**What didn't (findings, both handled in the drill itself):**
+1. The first run FAILED — the dev DB predated migrations 008/009, so the backup lacked
+   `region_pressure`. Root cause: the drill opened the file directly instead of through
+   `openDb`, which is what keeps a production backup's schema current (the service
+   migrates at startup, before the nightly backup ever runs). The drill now opens
+   through `openDb` first, mirroring production. **Operational takeaway recorded: a
+   backup is only as current as the migrations the service has applied — after any
+   migration lands, the first service start must precede the first backup.**
+2. The marker check expected exactly 1 but counted 5 — each drill run appends a marker
+   to the live DB and all of them restored correctly, which is itself the strongest
+   recent-row evidence. Assertion relaxed to `>= 1` with the count logged.
+
+**What this closes:** the "recovery assumed, never demonstrated" finding. Restore is
+now demonstrated end-to-end on the exact production code path (T1-12's node fallback)
+with schema, recency, and parity evidence.
+
 ## Verification
 
 (gates per task recorded here)
