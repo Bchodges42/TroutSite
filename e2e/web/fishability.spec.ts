@@ -64,8 +64,12 @@ test('detail page shows the comfort-only fishability card', async ({ page }) => 
   await expect(
     page.locator('[aria-label="Largemouth bass fishability 84 out of 100 — Good"]'),
   ).toBeVisible();
-  // Comfort only: the activity breakdown is Stage 4 and stays out.
-  await expect(page.getByText(/activity components?/i)).toHaveCount(0);
+  // F10: the activity outlook renders as transparent per-factor rows.
+  await expect(card.getByText(/Activity outlook: 56 \/ 100/)).toBeVisible();
+  await expect(card.getByText('Area pressure')).toBeVisible();
+  await expect(card.getByText('measured')).toBeVisible();
+  await expect(card.getByText('derived')).toBeVisible();
+  await expect(card.locator('a[href*="api.weather.gov"]')).toBeVisible();
 });
 
 test('drawer shows the fishability card on an inspected water', async ({ page }) => {

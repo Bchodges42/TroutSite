@@ -12,6 +12,26 @@ import { db } from '../src/lib/db';
  * nothing outside all-fish + focus).
  */
 
+const COMPONENTS = [
+  {
+    factor: 'water-temperature' as const,
+    value: 62,
+    contribution: 8.4,
+    weight: 0.7,
+    evidenceUrl: 'https://waterdata.usgs.gov/monitoring-location/03434500',
+    confidence: 'measured' as const,
+    label: 'Water temperature',
+  },
+  {
+    factor: 'pressure-trend' as const,
+    value: 42,
+    contribution: -2.4,
+    weight: 0.3,
+    evidenceUrl: 'https://api.weather.gov/stations/KCSV/observations/latest',
+    confidence: 'derived' as const,
+    label: 'Area pressure falling 2.1 hPa over 3 h',
+  },
+];
 const SNAPSHOT = {
   streamId: 'w',
   fetchedAt: '2026-09-14T12:00:00Z',
@@ -24,7 +44,7 @@ const SNAPSHOT = {
         assessed: true,
         freshness: { observedAt: '2026-09-14T10:00:00Z', ageMinutes: 30 },
       },
-      activity: { total: 0, components: [] },
+      activity: { total: 56, components: COMPONENTS },
     },
     bluegill: {
       comfort: {
@@ -84,9 +104,21 @@ describe('FishabilityCard', () => {
       screen.getByLabelText('Largemouth bass fishability 84 out of 100 — Good'),
     ).toBeInTheDocument();
     expect(screen.getByText(/optimal range/i)).toBeInTheDocument();
-    // Comfort only: no activity breakdown anywhere (Stage 4).
-    expect(screen.queryByText(/activity/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/component/i)).not.toBeInTheDocument();
+    // F10: transparent activity rows — value, contribution, confidence, source.
+    expect(screen.getByText(/Activity outlook: 56 \/ 100/)).toBeInTheDocument();
+    expect(screen.getByText('Area pressure')).toBeInTheDocument();
+    expect(screen.getByText('62 / 100 · +8.4 pts')).toBeInTheDocument();
+    expect(screen.getByText('42 / 100 · -2.4 pts')).toBeInTheDocument();
+    expect(screen.getByLabelText('Confidence: measured')).toBeInTheDocument();
+    expect(screen.getByLabelText('Confidence: derived')).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /source/ }).length).toBe(2);
+  });
+
+  it('renders honest no-activity-data when the outlook is empty — never a zero score', async () => {
+    renderCard('/?focus=bluegill');
+    expect(await screen.findByText('Bluegill')).toBeInTheDocument();
+    expect(screen.getByText(/No activity data yet/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Activity outlook:/)).not.toBeInTheDocument();
   });
 
   it('renders honest No data when the species carried no assessment', async () => {

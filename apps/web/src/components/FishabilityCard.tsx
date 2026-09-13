@@ -2,13 +2,89 @@ import { useSearchParams } from 'react-router-dom';
 import { scoreBand } from '../lib/conditions';
 import { SPECIES_LABELS, useFishabilityForWater } from '../lib/fishability';
 import { useSettingsContext } from '../lib/settings';
-import type { SpeciesKey } from '@trout/contracts';
+import type { ActivityComponent, SpeciesKey } from '@trout/contracts';
 
 const BAND_COLOR: Record<string, string> = {
   good: 'var(--trout-status-good)',
   fair: 'var(--trout-status-fair)',
   poor: 'var(--trout-status-poor)',
 };
+
+const CONFIDENCE_LABEL: Record<ActivityComponent['confidence'], string> = {
+  measured: 'measured',
+  derived: 'derived',
+  heuristic: 'heuristic',
+};
+
+/** F10: pressure is an AREA signal (NWS station mapped to the catalog region)
+ *  — the row never presents it as a per-water measurement. */
+function rowLabel(component: ActivityComponent): string {
+  if (component.factor === 'pressure-trend') return 'Area pressure';
+  return component.label;
+}
+
+/**
+ * F10 (stage 4): the transparent activity outlook — one ordered row per
+ * factor with its value, its weighted contribution, its source link, and a
+ * confidence label. The wording is "activity outlook", never a claim that
+ * fish will bite. An empty outlook is honest "no activity data", never a
+ * score of zero.
+ */
+function ActivityBreakdown({ activity }: { activity: { total: number; components: ActivityComponent[] } }) {
+  if (!activity.components.length) {
+    return (
+      <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+        No activity data yet — the outlook appears once its factors have sources
+        on this water.
+      </p>
+    );
+  }
+  return (
+    <div className="mt-3 activity-outlook">
+      <p className="text-sm font-bold">
+        Activity outlook: {activity.total} / 100{' '}
+        <span className="font-normal" style={{ color: 'var(--trout-color-text-muted)' }}>
+          (50 = neutral — factors move it, it does not predict a catch)
+        </span>
+      </p>
+      <ol className="mt-2 flex flex-col gap-1.5 text-sm" aria-label="Activity factors">
+        {activity.components.map((c) => {
+          const pts = c.contribution >= 0 ? `+${c.contribution}` : `${c.contribution}`;
+          return (
+            <li key={c.factor} className="flex flex-wrap items-baseline gap-x-2">
+              <strong>{rowLabel(c)}</strong>
+              <span>
+                {c.value} / 100 · {pts} pts
+              </span>
+              <span
+                className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide"
+                style={{
+                  border: '1px solid var(--ui-border)',
+                  color: 'var(--ui-muted)',
+                }}
+                aria-label={`Confidence: ${CONFIDENCE_LABEL[c.confidence]}`}
+              >
+                {CONFIDENCE_LABEL[c.confidence]}
+              </span>
+              <a
+                className="text-xs font-bold underline"
+                href={c.evidenceUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                source ↗
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="muted mt-1 text-xs">
+        Each factor's contribution is its weight × (value − 50). Context, not a
+        promise.
+      </p>
+    </div>
+  );
+}
 
 /**
  * F6 (TASK 2/3): one water's focus-species fishability — the comfort score
@@ -86,6 +162,7 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
           Observed {new Date(scored.comfort.freshness.observedAt).toLocaleString()}
         </p>
       )}
+      <ActivityBreakdown activity={scored.activity} />
     </div>
   );
 }
