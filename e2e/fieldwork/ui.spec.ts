@@ -47,8 +47,20 @@ async function select(page: Page, name: string) {
   // Enter selects the best match without racing the results listbox (at
   // mobile widths an option click can lose the hit-test to the map canvas).
   // Use a query unique to the water you want.
-  await headerSearch(page).fill(name);
-  await headerSearch(page).press('Enter');
+  const input = headerSearch(page);
+  await input.fill(name);
+  // COLD FIRST VISIT: the header catalog fetch may still be in flight when
+  // the fill lands — the results listbox then says "catalog is loading" and
+  // Enter would no-op (the once-flaky timeout here). Initialization is
+  // deterministic before any search interaction: the match itself must be in
+  // the listbox before Enter.
+  await expect(
+    page
+      .locator('.header-search')
+      .getByRole('option', { name: new RegExp(name, 'i') })
+      .first(),
+  ).toBeVisible({ timeout: 20_000 });
+  await input.press('Enter');
   await expect(page.locator('#river-inspector')).toBeVisible({ timeout: 15_000 });
 }
 async function ready(page: Page) {

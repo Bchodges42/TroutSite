@@ -34,8 +34,27 @@
         }
       },
       "activity": {
-        "total": 0,
-        "components": []
+        "total": 54,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 54,
+            "contribution": 2.4,
+            "weight": 0.6,
+            "evidenceUrl": "https://waterdata.usgs.gov/monitoring-location/03477200",
+            "confidence": "measured",
+            "label": "Water temperature"
+          },
+          {
+            "factor": "pressure-trend",
+            "value": 58,
+            "contribution": 3.2,
+            "weight": 0.4,
+            "evidenceUrl": "https://api.weather.gov/stations/KTPA/observations/latest",
+            "confidence": "derived",
+            "label": "Area pressure steady"
+          }
+        ]
       }
     },
     "bluegill": {

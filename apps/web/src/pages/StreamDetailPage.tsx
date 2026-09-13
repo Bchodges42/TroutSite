@@ -28,6 +28,7 @@ import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
 import { FishabilityCard } from '../components/FishabilityCard';
+import { SolarWindowsCard } from '../components/SolarWindowsCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
@@ -144,6 +145,8 @@ export function StreamDetailPage() {
       {/* F6: the focus species' fishability card — independent of the trout
       conditions snapshot; a water can carry one, both, or neither. */}
       <FishabilityCard streamId={stream.id} />
+      {/* F11: today's dawn/dusk windows (client-side solar math, heuristic). */}
+      <SolarWindowsCard streamId={stream.id} />
       {!snapshot ? (
         <div className="mt-6">
           <EmptyState
