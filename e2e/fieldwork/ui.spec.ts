@@ -786,7 +786,7 @@ test('granted location moves the map and shows an on-device marker', async ({ pa
 
 test('guided hatch choices move focus and carry context into results', async ({ page }) => {
   await page.goto('/hatch-key?river=caney-fork-river&region=tn-middle-caney-fork&month=5');
-  await page.getByRole('button', { name: '#16', exact: true }).click();
+  await page.getByRole('button', { name: /^#16/ }).click();
   await expect(page.locator('#hatch-step-heading')).toBeFocused();
   await page.getByRole('button', { name: 'olive', exact: true }).click();
   // The tails and shape cards carry descriptive sub-lines, so their accessible

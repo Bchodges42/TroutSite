@@ -142,6 +142,62 @@ export function StreamDetailPage() {
           nextExpectedAt={snapshot ? Date.parse(snapshot.nextExpectedUpdate) : null} />
       </div>
 
+      {/* T2-37: mobile leads with the decision — state, observation age, flow,
+      temp, and one next action. Desktop keeps the full card flow below. */}
+      <div className="mobile-decision-header" data-testid="mobile-decision-header">
+        <dl className="mobile-decision-grid">
+          <div>
+            <dt>Now</dt>
+            <dd data-testid="mobile-state">
+              {(() => {
+                const s = snapshot
+                  ? statusForScore(
+                      snapshot.score.value,
+                      snapshot.readings.length > 0,
+                      snapshot.score.assessed,
+                    )
+                  : 'no-data';
+                return stream.species === 'warmwater'
+                  ? 'Warmwater'
+                  : stream.species == null
+                    ? 'Unverified'
+                    : s === 'good'
+                      ? 'Good'
+                      : s === 'fair'
+                        ? 'Fair'
+                        : s === 'poor'
+                          ? 'Poor'
+                          : 'Not assessed';
+              })()}
+            </dd>
+          </div>
+          <div>
+            <dt>Observed</dt>
+            <dd>
+              {snapshot?.readings.length
+                ? ageMinutes(newestReadingAt(snapshot.readings) ?? Date.parse(snapshot.fetchedAt))
+                : '—'}
+            </dd>
+          </div>
+          <div>
+            <dt>Flow</dt>
+            <dd>{newestCfs != null ? formatFlow(newestCfs) : '—'}</dd>
+          </div>
+          <div>
+            <dt>Temp</dt>
+            <dd>
+              {newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : '—'}
+            </dd>
+          </div>
+        </dl>
+        <Link
+          to={riverWorkflowUrl('/hatch-key', stream, validMonth(params.get('month')))}
+          className="primary-action mobile-next-action focus-ring"
+        >
+          Match this water <span aria-hidden="true">↗</span>
+        </Link>
+      </div>
+
       {/* F6: the focus species' fishability card — independent of the trout
       conditions snapshot; a water can carry one, both, or neither. */}
       <FishabilityCard streamId={stream.id} />
@@ -261,47 +317,17 @@ export function StreamDetailPage() {
             </Card>
           )}
 
-          <h2 className="section-title">Gauge readings</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[420px] border-collapse text-sm">
-              <thead>
-                <tr
-                  className="text-left text-xs uppercase tracking-wide"
-                  style={{ color: 'var(--trout-color-text-muted)' }}
-                >
-                  <th className="py-2 pr-3">Gauge</th>
-                  <th className="py-2 pr-3">Flow</th>
-                  <th className="py-2 pr-3">Stage</th>
-                  <th className="py-2 pr-3">Temp</th>
-                  <th className="py-2">Observed</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[...readings]
-                  .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
-                  .map((r, i) => (
-                    <tr
-                      key={`${r.gaugeId}-${r.timestamp}-${i}`}
-                      className="border-t"
-                      style={{ borderColor: 'var(--trout-color-border)' }}
-                    >
-                      <td className="py-2 pr-3 font-mono text-xs">{r.gaugeId}</td>
-                      <td className="py-2 pr-3 font-semibold">
-                        {r.cfs != null ? formatFlow(r.cfs) : '—'}
-                      </td>
-                      <td className="py-2 pr-3">
-                        {r.heightFt != null ? formatHeight(r.heightFt) : '—'}
-                      </td>
-                      <td className="py-2 pr-3">
-                        {r.tempC != null ? formatTemp(r.tempC, settings.tempUnit) : '—'}
-                      </td>
-                      <td className="py-2" style={{ color: 'var(--trout-color-text-muted)' }}>
-                        {ageMinutes(Date.parse(r.timestamp))}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+          {/* T2-37: mobile folds the history into a disclosure; desktop keeps
+          the table open. */}
+          <details className="gauge-disclosure mobile-only summary-anchor">
+            <summary className="section-title">
+              Gauge readings <span className="muted text-xs">({readings.length})</span>
+            </summary>
+            <ReadingsTable readings={readings} tempUnit={settings.tempUnit} />
+          </details>
+          <div className="desktop-only">
+            <h2 className="section-title">Gauge readings</h2>
+            <ReadingsTable readings={readings} tempUnit={settings.tempUnit} />
           </div>
         </>
       )}
@@ -460,6 +486,58 @@ function DetailSeasonChip({
   );
   if (!text) return null;
   return <p className="seasonal-chip">{text}</p>;
+}
+
+function ReadingsTable({
+  readings,
+  tempUnit,
+}: {
+  readings: GaugeReading[];
+  tempUnit: 'C' | 'F';
+}) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[420px] border-collapse text-sm">
+        <thead>
+          <tr
+            className="text-left text-xs uppercase tracking-wide"
+            style={{ color: 'var(--trout-color-text-muted)' }}
+          >
+            <th className="py-2 pr-3">Gauge</th>
+            <th className="py-2 pr-3">Flow</th>
+            <th className="py-2 pr-3">Stage</th>
+            <th className="py-2 pr-3">Temp</th>
+            <th className="py-2">Observed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...readings]
+            .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
+            .map((r, i) => (
+              <tr
+                key={`${r.gaugeId}-${r.timestamp}-${i}`}
+                className="border-t"
+                style={{ borderColor: 'var(--trout-color-border)' }}
+              >
+                <td className="py-2 pr-3 font-mono text-xs">{r.gaugeId}</td>
+                <td className="py-2 pr-3 font-semibold">
+                  {r.cfs != null ? formatFlow(r.cfs) : '—'}
+                </td>
+                <td className="py-2 pr-3">
+                  {r.heightFt != null ? formatHeight(r.heightFt) : '—'}
+                </td>
+                <td className="py-2 pr-3">
+                  {r.tempC != null ? formatTemp(r.tempC, tempUnit) : '—'}
+                </td>
+                <td className="py-2" style={{ color: 'var(--trout-color-text-muted)' }}>
+                  {ageMinutes(Date.parse(r.timestamp))}
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 function newestValue(readings: GaugeReading[], key: 'cfs' | 'tempC' | 'heightFt'): number | null {

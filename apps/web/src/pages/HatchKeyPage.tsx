@@ -32,6 +32,20 @@ const STEP_TITLE: Record<Step, string> = {
 
 const HOOK_SIZES = [8, 10, 12, 14, 16, 18, 20, 22, 24];
 
+/** T2-39: plain-language size hints for beginners. */
+const SIZE_HINT: Record<number, string> = {
+  8: 'big — stoneflies, hoppers',
+  10: 'big — stoneflies, hoppers',
+  12: 'medium-large — stoneflies, hoppers',
+  14: 'medium — mayflies, caddis',
+  16: 'small — mayflies',
+  18: 'small — mayflies',
+  20: 'tiny — midges, small mayflies',
+  22: 'tiny — midges',
+  24: 'tiny — midges',
+};
+const ASSUMED_SIZE = 16;
+
 const COLOR_SWATCH: Record<string, string> = {
   olive: '#6b8e23',
   'olive-brown': '#6b6423',
@@ -78,6 +92,8 @@ const CONFIDENCE_TONE: Record<RankedTaxon['confidence'], 'good' | 'fair' | 'poor
 
 interface Draft {
   sizeHook?: number;
+  /** T2-39: the size was assumed ("not sure"), not measured off the insect. */
+  sizeAssumed?: boolean;
   bodyColor?: string;
   tails?: 2 | 3;
   gills?: BugObservation['gills'];
@@ -128,6 +144,10 @@ export function HatchKeyPage() {
     return parsed.success ? parsed.data : null;
   }, [draft]);
 
+  // T2-43: a missing region-month chart must be VISIBLE — ranking silently
+  // drops the +2 "hatching now" signal, so say the results are key+season only.
+  const chartMissing =
+    Boolean(draft.regionId && draft.month) && !chartQuery.isLoading && !chartQuery.data;
   const ranked: RankedTaxon[] = useMemo(() => {
     if (!observation || !pack.data) return [];
     const charts = chartQuery.data ? [chartQuery.data.data] : [];
@@ -138,7 +158,7 @@ export function HatchKeyPage() {
   const complete = observation !== null;
 
   const pick = <K extends keyof Draft>(key: K, value: NonNullable<Draft[K]>) => {
-    setDraft((d) => ({ ...d, [key]: value }));
+    setDraft((d) => ({ ...d, [key]: value, sizeAssumed: key === 'sizeHook' ? false : d.sizeAssumed }));
     const i = STEP_ORDER.indexOf(step);
     if (i < STEP_ORDER.length - 1) setStep(STEP_ORDER[i + 1]!);
     else setFinished(true);
@@ -179,6 +199,17 @@ export function HatchKeyPage() {
         Answer a few questions about the bug you found — the matches are ranked on your device,
         fully offline.
       </p>
+      {chartMissing && (
+        <p
+          className="mt-3 rounded-lg px-3 py-2 text-sm"
+          style={{ background: 'var(--trout-slate-100)', border: '1px solid var(--ui-border)' }}
+          role="note"
+          aria-label="Chart not cached notice"
+        >
+          The hatch chart for this region and month isn&apos;t on this device — matching by key
+          features and season only.
+        </p>
+      )}
 
       {!finished && (
         <>
@@ -194,8 +225,8 @@ export function HatchKeyPage() {
               />
             ))}
           </div>
-          <p className="sr-only" role="status">
-            Step {stepIndex + 1} of {STEP_ORDER.length}: {STEP_TITLE[step]}
+          <p className="mb-1 text-sm font-bold" role="status">
+            Step {stepIndex + 1} of {STEP_ORDER.length} — {STEP_TITLE[step]}
           </p>
 
           <Card className="mt-4">
@@ -204,19 +235,35 @@ export function HatchKeyPage() {
             </h2>
             <div className="mt-4">
               {step === 'size' && (
-                <div className="grid grid-cols-3 gap-3 sm:grid-cols-5">
-                  {HOOK_SIZES.map((size) => (
-                    <button
-                      key={size}
-                      type="button"
-                      className={`option-card focus-ring ${draft.sizeHook === size ? 'is-selected' : ''}`}
-                      aria-pressed={draft.sizeHook === size}
-                      onClick={() => pick('sizeHook', size)}
-                    >
-                      #{size}
-                    </button>
-                  ))}
-                </div>
+                <>
+                  <div className="grid grid-cols-3 gap-3 sm:grid-cols-5">
+                    {HOOK_SIZES.map((size) => (
+                      <button
+                        key={size}
+                        type="button"
+                        className="option-card focus-ring flex-col items-center gap-1"
+                        aria-pressed={draft.sizeHook === size && !draft.sizeAssumed}
+                        onClick={() => pick('sizeHook', size)}
+                      >
+                        <span className="text-lg font-bold">#{size}</span>
+                        <span className="text-center text-[11px] leading-tight" style={{ color: 'var(--trout-color-text-muted)' }}>
+                          {SIZE_HINT[size]}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    className="text-action mt-3"
+                    onClick={() => {
+                      setDraft((d) => ({ ...d, sizeHook: ASSUMED_SIZE, sizeAssumed: true }));
+                      const i = STEP_ORDER.indexOf('size');
+                      setStep(STEP_ORDER[i + 1]!);
+                    }}
+                  >
+                    Not sure — start me with a #16 (the most common size)
+                  </button>
+                </>
               )}
 
               {step === 'color' && (
@@ -365,6 +412,16 @@ export function HatchKeyPage() {
       {finished && observation && (
         <section className="mt-4" aria-label="Matched insects">
           <div className="flex flex-wrap items-center justify-between gap-2">
+            {draft.sizeAssumed && (
+              <p
+                className="mt-2 rounded-lg px-3 py-2 text-sm"
+                style={{ background: 'var(--trout-slate-100)', border: '1px solid var(--ui-border)' }}
+                role="note"
+              >
+                The size was assumed (#{draft.sizeHook}) because you were not sure. If the matches
+                look wrong, go back and re-check the size.
+              </p>
+            )}
             <h2 id="hatch-results-heading" tabIndex={-1} className="text-lg font-bold">
               Top matches · {monthName(observation.month)} ·{' '}
               {REGIONS.find((r) => r.id === observation.regionId)?.name}

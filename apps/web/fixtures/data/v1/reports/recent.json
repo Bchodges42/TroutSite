@@ -17,7 +17,8 @@
       }
     ],
     "attributionUrl": "https://example.com/high-country-fly-shop",
-    "publishedAt": "2026-09-06T02:10:04Z"
+    "publishedAt": "2026-09-06T02:10:04Z",
+    "photoUrl": "https://example.com/photos/report-1.jpg"
   },
   {
     "id": "report-hiwassee-week32",
@@ -65,7 +66,7 @@
     "shopName": "Tailwater Outfitters",
     "streamId": "watauga-river",
     "date": "2026-09-03",
-    "body": "High generation all week — drift boats only. Blue-winged olives in the rain on Saturday; size 20 RS2 behind a stonefly got the eat of the day.",
+    "body": "High generation all week \u2014 drift boats only. Blue-winged olives in the rain on Saturday; size 20 RS2 behind a stonefly got the eat of the day.",
     "hotPatterns": [
       {
         "patternId": "rs2",

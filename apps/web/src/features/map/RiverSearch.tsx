@@ -1,5 +1,17 @@
 import { useMemo, useState, useRef, useEffect, useId } from 'react';
 import { regionName } from '../../data/regions';
+/** True when the element is actually rendered (walks hidden ancestors). */
+function isRendered(el: HTMLElement): boolean {
+  let node: HTMLElement | null = el;
+  while (node) {
+    if (node.hasAttribute('hidden')) return false;
+    const cs = getComputedStyle(node);
+    if (cs.display === 'none' || cs.visibility === 'hidden') return false;
+    node = node.parentElement;
+  }
+  return true;
+}
+
 interface SearchStream {
   id: string;
   name: string;
@@ -20,6 +32,9 @@ export function RiverSearch({
   showShortcut?: boolean;
 }) {
   const [query, setQuery] = useState('');
+  /** T2-36: shared across instances — the first VISIBLE instance to handle a
+   *  shortcut keystroke claims it (others skip). */
+  const lastShortcutHandledAt = useRef(0);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const input = useRef<HTMLInputElement>(null);
@@ -56,8 +71,15 @@ export function RiverSearch({
         ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') ||
         (e.key === '/' && !editing && !e.ctrlKey && !e.metaKey && !e.altKey)
       ) {
+        // T2-36: several instances mount (header + sidebar + drawer flows) and
+        // hidden ones keep their listeners. The VISIBLE instance owns the
+        // shortcut — hidden inputs must never receive focus, and when two are
+        // visible the first to handle the event wins.
+        if (lastShortcutHandledAt.current === e.timeStamp) return;
+        if (!input.current || !isRendered(input.current)) return;
         e.preventDefault();
-        input.current?.focus();
+        lastShortcutHandledAt.current = e.timeStamp;
+        input.current.focus();
       }
     };
     window.addEventListener('keydown', key);

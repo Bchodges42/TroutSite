@@ -71,6 +71,19 @@ export async function fetchSnapshot<T>(
   } catch (networkError) {
     const cached = await readCached<T>(url, schema);
     if (cached) return cached;
+    // T2-42 recovery tier: the service worker's runtime cache is independent
+    // of Dexie — a device whose indexed database was cleared (or whose Dexie
+    // write never landed) can still have the SW-cached copy. Serve it with
+    // live:false rather than "not on this device".
+    try {
+      const swHit = await caches?.match(resolveUrl(url));
+      if (swHit && swHit.ok) {
+        const data = schema.parse(await swHit.json());
+        return { data, fetchedAt: null, live: false };
+      }
+    } catch {
+      /* no Cache Storage, no match, or a stale entry — fall through */
+    }
     throw networkError;
   }
 }

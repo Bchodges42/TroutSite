@@ -115,6 +115,8 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     renderPage();
     await screen.findByText('Latest published');
     await user.click(screen.getByRole('button', { name: /Browse the full schedule/ }));
+    // Switching to history activates the full-file query — wait for its rows.
+    await waitFor(() => expect(screen.getAllByRole('listitem').length).toBeGreaterThan(0));
     const firstRow = () => screen.getAllByRole('listitem')[0]?.querySelector('span')?.textContent;
     const combobox = screen.getByRole('combobox', { name: 'Sort entries' });
 

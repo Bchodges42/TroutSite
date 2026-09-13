@@ -2492,6 +2492,89 @@ html.reduce-motion *::after {
   border-radius: 18px 18px 0 0;
   box-shadow: var(--ui-shadow);
 }
+/* T2-37/38 — responsive detail + density helpers. */
+.mobile-only {
+  display: none;
+}
+@media (max-width: 900px) {
+  .mobile-only {
+    display: block;
+  }
+  .desktop-only {
+    display: none;
+  }
+  .mobile-decision-header {
+    display: block;
+  }
+}
+@media (min-width: 901px) {
+  .mobile-decision-header {
+    display: none;
+  }
+}
+.mobile-decision-header {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--trout-radius-lg);
+  background: var(--ui-surface);
+}
+.mobile-decision-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+.mobile-decision-grid dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ui-muted);
+}
+.mobile-decision-grid dd {
+  margin: 2px 0 0;
+  font-weight: 700;
+}
+.mobile-next-action {
+  display: flex;
+  margin-top: 10px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+}
+.gauge-disclosure summary {
+  cursor: pointer;
+  list-style: revert;
+}
+.report-photo {
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.browse-row-dense {
+  min-height: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* T2-41 — shared touch targets ≥ 44px while glyphs stay compact. The app CSS
+   loads after @trout/ui/tokens.css, so these overrides win on equal
+   specificity. */
+.trout-dialog__close {
+  width: 44px;
+  height: 44px;
+}
+.trout-confirm__arm,
+.trout-confirm__commit {
+  min-height: 44px;
+}
+@media (pointer: coarse) {
+  .filter-chip,
+  .filter-select {
+    min-height: 44px;
+  }
+}
+
 /* Seasonal applicability (T1-18/19): the winter-program state, surfaced at
    the water's title instead of bottom-of-page prose. */
 .seasonal-chip {
