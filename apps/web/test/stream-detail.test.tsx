@@ -196,7 +196,7 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
     // The state appears in the mobile decision header AND the assessment
     // headline (T2-37) — multiple matches are correct.
     expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
-    expect(screen.getByText('Not listed')).toBeInTheDocument();
+    await screen.findByText('Not listed');
     // The ideal-flow badge value itself must never be a bare unit.
     expect(document.body.textContent).not.toMatch(/Ideal flow\s* cfs/);
     expect(screen.queryByText(' cfs')).not.toBeInTheDocument();
