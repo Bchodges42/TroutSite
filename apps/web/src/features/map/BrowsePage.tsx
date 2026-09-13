@@ -61,12 +61,13 @@ export function BrowsePage() {
           <ul className="space-y-2">
             {rows.map((f) => (
               <li key={f.stream.id}>
-                <Link to={'/conditions/' + f.stream.id} className="list-row focus-ring !rounded-xl">
-                  <span className="min-w-0">
+                <Link
+                  to={'/conditions/' + f.stream.id}
+                  className="list-row focus-ring browse-row-dense"
+                >
+                  <span className="min-w-0 flex items-baseline gap-2">
                     <strong>{f.stream.name}</strong>
-                    <span className="block text-sm muted mt-1">
-                      {regionName(f.stream.regionId)}
-                    </span>
+                    <span className="muted text-xs">{regionName(f.stream.regionId)}</span>
                   </span>
                   {(() => {
                     const comfort = focus
