@@ -158,7 +158,9 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
 
   it('renders no trout-model strings anywhere on the detail output', async () => {
     renderDetail(warmStream, warmSnapshot);
-    expect(await screen.findByText(/Warmwater/i)).toBeInTheDocument();
+    // The state appears in the mobile decision header AND the assessment
+    // headline (T2-37) — multiple matches are correct.
+    expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
     // No trout score pill, no assessment headline, no trend, no reasons.
     expect(screen.queryByLabelText(/Condition score/)).not.toBeInTheDocument();
     expect(screen.queryByText(/Trout condition assessment/i)).not.toBeInTheDocument();
@@ -171,7 +173,9 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
 
   it('T1-14 — temp and flow badges stay neutral on warmwater water (no trout physiology colors)', async () => {
     renderDetail(warmStream, warmSnapshot);
-    expect(await screen.findByText(/Warmwater/i)).toBeInTheDocument();
+    // The state appears in the mobile decision header AND the assessment
+    // headline (T2-37) — multiple matches are correct.
+    expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
     // 26°C would be 'poor' and 900 cfs 'poor' under the trout model — both
     // must render without any status tint class.
     const container = document.body;
@@ -189,7 +193,9 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
 
   it('T1-15 — empty idealFlow renders "Not listed", never a bare " cfs" badge', async () => {
     renderDetail(warmStream, warmSnapshot);
-    expect(await screen.findByText(/Warmwater/i)).toBeInTheDocument();
+    // The state appears in the mobile decision header AND the assessment
+    // headline (T2-37) — multiple matches are correct.
+    expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
     expect(screen.getByText('Not listed')).toBeInTheDocument();
     // The ideal-flow badge value itself must never be a bare unit.
     expect(document.body.textContent).not.toMatch(/Ideal flow\s* cfs/);
