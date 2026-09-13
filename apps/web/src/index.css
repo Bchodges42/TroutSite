@@ -2552,6 +2552,24 @@ html.reduce-motion *::after {
   padding-bottom: 8px;
 }
 
+/* T2-41 — shared touch targets ≥ 44px while glyphs stay compact. The app CSS
+   loads after @trout/ui/tokens.css, so these overrides win on equal
+   specificity. */
+.trout-dialog__close {
+  width: 44px;
+  height: 44px;
+}
+.trout-confirm__arm,
+.trout-confirm__commit {
+  min-height: 44px;
+}
+@media (pointer: coarse) {
+  .filter-chip,
+  .filter-select {
+    min-height: 44px;
+  }
+}
+
 /* Seasonal applicability (T1-18/19): the winter-program state, surfaced at
    the water's title instead of bottom-of-page prose. */
 .seasonal-chip {
