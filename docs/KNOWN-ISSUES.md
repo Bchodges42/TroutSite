@@ -296,7 +296,7 @@ after; then neutral swaps to species-colored comfort + activity.
   pre-spawn/spawn/post-spawn water-temp thresholds, flow-trend preference (stable/
   falling favorable; hard-rising unfavorable), pressure-trend sensitivity. Every band
   cites TWRA + primary literature; `validate:content` extended to enforce citations.
-- [ ] **F3 · Catalog data.** `species` enum extension: warmwater waters record WHICH
+- [x] **F3 · (10 waters authored under the evidence gate; 138 honestly unset — evidence research continues in Stage 4) Catalog data.** `species` enum extension: warmwater waters record WHICH
   species they hold, authored from TWRA evidence (2026-09-08 capture already has
   species-adjacent notes). Unknown stays unknown — never guessed. Pair with T3-52
   (candidate waters enter with species data from day one).
@@ -304,10 +304,10 @@ after; then neutral swaps to species-colored comfort + activity.
   (mirrors `scoreConditions`: clamped-0 lethal vs cannot-assess, per-metric
   observation age) and `scoreActivity(components)` — deterministic, client-side,
   total = weighted components, never mutates inputs. Property tests + coverage gate.
-- [ ] **F5 · Pipeline.** Snapshot build emits comfort + activity per water for its
+- [x] **F5 · Pipeline.** Snapshot build emits comfort + activity per water for its
   cataloged species; `conditionsFeedHealth` + the malformation detector (T1-10)
   cover the new rows; fixtures regenerated.
-- [ ] **F8 · NEW SOURCE — barometric pressure via NWS.** `api.weather.gov` (public
+- [x] **F8 · NEW SOURCE — barometric pressure via NWS.** `api.weather.gov` (public
   domain, no key — fits the USGS-etiquette model): station/gridpoint pressure +
   3-hour trend mapped to each region (area-level, NOT per-water — the label must say
   "area pressure"). New provider follows the evidence/monitors registry pattern;
@@ -332,7 +332,7 @@ after; then neutral swaps to species-colored comfort + activity.
   context note ("recent rain — expect stain/rise," from NWS precip, F8's source).
   (b) **Solunar/lunar tables**: evidence too weak for the citation culture; excluded
   outright. (c) **Turbidity/clarity**: no gauged source; same reasoning as rain.
-- [ ] **F6 · UI (decision 2).** Site-wide Trout/All-fish setting (Dexie-persisted,
+- [x] **F6 · UI (decision 2).** Site-wide Trout/All-fish setting (Dexie-persisted,
   default Trout, Settings page entry + header affordance). All-fish mode gains a
   species focus picker. Map colors/legend, temp/flow badges, detail page, drawer,
   conditions/stocking/browse lists, search and near-me all consume fishability for
