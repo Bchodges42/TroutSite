@@ -115,3 +115,26 @@ describe('TaxonArt', () => {
     ).toBeInTheDocument();
   });
 });
+
+describe('T2-36 — the visible header search owns the / shortcut', () => {
+  it('focuses the visible instance, never a hidden one, when / is pressed', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('[]', { status: 200 })) as unknown as typeof fetch);
+    const { render } = await import('@testing-library/react');
+    const user = (await import('@testing-library/user-event')).default;
+    const { RiverSearch } = await import('../src/features/map/RiverSearch');
+    // One visible instance (header-like) + one inside a display:none container
+    // (sidebar-like — mounted but hidden).
+    render(
+      <>
+        <RiverSearch shortcut />
+        <div style={{ display: 'none' }} data-testid="hidden-host">
+          <RiverSearch shortcut />
+        </div>
+      </>,
+    );
+    await user.keyboard('/');
+    const inputs = document.querySelectorAll<HTMLInputElement>('.search-input');
+    expect(inputs[1]).not.toHaveFocus();
+    expect(inputs[0]).toHaveFocus();
+  });
+});
