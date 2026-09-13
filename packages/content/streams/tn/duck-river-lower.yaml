@@ -12,7 +12,12 @@ idealFlow:
   - min: 200
     max: 1200
     unit: cfs
-notes: Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - channel-catfish
+notes: Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources).
   reaches seasonally. Conservative flag; verify current TWRA stocking before planning a trout
   trip here.
 officialSources:
@@ -26,3 +31,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Duck River fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html

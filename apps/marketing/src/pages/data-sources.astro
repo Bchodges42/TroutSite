@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Our data & sources — Trout';
+const description =
+  'Where every Trout fact comes from: USGS gauges, TVA dam releases, TWRA stocking and regulations, and the per-species fishability model with its evidence-strength labels. Raw data one click deeper.';
+---
+
+<Base
+  title={title}
+  description={description}
+  path="/data-sources/"
+  ld={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: 'Trout — Tennessee trout conditions, stocking and hatch data',
+      description:
+        'Curated public-domain fishing data for Tennessee: USGS gauge conditions, TWRA stocking schedules and regulations, hatch charts, and a per-species fishability model with cited comfort bands.',
+      license: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    },
+  ]}
+>
+  <h1>Our data &amp; sources</h1>
+  <p class="lead">
+    Every fact in Trout comes from a public source we can name, and every authored number carries
+    its citation. This page is the plain-English map of what we publish, where it comes from, and
+    how much to trust each layer. When we don't know something, the app says so instead of guessing.
+  </p>
+
+  <h2>What we publish, and where it comes from</h2>
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Source</th><th>How it arrives</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Gauge conditions (flow, stage, temperature)</td>
+        <td>USGS National Water Information System; TVA dam releases and reservoir levels</td>
+        <td>Fetched from public APIs on our server, distilled into snapshot files, never proxied through your device</td>
+      </tr>
+      <tr>
+        <td>Stocking schedules &amp; reported releases</td>
+        <td>TWRA's published trout stocking pages</td>
+        <td>Captured weekly; every row keeps its source URL and its date precision (released day vs scheduled week/month)</td>
+      </tr>
+      <tr>
+        <td>Regulations &amp; special rules</td>
+        <td>TWRA regulations; agency pages for specific waters (e.g. NPS for Great Smoky Mountains National Park)</td>
+        <td>Summarized with the rule-setting authority named on every entry; the agency page always wins</td>
+      </tr>
+      <tr>
+        <td>Hatch charts &amp; fly patterns</td>
+        <td>Entomology literature + regional hatch guidance, curated by hand</td>
+        <td>Authored content, region × month, reviewed against the taxonomy of each imitation</td>
+      </tr>
+      <tr>
+        <td>Water catalog (which species a water is managed for)</td>
+        <td>TWRA "where to fish" pages, stocking evidence, and water-specific regulations</td>
+        <td>Authored only where a source names the species; unknown stays unknown</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>The fishability model, in the open</h2>
+  <p>
+    Warmwater fishability is scored per species — largemouth bass, smallmouth bass, spotted bass,
+    crappie, bluegill, channel catfish, and striped bass — from two transparent parts:
+  </p>
+  <ul>
+    <li>
+      <strong>Comfort</strong> — the water's current temperature placed on a cited thermal ladder for
+      the species (lethal → avoidance → optimal). Every band boundary comes from a named source:
+      agency thermal-tolerance analyses and primary literature, cited in our data files.
+    </li>
+    <li>
+      <strong>Activity outlook</strong> — a 0–100 total assembled from visible factor rows, each
+      showing its value, its contribution, and its source. The factors:
+      <em>water temperature</em> (measured at the gauge),
+      <em>flow trend</em> (derived from gauge history),
+      <em>area pressure</em> (derived from NWS observations, reported per area — never per water),
+      and <em>spawn state</em> (derived from water temperature crossing the species' cited
+      thresholds).
+    </li>
+  </ul>
+  <p>
+    Every factor row carries an evidence-strength label:
+  </p>
+  <ul>
+    <li><strong>Measured</strong> — a direct reading (a gauge value at a timestamp).</li>
+    <li><strong>Derived</strong> — computed from measurements (a trend, a spawn state from temperature).</li>
+    <li><strong>Heuristic</strong> — an authored preference, labeled as such and kept visually modest.</li>
+  </ul>
+  <p>
+    Factors we deliberately don't score: water clarity and rain-stain (not remotely measurable), and
+    solunar/lunar tables (evidence too weak for a citation culture). Where rain matters we show a
+    plain context note instead of a fake number.
+  </p>
+
+  <h2>Rules the data follows</h2>
+  <ul>
+    <li>Deterministic scoring: same inputs, same output — no clocks, no AI, no randomness in scoring.</li>
+    <li>Freshness is per-reading: each value is as old as its own observation timestamp says, never as the last successful fetch.</li>
+    <li>A genuine "this water is too warm — score 0" is shown as a real assessment; only missing data renders as "no data".</li>
+    <li>Authored numbers without a citation don't ship — the content validator fails the build on them.</li>
+  </ul>
+
+  <h2>The raw data, one click deeper</h2>
+  <p>
+    The per-water evidence feed — every observation, stocking event, regulation, and the source URL
+    behind each — is published as public JSON by the app itself:{' '}
+    <a href="https://trout.tntechclimb.com/v1/evidence/waters.json" rel="noopener">
+      <code>/v1/evidence/waters.json</code>
+    </a>. It is the same feed the app reads; there is no private version.
+  </p>
+
+  <h2>No tracking on this page or anywhere else</h2>
+  <p>
+    This site ships zero JavaScript and zero third-party requests — no analytics, no ad scripts, no
+    cookies. See <a href="/privacy/">Privacy, in plain English</a> for the full picture.
+  </p>
+</Base>

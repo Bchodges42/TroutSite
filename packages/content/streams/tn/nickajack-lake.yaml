@@ -6,12 +6,21 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles
   through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;
   below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA
   lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban
   Chattanooga reach above it. Verify TVA release schedules before paddling the gorge.
+  TWRA's Nickajack Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03570525
@@ -20,3 +29,5 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Nickajack Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html

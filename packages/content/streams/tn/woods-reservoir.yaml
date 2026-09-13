@@ -6,9 +6,19 @@ regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
 notes: >-
   AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and
   Manchester (Franklin County), open to public fishing.
+  TWRA's Woods Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Woods Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html

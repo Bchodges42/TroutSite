@@ -6,12 +6,22 @@ regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
 notes: >-
   TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater
   catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of
   it.
+  TWRA's Normandy Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
   - label: TVA — Normandy Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Normandy Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html

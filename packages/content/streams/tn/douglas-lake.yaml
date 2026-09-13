@@ -7,6 +7,14 @@ gaugeIds:
   - "03468510"
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   TVA reservoir on the French Broad River east of Knoxville across Cocke,
   Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS
@@ -14,6 +22,7 @@ notes: >-
   River and the Pigeon River; discharges through the dam into the French Broad
   tailwater toward the Holston/French Broad confluence. TWRA maps the
   reservoir at 28,738 ac. Aliases: Douglas Reservoir.
+  TWRA's Douglas Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03468510
     url: https://waterdata.usgs.gov/monitoring-location/03468510/
@@ -23,3 +32,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Douglas Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html

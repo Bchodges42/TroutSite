@@ -7,12 +7,21 @@ gaugeIds:
   - "03486810"
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington
   counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork
   Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by
   the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to
   Fort Patrick Henry Lake. Aliases: Boone Reservoir.
+  TWRA's Boone Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03486810
@@ -21,3 +30,5 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Boone Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html

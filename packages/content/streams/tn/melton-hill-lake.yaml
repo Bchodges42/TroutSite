@@ -6,6 +6,14 @@ regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   TVA reservoir on the Clinch River between Norris Dam and Watts Bar Lake
   (Anderson/Roane counties near Oak Ridge), impounded by Melton Hill Dam
@@ -13,6 +21,7 @@ notes: >-
   The Norris tailwater (clinch-river) runs the length of this pool, giving
   year-round cold-water fishing; the dam discharges into the Clinch arm of
   Watts Bar Lake. TWRA maps the reservoir at 6,035 ac.
+  TWRA's Melton Hill Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03535912
     url: https://waterdata.usgs.gov/monitoring-location/03535912/
@@ -20,3 +29,5 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Melton Hill Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html

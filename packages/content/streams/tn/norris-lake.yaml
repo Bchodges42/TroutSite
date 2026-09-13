@@ -8,6 +8,14 @@ gaugeIds:
 stockingProgram: false
 species: warmwater
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger,
   and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch
@@ -15,6 +23,7 @@ notes: >-
   (clinch-river) into Melton Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is
   about 33,840 acres, and the pool outline runs far up the Clinch and Powell arms — expect shorelines
   and access points to follow the impounded river channels.
+  TWRA's Norris Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 
 officialSources:
   - label: USGS Water Data — monitoring location 03533000
@@ -25,3 +34,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Norris Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html

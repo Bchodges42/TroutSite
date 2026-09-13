@@ -6,13 +6,24 @@ regionId: tn-middle-nashville
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   Reference waterbody from the Tennessee waterways inventory — the Cumberland River
   reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale
   counties. Detailed angler notes are still being prepared — check TWRA and local
   access areas in the meantime.
+  TWRA's Old Hickory Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Old Hickory Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html
