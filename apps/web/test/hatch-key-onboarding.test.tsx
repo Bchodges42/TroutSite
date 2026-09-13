@@ -81,3 +81,24 @@ describe('T2-39 — hatch key onboarding', () => {
     expect(screen.queryByRole('note')).toBeNull();
   });
 });
+
+/** T2-43 — a missing region-month chart is announced, never silently re-ranked. */
+describe('T2-43 — chartless hatch key notice', () => {
+  it('says matching is key-features-and-season only when the chart is not cached', async () => {
+    const user = userEvent.setup();
+    renderKey();
+    // Any full observation completes the context step only after the picks —
+    // drive to the results via "Not sure" and the standard picks.
+    await user.click(screen.getByRole('button', { name: /Not sure/i }));
+    await user.click(screen.getByRole('button', { name: 'olive' }));
+    await user.click(screen.getByRole('button', { name: /^2 tails/ }));
+    await user.click(
+      screen.getByRole('button', { name: 'Flat plates (lamellae) along the sides' }),
+    );
+    await user.click(screen.getByRole('button', { name: /^slender/ }));
+    await user.click(screen.getByRole('button', { name: 'See matches' }));
+    expect(await screen.findByRole('note', { name: 'Chart not cached notice' })).toHaveTextContent(
+      /matching by key features and season only/i,
+    );
+  });
+});

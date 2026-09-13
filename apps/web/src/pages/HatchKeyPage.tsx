@@ -144,6 +144,10 @@ export function HatchKeyPage() {
     return parsed.success ? parsed.data : null;
   }, [draft]);
 
+  // T2-43: a missing region-month chart must be VISIBLE — ranking silently
+  // drops the +2 "hatching now" signal, so say the results are key+season only.
+  const chartMissing =
+    Boolean(draft.regionId && draft.month) && !chartQuery.isLoading && !chartQuery.data;
   const ranked: RankedTaxon[] = useMemo(() => {
     if (!observation || !pack.data) return [];
     const charts = chartQuery.data ? [chartQuery.data.data] : [];
@@ -195,6 +199,17 @@ export function HatchKeyPage() {
         Answer a few questions about the bug you found — the matches are ranked on your device,
         fully offline.
       </p>
+      {chartMissing && (
+        <p
+          className="mt-3 rounded-lg px-3 py-2 text-sm"
+          style={{ background: 'var(--trout-slate-100)', border: '1px solid var(--ui-border)' }}
+          role="note"
+          aria-label="Chart not cached notice"
+        >
+          The hatch chart for this region and month isn&apos;t on this device — matching by key
+          features and season only.
+        </p>
+      )}
 
       {!finished && (
         <>
