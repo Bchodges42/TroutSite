@@ -296,7 +296,7 @@ after; then neutral swaps to species-colored comfort + activity.
   pre-spawn/spawn/post-spawn water-temp thresholds, flow-trend preference (stable/
   falling favorable; hard-rising unfavorable), pressure-trend sensitivity. Every band
   cites TWRA + primary literature; `validate:content` extended to enforce citations.
-- [x] **F3 · (10 waters authored under the evidence gate; 138 honestly unset — evidence research continues in Stage 4) Catalog data.** `species` enum extension: warmwater waters record WHICH
+- [x] **F3 · (39 waters authored across two evidence-gated passes; remaining unset waters listed with reasons — research continues) Catalog data.** `species` enum extension: warmwater waters record WHICH
   species they hold, authored from TWRA evidence (2026-09-08 capture already has
   species-adjacent notes). Unknown stays unknown — never guessed. Pair with T3-52
   (candidate waters enter with species data from day one).
@@ -312,20 +312,20 @@ after; then neutral swaps to species-colored comfort + activity.
   3-hour trend mapped to each region (area-level, NOT per-water — the label must say
   "area pressure"). New provider follows the evidence/monitors registry pattern;
   `observedAt` vs `retrievedAt` discipline; freshness + staleness rules.
-- [ ] **F9 · Spawn-state model.** Computed, not calendared: water temp crossing
+- [x] **F9 · Spawn-state model.** Computed, not calendared: water temp crossing
   species thresholds (F2) drives PRE_SPAWN (+activity, "aggressive"), SPAWNING
   (neutral score + conservation note — "on beds, handle and release quickly"),
   POST_SPAWN (−, "recovering"). Wide uncertainty windows; labeled `derived`.
-- [ ] **F10 · Activity presentation.** Detail/drawer: breakdown rows (one per factor:
+- [x] **F10 · Activity presentation.** Detail/drawer: breakdown rows (one per factor:
   temp position, flow trend, pressure trend, spawn state) each with contribution +
   source link + confidence label; total with honest wording ("activity outlook",
   never "fish will bite"). Map/legend: all-fish mode colors by focused-species
   comfort; activity shown as the per-water detail, not map color (avoid
   color-carrying-two-meanings).
-- [ ] **F11 · Time-of-day windows (client-side, deterministic).** Dawn/dusk feeding
+- [x] **F11 · Time-of-day windows (client-side, deterministic).** Dawn/dusk feeding
   windows computed from the water's coordinates + date (solar tables — no API, no
   location permission needed). Presented as "today's windows," labeled heuristic.
-- [ ] **F12 · EXCLUDED factors — documented, revisit only with owner push.**
+- [x] **F12 · EXCLUDED factors — documented, revisit only with owner push.**
   (a) **Rain/stain as a scored factor**: the gauge side is already captured by flow
   trend; the bite side depends on water clarity, which cannot be measured remotely —
   scoring it would violate measured-not-guessed. Compromise shipped instead: a
@@ -341,7 +341,7 @@ after; then neutral swaps to species-colored comfort + activity.
 - [ ] **F7 · e2e.** Privacy spec unchanged (zero third-party still holds — NWS is a
   FIRST-PARTY server-side fetch, ingested like USGS, never a browser call); offline
   flows cover the new snapshots; marketing evidence page (T2-54) in the marketing suite.
-- [ ] **T2-54 · Marketing "our data & sources" page** (decision 3): methodology
+- [x] **T2-54 · Marketing "our data & sources" page** (decision 3): methodology
   summary on the marketing site — now including the activity model's factor list and
   evidence-strength labels; raw per-water evidence (`/v1/evidence/waters.json`) one
   click deeper; no tracking, no main-app changes.
