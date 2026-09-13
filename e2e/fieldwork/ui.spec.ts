@@ -817,6 +817,9 @@ test('location permission denial provides actionable feedback', async ({ page })
   await expect(page.getByRole('status')).toContainText('Location permission was declined');
 });
 
+// Pixel-sampling + multi-zoom relief spec: ~27s in isolation, no headroom at
+// the 30s default under a loaded host.
+test.setTimeout(90_000);
 test('East Tennessee relief never paints a rectangle outside the state at zoom 8 or 9', async ({
   page,
 }) => {

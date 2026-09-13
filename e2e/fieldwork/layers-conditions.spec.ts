@@ -136,6 +136,9 @@ test.describe('Layers panel', () => {
     await expect(page.getByRole('group', { name: 'Map layers' })).toBeHidden();
   });
 
+  // Heavy MapLibre terrain/style specs: ~29s in isolation under host load —
+  // the 30s default leaves no headroom in a full suite.
+  test.setTimeout(90_000);
   test('layer state survives reload, back/forward, and theme changes', async ({ page }) => {
     await page.goto('/?terrain=1&roads=1');
     await ready(page);
@@ -190,6 +193,7 @@ test.describe('Layers panel', () => {
     await expect(page.getByTestId('river-map')).not.toHaveAttribute('data-map-sources', /hillshade/);
   });
 
+  test.setTimeout(90_000);
   test('terrain in Nightfall paints no opaque rectangle and survives local zooms', async ({
     page,
   }) => {
@@ -251,6 +255,7 @@ test.describe('Layers panel', () => {
     await page.screenshot({ path: '../artifacts/screenshots/nightfall-terrain-east-local.png' });
   });
 
+  test.setTimeout(90_000);
   test('style swaps restore selection, inspector, and hit layers', async ({ page }) => {
     await page.goto('/?terrain=1');
     await ready(page);
