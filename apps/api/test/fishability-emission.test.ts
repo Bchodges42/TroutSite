@@ -64,6 +64,20 @@ describe('F5 fishability emission', () => {
               avoidanceC: { value: 29, basis: 'chronic-mwat', sources: ['https://example.com/avoid'] },
               lethalC: { value: 31, basis: 'acute-mdmt', sources: ['https://example.com/lethal'] },
             },
+            spawn: {
+              onsetC: { value: 12.8, sources: ['https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html'] },
+              endC: { value: 21.1, sources: ['https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html'] },
+            },
+          },
+          {
+            // Comfort-scoreable but NO spawn window authored → temp-only activity.
+            id: 'largemouth-bass',
+            displayName: 'Largemouth bass',
+            comfort: {
+              optimalC: { min: 26.7, max: 30, basis: 'lab-preferred', sources: ['https://example.com/lmb-optimal'] },
+              avoidanceC: { value: 32, basis: 'chronic-mwat', sources: ['https://example.com/lmb-avoid'] },
+              lethalC: { value: 34, basis: 'acute-mdmt', sources: ['https://example.com/lmb-lethal'] },
+            },
           },
           {
             // Cataloged but not yet scoreable: no sourced optimal range.
@@ -81,8 +95,8 @@ describe('F5 fishability emission', () => {
   }
 
   it('emits a contract-valid snapshot for waters with targetSpecies and nothing for waters without', () => {
-    setTargetSpecies('watauga-river', ['smallmouth-bass', 'bluegill']);
-    insertReading(22); // inside smallmouth's optimal 20–26.7
+    setTargetSpecies('watauga-river', ['smallmouth-bass', 'bluegill', 'largemouth-bass']);
+    insertReading(22); // smallmouth: optimal comfort + POST_SPAWN shoulder; largemouth: below optimal
     const pack = writeSpeciesPack();
 
     const result = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
@@ -94,24 +108,38 @@ describe('F5 fishability emission', () => {
     expect(snapshot.streamId).toBe('watauga-river');
     expect(snapshot.fetchedAt).toBe(NOW.toISOString());
 
-    // Scoreable species: optimal comfort + a single transparent activity factor.
+    // Smallmouth: cited spawn window present → two transparent components.
     const smallmouth = snapshot.bySpecies['smallmouth-bass']!;
     expect(smallmouth.comfort).toMatchObject({ species: 'smallmouth-bass', value: 90, assessed: true });
-    expect(smallmouth.comfort.freshness).toEqual({
-      observedAt: new Date(NOW_MS - 10 * 60_000).toISOString(),
-      ageMinutes: 10,
-    });
-    expect(smallmouth.activity.total).toBe(90);
-    expect(smallmouth.activity.components).toHaveLength(1);
+    expect(smallmouth.activity.components).toHaveLength(2);
     expect(smallmouth.activity.components[0]).toMatchObject({
       factor: 'water-temperature',
       value: 90,
-      contribution: 40,
-      weight: 1,
+      weight: 0.7,
+      contribution: 28,
       evidenceUrl: 'https://waterdata.usgs.gov/monitoring-location/03486000',
       confidence: 'measured',
       label: 'Water temperature',
     });
+    expect(smallmouth.activity.components[1]).toMatchObject({
+      factor: 'spawn-state',
+      value: 30,
+      weight: 0.3,
+      contribution: -6,
+      confidence: 'derived',
+      evidenceUrl: 'https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html',
+    });
+    expect(smallmouth.activity.components[1]!.label).toMatch(/post-spawn/);
+    expect(smallmouth.activity.spawnState).toBe('POST_SPAWN');
+    expect(smallmouth.activity.total).toBe(72); // 50 + 28 − 6
+
+    // Largemouth: scoreable comfort, NO spawn window → temperature alone, weight 1.
+    const largemouth = snapshot.bySpecies['largemouth-bass']!;
+    expect(largemouth.comfort).toMatchObject({ value: 40, assessed: true }); // 22 < optimal 26.7
+    expect(largemouth.activity.total).toBe(40); // 50 + 1.0×(40−50)
+    expect(largemouth.activity.components).toHaveLength(1);
+    expect(largemouth.activity.components[0]!.weight).toBe(1);
+    expect(largemouth.activity.spawnState).toBeUndefined();
 
     // Cataloged but unscoreable: honest cannot-assess, no fabricated numbers.
     const bluegill = snapshot.bySpecies['bluegill']!;
@@ -123,6 +151,54 @@ describe('F5 fishability emission', () => {
     expect(existsSync(join(env.snapshotsDir, 'v1', 'fishability', 'test-tailrace-b.json'))).toBe(false);
     expect(readdirSync(join(env.snapshotsDir, 'v1', 'fishability'))).toEqual(['watauga-river.json']);
   });
+
+  it('F9: PRE_SPAWN boosts, SPAWNING is neutral with the conservation label, POST_SPAWN reduces', () => {
+    setTargetSpecies('watauga-river', ['smallmouth-bass']);
+    const pack = writeSpeciesPack();
+
+    // PRE_SPAWN shoulder (12.8−4 ≤ 12 < 12.8): comfort 40 (below optimal), spawn +9.
+    insertReading(12);
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    let smallmouth = readSmallmouth();
+    expect(smallmouth.activity.spawnState).toBe('PRE_SPAWN');
+    expect(smallmouth.activity.components[1]).toMatchObject({ value: 80, contribution: 9 });
+    expect(smallmouth.activity.components[1]!.label).toMatch(/pre-spawn/);
+    const preTotal = smallmouth.activity.total;
+
+    // SPAWNING window (12.8 ≤ 16 ≤ 21.1): neutral value 50, conservation label.
+    env.db.prepare('DELETE FROM gauge_readings_raw').run();
+    insertReading(16);
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    smallmouth = readSmallmouth();
+    expect(smallmouth.activity.spawnState).toBe('SPAWNING');
+    expect(smallmouth.activity.components[1]).toMatchObject({ value: 50, contribution: 0 });
+    expect(smallmouth.activity.components[1]!.label).toBe('On beds — handle and release quickly');
+    // Its own contribution is 0 — neutral is asserted on the component above.
+
+    // POST_SPAWN shoulder (21.1 < 22 ≤ 25.1): reduced value 30.
+    env.db.prepare('DELETE FROM gauge_readings_raw').run();
+    insertReading(22);
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
+    smallmouth = readSmallmouth();
+    expect(smallmouth.activity.spawnState).toBe('POST_SPAWN');
+    const postTotal = smallmouth.activity.total;
+
+    // The spawn FACTOR orders boost > neutral > reduce (asserted per state above:
+    // +9 > 0 > −6). Against each state's temp-only counterfactual (same comfort,
+    // weight 1.0 — 50 + (comfort − 50)): pre-spawn lifts the outlook above it,
+    // spawning stays at it (its own contribution is 0), post-spawn drags it down.
+    expect(preTotal).toBe(52); // 40 (temp-only at comfort 40) + 9 spawn boost
+    expect(postTotal).toBe(72); // 90 (temp-only at comfort 90) − 6 spawn drag
+    expect(preTotal).toBeGreaterThan(40); // boosted vs no-spawn counterfactual
+    expect(postTotal).toBeLessThan(90); // reduced vs no-spawn counterfactual
+  }, 30_000);
+
+  function readSmallmouth(): FishabilitySnapshot['bySpecies'][string] {
+    const snapshot = JSON.parse(
+      readFileSync(join(env.snapshotsDir, 'v1', 'fishability', 'watauga-river.json'), 'utf8'),
+    ) as FishabilitySnapshot;
+    return snapshot.bySpecies['smallmouth-bass']!;
+  }
 
   it('emits nothing when no water has targetSpecies (honest absence)', () => {
     const pack = writeSpeciesPack();

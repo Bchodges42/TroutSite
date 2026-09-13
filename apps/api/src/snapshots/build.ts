@@ -29,7 +29,7 @@ import type { Db } from '../db.js';
 import { latestReadings } from '../ingest/usgs.js';
 import { jobHealthy } from '../jobs/run.js';
 import { writeJsonAtomic } from '../lib/jsonFile.js';
-import { bandsFromReference, buildFishabilitySnapshot, type SpeciesReferenceLike } from './fishability.js';
+import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
 
 export interface BuildOptions {
   db: Db;
@@ -417,6 +417,7 @@ function emitFishability(
   if (scoring.length === 0) return 0;
 
   const bandsBySpecies = new Map<SpeciesKey, SpeciesComfortBands>();
+  const spawnBySpecies = new Map<SpeciesKey, SpawnInfo>();
   const speciesPackPath = ctx.packDir ? join(ctx.packDir, 'species.json') : undefined;
   if (speciesPackPath && existsSync(speciesPackPath)) {
     const raw = JSON.parse(readFileSync(speciesPackPath, 'utf8')) as {
@@ -427,6 +428,8 @@ function emitFishability(
       if (!parsed.success) continue;
       const bands = bandsFromReference(parsed.data, entry);
       if (bands) bandsBySpecies.set(parsed.data, bands);
+      const spawn = spawnThresholdsFromReference(entry);
+      if (spawn) spawnBySpecies.set(parsed.data, spawn);
     }
   } else {
     ctx.warnings.push('content pack has no species.json — fishability rows emit as cannot-assess (honest)');
@@ -437,7 +440,7 @@ function emitFishability(
   for (const stream of scoring) {
     const streamReadings =
       stream.gaugeIds.length > 0 ? ctx.readings.filter((r) => stream.gaugeIds.includes(r.gaugeId)) : [];
-    const snapshot = buildFishabilitySnapshot(stream, streamReadings, bandsBySpecies, ctx.now.getTime());
+    const snapshot = buildFishabilitySnapshot(stream, streamReadings, bandsBySpecies, ctx.now.getTime(), spawnBySpecies);
     const p = join(fishDir, `${stream.id}.json`);
     writeJsonAtomic(p, snapshot);
     ctx.files.push(p);

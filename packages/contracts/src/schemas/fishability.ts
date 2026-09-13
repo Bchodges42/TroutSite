@@ -61,6 +61,16 @@ export type SpeciesComfortBands = z.infer<typeof SpeciesComfortBandsSchema>;
 export const ActivityConfidenceSchema = z.enum(['measured', 'derived', 'heuristic']);
 export type ActivityConfidence = z.infer<typeof ActivityConfidenceSchema>;
 
+/** Temperature-triggered spawn state (F9): never calendared, only observed water temperature. */
+export const SpawnStateSchema = z.enum(['PRE_SPAWN', 'SPAWNING', 'POST_SPAWN', 'N_A']);
+export type SpawnState = z.infer<typeof SpawnStateSchema>;
+
+/** One species' sourced spawning temperature window (F2: onset/end, both cited). */
+export const SpawnThresholdsSchema = z
+  .object({ onsetC: z.number(), endC: z.number() })
+  .refine((t) => t.onsetC <= t.endC, { message: 'spawn onsetC must be <= endC' });
+export type SpawnThresholds = z.infer<typeof SpawnThresholdsSchema>;
+
 /** The activity factors (closed set in v2; a new factor goes through the ADR process). */
 export const ActivityFactorSchema = z.enum([
   'water-temperature',
@@ -101,6 +111,10 @@ export const ActivityOutlookSchema = z
   .object({
     total: z.number().int().min(0).max(100),
     components: z.array(ActivityComponentSchema),
+    /** The spawn state behind the spawn-state component, when one was emitted
+     *  (F9). Absent = the species has no sourced spawn window (or no fresh
+     *  temperature) — never guessed from the calendar. */
+    spawnState: SpawnStateSchema.optional(),
   })
   .refine(
     (a) => a.components.length === 0 || Math.abs(a.components.reduce((s, c) => s + c.weight, 0) - 1) <= 0.01,

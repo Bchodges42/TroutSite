@@ -24,5 +24,6 @@ export * from './endpoints.js';
 export * from './scoreConditions.js';
 export * from './scoreFishability.js';
 export * from './scoreActivity.js';
+export * from './spawnState.js';
 export * from './matchHatch.js';
 export * from './readingFreshness.js';
