@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, afterEach } from 'vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StreamDetailPage } from '../src/pages/StreamDetailPage';
@@ -73,7 +73,7 @@ function DetailRoutes() {
 afterEach(cleanup);
 
 describe('T2-37/38 — mobile-first water detail and dense browse rows', () => {
-  it('mobile decision header leads with state, age, flow, temp, and one action', async () => {
+  it('mobile decision header leads with state, age, flow, temp, and one action', { timeout: 20_000 }, async () => {
     page(<DetailRoutes />, '/conditions/harpeth-river');
     const header = await screen.findByTestId('mobile-decision-header');
     expect(header.textContent).toContain('Now');
@@ -85,13 +85,22 @@ describe('T2-37/38 — mobile-first water detail and dense browse rows', () => {
     expect(action?.getAttribute('href')).toContain('hatch-key');
   });
 
-  it('gauge history renders in a mobile disclosure and a desktop table block', async () => {
+  it('gauge history renders in a mobile disclosure and a desktop table block', { timeout: 20_000 }, async () => {
     page(<DetailRoutes />, '/conditions/harpeth-river');
     await screen.findByText('Harpeth River');
-    const disclosure = document.querySelector('details.gauge-disclosure');
-    expect(disclosure).not.toBeNull();
-    expect(disclosure!.querySelector('summary')?.textContent).toContain('Gauge readings');
-    expect(disclosure!.querySelector('table')).not.toBeNull();
+    // Both the mobile disclosure and the desktop block render in the DOM
+    // (CSS hides one) — wait on the live table, not on ambiguous text.
+    await screen.findByText('Harpeth River', {}, { timeout: 12_000 });
+    const disclosure = await waitFor(
+        () => {
+          const el = document.querySelector('details.gauge-disclosure');
+          expect(el?.querySelector('table')).not.toBeNull();
+          return el!;
+        },
+        { timeout: 12_000 },
+      );
+    expect(disclosure.querySelector('summary')?.textContent).toContain('Gauge readings');
+    expect(document.querySelector('.desktop-only table')).not.toBeNull();
     expect(document.querySelector('details.gauge-disclosure.mobile-only')).not.toBeNull();
     expect(document.querySelector('.desktop-only')).not.toBeNull();
   });

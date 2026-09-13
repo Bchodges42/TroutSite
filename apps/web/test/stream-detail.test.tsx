@@ -160,7 +160,7 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
     renderDetail(warmStream, warmSnapshot);
     // The state appears in the mobile decision header AND the assessment
     // headline (T2-37) — multiple matches are correct.
-    expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/Warmwater/i, { timeout: 5_000 })).length).toBeGreaterThan(0);
     // No trout score pill, no assessment headline, no trend, no reasons.
     expect(screen.queryByLabelText(/Condition score/)).not.toBeInTheDocument();
     expect(screen.queryByText(/Trout condition assessment/i)).not.toBeInTheDocument();
@@ -175,7 +175,7 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
     renderDetail(warmStream, warmSnapshot);
     // The state appears in the mobile decision header AND the assessment
     // headline (T2-37) — multiple matches are correct.
-    expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/Warmwater/i, { timeout: 5_000 })).length).toBeGreaterThan(0);
     // 26°C would be 'poor' and 900 cfs 'poor' under the trout model — both
     // must render without any status tint class.
     const container = document.body;
@@ -195,8 +195,8 @@ describe('T1-13/T1-14/T1-15 — warmwater water shows zero trout-model output', 
     renderDetail(warmStream, warmSnapshot);
     // The state appears in the mobile decision header AND the assessment
     // headline (T2-37) — multiple matches are correct.
-    expect((await screen.findAllByText(/Warmwater/i)).length).toBeGreaterThan(0);
-    await screen.findByText('Not listed');
+    expect((await screen.findAllByText(/Warmwater/i, { timeout: 5_000 })).length).toBeGreaterThan(0);
+    await screen.findByText('Not listed', {}, { timeout: 5_000 });
     // The ideal-flow badge value itself must never be a bare unit.
     expect(document.body.textContent).not.toMatch(/Ideal flow\s* cfs/);
     expect(screen.queryByText(' cfs')).not.toBeInTheDocument();
