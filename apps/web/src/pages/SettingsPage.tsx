@@ -98,6 +98,29 @@ export function SettingsPage() {
           </span>
         </div>
       </Card>
+      <h2 className="section-title">Waters</h2>
+      <Card>
+        <p className="font-bold">Species mode</p>
+        <div className="mt-2 flex gap-2" role="group" aria-label="Fish mode">
+          {(['trout', 'all'] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              className="option-card focus-ring min-h-[48px] w-40 text-sm"
+              aria-pressed={settings.speciesMode === mode}
+              onClick={() => update({ speciesMode: mode })}
+            >
+              {mode === 'trout' ? 'Trout' : 'All fish'}
+            </button>
+          ))}
+        </div>
+        <p className="page-subtitle mt-2">
+          {settings.speciesMode === 'trout'
+            ? 'Trout condition scores on trout waters; warmwater waters stay listed but unscored.'
+            : 'Every water, and — where the snapshot has it — the fishability of the species you pick on the map.'}
+        </p>
+      </Card>
+
       <h2 className="section-title">Units</h2>
       <Card>
         <p className="text-sm font-bold">Water temperature</p>

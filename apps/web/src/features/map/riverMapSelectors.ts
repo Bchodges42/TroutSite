@@ -1,4 +1,5 @@
 import type { Stream, ConditionSnapshot, ShopReport, StockingEvent, HatchChart } from '@trout/contracts';
+import type { FishabilityFocus } from './waterDecision';
 import { READING_STALE_MINUTES } from '@trout/contracts';
 import { scoreBand } from '../../lib/conditions';
 import { atlas, conditionColor } from './mapTokens';
@@ -114,4 +115,7 @@ export interface RiverMapFeature {
   report: ShopReport | null;
   reportCount: number;
   logCount: number;
+  /** F6: the focus species' comfort score for this water in all-fish mode,
+   *  when the water's snapshot carries it. Absent = not scored. */
+  fishability?: FishabilityFocus;
 }

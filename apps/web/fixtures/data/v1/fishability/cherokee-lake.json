@@ -1,0 +1,60 @@
+{
+  "streamId": "cherokee-lake",
+  "fetchedAt": "2026-09-14T12:00:00Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 55,
+        "reasons": [
+          "Temperature is near the upper edge of the optimal band for largemouth bass"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "striped-bass": {
+      "comfort": {
+        "species": "striped-bass",
+        "value": 22,
+        "reasons": [
+          "Temperature is in the avoidance band for striped bass"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "crappie": {
+      "comfort": {
+        "species": "crappie",
+        "value": 71,
+        "reasons": [
+          "Temperature is in the optimal range for crappie"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

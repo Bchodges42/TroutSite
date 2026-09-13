@@ -1,4 +1,14 @@
 import type { RiverMapFeature } from './riverMapSelectors';
+import type { FishabilityScore, SpeciesKey } from '@trout/contracts';
+
+/**
+ * The focus species' comfort score for one water, when the snapshot has it
+ * (F6). `null` = the water carries no fishability for the focus species.
+ */
+export type FishabilityFocus = {
+  species: SpeciesKey;
+  comfort: FishabilityScore;
+} | null;
 
 /**
  * WaterDecisionView — the presentation view model the filter/metric UI
@@ -59,6 +69,7 @@ export function toWaterDecisionView(
   >,
   mode: SpeciesMode,
   month?: number,
+  fishability?: FishabilityFocus,
 ): WaterDecisionView {
   const warmwater = feature.species === 'warmwater';
   const speciesUnknown = feature.species == null;
@@ -79,6 +90,14 @@ export function toWaterDecisionView(
       : assessed
         ? ('confirmed-current' as const)
         : ('unknown' as const));
+  // F6 (TASK 3): in all-fish mode a water whose snapshot carries an ASSESSED
+  // comfort score for the focus species wears that fishability metric —
+  // warmwater waters finally get their own real score. Unknown-species waters
+  // and unassessed comfort stay honestly unassessed. Trout mode is untouched.
+  const fishabilityActive =
+    mode === 'all' &&
+    !!fishability &&
+    fishability.comfort.assessed;
   return {
     waterId: feature.stream.id,
     visibility:
@@ -89,15 +108,22 @@ export function toWaterDecisionView(
         : 'include',
     troutApplicability,
     // Only a CONFIRMED, in-season trout water with a real assessment may wear
-    // the trout metric. Unknown species and out-of-season waters never borrow
-    // it, even when gauges exist.
-    displayMetric: troutApplicability === 'confirmed-current' && assessed ? 'trout-condition' : 'unassessed',
+    // the trout metric; all-fish mode may wear the FOCUS species' real
+    // fishability. Unknown species and out-of-season waters never borrow a
+    // metric they have no data for.
+    displayMetric: fishabilityActive
+      ? ('fishability' as const)
+      : troutApplicability === 'confirmed-current' && assessed
+        ? ('trout-condition' as const)
+        : ('unassessed' as const),
     // No generic fishability source exists in the current pipeline. The field
     // stays undefined rather than borrowing the trout score.
     fishability: undefined,
-    confidence: troutApplicability === 'confirmed-current' && assessed
-      ? (feature.snapshot?.readings.length ? 'high' : 'medium')
-      : 'low',
+    confidence: fishabilityActive
+      ? (fishability!.comfort.freshness ? 'high' : 'medium')
+      : troutApplicability === 'confirmed-current' && assessed
+        ? (feature.snapshot?.readings.length ? 'high' : 'medium')
+        : 'low',
     reasons,
     cautions: reasons.filter((r) => /dangerously|avoid stressing|heat|flushing/i.test(r)),
   };
@@ -127,6 +153,7 @@ export function metricLabel(view: Pick<WaterDecisionView, 'displayMetric'>): str
 export function decisionStatusText(
   view: WaterDecisionView,
   feature: Pick<RiverMapFeature, 'species' | 'status'>,
+  fishability?: FishabilityFocus,
 ): string {
   if (view.displayMetric === 'trout-condition') {
     return feature.status === 'good'
@@ -139,10 +166,12 @@ export function decisionStatusText(
   }
   if (view.troutApplicability === 'seasonal-likely-absent') return 'Out of season';
   if (view.troutApplicability === 'seasonal-uncertain') return 'Seasonal';
+  // F6: the fishability metric's band text comes from the real comfort score
+  // (same scoreBand ladder as the trout metric).
   if (view.displayMetric === 'fishability') {
-    return view.fishability && view.fishability !== 'unknown'
-      ? view.fishability.charAt(0).toUpperCase() + view.fishability.slice(1)
-      : 'Unassessed';
+    if (!fishability || !fishability.comfort.assessed) return 'No data';
+    const b = fishability.comfort.value;
+    return b >= 70 ? 'Good' : b >= 40 ? 'Fair' : 'Poor';
   }
   return feature.species === 'warmwater'
     ? 'Warmwater'
@@ -156,8 +185,28 @@ export type DecisionColorToken = 'warmwater' | 'good' | 'fair' | 'poor' | 'no-da
 export function decisionColorToken(
   view: WaterDecisionView,
   feature: Pick<RiverMapFeature, 'species' | 'status'>,
+  fishability?: FishabilityFocus,
 ): DecisionColorToken {
-  if (view.troutApplicability === 'not-trout') return 'warmwater';
+  if (view.troutApplicability === 'not-trout') {
+    // In all-fish mode a warmwater water wears its focus-species fishability
+    // band like any other water (F6 TASK 2); without that metric it keeps the
+    // honest warmwater bronze.
+    if (view.displayMetric === 'fishability' && fishability?.comfort.assessed) {
+      return fishability.comfort.value >= 70
+        ? 'good'
+        : fishability.comfort.value >= 40
+          ? 'fair'
+          : 'poor';
+    }
+    return 'warmwater';
+  }
+  if (view.displayMetric === 'fishability' && fishability?.comfort.assessed) {
+    return fishability.comfort.value >= 70
+      ? 'good'
+      : fishability.comfort.value >= 40
+        ? 'fair'
+        : 'poor';
+  }
   // Only confirmed-trout assessed waters carry a band; unknown species and
   // unassessed waters render the neutral no-data tone on the map.
   if (view.displayMetric === 'trout-condition') return feature.status;

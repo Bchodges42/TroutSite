@@ -1,0 +1,60 @@
+{
+  "streamId": "tims-ford-lake",
+  "fetchedAt": "2026-09-14T12:00:00Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 78,
+        "reasons": [
+          "Temperature is in the optimal range for largemouth bass"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "spotted-bass": {
+      "comfort": {
+        "species": "spotted-bass",
+        "value": 66,
+        "reasons": [
+          "Temperature is in the optimal range for spotted bass"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "bluegill": {
+      "comfort": {
+        "species": "bluegill",
+        "value": 88,
+        "reasons": [
+          "Temperature is in the optimal range for bluegill"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

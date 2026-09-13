@@ -1,0 +1,24 @@
+{
+  "streamId": "little-tennessee-river",
+  "fetchedAt": "2026-09-14T12:00:00Z",
+  "bySpecies": {
+    "smallmouth-bass": {
+      "comfort": {
+        "species": "smallmouth-bass",
+        "value": 75,
+        "reasons": [
+          "Temperature is in the optimal range for smallmouth bass"
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-14T10:00:00Z",
+          "ageMinutes": 30
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

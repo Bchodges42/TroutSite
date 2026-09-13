@@ -43,12 +43,13 @@ test.beforeEach(async ({ page }) => {
 function headerSearch(page: Page) {
   return page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' });
 }
-async function select(page: Page, name: string, optionName?: RegExp) {
+async function select(page: Page, name: string) {
+  // Enter selects the best match without racing the results listbox (at
+  // mobile widths an option click can lose the hit-test to the map canvas).
+  // Use a query unique to the water you want.
   await headerSearch(page).fill(name);
-  // The best match can be ambiguous ('Caney' matches the tailwater AND the
-  // upper reach) — an explicit option pattern pins the water.
-  await page.getByRole('option', { name: optionName ?? new RegExp(name, 'i') }).first().click();
-  await expect(page.locator('#river-inspector')).toBeVisible();
+  await headerSearch(page).press('Enter');
+  await expect(page.locator('#river-inspector')).toBeVisible({ timeout: 15_000 });
 }
 async function ready(page: Page) {
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-ready', '1');
@@ -512,7 +513,7 @@ test('hatch and pattern workflows retain river and month', async ({ page }) => {
 test('browser history restores the river and map camera', async ({ page }) => {
   await page.goto('/');
   await ready(page);
-  await select(page, 'Caney', /center hill tailwater/i);
+  await select(page, 'Center Hill tailwater');
   await page.waitForTimeout(450); // Wait for the defined 300 ms camera transition, not network readiness.
   const camera = await page.getByTestId('river-map').getAttribute('data-center');
   await select(page, 'Tellico lake');

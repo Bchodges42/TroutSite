@@ -27,6 +27,7 @@ import { ScorePill } from '../components/ScorePill';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
+import { FishabilityCard } from '../components/FishabilityCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
@@ -140,6 +141,9 @@ export function StreamDetailPage() {
           nextExpectedAt={snapshot ? Date.parse(snapshot.nextExpectedUpdate) : null} />
       </div>
 
+      {/* F6: the focus species' fishability card — independent of the trout
+      conditions snapshot; a water can carry one, both, or neither. */}
+      <FishabilityCard streamId={stream.id} />
       {!snapshot ? (
         <div className="mt-6">
           <EmptyState
