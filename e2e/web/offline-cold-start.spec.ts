@@ -87,7 +87,7 @@ test('wizard offers a clean start-over after an unremarkable bug', async ({ page
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await page.goto('/hatch-key');
 
-  await page.getByRole('button', { name: '#8', exact: true }).click();
+  await page.getByRole('button', { name: /^#8/ }).click();
   await page.getByRole('button', { name: 'red', exact: true }).click();
   await page.getByRole('button', { name: /2 tails/ }).click();
   await page.getByRole('button', { name: /No visible gills/ }).click();
@@ -101,7 +101,7 @@ test('wizard offers a clean start-over after an unremarkable bug', async ({ page
 });
 
 async function runWizard(page: Page): Promise<void> {
-  await page.getByRole('button', { name: '#16', exact: true }).click();
+  await page.getByRole('button', { name: /^#16/ }).click();
   await page.getByRole('button', { name: 'olive', exact: true }).click();
   await page.getByRole('button', { name: /2 tails/ }).click();
   await page.getByRole('button', { name: /Flat plates \(lamellae\)/ }).click();
