@@ -7,6 +7,11 @@ gaugeIds:
   - "03564500"
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
 notes: >-
   Ocoee River impoundment (TVA Ocoee Dam No. 1, "Parksville Dam") in Polk
   County southeast of Benton; the dam sits at the pool's west edge. Receives
@@ -15,6 +20,7 @@ notes: >-
   (parksville-tailwater), which joins the Hiwassee River. TWRA lists the same
   pool as "Ocoee Lake" (2,112 ac). Aliases: Ocoee Lake, Ocoee Lake No. 1,
   Parksville Reservoir.
+  TWRA's Parksville Reservoir page lists the fishery as largemouth bass, spotted bass, crappie, bluegill (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03564500
     url: https://waterdata.usgs.gov/monitoring-location/03564500/
@@ -22,3 +28,5 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Parksville Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html

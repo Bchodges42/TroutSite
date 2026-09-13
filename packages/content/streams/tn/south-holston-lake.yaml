@@ -8,6 +8,13 @@ gaugeIds:
 stockingProgram: false
 species: warmwater
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
 notes: >-
   TVA reservoir on the South Fork Holston River above Bristol (Sullivan
   County, Tennessee, and Washington County, Virginia), impounded by South
@@ -16,6 +23,7 @@ notes: >-
   lake crosses the state line into Virginia, so the mapped water covers the
   full reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes
   7,580 ac at full pool.
+  TWRA's South Holston Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03476500
     url: https://waterdata.usgs.gov/monitoring-location/03476500/
@@ -25,3 +33,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — South Holston Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html

@@ -9,6 +9,12 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - crappie
+  - bluegill
+  - channel-catfish
 notes: >-
   Small reservoir on the Little Tennessee River along the North Carolina line
   in Blount County, impounded by Calderwood Dam. Receives Little Tennessee
@@ -16,8 +22,11 @@ notes: >-
   reservoir with rainbow trout in November and December. TWRA lists
   this pool as "Little Calderwood Reservoir" (458 ac) — that name is an alias
   here.
+  TWRA's Calderwood Reservoir page lists the fishery as largemouth bass, smallmouth bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
   - label: Tapoco/Calderwood area access (verify locally)
     url: https://www.tn.gov/twra.html
+  - label: TWRA — Calderwood Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html

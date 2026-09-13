@@ -7,6 +7,14 @@ gaugeIds:
   - "03487010"
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
+  - striped-bass
 notes: >-
   Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport
   (Sullivan County), impounded by Fort Patrick Henry Dam (USGS 03487010,
@@ -15,6 +23,7 @@ notes: >-
   tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston
   River to form the Holston main stem at Kingsport. Aliases: FPH Lake, Fort Patrick
   Henry Reservoir.
+  TWRA's Fort Patrick Henry Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03487010
     url: https://waterdata.usgs.gov/monitoring-location/03487010/
@@ -22,3 +31,5 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: TWRA — Fort Patrick Henry Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-patrick-henry.html

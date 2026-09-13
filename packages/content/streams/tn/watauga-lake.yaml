@@ -6,6 +6,13 @@ regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - crappie
+  - bluegill
+  - channel-catfish
 notes: >-
   TVA reservoir on the Watauga River in the mountains of Carter and Johnson
   counties, impounded by Watauga Dam (between USGS 03483450 above and 03483950
@@ -14,6 +21,7 @@ notes: >-
   fishery downstream. Outflow runs via the short Watauga River reach
   (watauga-river-wilbur-reach) into Wilbur Lake. The pool runs all the way to
   the dam at its west end. Aliases: Watauga Reservoir.
+  TWRA's Watauga Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/
@@ -21,3 +29,5 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Watauga Reservoir fishing (species list)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html
