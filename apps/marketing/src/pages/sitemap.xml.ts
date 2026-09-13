@@ -14,6 +14,7 @@ export function GET() {
     { loc: '/install/', priority: '0.9' },
     { loc: '/privacy/', priority: '0.5' },
     { loc: '/about/', priority: '0.5' },
+    { loc: '/data-sources/', priority: '0.5' },
     { loc: '/blog/', priority: '0.6' },
   ];
   for (const post of POSTS) urls.push({ loc: `/blog/${post.slug}/`, priority: '0.6' });

@@ -219,3 +219,42 @@ test.describe('programmatic pages answer their query with real data', () => {
     expect(html).toContain('Hot patterns');
   });
 });
+
+test.describe('data & sources page (T2-54)', () => {
+  test('publishes the methodology: sources, fishability factors, evidence-strength labels', async ({
+    request,
+  }) => {
+    const res = await request.get('/data-sources/');
+    expect(res.status()).toBe(200);
+    const html = await res.text();
+    // Named sources behind the data.
+    for (const source of ['USGS', 'TVA', 'TWRA', 'NPS']) {
+      expect(html, `data-sources must name ${source}`).toContain(source);
+    }
+    // The fishability model's factor list (ADR 0007 closed set).
+    for (const factor of ['water temperature', 'flow trend', 'area pressure', 'spawn state']) {
+      expect(html, `data-sources must explain the ${factor} factor`).toContain(factor);
+    }
+    // Evidence-strength labels (measured / derived / heuristic).
+    for (const label of ['Measured', 'Derived', 'Heuristic']) {
+      expect(html, `data-sources must define the ${label} label`).toContain(label);
+    }
+    // Honest-exclusion statement + deterministic-scoring rule.
+    expect(html).toContain('solunar');
+    expect(html).toContain('Deterministic scoring');
+  });
+
+  test('links the raw per-water evidence feed one click deeper', async ({ request }) => {
+    const html = await (await request.get('/data-sources/')).text();
+    expect(html).toMatch(/href="https:\/\/[^"]*\/v1\/evidence\/waters\.json"/);
+    expect(html).toContain('/v1/evidence/waters.json');
+  });
+
+  test('the page ships zero scripts; the evidence feed is a plain link', async ({ request }) => {
+    const html = await (await request.get('/data-sources/')).text();
+    // No script carries a src (the only inline scripts are JSON-LD metadata).
+    expect(html).not.toMatch(/<script[^>]+src=/);
+    // The evidence feed is exposed as a plain anchor, never fetched by any code.
+    expect(html).toMatch(/<a[^>]+href="https:\/\/[^"]*\/v1\/evidence\/waters\.json"/);
+  });
+});
