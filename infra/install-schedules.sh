@@ -9,10 +9,11 @@
 #   trout-refresh-data  hourly        gauges ingest + snapshot regeneration
 #                                     (replaces the dead trout-cron heartbeat)
 #   trout-autoupdate    hourly        deploy when the tracked branch moves on origin
+#   trout-db-backup     daily 03:30   consistent online SQLite backup (T1-12)
 #
 # Windows: schtasks (runs as SYSTEM so it survives logoff; if pnpm/node are not on
-# the SYSTEM PATH the heal scripts still work — verify/restore need only bash+curl,
-# and the scripts add common node locations themselves).
+# the SYSTEM PATH the scripts still work — verification is a single node process and
+# the scripts add common node locations themselves; nothing needs curl).
 # Linux: crontab lines.
 set -uo pipefail
 cd "$(dirname "$0")/.."
@@ -35,6 +36,7 @@ jobs=(
   "trout-watchdog|*/15 or MINUTE/MO 15|bash infra/watchdog.sh"
   "trout-refresh-data|hourly|bash infra/refresh-data.sh"
   "trout-autoupdate|hourly|bash infra/autoupdate.sh"
+  "trout-db-backup|daily 03:30|bash infra/backup.sh"
 )
 
 if [ "$IS_WIN" = "1" ]; then
@@ -58,6 +60,7 @@ run_job() { # name command
       trout-watchdog)     schtasks /Create /F /SC MINUTE /MO 15 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
       trout-refresh-data) schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
       trout-autoupdate)   schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$WINDOWS_POWERSHELL\" -NoProfile -ExecutionPolicy Bypass -File \"$WINDOWS_UPDATE_SCRIPT\"" ;;
+      trout-db-backup)    schtasks /Create /F /SC DAILY /ST 03:30 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
     esac
   else
     local spec="0 * * * *"

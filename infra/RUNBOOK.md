@@ -118,7 +118,9 @@ the outage window (§11: laptop downtime → static + CF cache).
 
 - Manual/nightly: `bash infra/backup.sh` → `backups/trout-YYYYmmdd-HHMMSS.db`, keeps 14.
 - Schedule nightly (Task Scheduler, run whether user is logged on or not):
-  `schtasks /Create /SC DAILY /ST 03:30 /TN "trout-db-backup" /TR "C:\Program Files\Git\bin\bash.exe -lc 'cd /c/Users/Benjamin/Projects/trout && bash infra/backup.sh'"`
+  `bash infra/install-schedules.sh` now registers `trout-db-backup` (daily 03:30)
+  alongside the other tasks; to create it manually:
+  `schtasks /Create /SC DAILY /ST 03:30 /TN "trout-db-backup" /TR "<git-bash> -lc 'cd <repo-root> && bash infra/backup.sh'"`
 - Also `git push` the repo nightly (§9 hygiene). The DB itself is **not** in git (gitignored).
 
 ## 6. Laptop hygiene
@@ -217,9 +219,9 @@ scripts now own that control loop:
 | Script | Job |
 |---|---|
 | `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. Reads `WATCHDOG_TOKEN` from the environment and sends it as `x-watchdog-token`, so it verifies hardened instances. |
-| `infra/archive-snapshots.sh` | Snapshot the currently-served trees → `backups/snapshots-last-good.tar.gz` (refuses to archive an empty/broken state). |
+| `infra/archive-snapshots.sh` | Snapshot the currently-served trees → `backups/snapshots-last-good/` (node-copied directory via `snapshot-io.mjs` — no tar; refuses to archive an empty/broken state). |
 | `infra/restore-snapshots.sh` | Swap the archived trees back in (staging + atomic swap). This alone heals the read path. |
-| `infra/watchdog.sh` | Hourly loop: verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. |
+| `infra/watchdog.sh` | Every-15-minutes loop (schtasks `MINUTE/MO 15`): verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. |
 
 ### Origin API hardening (2026-09-11)
 
@@ -299,7 +301,10 @@ rules as the status files: one push per state change, never repeated.
 The server can ship its own releases: `autoupdate.sh` fetches origin, and when
 `main` moved it runs `deploy.sh` (which verifies and rolls back on failure). It
 refuses to run over locally-modified tracked files, and it is a no-op fetch when
-nothing changed, so any cadence is safe. On the headless server (cron, not Task
+nothing changed AND the last deploy of that revision verified green
+(`backups/last-good-rev`, T0-2) — a FAILED deploy is retried on the next poll
+instead of being skipped, so the server never sits on a failed release until
+origin moves again. Any cadence is safe. On the headless server (cron, not Task
 Scheduler):
 
 ```cron
