@@ -464,3 +464,125 @@ components dropped for missing citations or stale region pressure.
    tailwaters with ramping releases get no activity signal from the one factor the
    domain says matters most.
 
+
+### 5. Repository wiring vs generated artifacts (drift) — *wiring facts, not live reality*
+
+| Artifact | State in tree | Drift / note |
+|---|---|---|
+| `packages/content/streams/tn/*.yaml` | 148 waters | source of truth |
+| `apps/web/public/atlas/rivers.geojson` | 148 features | ID set identical; prov `generated 2026-09-06/07` (`provenance.json`) |
+| `apps/web/public/atlas/lakes.geojson` | **empty `features: []`** | still mounted as a map source (`mapStyle.ts:96`) — dead layer |
+| `apps/web/src/features/map/riverIndex.json` | 148 | IDs/names/types identical to YAML |
+| `docs/data-source-coverage.json` | **147 rows** | missing exactly `bradley-creek` (in catalog since 2026-09-05, `6a44063`/`30b2c83`); artifact generated 2026-09-08 from base `5648ccc` — OA-07 confirmed and pinned to one water |
+| `packages/content/data/verified-gauges.json` | 90 USGS sites, `realTimeIV: true` | static registry verified **2026-09-02**, never refreshed — capability assertion, not current health |
+| fishability emitter comments | `fishability.ts:27-31`, `build.ts:213-218` | say "exactly one factor" while three ship — stale doc |
+| README architecture line | `README.md:63-64` "regenerated hourly" | consistent with cron (gauges job rebuilds hourly, `pipeline.ts:203-208`); `cron.ts:37`'s nightly `snapshots` job is a redundant second rebuild |
+
+### 6. UI / content / SEO mismatches (every item: file → surface → divergence)
+
+1. **Per-water marketing titles say "fly fishing" for all 148 waters** — including the
+   8 warmwater and 37 unknown-species waters ("Norris Lake fly fishing — …").
+   `apps/marketing/src/pages/streams/[state]/[slug]/index.astro:50`. The description
+   (`:51`) additionally promises "fishability score, ideal flow ranges" on pages for
+   waters that have neither (56 empty `idealFlow`; 109 waters with no fishability
+   file).
+2. **Site-wide species mode does not re-word or filter Stocking** — settings bound to
+   unused `_settings` (`StockingPage.tsx:131`); stocking stays all-species with a
+   local `?species=` filter (`:138,181`). Diverges from DECIDED policy #2
+   ("re-filters/re-words every surface").
+3. **Detail page + drawer ignore the user's mode** for their own decision framing —
+   hardcoded `'trout'` (`StreamDetailPage.tsx:226-237`, `RiverDrawer.tsx:194,450`).
+   They are honestly species-worded per the catalog, but All-fish mode changes
+   nothing there.
+4. **Stopped-sensor freshness gap** (§4.1): score number and fresh `fetchedAt` ship
+   together while data may be months old; only the chip text carries the truth
+   (`riverMapSelectors.ts:86-91`, `FreshnessChip`).
+5. **Empty lakes layer mounted** (`mapStyle.ts:96` + `lakes.geojson` empty) — dead
+   source; harmless at runtime, misleading to cartography readers and QA
+   (`qa/audit.ts:169-271` reads lake polygons from the rivers file).
+6. **Stale "one factor" comments** at `fishability.ts:27-31`, `build.ts:213-218`
+   contradict the shipped three-factor activity rows.
+7. **USACE orphan fetch**: `usace-provider.ts:64-68` fetches CORT1 for
+   `waterId: 'cumberland-river'` every run, but `cumberland-river.yaml:6` has
+   `gaugeIds: []` — the reading is stored and never consumed (dead data + wasted
+   fetch; also masks a likely missing-gauge authoring gap).
+8. **`latestValue` orders by raw ISO string compare** (`usgs.ts:60-65`) — correct for
+   USGS's uniform per-site offsets, but silently misorders if offsets ever mix
+   (latent, not a live defect).
+9. **Marketing state pages are trout-total** (`fishing/[state]/index.astro`,
+   `when-does-[state]-stock-trout/`) — accurate for the trout program, silent about
+   the warmwater waters the app now scores; a positioning gap, not a false claim.
+10. **Hatch content on per-water marketing pages is regional** (`[slug]/index.astro:37-48`,
+    `getYearlyHatch(region.id)`) — defensible if labeled, but sits under a per-water
+    "hatch chart highlights" heading.
+
+### 7. Tests: present, missing, exact commands
+
+**Commands** (root `package.json:12-21`): `pnpm -r test` · `pnpm -r lint` ·
+`pnpm validate:content` (= `pnpm --filter @trout/content validate`) · `pnpm e2e` ·
+`pnpm e2e:web`. Per-package: `pnpm --filter @trout/contracts test` (vitest **with a
+90% coverage gate**, `packages/contracts/vitest.config.ts`); `pnpm --filter api test`;
+content + web vitest without coverage gates. **Not executed in this audit** (see §1
+limitations). File counts: contracts 9 · content 1 · api 28 · web 35 test files; e2e
+14 Playwright specs (`e2e/{web,api,admin,marketing,fieldwork}`).
+
+**Relevant suites seen in-tree:** contracts — `scoreConditions.test.ts`,
+`scoreFishability.test.ts`, `fishability.test.ts`, `spawnState.test.ts`,
+`readingFreshness.test.ts`, `schemas.test.ts`, `matchHatch.test.ts`,
+`waterEvidence.test.ts`. api — `stale-metrics.test.ts` (incl. the kept-old-stamp
+behavior, `:104-117`), `conditions-bridge.test.ts`, `fishability-emission.test.ts`,
+`health.test.ts`, `snapshots.test.ts`, `usgs.test.ts`, `nws-provider.test.ts`,
+evidence-*. web/atlas — `atlas-verify.spec.ts`, `fishability.spec.ts`,
+`conditions-fixtures.spec.ts`.
+
+**Missing regressions (repo-provable gaps):**
+- No test pins an **absolute-age** rejection in the conditions path (the only age
+  behavior pinned is the relative pass-2 + old-stamp retention).
+- No test covers **title-tier promotion** (extent thresholds) against the real
+  `riverIndex.json` (9 extent-promoted creeks are invisible to suites).
+- No test detects **orphaned provider fetches** (CORT1-class) or **empty committed
+  artifacts** (lakes.geojson).
+- No test asserts **species-mode propagation into Stocking/detail/drawer wording**
+  (F7 e2e is the open worklist item).
+- No marketing test pins per-water page wording to waterbody species (F7 marketing
+  suite).
+- `latestValue` has no mixed-offset ordering test.
+
+### 8. Worklist reconciliation (KNOWN-ISSUES IDs + OA-01…OA-10)
+
+**Already tracked — verified done in code, no re-report:** T1-6 (relative staleness
+gate, per-metric timestamps), T1-8 (prerender fixture refusal), T1-9 (assessed flag
+passed on detail, `StreamDetailPage.tsx:220-224`), T1-10 (schema-validating feed
+health), T1-15 (empty idealFlow badge path exists in decision model), T1-16 (legend
+title by mode), T1-17 (hatch tab gated for warm/unverified, `RiverDrawer.tsx:187-229`),
+T1-18/19 (seasonal states ship), T2-23/24 (filter row / sort by displayed state),
+T2-26 (stockingRecent consumed, `StockingPage.tsx:150-167`), T2-27 (report photos
+public: `RiverDrawer.tsx:600`, `ShopsPage.tsx:96`), T2-29..34 (copy/removals verified),
+T2-54 (marketing data-sources page accurate).
+
+**Still open and confirmed still open:** F7 (e2e for fishability/marketing/species
+mode), T1-22 (site-wide species mode completion — partially shipped: map/browse/
+conditions/settings done; stocking/detail/drawer gaps listed in §6.2-6.3), T2-20
+(seasonal stocking frame), T2-21 (seasonal facts in prose), T2-28 (transition rule —
+superseded by F6 shipping), T3-48..53 (owner/data backlog unchanged).
+
+**OA-01…OA-10 (orchestrator provisional labels) — verdicts:**
+
+| OA | Verdict vs tree |
+|---|---|
+| OA-01 absolute freshness | **CONFIRMED** — conditions path has no whole-reading age gate (`usgs.ts:231-251`, `scoreConditions.ts:8`); fishability path does. Untracked → new worklist item. |
+| OA-02 score validity | **PARTLY STALE** — trout-shaped scoring still runs for all 148 server-side, but the decision model prevents unknown/warmwater waters wearing it (`waterDecision.ts:114-118`). Residual: feed content + "Unverified" presentation. Revise, don't re-file. |
+| OA-03 trout omission in v2 | **CONFIRMED as designed** (ADR 0007 scope; trout = legacy path). Gap question for planner, not a defect. |
+| OA-04 map tiers | **CONFIRMED** — 54/72/22 by extent; 9 creeks statewide-tier; no authored tier field. Untracked → new item. |
+| OA-05 F6 parity | **REVISE** — propagation is far wider than briefed (settings + map + browse + conditions + detail focus card). Remaining gaps are specific: stocking, detail/drawer decision framing, marketing (§3.5, §6.2-6.3). |
+| OA-06 marketing overclaims | **CONFIRMED** — "fly fishing" titles + feature promises on all 148 pages (§6.1). |
+| OA-07 coverage drift | **CONFIRMED & PINNED** — 147 vs 148; exactly `bradley-creek` missing. |
+| OA-08 USGS migration / realTimeIV | **REVISE** — no `realTimeIV` in content YAML; it's a static 2026-09-02 verification registry (`verified-gauges.json`) whose assertions are 11 days stale by audit time. The gauge-count facts (48 waters / 50 unique USGS ids) hold. |
+| OA-09 field provenance | **CONFIRMED** — all 92 idealFlow ranges lack field-level provenance; schema cannot express it (`stream.ts:5-12`). |
+| OA-10 snapshot fan-out | **CONFIRMED** — 39 fishability files; other 109 waters intentionally absent → rendered unassessed. |
+
+**NEW findings (untracked):** NEW-1 stopped-sensor 90-day scoring window (§4.1) ·
+NEW-2 CORT1 orphaned fetch (§6.7) · NEW-3 empty lakes.geojson still mounted (§6.5) ·
+NEW-4 stale "one factor" comments (§6.6) · NEW-5 `latestValue` string ordering
+latency (§6.8) · NEW-6 hardcoded `'trout'` decisions in detail/drawer (§6.3).
+
