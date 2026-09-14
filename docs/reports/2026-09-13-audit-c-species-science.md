@@ -475,3 +475,184 @@ species. The *states* are defensible (temperature thresholds above); the *numeri
 transformations* are heuristics. They may ship only if labeled `heuristic` with small
 weights — or better, render the state (PRE/ON/POST) without pretending to a weighted score.
 Register item.
+
+---
+
+## 6. "Do not implement as fact" register
+
+Claims that are weak, contradictory, stale, nontransferable, or unsupported. Each needs
+either re-sourcing or explicit downgraded presentation. (Register items from this session's
+research only; the audit-prompt leads' existing items are assumed carried by the planner.)
+
+| # | claim | where it lives | status found this window | required treatment |
+|---|---|---|---|---|
+| D1 | Dale Hollow Reservoir brown-trout stocking (Apr) | dale-hollow-lake stockingProgram evidence (2026-09-08 snapshot) | **Contradicted by live TWRA list: "Region II, Dale Hollow, - Rainbow"** (parent-verified). No current Dale-Hollow brown put-grow-take statement found anywhere on tn.gov | OWNER DECISION REQUIRED: keep the snapshot claim (dated) vs re-anchor to the live rainbow-only list. Recommend: rainbow-only + note the snapshot conflict |
+| D2 | Chilhowee lake-trout fishery | 2017 Trout Plan text vs live reservoir list "Chilhowee – Rainbow" | Conflict (plan-era text vs current stocking list) | If a lake-trout fact is ever shown, cite the 2017 plan and date it; default to the live list |
+| D3 | Clinch River "self-sustaining rainbow, brown, and brook" | obed-area? — no: clinch-river catalog note | No official sentence found; TWRA stocking list shows Brook/Brown/Rainbow planted Mar–Aug; wild-fishery language is reserved for SH/Wilbur tailwaters in TWRA's own regs text | Downgrade note to "stocked rainbow/brown/brook under PLR regs" unless a TWRA source for natural reproduction is found |
+| D4 | Obed-system / Powell wild-trout notes (obed-river, daddys-creek, clear-creek-obed, new-river, powell-river, clear-fork, emory-river) | catalog notes + `fishery: wild` | **No official per-water trout evidence found**: absent from TWRA's Wild Trout Streams list (verified); NPS Obed fish page documents smallmouth/muskie/catfish/panfish, no trout (verified) | Do not present as verified wild-trout water; keep notes as local-knowledge with "unverified by agency sources as of 2026-09-14" framing; verify against TWRA Region 3/4 biologists or add to evidence-gaps |
+| D5 | GSMNP trout creeks typed `targetSpecies: [smallmouth-bass]` | cosby-creek, leconte-creek, little-river, middle-prong-little-pigeon, west-prong-little-pigeon | Enum has no trout keys; NPS evidence (verified) says brook/rainbow/brown (+ smallmouth in combined creel) | OWNER DECISION REQUIRED: add trout keys to the SpeciesKey enum (ADR path) or clear the SMB tags on high-elevation waters; little-river's SMB has a real REG basis (Rockford Dam upstream 13–17″ PLR) and may stay |
+| D6 | Striped-bass tags resting on reg-line-only evidence | douglas-lake (merged "White Bass/Striped Bass or Hybrid" line — weakest), kentucky-lake, pickwick-lake, lake-barkley, fort-loudoun-lake, tellico-lake, nickajack-lake, fort-patrick-henry-lake, j-percy-priest-lake (hybrid narrative) | Verified: no fishery/stocking narrative on those pages | Downgrade to low-confidence or re-source; never render "striped bass fishery" from a creel line |
+| D7 | "Cherokee bass" = hybrid striped bass | parsing hazard on TWRA text | Verified on Cherokee + Percy Priest pages | Any TWRA-text parser must map "Cherokee bass" → hybrid, never `striped-bass` or `spotted-bass` |
+| D8 | spotted-bass tags on pages that downgrade the species | great-falls-lake ("probably not an intended species due to small population numbers"), norris-lake ("Recently, the number of Spotted Bass has declined") | Verified | Keep the key (management evidence) but surface the page's own qualification; and system-wide: SPB = spotted/Alabama complex (genetics caveat) |
+| D9 | idealFlow numeric ranges | catalog YAML (winter ponds ship `idealFlow: []`; scored waters carry ranges) | No scientific provenance found this window for any ideal-flow range; T1-15 already guards the empty-array crash | Keep presentation-neutral; never present as science. Replacement: flow-TREND context (regime change) which has smallmouth-spawn evidence only |
+| D10 | spawnStateValue 80/50/30/50 numeric mapping | contracts spawnState.ts | No per-species feeding-intensity studies found | Label heuristic / render states without weighted score (§5.4) |
+| D11 | Pressure-trend scoring | F8/F2 profile | Controlled null result (P=0.55, verified) + only storm-magnitude (~13 mb) marine responses in literature | Exclude from weighted scoring; context text at most |
+| D12 | CatfishNow "70–85 °F" catfish spawn band + "rising-water feeding" | species-reference.yaml flowTrend note | No agency anchor found; MDC gives 75 °F onset (verified) | Replace band anchor with MDC; rising-water claim stays folklore-flagged |
+| D13 | Bluegill 75 °F onset (MU Extension) upper window | species-reference.yaml endC needs-source | Agency corroboration not secured (MT FWP review unread [LEAD]) | Keep needs-source; soften to 70–75 onset labeled extension-grade |
+| D14 | Striped-bass "one over 32″" trophy rule | lore / possible old regs | NOT found on live statewide or exceptions pages (searched) | Do not implement; statewide is 2/day 15″ (verified) + MS River 6/day exception |
+| D15 | Statewide crappie 30/day | if ever generalized | Statewide is 15/day 10″ (verified); 30/day no-length is the Region-1 exception (verified) | Water-specific only |
+| D16 | Largemouth spawn 60–75 °F (FishUSA) | species-reference.yaml spawn | TN agency says 68–72 °F (Watts Bar, verified); TAMU 65–75 °F (verified) | Resolve toward TN agency anchor or ship the union labeled with both sources; drop FishUSA as primary |
+| D17 | Winter-trout windows as seasons | stones-river etc. notes | No regulation text creates them (verified) | Label "stocking-schedule-derived"; red-river-clarksville currently has NO live stocking row found — do not assert |
+| D18 | Gatlinburg 5/day / children 2/day creel | fishing.json item | Creel text beyond captured window this session [LEAD]; Dec 1–Mar 31 C&R and Thursday closure verified verbatim | Re-pin creel digits before display |
+| D19 | Piney River DH window | fishing.json (already flags TWRA inconsistency; confirmed live this window) | Static page still lists Nov 1–Feb 28 DH; What's New says removed | Keep existing handling; re-check static page for correction before each reg year |
+| D20 | "blue ribbon" language | — | Appears nowhere on TWRA trout page; the official label is "Quality Trout: Fishing Area" (Watauga QTA only, verified) | Use TWRA's own label if tiering ever cites it |
+
+---
+
+## 7. Strict totals
+
+**Existing typed tags (`targetSpecies`): 196 tags on 39 waters.**
+
+- **Verified (direct official per-water evidence, MGMT-PAGE or REG class): 185 tags.**
+  Composed of: the 28 where-to-fish waters (§3.1, 165 tags; includes parent-verified quotes
+  for Cherokee, Watts Bar, Norris, Old Hickory, Tims Ford, Dale Hollow and subagent-verified
+  verbatim quotes for the rest), plus the REG-based SMB/CRP tags on north-fork-holston,
+  holston-river, nolichucky-river, french-broad-river, powell-river, wolf-river-fentress,
+  pigeon-river, little-pigeon-river, little-river, wolf-river-west-tennessee, obion-river,
+  hatchie-river (§3.2).
+- **Verified-with-qualification (key evidenced but page text contradicts or only
+  reg-line-grade): 11 tags** — STB on douglas-lake, kentucky-lake, pickwick-lake,
+  lake-barkley, fort-loudoun-lake, tellico-lake, nickajack-lake, fort-patrick-henry-lake
+  (reg-line-only; D6), SPB on great-falls-lake (page downgrades; D8), SMB on
+  fort-patrick-henry-lake (thin page), SPB on norris-lake (declining; D8). Counted within
+  the 185 above as well; shown separately so they are not mistaken for clean.
+- **Cleared to remove / re-author: 5 tags** — `smallmouth-bass` on cosby-creek,
+  leconte-creek, middle-prong-little-pigeon, west-prong-little-pigeon (mislabel; D5;
+  little-river's SMB is REG-based and can stay). These five sit inside the 39 waters too.
+- **Waters whose species state cannot honestly be set yet: ≥13** (§3.5 list: bradley-creek,
+  clear-fork, cumberland-river, emory-river, mississippi-river, ocoee-river, reelfoot-lake,
+  tennessee-river, wilbur-lake, ocoee-number-three-lake, little-tennessee-river,
+  caney-fork-upper, buffalo-river) — plus assemblage detail beyond the typed keys
+  everywhere.
+- **`yearRound`:** present on 91 waters. This window supplies: REGULATORY support for the
+  tailwaters with no seasonal closures (all open-year-round regs) + the stocking-month
+  windows that justify the seasonal flags; a verified hard-closed zone (Buffalo Cr above
+  mill dam); confirmation that winter-pond windows are programmatic-only; and the
+  Piney-DH-removed conflict. The 57 absent values stay absent — nothing this window found
+  turns "unknown" into "year-round" for them.
+- **Highest-value evidence gaps** (ordered): (1) official per-water species for the Obed/
+  Powell wild-trout claims (D4) — TWRA Region 3/4 trout stream surveys are the fix;
+  (2) striped-bass stocking/fishery documentation for the reg-line-only lakes (D6);
+  (3) TWRA reservoir report archive / creel summaries for reelfoot-lake, wilbur-lake,
+  little-tennessee-river (§3.5); (4) red-river-clarksville and other winter-river stocking
+  rows (D17); (5) TVA access data + TWRA River Access Program page (§4.4); (6) Gatlinburg
+  creel digits (D18); (7) NDEP trout chronic/acute digit re-pin + Beitinger table pull
+  (§5.0).
+
+---
+
+## 8. Inputs the implementation planner may treat as verified
+
+Compact, self-contained citations. All retrieved 2026-09-13T23:43Z–2026-09-14T01:05Z UTC by
+this session unless marked [LEAD]. TWRA pages display no internal date; date = retrieval.
+
+**Catalog state at `b44b4fe`:** 148 waters; 103 trout / 8 warmwater / 37 broad-species
+absent; 39 waters with 196 typed targetSpecies tags (LMB 29, SMB 36, SPB 27, CRP 29, BLG
+30, CCF 28, STB 17); fishery 101 (stocked 81 / tailwater 13 / wild 7 per in-repo review
+docs); yearRound 91 (19 true / 72 false / 57 absent); stockingProgram true 94.
+
+**Season/regulation (all parent-verified live on tn.gov/nps.gov):**
+regulation year Aug 1–Jul 31 (per repo-documented TWRA news releases); no statewide trout
+closed-season sentence (trout regs page); Hiwassee Mar 1–Sep 30 harvest + Oct 1–Feb 28 C&R;
+SF Holston Nov 1–Jan 31 closures at two named spawning reaches; Tellico-Citico permit
+Mar 1–Aug 15 + Thu/Fri closures + open daily Aug 16–Feb 28; DH windows: Big Soddy Nov
+1–Feb 28, Buffalo Cr Oct 1–Jan 31, Doe Oct 1–Feb 28, Hiwassee Oct 1–Feb 28, Paint Oct
+1–Feb 28, Tellico Oct 1–Feb 28, Acorn Lake Dec 1–Mar 31, Piney **listed but REMOVED per
+What's New 2026-27** (live TWRA inconsistency); Buffalo Cr above mill dam closed year-round;
+Gatlinburg closed Thursdays + Dec 1–Mar 31 C&R (city permit; children's reaches); GSMNP
+year-round ±30 min sunrise/sunset, 7″ min, 5 trout/smallmouth combined + 20 rock bass,
+single-hook artificials, TN-or-NC license; statewide warmwater: bass 5/day no minimum,
+crappie 15/day 10″ (Region-1 exception 30/day no length), striped/hybrid 2/day 15″, catfish
+none-over-34″-per-day rule, no warmwater closed seasons. URLs:
+`https://www.tn.gov/twra/fishing-regs/trout-regulations.html`,
+`https://www.tn.gov/twra/fishing-regs.html` (What's New),
+`https://www.tn.gov/twra/fishing-regs/statewide-creel-length-limits.html`,
+`https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html`,
+`https://www.nps.gov/grsm/planyourvisit/fishing.htm`.
+
+**Stocking program (parent-verified live):** reservoir list (Dale Hollow Rainbow; Parksville
+Rainbow; Calderwood Brook/Brown/Rainbow; Chilhowee Rainbow; FPH Brown/Rainbow; SH
+Lake/Rainbow; Tellico Upper Rainbow; Watauga Lake/Rainbow); 14 tailwater rows species+months
+(§3.3); "Report updated as of 9/7/2026"; postponement caveat; winter program: 40 locations,
+93,000 trout 2015-16, began Dec 1999 (2017 plan PDF). URLs:
+`https://www.tn.gov/twra/fishing/trout-information-stockings.html`,
+`https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf`,
+`https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf`.
+
+**Species-composition page quotes:** 28 where-to-fish pages (§3.1 table has per-water
+evidence + does-not-prove); key verbatim pins: Cherokee primary-gamefish sentence + "must be
+maintained by stocking" + stratification/DO text; Norris "103,000 Striped Bass fingerlings";
+Old Hickory "world class trophy striped bass fishery"; Tims Ford "best reservoir Smallmouth
+fishery in middle Tennessee" + striper stocking; Dale Hollow spotted-bass + winter rainbow +
+NO striper; Watts Bar crappie spawn 60–65/62–68 °F + LMB 68–72 °F + Alabama-bass genetics
+confirmation. Alabama-bass page: Parksville impact + Watts Bar/Ft Loudoun/Tellico
+hybridization. URL pattern:
+`https://www.tn.gov/twra/fishing/where-to-fish/<east-tennessee-r4|cumberland-plateau-r3|middle-tennessee-r2|west-tennessee-r1>/<slug>.html`,
+`https://www.tn.gov/twra/wildlife/fish/alabama_bass.html`.
+
+**Science (parent-verified):** NDEP guidance (Mar 2018) + 7 species TTAs live; largemouth
+preferred modes 30.0/26.7 °C verbatim; striped occupied 14.6–28.2 °C + 22.0 °C 90% limit
+(Coutant et al. 1984) verbatim; spotted "no acute thermal tolerance is recommended… at this
+time" verbatim; NDEP smallmouth TTA carries *M. punctulatus* name typo. VT F&W trout bands
+(54–66/53–66/55–60 °F etc.) verbatim. TAMU largemouth nest >60 °F, spawn 65–75 °F; MDC
+smallmouth >60 °F onset + MDC catfish 75 °F onset — verbatim. VanderWeyst 2014 pressure null
+(P=0.55) verbatim. EPA Gold Book 1986 present, DO criteria structure confirmed (digits
+[LEAD]). URLs: ndep.nv.gov/uploads/water-wqs-docs/{FINAL_Guidance_for_Developing_Temperature_Criteria_for_Nevada_Waters.pdf,
+SmallmouthBassTTA.pdf, LargemouthBassTTA.pdf, StripedBassTTA.pdf, WhiteCrappieTTA.pdf,
+BluegillTTA.pdf, ChannelCatfishTTA.pdf, SpottedBassTTA.pdf};
+vtfishandwildlife.com/learn-more/vermont-critters/fish/{rainbow,brown,brook}-trout;
+fisheries.tamu.edu/pond-management/species/largemouth-bass/;
+mdc.mo.gov/discover-nature/field-guide/{smallmouth-bass,channel-catfish};
+bemidjistate.edu/directory/wp-content/uploads/sites/16/2023/02/2014-VanderWeyst-D.-The-effect-of-barometric-pressure-on-feeding-activity-of-yellow-perch..pdf;
+epa.gov/sites/default/files/2018-10/documents/quality-criteria-water-1986.pdf.
+
+**Significance (parent-verified):** TDEC Scenic Rivers list
+(tn.gov/environment/natural-areas/tn-scenic-rivers.html): Harpeth, Hiwassee, Obed, Ocoee,
+Buffalo, Collins, Clinch, Duck, French Broad, Hatchie, North Chickamauga Cr, Piney (Watts
+Bar Watershed); Tellico absent from captured text. Bill Dance Signature Lakes
+(billdancelakes.tnvacation.com/lakes, TDTD): Pickwick, Reelfoot, Dale Hollow, Kentucky, Old
+Hickory, Tims Ford, Chickamauga, Douglas, Norris, Watauga (+3 West TN + Fall Creek Falls);
+Watts Bar & Percy Priest absent. "Quality Trout: Fishing Area" = Watauga QTA only (trout
+regs page). [LEAD, unverified]: Coutant 1985 squeeze digits; Beitinger 2000 table; Hasnain
+2010 optima; Lukas & Orth 1995 / Dauwalter & Fisher 2007 nest-flow studies; TPWD spotted
+page; MT FWP bluegill review; TVA pages (403 all window); TWRA River Access Program page.
+
+**Unresolved conflicts for the planner (none silently resolvable):** Dale Hollow brown vs
+rainbow (D1); Chilhowee lake trout vs rainbow-only (D2); largemouth spawn 68–72 (TWRA) vs
+65–75 (TAMU) vs 60–75 (FishUSA) (D16); Piney DH listed vs removed (D19); SPB-as-complex
+genetics caveat (D8); GSMNP SMB tags vs trout reality (D5).
+
+---
+
+## 9. Blockers
+
+None to this session's deliverable. Cross-lane needs for the planner (recording, not
+blocking): (a) Session A owns any enum change (trout keys for SpeciesKey — D5) and any
+`broad species` field decision for typed-key waters (§3.5 note); (b) Session B's
+gauge/station inventory should tell the planner whether ANY DO or vertical-profile source
+exists for the waters where the science says DO is decisive (striped-bass reservoirs) —
+this session supplies the thresholds but not the sensors; (c) several re-pins are cheap
+browser captures (Gatlinburg creel, TVA pages, stocking-grid export) that were blocked by
+fetcher limitations this window, not by access rights.
+
+## 10. Verification summary
+
+- Parent live-verified this window: 15 primary sources fetched + quoted (listed in §8);
+  catalog self-recount; two cross-lane conflicts discovered and documented rather than
+  averaged (Dale Hollow, Chilhowee); one live TWRA-internal regulation inconsistency
+  confirmed and carried as a dated conflict (Piney DH).
+- Subagent-lead-only items: explicitly tagged [LEAD] with the re-pin action; none entered
+  the verified-inputs list without either parent verification or an explicit [LEAD] marker.
+- Working-tree hygiene: this session created/modified only
+  `docs/reports/2026-09-13-audit-c-species-science.md` on branch `campaign-c`; no other
+  file touched; no secrets read; no production interaction.
