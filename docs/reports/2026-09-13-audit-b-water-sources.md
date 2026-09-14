@@ -524,6 +524,124 @@ Parent-run live probes this window (all curl, identified UA):
 | TWRA exceldriven scheduled + recent grids | 00:06:12/15Z | 200; 616 rows / 13 rows |
 | TDEC advisories page/PDF headers | 23:56Z | 200 (subagent, parent re-probe pending) |
 
+## Lake-specific findings (stillwater source dimension)
+
+**Wired lakes today (15):** norris, cherokee, douglas, watts-bar, fort-loudoun, chickamauga,
+old-hickory, j-percy-priest, tims-ford, center-hill, dale-hollow, kentucky, barkley, south-holston,
+pickwick — every one carries **only level + dam discharge** (TVA monitor; USACE-managed lakes
+included via TVA's Cumberland ownership entries). Parent-verified rows to 2026-09-13 evening for
+all 15.
+
+1. **No live temperature exists for ANY wired lake.** TVA's observed-data field union (all 43
+   locations, parent-verified) contains exactly {Day, Time, ReservoirElevation,
+   TailwaterElevation, AverageHourlyDischarge} — no temp. No TN USGS site publishes reservoir
+   elevation IV (62614/63158 statewide scan = 0 series, 00:17Z) or lake temp IV. Any lake
+   "temperature score" today would be fabricated.
+2. **Tailwater temperature ≠ lake temperature (F13).** The only live temperatures near dams are
+   USACE Temp-Water-**Tail** series (CETT1 54.1 °F, DHTT1 52.7 °F, CORT1 70.6 °F @23:30Z) — the
+   cold release stream, useful for the trout tailwater below the dam and useless as a lake-surface
+   or lake-mean signal. Never let a tailwater temp back-fill a lake row.
+3. **Depth profiles / stratification:** no continuous public depth-profile feed was found in this
+   window for any TN reservoir (TVA's monitoring program publishes periodic reports; discrete
+   profile data lands in EPA WQP — see below). Stratification state therefore can only be inferred
+   (e.g., from season + release depth), which is Session C's science call; on the SOURCE dimension
+   the honest entry is: **live=none; periodic/discrete=EPA WQP + agency reports; derived=only with
+   explicit `derived` confidence labeling** per the F5 evidence culture.
+4. **Forecasts (new):** TVA `predicted-data/{id}` (verified NRST1, COHT1) gives 3-day
+   MidnightElevation + AverageOutflow + AverageInflow — the first forward-looking lake signal;
+   BARK2 and all TVA dams respond. Note mixed string/number typing and no inflow for COHT1 day 1.
+5. **USACE-managed lakes have a second path:** A2W Elev series (e.g., CORT1 tail-elev, CLAT1
+   Elev) and ASHT1 tail elevation 15-min; Barkley (BARK2) also has TVA level. No USACE lake SURFACE
+   elevation series was probed beyond these; the A2W `/locations` catalog lists Elev series per
+   project — a bounded follow-up for the planner (catalog is discovery-unsafe, so per-series probes
+   are required).
+6. **Small/pond stillwaters (13 winter ponds + reference lakes):** no gauge, no sensor, no satellite
+   product of usable cadence verified. Honest verdict: **no defensible source found as of
+   2026-09-14T00:30Z** for flow/temp/level/DO; only TWRA stocking schedule (D-grade, verified) and
+   NWS area pressure/precip context.
+7. **DO for lakes:** only USACE tailwater DO (CORT1 7.06 ppm, CLAT1 8.15 ppm) and USGS river DO
+   sites are live. Lake-zone DO (metalimnion/hypolimnion) has no live public feed in this window.
+   A hypolimnetic-release *signal* is visible in river DO downstream of dams (Harpeth 03432100 at
+   1.2 mg/L, Stones tributaries 4.6–5.5) — riverine evidence, not lake evidence.
+
+## `Do not implement as fact` register
+
+Sources/stations/claims that probes contradict, weaken, or cap — with the contradicting evidence:
+
+| ID / claim | Verdict | Evidence (this window) |
+|---|---|---|
+| USGS 03465500 discharge (Nolichucky@Embreeville) | **DO NOT SCORE Q** | 00060 = −999999 `P,Rat` ×671/671 pts in 7 d (23:51Z batch); stage fine (1.10 ft @19:30) |
+| USGS 03485500 discharge (Doe@Elizabethton) | **DO NOT SCORE Q** | same failure mode ×670/670; stage fine |
+| USGS 03430200 discharge (Stones@Donelson) | **DO NOT SCORE Q** until validated | −168 cfs @18:00 (my probe); 557/669 pts negative in 7 d (parallel probe set); T 27.9 + S + DO 6.0 fine |
+| USGS 03566535 Q=0.00 | verify before scoring | exactly 0.00 cfs with stage 0.99 @19:00 — could be true drought zero or stopped sensor |
+| USGS 03539800 (Obed@Lancing, configured for obed-river) | DEAD | last flow 2026-08-22, stage 07-26; series defined, 0 values in 7 d |
+| 12 absent-from-IV-catalog configured IDs (03417000 03424010 03468510 03469000 03476500 03483980 03484000 03486810 03487010 03487602 03533000 03580750) | keep wired-but-expect-nothing | absent from `seriesCatalogOutput` (23:49Z); all exist as USGS sites — tailwaters are published by TVA/USACE instead |
+| USGS 03564500 / 03566000 | historical-only (1994 / 2018) | series catalog 23:49Z |
+| USGS 03539778 temperature as "live" | STALE 70 h | last T/DO 2026-09-10T22:00 (23:59Z batch) — seasonal-station risk; Q+S current |
+| "TVA provides temperature" (any doc implying it) | FALSE | field union across 43 locations, 00:16Z; no temp key |
+| TVA `CORT1` id on TVA endpoints | WRONG ID SPACE | `observed-data/CORT1` + `generation-releases/CORT1` = `[]` (00:09Z); TVA catalog codes Cordell Hull as **COHT1** (all three endpoints 200, 00:16Z); USACE A2W uses CORT1 |
+| USACE `cwms-data.usace.army.mil` | DEAD family | locations HTTP 500 (00:00:13Z, mine); timeseries 501 + catalog 200-empty (parallel set, 00:07Z) |
+| `www.lrn.usace.army.mil` web + `rivergages.com` | TLS-broken host-side | curl(60) cert-SAN mismatch (parallel set 23:5xZ, consistent with 2026-09-08 note); rivergages serves `CN=*.turbifysites.com`. Never bypass with `-k` |
+| KTYS as a working pressure station | WEAK | latest obs pressure null, qualityControl `Z` (00:16:25Z mine) |
+| KNQA freshness | LAGGING | newest obs 22:50Z vs 23:50Z peers (parallel set) — 2 h lag normal for this station |
+| NWS `precipQuantitative` / `precipLastHour` field names | WRONG NAMES | actual: `precipitationLastHour`, `precipitationLast3Hours`, `precipitationLast6Hours` (mm); 3-hour key most consistent (00:16Z mine + parallel set) |
+| `api.weather.gov/points/{p}/forecast` direct | 404 | must follow `properties.forecast` link from the points response (parallel set 00:08–00:09Z) |
+| USACE hyphen-guess TSIDs (`CETT1-Flow`, `CETT1-Elev`...) | SILENT EMPTY | HTTP 200, 0-byte bodies (parallel set 00:04Z) — body-length validation mandatory |
+| A2W `/locations` catalog as parameter inventory | UNDER-REPORTS | omits live CETT1/DHTT1 Elev+Temp (mine, live to 23:30Z vs catalog absent) |
+| docs/DATA-SOURCE-COVERAGE.md "51 catalog gauge ids" | OFF BY ONE | current tree: 50 numeric USGS ids (my recount) |
+| duck-river-tailwater gauge 03596000 (old coverage doc) | NO LONGER WIRED | current YAML: 03597860 + tva:NRMT1 (grep: 03596000 only in docs/fixtures/geo files) |
+| mill-creek-overton gauge evidence | CONFIRMS T3-50 | NWIS name for 03539778 = "Clear Creek at Lilly Bridge near Lancing" — not Mill Creek |
+| USGS 03597860 stage 10.11 ft vs neighbor 03598000 2.60 ft | FLAG, don't fail | datum/shift difference plausible; needs a datum check before either is trusted as absolute stage |
+
+## Strict coverage totals (source dimension) and highest-value gaps
+
+**Totals (148 waters):** 10 LIVE flow+temp · 26 PARTIAL (flow/stage only) · 15 LEVEL-only lakes ·
+97 NO GAUGE WIRING. All 15 wired lakes have level+dam-Q; 0 have any temperature. Release schedules
+(new, verified): 11 TVA-dam tailwaters + Barkley + Cordell Hull (COHT1) have official generator
+schedules; USACE Nashville dams (Center Hill, Dale Hollow, JPP) have NO reachable schedule source
+(A2W has no schedule series; CWMS dead; lrn web TLS-broken) — for a wade-safety product this is
+the single sharpest gap on wired waters.
+
+**Highest-value gaps, ranked (source dimension only):**
+
+1. **Temperature on the big-6 tailwaters with zero live temp** — south-holston-river, watauga-river,
+   boone-tailwater, ft-patrick-henry-tailwater, elk-river (Tims Ford), duck-river-tailwater. TVA has
+   no temp; USACE does not run these dams. No remote public source found this window
+   (`no defensible source found as of 2026-09-14T00:30Z`); fishability scoring for these signature
+   waters must fall back to flow-only + honest labeling, or Session C's seasonal climatology
+   (`derived`), never a fabricated gauge.
+2. **USACE dam release schedules** (Center Hill/Dale Hollow/JPP) — blocked upstream (CWMS 500, lrn
+   TLS). Owner-level action: request schedule feed from Nashville District water management.
+3. **USGS Q1-2027 WaterServices decommission** — every `waterservices.usgs.gov` call needs the
+   `api.waterdata.usgs.gov` migration (key required beyond a few queries/hour) before blackouts
+   begin; degradation allowed from Aug 2026 onward.
+4. **Lake temperature/DO** — no live source anywhere; discrete EPA WQP sampling is the only
+   verified periodic source family (see pending subsection); any lake temp score today = fabrication.
+5. **The 97 unwired waters** — verified one-station upgrades exist for at least: **buffalo-river**
+   (03604000 Q+S+T live), **obed-river** (03538830 Q+S+T+DO live — replaces dead 03539800 with
+   upstream spatial qualification), **wolf-river-west-tennessee** (07031650 Q+S), **elk-river-lower**
+   (03582000 Q+S+T, upstream-qualified), **cumberland-river** reach signals (ASHT1 flow/tail-elev;
+   03431091/03431514 T+S in the Nashville pool; tributary-mouth 03430200 T). All parent-verified
+   00:17–00:20Z. Remainder are mostly small ponds/urban creeks — `no defensible source` stands.
+6. **Precip on wired gauges** (00045 live at 9 configured sites, 44 statewide) — unused context
+   rain signal; trivially additive to the F12 "recent rain" context note.
+7. **Stage anomalies** (03597860 10.11 ft; 03566535 Q=0.00) — datum/sensor checks before stage-based
+   scoring trusts them.
+
+## Scrape recipes (verified today) — summary
+
+(Planner-grade detail in the registry above; full failure-mode analysis from the recipe lane.)
+
+- **TWRA stocking grids:** page → `data-config='…"ajax":"<path>.exceldriven.json"'` regex → two
+  JSONs; verified live 00:06Z (616 + 13 rows). Re-resolve the hash path every fetch; trust
+  Last-Modified (CDN Age up to ~3.4 d observed); keep "TBD"-style dates unparsed.
+- **TDEC advisories:** page → single PDF href → ETag/Last-Modified watch → download+extract+diff
+  (PDF last-modified 2026-08-25). Weekly cadence is generous.
+- **TVA HTML pages (release schedules page, lake levels page):** Cloudflare managed challenge —
+  DO NOT scrape HTML; the JSON endpoints `generation-releases/{id}` + `observed-data/{id}` +
+  `predicted-data/{id}` (browser UA + `Accept: application/json`) deliver the same facts.
+- **USACE lrn web / rivergages:** dead (TLS) — no recipe permitted.
+
 ## Inputs the implementation planner may treat as verified
 
 (forthcoming — compiled at final push)
