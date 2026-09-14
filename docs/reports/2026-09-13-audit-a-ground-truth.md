@@ -290,3 +290,177 @@ fish = has `/v1/fishability/{id}.json` emitted (targetSpecies present).
 | 146 | wolf-river-west-tennessee | river | west | — | — | — | — | — | STATE | incl | — | — | — |
 | 147 | woods-reservoir | lake | middle-duck-elk | — | 6 | — | — | — | APPR | incl | — | — | Y |
 | 148 | yale-road-park-lake | lake | west | trout | — | stocked | false | Y | LOCAL | incl | — | — | — |
+
+### 3. Code-path traces
+
+#### 3.1 Map admission, visibility, labels
+- `toWaterDecisionView` (`apps/web/src/features/map/waterDecision.ts:65-130`) is the
+  single classification authority: `visibility` = Trout-mode ∧ warmwater →
+  `deemphasize` if `stockingProgram` else `exclude`; everything else `include`
+  (`:103-108`). `troutApplicability` ∈ confirmed-current / seasonal-uncertain /
+  seasonal-likely-absent (trout ∧ `yearRound:false`; winter window = Nov–Mar,
+  hardcoded `:79-85`) / not-trout / unknown (`:86-92`). `displayMetric` = fishability
+  (all-fish mode ∧ focus-species comfort assessed) else trout-condition (only
+  confirmed-current ∧ assessed) else `unassessed` (`:114-118`).
+- Label gating is pure (`apps/web/src/features/map/labelPolicy.ts:60-68`): selected
+  always; Trout mode denies non-trout waters any title (`:65`); otherwise
+  extent ≥ 0.3° statewide, ≥ 0.05° at zoom ≥ 8.5, else zoom ≥ 9.5, or assessed-anytime.
+  Species notes "Warmwater"/"Unverified" ride labels (`:78-86`).
+- Map sources: `apps/web/src/features/map/mapStyle.ts:96` still mounts
+  `/atlas/lakes.geojson` — that file is an **empty FeatureCollection** in-tree;
+  lake/pond polygons actually live inside `rivers.geojson` (43 features there:
+  38 lakes + 5 ponds; 1 spring is line geometry; `geometrySource` set: nhd 99 ·
+  tiger-fallback 6 · null 43 = exactly the stillwater polygons).
+
+#### 3.2 Legacy trout scoring (`scoreConditions`)
+- `packages/contracts/src/scoreConditions.ts:53-164`: flow base 80 inside
+  `idealFlow`, −(deficit|surplus × 70) floor 10 outside, 50 height-only; temp
+  +10 (6–20 °C) / −15 (<2 °C) / −30 (>24 °C) with the explicit trout wording
+  "dangerously warm — avoid stressing trout" (`:151`). **No clock** — "staleness/TTL
+  is a UI concern" (`:8`). Clamped-0 with `assessed:true` is a real Poor.
+- Invoked **server-side for all 148** in the snapshot build
+  (`apps/api/src/snapshots/build.ts:197-208`), but only the 48 gauge-configured
+  waters can ever be `assessed:true`: waters with empty `gaugeIds` get an empty
+  readings slice (`build.ts:198`). The web app never re-scores; it renders snapshots.
+
+#### 3.3 Fishability v2 (per-species comfort + activity)
+- Contracts: `FishabilityScoreSchema` / `ActivityOutlookSchema` /
+  `ActivityComponentSchema` (`packages/contracts/src/schemas/fishability.ts:92-165`);
+  species enum = **7 warmwater keys, no trout key** (`:11-18`).
+- `scoreFishability` (`packages/contracts/src/scoreFishability.ts:23-116`) is
+  **thermal-only** (reads only `tempC`; "Comfort is thermal" `:19-21`): lethal → 0
+  assessed; outside optimal → 40; inside → 90. Has a real **absolute-age gate**:
+  temp observation older than `READING_STALE_MINUTES` (180 min) → `assessed:false`
+  (`:53-64`).
+- `scoreActivity` (`packages/contracts/src/scoreActivity.ts:13-24`): total =
+  clamp(50 + Σ contributions), components ordered by |contribution|.
+- Emitter `apps/api/src/snapshots/fishability.ts` (`activityFor`, `:192-268`): emits
+  `water-temperature` (weight 1.0 / 0.8 / 0.7 / 0.6), `spawn-state` (0.3 / 0.25; only
+  when the species has **both** onset+end cited — excludes bluegill [onset-only] and
+  striped-bass [none]; `spawnStateFor` is temp-triggered, ±4 °C window,
+  `packages/contracts/src/spawnState.ts`), and `pressure-trend` (0.2 / 0.15; region
+  station trend, value = 50 − 10·ΔhPa, dropped past `PRESSURE_STALE_MINUTES` = 180,
+  labeled "area pressure … not this water"). **`flow-trend` exists only as an enum
+  member (`fishability.ts:77`) — no implementation ships it.** The header comments
+  (`fishability.ts:27-31`, `build.ts:213-218`) still say "exactly one factor" — stale.
+  The generic `50 − 10·ΔhPa` transform is used because every species'
+  `pressureTrend` sensitivity is `needs-source` (species-reference.yaml); likewise
+  `flowTrend` is `needs-source` ×7. **No rain factor ships** (F12 exclusion honored;
+  grep of `packages/contracts/src` + `apps/api/src` = 0 hits).
+- Species reference completeness (`packages/content/species/species-reference.yaml`,
+  recomputed): largemouth 26.7–30.0/32/34 · smallmouth 20.0–26.7/29/31 · striped
+  14.6–22.0/30/32 fully cited warm-side; spotted (optimal+lethal), crappie (optimal),
+  bluegill (optimal), channel-catfish (optimal) are `needs-source`; `lowerActiveC`
+  `needs-source` ×7; spawn onset+end for largemouth/smallmouth/spotted/crappie/
+  channel-catfish, onset-only bluegill, none striped.
+
+#### 3.4 Ingestion, freshness, retention, snapshots
+- Cron: `gauges` hourly :05, `stocking` 06:00, `evidence` 06:20, `snapshots` 04:30
+  (`apps/api/src/cron.ts:34-37`). **The `gauges` job itself runs the full lane**:
+  USGS IV → conditions bridge (TVA/USACE/NWS) → `buildSnapshots`
+  (`apps/api/src/pipeline.ts:203-208`), so the read path refreshes hourly; the 04:30
+  job is a second, nightly rebuild.
+- USGS: params 00060 (cfs) / 00065 (height) / 00010 (temp °C), ≤50 sites/request
+  (`apps/api/src/ingest/usgs.ts:7-11`). Per-metric observation times preserved; pass 2
+  drops a metric only if it is > 180 min older than **the same site's newest
+  observation in the same payload** (`usgs.ts:106-125`) — the T1-6 fix. Retention:
+  `RAW_RETENTION_DAYS = 90`, pruned by `observed_at` each run (`usgs.ts:13,210-211`).
+- `latestReadings` (`usgs.ts:231-251`): newest stored row per gauge, **no
+  absolute-age gate**. `build.ts` re-scores whatever `latestReadings` returns.
+- TVA/USACE/NWS bridge: per-source soft-fail; TVA timestamps parsed with explicit
+  offsets; USACE 48 h lookback; NWS region→station map (12 regions) for pressure
+  (`apps/api/src/evidence/conditionsBridge.ts`, `tva-provider.ts`, `usace-provider.ts`,
+  `nws-provider.ts`).
+- Snapshot emission (`build.ts`): `v1/streams.json`; `v1/conditions/latest.json`
+  (all 148); `v1/fishability/{id}.json` (39 waters); `v1/stocking/{state}.json` +
+  `-recent.json` (90-day rolling); shops; recent reports; `v1/evidence/waters.json`
+  (re-emitted from the last evidence run); hatch + content packs. Writes are atomic
+  and schema-validated pre-write.
+- Health: `conditionsFeedHealth` (schema-validates every row; stale when
+  `nextExpectedUpdate ≤ fetchedAt`; catalog-wide 0-assessed; age > 360 min) and
+  `fishabilityFeedHealth` (any file failing the schema) wired into `/healthz`
+  (`apps/api/src/snapshots/health.ts:33-171`, `apps/api/src/app.ts:126-130`).
+  Note: `gaugesOk` keys only on the `gauges` job (`build.ts:196`) — but since the
+  bridge runs *inside* that job (§3.4), a dead TVA/USACE lane still leaves `gauges`
+  marked OK while its waters silently go unassessed (soft-fail design,
+  `conditionsBridge.ts:226-237`).
+
+#### 3.5 Species mode propagation (site-wide setting)
+- Source of truth: Dexie-persisted settings, default `speciesMode: 'trout'`,
+  `speciesFocus: ''` (`apps/web/src/lib/settings.tsx:6-11`). The old map-only
+  `?species=` URL param is gone from `useMapState.ts` (T2-34's `?all=1` removal is
+  also visible there, `:16-19`); RiverMapPage still honors URL overrides
+  (`RiverMapPage.tsx:47,51`).
+- Real consumers: map (RiverMapPage, TennesseeMap, MapLegend — legend title
+  "Trout conditions legend" / "Water guide legend" by mode, `MapLegend.tsx:85-98`),
+  Browse (`BrowsePage.tsx:14-16`), Conditions (`ConditionsPage.tsx:116-117`),
+  detail-page focus card (`StreamDetailPage.tsx:203` → `FishabilityCard`, which reads
+  the setting), SpeciesModeToggle + AppShell header affordance, SettingsPage.
+- **Not propagated (facts):**
+  - `StreamDetailPage.tsx:226-237` builds its decision with hardcoded `'trout'`
+    mode — the page re-words by *catalog* species (warmwater/unverified/seasonal) but
+    never by the user's mode.
+  - `RiverDrawer.tsx:194,450` — same hardcoded `'trout'`.
+  - `StockingPage.tsx:131` binds settings to an **unused** `_settings` variable; its
+    species filter is a local URL param over TWRA event species (`:138,181`), so the
+    site-wide mode has zero effect on stocking presentation (related open item T2-20).
+  - Marketing site: no species-mode concept at all (§6).
+
+#### 3.6 Offline, evidence, marketing generation
+- Snapshots are fetched through the shared Dexie cache (`apps/web/src/lib/fishability.ts:16-29`,
+  `gcTime: Infinity`, offlineFirst); absent fishability file = water not scored —
+  rendered unassessed, never guessed.
+- `/v1/evidence/waters.json` has **zero consumers** in `apps/web/src`, `apps/admin`,
+  `apps/marketing` render paths (grep) — matching DECIDED policy #3;
+  `apps/marketing/src/pages/data-sources.astro` is the owner-approved methodology
+  page and accurately describes comfort bands, area pressure, spawn-state derivation,
+  evidence-strength labels, and the rain/solunar exclusions (`:79-96`).
+- Marketing data: bundled fixtures by default; `MARKETING_DATA_DIR` switches to the
+  real snapshot tree (`apps/marketing/src/data/load.ts:52-103`) — wiring, not a live
+  claim. Web prerender refuses fixture data on factual pages without
+  `--allow-fixtures` (T1-8 verified: `apps/web/scripts/prerender.mjs:22-24,66,157`).
+
+### 4. Assessed / unassessed / wrongly-assessed — exact causes
+
+**Assessed (`assessed:true`, value > 0)** — requires ALL of: water has ≥ 1 configured
+gauge (`build.ts:198`); a stored reading survives for that gauge id
+(`scoreConditions.ts:63-75`); the newest reading carries cfs (or heightFt → base 50)
+(`:85-138`). Only the 48 gauge waters qualify; today's *values* depend on live data
+(external).
+
+**Unassessed (`assessed:false` / `no-data`)** — any of: no configured gauges (100
+waters); readings not matching configured gauge ids (`:67-75`); no usable flow/stage
+metric in the newest reading (`:120-137`); v2 fishability: no tempC (`scoreFishability.ts:49-51`),
+unreadable timestamp (`:56-59`), **absolute age > 180 min** (`:60-64`), species bands
+`needs-source` (emitter emits honest `assessed:false` rows), spawn/pressure
+components dropped for missing citations or stale region pressure.
+
+**Wrongly-assessed vectors (repo-provable):**
+1. **Stopped-sensor scoring window (NEW).** The USGS pass-2 gate is *relative to the
+   same payload's newest observation* (`usgs.ts:106-125`). A sensor whose every metric
+   froze at time T passes the gate forever (newest − metric.ts = 0); the reading is
+   re-inserted each run stamped T (`stale-metrics.test.ts:104-117` documents this as
+   intended "honest old stamp"), `latestReadings` has no age floor, and
+   `scoreConditions` has no clock — so the conditions feed keeps emitting a full
+   score (up to 90+) from a dead sensor for up to **90 days** (until retention prunes
+   it), wearing a fresh `fetchedAt`. Mitigations that exist: per-metric timestamps are
+   preserved (a *partially* dead gauge loses its stale metrics); the UI freshness chip
+   flips to "Gauge stale · observed N hr ago" past 3 h
+   (`riverMapSelectors.ts:86-91`); fishability path has the absolute gate. The
+   conditions *score* itself is never age-gated.
+2. **Trout model scope.** `scoreConditions` is trout-shaped but is computed for all
+   148; the decision model stops unknown/warmwater waters from *wearing* it
+   (`waterDecision.ts:114-118`), so this is presentation-contained, not eliminated.
+   The 37 unknown-species waters (incl. gauge-fed ones) render "Unverified" + raw
+   readings only.
+3. **Seasonal window is authored nowhere.** The Nov–Mar winter window is hardcoded in
+   the adapter (`waterDecision.ts:78-79`); the catalog carries only
+   `yearRound: false`. A water whose real program runs Dec–Feb still shows
+   "seasonal fishery" in Nov.
+4. **Pressure/spawn components are generic, not species-tuned** — species sensitivity
+   data is `needs-source` ×7, so a fixed `50 − 10·ΔhPa` and fixed ±4 °C spawn window
+   apply to all seven species (`fishability.ts:250-256`, `spawnState.ts:15`).
+5. **Unattributed activity gap:** `flow-trend` is contract-ready but unimplemented —
+   tailwaters with ramping releases get no activity signal from the one factor the
+   domain says matters most.
+
