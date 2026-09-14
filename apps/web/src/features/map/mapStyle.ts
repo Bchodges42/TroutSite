@@ -62,10 +62,9 @@ function mixHex(a: string, b: string, ratio: number): string {
  *   TennesseeMap, not as glyph text, and the one symbol layer — selection flow
  *   arrows — uses an icon registered at runtime via map.addImage.)
  * - Layers bottom→top: background (pine-black), neighbor-state context fill,
- *   TN fill, county hairlines, TN outline, river casing (paper-tone halo),
- *   river water corridor (solid muted water base for EVERY line),
- *   condition centerline (narrower, assessed only), unassessed dashes
- *   (quiet at state zoom, clearer at local zoom), selection highlight,
+ *   TN fill, county hairlines, TN outline, river water corridor (solid muted
+ *   water base for EVERY line), condition centerline (narrower, assessed
+ *   only), one stable unassessed dash treatment, selection highlight,
  *   hatch-mode halo, wide transparent hit line.
  * - `variant` swaps ground/line tones only ('paper' merges atlasLight over the
  *   dark atlas). Condition hues, selection amber, and data fallbacks are
@@ -170,29 +169,6 @@ export function atlasStyle(
           'line-color': t.softInk,
           'line-width': ['interpolate', ['linear'], ['zoom'], 5.5, 1.2, 8.5, 2],
           'line-opacity': 1,
-        },
-      },
-      // Lakes & reservoirs (Census AREAWATER; see scripts/build-lakes.mjs) —
-      // the still waters the mapped rivers drain from / tailrace out of.
-      // The authoritative lake polygons are catalog features in rivers.geojson;
-      // keeping them in the shared source avoids the empty passive lakes layer.
-      {
-        id: 'lakes-fill',
-        type: 'fill' as const,
-        source: 'rivers',
-        paint: {
-          'fill-color': t.lakeFill,
-          'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5.6, 0.75, 8, 1],
-        },
-      },
-      {
-        id: 'lakes-shore',
-        type: 'line' as const,
-        source: 'rivers',
-        paint: {
-          'line-color': t.lakeShore,
-          'line-width': ['interpolate', ['linear'], ['zoom'], 5.6, 0.5, 8, 1],
-          'line-opacity': 0.9,
         },
       },
       // First-class catalog water polygons. Keep a quiet water-colored base so
@@ -316,8 +292,11 @@ export function atlasStyle(
           ],
         },
       },
-      // Rivers — casing (paper-tone halo) renders beneath the water corridor so
-      // bends read clearly against the ground. LINESTRING ONLY — see note above.
+      // Rivers — selection/hover casing. An unselected river has no shadow or
+      // halo: the water corridor below is its complete base treatment. Keeping
+      // this layer state-only makes zooming visually stable and ensures the
+      // selected appearance means an actual selected/hovered water.
+      // LINESTRING ONLY — see note above.
       // On-demand network-minor-* creek layers insert immediately before this
       // layer (see networkClusters.ts), keeping catalog rivers on top.
       {
@@ -343,7 +322,7 @@ export function atlasStyle(
             6.4,
             ['boolean', ['feature-state', 'dimmed'], false],
             2.6,
-            4.2,
+            0,
           ],
           'line-opacity': [
             'case',
@@ -355,7 +334,7 @@ export function atlasStyle(
             0.9,
             ['boolean', ['feature-state', 'dimmed'], false],
             0.18,
-            0.62,
+            0,
           ],
         },
       },
@@ -428,52 +407,10 @@ export function atlasStyle(
           ],
         },
       },
-      // Unassessed dashes — dashed semantics for waters without an applicable
-      // assessment, layered OVER the solid corridor (never converting missing
-      // data into a condition). Two treatments crossfade with zoom:
-      //   • state/low zoom — a tight, quiet dash so the whole river system
-      //     reads as one cohesive water corridor from the statewide view;
-      //   • regional/local zoom — a clearer dash that honestly communicates
-      //     "no condition available here" once the user is choosing waters.
-      {
-        id: 'rivers-unassessed-quiet',
-        type: 'line' as const,
-        source: 'rivers',
-        filter: LINES_ONLY,
-        layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: {
-          'line-color': t.noData,
-          'line-width': 1.9,
-          'line-dasharray': [1.5, 3.2],
-          // zoom must stay top-level (MapLibre), so the state gates live in
-          // the stop values.
-          'line-opacity': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            5.6,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'assessed'], false],
-              0,
-              0.5,
-            ],
-            7.4,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'assessed'], false],
-              0,
-              0.22,
-            ],
-            8.6,
-            0,
-          ],
-        },
-      },
+      // Unassessed dashes — a single stable treatment at every zoom. The
+      // earlier quiet/local crossfade made a no-data river look like a moving
+      // selection shadow while the camera changed. Missing data is still
+      // honest (dashed), but its visual identity no longer morphs with zoom.
       {
         id: 'rivers-unassessed',
         type: 'line' as const,
@@ -482,32 +419,15 @@ export function atlasStyle(
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': t.noData,
-          'line-width': 2.3,
-          'line-dasharray': [3, 2.4],
+          'line-width': 1.7,
+          'line-dasharray': [2.5, 3.5],
           'line-opacity': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            7.4,
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
             0,
-            8.6,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'assessed'], false],
-              0,
-              0.75,
-            ],
-            9.4,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'assessed'], false],
-              0,
-              1,
-            ],
+            ['boolean', ['feature-state', 'assessed'], false],
+            0,
+            0.5,
           ],
         },
       },
@@ -762,7 +682,7 @@ export function atlasStyle(
       // minzoom/maxzoom are TOP-LEVEL layer properties in MapLibre, never
       // layout properties (an invalid spec fails the whole style load).
       style.layers.splice(
-        style.layers.findIndex((l) => l.id === 'lakes-fill'),
+        style.layers.findIndex((l) => l.id === 'rivers-water-base'),
         0,
         {
           id: `roads-${i}`,

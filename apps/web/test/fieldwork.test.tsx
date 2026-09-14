@@ -70,6 +70,11 @@ describe('Fieldwork themes', () => {
     for (const theme of Object.values(themes)) {
       const layers = atlasStyle('paper', theme.map).layers;
       const ids = layers.map((layer) => layer.id);
+      // Catalog polygons are the only still-water fill source. The former
+      // passive lake layers repainted the same polygons and created oversized
+      // pale wedges after the source merge.
+      expect(ids).not.toContain('lakes-fill');
+      expect(ids).not.toContain('lakes-shore');
       expect(ids.indexOf('rivers-water-base')).toBeLessThan(ids.indexOf('rivers-water'));
       expect(ids.indexOf('rivers-water')).toBeLessThan(ids.indexOf('rivers-water-shore'));
       expect(ids.indexOf('rivers-water-shore')).toBeLessThan(ids.indexOf('rivers-water-hit'));
@@ -112,28 +117,24 @@ describe('Fieldwork themes', () => {
       expect(basePaint).toMatch(/#[0-9a-f]{6}/i);
     }
   });
-  it('crossfades unassessed dashes from a quiet state-zoom treatment to clear local dashes', () => {
+  it('keeps unassessed dashes stable so zooming does not mimic selection', () => {
     for (const theme of Object.values(themes)) {
       const style = atlasStyle('ink', theme.map);
-      const quiet = style.layers.find((layer) => layer.id === 'rivers-unassessed-quiet');
       const clear = style.layers.find((layer) => layer.id === 'rivers-unassessed');
-      for (const layer of [quiet, clear]) {
-        expect(layer?.paint).toHaveProperty('line-dasharray');
-        // Dashes are unassessed-only: an assessed water never shows one.
-        expect(JSON.stringify(layer?.paint)).toContain('assessed');
-        expect(JSON.stringify(layer?.paint)).toContain('hidden');
-      }
-      // State zoom: the quiet tight dash reads as one cohesive river, then
-      // fades out by z8.6 where the clearer dash takes over.
-      expect(JSON.stringify(quiet?.paint)).toContain('5.6');
-      expect(JSON.stringify(quiet?.paint)).toContain('8.6,0');
-      expect(JSON.stringify(quiet?.paint)).toContain('0.22');
-      // Regional/local zoom: honest, clearly dashed "no condition here".
-      expect(JSON.stringify(clear?.paint)).toContain('7.4,0');
-      expect(JSON.stringify(clear?.paint)).toContain('9.4');
-      // The clearer dash is heavier than the quiet one.
-      expect(JSON.stringify(clear?.paint)).toContain('2.3');
-      expect(JSON.stringify(quiet?.paint)).toContain('1.9');
+      expect(clear?.paint).toHaveProperty('line-dasharray', [2.5, 3.5]);
+      // Dashes are unassessed-only: an assessed water never shows one.
+      const paint = JSON.stringify(clear?.paint);
+      expect(paint).toContain('assessed');
+      expect(paint).toContain('hidden');
+      expect(clear?.paint).toHaveProperty('line-width', 1.7);
+      expect(clear?.paint).toHaveProperty('line-opacity', [
+        'case',
+        ['boolean', ['feature-state', 'hidden'], false],
+        0,
+        ['boolean', ['feature-state', 'assessed'], false],
+        0,
+        0.5,
+      ]);
     }
   });
 });
@@ -190,7 +191,7 @@ it('builds quiet road layers beneath every water layer only from a roads manifes
       // ground and beneath ALL water.
       expect(ids).toContain('roads-0');
       expect(ids).toContain('roads-2');
-      expect(ids.indexOf('roads-0')).toBeLessThan(ids.indexOf('lakes-fill'));
+      expect(ids.indexOf('roads-0')).toBeLessThan(ids.indexOf('rivers-water-base'));
       // LOD zoom gates: majors from the state view, minor trails last.
       expect(withRoads.layers.find((l) => l.id === 'roads-0')).toHaveProperty('minzoom', 5.6);
       expect(withRoads.layers.find((l) => l.id === 'roads-1')).toHaveProperty('minzoom', 8);

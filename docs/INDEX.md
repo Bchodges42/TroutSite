@@ -22,6 +22,7 @@ instead.
 | [`LOGIC-AUDIT.md`](LOGIC-AUDIT.md) | Evidence appendix: two-pass product-logic audit behind the worklist's LOGIC items |
 | [`DESIGN.md`](DESIGN.md) | The Fieldwork design system: identity, themes, map adapter, judgment calls |
 | [`REVIEW-PROMPT.md`](REVIEW-PROMPT.md) | Paste-ready single-session prompt for a full-spectrum review |
+| [`DATA-SOURCE-RESEARCH-PROMPT.md`](DATA-SOURCE-RESEARCH-PROMPT.md) | Paste-ready exhaustive research brief for missing water data sources |
 | [`BACKLOG.md`](BACKLOG.md) | Out-of-scope parking lot + post-v1 roadmap (do not build in v1) |
 | [`ASSUMPTIONS.md`](ASSUMPTIONS.md) | Living log of decisions/deviations — append, don't rewrite |
 | [`adr/`](adr/) | Architecture Decision Records (read-path, tokens, snapshot layout, ...) |
