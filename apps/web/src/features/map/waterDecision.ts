@@ -29,6 +29,11 @@ export type WaterDecisionView = {
     | 'not-trout'
     | 'unknown';
   seasonKind?: 'regulatory' | 'programmatic';
+  /** True when the water carries an authored season window and the current
+   *  month is inside it — the seasonal chip still renders, but the water's
+   *  own score wears through (2026-09-14: in-season tailwaters must not read
+   *  unassessed just because an authored window exists). */
+  inSeason?: boolean;
   displayMetric: 'trout-condition' | 'fishability' | 'unassessed';
   fishability?: 'good' | 'fair' | 'poor' | 'unknown';
   confidence: 'high' | 'medium' | 'low';
@@ -105,13 +110,17 @@ export function toWaterDecisionView(
         : 'include',
     troutApplicability,
     ...(seasonal ? { seasonKind } : {}),
+    inSeason: seasonal ? inSeason : undefined,
     // Only a CONFIRMED, in-season trout water with a real assessment may wear
-    // the trout metric; all-fish mode may wear the FOCUS species' real
-    // fishability. Unknown species and out-of-season waters never borrow a
-    // metric they have no data for.
+    // the trout metric; authored-window waters wear it while their window is
+    // open (the chip carries the window), all-fish mode may wear the FOCUS
+    // species' real fishability. Unknown species and out-of-season waters
+    // never borrow a metric they have no data for.
     displayMetric: fishabilityActive
       ? ('fishability' as const)
-      : troutApplicability === 'confirmed-current' && assessed
+      : (troutApplicability === 'confirmed-current' ||
+          (troutApplicability === 'seasonal-uncertain' && inSeason === true)) &&
+        assessed
         ? ('trout-condition' as const)
         : ('unassessed' as const),
     // No generic fishability source exists in the current pipeline. The field
@@ -119,7 +128,9 @@ export function toWaterDecisionView(
     fishability: undefined,
     confidence: fishabilityActive
       ? (fishability!.comfort.freshness ? 'high' : 'medium')
-      : troutApplicability === 'confirmed-current' && assessed
+      : (troutApplicability === 'confirmed-current' ||
+          (troutApplicability === 'seasonal-uncertain' && inSeason === true)) &&
+        assessed
         ? (feature.snapshot?.readings.length ? 'high' : 'medium')
         : 'low',
     reasons,

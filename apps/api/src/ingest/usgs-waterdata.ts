@@ -11,7 +11,9 @@ interface WaterDataProperties {
   parameter_code?: string;
   time?: string;
   value?: string | number | null;
-  qualifier?: string | null;
+  /** Live OGC payloads ship this as a string OR an array of strings (["P"]) —
+   *  never assume the string shape (2026-09-14 ingest crash). */
+  qualifier?: string | string[] | null;
   approval_status?: string | null;
 }
 
@@ -33,9 +35,18 @@ const METRIC_BY_PARAMETER: Record<string, 'cfs' | 'heightFt' | 'tempC' | 'dissol
   '00045': 'precipitationMm',
 };
 
-function parseValue(value: string | number | null | undefined, qualifier: string | null | undefined, parameter: string): number | undefined {
+/** First string qualifier verbatim (legacy NWIS convention; live payloads may
+ *  ship ["P"] arrays — audit-b/usgs-provider "arrays like [\"P\"] → \"P\""). */
+function normalizeQualifier(qualifier: string | string[] | null | undefined): string | null {
+  if (typeof qualifier === 'string') return qualifier;
+  if (Array.isArray(qualifier)) return qualifier.find((q): q is string => typeof q === 'string') ?? null;
+  return null;
+}
+
+function parseValue(value: string | number | null | undefined, qualifier: string | string[] | null | undefined, parameter: string): number | undefined {
   if (value === null || value === undefined) return undefined;
-  if (qualifier && INVALID_QUALIFIERS.has(qualifier.trim().toLowerCase())) return undefined;
+  const q = normalizeQualifier(qualifier);
+  if (q && INVALID_QUALIFIERS.has(q.trim().toLowerCase())) return undefined;
   const n = typeof value === 'number' ? value : Number.parseFloat(value);
   if (!Number.isFinite(n) || n <= -999_000) return undefined;
   if (parameter === '00060' && n <= 0) return undefined;

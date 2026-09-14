@@ -618,9 +618,9 @@ test('offline and unassessed presentation never claim live or zero Poor', async 
   page,
   context,
 }) => {
-  await page.goto('/?river=brush-creek-cocke');
+  await page.goto('/?river=hatchie-river');
   await ready(page);
-  await expect(page.getByRole('heading', { name: 'Not assessed', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Species unverified', exact: true })).toBeVisible();
   await expect(page.locator('.score-disc')).toHaveCount(0);
   await context.setOffline(true);
   await expect(page.locator('.offline-banner')).toContainText('Offline');
@@ -666,17 +666,15 @@ test('clicking river geometry opens the same inspector as a mobile sheet', async
 test('still waters are labeled, tappable, and honestly presented', async ({ page }) => {
   await page.goto('/');
   await ready(page);
-  // H5 prominence: every catalog still water carries its label; major lakes
-  // stay visible statewide, pocket ponds appear at local zooms.
-  await expect(page.locator('.still-water-label')).toHaveCount(43);
-  // Edmund Orgill Lake: a catalog trout still water whose label is visible at
-  // the default camera (assessed pocket lakes title at any zoom; Kentucky
-  // Lake is unverified-species and correctly titles only in all-fish mode,
-  // and Dale Hollow's anchor sits above the default camera's top cover).
-  await expect(page.locator('[data-river-id="edmund-orgill-lake"]')).toBeVisible();
-  await page.locator('[data-river-id="edmund-orgill-lake"]').click();
-  await expect(page).toHaveURL(/river=edmund-orgill-lake/);
-  await expect(page.getByRole('heading', { name: 'Edmund-Orgill Park', exact: true })).toBeVisible();
+  // H5 prominence + authored display tiers (accuracy campaign): labels exist
+  // for every still water in the DOM, but reference-tier pocket waters render
+  // hidden at the default camera — fewer titles, same catalog.
+  const stillLabels = page.locator('.still-water-label');
+  await expect(stillLabels).toHaveCount(43);
+  // Reference-tier waters render hidden at the default camera — fewer titles.
+  expect(await stillLabels.locator(':scope.visible').count()).toBeLessThan(43);
+  // Edmund Orgill Lake is reference-tier: attached but not auto-visible.
+  await expect(page.locator('[data-river-id="edmund-orgill-lake"]')).toBeHidden();
   // A pocket pond reached by search: trout species + no assessment reads
   // "Not assessed" — never a fabricated band.
   await select(page, 'Cameron Brown');

@@ -12,8 +12,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 100,
-        "max": 350,
+        "min": 250,
+        "max": 2500,
         "unit": "cfs"
       }
     ],
@@ -60,7 +60,7 @@
     "idealFlow": [
       {
         "min": 150,
-        "max": 600,
+        "max": 1500,
         "unit": "cfs"
       }
     ],
@@ -110,8 +110,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 250,
-        "max": 1200,
+        "min": 500,
+        "max": 3500,
         "unit": "cfs"
       }
     ],
@@ -157,7 +157,7 @@
     "idealFlow": [
       {
         "min": 200,
-        "max": 800,
+        "max": 2000,
         "unit": "cfs"
       }
     ],
@@ -207,7 +207,7 @@
     "idealFlow": [
       {
         "min": 100,
-        "max": 500,
+        "max": 700,
         "unit": "cfs"
       }
     ],
@@ -252,7 +252,7 @@
     "idealFlow": [
       {
         "min": 200,
-        "max": 1000,
+        "max": 1500,
         "unit": "cfs"
       }
     ],
@@ -293,8 +293,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 60,
-        "max": 300,
+        "min": 100,
+        "max": 800,
         "unit": "cfs"
       }
     ],
@@ -366,8 +366,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 40,
+        "max": 300,
         "unit": "cfs"
       }
     ],
@@ -392,7 +392,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
+        "min": 5,
         "max": 60,
         "unit": "cfs"
       }
@@ -451,8 +451,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 40,
         "unit": "cfs"
       }
     ],
@@ -477,8 +477,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 40,
         "unit": "cfs"
       }
     ],
@@ -584,8 +584,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 200,
-        "max": 800,
+        "min": 150,
+        "max": 1200,
         "unit": "cfs"
       }
     ],
@@ -638,7 +638,13 @@
     "gaugeIds": [],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 5,
+        "max": 60,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA spring-stocked Cocke County creek in the Big Creek corridor.",
     "officialSources": [
       {
@@ -658,7 +664,13 @@
     "gaugeIds": [],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 5,
+        "max": 50,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows track rain.",
     "officialSources": [
       {
@@ -772,8 +784,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 30,
+        "max": 200,
         "unit": "cfs"
       }
     ],
@@ -831,8 +843,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 30,
+        "max": 250,
         "unit": "cfs"
       }
     ],
@@ -952,8 +964,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -1204,8 +1216,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 20,
+        "max": 150,
         "unit": "cfs"
       }
     ],
@@ -1230,7 +1242,13 @@
     ],
     "stockingProgram": false,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 20,
+        "max": 150,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Wild rainbows and the famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at Lilly Bridge is the go/no-go read.",
     "officialSources": [
       {
@@ -1251,7 +1269,13 @@
       "03409500"
     ],
     "stockingProgram": false,
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 30,
+        "max": 250,
+        "unit": "cfs"
+      }
+    ],
     "notes": "The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your wading to stable flows.",
     "officialSources": [
       {
@@ -1275,8 +1299,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 80,
+        "max": 500,
         "unit": "cfs"
       }
     ],
@@ -1301,8 +1325,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -1384,7 +1408,13 @@
     ],
     "stockingProgram": false,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 30,
+        "max": 250,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Anticipation: a wild-trout plateau creek with gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms. It runs its full named length to the Obed confluence.",
     "officialSources": [
       {
@@ -1477,8 +1507,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -1505,8 +1535,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 50,
+        "max": 250,
         "unit": "cfs"
       }
     ],
@@ -1609,7 +1639,13 @@
       "03599500"
     ],
     "stockingProgram": false,
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 200,
+        "max": 1200,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources). reaches seasonally. The 03597860 stage reading is currently anomalous (10.11 ft versus 2.60 ft at neighboring 03598000); treat it as a datum/sensor question, not absolute water level. Conservative flag; verify current TWRA stocking before planning a trout trip here.",
     "officialSources": [
       {
@@ -1663,8 +1699,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -1722,7 +1758,13 @@
     ],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 150,
+        "max": 1000,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Wider, warmer Elk below the tailwater with TWRA winter rainbow stocking in Lincoln County reaches. USGS 03582000 is upstream of the mapped lower reach, so use it as flow context and not as a point measurement for every access area.",
     "officialSources": [
       {
@@ -1743,7 +1785,13 @@
       "03540500"
     ],
     "stockingProgram": false,
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 600,
+        "unit": "cfs"
+      }
+    ],
     "notes": "The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth downstream. Plateau flashiness applies. It runs to the Watts Bar embayment head, where the pool carries the water down to the Tennessee River.",
     "officialSources": [
       {
@@ -1765,8 +1813,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 30,
         "unit": "cfs"
       }
     ],
@@ -1791,8 +1839,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -1973,8 +2021,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 400,
-        "max": 1600,
+        "min": 300,
+        "max": 2000,
         "unit": "cfs"
       }
     ],
@@ -2001,8 +2049,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 80,
-        "max": 400,
+        "min": 100,
+        "max": 800,
         "unit": "cfs"
       }
     ],
@@ -2032,8 +2080,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 40,
         "unit": "cfs"
       }
     ],
@@ -2058,8 +2106,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -2084,8 +2132,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -2182,8 +2230,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 30,
         "unit": "cfs"
       }
     ],
@@ -2209,7 +2257,13 @@
     ],
     "stockingProgram": true,
     "species": "warmwater",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 50,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches near Franklin with catchable trout each December (the winter put-and-take season runs December–February; check the TWRA schedule for the current window). Two gauges bracket the stocked corridor; summer water is smallmouth country.",
     "officialSources": [
       {
@@ -2290,7 +2344,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
+        "min": 5,
         "max": 60,
         "unit": "cfs"
       }
@@ -2316,7 +2370,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
+        "min": 5,
         "max": 60,
         "unit": "cfs"
       }
@@ -2342,8 +2396,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -2697,8 +2751,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -2723,8 +2777,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -2749,8 +2803,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -2775,8 +2829,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 20,
+        "max": 120,
         "unit": "cfs"
       }
     ],
@@ -2801,7 +2855,13 @@
     ],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 500,
+        "unit": "cfs"
+      }
+    ],
     "notes": "A consistent trout water below the Smokies — TWRA stocks the Sevierville reach TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources). regularly (confirmed by the owner against local knowledge, September 2026, supplementing the TWRA dataset, which does not list the reach), and the upper park reaches hold wild fish. Verify current schedules with TWRA before you go.",
     "officialSources": [
       {
@@ -2826,7 +2886,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
+        "min": 50,
         "max": 350,
         "unit": "cfs"
       }
@@ -2863,8 +2923,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 30,
+        "max": 200,
         "unit": "cfs"
       }
     ],
@@ -2914,8 +2974,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 30,
         "unit": "cfs"
       }
     ],
@@ -2973,8 +3033,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 40,
         "unit": "cfs"
       }
     ],
@@ -3078,8 +3138,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 15,
+        "max": 120,
         "unit": "cfs"
       }
     ],
@@ -3137,8 +3197,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -3185,7 +3245,13 @@
     "gaugeIds": [],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 5,
+        "max": 50,
+        "unit": "cfs"
+      }
+    ],
     "notes": "A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows track rain and groundwater closely.",
     "officialSources": [
       {
@@ -3209,8 +3275,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 50,
+        "max": 400,
         "unit": "cfs"
       }
     ],
@@ -3311,7 +3377,13 @@
       "03465500"
     ],
     "stockingProgram": false,
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 300,
+        "max": 1500,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence. TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).",
     "officialSources": [
       {
@@ -3485,8 +3557,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 40,
+        "max": 250,
         "unit": "cfs"
       }
     ],
@@ -3536,8 +3608,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 10,
+        "max": 70,
         "unit": "cfs"
       }
     ],
@@ -3562,7 +3634,13 @@
     ],
     "stockingProgram": false,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 800,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast. Stocking flag false by design — verify NPS/TWRA notices. It runs its full named length across the Cumberland Plateau to the Emory confluence. USGS 03538830 is an upstream Obed reach about 20 river miles above the Emory junction, so its conditions are representative context rather than a point measurement for every mapped access area.\nWild-trout presence is reported locally but remains unverified by agency sources as of 2026-09-14; confirm with TWRA Regions 3/4.",
     "officialSources": [
       {
@@ -3586,8 +3664,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 200,
-        "max": 700,
+        "min": 150,
+        "max": 1000,
         "unit": "cfs"
       }
     ],
@@ -3679,8 +3757,8 @@
     "stockingProgram": false,
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 800,
+        "max": 3000,
         "unit": "cfs"
       }
     ],
@@ -3876,8 +3954,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 50,
-        "max": 250,
+        "min": 100,
+        "max": 800,
         "unit": "cfs"
       }
     ],
@@ -3987,8 +4065,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 300,
+        "max": 1500,
         "unit": "cfs"
       }
     ],
@@ -4013,8 +4091,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -4037,7 +4115,13 @@
     "gaugeIds": [],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 30,
+        "max": 200,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout reach — rain judgment required. It runs down to the Watts Bar embayment head.",
     "officialSources": [
       {
@@ -4059,7 +4143,13 @@
     ],
     "stockingProgram": false,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 50,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
     "notes": "A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA line down to the Norris Lake arm. TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).",
     "officialSources": [
       {
@@ -4081,8 +4171,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 30,
         "unit": "cfs"
       }
     ],
@@ -4107,7 +4197,13 @@
     ],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 60,
+        "max": 500,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA winter-stocked reaches near Clarksville. Mud-prone watershed — check the Port Royal gauge after any rain.",
     "officialSources": [
       {
@@ -4129,7 +4225,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
+        "min": 5,
         "max": 60,
         "unit": "cfs"
       }
@@ -4179,8 +4275,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 30,
         "unit": "cfs"
       }
     ],
@@ -4205,8 +4301,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -4231,8 +4327,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 15,
+        "max": 120,
         "unit": "cfs"
       }
     ],
@@ -4257,8 +4353,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 10,
+        "max": 80,
         "unit": "cfs"
       }
     ],
@@ -4283,7 +4379,13 @@
     ],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 100,
+        "max": 600,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far downstream — treat it as a valley-level trend, not the headwater truth. It runs the full valley from the Cumberland County headwaters down toward the Tennessee River at Shellmound.",
     "officialSources": [
       {
@@ -4340,8 +4442,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 60,
+        "max": 400,
         "unit": "cfs"
       }
     ],
@@ -4366,8 +4468,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -4394,8 +4496,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 80,
+        "max": 500,
         "unit": "cfs"
       }
     ],
@@ -4491,8 +4593,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -4517,8 +4619,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 40,
         "unit": "cfs"
       }
     ],
@@ -4543,8 +4645,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 40,
         "unit": "cfs"
       }
     ],
@@ -4570,7 +4672,13 @@
     ],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 40,
+        "max": 400,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from roughly December through February. The Donelson gauge (below Percy Priest) is the flow reference.",
     "officialSources": [
       {
@@ -4599,8 +4707,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -4623,7 +4731,13 @@
     "gaugeIds": [],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 10,
+        "max": 80,
+        "unit": "cfs"
+      }
+    ],
     "notes": "TWRA winter-stocked Robertson County creek.",
     "officialSources": [
       {
@@ -4726,8 +4840,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 100,
+        "max": 400,
         "unit": "cfs"
       }
     ],
@@ -4854,8 +4968,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 3,
+        "max": 25,
         "unit": "cfs"
       }
     ],
@@ -4880,8 +4994,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -4939,8 +5053,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
-        "max": 60,
+        "min": 5,
+        "max": 50,
         "unit": "cfs"
       }
     ],
@@ -4965,7 +5079,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
+        "min": 5,
         "max": 60,
         "unit": "cfs"
       }
@@ -5206,7 +5320,13 @@
     ],
     "stockingProgram": true,
     "species": "trout",
-    "idealFlow": [],
+    "idealFlow": [
+      {
+        "min": 30,
+        "max": 250,
+        "unit": "cfs"
+      }
+    ],
     "notes": "Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting, December–February. Gauge at Murfreesboro.",
     "officialSources": [
       {
@@ -5230,8 +5350,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 15,
+        "max": 150,
         "unit": "cfs"
       }
     ],
@@ -5256,7 +5376,7 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 8,
+        "min": 5,
         "max": 60,
         "unit": "cfs"
       }
@@ -5306,8 +5426,8 @@
     "species": "trout",
     "idealFlow": [
       {
-        "min": 70,
-        "max": 350,
+        "min": 10,
+        "max": 100,
         "unit": "cfs"
       }
     ],

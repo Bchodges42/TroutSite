@@ -229,7 +229,7 @@ function WaterTab({
     <>
       <div
         className="assessment"
-        data-status={warm ? 'warmwater' : unverified || seasonal || feature.status === 'no-data' ? 'no-data' : feature.status}
+        data-status={warm ? 'warmwater' : unverified || outOfSeason || feature.status === 'no-data' ? 'no-data' : feature.status}
       >
         <div className="assessment-top">
           <div>
@@ -292,7 +292,7 @@ function WaterTab({
           </small>
         </div>
       </div>
-      {!warm && !seasonal && (
+      {!warm && !outOfSeason && (
         <div className="hatch-preview">
           <span className="eyebrow">
             <BugIcon size={16} />

@@ -12,9 +12,14 @@ test('conditions opens search-first; search discloses waters; detail shows reaso
   expect(listSize).toBeGreaterThan(0);
   expect(listSize).toBeLessThanOrEqual(8);
 
-  // The gauged tailwaters carry their score pills straight from the snapshot
+  // Boone's authored stocking window (Dec/Mar/Apr) excludes September — the
+  // honest seasonal state replaces the score pill (T1-19 states ship).
   const booneRow = page.locator('li', { hasText: 'Boone Tailwater' }).first();
-  await expect(booneRow.getByText('90')).toBeVisible();
+  await expect(booneRow.getByText('Out of season')).toBeVisible();
+  // In-season gauged tailwaters carry their score pills straight from the
+  // snapshot (Caney Fork's authored window runs Mar–Dec).
+  const caneyRow = page.locator('li', { hasText: 'Caney Fork' }).first();
+  await expect(caneyRow.getByText('80')).toBeVisible();
 
   // Search discloses exactly the matching waters, still capped
   await page.getByRole('searchbox', { name: 'Search waters by name' }).fill('Watauga');
@@ -28,7 +33,7 @@ test('conditions opens search-first; search discloses waters; detail shows reaso
   await expect(page.getByText(/Verify officially/)).toBeVisible();
 
   // official gauge link is present and external
-  const gaugeLink = page.getByRole('link', { name: /USGS gauge/ }).first();
+  const gaugeLink = page.getByRole('link', { name: /USGS Water Data/ }).first();
   await expect(gaugeLink).toBeVisible();
   await expect(gaugeLink).toHaveAttribute('href', /waterdata\.usgs\.gov/);
   await expect(gaugeLink).toHaveAttribute('target', '_blank');
@@ -82,5 +87,6 @@ test('T2-27 — shop report photos render on /shops from the same-origin fixture
   await expect(photo.first()).toBeVisible();
   // Same-origin fixture asset — the privacy audit stays green (zero
   // cross-origin requests) while the photo path is exercised end-to-end.
-  await expect(photo.first()).toHaveAttribute('src', '/img/report-1.jpg');
+  // Same-origin absolute URL — zero cross-origin requests, real path kept.
+  await expect(photo.first()).toHaveAttribute('src', /\/img\/report-1\.jpg$/);
 });

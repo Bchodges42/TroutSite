@@ -73,7 +73,9 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   await expect(page.getByText('Tailwaters now')).toBeVisible();
   await page.locator('li', { hasText: 'Boone Tailwater' }).first().click();
   await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
-  await expect(page.getByText(/Trout condition assessment/)).toBeVisible();
+  // September sits outside Boone's authored stocking window (Dec/Mar/Apr):
+  // the honest seasonal state replaces the score assessment offline.
+  await expect(page.getByText(/PROGRAMMATIC — out of season; raw readings shown/)).toBeVisible();
   await expect(page.getByText(/Offline · last known/).first()).toBeVisible();
 
   // restart resilience: the shell, catalog, and cached data survive a reload

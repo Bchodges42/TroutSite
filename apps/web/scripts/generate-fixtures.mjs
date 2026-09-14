@@ -276,6 +276,10 @@ for (const s of streams) {
   s.waterbodyType = pack.waterbodyType;
   s.stockingProgram = pack.stockingProgram;
   s.gaugeIds = pack.gaugeIds;
+  // Ideal-flow ranges come from the reviewed pack too — the hardcoded base
+  // list predates the provenance pass and ships empty ranges for warmwater
+  // rivers, which silently dropped them from the demo conditions feed.
+  if (Array.isArray(pack.idealFlow) && pack.idealFlow.length > 0) s.idealFlow = pack.idealFlow;
   // Presentation and seasonal fields belong to the reviewed content pack too.
   // Without this overlay fixture builds silently fall back to the old extent
   // policy: every water becomes `standard`, so no authored featured names can
@@ -518,9 +522,13 @@ const conditionsPlans = {
 
 const conditions = streams
   .map((stream) => {
-    const plan = conditionsPlans[stream.id] ?? (stream.species === 'trout' && stream.idealFlow.length > 0 ? demoPlan(stream) : null);
-    // Warmwater rivers are listed but never trout-scored — no snapshot, so the
-    // UI renders them with the warmwater treatment instead of a fake score.
+    // F6: typed-species (warmwater) waters carry demo conditions too — the real
+    // builder emits all catalog waters, and the all-fish list needs a row for
+    // the fishability metric to attach to. Only truly untyped waters skip.
+    const hasTypedSpecies = Array.isArray(stream.targetSpecies) && stream.targetSpecies.length > 0;
+    const plan = conditionsPlans[stream.id] ?? ((stream.species === 'trout' || hasTypedSpecies) && stream.idealFlow.length > 0 ? demoPlan(stream) : null);
+    // Waters without any plan stay out of the feed entirely — the UI renders
+    // them as unassessed rather than a fake score.
     if (!plan) return null;
     const gaugeId = stream.gaugeIds[0] ?? 'demo';
     const readings = readingsFor(stream.id, gaugeId, plan);
@@ -593,6 +601,9 @@ const reports = [
     date: daysAgoIso(3),
     body: 'Sulphurs came off strong from 2 to 5 pm between the Weir and Rock Creek. Size 16 parachute duns and pheasant tails in 18 fished well; generation has been light in the afternoons.',
     hotPatterns: [{ patternId: 'sulphur-parachute', hookSize: 16 }, { patternId: 'pheasant-tail-nymph', hookSize: 18 }],
+    // T2-27: same-origin photo path per the hermetic-fixture rule — the file
+    // ships in public/img so the demo build needs no external host.
+    photoUrl: '/img/report-1.jpg',
     attributionUrl: 'https://example.com/high-country-fly-shop',
     publishedAt: minutesAgo(3 * 24 * 60 + 40),
   },

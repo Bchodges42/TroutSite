@@ -58,7 +58,9 @@ describe('migrations', () => {
     // + 011_release_schedules (TVA release/forecast context).
     // + 012_precipitation_context (USGS 00045 rain context).
     // + 013_region_precipitation (NWS rolling rain fallback).
-    expect(applied).toHaveLength(13);
+    // + 014_dissolved_oxygen_reservoir_level (DO/reservoir columns for DBs that
+    //   predate the campaign; 002 no longer creates them in place).
+    expect(applied).toHaveLength(14);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -68,6 +70,7 @@ describe('migrations', () => {
     expect(applied[10]!.name).toMatch(/^011_/);
     expect(applied[11]!.name).toMatch(/^012_/);
     expect(applied[12]!.name).toMatch(/^013_/);
+    expect(applied[13]!.name).toMatch(/^014_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

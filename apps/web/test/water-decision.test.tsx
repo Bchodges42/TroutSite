@@ -177,12 +177,17 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Out of season');
   });
 
-  it('the same water inside the winter window is seasonal-uncertain, not confirmed', () => {
+  it('the same water inside the winter window is seasonal-uncertain but wears its real in-window score', () => {
+    // 2026-09-14: authored-window waters in season wear the trout metric (the
+    // window chip still renders) — they are stocked, gauged, and open, never
+    // "unassessed" merely for having a window.
     const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout', 1);
     expect(view.troutApplicability).toBe('seasonal-uncertain');
-    expect(view.displayMetric).toBe('unassessed');
+    expect(view.inSeason).toBe(true);
+    expect(view.displayMetric).toBe('trout-condition');
+    expect(view.confidence).toBe('high');
     expect(seasonalChipText(view)).toBe('PROGRAMMATIC — seasonal fishery');
-    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Seasonal');
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Good');
   });
 
   it('without a month the seasonal water stays uncertain — absence is never claimed blind', () => {
