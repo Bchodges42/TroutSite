@@ -586,3 +586,77 @@ NEW-2 CORT1 orphaned fetch (§6.7) · NEW-3 empty lakes.geojson still mounted (�
 NEW-4 stale "one factor" comments (§6.6) · NEW-5 `latestValue` string ordering
 latency (§6.8) · NEW-6 hardcoded `'trout'` decisions in detail/drawer (§6.3).
 
+
+---
+
+## Verification summary
+
+- **Reproduced exactly:** 148 waters (35/57/38/12/5/1) · 103/8/37 broad species · 39
+  `targetSpecies` · 48 gauge waters / 50 unique USGS ids · 92 unprovenanced ideal-flow
+  ranges · 54/72/22 title tiers · Trout-mode 141/1/7 admission · all-fish 148 ·
+  coverage artifact 147 (missing `bradley-creek`) · identical ID sets across YAML /
+  rivers.geojson / riverIndex.json.
+- **Corrected from the brief:** species-mode propagation (wider than claimed);
+  `realTimeIV` (static registry, not YAML flags); "scoreConditions invoked for all
+  148" is true server-side but presentation-gated client-side; snapshots rebuild
+  hourly via the `gauges` job (README is accurate; a second nightly rebuild also
+  exists).
+- **Verified in code, marked done elsewhere:** the eleven worklist items in §8.
+- **New:** six findings (§8 NEW-1…6), led by the 90-day stopped-sensor scoring window.
+- All claims are one of: **fact** (path:line or command output above), **inference**
+  (labeled — e.g. stopped-sensor behavior follows from the relative gate + no age
+  floor + retention, with the old-stamp behavior pinned by `stale-metrics.test.ts`),
+  or **external unknown** (routed below). No display tiers or score coefficients were
+  chosen or endorsed — that is the planner's call with Session B/C evidence.
+
+## Open questions for the planner
+
+*Facts only external evidence can settle. Routed to Session B (water data) / Session C
+(species/season science); not answerable from this repository.*
+
+**Sensor reality (→ B):**
+1. Which of the 50 unique USGS gauge ids report right now, and which are stopped?
+   (The tree proves a stopped sensor scores for up to 90 days — but not which, if any,
+   are stopped.) TVA/USACE endpoints are undocumented; are the 13 prefixed ids still
+   valid? Is USACE CORT1 (Cordell Hull) meant to back `cumberland-river` (gaugeIds
+   empty)?
+2. Which gauge is the *right* gauge per water — e.g. `mill-creek-overton`'s
+   03539778 is already known-wrong (T3-50); are any of the other 47 waters mis-anchored
+   the same way?
+3. What absolute staleness floor should the conditions path adopt (fishability uses
+   180 min; the UI calls 3 h "stale"; retention is 90 days)? A science/ops judgment,
+   not a code one.
+
+**Species & seasons (→ C):**
+4. Which species does each of the 37 unknown-species waters actually hold, and which
+   of the 39 `targetSpecies` waters rest on inference (the draft F3 mapping counted
+   11 "inferred" waters) vs typed TWRA evidence? The shipped catalog carries no
+   per-water species citations.
+5. Cited values for the seven `needs-source` comfort optimals (spotted-bass, crappie,
+   bluegill, channel-catfish), all `lowerActiveC` values, all `flowTrend`/
+   `pressureTrend` sensitivities, and striped-bass spawn window — without them, 4 of
+   7 species emit `assessed:false` comfort and the pressure transform stays generic.
+6. Do the authored 92 ideal-flow ranges have real hydrologic or agency provenance,
+   and what window is seasonally correct (the catalog can't express either)?
+7. Is the hardcoded Nov–Mar winter window (`waterDecision.ts:79`) right per water, or
+   should `yearRound` grow an authored month window?
+
+**Presentation tiers (planner decision, no intuition used here):**
+8. What display tier should each of the 148 waters wear (9 extent-promoted creeks,
+   5 unseen ponds, 1 spring are the edge cases)? What replaces extent for
+   "fishery importance"?
+9. Should the trout path eventually migrate into the per-species v2 model (OA-03
+   gap), or is the two-model split (legacy trout + v2 warmwater) the intended
+   steady state?
+
+## Blockers
+
+None. The audit completed read-only on the mandated branch. Two of three mandated
+subagents were lost to upstream API rate limits (§1.3) — their scopes were covered by
+direct investigation; noted as an execution deviation, not a blocker. Tests were
+inventoried but not run (guardrail-compatible choice, §1).
+
+---
+
+*Audited tree: `campaign-a` @ `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7`. Report
+committed and pushed per section; final hash stated in the session's closing message.*
