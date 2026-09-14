@@ -2,6 +2,7 @@ id: piney-river-rhea
 name: Piney River (Rhea County)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 30
     max: 200
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout
   reach — rain judgment required. It runs down to the Watts Bar embayment head.

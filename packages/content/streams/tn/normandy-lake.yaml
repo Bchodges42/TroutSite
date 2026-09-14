@@ -2,8 +2,10 @@ id: normandy-lake
 name: Normandy Lake
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-middle-duck-elk
-gaugeIds: []
+gaugeIds:
+  - tva:NRMT1
 stockingProgram: false
 idealFlow: []
 targetSpecies:
@@ -13,6 +15,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
 notes: >-
   TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater
   catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of

@@ -2,6 +2,7 @@ id: leconte-creek
 name: LeConte Creek
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
@@ -12,8 +13,7 @@ idealFlow:
   - min: 10
     max: 80
     unit: cfs
-targetSpecies:
-  - smallmouth-bass
+idealFlowSource: editorial
 notes: Small park creek near Gatlinburg with wild fish and TWRA spring stocking listed. Pocket
   water under heavy canopy.
 officialSources:

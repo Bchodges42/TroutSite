@@ -1,5 +1,28 @@
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { labelSpeciesNote, shouldShowLabel } from '../src/features/map/labelPolicy';
+
+const INDEX_DIR = dirname(fileURLToPath(import.meta.url));
+const riverIndex = JSON.parse(readFileSync(join(INDEX_DIR, '../src/features/map/riverIndex.json'), 'utf8')) as { id: string }[];
+
+const FEATURED_IDS = [
+  'boone-tailwater', 'caney-fork-river', 'clinch-river', 'duck-river-tailwater', 'elk-river',
+  'french-broad-river', 'ft-patrick-henry-tailwater', 'hiwassee-river', 'obey-river',
+  'parksville-tailwater', 'south-holston-river', 'watauga-river', 'norris-lake', 'cherokee-lake',
+  'douglas-lake', 'watts-bar-lake', 'fort-loudoun-lake', 'chickamauga-lake', 'old-hickory-lake',
+  'j-percy-priest-lake', 'tims-ford-lake', 'center-hill-lake', 'dale-hollow-lake', 'kentucky-lake',
+  'lake-barkley', 'south-holston-lake', 'pickwick-lake', 'tellico-lake', 'boone-lake', 'watauga-lake',
+  'reelfoot-lake', 'cumberland-river', 'tennessee-river', 'mississippi-river', 'duck-river-lower',
+  'buffalo-river', 'obed-river',
+] as const;
+const REFERENCE_IDS = [
+  'beech-lake', 'cameron-brown-lake', 'covington-fbc-pond', 'edmund-orgill-lake', 'johnson-park-lake',
+  'lake-graham', 'martin-city-pond', 'milan-city-pond', 'paris-city-park-lake', 'shelby-farms-lake',
+  'union-city-reelfoot-pond', 'valentine-park-pond', 'yale-road-park-lake', 'wilbur-lake',
+  'ocoee-number-three-lake', 'sinking-creek-wilson',
+] as const;
 
 /**
  * The catalog-truth stand-in the map joins at runtime: species come from the
@@ -96,5 +119,41 @@ describe('labelPolicy.labelSpeciesNote (honest aria/title words)', () => {
 
   it('says Unverified when the catalog leaves species unset', () => {
     expect(labelSpeciesNote({ id: 'some-creek' }, { troutIds: TROUT_IDS })).toBe('Unverified');
+  });
+});
+
+describe('authored map display tiers', () => {
+  it('covers the complete real river index with the campaign 37/95/16 assignment', () => {
+    const indexIds = new Set(riverIndex.map((r) => r.id));
+    const featured = new Set(FEATURED_IDS);
+    const reference = new Set(REFERENCE_IDS);
+    expect(FEATURED_IDS).toHaveLength(37);
+    expect(REFERENCE_IDS).toHaveLength(16);
+    expect(FEATURED_IDS.length + REFERENCE_IDS.length).toBeLessThan(riverIndex.length);
+    expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(53);
+    expect([...featured, ...reference].every((id) => indexIds.has(id))).toBe(true);
+    expect(riverIndex.length - featured.size - reference.size).toBe(95);
+  });
+
+  it('titles 37 featured waters statewide/approach and admits 95 standard waters locally', () => {
+    const standardIds = riverIndex
+      .map((r) => r.id)
+      .filter((id) => !FEATURED_IDS.includes(id as (typeof FEATURED_IDS)[number]) && !REFERENCE_IDS.includes(id as (typeof REFERENCE_IDS)[number]));
+    const waters = [
+      ...FEATURED_IDS.map((id) => ({ id, display: 'featured' as const })),
+      ...standardIds.map((id) => ({ id, display: 'standard' as const })),
+      ...REFERENCE_IDS.map((id) => ({ id, display: 'reference' as const })),
+    ];
+    const titleAt = (zoom: number) => waters.filter((water) => shouldShowLabel(water, ctx({ mode: 'all', zoom }))).length;
+    expect(titleAt(5)).toBe(37);
+    expect(titleAt(8.5)).toBe(37);
+    expect(titleAt(9.5)).toBe(132);
+    expect(waters.filter((water) => water.display === 'standard' && shouldShowLabel(water, ctx({ mode: 'all', zoom: 9.5 })))).toHaveLength(95);
+  });
+
+  it('suppresses an out-of-season auto-title while preserving explicit selection', () => {
+    const water = { id: 'watauga-river', display: 'featured' as const, species: 'trout' as const };
+    expect(shouldShowLabel(water, ctx({ mode: 'all', zoom: 5, seasonalAbsent: true }))).toBe(false);
+    expect(shouldShowLabel(water, ctx({ mode: 'all', zoom: 5, seasonalAbsent: true, selected: true }))).toBe(true);
   });
 });

@@ -2,6 +2,7 @@ id: woods-reservoir
 name: Woods Reservoir
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
@@ -13,6 +14,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
 notes: >-
   AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and
   Manchester (Franklin County), open to public fishing.

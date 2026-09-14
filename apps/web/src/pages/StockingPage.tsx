@@ -128,7 +128,7 @@ function EventRow({ event }: { event: StockingEvent }) {
  * so a filtered view is shareable and survives reload.
  */
 export function StockingPage() {
-  const _settings = useSettingsContext().settings;
+  const { settings } = useSettingsContext();
   // T2-33: Default-state setting removed; Tennessee is the only served state.
   const stateId = 'TN' as const;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -215,8 +215,13 @@ export function StockingPage() {
         <FreshnessChip fetchedAt={stockingQuery.data?.fetchedAt} live={stockingQuery.data?.live ?? false} />
       </div>
       <p className="page-subtitle mt-1">
-        The published TWRA schedule for {stateId}, cached on your device. A schedule is a plan —
+        {settings.speciesMode === 'all' ? 'TWRA fish stocking' : 'Trout stocking'} for {stateId}, cached on your device. A schedule is a plan —
         verify every entry at the official source; this app is never authoritative.
+      </p>
+      <p className="muted mt-1 text-xs" role="note">
+        {settings.speciesMode === 'all'
+          ? 'All published species are shown; trout events are marked in the list.'
+          : 'Trout events are highlighted; use the species filter to inspect the published schedule.'}
       </p>
 
       <div className="discovery-search mt-4">

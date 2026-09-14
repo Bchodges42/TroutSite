@@ -1,8 +1,8 @@
 ---
 /**
  * /streams/{state}/{slug}/ — programmatic template (ROLE 5).
- * First screen answers the query: conditions snapshot + fishability score,
- * ideal-flow table, hatch-chart highlights, stocking history, and official links.
+ * First screen answers the query: conditions snapshot, only the features present
+ * in the built data, hatch-chart highlights, stocking history, and official links.
  */
 import Base from '../../../../layouts/Base.astro';
 import ConditionsEmbed from '../../../../components/ConditionsEmbed.astro';
@@ -15,9 +15,11 @@ import {
   getReportsForStream,
   getYearlyHatch,
   getTaxon,
+  hasFishabilitySnapshot,
 } from '../../../../data/load';
-import { formatDate, formatCfs, monthName } from '../../../../lib/format';
+import { formatDate, monthName } from '../../../../lib/format';
 import { breadcrumbLd, datasetLd } from '../../../../lib/seo';
+import { featureClaims, waterPageDescription, waterPageTitle } from '../../../../lib/waterCopy';
 
 export function getStaticPaths() {
   const paths = [];
@@ -47,8 +49,11 @@ const currentEntries = (currentChart?.entries ?? [])
   .slice(0, 3)
   .map((e) => ({ entry: e, taxon: getTaxon(e.taxonId) }));
 
-const title = `${stream.name} fly fishing — conditions, flows, stocking & hatch chart`;
-const description = `${stream.name} (${state.name}): fishability score, ideal flow ranges, TWRA stocking history, hatch-chart highlights, and official sources to verify. Free stream guide — no trackers.`;
+const hasFishability = hasFishabilitySnapshot(stream.id);
+const hasIdealFlow = stream.idealFlow.length > 0;
+const title = waterPageTitle(stream, { hasFishability, hasIdealFlow });
+const description = waterPageDescription(stream, state.name, { hasFishability, hasIdealFlow });
+const claims = featureClaims({ hasFishability, hasIdealFlow });
 
 // Kept in frontmatter: Astro's template compiler mis-parses `<=` inside inline expressions.
 function flowReadsAs(range: { min: number; max: number; unit: string }): string {
@@ -65,7 +70,7 @@ function flowReadsAs(range: { min: number; max: number; unit: string }): string 
   ld={[
     datasetLd({
       name: `${stream.name} conditions & stocking data`,
-      description: `Fishability scoring inputs, ideal flow ranges, and stocking history for ${stream.name}, with official sources.`,
+      description: `${claims.length ? claims.join(', ') + ', ' : ''}stocking history for ${stream.name}, with official sources.`,
       path: `/streams/${state.id.toLowerCase()}/${stream.id}/`,
     }),
     breadcrumbLd([
@@ -87,7 +92,7 @@ function flowReadsAs(range: { min: number; max: number; unit: string }): string 
   {
     stream.idealFlow.length > 0 ? (
       <table class="data-table">
-        <caption>Fishability is scored against these ranges (set per stream, verified per source)</caption>
+        <caption>Typical flow ranges (editorial) — verify current conditions at the gauge</caption>
         <thead>
           <tr>
             <th scope="col">Range</th>

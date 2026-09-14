@@ -78,7 +78,7 @@ describe('T2-39 — hatch key onboarding', () => {
     await user.click(screen.getByRole('button', { name: 'See matches' }));
     // Results reached; the assumed-size note is absent for a real pick.
     expect(document.getElementById('hatch-results-heading')).not.toBeNull();
-    expect(screen.queryByRole('note')).toBeNull();
+    expect(screen.queryByText(/The size was assumed/i)).toBeNull();
   });
 });
 

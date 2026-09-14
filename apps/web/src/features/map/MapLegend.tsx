@@ -136,7 +136,7 @@ export function MapLegend({
               </>
             ) : grouping ? (
               <>
-                <p className="mt-1 text-[#9FB5AA]">Every mapped water, by fishery class</p>
+                <p className="mt-1 text-[#9FB5AA]">Every mapped water, by fishery class. Featured waters carry the statewide map titles; standard waters title locally; reference waters stay selectable without auto-titles.</p>
                 <ul className="mt-1.5 space-y-1" aria-label="Water classes">
                   {fisheryRows.map((t) => (
                     <li key={t} className="flex items-center gap-1.5">

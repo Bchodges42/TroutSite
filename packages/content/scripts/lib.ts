@@ -274,6 +274,21 @@ export function loadContent(): LoadedContent {
     if (!stream.officialSources?.length) {
       issues.push({ file: rel(file), message: 'streams must cite at least one officialSources entry' });
     }
+    const targetSpecies = new Set(stream.targetSpecies ?? []);
+    const evidenceSpecies = stream.speciesEvidence ?? [];
+    for (const species of targetSpecies) {
+      if (!evidenceSpecies.some((e) => e.species === species)) {
+        issues.push({ file: rel(file), message: `targetSpecies "${species}" requires a retrieval-dated speciesEvidence citation` });
+      }
+    }
+    for (const evidence of evidenceSpecies) {
+      if (!targetSpecies.has(evidence.species)) {
+        issues.push({ file: rel(file), message: `speciesEvidence "${evidence.species}" is not present in targetSpecies` });
+      }
+    }
+    if (/cherokee\s+bass/i.test(JSON.stringify(data))) {
+      issues.push({ file: rel(file), message: 'Cherokee bass is a hybrid local name and must not be tokenized as spotted-bass or striped-bass' });
+    }
     // Fishery/yearRound cross-checks (session-1 catalog lane): advisory only — these flag
     // attribute combinations that contradict the water's own flags/notes, they never fail the gate.
     if (stream.fishery === 'tailwater' && stream.waterbodyType !== 'tailrace') {

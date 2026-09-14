@@ -2,6 +2,7 @@ id: buffalo-creek-grainger
 name: Buffalo Creek (Grainger County)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 5
     max: 50
     unit: cfs
+idealFlowSource: editorial
 notes: TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows
   track rain.
 officialSources:

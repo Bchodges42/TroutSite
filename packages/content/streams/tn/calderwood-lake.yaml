@@ -2,6 +2,7 @@ id: calderwood-lake
 name: Calderwood Lake
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
@@ -15,6 +16,27 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tn.gov/twra/fishing.html
+    retrieved: 2026-09-13
 notes: >-
   Small reservoir on the Little Tennessee River along the North Carolina line
   in Blount County, impounded by Calderwood Dam. Receives Little Tennessee

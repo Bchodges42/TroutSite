@@ -3,10 +3,11 @@ import type { GaugeReading } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
 import { fetchWithRetry } from '../lib/retry.js';
+import { fetchWaterDataReadings } from './usgs-waterdata.js';
 
 const USGS_IV_URL = 'https://waterservices.usgs.gov/nwis/iv/';
-/** USGS parameter codes: discharge (cfs), gage height (ft), water temperature (°C). */
-const PARAM_CODES = ['00060', '00065', '00010'] as const;
+/** USGS parameter codes: discharge, stage, temperature, and DO constraint context. */
+const PARAM_CODES = ['00060', '00065', '00010', '00300', '00045'] as const;
 /** USGS etiquette (§8): batch politely; 50 sites/request is well under documented limits. */
 const SITES_PER_REQUEST = 50;
 /** Raw audit rows older than this are pruned on every gauges run. */
@@ -18,6 +19,10 @@ export interface UsgsFetchOptions {
   /** Injected base URL for tests (failure simulation points this at a 404). */
   baseUrl?: string;
   timeoutMs?: number;
+  /** Provider switch for the Q1 2027 WaterServices retirement. */
+  provider?: 'legacy' | 'waterdata';
+  /** Server-only Water Data API key; never shipped to the browser. */
+  waterDataApiKey?: string;
 }
 
 interface UsgsValueJson {
@@ -39,14 +44,20 @@ interface UsgsResponseJson {
   value?: { timeSeries?: UsgsSeriesJson[] };
 }
 
+const INVALID_QUALIFIERS = new Set(['ice', 'eqp', 'ssn', 'bkw', 'flt']);
+
 /** USGS missing-data sentinels arrive as string values; treat them as absent. */
-function parseMetric(raw: string | undefined): number | undefined {
+function parseMetric(raw: string | undefined, qualifiers: string[] | undefined, code: string): number | undefined {
   if (raw === undefined) return undefined;
+  if (qualifiers?.some((q) => INVALID_QUALIFIERS.has(q.trim().toLowerCase()))) return undefined;
   const n = Number.parseFloat(raw);
   if (!Number.isFinite(n)) return undefined;
   // -999999 (and variants) mean "no measurement" in NWIS.
   if (n <= -999000) return undefined;
-  return n;
+  // A non-positive discharge cannot be scored as a valid flow reading. Zero is
+  // retained as an explicit warning by parseInstantValuesDetailed below.
+  if (code === '00060' && n <= 0) return undefined;
+  return code === '00045' ? n * 25.4 : n;
 }
 
 /** Normalize any USGS dateTime into the contracts' IsoDateTimeSchema shape. */
@@ -59,9 +70,16 @@ function normalizeTimestamp(usgs: string): string {
 
 function latestValue(series: UsgsSeriesJson): UsgsValueJson | undefined {
   const values = series.values?.[0]?.value ?? [];
-  const usable = values.filter((v) => typeof v?.value === 'string' && typeof v?.dateTime === 'string');
+  const usable = values.filter(
+    (v) =>
+      typeof v?.value === 'string' &&
+      typeof v?.dateTime === 'string' &&
+      Number.isFinite(Date.parse(v.dateTime)),
+  );
   if (usable.length === 0) return undefined;
-  return usable.reduce((newest, v) => (v.dateTime > newest.dateTime ? v : newest));
+  return usable.reduce((newest, v) =>
+    Date.parse(v.dateTime) > Date.parse(newest.dateTime) ? v : newest,
+  );
 }
 
 /**
@@ -73,7 +91,12 @@ function latestValue(series: UsgsSeriesJson): UsgsValueJson | undefined {
  * the same 3 h the scorer's staleness contract uses) relative to the newest
  * observation for the site is dropped instead of merged.
  */
-export function parseInstantValues(payload: unknown): GaugeReading[] {
+interface ParseInstantValuesResult {
+  readings: GaugeReading[];
+  warnings: string[];
+}
+
+function parseInstantValuesDetailed(payload: unknown): ParseInstantValuesResult {
   const series = (payload as UsgsResponseJson)?.value?.timeSeries ?? [];
   interface MetricValue {
     value: number;
@@ -83,8 +106,11 @@ export function parseInstantValues(payload: unknown): GaugeReading[] {
     cfs?: MetricValue;
     heightFt?: MetricValue;
     tempC?: MetricValue;
+    dissolvedOxygenMgL?: MetricValue;
+    precipitationMm?: MetricValue;
   }
   const bySite = new Map<string, SiteMetrics>();
+  const zeroDischargeSites = new Set<string>();
 
   // Pass 1: newest usable value per parameter (each series keeps its OWN time —
   // the timestamp is not merged away).
@@ -94,9 +120,22 @@ export function parseInstantValues(payload: unknown): GaugeReading[] {
     const code = (s.variable?.variableCode ?? []).find((vc) => typeof vc.value === 'string')?.value;
     const latest = latestValue(s);
     if (!code || !latest) continue;
-    const value = parseMetric(latest.value);
+    const value = parseMetric(latest.value, latest.qualifiers, code);
+    if (code === '00060' && Number.parseFloat(latest.value) === 0) {
+      zeroDischargeSites.add(site);
+    }
     if (value === undefined) continue;
-    const field = code === '00060' ? 'cfs' : code === '00065' ? 'heightFt' : code === '00010' ? 'tempC' : null;
+    const field = code === '00060'
+      ? 'cfs'
+      : code === '00065'
+        ? 'heightFt'
+        : code === '00010'
+          ? 'tempC'
+          : code === '00300'
+            ? 'dissolvedOxygenMgL'
+            : code === '00045'
+              ? 'precipitationMm'
+              : null;
     if (!field) continue;
     const entry = bySite.get(site) ?? {};
     entry[field] = { value, ts: normalizeTimestamp(latest.dateTime) };
@@ -114,7 +153,7 @@ export function parseInstantValues(payload: unknown): GaugeReading[] {
       .filter((ms) => !Number.isNaN(ms));
     if (times.length === 0) continue;
     const newest = Math.max(...times);
-    const merged: { cfs?: number; heightFt?: number; tempC?: number } = {};
+    const merged: { cfs?: number; heightFt?: number; tempC?: number; dissolvedOxygenMgL?: number; precipitationMm?: number } = {};
     let timestamp: string | undefined;
     for (const [field, metric] of Object.entries(entry) as [keyof SiteMetrics, MetricValue][]) {
       if (!metric) continue;
@@ -126,15 +165,40 @@ export function parseInstantValues(payload: unknown): GaugeReading[] {
     const parsed = GaugeReadingSchema.safeParse({ gaugeId, ...merged, timestamp });
     if (parsed.success) readings.push(parsed.data);
   }
-  return readings;
+  return {
+    readings,
+    warnings: [...zeroDischargeSites].map(
+      (site) => `USGS ${site} returned zero discharge; flow omitted until the sensor is verified`,
+    ),
+  };
+}
+
+export function parseInstantValues(payload: unknown): GaugeReading[] {
+  return parseInstantValuesDetailed(payload).readings;
+}
+
+interface FetchInstantValuesResult {
+  readings: GaugeReading[];
+  warnings: string[];
 }
 
 /** Fetch instant values for a batch of sites (single merged request per ≤50 sites). */
-export async function fetchInstantValues(siteIds: string[], opts: UsgsFetchOptions): Promise<GaugeReading[]> {
-  if (siteIds.length === 0) return [];
+async function fetchInstantValuesDetailed(siteIds: string[], opts: UsgsFetchOptions): Promise<FetchInstantValuesResult> {
+  if (siteIds.length === 0) return { readings: [], warnings: [] };
+  if (opts.provider === 'waterdata') {
+    const modern = await fetchWaterDataReadings(siteIds, {
+      userAgent: opts.userAgent,
+      apiKey: opts.waterDataApiKey,
+      fetchImpl: opts.fetchImpl,
+      baseUrl: opts.baseUrl,
+      timeoutMs: opts.timeoutMs,
+    });
+    return modern;
+  }
   const doFetch = opts.fetchImpl ?? fetch;
   const base = opts.baseUrl ?? USGS_IV_URL;
   const readings: GaugeReading[] = [];
+  const warnings: string[] = [];
 
   for (let i = 0; i < siteIds.length; i += SITES_PER_REQUEST) {
     const batch = siteIds.slice(i, i + SITES_PER_REQUEST);
@@ -150,13 +214,19 @@ export async function fetchInstantValues(siteIds: string[], opts: UsgsFetchOptio
     if (!res.ok) {
       throw new Error(`USGS request failed: HTTP ${res.status} for sites ${batch.join(',')}`);
     }
-    readings.push(...parseInstantValues(await res.json()));
+    const parsed = parseInstantValuesDetailed(await res.json());
+    readings.push(...parsed.readings);
+    warnings.push(...parsed.warnings);
     // Politeness gap between batches (§8: respect rate limits).
     if (i + SITES_PER_REQUEST < siteIds.length) {
       await new Promise((r) => setTimeout(r, 1000));
     }
   }
-  return readings;
+  return { readings, warnings };
+}
+
+export async function fetchInstantValues(siteIds: string[], opts: UsgsFetchOptions): Promise<GaugeReading[]> {
+  return (await fetchInstantValuesDetailed(siteIds, opts)).readings;
 }
 
 export interface GaugesJobResult extends JobDetail {
@@ -189,11 +259,12 @@ export async function runGaugesJob(db: Db, opts: UsgsFetchOptions): Promise<Gaug
 
     // Network first (never inside a SQLite transaction — those are synchronous);
     // all writes happen in one synchronous transaction below.
-    const readings = await fetchInstantValues(siteIds, opts);
+    const fetched = await fetchInstantValuesDetailed(siteIds, opts);
+    const readings = fetched.readings;
     const store = db.transaction((): GaugesJobResult => {
       const insert = db.prepare(`
-        INSERT INTO gauge_readings_raw (gauge_id, fetched_at, payload, cfs, height_ft, temp_c, observed_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO gauge_readings_raw (gauge_id, fetched_at, payload, cfs, height_ft, temp_c, dissolved_oxygen_mg_l, reservoir_level_ft, precipitation_mm, observed_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `);
       const fetchedAt = new Date().toISOString();
       for (const r of readings) {
@@ -204,6 +275,9 @@ export async function runGaugesJob(db: Db, opts: UsgsFetchOptions): Promise<Gaug
           r.cfs ?? null,
           r.heightFt ?? null,
           r.tempC ?? null,
+          r.dissolvedOxygenMgL ?? null,
+          null,
+          r.precipitationMm ?? null,
           r.timestamp,
         );
       }
@@ -212,10 +286,12 @@ export async function runGaugesJob(db: Db, opts: UsgsFetchOptions): Promise<Gaug
       return {
         items: readings.length,
         sites: siteIds.length,
-        warnings:
-          readings.length < siteIds.length
+        warnings: [
+          ...fetched.warnings,
+          ...(readings.length < siteIds.length
             ? [`${siteIds.length - readings.length} of ${siteIds.length} gauges returned no data`]
-            : [],
+            : []),
+        ],
       };
     });
     const result = store();
@@ -228,10 +304,10 @@ export async function runGaugesJob(db: Db, opts: UsgsFetchOptions): Promise<Gaug
 }
 
 /** Read the newest stored reading per gauge (used by the snapshot builder). */
-export function latestReadings(db: Db): GaugeReading[] {
+export function latestReadings(db: Db, nowMs = Date.now()): GaugeReading[] {
   const rows = db
     .prepare(
-      `SELECT gauge_id, cfs, height_ft, temp_c, observed_at
+      `SELECT gauge_id, cfs, height_ft, temp_c, dissolved_oxygen_mg_l, reservoir_level_ft, precipitation_mm, observed_at
        FROM gauge_readings_raw
        WHERE id IN (
          SELECT id FROM (
@@ -240,12 +316,28 @@ export function latestReadings(db: Db): GaugeReading[] {
          ) WHERE rn = 1
        )`,
     )
-    .all() as { gauge_id: string; cfs: number | null; height_ft: number | null; temp_c: number | null; observed_at: string }[];
-  return rows.map((r) => ({
-    gaugeId: r.gauge_id,
-    ...(r.cfs !== null ? { cfs: r.cfs } : {}),
-    ...(r.height_ft !== null ? { heightFt: r.height_ft } : {}),
-    ...(r.temp_c !== null ? { tempC: r.temp_c } : {}),
-    timestamp: r.observed_at,
-  }));
+    .all() as { gauge_id: string; cfs: number | null; height_ft: number | null; temp_c: number | null; dissolved_oxygen_mg_l: number | null; reservoir_level_ft: number | null; precipitation_mm: number | null; observed_at: string }[];
+  return rows.flatMap((r) => {
+    const observedMs = Date.parse(r.observed_at);
+    if (!Number.isFinite(observedMs) || nowMs - observedMs > READING_STALE_MINUTES * 60_000) return [];
+    const cfs = r.cfs !== null && r.cfs > 0 ? r.cfs : null;
+    const heightFt = r.height_ft !== null && Number.isFinite(r.height_ft) ? r.height_ft : null;
+    const tempC = r.temp_c !== null && Number.isFinite(r.temp_c) ? r.temp_c : null;
+    const dissolvedOxygenMgL = r.dissolved_oxygen_mg_l !== null && r.dissolved_oxygen_mg_l >= 0 ? r.dissolved_oxygen_mg_l : null;
+    const reservoirLevelFt = r.reservoir_level_ft !== null && r.reservoir_level_ft >= 0 ? r.reservoir_level_ft : null;
+    const precipitationMm = r.precipitation_mm !== null && r.precipitation_mm >= 0 ? r.precipitation_mm : null;
+    if (cfs === null && heightFt === null && tempC === null && dissolvedOxygenMgL === null && reservoirLevelFt === null && precipitationMm === null) return [];
+    return [
+      {
+        gaugeId: r.gauge_id,
+        ...(cfs !== null ? { cfs } : {}),
+        ...(heightFt !== null ? { heightFt } : {}),
+        ...(tempC !== null ? { tempC } : {}),
+        ...(dissolvedOxygenMgL !== null ? { dissolvedOxygenMgL } : {}),
+        ...(reservoirLevelFt !== null ? { reservoirLevelFt } : {}),
+        ...(precipitationMm !== null ? { precipitationMm } : {}),
+        timestamp: r.observed_at,
+      },
+    ];
+  });
 }

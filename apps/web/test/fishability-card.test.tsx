@@ -73,6 +73,22 @@ const NORRIS = {
 const SNAPSHOT = {
   streamId: 'w',
   fetchedAt: '2026-09-14T12:00:00Z',
+  pressureContext: {
+    direction: 'falling',
+    deltaHpa: -2.4,
+    station: 'KCSV',
+    confidence: 'derived',
+    evidenceUrl: 'https://api.weather.gov/stations/KCSV/observations',
+    observedAt: '2026-09-14T10:00:00Z',
+    label: 'Area pressure falling -2.4 hPa over about 3 hours',
+  },
+  rainContext: {
+    precipitationMm: 4.2,
+    confidence: 'measured',
+    evidenceUrl: 'https://waterdata.usgs.gov/monitoring-location/03434500',
+    observedAt: '2026-09-14T10:00:00Z',
+    label: 'Recent rain: 4.2 mm at the gauge',
+  },
   bySpecies: {
     'largemouth-bass': {
       comfort: {
@@ -158,19 +174,19 @@ describe('FishabilityCard', () => {
     expect(screen.getAllByRole('link', { name: /source/ }).length).toBe(2);
   });
 
-  it('F12 — shows the rain context note when area pressure is falling, and says it is not scored', async () => {
+  it('F12 — shows measured rain context separately from the score', async () => {
     renderCard('/?focus=largemouth-bass');
-    expect(await screen.findByRole('note', { name: 'Rain context note' })).toHaveTextContent(
-      /Recent rain is likely in the area — expect stain and rising water/i,
+    expect(await screen.findByRole('note', { name: 'Weather context' })).toHaveTextContent(
+      /Recent rain: 4.2 mm at the gauge — expect stain and rising water/i,
     );
-    expect(screen.getByText(/context only, not part of the score/i)).toBeInTheDocument();
+    expect(screen.getByText('Measured gauge context only, not part of the score.')).toBeInTheDocument();
   });
 
   it('F12 — hides the rain note when area pressure is not falling', async () => {
     // Norris crappie's fixture pressure is steady/rising (58 > 45 threshold).
     renderCard('/?focus=crappie', 'norris-lake');
     expect(await screen.findByText('Crappie')).toBeInTheDocument();
-    expect(screen.queryByRole('note', { name: 'Rain context note' })).toBeNull();
+    expect(screen.queryByRole('note', { name: 'Weather context' })).toBeNull();
   });
 
   it('renders honest no-activity-data when the outlook is empty — never a zero score', async () => {

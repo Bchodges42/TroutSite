@@ -2,10 +2,9 @@ id: french-broad-river
 name: French Broad River (Douglas tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-east-pigeon-frenchbroad
-gaugeIds:
-  - "03468510"
-  - "03469000"
+gaugeIds: []
 stockingProgram: false
 species: trout
 fishery: tailwater
@@ -13,6 +12,7 @@ idealFlow:
   - min: 300
     max: 2000
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking
   dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.
@@ -20,9 +20,9 @@ notes: >-
   TWRA's statewide regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17 in protected length range upstream. (see officialSources).
 
 officialSources:
-  - label: USGS Water Data — monitoring location 03468510
+  - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03468510/
-  - label: USGS Water Data — monitoring location 03469000
+  - label: USGS Water Data — monitoring location 03469000 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03469000/
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels

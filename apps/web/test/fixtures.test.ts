@@ -35,6 +35,17 @@ describe('fixture data conforms to the frozen contracts', () => {
     expect(streams.every((s) => s.stateId === 'TN')).toBe(true);
   });
 
+  it('keeps the authored statewide label tiers in the fixture catalog', () => {
+    const streams = StreamSchema.array().parse(readJson('v1/streams'));
+    const counts = Object.fromEntries(
+      ['featured', 'standard', 'reference'].map((tier) => [
+        tier,
+        streams.filter((stream) => stream.display === tier).length,
+      ]),
+    );
+    expect(counts).toEqual({ featured: 37, standard: 95, reference: 16 });
+  });
+
   it('conditions/latest parses as ConditionSnapshot[] with contract-accurate scores', () => {
     const snaps = ConditionSnapshotSchema.array().parse(readJson('v1/conditions/latest.json'));
     expect(snaps.length).toBeGreaterThanOrEqual(6);

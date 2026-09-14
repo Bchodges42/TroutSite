@@ -32,6 +32,15 @@ export const TVA_MONITORS: Record<string, { locationId: string; role: 'reservoir
   'lake-barkley': { locationId: 'BARK2', role: 'reservoir' },
   'south-holston-lake': { locationId: 'SHDT1', role: 'reservoir' },
   'pickwick-lake': { locationId: 'PICT1', role: 'reservoir' },
+  'boone-lake': { locationId: 'BOOT1', role: 'reservoir', note: 'TVA Boone Dam reservoir level/discharge; same dam as the Boone tailwater monitor' },
+  'tellico-lake': { locationId: 'TDTT1', role: 'reservoir' },
+  'watauga-lake': { locationId: 'WTGT1', role: 'reservoir' },
+  'melton-hill-lake': { locationId: 'MHDT1', role: 'reservoir' },
+  'parksville-lake': { locationId: 'OCAT1', role: 'reservoir', note: 'TVA Parksville Dam reservoir; same dam as the Parksville tailwater monitor' },
+  'ocoee-number-three-lake': { locationId: 'OCCT1', role: 'reservoir' },
+  'great-falls-lake': { locationId: 'GGRT1', role: 'reservoir' },
+  'normandy-lake': { locationId: 'NRMT1', role: 'reservoir' },
+  'fort-patrick-henry-lake': { locationId: 'FPHT1', role: 'reservoir', note: 'TVA Fort Patrick Henry Dam reservoir; same dam as the tailwater monitor' },
   // Tailwaters (the releasing dam's tailwater elevation + discharge).
   'watauga-river': { locationId: 'WL', role: 'tailwater', note: 'Wilbur Dam releases the Watauga tailwater' },
   'boone-tailwater': { locationId: 'BOOT1', role: 'tailwater' },
@@ -45,6 +54,17 @@ export const TVA_MONITORS: Record<string, { locationId: string; role: 'reservoir
   'elk-river': { locationId: 'TMFT1', role: 'tailwater' },
   'duck-river-tailwater': { locationId: 'NRMT1', role: 'tailwater' },
   'obey-river': { locationId: 'DLHT1', role: 'tailwater' },
+};
+
+/** TVA locations for release/forecast context. Barkley is a lake; COHT1 remains
+ * coverage-only because the Cumberland main-stem reach is intentionally unwired. */
+export const TVA_SCHEDULE_MONITORS: Record<string, { locationId: string; note?: string }> = {
+  ...Object.fromEntries(
+    Object.entries(TVA_MONITORS)
+      .filter(([, monitor]) => monitor.role === 'tailwater')
+      .map(([waterId, monitor]) => [waterId, { locationId: monitor.locationId, note: monitor.note }]),
+  ),
+  'lake-barkley': { locationId: 'BARK2' },
 };
 
 /**

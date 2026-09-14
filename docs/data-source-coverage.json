@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-08T23:34:30.769Z",
+    "generatedAt": "2026-09-14T03:42:24.999Z",
     "lane": "data-sources",
     "baseSha": "5648ccca5c2b6f6fb1cba95b8ae2d421a1e07c9e",
     "live": "offline (fixtures + audit only)",
@@ -26,7 +26,7 @@
         "note": "two grids: schedule (616 rows) + recent report (12-row rolling window)"
       },
       "regulations": {
-        "verifiedAt": "2026-09-04",
+        "verifiedAt": "2026-09-08",
         "source": "packages/content/data/fishing-information.json"
       },
       "usace": {
@@ -42,19 +42,19 @@
       }
     },
     "totals": {
-      "waters": 147,
-      "withLiveMonitor": 54,
-      "withUsgsGauges": 48,
+      "waters": 148,
+      "withLiveMonitor": 53,
+      "withUsgsGauges": 37,
       "withTvaMonitor": 27,
       "withUsaceMonitor": 4,
       "withResolvedStockingAlias": 81,
-      "withStockingSources": 92,
+      "withStockingSources": 94,
       "unresolvedTwraNames": 261,
       "unresolvedTwraNamesDistinct": 55,
-      "staleScheduleRows": 509,
-      "confidenceHigh": 27,
-      "confidenceMedium": 92,
-      "confidenceLow": 28
+      "staleScheduleRows": 512,
+      "confidenceHigh": 26,
+      "confidenceMedium": 95,
+      "confidenceLow": 27
     },
     "unresolvedTwraNames": [
       {
@@ -420,6 +420,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -483,6 +488,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -500,6 +510,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
           "title": "Where to buy; no 'Type 22' trout license"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Wild trout stream rules (listed reaches)"
         }
       ],
       "mostRecentObservation": null,
@@ -543,6 +558,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -609,6 +629,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -672,6 +697,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -703,17 +733,12 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03486810",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "metricsProvenance": "",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -730,6 +755,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -764,12 +794,7 @@
       "waterbodyType": "tailrace",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03486810",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "BOOT1",
@@ -782,7 +807,7 @@
         "discharge-cfs",
         "stage-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [
         "twra-stockings"
       ],
@@ -801,6 +826,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -835,6 +865,67 @@
       "confidenceReason": "live monitor(s) + resolved TWRA stocking alias + regulations"
     },
     {
+      "waterId": "bradley-creek",
+      "name": "Bradley Creek",
+      "waterbodyType": "creek",
+      "regionId": "tn-middle-duck-elk",
+      "monitors": {
+        "usgsGauges": [],
+        "tva": [],
+        "usace": []
+      },
+      "availableMetrics": [],
+      "metricsProvenance": "",
+      "stockingSources": [],
+      "regulationsSources": [
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Statewide trout creel and size limits"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/news/2025/8/1/twra-requests-public-input-for-2026-27-fishing-regulations.html",
+          "title": "2026-27 regulation year effective date"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing.html",
+          "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Resident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Nonresident licenses"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
+          "title": "Where to buy; no 'Type 22' trout license"
+        }
+      ],
+      "mostRecentObservation": null,
+      "mostRecentStockingRow": null,
+      "unresolvedAliases": [],
+      "confidence": "low",
+      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+    },
+    {
       "waterId": "brush-creek-cocke",
       "name": "Brush Creek (Cocke County)",
       "waterbodyType": "creek",
@@ -864,6 +955,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -931,6 +1027,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -952,7 +1053,7 @@
         {
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "title": "Buffalo Creek delayed harvest"
+          "title": "Buffalo Creek delayed harvest + gear rules"
         }
       ],
       "mostRecentObservation": null,
@@ -972,12 +1073,17 @@
       "waterbodyType": "river",
       "regionId": "tn-middle-duck-elk",
       "monitors": {
-        "usgsGauges": [],
+        "usgsGauges": [
+          {
+            "id": "03604000",
+            "ivStatus": "absent"
+          }
+        ],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "",
+      "metricsProvenance": "USGS IV audit 2026-09-04",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -994,6 +1100,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1034,7 +1145,9 @@
       },
       "availableMetrics": [],
       "metricsProvenance": "",
-      "stockingSources": [],
+      "stockingSources": [
+        "twra-stockings"
+      ],
       "regulationsSources": [
         {
           "authority": "TWRA",
@@ -1050,6 +1163,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1075,8 +1193,8 @@
       "mostRecentObservation": null,
       "mostRecentStockingRow": null,
       "unresolvedAliases": [],
-      "confidence": "low",
-      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+      "confidence": "medium",
+      "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
       "waterId": "calfkiller-river",
@@ -1121,6 +1239,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1187,6 +1310,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1250,6 +1378,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1287,10 +1420,6 @@
       "regionId": "tn-middle-caney-fork",
       "monitors": {
         "usgsGauges": [
-          {
-            "id": "03424010",
-            "ivStatus": "absent"
-          },
           {
             "id": "03424860",
             "ivStatus": "live",
@@ -1339,6 +1468,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1408,6 +1542,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1472,6 +1611,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1527,6 +1671,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1596,6 +1745,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1669,6 +1823,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1706,7 +1865,9 @@
       },
       "availableMetrics": [],
       "metricsProvenance": "",
-      "stockingSources": [],
+      "stockingSources": [
+        "twra-stockings"
+      ],
       "regulationsSources": [
         {
           "authority": "TWRA",
@@ -1722,6 +1883,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1747,8 +1913,8 @@
       "mostRecentObservation": null,
       "mostRecentStockingRow": null,
       "unresolvedAliases": [],
-      "confidence": "low",
-      "confidenceReason": "no live monitor and no resolved TWRA stocking alias (unresolved aliases, if any, are listed)"
+      "confidence": "medium",
+      "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
       "waterId": "citico-creek",
@@ -1781,6 +1947,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -1865,6 +2036,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1886,7 +2062,7 @@
         {
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "title": "Clear Creek seasonal closures"
+          "title": "Clear Creek: no special regulation (same-name Clinch tributary carries one)"
         }
       ],
       "mostRecentObservation": null,
@@ -1941,6 +2117,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -1972,12 +2153,7 @@
       "waterbodyType": "tailrace",
       "regionId": "tn-east-clinch",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03533000",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "NRST1",
@@ -1990,7 +2166,7 @@
         "discharge-cfs",
         "stage-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [
         "twra-recent-stockings",
         "twra-stockings"
@@ -2010,6 +2186,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -2094,6 +2275,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2154,6 +2340,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -2225,6 +2416,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2292,6 +2488,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -2366,6 +2567,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2432,6 +2638,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2492,6 +2703,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -2571,6 +2787,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2612,12 +2833,7 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03468510",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "DUGT1",
@@ -2630,7 +2846,7 @@
         "discharge-cfs",
         "reservoir-level-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -2647,6 +2863,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -2740,6 +2961,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2818,6 +3044,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -2878,6 +3109,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -2955,6 +3191,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3013,6 +3254,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3050,10 +3296,6 @@
       "regionId": "tn-middle-duck-elk",
       "monitors": {
         "usgsGauges": [
-          {
-            "id": "03580750",
-            "ivStatus": "absent"
-          },
           {
             "id": "03578000",
             "ivStatus": "live",
@@ -3095,6 +3337,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3141,22 +3388,14 @@
       "monitors": {
         "usgsGauges": [
           {
-            "id": "03584600",
-            "ivStatus": "live",
-            "ivEnd": "2026-09-04",
-            "params": [
-              "00060",
-              "00065"
-            ]
+            "id": "03582000",
+            "ivStatus": "absent"
           }
         ],
         "tva": [],
         "usace": []
       },
-      "availableMetrics": [
-        "discharge-cfs",
-        "stage-ft"
-      ],
+      "availableMetrics": [],
       "metricsProvenance": "USGS IV audit 2026-09-04",
       "stockingSources": [
         "twra-stockings"
@@ -3176,6 +3415,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3201,8 +3445,8 @@
       "mostRecentObservation": null,
       "mostRecentStockingRow": null,
       "unresolvedAliases": [],
-      "confidence": "high",
-      "confidenceReason": "live monitor(s) + resolved TWRA stocking alias + regulations"
+      "confidence": "medium",
+      "confidenceReason": "resolved TWRA stocking alias but no live monitor"
     },
     {
       "waterId": "emory-river",
@@ -3245,6 +3489,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3306,6 +3555,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3323,6 +3577,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
           "title": "Where to buy; no 'Type 22' trout license"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Fort Campbell stocked streams"
         }
       ],
       "mostRecentObservation": null,
@@ -3361,6 +3620,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3433,6 +3697,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3464,17 +3733,12 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03487010",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "metricsProvenance": "",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -3491,6 +3755,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3525,21 +3794,12 @@
       "waterbodyType": "tailrace",
       "regionId": "tn-east-pigeon-frenchbroad",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03468510",
-            "ivStatus": "absent"
-          },
-          {
-            "id": "03469000",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "metricsProvenance": "",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -3556,6 +3816,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3590,12 +3855,7 @@
       "waterbodyType": "tailrace",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03487010",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "FPHT1",
@@ -3608,7 +3868,7 @@
         "discharge-cfs",
         "stage-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [
         "twra-stockings"
       ],
@@ -3627,6 +3887,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3698,6 +3963,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3758,6 +4028,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -3824,6 +4099,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3885,6 +4165,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -3940,6 +4225,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -4031,6 +4321,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4089,6 +4384,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -4178,6 +4478,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4244,6 +4549,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4302,6 +4612,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4323,7 +4638,7 @@
         {
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "title": "Horse Creek special-regulation listing"
+          "title": "Horse Creek creel window"
         }
       ],
       "mostRecentObservation": null,
@@ -4367,6 +4682,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -4430,6 +4750,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -4502,6 +4827,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4557,6 +4887,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -4629,6 +4964,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4693,6 +5033,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4748,6 +5093,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -4814,6 +5164,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4877,6 +5232,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4894,6 +5254,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
           "title": "Where to buy; no 'Type 22' trout license"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Wild trout stream rules (listed reaches)"
         }
       ],
       "mostRecentObservation": null,
@@ -4940,6 +5305,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -4962,6 +5332,11 @@
           "authority": "NPS",
           "sourceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
           "title": "Great Smoky Mountains National Park fishing rules"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Gatlinburg city waters permit"
         }
       ],
       "mostRecentObservation": null,
@@ -5005,6 +5380,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -5084,6 +5464,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5101,11 +5486,6 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
           "title": "Where to buy; no 'Type 22' trout license"
-        },
-        {
-          "authority": "TWRA",
-          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "title": "Gatlinburg city waters permit"
         }
       ],
       "mostRecentObservation": null,
@@ -5168,6 +5548,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -5239,6 +5624,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5300,6 +5690,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5358,6 +5753,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5375,6 +5775,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
           "title": "Where to buy; no 'Type 22' trout license"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Fort Campbell stocked streams"
         }
       ],
       "mostRecentObservation": null,
@@ -5413,6 +5818,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -5479,6 +5889,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5540,6 +5955,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5595,6 +6015,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -5666,6 +6091,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5726,6 +6156,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -5790,6 +6225,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5845,6 +6285,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -5924,6 +6369,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -5977,6 +6427,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6049,6 +6504,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6105,6 +6565,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6136,12 +6601,7 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-clinch",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03533000",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "NRST1",
@@ -6154,7 +6614,7 @@
         "discharge-cfs",
         "reservoir-level-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -6171,6 +6631,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6245,6 +6710,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6306,6 +6776,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6364,6 +6839,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6402,22 +6882,14 @@
       "monitors": {
         "usgsGauges": [
           {
-            "id": "03539800",
-            "ivStatus": "historical-only",
-            "ivEnd": "2026-07-26",
-            "params": [
-              "00060",
-              "00065"
-            ]
+            "id": "03538830",
+            "ivStatus": "absent"
           }
         ],
         "tva": [],
         "usace": []
       },
-      "availableMetrics": [
-        "discharge-cfs",
-        "stage-ft"
-      ],
+      "availableMetrics": [],
       "metricsProvenance": "USGS IV audit 2026-09-04",
       "stockingSources": [],
       "regulationsSources": [
@@ -6435,6 +6907,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6469,12 +6946,7 @@
       "waterbodyType": "tailrace",
       "regionId": "tn-upper-cumberland",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03417000",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "DLHT1",
@@ -6493,7 +6965,7 @@
         "stage-ft",
         "temperature-c"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04); USACE A2W LRN series (2026-09-08)",
+      "metricsProvenance": "TVA monitor map (2026-09-04); USACE A2W LRN series (2026-09-08)",
       "stockingSources": [
         "twra-recent-stockings",
         "twra-stockings"
@@ -6513,6 +6985,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6577,6 +7054,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6630,6 +7112,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6707,6 +7194,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6771,6 +7263,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -6826,6 +7323,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6898,6 +7400,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -6976,6 +7483,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7042,6 +7554,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7114,6 +7631,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7169,6 +7691,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7235,6 +7762,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7255,8 +7787,8 @@
         },
         {
           "authority": "TWRA",
-          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "title": "Piney River delayed harvest"
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs.html",
+          "title": "Piney River delayed harvest REMOVED for 2026-27"
         }
       ],
       "mostRecentObservation": null,
@@ -7311,6 +7843,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7369,6 +7906,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7448,6 +7990,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7479,17 +8026,12 @@
       "waterbodyType": "creek",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03487602",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "metricsProvenance": "",
       "stockingSources": [
         "twra-stockings"
       ],
@@ -7508,6 +8050,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7567,6 +8114,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7622,6 +8174,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7688,6 +8245,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7705,6 +8267,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing/fishing-licenses.html",
           "title": "Where to buy; no 'Type 22' trout license"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "title": "Gatlinburg city waters permit"
         }
       ],
       "mostRecentObservation": null,
@@ -7743,6 +8310,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7806,6 +8378,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -7885,6 +8462,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -7945,6 +8527,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8024,6 +8611,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8079,6 +8671,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8151,6 +8748,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8182,12 +8784,7 @@
       "waterbodyType": "lake",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03476500",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "SHDT1",
@@ -8200,7 +8797,7 @@
         "discharge-cfs",
         "reservoir-level-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -8217,6 +8814,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8251,12 +8853,7 @@
       "waterbodyType": "tailrace",
       "regionId": "tn-east-holston",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03476500",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [
           {
             "locationId": "SHDT1",
@@ -8269,7 +8866,7 @@
         "discharge-cfs",
         "stage-ft"
       ],
-      "metricsProvenance": "USGS IV audit 2026-09-04; TVA monitor map (2026-09-04)",
+      "metricsProvenance": "TVA monitor map (2026-09-04)",
       "stockingSources": [
         "twra-stockings"
       ],
@@ -8288,6 +8885,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8359,6 +8961,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8422,6 +9029,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8482,6 +9094,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8568,6 +9185,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8628,6 +9250,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8694,6 +9321,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8752,6 +9384,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8827,6 +9464,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -8890,6 +9532,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -8957,6 +9604,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9015,6 +9667,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9070,6 +9727,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9136,6 +9798,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9196,6 +9863,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9262,6 +9934,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9322,6 +9999,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9386,6 +10068,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9418,14 +10105,6 @@
       "regionId": "tn-northeast-watauga",
       "monitors": {
         "usgsGauges": [
-          {
-            "id": "03483980",
-            "ivStatus": "absent"
-          },
-          {
-            "id": "03484000",
-            "ivStatus": "absent"
-          },
           {
             "id": "03486000",
             "ivStatus": "live",
@@ -9467,6 +10146,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9536,6 +10220,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9597,6 +10286,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9668,6 +10362,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9748,6 +10447,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9821,6 +10525,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9857,21 +10566,12 @@
       "waterbodyType": "lake",
       "regionId": "tn-northeast-watauga",
       "monitors": {
-        "usgsGauges": [
-          {
-            "id": "03484000",
-            "ivStatus": "absent"
-          },
-          {
-            "id": "03483980",
-            "ivStatus": "absent"
-          }
-        ],
+        "usgsGauges": [],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "USGS IV audit 2026-09-04",
+      "metricsProvenance": "",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -9888,6 +10588,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -9949,6 +10654,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -9985,12 +10695,17 @@
       "waterbodyType": "river",
       "regionId": "tn-west",
       "monitors": {
-        "usgsGauges": [],
+        "usgsGauges": [
+          {
+            "id": "07031650",
+            "ivStatus": "absent"
+          }
+        ],
         "tva": [],
         "usace": []
       },
       "availableMetrics": [],
-      "metricsProvenance": "",
+      "metricsProvenance": "USGS IV audit 2026-09-04",
       "stockingSources": [],
       "regulationsSources": [
         {
@@ -10007,6 +10722,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",
@@ -10066,6 +10786,11 @@
         },
         {
           "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
+        },
+        {
+          "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing.html",
           "title": "Bobby Wilson Free Fishing Day and Free Fishing Week"
         },
@@ -10121,6 +10846,11 @@
           "authority": "TWRA",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "title": "Trout season: no statewide closed season on the regulations page"
+        },
+        {
+          "authority": "TWRA",
+          "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+          "title": "Winter put-and-take trout program"
         },
         {
           "authority": "TWRA",

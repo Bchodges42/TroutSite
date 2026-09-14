@@ -2,6 +2,7 @@ id: clear-fork
 name: Clear Fork
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03409500"
@@ -10,6 +11,7 @@ idealFlow:
   - min: 30
     max: 250
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your
   wading to stable flows.

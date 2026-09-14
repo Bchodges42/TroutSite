@@ -2,6 +2,7 @@ id: martin-city-pond
 name: Martin City Pond
 stateId: TN
 waterbodyType: pond
+display: reference
 regionId: tn-west
 gaugeIds: []
 stockingProgram: true
@@ -9,6 +10,8 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
+seasonMonths: [11, 12, 1, 2, 3 ]
+seasonKind: programmatic
 notes: >-
   TWRA winter put-and-take pond in Martin (Weakley County). Stocked with rainbow trout in
   the cold months only — the fish do not hold over summer. Check the TWRA schedule for the

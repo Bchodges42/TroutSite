@@ -2,6 +2,7 @@ id: duck-river-lower
 name: Duck River (Shelbyville to Columbia)
 stateId: TN
 waterbodyType: river
+display: featured
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03597860"
@@ -17,9 +18,28 @@ targetSpecies:
   - smallmouth-bass
   - spotted-bass
   - channel-catfish
+idealFlowSource: editorial
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03597860/
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03597860/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03597860/
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03597860/
+    retrieved: 2026-09-13
 notes: Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources).
-  reaches seasonally. Conservative flag; verify current TWRA stocking before planning a trout
-  trip here.
+  reaches seasonally. The 03597860 stage reading is currently anomalous (10.11 ft versus 2.60 ft
+  at neighboring 03598000); treat it as a datum/sensor question, not absolute water level.
+  Conservative flag; verify current TWRA stocking before planning a trout trip here.
 officialSources:
   - label: USGS Water Data — monitoring location 03597860
     url: https://waterdata.usgs.gov/monitoring-location/03597860/

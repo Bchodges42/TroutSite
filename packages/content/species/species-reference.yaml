@@ -54,11 +54,13 @@ species:
       onsetC:
         value: 15.6
         sources:
-          - https://www.fishusa.com/learn/when-do-bass-spawn/
+          - https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+          - https://fisheries.tamu.edu/pond-management/species/largemouth-bass/
       endC:
         value: 23.9
         sources:
-          - https://www.fishusa.com/learn/when-do-bass-spawn/
+          - https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+          - https://fisheries.tamu.edu/pond-management/species/largemouth-bass/
     flowTrend:
       citationStatus: needs-source
     pressureTrend:
@@ -88,10 +90,9 @@ species:
         citationStatus: needs-source
     spawn:
       onsetC:
-        value: 12.8
+        value: 15.5
         sources:
-          - https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html
-          - https://www.fishusa.com/learn/when-do-bass-spawn/
+          - https://mdc.mo.gov/discover-nature/field-guide/smallmouth-bass
       endC:
         value: 21.1
         sources:
@@ -216,13 +217,13 @@ species:
         citationStatus: needs-source
     spawn:
       onsetC:
-        value: 21.1
+        value: 23.9
         sources:
-          - https://catfishnow.com/spawning-time-facts/
+          - https://mdc.mo.gov/discover-nature/field-guide/channel-catfish
       endC:
         value: 29.4
         sources:
-          - https://catfishnow.com/spawning-time-facts/
+          - https://mdc.mo.gov/discover-nature/field-guide/channel-catfish
     flowTrend:
       citationStatus: needs-source
       note: Rising-water feeding is folklore-grade here — needs a citation before any value ships.

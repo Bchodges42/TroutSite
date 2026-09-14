@@ -2,10 +2,9 @@ id: watauga-river
 name: Watauga River (Wilbur tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-northeast-watauga
 gaugeIds:
-  - "03483980"
-  - "03484000"
   - "03486000"
   - "tva:WL"
 stockingProgram: true
@@ -16,16 +15,15 @@ idealFlow:
   - min: 150
     max: 1500
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+seasonKind: programmatic
 notes: >-
   Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow
   management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases;
   two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.
 
 officialSources:
-  - label: USGS Water Data — monitoring location 03483980
-    url: https://waterdata.usgs.gov/monitoring-location/03483980/
-  - label: USGS Water Data — monitoring location 03484000
-    url: https://waterdata.usgs.gov/monitoring-location/03484000/
   - label: USGS Water Data — monitoring location 03486000
     url: https://waterdata.usgs.gov/monitoring-location/03486000/
   - label: TVA — lake levels & dam release schedules (verify before you wade)

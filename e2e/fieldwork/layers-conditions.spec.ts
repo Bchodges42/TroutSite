@@ -91,7 +91,7 @@ test.describe('Layers panel', () => {
     const layers = (await mapLayers(page)) ?? '';
     expect(layers).toContain('roads-0');
     // Roads are context: they must render beneath every water layer.
-    expect(layers.indexOf('roads-0')).toBeLessThan(layers.indexOf('lakes-fill'));
+    expect(layers.indexOf('roads-0')).toBeLessThan(layers.indexOf('rivers-water-base'));
   });
 
   test('deactivating removes the layers again without closing the panel', async ({ page }) => {

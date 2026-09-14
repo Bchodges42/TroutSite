@@ -2,6 +2,7 @@ id: west-fork-stones-river
 name: West Fork Stones River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03428200"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 30
     max: 250
     unit: cfs
+idealFlowSource: editorial
 notes: Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting,
   December–February. Gauge at Murfreesboro.
 officialSources:

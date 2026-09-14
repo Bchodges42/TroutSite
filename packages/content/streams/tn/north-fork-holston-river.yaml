@@ -2,6 +2,7 @@ id: north-fork-holston-river
 name: North Fork Holston River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-holston
 gaugeIds: []
 stockingProgram: false

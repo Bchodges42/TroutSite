@@ -57,6 +57,9 @@ const evByWater = new Map((evidence.waters ?? evidence).map((w) => [w.waterId, w
 const TWRA_STOCKINGS_URL = 'https://www.tn.gov/twra/fishing/trout-information-stockings.html';
 const normSpecies = (s) => {
   const t = String(s).toLowerCase();
+  // Cherokee bass is hybrid striped bass, not either the spotted-bass or pure
+  // striped-bass contract key. Keep it out of typed species authoring.
+  if (t.includes('cherokee bass')) return 'hybrid-striped-bass';
   if (t.includes('rainbow')) return 'rainbow-trout';
   if (t.includes('brown')) return 'brown-trout';
   if (t.includes('brook')) return 'brook-trout';

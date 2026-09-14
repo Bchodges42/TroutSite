@@ -2,6 +2,7 @@ id: clear-creek-obed
 name: Clear Creek (Obed system)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03539778"
@@ -12,6 +13,7 @@ idealFlow:
   - min: 20
     max: 150
     unit: cfs
+idealFlowSource: editorial
 notes: Wild rainbows and the famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at
   Lilly Bridge is the go/no-go read.
 officialSources:

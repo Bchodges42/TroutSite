@@ -2,8 +2,10 @@ id: great-falls-lake
 name: Great Falls Lake
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-middle-caney-fork
-gaugeIds: []
+gaugeIds:
+  - tva:GGRT1
 stockingProgram: false
 idealFlow: []
 targetSpecies:
@@ -13,6 +15,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
 notes: >-
   TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island
   (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper

@@ -7,6 +7,22 @@ const { bugs, patterns, streams, shops, hatch, issues, warnings } = loadContent(
 const { species, issues: speciesIssues } = loadSpeciesReference();
 issues.push(...speciesIssues);
 
+for (const [id, stream] of streams) {
+  if (/cherokee\s+bass/i.test(JSON.stringify(stream))) {
+    issues.push({ file: `streams/${id}.yaml`, message: 'Cherokee bass must remain an untyped hybrid label; never tokenize it as spotted-bass or striped-bass' });
+  }
+  for (const source of stream.officialSources) {
+    if (!source.url.startsWith('https://')) {
+      issues.push({ file: `streams/${id}.yaml`, message: `official source URL must use https://: ${source.url}` });
+    }
+  }
+  for (const evidence of stream.speciesEvidence ?? []) {
+    if (!evidence.url.startsWith('https://')) {
+      issues.push({ file: `streams/${id}.yaml`, message: `species evidence URL must use https://: ${evidence.url}` });
+    }
+  }
+}
+
 // Species-reference coherence gate (F2): where bands are present they must be
 // monotone — optimal at or below the avoidance ceiling, avoidance below lethal;
 // spawn onset <= end.

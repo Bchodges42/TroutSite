@@ -42,7 +42,19 @@ describe('verify-site.sh against a hardened local instance (T0-3)', () => {
 
     // One contract-valid stream (reuse the generated snapshot's first row).
     const realSnapshot = join(REPO_ROOT, 'apps', 'web', 'public', 'v1', 'streams.json');
-    const stream = existsSync(realSnapshot) ? JSON.parse(readFileSync(realSnapshot, 'utf8'))[0] : { id: 'test-stream' };
+    const stream = existsSync(realSnapshot)
+      ? JSON.parse(readFileSync(realSnapshot, 'utf8'))[0]
+      : {
+          id: 'test-stream',
+          name: 'Test stream',
+          stateId: 'TN',
+          waterbodyType: 'river',
+          regionId: 'tn-east-holston',
+          gaugeIds: [],
+          stockingProgram: false,
+          idealFlow: [],
+          officialSources: [],
+        };
     writeFileSync(join(pub, 'v1', 'streams.json'), JSON.stringify([stream]));
 
     const now = new Date();
@@ -103,7 +115,7 @@ describe('verify-site.sh against a hardened local instance (T0-3)', () => {
   it('is green against a token-protected instance when WATCHDOG_TOKEN is set', async () => {
     const base = await startHardened();
     const out = verify(base, token);
-    expect(out.status).toBe(0);
+    expect(out.status, out.stdout).toBe(0);
     expect(out.stdout).toContain('all surfaces green');
     // The blocked implementation file is not part of the contract surface.
     expect(out.stdout).not.toContain('GET /v1/streams.json');

@@ -276,6 +276,22 @@ for (const s of streams) {
   s.waterbodyType = pack.waterbodyType;
   s.stockingProgram = pack.stockingProgram;
   s.gaugeIds = pack.gaugeIds;
+  // Presentation and seasonal fields belong to the reviewed content pack too.
+  // Without this overlay fixture builds silently fall back to the old extent
+  // policy: every water becomes `standard`, so no authored featured names can
+  // appear in the statewide map view.
+  if (pack.display) s.display = pack.display;
+  else delete s.display;
+  if (pack.idealFlowSource) s.idealFlowSource = pack.idealFlowSource;
+  else delete s.idealFlowSource;
+  if (pack.seasonMonths) s.seasonMonths = pack.seasonMonths;
+  else delete s.seasonMonths;
+  if (pack.seasonKind) s.seasonKind = pack.seasonKind;
+  else delete s.seasonKind;
+  if (pack.targetSpecies) s.targetSpecies = pack.targetSpecies;
+  else delete s.targetSpecies;
+  if (pack.speciesEvidence) s.speciesEvidence = pack.speciesEvidence;
+  else delete s.speciesEvidence;
 }
 console.log('[fixtures] pack overlay: species on ' + speciesFromPack + '/' + streams.length + ' streams (unset stays unset)');
 

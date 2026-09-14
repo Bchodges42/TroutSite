@@ -35,8 +35,8 @@ const description =
     </thead>
     <tbody>
       <tr>
-        <td>Gauge conditions (flow, stage, temperature)</td>
-        <td>USGS National Water Information System; TVA dam releases and reservoir levels</td>
+        <td>Gauge conditions (flow, stage, temperature, dissolved oxygen, precipitation)</td>
+        <td>USGS Water Data continuous observations; TVA dam releases and reservoir levels</td>
         <td>Fetched from public APIs on our server, distilled into snapshot files, never proxied through your device</td>
       </tr>
       <tr>
@@ -48,6 +48,11 @@ const description =
         <td>Regulations &amp; special rules</td>
         <td>TWRA regulations; agency pages for specific waters (e.g. NPS for Great Smoky Mountains National Park)</td>
         <td>Summarized with the rule-setting authority named on every entry; the agency page always wins</td>
+      </tr>
+      <tr>
+        <td>Safety &amp; water-quality context</td>
+        <td>TDEC fish-consumption advisory PDF and TDEC DWR attainment layers; TVA hazardous-waters guidance</td>
+        <td>Watched and linked as safety context; advisory and attainment information never changes a fishability score</td>
       </tr>
       <tr>
         <td>Hatch charts &amp; fly patterns</td>
@@ -78,7 +83,7 @@ const description =
       showing its value, its contribution, and its source. The factors:
       <em>water temperature</em> (measured at the gauge),
       <em>flow trend</em> (derived from gauge history),
-      <em>area pressure</em> (derived from NWS observations, reported per area — never per water),
+      <em>area pressure</em> (available as derived NWS context, reported per area — never per water),
       and <em>spawn state</em> (derived from observed water temperature crossing the species' cited
       thresholds — never from a calendar date; the label says pre-spawn, spawning, or post-spawn).
     </li>
@@ -92,10 +97,31 @@ const description =
     <li><strong>Heuristic</strong> — an authored preference, labeled as such and kept visually modest.</li>
   </ul>
   <p>
-    Factors we deliberately don't score: water clarity and rain-stain (not remotely measurable), and
-    solunar/lunar tables (evidence too weak for a citation culture). Where rain matters the app shows
-    a plain context note — "expect stain and rising water" — labeled context only, not part of the
-    score.
+    Pressure is deliberately excluded from the weighted outlook: the controlled VanderWeyst (2014)
+    yellow-perch feeding study found no significant pressure effect (P=0.55). The app may show its
+    NWS trend as labeled area context, never as a per-water score factor. Water clarity and rain-stain
+    are not scored either; when USGS 00045 or an NWS precipitation field is available, recent rain is
+    shown as measured context only. See the{' '}
+    <a href="https://bemidjistate.edu/directory/wp-content/uploads/sites/16/2023/02/2014-VanderWeyst-D.-The-effect-of-barometric-pressure-on-feeding-activity-of-yellow-perch..pdf" rel="nofollow">
+      pressure study ↗
+    </a>.
+  </p>
+
+  <p>
+    solunar and lunar tables are intentionally excluded from the fishability score because they are
+    not a measured water condition. They may be useful planning context, but this site does not
+    present them as evidence or a catch forecast.
+  </p>
+
+  <p>
+    The legacy trout lens uses an 11–19°C optimal band, 19–24°C avoidance shoulder, and a lethal
+    clamp at 25°C. Those boundaries are pinned to the cited agency and primary-literature references
+    in the contracts and species pack; a cold or warm value is a conservation signal, not a catch
+    promise. USGS Water Data is the migration target for the retiring WaterServices endpoint; its
+    server-side API key is an operator setting and is never shipped to the browser. TVA generator
+    schedules and three-day predicted dam data are presentation context only. Dissolved oxygen is
+    likewise a constraint/context reading (coldwater instantaneous minimum 2.0 mg/L; approximately
+    5.0 mg/L seven-day minimum; warmwater approximately 4.0 mg/L), never a positive score input.
   </p>
 
   <h2>Rules the data follows</h2>

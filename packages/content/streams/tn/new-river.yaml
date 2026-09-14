@@ -2,6 +2,7 @@ id: new-river
 name: New River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03408500"
@@ -12,6 +13,7 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   Acid-buffered plateau freestone with an under-the-radar wild brown fishery. Coal-country history means
   check local access notices; flows are rain-driven. It runs its full named length (Scott/Anderson

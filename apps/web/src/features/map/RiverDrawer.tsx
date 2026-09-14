@@ -15,6 +15,7 @@ import { FishabilityCard } from '../../components/FishabilityCard';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
+import { firstPartyPhotoUrl } from '../../lib/media';
 import { BookIcon, BugIcon, CloseIcon, WavesIcon } from '../../components/icons';
 const TABS = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Tab = (typeof TABS)[number];
@@ -49,6 +50,7 @@ export function RiverDrawer({
   layout = 'panel',
 }: Props) {
   const body = useRef<HTMLDivElement>(null);
+  const { settings } = useSettingsContext();
   const dialogAttrs = layout === 'sheet' ? {} : { role: 'dialog' as const, 'aria-modal': false };
   if (!feature)
     return (
@@ -96,7 +98,7 @@ export function RiverDrawer({
           <div>
             <p className="eyebrow">{regionName(feature.stream.regionId)}</p>
             <h2>{identity.name}</h2>
-            <SeasonChip month={modeMonth} feature={feature} />
+            <SeasonChip month={modeMonth} feature={feature} mode={settings.speciesMode} />
             <p className="inspector-subtitle">
               {identity.reach ?? waterTypeLabel(feature.stream.waterbodyType)}{' '}
               ·{' '}
@@ -182,7 +184,8 @@ function WaterTab({
   const readings = orderedReadings(snap);
   const flow = readings.find((r) => r.cfs != null),
     temp = readings.find((r) => r.tempC != null),
-    stage = readings.find((r) => r.heightFt != null);
+    stage = readings.find((r) => r.heightFt != null),
+    reservoirLevel = readings.find((r) => r.reservoirLevelFt != null);
   const observed = readings[0]?.timestamp;
   const warm = feature.species === 'warmwater';
   // No catalog species: say so explicitly (H3). The water keeps its gauge
@@ -191,7 +194,7 @@ function WaterTab({
   // T1-18/19: the decision model owns seasonal applicability — a
   // yearRound:false trout water out of its winter window never wears trout
   // language, and the seasonal state shows as a first-class chip.
-  const decision = toWaterDecisionView(feature, 'trout', month);
+  const decision = toWaterDecisionView(feature, settings.speciesMode, month, feature.fishability);
   const seasonal = seasonalChipText(decision);
   const outOfSeason = decision.troutApplicability === 'seasonal-likely-absent';
   const title = warm
@@ -199,9 +202,9 @@ function WaterTab({
     : unverified
       ? 'Species unverified'
       : outOfSeason
-        ? 'Winter program — out of season'
+        ? 'PROGRAMMATIC — out of season'
         : decision.troutApplicability === 'seasonal-uncertain'
-          ? 'Winter program — seasonal fishery'
+          ? 'PROGRAMMATIC — seasonal fishery'
           : feature.status === 'no-data'
             ? 'Not assessed'
             : feature.status === 'good'
@@ -274,11 +277,19 @@ function WaterTab({
           </small>
         </div>
         <div className="metric">
-          <span className="metric-label">Water temperature</span>
+          <span className="metric-label">
+            {['lake', 'pond'].includes(feature.stream.waterbodyType) ? 'Reservoir level' : 'Water temperature'}
+          </span>
           <strong className={'metric-value' + (!temp ? ' is-empty' : '')}>
-            {temp?.tempC != null ? formatTemp(temp.tempC, settings.tempUnit) : 'Not reported'}
+            {['lake', 'pond'].includes(feature.stream.waterbodyType)
+              ? reservoirLevel?.reservoirLevelFt != null ? formatHeight(reservoirLevel.reservoirLevelFt) : 'Not reported'
+              : temp?.tempC != null ? formatTemp(temp.tempC, settings.tempUnit) : 'Not reported'}
           </strong>
-          <small>{temp ? 'USGS ' + temp.gaugeId : 'Check water before fishing'}</small>
+          <small>
+            {['lake', 'pond'].includes(feature.stream.waterbodyType)
+              ? reservoirLevel ? 'Measured reservoir level context' : 'Check current reservoir level'
+              : temp ? 'USGS ' + temp.gaugeId : 'Check water before fishing'}
+          </small>
         </div>
       </div>
       {!warm && !seasonal && (
@@ -435,8 +446,8 @@ function WaterTab({
 }
 /** T1-18/19/T2-21 — the catalog's seasonal fact as a first-class chip;
  *  renders nothing for waters the decision model keeps in-season. */
-function SeasonChip({ month, feature }: { month: number; feature: RiverMapFeature }) {
-  const text = seasonalChipText(toWaterDecisionView(feature, 'trout', month));
+function SeasonChip({ month, feature, mode }: { month: number; feature: RiverMapFeature; mode: 'trout' | 'all' }) {
+  const text = seasonalChipText(toWaterDecisionView(feature, mode, month, feature.fishability));
   if (!text) return null;
   return <p className="seasonal-chip">{text}</p>;
 }
@@ -444,10 +455,11 @@ function SeasonChip({ month, feature }: { month: number; feature: RiverMapFeatur
 function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number }) {
   const pack = useContentPack();
   const chart = feature.hatchChart;
+  const { settings } = useSettingsContext();
   // T1-17/T1-19: the trout hatch outlook and its "Match this water" CTA only
   // make sense where the trout metric applies. Warmwater and seasonal waters
   // get the honest seasonal state instead; the regional calendar stays.
-  const decision = toWaterDecisionView(feature, 'trout', month);
+  const decision = toWaterDecisionView(feature, settings.speciesMode, month, feature.fishability);
   const seasonal = seasonalChipText(decision);
   const applies = decision.displayMetric === 'trout-condition';
   return (
@@ -519,10 +531,11 @@ function HatchTab({ feature, month }: { feature: RiverMapFeature; month: number 
   );
 }
 function StockingTab({ feature, error, month }: { feature: RiverMapFeature; error?: boolean; month: number }) {
+  const { settings } = useSettingsContext();
   const event = feature.stocking;
   // T2-20/21: matched entries carry the water's seasonal state, so a winter
   // program's rows never read as current stock on a July visit.
-  const seasonal = seasonalChipText(toWaterDecisionView(feature, 'trout', month));
+  const seasonal = seasonalChipText(toWaterDecisionView(feature, settings.speciesMode, month, feature.fishability));
   if (!event)
     return (
       <div className="empty-note">
@@ -579,6 +592,7 @@ function StockingTab({ feature, error, month }: { feature: RiverMapFeature; erro
 }
 function ReportsTab({ feature }: { feature: RiverMapFeature; error?: boolean }) {
   const report = feature.report;
+  const photoUrl = report?.photoUrl ? firstPartyPhotoUrl(report.photoUrl) : null;
   if (!report)
     return (
       <div className="empty-note">
@@ -597,15 +611,22 @@ function ReportsTab({ feature }: { feature: RiverMapFeature; error?: boolean }) 
       <p className="eyebrow">{report.date}</p>
       <h3>{report.shopName}</h3>
       <p>{report.body}</p>
-      {report.photoUrl && (
+      {photoUrl ? (
         <img
-          src={report.photoUrl}
+          src={photoUrl}
           alt={`Photo from ${report.shopName}'s report`}
           loading="lazy"
           className="report-photo mt-2 w-full rounded-lg"
           style={{ border: '1px solid var(--ui-border)' }}
         />
-      )}
+      ) : report.photoUrl ? (
+        <p className="muted text-sm">
+          Photo hosted by the shop —{' '}
+          <a className="text-action" href={report.photoUrl} target="_blank" rel="noreferrer">
+            view at source ↗
+          </a>
+        </p>
+      ) : null}
       <a className="text-action" href={report.attributionUrl} target="_blank" rel="noreferrer">
         Read the attributed report ↗
       </a>

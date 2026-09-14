@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { scoreBand } from '../lib/conditions';
 import { SPECIES_LABELS, useFishabilityForWater } from '../lib/fishability';
 import { useSettingsContext } from '../lib/settings';
-import type { ActivityComponent, SpeciesKey } from '@trout/contracts';
+import type { ActivityComponent, FlowTrendContext, PressureContext, RainContext, SpeciesKey } from '@trout/contracts';
 
 const BAND_COLOR: Record<string, string> = {
   good: 'var(--trout-status-good)',
@@ -23,29 +23,28 @@ function rowLabel(component: ActivityComponent): string {
   return component.label;
 }
 
-/**
- * F12: the rain context note. A materially low pressure-trend value (the NWS
- * area signal, 50 = neutral) is the standard meteorological sign that a wet
- * system is moving in, so the note says rain is likely and the water may
- * stain and rise. CONTEXT ONLY — it is never a scored factor, and the note
- * says so. Hidden until the pipeline carries an area-pressure factor.
- */
-function RainContextNote({ activity }: { activity: { total: number; components: ActivityComponent[] } }) {
-  const pressure = activity.components.find((c) => c.factor === 'pressure-trend');
-  if (!pressure || pressure.value > 45) return null;
+/** Context rows are deliberately separate from the weighted activity factors. */
+function ContextNotes({ pressure, rain }: { pressure?: PressureContext; rain?: RainContext }) {
+  if (!pressure && !rain) return null;
   return (
-    <p
-      className="mt-2 rounded-lg px-3 py-2 text-sm"
-      style={{ background: 'var(--trout-slate-100)', border: '1px solid var(--ui-border)' }}
-      role="note"
-      aria-label="Rain context note"
-    >
-      Recent rain is likely in the area — expect stain and rising water on
-      rain-fed reaches.{' '}
-      <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
-        From area pressure (NWS) — context only, not part of the score.
-      </span>
-    </p>
+    <div className="mt-2 flex flex-col gap-1" role="note" aria-label="Weather context">
+      {rain && (
+        <p
+          className="rounded-lg px-3 py-2 text-sm"
+          style={{ background: 'var(--trout-slate-100)', border: '1px solid var(--ui-border)' }}
+        >
+          {rain.label} — expect stain and rising water on rain-fed reaches.{' '}
+          <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+            Measured gauge context only, not part of the score.
+          </span>
+        </p>
+      )}
+      {pressure && (
+        <p className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+          {pressure.label} ({pressure.station}) — derived area context only, not part of the score.
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -56,14 +55,9 @@ function RainContextNote({ activity }: { activity: { total: number; components: 
  * fish will bite. An empty outlook is honest "no activity data", never a
  * score of zero.
  */
-function ActivityBreakdown({ activity }: { activity: { total: number; components: ActivityComponent[] } }) {
+function ActivityBreakdown({ activity }: { activity: { total: number; components: ActivityComponent[]; flowTrend?: FlowTrendContext } }) {
   if (!activity.components.length) {
-    return (
-      <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-        No activity data yet — the outlook appears once its factors have sources
-        on this water.
-      </p>
-    );
+    return <FlowTrendContextRow flowTrend={activity.flowTrend} />;
   }
   return (
     <div className="mt-3 activity-outlook">
@@ -108,7 +102,25 @@ function ActivityBreakdown({ activity }: { activity: { total: number; components
         Each factor's contribution is its weight × (value − 50). Context, not a
         promise.
       </p>
+      <FlowTrendContextRow flowTrend={activity.flowTrend} />
     </div>
+  );
+}
+
+function FlowTrendContextRow({ flowTrend }: { flowTrend?: FlowTrendContext }) {
+  return (
+    <p className="mt-2 text-sm" role="note">
+      {flowTrend ? (
+        <>
+          <strong>{flowTrend.label}</strong>{' '}
+          <span className="muted">Derived gauge context — not part of the activity score.</span>
+        </>
+      ) : (
+        <span style={{ color: 'var(--trout-color-text-muted)' }}>
+          No activity data yet — the outlook appears once its factors have sources on this water.
+        </span>
+      )}
+    </p>
   );
 }
 
@@ -225,7 +237,7 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
           Observed {new Date(scored.comfort.freshness.observedAt).toLocaleString()}
         </p>
       )}
-      <RainContextNote activity={scored.activity} />
+      <ContextNotes pressure={snap.pressureContext} rain={snap.rainContext} />
       <ActivityBreakdown activity={scored.activity} />
     </div>
   );

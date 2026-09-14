@@ -2,6 +2,7 @@ id: little-tennessee-river
 name: Little Tennessee River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: false

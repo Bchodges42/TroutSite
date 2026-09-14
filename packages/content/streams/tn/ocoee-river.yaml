@@ -2,6 +2,7 @@ id: ocoee-river
 name: Ocoee River (upper, Copperhill reach)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03559500"
@@ -11,6 +12,7 @@ idealFlow:
   - min: 800
     max: 3000
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring.
   TWRA’s stocking dataset lists the Parksville tailwater below the dam, not this reach — set conservatively.

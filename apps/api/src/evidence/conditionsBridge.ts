@@ -1,5 +1,5 @@
-import { GaugeReadingSchema, READING_STALE_MINUTES } from '@trout/contracts';
-import type { GaugeReading, WaterObservation } from '@trout/contracts';
+import { GaugeReadingSchema, READING_STALE_MINUTES, ReleaseScheduleSchema } from '@trout/contracts';
+import type { GaugeReading, ReleaseSchedule, WaterObservation } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
 import {
@@ -7,10 +7,13 @@ import {
   parseTvaNumber,
   parseTvaObservations,
   parseTvaTimestamp,
+  fetchTvaGenerationReleases,
+  fetchTvaPredictedData,
+  tvaSourceUrl,
   type TvaRow,
 } from './tva-provider.js';
 import { USACE_TAILWATER_SERIES, fetchUsaceObservations } from './usace-provider.js';
-import { TVA_MONITORS } from './monitors.js';
+import { TVA_MONITORS, TVA_SCHEDULE_MONITORS } from './monitors.js';
 
 /**
  * Conditions bridge (gauges lane): turns the NON-USGS gauge sources (TVA
@@ -20,7 +23,7 @@ import { TVA_MONITORS } from './monitors.js';
  * scoreConditions then treat them exactly like USGS readings — no scorer change.
  *
  * Mapping: discharge-cfs → cfs, stage-ft → height_ft, temperature-c → temp_c;
- * reservoir-level-ft is deliberately NOT a conditions input and is skipped.
+ * reservoir-level-ft → reservoir_level_ft for lake context only.
  * Every reading is validated with GaugeReadingSchema before insert; the payload
  * column keeps the RAW source row per metric for audit.
  *
@@ -33,11 +36,14 @@ import { TVA_MONITORS } from './monitors.js';
 const TVA_BROWSER_UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
-/** metric → gauge_readings_raw column (reservoir-level-ft intentionally absent). */
-const METRIC_FIELD: Partial<Record<WaterObservation['metric'], 'cfs' | 'heightFt' | 'tempC'>> = {
+/** metric → gauge_readings_raw column (all non-score context is additive). */
+const METRIC_FIELD: Partial<Record<WaterObservation['metric'], 'cfs' | 'heightFt' | 'tempC' | 'dissolvedOxygenMgL' | 'reservoirLevelFt' | 'precipitationMm'>> = {
   'discharge-cfs': 'cfs',
   'stage-ft': 'heightFt',
   'temperature-c': 'tempC',
+  'dissolved-oxygen-mg-l': 'dissolvedOxygenMgL',
+  'reservoir-level-ft': 'reservoirLevelFt',
+  'precipitation-mm': 'precipitationMm',
 };
 
 /** TVA observed-data field behind each metric (for raw-row audit lookup). */
@@ -57,7 +63,7 @@ export interface ConditionsReading {
  * Merge one gauge's newest-wins observations into a single GaugeReading the way
  * parseInstantValues merges USGS parameters: newest observation per metric wins,
  * the reading timestamp is the newest INCLUDED metric's observedAt, and
- * reservoir-level-ft (and any metric without a column) is skipped. T1-6: a
+ * any metric without a column is skipped. T1-6: a
  * metric whose own observation is older than the freshness window
  * (READING_STALE_MINUTES, the scorer's staleness contract) relative to the
  * gauge's newest observation is dropped instead of merged — a dead discharge
@@ -73,7 +79,7 @@ export function buildConditionsReading(
   const sorted = [...obs].sort((a, b) => b.observedAt.localeCompare(a.observedAt));
   const newest = sorted[0]?.observedAt;
   const newestMs = newest ? Date.parse(newest) : Number.NaN;
-  const fields: { cfs?: number; heightFt?: number; tempC?: number } = {};
+  const fields: GaugeReading = { gaugeId, timestamp: newest ?? new Date(0).toISOString() };
   const rows: Record<string, unknown> = {};
   let timestamp: string | undefined;
   for (const o of sorted) {
@@ -92,7 +98,7 @@ export function buildConditionsReading(
     if (timestamp === undefined || o.observedAt > timestamp) timestamp = o.observedAt;
   }
   if (timestamp === undefined) return null;
-  const parsed = GaugeReadingSchema.safeParse({ gaugeId, ...fields, timestamp });
+  const parsed = GaugeReadingSchema.safeParse({ ...fields, timestamp });
   if (!parsed.success) return null;
   return { reading: parsed.data, payload: JSON.stringify({ source, gaugeId, rows }) };
 }
@@ -121,6 +127,10 @@ export interface ConditionsBridgeOptions {
   tvaSpacingMs?: number;
   /** USACE lookback window hours (default 48). */
   windowHours?: number;
+  /** Fetch and persist TVA release/forecast context. Disabled for legacy bridge callers. */
+  releaseSchedules?: boolean;
+  /** Fetch reservoir level/discharge rows as conditions context. */
+  includeReservoirs?: boolean;
 }
 
 export interface ConditionsBridgeResult extends JobDetail {
@@ -130,6 +140,7 @@ export interface ConditionsBridgeResult extends JobDetail {
   usaceStations: number;
   errors: number;
   warnings: string[];
+  releaseSchedules: number;
 }
 
 interface FetchedBatch {
@@ -154,8 +165,11 @@ export async function runConditionsReadingsJob(
   let errors = 0;
   const tvaUa = opts.tvaUserAgent ?? TVA_BROWSER_UA;
   const batches: FetchedBatch[] = [];
+  const scheduleRows: ReleaseSchedule[] = [];
 
-  const tvaMonitors = Object.entries(TVA_MONITORS).filter(([, m]) => m.role === 'tailwater');
+  const tvaMonitors = Object.entries(TVA_MONITORS).filter(
+    ([, m]) => m.role === 'tailwater' || opts.includeReservoirs === true,
+  );
   for (const [waterId, monitor] of tvaMonitors) {
     try {
       const rows = await fetchTvaRows(monitor.locationId, {
@@ -178,7 +192,51 @@ export async function runConditionsReadingsJob(
     await new Promise((r) => setTimeout(r, opts.tvaSpacingMs ?? 300));
   }
 
-  for (const [station, series] of Object.entries(USACE_TAILWATER_SERIES)) {
+  if (opts.releaseSchedules) {
+    for (const [waterId, monitor] of Object.entries(TVA_SCHEDULE_MONITORS)) {
+      let releases: ReleaseSchedule['releases'] = [];
+      let forecasts: ReleaseSchedule['forecasts'] = [];
+      let error: string | undefined;
+      try {
+        releases = await fetchTvaGenerationReleases(monitor.locationId, {
+          userAgent: tvaUa,
+          fetchImpl: opts.fetchImpl,
+          timeoutMs: opts.timeoutMs,
+        });
+      } catch (err) {
+        error = `generation releases: ${(err as Error).message}`;
+      }
+      try {
+        forecasts = await fetchTvaPredictedData(monitor.locationId, {
+          userAgent: tvaUa,
+          fetchImpl: opts.fetchImpl,
+          timeoutMs: opts.timeoutMs,
+        });
+      } catch (err) {
+        error = error
+          ? `${error}; predicted data: ${(err as Error).message}`
+          : `predicted data: ${(err as Error).message}`;
+      }
+      const schedule = ReleaseScheduleSchema.parse({
+        waterId,
+        locationId: monitor.locationId,
+        retrievedAt: new Date().toISOString(),
+        sourceUrl: tvaSourceUrl(monitor.locationId),
+        status: error ? 'unavailable' : releases.length === 0 ? 'empty' : 'available',
+        releases,
+        forecasts,
+        ...(error ? { error } : {}),
+      });
+      scheduleRows.push(schedule);
+      if (error) warnings.push(`TVA schedule ${monitor.locationId} (${waterId}) unavailable: ${error}`);
+    }
+  }
+
+  // CORT1 is retained in the registry for coverage and fixture validation, but
+  // cumberland-river deliberately has no single representative gauge. Fetching
+  // it here created an orphan reading that no snapshot could consume (NEW-2).
+  const usaceFetchEntries = Object.entries(USACE_TAILWATER_SERIES).filter(([station]) => station !== 'CORT1');
+  for (const [station, series] of usaceFetchEntries) {
     try {
       const result = await fetchUsaceObservations(station, {
         userAgent: opts.userAgent,
@@ -206,8 +264,8 @@ export async function runConditionsReadingsJob(
 
   const store = db.transaction((): number => {
     const insert = db.prepare(`
-      INSERT INTO gauge_readings_raw (gauge_id, fetched_at, payload, cfs, height_ft, temp_c, observed_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO gauge_readings_raw (gauge_id, fetched_at, payload, cfs, height_ft, temp_c, dissolved_oxygen_mg_l, reservoir_level_ft, precipitation_mm, observed_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
     const fetchedAt = new Date().toISOString();
     for (const { built: c } of built) {
@@ -218,8 +276,22 @@ export async function runConditionsReadingsJob(
         c.reading.cfs ?? null,
         c.reading.heightFt ?? null,
         c.reading.tempC ?? null,
+        c.reading.dissolvedOxygenMgL ?? null,
+        c.reading.reservoirLevelFt ?? null,
+        c.reading.precipitationMm ?? null,
         c.reading.timestamp,
       );
+    }
+    if (scheduleRows.length > 0) {
+      const insertSchedule = db.prepare(`
+        INSERT INTO release_schedules (water_id, location_id, retrieved_at, payload)
+        VALUES (?, ?, ?, ?)
+        ON CONFLICT(water_id) DO UPDATE SET
+          location_id=excluded.location_id, retrieved_at=excluded.retrieved_at, payload=excluded.payload
+      `);
+      for (const schedule of scheduleRows) {
+        insertSchedule.run(schedule.waterId, schedule.locationId, schedule.retrievedAt, JSON.stringify(schedule));
+      }
     }
     return built.length;
   });
@@ -229,9 +301,10 @@ export async function runConditionsReadingsJob(
     gauges: built.length,
     items,
     tvaLocations: tvaMonitors.length,
-    usaceStations: Object.keys(USACE_TAILWATER_SERIES).length,
+    usaceStations: usaceFetchEntries.length,
     errors,
     warnings,
+    releaseSchedules: scheduleRows.length,
   };
   handle.ok(result);
   return result;

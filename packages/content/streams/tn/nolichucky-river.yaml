@@ -2,6 +2,7 @@ id: nolichucky-river
 name: Nolichucky River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-pigeon-frenchbroad
 gaugeIds:
   - "03465500"
@@ -10,6 +11,7 @@ idealFlow:
   - min: 300
     max: 1500
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking
   dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the

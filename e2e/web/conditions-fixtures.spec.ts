@@ -28,7 +28,7 @@ test('conditions opens search-first; search discloses waters; detail shows reaso
   await expect(page.getByText(/Verify officially/)).toBeVisible();
 
   // official gauge link is present and external
-  const gaugeLink = page.getByRole('link', { name: /USGS Water Data/ }).first();
+  const gaugeLink = page.getByRole('link', { name: /USGS gauge/ }).first();
   await expect(gaugeLink).toBeVisible();
   await expect(gaugeLink).toHaveAttribute('href', /waterdata\.usgs\.gov/);
   await expect(gaugeLink).toHaveAttribute('target', '_blank');
@@ -64,6 +64,7 @@ test('stocking browser filters by county and species, newest first', async ({ pa
 
   // filters live behind the disclosure until asked for
   await page.locator('summary', { hasText: 'Filter the schedule' }).click();
+  await page.getByLabel('Stocking window').selectOption('3650');
   await page.getByLabel('Species').selectOption('brown');
   // brown events surface by TWRA water name; the real feed names reaches
   await expect(page.getByText(/Hiwassee River/).first()).toBeVisible();

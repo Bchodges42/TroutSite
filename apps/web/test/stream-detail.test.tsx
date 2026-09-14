@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { StreamDetailPage } from '../src/pages/StreamDetailPage';
+import { dissolvedOxygenConstraintText, StreamDetailPage } from '../src/pages/StreamDetailPage';
 import { statusForScore } from '../src/features/map/riverMapSelectors';
 import { SettingsProvider } from '../src/lib/settings';
 import type { Stream, ConditionSnapshot } from '@trout/contracts';
@@ -78,6 +78,15 @@ function renderDetail(stream: Stream, snapshot: ConditionSnapshot | null) {
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+});
+
+describe('campaign constraint helpers', () => {
+  it('labels dissolved oxygen below the applicable floor as constraint context', () => {
+    expect(dissolvedOxygenConstraintText(1.9, 'trout')).toContain('2.0 mg/L');
+    expect(dissolvedOxygenConstraintText(4.5, 'trout')).toContain('5.0 mg/L');
+    expect(dissolvedOxygenConstraintText(3.9, 'warmwater')).toContain('4.0 mg/L');
+    expect(dissolvedOxygenConstraintText(7, 'trout')).toBeNull();
+  });
 });
 
 describe('T1-9 — assessed flag parity across map, conditions list, and detail', () => {

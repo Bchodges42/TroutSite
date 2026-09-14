@@ -28,6 +28,8 @@ type ConditionRow = {
     cfs?: number;
     heightFt?: number;
     tempC?: number;
+    reservoirLevelFt?: number;
+    dissolvedOxygenMgL?: number;
   }>;
   fetchedAt?: string;
   nextExpectedUpdate?: string;

@@ -2,6 +2,7 @@ id: middle-prong-little-pigeon
 name: Middle Prong Little Pigeon River (Tremont)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
@@ -12,8 +13,7 @@ idealFlow:
   - min: 15
     max: 120
     unit: cfs
-targetSpecies:
-  - smallmouth-bass
+idealFlowSource: editorial
 notes: Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking
   noted by TWRA on the Middle Prong. No gauge; recent-rain judgment applies.
 officialSources:

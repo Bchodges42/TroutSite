@@ -2,6 +2,7 @@ id: sequatchie-river
 name: Sequatchie River (headwaters)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03571000"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 100
     max: 600
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   TWRA spring-stocks the Sequatchie Valley headwaters in Cumberland County. The Whitwell gauge sits far
   downstream — treat it as a valley-level trend, not the headwater truth. It runs the full valley from

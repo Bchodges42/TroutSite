@@ -2,6 +2,7 @@ id: powell-river
 name: Powell River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-clinch
 gaugeIds:
   - "03532000"
@@ -12,6 +13,7 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout
   in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA

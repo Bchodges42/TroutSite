@@ -6,6 +6,7 @@ import {
   fetchNwsPressure,
   nwsObservationsUrl,
   parseNwsPressure,
+  parseNwsPrecipitation,
   pressureTrend,
   runPressureJob,
   type NwsPressurePoint,
@@ -33,6 +34,17 @@ describe('parseNwsPressure', () => {
     expect(parseNwsPressure({})).toEqual([]);
     expect(parseNwsPressure({ features: [{ properties: { timestamp: 'nope', barometricPressure: { value: 101300, unitCode: 'unit:Pa' } } }] })).toEqual([]);
     expect(parseNwsPressure(undefined)).toEqual([]);
+  });
+
+  it('parses the verified precipitationLast3Hours field as measured millimetres', () => {
+    expect(
+      parseNwsPrecipitation({
+        features: [
+          { properties: { timestamp: '2026-09-12T16:00:00Z', precipitationLast3Hours: 4.2 } },
+          { properties: { timestamp: '2026-09-12T17:00:00Z', precipitationLast3Hours: null } },
+        ],
+      }),
+    ).toEqual([{ observedAt: '2026-09-12T16:00:00Z', precipitationMm: 4.2 }]);
   });
 });
 

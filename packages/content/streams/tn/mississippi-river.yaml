@@ -2,6 +2,7 @@ id: mississippi-river
 name: Mississippi River
 stateId: TN
 waterbodyType: river
+display: featured
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false

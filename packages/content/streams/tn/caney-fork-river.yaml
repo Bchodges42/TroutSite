@@ -2,9 +2,9 @@ id: caney-fork-river
 name: Caney Fork River (Center Hill tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-middle-caney-fork
 gaugeIds:
-  - "03424010"
   - "03424860"
   - "usace:CETT1"
 stockingProgram: true
@@ -15,12 +15,13 @@ idealFlow:
   - min: 200
     max: 2000
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+seasonKind: programmatic
 notes: "Middle Tennessee’s signature tailwater: TWRA-stocked rainbows (stocking runs March through December) plus a celebrated
   winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic
   — Stonewall and at-dam gauges are your wade-window planners."
 officialSources:
-  - label: USGS Water Data — monitoring location 03424010
-    url: https://waterdata.usgs.gov/monitoring-location/03424010/
   - label: USGS Water Data — monitoring location 03424860
     url: https://waterdata.usgs.gov/monitoring-location/03424860/
   - label: TVA — lake levels & dam release schedules (verify before you wade)

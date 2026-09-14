@@ -26,6 +26,10 @@ export const EnvSchema = z.object({
     .string()
     .min(1)
     .default('trout-local/0.1.0 (contact: set USGS_USER_AGENT in env)'),
+  /** USGS Water Data migration switch; production defaults to the modern API. */
+  USGS_PROVIDER: z.enum(['legacy', 'waterdata']).default('waterdata'),
+  /** Optional server-only key for the modern USGS Water Data API. */
+  USGS_WATERDATA_API_KEY: z.string().min(1).optional(),
   /** HMAC secret for shop portal tokens. Portal routes fail closed (503) without it. */
   PORTAL_SECRET: z.string().min(1).optional(),
   /** Shared secret required by /healthz when set; never expose the value in git. */

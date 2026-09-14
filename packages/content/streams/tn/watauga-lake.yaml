@@ -2,8 +2,10 @@ id: watauga-lake
 name: Watauga Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-northeast-watauga
-gaugeIds: []
+gaugeIds:
+  - tva:WTGT1
 stockingProgram: false
 idealFlow: []
 targetSpecies:
@@ -13,6 +15,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03483950/
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03483950/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03483950/
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03483950/
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03483950/
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03483950/
+    retrieved: 2026-09-13
 notes: >-
   TVA reservoir on the Watauga River in the mountains of Carter and Johnson
   counties, impounded by Watauga Dam (between USGS 03483450 above and 03483950

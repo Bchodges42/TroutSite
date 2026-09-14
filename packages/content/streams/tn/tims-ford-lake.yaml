@@ -2,6 +2,7 @@ id: tims-ford-lake
 name: Tims Ford Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
@@ -15,11 +16,41 @@ targetSpecies:
   - bluegill
   - channel-catfish
   - striped-bass
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: striped-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
 notes: >-
   Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir
   near Winchester in Franklin and Moore counties. Detailed angler notes are still being
   prepared — check TWRA and local access areas in the meantime.
   TWRA's Tims Ford Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

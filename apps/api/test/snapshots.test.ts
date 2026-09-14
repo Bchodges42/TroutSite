@@ -248,7 +248,7 @@ describe('scoring parity (server snapshot == client recompute)', () => {
       const holston = conditions.find((c) => c.streamId === 'watauga-river');
       expect(holston?.score.value).toBe(90);
       expect(holston?.score.reasons.join(' ')).toContain('within the ideal range');
-      expect(holston?.score.reasons.join(' ')).toContain('ideal window for trout activity');
+      expect(holston?.score.reasons.join(' ')).toContain('11–19°C trout activity window');
     } finally {
       env2.db.close();
       rmSync(env2.dir, { recursive: true, force: true });

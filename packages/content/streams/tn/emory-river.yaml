@@ -2,6 +2,7 @@ id: emory-river
 name: Emory River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03540500"
@@ -10,8 +11,7 @@ idealFlow:
   - min: 100
     max: 600
     unit: cfs
-targetSpecies:
-  - smallmouth-bass
+idealFlowSource: editorial
 notes: >-
   The Obed’s bigger sibling below the confluence country; wild trout in the upper reaches, smallmouth
   downstream. Plateau flashiness applies. It runs to the Watts Bar embayment head, where the pool

@@ -58,10 +58,18 @@ Copy the printed tunnel ID + credentials path into `infra/cloudflared/config.yml
 ### 2.3 Cron (ingest + snapshots)
 
 The hourly cron worker runs as the `trout-cron` pm2 process (`apps/api/dist/cron.js`):
-USGS gauges (hourly) + TWRA stocking (daily 06:00) → SQLite → snapshot JSON regenerated
+USGS Water Data gauges (hourly) + TVA/USACE conditions + TWRA stocking (daily 06:00) → SQLite → snapshot JSON regenerated
 AT the served URLs in `apps/web/public` (`/v1/**`, `/content/**` — ADR 0005). The API
 serves those files directly, so fresh data reaches visitors without a web rebuild.
 Deploy (`§3`) also regenerates snapshots on every release.
+
+USGS migration note: the default provider is now the server-side Water Data OGC API
+(`api.waterdata.usgs.gov/ogcapi/v0`, `USGS_PROVIDER=waterdata`). Set
+`USGS_WATERDATA_API_KEY` in the service environment after the owner completes signup at
+the USGS Water Data API; the key is never sent to the browser or committed. A keyless
+development fallback remains available but logs a loud quota warning. To roll back during
+provider verification, set `USGS_PROVIDER=legacy` and restart the API; retain the NWIS
+fixture path until WaterServices retirement is complete.
 
 ### 2.4 Start everything under pm2
 

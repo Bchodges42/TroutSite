@@ -7,6 +7,7 @@ import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useContentPack } from '../lib/content';
 import { shortDate } from '../lib/time';
 import { FreshnessChip } from '../components/FreshnessChip';
+import { firstPartyPhotoUrl } from '../lib/media';
 
 /** Shops & reports (scope 6): directory + attributed, linked-out reports. */
 export function ShopsPage() {
@@ -73,6 +74,7 @@ export function ShopsPage() {
 }
 
 function ReportCard({ report, patternName }: { report: ShopReport; patternName: (id: string) => string }) {
+  const photoUrl = report.photoUrl ? firstPartyPhotoUrl(report.photoUrl) : null;
   return (
     <li>
       <Card>
@@ -93,15 +95,22 @@ function ReportCard({ report, patternName }: { report: ShopReport; patternName: 
           )}
         </div>
         <p className="mt-2 text-sm">{report.body}</p>
-        {report.photoUrl && (
+        {photoUrl ? (
           <img
-            src={report.photoUrl}
+            src={photoUrl}
             alt={`Photo from ${report.shopName}'s report`}
             loading="lazy"
             className="report-photo mt-2 w-full rounded-lg"
             style={{ border: '1px solid var(--ui-border)' }}
           />
-        )}
+        ) : report.photoUrl ? (
+          <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+            Photo hosted by the shop —{' '}
+            <a className="focus-ring font-semibold underline" href={report.photoUrl} target="_blank" rel="noreferrer noopener">
+              view at source ↗
+            </a>
+          </p>
+        ) : null}
         {report.hotPatterns.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {report.hotPatterns.map((hp) => (

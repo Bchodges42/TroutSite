@@ -2,6 +2,7 @@ id: calfkiller-river
 name: Calfkiller River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-caney-fork
 gaugeIds:
   - "03419530"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 30
     max: 200
     unit: cfs
+idealFlowSource: editorial
 notes: Spring-fed-ish White County river with TWRA spring stocking and a loyal following; the
   Sparta gauge runs low in dry summers.
 officialSources:

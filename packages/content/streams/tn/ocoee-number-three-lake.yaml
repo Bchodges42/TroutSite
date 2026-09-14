@@ -2,8 +2,10 @@ id: ocoee-number-three-lake
 name: Ocoee Number Three Lake
 stateId: TN
 waterbodyType: lake
+display: reference
 regionId: tn-se-hiwassee
-gaugeIds: []
+gaugeIds:
+  - tva:OCCT1
 stockingProgram: false
 idealFlow: []
 notes: >-

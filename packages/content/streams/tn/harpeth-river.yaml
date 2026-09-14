@@ -2,6 +2,7 @@ id: harpeth-river
 name: Harpeth River (Williamson County reaches)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03432350"
@@ -16,6 +17,12 @@ idealFlow:
     unit: cfs
 targetSpecies:
   - smallmouth-bass
+idealFlowSource: editorial
+speciesEvidence:
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03432350/
+    retrieved: 2026-09-13
 notes: Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches
   near Franklin with catchable trout each December (the winter put-and-take season runs
   December–February; check the TWRA schedule for the current window). Two gauges bracket the

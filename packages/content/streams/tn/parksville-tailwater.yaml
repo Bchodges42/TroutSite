@@ -2,6 +2,7 @@ id: parksville-tailwater
 name: Parksville Lake Tailwater (Ocoee No. 1 reach)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03564500"
@@ -14,6 +15,9 @@ idealFlow:
   - min: 100
     max: 800
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [3, 4, 5 ]
+seasonKind: programmatic
 notes: TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow), stocked
   March through May. The reach below Parksville Dam mixes whitewater recreation schedules with
   cold releases — verify TVA’s Ocoee No. 1 flow before you go.

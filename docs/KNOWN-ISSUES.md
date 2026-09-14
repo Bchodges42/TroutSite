@@ -121,14 +121,14 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   `seasonal-likely-absent` applicability that the adapter can never produce
   (`waterDecision.ts:14-20,66-72`). Combine `species` + `yearRound` + selected month →
   first-class "Winter program — out of season" chip on map, drawer, detail, lists.
-- [ ] **T2-20 [LOGIC-9]** Stocking presentation ignores season — drawer shows matched
+- [x] **T2-20 [LOGIC-9]** Stocking presentation ignores season — drawer shows matched
   winter event on a July visit with no seasonal frame.
-- [ ] **T2-21 [LOGIC-17]** Seasonal facts live in bottom-of-page prose notes; surface
+- [x] **T2-21 [LOGIC-17]** Seasonal facts live in bottom-of-page prose notes; surface
   the structured fact near the title instead.
 
 **Species mode is half a concept**
 
-- [ ] **T1-22 [LOGIC-10]** Species mode is a map-only URL param (`?species=`,
+- [x] **T1-22 [LOGIC-10]** Species mode is a map-only URL param (`?species=`,
   `RiverMapPage.tsx:36`); no other page honors it and Settings has no such preference.
   DECIDED 2026-09-12: site-wide setting — Dexie-persisted, default **Trout**, filters
   and re-words data on every surface. Implementation rides the fishability program (F6).
@@ -152,7 +152,7 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 - [x] **T2-27 [LOGIC-20]** Shop report `photoUrl` renders only in the admin composer —
   no public surface shows photos (ShopsPage, drawer ReportsTab). DECIDED 2026-09-12:
   render them publicly alongside the attribution block, per ADR 0002.
-- [ ] **T2-28 [LOGIC-2]** TRANSITION RULE — keep the trout score fully suppressed on
+- [x] **T2-28 [LOGIC-2]** TRANSITION RULE — keep the trout score fully suppressed on
   warmwater water until the fishability program (below) ships; after that, suppression
   converts to "right score for the right species." The interim leak fixes (T1-13..17)
   are built neutral either way, so nothing here blocks them.
@@ -256,6 +256,41 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   B03 freshness work). [PRE]
 - Review PASS6-1 scope note: uncataloged candidate ponds are an accepted limitation;
   the broader "tailwater rows unmatched" claim was retracted by the review itself.
+
+## ACCURACY CAMPAIGN CLOSEOUT — 2026-09-13/14
+
+- [x] **NEW-1 / OA-01** — Conditions now use an absolute observation-age gate; a fresh
+  fetch cannot make a stopped sensor look current.
+- [x] **NEW-2** — The unconsumed CORT1 fetch was removed; Cordell Hull remains a
+  coverage-only candidate until the Cumberland reach decision changes.
+- [x] **NEW-3** — The retired empty `lakes.geojson` layer was removed and guarded by an
+  atlas-artifact regression test.
+- [x] **NEW-4** — Snapshot/fishability comments now describe the actual multi-factor
+  and context-only behavior.
+- [x] **NEW-5** — Latest-value selection parses timestamps before ordering mixed offsets.
+- [x] **NEW-6 / T1-22** — Persisted Trout/All-fish mode now propagates through map,
+  browse, conditions, stocking, detail, drawer, and fishability wording.
+- [x] **OA-04** — Authored display tiers are applied to all 148 waters; reference waters
+  remain searchable/selectable without automatic map titles.
+- [x] **OA-06** — Marketing titles and descriptions are species- and artifact-aware;
+  unavailable fishability/flow claims are omitted.
+- [x] **OA-07** — Coverage JSON was regenerated with Bradley Creek and the current
+  50-site accounting.
+- [x] **OA-09** — `idealFlowSource` is now an additive authored field; existing ranges
+  are explicitly editorial and displayed as typical ranges.
+- [x] **OA-10** — The 39-water fishability file set is intentional; all other waters
+  remain honestly absent rather than receiving empty promises.
+- [x] **T2-20 / T2-21 / T2-28** — Seasonal stocking state is surfaced near the water
+  title and the fishability program replaces the old warmwater suppression transition.
+
+Campaign owner actions and accepted limits: obtain and configure the server-only USGS
+Water Data API key before the Q1 2027 WaterServices retirement; ask USACE Nashville
+District for release schedules; obtain TWRA Region 3/4 confirmation for Obed/Powell
+wild-trout claims; and re-pin Gatlinburg creel counts before displaying them. Pressure
+is context-only (never a score factor), lake temperature, satellite SST, CWMS,
+rivergages, and weather.gov legacy endpoints remain unwired. TDEC advisory and DWR
+attainment feeds are documented safety/context sources; they require a future
+server-side text/mapping pass before affected-water badges can be emitted.
 
 ## DECIDED (owner, 2026-09-12)
 
