@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -22,7 +22,7 @@ const REPORTS = [
     body: 'Blue-winged olives came off mid-afternoon; fish keyed in on the shimmy.',
     hotPatterns: [{ patternId: 'bw-olive', hookSize: 18 }],
     attributionUrl: 'https://creekside.example.com/reports/1',
-    photoUrl: 'https://images.example.com/report-1.jpg',
+    photoUrl: 'https://images.example.com/photos/report-1.jpg',
     publishedAt: '2026-09-11T00:00:00Z',
   },
   {
@@ -37,17 +37,18 @@ const REPORTS = [
   },
 ];
 
-vi.stubGlobal(
-  'fetch',
-  vi.fn(async (url: string) => {
-    let body: unknown = [];
-    if (url.includes('/v1/reports/recent.json')) body = REPORTS;
-    return new Response(JSON.stringify(body), {
-      status: 200,
-      headers: { 'content-type': 'application/json' },
-    });
-  }) as unknown as typeof fetch,
-);
+function stubReports(reports = REPORTS) {
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(async (url: string) => {
+      const body = url.includes('/v1/reports/recent.json') ? reports : [];
+      return new Response(JSON.stringify(body), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      });
+    }) as unknown as typeof fetch,
+  );
+}
 
 function renderShops() {
   const _client = new QueryClient({
@@ -64,19 +65,27 @@ function renderShops() {
   );
 }
 
+beforeEach(() => stubReports());
 afterEach(cleanup);
 
 describe('T2-27 — shop report photos render with attribution', () => {
-  it('renders the report photo next to the attribution block', async () => {
+  it('keeps an external report photo behind an explicit source link', async () => {
     renderShops();
-    const photo = await screen.findByRole('img', {
-      name: /Photo from Creek Side Anglers's report/i,
-    });
-    expect(photo).toHaveAttribute('src', 'https://images.example.com/report-1.jpg');
-    // The photo lives inside the same attributed card as the source link.
-    const card = photo.closest('li');
+    const source = (await screen.findAllByRole('link', { name: /view at source/i }))[0]!;
+    expect(source).toHaveAttribute('href', 'https://images.example.com/photos/report-1.jpg');
+    expect(screen.queryByRole('img', { name: /Photo from Creek Side/ })).toBeNull();
+    // The explicit photo source lives inside the same attributed card.
+    const card = source.closest('li');
     expect(card?.textContent).toContain('view at source ↗');
     expect(card?.textContent).toContain('Creek Side Anglers');
+  });
+
+  it('does not fetch an external photo automatically', async () => {
+    const external = { ...REPORTS[0]!, photoUrl: 'https://images.example.com/report-1.jpg' };
+    stubReports([external]);
+    renderShops();
+    expect(await screen.findByText(/Photo hosted by the shop/)).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: /Photo from Creek Side/ })).toBeNull();
   });
 
   it('reports without a photo render no image', async () => {

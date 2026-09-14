@@ -2,9 +2,9 @@ id: obey-river
 name: Obey River (Dale Hollow tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-upper-cumberland
 gaugeIds:
-  - "03417000"
   - "usace:DHTT1"
 stockingProgram: true
 species: trout
@@ -14,11 +14,12 @@ idealFlow:
   - min: 150
     max: 1000
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+seasonKind: programmatic
 notes: Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery stocked by TWRA every month of the year
   below the dam. Release-dependent wade windows — the below-dam gauge tells the story.
 officialSources:
-  - label: USGS Water Data — monitoring location 03417000
-    url: https://waterdata.usgs.gov/monitoring-location/03417000/
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)

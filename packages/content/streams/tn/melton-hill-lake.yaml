@@ -2,8 +2,10 @@ id: melton-hill-lake
 name: Melton Hill Lake
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-east-clinch
-gaugeIds: []
+gaugeIds:
+  - tva:MHDT1
 stockingProgram: false
 idealFlow: []
 targetSpecies:
@@ -14,6 +16,35 @@ targetSpecies:
   - bluegill
   - channel-catfish
   - striped-bass
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
+  - species: striped-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03535912/
+    retrieved: 2026-09-13
 notes: >-
   TVA reservoir on the Clinch River between Norris Dam and Watts Bar Lake
   (Anderson/Roane counties near Oak Ridge), impounded by Melton Hill Dam
@@ -22,6 +53,7 @@ notes: >-
   year-round cold-water fishing; the dam discharges into the Clinch arm of
   Watts Bar Lake. TWRA maps the reservoir at 6,035 ac.
   TWRA's Melton Hill Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 officialSources:
   - label: USGS Water Data — monitoring location 03535912
     url: https://waterdata.usgs.gov/monitoring-location/03535912/

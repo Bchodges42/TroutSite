@@ -2,9 +2,10 @@ id: parksville-lake
 name: Parksville Lake
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-se-hiwassee
 gaugeIds:
-  - "03564500"
+  - tva:OCAT1
 stockingProgram: false
 idealFlow: []
 targetSpecies:
@@ -12,6 +13,23 @@ targetSpecies:
   - spotted-bass
   - crappie
   - bluegill
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03564500/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03564500/
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03564500/
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03564500/
+    retrieved: 2026-09-13
 notes: >-
   Ocoee River impoundment (TVA Ocoee Dam No. 1, "Parksville Dam") in Polk
   County southeast of Benton; the dam sits at the pool's west edge. Receives

@@ -28,6 +28,8 @@ never what the UI may infer from a water's name.
 | `twra-stockings` | TWRA | stocking schedules | seasonal grid (616 rows on 2026-09-04) | tn.gov allows all crawlers, CDN caches ~10 h; CMS path ids change on redeploys (re-resolved every fetch); "week of" = Sunday + 5 days, postponable |
 | `twra-recent-stockings` | TWRA | reported-complete stockings | bi-weekly, ~12-row rolling window | No counts, no archive — completed history must be self-collected |
 | `twra-regulations` / `nps-gsmnp` / `tva-safety` | TWRA / NPS / TVA | regulations, safety | annual / static | Regulation year runs **Aug 1 – Jul 31** (2026-27 effective 2026-08-01); see [FISHING-INFORMATION-SOURCES.md](FISHING-INFORMATION-SOURCES.md) |
+| `tdec-advisories` | TDEC | fish-consumption safety overlay | weekly watch; PDF changes less often | HTML → current PDF; compare ETag/Last-Modified, then text-extract and diff; never a score factor |
+| `tdec-dwr-arcgis` | TDEC Division of Water Resources | water-quality attainment context | assessment-cycle publication | ArcGIS REST requires a browser User-Agent + DWR Referer; optional context only, never a score factor |
 
 USACE Nashville District gages are served by the **Access to Water (A2W) reporting
 API** (`water.usace.army.mil/cda/reporting/providers/lrn`, verified live 2026-09-08) —

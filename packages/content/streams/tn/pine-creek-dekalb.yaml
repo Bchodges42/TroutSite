@@ -2,6 +2,7 @@ id: pine-creek-dekalb
 name: Pine Creek (DeKalb County)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 10
     max: 80
     unit: cfs
+idealFlowSource: editorial
 notes: TWRA spring-stocked DeKalb County creek in the Center Hill fringe.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

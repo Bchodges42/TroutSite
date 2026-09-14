@@ -2,6 +2,7 @@ id: spring-creek-polk
 name: Spring Creek (Polk County)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 5
     max: 50
     unit: cfs
+idealFlowSource: editorial
 notes: TWRA spring-stocked creek in the Coker Creek area.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

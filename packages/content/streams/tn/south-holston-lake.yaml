@@ -2,9 +2,9 @@ id: south-holston-lake
 name: South Holston Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-east-holston
-gaugeIds:
-  - "03476500"
+gaugeIds: []
 stockingProgram: false
 species: warmwater
 idealFlow: []
@@ -15,6 +15,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03476500/
+    retrieved: 2026-09-13
 notes: >-
   TVA reservoir on the South Fork Holston River above Bristol (Sullivan
   County, Tennessee, and Washington County, Virginia), impounded by South
@@ -25,7 +50,7 @@ notes: >-
   7,580 ac at full pool.
   TWRA's South Holston Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
-  - label: USGS Water Data — monitoring location 03476500
+  - label: USGS Water Data — monitoring location 03476500 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03476500/
   - label: TVA — South Holston Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels

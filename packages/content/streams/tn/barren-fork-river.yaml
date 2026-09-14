@@ -2,6 +2,7 @@ id: barren-fork-river
 name: Barren Fork River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 40
     max: 300
     unit: cfs
+idealFlowSource: editorial
 notes: TWRA spring-stocked Warren County river through McMinnville. Gentle gradient; flows track
   rain closely.
 officialSources:

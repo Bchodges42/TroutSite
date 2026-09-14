@@ -28,6 +28,8 @@ export type LabelWater = {
   id: string;
   /** Catalog species for this water; absent means the catalog does not say. */
   species?: 'trout' | 'warmwater';
+  /** Authored prominence tier. Missing keeps the pre-campaign extent policy for old fixtures. */
+  display?: 'featured' | 'standard' | 'reference';
 };
 
 export type LabelGateContext = {
@@ -41,6 +43,8 @@ export type LabelGateContext = {
   zoom: number;
   selected: boolean;
   assessed: boolean;
+  /** Seasonal decision says the water is absent for the selected month. */
+  seasonalAbsent?: boolean;
 };
 
 /**
@@ -59,10 +63,14 @@ export type LabelGateContext = {
  */
 export function shouldShowLabel(water: LabelWater, ctx: LabelGateContext): boolean {
   if (ctx.selected) return true;
+  if (ctx.seasonalAbsent) return false;
   // In trout mode a non-trout or unverified water never earns a title — not
   // by prominence, not by assessment (assessedIds only contains confirmed
   // trout, but the policy stays honest on its own terms).
   if (ctx.mode === 'trout' && !ctx.troutIds.has(water.id)) return false;
+  if (water.display === 'reference') return false;
+  if (water.display === 'featured') return true;
+  if (water.display === 'standard') return ctx.zoom >= LOCAL_ZOOM;
   const zoomGate = ctx.extent >= MINOR_EXTENT ? ctx.zoom >= APPROACH_ZOOM : ctx.zoom >= LOCAL_ZOOM;
   return ctx.extent >= MAJOR_EXTENT || zoomGate || ctx.assessed;
 }

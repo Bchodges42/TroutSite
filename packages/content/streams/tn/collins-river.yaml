@@ -2,6 +2,7 @@ id: collins-river
 name: Collins River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-caney-fork
 gaugeIds:
   - "03421000"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 80
     max: 500
     unit: cfs
+idealFlowSource: editorial
 notes: Grundy/Warren County river with TWRA spring stocking and a strong small-water feel. The
   McMinnville gauge sits mid-basin; flows track plateau rain.
 officialSources:

@@ -148,7 +148,7 @@ describe('RiverDrawer — T1-17/T1-18/19 trout-metric gating', () => {
     renderDrawer(feature({ species: 'trout', score: 82, yearRound: false }));
     // The seasonal state renders at BOTH the title chip and the assessment
     // headline — that duplication is the design (T2-21).
-    expect((await screen.findAllByText('Winter program — out of season')).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText('PROGRAMMATIC — out of season')).length).toBeGreaterThan(0);
     expect(screen.queryByText(/hatch outlook/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Match the hatch/)).not.toBeInTheDocument();
     expect(screen.queryByText('Good conditions')).not.toBeInTheDocument();
@@ -156,7 +156,7 @@ describe('RiverDrawer — T1-17/T1-18/19 trout-metric gating', () => {
 
   it('the Hatch tab on an out-of-season water shows the seasonal state, not the trout key CTA', async () => {
     renderDrawer(feature({ species: 'trout', score: 82, yearRound: false }), 'Hatch');
-    expect((await screen.findAllByText(/Winter program/)).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/PROGRAMMATIC/)).length).toBeGreaterThan(0);
     expect(screen.queryByText('Match this water')).not.toBeInTheDocument();
   });
 });

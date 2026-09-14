@@ -2,6 +2,7 @@ id: doe-river
 name: Doe River
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-northeast-watauga
 gaugeIds:
   - "03485500"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 50
     max: 250
     unit: cfs
+idealFlowSource: editorial
 notes: A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks
   upper and lower sections in spring. Gentle gradient, easy wading, town access.
 officialSources:

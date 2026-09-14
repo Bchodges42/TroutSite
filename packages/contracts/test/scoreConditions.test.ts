@@ -26,13 +26,21 @@ describe('scoreConditions', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 15 })]);
     expect(result.value).toBe(90); // 80 flow base + 10 temperature bonus
     expect(result.reasons.join(' ')).toMatch(/within the ideal range/);
-    expect(result.reasons.join(' ')).toMatch(/ideal window/);
+    expect(result.reasons.join(' ')).toMatch(/11–19°C trout activity window/);
   });
 
   it('leaves the score unchanged for a marginal temperature', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 21 })]);
     expect(result.value).toBe(80);
     expect(result.reasons.join(' ')).toMatch(/marginal/);
+  });
+
+  it('uses the cited trout band edges: 11–19 optimal, 20 and 24 avoidance, 25 lethal', () => {
+    expect(scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 11 })]).value).toBe(90);
+    expect(scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 19 })]).value).toBe(90);
+    expect(scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 20 })]).value).toBe(80);
+    expect(scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 24 })]).value).toBe(50);
+    expect(scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 25 })]).value).toBe(0);
   });
 
   it('penalizes low flow proportionally to the deficit', () => {
@@ -82,8 +90,8 @@ describe('scoreConditions', () => {
 
   it('penalizes dangerously warm water', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 250, tempC: 26 })]);
-    expect(result.value).toBe(50); // 80 - 30
-    expect(result.reasons.join(' ')).toMatch(/dangerously warm/);
+    expect(result.value).toBe(0); // lethal clamp
+    expect(result.reasons.join(' ')).toMatch(/lethally warm/);
   });
 
   it('clamps the final score to 0', () => {

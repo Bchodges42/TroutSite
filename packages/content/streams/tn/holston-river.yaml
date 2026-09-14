@@ -2,6 +2,7 @@ id: holston-river
 name: Holston River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-pigeon-frenchbroad
 gaugeIds: []
 stockingProgram: false

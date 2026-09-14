@@ -2,6 +2,7 @@ id: cumberland-river
 name: Cumberland River
 stateId: TN
 waterbodyType: river
+display: featured
 regionId: tn-middle-nashville
 gaugeIds: []
 stockingProgram: false

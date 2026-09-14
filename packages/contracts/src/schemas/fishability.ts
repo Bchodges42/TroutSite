@@ -100,6 +100,39 @@ export const ActivityComponentSchema = z.object({
 });
 export type ActivityComponent = z.infer<typeof ActivityComponentSchema>;
 
+/** Flow movement is transparent context, not a positive activity factor. */
+export const FlowTrendContextSchema = z.object({
+  direction: z.enum(['rising', 'falling', 'stable']),
+  magnitude: z.number().min(0),
+  confidence: z.literal('derived'),
+  evidenceUrl: z.string().url(),
+  observedAt: IsoDateTimeSchema,
+  label: z.string().min(1),
+});
+export type FlowTrendContext = z.infer<typeof FlowTrendContextSchema>;
+
+/** Area-level weather context shown on a water detail; never a score factor. */
+export const PressureContextSchema = z.object({
+  direction: z.enum(['rising', 'falling', 'stable']),
+  deltaHpa: z.number(),
+  station: z.string().min(1),
+  confidence: z.literal('derived'),
+  evidenceUrl: z.string().url(),
+  observedAt: IsoDateTimeSchema,
+  label: z.string().min(1),
+});
+export type PressureContext = z.infer<typeof PressureContextSchema>;
+
+/** Recent gauge rain context; zero is a valid dry observation. */
+export const RainContextSchema = z.object({
+  precipitationMm: z.number().nonnegative(),
+  confidence: z.literal('measured'),
+  evidenceUrl: z.string().url(),
+  observedAt: IsoDateTimeSchema,
+  label: z.string().min(1),
+});
+export type RainContext = z.infer<typeof RainContextSchema>;
+
 /**
  * The activity outlook: a transparent weighted total (50 = neutral; each factor
  * visibly moves it) plus the ordered component rows. `components` is ordered
@@ -115,6 +148,7 @@ export const ActivityOutlookSchema = z
      *  (F9). Absent = the species has no sourced spawn window (or no fresh
      *  temperature) — never guessed from the calendar. */
     spawnState: SpawnStateSchema.optional(),
+    flowTrend: FlowTrendContextSchema.optional(),
   })
   .refine(
     (a) => a.components.length === 0 || Math.abs(a.components.reduce((s, c) => s + c.weight, 0) - 1) <= 0.01,
@@ -161,5 +195,7 @@ export const FishabilitySnapshotSchema = z.object({
   streamId: z.string().min(1),
   fetchedAt: IsoDateTimeSchema,
   bySpecies: z.record(SpeciesKeySchema, z.object({ comfort: FishabilityScoreSchema, activity: ActivityOutlookSchema })),
+  pressureContext: PressureContextSchema.optional(),
+  rainContext: RainContextSchema.optional(),
 });
 export type FishabilitySnapshot = z.infer<typeof FishabilitySnapshotSchema>;

@@ -2,8 +2,10 @@ id: tellico-lake
 name: Tellico Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-east-clinch
-gaugeIds: []
+gaugeIds:
+  - tva:TDTT1
 stockingProgram: false
 idealFlow: []
 targetSpecies:
@@ -14,6 +16,35 @@ targetSpecies:
   - bluegill
   - channel-catfish
   - striped-bass
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: striped-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
 notes: >-
   TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount
   counties, impounded by Tellico Dam at Lenoir City. Receives the Little
@@ -22,6 +53,7 @@ notes: >-
   through the dam and the connecting canal. TWRA maps the reservoir at
   15,788 ac. Aliases: Tellico Reservoir.
   TWRA's Tellico Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 officialSources:
   - label: TVA — Tellico Reservoir lake levels
     url: https://www.tva.com/environment/lake-levels

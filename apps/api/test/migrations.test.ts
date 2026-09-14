@@ -54,12 +54,20 @@ describe('migrations', () => {
     // + 007_evidence_runs (data-sources lane: water-evidence run log).
     // + 008_streams_target_species (F5 fishability, contract v2 / ADR 0007).
     // + 009_region_pressure (F8 NWS area-level barometric pressure).
-    expect(applied).toHaveLength(9);
+    // + 010_stream_authored_metadata (campaign display/source/season fields).
+    // + 011_release_schedules (TVA release/forecast context).
+    // + 012_precipitation_context (USGS 00045 rain context).
+    // + 013_region_precipitation (NWS rolling rain fallback).
+    expect(applied).toHaveLength(13);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
     expect(applied[7]!.name).toMatch(/^008_/);
     expect(applied[8]!.name).toMatch(/^009_/);
+    expect(applied[9]!.name).toMatch(/^010_/);
+    expect(applied[10]!.name).toMatch(/^011_/);
+    expect(applied[11]!.name).toMatch(/^012_/);
+    expect(applied[12]!.name).toMatch(/^013_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

@@ -1,0 +1,5 @@
+[
+  { "Day": "09/13/2026", "AverageInflow": "572", "MidnightElevation": 1011.49, "AverageOutflow": "1,962" },
+  { "Day": "09/14/2026", "AverageInflow": 600, "MidnightElevation": "1011.55", "AverageOutflow": "2,100" },
+  { "Day": "09/15/2026", "MidnightElevation": 1011.60, "AverageOutflow": 0 }
+]

@@ -13,9 +13,14 @@ interface StreamRow {
   state_id: string;
   waterbody_type: string;
   region_id: string;
+  display: string | null;
   gauge_ids: string;
   stocking_program: number;
   ideal_flow: string;
+  ideal_flow_source: string | null;
+  season_months: string | null;
+  season_kind: string | null;
+  species_evidence: string | null;
   notes: string | null;
   official_sources: string;
   species: string | null;
@@ -38,13 +43,17 @@ interface ShopRow {
  */
 export function seedContent(db: Db, contentDir: string): SeedResult {
   const insertStream = db.prepare(`
-    INSERT INTO streams (id, name, state_id, waterbody_type, region_id, gauge_ids,
-                         stocking_program, ideal_flow, notes, official_sources, species, target_species)
-    VALUES (@id, @name, @state_id, @waterbody_type, @region_id, @gauge_ids,
-            @stocking_program, @ideal_flow, @notes, @official_sources, @species, @target_species)
+    INSERT INTO streams (id, name, state_id, waterbody_type, region_id, display, gauge_ids,
+                         stocking_program, ideal_flow, ideal_flow_source, season_months, season_kind,
+                         species_evidence, notes, official_sources, species, target_species)
+    VALUES (@id, @name, @state_id, @waterbody_type, @region_id, @display, @gauge_ids,
+            @stocking_program, @ideal_flow, @ideal_flow_source, @season_months, @season_kind,
+            @species_evidence, @notes, @official_sources, @species, @target_species)
     ON CONFLICT(id) DO UPDATE SET
       name=@name, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
-      gauge_ids=@gauge_ids, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
+      display=@display, gauge_ids=@gauge_ids, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
+      ideal_flow_source=@ideal_flow_source, season_months=@season_months, season_kind=@season_kind,
+      species_evidence=@species_evidence,
       notes=@notes, official_sources=@official_sources, species=@species, target_species=@target_species
   `);
   const insertShop = db.prepare(`
@@ -70,9 +79,14 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
       state_id: s.stateId,
       waterbody_type: s.waterbodyType,
       region_id: s.regionId,
+      display: s.display ?? null,
       gauge_ids: JSON.stringify(s.gaugeIds),
       stocking_program: s.stockingProgram ? 1 : 0,
       ideal_flow: JSON.stringify(s.idealFlow),
+      ideal_flow_source: s.idealFlowSource ?? null,
+      season_months: s.seasonMonths ? JSON.stringify(s.seasonMonths) : null,
+      season_kind: s.seasonKind ?? null,
+      species_evidence: s.speciesEvidence ? JSON.stringify(s.speciesEvidence) : null,
       notes: s.notes ?? null,
       official_sources: JSON.stringify(s.officialSources),
       species: s.species ?? null,

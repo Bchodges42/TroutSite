@@ -2,12 +2,15 @@ id: watauga-river-wilbur-reach
 name: Watauga River (Watauga Dam to Wilbur Lake)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: false
 species: trout
 fishery: tailwater
 idealFlow: []
+seasonMonths: [3, 4, 5, 6, 7 ]
+seasonKind: programmatic
 notes: >-
   The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS
   03483950 below-dam gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600)

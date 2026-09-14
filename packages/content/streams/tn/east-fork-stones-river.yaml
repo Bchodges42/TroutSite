@@ -2,6 +2,7 @@ id: east-fork-stones-river
 name: East Fork Stones River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03427500"
@@ -12,6 +13,7 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
+idealFlowSource: editorial
 notes: The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s
   stocking dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau
   headwaters.

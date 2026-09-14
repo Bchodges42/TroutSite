@@ -2,6 +2,7 @@ id: little-pigeon-river
 name: Little Pigeon River (Sevierville reach)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-smokies
 gaugeIds:
   - "03470000"
@@ -11,6 +12,7 @@ idealFlow:
   - min: 100
     max: 500
     unit: cfs
+idealFlowSource: editorial
 notes: A consistent trout water below the Smokies — TWRA stocks the Sevierville reach TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources).
   regularly (confirmed by the owner against local knowledge, September 2026, supplementing
   the TWRA dataset, which does not list the reach), and the upper park reaches hold wild

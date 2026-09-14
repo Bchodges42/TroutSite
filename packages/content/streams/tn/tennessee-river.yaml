@@ -2,12 +2,11 @@ id: tennessee-river
 name: Tennessee River
 stateId: TN
 waterbodyType: river
+display: featured
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-targetSpecies:
-  - smallmouth-bass
 notes: >-
   One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within
   Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424)

@@ -173,7 +173,7 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     expect(view.troutApplicability).toBe('seasonal-likely-absent');
     expect(view.displayMetric).toBe('unassessed');
     expect(view.confidence).toBe('low');
-    expect(seasonalChipText(view)).toBe('Winter program — out of season');
+    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — out of season');
     expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Out of season');
   });
 
@@ -181,7 +181,7 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout', 1);
     expect(view.troutApplicability).toBe('seasonal-uncertain');
     expect(view.displayMetric).toBe('unassessed');
-    expect(seasonalChipText(view)).toBe('Winter program — seasonal fishery');
+    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — seasonal fishery');
     expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Seasonal');
   });
 

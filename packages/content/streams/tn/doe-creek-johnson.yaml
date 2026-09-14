@@ -2,6 +2,7 @@ id: doe-creek-johnson
 name: Doe Creek (Johnson County)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 5
     max: 50
     unit: cfs
+idealFlowSource: editorial
 notes: Not to be confused with Carter County’s Doe River — this is the TWRA spring-stocked
   Johnson County creek. Pocket water with roadside access.
 officialSources:

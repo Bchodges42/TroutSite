@@ -2,6 +2,7 @@ id: hatchie-river
 name: Hatchie River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false

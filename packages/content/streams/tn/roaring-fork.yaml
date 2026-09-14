@@ -2,6 +2,7 @@ id: roaring-fork
 name: Roaring Fork
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 10
     max: 80
     unit: cfs
+idealFlowSource: editorial
 notes: Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and
   brook trout, with TWRA listing spring stocking for the Roaring Fork area. No gauge; treat
   flows as rain events.

@@ -2,6 +2,7 @@ id: paris-city-park-lake
 name: Paris City Park
 stateId: TN
 waterbodyType: lake
+display: reference
 regionId: tn-west
 gaugeIds: []
 stockingProgram: true
@@ -9,6 +10,8 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
+seasonMonths: [11, 12, 1, 2, 3 ]
+seasonKind: programmatic
 notes: >-
   TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the
   cold months only — the fish do not hold over summer. TWRA lists the site as Paris City

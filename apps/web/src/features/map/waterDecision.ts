@@ -28,6 +28,7 @@ export type WaterDecisionView = {
     | 'seasonal-likely-absent'
     | 'not-trout'
     | 'unknown';
+  seasonKind?: 'regulatory' | 'programmatic';
   displayMetric: 'trout-condition' | 'fishability' | 'unassessed';
   fishability?: 'good' | 'fair' | 'poor' | 'unknown';
   confidence: 'high' | 'medium' | 'low';
@@ -52,15 +53,9 @@ export type SpeciesMode = 'trout' | 'all';
  *   - confirmed trout waters with a real assessment render `trout-condition`.
  *   - confirmed trout waters without one render `unassessed` — a missing
  *     assessment is never presented as an assessment.
- *   - trout waters authored `yearRound: false` are SEASONAL (T1-18/19): the
- *     catalog documents a winter/cold-months program (see beech-lake.yaml),
- *     so applicability follows the selected month. The catalog carries the
- *     fact "not year-round" but no authored month window; the adapter treats
- *     Nov–Mar as the winter window (conservative, never claims presence in
- *     summer). Outside it the water is `seasonal-likely-absent`; inside it
- *     (or with no month given) `seasonal-uncertain`. A seasonal water never
- *     wears the trout-condition metric — a July "Good" trout score on a
- *     winter-only pond is exactly the incoherence this state exists to stop.
+ *   - authored seasonMonths are the only calendar window used for seasonal
+ *     applicability. Legacy yearRound:false rows retain the conservative
+ *     Nov–Mar fallback until they are authored.
  */
 export function toWaterDecisionView(
   feature: Pick<
@@ -75,11 +70,13 @@ export function toWaterDecisionView(
   const speciesUnknown = feature.species == null;
   const assessed = feature.status !== 'no-data' && feature.score !== null;
   const reasons = feature.snapshot?.score.reasons ?? [];
-  // Winter window for yearRound:false programs. 1-based months.
-  const winterMonth = month === undefined || [11, 12, 1, 2, 3].includes(month);
+  // 1-based months; authored windows carry their regulatory/programmatic kind.
+  const seasonMonths = feature.stream.seasonMonths ?? (feature.stream.yearRound === false ? [11, 12, 1, 2, 3] : undefined);
+  const seasonKind = feature.stream.seasonKind ?? (feature.stream.yearRound === false ? 'programmatic' : undefined);
+  const inSeason = month === undefined || seasonMonths === undefined || seasonMonths.includes(month);
   const seasonal =
-    feature.species === 'trout' && feature.stream.yearRound === false
-      ? winterMonth
+    feature.species === 'trout' && seasonMonths !== undefined
+      ? inSeason
         ? ('seasonal-uncertain' as const)
         : ('seasonal-likely-absent' as const)
       : null;
@@ -107,6 +104,7 @@ export function toWaterDecisionView(
           : 'exclude'
         : 'include',
     troutApplicability,
+    ...(seasonal ? { seasonKind } : {}),
     // Only a CONFIRMED, in-season trout water with a real assessment may wear
     // the trout metric; all-fish mode may wear the FOCUS species' real
     // fishability. Unknown species and out-of-season waters never borrow a
@@ -130,11 +128,11 @@ export function toWaterDecisionView(
 }
 
 /** The catalog's seasonal fact, phrased for the surface the visitor is on. */
-export function seasonalChipText(view: Pick<WaterDecisionView, 'troutApplicability'>): string | null {
+export function seasonalChipText(view: Pick<WaterDecisionView, 'troutApplicability' | 'seasonKind'>): string | null {
   if (view.troutApplicability === 'seasonal-likely-absent')
-    return 'Winter program — out of season';
+    return view.seasonKind === 'regulatory' ? 'REGULATORY — out of season' : 'PROGRAMMATIC — out of season';
   if (view.troutApplicability === 'seasonal-uncertain')
-    return 'Winter program — seasonal fishery';
+    return view.seasonKind === 'regulatory' ? 'REGULATORY — seasonal fishery' : 'PROGRAMMATIC — seasonal fishery';
   return null;
 }
 

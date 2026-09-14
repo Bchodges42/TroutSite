@@ -8,6 +8,7 @@ import {
   HatchChartSchema,
   ShopReportSchema,
   ShopSchema,
+  ReleaseScheduleSchema,
   SpeciesKeySchema,
   StreamSchema,
   StockingEventSchema,
@@ -24,12 +25,13 @@ import type {
   Stream,
   StockingEvent,
   WaterEvidence,
+  ReleaseSchedule,
 } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { latestReadings } from '../ingest/usgs.js';
 import { jobHealthy } from '../jobs/run.js';
 import { writeJsonAtomic } from '../lib/jsonFile.js';
-import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type PressureInfo, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
+import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type PressureInfo, type RainInfo, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
 
 export interface BuildOptions {
   db: Db;
@@ -56,9 +58,14 @@ interface StreamRow {
   state_id: string;
   waterbody_type: string;
   region_id: string;
+  display: string | null;
   gauge_ids: string;
   stocking_program: number;
   ideal_flow: string;
+  ideal_flow_source: string | null;
+  season_months: string | null;
+  season_kind: string | null;
+  species_evidence: string | null;
   species: string | null;
   target_species: string | null;
   notes: string | null;
@@ -94,12 +101,17 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       stateId: r.state_id,
       waterbodyType: r.waterbody_type,
       regionId: r.region_id,
+      ...(r.display ? { display: r.display as 'featured' | 'standard' | 'reference' } : {}),
       gaugeIds: JSON.parse(r.gauge_ids) as string[],
       stockingProgram: r.stocking_program === 1,
       idealFlow: JSON.parse(r.ideal_flow),
+      ...(r.ideal_flow_source ? { idealFlowSource: r.ideal_flow_source as 'editorial' | 'official' | 'measured' | 'derived' } : {}),
+      ...(r.season_months ? { seasonMonths: JSON.parse(r.season_months) } : {}),
+      ...(r.season_kind ? { seasonKind: r.season_kind as 'regulatory' | 'programmatic' } : {}),
       ...(r.notes ? { notes: r.notes } : {}),
       ...(r.species ? { species: r.species as 'trout' | 'warmwater' } : {}),
       ...(r.target_species ? { targetSpecies: JSON.parse(r.target_species) } : {}),
+      ...(r.species_evidence ? { speciesEvidence: JSON.parse(r.species_evidence) } : {}),
       officialSources: JSON.parse(r.official_sources),
     }),
   );
@@ -160,6 +172,7 @@ export interface SnapshotResult {
   hatchCharts: number;
   contentPack: boolean;
   evidenceWaters: number | null;
+  releaseSchedules: number;
   warnings: string[];
 }
 
@@ -190,7 +203,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
 
   // ── v1/conditions/latest.json (ConditionSnapshot[]) ────────────────────────
   const gaugesOk = jobHealthy(db, 'gauges');
-  const readings = latestReadings(db);
+  const readings = latestReadings(db, now.getTime());
   const nextExpectedUpdate = new Date(now.getTime() + (gaugesOk ? conditionsTtl : 0)).toISOString();
   const fetchedAt = now.toISOString();
   const conditions: ConditionSnapshot[] = streams.map((s) => {
@@ -212,9 +225,8 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   // targetSpecies emit nothing. Bands come from the content pack's species.json
   // (F2, cited values — high-side-only ladders per the ADR Stage 3 amendment);
   // species whose warm-side values are not fully sourced emit an honest
-  // assessed:false row instead of a guess. Live activity carries exactly one
-  // factor today (water temperature); flow-trend/pressure/spawn join as their
-  // sources land (F8/F9).
+  // assessed:false row instead of a guess. Activity components are emitted only
+  // when their source and confidence are available; they never imply missing data.
   const fishabilityWaters = emitFishability(db, { streams, readings, v1Dir, packDir: opts.contentPackDir, now, files, warnings });
 
   // ── v1/stocking/{state}.json (StockingEvent[]) ─────────────────────────────
@@ -318,6 +330,21 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     warnings.push('no evidence_runs yet — /v1/evidence/waters.json not regenerated (run the evidence job)');
   }
 
+  // ── v1/release-schedule/{waterId}.json (TVA context, never a score factor) ──
+  const releaseDir = join(v1Dir, 'release-schedule');
+  const releaseRows = db
+    .prepare('SELECT water_id, payload FROM release_schedules ORDER BY water_id')
+    .all() as { water_id: string; payload: string }[];
+  const releaseIds: string[] = [];
+  for (const row of releaseRows) {
+    const schedule = ReleaseScheduleSchema.parse(JSON.parse(row.payload)) as ReleaseSchedule;
+    const p = join(releaseDir, `${row.water_id}.json`);
+    writeJsonAtomic(p, schedule);
+    files.push(p);
+    releaseIds.push(row.water_id);
+  }
+  pruneJsonFiles(releaseDir, releaseIds, files);
+
   // ── v1/hatch/{regionId}/{month}.json + content/{taxa,patterns}.json ────────
   // Both come from the built content pack (Role 4): hatch charts are already in the
   // HatchChart snapshot shape; taxa/patterns are re-emitted as the bare arrays the
@@ -384,6 +411,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     hatchCharts,
     contentPack,
     evidenceWaters,
+    releaseSchedules: releaseRows.length,
     warnings,
   };
 }
@@ -437,34 +465,62 @@ function emitFishability(
   }
 
   const fishDir = join(ctx.v1Dir, 'fishability');
-  // F8 area pressure: fresh rows only at read time (the provider refuses stale
-  // rows on write, but time passes between jobs — re-checked in the emitter).
+  // Pressure is an area-level context row only; it never enters the activity
+  // total or any comfort score.
   const pressureByRegion = new Map<string, PressureInfo>();
+  const rainByRegion = new Map<string, RainInfo>();
   try {
-    const rows = db.prepare('SELECT region_id, observed_at, pressure_hpa, trend_hpa_3h, station FROM region_pressure').all() as {
+    const rows = db.prepare('SELECT region_id, observed_at, trend_hpa_3h, trend_direction, station FROM region_pressure').all() as {
       region_id: string;
       observed_at: string;
-      pressure_hpa: number;
       trend_hpa_3h: number | null;
+      trend_direction: 'rising' | 'falling' | 'stable';
       station: string;
     }[];
     for (const r of rows) {
-      if (r.trend_hpa_3h === null) continue; // no derivable trend — no component
+      if (r.trend_hpa_3h === null) continue;
       pressureByRegion.set(r.region_id, {
         deltaHpa: r.trend_hpa_3h,
+        station: r.station,
+        observedAt: r.observed_at,
+        direction: r.trend_direction,
+      });
+    }
+  } catch {
+    // Table missing (pre-009 DB) — pressure context is honestly absent.
+  }
+  try {
+    const rows = db.prepare('SELECT region_id, observed_at, precipitation_mm, station FROM region_precipitation').all() as {
+      region_id: string;
+      observed_at: string;
+      precipitation_mm: number;
+      station: string;
+    }[];
+    for (const r of rows) {
+      if (ctx.now.getTime() - Date.parse(r.observed_at) > 6 * 60 * 60_000) continue;
+      rainByRegion.set(r.region_id, {
+        precipitationMm: r.precipitation_mm,
         station: r.station,
         observedAt: r.observed_at,
       });
     }
   } catch {
-    // Table missing (pre-009 DB) — pressure is honestly absent.
+    // Table missing (pre-013 DB) — region rain fallback is honestly absent.
   }
 
   let emitted = 0;
   for (const stream of scoring) {
     const streamReadings =
       stream.gaugeIds.length > 0 ? ctx.readings.filter((r) => stream.gaugeIds.includes(r.gaugeId)) : [];
-    const snapshot = buildFishabilitySnapshot(stream, streamReadings, bandsBySpecies, ctx.now.getTime(), spawnBySpecies, pressureByRegion);
+    const snapshot = buildFishabilitySnapshot(
+      stream,
+      streamReadings,
+      bandsBySpecies,
+      ctx.now.getTime(),
+      spawnBySpecies,
+      pressureByRegion.get(stream.regionId),
+      rainByRegion.get(stream.regionId),
+    );
     const p = join(fishDir, `${stream.id}.json`);
     writeJsonAtomic(p, snapshot);
     ctx.files.push(p);
@@ -506,6 +562,25 @@ function pruneStateFiles(dir: string, keepStates: string[], files: string[]): vo
     // share the prune lifecycle of their state.
     const stateId = f.slice(0, -'.json'.length).replace(/-recent$/, '');
     if (!keepStates.includes(stateId)) {
+      const p = join(dir, f);
+      rmSync(p);
+      files.push(`${p} (removed)`);
+    }
+  }
+}
+
+/** Remove per-water context files that no longer have a persisted source row. */
+function pruneJsonFiles(dir: string, keepIds: string[], files: string[]): void {
+  let existing: string[];
+  try {
+    existing = readdirSync(dir);
+  } catch {
+    return;
+  }
+  for (const f of existing) {
+    if (!f.endsWith('.json')) continue;
+    const id = f.slice(0, -'.json'.length);
+    if (!keepIds.includes(id)) {
       const p = join(dir, f);
       rmSync(p);
       files.push(`${p} (removed)`);

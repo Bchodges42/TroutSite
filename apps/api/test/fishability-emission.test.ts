@@ -126,7 +126,7 @@ describe('F5 fishability emission', () => {
       value: 30,
       weight: 0.3,
       contribution: -6,
-      confidence: 'derived',
+      confidence: 'heuristic',
       evidenceUrl: 'https://littleriveroutfitters.com/pages/fishing/smallmouth-reproduction.html',
     });
     expect(smallmouth.activity.components[1]!.label).toMatch(/post-spawn/);
@@ -172,7 +172,7 @@ describe('F5 fishability emission', () => {
     smallmouth = readSmallmouth();
     expect(smallmouth.activity.spawnState).toBe('SPAWNING');
     expect(smallmouth.activity.components[1]).toMatchObject({ value: 50, contribution: 0 });
-    expect(smallmouth.activity.components[1]!.label).toBe('On beds — handle and release quickly');
+    expect(smallmouth.activity.components[1]!.label).toBe('On beds — handle and release quickly (heuristic estimate)');
     // Its own contribution is 0 — neutral is asserted on the component above.
 
     // POST_SPAWN shoulder (21.1 < 22 ≤ 25.1): reduced value 30.
@@ -200,7 +200,7 @@ describe('F5 fishability emission', () => {
     return snapshot.bySpecies['smallmouth-bass']!;
   }
 
-  it('pressure-trend component: falling area pressure is positive, hard rise negative, with the area-level caveat', () => {
+  it('pressure remains context-only and never changes the weighted activity outlook', () => {
     setTargetSpecies('watauga-river', ['smallmouth-bass']);
     const pack = writeSpeciesPack();
     // The fixture stream's region (tn-east-tailwaters) is fixture-only — the
@@ -211,27 +211,23 @@ describe('F5 fishability emission', () => {
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
     );
 
-    // Falling 2.5 hPa/3h (synthetic): value 75, contribution +3.75 (w 0.15).
+    // A pressure row may still be present for the detail context, but it must
+    // not become a weighted activity factor (D11 controlled null result).
     insertReading(24); // comfort 90; spawn state at 24 °C: POST_SPAWN shoulder
     upsert.run(regionId, new Date(NOW_MS - 30 * 60_000).toISOString(), NOW.toISOString(), 1014.5, -2.5, 'falling', 'KTRI');
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
     let smallmouth = readSmallmouth();
-    expect(smallmouth.activity.components).toHaveLength(3);
-    const falling = smallmouth.activity.components.find((c) => c.factor === 'pressure-trend')!;
-    expect(falling).toMatchObject({ value: 75, weight: 0.15, contribution: 3.8, confidence: 'derived' }); // 3.75 rounded to 0.1
-    expect(falling.evidenceUrl).toBe('https://www.weather.gov/wrh/timeseries?site=KTRI');
-    expect(falling.label).toMatch(/Area pressure/i);
-    expect(falling.label).toMatch(/not this water/);
-    // 50 + 0.6×(90−50) + 0.25×(30−50) + 0.15×(75−50) = 72.75 → 73.
-    expect(smallmouth.activity.total).toBe(73);
+    expect(smallmouth.activity.components).toHaveLength(2);
+    expect(smallmouth.activity.components.some((c) => c.factor === 'pressure-trend')).toBe(false);
+    expect(smallmouth.activity.total).toBe(72);
 
-    // Hard rise +4 hPa/3h: value 10, contribution −6 (w 0.15).
+    // A hard rise is likewise omitted from the weighted result.
     env.db.prepare('DELETE FROM region_pressure').run();
     upsert.run(regionId, new Date(NOW_MS - 30 * 60_000).toISOString(), NOW.toISOString(), 1018.5, 4, 'rising', 'KTRI');
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, contentPackDir: pack, now: NOW });
     smallmouth = readSmallmouth();
-    const rising = smallmouth.activity.components.find((c) => c.factor === 'pressure-trend')!;
-    expect(rising).toMatchObject({ value: 10, contribution: -6 });
+    expect(smallmouth.activity.components.some((c) => c.factor === 'pressure-trend')).toBe(false);
+    expect(smallmouth.activity.total).toBe(72);
   }, 30_000);
 
   it('pressure component is omitted when the row is stale or absent, and weights stay normalized', () => {

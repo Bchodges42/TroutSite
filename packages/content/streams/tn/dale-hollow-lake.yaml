@@ -2,6 +2,7 @@ id: dale-hollow-lake
 name: Dale Hollow Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: true
@@ -15,6 +16,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
 notes: >-
   Reference waterbody from the Tennessee waterways inventory — the Obey River
   reservoir at the Kentucky line in Clay, Pickett, and Overton counties. TWRA stocks brown
@@ -22,6 +48,7 @@ notes: >-
   angler notes are still being prepared — check TWRA and local access areas in the
   meantime.
   TWRA's Dale Hollow Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  Live TWRA stocking composition lists rainbow trout; the repository snapshot says brown trout, so the composition remains an owner-review conflict as of 2026-09-14.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

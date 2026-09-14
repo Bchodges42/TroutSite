@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Db } from './db.js';
 import { parseInstantValues, runGaugesJob } from './ingest/usgs.js';
+import { parseWaterDataResponse } from './ingest/usgs-waterdata.js';
 import { runStockingJob } from './ingest/stockingJob.js';
 import { getAdapters } from './ingest/stocking/index.js';
 import { buildSnapshots } from './snapshots/build.js';
@@ -21,6 +22,8 @@ export interface PipelineConfig {
   contentPackDir: string;
   rawDir: string;
   userAgent: string;
+  usgsProvider: 'legacy' | 'waterdata';
+  usgsWaterDataApiKey?: string;
   fixturesDir: string;
 }
 
@@ -43,6 +46,8 @@ export function pipelineConfig(env: {
   TROUT_CONTENT_DIR?: string;
   TROUT_RAW_DIR?: string;
   USGS_USER_AGENT?: string;
+  USGS_PROVIDER?: 'legacy' | 'waterdata';
+  USGS_WATERDATA_API_KEY?: string;
 }, fixturesDir?: string): PipelineConfig {
   const contentDir = resolve(REPO_ROOT, env.TROUT_CONTENT_DIR ?? 'packages/content');
   return {
@@ -50,6 +55,8 @@ export function pipelineConfig(env: {
     contentPackDir: resolve(contentDir, 'dist/pack'),
     rawDir: resolve(REPO_ROOT, env.TROUT_RAW_DIR ?? 'apps/api/data/raw'),
     userAgent: env.USGS_USER_AGENT ?? 'trout-local/0.1.0 (contact: set USGS_USER_AGENT in env)',
+    usgsProvider: env.USGS_PROVIDER ?? 'waterdata',
+    ...(env.USGS_WATERDATA_API_KEY ? { usgsWaterDataApiKey: env.USGS_WATERDATA_API_KEY } : {}),
     fixturesDir: fixturesDir ?? resolve(REPO_ROOT, 'apps/api/fixtures'),
   };
 }
@@ -96,6 +103,18 @@ export function dryRun(cfg: PipelineConfig): DryRunResult {
       observations += parseUsgsObservations(parsed).length;
     } catch (err) {
       errors.push(`USGS/${f}: ${(err as Error).message}`);
+    }
+  }
+
+  // Modern Water Data OGC-API fixtures are kept beside the legacy NWIS set so
+  // migration tests exercise both parsers without contacting the network.
+  for (const f of listFiles(join(cfg.fixturesDir, 'USGS-WATERDATA')).filter((x) => x.endsWith('.json'))) {
+    fixtureSets += 1;
+    try {
+      const parsed = JSON.parse(readFileSync(join(cfg.fixturesDir, 'USGS-WATERDATA', f), 'utf8'));
+      readings += parseWaterDataResponse(parsed).length;
+    } catch (err) {
+      errors.push(`USGS-WATERDATA/${f}: ${(err as Error).message}`);
     }
   }
 
@@ -200,10 +219,18 @@ export async function runJob(
 ): Promise<JobOutcome> {
   const now = opts.now ?? new Date();
   if (job === 'gauges') {
-    await runGaugesJob(db, { userAgent: cfg.userAgent });
+    await runGaugesJob(db, {
+      userAgent: cfg.userAgent,
+      provider: cfg.usgsProvider,
+      waterDataApiKey: cfg.usgsWaterDataApiKey,
+    });
     // Non-USGS gauge sources (TVA + USACE) into gauge_readings_raw — the same
     // lane, its own jobs_log row; build.ts still keys staleness on 'gauges'.
-    await runConditionsReadingsJob(db, { userAgent: cfg.userAgent });
+    await runConditionsReadingsJob(db, {
+      userAgent: cfg.userAgent,
+      releaseSchedules: true,
+      includeReservoirs: true,
+    });
     const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     return { job, ok: true, detail: { ...snap, files: snap.files.length } };
   }

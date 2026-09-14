@@ -23,6 +23,7 @@
  */
 import {
   BugTaxonSchema,
+  FishabilitySnapshotSchema,
   FlyPatternSchema,
   GaugeReadingSchema,
   HatchChartSchema,
@@ -118,6 +119,28 @@ const streamList = z.array(StreamSchema).parse(streamsJson);
 const stockingList = z.array(StockingEventSchema).parse(stockingJson);
 const shopList = z.array(ShopSchema).parse(shopsJson);
 const reportList = z.array(ShopReportSchema).parse(reportsJson);
+
+/** Fishability is an opt-in built artifact; do not promise it merely because
+ * a water has a legacy trout conditions score. */
+const fishabilityIds = new Set<string>();
+if (DATA_DIR) {
+  const fishDir = join(resolve(DATA_DIR), 'v1', 'fishability');
+  if (existsSync(fishDir)) {
+    for (const file of readdirSync(fishDir).filter((f) => f.endsWith('.json'))) {
+      const parsed = FishabilitySnapshotSchema.parse(
+        JSON.parse(readFileSync(join(fishDir, file), 'utf8')),
+      );
+      if (Object.keys(parsed.bySpecies).length > 0) fishabilityIds.add(parsed.streamId);
+    }
+  }
+} else {
+  const fixture = FIXTURE_FILES['./fixtures/fishability.tn.json'];
+  if (fixture !== undefined) {
+    for (const parsed of z.array(FishabilitySnapshotSchema).parse(JSON.parse(fixture))) {
+      if (Object.keys(parsed.bySpecies).length > 0) fishabilityIds.add(parsed.streamId);
+    }
+  }
+}
 
 let snapshots: ConditionSnapshot[];
 let snapshotSource: { snapshots: { streamId: string; readings: GaugeReading[] }[] } | undefined;
@@ -248,6 +271,10 @@ export function getSnapshots(): ConditionSnapshot[] {
 
 export function getSnapshot(streamId: string): ConditionSnapshot | undefined {
   return snapshots.find((s) => s.streamId === streamId);
+}
+
+export function hasFishabilitySnapshot(streamId: string): boolean {
+  return fishabilityIds.has(streamId);
 }
 
 export function getStockingEvents(stateId = 'TN'): StockingEvent[] {

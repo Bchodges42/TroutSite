@@ -2,11 +2,14 @@ id: edmund-orgill-lake
 name: Edmund-Orgill Park
 stateId: TN
 waterbodyType: lake
+display: reference
 regionId: tn-west
 gaugeIds: []
 stockingProgram: true
 species: trout
 idealFlow: []
+seasonMonths: [11, 12, 1, 2, 3 ]
+seasonKind: programmatic
 notes: >-
   TWRA winter put-and-take lake in Millington (Shelby County). Stocked with rainbow trout in
   the cold months only — the fish do not hold over summer. Check the TWRA schedule for the

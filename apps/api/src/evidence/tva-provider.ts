@@ -1,5 +1,6 @@
 import { WaterObservationSchema } from '@trout/contracts';
 import type { WaterObservation } from '@trout/contracts';
+import type { ReleaseBlock, ReleaseForecastRow } from '@trout/contracts';
 
 /**
  * TVA lake-info REST API parser (data-sources lane).
@@ -55,8 +56,9 @@ export function parseTvaTimestamp(day: string, time: string): string | null {
  * Parse TVA's published numbers: "1,012.93" → 1012.93, "8,400" → 8400.
  * Blank/dash/garbage → undefined (missing stays missing; zero is kept when real).
  */
-export function parseTvaNumber(raw: string | undefined): number | undefined {
+export function parseTvaNumber(raw: string | number | undefined): number | undefined {
   if (raw === undefined) return undefined;
+  if (typeof raw === 'number') return Number.isFinite(raw) ? raw : undefined;
   const cleaned = raw.replace(/,/g, '').trim();
   if (cleaned.length === 0 || cleaned === '-' || cleaned === '--') return undefined;
   const n = Number.parseFloat(cleaned);
@@ -77,9 +79,9 @@ function metricFor(field: keyof TvaRow): WaterObservation['metric'] | undefined 
 export interface TvaRow {
   Day?: string;
   Time?: string;
-  ReservoirElevation?: string;
-  TailwaterElevation?: string;
-  AverageHourlyDischarge?: string;
+  ReservoirElevation?: string | number;
+  TailwaterElevation?: string | number;
+  AverageHourlyDischarge?: string | number;
 }
 
 /**
@@ -162,4 +164,86 @@ export async function fetchTvaRows(locationId: string, opts: TvaFetchOptions): P
  */
 export async function fetchTvaObservations(locationId: string, opts: TvaFetchOptions): Promise<WaterObservation[]> {
   return parseTvaObservations(await fetchTvaRows(locationId, opts), { locationId });
+}
+
+export interface TvaReleaseRow {
+  Day?: string;
+  Time?: string;
+  Generators?: string | number;
+}
+
+/** Parse a TVA release row's "1 AM - 5 AM EDT" time without changing its precision. */
+export function parseTvaReleaseBlock(row: TvaReleaseRow): ReleaseBlock | null {
+  const day = row.Day?.trim() ?? '';
+  const time = row.Time?.trim() ?? '';
+  const match = /^(.*?)\s*-\s*(.*?)\s+(EST|EDT|CST|CDT)$/i.exec(time);
+  if (!match?.[1] || !match[2] || !match[3]) return null;
+  const timeZone = match[3].toUpperCase() as ReleaseBlock['timeZone'];
+  const startTime = match[1].trim();
+  const endTime = match[2].trim();
+  // Reuse the observed timestamp parser as the validation for each endpoint's
+  // 12-hour clock, then retain TVA's own human time labels in the contract.
+  if (!parseTvaTimestamp(day, `${startTime} ${timeZone}`) || !parseTvaTimestamp(day, `${endTime} ${timeZone}`)) return null;
+  const date = parseTvaTimestamp(day, `12 PM ${timeZone}`)?.slice(0, 10);
+  if (!date || row.Generators === undefined) return null;
+  const generators = String(row.Generators).trim();
+  if (!generators) return null;
+  return { date, startTime, endTime, timeZone, generators };
+}
+
+/** Pure parser for TVA generation-releases/{LocationID}; [] is a valid empty state. */
+export function parseTvaGenerationReleases(payload: unknown): ReleaseBlock[] {
+  if (!Array.isArray(payload)) return [];
+  return payload
+    .map((row) => (row && typeof row === 'object' ? parseTvaReleaseBlock(row as TvaReleaseRow) : null))
+    .filter((row): row is ReleaseBlock => row !== null);
+}
+
+export interface TvaPredictedRow {
+  Day?: string;
+  AverageInflow?: string | number;
+  MidnightElevation?: string | number;
+  AverageOutflow?: string | number;
+}
+
+/** Pure parser for TVA predicted-data/{LocationID}; missing fields stay missing. */
+export function parseTvaPredictedData(payload: unknown): ReleaseForecastRow[] {
+  if (!Array.isArray(payload)) return [];
+  return payload.flatMap((raw) => {
+    if (!raw || typeof raw !== 'object') return [];
+    const row = raw as TvaPredictedRow;
+    const dateMatch = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(row.Day?.trim() ?? '');
+    if (!dateMatch?.[1] || !dateMatch[2] || !dateMatch[3]) return [];
+    const date = `${dateMatch[3]}-${dateMatch[1].padStart(2, '0')}-${dateMatch[2].padStart(2, '0')}`;
+    const candidate = {
+      date,
+      ...(parseTvaNumber(row.AverageInflow) !== undefined ? { averageInflowCfs: parseTvaNumber(row.AverageInflow) } : {}),
+      ...(parseTvaNumber(row.MidnightElevation) !== undefined ? { midnightElevationFt: parseTvaNumber(row.MidnightElevation) } : {}),
+      ...(parseTvaNumber(row.AverageOutflow) !== undefined ? { averageOutflowCfs: parseTvaNumber(row.AverageOutflow) } : {}),
+    };
+    return Object.keys(candidate).length > 1 ? [candidate] : [];
+  });
+}
+
+export type TvaScheduleFetchOptions = TvaFetchOptions;
+
+async function fetchTvaJson<T>(path: string, opts: TvaScheduleFetchOptions): Promise<T> {
+  const doFetch = opts.fetchImpl ?? fetch;
+  const base = opts.baseUrl ?? TVA_API_BASE;
+  const res = await doFetch(`${base}/${path}`, {
+    headers: { 'User-Agent': opts.userAgent, Accept: 'application/json' },
+    signal: AbortSignal.timeout(opts.timeoutMs ?? 30_000),
+  });
+  if (!res.ok) throw new Error(`TVA request failed: HTTP ${res.status} for ${path}`);
+  return (await res.json()) as T;
+}
+
+export async function fetchTvaGenerationReleases(locationId: string, opts: TvaScheduleFetchOptions): Promise<ReleaseBlock[]> {
+  const payload = await fetchTvaJson<unknown>(`generation-releases/${encodeURIComponent(locationId)}`, opts);
+  return parseTvaGenerationReleases(payload);
+}
+
+export async function fetchTvaPredictedData(locationId: string, opts: TvaScheduleFetchOptions): Promise<ReleaseForecastRow[]> {
+  const payload = await fetchTvaJson<unknown>(`predicted-data/${encodeURIComponent(locationId)}`, opts);
+  return parseTvaPredictedData(payload);
 }

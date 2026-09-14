@@ -18,12 +18,14 @@ import { GaugeReadingSchema } from '@trout/contracts';
  */
 
 const USGS_IV_URL = 'https://waterservices.usgs.gov/nwis/iv/';
-const PARAM_CODES = ['00060', '00065', '00010'] as const;
+const PARAM_CODES = ['00060', '00065', '00010', '00300', '00045'] as const;
 
 export const USGS_METRIC_BY_PARAM: Record<string, WaterObservation['metric']> = {
   '00060': 'discharge-cfs',
   '00065': 'stage-ft',
   '00010': 'temperature-c',
+  '00300': 'dissolved-oxygen-mg-l',
+  '00045': 'precipitation-mm',
 };
 
 interface UsgsValueJson {
@@ -95,7 +97,8 @@ export function parseUsgsObservations(
     if (!latest) continue;
     const observedAt = normalizeTimestamp(latest.dateTime);
     if (observedAt === null) continue;
-    const value = parseMetricValue(latest.value);
+    const rawValue = parseMetricValue(latest.value);
+    const value = rawValue === undefined ? undefined : code === '00045' ? rawValue * 25.4 : rawValue;
     if (value === undefined) continue;
     // First source qualifier verbatim (USGS arrays like ["P"] → "P").
     const qualifier = latest.qualifiers?.find((q) => typeof q === 'string' && q.length > 0);

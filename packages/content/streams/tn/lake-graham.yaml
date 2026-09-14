@@ -2,6 +2,7 @@ id: lake-graham
 name: Lake Graham
 stateId: TN
 waterbodyType: lake
+display: reference
 regionId: tn-west
 gaugeIds: []
 stockingProgram: true
@@ -14,6 +15,25 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+seasonMonths: [11, 12, 1, 2, 3 ]
+seasonKind: programmatic
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    retrieved: 2026-09-13
 notes: >-
   TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in
   the cold months only — the fish do not hold over summer. Check the TWRA schedule for the

@@ -22,6 +22,8 @@ export const OBSERVATION_MAX_AGE_HOURS: Record<WaterObservation['metric'], numbe
   // NWS ASOS reports hourly (5-minute feeds exist); pressure also moves slowly,
   // but the provider already refuses rows older than its 3 h staleness window.
   'pressure-hpa': 6,
+  'dissolved-oxygen-mg-l': 24,
+  'precipitation-mm': 6,
 };
 
 export function observationAgeHours(obs: WaterObservation, nowMs: number): number {

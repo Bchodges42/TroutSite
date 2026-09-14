@@ -2,6 +2,7 @@ id: red-river-clarksville
 name: Red River (Montgomery County)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03436100"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 60
     max: 500
     unit: cfs
+idealFlowSource: editorial
 notes: TWRA winter-stocked reaches near Clarksville. Mud-prone watershed — check the Port Royal
   gauge after any rain.
 officialSources:

@@ -11,8 +11,8 @@ import type { Stream } from './schemas/stream.js';
  *  - Flow is the dominant factor. Base 80 when the newest cfs reading falls inside any of the
  *    stream's idealFlow ranges; outside a range the score falls off with the relative distance
  *    from the nearest range (floor 10). With no cfs but a stage height, base 50 (low confidence).
- *  - Temperature adjusts the flow score: +10 in the 6–20°C ideal window, 0 in the 2–6 / 20–24°C
- *    marginal bands, −15 near freezing (<2°C), −30 dangerously warm (>24°C).
+ *  - Temperature adjusts the flow score: +10 in the cited 11–19°C trout activity window, 0 in
+ *    the 2–11 / 19–24°C avoidance shoulders, −15 near freezing (<2°C), and a lethal clamp at ≥25°C.
  *  - Score is clamped to 0–100. A clamped 0 is a REAL assessment (e.g. floored
  *    flow minus the dangerous-heat penalty) and callers must render it as Poor;
  *    only `assessed: false` returns mean "no data". Empty/foreign-gauge readings
@@ -23,10 +23,11 @@ const FLOW_PENALTY_MAX = 70;
 const FLOW_SCORE_FLOOR = 10;
 const HEIGHT_ONLY_BASE = 50;
 
-const TEMP_IDEAL_MIN_C = 6;
-const TEMP_IDEAL_MAX_C = 20;
+const TEMP_IDEAL_MIN_C = 11;
+const TEMP_IDEAL_MAX_C = 19;
 const TEMP_MARGINAL_LOW_C = 2;
 const TEMP_MARGINAL_HIGH_C = 24;
+const TEMP_LETHAL_C = 25;
 const TEMP_IDEAL_BONUS = 10;
 const TEMP_COLD_PENALTY = 15;
 const TEMP_HEAT_PENALTY = 30;
@@ -140,15 +141,18 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
   const tempReading = byAge.find((r) => typeof r.tempC === 'number');
   if (tempReading && typeof tempReading.tempC === 'number') {
     const t = tempReading.tempC;
-    if (t >= TEMP_IDEAL_MIN_C && t <= TEMP_IDEAL_MAX_C) {
+    if (t >= TEMP_LETHAL_C) {
+      value = 0;
+      reasons.push(`Water temperature ${fmt(t)}°C is lethally warm — avoid stressing trout.`);
+    } else if (t >= TEMP_IDEAL_MIN_C && t <= TEMP_IDEAL_MAX_C) {
       value += TEMP_IDEAL_BONUS;
-      reasons.push(`Water temperature ${fmt(t)}°C is in the ideal window for trout activity.`);
+      reasons.push(`Water temperature ${fmt(t)}°C is in the cited 11–19°C trout activity window.`);
     } else if (t < TEMP_MARGINAL_LOW_C) {
       value -= TEMP_COLD_PENALTY;
       reasons.push(`Water temperature ${fmt(t)}°C is near freezing — fish are sluggish.`);
-    } else if (t > TEMP_MARGINAL_HIGH_C) {
+    } else if (t >= TEMP_MARGINAL_HIGH_C) {
       value -= TEMP_HEAT_PENALTY;
-      reasons.push(`Water temperature ${fmt(t)}°C is dangerously warm — avoid stressing trout.`);
+      reasons.push(`Water temperature ${fmt(t)}°C is in the 24–25°C avoidance band — avoid stressing trout.`);
     } else {
       reasons.push(`Water temperature ${fmt(t)}°C is marginal for trout activity.`);
     }

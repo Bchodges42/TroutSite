@@ -16,12 +16,14 @@ export function BrowsePage() {
   const fishabilityIndexQ = useFishabilityIndex(data.streams, focus, speciesMode === 'all');
   const fishabilityByWater = fishabilityIndexQ.data ?? {};
   const [search, setSearch] = useState('');
+  const [tier, setTier] = useState<'featured' | 'all'>('all');
   const rows = data.features
     .filter((f) =>
       (f.stream.name + ' ' + regionName(f.stream.regionId))
         .toLowerCase()
         .includes(search.toLowerCase()),
     )
+    .filter((f) => tier === 'all' || f.stream.display === 'featured')
     .sort((a, b) => a.stream.name.localeCompare(b.stream.name));
   return (
     <main className="page">
@@ -44,6 +46,20 @@ export function BrowsePage() {
           placeholder="River name or region"
         />
       </label>
+      <div className="mt-3 flex flex-wrap items-center gap-2" aria-label="Browse water tier">
+        <span className="text-sm font-semibold">Show</span>
+        {(['featured', 'all'] as const).map((option) => (
+          <button
+            key={option}
+            type="button"
+            className={'filter-chip' + (tier === option ? ' is-active' : '')}
+            aria-pressed={tier === option}
+            onClick={() => setTier(option)}
+          >
+            {option === 'featured' ? 'Featured waters' : 'All waters'}
+          </button>
+        ))}
+      </div>
       {data.isLoading ? (
         <p className="mt-6" role="status">
           Loading streams…

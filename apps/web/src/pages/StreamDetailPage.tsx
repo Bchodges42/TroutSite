@@ -39,6 +39,9 @@ export function StreamDetailPage() {
   const { streamId = '' } = useParams();
   const [params] = useSearchParams();
   const { settings } = useSettingsContext();
+  const decisionMode = params.get('species') === 'all' || params.get('species') === 'trout'
+    ? (params.get('species') as 'all' | 'trout')
+    : settings.speciesMode;
 
   const streamsQuery = useStreamsCatalog(60 * 24, true);
   const conditionsQuery = useSnapshotQuery(
@@ -113,6 +116,27 @@ export function StreamDetailPage() {
   const newestCfs = newestValue(readings, 'cfs');
   const newestTemp = newestValue(readings, 'tempC');
   const newestHeight = newestValue(readings, 'heightFt');
+  const newestReservoirLevel = newestValue(readings, 'reservoirLevelFt');
+  const newestDissolvedOxygen = newestValue(readings, 'dissolvedOxygenMgL');
+  const lakeLike = ['lake', 'pond'].includes(stream.waterbodyType);
+  const month = validMonth(params.get('month'));
+  const status = snapshot
+    ? statusForScore(snapshot.score.value, snapshot.readings.length > 0, snapshot.score.assessed)
+    : 'no-data';
+  const decision = snapshot
+    ? toWaterDecisionView(
+        {
+          stream,
+          status,
+          score: status !== 'no-data' ? snapshot.score.value : null,
+          snapshot,
+          species: stream.species,
+        },
+        decisionMode,
+        month,
+      )
+    : null;
+  const seasonal = decision ? seasonalChipText(decision) : null;
 
   return (
     <main className="page">
@@ -131,7 +155,8 @@ export function StreamDetailPage() {
             <DetailSeasonChip
               stream={stream}
               snapshot={snapshot}
-              month={validMonth(params.get('month'))}
+              month={month}
+              mode={decisionMode}
             />
           )}
         </div>
@@ -150,22 +175,17 @@ export function StreamDetailPage() {
             <dt>Now</dt>
             <dd data-testid="mobile-state">
               {(() => {
-                const s = snapshot
-                  ? statusForScore(
-                      snapshot.score.value,
-                      snapshot.readings.length > 0,
-                      snapshot.score.assessed,
-                    )
-                  : 'no-data';
+                if (seasonal?.includes('out of season')) return 'Out of season';
+                if (seasonal) return 'Seasonal';
                 return stream.species === 'warmwater'
                   ? 'Warmwater'
                   : stream.species == null
                     ? 'Unverified'
-                    : s === 'good'
+                    : status === 'good'
                       ? 'Good'
-                      : s === 'fair'
+                      : status === 'fair'
                         ? 'Fair'
-                        : s === 'poor'
+                        : status === 'poor'
                           ? 'Poor'
                           : 'Not assessed';
               })()}
@@ -184,14 +204,20 @@ export function StreamDetailPage() {
             <dd>{newestCfs != null ? formatFlow(newestCfs) : '—'}</dd>
           </div>
           <div>
-            <dt>Temp</dt>
+            <dt>{lakeLike ? 'Level' : 'Temp'}</dt>
             <dd>
-              {newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : '—'}
+              {lakeLike
+                ? newestReservoirLevel != null
+                  ? formatHeight(newestReservoirLevel)
+                  : '—'
+                : newestTemp != null
+                  ? formatTemp(newestTemp, settings.tempUnit)
+                  : '—'}
             </dd>
           </div>
         </dl>
         <Link
-          to={riverWorkflowUrl('/hatch-key', stream, validMonth(params.get('month')))}
+          to={riverWorkflowUrl('/hatch-key', stream, month)}
           className="primary-action mobile-next-action focus-ring"
         >
           Match this water <span aria-hidden="true">↗</span>
@@ -222,7 +248,6 @@ export function StreamDetailPage() {
                 snapshot.readings.length > 0,
                 snapshot.score.assessed,
               );
-              const month = validMonth(params.get('month'));
               const decision = toWaterDecisionView(
                 {
                   stream,
@@ -231,7 +256,7 @@ export function StreamDetailPage() {
                   snapshot,
                   species: stream.species,
                 },
-                'trout',
+                decisionMode,
                 month,
               );
               const troutMetric = decision.displayMetric === 'trout-condition';
@@ -245,10 +270,10 @@ export function StreamDetailPage() {
                         ? 'Warmwater — raw readings shown; the trout model does not apply'
                         : stream.species == null
                           ? 'Species unverified — the catalog does not document trout for this water; raw readings shown'
-                          : seasonal === 'Winter program — out of season'
-                            ? 'Winter program — out of season; raw readings shown'
+                          : seasonal?.includes('out of season')
+                            ? `${seasonal}; raw readings shown`
                             : seasonal
-                              ? 'Winter program — seasonal fishery'
+                              ? seasonal
                               : troutMetric
                                 ? 'Trout condition assessment'
                                 : 'Assessment unavailable in this snapshot'}
@@ -279,17 +304,26 @@ export function StreamDetailPage() {
                   : 'unknown'
               }
             />
-            <DataBadge
-              label="Water temp"
-              value={
-                newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : 'Not reported'
-              }
-              status={
-                stream.species === 'trout' && newestTemp != null
-                  ? statusForTemp(newestTemp)
-                  : 'unknown'
-              }
-            />
+            {['lake', 'pond'].includes(stream.waterbodyType) ? (
+              <DataBadge
+                label="Reservoir level"
+                value={newestReservoirLevel != null ? formatHeight(newestReservoirLevel) : 'Not reported'}
+                status="unknown"
+              />
+            ) : (
+              <DataBadge
+                label="Water temp"
+                value={newestTemp != null ? formatTemp(newestTemp, settings.tempUnit) : 'Not reported'}
+                status={stream.species === 'trout' && newestTemp != null ? statusForTemp(newestTemp) : 'unknown'}
+              />
+            )}
+            {newestDissolvedOxygen != null && (
+              <DataBadge
+                label="Dissolved oxygen"
+                value={`${formatNum(newestDissolvedOxygen)} mg/L${dissolvedOxygenConstraintText(newestDissolvedOxygen, stream.species) ? ` — ${dissolvedOxygenConstraintText(newestDissolvedOxygen, stream.species)}` : ''}`}
+                status="unknown"
+              />
+            )}
             {newestHeight != null && (
               <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />
             )}
@@ -299,7 +333,7 @@ export function StreamDetailPage() {
                 stream.idealFlow.length
                   ? stream.idealFlow
                       .map((r) => `${formatNum(r.min)}–${formatNum(r.max)}`)
-                      .join(', ') + ' cfs'
+                      .join(', ') + ' cfs' + (stream.idealFlowSource ? ` (typical range — ${stream.idealFlowSource})` : '')
                   : 'Not listed'
               }
               status="unknown"
@@ -408,19 +442,19 @@ export function StreamDetailPage() {
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
           className="secondary-action"
-          to={riverWorkflowUrl('/', stream, validMonth(params.get('month')))}
+          to={riverWorkflowUrl('/', stream, month)}
         >
           View on map
         </Link>
         <Link
           className="primary-action"
-          to={riverWorkflowUrl('/hatch-key', stream, validMonth(params.get('month')))}
+          to={riverWorkflowUrl('/hatch-key', stream, month)}
         >
           Match this water
         </Link>
         <Link
           className="secondary-action"
-          to={riverWorkflowUrl('/logbook', stream, validMonth(params.get('month')))}
+          to={riverWorkflowUrl('/logbook', stream, month)}
         >
           Log this water
         </Link>
@@ -464,10 +498,12 @@ function DetailSeasonChip({
   stream,
   snapshot,
   month,
+  mode,
 }: {
   stream: Stream;
   snapshot: ConditionSnapshot;
   month: number;
+  mode: 'trout' | 'all';
 }) {
   const hasData = snapshot.readings.length > 0;
   const status = statusForScore(snapshot.score.value, hasData, snapshot.score.assessed);
@@ -480,7 +516,7 @@ function DetailSeasonChip({
         snapshot,
         species: stream.species,
       },
-      'trout',
+      mode,
       month,
     ),
   );
@@ -506,6 +542,7 @@ function ReadingsTable({
             <th className="py-2 pr-3">Gauge</th>
             <th className="py-2 pr-3">Flow</th>
             <th className="py-2 pr-3">Stage</th>
+            <th className="py-2 pr-3">Reservoir level</th>
             <th className="py-2 pr-3">Temp</th>
             <th className="py-2">Observed</th>
           </tr>
@@ -527,6 +564,9 @@ function ReadingsTable({
                   {r.heightFt != null ? formatHeight(r.heightFt) : '—'}
                 </td>
                 <td className="py-2 pr-3">
+                  {r.reservoirLevelFt != null ? formatHeight(r.reservoirLevelFt) : '—'}
+                </td>
+                <td className="py-2 pr-3">
                   {r.tempC != null ? formatTemp(r.tempC, tempUnit) : '—'}
                 </td>
                 <td className="py-2" style={{ color: 'var(--trout-color-text-muted)' }}>
@@ -540,12 +580,23 @@ function ReadingsTable({
   );
 }
 
-function newestValue(readings: GaugeReading[], key: 'cfs' | 'tempC' | 'heightFt'): number | null {
+function newestValue(
+  readings: GaugeReading[],
+  key: 'cfs' | 'tempC' | 'heightFt' | 'reservoirLevelFt' | 'dissolvedOxygenMgL',
+): number | null {
   const sorted = [...readings]
     .filter((r) => typeof r[key] === 'number')
     .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
   const top = sorted[0];
   return top ? (top[key] as number) : null;
+}
+
+/** Gold Book constraint context: this is a warning about a floor, never a score bonus. */
+export function dissolvedOxygenConstraintText(value: number, species: Stream['species']): string | null {
+  if (species === 'warmwater' && value < 4) return 'below approx. 4.0 mg/L warmwater floor';
+  if (species === 'trout' && value < 2) return 'below 2.0 mg/L coldwater instantaneous floor';
+  if (species === 'trout' && value < 5) return 'below approx. 5.0 mg/L coldwater 7-day floor';
+  return null;
 }
 
 function statusForFlow(
@@ -564,8 +615,8 @@ function statusForFlow(
 }
 
 function statusForTemp(tempC: number): 'good' | 'fair' | 'poor' {
-  if (tempC >= 6 && tempC <= 20) return 'good';
-  if (tempC < 2 || tempC > 24) return 'poor';
+  if (tempC >= 11 && tempC <= 19) return 'good';
+  if (tempC < 2 || tempC >= 25) return 'poor';
   return 'fair';
 }
 

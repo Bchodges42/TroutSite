@@ -2,6 +2,7 @@ id: little-sequatchie-river
 name: Little Sequatchie River
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 30
     max: 200
     unit: cfs
+idealFlowSource: editorial
 notes: Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by
   Highland Rim standards.
 officialSources:

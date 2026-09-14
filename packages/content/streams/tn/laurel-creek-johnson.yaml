@@ -2,6 +2,7 @@ id: laurel-creek-johnson
 name: Laurel Creek (Johnson County)
 stateId: TN
 waterbodyType: creek
+display: standard
 regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: true
@@ -12,6 +13,7 @@ idealFlow:
   - min: 5
     max: 50
     unit: cfs
+idealFlowSource: editorial
 notes: Spring-stocked Johnson County creek listed by TWRA for both Johnson and Van Buren county
   access points. Small pocket water.
 officialSources:

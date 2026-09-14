@@ -2,6 +2,7 @@ id: pigeon-river
 name: Pigeon River (Hartford corridor)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-east-pigeon-frenchbroad
 gaugeIds:
   - "03461500"
@@ -11,6 +12,7 @@ idealFlow:
   - min: 300
     max: 1500
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is
   popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list

@@ -1,0 +1,5 @@
+[
+  { "Day": "09/13/2026", "Time": "1 AM - 5 AM EDT", "Generators": "0" },
+  { "Day": "09/13/2026", "Time": "5 AM - 9 AM EDT", "Generators": "1" },
+  { "Day": "09/14/2026", "Time": "5 PM - 9 PM EDT", "Generators": "2 or more" }
+]

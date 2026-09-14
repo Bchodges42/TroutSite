@@ -2,9 +2,9 @@ id: elk-river
 name: Elk River (Tims Ford tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-middle-duck-elk
 gaugeIds:
-  - "03580750"
   - "03578000"
   - "tva:TMFT1"
 stockingProgram: true
@@ -15,12 +15,13 @@ idealFlow:
   - min: 100
     max: 700
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+seasonKind: programmatic
 notes: A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and winter stocking in the
   lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham)
   bracket the fishery.
 officialSources:
-  - label: USGS Water Data — monitoring location 03580750
-    url: https://waterdata.usgs.gov/monitoring-location/03580750/
   - label: USGS Water Data — monitoring location 03578000
     url: https://waterdata.usgs.gov/monitoring-location/03578000/
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

@@ -2,6 +2,7 @@ id: fort-loudoun-lake
 name: Fort Loudoun Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false
@@ -14,6 +15,35 @@ targetSpecies:
   - bluegill
   - channel-catfish
   - striped-bass
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
+  - species: striped-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03499510/
+    retrieved: 2026-09-13
 notes: >-
   TVA reservoir at Knoxville across Knox, Blount, and Loudon counties,
   impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge,
@@ -22,6 +52,7 @@ notes: >-
   the canal); discharges into Watts Bar Lake. TVA lists the reservoir at
   14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.
   TWRA's Fort Loudoun Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 officialSources:
   - label: USGS Water Data — monitoring location 03499510
     url: https://waterdata.usgs.gov/monitoring-location/03499510/

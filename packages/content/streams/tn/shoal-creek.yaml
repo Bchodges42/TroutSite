@@ -2,6 +2,7 @@ id: shoal-creek
 name: Shoal Creek
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03588500"
@@ -13,6 +14,7 @@ idealFlow:
   - min: 60
     max: 400
     unit: cfs
+idealFlowSource: editorial
 notes: Lawrence County’s spring-fed Shoal Creek with TWRA spring stocking — the southern
   Highland Rim’s nicest surprise. Gauge at Iron City reads the groundwater mood.
 officialSources:

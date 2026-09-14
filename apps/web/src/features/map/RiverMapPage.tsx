@@ -322,6 +322,19 @@ export function RiverMapPage() {
     () => new Map(data.streams.flatMap((s) => (s.species ? [[s.id, s.species] as const] : []))),
     [data.streams.map((s) => s.id + (s.species ?? '')).join(',')],
   );
+  const labelDisplay = useMemo(
+    () => new Map(data.streams.map((s) => [s.id, s.display ?? 'standard'] as const)),
+    [data.streams.map((s) => s.id + (s.display ?? '')).join(',')],
+  );
+  const seasonalAbsentIds = useMemo(
+    () =>
+      new Set(
+        data.features
+          .filter((f) => toWaterDecisionView(f, 'trout', month).troutApplicability === 'seasonal-likely-absent')
+          .map((f) => f.stream.id),
+      ),
+    [data.features.map((f) => f.stream.id + (f.stream.seasonMonths ?? []).join('.')).join(','), month],
+  );
   // C1: "no assessed waters" has two different truths — the filter genuinely
   // matched nothing, or the condition feed itself has no coverage (every
   // record unassessed with the builder's stale stamp, or an empty feed). Only
@@ -714,6 +727,8 @@ export function RiverMapPage() {
           visibleIds={visibleIds}
           assessedIds={assessedIds}
           labelSpecies={labelSpecies}
+          labelDisplay={labelDisplay}
+          seasonalAbsentIds={seasonalAbsentIds}
           speciesMode={species}
           stillWaterIds={stillWaterIds}
           waterTypes={waterTypes}

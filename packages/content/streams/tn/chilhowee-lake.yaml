@@ -2,6 +2,7 @@ id: chilhowee-lake
 name: Chilhowee Lake
 stateId: TN
 waterbodyType: lake
+display: standard
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
@@ -16,6 +17,31 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tva.com/environment/lake-levels
+    retrieved: 2026-09-13
 notes: >-
   Reservoir on the Little Tennessee River in Blount County below the
   Chilhowee Mountains, impounded by Chilhowee Dam. Receives the Little
@@ -23,6 +49,7 @@ notes: >-
   reservoir with rainbow trout in February, November, and December.
   TWRA maps the reservoir at 1,738 ac.
   TWRA's Chilhowee Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  The live trout list carries rainbow trout while an older plan snapshot differs; use the live list with the dated conflict noted in the source record.
 officialSources:
   - label: TVA — reservoir information (verify lake levels officially)
     url: https://www.tva.com/environment/lake-levels

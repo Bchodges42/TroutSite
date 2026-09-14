@@ -2,9 +2,9 @@ id: clinch-river
 name: Clinch River (Norris tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-east-clinch
 gaugeIds:
-  - "03533000"
   - "tva:NRST1"
 stockingProgram: true
 species: trout
@@ -14,6 +14,9 @@ idealFlow:
   - min: 200
     max: 1500
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [3, 4, 5, 6, 7, 8 ]
+seasonKind: programmatic
 notes: >-
   One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below
   Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is
@@ -21,8 +24,6 @@ notes: >-
   the Clinch mouth at Kingston / Watts Bar Lake.
 
 officialSources:
-  - label: USGS Water Data — monitoring location 03533000
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)

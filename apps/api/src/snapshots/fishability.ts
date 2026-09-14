@@ -7,6 +7,7 @@ import {
   spawnStateValue,
   type ActivityComponent,
   type FishabilityScore,
+  type FlowTrendContext,
   type FishabilitySnapshot,
   type GaugeReading,
   type SpeciesComfortBands,
@@ -15,7 +16,6 @@ import {
   type SpawnThresholds,
   type Stream,
 } from '@trout/contracts';
-import { PRESSURE_STALE_MINUTES } from '../evidence/nws-provider.js';
 
 /**
  * F5 fishability emission (contract v2, ADR 0007): per-water snapshots at
@@ -24,10 +24,9 @@ import { PRESSURE_STALE_MINUTES } from '../evidence/nws-provider.js';
  * absence, never an empty promise (the T1-8 pattern).
  *
  * Comfort comes from scoreFishability over the stream's readings and the F2
- * bands. Activity today carries exactly one factor — water temperature, the
- * only one with a live measured source — weighted 1.0 (weights sum to 1);
- * flow-trend / pressure-trend / spawn-state join in Stage 3+ as their sources
- * land (F8/F9), never before. Evidence URLs follow the evidence pipeline's
+ * bands. Activity components are source-gated: each factor is emitted only when
+ * its evidence and confidence are available, and weighted totals never imply
+ * an unavailable factor. Evidence URLs follow the evidence pipeline's
  * established per-source pages; a temperature from a gauge without a stable
  * public page emits NO activity component (comfort still emits).
  */
@@ -116,7 +115,8 @@ export function temperatureEvidenceUrl(gaugeId: string): string | null {
  * Build one water's snapshot. `readings` are the stream's own gauge readings
  * (the same slice conditions are scored from); `bandsBySpecies` and
  * `spawnBySpecies` carry only species with scoreable, sourced values;
- * `pressureByRegion` carries fresh F8 area-pressure rows keyed by regionId.
+ * `pressure` is optional area-level context and never a weighted input.
+ * `rain` is an optional region fallback when no gauge precipitation is present.
  * Every targetSpecies the water names gets an entry — scoreable species
  * scored, the rest an honest assessed:false row ("no cited bands yet"), never
  * a fabricated number.
@@ -127,7 +127,8 @@ export function buildFishabilitySnapshot(
   bandsBySpecies: ReadonlyMap<SpeciesKey, SpeciesComfortBands>,
   nowMs: number,
   spawnBySpecies: ReadonlyMap<SpeciesKey, SpawnInfo> = new Map(),
-  pressureByRegion: ReadonlyMap<string, PressureInfo> = new Map(),
+  pressure?: PressureInfo,
+  rain?: RainInfo,
 ): FishabilitySnapshot {
   const target = stream.targetSpecies ?? [];
   const bySpecies: FishabilitySnapshot['bySpecies'] = {};
@@ -148,15 +149,16 @@ export function buildFishabilitySnapshot(
         comfort,
         species,
         spawnBySpecies.get(species) ?? null,
-        pressureByRegion.get(stream.regionId) ?? null,
-        nowMs,
       ),
     };
   }
+  const rainContext = rainContextFor(readings, rain);
   return FishabilitySnapshotSchema.parse({
     streamId: stream.id,
     fetchedAt: new Date(nowMs).toISOString(),
     bySpecies,
+    ...(pressure ? { pressureContext: pressureContextFor(pressure) } : {}),
+    ...(rainContext ? { rainContext } : {}),
   });
 }
 
@@ -170,33 +172,73 @@ function cannotAssess(species: SpeciesKey): FishabilityScore {
   };
 }
 
-/** Fresh F8 area-pressure row for a region (only rows with a derivable trend). */
+/** Fresh area pressure shown as context; it is deliberately absent from scoring. */
 export interface PressureInfo {
-  /** latest − ~3 h baseline, hPa (a number — null-trend rows are omitted upstream). */
   deltaHpa: number;
   station: string;
   observedAt: string;
+  direction: 'rising' | 'falling' | 'stable';
+}
+
+export interface RainInfo {
+  precipitationMm: number;
+  station: string;
+  observedAt: string;
+}
+
+function pressureContextFor(pressure: PressureInfo) {
+  const delta = pressure.deltaHpa >= 0 ? `+${pressure.deltaHpa}` : `${pressure.deltaHpa}`;
+  return {
+    direction: pressure.direction,
+    deltaHpa: pressure.deltaHpa,
+    station: pressure.station,
+    confidence: 'derived' as const,
+    evidenceUrl: `https://api.weather.gov/stations/${encodeURIComponent(pressure.station)}/observations`,
+    observedAt: pressure.observedAt,
+    label: `Area pressure ${pressure.direction} ${delta} hPa over about 3 hours`,
+  };
+}
+
+function rainContextFor(readings: GaugeReading[], fallback?: RainInfo) {
+  const reading = [...readings]
+    .filter((r) => typeof r.precipitationMm === 'number' && Number.isFinite(r.precipitationMm))
+    .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+  if (reading && reading.precipitationMm !== undefined) {
+    const amount = Math.round(reading.precipitationMm * 10) / 10;
+    return {
+      precipitationMm: amount,
+      confidence: 'measured' as const,
+      evidenceUrl: temperatureEvidenceUrl(reading.gaugeId) ?? `https://waterdata.usgs.gov/monitoring-location/${reading.gaugeId}`,
+      observedAt: reading.timestamp,
+      label: amount > 0 ? `Recent rain: ${amount} mm at the gauge` : 'No measurable rain at the gauge recently',
+    };
+  }
+  if (!fallback) return undefined;
+  const amount = Math.round(fallback.precipitationMm * 10) / 10;
+  return {
+    precipitationMm: amount,
+    confidence: 'measured' as const,
+    evidenceUrl: `https://api.weather.gov/stations/${encodeURIComponent(fallback.station)}/observations`,
+    observedAt: fallback.observedAt,
+    label: amount > 0 ? `Recent area rain: ${amount} mm` : 'No measurable area rain recently',
+  };
 }
 
 /**
  * Activity assembly (weights always sum to exactly 1):
  *   water-temperature only                            → 1.0
  *   + spawn-state (F9)                                → 0.7 / 0.3
- *   + pressure-trend (F8)                             → 0.8 / 0.2
- *   + both                                            → 0.6 / 0.25 / 0.15
+ *   Flow movement is emitted separately as context. Pressure remains a
+ *   detail-page context row but is not a weighted activity input (D11).
  * All components derive from the SAME fresh temperature observation the
  * comfort row cites (cross-checked below) — no assessment, no components.
- * The pressure component reflects the REGION's station trend (area-level:
- * the label says so), never a per-water claim.
  */
 function activityFor(
   readings: GaugeReading[],
   comfort: FishabilityScore,
   species: SpeciesKey,
   spawn: SpawnInfo | null,
-  pressure: PressureInfo | null,
-  nowMs: number,
-): { total: number; components: ActivityComponent[]; spawnState?: SpawnState } {
+): { total: number; components: ActivityComponent[]; spawnState?: SpawnState; flowTrend?: FlowTrendContext } {
   if (!comfort.assessed || !comfort.freshness) return { total: 0, components: [] };
   const byAge = [...readings].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
   const tempReading = byAge.find((r) => typeof r.tempC === 'number');
@@ -210,16 +252,11 @@ function activityFor(
   const evidenceUrl = temperatureEvidenceUrl(tempReading.gaugeId);
   if (!evidenceUrl) return { total: 0, components: [] };
 
-  // A stored pressure row ages like any observation: past the provider's
-  // staleness window it stops being area context (T1-6 discipline).
-  const pressureFresh =
-    pressure !== null && nowMs - Date.parse(pressure.observedAt) <= PRESSURE_STALE_MINUTES * 60_000;
-
   const speciesName = species.replaceAll('-', ' ');
   const components: ActivityComponent[] = [];
   let spawnState: SpawnState | undefined;
 
-  const tempWeight = spawn ? (pressureFresh ? 0.6 : 0.7) : pressureFresh ? 0.8 : 1;
+  const tempWeight = spawn ? 0.7 : 1;
   components.push(
     component({
       factor: 'water-temperature',
@@ -238,33 +275,48 @@ function activityFor(
       component({
         factor: 'spawn-state',
         value: spawnStateValue(state),
-        weight: pressureFresh ? 0.25 : 0.3,
+        weight: 0.3,
         evidenceUrl: spawn.evidenceUrl,
-        confidence: 'derived',
-        label: spawnStateLabel(state, speciesName),
-      }),
-    );
-  }
-
-  if (pressureFresh && pressure) {
-    // Falling pressure → positive (fish feed ahead of fronts); a hard rise →
-    // negative. 10 value-points per hPa is the normalization (documented in
-    // the report; F2's per-species pressure sensitivity is still needs-source).
-    const value = Math.round(Math.min(100, Math.max(0, 50 - 10 * pressure.deltaHpa)));
-    components.push(
-      component({
-        factor: 'pressure-trend',
-        value,
-        weight: spawn ? 0.15 : 0.2,
-        evidenceUrl: `https://www.weather.gov/wrh/timeseries?site=${encodeURIComponent(pressure.station)}`,
-        confidence: 'derived',
-        label: 'Area pressure trend (nearby regional station, not this water)',
+        confidence: 'heuristic',
+        label: `${spawnStateLabel(state, speciesName)} (heuristic estimate)`,
       }),
     );
   }
 
   const total = Math.min(100, Math.max(0, Math.round(50 + components.reduce((s, c) => s + c.contribution, 0))));
-  return ActivityOutlookSchema.parse({ total, components, ...(spawnState !== undefined ? { spawnState } : {}) });
+  const flowTrend = flowTrendFor(readings);
+  return ActivityOutlookSchema.parse({
+    total,
+    components,
+    ...(spawnState !== undefined ? { spawnState } : {}),
+    ...(flowTrend ? { flowTrend } : {}),
+  });
+}
+
+function flowTrendFor(readings: GaugeReading[]) {
+  const byGauge = new Map<string, GaugeReading[]>();
+  for (const reading of readings) {
+    if (typeof reading.cfs !== 'number' || !Number.isFinite(reading.cfs)) continue;
+    byGauge.set(reading.gaugeId, [...(byGauge.get(reading.gaugeId) ?? []), reading]);
+  }
+  const pair = [...byGauge.values()]
+    .map((rows) => [...rows].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)))
+    .find((rows) => rows.length >= 2);
+  if (!pair) return undefined;
+  const latest = pair[0]!;
+  const previous = pair[1]!;
+  const delta = latest.cfs! - previous.cfs!;
+  const relative = Math.abs(delta) / Math.max(Math.abs(previous.cfs!), 1);
+  const direction = relative <= 0.05 ? 'stable' : delta > 0 ? 'rising' : 'falling';
+  const evidenceUrl = temperatureEvidenceUrl(latest.gaugeId) ?? `https://waterdata.usgs.gov/monitoring-location/${latest.gaugeId}`;
+  return {
+    direction,
+    magnitude: Math.round(Math.abs(delta) * 10) / 10,
+    confidence: 'derived' as const,
+    evidenceUrl,
+    observedAt: latest.timestamp,
+    label: `Flow trend: ${direction} (${Math.round(Math.abs(delta) * 10) / 10} cfs change; context only)`,
+  };
 }
 
 function component(

@@ -2,13 +2,11 @@ id: reelfoot-lake
 name: Reelfoot Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-targetSpecies:
-  - crappie
-  - bluegill
 notes: >-
   Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West
   Tennessee). Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline

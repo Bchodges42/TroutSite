@@ -2,6 +2,7 @@ id: obion-river
 name: Obion River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false

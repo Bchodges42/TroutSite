@@ -2,9 +2,9 @@ id: norris-lake
 name: Norris Lake
 stateId: TN
 waterbodyType: lake
+display: featured
 regionId: tn-east-clinch
-gaugeIds:
-  - "03533000"
+gaugeIds: []
 stockingProgram: false
 species: warmwater
 idealFlow: []
@@ -16,6 +16,35 @@ targetSpecies:
   - bluegill
   - channel-catfish
   - striped-bass
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
+  - species: smallmouth-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
+  - species: spotted-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
+  - species: crappie
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
+  - species: bluegill
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
+  - species: channel-catfish
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
+  - species: striped-bass
+    kind: agency
+    url: https://waterdata.usgs.gov/monitoring-location/03533000/
+    retrieved: 2026-09-13
 notes: >-
   TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger,
   and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch
@@ -25,8 +54,9 @@ notes: >-
   and access points to follow the impounded river channels.
   TWRA's Norris Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 officialSources:
-  - label: USGS Water Data — monitoring location 03533000
+  - label: USGS Water Data — monitoring location 03533000 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03533000/
   - label: TVA — Norris Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels

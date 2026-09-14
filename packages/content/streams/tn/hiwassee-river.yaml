@@ -2,6 +2,7 @@ id: hiwassee-river
 name: Hiwassee River (Appalachia tailwater / Reliance)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03556590"
@@ -15,6 +16,9 @@ idealFlow:
   - min: 500
     max: 3500
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [10, 11, 12, 1, 2, 3, 4, 5, 6, 7 ]
+seasonKind: programmatic
 notes: >-
   The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength
   rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). A winter catch-and-release season

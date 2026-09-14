@@ -2,10 +2,9 @@ id: wilbur-lake
 name: Wilbur Lake
 stateId: TN
 waterbodyType: lake
+display: reference
 regionId: tn-northeast-watauga
-gaugeIds:
-  - "03484000"
-  - "03483980"
+gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
@@ -15,8 +14,10 @@ notes: >-
   Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River
   (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).
 officialSources:
-  - label: USGS Water Data — monitoring location 03484000
+  - label: USGS Water Data — monitoring location 03484000 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03484000/
+  - label: USGS Water Data — monitoring location 03483980 (static site provenance; no current IV catalog entry)
+    url: https://waterdata.usgs.gov/monitoring-location/03483980/
   - label: TVA — Watauga/Wilbur dam release schedule
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)

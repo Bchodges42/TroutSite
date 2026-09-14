@@ -67,6 +67,10 @@ interface Props {
    * corridors join (H5 mode-aware labels) — absent means the catalog does
    * not say, and the label policy never guesses. */
   labelSpecies?: Map<string, 'trout' | 'warmwater'>;
+  /** Authored map prominence tier per catalog water. */
+  labelDisplay?: Map<string, 'featured' | 'standard' | 'reference'>;
+  /** Waters whose seasonal decision suppresses automatic labels this month. */
+  seasonalAbsentIds?: Set<string>;
   /** Species filter mode ('trout' | 'all', from ?species=). Defaults to
    * 'all' — the pre-mode-aware behavior — so callers that don't plumb it
    * keep today's labels. */
@@ -706,6 +710,7 @@ export function TennesseeMap(props: Props) {
         const selected = river.id === p.selectedId;
         const assessed = p.assessedIds?.has(river.id) ?? false;
         const species = p.labelSpecies?.get(river.id);
+        const display = p.labelDisplay?.get(river.id);
         const typeWord = p.waterTypes?.get(river.id);
         const kindWord = typeWord ?? (isStill ? 'Still water' : 'River');
         // Mode-honest naming: confirmed trout takes no species word (it is
@@ -732,7 +737,7 @@ export function TennesseeMap(props: Props) {
         const visible =
           (!p.visibleIds || p.visibleIds.has(river.id)) &&
           shouldShowLabel(
-            { id: river.id, species },
+            { id: river.id, species, display },
             {
               mode: p.speciesMode ?? 'all',
               troutIds,
@@ -740,6 +745,7 @@ export function TennesseeMap(props: Props) {
               zoom: z,
               selected,
               assessed,
+              seasonalAbsent: p.seasonalAbsentIds?.has(river.id),
             },
           );
         // Rectangle collision on the actual label box — the same AABB test the

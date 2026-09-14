@@ -2,6 +2,7 @@ id: johnson-park-lake
 name: Johnson Park Lake
 stateId: TN
 waterbodyType: lake
+display: reference
 regionId: tn-west
 gaugeIds: []
 stockingProgram: true
@@ -9,6 +10,8 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
+seasonMonths: [11, 12, 1, 2, 3 ]
+seasonKind: programmatic
 notes: >-
   TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in
   the cold months only — the fish do not hold over summer. Check the TWRA schedule for the

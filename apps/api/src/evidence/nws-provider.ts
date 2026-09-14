@@ -67,6 +67,7 @@ interface NwsObservationPropertiesJson {
   timestamp?: string;
   barometricPressure?: { value?: number | null; unitCode?: string };
   seaLevelPressure?: { value?: number | null; unitCode?: string };
+  precipitationLast3Hours?: number | null;
 }
 
 interface NwsObservationsJson {
@@ -108,6 +109,25 @@ export function parseNwsPressure(payload: unknown): NwsPressurePoint[] {
     const hPa = Math.round((source.value! / 100) * 10) / 10;
     if (!plausibleHPa(hPa)) continue;
     if (!Number.isNaN(Date.parse(ts))) byTime.set(ts, { observedAt: ts, hPa });
+  }
+  return [...byTime.values()].sort((a, b) => a.observedAt.localeCompare(b.observedAt));
+}
+
+export interface NwsPrecipitationPoint {
+  observedAt: string;
+  precipitationMm: number;
+}
+
+/** Parse NWS's measured rolling three-hour precipitation field (mm). */
+export function parseNwsPrecipitation(payload: unknown): NwsPrecipitationPoint[] {
+  const features = (payload as NwsObservationsJson)?.features ?? [];
+  const byTime = new Map<string, NwsPrecipitationPoint>();
+  for (const f of features) {
+    const p = f?.properties;
+    const ts = p?.timestamp;
+    const value = p?.precipitationLast3Hours;
+    if (typeof ts !== 'string' || typeof value !== 'number' || !Number.isFinite(value) || value < 0) continue;
+    if (!Number.isNaN(Date.parse(ts))) byTime.set(ts, { observedAt: ts, precipitationMm: value });
   }
   return [...byTime.values()].sort((a, b) => a.observedAt.localeCompare(b.observedAt));
 }
@@ -186,9 +206,25 @@ export async function fetchNwsPressure(station: string, opts: NwsFetchOptions): 
   return parseNwsPressure(await res.json());
 }
 
+/** One NWS request supplies both pressure and the optional rain context. */
+export async function fetchNwsContext(
+  station: string,
+  opts: NwsFetchOptions,
+): Promise<{ pressure: NwsPressurePoint[]; precipitation: NwsPrecipitationPoint[] }> {
+  const doFetch = opts.fetchImpl ?? fetch;
+  const res = await doFetch(nwsObservationsUrl(station, opts.limit ?? 24), {
+    headers: { 'User-Agent': opts.userAgent, Accept: 'application/geo+json' },
+    signal: AbortSignal.timeout(opts.timeoutMs ?? 15_000),
+  });
+  if (!res.ok) throw new Error(`NWS request failed: HTTP ${res.status} for station ${station}`);
+  const payload = await res.json();
+  return { pressure: parseNwsPressure(payload), precipitation: parseNwsPrecipitation(payload) };
+}
+
 export interface PressureJobResult extends JobDetail {
   regions: number;
   stored: number;
+  rainStored: number;
   errors: number;
   warnings: string[];
 }
@@ -223,17 +259,38 @@ export async function runPressureJob(
       observed_at=@observed_at, retrieved_at=@retrieved_at, pressure_hpa=@pressure_hpa,
       trend_hpa_3h=@trend_hpa_3h, trend_direction=@trend_direction, station=@station
   `);
+  const upsertRain = db.prepare(`
+    INSERT INTO region_precipitation (region_id, observed_at, retrieved_at, precipitation_mm, station)
+    VALUES (@region_id, @observed_at, @retrieved_at, @precipitation_mm, @station)
+    ON CONFLICT(region_id) DO UPDATE SET
+      observed_at=@observed_at, retrieved_at=@retrieved_at, precipitation_mm=@precipitation_mm, station=@station
+  `);
 
   let stored = 0;
+  let rainStored = 0;
   for (const [station, regions] of byStation) {
-    let points: NwsPressurePoint[];
+    let context: { pressure: NwsPressurePoint[]; precipitation: NwsPrecipitationPoint[] };
     try {
-      points = await fetchNwsPressure(station, opts);
+      context = await fetchNwsContext(station, opts);
     } catch (err) {
       errors += 1;
       warnings.push(`NWS ${station} (${regions.join(', ')}) failed: ${(err as Error).message}`);
       continue;
     }
+    const latestRain = context.precipitation[context.precipitation.length - 1];
+    if (latestRain && nowMs - Date.parse(latestRain.observedAt) <= PRESSURE_STALE_MINUTES * 60_000) {
+      for (const regionId of regions) {
+        upsertRain.run({
+          region_id: regionId,
+          observed_at: latestRain.observedAt,
+          retrieved_at: now.toISOString(),
+          precipitation_mm: latestRain.precipitationMm,
+          station,
+        });
+        rainStored += 1;
+      }
+    }
+    const points = context.pressure;
     const trend = pressureTrend(points, nowMs);
     if (!trend) {
       warnings.push(
@@ -258,6 +315,7 @@ export async function runPressureJob(
   const result: PressureJobResult = {
     regions: Object.keys(NWS_PRESSURE_STATIONS).length,
     stored,
+    rainStored,
     errors,
     warnings,
   };

@@ -93,7 +93,6 @@ export function atlasStyle(
       'tn-boundary': { type: 'geojson', data: '/atlas/tn-boundary.geojson' },
       'states-context': { type: 'geojson', data: '/atlas/states-context.geojson' },
       'tn-counties': { type: 'geojson', data: '/atlas/tn-counties.geojson' },
-      lakes: { type: 'geojson', data: '/atlas/lakes.geojson' },
       rivers: {
         type: 'geojson',
         data: '/atlas/rivers.geojson',
@@ -175,11 +174,12 @@ export function atlasStyle(
       },
       // Lakes & reservoirs (Census AREAWATER; see scripts/build-lakes.mjs) —
       // the still waters the mapped rivers drain from / tailrace out of.
-      // Rendered beneath every river layer so tailwaters visibly connect.
+      // The authoritative lake polygons are catalog features in rivers.geojson;
+      // keeping them in the shared source avoids the empty passive lakes layer.
       {
         id: 'lakes-fill',
         type: 'fill' as const,
-        source: 'lakes',
+        source: 'rivers',
         paint: {
           'fill-color': t.lakeFill,
           'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5.6, 0.75, 8, 1],
@@ -188,7 +188,7 @@ export function atlasStyle(
       {
         id: 'lakes-shore',
         type: 'line' as const,
-        source: 'lakes',
+        source: 'rivers',
         paint: {
           'line-color': t.lakeShore,
           'line-width': ['interpolate', ['linear'], ['zoom'], 5.6, 0.5, 8, 1],

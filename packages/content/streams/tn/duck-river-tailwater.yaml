@@ -2,6 +2,7 @@ id: duck-river-tailwater
 name: Duck River (Normandy tailwater)
 stateId: TN
 waterbodyType: tailrace
+display: featured
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03597860"
@@ -14,6 +15,9 @@ idealFlow:
   - min: 100
     max: 800
     unit: cfs
+idealFlowSource: editorial
+seasonMonths: [11, 12, 1, 2, 3, 4, 5, 6 ]
+seasonKind: programmatic
 notes: Cold releases below Normandy Dam give the Duck its trout identity — TWRA stocks this
   tailwater with rainbow trout year-round (owner confirmation, September 2026). Release-dependent;
   verify schedules before wading.

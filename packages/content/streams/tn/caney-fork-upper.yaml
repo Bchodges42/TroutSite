@@ -2,13 +2,11 @@ id: caney-fork-upper
 name: Caney Fork River (above Center Hill Lake)
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-targetSpecies:
-  - smallmouth-bass
-  - bluegill
 notes: >-
   Free-flowing upper Caney Fork from the Cumberland County headwaters down
   through Rock Island to the slackwater pools pooled above Center Hill Dam —

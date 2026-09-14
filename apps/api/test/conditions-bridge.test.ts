@@ -109,12 +109,12 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
     expect(payload.rows['discharge-cfs']).toMatchObject({ key: 'CETT1...Flow...' });
   });
 
-  it('skips reservoir-level-ft (not a conditions input) and returns null when nothing usable remains', () => {
+  it('keeps reservoir-level-ft as presentation context without treating it as river stage', () => {
     expect(
       buildConditionsReading('tva:NRST1', 'tva-restapi', [
         obs({ metric: 'reservoir-level-ft', value: 1012.93 }),
       ]),
-    ).toBeNull();
+    ).toMatchObject({ reading: { gaugeId: 'tva:NRST1', reservoirLevelFt: 1012.93 } });
   });
 
   it('is newest-wins per metric and stamps the reading with the newest INCLUDED metric', () => {
@@ -158,14 +158,16 @@ describe('runConditionsReadingsJob (TVA + USACE → gauge_readings_raw)', () => 
     const result = await runBridge(env.db, fetchImpl);
 
     expect(result.errors).toBe(0);
-    // DHTT1/JPPT1/CORT1 have no captured fixtures → all three of their series
-    // answer the A2W "unknown TSID" empty-body warning (9 warnings total).
-    expect(result.warnings.filter((w) => w.includes('USACE')).length).toBe(9);
-    for (const station of ['DHTT1', 'JPPT1', 'CORT1']) {
+    // DHTT1/JPPT1 have no captured fixtures → both of their three series answer
+    // the A2W "unknown TSID" empty-body warning (6 warnings total). CORT1 is
+    // coverage-only and must not be fetched.
+    expect(result.warnings.filter((w) => w.includes('USACE')).length).toBe(6);
+    for (const station of ['DHTT1', 'JPPT1']) {
       expect(result.warnings.join(' ')).toContain(station);
     }
+    expect(result.warnings.join(' ')).not.toContain('CORT1');
     expect(result.tvaLocations).toBe(12);
-    expect(result.usaceStations).toBe(4);
+    expect(result.usaceStations).toBe(3);
     // 12 TVA tailwater monitors + the one USACE station with fixture data.
     expect(result.gauges).toBe(13);
     expect(result.items).toBe(13);
@@ -189,7 +191,7 @@ describe('runConditionsReadingsJob (TVA + USACE → gauge_readings_raw)', () => 
     expect(env.db.prepare("SELECT COUNT(*) AS n FROM jobs_log WHERE job='gauges-conditions' AND status='ok'").get()).toMatchObject({ n: 1 });
 
     // The snapshot builder's latestReadings serves the prefixed gauges unchanged.
-    const latest = latestReadings(env.db);
+    const latest = latestReadings(env.db, Date.parse('2026-09-05T02:00:00Z'));
     expect(latest.map((r) => r.gaugeId)).toContain('tva:NRST1');
     expect(latest.map((r) => r.gaugeId)).toContain('usace:CETT1');
   });

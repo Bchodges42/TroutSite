@@ -2,6 +2,7 @@ id: south-fork-cumberland
 name: South Fork Cumberland River
 stateId: TN
 waterbodyType: river
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03410210"
@@ -12,6 +13,7 @@ idealFlow:
   - min: 80
     max: 500
     unit: cfs
+idealFlowSource: editorial
 notes: >-
   Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood
   Ford. Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New River/Clear Fork

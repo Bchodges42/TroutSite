@@ -1,5 +1,5 @@
 {
-  "comment": "USGS monitoring locations referenced by packages/content streams. Verified live against waterservices.usgs.gov (site service, stateCd=TN) on 2026-09-02; realTimeIV = instantaneous-value data confirmed via the IV service the same day.",
+  "comment": "Static USGS monitoring-location catalog for packages/content streams. Site existence and names were verified against waterservices.usgs.gov on 2026-09-02; realTimeIV records the catalog-time probe only, not current health. Current parameter health comes from live feed checks.",
   "sourceUrl": "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteStatus=any&siteType=st",
   "gauges": {
     "03408500": {
@@ -28,6 +28,18 @@
     },
     "03424010": {
       "name": "CANEY FORK AT CENTER HILL DAM (TAILWATER), TN",
+      "realTimeIV": true
+    },
+    "03538830": {
+      "name": "OBED RIVER AT ADAMS BRIDGE NEAR LANCING, TN",
+      "realTimeIV": true
+    },
+    "03604000": {
+      "name": "BUFFALO RIVER NEAR FLATWOODS, TN",
+      "realTimeIV": true
+    },
+    "07031650": {
+      "name": "WOLF RIVER AT BARTLETT, TN",
       "realTimeIV": true
     },
     "03424860": {
@@ -176,6 +188,10 @@
     },
     "03578000": {
       "name": "ELK RIVER NEAR PELHAM, TN",
+      "realTimeIV": true
+    },
+    "03582000": {
+      "name": "ELK RIVER NEAR FAYETTEVILLE, TN",
       "realTimeIV": true
     },
     "03580750": {

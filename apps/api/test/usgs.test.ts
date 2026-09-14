@@ -34,6 +34,38 @@ describe('parseInstantValues', () => {
     // a series with an empty values array yields no reading at all
     expect(bySite.has('01234503')).toBe(false);
   });
+
+  it('orders by instant, rejects invalid discharge, and preserves other live metrics', () => {
+    const series = (site: string, code: string, value: string, dateTime: string, qualifiers: string[] = []) => ({
+      sourceInfo: { siteCode: [{ value: site }] },
+      variable: { variableCode: [{ value: code }] },
+      values: [{ value: [{ value, dateTime, qualifiers }] }],
+    });
+    const readings = parseInstantValues({
+      value: {
+        timeSeries: [
+          // 14:00 -05 is 19:00Z and is newer than 14:30 -04 (18:30Z),
+          // despite sorting earlier as a string.
+          series('01234504', '00065', '1.0', '2026-09-02T14:30:00-04:00'),
+          series('01234504', '00065', '2.0', '2026-09-02T14:00:00-05:00'),
+          series('01234505', '00060', '-168', '2026-09-02T15:00:00Z'),
+          series('01234505', '00065', '2.1', '2026-09-02T15:00:00Z'),
+          series('01234506', '00060', '100', '2026-09-02T15:00:00Z', ['Eqp']),
+          series('01234506', '00010', '15', '2026-09-02T15:00:00Z'),
+          series('01234507', '00060', '0', '2026-09-02T15:00:00Z'),
+          series('01234507', '00065', '1.5', '2026-09-02T15:00:00Z'),
+        ],
+      },
+    });
+    const bySite = new Map(readings.map((r) => [r.gaugeId, r]));
+    expect(bySite.get('01234504')).toMatchObject({ heightFt: 2, timestamp: '2026-09-02T14:00:00-05:00' });
+    expect(bySite.get('01234505')).toMatchObject({ heightFt: 2.1 });
+    expect(bySite.get('01234505')?.cfs).toBeUndefined();
+    expect(bySite.get('01234506')).toMatchObject({ tempC: 15 });
+    expect(bySite.get('01234506')?.cfs).toBeUndefined();
+    expect(bySite.get('01234507')).toMatchObject({ heightFt: 1.5 });
+    expect(bySite.get('01234507')?.cfs).toBeUndefined();
+  });
 });
 
 describe('fetchInstantValues', () => {
@@ -115,8 +147,53 @@ describe('runGaugesJob', () => {
   it('exposes latestReadings for the snapshot builder', async () => {
     const { fetchImpl } = mockFetch(200, () => readFixture('USGS/iv-2026-09-02.json'));
     await runGaugesJob(env.db, { userAgent: 'test-agent/1.0', fetchImpl });
-    const latest = latestReadings(env.db);
+    const latest = latestReadings(env.db, Date.parse('2026-09-02T16:00:00-05:00'));
     expect(latest).toHaveLength(1);
     expect(latest[0]).toMatchObject({ gaugeId: '03586500', cfs: 5.74, heightFt: 1.18 });
+  });
+
+  it('drops a stopped sensor after the absolute three-hour gate and warns on zero flow', async () => {
+    const payload = {
+      value: {
+        timeSeries: [
+          {
+            sourceInfo: { siteCode: [{ value: '03586500' }] },
+            variable: { variableCode: [{ value: '00060' }] },
+            values: [{ value: [{ value: '0.00', dateTime: '2026-09-02T14:30:00-05:00' }] }],
+          },
+          {
+            sourceInfo: { siteCode: [{ value: '03586500' }] },
+            variable: { variableCode: [{ value: '00065' }] },
+            values: [{ value: [{ value: '1.18', dateTime: '2026-09-02T14:30:00-05:00' }] }],
+          },
+        ],
+      },
+    };
+    const { fetchImpl } = mockFetch(200, () => JSON.stringify(payload));
+    const result = await runGaugesJob(env.db, { userAgent: 'test-agent/1.0', fetchImpl });
+    expect(result.warnings).toContain('USGS 03586500 returned zero discharge; flow omitted until the sensor is verified');
+    expect(result.items).toBe(1); // stage survives as a partial reading
+    expect(latestReadings(env.db, Date.parse('2026-09-02T17:00:00-05:00'))).toHaveLength(1);
+    expect(latestReadings(env.db, Date.parse('2026-09-02T18:00:00-05:00'))).toEqual([]);
+  });
+
+  it('retains USGS precipitation as millimetre context without affecting flow scoring', async () => {
+    const payload = {
+      value: {
+        timeSeries: [
+          {
+            sourceInfo: { siteCode: [{ value: '03586500' }] },
+            variable: { variableCode: [{ value: '00045' }] },
+            values: [{ value: [{ value: '0.25', dateTime: '2026-09-02T14:30:00-05:00' }] }],
+          },
+        ],
+      },
+    };
+    const { fetchImpl } = mockFetch(200, () => JSON.stringify(payload));
+    await runGaugesJob(env.db, { userAgent: 'test-agent/1.0', fetchImpl });
+    expect(latestReadings(env.db, Date.parse('2026-09-02T16:00:00-05:00'))[0]).toMatchObject({
+      gaugeId: '03586500',
+      precipitationMm: 6.35,
+    });
   });
 });
