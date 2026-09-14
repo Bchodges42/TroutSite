@@ -1,6 +1,6 @@
 # Session A — Ground-Truth Audit · 2026-09-13
 
-Base `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7` · UTC audit window 2026-09-13T23:44Z → 2026-09-14T01:10Z · branch `campaign-a` · clone `/Users/ben/Downloads/TroutSite-a`
+Base `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7` · UTC audit window 2026-09-13T23:44Z → 2026-09-14T00:17Z · branch `campaign-a` · clone `/Users/ben/Downloads/TroutSite-a`
 
 ---
 
