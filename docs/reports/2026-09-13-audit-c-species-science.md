@@ -287,3 +287,94 @@ tennessee-river, wilbur-lake, ocoee-number-three-lake, little-tennessee-river,
 caney-fork-upper, buffalo-river, duck-river-lower BLG/LMB keys (page names neither),
 fort-patrick-henry-lake (thin page), and every high-elevation trout creek's *beyond-trout*
 assemblage.
+
+---
+
+## 4. Season windows, `yearRound` evidence, access, and significance
+
+### 4.1 The season-evidence standard: REGULATORY vs PROGRAMMATIC
+
+Every season claim in the app must carry one of two labels. This distinction is the single
+most important deliverable of this section — the repo's `yearRound` flag currently blurs it.
+
+- **REGULATORY** — a season/closure/creel window appears in TWRA/NPS/city regulation text.
+  Durable, citable to the reg year (Aug 1–Jul 31).
+- **PROGRAMMATIC** — the window exists only in stocking schedules/program descriptions.
+  It changes with TWRA's schedule and has no legal force; a water can be legally fished
+  year-round yet hold no trout in July.
+
+**Statewide trout baseline (REGULATORY, parent-verified live):** the trout regs page's
+"Statewide Trout Regulations" block reads in full: "Any combination of trout species: Daily
+Limit: seven (7)… Minimum Length Limit: None. Exceptions: Only two (2) trout in a creel may
+be Lake Trout" — **no closed-season sentence exists**, confirming the repo's reading. What
+it does NOT prove: that any particular stocked water holds fish year-round, or anything
+about park/city/USFS overlays.
+
+### 4.2 Verified regulatory windows (all parent-verified live 2026-09-14 UTC unless noted)
+
+| water / family | window (verbatim essence) | effect on `yearRound` |
+|---|---|---|
+| Hiwassee (Appalachian Powerhouse → L&N RR bridge) | "March 1 through Sept. 30: Seven (7) trout creel limit, only two (2) may be brown trout. Catch and Release Season is Oct. 1 through Feb. 28." | Open 12 months/yr (harvest + C&R bridge) — supports `yearRound: true` |
+| SF Holston (SH Dam → Boone, incl. Boone arm to Hwy 11E) | 16–22″ PLR; "Closed to all fishing Nov. 1 – Jan. 31" at two named spawning areas (Hickory Tree Br→Bottom Cr; Boy's Island→island above Webb Rd Br) | Water open year-round except two closures — `yearRound: true` defensible WITH the closure note |
+| Watauga QTA ("Quality Trout: Fishing Area", Smallings bridge → CSX) | 14″ min, 2/day, no bait, undersized may not be possessed | No season closure; `yearRound: true` rides on stocking Mar–Dec + releases |
+| Tellico + Citico | "Tellico-Citico Permit required from March 1 through Aug. 15. Closed on Thursday and Friday during the period… From Aug. 16 through the last day of February, fishing is allowed every day, and Tellico-Citico Permit is not required." | Open all year; permit/closure season Mar 1–Aug 15 — the *seasonal* fact is permit+closure, not fish presence |
+| Delayed harvest (C&R, artificials-only during window) — live page list | Big Soddy Nov 1–Feb 28 (upstream of Back Valley Rd); Buffalo Cr Oct 1–Jan 31 (mill dam → Buffalo Springs WMA); Doe River Oct 1–Feb 28 (Roan Mountain SP); Hiwassee Oct 1–Feb 28; **Piney River Nov 1–Feb 28 (STALE — see below)**; Paint Creek Oct 1–Feb 28 (campground → French Broad mouth); Tellico Oct 1–Feb 28 (North River mouth → state line); Montgomery Bell SP Acorn Lake Dec 1–Mar 31 | DH waters are open year-round; the window is a harvest rule. `yearRound` should reflect fishery viability, not the DH window |
+| **Piney River (Rhea) DH conflict** | Static trout page still lists "Catch-and-release season is Nov. 1 - Feb. 28"; regs-hub "What's New for 2026-27": "**Piney River • Removed delayed harvest regulations**" | **TWRA-internal inconsistency, live this window.** The repo's fishing.json already flags it; keep C&R as safe default only until TWRA's static page corrects. No printed effective date anywhere — the Aug 1 date is the reg-year model, not sourced text |
+| **Big Soddy Creek** | What's New: "Moved the start of delayed harvest season from October 1 to November 1" — static page already shows Nov 1 – Feb 28 | Not a catalog water (T3-52 candidate); when added, enter with Nov 1 start |
+| Buffalo Creek (Grainger) | "From the mill dam upstream — closed year-round to all fishing"; "From the mill dam downstream—open to fishing year-round by rod and reel method only." | Above mill dam: CLOSED year-round (fishing, not just trout) — a hard `yearRound: false` zone inside the catalog water |
+| Clear Creek (Anderson, Clinch trib) | "From Hwy. 441 upstream to the second dam… closed from Nov. 1–Mar. 31 to all fishing" | Not the Obed-system clear-creek-obed (repo already resolved the name collision) |
+| Clinch (Norris Dam → Hwy 61) | 14–20″ PLR, 7/day, one over 20″ | No season closure |
+| Caney Fork (Center Hill Dam → Cumberland R) | 5-trout PLR rules + brown 24″/1-day | No season closure |
+| Elk (Tims Ford Dam → I-65) | Brown 20″ min, 1/day | No season closure |
+| Fort Patrick Henry (Boone Dam → Louis Milhorn Br) | 16–22″ PLR rainbow/brown, 7/day one over 22″ | No season closure |
+| Gatlinburg city waters (TWRA section, verified verbatim) | "All streams are closed on Thursday each week and a Gatlinburg permit is required." … "From December 1 through March 31 (all streams): Possession of any trout shall be prohibited. All trout caught must be immediately returned… bait prohibited… single-hook artificial flies, spinners, and spoons only." Children's streams: WPLP (Herbert Holt Park→Bypass Br), Dudley Creek (Hwy 441→WPLP), Leconte Cr (Painter Br→park boundary) | Year-round open except Thursdays; Dec 1–Mar 31 is C&R. [LEAD: the 5/day / 2/day children creel split sat beyond the captured text — re-pin before displaying creel] |
+| GSMNP (parent-verified nps.gov/grsm) | "Fishing is permitted year-round in open waters from 30 minutes before official sunrise to 30 minutes after official sunset." TN or NC license, 16+, no trout stamp; one hand-held rod, single-hook artificials, bait banned; 7″ min brook/rainbow/brown/smallmouth; "Five (5) brook, rainbow or brown trout, smallmouth bass, or a combination" + twenty rock bass | True year-round fishery — supports `yearRound: true` on park waters (subject to park closure powers) |
+| Statewide warmwater (parent-verified live statewide creel page) | Black bass 5/day any combination, no statewide minimum; crappie 15/day 10″ statewide with the Region-1 exception 30/day no length (Forked Deer, Hatchie, Loosahatchie, Obion, Wolf + named lakes); striped/hybrid 2/day 15″; catfish "No harvest limit on catfish less than 34 inches… only one (1) catfish over 34 inches per day"; sauger 5→10/day 15″; walleye 5/day 16″; **no statewide closed seasons found for any warmwater species**; walleye-run gear rules only (Caney Fork Jan 1–Apr 30 single-barb hooks Rock Island→Great Falls; E. Fork Obey Jan 1–Apr 15) | Warmwater fisheries are open 12 months/yr by regulation — `yearRound` for warmwater is about *water data availability*, not season |
+| TWRA-owned lakes | "The lakes managed by the Tennessee Wildlife Resources Agency are open year-round for fishing" (where-to-fish hub) + family-fishing page "Open year-round" | REGULATORY support for year-round ACCESS; note the catalog's winter ponds are mostly city/park waters, not TWRA lakes — check each |
+
+### 4.3 Programmatic windows (stocking-derived; label accordingly)
+
+- **Winter put-and-take trout on warmwater rivers** (stones-river Dec–Mar verified from the
+  tailwater list; west-fork-stones, harpeth, red-river-clarksville, sulfur-fork-creek,
+  mossy-creek-jefferson, big-rock-creek, boiling-fork-creek, mccutcheon-creek,
+  sinking-creek-wilson, elk-river-lower): windows are **PROGRAMMATIC-only** — no regulation
+  text creates or closes a season. Verified counter-example: **red-river-clarksville was
+  NOT found on the live stocking page this window** — its winter-trout note currently has
+  no dated stocking evidence; do not assert the fishery without a schedule row.
+- **West TN winter ponds**: same class (rainbow, winter months, schedule-grid derived);
+  TWRA family-lakes "open year-round" is about lake access, not trout presence.
+- **Stocking-month windows per tailwater**: the verified tailwater list in §3.3 IS the
+  programmatic window per water (e.g., Cherokee TW Nov–Apr; ft-patrick-henry Mar–Apr;
+  parksville Mar–May; duck-river-tailwater Nov–Jun). These directly explain the existing
+  `yearRound: false` flags and should be surfaced as "stocked <months>" facts with
+  retrieval dating, because the schedule grid is living data ("Report updated as of
+  9/7/2026").
+
+### 4.4 Access evidence (what exists, per authority)
+
+| authority | verified access offer | does NOT provide |
+|---|---|---|
+| TWRA where-to-fish (parent: hub page) | Four region pages + interactive "Boating and Fishing Site Access" map; "download all location data as .csv or .kml" — a machine-readable access-point dataset | conditions, per-reach wade access, ADA detail |
+| TWRA River Access Program | **[LEAD — not located this window; verify existence/URL]** | — |
+| TVA | [LEAD — tva.com 403 all window; boat-ramp/facilities pages exist] | — |
+| NPS GSMNP (parent) | Parkwide rule/access text, permit notes for Gatlinburg/Cherokee | ramp/parking inventory |
+| USFS Cherokee NF (subagent + repo) | Fishing activity page; live alerts (Citico flood closure seen); "defers seasons/limits to TWRA; rainbow stocking ~Mar–Sep; top streams Tellico/Citico/Paint/Beaverdam" | per-stream access points |
+| TN State Parks (repo 2026-09-08 + subagent) | Fishing activity page; licenses sold at parks | per-pond access detail |
+| TDEC Scenic Rivers (parent) | "Scenic Rivers… available as a viewable and downloadable data layer" | paddle-access specifics |
+
+Planner takeaway: TWRA's access CSV/KML is the one bulk, official, machine-readable access
+source; it should anchor any access field the catalog adds. Everything else is per-page
+curation.
+
+### 4.5 Significance signals for display tiers (verified)
+
+| signal | waters it marks (verified) | source / retrieval | honest tier meaning |
+|---|---|---|---|
+| TWRA "Quality Trout: Fishing Area" | watauga-river QTA reach only | trout regs page (parent) | the state's own quality label — destination tier for that reach |
+| South Holston Tailwater Plan (destination fishery language, "excellent wild Brown Trout fishery", 20–25k trips/yr for heavily-fished tailwaters incl. SH, Norris, Wilbur, Apalachia, Center Hill) | south-holston-river, clinch-river, watauga-river, hiwassee-river, caney-fork-river | TWRA plans (parent) | destination tier, plan-cited |
+| World-record / trophy documentation | dale-hollow-lake (1955 world-record smallmouth), old-hickory-lake ("world class trophy striped bass fishery"), tims-ford-lake ("best reservoir Smallmouth fishery in middle Tennessee"), pickwick-lake ("trophy smallies… rivals Dale Hollow"), norris-lake (49.5 lb state-record striper 1978) | TWRA where-to-fish pages (parent/subagent) | destination tier for the named fishery — species-specific, not generic |
+| Tennessee Scenic Rivers (TDEC) | Harpeth, Hiwassee, Obed (state), Ocoee, Buffalo, Collins, Clinch, Duck, French Broad, Hatchie, North Chickamauga Cr, Piney (Watts Bar Watershed = the Rhea Co. Piney), Soak Cr, others; **Tellico not in captured list** | tn.gov/environment/natural-areas/tn-scenic-rivers.html (parent) | protection-status tier, NOT fishing quality |
+| Federal Wild & Scenic | obed-river (+ daddys-creek, clear-creek-obed in the Obed system) | nps.gov/obed (parent) | protection status |
+| GSMNP World Heritage Site + International Biosphere Reserve | all five park waters | nps.gov/grsm/learn/nature (parent) | premier wild-trout-habitat tier |
+| Bill Dance Signature Lakes (TDTD) | Pickwick, Reelfoot, Dale Hollow, Kentucky, Old Hickory, Tims Ford, Chickamauga, Douglas, Norris, Watauga (+ Browns Cr, Herb Parsons, Lake Halford, Fall Creek Falls); **Watts Bar and J. Percy Priest NOT on list** | billdancelakes.tnvacation.com/lakes (parent) | tourism/promotional bass tier — mark as promotional, never regulatory |
+| Statewide DH list, wild-trout list, Tellico-Citico permit | as in §4.2/§3.3 | trout regs page (parent) | special-regulation tier |
