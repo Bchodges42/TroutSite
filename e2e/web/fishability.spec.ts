@@ -85,3 +85,47 @@ test('drawer shows the fishability card on an inspected water', async ({ page })
     inspector.locator('[aria-label*="Smallmouth bass fishability"][aria-label*="out of 100"]'),
   ).toBeVisible();
 });
+
+test.describe('focus wiring hotfix', () => {
+  test('all-fish mode + settings only: the card renders with no URL param at all', async ({
+    page,
+  }) => {
+    // Persist all-fish via Settings (no URL params anywhere).
+    await page.goto('/settings');
+    const allFish = page.getByRole('button', { name: 'All fish' }).first();
+    await allFish.click();
+    await expect(allFish).toHaveAttribute('aria-pressed', 'true');
+    await page.waitForTimeout(300); // let the Dexie write land
+    await page.goto('/conditions/harpeth-river');
+    // Default focus = the first species the snapshot carries (largemouth bass).
+    await expect(page.locator('.fishability-card')).toBeVisible();
+    await expect(
+      page.locator('.fishability-card').getByRole('heading', { name: 'Largemouth bass' }),
+    ).toBeVisible();
+  });
+
+  test('the card picker swaps the species shown and persists the choice', async ({ page }) => {
+    await page.goto('/settings');
+    await page.getByRole('button', { name: 'All fish' }).first().click();
+    await page.waitForTimeout(300);
+    await page.goto('/conditions/harpeth-river');
+    const picker = page.getByTestId('fishability-species-picker');
+    await expect(picker).toBeVisible();
+    await picker.selectOption('bluegill');
+    await expect(
+      page.locator('.fishability-card').getByRole('heading', { name: 'Bluegill' }),
+    ).toBeVisible();
+    // The choice persists across a reload.
+    await page.reload();
+    await expect(
+      page.locator('.fishability-card').getByRole('heading', { name: 'Bluegill' }),
+    ).toBeVisible();
+  });
+
+  test('the Settings page offers the species select in all-fish mode', async ({ page }) => {
+    await page.goto('/settings');
+    await expect(page.getByTestId('settings-species-focus')).toHaveCount(0);
+    await page.getByRole('button', { name: 'All fish' }).first().click();
+    await expect(page.getByTestId('settings-species-focus')).toBeVisible();
+  });
+});
