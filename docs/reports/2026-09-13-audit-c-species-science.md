@@ -378,3 +378,100 @@ curation.
 | GSMNP World Heritage Site + International Biosphere Reserve | all five park waters | nps.gov/grsm/learn/nature (parent) | premier wild-trout-habitat tier |
 | Bill Dance Signature Lakes (TDTD) | Pickwick, Reelfoot, Dale Hollow, Kentucky, Old Hickory, Tims Ford, Chickamauga, Douglas, Norris, Watauga (+ Browns Cr, Herb Parsons, Lake Halford, Fall Creek Falls); **Watts Bar and J. Percy Priest NOT on list** | billdancelakes.tnvacation.com/lakes (parent) | tourism/promotional bass tier — mark as promotional, never regulatory |
 | Statewide DH list, wild-trout list, Tellico-Citico permit | as in §4.2/§3.3 | trout regs page (parent) | special-regulation tier |
+
+---
+
+## 5. Science review — per species × factor, with transfer verdicts
+
+Treatment vocabulary: **scorable** = band/curve defensible for TN with citations, may carry
+numbers; **context-only** = evidence supports a qualitative note, not a score input;
+**unassessed** = no defensible source; stays visibly unknown. "Transfer" = Tennessee
+freshwater applicability.
+
+### 5.0 Cross-cutting anchors
+
+| anchor | what it is | status |
+|---|---|---|
+| NDEP "Guidance for Developing Temperature Criteria for Nevada Waters" (March 2018, ndep.nv.gov PDF) + seven per-species TTA analyses (Jan 2015–Mar 2016) | EPA-criteria-style chronic (7-day-style) and acute (1-day-style) ceilings per species, juvenile/adult summer; values trace to EPA national derivations (Brungs & Jones 1977 etc.), NOT Nevada-specific biology | **Parent verified all 8 documents live.** Verbatim pins: largemouth preferred modes "30.0°C and 26.7°C"; striped "Full range of temperature occupied by fish 14.6–28.2" + "Upper temperature limit for 90% of fish 22.0" citing Coutant et al. 1984; spotted "no acute thermal tolerance is recommended for spotted bass at this time". Verdict: **defensible-with-caveats — they are harm ceilings, not activity optima; never map them onto a positive curve.** NDEP's smallmouth TTA title carries a scientific-name typo (*M. punctulatus* = spotted bass) — noted so nobody "corrects" the app's smallmouth values using the spotted doc |
+| EPA Gold Book 1986 (Quality Criteria for Water) | DO criteria structure: coldwater early-life 30-day mean ≈6.5–7.0, 7-day min ≈5.0–6.0, inst. min 2.0; warmwater adult 30-day ≈5.5–6.0, 7-day min ≈4.0–5.0, inst. min 3.0 mg/L | Parent verified document + structure; columnar table extraction garbled — [LEAD: re-pin exact digits at implementation]. Verdict: **defensible as constraint floors** (harm thresholds, not activity signals) |
+| Coutant 1985 (TAFS 114:31–61) striped-bass temperature–oxygen "squeeze" | Habitat-limiting framework (squeeze ≈ T >25 °C with DO <2 mg/L); modern re-tests exist | [LEAD — threshold digits not parent-re-pinned]. Verdict: **defensible for TN reservoirs** — TWRA's own Cherokee page documents the phenomenon (below) |
+| VanderWeyst 2014 (Bemidji State) controlled yellow-perch pressure trial | "Barometric pressure did not have a significant influence on how much yellow perch ate (R2 = 0.38, P = 0.55)." | **Parent verified verbatim.** Verdict: pressure scoring is **heuristic at best** |
+| Beitinger, Bennett & McCauley 2000 (thermal-tolerance compilation) | CTMax + final preferenda per species | [LEAD — journal/DOI/table digits unverified this window; re-pin before citing]. Preferenda run several °C ABOVE field-occupied temps (documented for rainbow: lab 18–19 °C vs field 12–14 °C) — do not use a preferendum as a "best fishing" center |
+
+### 5.1 Trout lens (rainbow, brown, brook) — the missing bands, now authorable
+
+Verified agency anchors (parent, all verbatim): VT F&W species pages — rainbow: stream
+preference 54–66 °F (12.2–18.9 °C), max tolerable 77 °F (25 °C), incubation 45–54 °F; brown:
+optimum 53–66 °F (11.7–18.9 °C), tolerates ~80 °F briefly, spawns late Oct–Dec at 44–48 °F;
+brook: most ideal 55–60 °F (12.8–15.6 °C), tolerates brief 72 °F, dies ≈75 °F, spawns
+40–50 °F late Sep–Nov. Growth optima [LEAD]: rainbow ≈17 °C (Hokanson et al. 1977 via
+Hasnain 2010), brown ≈13 °C, brook 14–16 °C. NDEP trout chronic/acute ceilings (rainbow
+19/24, brown 17/24, brook 19/24 °C) appear in the combined guidance table but could not be
+digit-pinned from the columnar PDF — [LEAD: re-pin] — cross-check against the peer-reviewed
+lethals (rainbow 25–26 °C, brown 24–25 °C, brook ~25 °C per a 2024 *Reviews in Aquaculture*
+review; 403'd, [LEAD]).
+
+| species × factor | candidate band/curve | source | transfer verdict | treatment |
+|---|---|---|---|---|
+| rainbow comfort | optimal ≈12–19 °C; avoidance ≥19; lethal ≥24–25 (field-anchored, NOT the 18–19 °C lab preferendum) | VT F&W + Hasnain + NDEP | **defensible-with-caveats** (VT is NE-us; tailwater rainbows are the TN population scored) | **scorable** — this is the trout-lens band the fishability program lacks |
+| brown comfort | optimal ≈11–19 °C; feeding drops >20; avoidance ≥17–20; lethal ≥24 | VT F&W + Hasnain + NDEP | defensible-with-caveats | **scorable** (brown is the SH/Caney/Elk trophy fish — a distinct band matters) |
+| brook comfort | optimal ≈12–17 °C; lethal ≈24–25 | VT F&W + Hasnain | defensible-with-caveats (brooks live in the coolest TN headwaters) | **scorable** (low priority: brook waters are few) |
+| trout DO | constraint floors (coldwater criteria) | Gold Book | defensible as constraint | scorable-as-constraint |
+| trout flow/roc | NO primary feeding-vs-discharge study verified this window | — | weak | **context-only** ("generation schedule rising — expect stain/rise" style) |
+| trout spawn | rainbow incubation 45–54 °F; brown spawn 44–48 °F (Oct–Dec); brook 40–50 °F (Sep–Nov) | VT F&W | defensible-with-caveats: phenology is latitude/elevation-shifted (NDEP notes 22–65-day regional offsets); TN tailwater rainbows stage late-winter | scorable for wild waters; N/A for put-and-take (stocked fish don't spawn) |
+| trout pressure | — | — | not-transferable | unassessed |
+| trout stratification | N/A (stream/tailwater lens) | — | — | unassessed |
+
+**Never implement:** any HSI-suite coefficient transplant (USFWS Habitat Suitability Models
+were fitted regionally; endpoints may guide, coefficients do not transfer).
+
+### 5.2 The seven warmwater keys — current state + what this window adds
+
+| species | comfort (high side) | optimal band | spawn window | flow/roc | pressure | stratification |
+|---|---|---|---|---|---|---|
+| largemouth-bass | avoidance 32 / lethal 34 °C — NDEP (app cites; doc + modes verified) | preferred modes 30.0/26.7 °C verified verbatim → band 25–30 °C **scorable** | **CONFLICT:** app uses FishUSA 60–75 °F; TAMU (verified): nests >60 °F, spawning 65–75 °F; **TWRA Watts Bar (verified): LMB spawn Mar–May at 68–72 °F** — the TN agency figure is the better TN anchor; recommend window 20–24 °C (68–75 °F) labeled TWRA+TAMU, or keep 60–75 labeled continental | none (context-only) | heuristic (null-result culture) | reservoir: relevant (summer offshore shift) — context-only |
+| smallmouth-bass | avoidance 29 / lethal 31 °C — NDEP (doc verified; note NDEP's own name typo) | band ≈24–29 °C from preferendum [LEAD ≈27 °C Beitinger] + verified LRO "most active 68–80 °F" (retail — keep flagged) | onset >60 °F **verified** (MDC: spawn early/mid-April when water exceeds 60 °F, peak May) → scorable onset 15.5 °C; end ≈21 °C stays LRO-cited | **stage-specific evidence exists**: rising discharge/velocity = chief cause of nest failure (Lukas & Orth 1995; Dauwalter & Fisher 2007) [LEAD] → scorable ONLY during spawn state; otherwise context-only | heuristic | N/A (riverine) |
+| spotted-bass | chronic 32 °C (professional judgment) / **no acute derived — NDEP verbatim** (verified) | none sourced → **unassessed** (do not inherit smallmouth's band silently) | TPWD ≈13.9–23.3 °C (app cites; [LEAD — re-verify page]) | none | heuristic | reservoir context |
+| crappie (white & black) | white 28/31, black 27/32 °C — NDEP (docs verified) | none sourced → unassessed | **verified TN agency**: white 60–65 °F, black 62–68 °F (TWRA Watts Bar page, parent-verified verbatim) → union 15.6–20 °C **scorable, TN-native citation** | none | heuristic | reservoir: critical (spring shallow move documented on same page) — context-only |
+| bluegill | avoidance 32 / lethal 35 °C — NDEP (doc verified) | preferendum ≈31 °C [LEAD] → weak | onset ≈75 °F (MU Extension, in-app) — **agency corroboration still missing**; extension literature clusters 70–75 °F → keep onset 23.3 °C, soften upper, label extension-grade | none | heuristic | ponds: relevant, context-only |
+| channel-catfish | avoidance 32 / lethal 35 °C — NDEP (doc verified) | preferendum ≈30 °C [LEAD] → weak | **improved anchor**: MDC (verified): spawns "when water temperatures reach 75 °F," late May→3rd week July, two peaks → onset 23.9 °C scorable; the in-app CatfishNow 70–85 °F band has no agency anchor — register item | rising-water feeding folklore — register item | heuristic | river/reservoir context |
+| striped-bass | avoidance 30 / lethal 32 °C — NDEP (doc verified); occupied range 14.6–28.2, 90% limit 22.0 °C **verified verbatim** (Coutant et al. 1984) | band 14.6–22 °C occupied-range **scorable for tailwater/riverine stripers**; **NOT a fixed band in reservoirs**: temperature–oxygen squeeze (Coutant 1985; TWRA Cherokee page verified: stripers "do not normally grow big in Cherokee" — low summer DO + high temps; the page also describes thermal stratification) → reservoir scoring must mode-switch to a squeeze/refuge flag needing DO data | freshwater spawn ≈15–20 °C [LEAD — agency page re-pin needed; app correctly leaves it needs-source] | none | heuristic | **core to the species** — scorable only with profile/DO data; otherwise context-only |
+
+**Cherokee stratification text (parent-verified, Watts-Bar-class page):** "The reservoir
+thermally stratifies in the summer when warm oxygenated surface water cannot mix with the
+cold water below…" — TWRA's own reservoir pages carry the stratification narrative the
+activity model would need; it is **context text**, not gauge-scorable (no vertical-profile
+sensor exists in the B-lane inventory).
+
+### 5.3 Factor verdicts across all species (summary for the planner)
+
+1. **Temperature comfort** — scorable for all seven + the three trout lens species, with
+   bands above. Highest-confidence citations: NDEP ceilings (verified), TWRA spawn/behavior
+   pages (verified), VT F&W trout bands (verified). Open: optimal-band centers for SPB/CRP/
+   BLG/CCF; Beitinger digit re-pin.
+2. **Dissolved oxygen** — scorable as a CONSTRAINT (floors), never as a positive activity
+   signal. Cherokee/Old Hickory-class pages show TWRA treating summer DO as the striped-bass
+   limiting factor — matches Coutant. Needs the Gold Book digit re-pin.
+3. **Flow / rate-of-change** — **weakest factor family.** Only stage-specific nesting
+   evidence for smallmouth (scorable during spawn state only). "Stable/falling favorable"
+   remains a heuristic for every species. The current `idealFlow` numbers in catalog YAML
+   have no scientific provenance (see §6).
+4. **Spawn phenology** — scorable with TN/agency anchors for crappie (TWRA), smallmouth
+   (MDC), largemouth (TWRA Watts Bar 68–72 °F + TAMU 65–75 °F — resolve the conflict toward
+   the TN agency figure), channel catfish (MDC 75 °F onset); extension-grade for bluegill;
+   missing for striped bass (keep needs-source); trout bands authorable from VT F&W with
+   latitude caveats (and irrelevant for put-and-take waters).
+5. **Pressure** — controlled evidence is a NULL result (P=0.55). At most a labeled
+   heuristic with small weight; the honest default is to exclude from scoring (consistent
+   with F12's exclusion logic) and show the NWS trend as context.
+6. **Stratification/turnover** — context-only everywhere; not gauge-scorable; TWRA/TVA pages
+   provide narrative; TN-specific turnover dates are not agency-published this window.
+
+### 5.4 `spawnStateValue` transformations (80/50/30/50)
+
+The F9 pre-spawn=80 / post-spawn=30 activity mapping has no per-species primary support —
+no study this window quantifies relative feeding intensity by spawn stage for these
+species. The *states* are defensible (temperature thresholds above); the *numeric
+transformations* are heuristics. They may ship only if labeled `heuristic` with small
+weights — or better, render the state (PRE/ON/POST) without pretending to a weighted score.
+Register item.
