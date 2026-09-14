@@ -188,7 +188,9 @@ Everything here is server-side ingest; the browser still sees only snapshots.
    `Accept: application/json`; comma-string numbers; per-dam CDT/EDT labels; empty `[]`
    is a valid state). Emit `v1/release-schedule/{waterId}.json` for the 12 configured
    TVA-dam tailwaters + Barkley (BARK2): today+tomorrow generator blocks with the
-   source's own date precision. USACE dams (Center Hill, Dale Hollow, JPP) have **no
+   source's own date precision. Parse and fixture-test Cordell Hull (`COHT1`) as well,
+   but keep it coverage-only while the cumberland-river reach remains intentionally
+   unwired (§12 decision 3). USACE dams (Center Hill, Dale Hollow, JPP) have **no
    reachable schedule** — those waters get an honest "schedule unavailable" state
    (owner escalates to Nashville District, §12).
 2. **TVA forecasts** (I4): `predicted-data/{id}` → 3-day AverageInflow /
@@ -210,7 +212,8 @@ Everything here is server-side ingest; the browser still sees only snapshots.
    Book constraint floors (coldwater inst. min 2.0 / 7-day min ~5.0; warmwater ~4.0;
    digits to be re-pinned from the verified EPA Gold Book 1986 document at
    implementation time — the structure is verified, the columnar digits are a
-   documented [LEAD]). Constraint note only, never a positive score input.
+   documented [LEAD]). Add the verified `usace-a2w` provider to the stable `SOURCES`
+   registry while doing this work. Constraint note only, never a positive score input.
 6. **Safety overlays (docs-grade, no scoring):** TDEC fish-advisory PDF (weekly
    ETag/Last-Modified watch; recipe in audit-b registry) → advisory badge on affected
    waters; TDEC DWR ArcGIS attainment (`browser UA + Referer: tdeconline.tn.gov/dwr/`)
@@ -300,8 +303,9 @@ are NOT silently resolvable (§12).
    + note the snapshot conflict (D1); chilhowee-lake → live-list rainbow, plan text
    dated note (D2).
 5. **Seasons — replace the hardcoded Nov–Mar window** (`waterDecision.ts:78-79`) with
-   an authored optional `seasonMonths: [..]` per water, labeled REGULATORY vs
-   PROGRAMMATIC:
+   authored optional `seasonMonths: [..]` plus `seasonKind: regulatory | programmatic`
+   per water. `seasonKind` is required whenever `seasonMonths` is present; the UI
+   renders the machine value as the explicit `REGULATORY` or `PROGRAMMATIC` label:
    - Tailwater PROGRAMMATIC windows from the verified stocking list (audit-c §3.3):
      duck-river-tailwater Nov–Jun · elk-river Mar–Dec · stones-river Dec–Mar ·
      caney-fork Mar–Dec · hiwassee Oct–Jul · obey Jan–Dec · boone-tailwater
@@ -316,9 +320,12 @@ are NOT silently resolvable (§12).
      Citico permit Mar 1–Aug 15 (+Thu/Fri closures); Buffalo Creek Grainger CLOSED
      year-round above the mill dam; Gatlinburg Thursday closures + Dec 1–Mar 31 C&R;
      Piney River DH removed 2026-27 (keep the existing dated-conflict handling, D19).
+   - D18 guard: do not display Gatlinburg creel counts until the source text is re-pinned;
+     only ship the verified Thursday closure and Dec 1–Mar 31 C&R facts in this phase.
    - Decision model: seasonal states derive from `seasonMonths` + current month; the
-     chip copy names the label ("Stocked Nov–Jun (program)" vs regulation text).
+     chip copy names `seasonKind` ("Stocked Nov–Jun (program)" vs regulation text).
 6. **Validators:** extend `validate:content` for `seasonMonths` (month names, ≤12),
+   the `seasonMonths`/`seasonKind` required-pair and enum rules, the
    `speciesEvidence` requirement, and the D7 parser hazard rule — "Cherokee bass" must
    never tokenize as `spotted-bass` or `striped-bass` anywhere in tooling.
 
@@ -410,8 +417,10 @@ are NOT silently resolvable (§12).
 4. **KNOWN-ISSUES closeout:** tick the verified-done list in §1; tick each phase's
    items as merged; record the USGS deadline + USACE-schedule + TVA-access as owner
    actions (T3-class); append audit-b/c "do-not-implement" registers as accepted-
-   limitation notes where relevant (satellite SST, CWMS, rivergages, lake temperature,
-   pressure scoring).
+   limitation notes. Explicitly preserve the D14 no-unverified-trophy-rule decision,
+   D15 Region-1-only crappie exception, D18 Gatlinburg creel-count hold, and the
+   source negatives (satellite SST, CWMS, rivergages, lake temperature, pressure
+   scoring).
 
 ## 11. Sequencing & rationale
 
@@ -425,7 +434,7 @@ Phase 8 last. If one session executes alone, run strictly in order.
 
 | # | Decision | Safe default (implemented) |
 |---|---|---|
-| 1 | Add trout keys to the v2 `SpeciesKey` enum (would let GSMNP waters carry typed trout tags; audit-c D5) | Not this campaign — 5 mislabeled SMB tags cleared instead; enum stays 7 keys |
+| 1 | Add trout keys to the v2 `SpeciesKey` enum (would let GSMNP waters carry typed trout tags; audit-c D5) | Not this campaign — four mislabelled SMB tags are cleared; `little-river`'s REG-based SMB remains; enum stays 7 keys |
 | 2 | Dale Hollow stocking composition: live TWRA list says Rainbow-only; repo snapshot says Brown (D1) | Rainbow + dated conflict note |
 | 3 | Wire cumberland-river conditions from ASHT1/pool sensors (reach-representativeness question; prior policy rejected main-stem single-dam scoring) | Stay unwired; candidates recorded |
 | 4 | USGS Water Data API key signup (needed before blackouts; credential) | Owner action — code ships with keyless dev fallback + warning |
@@ -440,7 +449,8 @@ Phase 8 last. If one session executes alone, run strictly in order.
 - Statewide auto-titles reduced 54 → 37 with an authored, cited tier on every water;
   nothing deleted from catalog/search/SEO.
 - Every `targetSpecies` tag carries a retrieval-dated evidence citation or is removed;
-  the five GSMNP mislabels gone; all audit-c D-register downgrades applied.
+  the four GSMNP SMB mislabels are gone while `little-river`'s REG-based SMB remains;
+  all audit-c D-register downgrades are applied.
 - USGS fetches run on the Water Data API with key management before any blackout;
   TVA release schedules + forecasts + lake mappings shipped where probe-verified.
 - Trout comfort bands cite agency sources; largemouth fully assessed; pressure out of
