@@ -227,8 +227,286 @@ proposed here for the planner. All entries live-verified this window unless grad
 pending]`: statewide queries for 62614/63158 (elevation), 00300 (DO) were requested of
 the federal-gauges subagent; parent will re-probe before asserting in the lake section.
 
-(Per-water matrix, lake findings, modernization, scrape recipes, and the do-not-implement
-register land in the next commits.)
+## Per-water source/parameter coverage matrix (148 rows)
+
+Legend: `Q`=discharge (cfs) · `S`=stage/elevation (ft) · `T`=water temperature · `level`=reservoir
+elevation. Every "verified/live" claim is a parent-run probe stamped 2026-09-13T23:49Z–09-14T00:30Z;
+values age — observation timestamps are in the station inventory. The matrix covers the SOURCE
+dimension only; species/season applicability belongs to Session C. `— no defensible source found as
+of 2026-09-14T00:30Z` is a finding, not a placeholder. Stocking (TWRA grids re-verified live 00:06Z)
+is context per the 2026-09-04 coverage doc; alias-level re-verification was out of window scope.
+
+Verdict counts (source dimension): **LIVE flow+temp 10 · PARTIAL (flow/stage, no live temp) 26 ·
+LEVEL-only (lake) 15 · NO GAUGE WIRING 97.** NWS area pressure (region-level, never per-water)
+applies to every row via the region mapping and is omitted per-row. Release-schedule column shows
+the NEW verified TVA `generation-releases/{id}` capability for TVA dams + Barkley + Cordell Hull
+(COHT1); USACE Nashville dams have no reachable public schedule (CWMS 500, lrn web TLS-broken).
+
+| waterId | type | flow/stage | temperature | level | release schedule | source verdict | notes |
+|---|---|---|---|---|---|---|---|
+| `barren-fork-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `beaverdam-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `beech-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `big-rock-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `boiling-fork-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `boone-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03486810: DEAD (ABSENT) |
+| `boone-tailwater` | tailrace | TVA BOOT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/BOOT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03486810: DEAD (ABSENT) TVA BOOT1: stage/discharge only, no tailwater temperature |
+| `bradley-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `brush-creek-cocke` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `buffalo-creek-grainger` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `buffalo-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `calderwood-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `calfkiller-river` | river | USGS 03419530: Q+S (no temp series) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `cameron-brown-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `cane-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `caney-fork-river` | tailrace | USGS 03424860: Q+S (no temp series; 00045 precip live); TVA CEHT1: Q hourly; USACE CETT1: Q hourly (A2W live to 23:30Z) | USACE CETT1: tailwater T 30-min (A2W live to 23:30Z) | — | TVA gen-releases/CEHT1 verified (Generators, today+tomorrow) | LIVE flow+temp | USGS 03424010: DEAD (ABSENT from IV catalog) TVA CEHT1: stage/discharge only, no tailwater temperature repo Elev-Tail TSIDs ALSO live (CETT1/DHTT1 47 vals to 23:30Z; JPPT1 30-min variant to 23:00Z) though absent from the /locations catalog listing |
+| `caney-fork-upper` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `center-hill-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA CEHT1: level+Q hourly (rows to 09-13 PM) | TVA gen-releases/CEHT1 verified | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `charles-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `cherokee-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA CRKT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `chickamauga-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA CKDT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `chilhowee-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `citico-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `clear-creek-obed` | creek | USGS 03539778: Q+S+T@09-10 (temp/DO last 2026-09-10) | USGS 03539778: T@09-10 | — | — | LIVE flow+temp |  |
+| `clear-fork` | creek | USGS 03409500: Q+S+T | USGS 03409500: T | — | — | LIVE flow+temp |  |
+| `clinch-river` | tailrace | TVA NRST1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/NRST1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03533000: DEAD (ABSENT) TVA NRST1: stage/discharge only, no tailwater temperature |
+| `collins-river` | river | USGS 03421000: Q+S (temp dead 2005; 00045 precip live) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `cosby-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `covington-fbc-pond` | pond | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `cumberland-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USACE CORT1 flow+tail-T+DO live (A2W 23:30Z) but USACE-id scope: Cordell Hull TW, upstream of this reach; TVA knows this dam as COHT1 (CORT1 returns [] on TVA endpoints) VERIFIED CANDIDATES for reach coverage: USACE ASHT1-CHEATHAM TW flow+tail-elev (A2W catalog 00:14Z, 15-min); TVA COHT1 Cordell Hull level+Q+gen-schedule+forecast (00:16Z; TVA id COHT1, not CORT1); USGS 03418420 Cumberland below Cordell Hull T+S+DO (00:17Z) is UPSTREAM of this reach; Nashville-pool DO: 03431091/03431514 (00:17Z); 03430200 Stones@Donelson T is a tributary-mouth proxy. No reach-representative live temperature in the mainstem pool itself. |
+| `daddys-creek` | creek | USGS 03539600: Q+S+T (DO 9.2 live) | USGS 03539600: T | — | — | LIVE flow+temp |  |
+| `dale-hollow-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA DLHT1: level+Q hourly (rows to 09-13 PM) | TVA gen-releases/DLHT1 verified | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `doe-creek-johnson` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `doe-river` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03485500: S (stage only; Q invalid all week (P,Rat); temp dead 1988) |
+| `douglas-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA DUGT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | USGS 03468510: DEAD (ABSENT) NO lake temperature from TVA monitor |
+| `duck-river-lower` | river | USGS 03597860: Q+S (temp dead 2012); USGS 03598000: Q+S (temp dead 2009); USGS 03599500: Q+S (temp dead 2005) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) | USACE CLAT1 (Cumberland at Celina) is a DIFFERENT basin — not a Duck source; no new candidates verified. |
+| `duck-river-tailwater` | tailrace | USGS 03597860: Q+S (temp dead 2012); TVA NRMT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/NRMT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | TVA NRMT1: stage/discharge only, no tailwater temperature |
+| `east-fork-shoal-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `east-fork-stones-river` | river | USGS 03427500: Q+S (temp dead 2005; 00045 precip live) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `edmund-orgill-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `elk-river-lower` | river | USGS 03584600: Q+S (temp dead 2020-10) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `elk-river` | tailrace | USGS 03578000: Q+S (temp dead 2005; 00045 precip live); TVA TMFT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/TMFT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03580750: DEAD (ABSENT) TVA TMFT1: stage/discharge only, no tailwater temperature |
+| `emory-river` | river | USGS 03540500: Q+S (temp dead 2007) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `fletchers-fork` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `forge-creek-johnson` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `fort-loudoun-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA FLDT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `fort-patrick-henry-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03487010: DEAD (ABSENT) |
+| `french-broad-river` | tailrace | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03468510: DEAD (ABSENT) USGS 03469000: DEAD (ABSENT) |
+| `ft-patrick-henry-tailwater` | tailrace | TVA FPHT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/FPHT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03487010: DEAD (ABSENT) TVA FPHT1: stage/discharge only, no tailwater temperature |
+| `gap-creek-claiborne` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `goforth-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `greasy-creek-polk` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `great-falls-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `gulf-fork-big-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `harpeth-river` | river | USGS 03432350: Q+S (temp dead 2014-10; 00045 precip live); USGS 03433500: Q+S+T (DO 7.9 live; 00045 precip live) | USGS 03433500: T | — | — | LIVE flow+temp | DO chain live on the Harpeth: 03433500 7.9, 034324146 7.2, 0343233905 7.8, 03432100 1.2 mg/L (hypolimnetic-release stress signal) @ 00:17Z. |
+| `hatchie-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `hiwassee-river` | tailrace | TVA HADT1: Q hourly | USGS 03556590: T | — | TVA gen-releases/HADT1 verified (Generators, today+tomorrow) | LIVE flow+temp | USGS 03566000: DEAD (historical-only (2018)) TVA HADT1: stage/discharge only, no tailwater temperature |
+| `holston-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `horse-creek-greene` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `hurricane-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `indian-creek-claiborne` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `j-percy-priest-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA JPHT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `johnson-park-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `kentucky-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA KYDK2: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `lake-barkley` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA BARK2: level+Q hourly (rows to 09-13 PM) | TVA gen-releases/BARK2 verified | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `lake-graham` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `laurel-creek-johnson` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `laurel-fork-carter` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `leconte-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `little-buffalo-river` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `little-pigeon-river` | river | USGS 03470000: Q+S (temp dead 1988) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `little-river` | creek | USGS 03497300: Q+S+T; USGS 03498500: Q+S (temp dead 2007) | USGS 03497300: T | — | — | LIVE flow+temp |  |
+| `little-sequatchie-river` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `little-tennessee-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `little-west-fork-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `martin-city-pond` | pond | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `mccutcheon-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `melton-hill-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `middle-prong-little-pigeon` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `milan-city-pond` | pond | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `mill-creek-overton` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `mississippi-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `mossy-creek-jefferson` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `new-river` | river | USGS 03408500: Q+S+T | USGS 03408500: T | — | — | LIVE flow+temp |  |
+| `nickajack-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `nolichucky-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03465500: S (stage only; Q invalid all week (P,Rat -999999)) |
+| `normandy-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `norris-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA NRST1: level+Q hourly (rows to 09-13 PM) | TVA gen-releases/NRST1 verified | LEVEL only (lake) | USGS 03533000: DEAD (ABSENT) NO lake temperature from TVA monitor |
+| `north-chickamauga-creek` | creek | USGS 03566535: Q+S (temp dead 2002; Q read 0.00 09-13; 00045 precip live) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `north-fork-holston-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `north-prong-barren-fork` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `obed-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03539800: DEAD (died 2026-08 (flow 08-22, stage 07-26)) VERIFIED CANDIDATE: USGS 03538830 Obed R at Adams Bridge — Q+S+T+DO all live (00:17Z), upper-Obed reach; replaces dead 03539800 with spatial qualification (headwaters side, ~20 river-mi upstream of theEmory junction). |
+| `obey-river` | tailrace | TVA DLHT1: Q hourly; USACE DHTT1: Q hourly (A2W live to 23:30Z) | USACE DHTT1: tailwater T 30-min (A2W live to 23:30Z) | — | TVA gen-releases/DLHT1 verified (Generators, today+tomorrow) | LIVE flow+temp | USGS 03417000: DEAD (ABSENT from IV catalog) TVA DLHT1: stage/discharge only, no tailwater temperature repo Elev-Tail TSIDs ALSO live (CETT1/DHTT1 47 vals to 23:30Z; JPPT1 30-min variant to 23:00Z) though absent from the /locations catalog listing |
+| `obion-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `ocoee-number-three-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `ocoee-river` | river | USGS 03559500: Q+S (temp dead 1965); TVA OCBT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/OCBT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | TVA OCBT1: stage/discharge only, no tailwater temperature |
+| `old-hickory-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA OHHT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `paris-city-park-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `parksville-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03564500: DEAD (historical-only (1994)) |
+| `parksville-tailwater` | tailrace | TVA OCAT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/OCAT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03564500: DEAD (historical-only (1994)) TVA OCAT1: stage/discharge only, no tailwater temperature |
+| `pickwick-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA PICT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `pigeon-river` | river | USGS 03461500: Q+S (temp dead 2007) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `pine-creek-dekalb` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `piney-river-rhea` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `powell-river` | river | USGS 03532000: Q+S (temp dead 2007; 00045 precip live) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `puncheon-camp-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `red-river-clarksville` | river | USGS 03436100: Q+S (temp dead 2005; 00045 precip live) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `reedy-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03487602: DEAD (ABSENT) |
+| `reelfoot-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `richardson-byrd-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `roaring-fork` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `rocky-river` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `salt-lick-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `sequatchie-river` | river | USGS 03571000: Q+S (temp dead 2005) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `shelby-farms-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `shoal-creek` | river | USGS 03588500: Q+S (temp dead 2005) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `sinking-creek-wilson` | spring | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `south-fork-cumberland` | river | USGS 03410210: Q+S (temp dead 2017) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `south-holston-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA SHDT1: level+Q hourly (rows to 09-13 PM) | TVA gen-releases/SHDT1 verified | LEVEL only (lake) | USGS 03476500: DEAD (ABSENT) NO lake temperature from TVA monitor |
+| `south-holston-river` | tailrace | TVA SHDT1: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/SHDT1 verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03476500: DEAD (ABSENT) TVA SHDT1: stage/discharge only, no tailwater temperature |
+| `spring-creek-polk` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `standing-rock-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `station-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `stones-river` | river | USGS 03430200: Q INVALID(-168)+S+T (Q=-168 cfs invalid 09-13; DO 6.0 live); USACE JPPT1: Q hourly (A2W live to 23:30Z) | USGS 03430200: T; USACE JPPT1: tailwater T 30-min (A2W live to 23:30Z) | — | — | LIVE flow+temp | F4 negative-discharge guard needed repo Elev-Tail TSIDs ALSO live (CETT1/DHTT1 47 vals to 23:30Z; JPPT1 30-min variant to 23:00Z) though absent from the /locations catalog listing |
+| `stoney-creek-carter` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `sulfur-fork-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `tellico-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `tellico-river` | river | USGS 03518500: Q+S (temp dead 2004) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `tennessee-river` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `tims-ford-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA TMFT1: level+Q hourly (rows to 09-13 PM) | TVA gen-releases/TMFT1 verified | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `trail-fork-big-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `tumbling-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `union-city-reelfoot-pond` | pond | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `upper-hills-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `upper-roan-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `valentine-park-pond` | pond | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `watauga-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `watauga-river-wilbur-reach` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `watauga-river` | tailrace | USGS 03486000: Q+S (temp dead 1981); TVA WL: Q hourly | — none as of 2026-09-14T00:30Z | — | TVA gen-releases/WL verified (Generators, today+tomorrow) | PARTIAL (flow/stage, no live temp) | USGS 03483980: DEAD (ABSENT) USGS 03484000: DEAD (ABSENT) TVA WL: stage/discharge only, no tailwater temperature |
+| `watts-bar-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | TVA WBOT1: level+Q hourly (rows to 09-13 PM) | — | LEVEL only (lake) | NO lake temperature from TVA monitor |
+| `west-fork-stones-river` | river | USGS 03428200: Q+S (temp dead 2013) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `west-prong-little-pigeon` | creek | USGS 03469251: Q+S (no temp series) | — none as of 2026-09-14T00:30Z | — | — | PARTIAL (flow/stage, no live temp) |  |
+| `white-oak-creek` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `wilbur-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | USGS 03484000: DEAD (ABSENT) USGS 03483980: DEAD (ABSENT) |
+| `wolf-river-fentress` | creek | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `wolf-river-west-tennessee` | river | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING | VERIFIED CANDIDATE: USGS 07031650 Wolf R at Germantown Q+S live (00:17Z); 07030600 near Collierville stage-only. Basin DO/precip sites also live (07032200 Nonconnah Q+S). |
+| `woods-reservoir` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+| `yale-road-park-lake` | lake | — no defensible source found as of 2026-09-14T00:30Z | — none as of 2026-09-14T00:30Z | — | — | NO GAUGE WIRING |  |
+
+VERDICT COUNTS: {'NO GAUGE WIRING': 97, 'PARTIAL (flow/stage, no live temp)': 26, 'LIVE flow+temp': 10, 'LEVEL only (lake)': 15}
+
+## Station inventory (provider-keyed, parent-verified timestamps)
+
+### USGS NWIS — 50 configured site numbers
+
+Live columns as of the 23:49:27Z series catalog + 23:51/23:59Z value batches (times are gauge-local
+US/Central or US/Eastern as returned; all values provisional `P`):
+
+- **Live Q+S+T (5):** 03408500 New R (17.7 cfs/1.81 ft/26.5 °C @19:30), 03409500 Clear Fork
+  (8.60/1.22/27.4 @19:30), 03430200 Stones@Donelson (Q **−168 INVALID**, 3.40 ft, 27.9 °C @18:00–18:30),
+  03433500 Harpeth@Bellevue (37.8/1.14/29.7 @18:30), 03497300 Little R@Townsend (102/1.60/22.1 @18:45),
+  03539600 Daddys Cr (4.02/0.85/25.8 @18:00). **(6 sites — incl. the anomalous 03430200.)**
+- **Live T only (2):** 03556590 Hiwassee@Reliance (21.5 @19:15); 03539778 Clear Creek@Lilly Bridge
+  (Q+S live 4.37/3.77 @19:45; T + DO last 2026-09-10T22:00 — 70 h stale).
+- **Live Q+S, no T (24):** 03410210 (80.0/4.46), 03419530 (29.9/3.87), 03421000 (116/1.55),
+  03424860 (351/6.07), 03427500 (19.9/2.85), 03428200 (48.2/2.42), 03432350 (9.14/3.86),
+  03436100 (212/4.38), 03461500 (242/2.84), 03469251 (24.7/2.77), 03470000 (146/1.61),
+  03486000 (378/2.99), 03498500 (186/5.65), 03518500 (77.3/0.84), 03532000 (266/2.39),
+  03540500 (24.2/1.67), 03559500 (259/2.50), 03566535 (0.00/0.99 — zero-flow reading; verify sensor),
+  03571000 (74.0/0.78), 03578000 (12.6/1.64), 03584600 (340/0.79), 03588500 (99.6/1.75),
+  03597860 (178/10.11 — stage suspect vs neighbors), 03598000 (167/2.60), 03599500 (151/1.39).
+- **S only, Q invalid all week (2):** 03465500 Nolichucky@Embreeville (1.10 ft; 00060 `P,Rat`
+  −999999 ×671), 03485500 Doe R@Elizabethton (1.38 ft; same failure mode ×670).
+- **Dormant/dying (1):** 03539800 Obed@Lancing — last flow 2026-08-22, last stage 2026-07-26.
+- **Historical-only (2):** 03564500 (→1994-12-31), 03566000 (→2018-06-05).
+- **Absent from the IV catalog (12):** 03417000, 03424010, 03468510, 03469000, 03476500, 03483980,
+  03484000, 03486810, 03487010, 03487602, 03533000, 03580750 (all exist as USGS sites; the dam
+  tailwaters among them are TVA/USACE-published instead).
+- **DO (00300) live at 6 configured sites:** 03408500 6.3, 03409500 6.1, 03430200 6.0,
+  03433500 7.9, 03539600 9.2, 03539778 8.1(09-10) mg/L. Statewide: 14 sites with values in 2 d
+  (00:17Z scan) incl. 03418420 Cumberland below Cordell Hull 7.1, Harpeth chain (03432100 reads
+  **1.2 mg/L** — hypolimnetic-release stress), 03538830 Obed@Adams Br 7.2.
+- **Precip (00045) live at 44 TN sites** incl. 9 configured gauges (03421000, 03424860, 03427500,
+  03432350, 03433500, 03436100, 03532000, 03566535, 03578000) — a per-water rain signal already on
+  wired gauges; unused by the pipeline.
+- Coordinates/reach mapping: see `officialSources` per YAML; no mislocations found vs names.
+
+### TVA `RestApi` — 22 configured location IDs + catalog
+
+- Catalog `GET /RestApi/locations` → **43 locations**, fields LocationID/Name/Lat/Long/River/
+  Ownership/DamType/TopOfGatesFt/RiverMile (00:16:21Z, parent-verified). **Ownership=Cumberland
+  (USACE projects): BARK2, CEHT1, CHPT1 (Cheatham), COHT1 (Cordell Hull), DLHT1, JPHT1, OHHT1,
+  WLCK2 (Wolf Creek).** Note the TVA/USACE ID-space mismatch: TVA COHT1 = USACE CORT1;
+  TVA CHPT1 = USACE ASHT1.
+- All 22 configured IDs observed 00:00–00:16Z, HTTP 200, ~8 hourly rows each (rolling window
+  ~noon→7 PM local), fields exactly {Day, Time ("7 PM EDT"/"6 PM CDT"), ReservoirElevation,
+  TailwaterElevation, AverageHourlyDischarge} — **no temperature anywhere in the union of fields
+  across all 43 locations**. Samples (last row, ft / ft / cfs): NRST1 1,011.54/827.15/6,724;
+  CRKT1 1,060.22/927.71/11,124; DUGT1 983.19/876.63/18,089; WBOT1 740.78/682.60/25,405;
+  FLDT1 812.71/741.84/20,165; CKDT1 681.93/636.55/31,988; OHHT1 444.79/388.75/12,800;
+  JPHT1 489.85/387.15/30; TMFT1 887.61/743.60/245; CEHT1 633.69/475.89/250; DLHT1 641.61/513.61/3,405;
+  KYDK2 355.93/303.70/34,147; BARK2 356.10/303.10/15,700; SHDT1 1,721.89/1,488.98/2,224;
+  PICT1 413.57/360.40/45,137; WL 1,644.82/1,585.78/1,675; BOOT1 1,380.13/1,264.75/6,879;
+  FPHT1 1,261.21/1,195.84/6,696; HADT1 1,278.34/841.07/2,882; OCBT1 1,098.16/842.78/1,657;
+  OCAT1 827.93/715.90/1,288; NRMT1 872.46/789.99/166.
+- `generation-releases/{id}` verified (parent) for NRST1, CEHT1, BARK2, COHT1 00:06–00:16Z:
+  today+tomorrow generator blocks ("1 AM - 5 AM EDT" / "Generators":"0|1|2 or more"); per-dam
+  CDT/EDT. Empty `[]` observed for at least one location (NRMT1 in the parallel probe set) —
+  empty schedule is a valid state for some dams.
+- `predicted-data/{id}` verified (parent) NRST1 + COHT1: ~3 daily rows {Day, AverageInflow,
+  MidnightElevation (number), AverageOutflow (comma-string)} — a forecast surface the pipeline
+  has never had.
+
+### USACE A2W (`water.usace.army.mil/cda/reporting/providers/lrn`)
+
+- Discovery (parent-verified 00:14:04Z): `GET .../providers/lrn/locations` → **92 locations**
+  (81 SITE + 11 PROJECT) with slug/kind/state/public_name/nidid and a `timeseries[]` array
+  (tsid/unit/latest_value/latest_time). **Caveat: the catalog under-reports** — it omits live
+  series that still serve data (CETT1/DHTT1 Elev-Tail + Temp-Water are live to 23:30Z but absent
+  from their catalog entries; JPPT1 lists the 1Hour man-rev elev but the 30-min dcp-rev variant
+  also serves). Catalog = discovery aid, never the parameter-health source; per-series probes are.
+- Configured stations, all 12 TSIDs live (23:58Z–00:16Z parent probes, last values 23:00–23:30Z):
+  CETT1 Center Hill TW (Q 250; tail-elev 480.09; **T 54.12 °F**), DHTT1 Dale Hollow TW (Q 3,405;
+  tail-elev 512.4; **T 52.68 °F**), JPPT1 JPP TW (Q 30; tail-elev 386.92/387.15 both TSID variants),
+  CORT1 Cordell Hull TW (Q 16,680; tail-elev 449.88; T 70.63 °F; **DO 7.06 ppm**).
+- Notable non-configured stations (parent-verified from catalog + probes): ASHT1 Cheatham TW
+  (Q 6,700; tail-elev 356.99 15-min; no temp), CLAT1 Cumberland@Celina (Q 7,413.67; stage 15.45;
+  **T 64.13 °F; DO 8.15 ppm; precip bucket**), 03418420 (USGS) Cumberland below Cordell Hull
+  (T 21.5 °C/S 449.76/DO 7.1 @18:30).
+- LRN parameter census (catalog): Flow 52, Elev 48, Precip 49, Stage 23, Stor 12, Energy 8,
+  Conc/DO 2 (CORT1, CLAT1), Temp-Water 2 (CORT1, CLAT1). cwms-data: locations 500, timeseries 501,
+  catalog 200-but-empty — dead family, keep unwired.
+
+### NWS api.weather.gov — 10 wired ASOS stations
+
+Parent spot-verified 00:16:23–25Z (KBNA, KTYS): observations current (00:05Z), pressure
+`barometricPressure` Pa QC-flagged; **KTYS publishes null pressure (qualityControl `Z`)** —
+the region mapping should not assume all 10 stations yield values; KNQA observed 2 h stale in the
+parallel probe set. Precip fields: `precipitationLastHour/3Hours/6Hours` (mm) — presence varies
+per station; `precipitationLast3Hours` is the consistently present key (values null on the dry
+probe day). Forecast path requires following `properties.forecast` from `/points/...` (direct
+`/points/../forecast` 404s). Public domain, UA required, no key.
+
+## USGS modernization / migration risk (verified against official USGS pages)
+
+- Official blog, fetched 00:16:47Z: <https://waterdata.usgs.gov/blog/api-waterservices-decom/> —
+  "**WaterServices will be decommissioned in the first quarter of 2027**"; decommission process
+  "may include intentional service degradation and blackouts, in the second half of 2026. We will
+  not begin any intentional degradation of these services before August 2026."
+- Replacement: modernized Water Data APIs at `api.waterdata.usgs.gov` (OGC-API-style), e.g.
+  `.../ogcapi/v0/collections/continuous` and `/latest-continuous`; migration guide
+  <https://api.waterdata.usgs.gov/docs/ogcapi/migration/> (sites → `monitoring_location_id`
+  `USGS-03518500` form; `variableCode` → `parameter_code`; `P/A` → `approval_status`; one feature
+  per observation; UTC timestamps; **API key required beyond a few queries per hour**, signup at
+  api.waterdata.usgs.gov/signup). Support: gs-w_waterdata_support@usgs.gov.
+- **At risk:** every `waterservices.usgs.gov` call in `apps/api` (IV fetcher, site catalog,
+  state scans) — the app's largest data surface. Degradation (timeouts/blackouts) may begin at any
+  time from Aug 2026; hard end Q1 2027. The observed 503s (`caas01`, 23:51–23:55Z) are a taste of
+  the retry discipline the migration will demand. TVA/USACE A2W/NWS are unaffected by THIS change.
+- Planner implication: the Q1-2027 migration is a **flagged, scheduled rewire of `usgs-provider.ts`
+  + `ingest/usgs.ts`** (new client, key management, per-observation parsing, UTC) — start before
+  blackouts begin; keep fixtures dual-shaped.
+
 
 ## Verification summary
 
