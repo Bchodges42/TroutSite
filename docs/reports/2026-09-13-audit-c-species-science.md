@@ -1,4 +1,4 @@
-# 2026-09-13 audit — Session C: species / season / science evidence report
+# Session C species/season/science evidence report — base b44b4fe09af3b47a35f63afdb547475e1ccf0fe7 (= origin/main, proven 2026-09-13T23:43:01Z)
 
 **Base revision:** `origin/main` = `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7`
 (proven equal to `git ls-remote origin main` at **2026-09-13T23:43:01Z** — identical to the
