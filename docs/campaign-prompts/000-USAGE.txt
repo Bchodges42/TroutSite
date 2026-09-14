@@ -1,0 +1,33 @@
+Trout accuracy campaign — three fresh-session prompts (usage)
+
+House pattern: docs/EXECUTION-PLAN.md §2. Sessions A/B/C run SIMULTANEOUSLY — each is fully
+independent (own clone, own branch, own report), none reads or waits on another. The
+implementation plan is NOT written by these sessions: after all three report files exist, the
+owner either runs a final planning session (brief available on request) or hands the three
+reports to the usual planning model. That planner consumes the three reports plus the repo.
+
+Estimated load (even-split rule, EXECUTION-PLAN §2 — rebalance at handout if any looks >1.5x):
+- A ground truth: repo-wide code/data trace + 148-row technical inventory. All three lanes
+  (map, scoring, surfaces) are in-repo; heavy on reading and count reproduction.
+- B water sources: live verification of every configured gauge ID x parameter, station-catalog
+  enumeration, source hunt + recipes for the source/parameter coverage matrix. Heavy on live
+  probing; the slowest per item, hence its own session.
+- C species & science: per-water species/season evidence hunt + scientific-model review for
+  trout and the seven warmwater keys. Heavy on web research and evidence grading.
+
+Lane boundary (stated in both B and C): B owns WHERE measured numbers come from (sources,
+stations, parameters, freshness); C owns WHAT the data means for species, seasons, and
+scoring science. Temperature crosses both only as: B finds the sensor, C supplies thresholds.
+
+How to launch each session:
+- Open the corresponding session file in this folder.
+- Copy its ENTIRE contents and paste as the fresh session's first message. Nothing else.
+- Branches: campaign-a, campaign-b, campaign-c. Reports (the only files they may write):
+  docs/reports/2026-09-13-audit-a-ground-truth.md
+  docs/reports/2026-09-13-audit-b-water-sources.md
+  docs/reports/2026-09-13-audit-c-species-science.md
+- Each report ends with "Inputs the implementation planner may treat as verified" — that
+  section plus the repo is what the final planning pass consumes.
+
+Baseline all three briefs cite: 2026-09-13, origin/main b44b4fe09af3b47a35f63afdb547475e1ccf0fe7.
+Origin/main may move; every brief forces re-verification of the base at setup.

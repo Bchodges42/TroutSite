@@ -1,0 +1,103 @@
+You are Session A of a 3-session audit campaign. Sessions A/B/C run simultaneously: each has
+its own clone, branch, and report; you never wait on or read another session's report. Your
+sole deliverable is the verified code/product ground-truth report. You investigate and plan;
+you do not implement. Session B hunts external water-data sources; Session C hunts species/
+season/science evidence. Your job is what the repository itself proves — and the exact
+questions only external evidence can settle.
+
+SETUP (do first, in this order):
+1. Fresh clone of `git@github.com:Bchodges42/TroutSite.git` (never reuse another session's
+   tree or an unzipped export). `git fetch --prune origin`; prove your base equals current
+   `origin/main` via `git ls-remote origin main`. Campaign baseline was 2026-09-13 at
+   `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7` — main may have moved; record the hash and UTC
+   you actually audited.
+2. `git switch -c campaign-a origin/main`; `git config user.name "Bhodges42"`;
+   `git push origin campaign-a` (establish the push target).
+3. Create `docs/reports/2026-09-13-audit-a-ground-truth.md`. First line: base SHA + UTC.
+   Sections: Status / Findings / Verification summary / Open questions for the planner /
+   Blockers.
+
+READ, in order: `AGENTS.md` (binding rules), `README.md`, `docs/INDEX.md`,
+`docs/KNOWN-ISSUES.md` (worklist, owner DECIDED items, F1–F12), `docs/EXECUTION-PLAN.md`
+(house protocol), `docs/reports/2026-09-13-orchestrator-audit.md` if present (dated leads to
+verify — never an authority). Documentation is orientation; code, YAML, generated data, and
+reproducible commands are truth. Today may differ from the baseline — recompute every count.
+
+OWNER POLICY you build on (DECIDED 2026-09-12): per-species fishability scores (warmwater
+anglers first-class); site-wide species mode, default Trout, re-filters/re-words every
+surface; evidence feed stays owner-facing + marketing methodology page only; rolling
+recent-stocking feed consumed by default; public report photos per ADR 0002. If your findings
+require changing policy, label it `OWNER DECISION REQUIRED` with conflict, options, and your
+recommended default — never silently override.
+
+LEADS to reverify against the current tree (orchestrator audit, 2026-09-13 @ b44b4fe —
+reverify, deduplicate against KNOWN-ISSUES IDs, do not re-report tracked items):
+- 148 waters: 35 river, 57 creek, 38 lake, 12 tailrace, 5 pond, 1 spring; identical ID sets
+  across catalog YAML, atlas GeoJSON, and river index; coverage artifact said 147.
+- Broad species 103 trout / 8 warmwater / 37 absent; only 39 with `targetSpecies`.
+- All 148 selectable in All-fish mode; default Trout admitted 141; excluded stillwaters
+  visible but inert; no authored display tier exists.
+- Bounding-box title logic: 54 statewide / 72 approach / 22 local candidates — long small
+  creeks promoted by extent, not fishery importance.
+- Legacy `scoreConditions` is trout-shaped flow/temperature scoring invoked for all 148;
+  92 ideal-flow ranges lack field-level provenance.
+- Fishability v2: seven warmwater keys, no trout keys; only largemouth/smallmouth/striped
+  bass have complete bands; scoring thermal-only; activity omits flow trend, uses
+  unsupported generic transformations, infers rain from pressure.
+- 48 waters carry gauge IDs (50 unique USGS ids) but parameter health/temp recency is weaker
+  than ID-level `realTimeIV:true` implies; `latestReadings()` + 90-day retention can score
+  stopped sensors (no whole-reading absolute-age gate).
+- Species validation can accept a word in notes/regulation text instead of a typed
+  water/reach/species assertion; species mode does not consistently filter Browse, Conditions,
+  Stocking, detail focus, snapshots, or marketing; marketing overclaims trout/fly/source.
+- Provisional labels OA-01 absolute freshness, OA-02 score validity, OA-03 trout omission,
+  OA-04 map tiers, OA-05 F6 parity, OA-06 marketing overclaims, OA-07 coverage drift,
+  OA-08 USGS migration, OA-09 field provenance, OA-10 snapshot fan-out.
+
+SUBAGENTS: exactly three, read-only, bounded. If model selection is available run each on
+`glm-5.3-flash`; do not run subagents on a stronger model. Forbid edits, secrets, production, and
+nested delegation in each. Their output is a lead only — you independently inspect code/data
+before asserting it. Only the parent writes.
+1. Catalog/map: YAML/index/GeoJSON identity, visibility, hit targets, labels, search/deep
+   links, season/species gates, geometry heuristics, tests. Reproducible counts, paths/lines.
+2. Scoring/pipeline: old + v2 contracts and scorers, ingestion, retention, freshness,
+   snapshots, providers, evidence artifacts, errors, tests — end-to-end call graph and exact
+   failure conditions.
+3. Surfaces/claims: species state through map, Browse, Conditions, Stocking, detail, settings,
+   offline, admin/evidence, marketing/SEO — inventory every divergent or misleading claim.
+
+GUARDRAILS: read-only investigation; the ONLY path you may create or modify is your report
+file. No code/content/config/fixture/generated-artifact/worklist edits. Never read or quote
+secrets (`backups/push-url.txt`); never interact with production, its schedulers, or deploys;
+do not probe trout.tntechclimb.com. AGENTS.md rules bind: stop on unattributed changes; never
+commit to `main`; push only your report on `campaign-a` (SSH-derived remote). The report is
+not finished until pushed and its commit hash is stated in your final response.
+
+PUSH CADENCE: commit + push the report after each major section (inventory, traces, causes,
+reconciliation, planner questions), not just at the end.
+
+THE REPORT must contain:
+1. audited revision + remote-main proof + UTC, commands/tests run, limitations;
+2. verified counts and a complete 148-row technical inventory: ID/name/type/region, broad and
+   detailed species, fishery/season flags, geometry/prominence, visibility/selectability/title
+   by mode, configured gauges by provider, ideal-flow presence, snapshot/fishability
+   eligibility, static-page applicability;
+3. code-path traces: map admission/titles, old + v2 scoring, ingestion/freshness/retention,
+   snapshots/offline, species-mode propagation, marketing generation;
+4. exact causes of assessed / unassessed / wrongly-assessed (timestamps, parameters, spatial
+   representation, season, species, evidence gates);
+5. repository-wiring source coverage and generated-artifact drift (state clearly it is wiring,
+   not live reality);
+6. every UI/content/SEO mismatch with affected file/surface;
+7. current tests, missing regressions, exact test commands discovered in the repo;
+8. worklist reconciliation: reuse existing IDs; validate/revise OA-01…OA-10 only where
+   untracked;
+9. `Open questions for the planner`: every fact only an external source can settle (which
+   sensors actually report, which species a water holds, which thresholds science supports) —
+   the planner routes these to Session B/C findings; do not answer them yourself.
+
+Every claim needs a path/line or a reproducible command. Separate fact / inference /
+recommendation / unknown. Do not choose display tiers or score coefficients by intuition —
+that is the planner's job, using B and C evidence. Inspect the finished report, run
+`git diff --check`, commit, push, and state path, commit, push status, and limitations in
+your final response.

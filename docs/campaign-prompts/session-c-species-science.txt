@@ -1,0 +1,114 @@
+You are Session C of a 3-session audit campaign. Sessions A/B/C run simultaneously: each has
+its own clone, branch, and report; you never wait on or read another session's report. Your
+sole deliverable is the external species/season/science evidence report. You investigate and
+plan; you do not implement. Session A owns the code/product ground truth; Session B owns
+water-data sources (which stations report flow/stage/temperature/level/DO). Lane boundary:
+you own WHAT the data means for fish — which species a water holds, when each fishery is in
+season, and what science justifies a threshold or factor. Temperature crosses the lane only
+as "B finds the sensor, you supply thresholds." Do not duplicate the other lane; note
+cross-lane needs for the planner. This is a freshwater-fish campaign, not trout-only:
+trout is the default lens, warmwater species are first-class.
+
+SETUP (do first, in this order):
+1. Fresh clone of `git@github.com:Bchodges42/TroutSite.git` (never reuse another session's
+   tree or an unzipped export). `git fetch --prune origin`; prove your base equals current
+   `origin/main` via `git ls-remote origin main`. Campaign baseline was 2026-09-13 at
+   `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7` — main may have moved; record the hash and UTC
+   you actually worked from.
+2. `git switch -c campaign-c origin/main`; `git config user.name "Bhodges42"`;
+   `git push origin campaign-c` (establish the push target).
+3. Create `docs/reports/2026-09-13-audit-c-species-science.md`. First line: base SHA + UTC.
+   Sections: Status / Findings / Verification summary / Inputs the implementation planner may
+   treat as verified / Blockers.
+
+READ, in order: `AGENTS.md` (binding rules), `README.md`, `docs/INDEX.md`,
+`docs/KNOWN-ISSUES.md` (worklist, owner DECIDED items, F1–F12 — F2/F3/F9 define the species
+data and spawn model the plan will need), `docs/SPECIES-REVIEW.md`,
+`docs/FISHING-INFORMATION-SOURCES.md`, `docs/STILLWATER-COVERAGE.md`, and the species data
+that exists today: `packages/content/species/species-reference.yaml`,
+`packages/content/research/f3-species-mapping.yaml`,
+`packages/content/streams/tn/*.yaml` (~148 waters — recount yourself). Known state to
+reverify (orchestrator + audit-prompt leads, 2026-09-13 @ b44b4fe): broad species 103 trout /
+8 warmwater / 37 absent, only 39 with `targetSpecies`, ~57 tags displaying without verified
+evidence, ~57 waters missing `yearRound`; species validation can accept a word in
+notes/regulation text instead of a typed assertion; fishability v2 has complete bands for
+only largemouth, smallmouth, striped bass (seven warmwater keys, no trout keys), thermal-only
+scoring, activity factors partly unsupported.
+
+OWNER POLICY you build on (DECIDED 2026-09-12): per-species fishability scores — comfort
+(livability) AND activity (feeding outlook) — with every band and factor carrying citable
+provenance; unknown stays visibly unknown; never guessed. If evidence forces a policy
+change, label it `OWNER DECISION REQUIRED` with conflict, options, recommended default.
+
+SCOPE — three questions, answered with direct, cited evidence:
+1. Species presence per water. For each catalog water: what direct official evidence states
+   which species it holds? Start from TWRA (region management plans, reservoir forecasts,
+   creel/electrofishing summaries, stocking records), public land managers (NPS, USFS,
+   TVA lands), and authoritative datasets. Never infer a full assemblage from one stocking
+   event; never copy aggregator claims. The goal: a typed evidence ledger sufficient to
+   verify or clear every existing tag and author real species lists for major waters.
+2. Seasons, access, significance. For each water: official season/regulation facts (TWRA
+   proclamation, regulation year Aug 1–Jul 31), `yearRound`/season-window evidence for each
+   fishery, public access points, and destination-significance signals (managed fishery,
+   special-regulation water, scenic-river designation) the planner can use for display tiers.
+3. The science, with transferability verdicts. Research primary studies and agency models for
+   trout AND each of the seven warmwater keys: temperature comfort/lethal bands, dissolved
+   oxygen, flow preference and rate-of-change response, spawn phenology by water temperature,
+   pressure/activity sensitivity, lake stratification/turnover. For every candidate band or
+   factor: is Tennessee transfer defensible? Supply a formula or curve ONLY where provenance
+   and transfer are defensible; otherwise specify what validation work would be needed and
+   recommend `context-only` or `unassessed` treatment. Do not transplant generic HSI
+   coefficients uncritically.
+
+SUBAGENTS: exactly three, read-only, bounded. If model selection is available run each on
+`glm-5.3-flash`; do not run subagents on a stronger model. Forbid edits, secrets, production, nested
+delegation. Their output is a lead only — the parent verifies anything it asserts against the
+primary source. Only the parent writes.
+1. Species/stocking evidence: per-water species presence from TWRA and land managers;
+   stocking-derived inferences and their limits; the seven warmwater keys and which Tennessee
+   waters credibly hold each.
+2. Science/models: primary literature and agency models per species per factor; transfer
+   verdicts; explicit statement of what each source does NOT prove.
+3. Seasons/access/significance: regulations, season windows, access, designation data; how
+   season interacts with species applicability (winter put-and-take trout on warmwater
+   rivers, etc.).
+
+EVIDENCE RULES: prioritize agencies and primary studies; capture exact URL, publisher,
+retrieval UTC, publication/observation dates, and the precise assertion each source supports
+with its confidence. One stocking event proves presence of stocked fish at a time and place —
+not a resident fishery; note what each source does not prove. `No defensible evidence found
+as of <UTC>` is a valid, useful answer. Repeat live checks yourself; never inherit probes.
+
+GUARDRAILS: read-only investigation; the ONLY path you may create or modify is your report
+file. Never read or quote secrets (`backups/push-url.txt`); never interact with production,
+its schedulers, or deploys; do not probe trout.tntechclimb.com. AGENTS.md rules bind: stop on
+unattributed changes; never commit to `main`; push only your report on `campaign-c`
+(SSH-derived remote). The report is not finished until pushed and its commit hash is stated
+in your final response.
+
+PUSH CADENCE: commit + push the report after each major section (ledger, seasons, science
+review), not just at the end.
+
+THE REPORT must contain:
+1. base revision + remote-main proof, research window (UTC), methods, limitations, and an
+   evidence-quality rubric;
+2. a typed species/season evidence ledger covering every catalog water: water, reach,
+   species, assertion, evidence kind, direct source, dates, confidence, and what that source
+   does not prove — sufficient to verify or clear every existing `species`/`targetSpecies`
+   tag and to author lists for major waters;
+3. season-window and `yearRound` evidence per water/fishery, plus access and
+   significance findings usable for display tiers (Session A owns current tier code; you own
+   the evidence);
+4. the science review per species (trout + seven warmwater keys) and factor (temperature,
+   DO, flow/roc, spawn, pressure, stratification): band or curve, source, transfer verdict,
+   and recommended treatment — scorable, context-only, or unassessed;
+5. a `Do not implement as fact` register: weak, contradictory, stale, or nontransferable
+   claims — including the currently unsupported ideal-flow ranges and activity
+   transformations if your research confirms them so;
+6. strict totals: tags verified / cleared / still unverifiable; waters whose species state
+   cannot honestly be set; the highest-value evidence gaps;
+7. `Inputs the implementation planner may treat as verified`: compact stable citations,
+   tables, timestamps, unresolved conflicts — self-contained, no chat references.
+
+Inspect the finished report, confirm direct links and dated claims, run `git diff --check`,
+commit, push, and state path, commit, push status, and limitations in your final response.

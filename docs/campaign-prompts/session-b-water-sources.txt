@@ -1,0 +1,114 @@
+You are Session B of a 3-session audit campaign. Sessions A/B/C run simultaneously: each has
+its own clone, branch, and report; you never wait on or read another session's report. Your
+sole deliverable is the external water-data-source coverage report. You investigate and plan;
+you do not implement. Session A owns the code/product ground truth; Session C owns species/
+season/science evidence. Lane boundary: you own WHERE measured numbers come from — sources,
+stations, parameters, cadence, freshness. Session C owns what the numbers MEAN (species
+presence, thresholds, scoring science); temperature crosses the lane only as "you find the
+sensor, C supplies the thresholds." Do not duplicate the other lane; note cross-lane needs
+for the planner.
+
+SETUP (do first, in this order):
+1. Fresh clone of `git@github.com:Bchodges42/TroutSite.git` (never reuse another session's
+   tree or an unzipped export). `git fetch --prune origin`; prove your base equals current
+   `origin/main` via `git ls-remote origin main`. Campaign baseline was 2026-09-13 at
+   `b44b4fe09af3b47a35f63afdb547475e1ccf0fe7` — main may have moved; record the hash and UTC
+   you actually worked from.
+2. `git switch -c campaign-b origin/main`; `git config user.name "Bhodges42"`;
+   `git push origin campaign-b` (establish the push target).
+3. Create `docs/reports/2026-09-13-audit-b-water-sources.md`. First line: base SHA + UTC.
+   Sections: Status / Findings / Verification summary / Inputs the implementation planner may
+   treat as verified / Blockers.
+
+READ, in order: `AGENTS.md` (binding rules), `README.md`, `docs/INDEX.md`,
+`docs/KNOWN-ISSUES.md` (worklist, owner DECIDED items, F1–F12), then the data provenance
+docs: `docs/DATA-SOURCE-COVERAGE.md` + `docs/data-source-coverage.json`,
+`docs/TN-DATA-SOURCES.md`, `docs/FISHING-INFORMATION-SOURCES.md`,
+`docs/STILLWATER-COVERAGE.md`. The catalog you must cover is
+`packages/content/streams/tn/*.yaml` (~148 waters — recount yourself; do not trust 148).
+Known wired landscape to go beyond (verify, then extend): USGS NWIS instant values, TVA
+undocumented REST (levels/tailwater stage, no temperature), USACE Nashville A2W (`lrn`,
+hardcoded TSIDs), TWRA stocking/regulations. Dead-for-IV USGS flagship gauges are backfilled
+by TVA monitors (NRST1, CEHT1) and USACE A2W (CETT1, DHTT1).
+
+OWNER POLICY context: per-species fishability is being built; every important river —
+especially reservoir-connected ones — needs flow/gauge AND temperature from somewhere; lakes
+need the best available stillwater inputs. If a permitted official source has no clean API,
+produce a documented server-side scrape recipe. Look relentlessly.
+
+SCOPE — four questions, answered with live-verified evidence:
+1. For every catalog water that matters (main rivers, reservoir-connected reaches,
+   tailwaters, significant lakes): what measured sources exist for flow, stage, water
+   temperature, reservoir level, dam release, precipitation, and dissolved oxygen? Cover
+   USGS, TVA, USACE (A2W AND CWMS), NWS, TDEC, EPA Water Quality Portal, dam operators,
+   water/wastewater utilities, university limnology stations, lake buoys, satellite surface
+   temperature — any primary public authority.
+2. Which configured stations actually report each needed parameter right now? Test EVERY
+   configured gauge ID for EACH required parameter and its latest valid observation — site
+   existence is not parameter health. Verify the USGS modern-API migration schedule from
+   official USGS material and flag every endpoint/contact at risk. Enumerate TVA and USACE
+   station catalogs rather than stopping at hardcoded IDs.
+3. What is live vs periodic? Separate continuous feeds from one-off/seasonal samples useful
+   only as baselines. For reservoirs, investigate depth-profile and DO data; never assume
+   surface or tailwater temperature represents the whole lake.
+4. What is the honest fallback per water — adjacent-station mapping (with spatial
+   qualification), documented scrape of a permitted page, or `no defensible source`?
+
+SUBAGENTS: exactly three, read-only, bounded. If model selection is available run each on
+`glm-5.3-flash`; do not run subagents on a stronger model. Forbid edits, secrets, production, nested
+delegation. Their output is a lead only — the parent re-probes anything it asserts. Only the
+parent writes.
+1. Federal gauges: USGS (every configured ID x parameter, latest valid values, timestamps),
+   TVA + USACE catalog enumeration, NWS (precip/pressure gridpoints), modernization exposure.
+2. Other authorities: TDEC, EPA WQP, dam operators, utilities, universities, buoys, satellite
+   temperature; lake depth/DO/stratification data; license/terms verdicts for each.
+3. Scrape/recipe specialist: for permitted no-API sources, produce exact recipes (URLs,
+   request etiquette, parse strategy, cadence, failure modes); verify each with a live probe.
+
+LIVE-VERIFICATION RULES: probe politely (respect robots, terms, rate limits; identifying user
+agent where required; no access-control bypass; browser-side scraping is unacceptable —
+server-side recipes only). For EVERY source capture: exact URL/endpoint, owner, retrieval UTC,
+publication/update/observation time, parameters/codes/units/time zone, coordinates and reach
+representativeness, cadence, missing/sentinel behavior, license/terms verdict, and enough
+response metadata to reproduce the finding. Repeat live checks yourself — never inherit
+probes from a prior report.
+
+GUARDRAILS: read-only investigation; the ONLY path you may create or modify is your report
+file. Never read or quote secrets (`backups/push-url.txt`); never interact with production,
+its schedulers, or deploys; do not probe trout.tntechclimb.com. AGENTS.md rules bind: stop on
+unattributed changes; never commit to `main`; push only your report on `campaign-b`
+(SSH-derived remote). The report is not finished until pushed and its commit hash is stated
+in your final response.
+
+PUSH CADENCE: commit + push the report after each major section (station inventory, source
+registry, coverage matrix, gaps), not just at the end.
+
+THE REPORT must contain:
+1. base revision + remote-main proof, research window (UTC), methods, limitations, and a
+   source-quality rubric;
+2. a source registry with stable IDs and operational recipes: endpoint discovery,
+   request/parse mapping, units/time zones, freshness/SLA, validation, sentinel/error
+   behavior, rate/terms, attribution, fixture and monitoring suggestions, fallback;
+3. a complete per-water source/parameter coverage matrix (one row per catalog water):
+   water/reach, candidate primary + fallback sources per metric (flow, stage, temperature,
+   level, release, precip, DO), spatial qualification, current availability, and honest
+   score-input status on the SOURCE dimension (species/season columns belong to Session C —
+   leave them out);
+4. a station inventory keyed by provider/ID: every configured ID plus credible candidates,
+   with coordinates, parameters, latest valid timestamps, gaps, and exact water/reach mapping;
+5. lake-specific findings: depth profiles, DO, stratification indicators, live-vs-periodic
+   status, what a lake score could honestly use;
+6. USGS modernization/migration facts and per-provider API-migration risks;
+7. scrape recipes for permitted no-API sources — server-side, deterministic,
+   fixture-testable, monitored;
+8. a `Do not implement as fact` register: weak, stale, inaccessible, overly broad, or
+   nontransferable sources, including any configured assignment your probes contradict;
+9. strict coverage totals, highest-value gaps, and the waters that cannot honestly score for
+   lack of any source;
+10. `Inputs the implementation planner may treat as verified`: compact stable IDs, URLs,
+    timestamps, unresolved conflicts — self-contained, no chat references.
+
+Never complete a matrix cell by guessing — `No defensible source found as of <UTC>` is a
+valid, useful answer. Inspect the finished report, confirm direct links and dated live claims,
+run `git diff --check`, commit, push, and state path, commit, push status, and limitations in
+your final response.
