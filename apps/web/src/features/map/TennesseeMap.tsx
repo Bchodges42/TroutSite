@@ -86,6 +86,14 @@ interface Props {
   waterTypes?: Map<string, string>;
   hatchActiveIds?: Set<string>;
   hatchColors?: Map<string, string>;
+  /** Persisted USGS gauge overlay (feat/tn-gauge-layer): flips the
+   *  visibility:none style layers visible; a gauge tap opens a live-reading
+   *  popup instead of selecting the water beneath it. */
+  showGauges?: boolean;
+  /** Persisted TWRA trout-stocking-site overlay (same pattern as showGauges). */
+  showStockingSites?: boolean;
+  /** Persisted TWRA fish-attractor overlay (lake detail; zoom-gated). */
+  showAttractors?: boolean;
   fitPadding?: { top: number; bottom: number; left: number; right: number };
   basemap?: BasemapVariant;
   roads?: RoadsSpec;
@@ -123,6 +131,7 @@ export function TennesseeMap(props: Props) {
   const labelsRef = useRef<() => void>(() => {});
   const placesRef = useRef<() => void>(() => {});
   const applyRef = useRef<() => void>(() => {});
+  const gaugePopupRef = useRef<maplibregl.Popup | null>(null);
   const reduced = () =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
     document.documentElement.classList.contains('reduce-motion');
@@ -392,10 +401,7 @@ export function TennesseeMap(props: Props) {
         )
         .filter((f) => {
           const id = String(f.properties.id ?? '');
-          return (
-            id &&
-            (!latest.current.visibleIds || latest.current.visibleIds.has(id))
-          );
+          return id && (!latest.current.visibleIds || latest.current.visibleIds.has(id));
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
       // not the arbitrary source/tile order (which can pick a neighboring creek).
@@ -442,8 +448,209 @@ export function TennesseeMap(props: Props) {
         .sort((a, b) => a.distance - b.distance)[0]?.feature;
       return found ? String(found.properties.id) : null;
     };
+    // Gauge popup (feat/tn-gauge-layer) — one reusable popup whose content is
+    // built imperatively (same pattern as the creek tooltip: it lives outside
+    // React's tree). The reading fetches from /v1/gauges/:id/now on open; in
+    // DEV_FIXTURES dev mode that endpoint is absent and the card says so —
+    // never a console-breaking or map-breaking surface.
+    const gaugePopup = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' });
+    gaugePopupRef.current = gaugePopup;
+    const openGaugePopup = (feature: maplibregl.MapGeoJSONFeature, lngLat: maplibregl.LngLat) => {
+      const p = feature.properties ?? {};
+      const gaugeId = String(p.id ?? '');
+      const el = document.createElement('div');
+      el.setAttribute('data-proof', 'gauge-popup');
+      el.style.cssText =
+        'font:12px/1.5 ui-sans-serif,system-ui,sans-serif;color:#1c2430;min-width:180px;';
+      const title = document.createElement('strong');
+      title.style.cssText = 'display:block;font-size:13px;margin-bottom:2px;';
+      title.textContent = String(p.name ?? `USGS ${gaugeId}`);
+      el.appendChild(title);
+      const meta = document.createElement('div');
+      meta.style.cssText = 'color:#5b6673;margin-bottom:6px;';
+      meta.textContent =
+        'USGS ' +
+        gaugeId +
+        (p.county ? ' · ' + p.county + ' Co' : '') +
+        (p.drainSqMi ? ' · ' + p.drainSqMi + ' sq mi' : '');
+      el.appendChild(meta);
+      const wiredTo = String(p.wiredTo ?? '');
+      if (wiredTo) {
+        const chips = document.createElement('div');
+        chips.style.cssText = 'display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;';
+        for (const slug of wiredTo.split(',')) {
+          const chip = document.createElement('a');
+          chip.href = '/conditions/' + slug;
+          chip.style.cssText =
+            'font-size:11px;padding:1px 7px;border:1px solid #c8d2cc;border-radius:999px;color:#2c5a4b;text-decoration:none;';
+          chip.textContent = slug.replace(/-/g, ' ');
+          chips.appendChild(chip);
+        }
+        el.appendChild(chips);
+      }
+      const reading = document.createElement('div');
+      reading.setAttribute('data-gauge-reading', '');
+      reading.style.cssText = 'color:#5b6673;';
+      reading.textContent = 'Loading reading…';
+      el.appendChild(reading);
+      void (async () => {
+        try {
+          const res = await fetch(`/v1/gauges/${gaugeId}/now`);
+          if (!reading.isConnected) return; // popup dismissed before the reply landed
+          if (res.status === 404) reading.textContent = 'No current reading';
+          else if (!res.ok) reading.textContent = 'Reading unavailable';
+          else {
+            const data = (await res.json()) as {
+              cfs?: number;
+              heightFt?: number;
+              tempC?: number;
+              timestamp: string;
+              stale?: boolean;
+            };
+            const ageMin = Math.max(
+              0,
+              Math.round((Date.now() - Date.parse(data.timestamp)) / 60000),
+            );
+            const age =
+              ageMin >= 90
+                ? `${Math.round(ageMin / 60)} h ago`
+                : ageMin >= 2
+                  ? `${ageMin} min ago`
+                  : 'just now';
+            const parts: string[] = [];
+            if (typeof data.cfs === 'number')
+              parts.push(`${Math.round(data.cfs).toLocaleString()} cfs`);
+            if (typeof data.heightFt === 'number') parts.push(`${data.heightFt.toFixed(2)} ft`);
+            if (typeof data.tempC === 'number')
+              parts.push(`${Math.round((data.tempC * 9) / 5 + 32)}°F water`);
+            reading.textContent = parts.length
+              ? `${parts.join(' · ')} · ${age}${data.stale ? ' (cached)' : ''}`
+              : 'No current reading';
+          }
+        } catch {
+          if (reading.isConnected) reading.textContent = 'Reading unavailable';
+        }
+      })();
+      gaugePopup.setDOMContent(el).setLngLat(lngLat).addTo(map);
+    };
+    // TWRA overlay popups (feat/tn-gauge-layer) — attractor structures and
+    // trout stocking sites, same imperative pattern; the data is static TWRA
+    // registry context, never a live call.
+    const overlayPopup = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' });
+    const popupCard = (titleText: string, metaText: string) => {
+      const el = document.createElement('div');
+      el.style.cssText =
+        'font:12px/1.5 ui-sans-serif,system-ui,sans-serif;color:#1c2430;min-width:170px;';
+      const title = document.createElement('strong');
+      title.style.cssText = 'display:block;font-size:13px;margin-bottom:2px;';
+      title.textContent = titleText;
+      el.appendChild(title);
+      const meta = document.createElement('div');
+      meta.style.cssText = 'color:#5b6673;';
+      meta.textContent = metaText;
+      el.appendChild(meta);
+      return el;
+    };
+    const openStockingPopup = (
+      feature: maplibregl.MapGeoJSONFeature,
+      lngLat: maplibregl.LngLat,
+    ) => {
+      const p = feature.properties ?? {};
+      const bits = [
+        p.county ? String(p.county) + ' Co' : '',
+        p.region ? 'Region ' + p.region : '',
+        String(p.program ?? ''),
+        String(p.species ?? ''),
+      ].filter(Boolean);
+      const el = popupCard(
+        String(p.site ?? p.stream ?? 'TWRA trout stocking site'),
+        bits.join(' · ') || 'TWRA trout stocking site',
+      );
+      const lines = [
+        p.dh ? 'Delayed harvest: ' + p.dh : '',
+        p.permit === 'Yes' ? 'Daily permit required' : '',
+        p.hours ? String(p.hours) : '',
+      ].filter(Boolean);
+      if (lines.length) {
+        const extra = document.createElement('div');
+        extra.style.cssText = 'color:#5b6673;margin-top:2px;';
+        extra.textContent = lines.join(' · ');
+        el.appendChild(extra);
+      }
+      overlayPopup.setDOMContent(el).setLngLat(lngLat).addTo(map);
+    };
+    const openAttractorPopup = (
+      feature: maplibregl.MapGeoJSONFeature,
+      lngLat: maplibregl.LngLat,
+    ) => {
+      const p = feature.properties ?? {};
+      const el = popupCard(
+        String(p.water ?? p.site ?? 'Fish attractor'),
+        [
+          p.types ? String(p.types) : '',
+          p.depth ? 'depth ' + p.depth : '',
+          p.access ? String(p.access) : '',
+        ]
+          .filter(Boolean)
+          .join(' · ') || 'TWRA fish attractor structure',
+      );
+      if (p.marker) {
+        const marker = document.createElement('div');
+        marker.style.cssText = 'color:#5b6673;margin-top:2px;';
+        marker.textContent = 'Marker: ' + p.marker;
+        el.appendChild(marker);
+      }
+      if (p.note) {
+        const note = document.createElement('div');
+        note.style.cssText = 'color:#5b6673;margin-top:2px;';
+        note.textContent = String(p.note);
+        el.appendChild(note);
+      }
+      overlayPopup.setDOMContent(el).setLngLat(lngLat).addTo(map);
+    };
     let hovered: string | null = null;
+    // A visible overlay dot (gauge / stocking site / attractor) wins the
+    // pointer over the water beneath it. Priority: gauges, stocking, attractors.
+    type OverlayHit = {
+      kind: 'gauge' | 'stocking' | 'attractor';
+      feature: maplibregl.MapGeoJSONFeature;
+    };
+    const OVERLAY_GROUPS: Array<{
+      kind: OverlayHit['kind'];
+      layer: string;
+      on: 'showGauges' | 'showStockingSites' | 'showAttractors';
+    }> = [
+      { kind: 'gauge', layer: 'gauges-hit', on: 'showGauges' },
+      { kind: 'stocking', layer: 'stocking-hit', on: 'showStockingSites' },
+      { kind: 'attractor', layer: 'attractors-hit', on: 'showAttractors' },
+    ];
+    const overlayAt = (point: maplibregl.Point): OverlayHit | null => {
+      for (const group of OVERLAY_GROUPS) {
+        if (!latest.current[group.on] || !map.getLayer(group.layer)) continue;
+        try {
+          const found = map.queryRenderedFeatures(
+            [
+              [point.x - 5, point.y - 5],
+              [point.x + 5, point.y + 5],
+            ],
+            { layers: [group.layer] },
+          )[0];
+          if (found) return { kind: group.kind, feature: found };
+        } catch {
+          /* layer mid-style-swap; overlay hits are never load-bearing */
+        }
+      }
+      return null;
+    };
     map.on('mousemove', (e) => {
+      if (overlayAt(e.point)) {
+        if (hovered) {
+          map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
+          hovered = null;
+        }
+        map.getCanvas().style.cursor = 'pointer';
+        return;
+      }
       const id = hit(e.point);
       if (hovered && hovered !== id)
         map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
@@ -471,6 +678,28 @@ export function TennesseeMap(props: Props) {
     });
     map.on('click', (e) => {
       if (Date.now() - lastTouchSelection < 500) return;
+      const overlay = overlayAt(e.point);
+      if (overlay) {
+        let feature: maplibregl.MapGeoJSONFeature | undefined;
+        try {
+          const group = OVERLAY_GROUPS.find((g) => g.kind === overlay.kind)!;
+          feature = map.queryRenderedFeatures(
+            [
+              [e.point.x - 8, e.point.y - 8],
+              [e.point.x + 8, e.point.y + 8],
+            ],
+            { layers: [group.layer] },
+          )[0];
+        } catch {
+          feature = undefined;
+        }
+        if (feature) {
+          if (overlay.kind === 'gauge') openGaugePopup(feature, e.lngLat);
+          else if (overlay.kind === 'stocking') openStockingPopup(feature, e.lngLat);
+          else openAttractorPopup(feature, e.lngLat);
+          return; // an overlay tap is not a water selection
+        }
+      }
       const id = hit(e.point);
       if (id) latest.current.onSelect(id);
     });
@@ -546,6 +775,8 @@ export function TennesseeMap(props: Props) {
       window.clearTimeout(watchdog);
       ro.disconnect();
       creekTip.remove();
+      gaugePopupRef.current?.remove();
+      gaugePopupRef.current = null;
       disposeNetworkClusters();
       map.remove();
       mapRef.current = null;
@@ -827,7 +1058,11 @@ export function TennesseeMap(props: Props) {
       // Theme-specific glyph (2026-09-10): dark core on white rim in light
       // mode, near-white core on near-black rim in dark mode — each chosen to
       // read against that theme's water colors.
-      const icon = makeFlowArrowImage(theme.map.flowArrow, theme.map.flowArrowHalo, theme.map.flowArrowTip);
+      const icon = makeFlowArrowImage(
+        theme.map.flowArrow,
+        theme.map.flowArrowHalo,
+        theme.map.flowArrowTip,
+      );
       if (icon) map.addImage(FLOW_ARROW_ICON, icon);
       const id = latest.current.selectedId;
       const source = map.getSource(FLOW_ARROWS_SOURCE) as maplibregl.GeoJSONSource | undefined;
@@ -910,6 +1145,49 @@ export function TennesseeMap(props: Props) {
       placesRef.current = () => {};
     };
   }, [props.places, ready, attempt]);
+  // Overlay visibility (feat/tn-gauge-layer): the style ships the overlay
+  // layers visibility:none; this applies the persisted settings and re-applies
+  // after every style rebuild (theme/basemap/roads swaps reset layout
+  // visibility). Turning every overlay off also dismisses an open popup.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    let cancelled = false;
+    const overlayLayers: Array<[string, boolean]> = [
+      ['gauges-dot', Boolean(props.showGauges)],
+      ['gauges-hit', Boolean(props.showGauges)],
+      ['stocking-dot', Boolean(props.showStockingSites)],
+      ['stocking-hit', Boolean(props.showStockingSites)],
+      ['attractors-dot', Boolean(props.showAttractors)],
+      ['attractors-hit', Boolean(props.showAttractors)],
+    ];
+    const apply = () => {
+      if (cancelled || mapRef.current !== map) return;
+      for (const [layer, visible] of overlayLayers) {
+        if (map.getLayer(layer)) {
+          map.setLayoutProperty(layer, 'visibility', visible ? 'visible' : 'none');
+        }
+      }
+    };
+    if (!props.showGauges && !props.showStockingSites && !props.showAttractors) {
+      gaugePopupRef.current?.remove();
+    }
+    apply();
+    map.on('idle', apply);
+    return () => {
+      cancelled = true;
+      map.off('idle', apply);
+    };
+  }, [
+    props.showGauges,
+    props.showStockingSites,
+    props.showAttractors,
+    ready,
+    theme.id,
+    props.basemap,
+    props.roads,
+    attempt,
+  ]);
   return (
     <div className={props.className ?? 'absolute inset-0'} data-basemap={props.basemap}>
       <div

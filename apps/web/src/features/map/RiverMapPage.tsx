@@ -14,7 +14,12 @@ import { validMonth } from '../../lib/riverContext';
 import { waterTypeLabel } from '../../lib/presentation';
 import type { RoadsSpec } from './mapStyle';
 import { monthName, regionName } from '../../data/regions';
-import { classOutline, decisionStatusText, decisionColorToken, toWaterDecisionView } from './waterDecision';
+import {
+  classOutline,
+  decisionStatusText,
+  decisionColorToken,
+  toWaterDecisionView,
+} from './waterDecision';
 import { troutPresenceNow, useTroutCalendar } from '../../lib/troutCalendar';
 import { Segmented } from '../../components/ui/Segmented';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
@@ -44,9 +49,7 @@ export function RiverMapPage() {
   // fishability all-fish mode surfaces.
   const urlSpecies = params.get('species');
   const species: 'trout' | 'all' =
-    urlSpecies === 'all' || urlSpecies === 'trout'
-      ? urlSpecies
-      : (settings.speciesMode ?? 'trout');
+    urlSpecies === 'all' || urlSpecies === 'trout' ? urlSpecies : (settings.speciesMode ?? 'trout');
   // Focus species: the map's shareable ?focus= override wins; otherwise the
   // persisted picker choice drives every all-fish surface.
   const focusSpecies =
@@ -54,6 +57,11 @@ export function RiverMapPage() {
     ((settings.speciesFocus || null) as SpeciesKey | null);
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
+  // Persisted gauge overlay (feat/tn-gauge-layer) — a setting, not URL state:
+  // it's a device preference like species mode, not a shareable view.
+  const showGauges = settings.showGauges ?? false;
+  const showStockingSites = settings.showStockingSites ?? false;
+  const showAttractors = settings.showAttractors ?? false;
   // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
   // while the param is present).
   const qaOn = params.get('qa') === '1';
@@ -67,7 +75,8 @@ export function RiverMapPage() {
   const calendarQuery = useTroutCalendar();
   const calendar = calendarQuery.data?.data ?? null;
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
-  const selectedSeason = selected && calendar ? troutPresenceNow(calendar.waters[selected.stream.id]) : null;
+  const selectedSeason =
+    selected && calendar ? troutPresenceNow(calendar.waters[selected.stream.id]) : null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
   const [expanded, setExpanded] = useState(false);
   const [layers, setLayers] = useState(false);
@@ -290,23 +299,30 @@ export function RiverMapPage() {
     () =>
       new Set(
         data.features
-          .filter((f) => toWaterDecisionView(f, 'trout', month).troutApplicability === 'seasonal-likely-absent')
+          .filter(
+            (f) =>
+              toWaterDecisionView(f, 'trout', month).troutApplicability ===
+              'seasonal-likely-absent',
+          )
           .map((f) => f.stream.id),
       ),
     [data.features, month],
   );
-  const filtered = data.features.filter((f) => {
-    // Visibility is the decision model's call (H3): unknown-species waters
-    // stay discoverable in trout mode but never read as confirmed trout;
-    // plain warmwater is excluded there; the stocked Harpeth is deemphasized.
-    // The selected month rides along: seasonal waters keep their row but the
-    // decision drops the trout metric out of season (T1-18/19).
-    const decision = toWaterDecisionView(f, species, month, f.fishability);
-    return (
-      (species === 'all' || decision.visibility !== 'exclude' || f.stream.id === selectedId) &&
-      (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId)
-    );
-  }, [data.features, species, month, selectedId, assessedOnly]);
+  const filtered = data.features.filter(
+    (f) => {
+      // Visibility is the decision model's call (H3): unknown-species waters
+      // stay discoverable in trout mode but never read as confirmed trout;
+      // plain warmwater is excluded there; the stocked Harpeth is deemphasized.
+      // The selected month rides along: seasonal waters keep their row but the
+      // decision drops the trout metric out of season (T1-18/19).
+      const decision = toWaterDecisionView(f, species, month, f.fishability);
+      return (
+        (species === 'all' || decision.visibility !== 'exclude' || f.stream.id === selectedId) &&
+        (!assessedOnly || f.status !== 'no-data' || f.stream.id === selectedId)
+      );
+    },
+    [data.features, species, month, selectedId, assessedOnly],
+  );
   const sorted = [...filtered].sort(
     (a, b) =>
       Number(offseasonIds.has(a.stream.id)) - Number(offseasonIds.has(b.stream.id)) ||
@@ -355,10 +371,17 @@ export function RiverMapPage() {
     () =>
       new Set(
         data.features
-          .filter((f) => toWaterDecisionView(f, 'trout', month).troutApplicability === 'seasonal-likely-absent')
+          .filter(
+            (f) =>
+              toWaterDecisionView(f, 'trout', month).troutApplicability ===
+              'seasonal-likely-absent',
+          )
           .map((f) => f.stream.id),
       ),
-    [data.features.map((f) => f.stream.id + (f.stream.seasonMonths ?? []).join('.')).join(','), month],
+    [
+      data.features.map((f) => f.stream.id + (f.stream.seasonMonths ?? []).join('.')).join(','),
+      month,
+    ],
   );
   // C1: "no assessed waters" has two different truths — the filter genuinely
   // matched nothing, or the condition feed itself has no coverage (every
@@ -378,7 +401,11 @@ export function RiverMapPage() {
     () =>
       new Map(
         data.features.map((f) => {
-          const token = decisionColorToken(toWaterDecisionView(f, species, month, f.fishability), f, f.fishability);
+          const token = decisionColorToken(
+            toWaterDecisionView(f, species, month, f.fishability),
+            f,
+            f.fishability,
+          );
           return [
             f.stream.id,
             token === 'warmwater'
@@ -389,15 +416,17 @@ export function RiverMapPage() {
           ] as const;
         }),
       ),
-    [data.features.map((f) => f.stream.id + f.status + f.species).join(','), species, month, theme.id],
+    [
+      data.features.map((f) => f.stream.id + f.status + f.species).join(','),
+      species,
+      month,
+      theme.id,
+    ],
   );
   // Class outlines (2026-09-10): the map must SHOW the trout/warmwater split,
   // not only filter on it. Unclassified waters get no outline at all.
   const classOutlines = useMemo(
-    () =>
-      new Map(
-        data.features.map((f) => [f.stream.id, classOutline(f, calendar)] as const),
-      ),
+    () => new Map(data.features.map((f) => [f.stream.id, classOutline(f, calendar)] as const)),
     [data.features, calendar],
   );
   const hatchActive = useMemo(
@@ -541,6 +570,37 @@ export function RiverMapPage() {
           ? 'Context road network (US Census TIGER) · off by default'
           : 'Road context is not available on this device.'}
       </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={showGauges}
+          onChange={(e) => updateSettings({ showGauges: e.target.checked })}
+        />
+        USGS gauges
+      </label>
+      <p className="muted text-xs">
+        Live USGS stream gauges statewide · tap a dot for the current reading · off by default
+      </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={showStockingSites}
+          onChange={(e) => updateSettings({ showStockingSites: e.target.checked })}
+        />
+        Trout stocking sites
+      </label>
+      <p className="muted text-xs">TWRA trout stocking sites and access notes · off by default</p>
+      <label>
+        <input
+          type="checkbox"
+          checked={showAttractors}
+          onChange={(e) => updateSettings({ showAttractors: e.target.checked })}
+        />
+        Fish attractors
+      </label>
+      <p className="muted text-xs">
+        TWRA fish attractor structures in lakes · clearest when zoomed in · off by default
+      </p>
     </>
   );
   return (
@@ -657,7 +717,10 @@ export function RiverMapPage() {
                     className="water-row"
                     onClick={() => setRiver(f.stream.id)}
                     aria-label={
-                      'Select ' + f.stream.name + ' — ' + decisionStatusText(decision, f, f.fishability)
+                      'Select ' +
+                      f.stream.name +
+                      ' — ' +
+                      decisionStatusText(decision, f, f.fishability)
                     }
                     data-status={f.status}
                   >
@@ -778,6 +841,9 @@ export function RiverMapPage() {
           hatchActiveIds={hatchActive}
           basemap={basemap}
           roads={roadsOn && roadsManifest ? roadsManifest : undefined}
+          showGauges={showGauges}
+          showStockingSites={showStockingSites}
+          showAttractors={showAttractors}
           places={places}
           onMapReady={onMapReady}
           viewKey={location.key}
@@ -854,7 +920,10 @@ export function RiverMapPage() {
                 size="sm"
                 value={species}
                 onChange={(s) => update({ species: s === 'all' ? 'all' : null })}
-                options={[{ value: 'trout', label: 'Trout' }, { value: 'all', label: 'All fish' }]}
+                options={[
+                  { value: 'trout', label: 'Trout' },
+                  { value: 'all', label: 'All fish' },
+                ]}
               />
             )}
             <MapControlGroup
@@ -906,10 +975,10 @@ export function RiverMapPage() {
               : species === 'all' && focusSpecies
                 ? `Colors show ${SPECIES_LABELS[focusSpecies]} fishability from the latest snapshots — pick the species in the filter row.`
                 : coverageUnavailable
-                ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
-                : species === 'all'
-                  ? 'Blue outlines mark trout waters, amber marks warmwater; dimmed dashed waters hold no trout right now.'
-                  : 'Bright lines hold trout now. Dimmed dashed lines are trout waters out of season. Unclassified waters say so instead of guessing.'}{' '}
+                  ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
+                  : species === 'all'
+                    ? 'Blue outlines mark trout waters, amber marks warmwater; dimmed dashed waters hold no trout right now.'
+                    : 'Bright lines hold trout now. Dimmed dashed lines are trout waters out of season. Unclassified waters say so instead of guessing.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>
         </div>

@@ -7,6 +7,9 @@ export const DEFAULT_SETTINGS: SettingsRecord = {
   tempUnit: 'F',
   speciesMode: 'trout',
   speciesFocus: '',
+  showGauges: false,
+  showStockingSites: false,
+  showAttractors: false,
   reduceMotion: false,
 };
 
@@ -17,13 +20,10 @@ const SETTINGS_KEY = 'app';
  * server (privacy non-negotiable #1). Renders defaults until IndexedDB loads.
  */
 export function useSettings(): [SettingsRecord, (patch: Partial<SettingsRecord>) => void] {
-  const stored = useLiveQuery(
-    async () => {
-      const row = await db.settings.get(SETTINGS_KEY);
-      return row?.value as Partial<SettingsRecord> | undefined;
-    },
-    [],
-  );
+  const stored = useLiveQuery(async () => {
+    const row = await db.settings.get(SETTINGS_KEY);
+    return row?.value as Partial<SettingsRecord> | undefined;
+  }, []);
 
   const settings: SettingsRecord = { ...DEFAULT_SETTINGS, ...(stored ?? {}) };
   const update = (patch: Partial<SettingsRecord>) => {
@@ -43,7 +43,9 @@ const SettingsContext = createContext<SettingsContextValue | null>(null);
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, update] = useSettings();
-  return <SettingsContext.Provider value={{ settings, update }}>{children}</SettingsContext.Provider>;
+  return (
+    <SettingsContext.Provider value={{ settings, update }}>{children}</SettingsContext.Provider>
+  );
 }
 
 export function useSettingsContext(): SettingsContextValue {

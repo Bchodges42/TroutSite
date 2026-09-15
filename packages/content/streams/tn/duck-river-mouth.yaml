@@ -1,0 +1,62 @@
+id: duck-river-mouth
+name: Duck River (Columbia to the mouth)
+stateId: TN
+waterbodyType: river
+display: featured
+regionId: tn-middle-duck-elk
+gaugeIds:
+  - "03601600"
+  - "03601990"
+  - "03603000"
+stockingProgram: false
+idealFlow:
+  - min: 300
+    max: 3000
+    unit: cfs
+idealFlowSource: editorial
+targetSpecies:
+  - largemouth-bass
+  - smallmouth-bass
+  - spotted-bass
+  - channel-catfish
+speciesEvidence:
+  - species: largemouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-14
+  - species: smallmouth-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-14
+  - species: spotted-bass
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-14
+  - species: channel-catfish
+    kind: agency
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-14
+notes: The reach the catalog was missing — roughly 100 river miles from Columbia (Maury Co)
+  down through the Western Highland Rim to the Tennessee River confluence near
+  New Johnsonville (Humphreys Co). Same agency-documented warmwater fishery as the rest of
+  the Duck — TWRA documents largemouth/smallmouth/spotted bass, rock bass and catfish with
+  150+ fish species river-wide; gauge drainage grows from ~1,030 sq mi above Columbia to
+  2,557 sq mi at Hurricane Mills, so the editorial flow band is deliberately wide. The
+  2026 scenic river amendment designates this reach (Class II Pastoral segments below
+  Columbia). Float-fish country — TWRA lists ~30 fee-free access sites river-wide; on this
+  reach the USGS gauge crossings (Hwy 100 at Centerville, Hurricane Mills) are the
+  documented public anchors, and the TWRA boating/fishing access map carries the full
+  ramp list.
+officialSources:
+  - label: USGS Water Data — monitoring location 03601600 (near Shady Grove)
+    url: https://waterdata.usgs.gov/monitoring-location/03601600/
+  - label: USGS Water Data — monitoring location 03601990 (Hwy 100 at Centerville)
+    url: https://waterdata.usgs.gov/monitoring-location/03601990/
+  - label: USGS Water Data — monitoring location 03603000 (above Hurricane Mills)
+    url: https://waterdata.usgs.gov/monitoring-location/03603000/
+  - label: TWRA — Duck River fishing (species list and access sites)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+  - label: TDEC — Duck River scenic river designation (2026 amendment, whole river)
+    url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/duck.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html

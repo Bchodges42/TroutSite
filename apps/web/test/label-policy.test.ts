@@ -123,7 +123,7 @@ describe('labelPolicy.labelSpeciesNote (honest aria/title words)', () => {
 });
 
 describe('authored map display tiers', () => {
-  it('covers the complete real river index with the campaign 37/95/16 assignment', () => {
+  it('covers the complete real river index with the campaign 37/96/16 assignment', () => {
     const indexIds = new Set(riverIndex.map((r) => r.id));
     const featured = new Set(FEATURED_IDS);
     const reference = new Set(REFERENCE_IDS);
@@ -132,10 +132,10 @@ describe('authored map display tiers', () => {
     expect(FEATURED_IDS.length + REFERENCE_IDS.length).toBeLessThan(riverIndex.length);
     expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(53);
     expect([...featured, ...reference].every((id) => indexIds.has(id))).toBe(true);
-    expect(riverIndex.length - featured.size - reference.size).toBe(95);
+    expect(riverIndex.length - featured.size - reference.size).toBe(96);
   });
 
-  it('titles 37 featured waters statewide/approach and admits 95 standard waters locally', () => {
+  it('titles 37 featured waters statewide/approach and admits 96 standard waters locally', () => {
     const standardIds = riverIndex
       .map((r) => r.id)
       .filter((id) => !FEATURED_IDS.includes(id as (typeof FEATURED_IDS)[number]) && !REFERENCE_IDS.includes(id as (typeof REFERENCE_IDS)[number]));
@@ -147,8 +147,8 @@ describe('authored map display tiers', () => {
     const titleAt = (zoom: number) => waters.filter((water) => shouldShowLabel(water, ctx({ mode: 'all', zoom }))).length;
     expect(titleAt(5)).toBe(37);
     expect(titleAt(8.5)).toBe(37);
-    expect(titleAt(9.5)).toBe(132);
-    expect(waters.filter((water) => water.display === 'standard' && shouldShowLabel(water, ctx({ mode: 'all', zoom: 9.5 })))).toHaveLength(95);
+    expect(titleAt(9.5)).toBe(133);
+    expect(waters.filter((water) => water.display === 'standard' && shouldShowLabel(water, ctx({ mode: 'all', zoom: 9.5 })))).toHaveLength(96);
   });
 
   it('suppresses an out-of-season auto-title while preserving explicit selection', () => {

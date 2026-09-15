@@ -18,6 +18,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate:content": "pnpm --filter @trout/content validate",
+    "gauges:build": "node scripts/tn-gauges-build.mjs",
+    "gauges:check": "node scripts/tn-gauges-build.mjs --check",
+    "twra:build": "node scripts/twra-layers-build.mjs",
+    "twra:check": "node scripts/twra-layers-build.mjs --check",
     "e2e": "pnpm --filter @trout/e2e e2e",
     "e2e:web": "pnpm --filter @trout/e2e exec playwright test --project=web"
   },

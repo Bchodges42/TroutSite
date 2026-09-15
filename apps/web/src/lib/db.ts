@@ -46,6 +46,13 @@ export interface SettingsRecord {
   /** F6 all-fish focus species ('' = no focus — honest labels everywhere;
    *  a SpeciesKey pins the species across map, lists, detail, and drawer). */
   speciesFocus: string;
+  /** Map overlay: statewide USGS real-time stream gauges (feat/tn-gauge-layer).
+   *  Off by default — catalog waters stay the story; gauges are context. */
+  showGauges: boolean;
+  /** Map overlay: TWRA trout stocking sites (static registry, off by default). */
+  showStockingSites: boolean;
+  /** Map overlay: TWRA fish attractor structures in lakes (zoom-gated detail). */
+  showAttractors: boolean;
   reduceMotion: boolean;
   // T2-33: `defaultState` removed — the setting silently emptied every
   // state-scoped page when changed. Tennessee is the only served state.

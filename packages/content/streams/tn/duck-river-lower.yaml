@@ -8,6 +8,9 @@ gaugeIds:
   - "03597860"
   - "03598000"
   - "03599500"
+  - "03598185"
+  - "03599240"
+  - "03599419"
 stockingProgram: false
 idealFlow:
   - min: 200

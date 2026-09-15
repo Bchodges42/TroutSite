@@ -10,6 +10,7 @@ import type { Db } from './db.js';
 import { latestJobRuns } from './jobs/run.js';
 import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
+import { createGaugeNowCache, type GaugeNowCache } from './lib/gauge-now.js';
 
 export interface BuildAppOptions {
   logger?: boolean;
@@ -31,6 +32,8 @@ export interface BuildAppOptions {
   portalOrigins?: string[];
   /** Optional shared secret for the private watchdog health probe. */
   watchdogToken?: string;
+  /** Live per-gauge readings for the map's gauge layer (injectable in tests). */
+  gaugesNow?: GaugeNowCache;
 }
 
 function constantTimeEqual(expected: string, actual: string): boolean {
@@ -62,7 +65,12 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
         ? false
         : {
             redact: {
-              paths: ['req.headers.authorization', 'req.headers.cookie', 'req.remoteAddress', 'req.remotePort'],
+              paths: [
+                'req.headers.authorization',
+                'req.headers.cookie',
+                'req.remoteAddress',
+                'req.remotePort',
+              ],
               remove: true,
             },
           },
@@ -93,7 +101,10 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     let sent = false;
     reply.send = ((payload?: unknown) => {
       if (sent) {
-        req.log.warn({ url: req.url }, 'suppressed duplicate reply.send on HEAD (fastify-static conditional-304 double-send)');
+        req.log.warn(
+          { url: req.url },
+          'suppressed duplicate reply.send on HEAD (fastify-static conditional-304 double-send)',
+        );
         return reply;
       }
       sent = true;
@@ -140,7 +151,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     }
     let streams: Stream[];
     try {
-      streams = (JSON.parse(readFileSync(file, 'utf8')) as unknown[]).map((s) => StreamSchema.parse(s));
+      streams = (JSON.parse(readFileSync(file, 'utf8')) as unknown[]).map((s) =>
+        StreamSchema.parse(s),
+      );
     } catch (err) {
       req.log.error({ err }, 'streams snapshot unreadable');
       return reply.code(503).send({ error: 'streams snapshot unreadable' });
@@ -148,6 +161,33 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     const state = (req.query as { state?: string }).state?.trim().toUpperCase();
     const filtered = state ? streams.filter((s) => s.stateId === state) : streams;
     return reply.header('cache-control', 'no-store').send(filtered);
+  });
+
+  // Map gauge layer: one live reading per tapped gauge. The gauge catalog is a
+  // static asset (/atlas/gauges-tn.geojson); only the tapped gauge is fetched,
+  // cached (TTL + negative + in-flight dedupe) and served stale if USGS is
+  // down — an upstream blip degrades, never 500s the map. On-demand route,
+  // deliberately not part of the frozen /v1 snapshot surface.
+  const gaugeNow = options.gaugesNow ?? createGaugeNowCache();
+  app.get('/v1/gauges/:gaugeId/now', async (req, reply) => {
+    const { gaugeId } = req.params as { gaugeId: string };
+    reply.header('Cache-Control', 'no-store');
+    // USGS site ids are 8 digits WITH leading zeros — never coerce.
+    if (!/^\d{8}$/.test(gaugeId)) {
+      return reply.code(400).send({ error: 'gaugeId must be an 8-digit USGS site number' });
+    }
+    try {
+      const entry = await gaugeNow.get(gaugeId);
+      if (!entry) return reply.code(404).send({ error: 'no current reading for this gauge' });
+      return {
+        ...entry.reading,
+        stale: entry.stale,
+        fetchedAt: new Date(entry.fetchedAt).toISOString(),
+      };
+    } catch (err) {
+      req.log.warn({ err }, 'gauge-now: USGS fetch failed');
+      return reply.code(502).send({ error: 'gauge source unavailable' });
+    }
   });
 
   if (options.db) {
@@ -172,7 +212,10 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   // @fastify/static v10 hands setHeaders a Fastify Reply (.header), older
   // majors handed the raw ServerResponse (.setHeader) — support both so the
   // no-store rule survives dependency majors.
-  const noStore = (res: { setHeader?: (k: string, v: string) => void; header?: (k: string, v: string) => void }, path: string): void => {
+  const noStore = (
+    res: { setHeader?: (k: string, v: string) => void; header?: (k: string, v: string) => void },
+    path: string,
+  ): void => {
     // The service worker + Dexie are the offline layer; HTTP caching would
     // masquerade as live data (apps/web/vite.shared.ts note).
     if (/[/\\](v1|content)[/\\]/.test(path)) {
@@ -213,7 +256,13 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     app.register(fastifyStatic, {
       root: options.webDistDir,
       prefix: '/',
-      setHeaders: (res: { setHeader?: (k: string, v: string) => void; header?: (k: string, v: string) => void }, path) => {
+      setHeaders: (
+        res: {
+          setHeader?: (k: string, v: string) => void;
+          header?: (k: string, v: string) => void;
+        },
+        path,
+      ) => {
         const set = (k: string, v: string) => {
           if (typeof res.setHeader === 'function') res.setHeader(k, v);
           else res.header?.(k, v);
@@ -235,7 +284,12 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
       if (req.method !== 'GET' && req.method !== 'HEAD') {
         return reply.code(405).header('Allow', 'GET, HEAD').send({ error: 'method not allowed' });
       }
-      if (url.startsWith('/v1/') || url === '/v1' || url.startsWith('/content/') || url === '/content') {
+      if (
+        url.startsWith('/v1/') ||
+        url === '/v1' ||
+        url.startsWith('/content/') ||
+        url === '/content'
+      ) {
         return reply.code(404).send({ error: 'not found' });
       }
       return reply

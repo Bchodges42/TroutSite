@@ -540,6 +540,21 @@
     ]
   },
   {
+    "id": "duck-river-mouth",
+    "name": "Duck River (Columbia to the mouth)",
+    "waterbodyType": "river",
+    "anchor": [
+      -87.46,
+      35.784
+    ],
+    "bounds": [
+      -87.93812,
+      35.59532,
+      -86.99775,
+      36.04518
+    ]
+  },
+  {
     "id": "duck-river-tailwater",
     "name": "Duck River (Normandy tailwater)",
     "waterbodyType": "tailrace",
@@ -1268,10 +1283,10 @@
       35.03701
     ],
     "bounds": [
-      -85.622526,
-      34.9852,
-      -85.227411,
-      35.123372
+      -85.6225259351916,
+      34.9852008429868,
+      -85.2274111411568,
+      35.1233711040306
     ]
   },
   {

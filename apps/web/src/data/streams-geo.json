@@ -1,44 +1,213 @@
 {
   "_comment": "On-device 'near me' anchors, one per stream with a monitored USGS gauge. Coordinates are the published monitoring-location coordinates (NAD83) from waterservices.usgs.gov site service, retrieved 2026-09-04 — not approximations. The gauge id backing each anchor is listed in 'gauge'. West TN put-and-take ponds carry no gauges; their point anchors live in public/atlas/rivers.geojson (twra-winter-ponds). Note: the catalog lists gauge 03596000 (Duck River below Manchester) for duck-river-tailwater, but that site sits above Normandy Dam — the tailwater anchor uses in-reach site 03597860 instead (see docs/GEO-AUDIT.md).",
-  "boone-tailwater": { "lat": 36.4407, "lon": -82.4379, "gauge": "03486810" },
-  "calfkiller-river": { "lat": 35.9265, "lon": -85.4674, "gauge": "03419530" },
-  "caney-fork-river": { "lat": 36.0978, "lon": -85.8272, "gauge": "03424010" },
-  "clear-creek-obed": { "lat": 36.1031, "lon": -84.7183, "gauge": "03539778" },
-  "clear-fork": { "lat": 36.3883, "lon": -84.6302, "gauge": "03409500" },
-  "clinch-river": { "lat": 36.2156, "lon": -84.0821, "gauge": "03533000" },
-  "collins-river": { "lat": 35.7083, "lon": -85.7318, "gauge": "03421000" },
-  "daddys-creek": { "lat": 35.9977, "lon": -84.8225, "gauge": "03539600" },
-  "doe-river": { "lat": 36.3445, "lon": -82.2101, "gauge": "03485500" },
-  "duck-river-lower": { "lat": 35.6181, "lon": -87.0323, "gauge": "03599500" },
-  "duck-river-tailwater": { "lat": 35.4829, "lon": -86.4626, "gauge": "03597860" },
-  "east-fork-stones-river": { "lat": 35.9184, "lon": -86.3339, "gauge": "03427500" },
-  "elk-river-lower": { "lat": 35.0142, "lon": -86.9947, "gauge": "03584600" },
-  "elk-river": { "lat": 35.1923, "lon": -86.2811, "gauge": "03580750" },
-  "emory-river": { "lat": 35.9831, "lon": -84.558, "gauge": "03540500" },
-  "french-broad-river": { "lat": 35.9612, "lon": -83.5388, "gauge": "03468510" },
-  "ft-patrick-henry-tailwater": { "lat": 36.4982, "lon": -82.509, "gauge": "03487010" },
-  "harpeth-river": { "lat": 35.9208, "lon": -86.8655, "gauge": "03432350" },
-  "hiwassee-river": { "lat": 35.1883, "lon": -84.5025, "gauge": "03556590" },
-  "little-pigeon-river": { "lat": 35.8785, "lon": -83.5775, "gauge": "03470000" },
-  "little-river": { "lat": 35.6645, "lon": -83.7113, "gauge": "03497300" },
-  "new-river": { "lat": 36.3855, "lon": -84.5547, "gauge": "03408500" },
-  "nolichucky-river": { "lat": 36.1782, "lon": -82.4552, "gauge": "03465500" },
-  "north-chickamauga-creek": { "lat": 35.2112, "lon": -85.2152, "gauge": "03566535" },
-  "obed-river": { "lat": 36.0815, "lon": -84.6703, "gauge": "03539800" },
-  "obey-river": { "lat": 36.5373, "lon": -85.4552, "gauge": "03417000" },
-  "ocoee-river": { "lat": 34.9915, "lon": -84.3766, "gauge": "03559500" },
-  "parksville-tailwater": { "lat": 35.0969, "lon": -84.6544, "gauge": "03564500" },
-  "pigeon-river": { "lat": 35.9606, "lon": -83.1743, "gauge": "03461500" },
-  "powell-river": { "lat": 36.5425, "lon": -83.63, "gauge": "03532000" },
-  "red-river-clarksville": { "lat": 36.5547, "lon": -87.1419, "gauge": "03436100" },
-  "reedy-creek": { "lat": 36.5523, "lon": -82.5729, "gauge": "03487602" },
-  "sequatchie-river": { "lat": 35.2057, "lon": -85.497, "gauge": "03571000" },
-  "shoal-creek": { "lat": 35.0242, "lon": -87.579, "gauge": "03588500" },
-  "south-fork-cumberland": { "lat": 36.4774, "lon": -84.6694, "gauge": "03410210" },
-  "south-holston-river": { "lat": 36.5236, "lon": -82.0973, "gauge": "03476500" },
-  "stones-river": { "lat": 36.1865, "lon": -86.6328, "gauge": "03430200" },
-  "tellico-river": { "lat": 35.362, "lon": -84.279, "gauge": "03518500" },
-  "watauga-river": { "lat": 36.3415, "lon": -82.1265, "gauge": "03483980" },
-  "west-fork-stones-river": { "lat": 35.9029, "lon": -86.43, "gauge": "03428200" },
-  "west-prong-little-pigeon": { "lat": 35.6995, "lon": -83.5271, "gauge": "03469251" }
+  "boone-tailwater": {
+    "lat": 36.4407,
+    "lon": -82.4379,
+    "gauge": "03486810"
+  },
+  "calfkiller-river": {
+    "lat": 35.9265,
+    "lon": -85.4674,
+    "gauge": "03419530"
+  },
+  "caney-fork-river": {
+    "lat": 36.0978,
+    "lon": -85.8272,
+    "gauge": "03424010"
+  },
+  "clear-creek-obed": {
+    "lat": 36.1031,
+    "lon": -84.7183,
+    "gauge": "03539778"
+  },
+  "clear-fork": {
+    "lat": 36.3883,
+    "lon": -84.6302,
+    "gauge": "03409500"
+  },
+  "clinch-river": {
+    "lat": 36.2156,
+    "lon": -84.0821,
+    "gauge": "03533000"
+  },
+  "collins-river": {
+    "lat": 35.7083,
+    "lon": -85.7318,
+    "gauge": "03421000"
+  },
+  "daddys-creek": {
+    "lat": 35.9977,
+    "lon": -84.8225,
+    "gauge": "03539600"
+  },
+  "doe-river": {
+    "lat": 36.3445,
+    "lon": -82.2101,
+    "gauge": "03485500"
+  },
+  "duck-river-lower": {
+    "lat": 35.6181,
+    "lon": -87.0323,
+    "gauge": "03599500"
+  },
+  "duck-river-tailwater": {
+    "lat": 35.4829,
+    "lon": -86.4626,
+    "gauge": "03597860"
+  },
+  "east-fork-stones-river": {
+    "lat": 35.9184,
+    "lon": -86.3339,
+    "gauge": "03427500"
+  },
+  "elk-river-lower": {
+    "lat": 35.0142,
+    "lon": -86.9947,
+    "gauge": "03584600"
+  },
+  "elk-river": {
+    "lat": 35.1923,
+    "lon": -86.2811,
+    "gauge": "03580750"
+  },
+  "emory-river": {
+    "lat": 35.9831,
+    "lon": -84.558,
+    "gauge": "03540500"
+  },
+  "french-broad-river": {
+    "lat": 35.9612,
+    "lon": -83.5388,
+    "gauge": "03468510"
+  },
+  "ft-patrick-henry-tailwater": {
+    "lat": 36.4982,
+    "lon": -82.509,
+    "gauge": "03487010"
+  },
+  "harpeth-river": {
+    "lat": 35.9208,
+    "lon": -86.8655,
+    "gauge": "03432350"
+  },
+  "hiwassee-river": {
+    "lat": 35.1883,
+    "lon": -84.5025,
+    "gauge": "03556590"
+  },
+  "little-pigeon-river": {
+    "lat": 35.8785,
+    "lon": -83.5775,
+    "gauge": "03470000"
+  },
+  "little-river": {
+    "lat": 35.6645,
+    "lon": -83.7113,
+    "gauge": "03497300"
+  },
+  "new-river": {
+    "lat": 36.3855,
+    "lon": -84.5547,
+    "gauge": "03408500"
+  },
+  "nolichucky-river": {
+    "lat": 36.1782,
+    "lon": -82.4552,
+    "gauge": "03465500"
+  },
+  "north-chickamauga-creek": {
+    "lat": 35.2112,
+    "lon": -85.2152,
+    "gauge": "03566535"
+  },
+  "obed-river": {
+    "lat": 36.0815,
+    "lon": -84.6703,
+    "gauge": "03539800"
+  },
+  "obey-river": {
+    "lat": 36.5373,
+    "lon": -85.4552,
+    "gauge": "03417000"
+  },
+  "ocoee-river": {
+    "lat": 34.9915,
+    "lon": -84.3766,
+    "gauge": "03559500"
+  },
+  "parksville-tailwater": {
+    "lat": 35.0969,
+    "lon": -84.6544,
+    "gauge": "03564500"
+  },
+  "pigeon-river": {
+    "lat": 35.9606,
+    "lon": -83.1743,
+    "gauge": "03461500"
+  },
+  "powell-river": {
+    "lat": 36.5425,
+    "lon": -83.63,
+    "gauge": "03532000"
+  },
+  "red-river-clarksville": {
+    "lat": 36.5547,
+    "lon": -87.1419,
+    "gauge": "03436100"
+  },
+  "reedy-creek": {
+    "lat": 36.5523,
+    "lon": -82.5729,
+    "gauge": "03487602"
+  },
+  "sequatchie-river": {
+    "lat": 35.2057,
+    "lon": -85.497,
+    "gauge": "03571000"
+  },
+  "shoal-creek": {
+    "lat": 35.0242,
+    "lon": -87.579,
+    "gauge": "03588500"
+  },
+  "south-fork-cumberland": {
+    "lat": 36.4774,
+    "lon": -84.6694,
+    "gauge": "03410210"
+  },
+  "south-holston-river": {
+    "lat": 36.5236,
+    "lon": -82.0973,
+    "gauge": "03476500"
+  },
+  "stones-river": {
+    "lat": 36.1865,
+    "lon": -86.6328,
+    "gauge": "03430200"
+  },
+  "tellico-river": {
+    "lat": 35.362,
+    "lon": -84.279,
+    "gauge": "03518500"
+  },
+  "watauga-river": {
+    "lat": 36.3415,
+    "lon": -82.1265,
+    "gauge": "03483980"
+  },
+  "west-fork-stones-river": {
+    "lat": 35.9029,
+    "lon": -86.43,
+    "gauge": "03428200"
+  },
+  "west-prong-little-pigeon": {
+    "lat": 35.6995,
+    "lon": -83.5271,
+    "gauge": "03469251"
+  },
+  "duck-river-mouth": {
+    "lat": 35.784,
+    "lon": -87.46,
+    "gauge": "03601990"
+  }
 }
