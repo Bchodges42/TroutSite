@@ -1,5 +1,5 @@
 {
-  "comment": "Static USGS monitoring-location catalog for packages/content streams. Site existence and names were verified against waterservices.usgs.gov on 2026-09-02; realTimeIV records the catalog-time probe only, not current health. Current parameter health comes from live feed checks.",
+  "comment": "Static USGS monitoring-location catalog for packages/content streams. Site existence and names were verified against waterservices.usgs.gov on 2026-09-02; realTimeIV records the catalog-time probe only, not current health. Current parameter health comes from live feed checks. Added 2026-09-15: 03601600/03601990/03603000 (lower Duck reaches) verified live against the waterservices site file during the gauge-layer build (wave-2 clone).",
   "sourceUrl": "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteStatus=any&siteType=st",
   "gauges": {
     "03408500": {
@@ -216,6 +216,30 @@
     },
     "03599500": {
       "name": "DUCK RIVER AT COLUMBIA, TN",
+      "realTimeIV": true
+    },
+    "03601600": {
+      "name": "DUCK RIVER NEAR SHADY GROVE, TN.",
+      "realTimeIV": true
+    },
+    "03601990": {
+      "name": "DUCK RIVER AT HWY 100 AT CENTERVILLE, TN",
+      "realTimeIV": true
+    },
+    "03603000": {
+      "name": "DUCK RIVER ABOVE HURRICANE MILLS, TN",
+      "realTimeIV": true
+    },
+    "03598185": {
+      "name": "DUCK RIVER AT HALLS MILL BRIDGE, TN",
+      "realTimeIV": true
+    },
+    "03599240": {
+      "name": "DUCK RIVER ABOVE MILLTOWN, TN",
+      "realTimeIV": true
+    },
+    "03599419": {
+      "name": "DUCK RIVER AT MILE 156 NEAR POTTSVILLE, TN",
       "realTimeIV": true
     }
   }

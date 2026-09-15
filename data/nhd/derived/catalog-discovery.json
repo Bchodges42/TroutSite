@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T20:21:08.830Z",
+  "generatedAt": "2026-09-15T20:57:22.516Z",
   "waters": {
     "barren-fork-river": {
       "anchor": [
@@ -1266,6 +1266,18 @@
       "unit": "08010210",
       "snapDistM": 1,
       "nhdName": "Wolf River",
+      "altUnits": [],
+      "hasSpec": false
+    },
+    "duck-river-mouth": {
+      "anchor": [
+        -87.46,
+        35.784
+      ],
+      "anchorSource": "gauge",
+      "unit": "06040003",
+      "snapDistM": 5,
+      "nhdName": "Duck River",
       "altUnits": [],
       "hasSpec": false
     }

@@ -188,14 +188,14 @@ ${tiny.map((r) => `- ${r.key} (${r.maxDrain || '?'} sq mi, ${r.gauges.length} ga
 - **watauga-river-wilbur-reach** — no station between the dams (03484000 below Wilbur ended 1982).
 - **obed-river** — 03539800 (LOWER Obed, Morgan Co) is ACTIVE per the current site file, contrary to the wave-2 "dead gauge" note; 03538830 remains the upper-main-stem gauge.
 
-## The Duck River display problem (user-reported)
-The catalog carries \`duck-river-tailwater\` (Normandy→Shelbyville) and \`duck-river-lower\`
-(Shelbyville→Columbia). The remaining ~100 river miles (Columbia → the Tennessee River
-confluence, Humphreys/Hickman Cos) have NO catalog water — so the enhanced-zoom network
-renders a MAJOR river as unselectable cluster geometry. The gauge table shows 7 active
-Duck River main-stem gauges across the basin, several on exactly the missing reaches.
-Recommended fix: add catalog water(s) for the Columbia→mouth Duck (one water or a small
-reach set), then wire its gauges.
+## The Duck River display problem (user-reported) — FIXED 2026-09-15
+The catalog carried only \`duck-river-tailwater\` (Normandy→Shelbyville) and
+\`duck-river-lower\` (Shelbyville→Columbia); the remaining ~100 river miles (Columbia → the
+Tennessee River confluence) rendered as unselectable network geometry. **Fixed on this
+branch**: new catalog water \`duck-river-mouth\` (NHD-traced, 212.6 km, validate-atlas +
+continuity PASS), wired to 03601600 / 03601990 / 03603000; duck-river-lower additionally
+wired to 03598185 / 03599240 / 03599419. The statewide displayed-vs-selectable sweep is
+\`docs/STATEWIDE-RIVER-COVERAGE.md\` (\`node scripts/statewide-coverage.mjs\`).
 
 > Merge with the pre-existing 17-water add worklist (atlas coverage gaps) before authoring;
 > source any addition with the wave-ledger block format so every new water ships with live
