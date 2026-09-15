@@ -8,6 +8,8 @@ export const DEFAULT_SETTINGS: SettingsRecord = {
   speciesMode: 'trout',
   speciesFocus: '',
   showGauges: false,
+  showStockingSites: false,
+  showAttractors: false,
   reduceMotion: false,
 };
 

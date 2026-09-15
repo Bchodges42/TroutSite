@@ -60,6 +60,8 @@ export function RiverMapPage() {
   // Persisted gauge overlay (feat/tn-gauge-layer) — a setting, not URL state:
   // it's a device preference like species mode, not a shareable view.
   const showGauges = settings.showGauges ?? false;
+  const showStockingSites = settings.showStockingSites ?? false;
+  const showAttractors = settings.showAttractors ?? false;
   // ?qa=1 — INTERNAL geometry QA overlay (not advertised; chip shows only
   // while the param is present).
   const qaOn = params.get('qa') === '1';
@@ -579,6 +581,26 @@ export function RiverMapPage() {
       <p className="muted text-xs">
         Live USGS stream gauges statewide · tap a dot for the current reading · off by default
       </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={showStockingSites}
+          onChange={(e) => updateSettings({ showStockingSites: e.target.checked })}
+        />
+        Trout stocking sites
+      </label>
+      <p className="muted text-xs">TWRA trout stocking sites and access notes · off by default</p>
+      <label>
+        <input
+          type="checkbox"
+          checked={showAttractors}
+          onChange={(e) => updateSettings({ showAttractors: e.target.checked })}
+        />
+        Fish attractors
+      </label>
+      <p className="muted text-xs">
+        TWRA fish attractor structures in lakes · clearest when zoomed in · off by default
+      </p>
     </>
   );
   return (
@@ -820,6 +842,8 @@ export function RiverMapPage() {
           basemap={basemap}
           roads={roadsOn && roadsManifest ? roadsManifest : undefined}
           showGauges={showGauges}
+          showStockingSites={showStockingSites}
+          showAttractors={showAttractors}
           places={places}
           onMapReady={onMapReady}
           viewKey={location.key}

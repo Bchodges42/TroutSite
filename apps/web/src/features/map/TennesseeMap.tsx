@@ -90,6 +90,10 @@ interface Props {
    *  visibility:none style layers visible; a gauge tap opens a live-reading
    *  popup instead of selecting the water beneath it. */
   showGauges?: boolean;
+  /** Persisted TWRA trout-stocking-site overlay (same pattern as showGauges). */
+  showStockingSites?: boolean;
+  /** Persisted TWRA fish-attractor overlay (lake detail; zoom-gated). */
+  showAttractors?: boolean;
   fitPadding?: { top: number; bottom: number; left: number; right: number };
   basemap?: BasemapVariant;
   roads?: RoadsSpec;
@@ -529,26 +533,117 @@ export function TennesseeMap(props: Props) {
       })();
       gaugePopup.setDOMContent(el).setLngLat(lngLat).addTo(map);
     };
+    // TWRA overlay popups (feat/tn-gauge-layer) — attractor structures and
+    // trout stocking sites, same imperative pattern; the data is static TWRA
+    // registry context, never a live call.
+    const overlayPopup = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' });
+    const popupCard = (titleText: string, metaText: string) => {
+      const el = document.createElement('div');
+      el.style.cssText =
+        'font:12px/1.5 ui-sans-serif,system-ui,sans-serif;color:#1c2430;min-width:170px;';
+      const title = document.createElement('strong');
+      title.style.cssText = 'display:block;font-size:13px;margin-bottom:2px;';
+      title.textContent = titleText;
+      el.appendChild(title);
+      const meta = document.createElement('div');
+      meta.style.cssText = 'color:#5b6673;';
+      meta.textContent = metaText;
+      el.appendChild(meta);
+      return el;
+    };
+    const openStockingPopup = (
+      feature: maplibregl.MapGeoJSONFeature,
+      lngLat: maplibregl.LngLat,
+    ) => {
+      const p = feature.properties ?? {};
+      const bits = [
+        p.county ? String(p.county) + ' Co' : '',
+        p.region ? 'Region ' + p.region : '',
+        String(p.program ?? ''),
+        String(p.species ?? ''),
+      ].filter(Boolean);
+      const el = popupCard(
+        String(p.site ?? p.stream ?? 'TWRA trout stocking site'),
+        bits.join(' · ') || 'TWRA trout stocking site',
+      );
+      const lines = [
+        p.dh ? 'Delayed harvest: ' + p.dh : '',
+        p.permit === 'Yes' ? 'Daily permit required' : '',
+        p.hours ? String(p.hours) : '',
+      ].filter(Boolean);
+      if (lines.length) {
+        const extra = document.createElement('div');
+        extra.style.cssText = 'color:#5b6673;margin-top:2px;';
+        extra.textContent = lines.join(' · ');
+        el.appendChild(extra);
+      }
+      overlayPopup.setDOMContent(el).setLngLat(lngLat).addTo(map);
+    };
+    const openAttractorPopup = (
+      feature: maplibregl.MapGeoJSONFeature,
+      lngLat: maplibregl.LngLat,
+    ) => {
+      const p = feature.properties ?? {};
+      const el = popupCard(
+        String(p.water ?? p.site ?? 'Fish attractor'),
+        [
+          p.types ? String(p.types) : '',
+          p.depth ? 'depth ' + p.depth : '',
+          p.access ? String(p.access) : '',
+        ]
+          .filter(Boolean)
+          .join(' · ') || 'TWRA fish attractor structure',
+      );
+      if (p.marker) {
+        const marker = document.createElement('div');
+        marker.style.cssText = 'color:#5b6673;margin-top:2px;';
+        marker.textContent = 'Marker: ' + p.marker;
+        el.appendChild(marker);
+      }
+      if (p.note) {
+        const note = document.createElement('div');
+        note.style.cssText = 'color:#5b6673;margin-top:2px;';
+        note.textContent = String(p.note);
+        el.appendChild(note);
+      }
+      overlayPopup.setDOMContent(el).setLngLat(lngLat).addTo(map);
+    };
     let hovered: string | null = null;
-    // A visible gauge dot wins the pointer over the water beneath it.
-    const gaugeAt = (point: maplibregl.Point): boolean => {
-      if (!latest.current.showGauges || !map.getLayer('gauges-hit')) return false;
-      try {
-        return (
-          map.queryRenderedFeatures(
+    // A visible overlay dot (gauge / stocking site / attractor) wins the
+    // pointer over the water beneath it. Priority: gauges, stocking, attractors.
+    type OverlayHit = {
+      kind: 'gauge' | 'stocking' | 'attractor';
+      feature: maplibregl.MapGeoJSONFeature;
+    };
+    const OVERLAY_GROUPS: Array<{
+      kind: OverlayHit['kind'];
+      layer: string;
+      on: 'showGauges' | 'showStockingSites' | 'showAttractors';
+    }> = [
+      { kind: 'gauge', layer: 'gauges-hit', on: 'showGauges' },
+      { kind: 'stocking', layer: 'stocking-hit', on: 'showStockingSites' },
+      { kind: 'attractor', layer: 'attractors-hit', on: 'showAttractors' },
+    ];
+    const overlayAt = (point: maplibregl.Point): OverlayHit | null => {
+      for (const group of OVERLAY_GROUPS) {
+        if (!latest.current[group.on] || !map.getLayer(group.layer)) continue;
+        try {
+          const found = map.queryRenderedFeatures(
             [
               [point.x - 5, point.y - 5],
               [point.x + 5, point.y + 5],
             ],
-            { layers: ['gauges-hit'] },
-          ).length > 0
-        );
-      } catch {
-        return false; // layer mid-style-swap; hover is never load-bearing
+            { layers: [group.layer] },
+          )[0];
+          if (found) return { kind: group.kind, feature: found };
+        } catch {
+          /* layer mid-style-swap; overlay hits are never load-bearing */
+        }
       }
+      return null;
     };
     map.on('mousemove', (e) => {
-      if (gaugeAt(e.point)) {
+      if (overlayAt(e.point)) {
         if (hovered) {
           map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
           hovered = null;
@@ -583,22 +678,26 @@ export function TennesseeMap(props: Props) {
     });
     map.on('click', (e) => {
       if (Date.now() - lastTouchSelection < 500) return;
-      if (gaugeAt(e.point)) {
-        let gaugeHit: maplibregl.MapGeoJSONFeature | undefined;
+      const overlay = overlayAt(e.point);
+      if (overlay) {
+        let feature: maplibregl.MapGeoJSONFeature | undefined;
         try {
-          gaugeHit = map.queryRenderedFeatures(
+          const group = OVERLAY_GROUPS.find((g) => g.kind === overlay.kind)!;
+          feature = map.queryRenderedFeatures(
             [
               [e.point.x - 8, e.point.y - 8],
               [e.point.x + 8, e.point.y + 8],
             ],
-            { layers: ['gauges-hit'] },
+            { layers: [group.layer] },
           )[0];
         } catch {
-          gaugeHit = undefined;
+          feature = undefined;
         }
-        if (gaugeHit) {
-          openGaugePopup(gaugeHit, e.lngLat);
-          return; // a gauge tap is not a water selection
+        if (feature) {
+          if (overlay.kind === 'gauge') openGaugePopup(feature, e.lngLat);
+          else if (overlay.kind === 'stocking') openStockingPopup(feature, e.lngLat);
+          else openAttractorPopup(feature, e.lngLat);
+          return; // an overlay tap is not a water selection
         }
       }
       const id = hit(e.point);
@@ -1046,34 +1145,49 @@ export function TennesseeMap(props: Props) {
       placesRef.current = () => {};
     };
   }, [props.places, ready, attempt]);
-  // Gauge overlay visibility (feat/tn-gauge-layer): the style ships the gauge
-  // layers visibility:none; this applies the persisted showGauges setting and
-  // re-applies after every style rebuild (theme/basemap/roads swaps reset
-  // layout visibility). Toggling off also dismisses an open gauge popup.
+  // Overlay visibility (feat/tn-gauge-layer): the style ships the overlay
+  // layers visibility:none; this applies the persisted settings and re-applies
+  // after every style rebuild (theme/basemap/roads swaps reset layout
+  // visibility). Turning every overlay off also dismisses an open popup.
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
     let cancelled = false;
+    const overlayLayers: Array<[string, boolean]> = [
+      ['gauges-dot', Boolean(props.showGauges)],
+      ['gauges-hit', Boolean(props.showGauges)],
+      ['stocking-dot', Boolean(props.showStockingSites)],
+      ['stocking-hit', Boolean(props.showStockingSites)],
+      ['attractors-dot', Boolean(props.showAttractors)],
+      ['attractors-hit', Boolean(props.showAttractors)],
+    ];
     const apply = () => {
       if (cancelled || mapRef.current !== map) return;
-      for (const layer of ['gauges-dot', 'gauges-hit']) {
+      for (const [layer, visible] of overlayLayers) {
         if (map.getLayer(layer)) {
-          map.setLayoutProperty(
-            layer,
-            'visibility',
-            latest.current.showGauges ? 'visible' : 'none',
-          );
+          map.setLayoutProperty(layer, 'visibility', visible ? 'visible' : 'none');
         }
       }
     };
-    if (!props.showGauges) gaugePopupRef.current?.remove();
+    if (!props.showGauges && !props.showStockingSites && !props.showAttractors) {
+      gaugePopupRef.current?.remove();
+    }
     apply();
     map.on('idle', apply);
     return () => {
       cancelled = true;
       map.off('idle', apply);
     };
-  }, [props.showGauges, ready, theme.id, props.basemap, props.roads, attempt]);
+  }, [
+    props.showGauges,
+    props.showStockingSites,
+    props.showAttractors,
+    ready,
+    theme.id,
+    props.basemap,
+    props.roads,
+    attempt,
+  ]);
   return (
     <div className={props.className ?? 'absolute inset-0'} data-basemap={props.basemap}>
       <div
