@@ -123,7 +123,11 @@ export const analyticsBeaconPlugin = (): Plugin => ({
     return [
       {
         tag: 'script',
-        attrs: { defer: true, src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': JSON.stringify({ token }) },
+        attrs: {
+          type: 'module',
+          src: 'https://static.cloudflareinsights.com/beacon.min.js',
+          'data-cf-beacon': JSON.stringify({ token }),
+        },
         injectTo: 'head',
       },
     ];

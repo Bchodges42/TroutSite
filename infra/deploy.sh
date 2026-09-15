@@ -5,6 +5,16 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# Load ignored deploy-time configuration before any build runs. This includes
+# VITE_CF_ANALYTICS_TOKEN when Cloudflare Web Analytics is enabled; secrets stay
+# in the host's .env and never enter Git.
+if [ -f .env ]; then
+  set -a
+  # shellcheck disable=SC1091
+  . ./.env
+  set +a
+fi
+
 echo "[deploy] git pull"
 git pull --ff-only
 
