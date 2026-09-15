@@ -6,7 +6,7 @@ display: featured
 regionId: tn-east-clinch
 gaugeIds:
   - tva:TDTT1
-stockingProgram: false
+stockingProgram: true
 idealFlow: []
 targetSpecies:
   - largemouth-bass
@@ -46,14 +46,18 @@ speciesEvidence:
     url: https://www.tva.com/environment/lake-levels
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount
-  counties, impounded by Tellico Dam at Lenoir City. Receives the Little
-  Tennessee River (little-tennessee-river) below Chilhowee Dam, the Tellico
-  River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake
-  through the dam and the connecting canal. TWRA maps the reservoir at
-  15,788 ac. Aliases: Tellico Reservoir.
-  TWRA's Tellico Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount counties, impounded by Tellico Dam
+  at Lenoir City. Receives the Little Tennessee River (little-tennessee-river) below Chilhowee Dam, the
+  Tellico River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake through the dam and the
+  connecting canal. TWRA maps the reservoir at 15,788 ac. Aliases: Tellico Reservoir. TWRA's Tellico Reservoir
+  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish,
+  striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
+  temperature/oxygen refuge context is not a scored input.
+
+
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
+  2026-09-14) — TMP trout reservoir — upper Little Tennessee arm below Chilhowee Dam; ~4,500 rainbows late
+  winter/early spring.
 officialSources:
   - label: TVA — Tellico Reservoir lake levels
     url: https://www.tva.com/environment/lake-levels
@@ -63,3 +67,11 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Tellico Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html
+species: trout
+fishery: stocked
+yearRound: false
+seasonMonths:
+  - 2
+  - 3
+  - 4
+seasonKind: programmatic

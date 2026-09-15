@@ -6,7 +6,7 @@ display: featured
 regionId: tn-northeast-watauga
 gaugeIds:
   - tva:WTGT1
-stockingProgram: false
+stockingProgram: true
 idealFlow: []
 targetSpecies:
   - largemouth-bass
@@ -41,14 +41,17 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03483950/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Watauga River in the mountains of Carter and Johnson
-  counties, impounded by Watauga Dam (between USGS 03483450 above and 03483950
-  below; tailwater gauge 36.33011/-82.12596). One of the highest reservoirs in
-  the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout
-  fishery downstream. Outflow runs via the short Watauga River reach
-  (watauga-river-wilbur-reach) into Wilbur Lake. The pool runs all the way to
-  the dam at its west end. Aliases: Watauga Reservoir.
-  TWRA's Watauga Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  TVA reservoir on the Watauga River in the mountains of Carter and Johnson counties, impounded by Watauga Dam
+  (between USGS 03483450 above and 03483950 below; tailwater gauge 36.33011/-82.12596). One of the highest
+  reservoirs in the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout fishery
+  downstream. Outflow runs via the short Watauga River reach (watauga-river-wilbur-reach) into Wilbur Lake.
+  The pool runs all the way to the dam at its west end. Aliases: Watauga Reservoir. TWRA's Watauga Reservoir
+  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see
+  officialSources).
+
+
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
+  2026-09-14) — TMP trout reservoir ("Region IV, Watauga — Lake and Rainbow"); months unpinned.
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/
@@ -58,3 +61,6 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Watauga Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html
+species: trout
+fishery: stocked
+yearRound: false

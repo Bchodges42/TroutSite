@@ -14,10 +14,15 @@ idealFlow:
     max: 200
     unit: cfs
 idealFlowSource: editorial
-notes: Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by
-  Highland Rim standards.
+notes: Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by Highland Rim
+  standards.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+seasonMonths:
+  - 12
+  - 1
+  - 2
+seasonKind: programmatic

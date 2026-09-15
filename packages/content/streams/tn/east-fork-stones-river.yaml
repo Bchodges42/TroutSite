@@ -14,9 +14,8 @@ idealFlow:
     max: 400
     unit: cfs
 idealFlowSource: editorial
-notes: The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s
-  stocking dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau
-  headwaters.
+notes: The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset
+  lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.
 officialSources:
   - label: USGS Water Data — monitoring location 03427500
     url: https://waterdata.usgs.gov/monitoring-location/03427500/
@@ -24,3 +23,10 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+seasonMonths:
+  - 12
+  - 1
+  - 2
+  - 3
+seasonKind: programmatic
+yearRound: false

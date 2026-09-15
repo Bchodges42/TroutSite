@@ -14,12 +14,15 @@ idealFlow:
     max: 50
     unit: cfs
 idealFlowSource: editorial
-notes: >-
-  TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May. It runs its
-  full named length down toward the upper Clinch.
-
+notes: TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March–May. It runs its full
+  named length down toward the upper Clinch.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+seasonMonths:
+  - 12
+  - 1
+  - 2
+seasonKind: programmatic

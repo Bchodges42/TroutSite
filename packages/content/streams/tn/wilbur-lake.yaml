@@ -5,14 +5,18 @@ waterbodyType: lake
 display: reference
 regionId: tn-northeast-watauga
 gaugeIds: []
-stockingProgram: false
+stockingProgram: true
 idealFlow: []
 notes: >-
-  Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on
-  the Watauga River in Carter County. Receives Watauga Dam releases via the
-  short riverine reach (watauga-river-wilbur-reach) and discharges through
-  Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River
-  (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).
+  Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River in Carter
+  County. Receives Watauga Dam releases via the short riverine reach (watauga-river-wilbur-reach) and
+  discharges through Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River (Wilbur tailwater).
+  Also shown on TWRA's waterways map (72 ac).
+
+
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
+  2026-09-14) — TMP trout reservoir; "Watauga Dam, Wilbur Reservoir — Rainbow — March through July" schedule
+  row (wave-1 dispute resolved).
 officialSources:
   - label: USGS Water Data — monitoring location 03484000 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03484000/
@@ -22,3 +26,15 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+species: trout
+fishery: stocked
+yearRound: false
+seasonMonths:
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+seasonKind: programmatic

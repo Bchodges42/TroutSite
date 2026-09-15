@@ -14,8 +14,8 @@ idealFlow:
     max: 120
     unit: cfs
 idealFlowSource: editorial
-notes: Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking
-  noted by TWRA on the Middle Prong. No gauge; recent-rain judgment applies.
+notes: Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking noted by TWRA on
+  the Middle Prong. No gauge; recent-rain judgment applies.
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
