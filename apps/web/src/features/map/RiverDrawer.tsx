@@ -12,6 +12,7 @@ import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import { toWaterDecisionView, seasonalChipText } from './waterDecision';
 import { FishabilityCard } from '../../components/FishabilityCard';
+import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -22,6 +23,8 @@ type Tab = (typeof TABS)[number];
 const TIMES = { am: 'Morning', midday: 'Midday', pm: 'Afternoon', evening: 'Evening' };
 interface Props {
   feature: RiverMapFeature | null;
+  /** Season-aware trout presence for the selected water (trout calendar). */
+  season?: TroutPresenceNow | null;
   tab: Tab;
   onTab: (t: Tab) => void;
   onClose: () => void;
@@ -39,6 +42,7 @@ interface Props {
 }
 export function RiverDrawer({
   feature,
+  season,
   tab,
   onTab,
   onClose,
@@ -156,7 +160,7 @@ export function RiverDrawer({
         role="tabpanel"
         aria-labelledby={'river-tab-' + TABS.indexOf(tab)}
       >
-        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
+        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} season={season} />}
         {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
         {tab === 'Stocking' && (
           <StockingTab feature={feature} month={modeMonth} error={feedErrors?.stocking} />
@@ -171,10 +175,12 @@ function WaterTab({
   feature,
   month,
   live,
+  season,
 }: {
   feature: RiverMapFeature;
   month: number;
   live: boolean;
+  season?: TroutPresenceNow | null;
 }) {
   const { settings } = useSettingsContext();
   const pack = useContentPack();
@@ -194,6 +200,8 @@ function WaterTab({
   // T1-18/19: the decision model owns seasonal applicability — a
   // yearRound:false trout water out of its winter window never wears trout
   // language, and the seasonal state shows as a first-class chip.
+  // 2026-09-10 refinement (kept): the assessment stays BROAD (flow-based
+  // conditions) and first; trout-season status renders in its own section below.
   const decision = toWaterDecisionView(feature, settings.speciesMode, month, feature.fishability);
   const seasonal = seasonalChipText(decision);
   const outOfSeason = decision.troutApplicability === 'seasonal-likely-absent';
@@ -233,9 +241,7 @@ function WaterTab({
       >
         <div className="assessment-top">
           <div>
-            <span className="assessment-label">
-              {warm || unverified ? 'Species guidance' : 'Trout condition assessment'}
-            </span>
+            <span className="assessment-label">Conditions assessment</span>
             <h3 className="assessment-name">{title}</h3>
           </div>
           {decision.displayMetric === 'trout-condition' && feature.score !== null && (
@@ -259,6 +265,25 @@ function WaterTab({
         </div>
       </div>
       <FishabilityCard streamId={feature.stream.id} compact />
+      {season && (
+        <div className="season-card" data-state={season.state}>
+          <div className="season-head">
+            <span className="eyebrow">Trout season</span>
+            <strong>
+              {season.state === 'present'
+                ? season.fresh
+                  ? 'In season · freshly stocked'
+                  : 'In season now'
+                : season.state === 'absent'
+                  ? 'Out of season'
+                  : season.state === 'none'
+                    ? 'Not a trout water'
+                    : 'Unverified'}
+            </strong>
+          </div>
+          <p>{season.note}</p>
+        </div>
+      )}
       <div className="metrics">
         <div className="metric">
           <span className="metric-label">
@@ -337,22 +362,30 @@ function WaterTab({
       {waterRegs.length > 0 && (
         <div className="detail-section water-regs">
           <h3>Special regulations on this water</h3>
-          {waterRegs.map((item, i) => (
-            <div key={i} className="water-regs-item">
-              <p>{item.text}</p>
-              <p className="muted text-xs">
-                {item.authority}
-                {item.effectiveFrom ? ` · effective ${item.effectiveFrom}` : ''} · verified against{' '}
-                {(() => {
-                  try {
-                    return new URL(item.sourceUrl).hostname.replace(/^www\./, '');
-                  } catch {
-                    return 'official source';
-                  }
-                })()}
-              </p>
-            </div>
-          ))}
+          <div className="reg-grid">
+            {waterRegs.map((item, i) => {
+              let host = 'official source';
+              try {
+                host = new URL(item.sourceUrl).hostname.replace(/^www\./, '');
+              } catch {
+                host = 'official source';
+              }
+              return (
+                <div className="reg-card" key={i}>
+                  <span className="reg-flag" aria-hidden="true">
+                    §
+                  </span>
+                  <div className="reg-body">
+                    <p className="reg-text">{item.text}</p>
+                    <span className="reg-src">
+                      {item.authority}
+                      {item.effectiveFrom ? ` · effective ${item.effectiveFrom}` : ''} · {host}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
           <Link
             className="text-action"
             to={riverWorkflowUrl('/regulations', feature.stream, month)}

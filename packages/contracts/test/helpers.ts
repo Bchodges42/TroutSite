@@ -20,6 +20,7 @@ export function makeStream(overrides: Partial<Stream> = {}): Stream {
     regionId: 'tx-hill-country',
     gaugeIds: ['08155500'],
     stockingProgram: true,
+    species: 'trout',
     idealFlow: [{ min: 100, max: 400, unit: 'cfs' }],
     notes: 'Tailrace below Canyon Dam.',
     officialSources: [{ label: 'TPWD stocking schedule', url: 'https://tpwd.texas.gov' }],

@@ -22,16 +22,17 @@
  * behavior is unchanged. Fresh pack: pnpm --filter @trout/content build
  */
 import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const webRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = resolve(webRoot, '..', '..');
-const packPath = join(repoRoot, 'packages', 'content', 'dist', 'pack', 'streams.json');
 const outDir = join(webRoot, 'public', 'content-pack');
-const outPath = join(outDir, 'streams.json');
+// Every pack file the app should be able to serve when the host feed is down.
+const packFiles = ['streams.json', 'trout-calendar.json'];
+const packPaths = packFiles.map((f) => join(repoRoot, 'packages', 'content', 'dist', 'pack', f));
 
-if (!existsSync(packPath)) {
+if (!existsSync(packPaths[0])) {
   console.log(
     '[pack-fallback] content pack not built — no bundled catalog fallback this build ' +
       '(run: pnpm --filter @trout/content build)',
@@ -39,5 +40,7 @@ if (!existsSync(packPath)) {
   process.exit(0);
 }
 mkdirSync(outDir, { recursive: true });
-copyFileSync(packPath, outPath);
-console.log(`[pack-fallback] bundled catalog fallback ready: ${outPath}`);
+for (const p of packPaths) {
+  if (existsSync(p)) copyFileSync(p, join(outDir, basename(p)));
+}
+console.log(`[pack-fallback] bundled catalog fallback ready: ${outDir} (${packFiles.join(', ')})`);

@@ -127,13 +127,17 @@ describe('Fieldwork themes', () => {
       expect(paint).toContain('assessed');
       expect(paint).toContain('hidden');
       expect(clear?.paint).toHaveProperty('line-width', 1.7);
+      // Reconciled 2026-09-14: the dash stays stable across zoom, and
+      // out-of-season waters dim their dash (owner dim-not-hide refinement).
       expect(clear?.paint).toHaveProperty('line-opacity', [
         'case',
         ['boolean', ['feature-state', 'hidden'], false],
         0,
+        ['boolean', ['feature-state', 'offseason'], false],
+        0.22,
         ['boolean', ['feature-state', 'assessed'], false],
         0,
-        0.5,
+        0.22,
       ]);
     }
   });

@@ -1,0 +1,1670 @@
+# PROPOSED species/classification for every TroutSite TN water — OWNER DECISION MENU.
+# Generated 2026-09-09 by docs/research/build-classification.py (branch research/trout-waterways).
+# NOTHING HERE IS APPLIED. Existing YAMLs in packages/content/streams/tn/ are untouched.
+# Evidence rules follow docs/SPECIES-REVIEW.md: species absent = unknown = never guessed;
+# affirmative citation required for any trout claim. confidence: high = 2+ independent sources
+# or one explicit fetched official statement; medium = single source; low = inference.
+# yearRound: absent = evidence does not reach (field should stay ABSENT in the catalog).
+meta:
+  generatedAt: "2026-09-09"
+  atlasBase: 9ae3caa
+  atlasCount: 148
+  pendingAddCount: 17
+  totalRows: 165
+  sources:
+    - https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+    - https://www.tn.gov/twra/fishing/trout-information-stockings.html
+    - https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+    - https://storymaps.arcgis.com/stories/4c150fb3e0444ed6b55adede0c1b23e2 (unofficial; corroboration only)
+    - NPS/USFS/TVA/USFWS where-to-fish + research notes in docs/research/_notes/
+  classificationEnum: [trout-wild, trout-stocked, tailwater-trout, warmwater, unknown-need-evidence]
+waters:
+  - id: beech-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html), Region-1 Winter row stocked 1/14/2026 + TBD 12/2026; Henderson Co (Lexington) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter put-and-take); bass/crappie/bluegill/catfish rest of year"
+    flags:
+      - "identity: Henderson Co per TWRA"
+  - id: cameron-brown-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA news 11/26/2025 'Cameron Brown Lake in Germantown' + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; 5/day Community Lakes site)"
+  - id: covington-fbc-pond
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA news 11/26/2025 'New locations this year include... Covington First Baptist Church pond' + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; NEW site 2025-26)"
+  - id: edmund-orgill-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Shelby/Edmund-Orgill Park, stocked 1/13/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter); bass/bream/catfish rest of year"
+  - id: hatchie-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "USFWS Hatchie NWR fishing page (fws.gov/refuge/hatchie) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "bass/panfish; unchannelized river + NWR oxbows (14-in bass min, electric only)"
+  - id: johnson-park-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Shelby/Johnson Park Lake); Collierville per Music City TU + Commercial Appeal (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+    flags:
+      - "identity: Collierville, not Memphis"
+  - id: kentucky-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Kentucky Reservoir where-to-fish (tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html) + absence from trout programs (access 2026-09-09)"
+    speciesDetail: "crappie (20/day, 10-in), sauger Dec-Mar, blue catfish, LMB/smallmouth"
+  - id: lake-graham
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Madison/Lake Graham, stocked 1/8/2026) + TWRA family-fishing page (access 2026-09-09)"
+    speciesDetail: "rainbow (winter); TWRA Family Fishing Lake (bass/crappie/bluegill/cats) rest of year"
+  - id: martin-city-pond
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Weakley/Martin City Pond; Martin Recreational Complex) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+  - id: milan-city-pond
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Gibson/Milan City Pond, stocked 1/14/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+  - id: mississippi-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "Lower Mississippi River Conservation Committee angler guide (lmrcc.org) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "blue/flathead/channel catfish-led trophy fishery; bass"
+  - id: obion-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "TWRA reg-exceptions list membership + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "flathead/channel catfish, white bass"
+  - id: paris-city-park-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Henry/Paris City Park, stocked 1/14/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+  - id: pickwick-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Pickwick Reservoir where-to-fish (fetched) + absence from trout programs (access 2026-09-09)"
+    speciesDetail: "trophy smallmouth ('rivals Dale Hollow'), LMB/spotted, blue-cat-led catfishery"
+  - id: reelfoot-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Reelfoot Lake where-to-fish (fetched) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "bluegill + white crappie ('best in state'); catfish dense"
+  - id: shelby-farms-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "shelbyfarmspark.org/fishing 'Trout are stocked in Jones Pond every December and January' (fetched) + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "rainbow in JONES POND (Dec+Jan); park lakes bass/crappie/bream/catfish"
+    flags:
+      - "identity: trout go in Jones Pond only"
+  - id: tennessee-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Kentucky Reservoir page + absence from all TWRA trout program lists (access 2026-09-09)"
+    speciesDetail: "main-stem reservoir chain; sauger run below dams Dec-Mar; no trout program"
+  - id: union-city-reelfoot-pond
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Obion/Union City Reelfoot Packing Site, stocked 1/14/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+  - id: valentine-park-pond
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Tipton/Valentine Park; Valentine Regional Park, Munford) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+    flags:
+      - "identity: Munford"
+  - id: wolf-river-west-tennessee
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); TN SNA page (search-only); upstream-smallmouth claim UNVERIFIED (access 2026-09-09)"
+    speciesDetail: "bream/crappie/catfish/largemouth; Lucius Burch SNA bottomlands"
+  - id: yale-road-park-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Shelby/Yale Road Park, Bartlett, stocked 1/15/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+  - id: cumberland-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from all TWRA trout program lists; trout rivers named in TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) (access 2026-09-09)"
+    speciesDetail: "main-stem bass/crappie/stripes; TN trout fishing lives in tributary tailwaters"
+  - id: east-fork-stones-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "OWNER-CONFIRMED 2026-09-10: winter-stocked (Benjamin); TWRA line-item not captured this pass (access 2026-09-09)"
+    speciesDetail: "rainbow (winter program, Dec-Mar)"
+    flags:
+      - "OWNER-CONFIRMED 2026-09-10"
+      - "VERIFY: capture TWRA schedule row"
+  - id: fletchers-fork
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) verbatim 'Fletcher's Fork... stocked with rainbow and brown trout' + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) Seasonal row (access 2026-09-09)"
+    speciesDetail: "rainbow + brown (Fort Campbell; post permit + TN license + trout stamp)"
+  - id: harpeth-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: false
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Williamson/Harpeth River at Eastern Flank Battle Park) + Williamson Source/Scene coverage (access 2026-09-09)"
+    speciesDetail: "none claimed (VERIFIED winter rainbow program Dec-Mar at Franklin/Eastern Flank + L.L. Burns Park)"
+    flags:
+      - "owner-ruled warmwater 2026-09-04"
+      - "tension: real Dec-Mar program verified"
+  - id: j-percy-priest-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row 'J. Percy Priest TW / Stones River' = tailwater reach, not the lake; no lake trout row (access 2026-09-09)"
+    speciesDetail: "bass/crappie; the winter trout site is the TW / Stones River tailwater below the dam"
+  - id: lake-barkley
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "TWRA Region-1 where-to-fish locations list (fetched) + absence from trout programs (access 2026-09-09)"
+    speciesDetail: "crappie/bass/catfish"
+  - id: little-west-fork-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) verbatim 'Little West Fork... stocked with rainbow and brown trout' + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "rainbow + brown (Fort Campbell; post permit)"
+  - id: old-hickory-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from all TWRA trout program lists (access 2026-09-09)"
+    speciesDetail: "bass/crappie/striped bass"
+  - id: red-river-clarksville
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Montgomery/Billy Dunlop Park) + Clarksville Now stocking coverage (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; Billy Dunlop Park)"
+  - id: sinking-creek-wilson
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Wilson/Don Fox Park Community Park) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; Don Fox Park, Lebanon)"
+  - id: stones-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Davidson/J. Percy Priest TW, 1/9 + 2/13/2026) + TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) 'began in December 1999 at J. Percy Priest tailwater' (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; J. Percy Priest TW - the original Dec 1999 pilot site)"
+  - id: sulfur-fork-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Robertson/Sulphur Fork Creek, 2/4 + 2/26/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter)"
+  - id: west-fork-stones-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Rutherford rows) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; Manson Pike Trailhead + Nice Mill)"
+  - id: barren-fork-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Warren/Barren Fork River, weeks 3/15-5/10/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+  - id: calfkiller-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Putnam/Calfkiller River, 3/22 + 3/29/2026); wild-headwater claims UNVERIFIED (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Putnam Co row)"
+    flags:
+      - "wild claims low confidence"
+  - id: cane-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Van Buren rows); THREE other stocked Cane Creeks exist (Perry/Hickman/Cane Creek Park lake) - cite county (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Fall Creek Falls SP + lower reaches; one late-Oct fall row)"
+    flags:
+      - "disambiguation: county"
+  - id: caney-fork-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) verbatim 'Center Hill Dam, Caney Fork River - Rainbow, Brook, Brown, Cutthroat - March through December' + regs 5/day, 14-20in PLR, brown 24in (access 2026-09-09)"
+    speciesDetail: "rainbow + brown + brook + cutthroat (stocked Mar-Dec; winter brood browns 16-21 in)"
+  - id: caney-fork-upper
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "No stocking row, no wild-list entry, no where-to-fish trout text found (access 2026-09-09)"
+    speciesDetail: "none documented above Center Hill pool"
+  - id: center-hill-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absent from TWRA trout-reservoir list (TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf)) and schedule (only the TW row exists) (access 2026-09-09)"
+    speciesDetail: "bass/walleye reservoir; trout fishery is the Caney Fork tailwater only"
+  - id: charles-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Warren/Charles Creek, 3/15 + 3/22 + 5/10/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+  - id: collins-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Grundy/Collins River) + recent-stocking report 4/2/2026 (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Grundy Co headwater row)"
+    flags:
+      - "stocked reach = Grundy Co headwaters"
+  - id: great-falls-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Great Falls Reservoir page (bass/crappie) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "bass/crappie impoundment; the trout water is the Caney Fork below Great Falls Dam"
+  - id: mill-creek-overton
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Overton/Mill Creek, 3/22 + 4/26/2026); a different Hickman Co Mill Creek also stocked (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Standing Stone SP)"
+    flags:
+      - "disambiguation: Standing Stone SP"
+  - id: north-prong-barren-fork
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Warren/N Barren Fork Creek, 3/22 + 4/26/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+  - id: pine-creek-dekalb
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (DeKalb/Pine Creek, 2/22-3/29/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+  - id: rocky-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Van Buren/Rocky River, 3/8-5/17/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Van Buren Co)"
+    flags:
+      - "county: Van Buren, not Cumberland"
+  - id: upper-hills-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Warren/Upper Hills Creek, 3/22/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+  - id: big-rock-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Marshall/Big Rock Greenway, 1/15 + 2/27/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; Big Rock Greenway, Lewisburg)"
+  - id: boiling-fork-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Franklin/Cowan City Park) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter via Cowan City Park)"
+    flags:
+      - "reach identity: creek runs through Cowan City Park (medium)"
+  - id: bradley-creek
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Woods Reservoir page ('Bradley Creek in the very upper section of Woods Reservoir') + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "Woods Reservoir upper-reach tributary (Franklin Co); not stocked"
+    flags:
+      - "CORRECTION: not a trout water"
+  - id: buffalo-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); State Scenic River smallmouth identity (access 2026-09-09)"
+    speciesDetail: "smallmouth signature (1-4 lb), rock bass, bream, catfish"
+  - id: duck-river-lower
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Duck River where-to-fish (fetched): tailwater dam-to-Three-Forks-Bridge is the trout water; below is warmwater (access 2026-09-09)"
+    speciesDetail: "smallmouth/spotted/rock bass/catfish; the stocked trout reach ends at Three Forks Bridge"
+  - id: duck-river-tailwater
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA Duck River page verbatim: 'stocked annually with Rainbow Trout from November through June. Water temperatures usually warm above the 70 F mark...' (dam to Three Forks Bridge) (access 2026-09-09)"
+    speciesDetail: "rainbow"
+    flags:
+      - "CONFLICT: owner note says stocked year-round (2026-09-04) - TWRA page says Nov-Jun; re-review recommended"
+  - id: east-fork-shoal-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Lawrence/East Fork Shoal Creek, 2/15-5/31/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; longest spring window in group)"
+  - id: elk-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) verbatim 'Tims Ford Dam, Elk River - Brook, Brown, Cutthroat, Rainbow - March through December' + brown 20in/1-day reg dam to I-65 (access 2026-09-09)"
+    speciesDetail: "brook + brown + cutthroat + rainbow (stocked Mar-Dec)"
+  - id: elk-river-lower
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Lincoln/Stone Bridge Park, 1/15 + 2/27/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; Stone Bridge Park, Fayetteville) over warmwater base"
+  - id: little-buffalo-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Lawrence/Little Buffalo River, 3/8-5/31/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Lawrence Co) over smallmouth water"
+    flags:
+      - "CORRECTION: not warmwater-only - spring-stocked"
+  - id: mccutcheon-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Maury/McCutcheon Creek, 1/23 + 2/20/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter; greenway, Columbia)"
+    flags:
+      - "CORRECTION: Columbia/Maury Co, NOT Manchester/Coffee Co"
+  - id: normandy-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Duck River page (fetched) + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "bass ('renowned for huge but hard-to-fool bass'); trout in tailwater only"
+  - id: shoal-creek
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: high
+    citation: "Schedule absence verified; confirm whether this atlas id IS East Fork Shoal Creek or a different reach (access 2026-09-09)"
+    speciesDetail: "no separate TWRA row - the TWRA water is 'East Fork Shoal Creek' (Lawrence Co)"
+    flags:
+      - "identity check needed"
+  - id: tims-ford-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absent from TWRA trout-reservoir list + schedule (access 2026-09-09)"
+    speciesDetail: "bass fishery; trout fishery is the Elk River tailwater only"
+  - id: woods-reservoir
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Woods Reservoir where-to-fish (fetched verbatim species list) + absence from trout programs (access 2026-09-09)"
+    speciesDetail: "largemouth, crappie, white/yellow bass, channel catfish, smallmouth (18-in)"
+  - id: dale-hollow-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA Dale Hollow page (fetched): 'Rainbow trout are typically stocked annually... during the wintertime'; reservoir list 'Dale Hollow - Rainbow' (access 2026-09-09)"
+    speciesDetail: "rainbow (winter reservoir program, 7/day); ONE April brown schedule row = footnote, not a fishery"
+    flags:
+      - "CORRECTION: 'famous put-grow-take brown fishery' claim REJECTED - fame is world-record smallmouth"
+  - id: hurricane-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) rows are Houston + Humphreys Co (TWRA Region 1, Tennessee River-bend) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal)"
+    flags:
+      - "IDENTITY CHECK: atlas places this in upper Cumberland; if a different same-named stream, class = unknown"
+  - id: obey-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) verbatim 'Dale Hollow Dam, Obey River - Brook, Rainbow - January through December' (access 2026-09-09)"
+    speciesDetail: "rainbow primary (stocked EVERY month); 2nd species conflicted: brook (TWRA tailwater page+Plan) vs brown (schedule JSON)"
+    flags:
+      - "2nd-species conflict: do not assert brook or brown without resolution"
+  - id: salt-lick-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Macon/Salt Lick Creek, 3/1 + 3/22/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Macon Co row)"
+  - id: standing-rock-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row is Stewart Co (TWRA Region 1, LBL area) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal)"
+    flags:
+      - "IDENTITY CHECK: atlas places this in upper Cumberland"
+  - id: white-oak-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row is 'Whiteoak Creek', Houston Co (TWRA Region 1, Kentucky Lake embayment) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal)"
+    flags:
+      - "IDENTITY CHECK + spelling: 'Whiteoak Creek' Houston Co, not a Plateau stream"
+  - id: clear-creek-obed
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) verbatim (Anderson Co Clear Creek) + NPS Obed fishing page lists no trout (access 2026-09-09)"
+    speciesDetail: "none documented (Obed-system reach; TWRA's 'Clear Creek' Nov 1-Mar 31 closure is the ANDERSON Co Clinch tributary, not this one)"
+    flags:
+      - "reg disambiguation verified"
+  - id: clear-fork
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "npshistory.com BSF game-fish brochure (medium) + no TWRA wild-list entry/stocking row (access 2026-09-09)"
+    speciesDetail: "probable wild brown (NPS Big South Fork brochure: 'brown trout are limited to tributary streams within the park')"
+  - id: daddys-creek
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "No stocking row (absence verified), no wild-list entry, no NPS species statement (access 2026-09-09)"
+    speciesDetail: "none documented (catalog wild-trout claim NOT corroborated)"
+    flags:
+      - "CONFLICT: catalog wild claim uncorroborated"
+      - "re-review fishery:wild"
+  - id: emory-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "NPS Obed Wild & Scenic River fishing page (fetched) - target species list has NO trout (access 2026-09-09)"
+    speciesDetail: "smallmouth (signature), muskellunge, longnose gar, catfish, bluegill"
+    flags:
+      - "CONFLICT: catalog 'wild trout upper reaches' insufficient - needs TWRA wild-list entry"
+  - id: new-river
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "onWater species list (aggregator, low) + NPS BSF brochure (medium) + absence from TWRA programs (access 2026-09-09)"
+    speciesDetail: "probable wild brown/rainbow (aggregator + NPS BSF tributary context only)"
+  - id: obed-river
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "NPS Obed fishing page (fetched) lists smallmouth/gar/catfish/muskie, no trout; not on TWRA wild list; no stocking rows (access 2026-09-09)"
+    speciesDetail: "none primary-documented (catalog note claims self-sustaining RB/BN/BK - NOT corroborated)"
+    flags:
+      - "CONFLICT: catalog wild claim uncorroborated"
+      - "re-review fishery:wild"
+      - "TWRA Plan itself conflates Obed/Obey spelling"
+  - id: piney-river-rhea
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) seasonal weeks 2/22-4/19/2026; DH REMOVED eff 2026-08-01 (TWRA news 12/16/2025 + 2026-27 proclamation) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring seasonal)"
+    flags:
+      - "REG CHANGE: yearRound true (set via DH gate) now invalid"
+  - id: sequatchie-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Cumberland/Sequatchie River, 3/22 + 3/29 + 5/17/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Cumberland Co headwaters)"
+  - id: south-fork-cumberland
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "No stocking rows, no wild-list entry, no species source found (access 2026-09-09)"
+    speciesDetail: "none documented (catalog fishery:wild uncorroborated)"
+    flags:
+      - "CONFLICT: catalog wild claim uncorroborated"
+      - "re-review fishery:wild"
+  - id: wolf-river-fentress
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Fentress/Wolf River, 3/8 + 4/12 + 5/10/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Fentress Co row)"
+    flags:
+      - "CORRECTION: schedule-stocked, not wild-only; wild-brook-headwaters unverified"
+      - "disambiguate from Obey-system Wolf River (Dale Hollow SMB reach)"
+  - id: buffalo-creek-grainger
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) DH entry + reach rules (access 2026-09-09)"
+    speciesDetail: "rainbow (DH Oct 1-Jan 31 mill dam to Buffalo Springs WMA; above mill dam closed all year)"
+  - id: clinch-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Norris Dam, Clinch River - Brook, Brown, Rainbow - March through August' + Clinch River TU (crctu.org/fishing.html) + 14-20in PLR (access 2026-09-09)"
+    speciesDetail: "rainbow (80-90% of catch) + brown + brook (stocked Mar-Aug; wild reproduction documented)"
+  - id: fort-loudoun-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Fort Loudoun where-to-fish + absence from trout programs (access 2026-09-09)"
+    speciesDetail: "largemouth/smallmouth, white bass, crappie/bluegill/catfish, sauger run at 'forks of the river'"
+  - id: gap-creek-claiborne
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note authored from TWRA 2026-09-08 stocking snapshot (single source this pass; schedule row not re-verified) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: indian-creek-claiborne
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note authored from TWRA 2026-09-08 stocking snapshot (single source this pass) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: melton-hill-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Melton Hill where-to-fish + NOT on TWRA reservoir trout-stocking list (absence verified) (access 2026-09-09)"
+    speciesDetail: "largemouth/smallmouth/spotted bass, record-class striped bass, musky (stocked), crappie; cold Norris releases"
+  - id: norris-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Norris where-to-fish + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "premier smallmouth lake + largemouth/spotted, striped bass, crappie, walleye; no lake trout program"
+  - id: powell-river
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: medium
+    citation: "TWRA special-reg list (Powell R SMB 20-in, Gap Cr confluence to VA line, search-verbatim) + absence of any trout source (access 2026-09-09)"
+    speciesDetail: "smallmouth (documented identity; 20-in SMB special reg); catalog wild RB/BN claim NOT corroborated"
+    flags:
+      - "CONFLICT: catalog fishery:wild uncorroborated"
+      - "re-review recommended"
+  - id: puncheon-camp-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note authored from TWRA 2026-09-08 stocking snapshot (single source this pass) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: richardson-byrd-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note authored from TWRA 2026-09-08 stocking snapshot (single source this pass) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: station-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note authored from TWRA 2026-09-08 stocking snapshot (single source this pass) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: tellico-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA reservoir list 'Tellico (Upper) - Rainbow' + Tellico Reservoir where-to-fish verbatim (Chilhowee-release fringe) (access 2026-09-09)"
+    speciesDetail: "rainbow - upper Little Tennessee arm below Chilhowee Dam ONLY (~4,500 catchable RB/yr); main body warmwater"
+    flags:
+      - "reach-limited: upper arm only"
+  - id: watts-bar-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Watts Bar where-to-fish + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "largemouth/smallmouth/crappie + stocked stripers, walleye, FLMB; no trout"
+  - id: boone-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Boone Lake where-to-fish + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "largemouth/smallmouth/spotted, striped bass + hybrids, blue catfish; trout regs apply only on cold Watauga arm to Hwy 11E (drift-in fish)"
+  - id: boone-tailwater
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Boone Dam, South Fork Holston River - Brook, Brown, Cutthroat, Rainbow - March, April, December' + TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) (access 2026-09-09)"
+    speciesDetail: "brook + brown + cutthroat + rainbow (stocked Mar/Apr/Dec); 16-22in PLR, 1>22; spawning closures Nov 1-Jan 31 x2 reaches"
+  - id: cherokee-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Cherokee Reservoir where-to-fish + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "largemouth/smallmouth (18-in SMB reg), Cherokee-bass hybrids, crappie, saugeye/walleye/sauger, paddlefish; no trout"
+  - id: fort-patrick-henry-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA reservoir list 'Fort Patrick Henry - Brown and Rainbow' + TWRA FPH where-to-fish (access 2026-09-09)"
+    speciesDetail: "brown + rainbow (reservoir program) + bass/crappie/sunfish"
+    flags:
+      - "NEW: catalog species unset - FLIP to trout-stocked"
+  - id: ft-patrick-henry-tailwater
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: absent
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Fort Patrick Henry Dam, South Fork Holston River - Brown, Rainbow - March and April - Statewide Regulations' (access 2026-09-09)"
+    speciesDetail: "brown + rainbow (stocked Mar-Apr only; STATEWIDE regs)"
+    flags:
+      - "reg nuance: the 16-22in PLR block spans Boone Dam to Louis Milhorn Br (boone-tailwater + FPH pool), NOT this reach"
+  - id: north-fork-holston-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "VA DWR river page (search-only) + absence from TWRA trout programs (access 2026-09-09)"
+    speciesDetail: "trophy smallmouth (20-in VA reg upstream); no trout program on TN reach"
+  - id: reedy-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note authored from TWRA 2026-09-08 stocking snapshot (single source this pass; snapshot-verification gap flagged) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: south-holston-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA reservoir list 'South Holston - Lake and Rainbow' + SH where-to-fish 'Smallmouth Bass... trout... are popular game fish' (access 2026-09-09)"
+    speciesDetail: "rainbow + LAKE TROUT (deep cold reservoir; summer laker troll fishery) + bass/walleye/crappie"
+    flags:
+      - "FLIP-BACK: contradicts 2026-09-08 warmwater ruling - TWRA stocks the lake itself"
+  - id: south-holston-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'South Holston Dam, South Fork Holston River - Rainbow - March through September' + TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) 'significant natural brown reproduction... managed as wild brown fisheries' (access 2026-09-09)"
+    speciesDetail: "rainbow (stocked Mar-Sep) + wild-reproducing brown (NOT stocked; ~82% of electrofishing) + wild rainbow; 16-22in PLR; Nov 1-Jan 31 spawning closures"
+  - id: calderwood-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA reservoir list 'Calderwood - Brook, Brown and Rainbow' + Calderwood where-to-fish; 7,015 TN + 7,000 NC rainbow (lrctu.org) (access 2026-09-09)"
+    speciesDetail: "brook + brown + rainbow (stocked annually; cold Fontana-fed chain)"
+  - id: chilhowee-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA reservoir list 'Chilhowee - Rainbow' + Chilhowee where-to-fish (lake trout stocked in past, not recently) (access 2026-09-09)"
+    speciesDetail: "rainbow (annual; 'trout are stocked on an annual basis and thrive in the cool clear water')"
+  - id: cosby-creek
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "NPS GSMNP fishing page (fetched): park-wide year-round, 5/day, 7-in min, single-hook artificials + brook-restoration docs (access 2026-09-09)"
+    speciesDetail: "rainbow lower + NATIVE brook trout upper reaches (GSMNP; only native trout)"
+    flags:
+      - "GSMNP regs (no TWRA stocking since 1975)"
+  - id: leconte-creek
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "NPS GSMNP fishing page (fetched) + Gatlinburg city waters block in TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) (access 2026-09-09)"
+    speciesDetail: "rainbow + native brook trout upper reaches; Gatlinburg city-permit reach (C&R Dec 1-Mar 31, city program)"
+  - id: little-pigeon-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA recent-stocking report 'West Prong Little Pigeon River (Gatlinburg)' 7/16 + 7/23/2026 (verbatim) + WBIR resumption coverage (access 2026-09-09)"
+    speciesDetail: "rainbow (Sevierville/Pigeon Forge reaches; TWRA resumed 2023 after ~2 decades; Gatlinburg city reach stocked biweekly)"
+    flags:
+      - "owner-confirmed 2026-09-04"
+      - "'750/2wks' figure unverified"
+  - id: little-river
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "NPS GSMNP fishing page (fetched): year-round park regs; species split medium (access 2026-09-09)"
+    speciesDetail: "rainbow dominant + brown lower pools + native brook headwater forks; smallmouth below park"
+  - id: little-tennessee-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "TWRA Tellico Reservoir page (Chilhowee-release fringe verbatim) + 'warm river, trout are limited' (Hookers Fly Shop) (access 2026-09-09)"
+    speciesDetail: "smallmouth-led warmwater in TN reach; stocked cold fringe ONLY below Chilhowee Dam (see tellico-lake)"
+  - id: middle-prong-little-pigeon
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "NPS Lynn Camp Prong page (fetched): 11 populations restored park-wide, 27.6 mi + NPS GSMNP fishing page (access 2026-09-09)"
+    speciesDetail: "rainbow + brown lower; NATIVE BROOK RESTORED in Lynn Camp Prong (8+ mi; largest restoration in SE US)"
+  - id: roaring-fork
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "NPS GSMNP fishing page (fetched) + Gatlinburg city waters block in TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) (access 2026-09-09)"
+    speciesDetail: "rainbow + native brook upper reach; Gatlinburg city-permit reach (C&R Dec 1-Mar 31)"
+  - id: west-prong-little-pigeon
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "NPS GSMNP fishing page (fetched) + TWRA recent-stocking report 7/16 + 7/23/2026 (verbatim) + Gatlinburg regs (access 2026-09-09)"
+    speciesDetail: "rainbow + native brook headwaters; brown toward park boundary; Gatlinburg city-permit reach stocked biweekly (C&R Dec 1-Mar 31)"
+  - id: brush-creek-cocke
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Catalog note (TWRA spring program) + 2026-09-08 snapshot; current schedule row not re-verified (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Big Creek corridor)"
+    flags:
+      - "VERIFY: re-check current schedule row"
+  - id: douglas-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Douglas Reservoir where-to-fish (zero trout content) + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "crappie ('best in East TN'), largemouth, bluegill, catfish; sauger/walleye runs up tributaries; NO trout"
+  - id: french-broad-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Douglas page (no trout text) + eregulations TN (no FB trout reg) - the Oct-Feb C&R line belongs to tributary Paint Creek (access 2026-09-09)"
+    speciesDetail: "white bass/sauger/walleye spawn runs + bass/catfish; NO TWRA trout program (fringe-trout claim DOWNGRADED)"
+    flags:
+      - "CORRECTION: Session-1 fringe-trout ruling downgraded"
+  - id: gulf-fork-big-creek
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "EBTJV project page (fetched) + TU Trail Fork coverage (access 2026-09-09)"
+    speciesDetail: "NATIVE brook trout (unique French Broad watershed strain)"
+    flags:
+      - "COUNTY FLAG: EBTJV places Big Creek tribs in Cocke Co, atlas metadata says Greene - geometry/label check (not this lane)"
+  - id: holston-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Fort Loudoun + Cherokee pages + absence from trout programs (access 2026-09-09)"
+    speciesDetail: "sauger/saugeye/walleye winter run at 'forks of the river'; main stem below the forks; no trout program"
+    flags:
+      - "reach note: below Cherokee Dam = cherokee-tailwater (trout Nov-Apr)"
+  - id: mossy-creek-jefferson
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA news 11/26/2025 'New locations this year include... Mossy Creek in Jefferson County' (fetched) + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "rainbow (winter program; NEW site 2025-26)"
+  - id: nolichucky-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "USFWS (fws.gov/story/2025-12/catching-big-one, fetched): Erwin NFH stocks 'Watauga and Nolichucky river systems'; no TWRA schedule row (access 2026-09-09)"
+    speciesDetail: "rainbow + brook (EPISODIC Erwin NFH retired-brood fish, 2.5-3.5 lb) over warmwater smallmouth mainstem"
+    flags:
+      - "episodic: no put-and-take schedule"
+  - id: pigeon-river
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: medium
+    citation: "NC regs via eregulations (HS section Stamey Cove Br to US 19-23 bridge, Canton) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "opportunistic trout (cool months, below Waterville Dam) + smallmouth; NO TN stocking row; NC Hatchery-Supported stocking ends at Canton (~15-20 river mi upstream)"
+    flags:
+      - "re-review of 2026-09-04 seasonal-trout ruling"
+  - id: trail-fork-big-creek
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TU Magazine conservation story (fetched) + EBTJV 2021 project page (access 2026-09-09)"
+    speciesDetail: "NATIVE brook trout REINTRODUCED 2021 (translocation above natural falls; culvert-to-bridge project)"
+    flags:
+      - "COUNTY FLAG: Cocke Co per EBTJV, atlas metadata says Greene"
+  - id: beaverdam-creek
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) designated wild reach (Birch Branch confluence to Tank Hollow Rd) + USFS stocked-streams list + schedule row 3/22/2026 (access 2026-09-09)"
+    speciesDetail: "wild rainbow + wild brown AND TWRA-stocked rainbow (seasonal); NO brook evidence"
+  - id: doe-creek-johnson
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (schedule row; species field scrambled this pass - rainbow presumed) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal; Johnson Co)"
+    flags:
+      - "disambiguate from Doe River (Carter Co DH)"
+  - id: doe-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) DH entry (Doe River, Carter Co, Roan Mountain SP boundaries) (access 2026-09-09)"
+    speciesDetail: "rainbow (DH Oct 1-Feb 28 within Roan Mountain SP; artificials-only C&R)"
+  - id: forge-creek-johnson
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (schedule row; species presumed rainbow) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal)"
+  - id: horse-creek-greene
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) Horse Creek entry + TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "stocked rainbow + wild fish from Cherokee NF headwaters; special reg 7/day, reduced to 2/day May 1-Sep 30"
+  - id: laurel-creek-johnson
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (schedule row; species presumed rainbow) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal; Mountain City area)"
+  - id: laurel-fork-carter
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) wild-trout list + USFS/TU brook restoration context (access 2026-09-09)"
+    speciesDetail: "native brook trout headwaters + wild brown + wild rainbow gorge; designated wild reach (cable crossing above Dennis Cove to USFS boundary)"
+  - id: stoney-creek-carter
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) ('Stony Creek' row; species presumed rainbow) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal; Elizabethton community fishery)"
+  - id: upper-roan-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (schedule row; species presumed rainbow) (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal; 'Roan Creek (Upper)' row)"
+  - id: watauga-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA reservoir list 'Watauga - Lake and Rainbow' + Watauga where-to-fish 'TWRA has stocked rainbow, brown, and lake trout' (access 2026-09-09)"
+    speciesDetail: "rainbow + LAKE TROUT (+ brown per TWRA page text) in the reservoir; smallmouth/walleye/crappie too"
+    flags:
+      - "FLIP: catalog species unset - deep cold reservoir with real trout fishery"
+  - id: watauga-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Wilbur Dam, Watauga River - Rainbow - March through December' + TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) wild-brown management + TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) QTA (access 2026-09-09)"
+    speciesDetail: "rainbow (stocked Mar-Dec, Wilbur Dam row) + wild-reproducing brown (NOT stocked); QTA 14-in/2-day/no-bait below Wilbur"
+  - id: watauga-river-wilbur-reach
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Watauga Dam, Wilbur Reservoir - Rainbow - March through July - Statewide Regulations' (access 2026-09-09)"
+    speciesDetail: "rainbow (stocked Mar-Jul; Watauga Dam row); statewide regs, no special reg"
+  - id: wilbur-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Watauga Dam, Wilbur Reservoir' row + USFWS image caption (fetched): 'Trout are stocked in Wilbur Lake' (access 2026-09-09)"
+    speciesDetail: "rainbow (put-grow-take, stocked Mar-Jul; small TVA/TWRA impoundment between Watauga dams)"
+  - id: chickamauga-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Chickamauga where-to-fish + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "elite largemouth (FLMB program), smallmouth/spotted, nationally ranked crappie, stripers, walleye, blue catfish"
+  - id: citico-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "USFS Citico page + TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) Tellico-Citico permit + appalachiantu.org N Fork notes (access 2026-09-09)"
+    speciesDetail: "rainbow (stocked Mar 15-Sep 15 above Little Citico) + wild rainbow/brown + scarce native brook in North Fork headwaters; Tellico-Citico permit Mar 1-Aug 15, closed Thu/Fri"
+    flags:
+      - "yearRound false per Session-1 seasonal-circuit rule; wild N Fork component noted"
+  - id: goforth-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "Local guide sources (search-only) + DH-list absence verified in TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) (access 2026-09-09)"
+    speciesDetail: "rainbow + brown + brook (local guide; Ocoee gorge, FS Rd 45); NOT on current DH list"
+    flags:
+      - "species mix medium; former DH status unverified"
+  - id: greasy-creek-polk
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA fall stocking program (search-only) + absence from DH/wild lists (access 2026-09-09)"
+    speciesDetail: "rainbow (fall + seasonal)"
+  - id: hiwassee-river
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Appalachia Dam, Hiwassee River - Brook, Brown, Cutthroat, Rainbow - October through July' + TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) DH/creel (access 2026-09-09)"
+    speciesDetail: "brook + brown + cutthroat + rainbow (stocked Oct-Jul) + C&R DH Oct 1-Feb 28 (Appalachia powerhouse to L&N bridge); 7/day max 2 browns Mar 1-Sep 30"
+  - id: little-sequatchie-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Little Sequatchie rows 3/15 + 3/22 + 5/10/2026) (access 2026-09-09)"
+    speciesDetail: "rainbow (spring; Marion Co)"
+  - id: nickajack-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA Nickajack where-to-fish + absence from trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "largemouth (FLMB since 2015; state-record LMB Feb 2026), trophy smallmouth below Chickamauga Dam, catfish, crappie; no trout"
+  - id: north-chickamauga-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "northchick.org trout-stocking project + winter-stocking news + '+ TWRA video' ; no special reg confirmed 2026-09-08 (access 2026-09-09)"
+    speciesDetail: "rainbow (seasonal: winter-program + Region-3 fall stockings with Conservancy/state park partners); NO special trout regulation"
+    flags:
+      - "CORRECTION: no special reg does NOT mean unstocked - it IS stocked seasonally"
+  - id: ocoee-number-three-lake
+    classification: unknown-need-evidence
+    fishery: absent
+    species: absent
+    yearRound: absent
+    stockingProgram: false
+    confidence: low
+    citation: "Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) and trout-reservoir list; catalog note: TWRA historical label 'Hiwasee Lake (443 ac)' (access 2026-09-09)"
+    speciesDetail: "none documented (small Ocoee No. 3 impoundment; not on any TWRA trout list; warmwater-leaning)"
+    flags:
+      - "historical-name confusion risk"
+  - id: ocoee-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "questexpeditions.com + copperhill.gov (search-only, 2 independent non-official sources) (access 2026-09-09)"
+    speciesDetail: "rainbow + brown (outfitter + city claims; GA Toccoa stockings drift in) - NO TWRA line-item captured"
+    flags:
+      - "VERIFY: TWRA stocking line-item missing"
+  - id: parksville-lake
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA reservoir list 'Parksville - Rainbow' + TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) nine-trout-reservoir list (access 2026-09-09)"
+    speciesDetail: "rainbow (TWRA reservoir program; 'Parksville - Rainbow')"
+  - id: parksville-tailwater
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) 'Ocoee Dam #1 - Parksville, Ocoee River - Rainbow - March through May - Statewide Regulations' (access 2026-09-09)"
+    speciesDetail: "rainbow (Mar-May only)"
+  - id: spring-creek-polk
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA fall stocking program (search-only) + absence from DH/wild lists (access 2026-09-09)"
+    speciesDetail: "rainbow (fall + seasonal)"
+  - id: tellico-river
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) (DH + permit) + USFS Tellico page (fetched) (access 2026-09-09)"
+    speciesDetail: "rainbow + brown dominate stocked reach (12+ mi) + wild brook far upstream; DH Oct 1-Feb 28 (N River mouth to state line); Tellico-Citico permit Mar 1-Aug 15 (Turkey Cr confluence up), closed Thu/Fri"
+  - id: tumbling-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: low
+    citation: "Aggregator fall-stocking mention only (access 2026-09-09)"
+    speciesDetail: "rainbow (fall listing)"
+    flags:
+      - "name-confusion risk: tiny stream, verify identity"
+  - id: forked-deer-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from fetched 2026 TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "lowland catfish/bass/panfish river; NO trout evidence (absent from 2026 schedule)"
+    flags:
+      - "PENDING-ADD"
+  - id: big-sandy-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from fetched 2026 TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); USFWS TN NWR fishing page (fetched) (access 2026-09-09)"
+    speciesDetail: "Kentucky Lake tributary; warmwater; NO trout evidence; Big Sandy Unit TN NWR adjacent"
+    flags:
+      - "PENDING-ADD"
+  - id: loosahatchie-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from fetched 2026 TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); TWRA reg-exceptions list membership (access 2026-09-09)"
+    speciesDetail: "channel catfish/largemouth; NO trout evidence (absent from 2026 schedule)"
+    flags:
+      - "PENDING-ADD"
+  - id: beech-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from fetched 2026 TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); watershed-lake coverage (search-only) (access 2026-09-09)"
+    speciesDetail: "warmwater stream; 7 watershed flood-control lakes (bass/bream); NO trout evidence"
+    flags:
+      - "PENDING-ADD"
+      - "distinct from beech-lake (Henderson Co)"
+  - id: south-chickamauga-creek
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "Winter-stocking news (Camp Jordan + Lake Junior) + absence of a creek line-item (access 2026-09-09)"
+    speciesDetail: "bass-led warmwater in TN reach; winter trout only at adjacent Camp Jordan pond; GA reach is GADNR trout water"
+    flags:
+      - "PENDING-ADD"
+      - "VERIFY: creek vs Camp Jordan pond"
+  - id: conasauga-river
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: medium
+    citation: "USFS Conasauga Blue Hole page + GA wild-trout program context (access 2026-09-09)"
+    speciesDetail: "TN reach = biodiversity hotspot (60+ species); trout-wild ONLY in GA Cohutta headwaters"
+    flags:
+      - "PENDING-ADD"
+      - "no TN trout claim"
+  - id: cherokee-tailwater
+    classification: tailwater-trout
+    fishery: tailwater
+    species: trout
+    yearRound: false
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA tailwater stocking table (tn.gov/twra/fishing/trout-information-stockings.html) verbatim 'Cherokee Dam, Holston River - Brown, Rainbow - November through April - Statewide Regulations' (access 2026-09-09)"
+    speciesDetail: "brown + rainbow (stocked Nov-Apr, continuous window; summer thermal bottleneck)"
+    flags:
+      - "PENDING-ADD"
+      - "earlier Jan-Apr+Nov-Dec framing understated - it is continuous Nov-Apr"
+  - id: paint-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) DH + wild-list entries + USFS Cherokee fishing page (access 2026-09-09)"
+    speciesDetail: "rainbow (DH Oct 1-Feb 28 campground to French Broad mouth; artificials-only) + wild rainbow/brown + designated wild reach above campground + USFS summer stocking"
+    flags:
+      - "PENDING-ADD"
+  - id: bald-river
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) wild list + USFS 'Bald River, North River... wild trout streams holding brown, rainbow, and brook trout' (access 2026-09-09)"
+    speciesDetail: "wild rainbow + brown + native brook (designated wild trout stream, Monroe Co; Bald River Falls corridor)"
+    flags:
+      - "PENDING-ADD"
+  - id: north-river
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) wild list + USFS Tellico page (access 2026-09-09)"
+    speciesDetail: "wild rainbow + brown + native brook (designated wild trout stream, Monroe Co)"
+    flags:
+      - "PENDING-ADD"
+  - id: rocky-fork
+    classification: trout-wild
+    fishery: wild
+    species: trout
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) wild list + tnstateparks Rocky Fork ('native brook and wild rainbow trout', search-only) (access 2026-09-09)"
+    speciesDetail: "native brook headwaters + wild rainbow + stocked rainbow below park gate; designated wild above Rocky Fork Rd/State Park Entrance Rd junction"
+    flags:
+      - "PENDING-ADD"
+  - id: big-soddy-creek
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: high
+    citation: "TWRA trout regs (tn.gov/twra/fishing-regs/trout-regulations.html) DH entry (2026-27 start moved to Nov 1) (access 2026-09-09)"
+    speciesDetail: "rainbow (DH C&R Nov 1-Feb 28 upstream of Back Valley Rd; artificials-only; harvest opens Mar 1)"
+    flags:
+      - "PENDING-ADD"
+  - id: cordell-hull-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from trout programs + TWRA warmwater-stocking listings (access 2026-09-09)"
+    speciesDetail: "bass/crappie/catfish + stocked striped bass; NO trout program"
+    flags:
+      - "PENDING-ADD"
+  - id: cheatham-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "Absence from fetched 2026 schedule + trout-reservoir list + tailwater table (access 2026-09-09)"
+    speciesDetail: "Cumberland main-stem run-of-river bass/catfish/sauger; NO trout program"
+    flags:
+      - "PENDING-ADD"
+      - "note: Cheatham Co winter site L.L. Burns Park is on the HARPETH, not the lake"
+  - id: green-cove-pond
+    classification: trout-stocked
+    fishery: stocked
+    species: trout
+    yearRound: true
+    stockingProgram: true
+    confidence: medium
+    citation: "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (Green Cove Pond rows e.g. week of 7/22/2026) + USFS Green Cove Pond rules page (fetched) (access 2026-09-09)"
+    speciesDetail: "rainbow (TWRA pond, Cherokee NF; 7/day, one rod, no Tellico-Citico permit; reopened Mar 1 2026 after renovation)"
+    flags:
+      - "PENDING-ADD"
+  - id: herb-parsons-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA family-fishing page (fetched) + absence from fetched 2026 TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "TWRA Family Fishing Lake / Bill Dance lake, 177 ac, Fayette Co: bass/bluegill/crappie/redear/catfish/yellow bass; NO winter trout, none ever per schedule absence"
+    flags:
+      - "PENDING-ADD"
+      - "do NOT class as trout-stocked"
+  - id: garrett-lake
+    classification: warmwater
+    fishery: absent
+    species: warmwater
+    yearRound: true
+    stockingProgram: false
+    confidence: high
+    citation: "TWRA family-fishing page + Region-1 where-to-fish (both fetched) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) (access 2026-09-09)"
+    speciesDetail: "TWRA Family Fishing Lake, 183 ac, Weakley Co: bass/crappie/bluegill/cats/redear; NO winter trout"
+    flags:
+      - "PENDING-ADD"
+      - "one of 2 TWRA lakes with no lake permit"

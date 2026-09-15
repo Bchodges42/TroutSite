@@ -1,0 +1,2738 @@
+{
+ "generated": "2026-09-09",
+ "source": "docs/research/build-classification.py — TN trout waterways research (branch research/trout-waterways)",
+ "monthsNote": "months are 1=Jan..12=Dec local time; presence is research-proposed, not yet owner-approved catalog data",
+ "waters": {
+  "bald-river": {
+   "name": "bald-river",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "barren-fork-river": {
+   "name": "Barren Fork River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "beaverdam-creek": {
+   "name": "Beaverdam Creek",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "beech-lake": {
+   "name": "Beech Lake",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "beech-river": {
+   "name": "beech-river",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "big-rock-creek": {
+   "name": "Big Rock Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "big-sandy-river": {
+   "name": "big-sandy-river",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "big-soddy-creek": {
+   "name": "big-soddy-creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    10,
+    11,
+    12
+   ],
+   "window": "DH Nov 1–Feb 28 C&R; harvest reopens Mar 1"
+  },
+  "boiling-fork-creek": {
+   "name": "Boiling Fork Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "boone-lake": {
+   "name": "Boone Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "boone-tailwater": {
+   "name": "Boone Tailwater (South Fork Holston River)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    12
+   ],
+   "window": "Tailwater — year-round cold releases; stocked Mar/Apr/Dec"
+  },
+  "bradley-creek": {
+   "name": "Bradley Creek",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "brush-creek-cocke": {
+   "name": "Brush Creek (Cocke County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "buffalo-creek-grainger": {
+   "name": "Buffalo Creek (Grainger County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    10,
+    11,
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "stockingMonths": [
+    10,
+    11,
+    12
+   ],
+   "window": "DH Oct 1–Jan 31; above mill dam closed year-round"
+  },
+  "buffalo-river": {
+   "name": "Buffalo River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "calderwood-lake": {
+   "name": "Calderwood Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "calfkiller-river": {
+   "name": "Calfkiller River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "cameron-brown-lake": {
+   "name": "Cameron Brown Lake",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "cane-creek": {
+   "name": "Cane Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    10
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    10
+   ],
+   "window": "Spring weeks + one late-Oct fall row"
+  },
+  "caney-fork-river": {
+   "name": "Caney Fork River (Center Hill tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Tailwater — year-round fishery; stocked Mar–Dec (+winter brood browns)"
+  },
+  "caney-fork-upper": {
+   "name": "Caney Fork River (above Center Hill Lake)",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "center-hill-lake": {
+   "name": "Center Hill Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "charles-creek": {
+   "name": "Charles Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "cheatham-lake": {
+   "name": "cheatham-lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "cherokee-lake": {
+   "name": "Cherokee Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "cherokee-tailwater": {
+   "name": "cherokee-tailwater",
+   "classification": "tailwater-trout",
+   "presence": "seasonal",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "stockingMonths": [
+    11,
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "window": "Stocked Nov 1–Apr 30; summer thermal bottleneck"
+  },
+  "chickamauga-lake": {
+   "name": "Chickamauga Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "chilhowee-lake": {
+   "name": "Chilhowee Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "citico-creek": {
+   "name": "Citico Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "window": "Stocked Mar 15–Sep 15 (+ scarce wild N Fork brookies)"
+  },
+  "clear-creek-obed": {
+   "name": "Clear Creek (Obed system)",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "clear-fork": {
+   "name": "Clear Fork",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "clinch-river": {
+   "name": "Clinch River (Norris tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "window": "Tailwater — year-round fishery; stocked Mar–Aug (+wild reproduction)"
+  },
+  "collins-river": {
+   "name": "Collins River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "conasauga-river": {
+   "name": "conasauga-river",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "cordell-hull-lake": {
+   "name": "cordell-hull-lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "cosby-creek": {
+   "name": "Cosby Creek",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "covington-fbc-pond": {
+   "name": "Covington First Baptist Church Pond",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "cumberland-river": {
+   "name": "Cumberland River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "daddys-creek": {
+   "name": "Daddy’s Creek",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "dale-hollow-lake": {
+   "name": "Dale Hollow Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter-stocked; year-round deep-water fishery"
+  },
+  "doe-creek-johnson": {
+   "name": "Doe Creek (Johnson County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "doe-river": {
+   "name": "Doe River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    10,
+    11,
+    12,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    10,
+    11,
+    12
+   ],
+   "window": "DH Oct 1–Feb 28 C&R, harvest reopens Mar 1; summer heat ends the fish"
+  },
+  "douglas-lake": {
+   "name": "Douglas Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "duck-river-lower": {
+   "name": "Duck River (Shelbyville to Columbia)",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "duck-river-tailwater": {
+   "name": "Duck River (Normandy tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "seasonal",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "stockingMonths": [
+    11,
+    12,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "window": "Stocked Nov–Jun; >70°F Jul–Oct kills trout"
+  },
+  "east-fork-shoal-creek": {
+   "name": "East Fork Shoal Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "window": "Spring circuit (Feb–May; longest window)"
+  },
+  "east-fork-stones-river": {
+   "name": "East Fork Stones River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter-stocked (owner-confirmed 2026-09-10); TWRA line-item to capture"
+  },
+  "edmund-orgill-lake": {
+   "name": "Edmund-Orgill Park",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "elk-river": {
+   "name": "Elk River (Tims Ford tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Tailwater — year-round fishery; stocked Mar–Dec"
+  },
+  "elk-river-lower": {
+   "name": "Elk River (Prospect to state line)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "emory-river": {
+   "name": "Emory River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "fletchers-fork": {
+   "name": "Fletchers Fork",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "forge-creek-johnson": {
+   "name": "Forge Creek (Johnson County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "forked-deer-river": {
+   "name": "forked-deer-river",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "fort-loudoun-lake": {
+   "name": "Fort Loudoun Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "fort-patrick-henry-lake": {
+   "name": "Fort Patrick Henry Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "french-broad-river": {
+   "name": "French Broad River (Douglas tailwater)",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "ft-patrick-henry-tailwater": {
+   "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+   "classification": "tailwater-trout",
+   "presence": "uncertain",
+   "months": [
+    3,
+    4
+   ],
+   "stockingMonths": [
+    3,
+    4
+   ],
+   "window": "Stocked Mar–Apr only; year-round presence unevidenced"
+  },
+  "gap-creek-claiborne": {
+   "name": "Gap Creek (Claiborne County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "garrett-lake": {
+   "name": "garrett-lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "goforth-creek": {
+   "name": "Goforth Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "window": "Spring + fall stockings"
+  },
+  "greasy-creek-polk": {
+   "name": "Greasy Creek (Polk County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "window": "Spring + fall stockings"
+  },
+  "great-falls-lake": {
+   "name": "Great Falls Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "green-cove-pond": {
+   "name": "green-cove-pond",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "TWRA pond stocked in season Feb–Dec"
+  },
+  "gulf-fork-big-creek": {
+   "name": "Gulf Fork Big Creek",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "harpeth-river": {
+   "name": "Harpeth River (Williamson County reaches)",
+   "classification": "warmwater",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2,
+    3
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2,
+    3
+   ],
+   "window": "Warmwater river; TWRA winter trout Dec–Mar (owner-ruled warmwater)"
+  },
+  "hatchie-river": {
+   "name": "Hatchie River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "herb-parsons-lake": {
+   "name": "herb-parsons-lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "hiwassee-river": {
+   "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Tailwater — stocked Oct–Jul + DH C&R Oct 1–Feb 28 covers all 12 months"
+  },
+  "holston-river": {
+   "name": "Holston River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "horse-creek-greene": {
+   "name": "Horse Creek (Greene County)",
+   "classification": "trout-stocked",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "hurricane-creek": {
+   "name": "Hurricane Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    2,
+    3
+   ],
+   "stockingMonths": [
+    2,
+    3
+   ],
+   "window": "Seasonal (Feb–Mar)"
+  },
+  "indian-creek-claiborne": {
+   "name": "Indian Creek (Claiborne County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "j-percy-priest-lake": {
+   "name": "J. Percy Priest Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "johnson-park-lake": {
+   "name": "Johnson Park Lake",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "kentucky-lake": {
+   "name": "Kentucky Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "lake-barkley": {
+   "name": "Lake Barkley",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "lake-graham": {
+   "name": "Lake Graham",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "laurel-creek-johnson": {
+   "name": "Laurel Creek (Johnson County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "laurel-fork-carter": {
+   "name": "Laurel Fork (Carter County)",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "leconte-creek": {
+   "name": "LeConte Creek",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "little-buffalo-river": {
+   "name": "Little Buffalo River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "little-pigeon-river": {
+   "name": "Little Pigeon River (Sevierville reach)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "window": "In season spring–fall; Gatlinburg reach stocked biweekly"
+  },
+  "little-river": {
+   "name": "Little River (Smokies / Blount County)",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "little-sequatchie-river": {
+   "name": "Little Sequatchie River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "little-tennessee-river": {
+   "name": "Little Tennessee River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "little-west-fork-creek": {
+   "name": "Little West Fork Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "loosahatchie-river": {
+   "name": "loosahatchie-river",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "martin-city-pond": {
+   "name": "Martin City Pond",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "mccutcheon-creek": {
+   "name": "McCutcheon Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "melton-hill-lake": {
+   "name": "Melton Hill Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "middle-prong-little-pigeon": {
+   "name": "Middle Prong Little Pigeon River (Tremont)",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "milan-city-pond": {
+   "name": "Milan City Pond",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "mill-creek-overton": {
+   "name": "Mill Creek (Overton County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "mississippi-river": {
+   "name": "Mississippi River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "mossy-creek-jefferson": {
+   "name": "Mossy Creek (Jefferson County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "new-river": {
+   "name": "New River",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "nickajack-lake": {
+   "name": "Nickajack Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "nolichucky-river": {
+   "name": "Nolichucky River",
+   "classification": "trout-stocked",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Episodic Erwin NFH brood fish only — no schedule"
+  },
+  "normandy-lake": {
+   "name": "Normandy Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "norris-lake": {
+   "name": "Norris Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "north-chickamauga-creek": {
+   "name": "North Chickamauga Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    1,
+    2,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    10,
+    11,
+    12
+   ],
+   "window": "Winter + fall stockings (no special regulation)"
+  },
+  "north-fork-holston-river": {
+   "name": "North Fork Holston River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "north-prong-barren-fork": {
+   "name": "North Prong Barren Fork River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "north-river": {
+   "name": "north-river",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "obed-river": {
+   "name": "Obed River",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "obey-river": {
+   "name": "Obey River (Dale Hollow tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "STOCKED EVERY MONTH (Jan–Dec) — the state's only 12-month stocking row"
+  },
+  "obion-river": {
+   "name": "Obion River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "ocoee-number-three-lake": {
+   "name": "Ocoee Number Three Lake",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "ocoee-river": {
+   "name": "Ocoee River (upper, Copperhill reach)",
+   "classification": "trout-stocked",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Stocking claimed (outfitter/city) but no TWRA line-item captured"
+  },
+  "old-hickory-lake": {
+   "name": "Old Hickory Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "paint-creek": {
+   "name": "paint-creek",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "window": "DH Oct 1–Feb 28 + USFS summer stocking + wild reach upstream = trout all year"
+  },
+  "paris-city-park-lake": {
+   "name": "Paris City Park",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "parksville-lake": {
+   "name": "Parksville Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "parksville-tailwater": {
+   "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+   "classification": "tailwater-trout",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Stocked Mar–May only (Ocoee Dam No. 1)"
+  },
+  "pickwick-lake": {
+   "name": "Pickwick Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "pigeon-river": {
+   "name": "Pigeon River (Hartford corridor)",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "pine-creek-dekalb": {
+   "name": "Pine Creek (DeKalb County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "piney-river-rhea": {
+   "name": "Piney River (Rhea County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "stockingMonths": [
+    2,
+    3,
+    4
+   ],
+   "window": "Seasonal weeks (Feb–Apr); DH removed eff 2026-08-01"
+  },
+  "powell-river": {
+   "name": "Powell River",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "puncheon-camp-creek": {
+   "name": "Puncheon Camp Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "red-river-clarksville": {
+   "name": "Red River (Montgomery County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "reedy-creek": {
+   "name": "Reedy Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "reelfoot-lake": {
+   "name": "Reelfoot Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "richardson-byrd-creek": {
+   "name": "Richardson “Byrd” Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "roaring-fork": {
+   "name": "Roaring Fork",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "rocky-fork": {
+   "name": "rocky-fork",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "rocky-river": {
+   "name": "Rocky River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "salt-lick-creek": {
+   "name": "Salt Lick Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "sequatchie-river": {
+   "name": "Sequatchie River (headwaters)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "shelby-farms-lake": {
+   "name": "Shelby Farms",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "shoal-creek": {
+   "name": "Shoal Creek",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "sinking-creek-wilson": {
+   "name": "Sinking Creek (Wilson County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "south-chickamauga-creek": {
+   "name": "south-chickamauga-creek",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "south-fork-cumberland": {
+   "name": "South Fork Cumberland River",
+   "classification": "unknown-need-evidence",
+   "presence": "uncertain",
+   "months": [],
+   "stockingMonths": [],
+   "window": "Evidence does not reach — trout presence unknown"
+  },
+  "south-holston-lake": {
+   "name": "South Holston Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "south-holston-river": {
+   "name": "South Fork Holston River (South Holston tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "window": "Tailwater — year-round wild browns + stocked rainbows Mar–Sep"
+  },
+  "spring-creek-polk": {
+   "name": "Spring Creek (Polk County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "window": "Spring + fall stockings"
+  },
+  "standing-rock-creek": {
+   "name": "Standing Rock Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    2,
+    3
+   ],
+   "stockingMonths": [
+    2,
+    3
+   ],
+   "window": "Seasonal (Feb–Mar)"
+  },
+  "station-creek": {
+   "name": "Station Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "stones-river": {
+   "name": "Stones River (Davidson County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "stoney-creek-carter": {
+   "name": "Stoney Creek (Carter County)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "sulfur-fork-creek": {
+   "name": "Sulfur Fork Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "tellico-lake": {
+   "name": "Tellico Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "tellico-river": {
+   "name": "Tellico River",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "window": "In-season stocking + DH + wild headwaters = trout all year"
+  },
+  "tennessee-river": {
+   "name": "Tennessee River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "tims-ford-lake": {
+   "name": "Tims Ford Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "trail-fork-big-creek": {
+   "name": "Trail Fork (Big Creek tributary)",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "tumbling-creek": {
+   "name": "Tumbling Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    10,
+    11
+   ],
+   "window": "Spring + fall stockings"
+  },
+  "union-city-reelfoot-pond": {
+   "name": "Union City Reelfoot Packing Site",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "upper-hills-creek": {
+   "name": "Upper Hills Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "upper-roan-creek": {
+   "name": "Upper Roan Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "valentine-park-pond": {
+   "name": "Valentine Park",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  },
+  "watauga-lake": {
+   "name": "Watauga Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Holdover reservoir fishery — winter-timed stocking, year-round deep-water trout"
+  },
+  "watauga-river": {
+   "name": "Watauga River (Wilbur tailwater)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Tailwater — year-round fishery; stocked Mar–Dec (+wild browns)"
+  },
+  "watauga-river-wilbur-reach": {
+   "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+   "classification": "tailwater-trout",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "window": "Tailwater reach — year-round cold releases; stocked Mar–Jul"
+  },
+  "watts-bar-lake": {
+   "name": "Watts Bar Lake",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "west-fork-stones-river": {
+   "name": "West Fork Stones River",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "Winter program (Dec–Feb/Mar stockings)"
+  },
+  "west-prong-little-pigeon": {
+   "name": "West Prong Little Pigeon River",
+   "classification": "trout-wild",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "window": "Wild trout — present year-round (GSMNP halted stocking 1975)"
+  },
+  "white-oak-creek": {
+   "name": "White Oak Creek",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    2,
+    3
+   ],
+   "stockingMonths": [
+    2,
+    3
+   ],
+   "window": "Seasonal (Feb–Mar)"
+  },
+  "wilbur-lake": {
+   "name": "Wilbur Lake",
+   "classification": "trout-stocked",
+   "presence": "year-round",
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "window": "Put-grow-take reservoir; stocked Mar–Jul"
+  },
+  "wolf-river-fentress": {
+   "name": "Wolf River (Fentress County headwaters)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5
+   ],
+   "window": "Spring stocking circuit (Mar–May); no summer holdover"
+  },
+  "wolf-river-west-tennessee": {
+   "name": "Wolf River",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "woods-reservoir": {
+   "name": "Woods Reservoir",
+   "classification": "warmwater",
+   "presence": "none",
+   "months": [],
+   "stockingMonths": [],
+   "window": "No trout program (warmwater fishery)"
+  },
+  "yale-road-park-lake": {
+   "name": "Yale Road Park",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "stockingMonths": [
+    12,
+    1,
+    2
+   ],
+   "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
+  }
+ }
+}

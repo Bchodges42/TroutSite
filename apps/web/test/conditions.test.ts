@@ -105,11 +105,11 @@ describe('statusForScore', () => {
   });
 });
 
-const stream = { gaugeIds: ['g1'], idealFlow: [{ min: 100, max: 400 }] } as unknown as Stream;
+const stream = { gaugeIds: ['g1'], species: 'trout', idealFlow: [{ min: 100, max: 400 }] } as unknown as Stream;
 
 describe('scoreConditions assessed flag', () => {
   it('a real assessment clamped to 0 by dangerous heat stays assessed (render Poor)', () => {
-    // Flow far below range floors the flow score near 10; 27 °C subtracts 30 → clamps to 0.
+    // Flow far below range floors the flow score near 10; 27 °C subtracts 45 → clamps to 0.
     const s = scoreConditions(stream, [reading({ cfs: 5, tempC: 27 })]);
     expect(s.value).toBe(0);
     expect(s.assessed).toBe(true);

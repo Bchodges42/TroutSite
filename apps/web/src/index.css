@@ -976,6 +976,77 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
 .inspector-body > * + * {
   margin-top: 20px;
 }
+/* Season card (2026-09-10, refined same day): trout-calendar presence sits
+   BELOW the broad conditions assessment as its own quiet section. */
+.season-card {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #33494a);
+  border-left-width: 3px;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.season-card .season-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.season-card strong { font-size: 13px; }
+.season-card p { margin: 0; color: inherit; opacity: 0.85; }
+.season-card[data-state='present'] {
+  background: rgb(35 113 85 / 0.12);
+  border-left-color: rgb(35 113 85 / 0.9);
+}
+.season-card[data-state='absent'],
+.season-card[data-state='none'] {
+  background: rgb(177 59 56 / 0.08);
+  border-left-color: rgb(177 59 56 / 0.8);
+}
+.season-card[data-state='uncertain'] {
+  background: rgb(100 116 110 / 0.10);
+  border-left-color: rgb(100 116 110 / 0.7);
+}
+
+/* Special-regulation cards (2026-09-10): scannable bordered rows instead of
+   paragraph walls — flag glyph, rule text, source line. */
+.reg-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 10px;
+}
+.reg-card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #33494a);
+  background: rgb(127 127 127 / 0.05);
+}
+.reg-flag {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  font: 700 12px/1 ui-serif, Georgia, serif;
+  color: var(--accent, #b34824);
+  background: rgb(179 72 36 / 0.12);
+}
+.reg-body { min-width: 0; }
+.reg-text { margin: 0; font-size: 12.5px; line-height: 1.45; }
+.reg-src {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  opacity: 0.65;
+}
+
 .assessment {
   border-bottom: 1px solid var(--ui-border);
   padding-bottom: 22px;

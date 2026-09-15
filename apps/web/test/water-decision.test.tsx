@@ -16,9 +16,10 @@ function feature(overrides: {
   assessed?: boolean;
   reasons?: string[];
   readings?: number;
+  seasonMonths?: number[];
 }) {
   return {
-    stream: { id: overrides.id ?? 'test-water', name: 'Test Water' },
+    stream: { id: overrides.id ?? 'test-water', name: 'Test Water', seasonMonths: overrides.seasonMonths },
     status:
       overrides.score == null || overrides.assessed === false
         ? ('no-data' as const)
@@ -45,6 +46,80 @@ function feature(overrides: {
 }
 
 describe('WaterDecisionView compatibility adapter', () => {
+  /** Minimal trout-calendar stand-in keyed by water id. */
+  function calendar(waters: Record<string, { months: number[] }>) {
+    return {
+      generated: 'test',
+      source: 'test',
+      waters: Object.fromEntries(
+        Object.entries(waters).map(([id, w]) => [
+          id,
+          {
+            name: id,
+            classification: 'trout-stocked',
+            presence: w.months.length === 12 ? 'year-round' : w.months.length ? 'seasonal' : 'none',
+            months: w.months,
+            stockingMonths: w.months,
+            window: 'test window',
+          },
+        ]),
+      ),
+    } as never;
+  }
+
+  it('de-emphasizes a winter-stocked trout water in trout mode in the off-season (Stones River in September)', () => {
+    // Owner refine 2026-09-10: "I don't want them completely gone but MUCH
+    // easier to distinguish" — off-season waters stay visible, dimmed + labeled.
+    // Reconciled 2026-09-14: the authored seasonMonths window owns this, not
+    // the calendar bundle (which is drawer-presentation only now).
+    const f = feature({ id: 'stones-river', score: 80, seasonMonths: [12, 1, 2] });
+    expect(toWaterDecisionView(f, 'trout', 9).visibility).toBe('deemphasize');
+    // ...and it stays discoverable in all-fish mode.
+    const allFish = toWaterDecisionView(f, 'all', 9);
+    expect(allFish.visibility).toBe('include');
+    expect(allFish.troutApplicability).toBe('seasonal-likely-absent');
+  });
+
+  it('keeps an unclassified-species water discoverable but never trout-labeled (H3, reconciled 2026-09-14)', () => {
+    // kentucky-lake: the catalog never documented its species. The calendar
+    // bundle no longer gates visibility — the decision model includes unknown
+    // waters in trout mode so they stay discoverable, but they never wear
+    // trout language. A documented warmwater classification is what excludes.
+    const f = feature({ id: 'kentucky-lake', species: undefined, score: null });
+    const view = toWaterDecisionView(f, 'trout', 9);
+    expect(view.visibility).toBe('include');
+    expect(view.troutApplicability).toBe('unknown');
+    expect(view.displayMetric).toBe('unassessed');
+    const warm = feature({ id: 'kentucky-lake', species: 'warmwater', score: null });
+    expect(toWaterDecisionView(warm, 'trout', 9).visibility).toBe('exclude');
+  });
+
+  it('keeps a genuinely uncertain water visible in trout mode, labeled needs-data', () => {
+    const f = feature({ id: 'obed-river', species: undefined, score: null });
+    const view = toWaterDecisionView(f, 'trout', 9);
+    expect(view.visibility).toBe('include');
+    expect(view.troutApplicability).toBe('unknown');
+    expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe('Needs data');
+  });
+
+  it('shows the same winter water in trout mode once its season arrives', () => {
+    const cal = calendar({ 'stones-river': { months: [12, 1, 2] } });
+    const f = feature({ id: 'stones-river', score: 80 });
+    const view = toWaterDecisionView(f, 'trout', cal, new Date('2026-01-15'));
+    expect(view.visibility).toBe('include');
+    expect(view.displayMetric).toBe('trout-condition');
+  });
+
+  it('de-emphasizes a warmwater winter-program water only while its trout season is on (Harpeth)', () => {
+    const cal = calendar({ 'harpeth-river': { months: [12, 1, 2, 3] } });
+    const f = {
+      ...feature({ id: 'harpeth-river', species: 'warmwater', score: null }),
+      stream: { id: 'harpeth-river', name: 'Harpeth River', stockingProgram: true },
+    };
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-01-15')).visibility).toBe('deemphasize');
+    expect(toWaterDecisionView(f, 'trout', cal, new Date('2026-09-15')).visibility).toBe('deemphasize');
+  });
+
   it('presents an assessed trout water as trout-condition with high confidence', () => {
     const view = toWaterDecisionView(feature({ score: 82, readings: 3 }), 'trout');
     expect(view.displayMetric).toBe('trout-condition');
@@ -107,7 +182,7 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(view.visibility).toBe('include');
     expect(view.confidence).toBe('low');
     expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe(
-      'Unverified',
+      'Needs data',
     );
   });
 
@@ -118,7 +193,7 @@ describe('WaterDecisionView compatibility adapter', () => {
     expect(view.displayMetric).toBe('unassessed');
     expect(view.troutApplicability).toBe('unknown');
     expect(view.confidence).toBe('low');
-    expect(decisionStatusText(view, { species: undefined, status: 'good' })).toBe('Unverified');
+    expect(decisionStatusText(view, { species: undefined, status: 'good' })).toBe('Needs data');
   });
 
   it('colors unknown species as the neutral no-data tone on the map', () => {

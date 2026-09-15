@@ -108,15 +108,21 @@ export function buildFlowArrowSource(
  * Runtime arrow icon (solid triangle pointing +x, the direction line-placed
  * symbols align to). A filled glyph with a heavy halo reads at corridor
  * scale far better than a stroked chevron; the halo keeps it separable from
- * any water color in both themes. Returns the payload map.addImage accepts.
- * Null when no DOM is available (tests/SSR).
+ * any water color in both themes. The FRONT SLICE of the triangle is filled
+ * in the theme's tip red (2026-09-10 owner pass) so the pointing end reads
+ * at a glance without enlarging the whole glyph. Returns the payload
+ * map.addImage accepts. Null when no DOM is available (tests/SSR).
  */
 export function makeFlowArrowImage(
   ink: string,
   halo: string,
+  tip = '#c2342c',
 ): { width: number; height: number; data: Uint8ClampedArray } | null {
   if (typeof document === 'undefined') return null;
-  const size = 44;
+  // 2026-09-10 owner pass: the 44px glyph vanished against the corridor at
+  // overview zoom — 56px with a heavier rim and a fatter core reads at both
+  // statewide and regional scales (icon-size stops stay modest so it fits).
+  const size = 56;
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
@@ -124,29 +130,37 @@ export function makeFlowArrowImage(
   if (!ctx) return null;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-  // Slim arrowhead sized to sit INSIDE the selected river band, not on top of
-  // it: at icon-size ~0.25 the glyph renders ~8 px on a ~9 px selected
-  // corridor, reading as flow inside the channel rather than a break in it.
+  // tail-heavy triangle so the glyph reads as flow, not a map pin
   const triangle = () => {
     ctx.beginPath();
-    ctx.moveTo(8, 12);
-    ctx.lineTo(36, 22);
-    ctx.lineTo(8, 32);
+    ctx.moveTo(10, 11);
+    ctx.lineTo(46, 28);
+    ctx.lineTo(10, 45);
     ctx.closePath();
   };
   // halo first: a thin dark rim around the paper core reads as a crisp
   // arrow at corridor scale — a fat halo just renders as a blob
   ctx.strokeStyle = halo;
-  ctx.lineWidth = 5;
+  ctx.lineWidth = 7;
   triangle();
   ctx.stroke();
   ctx.fillStyle = halo;
   ctx.fill();
-  ctx.fillStyle = ink;
+  // ink core, clipped to the back two-thirds…
+  ctx.save();
   ctx.beginPath();
-  ctx.moveTo(11, 14.5);
-  ctx.lineTo(32, 22);
-  ctx.lineTo(11, 29.5);
+  ctx.rect(0, 0, 31, size);
+  ctx.clip();
+  ctx.fillStyle = ink;
+  triangle();
+  ctx.fill();
+  ctx.restore();
+  // …then the red tip fills the front third, edge to edge.
+  ctx.fillStyle = tip;
+  ctx.beginPath();
+  ctx.moveTo(31, 20.4);
+  ctx.lineTo(46, 28);
+  ctx.lineTo(31, 35.6);
   ctx.closePath();
   ctx.fill();
   const image = ctx.getImageData(0, 0, size, size);

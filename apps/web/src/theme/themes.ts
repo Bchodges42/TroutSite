@@ -12,6 +12,14 @@ export interface MapPalette {
   poor: string;
   noData: string;
   warmwater: string;
+  /** Class-outline halo colors (2026-09-10): trout vs warmwater highlight. */
+  troutOutline: string;
+  warmOutline: string;
+  /** Flow-arrow glyph colors — core + rim chosen per theme so the arrow reads
+   * on both light and dark basemaps (owner direction 2026-09-10). */
+  flowArrow: string;
+  flowArrowHalo: string;
+  flowArrowTip: string;
   sulphur: string;
   selection: string;
   hover: string;
@@ -145,6 +153,11 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#bc4b45',
       noData: '#607b6e',
       warmwater: '#957246',
+      troutOutline: '#1b7fa8',
+      warmOutline: '#b06f14',
+      flowArrow: '#22343c',
+      flowArrowHalo: '#ffffff',
+      flowArrowTip: '#c2342c',
       sulphur: '#bd722c',
       selection: '#b34824',
       hover: '#233e35',
@@ -198,6 +211,11 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#ed887c',
       noData: '#7ca394',
       warmwater: '#c4a477',
+      troutOutline: '#6fd0e8',
+      warmOutline: '#f2a94f',
+      flowArrow: '#f2f7f4',
+      flowArrowHalo: '#0d181c',
+      flowArrowTip: '#ff6b5e',
       sulphur: '#e5b773',
       selection: '#f0b478',
       hover: '#e5efdf',
@@ -258,6 +276,11 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#b94a45',
       noData: '#5e7880',
       warmwater: '#8b6c49',
+      troutOutline: '#1b7fa8',
+      warmOutline: '#b06f14',
+      flowArrow: '#22343c',
+      flowArrowHalo: '#ffffff',
+      flowArrowTip: '#c2342c',
       sulphur: '#b9792d',
       selection: '#2e6f7e',
       hover: '#21444d',
@@ -311,6 +334,11 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#b42318',
       noData: '#475569',
       warmwater: '#6b4f1d',
+      troutOutline: '#005f87',
+      warmOutline: '#8a5200',
+      flowArrow: '#111827',
+      flowArrowHalo: '#ffffff',
+      flowArrowTip: '#b42318',
       sulphur: '#9a6700',
       selection: '#005fcc',
       hover: '#0f172a',
@@ -364,6 +392,11 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       poor: '#e98b81',
       noData: '#a78b7d',
       warmwater: '#d2ac7f',
+      troutOutline: '#6fd0e8',
+      warmOutline: '#f2a94f',
+      flowArrow: '#f2f7f4',
+      flowArrowHalo: '#0d181c',
+      flowArrowTip: '#ff6b5e',
       sulphur: '#ebbd6e',
       selection: '#f1a15e',
       hover: '#f8eee6',

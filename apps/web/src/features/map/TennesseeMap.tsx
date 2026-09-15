@@ -75,6 +75,12 @@ interface Props {
    * 'all' — the pre-mode-aware behavior — so callers that don't plumb it
    * keep today's labels. */
   speciesMode?: 'trout' | 'all';
+  /** Fishery-class outline per water id ('trout' | 'warmwater' | null) —
+   * drives the rivers-class-outline halo (2026-09-10). Absent = unclassified. */
+  classOutlines?: Map<string, 'trout' | 'warmwater' | null>;
+  /** Waters whose trout season is OFF (calendar): dimmed + dash-rendered on
+   * the map and suffixed on labels — visible but unmistakably not-now. */
+  offseasonIds?: Set<string>;
   stillWaterIds?: Set<string>;
   /** Catalog waterbodyType label per water id (M2) — accessible names use it. */
   waterTypes?: Map<string, string>;
@@ -170,6 +176,8 @@ export function TennesseeMap(props: Props) {
                   : false,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
+            outlineClass: p.classOutlines?.get(river.id) ?? '',
+            offseason: p.offseasonIds?.has(river.id) ?? false,
             hatchActive: p.hatchActiveIds?.has(river.id) ?? false,
             hatchColor: palette.current.sulphur,
           },
@@ -718,7 +726,11 @@ export function TennesseeMap(props: Props) {
         // species the catalog leaves unset reads "Unverified" in place of the
         // assessment suffix — never an implied trout or condition claim.
         const note = labelSpeciesNote({ id: river.id, species }, { troutIds });
-        const unassessedWord = note === 'Unverified' ? 'Unverified' : 'Unassessed';
+        const unassessedWord = note === 'Unverified' ? 'Needs data' : 'Unassessed';
+        // Season suffix (2026-09-10): an out-of-season trout water never reads
+        // as fishable-now, even while its line stays on the map.
+        const offseason = p.offseasonIds?.has(river.id) ?? false;
+        const seasonWord = offseason ? ', no trout now' : '';
         el.setAttribute(
           'aria-label',
           'Select ' +
@@ -726,9 +738,14 @@ export function TennesseeMap(props: Props) {
             ', ' +
             kindWord +
             (note ? ', ' + note : '') +
-            (assessed ? '' : ', ' + unassessedWord),
+            (assessed ? '' : ', ' + unassessedWord) +
+            seasonWord,
         );
-        el.title = kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
+        el.title =
+          kindWord +
+          (note ? ' · ' + note : '') +
+          (assessed ? '' : ' · ' + unassessedWord) +
+          (offseason ? ' · no trout now' : '');
         const point = map.project(river.anchor as [number, number]);
         // Visibility: the waterDecision filter pass (visibleIds) plus the
         // pure mode-aware prominence gate. Selected/assessed trout always
@@ -807,7 +824,10 @@ export function TennesseeMap(props: Props) {
       // addImage replaces an existing image of the same name cleanly. The
       // glyph is PAPER on an ink halo — light-on-dark reads on the rust
       // selected corridor and on every theme's water color alike.
-      const icon = makeFlowArrowImage(theme.map.paper, theme.map.ink);
+      // Theme-specific glyph (2026-09-10): dark core on white rim in light
+      // mode, near-white core on near-black rim in dark mode — each chosen to
+      // read against that theme's water colors.
+      const icon = makeFlowArrowImage(theme.map.flowArrow, theme.map.flowArrowHalo, theme.map.flowArrowTip);
       if (icon) map.addImage(FLOW_ARROW_ICON, icon);
       const id = latest.current.selectedId;
       const source = map.getSource(FLOW_ARROWS_SOURCE) as maplibregl.GeoJSONSource | undefined;

@@ -374,6 +374,45 @@ export function atlasStyle(
           ],
         },
       },
+      // Fishery-class outline (2026-09-10): a halo AROUND the condition
+      // centerline encoding the water's CLASS — cold trout waters glow
+      // ice-blue, warmwater glows amber, unclassified waters get nothing.
+      // Drawn wider than the interior so the condition color reads inside it;
+      // hidden for the selected water (selection has its own ring).
+      {
+        id: 'rivers-class-outline',
+        type: 'line' as const,
+        source: 'rivers',
+        filter: LINES_ONLY,
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': [
+            'match',
+            ['feature-state', 'outlineClass'],
+            'trout',
+            t.troutOutline,
+            'warmwater',
+            t.warmOutline,
+            'rgba(0,0,0,0)',
+          ],
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            0,
+            ['==', ['feature-state', 'outlineClass'], 'trout'],
+            4.6,
+            3.6,
+          ],
+          'line-opacity': [
+            'case',
+            ['==', ['feature-state', 'outlineClass'], ''],
+            0,
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            0.85,
+          ],
+        },
+      },
       // Rivers — condition centerline (feature-state `color` set live by
       // TennesseeMap, static `get color` property as fallback). Rendered as a
       // NARROWER line down the center of the corridor, and only for assessed
@@ -401,6 +440,13 @@ export function atlasStyle(
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
             0,
+            ['boolean', ['feature-state', 'offseason'], false],
+            [
+              'case',
+              ['boolean', ['feature-state', 'dimmed'], false],
+              0.15,
+              0.3,
+            ],
             ['boolean', ['feature-state', 'assessed'], false],
             ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.4, 1],
             0,
@@ -425,9 +471,11 @@ export function atlasStyle(
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
             0,
+            ['boolean', ['feature-state', 'offseason'], false],
+            0.22,
             ['boolean', ['feature-state', 'assessed'], false],
             0,
-            0.5,
+            0.22,
           ],
         },
       },
@@ -512,16 +560,16 @@ export function atlasStyle(
         minzoom: 6.5,
         layout: {
           'symbol-placement': 'line',
-          // ~1 arrow every 90 screen px — an unmistakable cadence along the
-          // selected corridor without crowding tight bends.
-          'symbol-spacing': 75,
+          // ~1 arrow every 105 screen px — the 2026-09-10 owner pass settled
+          // this cadence for reading flow at corridor scale.
+          'symbol-spacing': 120,
           'icon-image': FLOW_ARROW_ICON,
           'icon-rotation-alignment': 'map',
           'icon-allow-overlap': true,
           'icon-ignore-placement': true,
-          // sized to the selected corridor: the glyph renders ~8-11 px —
-          // inside the amber selection band, never as a break in the line.
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.26, 11, 0.4],
+          // Owner right-sizing (2026-09-10 pass): the red-tip glyph reads at
+          // corridor scale — ~13-24 px, matching the 7px stroke arrows.
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 6.5, 0.5, 11, 0.95],
         },
         paint: { 'icon-opacity': 1 },
       },
