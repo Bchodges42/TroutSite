@@ -1,0 +1,14 @@
+id: falling-water-river
+name: Falling Water River
+stateId: TN
+waterbodyType: river
+regionId: tn-upper-cumberland
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Upper Cumberland river through the Burgess Falls corridor to Center Hill Lake; valued for recreation as well as fishing.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

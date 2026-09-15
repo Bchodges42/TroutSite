@@ -18,6 +18,9 @@ node apps/web/scripts/build-atlas-context.mjs   # slim + publish context files
 node apps/web/scripts/merge-west-tn-points.mjs  # ALWAYS run last: restore the 13 point anchors (idempotent)
 # B15 waterbody expansion (optional, append-only):
 ONLY=<id> node apps/web/scripts/build-missing-rivers.mjs  # or no ONLY for all 8 missing-line rivers
+node apps/web/scripts/audit-selectable-rivers.mjs # compare the catalog with local statewide TIGER names
+node apps/web/scripts/build-selectable-river-additions.mjs # append curated exact-GNIS additions
+node apps/web/scripts/regenerate-river-index.mjs # refresh camera/label bounds and zoom tiers
 node apps/web/scripts/validate-atlas.mjs        # structural gate (must PASS)
 node apps/web/scripts/audit-river-continuity.mjs # continuity gate: 0 unexpected multi-chunk line rivers (must PASS)
 ```
@@ -27,13 +30,13 @@ not be run — it would overwrite the real atlas with jitter geometry.
 
 ## Input datasets
 
-| Dataset | Path | Records | License / Terms |
-|---------|------|---------|-----------------|
-| Trout streams pack | `packages/content/dist/pack/streams.json` | 92 TN streams | Internal Trout content pack (TWRA/USGS references per stream) |
-| Census TIGER/Line 2024 LINEARWATER (TN, per-county) | `.atlas-src/shp/` (from `fetch-atlas-sources.mjs`) | 95 county files | Public domain (US Government work) |
-| Census TIGER/Line 2024 AREAWATER (TN, per-county) | `.atlas-src/awshp/` | 95 county files | Public domain |
-| Census cartographic boundaries (county 5m, state 5m, TN places 500k) | `.atlas-src/*.zip` | 95 counties, 50 states, TN places | Public domain |
-| USGS NHDPlus HR named reaches | `.atlas-src/nhd/*.geojson` (from `fetch-nhd-targets.mjs`) | targeted waters | Public domain (USGS) |
+| Dataset                                                              | Path                                                      | Records                           | License / Terms                                               |
+| -------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------- |
+| Selectable-water catalog                                             | `packages/content/streams/tn/*.yaml`                      | 188 TN waters                     | Internal Trout content pack (TWRA/USGS references per stream) |
+| Census TIGER/Line 2024 LINEARWATER (TN, per-county)                  | `.atlas-src/shp/` (from `fetch-atlas-sources.mjs`)        | 95 county files                   | Public domain (US Government work)                            |
+| Census TIGER/Line 2024 AREAWATER (TN, per-county)                    | `.atlas-src/awshp/`                                       | 95 county files                   | Public domain                                                 |
+| Census cartographic boundaries (county 5m, state 5m, TN places 500k) | `.atlas-src/*.zip`                                        | 95 counties, 50 states, TN places | Public domain                                                 |
+| USGS NHDPlus HR named reaches                                        | `.atlas-src/nhd/*.geojson` (from `fetch-nhd-targets.mjs`) | targeted waters                   | Public domain (USGS)                                          |
 
 ## Rivers hydrography
 
@@ -61,8 +64,8 @@ not be run — it would overwrite the real atlas with jitter geometry.
 - **Wide water:** main stems missing from LINEARWATER fall back to TIGER
   AREAWATER polygons (`MultiPolygon`, `tiger-area` source).
 - **Per-feature properties:** `id, name, regionId, gaugeIds, bounds, labelAnchor,
-  source, crs (EPSG:4326), coordinateOrder (longitude,latitude), partCount,
-  vertexCount`.
+source, crs (EPSG:4326), coordinateOrder (longitude,latitude), partCount,
+vertexCount`.
 - **Managed reaches:** `boone-tailwater`, `ft-patrick-henry-tailwater`,
   `parksville-tailwater` reuse their parent river's real geometry (same water,
   different managed reach — recorded in `match-report.json` `parent`, not
@@ -77,11 +80,11 @@ not be run — it would overwrite the real atlas with jitter geometry.
   state lines return out-of-state flowlines; `merge-rivers.mjs` keeps an NHD
   part only when every vertex is inside the Tennessee boundary polygon
   (whole-part rejection — never delete an interior point).
-- **Resolved:** all 92/92 streams carry verified official geometry.
+- **Resolved:** all 188/188 selectable waters carry verified official geometry.
   `white-oak-creek` is matched to TIGER LINEARWATER through the
   `WHITEOAK → WHITE OAK` entry in the `WORD` normalization map in
   `merge-rivers.mjs`; do not remove that mapping.
-- **Generated file:** `apps/web/public/atlas/rivers.geojson` (92/92 resolved).
+- **Generated file:** `apps/web/public/atlas/rivers.geojson` (188/188 resolved).
 
 ## B15 missing-line rivers (waterbody expansion, LINES lane 2026-09-04)
 
@@ -129,22 +132,50 @@ idempotent (ids already present are skipped; `ONLY=<id>` runs one river).
   `crs`, `coordinateOrder`, `partCount`, `vertexCount`.
 - **Results** (per river; 1 feature each, `nhd-hr`):
 
-| id | members | verts | bbox [W S E N] | note |
-|---|---|---|---|---|
-| mississippi-river | 2 | 278 | -90.3052 34.9860 -89.4180 36.5082 | state-line corridor; member 2 = Tiptonville bend (KY Bend exclave notch) |
-| obion-river | 2 | 258 | -89.6527 35.9073 -88.9407 36.2819 | ~110 m NHD network gap at lat 35.988 |
-| hatchie-river | 1 | 754 | -89.7039 35.2753 -88.9490 35.6519 | continuous headwaters-to-mouth |
-| wolf-river-west-tennessee | 1 | 449 | -90.0620 35.0248 -89.2388 35.2025 | Fayette Co → Memphis mouth (distinct from wolf-river-fentress) |
-| tennessee-river | 3 | 1069 | -88.3182 35.0003 -83.8507 36.6722 | Knoxville→Nickajack; Pickwick→KY line; 4-v KY-line sliver. The Alabama detour between the TN reaches is genuine geography |
-| cumberland-river | 1 | 795 | -87.9056 36.1355 -85.5012 36.6631 | KY line (Clay Co) → KY line (Dover/Lake Barkley) |
-| buffalo-river | 2 | 641 | -87.8647 35.3114 -87.2912 35.9963 | headwater member ends at lat 35.364; named flowline has no geometry 35.364-35.389 in this extract (verified: zero named features intersect the band) |
-| holston-river | 1 | 494 | -83.8578 35.9586 -82.6088 36.5479 | Kingsport → Knoxville confluence incl. Cherokee Lake connectors |
+| id                        | members | verts | bbox [W S E N]                    | note                                                                                                                                                 |
+| ------------------------- | ------- | ----- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mississippi-river         | 2       | 278   | -90.3052 34.9860 -89.4180 36.5082 | state-line corridor; member 2 = Tiptonville bend (KY Bend exclave notch)                                                                             |
+| obion-river               | 2       | 258   | -89.6527 35.9073 -88.9407 36.2819 | ~110 m NHD network gap at lat 35.988                                                                                                                 |
+| hatchie-river             | 1       | 754   | -89.7039 35.2753 -88.9490 35.6519 | continuous headwaters-to-mouth                                                                                                                       |
+| wolf-river-west-tennessee | 1       | 449   | -90.0620 35.0248 -89.2388 35.2025 | Fayette Co → Memphis mouth (distinct from wolf-river-fentress)                                                                                       |
+| tennessee-river           | 3       | 1069  | -88.3182 35.0003 -83.8507 36.6722 | Knoxville→Nickajack; Pickwick→KY line; 4-v KY-line sliver. The Alabama detour between the TN reaches is genuine geography                            |
+| cumberland-river          | 1       | 795   | -87.9056 36.1355 -85.5012 36.6631 | KY line (Clay Co) → KY line (Dover/Lake Barkley)                                                                                                     |
+| buffalo-river             | 2       | 641   | -87.8647 35.3114 -87.2912 35.9963 | headwater member ends at lat 35.364; named flowline has no geometry 35.364-35.389 in this extract (verified: zero named features intersect the band) |
+| holston-river             | 1       | 494   | -83.8578 35.9586 -82.6088 36.5479 | Kingsport → Knoxville confluence incl. Cherokee Lake connectors                                                                                      |
 
 - **Generated file:** `apps/web/public/atlas/rivers.geojson` — 113 features
   (105 pre-existing + 8 appended; pre-existing features byte-identical).
 - **Handoffs:** catalog YAML rows for the 8 ids = catalog lane; regenerate
   `apps/web/src/features/map/riverIndex.json` from the approved geometry =
   UI/integration lane (contract step 5; UI files untouched here).
+
+## Statewide selectable-river expansion (2026-09-15)
+
+The selectable/searchable source of truth is one validated YAML record per
+water in `packages/content/streams/tn`. Geometry is joined by the same stable
+id in `public/atlas/rivers.geojson`; `riverIndex.json` is generated from that
+atlas for camera bounds, anchors, and label zoom policy.
+
+`atlas-sources/selectable-river-additions.json` records the reproducible audit
+decision for 40 additions. Inclusion requires a stable name plus an
+unambiguous GNIS identity or tightly bounded reach, then combines basin role,
+NHD order, mapped extent, access/recreation or fishing relevance, and regional
+coverage. No single length cutoff is used, trout status is not required, and
+generic short named creeks are not promoted automatically.
+
+- Exact GNIS ids prevent same-name waters from being merged. In particular,
+  `piney-river-hickman` is distinct from the existing Rhea County Piney River.
+- 37 additions use exact-GNIS NHDPlus HR reaches. Beech River, Conasauga River,
+  and South Fork Forked Deer River use continuous exact-name Census TIGER
+  geometry after the NHD export showed avoidable gaps.
+- Four retained official NHD extents have documented source discontinuities in
+  `CONTINUITY-AUDIT.md`; no synthetic lines bridge those gaps.
+- `labelMinZoom` (7.5, 8.5, or 9.5) controls prominence independently of
+  catalog membership. Every addition remains searchable/selectable at all
+  times even when its label is suppressed at statewide zoom.
+- Deliberately unresolved identities are recorded in the manifest: secondary
+  same-name North/Middle Fork Forked Deer GNIS records, the Loosahatchie River
+  Drainage Canal, and the out-of-state Tuscumbia River artifact.
 
 ## Tennessee boundary / counties / states / places
 

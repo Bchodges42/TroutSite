@@ -41,6 +41,8 @@ export type LabelGateContext = {
   extent: number;
   /** Current map zoom. */
   zoom: number;
+  /** Optional cataloged visibility tier; membership and prominence are separate. */
+  labelMinZoom?: number;
   selected: boolean;
   assessed: boolean;
   /** Seasonal decision says the water is absent for the selected month. */
@@ -68,6 +70,9 @@ export function shouldShowLabel(water: LabelWater, ctx: LabelGateContext): boole
   // by prominence, not by assessment (assessedIds only contains confirmed
   // trout, but the policy stays honest on its own terms).
   if (ctx.mode === 'trout' && !ctx.troutIds.has(water.id)) return false;
+  // Explicit authored label tiers (selectable-river expansion) win when set;
+  // the display-tier + extent heuristics govern every other water.
+  if (ctx.labelMinZoom != null) return ctx.zoom >= ctx.labelMinZoom || ctx.assessed;
   if (water.display === 'reference') return false;
   if (water.display === 'featured') return true;
   if (water.display === 'standard') return ctx.zoom >= LOCAL_ZOOM;

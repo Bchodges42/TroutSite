@@ -9,6 +9,15 @@ ROOT="$(pwd)"
 source "$ROOT/infra/runtime-env.sh"
 trout_runtime_env "$ROOT"
 
+# Load ignored deploy-time configuration before any build runs (e.g.
+# VITE_CF_ANALYTICS_TOKEN). Secrets stay in the host's .env, never in Git.
+if [ -f .env ]; then
+  set -a
+  # shellcheck disable=SC1091
+  . ./.env
+  set +a
+fi
+
 # T0-2: nothing below may mutate the checkout or the served trees until the
 # rollback point exists. The FIRST mutation is the git pull; from there on,
 # ANY uncaught failure (set -e) runs rollback() via the EXIT trap: restore the

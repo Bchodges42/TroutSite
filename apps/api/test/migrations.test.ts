@@ -60,7 +60,10 @@ describe('migrations', () => {
     // + 013_region_precipitation (NWS rolling rain fallback).
     // + 014_dissolved_oxygen_reservoir_level (DO/reservoir columns for DBs that
     //   predate the campaign; 002 no longer creates them in place).
-    expect(applied).toHaveLength(14);
+    // + 015_stream_catalog_metadata (aliases/fishery/year-round round trip,
+    //   selectable-river expansion; renumbered from the expansion's 008 —
+    //   main already used 008 for target species).
+    expect(applied).toHaveLength(15);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -71,6 +74,7 @@ describe('migrations', () => {
     expect(applied[11]!.name).toMatch(/^012_/);
     expect(applied[12]!.name).toMatch(/^013_/);
     expect(applied[13]!.name).toMatch(/^014_/);
+    expect(applied[14]!.name).toMatch(/^015_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

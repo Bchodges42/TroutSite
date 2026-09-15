@@ -34,6 +34,26 @@ const STITCH_KM = 1.0;
 // docs/CONTINUITY-AUDIT.md). Every entry must cite its documentation. The
 // audit FAILS on any multi-chunk stream NOT listed here.
 const ALLOWLIST = {
+  'big-sandy-river': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Selectable-river expansion (2026-09-15): the exact GNIS 01277382 NHD export has one isolated named reach 13.31 km from the main network; Census TIGER exact-name coverage is more fragmented (4 chunks), so the complete official NHD extent is retained without a synthetic bridge.',
+  },
+  'middle-fork-forked-deer-river': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Selectable-river expansion (2026-09-15): exact GNIS 01293673 NHD coverage has two named networks separated by 12.43 km. TIGER exact-name coverage is still fragmented and can conflate the separate same-name GNIS 01293672, so no unverified connector was added.',
+  },
+  'middle-fork-obion-river': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Selectable-river expansion (2026-09-15): exact GNIS 01269799 NHD coverage has three chunks with a largest 6.68 km gap; Census TIGER exact-name coverage has four chunks. The official NHD extent is retained and the source gaps are left open.',
+  },
+  'north-fork-obion-river': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Selectable-river expansion (2026-09-15): exact GNIS 01295906 NHD coverage has two chunks separated by 8.61 km; Census TIGER exact-name coverage also remains split. Both sources were audited and no synthetic connector was created.',
+  },
   'salt-lick-creek': {
     kind: 'DELIBERATE',
     reason:

@@ -503,11 +503,17 @@ export function mergeFeature(stagedFeature, catalog) {
 
 export function regenerateIndex(features) {
   return features.map((f) => {
-    const { id, name, bounds, labelAnchor } = f.properties;
+    const { id, name, bounds, labelAnchor, labelMinZoom } = f.properties;
     const c = f.geometry.coordinates;
     const first = Array.isArray(c[0][0]) ? c[0][0] : c[0];
     const anchor = labelAnchor ?? (f.geometry.type === 'Point' ? c : first);
-    return { id, name, anchor, bounds: bounds ?? [anchor[0], anchor[1], anchor[0], anchor[1]] };
+    return {
+      id,
+      name,
+      anchor,
+      bounds: bounds ?? [anchor[0], anchor[1], anchor[0], anchor[1]],
+      ...(labelMinZoom == null ? {} : { labelMinZoom }),
+    };
   }).sort((a, b) => a.id.localeCompare(b.id));
 }
 

@@ -28,6 +28,8 @@ export type SpeciesEvidence = z.infer<typeof SpeciesEvidenceSchema>;
 export const StreamSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
+  /** Alternate official/local names used by catalog search and source joins. */
+  aliases: z.array(z.string().min(1)).optional(),
   stateId: StateIdSchema,
   waterbodyType: WaterbodyTypeSchema,
   regionId: RegionIdSchema,

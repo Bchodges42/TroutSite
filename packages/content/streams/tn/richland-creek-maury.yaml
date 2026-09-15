@@ -1,0 +1,16 @@
+id: richland-creek-maury
+name: Richland Creek (Maury/Giles Counties)
+aliases:
+  - Richland Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Long order-6 Duck River tributary through Giles and Maury counties. The county qualifier prevents collisions with other Tennessee Richland Creeks.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

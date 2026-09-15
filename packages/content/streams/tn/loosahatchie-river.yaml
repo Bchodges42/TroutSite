@@ -1,0 +1,16 @@
+id: loosahatchie-river
+name: Loosahatchie River
+aliases:
+  - Loosahatchie River Canal
+stateId: TN
+waterbodyType: river
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Major Memphis-area drainage flowing through Fayette, Tipton, and Shelby counties. Much of the mapped main channel is officially named Loosahatchie River Canal.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

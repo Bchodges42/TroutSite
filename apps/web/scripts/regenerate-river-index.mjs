@@ -24,7 +24,7 @@ function resolveWebRoot() {
 
 const gj = JSON.parse(readFileSync(geoPath, 'utf8'));
 const index = gj.features.map((f) => {
-  const { id, name, bounds, labelAnchor, waterbodyType } = f.properties;
+  const { id, name, bounds, labelAnchor, waterbodyType, labelMinZoom } = f.properties;
   const c = f.geometry.coordinates;
   const first = Array.isArray(c[0][0]) ? c[0][0] : c[0];
   const anchor = labelAnchor ?? (f.geometry.type === 'Point' ? c : first);
@@ -34,6 +34,7 @@ const index = gj.features.map((f) => {
     waterbodyType: waterbodyType ?? null,
     anchor,
     bounds: bounds ?? [anchor[0], anchor[1], anchor[0], anchor[1]],
+    ...(labelMinZoom == null ? {} : { labelMinZoom }),
   };
 });
 index.sort((a, b) => a.id.localeCompare(b.id));

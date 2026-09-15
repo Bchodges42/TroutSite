@@ -45,10 +45,7 @@ function ctx(overrides: Partial<Parameters<typeof shouldShowLabel>[1]> = {}) {
 describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
   it('titles major trout waters statewide in trout mode', () => {
     expect(
-      shouldShowLabel(
-        { id: 'holston-river', species: 'trout' },
-        ctx({ extent: 0.31, zoom: 5 }),
-      ),
+      shouldShowLabel({ id: 'holston-river', species: 'trout' }, ctx({ extent: 0.31, zoom: 5 })),
     ).toBe(true);
   });
 
@@ -84,6 +81,16 @@ describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
     // The same gates in all-fish mode for a small trout water.
     expect(shouldShowLabel(pocket, ctx({ extent: 0.02, zoom: 9.4, mode: 'all' }))).toBe(false);
     expect(shouldShowLabel(pocket, ctx({ extent: 0.02, zoom: 9.5, mode: 'all' }))).toBe(true);
+  });
+
+  it('uses an explicit label tier without changing selectability', () => {
+    const water = { id: 'falling-water-river' };
+    expect(
+      shouldShowLabel(water, ctx({ mode: 'all', extent: 0.6, zoom: 8.4, labelMinZoom: 8.5 })),
+    ).toBe(false);
+    expect(
+      shouldShowLabel(water, ctx({ mode: 'all', extent: 0.6, zoom: 8.5, labelMinZoom: 8.5 })),
+    ).toBe(true);
   });
 
   it('shows an assessed small trout water at any zoom, in either mode', () => {
@@ -123,7 +130,7 @@ describe('labelPolicy.labelSpeciesNote (honest aria/title words)', () => {
 });
 
 describe('authored map display tiers', () => {
-  it('covers the complete real river index with the campaign 37/96/16 assignment', () => {
+  it('covers the complete real river index with the campaign 37/136/16 assignment (expansion waters ride labelMinZoom)', () => {
     const indexIds = new Set(riverIndex.map((r) => r.id));
     const featured = new Set(FEATURED_IDS);
     const reference = new Set(REFERENCE_IDS);
@@ -132,10 +139,10 @@ describe('authored map display tiers', () => {
     expect(FEATURED_IDS.length + REFERENCE_IDS.length).toBeLessThan(riverIndex.length);
     expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(53);
     expect([...featured, ...reference].every((id) => indexIds.has(id))).toBe(true);
-    expect(riverIndex.length - featured.size - reference.size).toBe(96);
+    expect(riverIndex.length - featured.size - reference.size).toBe(136);
   });
 
-  it('titles 37 featured waters statewide/approach and admits 96 standard waters locally', () => {
+  it('titles 37 featured waters statewide/approach and admits 136 standard waters locally', () => {
     const standardIds = riverIndex
       .map((r) => r.id)
       .filter((id) => !FEATURED_IDS.includes(id as (typeof FEATURED_IDS)[number]) && !REFERENCE_IDS.includes(id as (typeof REFERENCE_IDS)[number]));
@@ -147,8 +154,8 @@ describe('authored map display tiers', () => {
     const titleAt = (zoom: number) => waters.filter((water) => shouldShowLabel(water, ctx({ mode: 'all', zoom }))).length;
     expect(titleAt(5)).toBe(37);
     expect(titleAt(8.5)).toBe(37);
-    expect(titleAt(9.5)).toBe(133);
-    expect(waters.filter((water) => water.display === 'standard' && shouldShowLabel(water, ctx({ mode: 'all', zoom: 9.5 })))).toHaveLength(96);
+    expect(titleAt(9.5)).toBe(173);
+    expect(waters.filter((water) => water.display === 'standard' && shouldShowLabel(water, ctx({ mode: 'all', zoom: 9.5 })))).toHaveLength(136);
   });
 
   it('suppresses an out-of-season auto-title while preserving explicit selection', () => {

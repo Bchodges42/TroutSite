@@ -1,0 +1,14 @@
+id: west-harpeth-river
+name: West Harpeth River
+stateId: TN
+waterbodyType: river
+regionId: tn-middle-nashville
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Principal Harpeth River fork in Williamson County with strong Nashville-area recreation and access relevance.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

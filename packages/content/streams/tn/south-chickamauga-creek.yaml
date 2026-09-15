@@ -1,0 +1,14 @@
+id: south-chickamauga-creek
+name: South Chickamauga Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-se-hiwassee
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Major Chattanooga-area waterway with greenway access and regional fishing importance; distinct from North Chickamauga Creek.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

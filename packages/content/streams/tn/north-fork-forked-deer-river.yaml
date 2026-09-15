@@ -1,0 +1,14 @@
+id: north-fork-forked-deer-river
+name: North Fork Forked Deer River
+stateId: TN
+waterbodyType: river
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Principal northern fork of the Forked Deer system and one of northwest Tennessee’s major fishable rivers.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

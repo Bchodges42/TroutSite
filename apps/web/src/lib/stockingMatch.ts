@@ -62,18 +62,32 @@ export const TWRA_ALIASES: Readonly<Record<string, readonly string[]>> = {
   'caney-fork-river': ['center hill tailwater caney fork river', 'caney fork river center hill'],
   'duck-river-tailwater': ['normandy tailwater duck river', 'duck river normandy tailwater'],
   'clinch-river': ['norris tailwater clinch river', 'clinch river norris tailwater'],
-  'south-holston-river': ['s holston tailwater s fork holston river', 'south holston tailwater south fork holston river'],
-  'boone-tailwater': ['boone tailwater s fork holston river', 'boone tailwater south fork holston river'],
-  'ft-patrick-henry-tailwater': ['ft patrick henry tailwater s fork holston river', 'fort patrick henry tailwater south fork holston river'],
+  'south-holston-river': [
+    's holston tailwater s fork holston river',
+    'south holston tailwater south fork holston river',
+  ],
+  'boone-tailwater': [
+    'boone tailwater s fork holston river',
+    'boone tailwater south fork holston river',
+  ],
+  'ft-patrick-henry-tailwater': [
+    'ft patrick henry tailwater s fork holston river',
+    'fort patrick henry tailwater south fork holston river',
+  ],
   'elk-river': ['tims ford tailwater elk river', 'elk river tims ford tailwater'],
   'watauga-river': ['wilbur tailwater watauga river', 'watauga river wilbur tailwater'],
   'obey-river': ['dale hollow tailwater obey river', 'obey river dale hollow tailwater'],
   'hiwassee-river': ['apalachia tailwater hiwassee river', 'hiwassee river apalachia tailwater'],
-  'parksville-tailwater': ['parksville ocoee 1 tailwater ocoee river', 'parksville lake tailwater ocoee no 1 reach'],
+  'parksville-tailwater': [
+    'parksville ocoee 1 tailwater ocoee river',
+    'parksville lake tailwater ocoee no 1 reach',
+  ],
   'stones-river': ['j percy priest tailwater stones river', 'percy priest tailwater stones river'],
 };
 
-const byId = new Map(Object.entries(TWRA_ALIASES).map(([id, names]) => [id, names.map(normalizeWaterName)]));
+const byId = new Map(
+  Object.entries(TWRA_ALIASES).map(([id, names]) => [id, names.map(normalizeWaterName)]),
+);
 
 /**
  * County disambiguation (T1-7): TWRA rows whose bare name exact-matches or
@@ -111,11 +125,17 @@ function wordBoundaryContains(haystack: string, needle: string): boolean {
  * (sorted newest-first by date) and the count of events left unmatched.
  */
 export function matchStocking(
-  streams: Array<Pick<Stream, 'id' | 'name'>>,
+  streams: Array<Pick<Stream, 'id' | 'name' | 'aliases'>>,
   events: StockingEvent[],
 ): { byStream: Map<string, StockingEvent[]>; unmatched: number } {
   const streamNorm = new Map(
-    streams.map((s) => [s.id, { norm: normalizeWaterName(s.name), raw: s.name.toLowerCase() }]),
+    streams.map((s) => [
+      s.id,
+      {
+        norms: [s.name, ...(s.aliases ?? [])].map(normalizeWaterName),
+        raw: s.name.toLowerCase(),
+      },
+    ]),
   );
 
   const byStream = new Map<string, StockingEvent[]>();
@@ -134,14 +154,13 @@ export function matchStocking(
       if (hit) resolved = hit;
     }
 
-    // Tier 1 — exact normalized equality against a catalog name.
+    // Tier 1 — exact normalized equality against a catalog name or alias;
+    // more than one candidate is a same-name ambiguity — stay unresolved.
     if (!resolved) {
-      for (const [id, meta] of streamNorm) {
-        if (meta.norm === eventNorm) {
-          resolved = id;
-          break;
-        }
-      }
+      const exact = [...streamNorm]
+        .filter(([, meta]) => meta.norms.includes(eventNorm))
+        .map(([id]) => id);
+      if (exact.length === 1) resolved = exact[0] ?? null;
     }
 
     // Tier 2 — curated TWRA-name aliases (more than one alias hit would be a
@@ -158,7 +177,12 @@ export function matchStocking(
     if (!resolved) {
       const contain: string[] = [];
       for (const [id, meta] of streamNorm) {
-        if (wordBoundaryContains(meta.norm, eventNorm) || wordBoundaryContains(eventNorm, meta.norm)) {
+        if (
+          meta.norms.some(
+            (norm) =>
+              wordBoundaryContains(norm, eventNorm) || wordBoundaryContains(eventNorm, norm),
+          )
+        ) {
           contain.push(id);
         }
       }

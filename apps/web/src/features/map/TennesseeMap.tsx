@@ -991,6 +991,7 @@ export function TennesseeMap(props: Props) {
               troutIds,
               extent,
               zoom: z,
+              labelMinZoom: river.labelMinZoom,
               selected,
               assessed,
               seasonalAbsent: p.seasonalAbsentIds?.has(river.id),

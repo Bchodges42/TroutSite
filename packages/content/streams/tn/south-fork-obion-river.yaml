@@ -1,0 +1,14 @@
+id: south-fork-obion-river
+name: South Fork Obion River
+stateId: TN
+waterbodyType: river
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: One of the principal Obion River forks in West Tennessee and a locally important general-fishing water.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

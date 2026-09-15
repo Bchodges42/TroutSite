@@ -105,7 +105,11 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 
   // Canonical stocking association (B05): TWRA water names resolve through
   // normalization → curated aliases → unambiguous containment only.
-  const streamsForMatch = (streamsData ?? []) as unknown as Array<{ id: string; name: string }>;
+  const streamsForMatch = (streamsData ?? []) as unknown as Array<{
+    id: string;
+    name: string;
+    aliases?: string[];
+  }>;
   const stockingByStream = useMemo(() => {
     const { byStream } = matchStocking(streamsForMatch, stockings as never);
     return byStream as Map<string, Array<Record<string, unknown>>>;
