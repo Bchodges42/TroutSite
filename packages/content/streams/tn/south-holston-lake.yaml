@@ -5,8 +5,8 @@ waterbodyType: lake
 display: featured
 regionId: tn-east-holston
 gaugeIds: []
-stockingProgram: false
-species: warmwater
+stockingProgram: true
+species: trout
 idealFlow: []
 targetSpecies:
   - largemouth-bass
@@ -41,14 +41,16 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03476500/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the South Fork Holston River above Bristol (Sullivan
-  County, Tennessee, and Washington County, Virginia), impounded by South
-  Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726). Discharges
-  the South Holston tailwater (south-holston-river) toward Boone Lake. The
-  lake crosses the state line into Virginia, so the mapped water covers the
-  full reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes
-  7,580 ac at full pool.
-  TWRA's South Holston Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and Washington
+  County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726).
+  Discharges the South Holston tailwater (south-holston-river) toward Boone Lake. The lake crosses the state
+  line into Virginia, so the mapped water covers the full reservoir. TWRA maps the Tennessee portion at 6,019
+  ac; TVA publishes 7,580 ac at full pool. TWRA's South Holston Reservoir page lists the fishery as largemouth
+  bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+
+
+  Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA annually stocks trout in the
+  reservoir (lake + lake trout named); stocking months unpinned — left unset.
 officialSources:
   - label: USGS Water Data — monitoring location 03476500 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03476500/
@@ -60,3 +62,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — South Holston Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+fishery: stocked

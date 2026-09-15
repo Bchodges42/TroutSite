@@ -6,17 +6,21 @@ display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03436100"
-stockingProgram: true
-species: trout
-fishery: stocked
-yearRound: false
+stockingProgram: false
+species: warmwater
 idealFlow:
   - min: 60
     max: 500
     unit: cfs
 idealFlowSource: editorial
-notes: TWRA winter-stocked reaches near Clarksville. Mud-prone watershed — check the Port Royal
-  gauge after any rain.
+notes: >-
+  Warmwater Clarksville river (bass and catfish water). Mud-prone watershed — check the Port Royal gauge after any
+  rain.
+
+
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
+  Warmwater river (smallmouth/largemouth/spotted bass, white bass, catfish); no TWRA trout stocking row or
+  trout record. (retrieved 2026-09-14).
 officialSources:
   - label: USGS Water Data — monitoring location 03436100
     url: https://waterdata.usgs.gov/monitoring-location/03436100/

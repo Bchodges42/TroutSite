@@ -7,17 +7,24 @@ regionId: tn-cumberland-plateau
 gaugeIds:
   - "03539778"
 stockingProgram: false
-species: trout
-fishery: wild
+species: warmwater
 idealFlow:
   - min: 20
     max: 150
     unit: cfs
 idealFlowSource: editorial
-notes: Wild rainbows and the famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at
-  Lilly Bridge is the go/no-go read.
+notes: >-
+  The famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at Lilly Bridge is
+  the go/no-go read.
+
+
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
+  Obed-system creek; warmwater fish community, zero salmonids in NPS records, summer temps ~30 °C. (retrieved
+  2026-09-14).
 officialSources:
   - label: USGS Water Data — monitoring location 03539778
     url: https://waterdata.usgs.gov/monitoring-location/03539778/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
+    url: https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm

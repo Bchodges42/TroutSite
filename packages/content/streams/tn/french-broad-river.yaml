@@ -6,19 +6,22 @@ display: featured
 regionId: tn-east-pigeon-frenchbroad
 gaugeIds: []
 stockingProgram: false
-species: trout
-fishery: tailwater
+species: warmwater
 idealFlow:
   - min: 300
     max: 2000
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Cold Douglas Dam releases support a quieter, fringe trout fishery near the dam; TWRA’s stocking
-  dataset does not currently list it — flag set conservatively. Flow is TVA-scheduled; verify releases.
-  The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence.
-  TWRA's statewide regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17 in protected length range upstream. (see officialSources).
+  Warmwater river below Douglas Dam — smallmouth and crappie country. Flow is TVA-scheduled; verify releases. The river enters
+  from North Carolina and runs through Douglas Lake down to the Holston confluence. TWRA's statewide
+  regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17 in
+  protected length range upstream. (see officialSources).
 
+
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — The
+  Tennessee reach below Douglas Dam is a warmwater smallmouth/crappie fishery; TWRA stocks no trout row; trout
+  mentions belong to the NC headwaters. (retrieved 2026-09-14).
 officialSources:
   - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03468510/
@@ -32,3 +35,5 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+  - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html

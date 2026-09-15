@@ -5,18 +5,21 @@ waterbodyType: river
 display: standard
 regionId: tn-east-smokies
 gaugeIds: []
-stockingProgram: false
-species: warmwater
+stockingProgram: true
+species: trout
 idealFlow: []
 notes: >-
-  Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the
-  Calderwood and Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features;
-  no tailwater condition scoring is applied across a reservoir) to its mouth at the Tennessee River in
-  Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main-
-  stem sequence; the trout-stocked upper water is the reach below Chilhowee Dam — verify current TWRA
-  schedules. Distinct from the Tellico River (tellico-river), a different tributary near Tellico Plains.
-  USGS 03519750 (Little Tennessee River at Davis Ferry) sits mid-pool.
+  Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the Calderwood and
+  Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features; no tailwater condition
+  scoring is applied across a reservoir) to its mouth at the Tennessee River in Fort Loudoun Lake below
+  Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main- stem sequence; the trout-stocked
+  upper water is the reach below Chilhowee Dam — verify current TWRA schedules. Distinct from the Tellico
+  River (tellico-river), a different tributary near Tellico Plains. USGS 03519750 (Little Tennessee River at
+  Davis Ferry) sits mid-pool.
 
+
+  Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — Trout water is the
+  Chilhowee-tailwater reach (upper Little Tennessee arm); late-winter/early-spring rainbow plants per TWRA.
 officialSources:
   - label: USGS Water Data — monitoring location 03519750
     url: https://waterdata.usgs.gov/monitoring-location/03519750/
@@ -26,3 +29,12 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html
+fishery: stocked
+yearRound: false
+seasonMonths:
+  - 2
+  - 3
+  - 4
+seasonKind: programmatic
