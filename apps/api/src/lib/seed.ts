@@ -10,6 +10,7 @@ export interface SeedResult {
 interface StreamRow {
   id: string;
   name: string;
+  aliases: string;
   state_id: string;
   waterbody_type: string;
   region_id: string;
@@ -19,6 +20,8 @@ interface StreamRow {
   notes: string | null;
   official_sources: string;
   species: string | null;
+  fishery: string | null;
+  year_round: number | null;
 }
 
 interface ShopRow {
@@ -37,14 +40,15 @@ interface ShopRow {
  */
 export function seedContent(db: Db, contentDir: string): SeedResult {
   const insertStream = db.prepare(`
-    INSERT INTO streams (id, name, state_id, waterbody_type, region_id, gauge_ids,
-                         stocking_program, ideal_flow, notes, official_sources, species)
-    VALUES (@id, @name, @state_id, @waterbody_type, @region_id, @gauge_ids,
-            @stocking_program, @ideal_flow, @notes, @official_sources, @species)
+    INSERT INTO streams (id, name, aliases, state_id, waterbody_type, region_id, gauge_ids,
+                         stocking_program, ideal_flow, notes, official_sources, species, fishery, year_round)
+    VALUES (@id, @name, @aliases, @state_id, @waterbody_type, @region_id, @gauge_ids,
+            @stocking_program, @ideal_flow, @notes, @official_sources, @species, @fishery, @year_round)
     ON CONFLICT(id) DO UPDATE SET
-      name=@name, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
+      name=@name, aliases=@aliases, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
       gauge_ids=@gauge_ids, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
-      notes=@notes, official_sources=@official_sources, species=@species
+      notes=@notes, official_sources=@official_sources, species=@species,
+      fishery=@fishery, year_round=@year_round
   `);
   const insertShop = db.prepare(`
     INSERT INTO shops (id, name, state_id, town, website_url, reports_enabled)
@@ -66,6 +70,7 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
     const row: StreamRow = {
       id: s.id,
       name: s.name,
+      aliases: JSON.stringify(s.aliases ?? []),
       state_id: s.stateId,
       waterbody_type: s.waterbodyType,
       region_id: s.regionId,
@@ -75,6 +80,8 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
       notes: s.notes ?? null,
       official_sources: JSON.stringify(s.officialSources),
       species: s.species ?? null,
+      fishery: s.fishery ?? null,
+      year_round: s.yearRound == null ? null : s.yearRound ? 1 : 0,
     };
     insertStream.run(row);
     streams += 1;

@@ -39,6 +39,8 @@ export type LabelGateContext = {
   extent: number;
   /** Current map zoom. */
   zoom: number;
+  /** Optional cataloged visibility tier; membership and prominence are separate. */
+  labelMinZoom?: number;
   selected: boolean;
   assessed: boolean;
 };
@@ -63,8 +65,14 @@ export function shouldShowLabel(water: LabelWater, ctx: LabelGateContext): boole
   // by prominence, not by assessment (assessedIds only contains confirmed
   // trout, but the policy stays honest on its own terms).
   if (ctx.mode === 'trout' && !ctx.troutIds.has(water.id)) return false;
-  const zoomGate = ctx.extent >= MINOR_EXTENT ? ctx.zoom >= APPROACH_ZOOM : ctx.zoom >= LOCAL_ZOOM;
-  return ctx.extent >= MAJOR_EXTENT || zoomGate || ctx.assessed;
+  const zoomGate =
+    ctx.labelMinZoom != null
+      ? ctx.zoom >= ctx.labelMinZoom
+      : ctx.extent >= MINOR_EXTENT
+        ? ctx.zoom >= APPROACH_ZOOM
+        : ctx.zoom >= LOCAL_ZOOM;
+  const major = ctx.labelMinZoom == null && ctx.extent >= MAJOR_EXTENT;
+  return major || zoomGate || ctx.assessed;
 }
 
 export type LabelSpeciesNote = 'Warmwater' | 'Unverified' | null;

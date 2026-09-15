@@ -27,8 +27,12 @@ const streams = [
 
 describe('normalizeWaterName', () => {
   it('expands TWRA abbreviations and strips decoration', () => {
-    expect(normalizeWaterName('Center Hill TW / Caney Fork River')).toBe('center hill tailwater caney fork river');
-    expect(normalizeWaterName('Apalachia TW / Hiwassee River*')).toBe('apalachia tailwater hiwassee river');
+    expect(normalizeWaterName('Center Hill TW / Caney Fork River')).toBe(
+      'center hill tailwater caney fork river',
+    );
+    expect(normalizeWaterName('Apalachia TW / Hiwassee River*')).toBe(
+      'apalachia tailwater hiwassee river',
+    );
     expect(normalizeWaterName('Mossy Creek (NEW)')).toBe('mossy creek');
   });
 });
@@ -53,6 +57,22 @@ describe('matchStocking', () => {
     expect(byStream.get('east-fork-shoal-creek')).toBeUndefined();
   });
 
+  it('matches an unambiguous catalog alias but rejects shared aliases', () => {
+    const aliased = [
+      { id: 'big-soddy-creek', name: 'Big Soddy Creek', aliases: ['Soddy Creek'] },
+      { id: 'piney-river-hickman', name: 'Piney River (Hickman County)', aliases: ['Piney River'] },
+      { id: 'piney-river-rhea', name: 'Piney River (Rhea County)', aliases: ['Piney River'] },
+    ];
+    const { byStream, unmatched } = matchStocking(aliased, [
+      event('Soddy Creek'),
+      event('Piney River'),
+    ]);
+    expect(byStream.get('big-soddy-creek')).toHaveLength(1);
+    expect(byStream.get('piney-river-hickman')).toBeUndefined();
+    expect(byStream.get('piney-river-rhea')).toBeUndefined();
+    expect(unmatched).toBe(1);
+  });
+
   it('leaves ambiguous containments unmatched (Sequatchie vs Little Sequatchie)', () => {
     const { byStream, unmatched } = matchStocking(streams, [event('Sequatchie River')]);
     expect(byStream.get('sequatchie-river')).toBeUndefined();
@@ -60,13 +80,13 @@ describe('matchStocking', () => {
     expect(unmatched).toBe(1);
   });
 
-  it('does not let one water\'s events leak into a first-word sibling', () => {
+  it("does not let one water's events leak into a first-word sibling", () => {
     const { byStream } = matchStocking(streams, [event('East Fork Shoal Creek')]);
     expect(byStream.get('east-fork-shoal-creek')).toHaveLength(1);
     expect(byStream.get('shoal-creek')).toBeUndefined();
   });
 
-  it('sorts each stream\'s events newest-first', () => {
+  it("sorts each stream's events newest-first", () => {
     const { byStream } = matchStocking(streams, [
       { ...event('Shoal Creek', 'a'), date: '2026-01-15' },
       { ...event('Shoal Creek', 'b'), date: '2026-04-02' },
@@ -97,7 +117,9 @@ describe('matchStocking against the real cached TWRA feed', () => {
 
   itForPublishedFeed('associates the published tailwater rows with their catalog reaches', () => {
     const events = JSON.parse(fs.readFileSync(publishedFeed, 'utf8')) as StockingEvent[];
-    const streams = JSON.parse(fs.readFileSync(path.join(webRoot, 'public/v1/streams.json'), 'utf8')) as Array<{ id: string; name: string }>;
+    const streams = JSON.parse(
+      fs.readFileSync(path.join(webRoot, 'public/v1/streams.json'), 'utf8'),
+    ) as Array<{ id: string; name: string }>;
     const { byStream, unmatched } = matchStocking(streams, events);
 
     expect(events.length).toBeGreaterThan(400);

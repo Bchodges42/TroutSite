@@ -1,0 +1,14 @@
+id: forked-deer-river
+name: Forked Deer River
+stateId: TN
+waterbodyType: river
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Principal West Tennessee river below the confluence of its major forks, flowing toward the Mississippi. General fishing water; verify current access and regulations.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

@@ -1,0 +1,16 @@
+id: yellow-creek-houston
+name: Yellow Creek (Houston/Dickson Counties)
+aliases:
+  - Yellow Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-middle-nashville
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Large lower Cumberland tributary in Houston and Dickson counties. The county qualifier distinguishes it from other Yellow Creeks.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

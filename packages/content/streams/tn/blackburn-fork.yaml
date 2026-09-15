@@ -1,0 +1,16 @@
+id: blackburn-fork
+name: Blackburn Fork
+aliases:
+  - Blackburn Fork Creek
+stateId: TN
+waterbodyType: river
+regionId: tn-upper-cumberland
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: State scenic-river and recreation water in the Upper Cumberland. It is promoted for regional fishing importance despite its smaller size.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

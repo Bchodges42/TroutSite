@@ -1,0 +1,14 @@
+id: south-fork-forked-deer-river
+name: South Fork Forked Deer River
+stateId: TN
+waterbodyType: river
+regionId: tn-west
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Long West Tennessee fork through the Jackson and lowland corridor; one of the region’s principal fishable rivers.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

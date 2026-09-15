@@ -49,6 +49,7 @@ export interface BuildOptions {
 interface StreamRow {
   id: string;
   name: string;
+  aliases: string;
   state_id: string;
   waterbody_type: string;
   region_id: string;
@@ -56,6 +57,8 @@ interface StreamRow {
   stocking_program: number;
   ideal_flow: string;
   species: string | null;
+  fishery: string | null;
+  year_round: number | null;
   notes: string | null;
   official_sources: string;
 }
@@ -82,10 +85,12 @@ interface ReportRow {
 }
 
 function rowsToStreams(rows: StreamRow[]): Stream[] {
-  return rows.map((r) =>
-    StreamSchema.parse({
+  return rows.map((r) => {
+    const aliases = JSON.parse(r.aliases) as string[];
+    return StreamSchema.parse({
       id: r.id,
       name: r.name,
+      ...(aliases.length ? { aliases } : {}),
       stateId: r.state_id,
       waterbodyType: r.waterbody_type,
       regionId: r.region_id,
@@ -94,9 +99,11 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       idealFlow: JSON.parse(r.ideal_flow),
       ...(r.notes ? { notes: r.notes } : {}),
       ...(r.species ? { species: r.species as 'trout' | 'warmwater' } : {}),
+      ...(r.fishery ? { fishery: r.fishery as 'wild' | 'stocked' | 'tailwater' } : {}),
+      ...(r.year_round == null ? {} : { yearRound: r.year_round === 1 }),
       officialSources: JSON.parse(r.official_sources),
-    }),
-  );
+    });
+  });
 }
 
 function rowsToShops(rows: ShopRow[]): Shop[] {
@@ -187,7 +194,8 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   const nextExpectedUpdate = new Date(now.getTime() + (gaugesOk ? conditionsTtl : 0)).toISOString();
   const fetchedAt = now.toISOString();
   const conditions: ConditionSnapshot[] = streams.map((s) => {
-    const streamReadings = s.gaugeIds.length > 0 ? readings.filter((r) => s.gaugeIds.includes(r.gaugeId)) : [];
+    const streamReadings =
+      s.gaugeIds.length > 0 ? readings.filter((r) => s.gaugeIds.includes(r.gaugeId)) : [];
     return ConditionSnapshotSchema.parse({
       streamId: s.id,
       readings: streamReadings,
@@ -292,13 +300,17 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     .prepare('SELECT payload FROM evidence_runs ORDER BY retrieved_at DESC, id DESC LIMIT 1')
     .get() as { payload: string } | undefined;
   if (evidenceRow) {
-    const evidence = WaterEvidenceSetSchema.parse(JSON.parse(evidenceRow.payload)) as WaterEvidence[];
+    const evidence = WaterEvidenceSetSchema.parse(
+      JSON.parse(evidenceRow.payload),
+    ) as WaterEvidence[];
     const evidencePath = join(v1Dir, 'evidence', 'waters.json');
     writeJsonAtomic(evidencePath, evidence);
     files.push(evidencePath);
     evidenceWaters = evidence.length;
   } else {
-    warnings.push('no evidence_runs yet — /v1/evidence/waters.json not regenerated (run the evidence job)');
+    warnings.push(
+      'no evidence_runs yet — /v1/evidence/waters.json not regenerated (run the evidence job)',
+    );
   }
 
   // ── v1/hatch/{regionId}/{month}.json + content/{taxa,patterns}.json ────────
@@ -337,7 +349,9 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
       .map((d) => d.name);
     const keptRegions: string[] = [];
     for (const region of regionDirs) {
-      const monthFiles = readdirSync(join(hatchRoot, region)).filter((f) => /^\d{1,2}\.json$/.test(f));
+      const monthFiles = readdirSync(join(hatchRoot, region)).filter((f) =>
+        /^\d{1,2}\.json$/.test(f),
+      );
       if (monthFiles.length === 0) continue;
       keptRegions.push(region);
       for (const f of monthFiles) {

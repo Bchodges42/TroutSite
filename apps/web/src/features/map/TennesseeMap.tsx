@@ -585,8 +585,7 @@ export function TennesseeMap(props: Props) {
       // on. Rebuilt from latest props so a species-filter change lands on the
       // next frame without rebuilding markers.
       const troutIds = new Set<string>();
-      if (p.labelSpecies)
-        for (const [id, s] of p.labelSpecies) if (s === 'trout') troutIds.add(id);
+      if (p.labelSpecies) for (const [id, s] of p.labelSpecies) if (s === 'trout') troutIds.add(id);
       // Priority: selection first, then prominence (extent), then assessment
       // availability, then name for determinism. Big lakes and major rivers
       // now compete on extent instead of every still water outranking every
@@ -619,8 +618,7 @@ export function TennesseeMap(props: Props) {
             (note ? ', ' + note : '') +
             (assessed ? '' : ', ' + unassessedWord),
         );
-        el.title =
-          kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
+        el.title = kindWord + (note ? ' · ' + note : '') + (assessed ? '' : ' · ' + unassessedWord);
         const point = map.project(river.anchor as [number, number]);
         // Visibility: the waterDecision filter pass (visibleIds) plus the
         // pure mode-aware prominence gate. Selected/assessed trout always
@@ -635,6 +633,7 @@ export function TennesseeMap(props: Props) {
               troutIds,
               extent,
               zoom: z,
+              labelMinZoom: river.labelMinZoom,
               selected,
               assessed,
             },

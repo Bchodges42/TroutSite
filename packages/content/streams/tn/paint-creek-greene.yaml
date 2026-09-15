@@ -1,0 +1,21 @@
+id: paint-creek-greene
+name: Paint Creek (Greene County)
+aliases:
+  - Paint Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-east-pigeon-frenchbroad
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow: []
+notes: Cherokee National Forest creek with seasonal and delayed-harvest trout stocking. The county qualifier distinguishes it from other Tennessee Paint Creeks.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Trout Fishing & Stockings
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

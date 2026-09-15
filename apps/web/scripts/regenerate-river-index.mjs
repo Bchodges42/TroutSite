@@ -24,14 +24,22 @@ function resolveWebRoot() {
 
 const gj = JSON.parse(readFileSync(geoPath, 'utf8'));
 const index = gj.features.map((f) => {
-  const { id, name, bounds, labelAnchor } = f.properties;
+  const { id, name, bounds, labelAnchor, labelMinZoom } = f.properties;
   const c = f.geometry.coordinates;
   const first = Array.isArray(c[0][0]) ? c[0][0] : c[0];
   const anchor = labelAnchor ?? (f.geometry.type === 'Point' ? c : first);
-  return { id, name, anchor, bounds: bounds ?? [anchor[0], anchor[1], anchor[0], anchor[1]] };
+  return {
+    id,
+    name,
+    anchor,
+    bounds: bounds ?? [anchor[0], anchor[1], anchor[0], anchor[1]],
+    ...(labelMinZoom == null ? {} : { labelMinZoom }),
+  };
 });
 index.sort((a, b) => a.id.localeCompare(b.id));
 
 writeFileSync(outPath, JSON.stringify(index, null, 2) + '\n');
 const points = gj.features.filter((f) => f.geometry.type === 'Point').length;
-console.log(`riverIndex: ${index.length} entries (${gj.features.length - points} lines + ${points} point anchors) -> ${outPath}`);
+console.log(
+  `riverIndex: ${index.length} entries (${gj.features.length - points} lines + ${points} point anchors) -> ${outPath}`,
+);

@@ -9,6 +9,7 @@ import type { Db } from '../src/db.js';
 const VALID_STREAM_YAML = `\
 id: guadalupe-river-tailrace
 name: Guadalupe River (Tailrace)
+aliases: [Guadalupe tailwater]
 stateId: TX
 waterbodyType: tailrace
 regionId: tx-hill-country
@@ -82,6 +83,9 @@ describe('seedContent', () => {
       stocking_program: number;
       ideal_flow: string;
       species: string | null;
+      aliases: string;
+      fishery: string | null;
+      year_round: number | null;
     };
     expect(stream.state_id).toBe('TX');
     expect(JSON.parse(stream.gauge_ids)).toEqual(['08155500']);
@@ -89,6 +93,7 @@ describe('seedContent', () => {
     expect(JSON.parse(stream.ideal_flow)).toEqual([{ min: 100, max: 400, unit: 'cfs' }]);
     // B08: species applicability must survive the seed round trip (NULL when unset).
     expect(stream.species).toBe('trout');
+    expect(JSON.parse(stream.aliases)).toEqual(['Guadalupe tailwater']);
 
     const shop = db.prepare("SELECT * FROM shops WHERE id = 'guadalupe-trout'").get() as {
       reports_enabled: number;

@@ -3,6 +3,7 @@ import { regionName } from '../../data/regions';
 interface SearchStream {
   id: string;
   name: string;
+  aliases?: string[];
   regionId: string;
 }
 export function RiverSearch({
@@ -31,7 +32,11 @@ export function RiverSearch({
   const matches = useMemo(
     () =>
       streams
-        .filter((s) => normalize(s.name + ' ' + regionName(s.regionId)).includes(normalize(query)))
+        .filter((s) =>
+          normalize([s.name, ...(s.aliases ?? []), regionName(s.regionId)].join(' ')).includes(
+            normalize(query),
+          ),
+        )
         .sort(
           (a, b) =>
             Number(normalize(b.name).includes(normalize(query))) -

@@ -1,0 +1,14 @@
+id: west-fork-obey-river
+name: West Fork Obey River
+stateId: TN
+waterbodyType: river
+regionId: tn-upper-cumberland
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Named headwater fork of the Obey River above Dale Hollow Lake and an important local Highland Rim water.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

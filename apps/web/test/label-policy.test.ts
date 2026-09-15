@@ -22,10 +22,7 @@ function ctx(overrides: Partial<Parameters<typeof shouldShowLabel>[1]> = {}) {
 describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
   it('titles major trout waters statewide in trout mode', () => {
     expect(
-      shouldShowLabel(
-        { id: 'holston-river', species: 'trout' },
-        ctx({ extent: 0.31, zoom: 5 }),
-      ),
+      shouldShowLabel({ id: 'holston-river', species: 'trout' }, ctx({ extent: 0.31, zoom: 5 })),
     ).toBe(true);
   });
 
@@ -61,6 +58,16 @@ describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
     // The same gates in all-fish mode for a small trout water.
     expect(shouldShowLabel(pocket, ctx({ extent: 0.02, zoom: 9.4, mode: 'all' }))).toBe(false);
     expect(shouldShowLabel(pocket, ctx({ extent: 0.02, zoom: 9.5, mode: 'all' }))).toBe(true);
+  });
+
+  it('uses an explicit label tier without changing selectability', () => {
+    const water = { id: 'falling-water-river' };
+    expect(
+      shouldShowLabel(water, ctx({ mode: 'all', extent: 0.6, zoom: 8.4, labelMinZoom: 8.5 })),
+    ).toBe(false);
+    expect(
+      shouldShowLabel(water, ctx({ mode: 'all', extent: 0.6, zoom: 8.5, labelMinZoom: 8.5 })),
+    ).toBe(true);
   });
 
   it('shows an assessed small trout water at any zoom, in either mode', () => {

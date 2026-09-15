@@ -1,0 +1,14 @@
+id: chestuee-creek
+name: Chestuee Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-se-hiwassee
+gaugeIds: []
+stockingProgram: false
+idealFlow: []
+notes: Long named Hiwassee River tributary in southeast Tennessee and one of the region’s principal stream systems.
+officialSources:
+  - label: USGS — National Hydrography Dataset
+    url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
+  - label: TWRA — Tennessee fishing regulations
+    url: https://www.tn.gov/twra/fishing.html

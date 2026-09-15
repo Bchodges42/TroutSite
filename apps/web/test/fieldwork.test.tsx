@@ -251,6 +251,12 @@ describe('Accessible river search', () => {
   const streams = [
     { id: 'barren', name: 'Barren Fork River', regionId: 'tn-middle-caney-fork' },
     { id: 'caney', name: 'Caney Fork River', regionId: 'tn-middle-caney-fork' },
+    {
+      id: 'piney-hickman',
+      name: 'Piney River (Hickman County)',
+      aliases: ['Piney River'],
+      regionId: 'tn-middle-duck-elk',
+    },
   ];
   it('ranks river-name matches before region matches and supports Enter', async () => {
     const onSelect = vi.fn(),
@@ -261,6 +267,12 @@ describe('Accessible river search', () => {
     await user.keyboard('{Enter}');
     expect(onSelect).toHaveBeenCalledWith('caney');
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  });
+  it('finds a disambiguated catalog entity by its ordinary local alias', async () => {
+    const user = userEvent.setup();
+    render(<RiverSearch streams={streams} onSelect={vi.fn()} />);
+    await user.type(screen.getByRole('combobox'), 'Piney River');
+    expect(screen.getByRole('option')).toHaveTextContent('Piney River (Hickman County)');
   });
   it('supports the advertised slash shortcut and closes only the results on Escape', async () => {
     const user = userEvent.setup();
