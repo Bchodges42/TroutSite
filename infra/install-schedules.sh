@@ -30,7 +30,11 @@ source "$POSIX_PATH/infra/runtime-env.sh"
 trout_runtime_env "$POSIX_PATH"
 SCHEDULE_ENV="TROUT_API_URL=\"$API_URL\" TROUT_DB_PATH=\"$TROUT_DB_PATH\" TROUT_SNAPSHOTS_DIR=\"$TROUT_SNAPSHOTS_DIR\" TROUT_CONTENT_DIR=\"$TROUT_CONTENT_DIR\" TROUT_RAW_DIR=\"$TROUT_RAW_DIR\""
 WINDOWS_POWERSHELL="${TROUT_WINDOWS_POWERSHELL:-C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe}"
-WINDOWS_UPDATE_SCRIPT="${TROUT_WINDOWS_UPDATE_SCRIPT:-C:\\ProgramData\\TroutSite\\Tools\\update-trout.ps1}"
+# F1 (2026-09-16 infra audit): the autoupdate task must run the VERSIONED
+# in-repo wrapper (infra/update-trout.ps1), not an out-of-repo Tools script no
+# guard or alert can reach — the unversioned copy went silently dead for ten
+# days. Override only if a host genuinely needs a different entrypoint.
+WINDOWS_UPDATE_SCRIPT="${TROUT_WINDOWS_UPDATE_SCRIPT:-$(cygpath -w "$POSIX_PATH/infra/update-trout.ps1")}"
 
 jobs=(
   "trout-watchdog|*/15 or MINUTE/MO 15|bash infra/watchdog.sh"

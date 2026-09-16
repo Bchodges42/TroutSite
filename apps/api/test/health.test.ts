@@ -225,3 +225,106 @@ describe('GET /healthz conditions verdict', () => {
   });
 });
 
+
+describe('GET /healthz degraded (2026-09-16 skew retro)', () => {
+  // The ten-day blind spot this block locks shut: jobs.snapshots.status read
+  // 'error' inside the payload while `ok` stayed true and nothing acted on it.
+  // degraded/degradedReasons lift pipeline health to the top level, additively.
+  let env: TestEnv;
+  let app: ReturnType<typeof buildApp> | null = null;
+
+  const insertJob = (
+    status: string,
+    opts: { job?: string; startedMinAgo: number; finishedMinAgo?: number; detail?: unknown } = { startedMinAgo: 1 },
+  ): void => {
+    const job = opts.job ?? 'snapshots';
+    const startedAt = new Date(Date.now() - opts.startedMinAgo * 60_000).toISOString();
+    const finishedAt =
+      opts.finishedMinAgo === undefined ? null : new Date(Date.now() - opts.finishedMinAgo * 60_000).toISOString();
+    env.db
+      .prepare('INSERT INTO jobs_log (job, status, started_at, finished_at, detail) VALUES (?, ?, ?, ?, ?)')
+      .run(job, status, startedAt, finishedAt, opts.detail === undefined ? null : JSON.stringify(opts.detail));
+  };
+
+  beforeEach(() => {
+    env = makeEnv();
+    // Green read path (C1 gate): a fresh, assessed conditions feed, so `ok`
+    // reflects the read path and these tests isolate the degraded flag.
+    const t = new Date().toISOString();
+    writeFeed(env.snapshotsDir, [
+      {
+        streamId: 's',
+        readings: [{ gaugeId: '03533000', timestamp: t, cfs: 100 }],
+        score: { value: 70, assessed: true, reasons: [] },
+        fetchedAt: t,
+        nextExpectedUpdate: new Date(Date.now() + 3_600_000).toISOString(),
+      },
+    ]);
+  });
+
+  afterEach(async () => {
+    if (app) await app.close();
+    app = null;
+    try {
+      env.db.close();
+    } catch {
+      /* already closed */
+    }
+    rmSync(env.dir, { recursive: true, force: true, maxRetries: 3 });
+  });
+
+  it('flags an errored snapshots run WITHOUT flipping ok (read path still serving)', async () => {
+    insertJob('error', {
+      startedMinAgo: 65,
+      finishedMinAgo: 64,
+      detail: { error: 'hydroIdentity is required for selectable line waters' },
+    });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.ok).toBe(true);
+    expect(body.degraded).toBe(true);
+    expect(body.degradedReasons.join(' ')).toMatch(
+      /snapshots: last run errored: hydroIdentity is required for selectable line waters/,
+    );
+  });
+
+  it('flags a quiet hourly pipeline (snapshots finished > 24h ago)', async () => {
+    insertJob('ok', { startedMinAgo: 25 * 60, finishedMinAgo: 25 * 60 });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.degraded).toBe(true);
+    expect(body.degradedReasons.join(' ')).toMatch(/snapshots: finished \d+h ago/);
+  });
+
+  it('flags a stuck running run (over an hour in running state)', async () => {
+    insertJob('running', { startedMinAgo: 90 });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.degraded).toBe(true);
+    expect(body.degradedReasons.join(' ')).toMatch(/snapshots: running for 1h/);
+  });
+
+  it('stays clean when the pipeline is fresh and ok', async () => {
+    insertJob('ok', { job: 'seed', startedMinAgo: 60, finishedMinAgo: 59 });
+    insertJob('ok', { startedMinAgo: 30, finishedMinAgo: 29 });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.ok).toBe(true);
+    expect(body.degraded).toBe(false);
+    expect(body.degradedReasons).toEqual([]);
+  });
+
+  it('the bare app keeps the exact contract shape {ok:true}', async () => {
+    const bare = buildApp({ logger: false });
+    await bare.ready();
+    try {
+      expect((await bare.inject({ method: 'GET', url: '/healthz' })).json()).toEqual({ ok: true });
+    } finally {
+      await bare.close();
+    }
+  });
+});

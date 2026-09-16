@@ -474,3 +474,19 @@ loads the portal secret; production values stay laptop-only and uncommitted.
 Why: the ecosystem file must not hardcode secrets, and `trout-api` fails the portal
 closed (503) without one.
 Impact: none on the repo; operators repeat RUNBOOK §2.1 (`cp .env.example .env`).
+
+### [INFRA] 2026-09-16 — /healthz gains additive `degraded` + `degradedReasons`; `ok` unchanged
+Decision: when a DB is wired, `GET /healthz` additionally returns
+`degraded: boolean` and `degradedReasons: string[]` (`apps/api/src/jobs/run.ts`
+`jobDegradation`). degraded=true when the latest `jobs_log` run of any job is
+`error`, a `running` row is stuck over one hour, or an hourly-pipeline job
+(`seed`, `snapshots`) has not finished within 24 hours. The bare (no-DB) app
+still returns exactly `{ ok: true }`; `ok` continues to gate ONLY the read path
+(conditions + fishability verdicts).
+Why: the 2026-09-06..16 host skew served good (stale) data for ten days while
+`jobs.snapshots.status` read "error" inside the payload and nothing read it.
+`ok:false` would have been wrong (visitors were served), so pipeline health
+gets its own additive surface; `infra/watchdog.sh` reads it into a `DEGRADED`
+status and pages once, `infra/verify-site.sh` prints it as a non-fatal WARN.
+Impact: additive (§6-consumable) — existing consumers asserting `ok === true`
+are unaffected; dashboards should alert on `degraded === true`.

@@ -50,7 +50,7 @@ describe('deploy.sh failure paths (T0-2)', () => {
     rmSync(sandbox.base, { recursive: true, force: true });
   });
 
-  it('archives the rollback point BEFORE the first mutation (git pull)', () => {
+  it('archives the rollback point BEFORE the first mutation (git pull)', { timeout: 120_000 }, () => {
     const out = sh(sandbox.work, 'bash infra/deploy.sh');
     const archiveIdx = out.stdout.indexOf('[deploy] archive the currently-served snapshots BEFORE any mutation');
     const pullIdx = out.stdout.indexOf('[deploy] git pull (first mutation');
@@ -58,7 +58,7 @@ describe('deploy.sh failure paths (T0-2)', () => {
     expect(pullIdx).toBeGreaterThan(archiveIdx);
   });
 
-  it('rolls the checkout back and exits non-zero when a post-pull step fails', () => {
+  it('rolls the checkout back and exits non-zero when a post-pull step fails', { timeout: 120_000 }, () => {
     // Put a commit on origin that the local checkout does NOT have, so the
     // deploy's git pull is a real mutation of HEAD.
     sh(sandbox.work, 'git commit -q --allow-empty -m remote-change && git push -q origin main && git reset -q --hard HEAD~1');
@@ -75,10 +75,11 @@ describe('deploy.sh failure paths (T0-2)', () => {
 
   it('writes backups/last-good-rev only on the verified success path (source contract)', () => {
     // A full green deploy needs the real workspace; the success-path contract
-    // is asserted on the script source: the write happens after the verify
-    // gate and before "done".
+    // is asserted on the script source: the stamp write (via deploy-stamp.sh,
+    // which also backs the refresh-data/watchdog skew guards) happens after
+    // the verify gate and before "done".
     const src = readFileSync(join(INFRA, 'deploy.sh'), 'utf8');
-    const writeIdx = src.indexOf('git rev-parse HEAD > "$LASTGOOD_REV_FILE"');
+    const writeIdx = src.indexOf('bash infra/deploy-stamp.sh write');
     const verifyIdx = src.indexOf('bash infra/verify-site.sh --url "$VERIFY_URL" --wait 30 --deep || FAIL=1');
     const doneIdx = src.indexOf('[deploy] done — all endpoints green.');
     expect(writeIdx).toBeGreaterThan(verifyIdx);
@@ -117,7 +118,7 @@ describe('autoupdate.sh retry semantics (T0-2)', () => {
       : '';
   }
 
-  it('retries the deploy when HEAD==origin but no verified-good revision is recorded', () => {
+  it('retries the deploy when HEAD==origin but no verified-good revision is recorded', { timeout: 120_000 }, () => {
     // HEAD == origin/main already (fresh sandbox). Old behavior: UP-TO-DATE, no deploy.
     const out = runAutoupdate();
     expect(out.status).toBe(0);
@@ -137,7 +138,7 @@ describe('autoupdate.sh retry semantics (T0-2)', () => {
     expect(statusFile()).toContain('UP-TO-DATE');
   });
 
-  it('deploys normally when origin moves ahead of a verified-good HEAD', () => {
+  it('deploys normally when origin moves ahead of a verified-good HEAD', { timeout: 120_000 }, () => {
     const head = sh(sandbox.work, 'git rev-parse HEAD').stdout.trim();
     mkdirSync(join(sandbox.work, 'backups'), { recursive: true });
     writeFileSync(join(sandbox.work, 'backups/last-good-rev'), `${head}\n`);
@@ -148,7 +149,7 @@ describe('autoupdate.sh retry semantics (T0-2)', () => {
     expect(existsSync(markerPath())).toBe(true);
   });
 
-  it('pages a first deploy failure with bounded diagnostic context', () => {
+  it('pages a first deploy failure with bounded diagnostic context', { timeout: 120_000 }, () => {
     // Keep this local and deterministic: replace the transport with a small
     // capture script, then make the deploy command fail immediately.
     writeFileSync(

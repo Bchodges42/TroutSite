@@ -13,7 +13,7 @@
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "test:infra": "node --test infra/static-server.test.mjs",
+    "test:infra": "node --test infra/static-server.test.mjs infra/skew-guards.test.mjs",
     "lint": "pnpm -r lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
