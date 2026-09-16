@@ -180,6 +180,17 @@ function compressMonthList(labels: string[]): string {
   return runs.map(([a, b]) => (a === b ? MONTH_ABBRS[a]! : `${MONTH_ABBRS[a]}–${MONTH_ABBRS[b]}`)).join(', ');
 }
 
+/** [3,4,5,12] → "Mar–May, Dec"; a year-end wrap merges into one run (Nov+Dec+Jan → "Nov–Jan"). */
+export function monthWindowLabel(months: number[]): string {
+  return compressMonthList(
+    months
+      .slice()
+      .sort((a, b) => a - b)
+      .map((m) => MONTH_ABBRS[m - 1] ?? '')
+      .filter(Boolean),
+  );
+}
+
 const MONTH_ABBRS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 function monthIndex(abbr: string): number {

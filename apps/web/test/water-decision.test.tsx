@@ -4,6 +4,7 @@ import {
   decisionStatusText,
   metricLabel,
   seasonalChipText,
+  seasonalVerdict,
   toWaterDecisionView,
 } from '../src/features/map/waterDecision';
 import type { ConditionSnapshot } from '@trout/contracts';
@@ -261,7 +262,26 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     expect(view.inSeason).toBe(true);
     expect(view.displayMetric).toBe('trout-condition');
     expect(view.confidence).toBe('high');
-    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — seasonal fishery');
+    // 2026-09-16 (D3): the verdict derives from the window itself — an
+    // open window reads "in season", never a hardcoded winter-only shape.
+    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — in season');
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Good');
+  });
+
+  it('a year-round programmatic water (caney-fork shape) never reads winter-only', () => {
+    // caney-fork-river: yearRound true, window Mar–Dec, programmatic stocking —
+    // in September it is in season and the verdict must say so.
+    const f = feature({ score: 82 });
+    const caney = {
+      ...f,
+      stream: { ...f.stream, yearRound: true, seasonMonths: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12], seasonKind: 'programmatic' as const },
+    };
+    const view = toWaterDecisionView(caney, 'trout', 9);
+    expect(view.troutApplicability).toBe('seasonal-uncertain');
+    expect(view.inSeason).toBe(true);
+    expect(seasonalVerdict(view)?.title).toBe('PROGRAMMATIC — year-round program');
+    expect(seasonalVerdict(view)?.windowLabel).toBe('Mar–Dec');
+    expect(seasonalVerdict(view)?.prose).not.toMatch(/winter|cold months/);
     expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Good');
   });
 
