@@ -69,9 +69,7 @@ describe('statewide selectable-river expansion', () => {
   });
 
   it('ships an authored display tier and the same exact PID list in the camera index', () => {
-    for (const feature of atlas.features.filter((row) =>
-      ['river', 'creek', 'tailrace', 'spring'].includes(row.properties.waterbodyType ?? ''),
-    )) {
+    for (const feature of atlas.features) {
       const entry = indexById.get(feature.properties.id);
       expect(['featured', 'standard', 'reference']).toContain(feature.properties.displayTier);
       expect(entry?.nhdPermanentIds).toEqual(feature.properties.nhdPermanentIds ?? []);

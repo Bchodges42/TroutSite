@@ -168,6 +168,8 @@ export function clustersToRelease(
 // most once per session regardless of viewport churn; removal only drops the
 // MapLibre source, never the cached bytes.
 let manifestCache: Promise<NetworkManifest | null> | null = null;
+/** Shared byte cache: remounting the map cannot refetch a cluster this page already has. */
+const clusterDataCache = new Map<string, Promise<NetworkFeatureCollection | null>>();
 /** Actual cluster URL fetches, in order; exposed only through the DEV seam. */
 const fetchLog: string[] = [];
 
@@ -218,6 +220,8 @@ export interface NetworkSchedulerOptions {
   clusters: NetworkManifestCluster[];
   adapter: NetworkSchedulerAdapter;
   fetchCluster: (cluster: NetworkManifestCluster) => Promise<NetworkFeatureCollection | null>;
+  /** Optional page-session byte cache shared by map remounts. */
+  byteCache?: Map<string, Promise<NetworkFeatureCollection | null>>;
   onChange?: (counters: NetworkSchedulerCounters) => void;
 }
 
@@ -231,7 +235,7 @@ export class LatestOnlyNetworkScheduler {
   private readonly adapter: NetworkSchedulerAdapter;
   private readonly fetchCluster: NetworkSchedulerOptions['fetchCluster'];
   private readonly onChange?: NetworkSchedulerOptions['onChange'];
-  private readonly bytes = new Map<string, Promise<NetworkFeatureCollection | null>>();
+  private readonly bytes: Map<string, Promise<NetworkFeatureCollection | null>>;
   private readonly loaded = new Set<string>();
   private readonly loadOrder = new Map<string, number>();
   private latest: NetworkViewportRequest | null = null;
@@ -246,6 +250,7 @@ export class LatestOnlyNetworkScheduler {
     this.clusters = options.clusters;
     this.adapter = options.adapter;
     this.fetchCluster = options.fetchCluster;
+    this.bytes = options.byteCache ?? new Map();
     this.onChange = options.onChange;
   }
 
@@ -463,6 +468,8 @@ export function initNetworkClusters(
     (window as unknown as Record<string, unknown>).__troutNetwork = {
       manifestClusters: manifest.clusters.map((c) => c.id),
       ...counters,
+      // This is a page-session diagnostic, not a per-map scheduler count.
+      fetches: fetchLog.length,
       fetchedFiles: [...fetchLog],
       fetchedOnce: new Set(fetchLog).size === fetchLog.length,
     };
@@ -499,6 +506,7 @@ export function initNetworkClusters(
         fetchLog.push(url);
         return fetch(url).then((res) => (res.ok ? res.json() : null));
       },
+      byteCache: clusterDataCache,
       onChange: (counters) => publish(manifest, counters),
     });
     return scheduler;
@@ -537,5 +545,6 @@ export function initNetworkClusters(
 /** Test seam: reset the per-session caches (module state, not map state). */
 export function resetNetworkSessionCaches(): void {
   manifestCache = null;
+  clusterDataCache.clear();
   fetchLog.length = 0;
 }

@@ -43,8 +43,7 @@ function loadStreams() {
   return readdirSync(streamDir)
     .filter((file) => file.endsWith('.yaml'))
     .sort()
-    .map((file) => ({ file, stream: YAML.parse(readFileSync(join(streamDir, file), 'utf8')) }))
-    .filter(({ stream }) => lineTypes.has(stream.waterbodyType));
+    .map((file) => ({ file, stream: YAML.parse(readFileSync(join(streamDir, file), 'utf8')) }));
 }
 
 function loadGraphs() {
@@ -359,7 +358,8 @@ function makeTrace(stream, feature) {
 const recipes = [];
 const builtFeatures = new Map();
 const streamById = new Map(streams.map(({ stream }) => [stream.id, stream]));
-for (const { stream } of streams.sort((a, b) => a.stream.id.localeCompare(b.stream.id))) {
+const lineStreams = streams.filter(({ stream }) => lineTypes.has(stream.waterbodyType));
+for (const { stream } of lineStreams.sort((a, b) => a.stream.id.localeCompare(b.stream.id))) {
   const existing = atlasById.get(stream.id);
   const result = makeTrace(stream, existing);
   recipes.push(result.recipe);
@@ -370,10 +370,10 @@ for (const feature of atlas.features) {
   const id = feature.properties.id;
   const replacement = builtFeatures.get(id);
   if (replacement) continue;
-  if (!lineTypes.has(feature.properties.waterbodyType)) continue;
   const stream = streamById.get(id);
   if (!stream) continue;
   feature.properties.displayTier = displayTierFor(stream, feature);
+  if (!lineTypes.has(feature.properties.waterbodyType)) continue;
   const rawIds = (feature.properties.sourceIds ?? []).map(String).filter((id) => byPid.has(id));
   feature.properties.nhdPermanentIds ??= [];
   feature.properties.nhdPlusIds ??= uniqueSorted((feature.properties.sourceIds ?? []).map(String).filter((id) => !byPid.has(id)));

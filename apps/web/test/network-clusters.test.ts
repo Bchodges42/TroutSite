@@ -266,6 +266,33 @@ describe('latest-only network scheduler', () => {
     expect(added).toEqual(['a']);
   });
 
+  it('shares byte promises across map remount schedulers', async () => {
+    const a = cluster('a', [0, 0, 1, 1]);
+    const bytes = new Map<string, Promise<NetworkFeatureCollection | null>>();
+    const first = makeAdapter();
+    const second = makeAdapter();
+    const fetchCluster = vi.fn(async () => data());
+    const one = new LatestOnlyNetworkScheduler({
+      clusters: [a],
+      adapter: first.adapter,
+      fetchCluster,
+      byteCache: bytes,
+    });
+    one.request(10, [0, 0, 1, 1]);
+    await waitFor(() => expect(first.added).toEqual(['a']));
+
+    const two = new LatestOnlyNetworkScheduler({
+      clusters: [a],
+      adapter: second.adapter,
+      fetchCluster,
+      byteCache: bytes,
+    });
+    two.request(10, [0, 0, 1, 1]);
+    await waitFor(() => expect(second.added).toEqual(['a']));
+    expect(fetchCluster).toHaveBeenCalledTimes(1);
+    expect(two.getCounters().fetches).toBe(0);
+  });
+
   it('keeps a nearby loaded cluster through the hysteresis band and bounds additions', async () => {
     const nearby = cluster('nearby', [1.1, 0, 1.2, 1]);
     const wide = Array.from({ length: NETWORK_MAX_LOADED_CLUSTERS + 2 }, (_, i) =>

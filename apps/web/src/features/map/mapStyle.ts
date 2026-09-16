@@ -156,9 +156,8 @@ export function catalogTierFilter(zoom: number): FilterSpecification {
       : zoom >= MAP_ZOOM_TIERS.standard.start
         ? ['featured', 'standard']
         : ['featured'];
-  // Still-water polygons and legacy context features do not carry a catalog
-  // display tier; preserve their established map role instead of making them
-  // disappear merely because the line catalog gained authored tiers.
+  // Every generated catalog feature carries a tier. Keep an unknown legacy
+  // feature fail-open so a malformed cache never makes a water untappable.
   return [
     'any',
     ['!', ['has', 'displayTier']],
