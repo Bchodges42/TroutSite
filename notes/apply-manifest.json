@@ -1,15 +1,14 @@
 {
  "_meta": {
   "lane": "map-prominence",
-  "date": "2026-09-16",
+  "date": "2026-09-16 (rev 2, post-review)",
   "branch": "feat/map-prominence",
   "status": "PROPOSED \u2014 DO NOT APPLY without owner approval (one-commit apply)",
-  "rule": "featured = R1 signature tailwaters (species:trout + fishery:tailwater) | R2 major trout lakes (TWRA nine-trout-reservoir list / state trout plan) | R3 minimal grand-region anchors (West/Middle/East). standard = everything else regularly fished. reference = pocket waters (unchanged).",
+  "rule": "featured = R1 signature tailwaters (species:trout + fishery:tailwater) | R2 TWRA nine-trout-reservoir lakes | R3 per-region anchors (minimal; every one of the 12 catalog regionIds contains >=1 featured trout anchor; month-by-month title coverage in regionPaint below). standard = everything else regularly fished. reference = pocket waters minus shelby-farms (promoted).",
   "labelPolicyCompanion": "abf6442 feat(map): featured anchors wear subordinate labels in trout mode",
   "applySteps": [
-   "Apply tierChanges (pnpm run atlas rebuild: node apps/web/scripts/build-selectable-water-traces.mjs)",
-   "Apply speciesFills to packages/content/streams/tn/*.yaml",
-   "Run gates: pnpm validate:content && pnpm --filter content test && pnpm --filter web test && pnpm -r build"
+   "Apply tierChanges of the CHOSEN candidate (A or B) + speciesFills in ONE commit, then node apps/web/scripts/build-selectable-water-traces.mjs to rebuild the atlas",
+   "Gates: pnpm validate:content && pnpm --filter content test && pnpm --filter web test && pnpm -r build"
   ]
  },
  "candidateA": {
@@ -27,7 +26,7 @@
    "ft-patrick-henry-tailwater",
    "harpeth-river",
    "hiwassee-river",
-   "little-river",
+   "holston-river",
    "obey-river",
    "parksville-tailwater",
    "piney-river-rhea",
@@ -35,7 +34,8 @@
    "south-holston-lake",
    "south-holston-river",
    "watauga-lake",
-   "watauga-river"
+   "watauga-river",
+   "west-prong-little-pigeon"
   ],
   "tierChanges": [
    {
@@ -129,6 +129,12 @@
     "to": "featured"
    },
    {
+    "id": "holston-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
     "id": "j-percy-priest-lake",
     "field": "display",
     "from": "featured",
@@ -145,12 +151,6 @@
     "field": "display",
     "from": "featured",
     "to": "standard"
-   },
-   {
-    "id": "little-river",
-    "field": "display",
-    "from": "standard",
-    "to": "featured"
    },
    {
     "id": "mississippi-river",
@@ -223,12 +223,55 @@
     "field": "display",
     "from": "featured",
     "to": "standard"
+   },
+   {
+    "id": "west-prong-little-pigeon",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
    }
-  ]
+  ],
+  "regionPaint": {
+   "september": {
+    "tn-cumberland-plateau": [
+     "piney-river-rhea"
+    ],
+    "tn-east-clinch": [],
+    "tn-east-holston": [
+     "fort-patrick-henry-lake",
+     "south-holston-lake",
+     "south-holston-river"
+    ],
+    "tn-east-pigeon-frenchbroad": [],
+    "tn-east-smokies": [
+     "calderwood-lake",
+     "chilhowee-lake",
+     "west-prong-little-pigeon"
+    ],
+    "tn-middle-caney-fork": [
+     "caney-fork-river"
+    ],
+    "tn-middle-duck-elk": [
+     "elk-river"
+    ],
+    "tn-middle-nashville": [],
+    "tn-northeast-watauga": [
+     "watauga-lake",
+     "watauga-river"
+    ],
+    "tn-se-hiwassee": [],
+    "tn-upper-cumberland": [
+     "dale-hollow-lake",
+     "obey-river"
+    ],
+    "tn-west": []
+   },
+   "november": {}
+  }
  },
  "candidateB": {
-  "label": "A + geographic spine (tennessee-river, mississippi-river, tellico-lake stay featured as dim subordinate context)",
-  "codeFlag": "FEATURED_WARMWATER_CONTEXT=true in apps/web/src/features/map/waterDecision.ts",
+  "label": "A + geographic spine (tennessee-river, mississippi-river, tellico-lake STAY featured as dim subordinate context)",
+  "codeFlag": "FEATURED_WARMWATER_CONTEXT=true in apps/web/src/features/map/waterDecision.ts (default false)",
   "featured": [
    "boone-tailwater",
    "calderwood-lake",
@@ -242,20 +285,204 @@
    "ft-patrick-henry-tailwater",
    "harpeth-river",
    "hiwassee-river",
-   "little-river",
-   "mississippi-river",
+   "holston-river",
    "obey-river",
    "parksville-tailwater",
    "piney-river-rhea",
    "shelby-farms-lake",
    "south-holston-lake",
    "south-holston-river",
+   "watauga-lake",
+   "watauga-river",
+   "west-prong-little-pigeon",
    "tellico-lake",
    "tennessee-river",
-   "watauga-lake",
-   "watauga-river"
+   "mississippi-river"
   ],
-  "tierChangesDelta": []
+  "tierChanges": [
+   {
+    "id": "boone-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "buffalo-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "calderwood-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "center-hill-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "cherokee-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "chickamauga-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "chilhowee-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "cumberland-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "douglas-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "duck-river-lower",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "duck-river-mouth",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "fort-loudoun-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "fort-patrick-henry-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "french-broad-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "harpeth-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "holston-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "j-percy-priest-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "kentucky-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "lake-barkley",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "norris-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "obed-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "old-hickory-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "pickwick-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "piney-river-rhea",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "reelfoot-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "shelby-farms-lake",
+    "field": "display",
+    "from": "reference",
+    "to": "featured"
+   },
+   {
+    "id": "tims-ford-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "watts-bar-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "west-prong-little-pigeon",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   }
+  ],
+  "deltaVsA": {
+   "skipDemotions": [
+    "tellico-lake",
+    "tennessee-river",
+    "mississippi-river"
+   ],
+   "why": "B keeps these three featured; applying A tierChanges + flag alone would strand them standard and the context rule (which keys on display==featured) would EXCLUDE them \u2014 no spine. Use candidateB.tierChanges wholesale."
+  }
  },
  "speciesFills": [
   {
@@ -326,46 +553,6 @@
    "source": "docs/research/SPECIES-CLASSIFICATION.md",
    "note": "bass/crappie; the winter trout site is the TW / Stones River tailwater below the dam",
    "citation": "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row 'J. Percy Priest TW / Stones River' = tailwater reach, not the lake; no lake trout row",
-   "urls": []
-  },
-  {
-   "id": "center-hill-lake",
-   "field": "species",
-   "to": "warmwater",
-   "confidence": "high",
-   "source": "docs/research/SPECIES-CLASSIFICATION.md",
-   "note": "bass/walleye reservoir; trout fishery is the Caney Fork tailwater only",
-   "citation": "Absent from TWRA trout-reservoir list (TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf)) and schedule (only the TW row exists)",
-   "urls": []
-  },
-  {
-   "id": "tims-ford-lake",
-   "field": "species",
-   "to": "warmwater",
-   "confidence": "high",
-   "source": "docs/research/SPECIES-CLASSIFICATION.md",
-   "note": "bass fishery; trout fishery is the Elk River tailwater only",
-   "citation": "Absent from TWRA trout-reservoir list + schedule",
-   "urls": []
-  },
-  {
-   "id": "norris-lake",
-   "field": "species",
-   "to": "warmwater",
-   "confidence": "high",
-   "source": "docs/research/SPECIES-CLASSIFICATION.md",
-   "note": "premier smallmouth lake + largemouth/spotted, striped bass, crappie, walleye; no lake trout program",
-   "citation": "TWRA Norris where-to-fish + absence from trout-reservoir list",
-   "urls": []
-  },
-  {
-   "id": "cherokee-lake",
-   "field": "species",
-   "to": "warmwater",
-   "confidence": "high",
-   "source": "docs/research/SPECIES-CLASSIFICATION.md",
-   "note": "largemouth/smallmouth (18-in SMB reg), Cherokee-bass hybrids, crappie, saugeye/walleye/sauger, paddlefish; no trout",
-   "citation": "TWRA Cherokee Reservoir where-to-fish + absence from trout-reservoir list",
    "urls": []
   },
   {
@@ -449,16 +636,6 @@
    "urls": []
   },
   {
-   "id": "french-broad-river",
-   "field": "species",
-   "to": "warmwater",
-   "confidence": "high",
-   "source": "docs/research/SPECIES-CLASSIFICATION.md",
-   "note": "white bass/sauger/walleye spawn runs + bass/catfish; NO TWRA trout program (fringe-trout claim DOWNGRADED)",
-   "citation": "TWRA Douglas page (no trout text) + eregulations TN (no FB trout reg) - the Oct-Feb C&R line belongs to tributary Paint Creek <br>**FLAGS:** CORRECTION: Session-1 fringe-trout ruling downgraded",
-   "urls": []
-  },
-  {
    "id": "cumberland-river",
    "field": "species",
    "to": "warmwater",
@@ -469,50 +646,55 @@
    "urls": []
   },
   {
-   "id": "duck-river-mouth",
-   "field": "species",
-   "to": "warmwater",
-   "confidence": "medium",
-   "source": "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md",
-   "note": "",
-   "citation": "",
-   "urls": []
-  },
-  {
-   "id": "obed-river",
+   "id": "pigeon-river",
    "field": "species",
    "to": "warmwater",
    "confidence": "high",
    "source": "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md",
    "note": "",
-   "citation": "Warmwater river; no trout fishery documented; ledger troutEvidence=none",
+   "citation": "wave-3 ledger: Managed warmwater river (smallmouth/walleye, state-record redhorse); trout row pairing unconfirmable in schedule scrape; troutEvidence=none",
    "urls": []
   }
  ],
+ "speciesFillNoOps": {
+  "note": "already species:warmwater in YAML \u2014 listed for the record, no edit needed",
+  "ids": [
+   "center-hill-lake",
+   "tims-ford-lake",
+   "norris-lake",
+   "cherokee-lake",
+   "french-broad-river",
+   "obed-river"
+  ]
+ },
  "flaggedNotChanged": [
   {
-   "id": "little-pigeon-river",
-   "issue": "catalog YAML claims TWRA-stocked Sevierville reach; wave-3 ledger could not confirm (troutEvidence none). Needs owner ruling; anchor went to little-river instead."
-  },
-  {
    "id": "duck-river-mouth",
-   "issue": "no ledger block, no classification row \u2014 species stays unset; demoted to standard regardless."
+   "issue": "NO ledger block and NO classification row \u2014 species stays unset; demoted to standard regardless. No fill is proposed (rev-1 manifest wrongly contained an uncited fill; removed)."
   },
   {
    "id": "tellico-lake",
-   "issue": "species trout is reach-limited (upper arm below Chilhowee Dam only, ~4,500 RB/yr); keep trout but demote in candidate A."
+   "issue": "species trout is reach-limited (upper arm below Chilhowee Dam, ~4,500 RB/yr, Feb-Apr window); demoted in A, featured in B."
   },
   {
    "id": "dale-hollow-lake",
-   "issue": "kept featured: on TWRA nine-trout-reservoir list + trout regs, but in-lake stocking row absent; trout is mostly the Obey tailwater."
+   "issue": "kept featured: on TWRA nine-trout-reservoir list + trout regs (7/day), but in-lake stocking row absent; the Obey tailwater is the real trout reach. Strike from R2 if you disagree \u2014 obey-river keeps the region anchored."
+  },
+  {
+   "id": "parksville",
+   "issue": "nine-reservoir list says \"Parksville\": catalog has only parksville-tailwater (already featured via R1), no lake entry \u2014 R2 satisfied by the tailwater; no change."
   },
   {
    "id": "clinch-river",
-   "issue": "authored seasonMonths end in August \u2014 titles Mar-Aug only at statewide zoom; verify window."
+   "issue": "authored window Mar-Aug: the Clinch REGION titles Mar-Aug only and is dark Sept-Feb. If the window should be longer (TWRA regs suggest year-round below the dam), fixing seasonMonths fixes the region \u2014 owner call."
+  },
+  {
+   "id": "little-river",
+   "issue": "ledger stockingDate 11/8/2026 is in the future \u2014 date-format or pre-scheduled-row artifact in the ledger scrape; window Feb-May + Oct-Nov disagrees with the YAML Nov-Mar fallback. Data-quality note, not changed."
   },
   {
    "id": "all-fish-mode",
-   "issue": "demoted majors title from z=9.5 in all-fish mode (today's standard behavior). If owner wants demoted majors to keep statewide labels in all-fish mode, one-line labelPolicy change: standard && extent>=MAJOR_EXTENT -> titled in all mode. Decision point, not applied."
+   "issue": "demoted majors title from z=9.5 in all-fish mode (today's standard behavior); region consequence disclosed in the package. If demoted majors should keep statewide labels in all-fish mode, one-line labelPolicy change \u2014 decision point, not applied."
   }
  ]
 }

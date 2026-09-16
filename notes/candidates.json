@@ -12,7 +12,7 @@
   "ft-patrick-henry-tailwater",
   "harpeth-river",
   "hiwassee-river",
-  "little-river",
+  "holston-river",
   "obey-river",
   "parksville-tailwater",
   "piney-river-rhea",
@@ -20,7 +20,8 @@
   "south-holston-lake",
   "south-holston-river",
   "watauga-lake",
-  "watauga-river"
+  "watauga-river",
+  "west-prong-little-pigeon"
  ],
  "candidateB": [
   "boone-tailwater",
@@ -35,7 +36,7 @@
   "ft-patrick-henry-tailwater",
   "harpeth-river",
   "hiwassee-river",
-  "little-river",
+  "holston-river",
   "mississippi-river",
   "obey-river",
   "parksville-tailwater",
@@ -46,7 +47,8 @@
   "tellico-lake",
   "tennessee-river",
   "watauga-lake",
-  "watauga-river"
+  "watauga-river",
+  "west-prong-little-pigeon"
  ],
  "current": [
   "boone-lake",
@@ -159,7 +161,7 @@
   "buffalo-river",
   "french-broad-river",
   "cumberland-river",
-  "duck-river-mouth",
+  "pigeon-river",
   "obed-river"
  ]
 }

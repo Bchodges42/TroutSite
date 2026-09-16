@@ -21,8 +21,9 @@ R2 = ['dale-hollow-lake', 'south-holston-lake', 'watauga-lake', 'chilhowee-lake'
 # ---- R3: grand-region anchors (smallest set so no grand region opens empty) ----
 R3 = {
     'piney-river-rhea': 'tn-cumberland-plateau anchor — year-round DH-style stocked Plateau stream',
-    'little-river': 'tn-east-smokies anchor — Little River (Smokies/Blount), TWRA-dated stocking + park trout corridor',
-    'harpeth-river': 'tn-middle-nashville anchor — December-stocked urban fishery, most-fished Middle trout river',
+    'west-prong-little-pigeon': 'tn-east-smokies anchor — West Prong Little Pigeon (Gatlinburg corridor), year-round trout (GSMNP + pulse stocking)',
+    'holston-river': 'tn-east-pigeon-frenchbroad anchor — Holston River below Cherokee Dam, TWRA stocking Nov-Apr (cited)',
+    'harpeth-river': 'tn-middle-nashville anchor — winter program (Eastern Flank Battle Park row; >70,000 trout program-wide), titles Dec-Feb',
     'shelby-farms-lake': 'tn-west anchor — Memphis winter put-and-take, most-fished West trout water (titles Nov-Mar only)',
 }
 R3_B = {
@@ -54,7 +55,8 @@ WARMWATER_FILLS = [
     'old-hickory-lake', 'j-percy-priest-lake', 'center-hill-lake', 'tims-ford-lake',
     'norris-lake', 'cherokee-lake', 'douglas-lake', 'boone-lake', 'fort-loudoun-lake',
     'tennessee-river', 'mississippi-river', 'lake-barkley', 'duck-river-lower',
-    'buffalo-river', 'french-broad-river', 'cumberland-river', 'duck-river-mouth',
+    'buffalo-river', 'french-broad-river', 'cumberland-river',
+    'pigeon-river',  # wave-3 ledger: managed warmwater; trout row pairing unconfirmable
     'obed-river',  # wave-3 ledger + NPS: warmwater, zero salmonids (medium confidence)
 ]
 
