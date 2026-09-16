@@ -4,6 +4,7 @@ import type {
   StyleSpecification,
   FilterSpecification,
   GeoJSONSourceSpecification,
+  ExpressionSpecification,
 } from 'maplibre-gl';
 import type { MapPalette } from '../../theme/themes';
 
@@ -75,21 +76,103 @@ function mixHex(a: string, b: string, ratio: number): string {
  *   derivatives (hillshade raster + contour band lines) beneath all river
  *   layers. RiverMapPage only selects it after the manifest probe succeeds.
  */
-// Zoom-reveal tiers (2026-09-15): catalog waters ride an authored tier —
-// 0 featured/statewide (always visible), 1 standard/regional, 2
-// reference/local. The reveal is driven through the `hidden` feature-state
-// (TennesseeMap recomputes it on zoomend) rather than a paint expression —
-// a zoom interpolate nested inside a case is ILLEGAL style-spec and fails
-// the whole style load. Selection always reveals: a tapped or deep-linked
-// water is never hidden from the person who asked for it.
-export const TIER_REVEAL_ZOOM = { regional: 7.6, local: 9.4 } as const;
+/** Single authority for catalog and detailed-context reveal thresholds. */
+export const MAP_ZOOM_TIERS = {
+  featured: { start: 5.6 },
+  standard: { start: 7.2, end: 7.8 },
+  reference: { start: 9.0, end: 9.6 },
+  context: { load: 9.4, start: 9.6, end: 10.2 },
+} as const;
+
+export type CatalogDisplayTier = 'featured' | 'standard' | 'reference';
+type StyleExpression = ExpressionSpecification;
+
+function tierOpacityStop(standard: number, reference: number): StyleExpression {
+  return [
+    'case',
+    ['==', ['get', 'displayTier'], 'featured'],
+    1,
+    ['==', ['get', 'displayTier'], 'standard'],
+    standard,
+    ['==', ['get', 'displayTier'], 'reference'],
+    reference,
+    1,
+  ];
+}
+
+/**
+ * Legal top-level zoom expression. Every stop's output may inspect feature
+ * properties; the zoom input is never nested inside a feature-state `case`.
+ */
+export const catalogTierOpacityExpression: StyleExpression = [
+  'interpolate',
+  ['linear'],
+  ['zoom'],
+  MAP_ZOOM_TIERS.featured.start,
+  tierOpacityStop(0, 0),
+  MAP_ZOOM_TIERS.standard.start,
+  tierOpacityStop(0, 0),
+  MAP_ZOOM_TIERS.standard.end,
+  tierOpacityStop(1, 0),
+  MAP_ZOOM_TIERS.reference.start,
+  tierOpacityStop(1, 0),
+  MAP_ZOOM_TIERS.reference.end,
+  tierOpacityStop(1, 1),
+];
+
+/** Tiered opacity with a selected-water escape hatch for deep links/search. */
+function catalogTieredOpacity(base: StyleExpression, selectedOpacity?: number): StyleExpression {
+  const stop = (standard: number, reference: number): StyleExpression =>
+    selectedOpacity == null
+      ? ['*', tierOpacityStop(standard, reference), base]
+      : [
+          'case',
+          ['boolean', ['feature-state', 'selected'], false],
+          selectedOpacity,
+          ['*', tierOpacityStop(standard, reference), base],
+        ];
+  return [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    MAP_ZOOM_TIERS.featured.start,
+    stop(0, 0),
+    MAP_ZOOM_TIERS.standard.start,
+    stop(0, 0),
+    MAP_ZOOM_TIERS.standard.end,
+    stop(1, 0),
+    MAP_ZOOM_TIERS.reference.start,
+    stop(1, 0),
+    MAP_ZOOM_TIERS.reference.end,
+    stop(1, 1),
+  ];
+}
+
+/** Feature filter used by the small set of pointer hit layers. */
+export function catalogTierFilter(zoom: number): FilterSpecification {
+  const tiers: CatalogDisplayTier[] =
+    zoom >= MAP_ZOOM_TIERS.reference.start
+      ? ['featured', 'standard', 'reference']
+      : zoom >= MAP_ZOOM_TIERS.standard.start
+        ? ['featured', 'standard']
+        : ['featured'];
+  // Still-water polygons and legacy context features do not carry a catalog
+  // display tier; preserve their established map role instead of making them
+  // disappear merely because the line catalog gained authored tiers.
+  return [
+    'any',
+    ['!', ['has', 'displayTier']],
+    ['match', ['get', 'displayTier'], tiers, true, false],
+  ] as unknown as FilterSpecification;
+}
 
 export function atlasStyle(
   variant: BasemapVariant = 'ink',
   palette?: MapPalette,
-  options?: { roads?: RoadsSpec },
+  options?: { roads?: RoadsSpec; reducedMotion?: boolean },
 ): StyleSpecification {
   const t = palette ?? (variant === 'paper' ? { ...atlas, ...atlasLight } : atlas);
+  const opacityTransition = { duration: options?.reducedMotion ? 0 : 200 };
   // The continuous water corridor every river line sits on: a muted water tone
   // halfway between the still-water polygon fill and the deep water accent, so
   // lines and polygons read as one hydrography system in both themes.
@@ -212,29 +295,15 @@ export function atlasStyle(
         filter: POLYS_ONLY,
         paint: {
           'fill-color': t.lakeFill,
-          'fill-opacity': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            5.5,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'dimmed'], false],
-              0.18,
-              0.72,
-            ],
-            9,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'dimmed'], false],
-              0.18,
-              0.94,
-            ],
-          ],
+          'fill-opacity': catalogTieredOpacity([
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'dimmed'], false],
+            0.18,
+            0.82,
+          ]),
+          'fill-opacity-transition': opacityTransition,
         },
       },
       // Condition wash — the polygon equivalent of the river interior.
@@ -250,18 +319,20 @@ export function atlasStyle(
             ['coalesce', ['feature-state', 'color'], t.noData],
             ['coalesce', ['feature-state', 'color'], t.noData],
           ],
-          'fill-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            ['boolean', ['feature-state', 'selected'], false],
+          'fill-opacity': catalogTieredOpacity(
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'hover'], false],
+              0.46,
+              ['boolean', ['feature-state', 'dimmed'], false],
+              0.08,
+              0.3,
+            ],
             0.55,
-            ['boolean', ['feature-state', 'hover'], false],
-            0.46,
-            ['boolean', ['feature-state', 'dimmed'], false],
-            0.08,
-            0.3,
-          ],
+          ),
+          'fill-opacity-transition': opacityTransition,
         },
       },
       // Shore hairline for wide water — 1px ink so the county-clip edges that
@@ -288,16 +359,18 @@ export function atlasStyle(
             2,
             0.8,
           ],
-          'line-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            ['boolean', ['feature-state', 'selected'], false],
+          'line-opacity': catalogTieredOpacity(
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'dimmed'], false],
+              0.25,
+              0.7,
+            ],
             1,
-            ['boolean', ['feature-state', 'dimmed'], false],
-            0.25,
-            0.7,
-          ],
+          ),
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Hatch glow for wide water — soft interior wash, never a ring outline.
@@ -313,14 +386,15 @@ export function atlasStyle(
             ['get', 'hatchColor'],
             t.sulphur,
           ],
-          'fill-opacity': [
+          'fill-opacity': catalogTieredOpacity([
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
             0,
             ['boolean', ['feature-state', 'hatchActive'], false],
             0.24,
             0,
-          ],
+          ]),
+          'fill-opacity-transition': opacityTransition,
         },
       },
       // Rivers — selection/hover casing. An unselected river has no shadow or
@@ -367,6 +441,7 @@ export function atlasStyle(
             0.18,
             0,
           ],
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Continuous water corridor — a solid, muted water-colored base under
@@ -393,7 +468,7 @@ export function atlasStyle(
             1.8,
             3.2,
           ],
-          'line-opacity': [
+          'line-opacity': catalogTieredOpacity([
             'case',
             ['boolean', ['feature-state', 'hidden'], false],
             0,
@@ -402,7 +477,8 @@ export function atlasStyle(
             ['boolean', ['feature-state', 'dimmed'], false],
             0.4,
             0.9,
-          ],
+          ]),
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Fishery-class outline (2026-09-10): a halo AROUND the condition
@@ -434,14 +510,15 @@ export function atlasStyle(
             4.6,
             3.6,
           ],
-          'line-opacity': [
+          'line-opacity': catalogTieredOpacity([
             'case',
             ['==', ['feature-state', 'outlineClass'], ''],
             0,
             ['boolean', ['feature-state', 'hidden'], false],
             0,
             0.85,
-          ],
+          ]),
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Rivers — condition centerline (feature-state `color` set live by
@@ -467,16 +544,20 @@ export function atlasStyle(
             1.2,
             1.9,
           ],
-          'line-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            ['boolean', ['feature-state', 'offseason'], false],
-            ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.15, 0.3],
-            ['boolean', ['feature-state', 'assessed'], false],
-            ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.4, 1],
-            0,
-          ],
+          'line-opacity': catalogTieredOpacity(
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'offseason'], false],
+              ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.15, 0.3],
+              ['boolean', ['feature-state', 'assessed'], false],
+              ['case', ['boolean', ['feature-state', 'dimmed'], false], 0.4, 1],
+              0,
+            ],
+            1,
+          ),
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Unassessed dashes — a single stable treatment at every zoom. The
@@ -493,16 +574,20 @@ export function atlasStyle(
           'line-color': t.noData,
           'line-width': 1.7,
           'line-dasharray': [2.5, 3.5],
-          'line-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            ['boolean', ['feature-state', 'offseason'], false],
-            0.22,
-            ['boolean', ['feature-state', 'assessed'], false],
-            0,
-            0.22,
-          ],
+          'line-opacity': catalogTieredOpacity(
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'offseason'], false],
+              0.22,
+              ['boolean', ['feature-state', 'assessed'], false],
+              0,
+              0.22,
+            ],
+            1,
+          ),
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Selection highlight — warm outline beyond casing when selected. LINES ONLY.
@@ -524,6 +609,7 @@ export function atlasStyle(
             0.95,
             0,
           ],
+          'line-opacity-transition': opacityTransition,
         },
       },
       // Hatch-mode halo — sulphur glow when hatchActive. LINES ONLY.
@@ -544,31 +630,15 @@ export function atlasStyle(
             t.sulphur,
           ],
           'line-width': ['interpolate', ['exponential', 2], ['zoom'], 5.6, 3.5, 9, 9, 13, 13],
-          // Zoom must be the TOP-LEVEL interpolate input (style-spec), so the
-          // per-feature case lives in each stop's output instead.
-          'line-opacity': [
-            'interpolate',
-            ['exponential', 2],
-            ['zoom'],
-            5.6,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'hatchActive'], false],
-              0.3,
-              0,
-            ],
-            9,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hidden'], false],
-              0,
-              ['boolean', ['feature-state', 'hatchActive'], false],
-              0.5,
-              0,
-            ],
-          ],
+          'line-opacity': catalogTieredOpacity([
+            'case',
+            ['boolean', ['feature-state', 'hidden'], false],
+            0,
+            ['boolean', ['feature-state', 'hatchActive'], false],
+            0.4,
+            0,
+          ]),
+          'line-opacity-transition': opacityTransition,
           'line-blur': 1.4,
         },
       },
@@ -641,16 +711,18 @@ export function atlasStyle(
             t.selection,
             t.water,
           ],
-          'circle-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hidden'], false],
-            0,
-            ['boolean', ['feature-state', 'selected'], false],
+          'circle-opacity': catalogTieredOpacity(
+            [
+              'case',
+              ['boolean', ['feature-state', 'hidden'], false],
+              0,
+              ['boolean', ['feature-state', 'hover'], false],
+              0.24,
+              0.14,
+            ],
             0.28,
-            ['boolean', ['feature-state', 'hover'], false],
-            0.24,
-            0.14,
-          ],
+          ),
+          'circle-opacity-transition': opacityTransition,
           'circle-blur': 0.45,
         },
       },
@@ -707,8 +779,16 @@ export function atlasStyle(
             2.5,
             2,
           ],
-          'circle-opacity': ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 0.95],
-          'circle-stroke-opacity': ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 1],
+          'circle-opacity': catalogTieredOpacity(
+            ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 0.95],
+            0.95,
+          ),
+          'circle-stroke-opacity': catalogTieredOpacity(
+            ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 1],
+            1,
+          ),
+          'circle-opacity-transition': opacityTransition,
+          'circle-stroke-opacity-transition': opacityTransition,
         },
       },
       {
@@ -724,7 +804,11 @@ export function atlasStyle(
             t.paperRaised,
             t.water,
           ],
-          'circle-opacity': ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 1],
+          'circle-opacity': catalogTieredOpacity(
+            ['case', ['boolean', ['feature-state', 'hidden'], false], 0, 1],
+            1,
+          ),
+          'circle-opacity-transition': opacityTransition,
         },
       },
       {

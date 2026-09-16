@@ -3,8 +3,14 @@ import * as maplibregl from 'maplibre-gl';
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Link } from 'react-router-dom';
-import { atlasStyle, TIER_REVEAL_ZOOM, type BasemapVariant, type RoadsSpec } from './mapStyle';
-import { NETWORK_LAYER_PREFIX, initNetworkClusters, setCatalogWaterNames } from './networkClusters';
+import {
+  atlasStyle,
+  MAP_ZOOM_TIERS,
+  catalogTierFilter,
+  type BasemapVariant,
+  type RoadsSpec,
+} from './mapStyle';
+import { NETWORK_LAYER_PREFIX, initNetworkClusters } from './networkClusters';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
@@ -18,6 +24,7 @@ import {
   orientationFor,
 } from './flowArrows';
 import index from './riverIndex.json';
+import { chooseWaterCandidate, type ScreenGeometry, type SelectionCandidate } from './selection';
 // Preserve the existing same-origin Vite worker bundle and offline caching.
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
@@ -26,40 +33,54 @@ const stillWaterIds = new Set(
     .filter((water) => water.bounds[0] === water.bounds[2] && water.bounds[1] === water.bounds[3])
     .map((water) => water.id),
 );
+const catalogPermanentIds = new Set(index.flatMap((water) => water.nhdPermanentIds.map(String)));
 export const isStillWaterId = (id: string) => stillWaterIds.has(id);
 
-/**
- * Catalog-water names for the creek-network dedup: a network feature whose
- * name is one of these never renders as context, because the catalog already
- * draws that exact water (the twin was the "doubled lines" down the Tennessee
- * and the Obion corridor). Base names strip parenthetical qualifiers
- * ("Caney Fork River (Center Hill tailwater)" also guards "Caney Fork River").
- */
-setCatalogWaterNames(
-  index.flatMap((water) => {
-    const base = water.name.replace(/\s*\([^)]*\)\s*$/, '').trim();
-    return base ? [water.name.toLowerCase(), base.toLowerCase()] : [water.name.toLowerCase()];
-  }),
-);
-
-/**
- * Authored reveal tier for a catalog water: 0 featured/statewide (always
- * rendered), 1 standard/regional, 2 reference/local. The 40 selectable-river
- * additions carry an explicit labelMinZoom authored with their inclusion —
- * it drives the tier directly; legacy waters fall back to their display tier.
- */
-function tierFor(
-  display: 'featured' | 'standard' | 'reference' | undefined,
-  labelMinZoom: number | undefined,
-): 0 | 1 | 2 {
-  if (labelMinZoom != null) {
-    if (labelMinZoom <= TIER_REVEAL_ZOOM.regional - 0.1) return 0;
-    if (labelMinZoom >= TIER_REVEAL_ZOOM.local) return 2;
-    return 1;
+function projectGeometry(
+  map: maplibregl.Map,
+  geometry: maplibregl.MapGeoJSONFeature['geometry'],
+): ScreenGeometry {
+  const project = (coordinate: number[]): [number, number] => {
+    const point = map.project([coordinate[0]!, coordinate[1]!]);
+    return [point.x, point.y];
+  };
+  switch (geometry.type) {
+    case 'Point':
+      return { type: 'Point', coordinates: project(geometry.coordinates as number[]) };
+    case 'MultiPoint':
+      return {
+        type: 'MultiPoint',
+        coordinates: geometry.coordinates.map((coordinate: number[]) => project(coordinate)),
+      };
+    case 'LineString':
+      return {
+        type: 'LineString',
+        coordinates: geometry.coordinates.map((coordinate: number[]) => project(coordinate)),
+      };
+    case 'MultiLineString':
+      return {
+        type: 'MultiLineString',
+        coordinates: geometry.coordinates.map((line: number[][]) =>
+          line.map((coordinate: number[]) => project(coordinate)),
+        ),
+      };
+    case 'Polygon':
+      return {
+        type: 'Polygon',
+        coordinates: geometry.coordinates.map((ring: number[][]) =>
+          ring.map((coordinate: number[]) => project(coordinate)),
+        ),
+      };
+    case 'MultiPolygon':
+      return {
+        type: 'MultiPolygon',
+        coordinates: geometry.coordinates.map((polygon: number[][][]) =>
+          polygon.map((ring: number[][]) => ring.map((coordinate: number[]) => project(coordinate))),
+        ),
+      };
+    default:
+      return { type: 'Point', coordinates: [Number.NaN, Number.NaN] };
   }
-  if (display === 'featured') return 0;
-  if (display === 'reference') return 2;
-  return 1;
 }
 
 /**
@@ -165,10 +186,13 @@ export function TennesseeMap(props: Props) {
   const labelsRef = useRef<() => void>(() => {});
   const placesRef = useRef<() => void>(() => {});
   const applyRef = useRef<() => void>(() => {});
+  const mapMetrics = useRef({ zoomTierCrossings: 0, zoomFilterMutations: 0, featureStateWrites: 0 });
   const gaugePopupRef = useRef<maplibregl.Popup | null>(null);
   const reduced = () =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
     document.documentElement.classList.contains('reduce-motion');
+  const qaDiagnostics = () =>
+    import.meta.env.DEV || new URLSearchParams(window.location.search).get('qa') === '1';
   // Presentation scheduling. Every style swap, theme change, and props update
   // funnels through one tokenized scheduler: only the MOST RECENT scheduled
   // apply runs, it re-arms until the style is genuinely loaded (a diffed
@@ -180,7 +204,6 @@ export function TennesseeMap(props: Props) {
   // behind generations ago.
   const applyToken = useRef(0);
   const swapToken = useRef(0);
-  const tiersById = useRef(new Map<string, 0 | 1 | 2>());
   applyRef.current = () => {
     const map = mapRef.current;
     if (!map) return;
@@ -198,18 +221,7 @@ export function TennesseeMap(props: Props) {
         return;
       }
       const p = latest.current;
-      const z = map.getZoom();
-      tiersById.current = new Map(
-        index.map((river) => [river.id, tierFor(p.labelDisplay?.get(river.id), river.labelMinZoom)]),
-      );
       for (const river of index) {
-        const tier = tiersById.current.get(river.id) ?? 0;
-        // Zoom reveal (see TIER_REVEAL_ZOOM): tier 1 appears at regional zoom,
-        // tier 2 at local. Selection overrides — a tapped or deep-linked water
-        // is never hidden from the person who asked for it. Stillwaters stay
-        // orientation landmarks and are never zoom-gated.
-        const zoomRevealed =
-          tier === 0 || (tier === 1 ? z >= TIER_REVEAL_ZOOM.regional : z >= TIER_REVEAL_ZOOM.local);
         const speciesHidden =
           river.waterbodyType === 'lake' ||
           river.waterbodyType === 'pond' ||
@@ -221,14 +233,13 @@ export function TennesseeMap(props: Props) {
         map.setFeatureState(
           { source: 'rivers', id: river.id },
           {
-            tier,
             selected: p.selectedId === river.id,
             // hover is producer state (the pointer handlers below) with no
             // prop to restore it from — after a swap the honest value is off,
             // and the next mousemove re-derives it.
             hover: false,
             dimmed: false,
-            hidden: speciesHidden || (!zoomRevealed && p.selectedId !== river.id),
+            hidden: speciesHidden,
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             outlineClass: p.classOutlines?.get(river.id) ?? '',
@@ -237,7 +248,12 @@ export function TennesseeMap(props: Props) {
             hatchColor: palette.current.sulphur,
           },
         );
+        mapMetrics.current.featureStateWrites += 1;
       }
+      if (qaDiagnostics())
+        (window as unknown as Record<string, unknown>).__troutMapMetrics = {
+          ...mapMetrics.current,
+        };
       if (el) el.dataset.mapSelected = p.selectedId ?? '';
       // Test/verification seam FIRST: the live style inventory (which sources
       // and layers exist right now) so Terrain/Roads activation is observable
@@ -295,7 +311,10 @@ export function TennesseeMap(props: Props) {
       );
       map = new maplibregl.Map({
         container: el,
-        style: atlasStyle(latest.current.basemap, palette.current, { roads: latest.current.roads }),
+        style: atlasStyle(latest.current.basemap, palette.current, {
+          roads: latest.current.roads,
+          reducedMotion: reduced(),
+        }),
         ...(initialSaved
           ? { center: initialSaved.center, zoom: initialSaved.zoom }
           : {
@@ -409,6 +428,32 @@ export function TennesseeMap(props: Props) {
       }
       labelsRef.current();
     };
+    const tierHitLayers: Array<[string, ['==', '$type', 'LineString' | 'Polygon' | 'Point']]> = [
+      ['rivers-hit', ['==', '$type', 'LineString']],
+      ['rivers-water-hit', ['==', '$type', 'Polygon']],
+      ['rivers-water-hit-outline', ['==', '$type', 'Polygon']],
+      ['rivers-point-hit', ['==', '$type', 'Point']],
+    ];
+    let lastHitTier: 0 | 1 | 2 | null = null;
+    const updateTierHitFilters = (fromZoom = false) => {
+      const z = map.getZoom();
+      const tier: 0 | 1 | 2 =
+        z >= MAP_ZOOM_TIERS.reference.start ? 2 : z >= MAP_ZOOM_TIERS.standard.start ? 1 : 0;
+      if (lastHitTier === tier) return;
+      lastHitTier = tier;
+      const tierFilter = catalogTierFilter(z);
+      for (const [layer, baseFilter] of tierHitLayers) {
+        if (map.getLayer(layer)) map.setFilter(layer, ['all', baseFilter, tierFilter] as never);
+      }
+      if (fromZoom) {
+        mapMetrics.current.zoomTierCrossings += 1;
+        mapMetrics.current.zoomFilterMutations += tierHitLayers.filter(([layer]) => Boolean(map.getLayer(layer))).length;
+      }
+      if (qaDiagnostics())
+        (window as unknown as Record<string, unknown>).__troutMapMetrics = {
+          ...mapMetrics.current,
+        };
+    };
     map.on('load', () => {
       loaded = true;
       window.clearTimeout(watchdog);
@@ -417,22 +462,24 @@ export function TennesseeMap(props: Props) {
       el.dataset.mapReady = '1';
       delete el.dataset.mapFailed;
       applyRef.current();
+      updateTierHitFilters();
       latest.current.onMapReady?.(map);
       // Dev-only inspection handle for map-verification tooling.
-      if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__troutMap = map;
+      if (qaDiagnostics()) (window as unknown as Record<string, unknown>).__troutMap = map;
       // Do not snapshot the full-state bootstrap over a deep-linked water's
       // intended camera. The selection effect fits it once `ready` commits.
       const initialRiver = index.find((river) => river.id === latest.current.selectedId);
       if (initialSaved || !initialRiver) syncCamera();
     });
-    // Reapply feature presentation once after a style swap, never on every idle.
-    map.on('style.load', () => map.once('idle', () => applyRef.current()));
+    // Reapply presentation and the current hit filters once after a style
+    // swap, never on every idle. setStyle rebuilds filters from the style JSON.
+    map.on('style.load', () => {
+      lastHitTier = null;
+      updateTierHitFilters();
+      map.once('idle', () => applyRef.current());
+    });
     map.on('moveend', syncCamera);
-    // Zoom reveal tiers: re-derive `hidden` when the camera zoom settles so
-    // regional/local waters appear (and statewide-only waters retire) as the
-    // user focuses in. zoomend only — not moveend — so panning never churns
-    // 189 feature states.
-    map.on('zoomend', () => applyRef.current());
+    map.on('zoomend', () => updateTierHitFilters(true));
     const hit = (point: maplibregl.Point) => {
       if (!map.getLayer('rivers-hit')) return null;
       const candidates = map
@@ -454,76 +501,17 @@ export function TennesseeMap(props: Props) {
           const id = String(f.properties.id ?? '');
           if (!id) return false;
           if (latest.current.visibleIds && !latest.current.visibleIds.has(id)) return false;
-          // Zoom-reveal tiers: a water the camera hasn't earned yet never wins
-          // a tap (the same gate the paint layers apply). Unlisted ids (no
-          // authored tier yet) stay selectable — fail open.
-          const tier = tiersById.current.get(id);
-          if (tier != null && tier > 0) {
-            const z = map.getZoom();
-            if (tier === 1 && z < TIER_REVEAL_ZOOM.regional) return false;
-            if (tier >= 2 && z < TIER_REVEAL_ZOOM.local) return false;
-          }
           return true;
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
       // not the arbitrary source/tile order (which can pick a neighboring creek).
-      const distance = (feature: maplibregl.MapGeoJSONFeature) => {
-        // A line drawn across a lake should remain directly selectable. Give
-        // polygon interiors a small deterministic distance so a centerline
-        // within the same pointer box wins, while open water still selects.
-        if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon')
-          return feature.layer.id === 'rivers-water-hit' ? 6 : 9;
-        if (feature.geometry.type === 'Point') {
-          const projected = map.project(feature.geometry.coordinates as [number, number]);
-          return Math.hypot(point.x - projected.x, point.y - projected.y);
-        }
-        if (feature.geometry.type === 'MultiPoint')
-          return Math.min(
-            ...feature.geometry.coordinates.map((coordinates: number[]) => {
-              const projected = map.project(coordinates as [number, number]);
-              return Math.hypot(point.x - projected.x, point.y - projected.y);
-            }),
-          );
-        const lines =
-          feature.geometry.type === 'LineString'
-            ? [feature.geometry.coordinates]
-            : feature.geometry.type === 'MultiLineString'
-              ? feature.geometry.coordinates
-              : [];
-        let nearest = Infinity;
-        for (const line of lines)
-          for (let i = 1; i < line.length; i++) {
-            const a = map.project([line[i - 1]![0]!, line[i - 1]![1]!]),
-              b = map.project([line[i]![0]!, line[i]![1]!]);
-            const dx = b.x - a.x,
-              dy = b.y - a.y,
-              length = dx * dx + dy * dy;
-            const t = length
-              ? Math.max(0, Math.min(1, ((point.x - a.x) * dx + (point.y - a.y) * dy) / length))
-              : 0;
-            nearest = Math.min(nearest, Math.hypot(point.x - a.x - t * dx, point.y - a.y - t * dy));
-          }
-        return nearest;
-      };
-      const isLineFeature = (x: { feature: maplibregl.MapGeoJSONFeature }) =>
-        x.feature.geometry.type === 'LineString' || x.feature.geometry.type === 'MultiLineString';
-      const ranked = candidates
-        .map((feature) => ({ feature, distance: distance(feature) }))
-        .sort((a, b) => a.distance - b.distance);
-      const top = ranked[0];
-      const second = ranked[1];
-      let found = top?.feature;
-      // Tap preference: where a main stem and a tributary both run under the
-      // pointer (overlapping 28px hit buffers), a near-tie in distance must
-      // resolve to the bigger water, not to whichever line has denser
-      // vertices at this zoom. Line candidates only — polygon/point hits use
-      // fixed synthetic distances.
-      if (top && second && found && isLineFeature(top) && isLineFeature(second)) {
-        const km = (x: { feature: maplibregl.MapGeoJSONFeature }) =>
-          Number(x.feature.properties.lengthKm ?? 0);
-        if (second.distance - top.distance < 4 && km(second) > km(top)) found = second.feature;
-      }
-      return found ? String(found.properties.id) : null;
+      const selectionCandidates: SelectionCandidate[] = candidates.map((feature) => ({
+        id: String(feature.properties.id),
+        layerId: feature.layer.id,
+        geometry: projectGeometry(map, feature.geometry),
+        lengthKm: Number(feature.properties.lengthKm ?? 0),
+      }));
+      return chooseWaterCandidate([point.x, point.y], selectionCandidates);
     };
     // Gauge popup (feat/tn-gauge-layer) — one reusable popup whose content is
     // built imperatively (same pattern as the creek tooltip: it lives outside
@@ -789,7 +777,11 @@ export function TennesseeMap(props: Props) {
     // per-cluster on demand (see networkClusters.ts). The creeks stay
     // NON-SELECTABLE — cluster layers are never in the selection hit layers;
     // the tooltip below is hover-only.
-    const disposeNetworkClusters = initNetworkClusters(map);
+    const disposeNetworkClusters = initNetworkClusters(
+      map,
+      catalogPermanentIds,
+      { reducedMotion: reduced() },
+    );
     // Name tooltip for the zoom-gated minor-water network. Iterates every
     // active cluster layer (network-minor-*) so hover works statewide.
     const creekTip = document.createElement('div');
@@ -875,7 +867,12 @@ export function TennesseeMap(props: Props) {
       if (token !== swapToken.current || mapRef.current !== map) return;
       appliedStyle.current = styleKey;
       if (container.current) delete container.current.dataset.mapTheme;
-      map.setStyle(atlasStyle(props.basemap, theme.map, { roads: props.roads }));
+      map.setStyle(
+        atlasStyle(props.basemap, theme.map, {
+          roads: props.roads,
+          reducedMotion: reduced(),
+        }),
+      );
       // Diffed styles can skip style.load; reapply feature presentation once
       // the (possibly diffed) style is ready. applyRef re-arms internally
       // until the style is genuinely loaded. A diffed swap with no visual

@@ -3,7 +3,12 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { RiverSearch } from '../src/features/map/RiverSearch';
 import { applyTheme, initialTheme, themes, THEME_KEY } from '../src/theme/themes';
-import { atlasStyle } from '../src/features/map/mapStyle';
+import {
+  atlasStyle,
+  catalogTierFilter,
+  catalogTierOpacityExpression,
+  MAP_ZOOM_TIERS,
+} from '../src/features/map/mapStyle';
 import { contextUrl, validMonth } from '../src/lib/riverContext';
 import { conditionReason, waterIdentity } from '../src/lib/presentation';
 
@@ -129,17 +134,31 @@ describe('Fieldwork themes', () => {
       expect(clear?.paint).toHaveProperty('line-width', 1.7);
       // Reconciled 2026-09-14: the dash stays stable across zoom, and
       // out-of-season waters dim their dash (owner dim-not-hide refinement).
-      expect(clear?.paint).toHaveProperty('line-opacity', [
-        'case',
-        ['boolean', ['feature-state', 'hidden'], false],
-        0,
-        ['boolean', ['feature-state', 'offseason'], false],
-        0.22,
-        ['boolean', ['feature-state', 'assessed'], false],
-        0,
-        0.22,
-      ]);
+      const opacity = clear?.paint?.['line-opacity'];
+      expect(opacity).toEqual(expect.arrayContaining(['interpolate', ['linear'], ['zoom']]));
+      expect(JSON.stringify(opacity)).toContain('offseason');
+      expect(JSON.stringify(opacity)).toContain('displayTier');
     }
+  });
+
+  it('uses legal style-driven tier expressions and keeps motion opt-out explicit', () => {
+    expect(catalogTierOpacityExpression[0]).toBe('interpolate');
+    expect(JSON.stringify(catalogTierOpacityExpression)).toContain('displayTier');
+    expect(catalogTierFilter(MAP_ZOOM_TIERS.standard.start - 0.01)).toEqual([
+      'any',
+      ['!', ['has', 'displayTier']],
+      ['match', ['get', 'displayTier'], ['featured'], true, false],
+    ]);
+    const reduced = atlasStyle('ink', themes.nightfall.map, { reducedMotion: true });
+    const normal = atlasStyle('ink', themes.nightfall.map, { reducedMotion: false });
+    expect(reduced.layers.find((layer) => layer.id === 'rivers-base')?.paint).toHaveProperty(
+      'line-opacity-transition',
+      { duration: 0 },
+    );
+    expect(normal.layers.find((layer) => layer.id === 'rivers-base')?.paint).toHaveProperty(
+      'line-opacity-transition',
+      { duration: 200 },
+    );
   });
 });
 
