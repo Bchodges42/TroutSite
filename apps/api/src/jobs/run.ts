@@ -91,3 +91,50 @@ export function jobHealthy(db: Db, job: string): boolean {
     .get(job) as { status: string } | undefined;
   return row?.status === 'ok';
 }
+
+/** Jobs whose output feeds the hourly snapshot pipeline (refresh-data cadence). */
+const HOURLY_PIPELINE_JOBS = new Set(['seed', 'snapshots']);
+/** A finished hourly-pipeline job older than this missed ~24 hourly cadences. */
+export const HOURLY_PIPELINE_MAX_AGE_HOURS = 24;
+/** A 'running' row older than this is a stuck run, not a live one. */
+const STUCK_RUN_HOURS = 1;
+
+/**
+ * Pipeline-health reasons for /healthz `degraded` (2026-09-16 skew retro).
+ *
+ * `ok` gates the read path: what visitors see RIGHT NOW (conditions + fishability
+ * verdicts). It deliberately ignores jobs_log — during the 2026-09-06..16 skew
+ * every visitor saw good (stale) data while the snapshots job errored hourly,
+ * and /healthz answered ok:true with the error buried in `jobs` where nothing
+ * read it. `degraded` is the additive surface for exactly that: an errored job,
+ * a stuck run, or an hourly-pipeline job gone quiet — without flipping ok (a
+ * stale-but-serving site is not down, so verify-site/deploy/watchdog keep
+ * acting on ok alone).
+ */
+export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Date()): string[] {
+  const reasons: string[] = [];
+  for (const job of Object.values(jobs)) {
+    if (job.status === 'error') {
+      const err = job.detail && typeof job.detail.error === 'string' ? `: ${job.detail.error}` : '';
+      reasons.push(`${job.job}: last run errored${err}`);
+      continue;
+    }
+    if (!HOURLY_PIPELINE_JOBS.has(job.job)) continue;
+    if (job.status === 'running') {
+      const hours = (now.getTime() - Date.parse(job.startedAt)) / 3_600_000;
+      if (Number.isFinite(hours) && hours > STUCK_RUN_HOURS) {
+        reasons.push(`${job.job}: running for ${Math.floor(hours)}h (stuck run?)`);
+      }
+      continue;
+    }
+    if (job.status === 'ok' && job.finishedAt) {
+      const hours = (now.getTime() - Date.parse(job.finishedAt)) / 3_600_000;
+      if (Number.isFinite(hours) && hours > HOURLY_PIPELINE_MAX_AGE_HOURS) {
+        reasons.push(
+          `${job.job}: finished ${Math.floor(hours)}h ago (hourly pipeline expected <${HOURLY_PIPELINE_MAX_AGE_HOURS}h)`,
+        );
+      }
+    }
+  }
+  return reasons.sort();
+}

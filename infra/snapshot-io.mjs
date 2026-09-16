@@ -60,8 +60,20 @@ if (cmd === 'archive') {
     const src = path.join(archive, d);
     if (!exists(src)) continue;
     const target = path.join(publicDir, d);
+    // Atomicity (2026-09-16 infra audit): restore used to rm the target then
+    // copy — during the copy the API (which reads these files per request)
+    // served 404s/partial trees. Stage the copy beside the target and swap by
+    // rename; the uncovered window shrinks from the whole copy to one syscall.
+    const staging = `${target}.restore-${process.pid}`;
+    fs.rmSync(staging, { recursive: true, force: true });
+    try {
+      fs.cpSync(src, staging, { recursive: true });
+    } catch (err) {
+      fs.rmSync(staging, { recursive: true, force: true });
+      throw err;
+    }
     fs.rmSync(target, { recursive: true, force: true });
-    fs.cpSync(src, target, { recursive: true });
+    fs.renameSync(staging, target);
     restored += 1;
     console.log(`[snapshot-io] restored ${d} (${countFiles(target)} files)`);
   }

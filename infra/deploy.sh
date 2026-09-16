@@ -27,7 +27,6 @@ START_REV="$(git rev-parse HEAD)"
 MUTATED=0
 HAD_ROLLBACK=0
 BACKUPS="$ROOT/backups"
-LASTGOOD_REV_FILE="$BACKUPS/last-good-rev"
 VERIFY_URL="${TROUT_VERIFY_URL:-http://127.0.0.1:8787}"
 mkdir -p "$BACKUPS"
 
@@ -164,9 +163,11 @@ echo "[deploy] refresh the rollback archive from the now-verified state"
 # actually creates the rollback point for the NEXT deploy.
 bash infra/archive-snapshots.sh || echo "[deploy] WARN — could not refresh the archive"
 
-# T0-2: autoupdate.sh compares HEAD against this file to tell "deployed and
+# T0-2: autoupdate.sh compares HEAD against this stamp to tell "deployed and
 # verified" from "pull happened but the deploy failed" — the retry signal.
-git rev-parse HEAD > "$LASTGOOD_REV_FILE"
+# deploy-stamp.sh check is the consumer-side guard (refresh-data, watchdog):
+# hourly jobs refuse to run on-disk code unless it IS this revision.
+bash infra/deploy-stamp.sh write
 
 MUTATED=0
 echo "[deploy] done — all endpoints green."

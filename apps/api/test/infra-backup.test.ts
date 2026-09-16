@@ -28,8 +28,14 @@ describe('backup.sh WAL consistency (T1-12)', () => {
     cpSync(INFRA, join(sandbox, 'infra'), { recursive: true });
     mkdirSync(join(sandbox, 'apps', 'api'), { recursive: true });
     // The script resolves better-sqlite3 from apps/api/node_modules; the
-    // sandbox reuses this package's installed copy.
-    symlinkSync(join(REPO_ROOT, 'apps', 'api', 'node_modules'), join(sandbox, 'apps', 'api', 'node_modules'));
+    // sandbox reuses this package's installed copy. A junction — not a real
+    // symlink — so the suite also runs on Windows without developer mode
+    // (plain symlinkSync needs the SeCreateSymbolicLinkPrivilege).
+    symlinkSync(
+      join(REPO_ROOT, 'apps', 'api', 'node_modules'),
+      join(sandbox, 'apps', 'api', 'node_modules'),
+      'junction',
+    );
   });
 
   afterEach(() => {
@@ -101,7 +107,9 @@ describe('backup.sh WAL consistency (T1-12)', () => {
   it('fails loudly instead of copying when the node backup is unavailable', () => {
     makeWalDb();
     // Remove the module resolution path so require('better-sqlite3') throws.
-    rmSync(join(sandbox, 'apps', 'api', 'node_modules'));
+    // recursive+force: the sandbox entry is a junction (a directory link), and
+    // rmSync without recursive refuses directories.
+    rmSync(join(sandbox, 'apps', 'api', 'node_modules'), { recursive: true, force: true });
     const out = runBackup();
     expect(out.status).not.toBe(0);
     expect(out.stderr).toContain('The database is NOT backed up');

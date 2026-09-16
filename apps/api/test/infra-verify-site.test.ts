@@ -13,9 +13,12 @@ const token = 'verify-site-test-secret';
 // The hardened API runs as a REAL child process: the verifier is itself a
 // spawned node, and this suite's sandbox only allows child-to-child localhost
 // connections. The launcher imports buildApp by absolute path so module
-// resolution stays anchored inside apps/api.
+// resolution stays anchored inside apps/api — via a file:// URL, because a
+// bare Windows path (C:\...) is not a valid ESM specifier (the suite used to
+// die on Windows with ERR_UNSUPPORTED_ESM_URL_SCHEME before any output).
 const LAUNCHER = `
-import { buildApp } from ${JSON.stringify(join(API_DIR, 'src', 'app.ts'))};
+import { pathToFileURL } from 'node:url';
+const { buildApp } = await import(pathToFileURL(${JSON.stringify(join(API_DIR, 'src', 'app.ts'))}).href);
 const app = buildApp({ logger: false, webPublicDir: process.env.TROUT_PUBLIC_DIR, watchdogToken: ${JSON.stringify(token)} });
 await app.listen({ port: 0, host: '127.0.0.1' });
 console.log('PORT ' + app.server.address().port);
@@ -50,6 +53,10 @@ describe('verify-site.sh against a hardened local instance (T0-3)', () => {
           stateId: 'TN',
           waterbodyType: 'river',
           regionId: 'tn-east-holston',
+          // Line waters (river/creek/tailrace/spring) must carry a hydro
+          // identity since the luna contract (the very rule whose hourly
+          // enforcement broke the skewed host) — the fixture obeys it too.
+          hydroIdentity: { gnisIds: ['01345678'], huc8s: ['06010101'] },
           gaugeIds: [],
           stockingProgram: false,
           idealFlow: [],
@@ -112,19 +119,29 @@ describe('verify-site.sh against a hardened local instance (T0-3)', () => {
     return { status: res.status ?? -1, stdout: res.stdout + res.stderr };
   }
 
-  it('is green against a token-protected instance when WATCHDOG_TOKEN is set', async () => {
-    const base = await startHardened();
-    const out = verify(base, token);
-    expect(out.status, out.stdout).toBe(0);
-    expect(out.stdout).toContain('all surfaces green');
-    // The blocked implementation file is not part of the contract surface.
-    expect(out.stdout).not.toContain('GET /v1/streams.json');
-  });
+  // These spawn bash → node → (API child + verifier child) chains; on a loaded
+  // machine that alone can exceed vitest's 5 s default before any --wait retry.
+  it(
+    'is green against a token-protected instance when WATCHDOG_TOKEN is set',
+    async () => {
+      const base = await startHardened();
+      const out = verify(base, token);
+      expect(out.status, out.stdout).toBe(0);
+      expect(out.stdout).toContain('all surfaces green');
+      // The blocked implementation file is not part of the contract surface.
+      expect(out.stdout).not.toContain('GET /v1/streams.json');
+    },
+    120_000,
+  );
 
-  it('fails (not silently passes) against a hardened instance without the token', async () => {
-    const base = await startHardened();
-    const out = verify(base, '');
-    expect(out.status).toBe(1);
-    expect(out.stdout).toContain('GET /healthz 401');
-  });
+  it(
+    'fails (not silently passes) against a hardened instance without the token',
+    async () => {
+      const base = await startHardened();
+      const out = verify(base, '');
+      expect(out.status).toBe(1);
+      expect(out.stdout).toContain('GET /healthz 401');
+    },
+    120_000,
+  );
 });

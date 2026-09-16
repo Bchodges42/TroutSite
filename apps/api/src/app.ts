@@ -7,7 +7,7 @@ import fastifyCors from '@fastify/cors';
 import { StreamSchema } from '@trout/contracts';
 import type { Stream } from '@trout/contracts';
 import type { Db } from './db.js';
-import { latestJobRuns } from './jobs/run.js';
+import { latestJobRuns, jobDegradation } from './jobs/run.js';
 import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
 import { createGaugeNowCache, type GaugeNowCache } from './lib/gauge-now.js';
@@ -139,7 +139,21 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     // missing fishability directory is the honest "nothing cataloged" state
     // (healthy); an emitted snapshot that fails its contract fails health.
     const fishability = fishabilityFeedHealth(options.webPublicDir);
-    return { ok: conditions.healthy && fishability.healthy, conditions, fishability, jobs };
+    // 2026-09-16 skew retro: `ok` alone hid a ten-day snapshots error loop —
+    // the failure was IN this payload (jobs.snapshots.status === 'error') but
+    // nothing read it. degraded/degradedReasons are the additive,
+    // contract-safe surface (ASSUMPTIONS §6-consumable) that lifts job health
+    // to the top level without turning a stale-but-serving site into a
+    // verify/rollback event. See jobDegradation in jobs/run.ts.
+    const degradedReasons = jobDegradation(jobs);
+    return {
+      ok: conditions.healthy && fishability.healthy,
+      degraded: degradedReasons.length > 0,
+      degradedReasons,
+      conditions,
+      fishability,
+      jobs,
+    };
   });
 
   // The one dynamic GET: /v1/streams?state=TN filters the regenerated snapshot.

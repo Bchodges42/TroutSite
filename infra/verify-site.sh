@@ -133,6 +133,13 @@ async function checkOrigin(origin, label) {
         lines.push(`[verify] FAIL - ${label} /healthz reports ok:false`);
         fail = 1;
       }
+      // Truthful healthz (2026-09-16 skew retro): degraded surfaces pipeline
+      // health (job errors / hourly build gone quiet) WITHOUT failing the read
+      // path — a stale-but-serving site is not down, so this is a loud WARN
+      // for the deploy/verify log, not a rollback trigger.
+      if (p === "/healthz" && ok && value.degraded === true) {
+        lines.push(`[verify] WARN - ${label} /healthz reports pipeline degraded: ${(value.degradedReasons || []).join(" | ")}`);
+      }
     } catch (e) {
       lines.push(`[verify] FAIL - ${label} GET ${p} (${e.cause && e.cause.name || e.name || e})`);
       fail = 1;

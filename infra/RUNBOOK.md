@@ -221,15 +221,57 @@ append instead of tee-ing.
 gitignored trees vanish or go stale, and the site serves "Catalog unavailable" until
 someone notices days later. The read path is files-on-disk: `GET /v1/streams` does
 `existsSync(apps/web/public/v1/streams.json)` per request (`apps/api/src/app.ts`), so
-**whoever controls those files controls the site** — no DB surgery, no rebuild. Four
+**whoever controls those files controls the site** — no DB surgery, no rebuild. Five
 scripts now own that control loop:
 
 | Script | Job |
 |---|---|
-| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. Reads `WATCHDOG_TOKEN` from the environment and sends it as `x-watchdog-token`, so it verifies hardened instances. |
+| `infra/verify-site.sh` | The gate. healthz `ok:true` + 200/non-empty on `/v1/streams`, `/v1/conditions/latest.json`, `/content/taxa.json`. `--url <origin>` for any origin; `SITE_PUBLIC_URL=… --public` also probes the edge. Reads `WATCHDOG_TOKEN` from the environment and sends it as `x-watchdog-token`, so it verifies hardened instances. A `degraded:true` healthz prints a loud `WARN` line but does NOT fail the gate (healthz contract below — stale-but-serving is not down). |
 | `infra/archive-snapshots.sh` | Snapshot the currently-served trees → `backups/snapshots-last-good/` (node-copied directory via `snapshot-io.mjs` — no tar; refuses to archive an empty/broken state). |
 | `infra/restore-snapshots.sh` | Swap the archived trees back in (staging + atomic swap). This alone heals the read path. |
-| `infra/watchdog.sh` | Every-15-minutes loop (schtasks `MINUTE/MO 15`): verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. |
+| `infra/watchdog.sh` | Every-15-minutes loop (schtasks `MINUTE/MO 15`): verify → heal 1: `pnpm --filter api snapshots` (fresh data) → heal 2: restore last-good (stale-but-honest) → write `backups/watchdog.status` (`OK` / `DEGRADED` / `HEALED-REGEN` / `HEALED-RESTORE` / `BROKEN`) + `backups/watchdog.log`. `--dry-run` checks and reports without acting. Under a code/data skew (deploy-stamp guard below) heal 1 is DISABLED — regenerating with on-disk-but-undeployed code, then archiving the output, would poison the last-good archive — and a green read path over an unhealthy pipeline is recorded as `DEGRADED` (paged once on entry) instead of `OK`. |
+| `infra/deploy-stamp.sh` | The skew guard. `check` exits 0 only when the checkout HEAD equals the last successfully verified deploy (`backups/last-good-rev`, written by `deploy.sh` only after verify passes). Exit 24 = skew; exit 1 = no stamp (nothing verified on this host yet). `write` is deploy-only; `show` prints both revs for logs/alerts. Consumers: `refresh-data.sh` refuses to seed/snapshot under skew; `watchdog.sh` disables heal 1 under skew; `autoupdate.sh` reads the same file as its retry signal. |
+
+### The deploy-stamp guard + truthful healthz (2026-09-16 — the ten-day skew)
+
+**What happened:** the hourly `trout-autoupdate` task ran an out-of-repo wrapper (see
+"Zero-touch updates" below), deploys silently stopped ~2026-09-06, and the hourly
+`refresh-data.sh` kept running the checkout's NEW code (a stricter contracts builder
+requiring `hydroIdentity` on line waters) against the deployed OLD database — an
+hourly "hydroIdentity is required for selectable line waters" error loop for ten
+days, behind a /healthz that said `ok:true` because the read path was still serving
+the last good data. Nothing read the `jobs.snapshots.status: "error"` that was in the
+payload the whole time. Three structural fixes close that class:
+
+1. **Deploy stamp → refresh/watchdog guards.** `deploy.sh` records
+   `<sha> <utc>` to `backups/last-good-rev` ONLY after `verify-site --deep` passes.
+   `refresh-data.sh` runs `deploy-stamp.sh check` first and REFUSES (exit 24,
+   status `REFUSED-SKEW`/`REFUSED-NOSTAMP`, high-priority push) when the checkout is
+   not the verified revision — undeployed code never rebuilds the served trees. The
+   trade is deliberate: stale-but-honest data plus a loud page beats silent skew.
+2. **Seed before every snapshot rebuild.** `refresh-data.sh` now seeds
+   (`pnpm --filter api seed`, idempotent upsert) after the guard and before
+   snapshots, so the DB always matches the shipped content pack even if a deploy
+   was interrupted; a seed failure skips the rebuild (status `FAIL-SEED`) instead
+   of publishing a stale catalog.
+3. **healthz `degraded` (additive, contract-safe).** `ok` keeps its meaning — the
+   read path visitors see RIGHT NOW (conditions + fishability verdicts). New
+   top-level `degraded` + `degradedReasons` lift pipeline health up: any job whose
+   latest `jobs_log` run is `error`, a `running` row stuck over an hour, or an
+   hourly-pipeline job (`seed`, `snapshots`) that has not finished in 24 h. The
+   bare app (no DB) still returns exactly `{ok:true}`; db-wired responses gain the
+   two fields additively (ASSUMPTIONS §6-consumable), `ok:false` still means
+   verify/rollback, and `verify-site.sh` prints degraded as a non-fatal WARN. The
+   watchdog closes the loop: green verify + `degraded:true` → status `DEGRADED`
+   and one high-priority page, so a failing pipeline behind a serving site is
+   seen within 15 minutes instead of ten days.
+
+Status vocabulary to glance at, updated: `backups/watchdog.status` may now read
+`DEGRADED` (read path green, pipeline unhealthy — see the push body / healthz
+`degradedReasons`), and `backups/refresh-data.status` joins the family
+(`OK` / `FAIL-SEED` / `FAIL-SNAPSHOTS` / `FAIL-VERIFY` / `REFUSED-SKEW` /
+`REFUSED-NOSTAMP`). Alerts for all scheduled scripts share one dedup engine
+(`infra/alert.sh`): page on state transitions, first-ever high still pages.
 
 ### Origin API hardening (2026-09-11)
 
@@ -335,7 +377,27 @@ Scheduler):
 ```
 
 (Adjust the path; `TROUT_DEPLOY_BRANCH` and `TROUT_DEPLOY_CMD` are overridable.
-Windows-laptop equivalent: the schtasks pattern in §5.) With both schedules
+Windows-laptop equivalent: the schtasks pattern in §5.)
+
+**The Windows updater must be the versioned wrapper (F1, 2026-09-16).** The
+`trout-autoupdate` schtask used to run `C:\ProgramData\TroutSite\Tools\update-trout.ps1`
+— an out-of-repo, unversioned script no guard, alert, or review could reach. When it
+went quietly dead (~2026-09-06) NOTHING noticed for ten days: no deploy, and hourly
+refresh-data quietly ran new code against old data (the skew the deploy-stamp guard
+now refuses). `infra/install-schedules.sh` now registers the in-repo
+`infra/update-trout.ps1` — a thin launcher that only locates bash and execs
+`infra/autoupdate.sh`; all policy stays in the reviewed scripts. One-time host
+actions after deploying this branch (from Termius, in the checkout):
+
+```bash
+bash infra/install-schedules.sh          # re-register tasks onto the versioned wrapper
+rm -f /c/ProgramData/TroutSite/Tools/update-trout.ps1   # remove the unversioned copy
+```
+
+If `git fetch` under the SYSTEM task then fails with credentials errors
+(`backups/autoupdate.status` reads `FAIL-FETCH` and the push arrives — the new
+visibility working as intended), configure git's own machine-wide credential
+helper once on the host; do NOT put credentials back into a wrapper script. With both schedules
 installed plus a healthy deploy, routine operation is fully hands-off: cron
 refreshes data hourly, the watchdog heals data outages, autoupdate ships code
 releases, and the read-path archive + auto-rollback are the safety net under all
