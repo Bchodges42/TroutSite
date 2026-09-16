@@ -1,0 +1,3572 @@
+{
+ "barren-fork-river": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Barren Fork River",
+  "stateId": "TN",
+  "extent": 0.3801,
+  "anchor": [
+   -85.7772,
+   35.6752
+  ]
+ },
+ "beaverdam-creek": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "Beaverdam Creek",
+  "stateId": "TN",
+  "extent": 0.1724,
+  "anchor": [
+   -81.87255,
+   36.56604
+  ]
+ },
+ "beech-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Beech Lake",
+  "stateId": "TN",
+  "extent": 0.0473,
+  "anchor": [
+   -88.42117,
+   35.68164
+  ]
+ },
+ "beech-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Beech River",
+  "stateId": "TN",
+  "extent": 0.3871,
+  "anchor": [
+   -88.13117,
+   35.60543
+  ]
+ },
+ "big-bigby-creek": {
+  "display": null,
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Big Bigby Creek",
+  "stateId": "TN",
+  "extent": 0.2034,
+  "anchor": [
+   -87.22381,
+   35.56683
+  ]
+ },
+ "big-rock-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Big Rock Creek",
+  "stateId": "TN",
+  "extent": 0.2047,
+  "anchor": [
+   -86.7629,
+   35.5266
+  ]
+ },
+ "big-sandy-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Big Sandy River",
+  "stateId": "TN",
+  "extent": 0.6967,
+  "anchor": [
+   -88.09279,
+   36.31817
+  ]
+ },
+ "big-sewee-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Big Sewee Creek",
+  "stateId": "TN",
+  "extent": 0.1602,
+  "anchor": [
+   -84.64165,
+   35.63716
+  ]
+ },
+ "big-soddy-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Big Soddy Creek",
+  "stateId": "TN",
+  "extent": 0.185,
+  "anchor": [
+   -85.23323,
+   35.30316
+  ]
+ },
+ "big-swan-creek": {
+  "display": null,
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Big Swan Creek",
+  "stateId": "TN",
+  "extent": 0.3133,
+  "anchor": [
+   -87.45017,
+   35.59755
+  ]
+ },
+ "blackburn-fork": {
+  "display": null,
+  "regionId": "tn-upper-cumberland",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Blackburn Fork",
+  "stateId": "TN",
+  "extent": 0.1056,
+  "anchor": [
+   -85.56806,
+   36.28423
+  ]
+ },
+ "boiling-fork-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Boiling Fork Creek",
+  "stateId": "TN",
+  "extent": 0.2294,
+  "anchor": [
+   -86.031,
+   35.1552
+  ]
+ },
+ "boone-lake": {
+  "display": "featured",
+  "regionId": "tn-east-holston",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Boone Lake",
+  "stateId": "TN",
+  "extent": 0.1768,
+  "anchor": [
+   -82.36649,
+   36.46418
+  ]
+ },
+ "boone-tailwater": {
+  "display": "featured",
+  "regionId": "tn-east-holston",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   12,
+   3,
+   4
+  ],
+  "name": "Boone Tailwater (South Fork Holston River)",
+  "stateId": "TN",
+  "extent": 0.0759,
+  "anchor": [
+   -82.47469,
+   36.47943
+  ]
+ },
+ "bradley-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Bradley Creek",
+  "stateId": "TN",
+  "extent": 0.1492,
+  "anchor": [
+   -85.9849,
+   35.3972
+  ]
+ },
+ "brimstone-creek": {
+  "display": null,
+  "regionId": "tn-cumberland-plateau",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Brimstone Creek",
+  "stateId": "TN",
+  "extent": 0.1576,
+  "anchor": [
+   -84.51217,
+   36.31265
+  ]
+ },
+ "brush-creek-cocke": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Brush Creek (Cocke County)",
+  "stateId": "TN",
+  "extent": 0.0393,
+  "anchor": [
+   -82.9345,
+   35.9587
+  ]
+ },
+ "buffalo-creek-grainger": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Buffalo Creek (Grainger County)",
+  "stateId": "TN",
+  "extent": 0.0439,
+  "anchor": [
+   -83.564968,
+   36.22273
+  ]
+ },
+ "buffalo-river": {
+  "display": "featured",
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Buffalo River",
+  "stateId": "TN",
+  "extent": 0.6067,
+  "anchor": [
+   -87.8408,
+   35.5405
+  ]
+ },
+ "bullrun-creek": {
+  "display": null,
+  "regionId": "tn-east-clinch",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Bullrun Creek",
+  "stateId": "TN",
+  "extent": 0.4667,
+  "anchor": [
+   -83.95109,
+   36.1569
+  ]
+ },
+ "calderwood-lake": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Calderwood Lake",
+  "stateId": "TN",
+  "extent": 0.0548,
+  "anchor": [
+   -83.95122,
+   35.48992
+  ]
+ },
+ "calfkiller-river": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Calfkiller River",
+  "stateId": "TN",
+  "extent": 0.3255,
+  "anchor": [
+   -85.4741,
+   35.8991
+  ]
+ },
+ "cameron-brown-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Cameron Brown Lake",
+  "stateId": "TN",
+  "extent": 0.0013,
+  "anchor": [
+   -89.77363,
+   35.10007
+  ]
+ },
+ "candies-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Candies Creek",
+  "stateId": "TN",
+  "extent": 0.3338,
+  "anchor": [
+   -84.91094,
+   35.16877
+  ]
+ },
+ "cane-creek-hickman-perry": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Cane Creek (Buffalo River system \u2014 Hickman/Perry)",
+  "stateId": "TN",
+  "extent": 0.1783,
+  "anchor": [
+   -87.70336,
+   35.67039
+  ]
+ },
+ "cane-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Cane Creek (Caney Fork system \u2014 Bledsoe/Van Buren)",
+  "stateId": "TN",
+  "extent": 0.2801,
+  "anchor": [
+   -85.34075,
+   35.64501
+  ]
+ },
+ "caney-fork-river": {
+  "display": "featured",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "name": "Caney Fork River (Center Hill tailwater)",
+  "stateId": "TN",
+  "extent": 0.1507,
+  "anchor": [
+   -85.8437,
+   36.1176
+  ]
+ },
+ "caney-fork-upper": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Caney Fork River (above Center Hill Lake)",
+  "stateId": "TN",
+  "extent": 0.6925,
+  "anchor": [
+   -85.3126,
+   35.8358
+  ]
+ },
+ "center-hill-lake": {
+  "display": "featured",
+  "regionId": "tn-middle-caney-fork",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Center Hill Lake",
+  "stateId": "TN",
+  "extent": 0.294,
+  "anchor": [
+   -85.733,
+   36.0029
+  ]
+ },
+ "charles-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Charles Creek",
+  "stateId": "TN",
+  "extent": 0.2193,
+  "anchor": [
+   -85.8594,
+   35.7468
+  ]
+ },
+ "cherokee-lake": {
+  "display": "featured",
+  "regionId": "tn-east-holston",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Cherokee Lake",
+  "stateId": "TN",
+  "extent": 0.9077,
+  "anchor": [
+   -83.28696,
+   36.28625
+  ]
+ },
+ "chestuee-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Chestuee Creek",
+  "stateId": "TN",
+  "extent": 0.3354,
+  "anchor": [
+   -84.59321,
+   35.36167
+  ]
+ },
+ "chickamauga-lake": {
+  "display": "featured",
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Chickamauga Lake",
+  "stateId": "TN",
+  "extent": 0.5288,
+  "anchor": [
+   -85.04951,
+   35.32623
+  ]
+ },
+ "chilhowee-lake": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Chilhowee Lake",
+  "stateId": "TN",
+  "extent": 0.0755,
+  "anchor": [
+   -84.01029,
+   35.54507
+  ]
+ },
+ "citico-creek": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Citico Creek",
+  "stateId": "TN",
+  "extent": 0.1879,
+  "anchor": [
+   -84.1007,
+   35.511
+  ]
+ },
+ "clear-creek-obed": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Clear Creek (Obed system)",
+  "stateId": "TN",
+  "extent": 0.483,
+  "anchor": [
+   -85.03468,
+   36.16489
+  ]
+ },
+ "clear-fork": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Clear Fork",
+  "stateId": "TN",
+  "extent": 0.3598,
+  "anchor": [
+   -84.73099,
+   36.35617
+  ]
+ },
+ "clinch-river": {
+  "display": "featured",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "name": "Clinch River (Norris tailwater)",
+  "stateId": "TN",
+  "extent": 0.4587,
+  "anchor": [
+   -84.22326,
+   35.94619
+  ]
+ },
+ "collins-river": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Collins River",
+  "stateId": "TN",
+  "extent": 0.4888,
+  "anchor": [
+   -85.7135,
+   35.763
+  ]
+ },
+ "conasauga-river": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Conasauga River",
+  "stateId": "TN",
+  "extent": 0.1436,
+  "anchor": [
+   -84.709492,
+   34.999555
+  ]
+ },
+ "cosby-creek": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Cosby Creek",
+  "stateId": "TN",
+  "extent": 0.1428,
+  "anchor": [
+   -83.220629,
+   35.845471
+  ]
+ },
+ "covington-fbc-pond": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "pond",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Covington First Baptist Church Pond",
+  "stateId": "TN",
+  "extent": 0.002,
+  "anchor": [
+   -89.63506,
+   35.53608
+  ]
+ },
+ "crab-orchard-creek": {
+  "display": null,
+  "regionId": "tn-cumberland-plateau",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Crab Orchard Creek",
+  "stateId": "TN",
+  "extent": 0.2031,
+  "anchor": [
+   -84.66716,
+   35.97324
+  ]
+ },
+ "cumberland-river": {
+  "display": "featured",
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Cumberland River",
+  "stateId": "TN",
+  "extent": 3.0453,
+  "anchor": [
+   -86.7128,
+   36.2372
+  ]
+ },
+ "daddys-creek": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Daddy\u2019s Creek",
+  "stateId": "TN",
+  "extent": 0.3336,
+  "anchor": [
+   -84.9396,
+   35.8983
+  ]
+ },
+ "dale-hollow-lake": {
+  "display": "featured",
+  "regionId": "tn-upper-cumberland",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Dale Hollow Lake",
+  "stateId": "TN",
+  "extent": 0.3525,
+  "anchor": [
+   -85.2862,
+   36.5825
+  ]
+ },
+ "doe-creek-johnson": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Doe Creek (Johnson County)",
+  "stateId": "TN",
+  "extent": 0.1248,
+  "anchor": [
+   -81.96319,
+   36.402389
+  ]
+ },
+ "doe-river": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Doe River",
+  "stateId": "TN",
+  "extent": 0.2166,
+  "anchor": [
+   -82.175584,
+   36.286848
+  ]
+ },
+ "douglas-lake": {
+  "display": "featured",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Douglas Lake",
+  "stateId": "TN",
+  "extent": 0.3483,
+  "anchor": [
+   -83.38143,
+   35.98941
+  ]
+ },
+ "duck-river-lower": {
+  "display": "featured",
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Duck River (Shelbyville to Columbia)",
+  "stateId": "TN",
+  "extent": 0.5401,
+  "anchor": [
+   -86.7113,
+   35.5813
+  ]
+ },
+ "duck-river-mouth": {
+  "display": "featured",
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Duck River (Columbia to the mouth)",
+  "stateId": "TN",
+  "extent": 0.9404,
+  "anchor": [
+   -87.46,
+   35.784
+  ]
+ },
+ "duck-river-tailwater": {
+  "display": "featured",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "name": "Duck River (Normandy tailwater)",
+  "stateId": "TN",
+  "extent": 0.2207,
+  "anchor": [
+   -86.3877,
+   35.4446
+  ]
+ },
+ "dumplin-creek": {
+  "display": null,
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Dumplin Creek",
+  "stateId": "TN",
+  "extent": 0.2408,
+  "anchor": [
+   -83.5142,
+   36.01625
+  ]
+ },
+ "east-fork-obey-river": {
+  "display": null,
+  "regionId": "tn-upper-cumberland",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "East Fork Obey River",
+  "stateId": "TN",
+  "extent": 0.3086,
+  "anchor": [
+   -85.02263,
+   36.28976
+  ]
+ },
+ "east-fork-shoal-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "East Fork Shoal Creek",
+  "stateId": "TN",
+  "extent": 0.1117,
+  "anchor": [
+   -87.0747,
+   35.0579
+  ]
+ },
+ "east-fork-stones-river": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "wild",
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "East Fork Stones River",
+  "stateId": "TN",
+  "extent": 0.6687,
+  "anchor": [
+   -86.3079,
+   35.9238
+  ]
+ },
+ "edmund-orgill-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": null,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Edmund-Orgill Park",
+  "stateId": "TN",
+  "extent": 0.0089,
+  "anchor": [
+   -89.83825,
+   35.37197
+  ]
+ },
+ "elk-river-lower": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Elk River (Prospect to state line)",
+  "stateId": "TN",
+  "extent": 0.2734,
+  "anchor": [
+   -87.029,
+   35.0008
+  ]
+ },
+ "elk-river": {
+  "display": "featured",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "name": "Elk River (Tims Ford tailwater)",
+  "stateId": "TN",
+  "extent": 0.625,
+  "anchor": [
+   -86.6664,
+   35.1303
+  ]
+ },
+ "emory-river": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Emory River",
+  "stateId": "TN",
+  "extent": 0.2899,
+  "anchor": [
+   -84.63414,
+   36.09467
+  ]
+ },
+ "falling-water-river": {
+  "display": null,
+  "regionId": "tn-upper-cumberland",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Falling Water River",
+  "stateId": "TN",
+  "extent": 0.4141,
+  "anchor": [
+   -85.48122,
+   36.10567
+  ]
+ },
+ "fletchers-fork": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Fletchers Fork",
+  "stateId": "TN",
+  "extent": 0.1866,
+  "anchor": [
+   -87.5026,
+   36.5747
+  ]
+ },
+ "forge-creek-johnson": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Forge Creek (Johnson County)",
+  "stateId": "TN",
+  "extent": 0.0335,
+  "anchor": [
+   -81.763836,
+   36.448508
+  ]
+ },
+ "forked-deer-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Forked Deer River",
+  "stateId": "TN",
+  "extent": 0.0083,
+  "anchor": [
+   -89.58547,
+   35.92682
+  ]
+ },
+ "fort-loudoun-lake": {
+  "display": "featured",
+  "regionId": "tn-east-clinch",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Fort Loudoun Lake",
+  "stateId": "TN",
+  "extent": 0.3951,
+  "anchor": [
+   -84.08448,
+   35.84704
+  ]
+ },
+ "fort-patrick-henry-lake": {
+  "display": "standard",
+  "regionId": "tn-east-holston",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Fort Patrick Henry Lake",
+  "stateId": "TN",
+  "extent": 0.0732,
+  "anchor": [
+   -82.47612,
+   36.48893
+  ]
+ },
+ "french-broad-river": {
+  "display": "featured",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "tailrace",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "French Broad River (Douglas tailwater)",
+  "stateId": "TN",
+  "extent": 0.6589,
+  "anchor": [
+   -83.35829,
+   35.98494
+  ]
+ },
+ "ft-patrick-henry-tailwater": {
+  "display": "featured",
+  "regionId": "tn-east-holston",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   3,
+   4
+  ],
+  "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+  "stateId": "TN",
+  "extent": 0.103,
+  "anchor": [
+   -82.55471,
+   36.51875
+  ]
+ },
+ "gap-creek-claiborne": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Gap Creek (Claiborne County)",
+  "stateId": "TN",
+  "extent": 0.0574,
+  "anchor": [
+   -83.674653,
+   36.56524
+  ]
+ },
+ "goforth-creek": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Goforth Creek",
+  "stateId": "TN",
+  "extent": 0.0361,
+  "anchor": [
+   -84.50339,
+   35.096613
+  ]
+ },
+ "greasy-creek-polk": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Greasy Creek (Polk County)",
+  "stateId": "TN",
+  "extent": 0.0855,
+  "anchor": [
+   -84.516562,
+   35.141647
+  ]
+ },
+ "great-falls-lake": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Great Falls Lake",
+  "stateId": "TN",
+  "extent": 0.3231,
+  "anchor": [
+   -85.7243,
+   35.6803
+  ]
+ },
+ "gulf-fork-big-creek": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Gulf Fork Big Creek",
+  "stateId": "TN",
+  "extent": 0.1347,
+  "anchor": [
+   -83.090827,
+   35.827203
+  ]
+ },
+ "harpeth-river": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Harpeth River (Williamson County reaches)",
+  "stateId": "TN",
+  "extent": 0.5949,
+  "anchor": [
+   -86.911,
+   35.991
+  ]
+ },
+ "hatchie-river": {
+  "display": "standard",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Hatchie River",
+  "stateId": "TN",
+  "extent": 1.0471,
+  "anchor": [
+   -89.5441,
+   35.6081
+  ]
+ },
+ "hiwassee-river": {
+  "display": "featured",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   10,
+   11,
+   12,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+  "stateId": "TN",
+  "extent": 0.5328,
+  "anchor": [
+   -84.64154,
+   35.21175
+  ]
+ },
+ "holston-river": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3,
+   4
+  ],
+  "name": "Holston River",
+  "stateId": "TN",
+  "extent": 1.2488,
+  "anchor": [
+   -83.31355,
+   36.2814
+  ]
+ },
+ "horse-creek-greene": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Horse Creek (Greene County)",
+  "stateId": "TN",
+  "extent": 0.0961,
+  "anchor": [
+   -82.6571,
+   36.1587
+  ]
+ },
+ "hurricane-creek": {
+  "display": "standard",
+  "regionId": "tn-upper-cumberland",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Hurricane Creek",
+  "stateId": "TN",
+  "extent": 0.2769,
+  "anchor": [
+   -87.6607,
+   36.0301
+  ]
+ },
+ "indian-creek-claiborne": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Indian Creek (Claiborne County)",
+  "stateId": "TN",
+  "extent": 0.2087,
+  "anchor": [
+   -83.52688,
+   36.62263
+  ]
+ },
+ "j-percy-priest-lake": {
+  "display": "featured",
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "J. Percy Priest Lake",
+  "stateId": "TN",
+  "extent": 0.2084,
+  "anchor": [
+   -86.5516,
+   36.0843
+  ]
+ },
+ "johnson-park-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Johnson Park Lake",
+  "stateId": "TN",
+  "extent": 0.0046,
+  "anchor": [
+   -89.68139,
+   35.08906
+  ]
+ },
+ "kentucky-lake": {
+  "display": "featured",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Kentucky Lake",
+  "stateId": "TN",
+  "extent": 1.959,
+  "anchor": [
+   -88.0698,
+   36.4748
+  ]
+ },
+ "lake-barkley": {
+  "display": "featured",
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Lake Barkley",
+  "stateId": "TN",
+  "extent": 0.7339,
+  "anchor": [
+   -87.9858,
+   36.8284
+  ]
+ },
+ "lake-graham": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Lake Graham",
+  "stateId": "TN",
+  "extent": 0.0319,
+  "anchor": [
+   -88.7248,
+   35.6431
+  ]
+ },
+ "laurel-creek-johnson": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Laurel Creek (Johnson County)",
+  "stateId": "TN",
+  "extent": 0.128,
+  "anchor": [
+   -81.753822,
+   36.587929
+  ]
+ },
+ "laurel-fork-carter": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "Laurel Fork (Carter County)",
+  "stateId": "TN",
+  "extent": 0.1703,
+  "anchor": [
+   -82.140368,
+   36.279079
+  ]
+ },
+ "leconte-creek": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "LeConte Creek",
+  "stateId": "TN",
+  "extent": 0.0752,
+  "anchor": [
+   -83.509013,
+   35.698113
+  ]
+ },
+ "little-buffalo-river": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Little Buffalo River",
+  "stateId": "TN",
+  "extent": 0.1522,
+  "anchor": [
+   -87.5093,
+   35.3761
+  ]
+ },
+ "little-chuckey-creek": {
+  "display": null,
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Little Chuckey Creek",
+  "stateId": "TN",
+  "extent": 0.2192,
+  "anchor": [
+   -82.99302,
+   36.13645
+  ]
+ },
+ "little-harpeth-river": {
+  "display": null,
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Little Harpeth River",
+  "stateId": "TN",
+  "extent": 0.1684,
+  "anchor": [
+   -86.8006,
+   36.01724
+  ]
+ },
+ "little-pigeon-river": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Little Pigeon River (Sevierville reach)",
+  "stateId": "TN",
+  "extent": 0.291,
+  "anchor": [
+   -83.405968,
+   35.778759
+  ]
+ },
+ "little-river": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Little River (Smokies / Blount County)",
+  "stateId": "TN",
+  "extent": 0.5054,
+  "anchor": [
+   -83.79709,
+   35.68692
+  ]
+ },
+ "little-sequatchie-river": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Little Sequatchie River",
+  "stateId": "TN",
+  "extent": 0.2578,
+  "anchor": [
+   -85.598403,
+   35.180141
+  ]
+ },
+ "little-tennessee-river": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   2,
+   3,
+   4
+  ],
+  "name": "Little Tennessee River",
+  "stateId": "TN",
+  "extent": 0.2369,
+  "anchor": [
+   -84.13714,
+   35.56794
+  ]
+ },
+ "little-west-fork-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Little West Fork Creek",
+  "stateId": "TN",
+  "extent": 0.3938,
+  "anchor": [
+   -87.383,
+   36.5954
+  ]
+ },
+ "loosahatchie-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Loosahatchie River",
+  "stateId": "TN",
+  "extent": 0.5551,
+  "anchor": [
+   -89.16735,
+   35.22728
+  ]
+ },
+ "martin-city-pond": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "pond",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Martin City Pond",
+  "stateId": "TN",
+  "extent": 0.0034,
+  "anchor": [
+   -88.8521,
+   36.30787
+  ]
+ },
+ "mccutcheon-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "McCutcheon Creek",
+  "stateId": "TN",
+  "extent": 0.0743,
+  "anchor": [
+   -86.9237,
+   35.757
+  ]
+ },
+ "melton-hill-lake": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Melton Hill Lake",
+  "stateId": "TN",
+  "extent": 0.344,
+  "anchor": [
+   -84.19496,
+   35.99044
+  ]
+ },
+ "middle-fork-forked-deer-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Middle Fork Forked Deer River",
+  "stateId": "TN",
+  "extent": 0.7584,
+  "anchor": [
+   -88.50371,
+   35.70329
+  ]
+ },
+ "middle-fork-obion-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Middle Fork Obion River",
+  "stateId": "TN",
+  "extent": 0.6148,
+  "anchor": [
+   -88.82058,
+   36.20375
+  ]
+ },
+ "middle-prong-little-pigeon": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Middle Prong Little Pigeon River (Tremont)",
+  "stateId": "TN",
+  "extent": 0.0773,
+  "anchor": [
+   -83.338255,
+   35.703526
+  ]
+ },
+ "milan-city-pond": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "pond",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Milan City Pond",
+  "stateId": "TN",
+  "extent": 0.001,
+  "anchor": [
+   -88.72909,
+   35.92375
+  ]
+ },
+ "mill-creek-overton": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Mill Creek (Overton County)",
+  "stateId": "TN",
+  "extent": 0.2128,
+  "anchor": [
+   -85.4867,
+   36.4824
+  ]
+ },
+ "mississippi-river": {
+  "display": "featured",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Mississippi River",
+  "stateId": "TN",
+  "extent": 2.0326,
+  "anchor": [
+   -89.659,
+   35.8993
+  ]
+ },
+ "mossy-creek-jefferson": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Mossy Creek (Jefferson County)",
+  "stateId": "TN",
+  "extent": 0.0654,
+  "anchor": [
+   -83.483734,
+   36.123263
+  ]
+ },
+ "new-river": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "New River",
+  "stateId": "TN",
+  "extent": 0.3102,
+  "anchor": [
+   -84.37493,
+   36.32239
+  ]
+ },
+ "nickajack-lake": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Nickajack Lake",
+  "stateId": "TN",
+  "extent": 0.3951,
+  "anchor": [
+   -85.47436,
+   35.03701
+  ]
+ },
+ "nolichucky-river": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Nolichucky River",
+  "stateId": "TN",
+  "extent": 0.8298,
+  "anchor": [
+   -82.82646,
+   36.0862
+  ]
+ },
+ "nonconnah-creek": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Nonconnah Creek",
+  "stateId": "TN",
+  "extent": 0.447,
+  "anchor": [
+   -89.93169,
+   35.07725
+  ]
+ },
+ "normandy-lake": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Normandy Lake",
+  "stateId": "TN",
+  "extent": 0.1232,
+  "anchor": [
+   -86.2036,
+   35.4574
+  ]
+ },
+ "norris-lake": {
+  "display": "featured",
+  "regionId": "tn-east-clinch",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Norris Lake",
+  "stateId": "TN",
+  "extent": 0.7661,
+  "anchor": [
+   -83.8799,
+   36.30355
+  ]
+ },
+ "north-chickamauga-creek": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "North Chickamauga Creek",
+  "stateId": "TN",
+  "extent": 0.1899,
+  "anchor": [
+   -85.216696,
+   35.145616
+  ]
+ },
+ "north-fork-forked-deer-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "North Fork Forked Deer River",
+  "stateId": "TN",
+  "extent": 0.6837,
+  "anchor": [
+   -89.19242,
+   36.01561
+  ]
+ },
+ "north-fork-holston-river": {
+  "display": "standard",
+  "regionId": "tn-east-holston",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "North Fork Holston River",
+  "stateId": "TN",
+  "extent": 0.618,
+  "anchor": [
+   -82.58016,
+   36.60975
+  ]
+ },
+ "north-fork-obion-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "North Fork Obion River",
+  "stateId": "TN",
+  "extent": 0.7623,
+  "anchor": [
+   -89,
+   36.39635
+  ]
+ },
+ "north-mouse-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "North Mouse Creek",
+  "stateId": "TN",
+  "extent": 0.263,
+  "anchor": [
+   -84.67948,
+   35.4315
+  ]
+ },
+ "north-prong-barren-fork": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "North Prong Barren Fork River",
+  "stateId": "TN",
+  "extent": 0.0921,
+  "anchor": [
+   -85.9551,
+   35.6913
+  ]
+ },
+ "obed-river": {
+  "display": "featured",
+  "regionId": "tn-cumberland-plateau",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Obed River",
+  "stateId": "TN",
+  "extent": 0.4655,
+  "anchor": [
+   -84.98281,
+   36.05633
+  ]
+ },
+ "obey-river": {
+  "display": "featured",
+  "regionId": "tn-upper-cumberland",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "name": "Obey River (Dale Hollow tailwater)",
+  "stateId": "TN",
+  "extent": 0.061,
+  "anchor": [
+   -85.4819,
+   36.5423
+  ]
+ },
+ "obion-river": {
+  "display": "standard",
+  "regionId": "tn-west",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Obion River",
+  "stateId": "TN",
+  "extent": 0.7119,
+  "anchor": [
+   -89.53335,
+   36.11131
+  ]
+ },
+ "ocoee-number-three-lake": {
+  "display": "reference",
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Ocoee Number Three Lake",
+  "stateId": "TN",
+  "extent": 0.0605,
+  "anchor": [
+   -84.43623,
+   35.02753
+  ]
+ },
+ "ocoee-river": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Ocoee River (upper, Copperhill reach)",
+  "stateId": "TN",
+  "extent": 0.2869,
+  "anchor": [
+   -84.4632,
+   35.05144
+  ]
+ },
+ "old-hickory-lake": {
+  "display": "featured",
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Old Hickory Lake",
+  "stateId": "TN",
+  "extent": 0.7234,
+  "anchor": [
+   -86.427,
+   36.3327
+  ]
+ },
+ "oostanaula-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Oostanaula Creek",
+  "stateId": "TN",
+  "extent": 0.2902,
+  "anchor": [
+   -84.61153,
+   35.38389
+  ]
+ },
+ "paint-creek-greene": {
+  "display": null,
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Paint Creek (Greene County)",
+  "stateId": "TN",
+  "extent": 0.1772,
+  "anchor": [
+   -82.82661,
+   35.9702
+  ]
+ },
+ "paris-city-park-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Paris City Park",
+  "stateId": "TN",
+  "extent": 0.0018,
+  "anchor": [
+   -88.30902,
+   36.3095
+  ]
+ },
+ "parksville-lake": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Parksville Lake",
+  "stateId": "TN",
+  "extent": 0.0841,
+  "anchor": [
+   -84.61249,
+   35.09619
+  ]
+ },
+ "parksville-tailwater": {
+  "display": "featured",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   3,
+   4,
+   5
+  ],
+  "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+  "stateId": "TN",
+  "extent": 0.1117,
+  "anchor": [
+   -84.691595,
+   35.141575
+  ]
+ },
+ "pickwick-lake": {
+  "display": "featured",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Pickwick Lake",
+  "stateId": "TN",
+  "extent": 0.637,
+  "anchor": [
+   -88.0313,
+   34.899
+  ]
+ },
+ "pigeon-river": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Pigeon River (Hartford corridor)",
+  "stateId": "TN",
+  "extent": 0.3315,
+  "anchor": [
+   -83.18572,
+   35.89181
+  ]
+ },
+ "pine-creek-dekalb": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Pine Creek (DeKalb County)",
+  "stateId": "TN",
+  "extent": 0.1524,
+  "anchor": [
+   -85.8186,
+   35.9104
+  ]
+ },
+ "piney-river-hickman": {
+  "display": null,
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Piney River (Hickman County)",
+  "stateId": "TN",
+  "extent": 0.1928,
+  "anchor": [
+   -87.47186,
+   35.88959
+  ]
+ },
+ "piney-river-rhea": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "Piney River (Rhea County)",
+  "stateId": "TN",
+  "extent": 0.2712,
+  "anchor": [
+   -84.85858,
+   35.69952
+  ]
+ },
+ "powell-river": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "wild",
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Powell River",
+  "stateId": "TN",
+  "extent": 0.7204,
+  "anchor": [
+   -83.64903,
+   36.52633
+  ]
+ },
+ "puncheon-camp-creek": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Puncheon Camp Creek",
+  "stateId": "TN",
+  "extent": 0.0649,
+  "anchor": [
+   -83.521001,
+   36.325955
+  ]
+ },
+ "red-river-clarksville": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Red River (Montgomery County)",
+  "stateId": "TN",
+  "extent": 0.3311,
+  "anchor": [
+   -87.162,
+   36.5503
+  ]
+ },
+ "reedy-creek": {
+  "display": "standard",
+  "regionId": "tn-east-holston",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Reedy Creek",
+  "stateId": "TN",
+  "extent": 0.3005,
+  "anchor": [
+   -82.496993,
+   36.547049
+  ]
+ },
+ "reelfoot-lake": {
+  "display": "featured",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Reelfoot Lake",
+  "stateId": "TN",
+  "extent": 0.1512,
+  "anchor": [
+   -89.3792,
+   36.4049
+  ]
+ },
+ "richardson-byrd-creek": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Richardson \u201cByrd\u201d Creek",
+  "stateId": "TN",
+  "extent": 0.0906,
+  "anchor": [
+   -83.12165,
+   36.49353
+  ]
+ },
+ "richland-creek-maury": {
+  "display": null,
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Richland Creek (Maury/Giles Counties)",
+  "stateId": "TN",
+  "extent": 0.3749,
+  "anchor": [
+   -87.03726,
+   35.27688
+  ]
+ },
+ "roaring-fork": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "Roaring Fork",
+  "stateId": "TN",
+  "extent": 0.0712,
+  "anchor": [
+   -83.457767,
+   35.688547
+  ]
+ },
+ "roaring-river": {
+  "display": null,
+  "regionId": "tn-upper-cumberland",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Roaring River",
+  "stateId": "TN",
+  "extent": 0.3148,
+  "anchor": [
+   -85.43356,
+   36.35035
+  ]
+ },
+ "rocky-river": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Rocky River",
+  "stateId": "TN",
+  "extent": 0.2613,
+  "anchor": [
+   -85.5228,
+   35.5917
+  ]
+ },
+ "rutherford-fork-obion-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Rutherford Fork Obion River",
+  "stateId": "TN",
+  "extent": 0.5557,
+  "anchor": [
+   -88.50811,
+   35.86316
+  ]
+ },
+ "sale-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Sale Creek",
+  "stateId": "TN",
+  "extent": 0.1742,
+  "anchor": [
+   -85.08347,
+   35.4375
+  ]
+ },
+ "salt-lick-creek": {
+  "display": "standard",
+  "regionId": "tn-upper-cumberland",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Salt Lick Creek",
+  "stateId": "TN",
+  "extent": 0.1806,
+  "anchor": [
+   -85.9186,
+   36.626
+  ]
+ },
+ "sequatchie-river": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Sequatchie River (headwaters)",
+  "stateId": "TN",
+  "extent": 0.7835,
+  "anchor": [
+   -85.21226,
+   35.57877
+  ]
+ },
+ "shelby-farms-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Shelby Farms",
+  "stateId": "TN",
+  "extent": 0.0013,
+  "anchor": [
+   -89.83386,
+   35.13965
+  ]
+ },
+ "shoal-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Shoal Creek",
+  "stateId": "TN",
+  "extent": 0.4128,
+  "anchor": [
+   -87.4281,
+   35.1406
+  ]
+ },
+ "sinking-creek-wilson": {
+  "display": "reference",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "spring",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Sinking Creek (Wilson County)",
+  "stateId": "TN",
+  "extent": 0.2553,
+  "anchor": [
+   -86.3003,
+   36.1651
+  ]
+ },
+ "south-chickamauga-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "South Chickamauga Creek",
+  "stateId": "TN",
+  "extent": 0.1879,
+  "anchor": [
+   -85.16783,
+   34.98324
+  ]
+ },
+ "south-fork-cumberland": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "trout",
+  "fishery": "wild",
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "South Fork Cumberland River",
+  "stateId": "TN",
+  "extent": 0.1684,
+  "anchor": [
+   -84.63112,
+   36.50163
+  ]
+ },
+ "south-fork-forked-deer-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "South Fork Forked Deer River",
+  "stateId": "TN",
+  "extent": 0.8324,
+  "anchor": [
+   -89.3534,
+   35.83695
+  ]
+ },
+ "south-fork-obion-river": {
+  "display": null,
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "South Fork Obion River",
+  "stateId": "TN",
+  "extent": 0.4373,
+  "anchor": [
+   -88.58795,
+   36.07365
+  ]
+ },
+ "south-holston-lake": {
+  "display": "featured",
+  "regionId": "tn-east-holston",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "South Holston Lake",
+  "stateId": "TN",
+  "extent": 0.2043,
+  "anchor": [
+   -82.03203,
+   36.56265
+  ]
+ },
+ "south-holston-river": {
+  "display": "featured",
+  "regionId": "tn-east-holston",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "name": "South Fork Holston River (South Holston tailwater)",
+  "stateId": "TN",
+  "extent": 0.1724,
+  "anchor": [
+   -82.15053,
+   36.50361
+  ]
+ },
+ "south-mouse-creek": {
+  "display": null,
+  "regionId": "tn-se-hiwassee",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "South Mouse Creek",
+  "stateId": "TN",
+  "extent": 0.1853,
+  "anchor": [
+   -84.82925,
+   35.24676
+  ]
+ },
+ "spring-creek-polk": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Spring Creek (Polk County)",
+  "stateId": "TN",
+  "extent": 0.1398,
+  "anchor": [
+   -84.471493,
+   35.238587
+  ]
+ },
+ "standing-rock-creek": {
+  "display": "standard",
+  "regionId": "tn-upper-cumberland",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Standing Rock Creek",
+  "stateId": "TN",
+  "extent": 0.1862,
+  "anchor": [
+   -87.9983,
+   36.4367
+  ]
+ },
+ "station-creek": {
+  "display": "standard",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Station Creek",
+  "stateId": "TN",
+  "extent": 0.0464,
+  "anchor": [
+   -83.6104,
+   36.5872
+  ]
+ },
+ "stones-river": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Stones River (Davidson County)",
+  "stateId": "TN",
+  "extent": 0.0487,
+  "anchor": [
+   -86.6336,
+   36.1865
+  ]
+ },
+ "stoney-creek-carter": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Stoney Creek (Carter County)",
+  "stateId": "TN",
+  "extent": 0.1809,
+  "anchor": [
+   -82.135158,
+   36.383309
+  ]
+ },
+ "sulfur-fork-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Sulfur Fork Creek",
+  "stateId": "TN",
+  "extent": 0.4467,
+  "anchor": [
+   -86.997,
+   36.5125
+  ]
+ },
+ "tellico-lake": {
+  "display": "featured",
+  "regionId": "tn-east-clinch",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   2,
+   3,
+   4
+  ],
+  "name": "Tellico Lake",
+  "stateId": "TN",
+  "extent": 0.436,
+  "anchor": [
+   -84.21826,
+   35.61538
+  ]
+ },
+ "tellico-river": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "Tellico River",
+  "stateId": "TN",
+  "extent": 0.357,
+  "anchor": [
+   -84.1636,
+   35.3256
+  ]
+ },
+ "tennessee-river": {
+  "display": "featured",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Tennessee River",
+  "stateId": "TN",
+  "extent": 4.4675,
+  "anchor": [
+   -84.72121,
+   35.71592
+  ]
+ },
+ "tims-ford-lake": {
+  "display": "featured",
+  "regionId": "tn-middle-duck-elk",
+  "species": "warmwater",
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Tims Ford Lake",
+  "stateId": "TN",
+  "extent": 0.2071,
+  "anchor": [
+   -86.2106,
+   35.2212
+  ]
+ },
+ "trail-fork-big-creek": {
+  "display": "standard",
+  "regionId": "tn-east-pigeon-frenchbroad",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Trail Fork (Big Creek tributary)",
+  "stateId": "TN",
+  "extent": 0.0193,
+  "anchor": [
+   -83.110036,
+   35.900264
+  ]
+ },
+ "tumbling-creek": {
+  "display": "standard",
+  "regionId": "tn-se-hiwassee",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Tumbling Creek",
+  "stateId": "TN",
+  "extent": 0.0939,
+  "anchor": [
+   -84.474001,
+   35.003913
+  ]
+ },
+ "union-city-reelfoot-pond": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "pond",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Union City Reelfoot Packing Site",
+  "stateId": "TN",
+  "extent": 0.0011,
+  "anchor": [
+   -89.06269,
+   36.41437
+  ]
+ },
+ "upper-hills-creek": {
+  "display": "standard",
+  "regionId": "tn-middle-caney-fork",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Upper Hills Creek",
+  "stateId": "TN",
+  "extent": 0.0666,
+  "anchor": [
+   -85.6751,
+   35.571
+  ]
+ },
+ "upper-roan-creek": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "Upper Roan Creek",
+  "stateId": "TN",
+  "extent": 0.219,
+  "anchor": [
+   -81.8852,
+   36.3769
+  ]
+ },
+ "valentine-park-pond": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "pond",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Valentine Park",
+  "stateId": "TN",
+  "extent": 0.0016,
+  "anchor": [
+   -89.80598,
+   35.46305
+  ]
+ },
+ "watauga-lake": {
+  "display": "featured",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Watauga Lake",
+  "stateId": "TN",
+  "extent": 0.2038,
+  "anchor": [
+   -82.02215,
+   36.32934
+  ]
+ },
+ "watauga-river-wilbur-reach": {
+  "display": "standard",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+  "stateId": "TN",
+  "extent": 0.1258,
+  "anchor": [
+   -82.12291,
+   36.33702
+  ]
+ },
+ "watauga-river": {
+  "display": "featured",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "tailwater",
+  "waterbodyType": "tailrace",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "name": "Watauga River (Wilbur tailwater)",
+  "stateId": "TN",
+  "extent": 0.2957,
+  "anchor": [
+   -82.25131,
+   36.35116
+  ]
+ },
+ "watts-bar-lake": {
+  "display": "featured",
+  "regionId": "tn-east-clinch",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Watts Bar Lake",
+  "stateId": "TN",
+  "extent": 0.6204,
+  "anchor": [
+   -84.6543,
+   35.75264
+  ]
+ },
+ "west-fork-obey-river": {
+  "display": null,
+  "regionId": "tn-upper-cumberland",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "West Fork Obey River",
+  "stateId": "TN",
+  "extent": 0.2779,
+  "anchor": [
+   -85.18611,
+   36.30967
+  ]
+ },
+ "west-fork-stones-river": {
+  "display": "standard",
+  "regionId": "tn-middle-nashville",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "river",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "West Fork Stones River",
+  "stateId": "TN",
+  "extent": 0.338,
+  "anchor": [
+   -86.4152,
+   35.8517
+  ]
+ },
+ "west-harpeth-river": {
+  "display": null,
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "West Harpeth River",
+  "stateId": "TN",
+  "extent": 0.1914,
+  "anchor": [
+   -86.94852,
+   35.88465
+  ]
+ },
+ "west-prong-little-pigeon": {
+  "display": "standard",
+  "regionId": "tn-east-smokies",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": true,
+  "seasonMonths": null,
+  "name": "West Prong Little Pigeon River",
+  "stateId": "TN",
+  "extent": 0.2447,
+  "anchor": [
+   -83.576154,
+   35.826257
+  ]
+ },
+ "white-oak-creek": {
+  "display": "standard",
+  "regionId": "tn-upper-cumberland",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   12,
+   1,
+   2
+  ],
+  "name": "White Oak Creek",
+  "stateId": "TN",
+  "extent": 0.3908,
+  "anchor": [
+   -87.704,
+   36.214
+  ]
+ },
+ "wilbur-lake": {
+  "display": "reference",
+  "regionId": "tn-northeast-watauga",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "name": "Wilbur Lake",
+  "stateId": "TN",
+  "extent": 0.0128,
+  "anchor": [
+   -82.11568,
+   36.33862
+  ]
+ },
+ "wolf-river-fentress": {
+  "display": "standard",
+  "regionId": "tn-cumberland-plateau",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "creek",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": null,
+  "name": "Wolf River (Fentress County headwaters)",
+  "stateId": "TN",
+  "extent": 0.4171,
+  "anchor": [
+   -85.0477,
+   36.5365
+  ]
+ },
+ "wolf-river-west-tennessee": {
+  "display": "standard",
+  "regionId": "tn-west",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "river",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Wolf River",
+  "stateId": "TN",
+  "extent": 1.0506,
+  "anchor": [
+   -89.6623,
+   35.0882
+  ]
+ },
+ "woods-reservoir": {
+  "display": "standard",
+  "regionId": "tn-middle-duck-elk",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "lake",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Woods Reservoir",
+  "stateId": "TN",
+  "extent": 0.1238,
+  "anchor": [
+   -86.059,
+   35.312
+  ]
+ },
+ "yale-road-park-lake": {
+  "display": "reference",
+  "regionId": "tn-west",
+  "species": "trout",
+  "fishery": "stocked",
+  "waterbodyType": "lake",
+  "stockingProgram": true,
+  "yearRound": false,
+  "seasonMonths": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ],
+  "name": "Yale Road Park",
+  "stateId": "TN",
+  "extent": 0.0011,
+  "anchor": [
+   -89.85634,
+   35.21676
+  ]
+ },
+ "yellow-creek-houston": {
+  "display": null,
+  "regionId": "tn-middle-nashville",
+  "species": null,
+  "fishery": null,
+  "waterbodyType": "creek",
+  "stockingProgram": false,
+  "yearRound": null,
+  "seasonMonths": null,
+  "name": "Yellow Creek (Houston/Dickson Counties)",
+  "stateId": "TN",
+  "extent": 0.3079,
+  "anchor": [
+   -87.54096,
+   36.24048
+  ]
+ }
+}

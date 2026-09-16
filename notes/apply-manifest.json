@@ -1,0 +1,700 @@
+{
+ "_meta": {
+  "lane": "map-prominence",
+  "date": "2026-09-16 (rev 2, post-review)",
+  "branch": "feat/map-prominence",
+  "status": "PROPOSED \u2014 DO NOT APPLY without owner approval (one-commit apply)",
+  "rule": "featured = R1 signature tailwaters (species:trout + fishery:tailwater) | R2 TWRA nine-trout-reservoir lakes | R3 per-region anchors (minimal; every one of the 12 catalog regionIds contains >=1 featured trout anchor; month-by-month title coverage in regionPaint below). standard = everything else regularly fished. reference = pocket waters minus shelby-farms (promoted).",
+  "labelPolicyCompanion": "abf6442 feat(map): featured anchors wear subordinate labels in trout mode",
+  "applySteps": [
+   "Apply tierChanges of the CHOSEN candidate (A or B) + speciesFills in ONE commit, then node apps/web/scripts/build-selectable-water-traces.mjs to rebuild the atlas",
+   "Gates: pnpm validate:content && pnpm --filter content test && pnpm --filter web test && pnpm -r build"
+  ]
+ },
+ "candidateA": {
+  "label": "Trout-pure (recommended)",
+  "featured": [
+   "boone-tailwater",
+   "calderwood-lake",
+   "caney-fork-river",
+   "chilhowee-lake",
+   "clinch-river",
+   "dale-hollow-lake",
+   "duck-river-tailwater",
+   "elk-river",
+   "fort-patrick-henry-lake",
+   "ft-patrick-henry-tailwater",
+   "harpeth-river",
+   "hiwassee-river",
+   "holston-river",
+   "obey-river",
+   "parksville-tailwater",
+   "piney-river-rhea",
+   "shelby-farms-lake",
+   "south-holston-lake",
+   "south-holston-river",
+   "watauga-lake",
+   "watauga-river",
+   "west-prong-little-pigeon"
+  ],
+  "tierChanges": [
+   {
+    "id": "boone-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "buffalo-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "calderwood-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "center-hill-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "cherokee-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "chickamauga-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "chilhowee-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "cumberland-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "douglas-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "duck-river-lower",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "duck-river-mouth",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "fort-loudoun-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "fort-patrick-henry-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "french-broad-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "harpeth-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "holston-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "j-percy-priest-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "kentucky-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "lake-barkley",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "mississippi-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "norris-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "obed-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "old-hickory-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "pickwick-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "piney-river-rhea",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "reelfoot-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "shelby-farms-lake",
+    "field": "display",
+    "from": "reference",
+    "to": "featured"
+   },
+   {
+    "id": "tellico-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "tennessee-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "tims-ford-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "watts-bar-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "west-prong-little-pigeon",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   }
+  ],
+  "regionPaint": {
+   "september": {
+    "tn-cumberland-plateau": [
+     "piney-river-rhea"
+    ],
+    "tn-east-clinch": [],
+    "tn-east-holston": [
+     "fort-patrick-henry-lake",
+     "south-holston-lake",
+     "south-holston-river"
+    ],
+    "tn-east-pigeon-frenchbroad": [],
+    "tn-east-smokies": [
+     "calderwood-lake",
+     "chilhowee-lake",
+     "west-prong-little-pigeon"
+    ],
+    "tn-middle-caney-fork": [
+     "caney-fork-river"
+    ],
+    "tn-middle-duck-elk": [
+     "elk-river"
+    ],
+    "tn-middle-nashville": [],
+    "tn-northeast-watauga": [
+     "watauga-lake",
+     "watauga-river"
+    ],
+    "tn-se-hiwassee": [],
+    "tn-upper-cumberland": [
+     "dale-hollow-lake",
+     "obey-river"
+    ],
+    "tn-west": []
+   },
+   "november": {}
+  }
+ },
+ "candidateB": {
+  "label": "A + geographic spine (tennessee-river, mississippi-river, tellico-lake STAY featured as dim subordinate context)",
+  "codeFlag": "FEATURED_WARMWATER_CONTEXT=true in apps/web/src/features/map/waterDecision.ts (default false)",
+  "featured": [
+   "boone-tailwater",
+   "calderwood-lake",
+   "caney-fork-river",
+   "chilhowee-lake",
+   "clinch-river",
+   "dale-hollow-lake",
+   "duck-river-tailwater",
+   "elk-river",
+   "fort-patrick-henry-lake",
+   "ft-patrick-henry-tailwater",
+   "harpeth-river",
+   "hiwassee-river",
+   "holston-river",
+   "obey-river",
+   "parksville-tailwater",
+   "piney-river-rhea",
+   "shelby-farms-lake",
+   "south-holston-lake",
+   "south-holston-river",
+   "watauga-lake",
+   "watauga-river",
+   "west-prong-little-pigeon",
+   "tellico-lake",
+   "tennessee-river",
+   "mississippi-river"
+  ],
+  "tierChanges": [
+   {
+    "id": "boone-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "buffalo-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "calderwood-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "center-hill-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "cherokee-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "chickamauga-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "chilhowee-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "cumberland-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "douglas-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "duck-river-lower",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "duck-river-mouth",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "fort-loudoun-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "fort-patrick-henry-lake",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "french-broad-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "harpeth-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "holston-river",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "j-percy-priest-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "kentucky-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "lake-barkley",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "norris-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "obed-river",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "old-hickory-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "pickwick-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "piney-river-rhea",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   },
+   {
+    "id": "reelfoot-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "shelby-farms-lake",
+    "field": "display",
+    "from": "reference",
+    "to": "featured"
+   },
+   {
+    "id": "tims-ford-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "watts-bar-lake",
+    "field": "display",
+    "from": "featured",
+    "to": "standard"
+   },
+   {
+    "id": "west-prong-little-pigeon",
+    "field": "display",
+    "from": "standard",
+    "to": "featured"
+   }
+  ],
+  "deltaVsA": {
+   "skipDemotions": [
+    "tellico-lake",
+    "tennessee-river",
+    "mississippi-river"
+   ],
+   "why": "B keeps these three featured; applying A tierChanges + flag alone would strand them standard and the context rule (which keys on display==featured) would EXCLUDE them \u2014 no spine. Use candidateB.tierChanges wholesale."
+  }
+ },
+ "speciesFills": [
+  {
+   "id": "watts-bar-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "largemouth/smallmouth/crappie + stocked stripers, walleye, FLMB; no trout",
+   "citation": "TWRA Watts Bar where-to-fish + absence from trout-reservoir list",
+   "urls": []
+  },
+  {
+   "id": "chickamauga-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "elite largemouth (FLMB program), smallmouth/spotted, nationally ranked crappie, stripers, walleye, blue catfish",
+   "citation": "TWRA Chickamauga where-to-fish + absence from trout-reservoir list",
+   "urls": []
+  },
+  {
+   "id": "kentucky-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "crappie (20/day, 10-in), sauger Dec-Mar, blue catfish, LMB/smallmouth",
+   "citation": "TWRA Kentucky Reservoir where-to-fish (tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html) + absence from trout programs",
+   "urls": []
+  },
+  {
+   "id": "reelfoot-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "bluegill + white crappie ('best in state'); catfish dense",
+   "citation": "TWRA Reelfoot Lake where-to-fish (fetched) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html)",
+   "urls": []
+  },
+  {
+   "id": "pickwick-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "trophy smallmouth ('rivals Dale Hollow'), LMB/spotted, blue-cat-led catfishery",
+   "citation": "TWRA Pickwick Reservoir where-to-fish (fetched) + absence from trout programs",
+   "urls": []
+  },
+  {
+   "id": "old-hickory-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "bass/crappie/striped bass",
+   "citation": "Absence from all TWRA trout program lists",
+   "urls": []
+  },
+  {
+   "id": "j-percy-priest-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "bass/crappie; the winter trout site is the TW / Stones River tailwater below the dam",
+   "citation": "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row 'J. Percy Priest TW / Stones River' = tailwater reach, not the lake; no lake trout row",
+   "urls": []
+  },
+  {
+   "id": "douglas-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "crappie ('best in East TN'), largemouth, bluegill, catfish; sauger/walleye runs up tributaries; NO trout",
+   "citation": "TWRA Douglas Reservoir where-to-fish (zero trout content) + absence from trout-reservoir list",
+   "urls": []
+  },
+  {
+   "id": "boone-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "largemouth/smallmouth/spotted, striped bass + hybrids, blue catfish; trout regs apply only on cold Watauga arm to Hwy 11E (drift-in fish)",
+   "citation": "TWRA Boone Lake where-to-fish + absence from trout-reservoir list",
+   "urls": []
+  },
+  {
+   "id": "fort-loudoun-lake",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "largemouth/smallmouth, white bass, crappie/bluegill/catfish, sauger run at 'forks of the river'",
+   "citation": "TWRA Fort Loudoun where-to-fish + absence from trout programs",
+   "urls": []
+  },
+  {
+   "id": "tennessee-river",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "main-stem reservoir chain; sauger run below dams Dec-Mar; no trout program",
+   "citation": "TWRA Kentucky Reservoir page + absence from all TWRA trout program lists",
+   "urls": []
+  },
+  {
+   "id": "mississippi-river",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "medium",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "blue/flathead/channel catfish-led trophy fishery; bass",
+   "citation": "Lower Mississippi River Conservation Committee angler guide (lmrcc.org) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html)",
+   "urls": []
+  },
+  {
+   "id": "lake-barkley",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "medium",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "crappie/bass/catfish",
+   "citation": "TWRA Region-1 where-to-fish locations list (fetched) + absence from trout programs",
+   "urls": []
+  },
+  {
+   "id": "duck-river-lower",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "smallmouth/spotted/rock bass/catfish; the stocked trout reach ends at Three Forks Bridge",
+   "citation": "TWRA Duck River where-to-fish (fetched): tailwater dam-to-Three-Forks-Bridge is the trout water; below is warmwater",
+   "urls": []
+  },
+  {
+   "id": "buffalo-river",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "smallmouth signature (1-4 lb), rock bass, bream, catfish",
+   "citation": "Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); State Scenic River smallmouth identity",
+   "urls": []
+  },
+  {
+   "id": "cumberland-river",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/SPECIES-CLASSIFICATION.md",
+   "note": "main-stem bass/crappie/stripes; TN trout fishing lives in tributary tailwaters",
+   "citation": "Absence from all TWRA trout program lists; trout rivers named in TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf)",
+   "urls": []
+  },
+  {
+   "id": "pigeon-river",
+   "field": "species",
+   "to": "warmwater",
+   "confidence": "high",
+   "source": "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md",
+   "note": "",
+   "citation": "wave-3 ledger: Managed warmwater river (smallmouth/walleye, state-record redhorse); trout row pairing unconfirmable in schedule scrape; troutEvidence=none",
+   "urls": []
+  }
+ ],
+ "speciesFillNoOps": {
+  "note": "already species:warmwater in YAML \u2014 listed for the record, no edit needed",
+  "ids": [
+   "center-hill-lake",
+   "tims-ford-lake",
+   "norris-lake",
+   "cherokee-lake",
+   "french-broad-river",
+   "obed-river"
+  ]
+ },
+ "flaggedNotChanged": [
+  {
+   "id": "duck-river-mouth",
+   "issue": "NO ledger block and NO classification row \u2014 species stays unset; demoted to standard regardless. No fill is proposed (rev-1 manifest wrongly contained an uncited fill; removed)."
+  },
+  {
+   "id": "tellico-lake",
+   "issue": "species trout is reach-limited (upper arm below Chilhowee Dam, ~4,500 RB/yr, Feb-Apr window); demoted in A, featured in B."
+  },
+  {
+   "id": "dale-hollow-lake",
+   "issue": "kept featured: on TWRA nine-trout-reservoir list + trout regs (7/day), but in-lake stocking row absent; the Obey tailwater is the real trout reach. Strike from R2 if you disagree \u2014 obey-river keeps the region anchored."
+  },
+  {
+   "id": "parksville",
+   "issue": "nine-reservoir list says \"Parksville\": catalog has only parksville-tailwater (already featured via R1), no lake entry \u2014 R2 satisfied by the tailwater; no change."
+  },
+  {
+   "id": "clinch-river",
+   "issue": "authored window Mar-Aug: the Clinch REGION titles Mar-Aug only and is dark Sept-Feb. If the window should be longer (TWRA regs suggest year-round below the dam), fixing seasonMonths fixes the region \u2014 owner call."
+  },
+  {
+   "id": "little-river",
+   "issue": "ledger stockingDate 11/8/2026 is in the future \u2014 date-format or pre-scheduled-row artifact in the ledger scrape; window Feb-May + Oct-Nov disagrees with the YAML Nov-Mar fallback. Data-quality note, not changed."
+  },
+  {
+   "id": "all-fish-mode",
+   "issue": "demoted majors title from z=9.5 in all-fish mode (today's standard behavior); region consequence disclosed in the package. If demoted majors should keep statewide labels in all-fish mode, one-line labelPolicy change \u2014 decision point, not applied."
+  }
+ ]
+}

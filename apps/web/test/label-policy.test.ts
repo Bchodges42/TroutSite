@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { labelSpeciesNote, shouldShowLabel } from '../src/features/map/labelPolicy';
+import { labelDecision, labelSpeciesNote, shouldShowLabel } from '../src/features/map/labelPolicy';
 
 const INDEX_DIR = dirname(fileURLToPath(import.meta.url));
 const riverIndex = JSON.parse(readFileSync(join(INDEX_DIR, '../src/features/map/riverIndex.json'), 'utf8')) as { id: string }[];
@@ -49,17 +49,25 @@ describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
     ).toBe(true);
   });
 
-  it('hides a major warmwater water in trout mode but titles it in all-fish mode', () => {
-    const water = { id: 'buffalo-river', species: 'warmwater' as const };
-    expect(shouldShowLabel(water, ctx({ extent: 0.4, zoom: 6 }))).toBe(false);
+  it('gives a major warmwater water a SUBORDINATE label in trout mode, full title in all-fish mode', () => {
+    const water = { id: 'buffalo-river', species: 'warmwater' as const, display: 'featured' as const };
+    // Featured anchors stay nameable in trout mode (owner complaint 2026-09-16:
+    // major waters must not render as silent grey shapes) — but subordinate.
+    expect(labelDecision(water, ctx({ extent: 0.4, zoom: 6 }))).toBe('subordinate');
+    expect(shouldShowLabel(water, ctx({ extent: 0.4, zoom: 6 }))).toBe(true);
     expect(shouldShowLabel(water, ctx({ extent: 0.4, zoom: 6, mode: 'all' }))).toBe(true);
+    // A NON-featured warmwater water keeps the old silence.
+    expect(
+      shouldShowLabel({ id: 'harpeth-river', species: 'warmwater' }, ctx({ extent: 0.4, zoom: 6 })),
+    ).toBe(false);
   });
 
-  it('never titles an unknown-species water in trout mode, majors only in all-fish mode', () => {
-    // species unset — the catalog does not say, and the policy never guesses.
-    const water = { id: 'cumberland-river' };
-    expect(shouldShowLabel(water, ctx({ extent: 0.45, zoom: 6 }))).toBe(false);
-    expect(shouldShowLabel(water, ctx({ extent: 0.45, zoom: 6, mode: 'all' }))).toBe(true);
+  it('never gives an unknown-species water a FULL title in trout mode; featured anchors go subordinate', () => {
+    // species unset — the catalog does not say, and the policy never guesses:
+    // a featured anchor reads subordinate (dim, honest "Unverified" note).
+    const featured = { id: 'cumberland-river', display: 'featured' as const };
+    expect(labelDecision(featured, ctx({ extent: 0.45, zoom: 6 }))).toBe('subordinate');
+    expect(shouldShowLabel(featured, ctx({ extent: 0.45, zoom: 6, mode: 'all' }))).toBe(true);
     // A SMALL unknown water in all-fish mode keeps the unchanged zoom gates:
     // it titles once the local zoom opens, like any other small water.
     expect(
@@ -68,6 +76,10 @@ describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
     expect(
       shouldShowLabel({ id: 'cumberland-river' }, ctx({ extent: 0.02, zoom: 9.5, mode: 'all' })),
     ).toBe(true);
+    // And a small NON-featured unknown water stays corridor-only in trout mode.
+    expect(
+      shouldShowLabel({ id: 'some-creek' }, ctx({ extent: 0.02, zoom: 9.5 })),
+    ).toBe(false);
   });
 
   it('keeps small-waters gates unchanged in both modes', () => {
@@ -108,6 +120,36 @@ describe('labelPolicy.shouldShowLabel (H5 mode-aware label hierarchy)', () => {
     expect(shouldShowLabel(unknown, ctx({ extent: 0.02, zoom: 5, selected: true }))).toBe(true);
     // And selection does not conjure a title for a non-selected water.
     expect(shouldShowLabel(warm, ctx({ extent: 0.02, zoom: 5 }))).toBe(false);
+  });
+});
+
+describe('labelPolicy.labelDecision (featured-anchor subordinate treatment, 2026-09-16 complaint)', () => {
+  it('labels the unverified major lake subordinate at statewide zoom in trout mode', () => {
+    // Watts Bar: display featured, species UNSET — the exact first-paint
+    // complaint. It must say its name (dim) rather than render as a silent
+    // grey shape, without ever implying trout.
+    const lake = { id: 'watts-bar-lake', display: 'featured' as const };
+    expect(labelDecision(lake, ctx({ extent: 0.5, zoom: 5.7 }))).toBe('subordinate');
+    expect(labelDecision(lake, ctx({ extent: 0.5, zoom: 9.5 }))).toBe('subordinate');
+  });
+
+  it('selection restores full prominence over the subordinate treatment', () => {
+    const lake = { id: 'watts-bar-lake', display: 'featured' as const };
+    expect(labelDecision(lake, ctx({ extent: 0.5, zoom: 5.7, selected: true }))).toBe('titled');
+  });
+
+  it('seasonal absence still hides a featured anchor label', () => {
+    const lake = { id: 'tellico-lake', display: 'featured' as const };
+    expect(labelDecision(lake, ctx({ extent: 0.4, zoom: 6, seasonalAbsent: true }))).toBe('hidden');
+    expect(labelDecision(lake, ctx({ extent: 0.4, zoom: 6, seasonalAbsent: true, selected: true }))).toBe('titled');
+  });
+
+  it('a warmwater major river goes subordinate in trout mode but never borrows trout styling', () => {
+    // The subordinate verdict is for the MAP to style dim; the species note
+    // stays honest ("Warmwater") so the label never reads as a trout claim.
+    const river = { id: 'obed-river', species: 'warmwater' as const, display: 'featured' as const };
+    expect(labelDecision(river, ctx({ extent: 0.35, zoom: 5.7 }))).toBe('subordinate');
+    expect(labelSpeciesNote(river, { troutIds: TROUT_IDS })).toBe('Warmwater');
   });
 });
 

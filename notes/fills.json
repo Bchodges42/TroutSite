@@ -1,0 +1,146 @@
+[
+ {
+  "id": "watts-bar-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Watts Bar where-to-fish + absence from trout-reservoir list"
+ },
+ {
+  "id": "chickamauga-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Chickamauga where-to-fish + absence from trout-reservoir list"
+ },
+ {
+  "id": "kentucky-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Kentucky Reservoir where-to-fish (tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir."
+ },
+ {
+  "id": "reelfoot-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Reelfoot Lake where-to-fish (fetched) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/tro"
+ },
+ {
+  "id": "pickwick-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Pickwick Reservoir where-to-fish (fetched) + absence from trout programs"
+ },
+ {
+  "id": "old-hickory-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "Absence from all TWRA trout program lists"
+ },
+ {
+  "id": "j-percy-priest-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row 'J. Percy Priest TW / S"
+ },
+ {
+  "id": "center-hill-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "Absent from TWRA trout-reservoir list (TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fi"
+ },
+ {
+  "id": "tims-ford-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "Absent from TWRA trout-reservoir list + schedule"
+ },
+ {
+  "id": "norris-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Norris where-to-fish + absence from trout-reservoir list"
+ },
+ {
+  "id": "cherokee-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Cherokee Reservoir where-to-fish + absence from trout-reservoir list"
+ },
+ {
+  "id": "douglas-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Douglas Reservoir where-to-fish (zero trout content) + absence from trout-reservoir list"
+ },
+ {
+  "id": "boone-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Boone Lake where-to-fish + absence from trout-reservoir list"
+ },
+ {
+  "id": "fort-loudoun-lake",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Fort Loudoun where-to-fish + absence from trout programs"
+ },
+ {
+  "id": "tennessee-river",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Kentucky Reservoir page + absence from all TWRA trout program lists"
+ },
+ {
+  "id": "mississippi-river",
+  "source": "classification",
+  "confidence": "medium",
+  "note": "Lower Mississippi River Conservation Committee angler guide (lmrcc.org) + absence from TWRA 2026 stocking sche"
+ },
+ {
+  "id": "lake-barkley",
+  "source": "classification",
+  "confidence": "medium",
+  "note": "TWRA Region-1 where-to-fish locations list (fetched) + absence from trout programs"
+ },
+ {
+  "id": "duck-river-lower",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Duck River where-to-fish (fetched): tailwater dam-to-Three-Forks-Bridge is the trout water; below is warm"
+ },
+ {
+  "id": "buffalo-river",
+  "source": "classification",
+  "confidence": "high",
+  "note": "Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); State Scenic "
+ },
+ {
+  "id": "french-broad-river",
+  "source": "classification",
+  "confidence": "high",
+  "note": "TWRA Douglas page (no trout text) + eregulations TN (no FB trout reg) - the Oct-Feb C&R line belongs to tribut"
+ },
+ {
+  "id": "cumberland-river",
+  "source": "classification",
+  "confidence": "high",
+  "note": "Absence from all TWRA trout program lists; trout rivers named in TWRA Trout Mgmt Plan 2017-2027 (tn.gov/conten"
+ },
+ {
+  "id": "duck-river-mouth",
+  "source": "ledger",
+  "confidence": "medium",
+  "note": ""
+ },
+ {
+  "id": "obed-river",
+  "source": "ledger",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "id": "pigeon-river",
+  "source": "ledger",
+  "confidence": "high",
+  "note": ""
+ }
+]
