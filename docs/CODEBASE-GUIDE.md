@@ -6,9 +6,8 @@ This document is a maintainer-oriented guide to the Trout websites repository. I
 runtime architecture, package boundaries, data flow, offline behavior, build/deploy path, and the
 files to reach for when making common changes.
 
-It describes the code currently present in the checkout inspected on **2026-09-09**. The root
-README still describes the project as “Phase 0”; that is useful historical context, but it is not a
-complete description of the current tree. The current implementation includes the map-first PWA,
+It describes the architecture present on **2026-09-16**. Exact content counts are generated and
+change independently of this guide. The current implementation includes the map-first PWA,
 the API ingestion/evidence pipeline, the shop portal, the Astro marketing site, generated static
 snapshots, and the consolidated Playwright QA suite.
 
@@ -188,7 +187,7 @@ The current source tree contains approximately:
 |---|---:|
 | Bug/taxon YAML files | 103 |
 | Fly-pattern YAML files | 155 |
-| Stream/water YAML files | 148 |
+| Stream/water YAML files | Derived from `packages/content/streams/tn` |
 | Shop YAML files | 23 |
 | Hatch region YAML files | 12 regions × 12 months |
 
@@ -502,9 +501,9 @@ In development, `main.tsx` starts an MSW browser worker unless `VITE_ENABLE_MSW=
 the portal clickable before a real API is available. The canonical e2e suite disables that shortcut
 and drives the real API instance.
 
-The portal’s `GET /v1/portal/me` endpoint and the additive `photoUrl` input are documented in
-[`docs/ASSUMPTIONS.md`](ASSUMPTIONS.md) and the relevant ADRs. Do not assume that every portal-only
-shape is part of the frozen public contracts package.
+The portal’s `GET /v1/portal/me` endpoint and the additive `photoUrl` input are documented by the
+implementation, contract tests, and relevant ADRs. Do not assume that every portal-only shape is
+part of the frozen public contracts package.
 
 ## 8. The marketing site (`apps/marketing`)
 
@@ -826,4 +825,3 @@ If you need to understand the system quickly, read in this order:
 
 That sequence follows the actual dependency chain: vocabulary → client behavior → server/publishing
 pipeline → authored content → operational serving → verification.
-

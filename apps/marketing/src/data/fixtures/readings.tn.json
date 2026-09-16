@@ -1,5 +1,5 @@
 {
-  "_readme": "ROLE 5 fixture readings for build-time marketing pages. Gauge IDs are illustrative pending ROLE 3/4 verification (see docs/ASSUMPTIONS.md). Scores are NOT stored here — the build computes them with the frozen scoreConditions() from @trout/contracts so pages can never drift from the real PWA logic.",
+  "_readme": "Illustrative fixture readings for build-time marketing tests; never publish them as factual live observations. Scores are not stored here: the build computes them with scoreConditions() from @trout/contracts so test pages cannot drift from PWA logic.",
   "snapshots": [
     {
       "streamId": "south-holston-river",

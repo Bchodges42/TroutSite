@@ -1,12 +1,9 @@
-# NHD-CONVENTIONS — USGS NHD trace engine: frozen conventions (GEOCONV-0)
+# NHD conventions — USGS NHD trace engine
 
-> Status: **frozen by session GEOCONV-0 (2026-09-11)** for consumption by
-> GEOFANOUT-1 (fan-out to all Tennessee HU8s) and GEOVALID-2 (audit/regression).
-> This document is the contract. A stranger session must be able to convert a
-> new watershed end-to-end using nothing but this file. Nothing in this lane
-> ships to production; production integration (replacing
-> `apps/web/public/atlas/rivers.geojson` geometry) is a later, separately
-> approved step.
+> Status: engine-format reference established 2026-09-11. The old session/lane
+> choreography has been retired; current work follows the repository engineering guide
+> and active river-repair plan. Treat code, reproducible source graphs, and tests as the
+> executable contract when they disagree with historical examples here.
 
 Lane: `geoconv/nhd-engine` · Clone: `TroutSite-nhdconv0` · Base: snapshot
 commit `1300194` (no remote — push deferred, see PROGRESS.md).
@@ -146,7 +143,9 @@ when:
 Streams can never merge through this rule — it only fires at impoundment
 boundaries. Every bridge is recorded in `meta.damBridges`
 (`{lakePid, joinedPid, distM, coord}`; 28 bridges in 06010207). Review this
-list when adopting a new watershed.
+list when adopting a new watershed. This is graph adjacency only: a published trace
+must retain the official geometries on either side and must not emit a straight
+source-less coordinate pair across the physical gap.
 
 ## 6. Anchors, tracing, output (`nhd_snap_anchors.mjs`, `nhd_trace.mjs`)
 

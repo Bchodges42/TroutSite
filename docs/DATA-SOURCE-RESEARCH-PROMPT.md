@@ -21,7 +21,8 @@ Read these before researching:
 - `docs/KNOWN-ISSUES.md` — current worklist; do not rediscover resolved items
 - `docs/REFERENCE-WATERBODY-INVENTORY.md` and `docs/waterbody-inventory.json` — named reference waters and geometry gaps
 - `docs/DATA-SOURCE-COVERAGE.md` and `docs/data-source-coverage.json` — current per-water evidence coverage
-- `docs/TN-DATA-SOURCES.md`, `docs/atlas-sources.md`, and `docs/STILLWATER-COVERAGE.md` — existing source decisions and known limitations
+- `docs/TN-DATA-SOURCES.md`, `docs/atlas-sources.md`, and
+  `apps/web/atlas-sources/verified/*.topology.json` — source decisions, rules, and pinned evidence
 - `packages/content/streams/tn/*.yaml` — authored catalog truth and citations
 - `apps/web/src/features/map/riverIndex.json` and the final `rivers.geojson` — rendered geometry and labels
 - `apps/api/src/evidence/`, `apps/api/src/ingest/`, and `apps/api/src/snapshots/` — currently wired providers and output fields

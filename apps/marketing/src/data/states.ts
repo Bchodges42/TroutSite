@@ -1,14 +1,13 @@
 /**
- * Launch-state registry — ROLE 5.
+ * Launch-state registry.
  *
- * v1 ships exactly ONE launch state: Tennessee (00-SHARED-CONTEXT §1.6 / §2).
+ * v1 ships exactly ONE launch state: Tennessee.
  * The programmatic-page templates in src/pages are fully data-driven off this
  * registry: adding a second state later (v2 per §13) is data entry here, not code.
  *
- * NOTE: the canonical plan (CHAT-* files, §2, §7) is Tennessee-only. Phase-0
- * Phase-0 shell text elsewhere in the repo referencing TX/OK/AR predates that
- * decision; see docs/ASSUMPTIONS.md (ROLE 5 entry) — contracts are state-agnostic
- * so nothing frozen needs to change.
+ * Tennessee-only is the current product decision. Contracts remain state-agnostic,
+ * so adding another state later is a data and product-scope change, not a reason to
+ * fork the shared schemas.
  */
 
 export interface AgencyInfo {
@@ -61,7 +60,7 @@ export interface RegionInfo {
 }
 
 export const REGIONS: RegionInfo[] = [
-  // Registry of record: packages/content/scripts/regions.ts (Role 4). Ids must
+  // Registry of record: packages/content/scripts/regions.ts. Ids must
   // match the content corpus + /v1/hatch/* snapshots exactly (ADR 0005).
   {
     id: 'tn-east-holston', stateId: 'TN', name: 'East Tennessee — Holston Tailwaters', slug: 'east-holston-tailwaters',

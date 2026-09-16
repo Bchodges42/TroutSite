@@ -37,7 +37,7 @@ The product makes testable claims. Treat each as guilty until verified:
 ## Context
 
 Trout (trout.tntechclimb.com) is an offline-first, privacy-first PWA for Tennessee trout
-anglers: MapLibre map with a ~148-water catalog, USGS/TVA/USACE condition scores, TWRA
+anglers: MapLibre map with a generated Tennessee water catalog, USGS/TVA/USACE condition scores, TWRA
 stocking, match-the-hatch key, shop reports, regulations, 555 prerendered SEO routes +
 Astro marketing site. pnpm monorepo (Node ≥ 20, pnpm 9):
 

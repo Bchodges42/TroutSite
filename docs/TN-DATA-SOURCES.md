@@ -1,8 +1,8 @@
 # TN data sources — compiling the missing categories
 
 OWNER: shared. Compiled 2026-09-11 from a public-surface comparison against the
-CA/OR competitor plus verification of every primary source listed. Companion to
-BACKLOG; ingestion follows the standard pipeline: research → YAML with `sources:`
+CA/OR competitor plus verification of every primary source listed. This is research
+evidence, not an active backlog; ingestion follows the standard pipeline: research → YAML with `sources:`
 → contract validation → snapshot build → static `/v1/*`.
 
 ## 0. Provenance finding — how the competitor ships "every stream"
@@ -102,7 +102,10 @@ Emit `/v1/regs/TN.json`; UI gets a Regulations tab + computed OPEN chip
 | TDEC bacteriological + fishing advisories | https://www.tn.gov/environment/program-areas/wr-water-resources/watershed-stewardship/bacteriological-and-fishing-advisories.html | ✅ found via search 2026-09-11 | "Do not eat" (species-specific) + precautionary advisories per water; model as advisory items on the water page |
 | TDEC precautionary advisory news releases | e.g. May 2025, Aug 2026 East TN advisories | n/a | Watch page updates; annual review cadence |
 
-## 6. Conditions coverage (38/146 assessed today)
+## 6. Conditions coverage
+
+Do not copy a point-in-time assessed/total count into this document. Derive current
+coverage from the generated catalog and evidence snapshots when planning work.
 
 - Every featured/tailwater water must be live: add USGS temp-capable gauges,
   TVA forebay/tailwater temps (from TVA data above).

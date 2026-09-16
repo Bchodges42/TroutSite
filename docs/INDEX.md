@@ -1,61 +1,91 @@
-# INDEX — map of every document
+# Documentation index
 
-Read this before creating or consulting docs. Four tiers: **Canon** (living, read
-routinely) · **Reference** (data provenance, consult when touching that data) ·
-**Evidence** (point-in-time audit results — historical record, not guidance) ·
-**App docs** (scoped to one package). Older session logs, old session briefs, and handoff
-prompts were retired in the 2026-09-11 cleanup — they live in git history, not the
-working tree. Don't resurrect them; write a new dated report under `docs/reports/`
-instead.
+This file identifies current authority. A document not listed here may still contain useful dated evidence, but it is not current guidance.
 
-## Canon
+## Start here
 
-| Doc | What it's for |
-|---|---|
-| [`../README.md`](../README.md) | Product, layout, quickstart, architecture invariants |
-| [`../AGENTS.md`](../AGENTS.md) | Binding session/branch/production rules for AI sessions |
-| [`../infra/RUNBOOK.md`](../infra/RUNBOOK.md) | Ops bible — §9 is the self-healing production stack |
-| [`KNOWN-ISSUES.md`](KNOWN-ISSUES.md) | **THE WORKLIST** — every known issue/deficit consolidated, deduplicated, prioritized T0–T3 with decisions needed |
-| [`EXECUTION-PLAN.md`](EXECUTION-PLAN.md) | How to run the worklist: three sessions (A/B/C), file ownership, five stages, push cadence, verification |
-| [`SETUP.md`](SETUP.md) | One-time setup: SSH, get doc changes into git, cut the three session clones, baselines |
-| [`SESSION-BRIEFS-STAGE-1.md`](SESSION-BRIEFS-STAGE-1.md) | Stage 1 paste-ready session briefs (A server/ops · B build/content · C web app) |
-| [`LOGIC-AUDIT.md`](LOGIC-AUDIT.md) | Evidence appendix: two-pass product-logic audit behind the worklist's LOGIC items |
-| [`DESIGN.md`](DESIGN.md) | The Fieldwork design system: identity, themes, map adapter, judgment calls |
-| [`REVIEW-PROMPT.md`](REVIEW-PROMPT.md) | Paste-ready single-session prompt for a full-spectrum review |
-| [`DATA-SOURCE-RESEARCH-PROMPT.md`](DATA-SOURCE-RESEARCH-PROMPT.md) | Paste-ready exhaustive research brief for missing water data sources |
-| [`BACKLOG.md`](BACKLOG.md) | Out-of-scope parking lot + post-v1 roadmap (do not build in v1) |
-| [`ASSUMPTIONS.md`](ASSUMPTIONS.md) | Living log of decisions/deviations — append, don't rewrite |
-| [`adr/`](adr/) | Architecture Decision Records (read-path, tokens, snapshot layout, ...) |
-| [`OPERATIONS-ANALYTICS.md`](OPERATIONS-ANALYTICS.md) | Analytics opt-in design, WAF kill-switch, ads-readiness checklist |
+| Document                                       | Authority                                                                    |
+| ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`../README.md`](../README.md)                 | Product status, repository layout, quickstart, architecture summary          |
+| [`../AGENTS.md`](../AGENTS.md)                 | Binding session, Git, production, and safety rules                           |
+| [`ENGINEERING-GUIDE.md`](ENGINEERING-GUIDE.md) | Durable engineering principles, evidence standards, and documentation policy |
+| [`KNOWN-ISSUES.md`](KNOWN-ISSUES.md)           | Current worklist and accepted limitations                                    |
+| [`CODEBASE-GUIDE.md`](CODEBASE-GUIDE.md)       | Maintainer-oriented architecture and data-flow guide                         |
 
-## Reference — data provenance & contracts (consult before touching that data)
+## Active work
 
-| Doc | Covers |
-|---|---|
-| [`atlas-sources.md`](atlas-sources.md) / [`atlas-validation.md`](atlas-validation.md) | River/lake atlas sources + validation rules |
-| [`topo-sources.md`](topo-sources.md) | Hillshade/contour tiles (USGS 3DEP), budgets, provenance |
-| [`roads-sources.md`](roads-sources.md) | TIGER 2024 roads build (license verdict, LOD ladder, weld guards) |
-| [`flow-orientation.md`](flow-orientation.md) | How flow-direction arrows are derived from topology |
-| [`TN-DATA-SOURCES.md`](TN-DATA-SOURCES.md) | Tennessee source inventory |
-| [`DATA-SOURCE-COVERAGE.md`](DATA-SOURCE-COVERAGE.md) (+ `data-source-coverage.json`) | Gauge/feed coverage per water |
-| [`FISHING-INFORMATION-SOURCES.md`](FISHING-INFORMATION-SOURCES.md) | Regulations pack provenance & review dates |
-| [`STILLWATER-COVERAGE.md`](STILLWATER-COVERAGE.md) | Lake/pond coverage decisions |
-| [`WATERBODY-GEOMETRY-CONTRACT.md`](WATERBODY-GEOMETRY-CONTRACT.md) · [`REFERENCE-WATERBODY-INVENTORY.md`](REFERENCE-WATERBODY-INVENTORY.md) (+ `waterbody-inventory.json`) | Geometry property contract + per-waterbody inventory |
+The river program is sequential: Session 1 must establish identity and geometry before Session 2 changes map behavior.
 
-## Evidence — point-in-time audits (historical; superseded by newer data wins)
+| Document                                                                         | Purpose                                                                                    |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [`RIVER-REPAIR-IMPLEMENTATION-PLAN.md`](RIVER-REPAIR-IMPLEMENTATION-PLAN.md)     | Two-session overview, dependency, shared outcomes, and retirement condition                |
+| [`RIVER-REPAIR-SESSION-1-HYDROGRAPHY.md`](RIVER-REPAIR-SESSION-1-HYDROGRAPHY.md) | Standalone Luna prompt for NHD identity, geometry, West Tennessee, and Cane Creek work     |
+| [`RIVER-REPAIR-SESSION-2-MAP-QUALITY.md`](RIVER-REPAIR-SESSION-2-MAP-QUALITY.md) | Standalone Luna prompt for zoom tiers, deduplication, loading, interaction, and browser QA |
 
-`GEO-AUDIT.md`, `CONTINUITY-AUDIT.md`, `GEO-CONTINUITY-AUDIT-lane.md`,
-`SPECIES-REVIEW.md`, `WATERBODY-IMPLEMENTATION-CHECKLIST.md`, `audits/*`
-(hydrography, connectivity, duplicates, self-intersection, UI-conditions),
-`lane-results/*`, and `reports/*` — role handoffs plus
-[`reports/review-2026-09-11.md`](reports/review-2026-09-11.md), the latest full-spectrum
-review (its confirmed defects are summarized in [`KNOWN-ISSUES.md`](KNOWN-ISSUES.md)).
+Remove active-plan links after the work is merged and summarized in one dated report. Git history is the plan archive.
 
-## App docs
+## Architecture and operations
 
-| Doc | Scope |
-|---|---|
-| [`../apps/admin/TOKENS.md`](../apps/admin/TOKENS.md) | Shop-portal token format, minting, verification, rotation |
-| [`../apps/marketing/README.md`](../apps/marketing/README.md) · [`GROWTH.md`](../apps/marketing/GROWTH.md) · [`ANALYTICS.md`](../apps/marketing/ANALYTICS.md) | Marketing site |
-| [`../e2e/README.md`](../e2e/README.md) | Playwright suites + how the harness boots real servers |
-| [`../packages/contracts/README.md`](../packages/contracts/README.md) | Exact contract export list & semantics |
+| Document                                                           | Scope                                                                       |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| [`DESIGN.md`](DESIGN.md)                                           | Fieldwork design system and map interaction principles                      |
+| [`../infra/RUNBOOK.md`](../infra/RUNBOOK.md)                       | Production service, deployment, backup, watchdog, and recovery procedures   |
+| [`OPERATIONS-ANALYTICS.md`](OPERATIONS-ANALYTICS.md)               | Analytics opt-in and emergency controls                                     |
+| [`adr/`](adr/)                                                     | Accepted architecture decisions; use a new ADR for durable contract changes |
+| [`REVIEW-PROMPT.md`](REVIEW-PROMPT.md)                             | Read-only full-spectrum review prompt                                       |
+| [`DATA-SOURCE-RESEARCH-PROMPT.md`](DATA-SOURCE-RESEARCH-PROMPT.md) | Research-only prompt for missing factual sources                            |
+
+## Hydrography and map reference
+
+| Document                                                           | Scope                                                                |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| [`NHD-CONVENTIONS.md`](NHD-CONVENTIONS.md)                         | NHD trace-engine formats and graph conventions                       |
+| [`atlas-sources.md`](atlas-sources.md)                             | Current atlas source policy, generation paths, and known limitations |
+| [`atlas-validation.md`](atlas-validation.md)                       | Current validation contract and command set                          |
+| [`flow-orientation.md`](flow-orientation.md)                       | Flow-direction derivation and arrow rules                            |
+| [`WATERBODY-GEOMETRY-CONTRACT.md`](WATERBODY-GEOMETRY-CONTRACT.md) | Geometry property and verification-state contract                    |
+| [`roads-sources.md`](roads-sources.md)                             | Road-source provenance and LOD rules                                 |
+| [`topo-sources.md`](topo-sources.md)                               | Terrain-source provenance and budgets                                |
+
+## Fishing data reference
+
+| Document                                                                                                          | Scope                                                                             |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [`TN-DATA-SOURCES.md`](TN-DATA-SOURCES.md)                                                                        | Tennessee provider inventory; mutable coverage totals belong in generated reports |
+| [`DATA-SOURCE-COVERAGE.md`](DATA-SOURCE-COVERAGE.md) and [`data-source-coverage.json`](data-source-coverage.json) | Generated per-water gauge/feed coverage                                           |
+| [`FISHING-INFORMATION-SOURCES.md`](FISHING-INFORMATION-SOURCES.md)                                                | Regulations-pack provenance and review dates                                      |
+| [`STATEWIDE-RIVER-COVERAGE.md`](STATEWIDE-RIVER-COVERAGE.md)                                                      | Generated statewide coverage report                                               |
+| [`GAUGE-CATALOG-GAPS.md`](GAUGE-CATALOG-GAPS.md)                                                                  | Generated gauge/catalog gap report                                                |
+| [`waterbody-inventory.json`](waterbody-inventory.json)                                                            | Machine-readable historical reference-waterbody inventory used by legacy builders |
+
+## Historical evidence
+
+These files are point-in-time evidence. They may explain a decision or provide a regression case. They do not override current code, contracts, the worklist, or active plans.
+
+- `docs/audits/` — geometry, connectivity, duplicate, self-intersection, and UI audit captures.
+- `docs/reports/` — dated reviews and research reports that remain relevant as evidence.
+- `docs/research/` — source captures, ledgers, and classification research.
+- `GEO-AUDIT.md`, `CONTINUITY-AUDIT.md`, `GEO-CONTINUITY-AUDIT-lane.md`, `SPECIES-REVIEW.md`, `LOGIC-AUDIT.md`, and `HARDEN-AUDIT.md` — dated findings.
+- `REFERENCE-WATERBODY-INVENTORY.md` — judgment record for an earlier visual-reference inventory; use `waterbody-inventory.json` only where a current builder still consumes it.
+
+Historical statements such as “PASS,” “complete,” or a catalog count apply only to the revision named in that document.
+
+## Package and app documentation
+
+| Document                                                                                                                                                                                       | Scope                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`../apps/admin/TOKENS.md`](../apps/admin/TOKENS.md)                                                                                                                                           | Shop-portal token format and operations |
+| [`../apps/marketing/README.md`](../apps/marketing/README.md), [`../apps/marketing/GROWTH.md`](../apps/marketing/GROWTH.md), [`../apps/marketing/ANALYTICS.md`](../apps/marketing/ANALYTICS.md) | Marketing application                   |
+| [`../e2e/README.md`](../e2e/README.md)                                                                                                                                                         | Playwright projects and harness         |
+| [`../packages/contracts/README.md`](../packages/contracts/README.md)                                                                                                                           | Shared contracts and endpoint semantics |
+| Package-level `README.md` files                                                                                                                                                                | Package-specific setup and ownership    |
+
+## Maintenance policy
+
+- Put durable decisions in an ADR or current reference document.
+- Put defects and unfinished work in `KNOWN-ISSUES.md`.
+- Put a time-bounded execution prompt in an active plan with a retirement condition.
+- Put experimental results in a dated report.
+- Remove completed session briefs, handoffs, duplicate checklists, and obsolete screenshots instead of leaving competing instructions.
+- Avoid manually repeated counts. Derive them from source artifacts when reporting.
+- Run `pnpm docs:check` after documentation changes.

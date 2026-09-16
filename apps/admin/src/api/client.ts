@@ -1,4 +1,4 @@
-// OWNER: ROLE 4. Portal API client. The portal is the ONLY dynamic surface in the product;
+// Portal API client. The portal is the ONLY dynamic surface in the product;
 // everything else is snapshot JSON. No cookies, no analytics, no third-party calls — the shop
 // token rides in an Authorization header and is stored in localStorage (see TOKENS.md).
 import { z } from 'zod';
@@ -16,8 +16,8 @@ export const ShopReportInputSchema = z.object({
   date: IsoDateSchema,
   body: z.string().min(1),
   hotPatterns: z.array(HotPatternSchema),
-  // Role-4 note (docs/ASSUMPTIONS.md): photoUrl is requested by the CHAT-4 brief but absent from
-  // the frozen ShopReport contract — sent additively; the server strips it until contracts allow it.
+  // photoUrl is absent from the frozen ShopReport contract. It is sent additively;
+  // the server strips it until a contract ADR explicitly allows it.
   photoUrl: z.string().url().optional(),
 });
 export type ShopReportInput = z.infer<typeof ShopReportInputSchema>;
@@ -33,8 +33,8 @@ function apiBase(): string {
   return import.meta.env.VITE_API_BASE ?? '';
 }
 
-// GET /v1/portal/me is additive to the frozen §6 endpoint map (CHAT-4 deliverable 3) —
-// recorded in docs/ASSUMPTIONS.md under [ROLE 4]; do not add to @trout/contracts without an ADR.
+// GET /v1/portal/me is additive to the frozen endpoint map. Do not add it to
+// @trout/contracts without an ADR and contract-version decision.
 export const PORTAL_ME = '/v1/portal/me';
 
 function authHeader(): HeadersInit {
@@ -42,7 +42,7 @@ function authHeader(): HeadersInit {
   return { Authorization: `Bearer ${token}` };
 }
 
-/** Exchange a shop token for the shop identity (GET /v1/portal/me — additive endpoint, see ASSUMPTIONS).
+/** Exchange a shop token for the shop identity (GET /v1/portal/me — additive endpoint).
  * Pass `token` to verify-before-store (login flow); omit to use the stored token (boot flow). */
 export async function fetchMe(token?: string): Promise<Shop> {
   const bearer = token ?? localStorage.getItem(TOKEN_STORAGE_KEY) ?? '';
@@ -64,7 +64,7 @@ export async function publishReport(input: ShopReportInput): Promise<ShopReport>
   if (res.status === 401) throw new ApiError(401, 'This token is not valid or has expired.');
   if (res.status === 422) throw new ApiError(422, 'The report was rejected as invalid — check the highlighted fields.');
   if (!res.ok) throw new ApiError(res.status, `Publishing failed (${res.status}). Try again.`);
-  // Real API wire format (Role 3): 201 { report: ShopReport }. The bare form is
+  // Real API wire format: 201 { report: ShopReport }. The bare form is
   // accepted for backwards compatibility with the MSW fixtures' earlier shape.
   const wire = (await res.json()) as unknown;
   const report = typeof wire === 'object' && wire !== null && 'report' in wire

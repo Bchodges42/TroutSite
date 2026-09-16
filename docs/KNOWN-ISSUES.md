@@ -15,8 +15,37 @@ Legend: `[ ]` open · `[x]` done. Tiers: **T0** release blockers (fix first, in 
 **T1** ship with the next release — data honesty & product logic · **T2** hardening &
 quality · **T3** owner actions & accepted limitations. Item IDs are stable for
 traceability. `[export]` = verified present in this working tree as well as the review branch.
-**Execution order and session assignments:
-[`EXECUTION-PLAN.md`](EXECUTION-PLAN.md).**
+The active river-repair workstream and its two-session dependency order are in
+[`RIVER-REPAIR-IMPLEMENTATION-PLAN.md`](RIVER-REPAIR-IMPLEMENTATION-PLAN.md).
+
+---
+
+## Active river hydrography and map-quality workstream
+
+These are verified defects on `main` as of 2026-09-16. The implementation plan assigns
+them to two sequential sessions; do not close an item from code inspection alone.
+
+- [ ] **RH-1 · Unsafe selectable-river reconstruction.** The current expansion builder
+  can select reaches by name plus envelope and insert direct connectors across gaps up to
+  30 km. Rebuild affected lines from pinned NHD topology and prohibit fabricated output.
+- [ ] **RH-2 · Same-name water identity is incomplete.** The catalog's `cane-creek`
+  record conflates the Caney Fork-system Cane Creek with the Hickman/Perry County Cane
+  Creek. Add stable GNIS/HUC identity and split the waters without breaking saved ids.
+- [ ] **RH-3 · Context deduplication is name-based.** Suppressing the detailed stream
+  network by normalized display name can hide an unrelated same-name water. Deduplicate
+  by NHD permanent identifiers, not labels.
+- [ ] **RH-4 · Zoom tiers mutate every catalog feature.** `zoomend` rewrites feature
+  state across the catalog and contributes to clunky transitions. Move tier visibility
+  into a legal style expression with one tier authority and reduced-motion support.
+- [ ] **RH-5 · Detailed-network requests can go stale.** Rapid pans and zooms queue
+  obsolete cluster work. Make the loader latest-request-wins, cached, bounded, and
+  observable in development.
+- [ ] **RH-6 · River selection and visual stability need browser proof.** Verify the
+  Obion and Forked Deer systems, both Cane Creeks, line shadows, near-tie selection, and
+  repeated zoom/pan behavior with focused automated scenarios and screenshots.
+
+Session briefs: [`RIVER-REPAIR-SESSION-1-HYDROGRAPHY.md`](RIVER-REPAIR-SESSION-1-HYDROGRAPHY.md)
+then [`RIVER-REPAIR-SESSION-2-MAP-QUALITY.md`](RIVER-REPAIR-SESSION-2-MAP-QUALITY.md).
 
 ---
 

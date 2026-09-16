@@ -3,10 +3,13 @@
 Auto-loaded by agent CLIs (Codex, ZCode, Cursor, ...). If you touch this repository,
 **everything below is mandatory** — each rule was earned by a real incident (Sept 2026).
 
-Orientation: [`README.md`](README.md) (what the product is) · [`docs/INDEX.md`](docs/INDEX.md)
-(map of all docs) · [`infra/RUNBOOK.md`](infra/RUNBOOK.md) §9 (production self-healing
-stack) · [`docs/KNOWN-ISSUES.md`](docs/KNOWN-ISSUES.md) (**the worklist** — every known
-issue consolidated and prioritized; check before "discovering" one, update after fixing).
+Orientation: [`README.md`](README.md) (what the product is) ·
+[`docs/ENGINEERING-GUIDE.md`](docs/ENGINEERING-GUIDE.md) (how changes are designed and
+verified) · [`docs/INDEX.md`](docs/INDEX.md) (map of all docs) ·
+[`infra/RUNBOOK.md`](infra/RUNBOOK.md) §9 (production self-healing stack) ·
+[`docs/KNOWN-ISSUES.md`](docs/KNOWN-ISSUES.md) (**the worklist** — check before
+"discovering" an issue and update after fixing it). Active river repair work is defined in
+[`docs/RIVER-REPAIR-IMPLEMENTATION-PLAN.md`](docs/RIVER-REPAIR-IMPLEMENTATION-PLAN.md).
 
 ## Session & branch discipline
 

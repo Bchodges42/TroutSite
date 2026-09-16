@@ -13,8 +13,8 @@
  *   node scripts/fetch-stillwater-nhd.mjs scout [id,...]
  *       Coverage probe: what NHD polygons exist around each target anchor
  *       (the 13 twra-winter-ponds points). Writes raw responses to
- *       .atlas-src/stillwater/scout/<id>.json and prints a per-water table
- *       for docs/STILLWATER-COVERAGE.md. No repo files changed.
+ *       .atlas-src/stillwater/scout/<id>.json and prints a per-water table.
+ *       No repo files changed.
  *
  *   node scripts/fetch-stillwater-nhd.mjs extract [id,...]
  *       Emit per-water MapLibre-ready GeoJSON (contract shape: properties
@@ -60,7 +60,8 @@ const FCODE_WHERE = '(fcode BETWEEN 39000 AND 39099 OR fcode BETWEEN 43600 AND 4
  * = minimum polygon size (km²) for the unnamed nearest-fallback.
  */
 const TARGETS = [
-  // Identity-verified NHD picks (Phase A scout, see docs/STILLWATER-COVERAGE.md):
+  // Identity-verified NHD picks. Durable provenance is carried by the pinned ids
+  // below and the verified topology records in apps/web/atlas-sources/verified/.
   //  - pick / pickPoint: deterministic polygon selection (nhdplusid, or
   //    containment of a verified point from OSM/Wikipedia/TWRA research).
   //  - mao: maxAllowableOffset for the geometry fetch.
@@ -75,7 +76,7 @@ const TARGETS = [
   { id: 'martin-city-pond', name: 'Martin City Pond', env: [-88.869, 36.300, -88.829, 36.320], pick: ['20000700143255'], mao: 0.00015 },
   // TWRA "Paris City Park": NHD names this water Green Acres Lake (aka
   // Williams Lake), the city-run public fishing lake ~850 m from the historic
-  // anchor; identity reasoning in docs/STILLWATER-COVERAGE.md.
+  // anchor; the pinned NHD id makes the selection deterministic.
   { id: 'paris-city-park-lake', name: 'Paris City Park Lake', env: [-88.330, 36.295, -88.290, 36.325], pick: ['25000102170314'], mao: 0 },
   // Valentine Regional Park pond: NHD polygon 80 m from the OSM pond center.
   { id: 'valentine-park-pond', name: 'Valentine Park Pond', env: [-89.821, 35.454, -89.781, 35.474], pick: ['20000700138219'], mao: 0.00015 },
@@ -86,7 +87,7 @@ const TARGETS = [
   // Corrected Johnson Park Lake envelope: TWRA site is W.C. Johnson Park,
   // Collierville (419 Johnson Park Dr) — the repo's approx-town anchor sits
   // at downtown Memphis and is ~20 km off; the polygon will supply the real
-  // label anchor (see docs/STILLWATER-COVERAGE.md).
+  // label anchor.
   { id: 'johnson-park-lake', name: 'Johnson Park Lake', env: [-89.6852, 35.0775, -89.6652, 35.0975], areaFloor: 0.002 },
   // Scout-only fallbacks (identity still being verified; extract only with a
   // verified pick):

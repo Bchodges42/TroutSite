@@ -1,5 +1,5 @@
 {
-  "//": "OWNER: ROLE 1 — root workspace manifest. Role-specific packages carry their own owner comments.",
+  "//": "Root workspace manifest.",
   "name": "trout",
   "version": "0.1.0",
   "private": true,
@@ -17,6 +17,7 @@
     "lint": "pnpm -r lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "docs:check": "node scripts/check-doc-links.mjs",
     "validate:content": "pnpm --filter @trout/content validate",
     "gauges:build": "node scripts/tn-gauges-build.mjs",
     "gauges:check": "node scripts/tn-gauges-build.mjs --check",

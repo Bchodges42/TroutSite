@@ -12,7 +12,8 @@ on-the-water decision tool** that works with no signal and doesn't want your dat
 ## Status
 
 Live in production (self-deploying, self-healing — see `infra/RUNBOOK.md` §9). The
-catalog covers ~148 Tennessee waters (rivers, tailwaters, lakes, West-TN winter ponds);
+catalog is generated from `packages/content/streams/tn` and covers Tennessee rivers,
+tailwaters, lakes, and West-Tennessee winter ponds;
 conditions score from USGS + TVA + USACE gauges; hatch charts cover all 12 regions × 12
 months; 555 routes are prerendered for SEO. Open items live in
 [`docs/KNOWN-ISSUES.md`](docs/KNOWN-ISSUES.md); the doc map is
@@ -97,7 +98,8 @@ recovery, backups, and the self-healing loop: [`infra/RUNBOOK.md`](infra/RUNBOOK
 1. Offline-first; 2. privacy by architecture (no accounts, no location leaves the
 device); 3. static-first read path; 4. free base usage (monetization inert in v1);
 5. attribution culture (every fact cites `sources:`); 6. small v1 scope — Tennessee
-only, no social. Out-of-scope ideas go to `docs/BACKLOG.md` — don't build them.
+only, no social. Record confirmed defects in `docs/KNOWN-ISSUES.md`; do not turn ideas
+into scope without an explicit product decision.
 
 Agent sessions: `AGENTS.md` is binding. Full-review instructions (single session, all
 dimensions): `docs/REVIEW-PROMPT.md`.

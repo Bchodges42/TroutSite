@@ -1,14 +1,12 @@
 /**
- * api/fixtures.spec.ts — ROLE 5 (§4 deliverable: "ingestion dry-run produces
- * contract-valid snapshots").
+ * Contract validation for the marketing fixtures and ingestion dry-run.
  *
  * v1 status:
  *  - PASSES today: every marketing fixture file is validated against the frozen
  *    @trout/contracts Zod schemas (same gate the Astro build runs, asserted here
  *    outside the build so CI catches it independently).
- *  - test.fixme: Role 3 owns the `ingest --dry-run` CLI (see ASSUMPTIONS.md);
- *    the skipped test below runs the exact command and asserts snapshot validity
- *    the moment that script exists.
+ *  - test.fixme: the `ingest --dry-run` CLI does not exist yet; the skipped test
+ *    runs the intended command and asserts snapshot validity once it does.
  */
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
