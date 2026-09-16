@@ -226,6 +226,8 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 - [x] **T2-56 [CHECKPOINT 2026-09-12] — duplicate visible dialog on water select (ASSIGNED: Session C, Stage 2).** After selecting a water via search, `[role="dialog"]:visible` containing the water's heading resolves to TWO elements (`web/atlas-verify.spec.ts` strict-mode failure at desktop AND mobile 390px). Three role="dialog" sites: AppShell.tsx:197 (nav menu — not the culprit), RiverDrawer.tsx:51/:81. RiverDrawer is rendered twice and both instances are :visible — find the render condition/CSS regression (likely from the search-themes integration) and fix.
 - [x] **T2-57 [CHECKPOINT 2026-09-12] — fieldwork e2e suite is stale (ASSIGNED: Session C, Stage 2).** 23 of 25 checkpoint e2e failures are `e2e/fieldwork/ui.spec.ts` specs written against the pre-evolution UI (e.g. expecting the hatch key's "2 tails" step before the current first step). For each: fix the spec if the app is right, fix the app if the spec is right. The other 2 failures are T2-56. Note: `pnpm e2e` (and qa.yml) stay red on these until Session C lands the fixes — expected.
 
+- [x] **T2-58 [NEW 2026-09-16] — Failed auto-deploy alert has no diagnostic context.** The ntfy body only said to inspect a host-local log, and a first high-priority failure with no prior status did not page at all. → `alert-context.mjs` now sends a bounded, secret-redacted updater tail plus WinSW state/log tails; updater/watchdog page first high-priority failures; regression coverage includes the actual alert body.
+
 ## T3 — Owner actions, backlog, accepted limitations
 
 **Owner actions**

@@ -41,13 +41,16 @@ set_status() { printf '%s %s\n' "$1" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" > "$STAT
 cd "$ROOT" || { log "FAIL — repo root $ROOT missing"; set_status "FAIL"; exit 1; }
 
 # Push the owner's phone on transitions into states that need a human (deploy
-# failed, checkout dirty). Success/up-to-date never buzzes; repeated failures in
-# the same state don't repeat the push (status-transition dedup).
+# failed, checkout dirty). The FIRST high-priority failure also pages: otherwise
+# a host with no prior status can fail its first automatic update silently.
+# Success/up-to-date never buzzes; repeated failures in the same state don't
+# repeat the push (status-transition dedup).
 maybe_push() { # new_status title message priority
   local new="$1" title="$2" msg="$3" prio="${4:-default}" old=""
   [ -f "$STATUS" ] && IFS= read -r old _ < "$STATUS"
   old="${old%% *}"
-  if [ -n "$old" ] && [ "$old" != "$new" ]; then
+  if { [ -n "$old" ] && [ "$old" != "$new" ]; } \
+    || { [ -z "$old" ] && [ "$prio" = "high" ]; }; then
     if bash infra/push-notify.sh "$title" "$msg" "$prio" >> "$LOG" 2>&1; then
       log "push sent: $title"
     else
@@ -56,10 +59,22 @@ maybe_push() { # new_status title message priority
   fi
 }
 
+# A phone alert has to be useful without exposing secrets or asking the owner
+# to remote into a headless machine. The collector bounds and redacts the
+# current updater tail plus the WinSW service state/log tail when available.
+failure_message() { # one-line human summary
+  local summary="$1" context=""
+  context="$(bash infra/alert-context.sh "$LOG" 2>/dev/null || true)"
+  [ -n "$context" ] || context="Failure context could not be collected; inspect $LOG on the host."
+  printf '%s\n\n%s' "$summary" "$context"
+}
+
 # Fetch ALL refs: 'fetch origin <branch>' updates only FETCH_HEAD, not the
 # origin/<branch> tracking ref this script compares against.
 if ! git fetch origin --quiet; then
   log "FAIL — could not fetch origin/$BRANCH (network/credentials); leaving site as-is"
+  maybe_push "FAIL-FETCH" "Trout auto-update cannot fetch" \
+    "$(failure_message "Automatic updates cannot fetch origin/$BRANCH; the served revision was left unchanged.")" "high"
   set_status "FAIL-FETCH"
   exit 1
 fi
@@ -91,7 +106,8 @@ fi
 # files (logs, notes, local data) must not block a deploy.
 if [ -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]; then
   log "REFUSED — tracked files modified locally; auto-deploy only runs on a clean checkout. Owner must inspect $ROOT."
-  maybe_push "REFUSED-DIRTY" "Trout auto-update refused" "The checkout has locally modified tracked files — auto-deploy is blocked until they are inspected." "high"
+  maybe_push "REFUSED-DIRTY" "Trout auto-update refused" \
+    "$(failure_message "The checkout has locally modified tracked files — auto-deploy is blocked until they are inspected.")" "high"
   set_status "REFUSED-DIRTY"
   exit 1
 fi
@@ -109,6 +125,7 @@ if $DEPLOY_CMD >> "$LOG" 2>&1; then
 fi
 
 log "DEPLOY FAILED — deploy.sh already attempted its own rollback; site is on the last-good read path. Inspect $LOG."
-maybe_push "FAIL-DEPLOY" "Trout auto-deploy failed" "An automatic deploy failed and rolled back to last-good. The site is serving; inspect backups/autoupdate.log." "high"
+maybe_push "FAIL-DEPLOY" "Trout auto-deploy failed" \
+  "$(failure_message "Automatic deploy to ${remote_rev:0:9} failed; rollback to the last-good read path was attempted.")" "high"
 set_status "FAIL-DEPLOY"
 exit 1

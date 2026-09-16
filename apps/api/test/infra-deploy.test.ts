@@ -100,11 +100,11 @@ describe('autoupdate.sh retry semantics (T0-2)', () => {
   // The deploy command runs via unquoted $DEPLOY_CMD expansion, so it must be
   // a single space-separated command with no quoted arguments (like the real
   // default 'bash infra/deploy.sh'): touch a relative marker in the sandbox.
-  function runAutoupdate(): { status: number; stdout: string } {
+  function runAutoupdate(deployCommand = 'touch deployed.marker'): { status: number; stdout: string } {
     const out = sh(sandbox.work, `bash ${JSON.stringify(join(INFRA, 'autoupdate.sh'))}`, {
       TROUT_ROOT: sandbox.work,
       TROUT_DEPLOY_BRANCH: 'main',
-      TROUT_DEPLOY_CMD: 'touch deployed.marker',
+      TROUT_DEPLOY_CMD: deployCommand,
     });
     return { status: out.status, stdout: out.stdout + out.stderr };
   }
@@ -146,5 +146,26 @@ describe('autoupdate.sh retry semantics (T0-2)', () => {
     const out = runAutoupdate();
     expect(out.status).toBe(0);
     expect(existsSync(markerPath())).toBe(true);
+  });
+
+  it('pages a first deploy failure with bounded diagnostic context', () => {
+    // Keep this local and deterministic: replace the transport with a small
+    // capture script, then make the deploy command fail immediately.
+    writeFileSync(
+      join(sandbox.work, 'infra', 'push-notify.sh'),
+      '#!/usr/bin/env bash\nprintf "%s\\n%s\\n" "$1" "$2" > "$PWD/push-capture.txt"\n',
+    );
+    // The real updater refuses a dirty checkout. Commit the fake transport in
+    // the isolated fixture so this exercises the deploy-failure path instead.
+    sh(sandbox.work, 'git add infra/push-notify.sh && git commit -qm fake-push-transport');
+
+    const out = runAutoupdate('false');
+
+    expect(out.status).toBe(1);
+    const push = readFileSync(join(sandbox.work, 'push-capture.txt'), 'utf8');
+    expect(push).toContain('Trout auto-deploy failed');
+    expect(push).toContain('Automatic deploy to');
+    expect(push).toContain('Failure context (bounded; secrets redacted):');
+    expect(push).toContain('DEPLOY FAILED');
   });
 });

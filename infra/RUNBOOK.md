@@ -292,6 +292,8 @@ they are *generated on the host*, and the archive is their disaster-recovery cop
 The watchdog and auto-updater page the owner's phone on STATUS TRANSITIONS: entering
 BROKEN, healing (with a note if serving last-good data), recovering to OK, and
 auto-deploy failures/refusals. A stalled outage stays silent — no 15-minute buzzing.
+The first high-priority failure also pages, so a new host cannot fail its first update
+silently.
 
 One-time setup (5 minutes):
 1. Phone: install the **ntfy** app (Play Store / App Store).
@@ -303,6 +305,17 @@ One-time setup (5 minutes):
 
 Config resolves TROUT_PUSH_URL first, then backups/push-url.txt. Same transition-dedup
 rules as the status files: one push per state change, never repeated.
+
+Failure pushes contain a small diagnostic excerpt so the notification is actionable:
+the final updater/watchdog log lines, the Windows `TroutSite` service state, and the
+tails of up to two recent WinSW service logs. `infra/alert-context.mjs` bounds the
+message to 3,400 characters (maximum 3,800), reads only the final 64 KiB of each log,
+and redacts common token/password fields before posting. It discovers WinSW logs from
+the service's configured executable directory; if the installation keeps logs elsewhere,
+set `TROUT_SERVICE_LOG_DIR` in the scheduled-task environment. Tune the excerpts with
+`TROUT_ALERT_LOG_LINES`, `TROUT_ALERT_SERVICE_LOG_LINES`, and
+`TROUT_ALERT_MAX_CHARS` — never raise the cap enough to turn mobile pushes into raw
+logs. The full unredacted record remains on the host under `backups/*.log`.
 
 ### Zero-touch updates (`infra/autoupdate.sh`)
 
