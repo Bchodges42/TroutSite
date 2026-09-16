@@ -35,3 +35,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01328065"]
+  huc8s: ["06010103"]
+  counties: ["Carter"]

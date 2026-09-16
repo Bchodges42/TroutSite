@@ -1,6 +1,6 @@
 # @trout/contracts
 
-**Frozen at tag `contracts-v2.1.0`. OWNER: ROLE 1.** Every other role consumes this package; only
+**Frozen at tag `contracts-v2.2.0`. OWNER: ROLE 1.** Every other role consumes this package; only
 Role 1 may change it, and only additively with an ADR in `docs/adr/` plus a tag bump. Never
 rename or remove an export.
 
@@ -11,7 +11,9 @@ rename or remove an export.
    `StockingEventSchema/StockingEvent`, `BugTaxonSchema/BugTaxon`, `FlyPatternSchema/FlyPattern`,
    `HatchChartSchema/HatchChart`, `ShopSchema/Shop`, `ShopReportSchema/ShopReport`,
    `BugObservationSchema/BugObservation`, plus shared primitives (`StateIdSchema`, `IsoDateSchema`,
-   `IsoDateTimeSchema`, `WaterbodyTypeSchema`, `IdealFlowSchema`, `OfficialSourceSchema`, enum schemas).
+   `IsoDateTimeSchema`, `WaterbodyTypeSchema`, `IdealFlowSchema`, `OfficialSourceSchema`,
+   `HydroIdentitySchema`, enum schemas). Line waters carry stable GNIS/HUC identity;
+   still-water records may omit it.
 2. **`ENDPOINTS`** — the frozen endpoint map (see `src/endpoints.ts`). GET routes are
    snapshot-served JSON; `POST /v1/portal/reports` is the only live route.
 3. **Pure client-side logic** — deterministic, no clock, no network, no randomness:

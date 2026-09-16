@@ -6,6 +6,9 @@ stateId: TN
 waterbodyType: tailrace
 regionId: tn-east-tailwaters
 gaugeIds: []
+hydroIdentity:
+  gnisIds: ["00000002"]
+  huc8s: ["00000002"]
 stockingProgram: false
 idealFlow:
   - min: 100

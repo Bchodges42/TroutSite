@@ -49,6 +49,16 @@ const ALLOWLIST = {
     reason:
       'Selectable-river expansion (2026-09-15): exact GNIS 01269799 NHD coverage has three chunks with a largest 6.68 km gap; Census TIGER exact-name coverage has four chunks. The official NHD extent is retained and the source gaps are left open.',
   },
+  'beech-river': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'Selectable-river expansion (2026-09-16): exact GNIS 01305068 NHD coverage has three source chunks with a largest 5.09 km gap; the official extent is retained as separate parts and no synthetic connector is added.',
+  },
+  'south-fork-forked-deer-river': {
+    kind: 'LEFT-OPEN',
+    reason:
+      'West Tennessee hydrography repair (2026-09-16): exact GNIS 01270865 NHD coverage has two source chunks with a 1.29 km gap; the gap is preserved because endpoint topology does not prove continuity.',
+  },
   'north-fork-obion-river': {
     kind: 'LEFT-OPEN',
     reason:
@@ -73,11 +83,6 @@ const ALLOWLIST = {
     kind: 'B15-DOCUMENTED',
     reason:
       'B15/LINES lane: the corridor-hugging mainstem carries the KY-Bend exclave notch (Tiptonville bend). Corridor rule caps excursions at 4000 m beyond the TN boundary; >4 km out-of-state water is exclusively KY/MS and correctly excluded, leaving 2 chunks at the notch.',
-  },
-  'cane-creek': {
-    kind: 'DELIBERATE',
-    reason:
-      'Deliberate (docs/GEO-AUDIT.md "Not correctable" section): ONE catalog id intentionally covers two same-named Cane Creeks — the Bledsoe/Van Buren water and the Hickman/Perry water (~2.3 deg apart). Splitting the id is a catalog change owned by the content lane.',
   },
   'clear-fork': {
     kind: 'LEFT-OPEN',

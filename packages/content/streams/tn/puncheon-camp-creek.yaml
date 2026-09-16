@@ -25,3 +25,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01298693"]
+  huc8s: ["06010205"]
+  counties: ["Campbell"]

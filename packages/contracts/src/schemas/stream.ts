@@ -25,6 +25,29 @@ export const SpeciesEvidenceSchema = z.object({
 });
 export type SpeciesEvidence = z.infer<typeof SpeciesEvidenceSchema>;
 
+/** Stable hydrography identity used to join catalog waters to reviewed NHD traces. */
+export const HydroIdentitySchema = z
+  .object({
+    /** GNIS feature identifiers; leading zeroes are significant. */
+    gnisIds: z.array(z.string().regex(/^\d{8}$/, 'GNIS ids must be eight digits')).min(1),
+    /** Eight-digit USGS HUC watershed identifiers; leading zeroes are significant. */
+    huc8s: z.array(z.string().regex(/^\d{8}$/, 'HUC8s must be eight digits')).min(1),
+    counties: z.array(z.string().min(1)).min(1).optional(),
+    receivingWater: z.string().min(1).optional(),
+  })
+  .superRefine((identity, ctx) => {
+    if (new Set(identity.gnisIds).size !== identity.gnisIds.length) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['gnisIds'], message: 'gnisIds must not contain duplicates' });
+    }
+    if (new Set(identity.huc8s).size !== identity.huc8s.length) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['huc8s'], message: 'huc8s must not contain duplicates' });
+    }
+    if (identity.counties && new Set(identity.counties.map((county) => county.toLowerCase())).size !== identity.counties.length) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['counties'], message: 'counties must not contain duplicates' });
+    }
+  });
+export type HydroIdentity = z.infer<typeof HydroIdentitySchema>;
+
 export const StreamSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -33,6 +56,7 @@ export const StreamSchema = z.object({
   stateId: StateIdSchema,
   waterbodyType: WaterbodyTypeSchema,
   regionId: RegionIdSchema,
+  hydroIdentity: HydroIdentitySchema.optional(),
   display: DisplayTierSchema.optional(),
   gaugeIds: z.array(z.string().min(1)),
   stockingProgram: z.boolean(),
@@ -61,6 +85,9 @@ export const StreamSchema = z.object({
   notes: z.string().optional(),
   officialSources: z.array(OfficialSourceSchema),
 }).superRefine((stream, ctx) => {
+  if (['river', 'creek', 'tailrace', 'spring'].includes(stream.waterbodyType) && stream.hydroIdentity === undefined) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['hydroIdentity'], message: 'hydroIdentity is required for selectable line waters' });
+  }
   if (stream.seasonMonths !== undefined && stream.seasonKind === undefined) {
     ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['seasonKind'], message: 'seasonKind is required when seasonMonths is present' });
   }

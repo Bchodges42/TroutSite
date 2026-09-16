@@ -19,6 +19,7 @@ vi.stubGlobal(
           stateId: 'TN',
           waterbodyType: 'river',
           regionId: 'tn-west',
+          hydroIdentity: { gnisIds: ['00000004'], huc8s: ['00000004'] },
           gaugeIds: ['g1'],
           stockingProgram: false,
           species: 'warmwater',

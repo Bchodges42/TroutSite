@@ -25,3 +25,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+hydroIdentity:
+  gnisIds: ["01296225"]
+  huc8s: ["08010202", "08010203"]
+  counties: ["Obion"]

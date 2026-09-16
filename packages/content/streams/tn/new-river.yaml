@@ -32,3 +32,7 @@ officialSources:
     url: https://waterdata.usgs.gov/monitoring-location/03408500/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01295631"]
+  huc8s: ["05130104"]
+  counties: ["Scott"]

@@ -15,6 +15,7 @@ const sample: Stream[] = [
     stateId: 'TN',
     waterbodyType: 'creek',
     regionId: 'tn-middle',
+    hydroIdentity: { gnisIds: ['00000001'], huc8s: ['00000001'] },
     gaugeIds: ['g1'],
     stockingProgram: true,
     idealFlow: [{ min: 100, max: 300, unit: 'cfs' }],

@@ -25,3 +25,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01300832", "01306597"]
+  huc8s: ["06040003", "06040005"]
+  counties: ["Houston", "Humphreys"]

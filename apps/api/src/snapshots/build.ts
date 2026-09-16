@@ -59,6 +59,7 @@ interface StreamRow {
   state_id: string;
   waterbody_type: string;
   region_id: string;
+  hydro_identity: string | null;
   display: string | null;
   gauge_ids: string;
   stocking_program: number;
@@ -106,6 +107,7 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       stateId: r.state_id,
       waterbodyType: r.waterbody_type,
       regionId: r.region_id,
+      ...(r.hydro_identity ? { hydroIdentity: JSON.parse(r.hydro_identity) } : {}),
       ...(r.display ? { display: r.display as 'featured' | 'standard' | 'reference' } : {}),
       gaugeIds: JSON.parse(r.gauge_ids) as string[],
       stockingProgram: r.stocking_program === 1,

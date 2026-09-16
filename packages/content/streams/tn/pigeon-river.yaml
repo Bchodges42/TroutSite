@@ -33,3 +33,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+hydroIdentity:
+  gnisIds: ["01014389"]
+  huc8s: ["06010106", "06010107"]
+  counties: ["Cocke"]

@@ -29,3 +29,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+hydroIdentity:
+  gnisIds: ["00695208"]
+  huc8s: ["08010210"]
+  counties: ["Shelby"]

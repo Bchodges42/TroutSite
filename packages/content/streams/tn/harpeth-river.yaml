@@ -51,3 +51,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01303466"]
+  huc8s: ["05130204"]
+  counties: ["Williamson"]

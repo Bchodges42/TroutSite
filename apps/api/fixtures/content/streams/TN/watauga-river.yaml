@@ -8,6 +8,9 @@ stateId: TN
 waterbodyType: tailrace
 regionId: tn-east-tailwaters
 gaugeIds: ["03486000"]
+hydroIdentity:
+  gnisIds: ["01327321"]
+  huc8s: ["06010103"]
 stockingProgram: true
 species: trout
 idealFlow:

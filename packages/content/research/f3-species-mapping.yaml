@@ -180,7 +180,7 @@ waters:
         events: 2
         sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - id: cane-creek
-    name: Cane Creek
+    name: Cane Creek (Caney Fork system — Bledsoe/Van Buren)
     catalogSpecies: trout
     fishery: stocked
     waterbodyType: creek
@@ -191,6 +191,19 @@ waters:
     stockingEvidence:
       - species: rainbow-trout
         events: 14
+        sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - id: cane-creek-hickman-perry
+    name: Cane Creek (Buffalo River system — Hickman/Perry)
+    catalogSpecies: trout
+    fishery: stocked
+    waterbodyType: creek
+    regionId: tn-middle-duck-elk
+    proposed:
+      - rainbow-trout
+    basis: twra-stocking-evidence
+    stockingEvidence:
+      - species: rainbow-trout
+        events: 2
         sourceUrl: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - id: caney-fork-river
     name: Caney Fork River (Center Hill tailwater)

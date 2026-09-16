@@ -60,3 +60,7 @@ officialSources:
     url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/duck.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01269541"]
+  huc8s: ["06040003", "06040005"]
+  counties: ["Maury", "Hickman", "Humphreys"]

@@ -64,3 +64,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Duck River fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+hydroIdentity:
+  gnisIds: ["01269541"]
+  huc8s: ["06040002", "06040003"]
+  counties: ["Bedford", "Marshall", "Maury"]

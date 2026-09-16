@@ -279,6 +279,28 @@ describe('Accessible river search', () => {
     await user.type(screen.getByRole('combobox'), 'Piney River');
     expect(screen.getByRole('option')).toHaveTextContent('Piney River (Hickman County)');
   });
+  it('returns both qualified Cane Creek identities for the shared local name', async () => {
+    const user = userEvent.setup();
+    const caneStreams = [
+      {
+        id: 'cane-creek',
+        name: 'Cane Creek (Caney Fork system — Bledsoe/Van Buren)',
+        aliases: ['Upper Cane Creek'],
+        regionId: 'tn-middle-caney-fork',
+      },
+      {
+        id: 'cane-creek-hickman-perry',
+        name: 'Cane Creek (Buffalo River system — Hickman/Perry)',
+        aliases: ['Cane Creek (Hickman County)', 'Cane Creek (Perry County)'],
+        regionId: 'tn-middle-duck-elk',
+      },
+    ];
+    render(<RiverSearch streams={caneStreams} onSelect={vi.fn()} />);
+    await user.type(screen.getByRole('combobox'), 'Cane Creek');
+    expect(screen.getAllByRole('option')).toHaveLength(2);
+    expect(screen.getByText('Cane Creek (Caney Fork system — Bledsoe/Van Buren)')).toBeInTheDocument();
+    expect(screen.getByText('Cane Creek (Buffalo River system — Hickman/Perry)')).toBeInTheDocument();
+  });
   it('supports the advertised slash shortcut and closes only the results on Escape', async () => {
     const user = userEvent.setup();
     render(<RiverSearch streams={streams} onSelect={vi.fn()} />);

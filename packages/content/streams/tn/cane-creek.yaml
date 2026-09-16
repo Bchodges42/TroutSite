@@ -1,5 +1,8 @@
 id: cane-creek
-name: Cane Creek
+name: Cane Creek (Caney Fork system — Bledsoe/Van Buren)
+aliases:
+  - Upper Cane Creek
+  - Cane Creek (Fall Creek Falls)
 stateId: TN
 waterbodyType: creek
 display: standard
@@ -14,11 +17,15 @@ idealFlow:
     max: 250
     unit: cfs
 idealFlowSource: editorial
-notes: TWRA lists both Upper Cane Creek (Bledsoe/Van Buren, near Fall Creek Falls) and Cane Creek
-  (Hickman/Perry) under spring stocking — this entry covers the stocked gorge-and-valley reaches; flows
-  respond fast to plateau rain.
+notes: Upper Cane Creek near Fall Creek Falls; this entry covers the Bledsoe/Van Buren stocked
+  gorge-and-valley reaches. Flows respond fast to plateau rain.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01279516"]
+  huc8s: ["05130108"]
+  counties: ["Bledsoe", "Van Buren"]
+  receivingWater: "Caney Fork River"

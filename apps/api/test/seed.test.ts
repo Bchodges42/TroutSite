@@ -24,6 +24,9 @@ species: trout
 officialSources:
   - label: TPWD stocking schedule
     url: https://tpwd.texas.gov/fishing/stocking
+hydroIdentity:
+  gnisIds: ["08155500"]
+  huc8s: ["12090202"]
 `;
 
 const VALID_SHOP_YAML = `\
@@ -86,6 +89,7 @@ describe('seedContent', () => {
       aliases: string;
       fishery: string | null;
       year_round: number | null;
+      hydro_identity: string | null;
     };
     expect(stream.state_id).toBe('TX');
     expect(JSON.parse(stream.gauge_ids)).toEqual(['08155500']);
@@ -94,6 +98,7 @@ describe('seedContent', () => {
     // B08: species applicability must survive the seed round trip (NULL when unset).
     expect(stream.species).toBe('trout');
     expect(JSON.parse(stream.aliases)).toEqual(['Guadalupe tailwater']);
+    expect(JSON.parse(stream.hydro_identity!)).toEqual({ gnisIds: ['08155500'], huc8s: ['12090202'] });
 
     const shop = db.prepare("SELECT * FROM shops WHERE id = 'guadalupe-trout'").get() as {
       reports_enabled: number;

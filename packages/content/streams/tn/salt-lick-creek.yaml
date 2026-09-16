@@ -25,3 +25,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01269923"]
+  huc8s: ["05110002"]
+  counties: ["Macon", "Jackson", "Putnam"]

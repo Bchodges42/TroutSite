@@ -1,0 +1,31 @@
+id: cane-creek-hickman-perry
+name: Cane Creek (Buffalo River system — Hickman/Perry)
+aliases:
+  - Cane Creek (Hickman County)
+  - Cane Creek (Perry County)
+stateId: TN
+waterbodyType: creek
+display: standard
+regionId: tn-middle-duck-elk
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow:
+  - min: 20
+    max: 180
+    unit: cfs
+idealFlowSource: editorial
+notes: Cane Creek in the Buffalo River system, with stocked reaches in Hickman and Perry
+  Counties. The downstream receiving-water relationship is confirmed as Buffalo River.
+officialSources:
+  - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+  - label: TWRA — Tennessee fishing regulations (always verify officially)
+    url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01307376"]
+  huc8s: ["06040004"]
+  counties: ["Hickman", "Perry"]
+  receivingWater: Buffalo River

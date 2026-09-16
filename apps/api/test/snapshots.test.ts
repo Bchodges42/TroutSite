@@ -66,6 +66,10 @@ describe('buildSnapshots', () => {
     const streams = JSON.parse(readOut(env.snapshotsDir, join('v1', 'streams.json'))) as unknown[];
     expect(streams).toHaveLength(2);
     streams.forEach((s) => expect(StreamSchema.safeParse(s).success).toBe(true));
+    expect((streams.find((s) => (s as { id: string }).id === 'watauga-river') as { hydroIdentity: unknown }).hydroIdentity).toEqual({
+      gnisIds: ['01327321'],
+      huc8s: ['06010103'],
+    });
 
     // 3-month recency slice (S1 window/sort support): subset of full history,
     // every row inside [NOW-90d, ∞) (upcoming schedules stay in-window),

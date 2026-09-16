@@ -49,8 +49,8 @@
     "name": "Beech River",
     "waterbodyType": "river",
     "anchor": [
-      -88.270878,
-      35.624015
+      -88.13117,
+      35.60543
     ],
     "bounds": [
       -88.42263,
@@ -65,11 +65,11 @@
     "name": "Big Bigby Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -87.237459,
-      35.552508
+      -87.22381,
+      35.56683
     ],
     "bounds": [
-      -87.31564,
+      -87.31566,
       35.44849,
       -87.18358,
       35.65185
@@ -96,8 +96,8 @@
     "name": "Big Sandy River",
     "waterbodyType": "river",
     "anchor": [
-      -88.222871,
-      36.075428
+      -88.09279,
+      36.31817
     ],
     "bounds": [
       -88.44748,
@@ -112,12 +112,12 @@
     "name": "Big Sewee Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.642274,
-      35.634419
+      -84.64165,
+      35.63716
     ],
     "bounds": [
       -84.71284,
-      35.60201,
+      35.60191,
       -84.55266,
       35.64795
     ],
@@ -128,8 +128,8 @@
     "name": "Big Soddy Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -85.204391,
-      35.304759
+      -85.23323,
+      35.30316
     ],
     "bounds": [
       -85.28789,
@@ -144,8 +144,8 @@
     "name": "Big Swan Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -87.403529,
-      35.570138
+      -87.45017,
+      35.59755
     ],
     "bounds": [
       -87.4588,
@@ -160,14 +160,14 @@
     "name": "Blackburn Fork",
     "waterbodyType": "river",
     "anchor": [
-      -85.565967,
-      36.295304
+      -85.56806,
+      36.28423
     ],
     "bounds": [
-      -85.57903,
+      -85.57904,
       36.24323,
-      -85.5555,
-      36.34878
+      -85.55548,
+      36.34883
     ],
     "labelMinZoom": 9.5
   },
@@ -236,13 +236,13 @@
     "name": "Brimstone Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.510103,
-      36.304861
+      -84.51217,
+      36.31265
     ],
     "bounds": [
       -84.54397,
       36.21674,
-      -84.49311,
+      -84.49314,
       36.37436
     ],
     "labelMinZoom": 8.5
@@ -297,8 +297,8 @@
     "name": "Bullrun Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -83.937228,
-      36.163259
+      -83.95109,
+      36.1569
     ],
     "bounds": [
       -84.15603,
@@ -358,8 +358,8 @@
     "name": "Candies Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.90897,
-      35.174128
+      -84.91094,
+      35.16877
     ],
     "bounds": [
       -84.99313,
@@ -371,17 +371,32 @@
   },
   {
     "id": "cane-creek",
-    "name": "Cane Creek",
+    "name": "Cane Creek (Caney Fork system — Bledsoe/Van Buren)",
     "waterbodyType": "creek",
     "anchor": [
-      -85.324608,
-      35.592064
+      -85.34075,
+      35.64501
     ],
     "bounds": [
       -85.44135,
       35.53539,
       -85.30377,
       35.81549
+    ]
+  },
+  {
+    "id": "cane-creek-hickman-perry",
+    "name": "Cane Creek (Buffalo River system — Hickman/Perry)",
+    "waterbodyType": "creek",
+    "anchor": [
+      -87.70336,
+      35.67039
+    ],
+    "bounds": [
+      -87.7888,
+      35.61987,
+      -87.61054,
+      35.71989
     ]
   },
   {
@@ -464,14 +479,14 @@
     "name": "Chestuee Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.516368,
-      35.399923
+      -84.59321,
+      35.36167
     ],
     "bounds": [
-      -84.68606,
+      -84.68621,
       35.22441,
       -84.35081,
-      35.50551
+      35.50555
     ],
     "labelMinZoom": 8.5
   },
@@ -631,12 +646,12 @@
     "name": "Crab Orchard Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.670833,
-      35.970674
+      -84.66716,
+      35.97324
     ],
     "bounds": [
       -84.78076,
-      35.93166,
+      35.93168,
       -84.57761,
       36.0224
     ],
@@ -782,8 +797,8 @@
     "name": "Dumplin Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -83.51094,
-      36.020533
+      -83.5142,
+      36.01625
     ],
     "bounds": [
       -83.65035,
@@ -798,13 +813,13 @@
     "name": "East Fork Obey River",
     "waterbodyType": "river",
     "anchor": [
-      -85.098119,
-      36.244389
+      -85.02263,
+      36.28976
     ],
     "bounds": [
       -85.21044,
-      36.14514,
-      -85.01019,
+      36.14512,
+      -85.01003,
       36.45376
     ],
     "labelMinZoom": 7.5
@@ -904,14 +919,14 @@
     "name": "Falling Water River",
     "waterbodyType": "river",
     "anchor": [
-      -85.485717,
-      36.093279
+      -85.48122,
+      36.10567
     ],
     "bounds": [
       -85.69318,
-      35.99946,
-      -85.27915,
-      36.1603
+      35.99943,
+      -85.27912,
+      36.16035
     ],
     "labelMinZoom": 8.5
   },
@@ -950,12 +965,12 @@
     "name": "Forked Deer River",
     "waterbodyType": "river",
     "anchor": [
-      -89.495613,
-      35.94617
+      -89.58547,
+      35.92682
     ],
     "bounds": [
-      -89.75859,
-      35.77529,
+      -89.58733,
+      35.92464,
       -89.57907,
       35.92864
     ],
@@ -1341,11 +1356,11 @@
     "name": "Little Chuckey Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -82.989932,
-      36.142657
+      -82.99302,
+      36.13645
     ],
     "bounds": [
-      -83.10127,
+      -83.10137,
       36.11715,
       -82.88218,
       36.17375
@@ -1357,13 +1372,13 @@
     "name": "Little Harpeth River",
     "waterbodyType": "river",
     "anchor": [
-      -86.828466,
-      36.029456
+      -86.8006,
+      36.01724
     ],
     "bounds": [
       -86.9286,
       35.93503,
-      -86.76023,
+      -86.76022,
       36.05411
     ],
     "labelMinZoom": 9.5
@@ -1448,14 +1463,14 @@
     "name": "Loosahatchie River",
     "waterbodyType": "river",
     "anchor": [
-      -89.457235,
-      35.296402
+      -89.16735,
+      35.22728
     ],
     "bounds": [
       -89.7148,
-      35.24431,
-      -89.17165,
-      35.31197
+      35.20583,
+      -89.15969,
+      35.31203
     ],
     "labelMinZoom": 7.5
   },
@@ -1509,12 +1524,12 @@
     "name": "Middle Fork Forked Deer River",
     "waterbodyType": "river",
     "anchor": [
-      -88.890746,
-      35.785089
+      -88.50371,
+      35.70329
     ],
     "bounds": [
-      -89.70243,
-      35.69938,
+      -89.21096,
+      35.69937,
       -88.45257,
       36.01007
     ],
@@ -1525,12 +1540,12 @@
     "name": "Middle Fork Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -88.648209,
-      36.250578
+      -88.82058,
+      36.20375
     ],
     "bounds": [
       -88.94075,
-      36.19486,
+      36.19487,
       -88.326,
       36.28775
     ],
@@ -1661,8 +1676,8 @@
     "name": "Nonconnah Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -89.855998,
-      35.070264
+      -89.93169,
+      35.07725
     ],
     "bounds": [
       -90.09218,
@@ -1722,14 +1737,14 @@
     "name": "North Fork Forked Deer River",
     "waterbodyType": "river",
     "anchor": [
-      -89.086196,
-      36.025351
+      -89.19242,
+      36.01561
     ],
     "bounds": [
-      -89.44366,
-      35.58184,
-      -88.51028,
-      36.03314
+      -89.44368,
+      35.83504,
+      -88.76001,
+      36.03325
     ],
     "labelMinZoom": 7.5
   },
@@ -1753,8 +1768,8 @@
     "name": "North Fork Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -88.71555,
-      36.434962
+      -89,
+      36.39635
     ],
     "bounds": [
       -89.05808,
@@ -1769,13 +1784,13 @@
     "name": "North Mouse Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.669085,
-      35.442636
+      -84.67948,
+      35.4315
     ],
     "bounds": [
       -84.80394,
       35.32591,
-      -84.56216,
+      -84.56212,
       35.58892
     ],
     "labelMinZoom": 8.5
@@ -1830,14 +1845,14 @@
     "name": "Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -89.6413,
-      36.007
+      -89.53335,
+      36.11131
     ],
     "bounds": [
       -89.65268,
       35.90726,
-      -89.05564,
-      36.27901
+      -88.94075,
+      36.28197
     ]
   },
   {
@@ -1890,8 +1905,8 @@
     "name": "Oostanaula Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.594229,
-      35.415464
+      -84.61153,
+      35.38389
     ],
     "bounds": [
       -84.73656,
@@ -1906,8 +1921,8 @@
     "name": "Paint Creek (Greene County)",
     "waterbodyType": "creek",
     "anchor": [
-      -82.809742,
-      35.987483
+      -82.82661,
+      35.9702
     ],
     "bounds": [
       -82.89948,
@@ -2012,13 +2027,13 @@
     "name": "Piney River (Hickman County)",
     "waterbodyType": "river",
     "anchor": [
-      -87.473312,
-      35.921768
+      -87.47186,
+      35.88959
     ],
     "bounds": [
-      -87.5606,
+      -87.56069,
       35.81904,
-      -87.43472,
+      -87.43466,
       36.01183
     ],
     "labelMinZoom": 8.5
@@ -2133,12 +2148,12 @@
     "name": "Richland Creek (Maury/Giles Counties)",
     "waterbodyType": "creek",
     "anchor": [
-      -86.911224,
-      35.28725
+      -87.03726,
+      35.27688
     ],
     "bounds": [
-      -87.10653,
-      35.07261,
+      -87.1066,
+      35.02752,
       -86.73167,
       35.38764
     ],
@@ -2164,14 +2179,14 @@
     "name": "Roaring River",
     "waterbodyType": "river",
     "anchor": [
-      -85.492402,
-      36.341998
+      -85.43356,
+      36.35035
     ],
     "bounds": [
       -85.64794,
       36.27205,
       -85.33312,
-      36.37833
+      36.37847
     ],
     "labelMinZoom": 8.5
   },
@@ -2195,11 +2210,11 @@
     "name": "Rutherford Fork Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -88.776672,
-      35.983027
+      -88.50811,
+      35.86316
     ],
     "bounds": [
-      -89.02297,
+      -89.02295,
       35.78766,
       -88.46729,
       36.27418
@@ -2211,14 +2226,14 @@
     "name": "Sale Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -85.076334,
-      35.446212
+      -85.08347,
+      35.4375
     ],
     "bounds": [
       -85.10586,
       35.35888,
       -85.04726,
-      35.533
+      35.53305
     ],
     "labelMinZoom": 9.5
   },
@@ -2302,12 +2317,12 @@
     "name": "South Chickamauga Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -85.223439,
-      35.046198
+      -85.16783,
+      34.98324
     ],
     "bounds": [
       -85.27032,
-      34.90434,
+      34.90433,
       -85.08245,
       35.09091
     ],
@@ -2333,14 +2348,14 @@
     "name": "South Fork Forked Deer River",
     "waterbodyType": "river",
     "anchor": [
-      -88.795788,
-      35.588427
+      -89.3534,
+      35.83695
     ],
     "bounds": [
-      -89.22753,
+      -89.43536,
       35.41862,
-      -88.60292,
-      35.72779
+      -88.60294,
+      35.99983
     ],
     "labelMinZoom": 7.5
   },
@@ -2349,8 +2364,8 @@
     "name": "South Fork Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -88.744255,
-      36.096401
+      -88.58795,
+      36.07365
     ],
     "bounds": [
       -88.94075,
@@ -2395,8 +2410,8 @@
     "name": "South Mouse Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -84.847213,
-      35.223513
+      -84.82925,
+      35.24676
     ],
     "bounds": [
       -84.90604,
@@ -2711,11 +2726,11 @@
     "name": "West Fork Obey River",
     "waterbodyType": "river",
     "anchor": [
-      -85.179825,
-      36.315009
+      -85.18611,
+      36.30967
     ],
     "bounds": [
-      -85.22126,
+      -85.22129,
       36.175,
       -85.12162,
       36.45289
@@ -2742,14 +2757,14 @@
     "name": "West Harpeth River",
     "waterbodyType": "river",
     "anchor": [
-      -86.92763,
-      35.869513
+      -86.94852,
+      35.88465
     ],
     "bounds": [
       -86.97512,
       35.78339,
       -86.84378,
-      35.97483
+      35.97477
     ],
     "labelMinZoom": 8.5
   },
@@ -2863,12 +2878,12 @@
     "name": "Yellow Creek (Houston/Dickson Counties)",
     "waterbodyType": "creek",
     "anchor": [
-      -87.544639,
-      36.257328
+      -87.54096,
+      36.24048
     ],
     "bounds": [
       -87.57966,
-      36.11495,
+      36.11498,
       -87.44251,
       36.42286
     ],

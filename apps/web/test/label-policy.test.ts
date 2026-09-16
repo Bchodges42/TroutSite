@@ -15,7 +15,7 @@ const FEATURED_IDS = [
   'j-percy-priest-lake', 'tims-ford-lake', 'center-hill-lake', 'dale-hollow-lake', 'kentucky-lake',
   'lake-barkley', 'south-holston-lake', 'pickwick-lake', 'tellico-lake', 'boone-lake', 'watauga-lake',
   'reelfoot-lake', 'cumberland-river', 'tennessee-river', 'mississippi-river', 'duck-river-lower',
-  'buffalo-river', 'obed-river',
+  'buffalo-river', 'obed-river', 'duck-river-mouth',
 ] as const;
 const REFERENCE_IDS = [
   'beech-lake', 'cameron-brown-lake', 'covington-fbc-pond', 'edmund-orgill-lake', 'johnson-park-lake',
@@ -130,19 +130,19 @@ describe('labelPolicy.labelSpeciesNote (honest aria/title words)', () => {
 });
 
 describe('authored map display tiers', () => {
-  it('covers the complete real river index with the campaign 37/136/16 assignment (expansion waters ride labelMinZoom)', () => {
+  it('covers the complete real river index with the campaign 38/136/16 assignment (expansion waters ride labelMinZoom)', () => {
     const indexIds = new Set(riverIndex.map((r) => r.id));
     const featured = new Set(FEATURED_IDS);
     const reference = new Set(REFERENCE_IDS);
-    expect(FEATURED_IDS).toHaveLength(37);
+    expect(FEATURED_IDS).toHaveLength(38);
     expect(REFERENCE_IDS).toHaveLength(16);
     expect(FEATURED_IDS.length + REFERENCE_IDS.length).toBeLessThan(riverIndex.length);
-    expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(53);
+    expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(54);
     expect([...featured, ...reference].every((id) => indexIds.has(id))).toBe(true);
     expect(riverIndex.length - featured.size - reference.size).toBe(136);
   });
 
-  it('titles 37 featured waters statewide/approach and admits 136 standard waters locally', () => {
+  it('titles 38 featured waters statewide/approach and admits 136 standard waters locally', () => {
     const standardIds = riverIndex
       .map((r) => r.id)
       .filter((id) => !FEATURED_IDS.includes(id as (typeof FEATURED_IDS)[number]) && !REFERENCE_IDS.includes(id as (typeof REFERENCE_IDS)[number]));
@@ -152,9 +152,9 @@ describe('authored map display tiers', () => {
       ...REFERENCE_IDS.map((id) => ({ id, display: 'reference' as const })),
     ];
     const titleAt = (zoom: number) => waters.filter((water) => shouldShowLabel(water, ctx({ mode: 'all', zoom }))).length;
-    expect(titleAt(5)).toBe(37);
-    expect(titleAt(8.5)).toBe(37);
-    expect(titleAt(9.5)).toBe(173);
+    expect(titleAt(5)).toBe(38);
+    expect(titleAt(8.5)).toBe(38);
+    expect(titleAt(9.5)).toBe(174);
     expect(waters.filter((water) => water.display === 'standard' && shouldShowLabel(water, ctx({ mode: 'all', zoom: 9.5 })))).toHaveLength(136);
   });
 

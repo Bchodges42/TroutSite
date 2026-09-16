@@ -18,6 +18,7 @@ export function makeStream(overrides: Partial<Stream> = {}): Stream {
     stateId: 'TX',
     waterbodyType: 'tailrace',
     regionId: 'tx-hill-country',
+    hydroIdentity: { gnisIds: ['08155500'], huc8s: ['12090202'] },
     gaugeIds: ['08155500'],
     stockingProgram: true,
     species: 'trout',

@@ -105,6 +105,22 @@ describe('matchStocking', () => {
     expect(unmatched).toBe(2);
     expect(byStream.size).toBe(1);
   });
+
+  it('splits same-named Cane Creek rows by county and leaves a county-less row unresolved', () => {
+    const cane = [
+      { id: 'cane-creek', name: 'Cane Creek (Caney Fork system — Bledsoe/Van Buren)', aliases: ['Upper Cane Creek'] },
+      { id: 'cane-creek-hickman-perry', name: 'Cane Creek (Buffalo River system — Hickman/Perry)', aliases: ['Cane Creek (Hickman County)', 'Cane Creek (Perry County)'] },
+    ];
+    const { byStream, unmatched } = matchStocking(cane, [
+      event('Cane Creek', 'hickman',),
+      { ...event('Cane Creek', 'perry'), county: 'Perry' },
+      { ...event('Cane Creek', 'bledsoe'), county: 'Van Buren' },
+      event('Cane Creek', 'ambiguous'),
+    ].map((row, index) => index === 0 ? { ...row, county: 'Hickman' } : row));
+    expect(byStream.get('cane-creek-hickman-perry')).toHaveLength(2);
+    expect(byStream.get('cane-creek')).toHaveLength(1);
+    expect(unmatched).toBe(1);
+  });
 });
 
 describe('matchStocking against the real cached TWRA feed', () => {
@@ -197,5 +213,22 @@ describe('T1-7 — county disambiguation against the captured 623-row TWRA feed'
     expect(duck.length).toBeGreaterThan(0);
     expect(duck.every((e) => /normandy/i.test(e.streamName))).toBe(true);
     expect(byStream.get('duck-river-lower')).toBeUndefined();
+  });
+
+  it('splits captured Cane Creek labels by county and leaves Cane Creek Park unmatched', () => {
+    const caneCatalog = [
+      ...catalog,
+      { id: 'cane-creek', name: 'Cane Creek (Caney Fork system — Bledsoe/Van Buren)' },
+      { id: 'cane-creek-hickman-perry', name: 'Cane Creek (Buffalo River system — Hickman/Perry)' },
+    ];
+    const { byStream } = matchStocking(caneCatalog, capturedEvents);
+    const oldCane = byStream.get('cane-creek') ?? [];
+    const newCane = byStream.get('cane-creek-hickman-perry') ?? [];
+
+    expect(newCane.length).toBeGreaterThan(0);
+    expect(newCane.every((e) => e.county === 'Hickman' || e.county === 'Perry')).toBe(true);
+    expect(oldCane.length).toBeGreaterThan(0);
+    expect(oldCane.every((e) => e.county === 'Van Buren')).toBe(true);
+    expect(oldCane.some((e) => /Cane Creek Park/i.test(e.streamName))).toBe(false);
   });
 });

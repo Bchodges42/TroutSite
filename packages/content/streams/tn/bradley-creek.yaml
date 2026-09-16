@@ -13,3 +13,6 @@ notes: Franklin County creek near Tullahoma and Manchester that drains through A
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01305382"]
+  huc8s: ["06030003"]

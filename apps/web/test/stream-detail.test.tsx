@@ -21,6 +21,7 @@ function makeStream(overrides: Partial<Stream> = {}): Stream {
     stateId: 'TN',
     waterbodyType: 'tailrace',
     regionId: 'r0',
+    hydroIdentity: { gnisIds: ['00000003'], huc8s: ['00000003'] },
     gaugeIds: ['g0'],
     stockingProgram: true,
     idealFlow: [{ min: 100, max: 400, unit: 'cfs' }],

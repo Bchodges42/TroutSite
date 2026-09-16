@@ -26,3 +26,7 @@ officialSources:
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+hydroIdentity:
+  gnisIds: ["01327321"]
+  huc8s: ["06010103"]
+  counties: ["Carter"]

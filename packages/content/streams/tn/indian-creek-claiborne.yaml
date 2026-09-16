@@ -26,3 +26,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01269671"]
+  huc8s: ["06010206"]
+  counties: ["Claiborne"]

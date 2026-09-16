@@ -41,3 +41,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
   - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+hydroIdentity:
+  gnisIds: ["01306463"]
+  huc8s: ["06010107", "06010201"]
+  counties: ["Sevier"]

@@ -65,6 +65,23 @@ describe('StreamSchema', () => {
       StreamSchema.parse(makeStream({ officialSources: [{ label: 'x', url: 'not-a-url' }] })),
     ).toThrow(ZodError);
   });
+
+  it('requires hydrography identity for line waters', () => {
+    const { hydroIdentity: _identity, ...withoutIdentity } = makeStream();
+    expect(() => StreamSchema.parse(withoutIdentity)).toThrow(/hydroIdentity/);
+  });
+
+  it('preserves leading-zero ids and rejects duplicate identity values', () => {
+    const stream = makeStream({ hydroIdentity: { gnisIds: ['01279516'], huc8s: ['05130108'], counties: ['Van Buren'] } });
+    expect(StreamSchema.parse(stream).hydroIdentity).toEqual(stream.hydroIdentity);
+    expect(() => StreamSchema.parse({ ...stream, hydroIdentity: { ...stream.hydroIdentity!, gnisIds: ['01279516', '01279516'] } })).toThrow(/duplicates/);
+    expect(() => StreamSchema.parse({ ...stream, hydroIdentity: { ...stream.hydroIdentity!, huc8s: ['05130108', '05130108'] } })).toThrow(/duplicates/);
+  });
+
+  it('does not require hydrography identity for still water', () => {
+    const { hydroIdentity: _identity, ...stillWater } = makeStream({ waterbodyType: 'pond' as never });
+    expect(StreamSchema.parse(stillWater).waterbodyType).toBe('pond');
+  });
 });
 
 describe('GaugeReadingSchema', () => {

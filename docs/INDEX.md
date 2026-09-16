@@ -32,7 +32,7 @@ instead.
 
 | Doc | Covers |
 |---|---|
-| [`atlas-sources.md`](atlas-sources.md) / [`atlas-validation.md`](atlas-validation.md) | River/lake atlas sources + validation rules |
+| [`atlas-sources.md`](atlas-sources.md) / [`atlas-validation.md`](atlas-validation.md) | River/lake atlas sources, hydro identities, selectable trace recipes + validation rules |
 | [`topo-sources.md`](topo-sources.md) | Hillshade/contour tiles (USGS 3DEP), budgets, provenance |
 | [`roads-sources.md`](roads-sources.md) | TIGER 2024 roads build (license verdict, LOD ladder, weld guards) |
 | [`flow-orientation.md`](flow-orientation.md) | How flow-direction arrows are derived from topology |

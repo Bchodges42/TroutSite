@@ -314,7 +314,25 @@
    "window": "TWRA winter put-and-take (Dec–Feb); fish do not hold over summer"
   },
   "cane-creek": {
-   "name": "Cane Creek",
+   "name": "Cane Creek (Caney Fork system — Bledsoe/Van Buren)",
+   "classification": "trout-stocked",
+   "presence": "seasonal",
+   "months": [
+    3,
+    4,
+    5,
+    10
+   ],
+   "stockingMonths": [
+    3,
+    4,
+    5,
+    10
+   ],
+   "window": "Spring weeks + one late-Oct fall row"
+  },
+  "cane-creek-hickman-perry": {
+   "name": "Cane Creek (Buffalo River system — Hickman/Perry)",
    "classification": "trout-stocked",
    "presence": "seasonal",
    "months": [

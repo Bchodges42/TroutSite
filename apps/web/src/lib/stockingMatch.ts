@@ -100,6 +100,12 @@ const byId = new Map(
  */
 const COUNTY_RESOLVES: Readonly<Record<string, Readonly<Record<string, string>>>> = {
   'wolf river': { fentress: 'wolf-river-fentress' },
+  'cane creek': {
+    hickman: 'cane-creek-hickman-perry',
+    perry: 'cane-creek-hickman-perry',
+    bledsoe: 'cane-creek',
+    'van buren': 'cane-creek',
+  },
 };
 
 function aliasTierFor(eventNorm: string): string[] {
@@ -149,7 +155,10 @@ export function matchStocking(
     // catalog water. Runs BEFORE exact/containment so a same-named water in
     // the wrong county can never win (T1-7).
     if (event.county) {
-      const byCounty = COUNTY_RESOLVES[eventNorm];
+      const countyKey = Object.keys(COUNTY_RESOLVES).find(
+        (key) => eventNorm === key || eventNorm.startsWith(`${key} `),
+      );
+      const byCounty = countyKey ? COUNTY_RESOLVES[countyKey] : undefined;
       const hit = byCounty?.[event.county.toLowerCase()];
       if (hit) resolved = hit;
     }

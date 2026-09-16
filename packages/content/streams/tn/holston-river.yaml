@@ -41,3 +41,7 @@ seasonMonths:
   - 3
   - 4
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01303469", "01487063"]
+  huc8s: ["06010104", "06010201"]
+  counties: ["Jefferson"]

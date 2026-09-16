@@ -25,3 +25,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
+hydroIdentity:
+  gnisIds: ["01326386"]
+  huc8s: ["05130108"]
+  counties: ["Cumberland", "DeKalb"]

@@ -31,3 +31,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01278907"]
+  huc8s: ["06010104"]
+  counties: ["Grainger"]

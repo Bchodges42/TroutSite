@@ -276,6 +276,8 @@ for (const s of streams) {
   s.waterbodyType = pack.waterbodyType;
   s.stockingProgram = pack.stockingProgram;
   s.gaugeIds = pack.gaugeIds;
+  if (pack.hydroIdentity) s.hydroIdentity = pack.hydroIdentity;
+  else delete s.hydroIdentity;
   // Ideal-flow ranges come from the reviewed pack too — the hardcoded base
   // list predates the provenance pass and ships empty ranges for warmwater
   // rivers, which silently dropped them from the demo conditions feed.

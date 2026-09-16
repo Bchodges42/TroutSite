@@ -31,3 +31,6 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["00499492", "01291707"]
+  huc8s: ["05130206"]

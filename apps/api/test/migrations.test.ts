@@ -63,7 +63,8 @@ describe('migrations', () => {
     // + 015_stream_catalog_metadata (aliases/fishery/year-round round trip,
     //   selectable-river expansion; renumbered from the expansion's 008 —
     //   main already used 008 for target species).
-    expect(applied).toHaveLength(15);
+    // + 016_stream_hydro_identity (GNIS/HUC identity for selectable lines).
+    expect(applied).toHaveLength(16);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -75,6 +76,7 @@ describe('migrations', () => {
     expect(applied[12]!.name).toMatch(/^013_/);
     expect(applied[13]!.name).toMatch(/^014_/);
     expect(applied[14]!.name).toMatch(/^015_/);
+    expect(applied[15]!.name).toMatch(/^016_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

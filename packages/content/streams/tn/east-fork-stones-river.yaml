@@ -35,3 +35,7 @@ seasonMonths:
   - 3
 seasonKind: programmatic
 yearRound: false
+hydroIdentity:
+  gnisIds: ["01283369"]
+  huc8s: ["05130203"]
+  counties: ["Rutherford"]

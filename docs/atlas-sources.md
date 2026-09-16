@@ -1,7 +1,9 @@
 # Atlas Sources
 
 Canonical pipeline: real Census TIGER/Line 2024 + USGS NHDPlus HR geometry
-(both public domain). No synthetic coordinates anywhere.
+(both public domain). No synthetic coordinates anywhere. Selectable line-water
+identity is authored in the stream YAML and trace topology is recorded separately
+from the geometry artifact.
 
 ## Reproduce (deterministic)
 
@@ -10,7 +12,7 @@ pnpm --filter @trout/content build        # regenerate streams.json if content c
 node apps/web/scripts/fetch-atlas-sources.mjs   # one-time Census downloads (-> .atlas-src/, git-ignored)
 node apps/web/scripts/build-atlas-context-sources.mjs  # context intermediates: boundary/counties/states/places
 node apps/web/scripts/fetch-nhd-targets.mjs     # one-time USGS NHDPlus HR fetches (-> .atlas-src/nhd/)
-node apps/web/scripts/match-rivers-tiger.mjs    # match 92 streams to TIGER LINEARWATER (-> .atlas-src/out/)
+node apps/web/scripts/match-rivers-tiger.mjs    # historical source-matching intermediate (-> .atlas-src/out/)
 node apps/web/scripts/merge-rivers.mjs          # assemble public/atlas/rivers.geojson (continuity-aware source selection)
 node apps/web/scripts/close-residual-gaps.mjs   # join residual chunk gaps <= 1 km (logged to .atlas-src/out/residual-joins.json)
 node apps/web/scripts/fix-caney-fork.mjs        # rebuild caney-fork-river from the NHD corridor
@@ -22,7 +24,8 @@ node apps/web/scripts/audit-selectable-rivers.mjs # compare the catalog with loc
 node apps/web/scripts/build-selectable-river-additions.mjs # append curated exact-GNIS additions
 node apps/web/scripts/regenerate-river-index.mjs # refresh camera/label bounds and zoom tiers
 node apps/web/scripts/validate-atlas.mjs        # structural gate (must PASS)
-node apps/web/scripts/audit-river-continuity.mjs # continuity gate: 0 unexpected multi-chunk line rivers (must PASS)
+node apps/web/scripts/audit-river-continuity.mjs # continuity/gap gate (must PASS)
+node apps/web/scripts/audit-water-identities.mjs # identity/topology/trace gate (must PASS)
 ```
 
 `apps/web/scripts/build-atlas.mjs` is the RETIRED synthetic generator and must
@@ -32,7 +35,7 @@ not be run — it would overwrite the real atlas with jitter geometry.
 
 | Dataset                                                              | Path                                                      | Records                           | License / Terms                                               |
 | -------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------- |
-| Selectable-water catalog                                             | `packages/content/streams/tn/*.yaml`                      | 188 TN waters                     | Internal Trout content pack (TWRA/USGS references per stream) |
+| Selectable-water catalog                                             | `packages/content/streams/tn/*.yaml`                      | 190 TN waters                     | Internal Trout content pack (TWRA/USGS references per stream) |
 | Census TIGER/Line 2024 LINEARWATER (TN, per-county)                  | `.atlas-src/shp/` (from `fetch-atlas-sources.mjs`)        | 95 county files                   | Public domain (US Government work)                            |
 | Census TIGER/Line 2024 AREAWATER (TN, per-county)                    | `.atlas-src/awshp/`                                       | 95 county files                   | Public domain                                                 |
 | Census cartographic boundaries (county 5m, state 5m, TN places 500k) | `.atlas-src/*.zip`                                        | 95 counties, 50 states, TN places | Public domain                                                 |
@@ -40,7 +43,7 @@ not be run — it would overwrite the real atlas with jitter geometry.
 
 ## Rivers hydrography
 
-- **Method:** per-stream match of TIGER LINEARWATER segments by normalized name
+- **Historical source method:** per-stream match of TIGER LINEARWATER segments by normalized name
   (TIGER abbreviations expanded: `R/CRK/FRK/FK/BR`, `SULFUR→SULPHUR`,
   `WHITEOAK→WHITE OAK`), county discipline from content-catalog county hints,
   region windows to discard far same-named waters. USGS NHDPlus HR fills gaps
@@ -49,6 +52,14 @@ not be run — it would overwrite the real atlas with jitter geometry.
 - **Geometry rules:** separate source parts stay separate — never concatenated
   into artificial connector lines. Whole-part rejection on malformed or
   out-of-Tennessee coordinates (never delete an interior point).
+- **Selectable trace method (current):** every line water has a `hydroIdentity`
+  block in its canonical YAML (`gnisIds`, `huc8s`, optional county and
+  receiving-water qualifiers). `build-selectable-water-traces.mjs` uses those
+  identities against the committed raw NHD graphs, follows directed endpoint
+  topology, and preserves disconnected components as separate parts. Endpoint
+  welds are limited to ordinary source joins of at most 15 m; no synthetic
+  connectors, side branches, or geometry bridges are emitted. Permanent
+  identifiers and NHDPlus identifiers remain separate provenance fields.
 - **Continuity (2026-09-04):** `merge-rivers.mjs` picks, per stream, the most
   continuous REAL source combination (TIGER+NHD blend vs NHD-only vs
   TIGER-only — fewest endpoint-stitched 1 km chunks; every candidate is real
@@ -80,17 +91,19 @@ vertexCount`.
   state lines return out-of-state flowlines; `merge-rivers.mjs` keeps an NHD
   part only when every vertex is inside the Tennessee boundary polygon
   (whole-part rejection — never delete an interior point).
-- **Resolved:** all 188/188 selectable waters carry verified official geometry.
+- **Resolved:** all 190/190 selectable waters carry verified official geometry.
   `white-oak-creek` is matched to TIGER LINEARWATER through the
   `WHITEOAK → WHITE OAK` entry in the `WORD` normalization map in
   `merge-rivers.mjs`; do not remove that mapping.
-- **Generated file:** `apps/web/public/atlas/rivers.geojson` (188/188 resolved).
+- **Generated file:** `apps/web/public/atlas/rivers.geojson` (190/190 resolved;
+  147 selectable line waters and 43 still-water/anchor features).
 
-## B15 missing-line rivers (waterbody expansion, LINES lane 2026-09-04)
+## Historical B15 missing-line river lane (waterbody expansion, 2026-09-04)
 
 The inventory (`docs/waterbody-inventory.json`, authoritative for ids and
-names) lists 8 rivers with `geometryStatus: 'missing-line'`. These ids are
-NOT in the content catalog yet (the catalog lane owns `packages/content`), so
+names) listed 8 rivers with `geometryStatus: 'missing-line'`. At that point
+these ids were NOT in the content catalog (the catalog lane owned
+`packages/content`), so
 `merge-rivers.mjs` — which iterates catalog streams — cannot emit them. The
 new `build-missing-rivers.mjs` step APPENDS their features to
 `rivers.geojson` instead: it never modifies an existing feature and is
@@ -143,8 +156,9 @@ idempotent (ids already present are skipped; `ONLY=<id>` runs one river).
 | buffalo-river             | 2       | 641   | -87.8647 35.3114 -87.2912 35.9963 | headwater member ends at lat 35.364; named flowline has no geometry 35.364-35.389 in this extract (verified: zero named features intersect the band) |
 | holston-river             | 1       | 494   | -83.8578 35.9586 -82.6088 36.5479 | Kingsport → Knoxville confluence incl. Cherokee Lake connectors                                                                                      |
 
-- **Generated file:** `apps/web/public/atlas/rivers.geojson` — 113 features
-  (105 pre-existing + 8 appended; pre-existing features byte-identical).
+- **Historical generated file:** this 2026-09-04 append-only result was 113
+  features (105 pre-existing + 8 appended). The current selectable atlas is
+  rebuilt and published by the later trace pipeline described below.
 - **Handoffs:** catalog YAML rows for the 8 ids = catalog lane; regenerate
   `apps/web/src/features/map/riverIndex.json` from the approved geometry =
   UI/integration lane (contract step 5; UI files untouched here).
@@ -165,9 +179,10 @@ generic short named creeks are not promoted automatically.
 
 - Exact GNIS ids prevent same-name waters from being merged. In particular,
   `piney-river-hickman` is distinct from the existing Rhea County Piney River.
-- 37 additions use exact-GNIS NHDPlus HR reaches. Beech River, Conasauga River,
-  and South Fork Forked Deer River use continuous exact-name Census TIGER
-  geometry after the NHD export showed avoidable gaps.
+- All 40 additions now have canonical hydro identities and deterministic trace
+  recipes. Their approved traces use committed raw NHD topology where available;
+  the documented Conasauga identity exception retains its reviewed TIGER
+  geometry when the raw extract has only the local Conasauga Creek identity.
 - Four retained official NHD extents have documented source discontinuities in
   `CONTINUITY-AUDIT.md`; no synthetic lines bridge those gaps.
 - `labelMinZoom` (7.5, 8.5, or 9.5) controls prominence independently of
@@ -176,6 +191,26 @@ generic short named creeks are not promoted automatically.
 - Deliberately unresolved identities are recorded in the manifest: secondary
   same-name North/Middle Fork Forked Deer GNIS records, the Loosahatchie River
   Drainage Canal, and the out-of-state Tuscumbia River artifact.
+
+## Selectable trace recipes and identity audit (2026-09-16)
+
+`apps/web/atlas-sources/selectable-water-traces.json` is the deterministic review
+recipe for the 147 selectable line waters. It contains source permanent-identifier
+seeds, upstream/downstream boundaries, reviewed name transitions, shared-reach
+allowances, and a short review note. It intentionally does not duplicate the
+identity fields in the YAML catalog.
+
+The normal content gate runs `audit-water-identities.mjs`. It checks one-to-one
+catalog/recipe/atlas coverage, GNIS/HUC-to-raw-reach agreement, duplicate ownership,
+directed route topology, finite coordinates, the 15 m weld ceiling,
+simplification metadata, and two repeated builder fingerprints. Repeated NHD
+names are reported for review rather than silently merged. Genuine source gaps
+remain visible and are documented by the continuity audit.
+
+`conasauga-river` is the documented source exception: its catalog identity is the
+TIGER GNIS record while the committed raw NHD extract contains only the local
+Conasauga Creek identity. The trace retains the reviewed TIGER geometry and the
+exception is surfaced by the identity audit.
 
 ## Tennessee boundary / counties / states / places
 

@@ -26,3 +26,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01639615"]
+  huc8s: ["06010103"]
+  counties: ["Johnson"]

@@ -21,3 +21,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01276379", "01291148", "01311903"]
+  huc8s: ["05130107"]
+  counties: ["Warren"]

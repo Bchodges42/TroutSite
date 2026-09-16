@@ -29,3 +29,7 @@ officialSources:
     url: https://waterdata.usgs.gov/tn/nwis
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+hydroIdentity:
+  gnisIds: ["01487063"]
+  huc8s: ["06010101", "06010102", "06010104"]
+  counties: ["Sullivan"]

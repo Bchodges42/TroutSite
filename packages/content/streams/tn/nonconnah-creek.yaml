@@ -12,3 +12,6 @@ officialSources:
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
+hydroIdentity:
+  gnisIds: ["01306837"]
+  huc8s: ["08010100", "08010211"]

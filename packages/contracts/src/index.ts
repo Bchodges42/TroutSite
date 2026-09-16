@@ -1,4 +1,4 @@
-// @trout/contracts — public surface (contracts-v2.1.0, ADR 0008; v1.0.0 launch set,
+// @trout/contracts — public surface (contracts-v2.2.0, ADR 0009; v1.0.0 launch set,
 // additive photoUrl v1.0.1 / ADR 0002, evidence v1.1.0, stocking-recent v1.1.1).
 // Schemas + types are re-exported from src/schemas; logic from the pure-function modules.
 export * from './schemas/shared.js';

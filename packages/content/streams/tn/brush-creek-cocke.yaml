@@ -30,3 +30,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01278672"]
+  huc8s: ["06010105"]
+  counties: ["Cocke"]

@@ -14,6 +14,7 @@ interface StreamRow {
   state_id: string;
   waterbody_type: string;
   region_id: string;
+  hydro_identity: string | null;
   display: string | null;
   gauge_ids: string;
   stocking_program: number;
@@ -47,14 +48,14 @@ interface ShopRow {
 export function seedContent(db: Db, contentDir: string): SeedResult {
   const insertStream = db.prepare(`
     INSERT INTO streams (id, name, aliases, state_id, waterbody_type, region_id, display, gauge_ids,
-                         stocking_program, ideal_flow, ideal_flow_source, season_months, season_kind,
+                         hydro_identity, stocking_program, ideal_flow, ideal_flow_source, season_months, season_kind,
                          species_evidence, notes, official_sources, species, target_species, fishery, year_round)
     VALUES (@id, @name, @aliases, @state_id, @waterbody_type, @region_id, @display, @gauge_ids,
-            @stocking_program, @ideal_flow, @ideal_flow_source, @season_months, @season_kind,
+            @hydro_identity, @stocking_program, @ideal_flow, @ideal_flow_source, @season_months, @season_kind,
             @species_evidence, @notes, @official_sources, @species, @target_species, @fishery, @year_round)
     ON CONFLICT(id) DO UPDATE SET
       name=@name, aliases=@aliases, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
-      display=@display, gauge_ids=@gauge_ids, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
+      display=@display, gauge_ids=@gauge_ids, hydro_identity=@hydro_identity, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
       ideal_flow_source=@ideal_flow_source, season_months=@season_months, season_kind=@season_kind,
       species_evidence=@species_evidence,
       notes=@notes, official_sources=@official_sources, species=@species, target_species=@target_species,
@@ -84,6 +85,7 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
       state_id: s.stateId,
       waterbody_type: s.waterbodyType,
       region_id: s.regionId,
+      hydro_identity: s.hydroIdentity ? JSON.stringify(s.hydroIdentity) : null,
       display: s.display ?? null,
       gauge_ids: JSON.stringify(s.gaugeIds),
       stocking_program: s.stockingProgram ? 1 : 0,

@@ -242,8 +242,11 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
   03539778 is actually Clear Creek at Lilly Bridge) — re-anchor from NWIS.
 - [ ] **T3-51 [PRE]** Elk River ~6 km uncataloged NHD arm (Bradley Creek junction →
   Tims Ford pool) — deliberate content decision.
-- [ ] **T3-52 [PRE]** ~35 candidate waters from the 2026-09-08 TWRA scan (Cherokee TW,
-  paint-creek, ...) need geometry before entering the catalog.
+- [x] **T3-52 [PRE]** ~35 candidate waters from the 2026-09-08 TWRA scan (Cherokee TW,
+  paint-creek, ...) needed geometry before entering the catalog. Resolved 2026-09-16:
+  the 40 approved additions now have deterministic raw-NHD trace recipes and the
+  Conasauga TIGER exception is documented; unresolved candidate identities remain
+  outside the selectable catalog.
 - [ ] **T3-53 [PRE]** Stocking → map highlight remains the stretch goal.
 
 **Accepted limitations (documented, do not file as bugs)**

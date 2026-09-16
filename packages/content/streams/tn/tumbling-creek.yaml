@@ -25,3 +25,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["00330062"]
+  huc8s: ["06020003"]
+  counties: ["Polk"]

@@ -1,0 +1,1687 @@
+{
+  "schema": "trout/selectable-water-traces/1",
+  "generated": "2026-09-16",
+  "source": "USGS NHDPlus HR NetworkNHDFlowline committed graph topology",
+  "rules": {
+    "identity": "packages/content/streams/tn/*.yaml hydroIdentity",
+    "direction": "downstream graph edge orientation; upstream/downstream boundary stops are explicit per record",
+    "ordinaryWeldMaxM": 15,
+    "syntheticConnectors": false
+  },
+  "traces": [
+    {
+      "id": "barren-fork-river",
+      "seedPermanentIdentifiers": [
+        "51180871"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "beaverdam-creek",
+      "seedPermanentIdentifiers": [
+        "43584676"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "beech-river",
+      "seedPermanentIdentifiers": [
+        "128358831",
+        "128359006",
+        "128359050",
+        "128359133"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "big-bigby-creek",
+      "seedPermanentIdentifiers": [
+        "136554699"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "big-rock-creek",
+      "seedPermanentIdentifiers": [
+        "136616494"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "big-sandy-river",
+      "seedPermanentIdentifiers": [
+        "59221301",
+        "59227078",
+        "59227517"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "big-sewee-creek",
+      "seedPermanentIdentifiers": [
+        "139278136"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "big-soddy-creek",
+      "seedPermanentIdentifiers": [
+        "139276663"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Soddy Creek"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "big-swan-creek",
+      "seedPermanentIdentifiers": [
+        "136547081"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "blackburn-fork",
+      "seedPermanentIdentifiers": [
+        "136975455"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "boiling-fork-creek",
+      "seedPermanentIdentifiers": [
+        "138656130"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "boone-tailwater",
+      "seedPermanentIdentifiers": [
+        "43581280",
+        "43588134"
+      ],
+      "upstreamBoundary": "dam:Boone Lake",
+      "downstreamBoundary": "point:36.498984,-82.513707",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "bradley-creek",
+      "seedPermanentIdentifiers": [
+        "138652779"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "brimstone-creek",
+      "seedPermanentIdentifiers": [
+        "38158773"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "brush-creek-cocke",
+      "seedPermanentIdentifiers": [
+        "90661665"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "buffalo-creek-grainger",
+      "seedPermanentIdentifiers": [
+        "138745389"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "buffalo-river",
+      "seedPermanentIdentifiers": [
+        "128955080"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "point:35.996342,-87.838877",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "bullrun-creek",
+      "seedPermanentIdentifiers": [
+        "139448669"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "calfkiller-river",
+      "seedPermanentIdentifiers": [
+        "136994163"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "candies-creek",
+      "seedPermanentIdentifiers": [
+        "132985917"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "cane-creek",
+      "seedPermanentIdentifiers": [
+        "136990630"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "cane-creek-hickman-perry",
+      "seedPermanentIdentifiers": [
+        "128952060"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "caney-fork-river",
+      "seedPermanentIdentifiers": [
+        "136994581",
+        "147450083"
+      ],
+      "upstreamBoundary": "dam:Center Hill Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "caney-fork-upper",
+      "seedPermanentIdentifiers": [
+        "136994581"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "point:36.097941,-85.826276",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "charles-creek",
+      "seedPermanentIdentifiers": [
+        "51180165"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "chestuee-creek",
+      "seedPermanentIdentifiers": [
+        "133007354"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "citico-creek",
+      "seedPermanentIdentifiers": [
+        "112264233"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "clear-creek-obed",
+      "seedPermanentIdentifiers": [
+        "123938245"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "clear-fork",
+      "seedPermanentIdentifiers": [
+        "38160590"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "clinch-river",
+      "seedPermanentIdentifiers": [
+        "139448727"
+      ],
+      "upstreamBoundary": "dam:Norris Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "collins-river",
+      "seedPermanentIdentifiers": [
+        "51179207",
+        "51179207"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "conasauga-river",
+      "seedPermanentIdentifiers": [],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "cosby-creek",
+      "seedPermanentIdentifiers": [
+        "132645708"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "crab-orchard-creek",
+      "seedPermanentIdentifiers": [
+        "123933278"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "cumberland-river",
+      "seedPermanentIdentifiers": [
+        "47452991"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "daddys-creek",
+      "seedPermanentIdentifiers": [
+        "123939694"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "doe-creek-johnson",
+      "seedPermanentIdentifiers": [
+        "89939857"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "doe-river",
+      "seedPermanentIdentifiers": [
+        "89955333"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "duck-river-lower",
+      "seedPermanentIdentifiers": [
+        "136616490",
+        "136553303"
+      ],
+      "upstreamBoundary": "point:35.483468,-86.464221",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "duck-river-mouth",
+      "seedPermanentIdentifiers": [
+        "136553303",
+        "136553225"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "duck-river-tailwater",
+      "seedPermanentIdentifiers": [
+        "136616490"
+      ],
+      "upstreamBoundary": "dam:Normandy Lake",
+      "downstreamBoundary": "point:35.483468,-86.464221",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "dumplin-creek",
+      "seedPermanentIdentifiers": [
+        "51623942"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "east-fork-obey-river",
+      "seedPermanentIdentifiers": [
+        "48158288"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "east-fork-shoal-creek",
+      "seedPermanentIdentifiers": [
+        "128245785"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "east-fork-stones-river",
+      "seedPermanentIdentifiers": [
+        "51411887"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "elk-river",
+      "seedPermanentIdentifiers": [
+        "138655077",
+        "138655361",
+        "128248079"
+      ],
+      "upstreamBoundary": "dam:Tims Ford Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "elk-river-lower",
+      "seedPermanentIdentifiers": [
+        "138655077",
+        "138655361",
+        "128248079"
+      ],
+      "upstreamBoundary": "point:35.022886,-86.884887",
+      "downstreamBoundary": "point:34.81986,-87.158255",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "emory-river",
+      "seedPermanentIdentifiers": [
+        "123936857"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "falling-water-river",
+      "seedPermanentIdentifiers": [
+        "136993438"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "fletchers-fork",
+      "seedPermanentIdentifiers": [
+        "54399737"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "forge-creek-johnson",
+      "seedPermanentIdentifiers": [
+        "89937119",
+        "89939607"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "forked-deer-river",
+      "seedPermanentIdentifiers": [
+        "{719B2EFC-DAC6-4095-9E46-535180B97227}"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Lower Forked Deer River"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "french-broad-river",
+      "seedPermanentIdentifiers": [
+        "51625316",
+        "{15CF4F94-4581-49E5-83BD-A6F69C510C70}"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "ft-patrick-henry-tailwater",
+      "seedPermanentIdentifiers": [
+        "43581280",
+        "43588134",
+        "147535010"
+      ],
+      "upstreamBoundary": "dam:Fort Patrick Henry Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "gap-creek-claiborne",
+      "seedPermanentIdentifiers": [
+        "44950205",
+        "44950787",
+        "44951187"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "goforth-creek",
+      "seedPermanentIdentifiers": [
+        "132753356"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "greasy-creek-polk",
+      "seedPermanentIdentifiers": [
+        "132750141"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "gulf-fork-big-creek",
+      "seedPermanentIdentifiers": [
+        "90666273"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "harpeth-river",
+      "seedPermanentIdentifiers": [
+        "44690323"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "hatchie-river",
+      "seedPermanentIdentifiers": [
+        "124390980"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "hiwassee-river",
+      "seedPermanentIdentifiers": [
+        "133008617",
+        "133009275"
+      ],
+      "upstreamBoundary": "dam:Apalachia Lake",
+      "downstreamBoundary": "point:35.32775,-84.82673",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "holston-river",
+      "seedPermanentIdentifiers": [
+        "138804025",
+        "51627278"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "horse-creek-greene",
+      "seedPermanentIdentifiers": [
+        "130993689"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "hurricane-creek",
+      "seedPermanentIdentifiers": [
+        "136552993"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "indian-creek-claiborne",
+      "seedPermanentIdentifiers": [
+        "44949539"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "laurel-creek-johnson",
+      "seedPermanentIdentifiers": [
+        "43575900",
+        "43580942"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "laurel-fork-carter",
+      "seedPermanentIdentifiers": [
+        "89952191"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "leconte-creek",
+      "seedPermanentIdentifiers": [
+        "51638846"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-buffalo-river",
+      "seedPermanentIdentifiers": [
+        "128955949"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-chuckey-creek",
+      "seedPermanentIdentifiers": [
+        "131005908"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Little Chucky Creek"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "little-harpeth-river",
+      "seedPermanentIdentifiers": [
+        "44689583"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "little-pigeon-river",
+      "seedPermanentIdentifiers": [
+        "51632312"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-river",
+      "seedPermanentIdentifiers": [
+        "132364562"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-sequatchie-river",
+      "seedPermanentIdentifiers": [
+        "51392627"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-tennessee-river",
+      "seedPermanentIdentifiers": [
+        "112255743"
+      ],
+      "upstreamBoundary": "dam:Chilhowee Lake",
+      "downstreamBoundary": "point:35.777905,-84.259766",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-west-fork-creek",
+      "seedPermanentIdentifiers": [
+        "54399613"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "loosahatchie-river",
+      "seedPermanentIdentifiers": [
+        "131579703",
+        "131581586"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Loosahatchie River Canal"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "mccutcheon-creek",
+      "seedPermanentIdentifiers": [
+        "136552442"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "middle-fork-forked-deer-river",
+      "seedPermanentIdentifiers": [
+        "124935278",
+        "124978809"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "middle-fork-obion-river",
+      "seedPermanentIdentifiers": [
+        "124589664",
+        "124589927",
+        "124591424"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "middle-prong-little-pigeon",
+      "seedPermanentIdentifiers": [
+        "51638378"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "mill-creek-overton",
+      "seedPermanentIdentifiers": [
+        "136971907"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "mississippi-river",
+      "seedPermanentIdentifiers": [
+        "141195437"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "mossy-creek-jefferson",
+      "seedPermanentIdentifiers": [
+        "138777475"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "new-river",
+      "seedPermanentIdentifiers": [
+        "38157384"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "nolichucky-river",
+      "seedPermanentIdentifiers": [
+        "131000111"
+      ],
+      "upstreamBoundary": "point:36.072839,-82.416775",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "nonconnah-creek",
+      "seedPermanentIdentifiers": [
+        "141196522",
+        "127603131"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "north-chickamauga-creek",
+      "seedPermanentIdentifiers": [
+        "139285644"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "north-fork-forked-deer-river",
+      "seedPermanentIdentifiers": [
+        "124931969"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "north-fork-holston-river",
+      "seedPermanentIdentifiers": [
+        "43559793",
+        "147535011"
+      ],
+      "upstreamBoundary": "point:36.7981,-81.9999",
+      "downstreamBoundary": "point:36.5479,-82.6119",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "north-fork-obion-river",
+      "seedPermanentIdentifiers": [
+        "66024381",
+        "66025268"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "north-mouse-creek",
+      "seedPermanentIdentifiers": [
+        "132999323"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "north-prong-barren-fork",
+      "seedPermanentIdentifiers": [
+        "51180691"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "obed-river",
+      "seedPermanentIdentifiers": [
+        "123937896"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "obey-river",
+      "seedPermanentIdentifiers": [
+        "48158137",
+        "48156753"
+      ],
+      "upstreamBoundary": "dam:Dale Hollow Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "obion-river",
+      "seedPermanentIdentifiers": [
+        "66029862",
+        "124593597"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "ocoee-river",
+      "seedPermanentIdentifiers": [
+        "132765058"
+      ],
+      "upstreamBoundary": "dam:Blue Ridge Lake",
+      "downstreamBoundary": "point:35.10971,-84.56722",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "oostanaula-creek",
+      "seedPermanentIdentifiers": [
+        "133007422"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "paint-creek-greene",
+      "seedPermanentIdentifiers": [
+        "90660211"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Paint Creek"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "parksville-tailwater",
+      "seedPermanentIdentifiers": [
+        "132759909"
+      ],
+      "upstreamBoundary": "dam:Lake Ocoee",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "pigeon-river",
+      "seedPermanentIdentifiers": [
+        "132644912",
+        "147535015"
+      ],
+      "upstreamBoundary": "dam:Waterville Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "pine-creek-dekalb",
+      "seedPermanentIdentifiers": [
+        "136983547"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "piney-river-hickman",
+      "seedPermanentIdentifiers": [
+        "136553623"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Piney River"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "piney-river-rhea",
+      "seedPermanentIdentifiers": [
+        "132356699"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "powell-river",
+      "seedPermanentIdentifiers": [
+        "44949105"
+      ],
+      "upstreamBoundary": "point:36.5962,-83.3056",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "puncheon-camp-creek",
+      "seedPermanentIdentifiers": [
+        "44779696"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "red-river-clarksville",
+      "seedPermanentIdentifiers": [
+        "54400116"
+      ],
+      "upstreamBoundary": "point:36.6037,-87.0409",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "reedy-creek",
+      "seedPermanentIdentifiers": [
+        "43582998"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "richardson-byrd-creek",
+      "seedPermanentIdentifiers": [
+        "44771410",
+        "44772702"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "richland-creek-maury",
+      "seedPermanentIdentifiers": [
+        "128223437",
+        "128225984"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Richland Creek"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "roaring-fork",
+      "seedPermanentIdentifiers": [
+        "51637980"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "roaring-river",
+      "seedPermanentIdentifiers": [
+        "136972936"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "rocky-river",
+      "seedPermanentIdentifiers": [
+        "136994597"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "rutherford-fork-obion-river",
+      "seedPermanentIdentifiers": [
+        "124593797"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "sale-creek",
+      "seedPermanentIdentifiers": [
+        "139277594"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "salt-lick-creek",
+      "seedPermanentIdentifiers": [
+        "56291834"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "sequatchie-river",
+      "seedPermanentIdentifiers": [
+        "51387305",
+        "51389651",
+        "51393087"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "shoal-creek",
+      "seedPermanentIdentifiers": [
+        "87830083"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "sinking-creek-wilson",
+      "seedPermanentIdentifiers": [
+        "137307977"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "south-chickamauga-creek",
+      "seedPermanentIdentifiers": [
+        "139286361"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "south-fork-cumberland",
+      "seedPermanentIdentifiers": [
+        "38153763"
+      ],
+      "upstreamBoundary": "confluence:Clear Fork",
+      "downstreamBoundary": "point:36.5936,-84.6072",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "south-fork-forked-deer-river",
+      "seedPermanentIdentifiers": [
+        "124924466",
+        "124979402"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "south-fork-obion-river",
+      "seedPermanentIdentifiers": [
+        "124606489"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "south-holston-river",
+      "seedPermanentIdentifiers": [
+        "43581280",
+        "43588134"
+      ],
+      "upstreamBoundary": "dam:South Holston Lake",
+      "downstreamBoundary": "point:36.476948,-82.26315",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "south-mouse-creek",
+      "seedPermanentIdentifiers": [
+        "132985981"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "spring-creek-polk",
+      "seedPermanentIdentifiers": [
+        "132987661"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "standing-rock-creek",
+      "seedPermanentIdentifiers": [
+        "59218112"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "station-creek",
+      "seedPermanentIdentifiers": [
+        "44949983"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "stones-river",
+      "seedPermanentIdentifiers": [
+        "51411149",
+        "51411409"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "stoney-creek-carter",
+      "seedPermanentIdentifiers": [
+        "89938493"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "sulfur-fork-creek",
+      "seedPermanentIdentifiers": [
+        "54400630"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "tellico-river",
+      "seedPermanentIdentifiers": [
+        "112267917"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "tennessee-river",
+      "seedPermanentIdentifiers": [
+        "128356273"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "trail-fork-big-creek",
+      "seedPermanentIdentifiers": [
+        "90667203"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "tumbling-creek",
+      "seedPermanentIdentifiers": [
+        "132756320"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "upper-hills-creek",
+      "seedPermanentIdentifiers": [
+        "51182611"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "upper-roan-creek",
+      "seedPermanentIdentifiers": [
+        "89939767",
+        "89944531"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "watauga-river",
+      "seedPermanentIdentifiers": [
+        "89946363",
+        "89953665"
+      ],
+      "upstreamBoundary": "dam:Wilbur Lake",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "watauga-river-wilbur-reach",
+      "seedPermanentIdentifiers": [
+        "89946363",
+        "89953665"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "point:36.341158,-82.126357",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "west-fork-obey-river",
+      "seedPermanentIdentifiers": [
+        "48160545"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "west-fork-stones-river",
+      "seedPermanentIdentifiers": [
+        "51411649"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "west-harpeth-river",
+      "seedPermanentIdentifiers": [
+        "44696295"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    },
+    {
+      "id": "west-prong-little-pigeon",
+      "seedPermanentIdentifiers": [
+        "{47B480B1-B564-47D9-A29D-7094BE1C714E}"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "white-oak-creek",
+      "seedPermanentIdentifiers": [
+        "59221339"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "wolf-river-fentress",
+      "seedPermanentIdentifiers": [
+        "48155915"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "wolf-river-west-tennessee",
+      "seedPermanentIdentifiers": [
+        "123818531"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "yellow-creek-houston",
+      "seedPermanentIdentifiers": [
+        "58815445"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [
+        "Yellow Creek"
+      ],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+    }
+  ]
+}

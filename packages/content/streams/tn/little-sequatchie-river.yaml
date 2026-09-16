@@ -26,3 +26,7 @@ seasonMonths:
   - 1
   - 2
 seasonKind: programmatic
+hydroIdentity:
+  gnisIds: ["01277559", "01300944", "01301116", "01303489"]
+  huc8s: ["06020004"]
+  counties: ["Marion"]

@@ -32,3 +32,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
     url: https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm
+hydroIdentity:
+  gnisIds: ["01305953"]
+  huc8s: ["06010208"]
+  counties: ["Morgan"]

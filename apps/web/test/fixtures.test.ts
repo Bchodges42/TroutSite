@@ -43,7 +43,7 @@ describe('fixture data conforms to the frozen contracts', () => {
         streams.filter((stream) => stream.display === tier).length,
       ]),
     );
-    expect(counts).toEqual({ featured: 37, standard: 95, reference: 16 });
+    expect(counts).toEqual({ featured: 38, standard: 96, reference: 16 });
   });
 
   it('conditions/latest parses as ConditionSnapshot[] with contract-accurate scores', () => {
