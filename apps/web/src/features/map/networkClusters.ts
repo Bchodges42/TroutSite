@@ -56,6 +56,28 @@ export const NETWORK_MINZOOM = 9.6;
 /** Viewport padding for intersection tests: fraction of each axis span. */
 export const NETWORK_PAD_RATIO = 0.25;
 
+/**
+ * Catalog-water names (lowercase) the network must NOT render: the catalog
+ * already draws those exact waters, and the near-twin lines read as doubled
+ * rivers (the Tennessee corridor, the Obion forks). TennesseeMap seeds this
+ * from the river index at module load — before any cluster can load — so the
+ * first addSource is already deduped.
+ */
+let catalogWaterNames: Set<string> = new Set();
+export function setCatalogWaterNames(names: Iterable<string>): void {
+  catalogWaterNames = new Set([...names].filter((n) => n.length > 0));
+}
+
+/** Drop catalog-water features from a fetched cluster (dedup, see above). */
+function dedupeAgainstCatalog(fc: NetworkFeatureCollection): NetworkFeatureCollection {
+  if (catalogWaterNames.size === 0) return fc;
+  const features = (fc.features as Array<{ properties?: { name?: string } }>).filter((f) => {
+    const name = String(f.properties?.name ?? '').toLowerCase();
+    return name.length > 0 && !catalogWaterNames.has(name);
+  });
+  return { type: 'FeatureCollection', features } as NetworkFeatureCollection;
+}
+
 /** Minimal GeoJSON typing — avoids a standalone @types/geojson dependency. */
 export interface NetworkFeatureCollection {
   type: 'FeatureCollection';
@@ -249,6 +271,12 @@ async function syncNetworkClusters(map: MlMap): Promise<void> {
       if (!bboxesIntersect(padded, cluster.bounds)) continue;
       const data = await loadCluster(cluster);
       if (!data || state.disposed) continue;
+      const deduped = dedupeAgainstCatalog(data);
+      if (deduped.features.length === 0) {
+        // every feature in this cluster is a catalog water — nothing to add
+        state.added.add(cluster.id);
+        continue;
+      }
       // A style swap while awaiting drops both the source and our bookkeeping
       // (see style.load below); re-check before adding.
       const sourceId = NETWORK_SOURCE_PREFIX + cluster.id;
@@ -258,7 +286,7 @@ async function syncNetworkClusters(map: MlMap): Promise<void> {
       }
       map.addSource(sourceId, {
         type: 'geojson',
-        data,
+        data: deduped,
         ...(manifest.attribution ? { attribution: manifest.attribution } : {}),
       });
       // If 'rivers-casing' is momentarily absent (style mid-swap), append to

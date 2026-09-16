@@ -3,8 +3,8 @@ import * as maplibregl from 'maplibre-gl';
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Link } from 'react-router-dom';
-import { atlasStyle, type BasemapVariant, type RoadsSpec } from './mapStyle';
-import { NETWORK_LAYER_PREFIX, initNetworkClusters } from './networkClusters';
+import { atlasStyle, TIER_REVEAL_ZOOM, type BasemapVariant, type RoadsSpec } from './mapStyle';
+import { NETWORK_LAYER_PREFIX, initNetworkClusters, setCatalogWaterNames } from './networkClusters';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
@@ -27,6 +27,40 @@ const stillWaterIds = new Set(
     .map((water) => water.id),
 );
 export const isStillWaterId = (id: string) => stillWaterIds.has(id);
+
+/**
+ * Catalog-water names for the creek-network dedup: a network feature whose
+ * name is one of these never renders as context, because the catalog already
+ * draws that exact water (the twin was the "doubled lines" down the Tennessee
+ * and the Obion corridor). Base names strip parenthetical qualifiers
+ * ("Caney Fork River (Center Hill tailwater)" also guards "Caney Fork River").
+ */
+setCatalogWaterNames(
+  index.flatMap((water) => {
+    const base = water.name.replace(/\s*\([^)]*\)\s*$/, '').trim();
+    return base ? [water.name.toLowerCase(), base.toLowerCase()] : [water.name.toLowerCase()];
+  }),
+);
+
+/**
+ * Authored reveal tier for a catalog water: 0 featured/statewide (always
+ * rendered), 1 standard/regional, 2 reference/local. The 40 selectable-river
+ * additions carry an explicit labelMinZoom authored with their inclusion —
+ * it drives the tier directly; legacy waters fall back to their display tier.
+ */
+function tierFor(
+  display: 'featured' | 'standard' | 'reference' | undefined,
+  labelMinZoom: number | undefined,
+): 0 | 1 | 2 {
+  if (labelMinZoom != null) {
+    if (labelMinZoom <= TIER_REVEAL_ZOOM.regional - 0.1) return 0;
+    if (labelMinZoom >= TIER_REVEAL_ZOOM.local) return 2;
+    return 1;
+  }
+  if (display === 'featured') return 0;
+  if (display === 'reference') return 2;
+  return 1;
+}
 
 /**
  * rivers.geojson read through the live style source (same-origin asset the
@@ -146,6 +180,7 @@ export function TennesseeMap(props: Props) {
   // behind generations ago.
   const applyToken = useRef(0);
   const swapToken = useRef(0);
+  const tiersById = useRef(new Map<string, 0 | 1 | 2>());
   applyRef.current = () => {
     const map = mapRef.current;
     if (!map) return;
@@ -163,26 +198,37 @@ export function TennesseeMap(props: Props) {
         return;
       }
       const p = latest.current;
+      const z = map.getZoom();
+      tiersById.current = new Map(
+        index.map((river) => [river.id, tierFor(p.labelDisplay?.get(river.id), river.labelMinZoom)]),
+      );
       for (const river of index) {
+        const tier = tiersById.current.get(river.id) ?? 0;
+        // Zoom reveal (see TIER_REVEAL_ZOOM): tier 1 appears at regional zoom,
+        // tier 2 at local. Selection overrides — a tapped or deep-linked water
+        // is never hidden from the person who asked for it. Stillwaters stay
+        // orientation landmarks and are never zoom-gated.
+        const zoomRevealed =
+          tier === 0 || (tier === 1 ? z >= TIER_REVEAL_ZOOM.regional : z >= TIER_REVEAL_ZOOM.local);
+        const speciesHidden =
+          river.waterbodyType === 'lake' ||
+          river.waterbodyType === 'pond' ||
+          river.waterbodyType === 'reservoir'
+            ? false
+            : p.visibleIds
+              ? !p.visibleIds.has(river.id)
+              : false;
         map.setFeatureState(
           { source: 'rivers', id: river.id },
           {
+            tier,
             selected: p.selectedId === river.id,
             // hover is producer state (the pointer handlers below) with no
             // prop to restore it from — after a swap the honest value is off,
             // and the next mousemove re-derives it.
             hover: false,
             dimmed: false,
-            // Stillwaters (lakes/reservoirs) are orientation landmarks — the
-            // species filter never hides them, only flowing waters.
-            hidden:
-              river.waterbodyType === 'lake' ||
-              river.waterbodyType === 'pond' ||
-              river.waterbodyType === 'reservoir'
-                ? false
-                : p.visibleIds
-                  ? !p.visibleIds.has(river.id)
-                  : false,
+            hidden: speciesHidden || (!zoomRevealed && p.selectedId !== river.id),
             color: p.featureColors.get(river.id) ?? palette.current.noData,
             assessed: p.assessedIds?.has(river.id) ?? false,
             outlineClass: p.classOutlines?.get(river.id) ?? '',
@@ -382,6 +428,11 @@ export function TennesseeMap(props: Props) {
     // Reapply feature presentation once after a style swap, never on every idle.
     map.on('style.load', () => map.once('idle', () => applyRef.current()));
     map.on('moveend', syncCamera);
+    // Zoom reveal tiers: re-derive `hidden` when the camera zoom settles so
+    // regional/local waters appear (and statewide-only waters retire) as the
+    // user focuses in. zoomend only — not moveend — so panning never churns
+    // 189 feature states.
+    map.on('zoomend', () => applyRef.current());
     const hit = (point: maplibregl.Point) => {
       if (!map.getLayer('rivers-hit')) return null;
       const candidates = map
@@ -401,7 +452,18 @@ export function TennesseeMap(props: Props) {
         )
         .filter((f) => {
           const id = String(f.properties.id ?? '');
-          return id && (!latest.current.visibleIds || latest.current.visibleIds.has(id));
+          if (!id) return false;
+          if (latest.current.visibleIds && !latest.current.visibleIds.has(id)) return false;
+          // Zoom-reveal tiers: a water the camera hasn't earned yet never wins
+          // a tap (the same gate the paint layers apply). Unlisted ids (no
+          // authored tier yet) stay selectable — fail open.
+          const tier = tiersById.current.get(id);
+          if (tier != null && tier > 0) {
+            const z = map.getZoom();
+            if (tier === 1 && z < TIER_REVEAL_ZOOM.regional) return false;
+            if (tier >= 2 && z < TIER_REVEAL_ZOOM.local) return false;
+          }
+          return true;
         });
       // Broad touch targets may overlap. Choose the nearest visible centerline,
       // not the arbitrary source/tile order (which can pick a neighboring creek).
@@ -443,9 +505,24 @@ export function TennesseeMap(props: Props) {
           }
         return nearest;
       };
-      const found = candidates
+      const isLineFeature = (x: { feature: maplibregl.MapGeoJSONFeature }) =>
+        x.feature.geometry.type === 'LineString' || x.feature.geometry.type === 'MultiLineString';
+      const ranked = candidates
         .map((feature) => ({ feature, distance: distance(feature) }))
-        .sort((a, b) => a.distance - b.distance)[0]?.feature;
+        .sort((a, b) => a.distance - b.distance);
+      const top = ranked[0];
+      const second = ranked[1];
+      let found = top?.feature;
+      // Tap preference: where a main stem and a tributary both run under the
+      // pointer (overlapping 28px hit buffers), a near-tie in distance must
+      // resolve to the bigger water, not to whichever line has denser
+      // vertices at this zoom. Line candidates only — polygon/point hits use
+      // fixed synthetic distances.
+      if (top && second && found && isLineFeature(top) && isLineFeature(second)) {
+        const km = (x: { feature: maplibregl.MapGeoJSONFeature }) =>
+          Number(x.feature.properties.lengthKm ?? 0);
+        if (second.distance - top.distance < 4 && km(second) > km(top)) found = second.feature;
+      }
       return found ? String(found.properties.id) : null;
     };
     // Gauge popup (feat/tn-gauge-layer) — one reusable popup whose content is

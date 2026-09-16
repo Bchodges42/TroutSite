@@ -19,25 +19,26 @@ function LegendSwatch({ color, label }: { color: string; label: string }) {
 
 /**
  * Glyphs for the water-class grouping. These rows describe water CLASSES, not
- * condition colors, so they reuse the panel's neutral symbol language — the
- * corridor line the map renders for flowing water and the ringed still-water
- * dot — and never invent a new condition tone.
+ * condition colors — and they use the SAME hues the map paints: trout-class
+ * corridors carry the ice-blue class halo, warmwater the amber one (see
+ * rivers-class-outline). A neutral gray row that matched nothing on the canvas
+ * read as nonsense.
  */
-function CorridorGlyph() {
+function CorridorGlyph({ color }: { color: string }) {
   return (
     <span
       className="inline-block h-[3px] w-[17px] rounded-full"
-      style={{ background: atlas.noData }}
+      style={{ background: color }}
       aria-hidden
     />
   );
 }
 
-function StillWaterGlyph() {
+function StillWaterGlyph({ color }: { color: string }) {
   return (
     <span
       className="inline-block h-2.5 w-2.5 rounded-full border-2"
-      style={{ borderColor: atlas.noData, background: 'transparent' }}
+      style={{ borderColor: color, background: 'transparent' }}
       aria-hidden
     />
   );
@@ -136,11 +137,17 @@ export function MapLegend({
               </>
             ) : grouping ? (
               <>
-                <p className="mt-1 text-[#9FB5AA]">Every mapped water, by fishery class. Featured waters carry the statewide map titles; standard waters title locally; reference waters stay selectable without auto-titles.</p>
+                <p className="mt-1 text-[#9FB5AA]">
+                  Every mapped water, by fishery class. Blue halo = trout-class water, amber = warmwater.
+                </p>
                 <ul className="mt-1.5 space-y-1" aria-label="Water classes">
                   {fisheryRows.map((t) => (
                     <li key={t} className="flex items-center gap-1.5">
-                      {t === 'other' || t === 'unknown' ? <StillWaterGlyph /> : <CorridorGlyph />}
+                      {t === 'other' || t === 'unknown' ? (
+                        <StillWaterGlyph color={atlas.warmOutline} />
+                      ) : (
+                        <CorridorGlyph color={atlas.troutOutline} />
+                      )}
                       <span className="text-[#EAF2ED]">{FISHERY_TYPE_LABELS[t]}</span>
                       {fisheryCounts && (
                         <span className="ml-auto text-[#9FB5AA]">{fisheryCounts[t]}</span>
@@ -148,6 +155,10 @@ export function MapLegend({
                     </li>
                   ))}
                 </ul>
+                <p className="mt-2 text-[#9FB5AA]">
+                  Zoom in — regional waters appear around z7½, local creeks alongside the fine
+                  stream network near z9½. Only headline waters show statewide.
+                </p>
                 {species === 'all' && (
                   <p className="mt-2 border-t pt-2 text-[#9FB5AA]" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
                     Bass &amp; panfish waters sit under Other fish waters.

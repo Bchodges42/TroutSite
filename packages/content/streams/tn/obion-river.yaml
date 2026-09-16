@@ -6,8 +6,10 @@ display: standard
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false
+species: warmwater
 idealFlow: []
 notes: >-
+  Warmwater river — agency sources document crappie/bass fishing and no TWRA trout row (retrieved 2026-09-14).
   Reference waterbody from the Tennessee waterways inventory — a west-flowing river through Northwest
   Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Detailed angler notes are still being
   prepared — check TWRA and local access areas in the meantime. TWRA's statewide regulation exceptions include
