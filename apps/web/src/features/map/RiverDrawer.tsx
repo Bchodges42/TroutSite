@@ -10,7 +10,7 @@ import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
-import { toWaterDecisionView, seasonalChipText } from './waterDecision';
+import { toWaterDecisionView, seasonalChipText, seasonalVerdict } from './waterDecision';
 import { FishabilityCard } from '../../components/FishabilityCard';
 import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
@@ -203,29 +203,27 @@ function WaterTab({
   // 2026-09-10 refinement (kept): the assessment stays BROAD (flow-based
   // conditions) and first; trout-season status renders in its own section below.
   const decision = toWaterDecisionView(feature, settings.speciesMode, month, feature.fishability);
-  const seasonal = seasonalChipText(decision);
+  const verdict = seasonalVerdict(decision);
   const outOfSeason = decision.troutApplicability === 'seasonal-likely-absent';
   const title = warm
     ? 'Warmwater fishery'
     : unverified
       ? 'Species unverified'
-      : outOfSeason
-        ? 'PROGRAMMATIC — out of season'
-        : decision.troutApplicability === 'seasonal-uncertain'
-          ? 'PROGRAMMATIC — seasonal fishery'
-          : feature.status === 'no-data'
-            ? 'Not assessed'
-            : feature.status === 'good'
-              ? 'Good conditions'
-              : feature.status === 'fair'
-                ? 'Fair conditions'
-                : 'Poor conditions';
+      : verdict
+        ? verdict.title
+        : feature.status === 'no-data'
+          ? 'Not assessed'
+          : feature.status === 'good'
+            ? 'Good conditions'
+            : feature.status === 'fair'
+              ? 'Fair conditions'
+              : 'Poor conditions';
   const reason = warm
     ? 'Trout scores do not apply to this fishery. Check the readings and local guidance.'
     : unverified
       ? 'The catalog does not document trout as a target species for this water. The gauge readings below still describe flow and temperature — check the fishery notes before fishing.'
-      : seasonal
-        ? 'The catalog documents this fishery as a winter program: stocked in the cold months, not holding through summer. The gauge readings below still describe flow and temperature — verify the season with the official source.'
+      : verdict
+        ? verdict.prose
         : feature.status === 'no-data'
           ? 'An assessment is not available in this snapshot. This does not mean fishing is poor.'
           : (snap?.score.reasons.find((r) => /dangerously|avoid stressing/i.test(r)) ??
@@ -343,14 +341,10 @@ function WaterTab({
           </Link>
         </div>
       )}
-      {seasonal && (
+      {verdict && (
         <div className="detail-section seasonal-note">
-          <h3>{seasonal}</h3>
-          <p>
-            {outOfSeason
-              ? 'This water’s trout program runs in the cold months. The regional hatch calendar below the surface still describes insect activity, but the stocked fishery is likely absent until next winter.'
-              : 'This water’s trout program runs in the cold months; presence depends on where you are in the season. Verify stocking timing with the official source.'}
-          </p>
+          <h3>{verdict.chip}</h3>
+          <p>{verdict.note}</p>
           <Link
             className="text-action"
             to={riverWorkflowUrl('/charts/' + feature.stream.regionId + '/' + month, feature.stream, month)}

@@ -1,6 +1,7 @@
 import type { RiverMapFeature } from './riverMapSelectors';
 import type { FishabilityScore, SpeciesKey } from '@trout/contracts';
 import type { TroutCalendar, TroutPresenceNow } from '../../lib/troutCalendar';
+import { monthWindowLabel } from '../../lib/troutCalendar';
 
 /**
  * The focus species' comfort score for one water, when the snapshot has it
@@ -37,6 +38,12 @@ export type WaterDecisionView = {
     | 'not-trout'
     | 'unknown';
   seasonKind?: 'regulatory' | 'programmatic';
+  /** Catalog `yearRound`, carried for surfaces that phrase the seasonal verdict
+   *  (a year-round programmatic water must never read winter-only). */
+  yearRound?: boolean;
+  /** The EFFECTIVE season window the applicability decision used — authored
+   *  seasonMonths, or the legacy Nov–Mar fallback for yearRound:false rows. */
+  seasonMonths?: number[];
   /** True when the water carries an authored season window and the current
    *  month is inside it — the seasonal chip still renders, but the water's
    *  own score wears through (2026-09-14: in-season tailwaters must not read
@@ -132,7 +139,7 @@ export function toWaterDecisionView(
     waterId: feature.stream.id,
     visibility,
     troutApplicability,
-    ...(seasonal ? { seasonKind } : {}),
+    ...(seasonal ? { seasonKind, yearRound: feature.stream.yearRound, seasonMonths, inSeason } : {}),
     inSeason: seasonal ? inSeason : undefined,
     // Only a CONFIRMED, in-season trout water with a real assessment may wear
     // the trout metric; authored-window waters wear it while their window is
@@ -164,13 +171,70 @@ export function toWaterDecisionView(
   };
 }
 
-/** The catalog's seasonal fact, phrased for the surface the visitor is on. */
-export function seasonalChipText(view: Pick<WaterDecisionView, 'troutApplicability' | 'seasonKind'>): string | null {
-  if (view.troutApplicability === 'seasonal-likely-absent')
-    return view.seasonKind === 'regulatory' ? 'REGULATORY — out of season' : 'PROGRAMMATIC — out of season';
-  if (view.troutApplicability === 'seasonal-uncertain')
-    return view.seasonKind === 'regulatory' ? 'REGULATORY — seasonal fishery' : 'PROGRAMMATIC — seasonal fishery';
-  return null;
+/**
+ * The catalog's seasonal fact, phrased for the surface the visitor is on.
+ * Derived ONLY from the water's own season fields (seasonKind, yearRound,
+ * seasonMonths) — a year-round programmatic water (Caney Fork: window Mar–Dec,
+ * stocked most of the year) must never read as a winter-only fishery, so the
+ * window itself is spoken instead of a hardcoded season shape.
+ */
+export function seasonalChipText(
+  view: Pick<WaterDecisionView, 'troutApplicability' | 'seasonKind' | 'inSeason' | 'yearRound' | 'seasonMonths'>,
+): string | null {
+  return seasonalVerdict(view)?.chip ?? null;
+}
+
+export type SeasonalVerdict = {
+  kindWord: 'regulatory' | 'programmatic';
+  kindLabel: 'REGULATORY' | 'PROGRAMMATIC';
+  outOfSeason: boolean;
+  yearRound: boolean;
+  /** Authored window as a display label, e.g. "Mar–Dec". */
+  windowLabel: string;
+  /** Assessment-card verdict, e.g. "PROGRAMMATIC — in season". */
+  title: string;
+  /** Assessment-card prose (the "reason" slot). */
+  prose: string;
+  /** Short chip line (same words as the title). */
+  chip: string;
+  /** Longer seasonal-note paragraph for the drawer's season section. */
+  note: string;
+};
+
+/**
+ * Single derivation of the seasonal verdict + prose from the water's authored
+ * season fields. `seasonal-uncertain` means the window is open now
+ * (`seasonal-likely-absent` is its closed twin), so the in-season branch never
+ * needs the month again.
+ */
+export function seasonalVerdict(
+  view: Pick<WaterDecisionView, 'troutApplicability' | 'seasonKind' | 'inSeason' | 'yearRound' | 'seasonMonths'>,
+): SeasonalVerdict | null {
+  if (view.troutApplicability !== 'seasonal-likely-absent' && view.troutApplicability !== 'seasonal-uncertain') {
+    return null;
+  }
+  const kindWord = view.seasonKind === 'regulatory' ? ('regulatory' as const) : ('programmatic' as const);
+  const kindLabel = kindWord.toUpperCase() as SeasonalVerdict['kindLabel'];
+  const outOfSeason = view.troutApplicability === 'seasonal-likely-absent';
+  const yearRound = view.yearRound === true;
+  const windowLabel = monthWindowLabel(view.seasonMonths ?? []);
+  if (outOfSeason) {
+    const title = `${kindLabel} — out of season`;
+    const prose =
+      kindWord === 'regulatory'
+        ? `The catalog documents a regulatory trout season here (${windowLabel}); the window is closed now. The gauge readings below still describe flow and temperature — verify the season with the official source.`
+        : `The catalog documents a ${kindWord} stocking program here (${windowLabel}); the window is closed now, so stocked trout are unlikely to be present. The gauge readings below still describe flow and temperature — verify the season with the official source.`;
+    const note = `This water's documented trout window is ${windowLabel}; it is closed now. The regional hatch calendar below the surface still describes insect activity, but the fishery is likely absent until the window reopens.`;
+    return { kindWord, kindLabel, outOfSeason, yearRound, windowLabel, title, prose, chip: title, note };
+  }
+  const title = yearRound ? `${kindLabel} — year-round program` : `${kindLabel} — in season`;
+  const prose = yearRound
+    ? `The catalog documents trout holding here year-round — a ${kindWord} stocking program with a documented ${windowLabel} window. The gauge readings below describe current flow and temperature.`
+    : `The catalog's ${kindWord} window (${windowLabel}) is open now. The gauge readings below still describe flow and temperature — verify stocking timing with the official source.`;
+  const note = yearRound
+    ? `The catalog documents trout here year-round (documented window ${windowLabel}). The regional hatch calendar below the surface still describes insect activity for the area.`
+    : `The catalog's ${kindWord} window is ${windowLabel} — open now. The regional hatch calendar below the surface still describes insect activity; verify stocking timing with the official source.`;
+  return { kindWord, kindLabel, outOfSeason, yearRound, windowLabel, title, prose, chip: title, note };
 }
 
 /** Plain-language label for the metric a surface is displaying. */
