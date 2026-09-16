@@ -1,0 +1,45 @@
+CURRENT featured: 38  | candidate A: 21  | candidate B: 24
+R1 tailwaters (11): ['boone-tailwater', 'caney-fork-river', 'clinch-river', 'duck-river-tailwater', 'elk-river', 'ft-patrick-henry-tailwater', 'hiwassee-river', 'obey-river', 'parksville-tailwater', 'south-holston-river', 'watauga-river']
+R2 major trout lakes (6): ['dale-hollow-lake', 'south-holston-lake', 'watauga-lake', 'chilhowee-lake', 'calderwood-lake', 'fort-patrick-henry-lake']
+R3 anchors: {
+ "piney-river-rhea": "tn-cumberland-plateau anchor \u2014 year-round DH-style stocked Plateau stream",
+ "little-river": "tn-east-smokies anchor \u2014 Little River (Smokies/Blount), TWRA-dated stocking + park trout corridor",
+ "harpeth-river": "tn-middle-nashville anchor \u2014 December-stocked urban fishery, most-fished Middle trout river",
+ "shelby-farms-lake": "tn-west anchor \u2014 Memphis winter put-and-take, most-fished West trout water (titles Nov-Mar only)"
+}
+
+== CURRENT (branch: 2a fix, species unset) — trout mode, Sept (z=5.7):
+   West    titled= 0 []
+           dim/subordinate= 5 ['kentucky-lake', 'mississippi-river', 'pickwick-lake', 'reelfoot-lake', 'tennessee-river']
+   Middle  titled= 4 ['caney-fork-river', 'dale-hollow-lake', 'elk-river', 'obey-river']
+           dim/subordinate= 7 ['buffalo-river', 'cumberland-river', 'duck-river-lower', 'duck-river-mouth', 'j-percy-priest-lake', 'lake-barkley', 'old-hickory-lake']
+   East    titled= 3 ['south-holston-lake', 'south-holston-river', 'watauga-river']
+           dim/subordinate= 5 ['boone-lake', 'chickamauga-lake', 'douglas-lake', 'fort-loudoun-lake', 'watts-bar-lake']
+
+== A interim (2a, species unset) — trout mode, Sept (z=5.7):
+   West    titled= 0 []
+   Middle  titled= 5 ['caney-fork-river', 'dale-hollow-lake', 'elk-river', 'obey-river', 'piney-river-rhea']
+   East    titled= 3 ['south-holston-lake', 'south-holston-river', 'watauga-river']
+
+== A end-state (tiers + species fills) — trout mode, Sept (z=5.7):
+   West    titled= 0 []
+   Middle  titled= 5 ['caney-fork-river', 'dale-hollow-lake', 'elk-river', 'obey-river', 'piney-river-rhea']
+   East    titled= 3 ['south-holston-lake', 'south-holston-river', 'watauga-river']
+
+== B end-state (A + spine/context + tellico) — trout mode, Sept (z=5.7):
+   West    titled= 0 []
+           dim/subordinate= 2 ['mississippi-river', 'tennessee-river']
+   Middle  titled= 5 ['caney-fork-river', 'dale-hollow-lake', 'elk-river', 'obey-river', 'piney-river-rhea']
+   East    titled= 3 ['south-holston-lake', 'south-holston-river', 'watauga-river']
+
+== A end-state — trout mode, November (winter program live):
+   West    ['shelby-farms-lake']
+   Middle  ['caney-fork-river', 'dale-hollow-lake', 'duck-river-tailwater', 'elk-river', 'obey-river', 'piney-river-rhea']
+   East    ['calderwood-lake', 'chilhowee-lake', 'fort-patrick-henry-lake', 'hiwassee-river', 'little-river', 'south-holston-lake', 'watauga-lake', 'watauga-river']
+
+== B end-state — trout mode, November (winter program live):
+   West    ['shelby-farms-lake']
+   Middle  ['caney-fork-river', 'dale-hollow-lake', 'duck-river-tailwater', 'elk-river', 'obey-river', 'piney-river-rhea']
+   East    ['calderwood-lake', 'chilhowee-lake', 'fort-patrick-henry-lake', 'hiwassee-river', 'little-river', 'south-holston-lake', 'watauga-lake', 'watauga-river']
+
+candidate A end-state, ALL-fish mode Sept statewide titles: 8 (featured set only; demoted majors title from z=9.5 like today's standard waters)

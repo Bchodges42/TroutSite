@@ -1,0 +1,2417 @@
+{
+  "generated": "2026-09-16",
+  "matched": {
+    "boone-tailwater": {
+      "ledgerSlug": "boone-tailwater",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Boone Dam, South Fork Holston River - Brook, Brown, Cutthroat, Rainbow",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "02/18/2026",
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar, Apr, Dec)",
+      "speciesList": [
+        "brook",
+        "brown",
+        "cutthroat",
+        "rainbow"
+      ],
+      "prominenceNotes": "Boone Dam tailwater (SF Holston) with 4-species trout stocking; 16-22in PLR rainbow/brown regs"
+    },
+    "caney-fork-river": {
+      "ledgerSlug": "caney-fork-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Center Hill Dam, Caney Fork River - Rainbow, Brook, Brown, Cutthroat - March through December - Special Trout Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Dec)",
+      "speciesList": [
+        "brook",
+        "brown",
+        "cutthroat",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "clinch-river": {
+      "ledgerSlug": "clinch-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Norris Dam, Clinch River - Brook, Brown, Rainbow - March through August - Special Trout Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Aug)",
+      "speciesList": [
+        "brook",
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "duck-river-tailwater": {
+      "ledgerSlug": "duck-river-tailwater",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Normandy Dam, Duck River - Rainbow - November through June - Statewide Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Nov–Jun)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "elk-river": {
+      "ledgerSlug": "elk-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Tims Ford Dam, Elk River - Brook, Brown, Cutthroat, Rainbow - March through December - Special Trout Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "08/27/2026",
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Dec)",
+      "speciesList": [
+        "brook",
+        "brown",
+        "cutthroat",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery; recent TWRA stocking documented"
+    },
+    "french-broad-river": {
+      "ledgerSlug": "french-broad-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river (spotted bass, crappie); no trout stocking documented below Douglas"
+    },
+    "ft-patrick-henry-tailwater": {
+      "ledgerSlug": "ft-patrick-henry-tailwater",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Fort Patrick Henry Dam, South Fork Holston River - Brown, Rainbow - March and April - Statewide Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Apr)",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "hiwassee-river": {
+      "ledgerSlug": "hiwassee-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Appalachia Dam, Hiwassee River - Brook, Brown, Cutthroat, Rainbow - October through July - Special Trout Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Oct–Jul)",
+      "speciesList": [
+        "brook",
+        "brown",
+        "cutthroat",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery; Delayed Harvest water"
+    },
+    "obey-river": {
+      "ledgerSlug": "obey-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Dale Hollow Dam, Obey River - Brook, Rainbow - January through December - Statewide Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "year-round",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "parksville-tailwater": {
+      "ledgerSlug": "parksville-tailwater",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Ocoee Dam #1 - Parksville, Ocoee River - Rainbow - March through May - Statewide Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "south-holston-river": {
+      "ledgerSlug": "south-holston-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "Brown Trout have represented 80-90% of the total electrofishing catch each year since 2009",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Sep)",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Premier wild-brown tailwater with annual rainbow put-and-take stocking (Mar–Sep)"
+    },
+    "watauga-river": {
+      "ledgerSlug": "watauga-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "stocked Rainbow Trout and wild Brown Trout in the Wilbur tailwater",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Jul)",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA tailwater with wild brown trout plus stocked rainbows; brown stocking discontinued 2015"
+    },
+    "watauga-river-wilbur-reach": {
+      "ledgerSlug": "watauga-river-wilbur-reach",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "Wilbur Dam, Watauga River - Rainbow - March through December - Special Trout Regulations",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "08/28/2026",
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Mar–Dec)",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Dam-to-dam tailwater reach; wild browns + stocked rainbows; last stocked 08/28/2026 per locations report"
+    },
+    "beech-lake": {
+      "ledgerSlug": "beech-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Trout, winter schedule entries dated 1/13/2026 and 2/10/2026",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/13/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [],
+      "prominenceNotes": "Winter put-and-take trout lake in Henderson County (TWRA West-TN winter program destination)"
+    },
+    "boone-lake": {
+      "ledgerSlug": "boone-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (bass, stripers, catfish); no trout stocking in the lake proper — Boone tailwater is a separate entry"
+    },
+    "calderwood-lake": {
+      "ledgerSlug": "calderwood-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "stocked on an annual basis and thrive in the cold, clear water",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "brook",
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "One of nine TWRA trout reservoirs (state trout plan); remote cold-water Little Tennessee impoundment"
+    },
+    "cameron-brown-lake": {
+      "ledgerSlug": "cameron-brown-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Cameron Brown Lake is a named destination on TWRA's 2026 trout stocking schedule",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter put-and-take rainbow lake in Germantown; TWRA Community Lakes Fishing Program site"
+    },
+    "center-hill-lake": {
+      "ledgerSlug": "center-hill-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater USACE reservoir; no in-lake trout rows — Center Hill tailwater (caney-fork-river) is a separate entry"
+    },
+    "cherokee-lake": {
+      "ledgerSlug": "cherokee-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (crappie, stripers); no trout documented in the lake proper"
+    },
+    "chickamauga-lake": {
+      "ledgerSlug": "chickamauga-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir; trophy Florida-strain largemouth fishery (state record 15 lb 3 oz); no trout program"
+    },
+    "chilhowee-lake": {
+      "ledgerSlug": "chilhowee-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Trout are stocked on an annual basis and thrive in the cool, clear water",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Cold upper Little Tennessee impoundment stocked annually with rainbows (nine-trout-reservoir list); warmwater lower fishery"
+    },
+    "dale-hollow-lake": {
+      "ledgerSlug": "dale-hollow-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "rainbow trout (trout in regs; 7/day)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html",
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "World-record smallmouth reservoir; on TWRA nine-trout-reservoir list; in-lake stocking row absent — Obey tailwater is a separate entry"
+    },
+    "douglas-lake": {
+      "ledgerSlug": "douglas-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (top largemouth/crappie fisheries); no trout stocking documented"
+    },
+    "edmund-orgill-lake": {
+      "ledgerSlug": "edmund-orgill-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "rainbow trout via TWRA stocking schedule, location \"Edmund-Orgill Park\"",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter put-and-take rainbow trout park lake in Memphis suburbs (TWRA winter program site)"
+    },
+    "fort-loudoun-lake": {
+      "ledgerSlug": "fort-loudoun-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (bass, crappie, stripers); absent from TWRA trout stocking schedule"
+    },
+    "fort-patrick-henry-lake": {
+      "ledgerSlug": "fort-patrick-henry-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Region IV, Fort Patrick Henry - Brown and Rainbow,",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "year-round",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "One of nine TWRA trout reservoirs (brown/rainbow, year-round trout fishing); tailwater is a separate entry"
+    },
+    "great-falls-lake": {
+      "ledgerSlug": "great-falls-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater Caney Fork impoundment (crappie-dominant, muskie); no trout program in the lake"
+    },
+    "j-percy-priest-lake": {
+      "ledgerSlug": "j-percy-priest-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major USACE warmwater reservoir near Nashville; no lake trout rows (Stones River tailwater is a separate entry)"
+    },
+    "johnson-park-lake": {
+      "ledgerSlug": "johnson-park-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Johnson Park Lake",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "02/08/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Delayed Harvest)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked trout lake/pond (put-and-take); Delayed Harvest water; recent TWRA stocking documented"
+    },
+    "kentucky-lake": {
+      "ledgerSlug": "kentucky-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major TVA/USACE warmwater reservoir (bass, crappie, bluegill); no trout rows on 2026 schedule"
+    },
+    "lake-barkley": {
+      "ledgerSlug": "lake-barkley",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater USACE reservoir (largemouth, crappie); no trout rows on 2026 schedule"
+    },
+    "lake-graham": {
+      "ledgerSlug": "lake-graham",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "\"Lake Graham\" appears once on TWRA's 2026 Trout Stocking Schedule page (winter-trout list)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "winter-program",
+      "speciesList": [],
+      "prominenceNotes": "TWRA Region-1 lake (bass/crappie) that also appears on the winter-trout stocking list; row pairing unconfirmed"
+    },
+    "melton-hill-lake": {
+      "ledgerSlug": "melton-hill-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA documents trout as present in the Clinch River impoundment (~5,690 ac, near Oak Ridge, extends 38 mi to Clinton) with a trout creel line",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html",
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Cold-water put-and-take trout fishery documented by TWRA (trout creel line); 2026 schedule row not pinned"
+    },
+    "nickajack-lake": {
+      "ledgerSlug": "nickajack-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (largemouth incl. stocked FLMB); no trout rows on 2026 schedule"
+    },
+    "normandy-lake": {
+      "ledgerSlug": "normandy-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater TVA reservoir; no in-lake trout rows — Normandy tailwater trout is the separate duck-river-tailwater entry"
+    },
+    "norris-lake": {
+      "ledgerSlug": "norris-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (stripers, walleye, bass); no trout in lake proper — Clinch tailwater is a separate entry"
+    },
+    "ocoee-number-three-lake": {
+      "ledgerSlug": "ocoee-number-three-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "none-found",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "No agency fishery documentation for the impoundment; zero schedule rows (only Parksville tailwater row exists)"
+    },
+    "old-hickory-lake": {
+      "ledgerSlug": "old-hickory-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater USACE reservoir near Nashville; zero trout rows in 616-row 2026 schedule"
+    },
+    "paris-city-park-lake": {
+      "ledgerSlug": "paris-city-park-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA 2026 stocking data lists \"Paris City Park\" (Henry County) with SPECIES \"Rainbow Trout\"",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/14/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter put-and-take rainbow city-park pond (TWRA winter program, Henry County)"
+    },
+    "parksville-lake": {
+      "ledgerSlug": "parksville-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Parksville has been stocked by TWRA with bluegill, redear sunfish, black crappie, muskie, walleye, and trout",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "One of nine TWRA trout reservoirs per state plan; no 2026 in-lake schedule rows — Parksville tailwater is a separate entry"
+    },
+    "pickwick-lake": {
+      "ledgerSlug": "pickwick-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (smallmouth, crappie); no trout rows in 2026 schedule"
+    },
+    "reelfoot-lake": {
+      "ledgerSlug": "reelfoot-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Shallow west-TN natural lake (crappie, bluegill); documented NO trout program"
+    },
+    "shelby-farms-lake": {
+      "ledgerSlug": "shelby-farms-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "rainbow trout are the stocked species at Shelby Farms under TWRA's West-TN winter program",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/13/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Large Shelby County park lake; winter put-and-take rainbow trout (TWRA West-TN winter program)"
+    },
+    "south-holston-lake": {
+      "ledgerSlug": "south-holston-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "annually stocks good numbers of trout",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Deep cold TVA impoundment TWRA \"annually stocks good numbers of trout\" (nine-trout-reservoir list); tailwater below dam is separate entry"
+    },
+    "tellico-lake": {
+      "ledgerSlug": "tellico-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Warmwater (Largemouth Bass, White Crappie, Bluegill, Smallmouth Bass, Walleye) plus Rainbow Trout in the upper reservoir",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (late winter–early spring)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Major warmwater reservoir with rainbow-trout fishery in cold upper arm below Chilhowee Dam (~4,500 stocked annually)"
+    },
+    "tims-ford-lake": {
+      "ledgerSlug": "tims-ford-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater TWRA reservoir; no in-lake trout rows — Tims Ford tailwater trout (elk-river) is a separate entry"
+    },
+    "watauga-lake": {
+      "ledgerSlug": "watauga-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA has stocked rainbow, brown, and lake trout in the reservoir",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "One of nine TWRA trout reservoirs (\"stocked rainbow, brown, and lake trout\"); Watauga River tailwater below is a separate entry"
+    },
+    "watts-bar-lake": {
+      "ledgerSlug": "watts-bar-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Major warmwater TVA reservoir (bass, crappie, stripers); zero trout rows in 2026 stocking JSON"
+    },
+    "wilbur-lake": {
+      "ledgerSlug": "wilbur-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Watauga Dam, Wilbur Reservoir - Rainbow - March through July - Statewide Regulations",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "08/19/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–Jul)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Small (~72 ac) cold impoundment between Watauga and Wilbur dams; one of nine TWRA trout reservoirs"
+    },
+    "woods-reservoir": {
+      "ledgerSlug": "woods-reservoir",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater reservoir (bass, crappie); zero trout rows in 2026 schedule"
+    },
+    "yale-road-park-lake": {
+      "ledgerSlug": "yale-road-park-lake",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA stocks this park pond with rainbow trout",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter put-and-take rainbow pond at Yale Road Park (Memphis; TWRA winter program)"
+    },
+    "barren-fork-river": {
+      "ledgerSlug": "barren-fork-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Stocked put-and-take trout fishery now agency-documented",
+      "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal catchable rainbow put-and-take (Warren Co.); wave-1 wild-trout-candidate claim refuted"
+    },
+    "buffalo-river": {
+      "ledgerSlug": "buffalo-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "State scenic river with warmwater fish community; mainstem absent from trout stocking schedule"
+    },
+    "calfkiller-river": {
+      "ledgerSlug": "calfkiller-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "caney-fork-upper": {
+      "ledgerSlug": "caney-fork-upper",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "collins-river": {
+      "ledgerSlug": "collins-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "cumberland-river": {
+      "ledgerSlug": "cumberland-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "duck-river-lower": {
+      "ledgerSlug": "duck-river-lower",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "east-fork-stones-river": {
+      "ledgerSlug": "east-fork-stones-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "The owner ruling (2026-09-10) records this water as winter-stocked",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter-stocked per owner ruling; agency schedule names the Stones River tailwater (a separate water)"
+    },
+    "elk-river-lower": {
+      "ledgerSlug": "elk-river-lower",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "none-found",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "No trout or gamefish fishery documented in ledger"
+    },
+    "emory-river": {
+      "ledgerSlug": "emory-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "harpeth-river": {
+      "ledgerSlug": "harpeth-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "more than 70,000 trout",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [],
+      "prominenceNotes": "Urban winter trout-stocking site (Eastern Flank Battle Park, Franklin); no documented resident fishery"
+    },
+    "hatchie-river": {
+      "ledgerSlug": "hatchie-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "holston-river": {
+      "ledgerSlug": "holston-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Cherokee Dam, Holston River - Brown, Rainbow - November through April - Statewide Regulations",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Nov–Apr)",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Cherokee Dam tailwater trout reach (Nov–Apr) over a smallmouth-bass river fishery"
+    },
+    "little-pigeon-river": {
+      "ledgerSlug": "little-pigeon-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "little-tennessee-river": {
+      "ledgerSlug": "little-tennessee-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Region IV, Chilhowee — Rainbow",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Main-stem trout presence is stocking-based (Chilhowee/Tellico upper-arm rows); warmwater river fishery"
+    },
+    "mississippi-river": {
+      "ledgerSlug": "mississippi-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "new-river": {
+      "ledgerSlug": "new-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "none-found",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "No trout or gamefish fishery documented in ledger"
+    },
+    "nolichucky-river": {
+      "ledgerSlug": "nolichucky-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "north-fork-holston-river": {
+      "ledgerSlug": "north-fork-holston-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Smallmouth-bass river (dedicated slot reg); no trout stocking rows"
+    },
+    "obed-river": {
+      "ledgerSlug": "obed-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "obion-river": {
+      "ledgerSlug": "obion-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "ocoee-river": {
+      "ledgerSlug": "ocoee-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river (Alabama bass); no trout stocking confirmed for the upper/Copperhill reach"
+    },
+    "pigeon-river": {
+      "ledgerSlug": "pigeon-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Managed warmwater river (smallmouth/walleye, state-record redhorse); trout row pairing unconfirmable in schedule scrape"
+    },
+    "piney-river-rhea": {
+      "ledgerSlug": "piney-river-rhea",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Piney River: Cumberland Trail State Park downstream to Highway 27 Bridge",
+      "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "TWRA-stocked trout stream; Delayed Harvest water"
+    },
+    "powell-river": {
+      "ledgerSlug": "powell-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "red-river-clarksville": {
+      "ledgerSlug": "red-river-clarksville",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "none-found",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "No trout or gamefish fishery documented in ledger"
+    },
+    "sequatchie-river": {
+      "ledgerSlug": "sequatchie-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "shoal-creek": {
+      "ledgerSlug": "shoal-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "south-fork-cumberland": {
+      "ledgerSlug": "south-fork-cumberland",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "stones-river": {
+      "ledgerSlug": "stones-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "excellent winter bank fishing trips, high angler catch rates",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "tailwater-trout",
+      "seasonEvidence": "seasonal (Dec–Mar)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TVA-dam tailwater trout fishery"
+    },
+    "tellico-river": {
+      "ledgerSlug": "tellico-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "the river (not the reservoir) is an actively stocked trout water in Sept 2026; species column pairing not confirmable in scraped table",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "09/01/2026 or 09/04/2026 (ambiguous)",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Delayed Harvest)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "DH + Tellico-Citico permit river actively stocked (Tellico hatchery rainbows); wild trout only in protected tributaries"
+    },
+    "tennessee-river": {
+      "ledgerSlug": "tennessee-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater river; no trout fishery documented"
+    },
+    "west-fork-stones-river": {
+      "ledgerSlug": "west-fork-stones-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "W. Fork Stones River - Manson Pike Trailhead",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Urban trout-stocking site (Manson Pike Trailhead, Murfreesboro); row present, species/window unconfirmed"
+    },
+    "wolf-river-west-tennessee": {
+      "ledgerSlug": "wolf-river-west-tennessee",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA winter urban Rainbow Trout program reaches the Memphis-area Wolf",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Memphis-area river reached by TWRA winter urban rainbow program; crappie fishery; row pairing unconfirmed"
+    },
+    "covington-fbc-pond": {
+      "ledgerSlug": "covington-fbc-pond",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "the Covington First Baptist Church pond in Tipton County",
+      "sourceUrl": "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "New 2025-26 TWRA winter stocking site (First Baptist Church pond, Covington)"
+    },
+    "martin-city-pond": {
+      "ledgerSlug": "martin-city-pond",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "will not survive as the water temperatures begin to rise in spring",
+      "sourceUrl": "https://www.tn.gov/news/2008/12/4/twra-winter-rainbow-trout-stocking-program-resumes.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA winter rainbow put-and-take pond in Martin (Weakley Co.); program running since 2008"
+    },
+    "milan-city-pond": {
+      "ledgerSlug": "milan-city-pond",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Milan City Pond",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Named on TWRA 2026 stocking schedule (Gibson Co.); row pairing unconfirmed"
+    },
+    "union-city-reelfoot-pond": {
+      "ledgerSlug": "union-city-reelfoot-pond",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Union City Reelfoot Packing Site",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/14/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter put-and-take rainbow pond at the Reelfoot Packing Site (Union City; TWRA winter program)"
+    },
+    "valentine-park-pond": {
+      "ledgerSlug": "valentine-park-pond",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "clean JSON row: REGION \"1\", COUNTY \"Tipton\", LOCATION \"Valentine Park\", TYPE \"Winter\", SPECIES \"Rainbow Trout\"",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter put-and-take rainbow pond at Valentine Park (Covington; TWRA winter program)"
+    },
+    "sinking-creek-wilson": {
+      "ledgerSlug": "sinking-creek-wilson",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout — winter program at Don Fox Park Community Park",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/11/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter rainbow put-and-take at Don Fox Park (Lebanon, TN); no wild-trout or DH designation"
+    },
+    "beaverdam-creek": {
+      "ledgerSlug": "beaverdam-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout (stocked, put-and-take)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "6/21/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–Jun)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-designated wild trout stream reach AND 2026 seasonal rainbow stockings (Shady Valley)"
+    },
+    "big-rock-creek": {
+      "ledgerSlug": "big-rock-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout (hatchery-reared, put-and-take)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter rainbow put-and-take at the Lewisburg greenway"
+    },
+    "boiling-fork-creek": {
+      "ledgerSlug": "boiling-fork-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout (hatchery-reared, put-and-take)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/20/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter rainbow put-and-take at Cowan City Park (Franklin Co.)"
+    },
+    "bradley-creek": {
+      "ledgerSlug": "bradley-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater creek; no trout fishery documented"
+    },
+    "brush-creek-cocke": {
+      "ledgerSlug": "brush-creek-cocke",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA stocks RBT here — presence when stocked only, no wild-trout documentation",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal spring rainbow put-and-take (2026); only documented fishery"
+    },
+    "buffalo-creek-grainger": {
+      "ledgerSlug": "buffalo-creek-grainger",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA writes trout-specific special regulations and a Delayed Harvest season for Buffalo Creek (Grainger County), so a trout fishery exists",
+      "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/8/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Feb–Aug, DH Oct)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA Delayed Harvest water (C&R Oct 1–Jan 31) with 29 seasonal stocking weeks 2026"
+    },
+    "cane-creek": {
+      "ledgerSlug": "cane-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow trout, seasonal/spring — schedule rows \"Cane Creek (Fall Creek Falls State Park)\"",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/22/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Feb–May, Oct)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal put-and-take rainbow in Fall Creek Falls SP + lower reach; otherwise warmwater plateau stream"
+    },
+    "charles-creek": {
+      "ledgerSlug": "charles-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow trout (stocked)",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "5/10/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal spring put-and-take rainbow (Warren Co., Collins River tributary)"
+    },
+    "citico-creek": {
+      "ledgerSlug": "citico-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "stocked frequently into the Tellico River, Citico Creek, and Green Cove Pond",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "7/19/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "Intensively stocked permit-area put-grow-take mainstem; naturalized brook trout persist in headwater forks"
+    },
+    "clear-creek-obed": {
+      "ledgerSlug": "clear-creek-obed",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater creek; no trout fishery documented"
+    },
+    "clear-fork": {
+      "ledgerSlug": "clear-fork",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater creek; no trout fishery documented"
+    },
+    "cosby-creek": {
+      "ledgerSlug": "cosby-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-wild",
+      "evidenceLine": "native brook trout persisting in the Cosby Creek drainage; rainbow trout encroachment dynamics",
+      "sourceUrl": "https://api.openalex.org/works/doi:10.1577/1548-8659(1995",
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "trout-wild",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "Wild self-sustaining trout water"
+    },
+    "daddys-creek": {
+      "ledgerSlug": "daddys-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater creek; no trout fishery documented"
+    },
+    "doe-creek-johnson": {
+      "ledgerSlug": "doe-creek-johnson",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA 2026 stocking schedule lists \"Doe Creek,\" Johnson Co., Region 4, 7 seasonal stocking weeks (3/8, 3/22, 4/5, 4/19, 5/3, 5/17, 5/31/2026)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "5/31/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Mar–May 2026) rainbow put-and-take creek (Johnson Co.)"
+    },
+    "doe-river": {
+      "ledgerSlug": "doe-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "2026 schedule, Region 4, Carter Co. \"Doe River\": 8 Seasonal events weeks of 3/1–6/7/2026 plus 1 Delayed Harvest event week of 10/4/2026, all Rainbow Trout",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "6/7/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–Jun, DH Oct)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA delayed-harvest reach between Roan Mountain SP boundaries plus Mar–Jun seasonal rainbow stocking"
+    },
+    "east-fork-shoal-creek": {
+      "ledgerSlug": "east-fork-shoal-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "rainbow stockings at",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Spring/\"Seasonal\" rainbow put-and-take (Feb–May 2026) on the Lawrence Co. main stem"
+    },
+    "fletchers-fork": {
+      "ledgerSlug": "fletchers-fork",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Fort Campbell (Fletchers Fork Creek),",
+      "sourceUrl": "https://fw.ky.gov/Fish/Pages/trout_archive.aspx",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/12/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Fort Campbell cooperative rainbow+brown put-and-take (KDFWR + TWRA), Feb–Aug"
+    },
+    "forge-creek-johnson": {
+      "ledgerSlug": "forge-creek-johnson",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA 2026 stocking schedule lists \"Forge Creek,\" Johnson Co., Region 4, 4 seasonal stocking weeks (3/8, 4/5, 5/3, 5/31/2026)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "5/31/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Mar–May 2026) rainbow put-and-take creek (Johnson Co.)"
+    },
+    "gap-creek-claiborne": {
+      "ledgerSlug": "gap-creek-claiborne",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout, seasonal — TWRA stocks Gap Creek (Claiborne Co.): schedule weeks of 2/15, 3/15, 4/12/2026, with 11 Trout-MASTER GIS sites whose coordinates fa...",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "4/12/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Feb–Apr)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked seasonal rainbow fishery over a spring-fed minnow/sculpin community (no trout in survey)"
+    },
+    "goforth-creek": {
+      "ledgerSlug": "goforth-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Several Polk County streams are also stocked with trout from Tellico Hatchery",
+      "sourceUrl": "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked trout creek (put-and-take); recent TWRA stocking documented"
+    },
+    "greasy-creek-polk": {
+      "ledgerSlug": "greasy-creek-polk",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "trout program documented — row \"Polk | Greasy Creek | 3 weekly dots\" on TWRA's 2023 tentative stocking schedule",
+      "sourceUrl": "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "TWRA-stocked trout creek (put-and-take)"
+    },
+    "gulf-fork-big-creek": {
+      "ledgerSlug": "gulf-fork-big-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "wild BKT presence in Gulf Fork headwater tribs (implied donor status; plan text)",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "Documented wild brook trout in headwater tribs plus seasonal rainbow put-and-take on the main fork"
+    },
+    "horse-creek-greene": {
+      "ledgerSlug": "horse-creek-greene",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "2026 schedule, Region 4, Greene Co. \"Horse Creek\", Seasonal Rainbow Trout, 8 weekly events 3/1/2026–6/7/2026",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "6/7/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–Jun)",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal rainbow put-and-take under special regs; wild rainbows documented; brook restoration candidate"
+    },
+    "hurricane-creek": {
+      "ledgerSlug": "hurricane-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Hurricane Creek Trout Stocking Site",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/22/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Feb–Mar)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Late-winter/early-spring rainbow put-and-take (Houston Co.)"
+    },
+    "indian-creek-claiborne": {
+      "ledgerSlug": "indian-creek-claiborne",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout, seasonal — TWRA stocks Indian Creek (Claiborne Co.): schedule weeks 2/15–4/12/2026, with 3 Trout-MASTER GIS sites inside this block's verified...",
+      "sourceUrl": null,
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "4/12/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked seasonal rainbow water (Claiborne Co.; Clinch/Powell drainage)"
+    },
+    "laurel-creek-johnson": {
+      "ledgerSlug": "laurel-creek-johnson",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA 2026 stocking schedule lists \"Laurel Creek,\" Johnson Co., Region 4, 5 seasonal stocking weeks (3/1, 3/29, 4/26, 5/24, 6/21/2026)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "6/21/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–Jun)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Mar–Jun 2026) rainbow put-and-take creek (Johnson Co.)"
+    },
+    "laurel-fork-carter": {
+      "ledgerSlug": "laurel-fork-carter",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "Laurel Fork and tributaries beginning at the cable crossing ½ mile upstream from the USFS Dennis Cove Recreation Area and extending upstream to the USFS boun...",
+      "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "6/7/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–Jun)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA wild-trout-stream reach (artificials-only) that also receives seasonal rainbow put-and-take"
+    },
+    "leconte-creek": {
+      "ledgerSlug": "leconte-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "O. mykiss captured/present in LeConte Creek at NEON aquatic site D07-LECO",
+      "sourceUrl": "https://www.neonscience.org/field-sites/leco",
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "trout-wild",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Wild self-sustaining trout water"
+    },
+    "little-buffalo-river": {
+      "ledgerSlug": "little-buffalo-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Little Buffalo River,",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/8/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Spring seasonal rainbow put-and-take at 4 gravel pull-offs (Lawrence Co.)"
+    },
+    "little-river": {
+      "ledgerSlug": "little-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "trout + smallmouth presence in the park section of Little River (park-wide inventory, not per-stream)",
+      "sourceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "11/8/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Feb–May, Oct–Nov)",
+      "speciesList": [
+        "brook",
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Wild trout water inside GRSM plus TWRA seasonal rainbow put-and-take below the park boundary"
+    },
+    "little-sequatchie-river": {
+      "ledgerSlug": "little-sequatchie-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Little Sequatchie River,",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Mar–May) rainbow put-and-take; no wild-trout designation"
+    },
+    "little-west-fork-creek": {
+      "ledgerSlug": "little-west-fork-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Fort Campbell (Little West Fork Creek),",
+      "sourceUrl": "https://fw.ky.gov/Fish/Pages/trout_archive.aspx",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/12/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "Fort Campbell cooperative rainbow+brown put-and-take (KDFWR + TWRA), Feb–Aug"
+    },
+    "mccutcheon-creek": {
+      "ledgerSlug": "mccutcheon-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "McCutcheon Creek,",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/23/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter rainbow put-and-take at the Spring Hill (Maury Co.) greenway site"
+    },
+    "middle-prong-little-pigeon": {
+      "ledgerSlug": "middle-prong-little-pigeon",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-wild",
+      "evidenceLine": "brook/rainbow/brown trout \"Present\" park-wide (stream-level attribution not in NPSpecies)",
+      "sourceUrl": "https://irmaservices.nps.gov/v3/rest/npspecies/checklist/GRSM/Fish",
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "brook",
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "GRSM park-level trout occurrence only; documented smallmouth bass fishery in park reach"
+    },
+    "mill-creek-overton": {
+      "ledgerSlug": "mill-creek-overton",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Mill Creek (Standing Stone State Park)",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/22/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–Apr)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal spring rainbow put-and-take in Standing Stone State Park"
+    },
+    "mossy-creek-jefferson": {
+      "ledgerSlug": "mossy-creek-jefferson",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "TWRA's winter trout program stocked 300 RBT (Buffalo Springs Hatchery) into Mossy Creek",
+      "sourceUrl": "https://www.cn.edu/campus-onlookers-brave-weather-find-something-fishy-at-mossy-creek/",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "1/14/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Brand-new TWRA winter put-and-take site (2025-26, first stocking since the 1980s)"
+    },
+    "north-chickamauga-creek": {
+      "ledgerSlug": "north-chickamauga-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "rainbow trout, smallmouth bass, redeye, sunfish and more. Rainbow trout is periodically stocked downstream of the Blue Hole",
+      "sourceUrl": "https://tnstateparks.com/parks/north-chickamauga/fishing",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/22/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Feb–Apr, Nov)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Stocked-rainbow fishery over warmwater smallmouth/redeye fishery; Nov stocking week included"
+    },
+    "north-prong-barren-fork": {
+      "ledgerSlug": "north-prong-barren-fork",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout (stocked, put-and-take)",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "4/26/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–Apr)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal rainbow put-and-take (2 weeks Mar–Apr 2026, Warren Co.)"
+    },
+    "pine-creek-dekalb": {
+      "ledgerSlug": "pine-creek-dekalb",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow trout (stocked)",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/29/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Feb–Mar)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal spring put-and-take rainbow; warmwater Caney Fork tributary otherwise"
+    },
+    "puncheon-camp-creek": {
+      "ledgerSlug": "puncheon-camp-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Puncheon Camp Creek",
+      "sourceUrl": null,
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked seasonal rainbow water (Grainger Co., Clinch tributary)"
+    },
+    "reedy-creek": {
+      "ledgerSlug": "reedy-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "warmwater",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "Warmwater creek; no trout fishery documented"
+    },
+    "richardson-byrd-creek": {
+      "ledgerSlug": "richardson-byrd-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Richardson 'Byrd' Creek",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "4/12/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Feb–Apr)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Region 4 seasonal (Feb–Apr) rainbow put-and-take on the Clinch drainage near Sneedville"
+    },
+    "roaring-fork": {
+      "ledgerSlug": "roaring-fork",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "none",
+      "evidenceLine": null,
+      "sourceUrl": null,
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "none-found",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "No stream-level fishery evidence; GRSM park-wide trout mention only (ledger class: none-found)"
+    },
+    "rocky-river": {
+      "ledgerSlug": "rocky-river",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow trout (stocked)",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "5/17/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal spring put-and-take rainbow; warmwater Caney Fork tributary (Van Buren Co.)"
+    },
+    "salt-lick-creek": {
+      "ledgerSlug": "salt-lick-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Salt Lick Creek",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/1/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal rainbow put-and-take (Macon Co.; Barren/Green River basin)"
+    },
+    "spring-creek-polk": {
+      "ledgerSlug": "spring-creek-polk",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "trout program documented — row \"REGION 3 | Polk | Spring Creek | 4 weekly dots\"",
+      "sourceUrl": "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "TWRA-stocked trout creek (put-and-take)"
+    },
+    "standing-rock-creek": {
+      "ledgerSlug": "standing-rock-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Standing Rock Creek Spring Trout Site",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/29/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Feb–Mar)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Feb–Mar 2026) rainbow put-and-take (Stewart Co.)"
+    },
+    "station-creek": {
+      "ledgerSlug": "station-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Rainbow Trout (put-and-take, stocked)",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/15/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Feb–Apr)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked trout creek (put-and-take); recent TWRA stocking documented"
+    },
+    "stoney-creek-carter": {
+      "ledgerSlug": "stoney-creek-carter",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "2026 schedule, Region 4, Carter Co. \"Stony Creek\" (TWRA spelling), Seasonal Rainbow Trout, 4 events weeks of 3/8–5/31/2026",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/8/2026",
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal (Mar–May)",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "Mainstem seasonal rainbow put-and-take; tributary Little Stony Creek is designated wild with brook restoration"
+    },
+    "sulfur-fork-creek": {
+      "ledgerSlug": "sulfur-fork-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Sulphur Fork Creek,",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "2/4/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "winter-program",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Winter rainbow put-and-take at Springfield City Greenway"
+    },
+    "trail-fork-big-creek": {
+      "ledgerSlug": "trail-fork-big-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-mixed",
+      "evidenceLine": "Upper Trail Fork currently has a wild Rainbow Trout population, as do some of its headwater tributaries (upstream of 2,720')",
+      "sourceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "brook",
+        "rainbow"
+      ],
+      "prominenceNotes": "Documented wild rainbow trout population upstream plus seasonal rainbow put-and-take (2026)"
+    },
+    "tumbling-creek": {
+      "ledgerSlug": "tumbling-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Tumbling Creek,",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/1/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–Apr)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "TWRA-stocked trout creek (put-and-take); recent TWRA stocking documented"
+    },
+    "upper-hills-creek": {
+      "ledgerSlug": "upper-hills-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Upper Hills Creek",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/22/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal rainbow put-and-take (1 scheduled week Mar 2026, Warren Co.)"
+    },
+    "upper-roan-creek": {
+      "ledgerSlug": "upper-roan-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Upper Roan Creek",
+      "sourceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "6/14/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Mar–Jun)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Mar–Jun 2026) rainbow put-and-take; only documented fishery (Johnson Co.)"
+    },
+    "west-prong-little-pigeon": {
+      "ledgerSlug": "west-prong-little-pigeon",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-wild",
+      "evidenceLine": "brook/rainbow/brown trout \"Present\" park-wide (stream-level trout attribution not found for this water)",
+      "sourceUrl": "https://irmaservices.nps.gov/v3/rest/npspecies/checklist/GRSM/Fish",
+      "stockingEvidence": "none",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [
+        "brook",
+        "brown",
+        "rainbow"
+      ],
+      "prominenceNotes": "GRSM park-level trout occurrence only; key smallmouth water in lower/mid reaches"
+    },
+    "white-oak-creek": {
+      "ledgerSlug": "white-oak-creek",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "White Oak Creek Spring Trout Site",
+      "sourceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "stockingEvidence": "documented-recent",
+      "stockingDate": "3/29/2026",
+      "fisheryClass": "trout-stocked",
+      "seasonEvidence": "seasonal (Feb–Mar)",
+      "speciesList": [
+        "rainbow"
+      ],
+      "prominenceNotes": "Seasonal (Feb–Mar 2026) rainbow put-and-take (\"Whiteoak Creek\", Houston Co.)"
+    },
+    "wolf-river-fentress": {
+      "ledgerSlug": "wolf-river-fentress",
+      "matchMethod": "exact",
+      "confidence": "high",
+      "troutEvidence": "cited-stocking",
+      "evidenceLine": "Fentress | Wolf River",
+      "sourceUrl": "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf",
+      "stockingEvidence": "program",
+      "stockingDate": null,
+      "fisheryClass": "mixed",
+      "seasonEvidence": "unknown",
+      "speciesList": [],
+      "prominenceNotes": "TWRA cool-season trout stocking (3 events 2026) over native smallmouth/spotted bass base"
+    }
+  },
+  "unledgered": [
+    "beech-river",
+    "big-bigby-creek",
+    "big-sandy-river",
+    "big-sewee-creek",
+    "big-soddy-creek",
+    "big-swan-creek",
+    "blackburn-fork",
+    "brimstone-creek",
+    "bullrun-creek",
+    "candies-creek",
+    "cane-creek-hickman-perry",
+    "chestuee-creek",
+    "conasauga-river",
+    "crab-orchard-creek",
+    "duck-river-mouth",
+    "dumplin-creek",
+    "east-fork-obey-river",
+    "falling-water-river",
+    "forked-deer-river",
+    "little-chuckey-creek",
+    "little-harpeth-river",
+    "loosahatchie-river",
+    "middle-fork-forked-deer-river",
+    "middle-fork-obion-river",
+    "nonconnah-creek",
+    "north-fork-forked-deer-river",
+    "north-fork-obion-river",
+    "north-mouse-creek",
+    "oostanaula-creek",
+    "paint-creek-greene",
+    "piney-river-hickman",
+    "richland-creek-maury",
+    "roaring-river",
+    "rutherford-fork-obion-river",
+    "sale-creek",
+    "south-chickamauga-creek",
+    "south-fork-forked-deer-river",
+    "south-fork-obion-river",
+    "south-mouse-creek",
+    "west-fork-obey-river",
+    "west-harpeth-river",
+    "yellow-creek-houston"
+  ],
+  "unmatchedLedgerSlugs": [],
+  "regionBalance": {
+    "tn-middle-caney-fork": {
+      "catalogTotal": 14,
+      "ledgered": 14,
+      "troutAnchors": 9,
+      "stockedAnchors": 9,
+      "unledgered": 0
+    },
+    "tn-northeast-watauga": {
+      "catalogTotal": 13,
+      "ledgered": 13,
+      "troutAnchors": 13,
+      "stockedAnchors": 13,
+      "unledgered": 0
+    },
+    "tn-west": {
+      "catalogTotal": 33,
+      "ledgered": 21,
+      "troutAnchors": 14,
+      "stockedAnchors": 14,
+      "unledgered": 12
+    },
+    "tn-middle-duck-elk": {
+      "catalogTotal": 21,
+      "ledgered": 15,
+      "troutAnchors": 7,
+      "stockedAnchors": 7,
+      "unledgered": 6
+    },
+    "tn-se-hiwassee": {
+      "catalogTotal": 25,
+      "ledgered": 15,
+      "troutAnchors": 11,
+      "stockedAnchors": 11,
+      "unledgered": 10
+    },
+    "tn-upper-cumberland": {
+      "catalogTotal": 11,
+      "ledgered": 6,
+      "troutAnchors": 6,
+      "stockedAnchors": 5,
+      "unledgered": 5
+    },
+    "tn-east-holston": {
+      "catalogTotal": 9,
+      "ledgered": 9,
+      "troutAnchors": 5,
+      "stockedAnchors": 5,
+      "unledgered": 0
+    },
+    "tn-cumberland-plateau": {
+      "catalogTotal": 12,
+      "ledgered": 10,
+      "troutAnchors": 2,
+      "stockedAnchors": 2,
+      "unledgered": 2
+    },
+    "tn-east-pigeon-frenchbroad": {
+      "catalogTotal": 12,
+      "ledgered": 9,
+      "troutAnchors": 5,
+      "stockedAnchors": 5,
+      "unledgered": 3
+    },
+    "tn-east-clinch": {
+      "catalogTotal": 14,
+      "ledgered": 13,
+      "troutAnchors": 9,
+      "stockedAnchors": 8,
+      "unledgered": 1
+    },
+    "tn-east-smokies": {
+      "catalogTotal": 10,
+      "ledgered": 10,
+      "troutAnchors": 8,
+      "stockedAnchors": 4,
+      "unledgered": 0
+    },
+    "tn-middle-nashville": {
+      "catalogTotal": 16,
+      "ledgered": 13,
+      "troutAnchors": 8,
+      "stockedAnchors": 8,
+      "unledgered": 3
+    }
+  }
+}
