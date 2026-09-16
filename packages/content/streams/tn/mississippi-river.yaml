@@ -4,14 +4,19 @@ stateId: TN
 waterbodyType: river
 display: featured
 regionId: tn-west
-gaugeIds: []
+gaugeIds:
+  - "07032000"
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Mississippi forms
-  Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties.
-  Detailed angler notes are still being prepared — check TWRA and local access areas
-  in the meantime.
+  Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western
+  boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes are still being
+  prepared — check TWRA and local access areas in the meantime.
+
+
+  Regulations: Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34, stripers 6,
+  sauger 6, white bass 30, sunfish 50); statewide catfish rule agrees (only one catfish over 34 in per day; no
+  harvest limit under 34 in) (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

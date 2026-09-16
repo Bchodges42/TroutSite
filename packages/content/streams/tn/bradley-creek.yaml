@@ -4,13 +4,12 @@ stateId: TN
 waterbodyType: creek
 display: standard
 regionId: tn-middle-duck-elk
-gaugeIds: []
+gaugeIds:
+  - "03578500"
 stockingProgram: false
 idealFlow: []
-notes: >-
-  Franklin County creek near Tullahoma and Manchester that drains through AEDC
-  Woods Reservoir into the Elk River system. Open to public fishing; not a
-  stocked trout fishery.
+notes: Franklin County creek near Tullahoma and Manchester that drains through AEDC Woods Reservoir into the
+  Elk River system. Open to public fishing; not a stocked trout fishery.
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html

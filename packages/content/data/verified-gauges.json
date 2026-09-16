@@ -1,5 +1,5 @@
 {
-  "comment": "Static USGS monitoring-location catalog for packages/content streams. Site existence and names were verified against waterservices.usgs.gov on 2026-09-02; realTimeIV records the catalog-time probe only, not current health. Current parameter health comes from live feed checks. Added 2026-09-15: 03601600/03601990/03603000 (lower Duck reaches) verified live against the waterservices site file during the gauge-layer build (wave-2 clone).",
+  "comment": "Static USGS monitoring-location catalog for packages/content streams. Site existence and names were verified against waterservices.usgs.gov on 2026-09-02; realTimeIV records the catalog-time probe only, not current health. Current parameter health comes from live feed checks. Added 2026-09-15: 03601600/03601990/03603000 (lower Duck reaches) verified live against the waterservices site file during the gauge-layer build (wave-2 clone). Added 2026-09-15 (import lane phase 4): 03431500/07027000/07032000/03416000/03578500 probed live (siteStatus=active, series through 2026-09-14, IV confirmed) before wiring; 03578000 unwired from elk-river (headwaters gauge (near Pelham), not the Tims Ford tailwater reach — wave-1 roster error).",
   "sourceUrl": "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteStatus=any&siteType=st",
   "gauges": {
     "03408500": {
@@ -240,6 +240,26 @@
     },
     "03599419": {
       "name": "DUCK RIVER AT MILE 156 NEAR POTTSVILLE, TN",
+      "realTimeIV": true
+    },
+    "03431500": {
+      "name": "CUMBERLAND RIVER AT NASHVILLE, TN",
+      "realTimeIV": true
+    },
+    "07027000": {
+      "name": "REELFOOT LAKE NR TIPTONVILLE, TN",
+      "realTimeIV": true
+    },
+    "07032000": {
+      "name": "MISSISSIPPI RIVER AT MEMPHIS, TN",
+      "realTimeIV": true
+    },
+    "03416000": {
+      "name": "WOLF RIVER NEAR BYRDSTOWN, TN",
+      "realTimeIV": true
+    },
+    "03578500": {
+      "name": "BRADLEY CREEK NR PRAIRIE PLAINS, TN",
       "realTimeIV": true
     }
   }

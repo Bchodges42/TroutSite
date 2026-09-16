@@ -4,7 +4,8 @@ stateId: TN
 waterbodyType: creek
 display: standard
 regionId: tn-cumberland-plateau
-gaugeIds: []
+gaugeIds:
+  - "03416000"
 stockingProgram: true
 species: trout
 fishery: stocked
