@@ -235,8 +235,8 @@
     "name": "Beech River",
     "waterbodyType": "river",
     "anchor": [
-      -88.13117,
-      35.60543
+      -88.19247,
+      35.61334
     ],
     "bounds": [
       -88.42263,
@@ -508,8 +508,8 @@
     "name": "Big Sandy River",
     "waterbodyType": "river",
     "anchor": [
-      -88.09279,
-      36.31817
+      -88.09701,
+      36.23689
     ],
     "bounds": [
       -88.44748,
@@ -3436,8 +3436,8 @@
     "name": "Conasauga River",
     "waterbodyType": "river",
     "anchor": [
-      -84.709492,
-      34.999555
+      -84.70691,
+      35.00302
     ],
     "bounds": [
       -84.779663,
@@ -5422,14 +5422,14 @@
     "name": "Falling Water River",
     "waterbodyType": "river",
     "anchor": [
-      -85.48122,
-      36.10567
+      -85.32956,
+      36.15734
     ],
     "bounds": [
       -85.69318,
       35.99943,
       -85.27912,
-      36.16035
+      36.16034
     ],
     "nhdPermanentIds": [
       "136990763",
@@ -8574,8 +8574,8 @@
     "name": "Loosahatchie River",
     "waterbodyType": "river",
     "anchor": [
-      -89.16735,
-      35.22728
+      -89.20104,
+      35.27098
     ],
     "bounds": [
       -89.7148,
@@ -8747,8 +8747,8 @@
     "name": "Middle Fork Forked Deer River",
     "waterbodyType": "river",
     "anchor": [
-      -88.50371,
-      35.70329
+      -88.5126,
+      35.70377
     ],
     "bounds": [
       -89.21096,
@@ -8903,8 +8903,8 @@
     "name": "Middle Fork Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -88.82058,
-      36.20375
+      -88.53616,
+      36.26209
     ],
     "bounds": [
       -88.94075,
@@ -10588,8 +10588,8 @@
     "name": "North Fork Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -89,
-      36.39635
+      -88.7271,
+      36.428
     ],
     "bounds": [
       -89.05808,
@@ -11034,8 +11034,8 @@
     "name": "Obion River",
     "waterbodyType": "river",
     "anchor": [
-      -89.53335,
-      36.11131
+      -89.48702,
+      36.11803
     ],
     "bounds": [
       -89.65268,
@@ -12514,8 +12514,8 @@
     "name": "Richardson “Byrd” Creek",
     "waterbodyType": "creek",
     "anchor": [
-      -83.12165,
-      36.49353
+      -83.09941,
+      36.47116
     ],
     "bounds": [
       -83.188336,
@@ -12530,8 +12530,8 @@
     "name": "Richland Creek (Maury/Giles Counties)",
     "waterbodyType": "creek",
     "anchor": [
-      -87.03726,
-      35.27688
+      -87.03119,
+      35.30077
     ],
     "bounds": [
       -87.1066,
@@ -13664,8 +13664,8 @@
     "name": "Sinking Creek (Wilson County)",
     "waterbodyType": "spring",
     "anchor": [
-      -86.3003,
-      36.1651
+      -86.34428,
+      36.13441
     ],
     "bounds": [
       -86.541336,
@@ -13861,13 +13861,13 @@
     "name": "South Fork Forked Deer River",
     "waterbodyType": "river",
     "anchor": [
-      -89.3534,
-      35.83695
+      -89.35536,
+      35.82191
     ],
     "bounds": [
       -89.43536,
       35.41862,
-      -88.60294,
+      -88.60292,
       35.99983
     ],
     "nhdPermanentIds": [

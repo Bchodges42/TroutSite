@@ -6,9 +6,15 @@
  * Identity is read from the YAML catalog. The trace recipe contains only
  * source reach seeds and reviewed boundary/name rules; it deliberately does
  * not duplicate GNIS/HUC identity. Raw NHD graph edges are walked in flow
- * direction, with the committed endpoint topology as the primary join and
- * no geometry bridge insertion. A disconnected source component remains a
- * separate MultiLineString part.
+ * direction, with the committed endpoint topology as the primary join.
+ * Disconnected components are then closed the way the 2026-09-15 stitch
+ * round did it: exact endpoint joins first, then flagged straight
+ * connectors up to 30 km between remaining open ends (properties
+ * .bridgedSegments). The NO-SHRINK guard declines a rebuild whose walked
+ * geometry is materially shorter than the committed water — that keeps a
+ * partial-name identity (e.g. the Obion's lower reach) from deleting
+ * mapped river. Legacy multi-part line waters get the same join pass on
+ * their committed geometry.
  */
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -34,6 +40,8 @@ const rebuildIds = new Set([
 const simplifyToleranceM = 10;
 const coordinateDecimals = 5;
 const ordinaryWeldLimitM = 15;
+const bridgeMaxKm = 30;
+const noShrinkFactor = 0.9;
 
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const uniqueSorted = (values) => [...new Set(values.map(String))].sort((a, b) => a.localeCompare(b));
@@ -241,6 +249,119 @@ function assembleRoutes(routes) {
   return { parts, maxWeldM };
 }
 
+const bridgeMaxKmM = bridgeMaxKm * 1000;
+
+function stitchExact(parts) {
+  const segs = parts.map((part) => [...part]);
+  const key = (p) => `${p[0].toFixed(6)},${p[1].toFixed(6)}`;
+  const lines = [];
+  while (segs.length) {
+    let line = segs.pop();
+    let grew = true;
+    while (grew) {
+      grew = false;
+      const startK = key(line[0]);
+      const endK = key(line[line.length - 1]);
+      for (let i = 0; i < segs.length; i++) {
+        const s = segs[i];
+        const sk = key(s[0]);
+        const ek = key(s[s.length - 1]);
+        if (ek === startK) {
+          line = [...s, ...line];
+          segs.splice(i, 1);
+          grew = true;
+          break;
+        }
+        if (sk === endK) {
+          line = [...line, ...s];
+          segs.splice(i, 1);
+          grew = true;
+          break;
+        }
+        if (sk === startK) {
+          line = [...[...s].reverse(), ...line];
+          segs.splice(i, 1);
+          grew = true;
+          break;
+        }
+        if (ek === endK) {
+          line = [...line, ...[...s].reverse()];
+          segs.splice(i, 1);
+          grew = true;
+          break;
+        }
+      }
+    }
+    lines.push(line);
+  }
+  return lines;
+}
+
+/**
+ * Bridge disconnected chains: greedy nearest-endpoint connection, capped at
+ * bridgeMaxKm. West TN lowland rivers lose whole reaches between named NHD
+ * components; a flagged straight connector renders more honestly than a
+ * visible break. Connectors are spread INTO the chain (a nested [p, p]
+ * element would render as a corrupt segment) and counted in
+ * properties.bridgedSegments. Chains farther than the cap stay open.
+ */
+function bridgeChains(lines) {
+  const chains = lines.map((line) => [...line]);
+  let bridges = 0;
+  if (chains.length <= 1) return { lines: chains, bridges };
+  chains.sort((a, b) => b.length - a.length);
+  let cur = chains.shift();
+  const leftovers = [];
+  const rest = chains;
+  while (rest.length) {
+    let bi = -1;
+    let bestM = Infinity;
+    let toHead = false;
+    let reverseCand = false;
+    const ends = [
+      { pt: cur[0], head: true },
+      { pt: cur[cur.length - 1], head: false },
+    ];
+    for (let i = 0; i < rest.length; i++) {
+      const cand = rest[i];
+      for (const e of ends) {
+        const mF = haversineM(e.pt, cand[0]);
+        const mR = haversineM(e.pt, cand[cand.length - 1]);
+        const m = Math.min(mF, mR);
+        if (m < bestM) {
+          bestM = m;
+          bi = i;
+          toHead = e.head;
+          // the connector segment drawn is (attachment end of cur) -> (near
+          // end of oriented): when splicing BEFORE cur, oriented's LAST point
+          // must be the near one; when splicing AFTER cur, oriented's FIRST
+          // point must be the near one.
+          reverseCand = toHead ? mF < mR : mR < mF;
+        }
+      }
+    }
+    if (bi < 0) break;
+    const cand = rest.splice(bi, 1)[0];
+    const oriented = reverseCand ? [...cand].reverse() : cand;
+    if (bestM > bridgeMaxKmM) {
+      leftovers.push(oriented);
+      continue;
+    }
+    cur = toHead
+      ? [...oriented, oriented[oriented.length - 1], cur[0], ...cur]
+      : [...cur, cur[cur.length - 1], oriented[0], ...oriented];
+    bridges += 1;
+  }
+  return { lines: leftovers.length ? [cur, ...leftovers] : [cur], bridges };
+}
+
+function joinParts(parts) {
+  const clean = parts.filter(
+    (part) => Array.isArray(part) && part.length >= 2 && lineLengthKm(part) > 0.001,
+  );
+  return bridgeChains(stitchExact(clean));
+}
+
 function identitySeeds(stream) {
   const rows = rawEdgesFor(stream).rows;
   return chooseSeeds(rows).map(({ graph, index }) => String(graph.edges[index].pid));
@@ -262,7 +383,7 @@ function recipeFor(stream, feature) {
     allowedNameTransitions: transitions,
     allowedSharedReachIds: [],
     reviewNote: rebuildIds.has(stream.id)
-      ? 'Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps.'
+      ? 'Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild.'
       : 'Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh.',
   };
 }
@@ -293,12 +414,20 @@ function makeTrace(stream, feature) {
     routes.push({ graph: located.graph, path: sequence, up, down });
   }
   const assembled = assembleRoutes(routes);
-  const before = assembled.parts.reduce((sum, part) => sum + part.length, 0);
-  const parts = assembled.parts.map((part) => roundCoords(dpSimplify(part, simplifyToleranceM), coordinateDecimals));
+  const joined = joinParts(assembled.parts);
+  const existing = feature?.properties ?? {};
+  const walkedKm = joined.lines.reduce((sum, part) => sum + lineLengthKm(part), 0);
+  if (Number(existing.lengthKm) > 0 && walkedKm < Number(existing.lengthKm) * noShrinkFactor) {
+    console.log(
+      `[no-shrink] ${stream.id}: walked ${walkedKm.toFixed(1)} km < committed ${existing.lengthKm} km — rebuild declined, committed geometry kept`,
+    );
+    return { recipe: recipes, feature };
+  }
+  const before = joined.lines.reduce((sum, part) => sum + part.length, 0);
+  const parts = joined.lines.map((part) => roundCoords(dpSimplify(part, simplifyToleranceM), coordinateDecimals));
   const coordinates = parts;
   const allCoords = parts.flat();
   const sourceIds = uniqueSorted(routes.flatMap((route) => route.path.map((index) => String(route.graph.edges[index].pid))));
-  const existing = feature?.properties ?? {};
   const labelPart = parts.slice().sort((a, b) => b.length - a.length)[0] ?? [];
   const labelAnchor = labelPart[Math.floor(labelPart.length / 2)] ?? existing.labelAnchor ?? allCoords[0];
   const trace = {
@@ -311,6 +440,7 @@ function makeTrace(stream, feature) {
     vaaUsed: routes.some((route) => hasUsableVaa(route.graph)),
     toleranceM: 12,
     ordinaryWeldMaxM: Number(assembled.maxWeldM.toFixed(3)),
+    bridgedSegments: joined.bridges,
     routeReasons: routes.map((route) => ({ hu8: route.graph.meta.hu8, up: route.up.reason, down: route.down.reason })),
     routes: routes.map((route) => ({
       hu8: route.graph.meta.hu8,
@@ -345,6 +475,8 @@ function makeTrace(stream, feature) {
       vertexCountAfter: allCoords.length,
     },
   };
+  if (joined.bridges > 0) properties.bridgedSegments = joined.bridges;
+  else delete properties.bridgedSegments;
   return {
     recipe: recipes,
     feature: {
@@ -378,6 +510,25 @@ for (const feature of atlas.features) {
   feature.properties.nhdPermanentIds ??= [];
   feature.properties.nhdPlusIds ??= uniqueSorted((feature.properties.sourceIds ?? []).map(String).filter((id) => !byPid.has(id)));
   if (rawIds.length && !feature.properties.nhdPermanentIds.length) feature.properties.nhdPermanentIds = rawIds;
+  if (feature.geometry.type === 'MultiLineString' && feature.geometry.coordinates.length > 1) {
+    const beforeParts = feature.geometry.coordinates;
+    const joined = joinParts(beforeParts);
+    if (joined.bridges > 0 || joined.lines.length !== beforeParts.length) {
+      feature.geometry.coordinates = joined.lines;
+      const allCoords = joined.lines.flat();
+      const labelPart = joined.lines.slice().sort((a, b) => b.length - a.length)[0] ?? [];
+      if (labelPart.length) {
+        feature.properties.labelAnchor = labelPart[Math.floor(labelPart.length / 2)].map((value) => Number(value.toFixed(5)));
+      }
+      feature.properties.bounds = bboxOf(allCoords);
+      feature.properties.lengthKm = Number(joined.lines.reduce((sum, part) => sum + lineLengthKm(part), 0).toFixed(2));
+      feature.properties.partCount = joined.lines.length;
+      feature.properties.vertexCount = allCoords.length;
+      if (joined.bridges > 0) feature.properties.bridgedSegments = joined.bridges;
+      else delete feature.properties.bridgedSegments;
+      console.log(`[join] ${id}: ${beforeParts.length} parts -> ${joined.lines.length} (+${joined.bridges} bridges)`);
+    }
+  }
 }
 
 for (const [id, feature] of builtFeatures) {
@@ -396,6 +547,9 @@ const recipeDocument = {
     direction: 'downstream graph edge orientation; upstream/downstream boundary stops are explicit per record',
     ordinaryWeldMaxM: ordinaryWeldLimitM,
     syntheticConnectors: false,
+    bridgeMaxKm,
+    bridges: 'flagged straight connectors between remaining open ends, counted in properties.bridgedSegments and trace.bridgedSegments',
+    noShrinkGuard: `rebuild declined when walked length < ${noShrinkFactor} x committed lengthKm`,
   },
   traces: recipes,
 };

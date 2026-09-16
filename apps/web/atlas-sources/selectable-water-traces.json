@@ -6,7 +6,10 @@
     "identity": "packages/content/streams/tn/*.yaml hydroIdentity",
     "direction": "downstream graph edge orientation; upstream/downstream boundary stops are explicit per record",
     "ordinaryWeldMaxM": 15,
-    "syntheticConnectors": false
+    "syntheticConnectors": false,
+    "bridgeMaxKm": 30,
+    "bridges": "flagged straight connectors between remaining open ends, counted in properties.bridgedSegments and trace.bridgedSegments",
+    "noShrinkGuard": "rebuild declined when walked length < 0.9 x committed lengthKm"
   },
   "traces": [
     {
@@ -43,7 +46,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "big-bigby-creek",
@@ -54,7 +57,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "big-rock-creek",
@@ -78,7 +81,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "big-sewee-creek",
@@ -89,7 +92,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "big-soddy-creek",
@@ -102,7 +105,7 @@
         "Soddy Creek"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "big-swan-creek",
@@ -113,7 +116,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "blackburn-fork",
@@ -124,7 +127,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "boiling-fork-creek",
@@ -169,7 +172,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "brush-creek-cocke",
@@ -213,7 +216,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "calfkiller-river",
@@ -235,7 +238,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "cane-creek",
@@ -246,7 +249,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "cane-creek-hickman-perry",
@@ -257,7 +260,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "caney-fork-river",
@@ -302,7 +305,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "citico-creek",
@@ -367,7 +370,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "cosby-creek",
@@ -389,7 +392,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "cumberland-river",
@@ -479,7 +482,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "east-fork-obey-river",
@@ -490,7 +493,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "east-fork-shoal-creek",
@@ -560,7 +563,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "fletchers-fork",
@@ -596,7 +599,7 @@
         "Lower Forked Deer River"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "french-broad-river",
@@ -804,7 +807,7 @@
         "Little Chucky Creek"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "little-harpeth-river",
@@ -815,7 +818,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "little-pigeon-river",
@@ -884,7 +887,7 @@
         "Loosahatchie River Canal"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "mccutcheon-creek",
@@ -907,7 +910,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "middle-fork-obion-river",
@@ -920,7 +923,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "middle-prong-little-pigeon",
@@ -998,7 +1001,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "north-chickamauga-creek",
@@ -1020,7 +1023,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "north-fork-holston-river",
@@ -1044,7 +1047,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "north-mouse-creek",
@@ -1055,7 +1058,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "north-prong-barren-fork",
@@ -1101,7 +1104,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "ocoee-river",
@@ -1123,7 +1126,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "paint-creek-greene",
@@ -1136,7 +1139,7 @@
         "Paint Creek"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "parksville-tailwater",
@@ -1183,7 +1186,7 @@
         "Piney River"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "piney-river-rhea",
@@ -1264,7 +1267,7 @@
         "Richland Creek"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "roaring-fork",
@@ -1286,7 +1289,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "rocky-river",
@@ -1308,7 +1311,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "sale-creek",
@@ -1319,7 +1322,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "salt-lick-creek",
@@ -1376,7 +1379,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "south-fork-cumberland",
@@ -1399,7 +1402,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "south-fork-obion-river",
@@ -1410,7 +1413,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "south-holston-river",
@@ -1433,7 +1436,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "spring-creek-polk",
@@ -1602,7 +1605,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "west-fork-stones-river",
@@ -1624,7 +1627,7 @@
       "downstreamBoundary": "mouth",
       "allowedNameTransitions": [],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
       "id": "west-prong-little-pigeon",
@@ -1681,7 +1684,7 @@
         "Yellow Creek"
       ],
       "allowedSharedReachIds": [],
-      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; disconnected NHD components remain visible gaps."
+      "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     }
   ]
 }
