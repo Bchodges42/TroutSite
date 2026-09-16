@@ -75,6 +75,15 @@ function mixHex(a: string, b: string, ratio: number): string {
  *   derivatives (hillshade raster + contour band lines) beneath all river
  *   layers. RiverMapPage only selects it after the manifest probe succeeds.
  */
+// Zoom-reveal tiers (2026-09-15): catalog waters ride an authored tier —
+// 0 featured/statewide (always visible), 1 standard/regional, 2
+// reference/local. The reveal is driven through the `hidden` feature-state
+// (TennesseeMap recomputes it on zoomend) rather than a paint expression —
+// a zoom interpolate nested inside a case is ILLEGAL style-spec and fails
+// the whole style load. Selection always reveals: a tapped or deep-linked
+// water is never hidden from the person who asked for it.
+export const TIER_REVEAL_ZOOM = { regional: 7.6, local: 9.4 } as const;
+
 export function atlasStyle(
   variant: BasemapVariant = 'ink',
   palette?: MapPalette,
