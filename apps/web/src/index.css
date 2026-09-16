@@ -1376,6 +1376,27 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   color: var(--ui-text);
   white-space: nowrap;
 }
+/* Subordinate label (feat/map-prominence): a featured anchor the trout-mode
+   policy can't verify — the major reservoirs — keeps its NAME but styles
+   below the trout story: dim, small, quiet. Selection restores full
+   prominence (the .selected rules below win over this block). */
+.river-map-label.subordinate {
+  min-height: 24px;
+  padding: 3px 7px;
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--ui-border) 80%, transparent);
+  background: color-mix(in srgb, var(--ui-surface) 80%, transparent);
+  box-shadow: none;
+  font-size: 11px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--ui-text) 68%, transparent);
+  opacity: 0.82;
+}
+.river-map-label.subordinate::before {
+  width: 5px;
+  height: 5px;
+  opacity: 0.7;
+}
 .river-map-label.selected {
   background: var(--ui-accent);
   color: var(--ui-onAccent);

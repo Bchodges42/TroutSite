@@ -14,7 +14,7 @@ import { NETWORK_LAYER_PREFIX, initNetworkClusters } from './networkClusters';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
-import { labelSpeciesNote, shouldShowLabel } from './labelPolicy';
+import { labelDecision, labelSpeciesNote } from './labelPolicy';
 import {
   buildFlowArrowSource,
   EMPTY_FLOW_SOURCE,
@@ -1052,25 +1052,25 @@ export function TennesseeMap(props: Props) {
           (assessed ? '' : ' · ' + unassessedWord) +
           (offseason ? ' · no trout now' : '');
         const point = map.project(river.anchor as [number, number]);
-        // Visibility: the waterDecision filter pass (visibleIds) plus the
-        // pure mode-aware prominence gate. Selected/assessed trout always
-        // compete; major trout waters keep their statewide name; everything
-        // else waits for the zoom gates.
-        const visible =
-          (!p.visibleIds || p.visibleIds.has(river.id)) &&
-          shouldShowLabel(
-            { id: river.id, species, display },
-            {
-              mode: p.speciesMode ?? 'all',
-              troutIds,
-              extent,
-              zoom: z,
-              labelMinZoom: river.labelMinZoom,
-              selected,
-              assessed,
-              seasonalAbsent: p.seasonalAbsentIds?.has(river.id),
-            },
-          );
+        // Visibility + prominence: the waterDecision filter pass (visibleIds)
+        // plus the pure mode-aware gate. Selected/assessed trout compete at
+        // full title; major trout waters keep their statewide name; featured
+        // anchors the catalog can't verify as trout wear a SUBORDINATE name
+        // (dim — never a trout claim); everything else waits for zoom gates.
+        const verdict = labelDecision(
+          { id: river.id, species, display },
+          {
+            mode: p.speciesMode ?? 'all',
+            troutIds,
+            extent,
+            zoom: z,
+            labelMinZoom: river.labelMinZoom,
+            selected,
+            assessed,
+            seasonalAbsent: p.seasonalAbsentIds?.has(river.id),
+          },
+        );
+        const visible = (!p.visibleIds || p.visibleIds.has(river.id)) && verdict !== 'hidden';
         // Rectangle collision on the actual label box — the same AABB test the
         // places pass below already runs against these labels, not a fixed
         // point box.
@@ -1097,6 +1097,7 @@ export function TennesseeMap(props: Props) {
         el.setAttribute('aria-pressed', String(selected));
         el.style.display = show ? 'flex' : 'none';
         el.classList.toggle('selected', selected);
+        el.classList.toggle('subordinate', verdict === 'subordinate' && !selected);
         el.style.setProperty(
           '--marker-color',
           p.featureColors.get(river.id) ?? palette.current.noData,

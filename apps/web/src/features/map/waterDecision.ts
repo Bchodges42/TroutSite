@@ -55,6 +55,16 @@ export type WaterDecisionView = {
 export type SpeciesMode = 'trout' | 'all';
 
 /**
+ * Candidate-B visibility rule (feat/map-prominence decision package): when the
+ * owner picks the "geographic anchors" featured set, featured plain-warmwater
+ * waters (Tennessee River, Mississippi River) stay VISIBLE as dim, subordinate
+ * context in trout mode instead of being excluded by the 2026-09-07 campaign
+ * rule. Default off = candidate A behavior (plain warmwater excluded). Their
+ * labels style subordinate via labelPolicy — they never read as trout.
+ */
+export const FEATURED_WARMWATER_CONTEXT = false;
+
+/**
  * COMPATIBILITY ADAPTER — current catalog data → WaterDecisionView.
  *
  * Mapping (current data only):
@@ -121,7 +131,8 @@ export function toWaterDecisionView(
   const visibility: WaterDecisionView['visibility'] =
     mode === 'trout'
       ? warmwater
-        ? feature.stream.stockingProgram
+        ? feature.stream.stockingProgram ||
+          (FEATURED_WARMWATER_CONTEXT && feature.stream.display === 'featured')
           ? 'deemphasize'
           : 'exclude'
         : troutApplicability === 'seasonal-likely-absent'
