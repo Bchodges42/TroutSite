@@ -45,14 +45,21 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03570525/
     retrieved: 2026-09-13
 notes: >-
-  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles
-  through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;
-  below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA
-  lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban
-  Chattanooga reach above it. Verify TVA release schedules before paddling the gorge.
-  TWRA's Nickajack Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles through
+  Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake; below the dam the
+  main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA lists the reservoir at about
+  10,700 acres — a scenic gorge reach below the dam and a wide, urban Chattanooga reach above it. Verify TVA
+  release schedules before paddling the gorge. TWRA's Nickajack Reservoir page lists the fishery as largemouth
+  bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
 
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not
+  a scored input.
+
+
+  Regulations: black bass 5/day in combination; largemouth 15-in min; smallmouth/spotted/Alabama no minimum,
+  only one over 16 in/day; crappie 15/day 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid
+  2/day 15-in min; white bass 15/day; walleye 5/day 16-in; (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03570525
     url: https://waterdata.usgs.gov/monitoring-location/03570525/

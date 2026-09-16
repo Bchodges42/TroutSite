@@ -42,13 +42,18 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Obey River
-  reservoir at the Kentucky line in Clay, Pickett, and Overton counties. TWRA stocks brown
-  trout here each spring (put-grow-take). Detailed
-  angler notes are still being prepared — check TWRA and local access areas in the
-  meantime.
-  TWRA's Dale Hollow Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
-  Live TWRA stocking composition lists rainbow trout; the repository snapshot says brown trout, so the composition remains an owner-review conflict as of 2026-09-14.
+  Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line
+  in Clay, Pickett, and Overton counties. TWRA stocks brown trout here each spring (put-grow-take). Detailed
+  angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Dale
+  Hollow Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie,
+  bluegill, catfish (see officialSources). Live TWRA stocking composition lists rainbow trout; the repository
+  snapshot says brown trout, so the composition remains an owner-review conflict as of 2026-09-14.
+
+
+  Regulations: smallmouth 2/day, 16–21 in protected length limit (Wolf River upstream to South Ford Rd
+  bridge); largemouth 15-in min; black bass 5/day combined, max 2 smallmouth; crappie 15/day, 10-in min;
+  walleye 5/day, 16-in min; muskellunge 1/day, 50-in min; (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

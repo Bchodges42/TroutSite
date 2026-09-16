@@ -14,14 +14,19 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Acid-buffered plateau freestone and a recognized smallmouth run. Coal-country history means check
-  local access notices; flows are rain-driven. It runs its full named length (Scott/Anderson counties) down to
-  the Clear Fork confluence country.
+  Acid-buffered plateau freestone and a recognized smallmouth run. Coal-country history means check local
+  access notices; flows are rain-driven. It runs its full named length (Scott/Anderson counties) down to the
+  Clear Fork confluence country.
 
 
   Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
   Agency sources document a warmwater smallmouth fishery (Jul 2026 max 27.4 °C at 03408500); no TWRA trout
   program. (retrieved 2026-09-14).
+
+
+  Regulations: Statewide black bass rules apply (5 black bass/day any combination, no minimum length); no New
+  River/Clear Fork exception exists on TWRA's exceptions page (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03408500
     url: https://waterdata.usgs.gov/monitoring-location/03408500/

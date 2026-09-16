@@ -5,7 +5,7 @@ waterbodyType: tailrace
 display: featured
 regionId: tn-east-holston
 gaugeIds:
-  - "tva:SHDT1"
+  - tva:SHDT1
 stockingProgram: true
 species: trout
 fishery: tailwater
@@ -15,15 +15,26 @@ idealFlow:
     max: 2500
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [3, 4, 5, 6, 7, 8, 9 ]
+seasonMonths:
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
 seasonKind: programmatic
 notes: >-
-  A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest
-  tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans
-  typical one- to two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs
-  — always check the TVA release schedule first. The tailwater runs from South Holston Dam down to
-  the Boone Lake arm head.
+  A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest tailwaters:
+  dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans typical one- to
+  two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs — always check the
+  TVA release schedule first. The tailwater runs from South Holston Dam down to the Boone Lake arm head.
 
+
+  Regulations: "South Holston Dam to Boone, including Boone Reservoir upstream to the Hwy 11E Bridge": 16–22
+  in PLR on all trout; 7-trout creel, only 1 over 22 in; closed to ALL fishing Nov 1–Jan 31 (Hickory Tree
+  Bridge upstream to Bottom Creek confluence; (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels

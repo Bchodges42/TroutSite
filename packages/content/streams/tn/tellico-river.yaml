@@ -15,9 +15,16 @@ idealFlow:
     max: 400
     unit: cfs
 idealFlowSource: editorial
-notes: Heavy TWRA stocking in the Tellico Plains corridor (stocked roughly February–December) plus a delayed-harvest
-  catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters.
+notes: >-
+  Heavy TWRA stocking in the Tellico Plains corridor (stocked roughly February–December) plus a
+  delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters.
   Rain-flashy mountain river — check the gauge.
+
+
+  Regulations: DELAYED HARVEST — "Tellico River: Mouth of North River upstream to the Tennessee - North
+  Carolina state line"; catch-and-release Oct 1 - Feb 28 (harvest/possession of trout prohibited; only
+  artificial lures permitted; use or possession of bait prohibited) (retrieved 2026-09-14; verify current
+  rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03518500
     url: https://waterdata.usgs.gov/monitoring-location/03518500/

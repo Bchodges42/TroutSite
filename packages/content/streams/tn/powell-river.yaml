@@ -15,11 +15,15 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout
-  in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA
-  line down to the Norris Lake arm.
-  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
+  A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in
+  its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA line down
+  to the Norris Lake arm. TWRA's statewide regulation exceptions set a smallmouth bass rule on this water:
+  13–17 in protected length range, one over 17 in per day. (see officialSources).
 
+
+  Regulations: Powell River "Gap Creek confluence upstream to the state line" — Black Bass 5/day in
+  combination; Smallmouth 13–17 in PLR, only one smallmouth over 17 in/day (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03532000
     url: https://waterdata.usgs.gov/monitoring-location/03532000/

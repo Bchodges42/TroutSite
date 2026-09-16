@@ -5,7 +5,7 @@ waterbodyType: tailrace
 display: featured
 regionId: tn-east-clinch
 gaugeIds:
-  - "tva:NRST1"
+  - tva:NRST1
 stockingProgram: true
 species: trout
 fishery: tailwater
@@ -15,14 +15,23 @@ idealFlow:
     max: 1500
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [3, 4, 5, 6, 7, 8 ]
+seasonMonths:
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
 seasonKind: programmatic
 notes: >-
-  One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below
-  Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is
-  the wade-window truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake down to
-  the Clinch mouth at Kingston / Watts Bar Lake.
+  One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below Norris Dam,
+  and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is the wade-window
+  truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake down to the Clinch mouth at
+  Kingston / Watts Bar Lake.
 
+
+  Regulations: Norris Dam downstream to Hwy 61 bridge (incl. tributaries): 14–20 in PLR on all trout; 7-trout
+  creel, only 1 over 20 in (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels

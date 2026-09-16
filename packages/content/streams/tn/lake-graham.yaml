@@ -15,7 +15,12 @@ targetSpecies:
   - crappie
   - bluegill
   - channel-catfish
-seasonMonths: [11, 12, 1, 2, 3 ]
+seasonMonths:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
 seasonKind: programmatic
 speciesEvidence:
   - species: largemouth-bass
@@ -35,10 +40,15 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in
-  the cold months only — the fish do not hold over summer. Check the TWRA schedule for the
-  current winter window before you go.
-  TWRA's Lake Graham page lists the fishery as largemouth bass, crappie, bluegill, catfish (see officialSources).
+  TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in the cold months
+  only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you
+  go. TWRA's Lake Graham page lists the fishery as largemouth bass, crappie, bluegill, catfish (see
+  officialSources).
+
+
+  Regulations: largemouth no creel/length limit but only one fish >18 in may be kept per day; bluegill none;
+  redear 20/day; crappie (all) none; blue + channel catfish 5/day combined; trout 7/day no length limit;
+  statewide rules otherwise (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

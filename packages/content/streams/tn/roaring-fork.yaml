@@ -14,9 +14,13 @@ idealFlow:
     max: 80
     unit: cfs
 idealFlowSource: editorial
-notes: Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and
-  brook trout, with TWRA listing spring stocking for the Roaring Fork area. No gauge; treat
-  flows as rain events.
+notes: >-
+  Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and brook trout, with
+  TWRA listing spring stocking for the Roaring Fork area. No gauge; treat flows as rain events.
+
+
+  Regulations: park-wide NPS rules — 5 fish combo, 7 in min trout/bass, single-hook artificials only, no
+  bait/scent, year-round (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm

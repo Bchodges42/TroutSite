@@ -14,7 +14,12 @@ idealFlow:
     max: 30
     unit: cfs
 idealFlowSource: editorial
-notes: Small TWRA spring-stocked tributary near the NC line in Cocke County.
+notes: >-
+  Small TWRA spring-stocked tributary near the NC line in Cocke County.
+
+
+  Regulations: statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions entry
+  (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

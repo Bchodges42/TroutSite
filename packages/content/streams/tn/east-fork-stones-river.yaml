@@ -14,8 +14,13 @@ idealFlow:
     max: 400
     unit: cfs
 idealFlowSource: editorial
-notes: The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset
+notes: >-
+  The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset
   lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.
+
+
+  Regulations: Trout — statewide 7/day any combination, no minimum length, no closed season on this water
+  (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03427500
     url: https://waterdata.usgs.gov/monitoring-location/03427500/

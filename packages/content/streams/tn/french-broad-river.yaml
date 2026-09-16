@@ -13,15 +13,19 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Warmwater river below Douglas Dam — smallmouth and crappie country. Flow is TVA-scheduled; verify releases. The river enters
-  from North Carolina and runs through Douglas Lake down to the Holston confluence. TWRA's statewide
-  regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17 in
-  protected length range upstream. (see officialSources).
+  Warmwater river below Douglas Dam — smallmouth and crappie country. Flow is TVA-scheduled; verify releases.
+  The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence. TWRA's
+  statewide regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17
+  in protected length range upstream. (see officialSources).
 
 
   Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — The
   Tennessee reach below Douglas Dam is a warmwater smallmouth/crappie fishery; TWRA stocks no trout row; trout
   mentions belong to the NC headwaters. (retrieved 2026-09-14).
+
+
+  Regulations: Smallmouth 5/day, 18-in minimum (Hwy 168 to Douglas Dam); statewide bass/crappie/catfish rules
+  otherwise (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03468510/

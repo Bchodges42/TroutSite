@@ -14,9 +14,16 @@ idealFlow:
     max: 150
     unit: cfs
 idealFlowSource: editorial
-notes: Cherokee National Forest creek with TWRA stocking roughly February–July (the Forest Service's
+notes: >-
+  Cherokee National Forest creek with TWRA stocking roughly February–July (the Forest Service's
   catchable-rainbow window upstream of Little Citico runs March 15–September 15) and wild brown, rainbow, and
   brook trout in the tributaries. Remote, brushy, rain-flashy.
+
+
+  Regulations: Tellico-Citico Permit Area "from Little Citico Creek confluence upstream to the North/South
+  Fork junction": permit required Mar 1–Aug 15; closed Thu & Fri (holidays excepted); creel 7 trout, no size
+  limit; one rod; sunrise–sunset fishing only (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

@@ -31,14 +31,17 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03564500/
     retrieved: 2026-09-13
 notes: >-
-  Ocoee River impoundment (TVA Ocoee Dam No. 1, "Parksville Dam") in Polk
-  County southeast of Benton; the dam sits at the pool's west edge. Receives
-  the upper Ocoee River (ocoee-river) below Ocoee Number Three Lake and
-  discharges through the dam into the Parksville tailwater
-  (parksville-tailwater), which joins the Hiwassee River. TWRA lists the same
-  pool as "Ocoee Lake" (2,112 ac). Aliases: Ocoee Lake, Ocoee Lake No. 1,
-  Parksville Reservoir.
-  TWRA's Parksville Reservoir page lists the fishery as largemouth bass, spotted bass, crappie, bluegill (see officialSources).
+  Ocoee River impoundment (TVA Ocoee Dam No. 1, "Parksville Dam") in Polk County southeast of Benton; the dam
+  sits at the pool's west edge. Receives the upper Ocoee River (ocoee-river) below Ocoee Number Three Lake and
+  discharges through the dam into the Parksville tailwater (parksville-tailwater), which joins the Hiwassee
+  River. TWRA lists the same pool as "Ocoee Lake" (2,112 ac). Aliases: Ocoee Lake, Ocoee Lake No. 1,
+  Parksville Reservoir. TWRA's Parksville Reservoir page lists the fishery as largemouth bass, spotted bass,
+  crappie, bluegill (see officialSources).
+
+
+  Regulations: LMB 5/day 15-in min; smallmouth/spotted/Alabama bass no creel or length limit; no live
+  transport of black bass away from reservoir; crappie 15/day combo 10-in; muskie 1/day 36-in; catfish 34-in
+  rule; trout 7/day no length limit; (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03564500
     url: https://waterdata.usgs.gov/monitoring-location/03564500/

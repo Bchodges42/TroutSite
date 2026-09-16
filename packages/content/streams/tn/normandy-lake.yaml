@@ -41,10 +41,15 @@ speciesEvidence:
     url: https://www.tva.com/environment/lake-levels
     retrieved: 2026-09-13
 notes: >-
-  TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater
-  catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of
-  it.
-  TWRA's Normandy Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater catalog
+  reach begins at the dam; this reservoir is the water the Duck backs up into upstream of it. TWRA's Normandy
+  Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill,
+  catfish (see officialSources).
+
+
+  Regulations: Largemouth 15-in min; smallmouth 18-in min; 5 black bass/day combined; spotted no limit;
+  crappie 15/day 10-in min; walleye 5/day 16-in min; catfish unlimited ≤34 in with 1 fish/day over 34 in;
+  white bass 15/day; jug/noodle rules (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TVA — Normandy Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels

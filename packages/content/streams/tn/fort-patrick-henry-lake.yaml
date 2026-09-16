@@ -59,6 +59,12 @@ notes: >-
   Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
   2026-09-14) — TMP nine-trout-reservoir list ("Region IV, Fort Patrick Henry — Brown and Rainbow"); stocking
   months unpinned.
+
+
+  Regulations: reservoir table (statewide otherwise): LM 5/day no length, SM 15-in min; spotted 15/day;
+  crappie 15/day 10-in; catfish ≤34-in unlimited, one >34-in/day; striped/hybrid 2/day 15-in; walleye 5/day
+  18-in. Trout: statewide 7/day, no length limit; (retrieved 2026-09-14; verify current rules with TWRA before
+  you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03487010 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03487010/

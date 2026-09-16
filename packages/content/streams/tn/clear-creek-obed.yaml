@@ -14,13 +14,17 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  The famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at Lilly Bridge is
-  the go/no-go read.
+  The famous Lilly Bridge gorge in the Obed Wild & Scenic River. Gauge at Lilly Bridge is the go/no-go read.
 
 
   Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
   Obed-system creek; warmwater fish community, zero salmonids in NPS records, summer temps ~30 °C. (retrieved
   2026-09-14).
+
+
+  Regulations: Obed WSR park waters — current TN fishing license + rod and reel (NPS); statewide TWRA trout
+  rules (7/day, no length limit) outside park; (retrieved 2026-09-14; verify current rules with TWRA before
+  you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03539778
     url: https://waterdata.usgs.gov/monitoring-location/03539778/

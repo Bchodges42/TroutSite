@@ -9,12 +9,17 @@ gaugeIds:
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf
-  through Fayette and Shelby counties; a different water from the Fentress County
-  headwaters of the same name. USGS 07031650 provides flow and stage context for the western
-  reach. Detailed angler notes are still being prepared — check
-  TWRA and local access areas in the meantime.
-  TWRA's statewide regulation exceptions include this river in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+  Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf through Fayette and
+  Shelby counties; a different water from the Fentress County headwaters of the same name. USGS 07031650
+  provides flow and stage context for the western reach. Detailed angler notes are still being prepared —
+  check TWRA and local access areas in the meantime. TWRA's statewide regulation exceptions include this river
+  in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+
+
+  Regulations: Crappie 30/day, no length limit (Wolf River incl. tributaries, west TN); statewide defaults
+  apply otherwise — black bass 5/day any combination no min length, only 1 catfish over 34 in per day, trout
+  7/day all species combined no size limit (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: USGS Water Data — monitoring location 07031650
     url: https://waterdata.usgs.gov/monitoring-location/07031650/

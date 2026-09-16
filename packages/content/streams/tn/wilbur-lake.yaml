@@ -17,6 +17,10 @@ notes: >-
   Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
   2026-09-14) — TMP trout reservoir; "Watauga Dam, Wilbur Reservoir — Rainbow — March through July" schedule
   row (wave-1 dispute resolved).
+
+
+  Regulations: Statewide Regulations per the schedule row — 7 trout/day any combination, no minimum length
+  limit, only 2 may be Lake Trout (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03484000 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03484000/

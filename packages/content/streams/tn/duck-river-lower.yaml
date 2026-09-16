@@ -39,10 +39,18 @@ speciesEvidence:
     kind: agency
     url: https://waterdata.usgs.gov/monitoring-location/03597860/
     retrieved: 2026-09-13
-notes: Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources).
-  reaches seasonally. The 03597860 stage reading is currently anomalous (10.11 ft versus 2.60 ft
-  at neighboring 03598000); treat it as a datum/sensor question, not absolute water level.
-  Conservative flag; verify current TWRA stocking before planning a trout trip here.
+notes: >-
+  Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River
+  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources).
+  reaches seasonally. The 03597860 stage reading is currently anomalous (10.11 ft versus 2.60 ft at
+  neighboring 03598000); treat it as a datum/sensor question, not absolute water level. Conservative flag;
+  verify current TWRA stocking before planning a trout trip here.
+
+
+  Regulations: Black bass (LMB/SMB/spotted combined) 5/day, no length limits; Rock Bass 20/day; Catfish one
+  >34"/day, unlimited below 34"; trout 7/day where stocked (tailwater reach only); wading on private
+  banks/bottom is trespassing (floating legal) (retrieved 2026-09-14; verify current rules with TWRA before
+  you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03597860
     url: https://waterdata.usgs.gov/monitoring-location/03597860/

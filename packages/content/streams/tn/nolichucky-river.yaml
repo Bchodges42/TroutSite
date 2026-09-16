@@ -13,11 +13,16 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking
-  dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the
-  Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence.
-  TWRA's statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
+  Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset
+  does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge
+  matters. It runs from the NC line to its Douglas Lake confluence. TWRA's statewide regulation exceptions set
+  a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see
+  officialSources).
 
+
+  Regulations: Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day ("ENKA Dam
+  upstream to the state line includes Davy Crockett Lake"); lower reach under Douglas Reservoir rules to ENKA
+  Dam (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03465500
     url: https://waterdata.usgs.gov/monitoring-location/03465500/

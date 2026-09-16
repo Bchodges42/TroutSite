@@ -51,6 +51,12 @@ notes: >-
 
   Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA annually stocks trout in the
   reservoir (lake + lake trout named); stocking months unpinned — left unset.
+
+
+  Regulations: trout 7/day, only 2 may be Lake Trout; largemouth no length limit; smallmouth 15-in min;
+  spotted no creel/length; crappie 15/day 10-in; walleye 5/day 18-in (incl. tributaries); white bass no
+  harvest; catfish 20/day with 34-in rule; (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: USGS Water Data — monitoring location 03476500 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03476500/

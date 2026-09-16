@@ -14,13 +14,18 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Gorge water in the Obed system. Check the Hebbertsburg gauge —
-  it moves quickly after storms. It runs its full named length to the Obed confluence.
+  Gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms. It runs its
+  full named length to the Obed confluence.
 
 
   Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
   Obed-system creek; warmwater (TWRA stocks musky here; smallmouth mercury advisory); zero salmonids in NPS
   records. (retrieved 2026-09-14).
+
+
+  Regulations: Obed WSR park waters — current TN fishing license + rod and reel (NPS); statewide TWRA trout
+  rules (7/day, no length) outside park; not on TWRA Wild Trout Streams list (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03539600
     url: https://waterdata.usgs.gov/monitoring-location/03539600/

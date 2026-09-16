@@ -14,8 +14,14 @@ idealFlow:
     max: 50
     unit: cfs
 idealFlowSource: editorial
-notes: A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows track
-  rain and groundwater closely.
+notes: >-
+  A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows track rain
+  and groundwater closely.
+
+
+  Regulations: statewide trout — 7/day, no size limit; Mossy Creek (Jefferson) is NOT on the wild-trout named
+  list and has no exceptions entry [QC: the cited regs pages carry no 'Community Lakes 5-fish' clause; that
+  parenthetical claim was withdrawn] (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

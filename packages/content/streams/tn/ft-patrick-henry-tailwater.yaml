@@ -5,7 +5,7 @@ waterbodyType: tailrace
 display: featured
 regionId: tn-east-holston
 gaugeIds:
-  - "tva:FPHT1"
+  - tva:FPHT1
 stockingProgram: true
 species: trout
 fishery: tailwater
@@ -15,13 +15,19 @@ idealFlow:
     max: 800
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [3, 4 ]
+seasonMonths:
+  - 3
+  - 4
 seasonKind: programmatic
 notes: >-
-  Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked
-  rainbow and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the
-  Kingsport confluence, where the Holston main stem forms.
+  Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked rainbow
+  and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the Kingsport
+  confluence, where the Holston main stem forms.
 
+
+  Regulations: "Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive": 16–22 in PLR for rainbow
+  and brown; 7-trout creel (all species combined), only 1 over 22 in (TWRA Fort Patrick Henry where-to-fish
+  page repeats this rule verbatim) (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
