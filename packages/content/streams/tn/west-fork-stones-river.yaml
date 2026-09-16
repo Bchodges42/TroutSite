@@ -15,8 +15,14 @@ idealFlow:
     max: 250
     unit: cfs
 idealFlowSource: editorial
-notes: Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting,
-  December–February. Gauge at Murfreesboro.
+notes: >-
+  Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting, December–February.
+  Gauge at Murfreesboro.
+
+
+  Regulations: statewide trout (7/day, no min) at the stocked site; warmwater statewide — black bass 5/day no
+  min; crappie 15/day 10-in (Region 2 default); catfish only 1 over 34 in/day. (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03428200
     url: https://waterdata.usgs.gov/monitoring-location/03428200/
@@ -24,3 +30,9 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+seasonMonths:
+  - 12
+  - 1
+  - 2
+  - 3
+seasonKind: programmatic

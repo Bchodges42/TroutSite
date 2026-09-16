@@ -38,13 +38,16 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing.html
     retrieved: 2026-09-13
 notes: >-
-  Small reservoir on the Little Tennessee River along the North Carolina line
-  in Blount County, impounded by Calderwood Dam. Receives Little Tennessee
-  flow from Fontana Lake (NC) and discharges into Chilhowee Lake. TWRA stocks the
-  reservoir with rainbow trout in November and December. TWRA lists
-  this pool as "Little Calderwood Reservoir" (458 ac) — that name is an alias
-  here.
-  TWRA's Calderwood Reservoir page lists the fishery as largemouth bass, smallmouth bass, crappie, bluegill, catfish (see officialSources).
+  Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by
+  Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake.
+  TWRA stocks the reservoir with rainbow trout in November and December. TWRA lists this pool as "Little
+  Calderwood Reservoir" (458 ac) — that name is an alias here. TWRA's Calderwood Reservoir page lists the
+  fishery as largemouth bass, smallmouth bass, crappie, bluegill, catfish (see officialSources).
+
+
+  Regulations: Trout 7/day, no length limit, only 2 may be lake trout; black bass 5/day combined, only 2 under
+  14"; crappie 20/day combined 8" min; white bass 10/day 14" min; sauger 8/day 15" min; muskellunge 1/day 42"
+  min; walleye 8/day no limit; (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html

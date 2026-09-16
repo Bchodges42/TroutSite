@@ -41,11 +41,15 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Caney Fork
-  reservoir east of Smithville across DeKalb, Putnam, White, and Warren counties.
-  Detailed angler notes are still being prepared — check TWRA and local access
-  areas in the meantime.
-  TWRA's Center Hill Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  Reference waterbody from the Tennessee waterways inventory — the Caney Fork reservoir east of Smithville
+  across DeKalb, Putnam, White, and Warren counties. Detailed angler notes are still being prepared — check
+  TWRA and local access areas in the meantime. TWRA's Center Hill Reservoir page lists the fishery as
+  largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+
+
+  Regulations: Black bass 5/day combined; largemouth 15" min; smallmouth 18" min; spotted no limit; crappie
+  15/day combined 10" min; walleye 5/day 16" min; muskellunge 1/day 50" min; paddlefish closed; catfish no
+  creel ≤34", one >34"/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

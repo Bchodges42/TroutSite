@@ -6,7 +6,7 @@ display: standard
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03559500"
-  - "tva:OCBT1"
+  - tva:OCBT1
 stockingProgram: false
 idealFlow:
   - min: 800
@@ -14,11 +14,15 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring.
-  TWRA’s stocking dataset lists the Parksville tailwater below the dam, not this reach — set conservatively.
-  Verify TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three
-  Lake and the No. 3/No. 2 gorge to the Parksville Lake head.
+  TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s
+  stocking dataset lists the Parksville tailwater below the dam, not this reach — set conservatively. Verify
+  TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three Lake and the No.
+  3/No. 2 gorge to the Parksville Lake head.
 
+
+  Regulations: no TWRA regulation-exception entry for the Ocoee; statewide rules apply (trout: "Daily Limit:
+  seven (7)", "Minimum Length Limit: None") (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: USGS Water Data — monitoring location 03559500
     url: https://waterdata.usgs.gov/monitoring-location/03559500/

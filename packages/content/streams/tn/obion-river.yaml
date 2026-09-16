@@ -8,11 +8,14 @@ gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — a west-flowing river
-  through Northwest Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie.
-  Detailed angler notes are still being prepared — check TWRA and local access areas
-  in the meantime.
-  TWRA's statewide regulation exceptions include this river in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+  Reference waterbody from the Tennessee waterways inventory — a west-flowing river through Northwest
+  Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Detailed angler notes are still being
+  prepared — check TWRA and local access areas in the meantime. TWRA's statewide regulation exceptions include
+  this river in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+
+
+  Regulations: Crappie 30 per day, no length limit ("Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf
+  Rivers (includes tributaries)") (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

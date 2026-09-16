@@ -46,15 +46,22 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03533000/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger,
-  and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch
-  River and Powell River (powell-river); the dam releases the Clinch River Norris tailwater
-  (clinch-river) into Melton Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is
-  about 33,840 acres, and the pool outline runs far up the Clinch and Powell arms — expect shorelines
-  and access points to follow the impounded river channels.
-  TWRA's Norris Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne, Grainger, and
+  Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives the Clinch River and
+  Powell River (powell-river); the dam releases the Clinch River Norris tailwater (clinch-river) into Melton
+  Hill Lake. Aliases: Norris Reservoir. TVA's summer-normal full pool is about 33,840 acres, and the pool
+  outline runs far up the Clinch and Powell arms — expect shorelines and access points to follow the impounded
+  river channels. TWRA's Norris Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted
+  bass, crappie, bluegill, catfish, striped bass (see officialSources).
 
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not
+  a scored input.
+
+
+  Regulations: Smallmouth 1/day 18-in min Jun 1–Oct 15 (otherwise 5/day 15-in min, combined with largemouth
+  5/day, largemouth 14-in min); striped bass 2/day 15-in Apr 1–Oct 31, 1/day 36-in Nov 1–Mar 31;
+  walleye/sauger 5/day 15-in from dam upstream to Grissom Island; (retrieved 2026-09-14; verify current rules
+  with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03533000 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03533000/

@@ -46,14 +46,19 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03493510/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Holston River northeast of Knoxville across Grainger,
-  Hamblen, Hawkins, and Jefferson counties, impounded by Cherokee Dam
-  (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the Holston
-  River main stem (holston-river); its dam releases the Holston Cherokee
-  tailwater that runs to Fort Loudoun Lake. TWRA maps the pool at 27,029 ac;
-  TVA at 30,300 ac at full pool.
-  TWRA's Cherokee Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  TVA reservoir on the Holston River northeast of Knoxville across Grainger, Hamblen, Hawkins, and Jefferson
+  counties, impounded by Cherokee Dam (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the
+  Holston River main stem (holston-river); its dam releases the Holston Cherokee tailwater that runs to Fort
+  Loudoun Lake. TWRA maps the pool at 27,029 ac; TVA at 30,300 ac at full pool. TWRA's Cherokee Reservoir page
+  lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped
+  bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
+  temperature/oxygen refuge context is not a scored input.
+
+
+  Regulations: Largemouth/Smallmouth 5/day combined, Largemouth 15-in min; Smallmouth Jun 1–Oct 15 = 1/day
+  18-in min, Oct 16–May 31 = 5/day 15-in min; Spotted/Alabama 15/day no limit; Crappie 15/day 10-in;
+  Striper/hybrid 2/day 15-in; Walleye/Sauger/Saugeye 10/day 15-in; (retrieved 2026-09-14; verify current rules
+  with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03493510
     url: https://waterdata.usgs.gov/monitoring-location/03493510/

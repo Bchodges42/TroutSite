@@ -7,24 +7,27 @@ regionId: tn-cumberland-plateau
 gaugeIds:
   - "03538830"
 stockingProgram: false
-species: trout
-fishery: wild
+species: warmwater
 idealFlow:
   - min: 100
     max: 800
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — self-sustaining
-  rainbow, brown, and brook trout in clean riffles. Flashy plateau watershed: rises fast, drops fast.
-  Stocking flag false by design — verify NPS/TWRA notices. It runs its full named length across the
-  Cumberland Plateau to the Emory confluence. USGS 03538830 is an upstream Obed reach about 20
-  river miles above the Emory junction, so its conditions are representative context rather than
-  a point measurement for every mapped access area.
+  Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — a plateau smallmouth and
+  rock bass river. Flashy plateau watershed: rises fast, drops fast. Stocking flag
+  false by design — verify NPS/TWRA notices. It runs its full named length across the Cumberland Plateau to
+  the Emory confluence. USGS 03538830 is an upstream Obed reach about 20 river miles above the Emory junction,
+  so its conditions are representative context rather than a point measurement for every mapped access area.
 
-  Wild-trout presence is reported locally but remains unverified by agency sources as of 2026-09-14; confirm with TWRA Regions 3/4.
+
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — NPS
+  Obed WSR documents a warmwater fishery (smallmouth/rock bass); no trout program or record; agency temps
+  reached 29.7 °C in Jul 2026. (retrieved 2026-09-14).
 officialSources:
   - label: USGS Water Data — monitoring location 03538830 (upstream reach; provenance)
     url: https://waterdata.usgs.gov/monitoring-location/03538830/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+  - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
+    url: https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm

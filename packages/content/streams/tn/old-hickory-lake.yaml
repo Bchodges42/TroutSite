@@ -45,12 +45,18 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Cumberland River
-  reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale
-  counties. Detailed angler notes are still being prepared — check TWRA and local
-  access areas in the meantime.
-  TWRA's Old Hickory Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir east of
+  Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale counties. Detailed angler notes are still
+  being prepared — check TWRA and local access areas in the meantime. TWRA's Old Hickory Reservoir page lists
+  the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see
+  officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen
+  refuge context is not a scored input.
+
+
+  Regulations: black bass 5/day combined, largemouth 14-in min, smallmouth 18-in min, spotted no limit;
+  crappie 30/day combined 10-in min; striped/hybrid 2/day combined 15-in min; walleye 5/day 16-in; sauger
+  10/day 15-in; paddlefish 2/day Apr 24–May 31, no culling; (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

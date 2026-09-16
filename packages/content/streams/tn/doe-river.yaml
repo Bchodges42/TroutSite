@@ -15,8 +15,14 @@ idealFlow:
     max: 250
     unit: cfs
 idealFlowSource: editorial
-notes: A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks
-  upper and lower sections in spring. Gentle gradient, easy wading, town access.
+notes: >-
+  A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks upper and lower
+  sections in spring. Gentle gradient, easy wading, town access.
+
+
+  Regulations: Delayed harvest: "Doe River: Roan Mountain State Park boundaries. • Catch-and-release season is
+  Oct. 1– Feb 28." General DH rules: harvest/possession prohibited during C&R season, only artificial lures
+  permitted, bait prohibited; (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03485500
     url: https://waterdata.usgs.gov/monitoring-location/03485500/
@@ -24,3 +30,8 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+seasonMonths:
+  - 12
+  - 1
+  - 2
+seasonKind: programmatic

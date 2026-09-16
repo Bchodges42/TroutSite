@@ -40,9 +40,14 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing.html
     retrieved: 2026-09-13
 notes: >-
-  AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and
-  Manchester (Franklin County), open to public fishing.
-  TWRA's Woods Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and Manchester
+  (Franklin County), open to public fishing. TWRA's Woods Reservoir page lists the fishery as largemouth bass,
+  smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+
+
+  Regulations: Black bass 5/day in combination; Smallmouth 18-in min; Largemouth/Spotted no length limit;
+  Crappie 15/day, 10-in min; Catfish no creel ≤34-in (one >34-in/day); White bass 15/day; Rock bass 20/day;
+  Redear 20/day (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html

@@ -45,14 +45,19 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03468510/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the French Broad River east of Knoxville across Cocke,
-  Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS
-  03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad
-  River and the Pigeon River; discharges through the dam into the French Broad
-  tailwater toward the Holston/French Broad confluence. TWRA maps the
-  reservoir at 28,738 ac. Aliases: Douglas Reservoir.
-  TWRA's Douglas Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and Hamblen
+  counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878). Receives the French
+  Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater toward the
+  Holston/French Broad confluence. TWRA maps the reservoir at 28,738 ac. Aliases: Douglas Reservoir. TWRA's
+  Douglas Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie,
+  bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag
+  here; reservoir temperature/oxygen refuge context is not a scored input.
+
+
+  Regulations: black bass 5/day; Oct 1–May 31 no length limit; Jun 1–Sep 30 only one LMB/SMB >16 in/day;
+  crappie 15/day, 10-in min; catfish 1/day >34 in; white/striped/hybrid 15/day; walleye+sauger 5/day combined,
+  walleye 15-in min; muskellunge 1/day 36-in min; (retrieved 2026-09-14; verify current rules with TWRA before
+  you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03468510/

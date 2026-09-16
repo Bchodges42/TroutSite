@@ -5,17 +5,21 @@ waterbodyType: creek
 display: standard
 regionId: tn-east-holston
 gaugeIds: []
-stockingProgram: true
-species: trout
-fishery: stocked
-yearRound: false
+stockingProgram: false
+species: warmwater
 idealFlow:
   - min: 5
     max: 60
     unit: cfs
 idealFlowSource: editorial
-notes: Small Sullivan County creek receiving TWRA spring rainbow stocking. Spring-fed pockets
-  and park access in Kingsport; flows track rain closely.
+notes: >-
+  Small urban Sullivan County creek through Kingsport. Spring-fed pockets and park access in
+  Kingsport; flows track rain closely.
+
+
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — Urban
+  Kingsport creek; warmwater (303(d) listed); zero trout rows in the TWRA 2026 schedule. (retrieved
+  2026-09-14).
 officialSources:
   - label: USGS Water Data — monitoring location 03487602 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03487602/

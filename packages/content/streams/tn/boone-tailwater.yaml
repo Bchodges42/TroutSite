@@ -5,7 +5,7 @@ waterbodyType: tailrace
 display: featured
 regionId: tn-east-holston
 gaugeIds:
-  - "tva:BOOT1"
+  - tva:BOOT1
 stockingProgram: true
 species: trout
 fishery: tailwater
@@ -15,12 +15,19 @@ idealFlow:
     max: 1200
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [12, 3, 4 ]
+seasonMonths:
+  - 12
+  - 3
+  - 4
 seasonKind: programmatic
 notes: >-
   Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and brown trout. Flow
   swings hard with TVA generation; treat the ideal band as a guideline and verify releases.
 
+
+  Regulations: Managed under the Fort Patrick Henry Reservoir rule — "Boone Dam downstream to Louis Milhorn
+  Bridge on Beulah Church Drive": 16–22 in PLR rainbow/brown; 7-trout creel (all species combined), only 1
+  over 22 in (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels

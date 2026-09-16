@@ -45,11 +45,18 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Cumberland River
-  reservoir at the Kentucky line in Stewart and Montgomery counties. Detailed angler
-  notes are still being prepared — check TWRA and local access areas in the meantime.
-  TWRA's Barkley Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir at the Kentucky
+  line in Stewart and Montgomery counties. Detailed angler notes are still being prepared — check TWRA and
+  local access areas in the meantime. TWRA's Barkley Reservoir page lists the fishery as largemouth bass,
+  smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass
+  is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored
+  input.
+
+
+  Regulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum, spotted no limit;
+  crappie 20/day 10-in min (page elsewhere says "thirty in any combination" — internal contradiction,
+  flagged); catfish no creel ≤34 in, one >34 in/day; (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

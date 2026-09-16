@@ -46,11 +46,16 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir
-  near Winchester in Franklin and Moore counties. Detailed angler notes are still being
-  prepared — check TWRA and local access areas in the meantime.
-  TWRA's Tims Ford Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir near Winchester in
+  Franklin and Moore counties. Detailed angler notes are still being prepared — check TWRA and local access
+  areas in the meantime. TWRA's Tims Ford Reservoir page lists the fishery as largemouth bass, smallmouth
+  bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a
+  regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+
+
+  Regulations: Black Bass 5/day combo — Largemouth 15-inch min, Smallmouth 18-inch min, Spotted no limit;
+  Crappie 15/day 10-inch; Catfish — no creel ≤34 in, one >34 in/day; Striped/Hybrid 2/day 15-inch; White Bass
+  15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

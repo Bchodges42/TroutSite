@@ -14,10 +14,20 @@ idealFlow:
     max: 50
     unit: cfs
 idealFlowSource: editorial
-notes: TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows
-  track rain.
+notes: >-
+  TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows track rain.
+
+
+  Regulations: (1) Special: Buffalo Creek and tributaries within the WMA boundary (Grainger County) — from the
+  mill dam upstream closed year-round to all fishing, bait harvest prohibited; (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+seasonMonths:
+  - 12
+  - 1
+  - 2
+seasonKind: programmatic

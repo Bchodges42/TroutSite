@@ -1,0 +1,6367 @@
+{
+  "generated": "2026-09-15",
+  "summary": {
+    "waters": 148,
+    "verdict": {
+      "agree-trout": 93,
+      "CONFLICT strip-candidate": 8,
+      "catalog-unset (fill-gap)": 32,
+      "agree-none": 5,
+      "ledger-unclear": 7,
+      "CONFLICT claim-candidate": 3
+    },
+    "season": {
+      "differ": 16,
+      "match": 9,
+      "both-unset": 63,
+      "catalog-unset (fill-gap)": 59,
+      "ledger-unparsed": 1
+    },
+    "gauges": {
+      "keep": 38,
+      "unwireCandidates": 4,
+      "wireCandidates": 14,
+      "offReachFlagged": 2
+    },
+    "specialRegsWaters": 82
+  },
+  "rows": [
+    {
+      "slug": "boone-tailwater",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4,
+          9,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:BOOT1"
+        ],
+        "ledgerUsgs": [
+          "03487500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Managed under the Fort Patrick Henry Reservoir rule — \"Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive\": 16–22 in PLR ra",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.52313",
+        "lon": "-82.54571"
+      },
+      "catalogName": "Boone Tailwater (South Fork Holston River)"
+    },
+    {
+      "slug": "caney-fork-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03424860"
+        ],
+        "catalogVendor": [
+          "usace:CETT1"
+        ],
+        "ledgerUsgs": [
+          "03424500",
+          "03424860"
+        ],
+        "keep": [
+          "03424860"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Center Hill Dam to Cumberland River: total trout creel 5; Rainbow/Brook/Cutthroat 5/day with 14–20 in PLR, only 1 over 20 in; Brown Trout 1/",
+      "identity": {
+        "county": "DeKalb",
+        "huc8": "05130108",
+        "lat": "36.10450",
+        "lon": "-85.84582"
+      },
+      "catalogName": "Caney Fork River (Center Hill tailwater)"
+    },
+    {
+      "slug": "clinch-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:NRST1"
+        ],
+        "ledgerUsgs": [
+          "03533000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Norris Dam downstream to Hwy 61 bridge (incl. tributaries): 14–20 in PLR on all trout; 7-trout creel, only 1 over 20 in | Source: https://ww",
+      "identity": {
+        "county": "Anderson",
+        "huc8": "06010207",
+        "lat": "36.21563",
+        "lon": "-84.08214"
+      },
+      "catalogName": "Clinch River (Norris tailwater)"
+    },
+    {
+      "slug": "duck-river-tailwater",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03597860"
+        ],
+        "catalogVendor": [
+          "tva:NRMT1"
+        ],
+        "ledgerUsgs": [
+          "03596500",
+          "03597860"
+        ],
+        "keep": [
+          "03597860"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Bedford",
+        "huc8": "06040002",
+        "lat": "35.45730",
+        "lon": "-86.25694"
+      },
+      "catalogName": "Duck River (Normandy tailwater)"
+    },
+    {
+      "slug": "elk-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03578000"
+        ],
+        "catalogVendor": [
+          "tva:TMFT1"
+        ],
+        "ledgerUsgs": [
+          "03580750",
+          "03578000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [
+          "03578000"
+        ],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Tims Ford Dam to I-65 bridge (incl. tributaries): Brown Trout 20-in minimum, 1/day; total creel all trout species combined 7 | Source: https",
+      "identity": {
+        "county": "Franklin",
+        "huc8": "06030003",
+        "lat": "35.19231",
+        "lon": "-86.28110"
+      },
+      "catalogName": "Elk River (Tims Ford tailwater)"
+    },
+    {
+      "slug": "french-broad-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03469000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Smallmouth 5/day, 18-in minimum (Hwy 168 to Douglas Dam); statewide bass/crappie/catfish rules otherwise | Source: https://www.tn.gov/twra/f",
+      "identity": {
+        "county": "Sevier",
+        "huc8": "06010107",
+        "lat": "35.95176",
+        "lon": "-83.55128"
+      },
+      "catalogName": "French Broad River (Douglas tailwater)"
+    },
+    {
+      "slug": "ft-patrick-henry-tailwater",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          9
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:FPHT1"
+        ],
+        "ledgerUsgs": [
+          "03487500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "\"Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive\": 16–22 in PLR for rainbow and brown; 7-trout creel (all species combin",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.52313",
+        "lon": "-82.54571"
+      },
+      "catalogName": "Fort Patrick Henry Tailwater (South Fork Holston River)"
+    },
+    {
+      "slug": "hiwassee-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          10,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03556590",
+          "03566000"
+        ],
+        "catalogVendor": [
+          "tva:HADT1"
+        ],
+        "ledgerUsgs": [
+          "03557000",
+          "03556590",
+          "03566000"
+        ],
+        "keep": [
+          "03556590",
+          "03566000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Appalachia Powerhouse downstream to L&N Railroad Bridge: Mar 1–Sep 30 — 7-trout creel, only 2 may be brown trout; Catch-and-Release season O",
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020002",
+        "lat": "35.22230",
+        "lon": "-84.52604"
+      },
+      "catalogName": "Hiwassee River (Appalachia tailwater / Reliance)"
+    },
+    {
+      "slug": "obey-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "year-round-ish",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "usace:DHTT1"
+        ],
+        "ledgerUsgs": [
+          "03417000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Clay",
+        "huc8": "05130105",
+        "lat": "36.53728",
+        "lon": "-85.45525"
+      },
+      "catalogName": "Obey River (Dale Hollow tailwater)"
+    },
+    {
+      "slug": "parksville-tailwater",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03564500"
+        ],
+        "catalogVendor": [
+          "tva:OCAT1"
+        ],
+        "ledgerUsgs": [
+          "03564500"
+        ],
+        "keep": [
+          "03564500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": "35.09689",
+        "lon": "-84.65437"
+      },
+      "catalogName": "Parksville Lake Tailwater (Ocoee No. 1 reach)"
+    },
+    {
+      "slug": "south-holston-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:SHDT1"
+        ],
+        "ledgerUsgs": [
+          "03476500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "\"South Holston Dam to Boone, including Boone Reservoir upstream to the Hwy 11E Bridge\": 16–22 in PLR on all trout; 7-trout creel, only 1 ove",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.52356",
+        "lon": "-82.09726"
+      },
+      "catalogName": "South Fork Holston River (South Holston tailwater)"
+    },
+    {
+      "slug": "watauga-river",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03486000"
+        ],
+        "catalogVendor": [
+          "tva:WL"
+        ],
+        "ledgerUsgs": [
+          "03484000",
+          "03486000"
+        ],
+        "keep": [
+          "03486000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide 7-trout creel except the Quality Trout Fishing Area, Smallings bridge downstream to CSX railroad bridges: 14-in minimum, 2-trout c",
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.34411",
+        "lon": "-82.12956"
+      },
+      "catalogName": "Watauga River (Wilbur tailwater)"
+    },
+    {
+      "slug": "beech-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03594413"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Henderson",
+        "huc8": "06040001",
+        "lat": "35.66118",
+        "lon": "-88.41727"
+      },
+      "catalogName": "Beech Lake"
+    },
+    {
+      "slug": "boone-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:BOOT1"
+        ],
+        "ledgerUsgs": [
+          "03486800",
+          "03486810"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "LMB/SMB 5/day combined, 15\" min; spotted bass 15/day no limit; crappie 15/day combined 10\" min; striped/hybrid 2/day combined (1 striped max",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.44066",
+        "lon": "-82.43764"
+      },
+      "catalogName": "Boone Lake"
+    },
+    {
+      "slug": "calderwood-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03518210",
+          "03518300",
+          "03518410",
+          "03518750"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Trout 7/day, no length limit, only 2 may be lake trout; black bass 5/day combined, only 2 under 14\"; crappie 20/day combined 8\" min; white b",
+      "identity": {
+        "county": "Blount and Monroe",
+        "huc8": "06010204",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Calderwood Lake"
+    },
+    {
+      "slug": "cameron-brown-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Cameron Brown Lake"
+    },
+    {
+      "slug": "center-hill-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "none",
+        "bucket": "agree-none"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03424000",
+          "03414500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black bass 5/day combined; largemouth 15\" min; smallmouth 18\" min; spotted no limit; crappie 15/day combined 10\" min; walleye 5/day 16\" min;",
+      "identity": {
+        "county": null,
+        "huc8": "05130108",
+        "lat": "36.09673",
+        "lon": "-85.82721"
+      },
+      "catalogName": "Center Hill Lake"
+    },
+    {
+      "slug": "cherokee-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "none",
+        "bucket": "agree-none"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03493500",
+          "03493510",
+          "03494000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Largemouth/Smallmouth 5/day combined, Largemouth 15-in min; Smallmouth Jun 1–Oct 15 = 1/day 18-in min, Oct 16–May 31 = 5/day 15-in min; Spot",
+      "identity": {
+        "county": null,
+        "huc8": "06010104",
+        "lat": "36.1668",
+        "lon": "-83.4985"
+      },
+      "catalogName": "Cherokee Lake"
+    },
+    {
+      "slug": "chickamauga-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03566500",
+          "03568000",
+          "03566510",
+          "03566000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day combined, largemouth 15-in min; crappie 15/day, 10-in min; catfish no limit ≤34 in, only 1/day >34 in; striped/hybrid 2/day",
+      "identity": {
+        "county": null,
+        "huc8": "06020001",
+        "lat": "35.10202",
+        "lon": "-85.22829"
+      },
+      "catalogName": "Chickamauga Lake"
+    },
+    {
+      "slug": "chilhowee-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03518150"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Blount and Monroe",
+        "huc8": "06010204",
+        "lat": "35.55703",
+        "lon": "-83.99629"
+      },
+      "catalogName": "Chilhowee Lake"
+    },
+    {
+      "slug": "dale-hollow-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03416500",
+          "03417000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "smallmouth 2/day, 16–21 in protected length limit (Wolf River upstream to South Ford Rd bridge); largemouth 15-in min; black bass 5/day comb",
+      "identity": {
+        "county": null,
+        "huc8": "05130105",
+        "lat": "36.53867",
+        "lon": "-85.45136"
+      },
+      "catalogName": "Dale Hollow Lake"
+    },
+    {
+      "slug": "douglas-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03469000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day; Oct 1–May 31 no length limit; Jun 1–Sep 30 only one LMB/SMB >16 in/day; crappie 15/day, 10-in min; catfish 1/day >34 in; w",
+      "identity": {
+        "county": null,
+        "huc8": "06010107",
+        "lat": "35.95176",
+        "lon": "-83.55128"
+      },
+      "catalogName": "Douglas Lake"
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          6,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07030290"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "07030290"
+        ]
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Shelby",
+        "huc8": "08010209",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Edmund-Orgill Park"
+    },
+    {
+      "slug": "fort-loudoun-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03499500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Loudon",
+        "huc8": "06010201",
+        "lat": "35.79174444",
+        "lon": "-84.24297357"
+      },
+      "catalogName": "Fort Loudoun Lake"
+    },
+    {
+      "slug": "fort-patrick-henry-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:FPHT1"
+        ],
+        "ledgerUsgs": [
+          "03487000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "reservoir table (statewide otherwise): LM 5/day no length, SM 15-in min; spotted 15/day; crappie 15/day 10-in; catfish ≤34-in unlimited, one",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.49815771",
+        "lon": "-82.50875949"
+      },
+      "catalogName": "Fort Patrick Henry Lake"
+    },
+    {
+      "slug": "great-falls-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:GGRT1"
+        ],
+        "ledgerUsgs": [
+          "03422000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Warren",
+        "huc8": "05130108",
+        "lat": "35.80590062",
+        "lon": "-85.63581294"
+      },
+      "catalogName": "Great Falls Lake"
+    },
+    {
+      "slug": "j-percy-priest-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03430050",
+          "03430045"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Davidson",
+        "huc8": "05130203",
+        "lat": "36.15644569",
+        "lon": "-86.61860699"
+      },
+      "catalogName": "J. Percy Priest Lake"
+    },
+    {
+      "slug": "johnson-park-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          8
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Johnson Park Lake"
+    },
+    {
+      "slug": "kentucky-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03609000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day in combination, largemouth & smallmouth 15-in minimum (spotted none); crappie 20/day, 10-in min; catfish no creel ≤34 in, o",
+      "identity": {
+        "county": "Marshall",
+        "huc8": "06040005",
+        "lat": "37.013667",
+        "lon": "-88.268365"
+      },
+      "catalogName": "Kentucky Lake"
+    },
+    {
+      "slug": "lake-barkley",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03438210"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day in combination, largemouth & smallmouth 15-in minimum, spotted no limit; crappie 20/day 10-in min (page elsewhere says \"thi",
+      "identity": {
+        "county": "Lyon",
+        "huc8": "05130205",
+        "lat": "37.021444",
+        "lon": "-88.221141"
+      },
+      "catalogName": "Lake Barkley"
+    },
+    {
+      "slug": "lake-graham",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "largemouth no creel/length limit but only one fish >18 in may be kept per day; bluegill none; redear 20/day; crappie (all) none; blue + chan",
+      "identity": {
+        "county": null,
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Lake Graham"
+    },
+    {
+      "slug": "melton-hill-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          7
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:MHDT1"
+        ],
+        "ledgerUsgs": [
+          "03535900"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Loudon",
+        "huc8": "06010207",
+        "lat": "35.884522",
+        "lon": "-84.300200"
+      },
+      "catalogName": "Melton Hill Lake"
+    },
+    {
+      "slug": "nickajack-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "unset",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03570520"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day in combination; largemouth 15-in min; smallmouth/spotted/Alabama no minimum, only one over 16 in/day; crappie 15/day 10-in ",
+      "identity": {
+        "county": "Marion",
+        "huc8": "06020001",
+        "lat": "35.002023",
+        "lon": "-85.620523"
+      },
+      "catalogName": "Nickajack Lake"
+    },
+    {
+      "slug": "normandy-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:NRMT1"
+        ],
+        "ledgerUsgs": [
+          "03596460",
+          "03426300",
+          "03532500",
+          "03564000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Largemouth 15-in min; smallmouth 18-in min; 5 black bass/day combined; spotted no limit; crappie 15/day 10-in min; walleye 5/day 16-in min; ",
+      "identity": {
+        "county": "Coffee",
+        "huc8": "06040002",
+        "lat": "35.46535",
+        "lon": "-86.24860"
+      },
+      "catalogName": "Normandy Lake"
+    },
+    {
+      "slug": "norris-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "none",
+        "bucket": "agree-none"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03532500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Smallmouth 1/day 18-in min Jun 1–Oct 15 (otherwise 5/day 15-in min, combined with largemouth 5/day, largemouth 14-in min); striped bass 2/da",
+      "identity": {
+        "county": null,
+        "huc8": "06010205",
+        "lat": "36.22480",
+        "lon": "-84.09131"
+      },
+      "catalogName": "Norris Lake"
+    },
+    {
+      "slug": "ocoee-number-three-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "unset",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:OCCT1"
+        ],
+        "ledgerUsgs": [
+          "03563490",
+          "03564000",
+          "03564500",
+          "03564700"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Ocoee Number Three Lake"
+    },
+    {
+      "slug": "old-hickory-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03426300"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day combined, largemouth 14-in min, smallmouth 18-in min, spotted no limit; crappie 30/day combined 10-in min; striped/hybrid 2",
+      "identity": {
+        "county": null,
+        "huc8": "05130201",
+        "lat": "36.29727",
+        "lon": "-86.65555"
+      },
+      "catalogName": "Old Hickory Lake"
+    },
+    {
+      "slug": "paris-city-park-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Henry",
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Paris City Park"
+    },
+    {
+      "slug": "parksville-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "unset",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:OCAT1"
+        ],
+        "ledgerUsgs": [
+          "03564000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "LMB 5/day 15-in min; smallmouth/spotted/Alabama bass no creel or length limit; no live transport of black bass away from reservoir; crappie ",
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": "35.09452",
+        "lon": "-84.64799"
+      },
+      "catalogName": "Parksville Lake"
+    },
+    {
+      "slug": "pickwick-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03593000",
+          "03593005"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "black bass 5/day combo 15-in (spotted no length); crappie 30/day combo 9-in; striped/hybrid 2/day 15-in; white bass 15/day; walleye 5/day 16",
+      "identity": {
+        "county": "Hardin",
+        "huc8": "06040001",
+        "lat": "35.07120",
+        "lon": "-88.25115"
+      },
+      "catalogName": "Pickwick Lake"
+    },
+    {
+      "slug": "reelfoot-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07027000",
+          "07026690"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "07026690"
+        ]
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "LMB 5/day 15-in; spotted bass no length limit; crappie 20/day combo 10-in (regulatory table — page narrative separately says 30/day; interna",
+      "identity": {
+        "county": null,
+        "huc8": "08010202",
+        "lat": "36.35312",
+        "lon": "-89.40618"
+      },
+      "catalogName": "Reelfoot Lake"
+    },
+    {
+      "slug": "shelby-farms-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07031663"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Shelby",
+        "huc8": "08010210",
+        "lat": "35.14148",
+        "lon": "-89.86786"
+      },
+      "catalogName": "Shelby Farms"
+    },
+    {
+      "slug": "south-holston-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "none",
+        "bucket": "CONFLICT claim-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03476000",
+          "03476010"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "trout 7/day, only 2 may be Lake Trout; largemouth no length limit; smallmouth 15-in min; spotted no creel/length; crappie 15/day 10-in; wall",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.52094",
+        "lon": "-82.08624"
+      },
+      "catalogName": "South Holston Lake"
+    },
+    {
+      "slug": "tellico-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:TDTT1"
+        ],
+        "ledgerUsgs": [
+          "03519800"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06010201",
+        "lat": "35.78146646",
+        "lon": "-84.2526962"
+      },
+      "catalogName": "Tellico Lake"
+    },
+    {
+      "slug": "tims-ford-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "none",
+        "bucket": "agree-none"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03580740"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black Bass 5/day combo — Largemouth 15-inch min, Smallmouth 18-inch min, Spotted no limit; Crappie 15/day 10-inch; Catfish — no creel ≤34 in",
+      "identity": {
+        "county": "Franklin",
+        "huc8": "06030003",
+        "lat": "35.19758298",
+        "lon": "-86.27804509"
+      },
+      "catalogName": "Tims Ford Lake"
+    },
+    {
+      "slug": "watauga-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [
+          "tva:WTGT1"
+        ],
+        "ledgerUsgs": [
+          "03483500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "\"There is no size limit for either species, but there is a daily limit of 7; only two of which can be lake trout\" (page) — matches statewide",
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.32233594",
+        "lon": "-82.12096"
+      },
+      "catalogName": "Watauga Lake"
+    },
+    {
+      "slug": "watts-bar-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03543000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black Bass 5/day 15-inch; Crappie 15/day 10-inch; Catfish 34-inch rule; Striped Bass/Hybrid — Apr 1-Oct 31: 2/day 15-inch, Nov 1-Mar 31: 2/d",
+      "identity": {
+        "county": null,
+        "huc8": "06010201",
+        "lat": "35.62034945",
+        "lon": "-84.783277"
+      },
+      "catalogName": "Watts Bar Lake"
+    },
+    {
+      "slug": "wilbur-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03483970",
+          "03484000",
+          "03483980"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide Regulations per the schedule row — 7 trout/day any combination, no minimum length limit, only 2 may be Lake Trout | Source: https:",
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.34122409",
+        "lon": "-82.125405"
+      },
+      "catalogName": "Wilbur Lake"
+    },
+    {
+      "slug": "woods-reservoir",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03578500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black bass 5/day in combination; Smallmouth 18-in min; Largemouth/Spotted no length limit; Crappie 15/day, 10-in min; Catfish no creel ≤34-i",
+      "identity": {
+        "county": "Franklin",
+        "huc8": "06030003",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Woods Reservoir"
+    },
+    {
+      "slug": "yale-road-park-lake",
+      "wave": 1,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07031660"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Shelby",
+        "huc8": "08010210",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Yale Road Park"
+    },
+    {
+      "slug": "barren-fork-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03421500",
+          "03420500",
+          "03420900",
+          "03420890",
+          "03420880"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Warren",
+        "huc8": "05130107",
+        "lat": "35.66543",
+        "lon": "-85.88211"
+      },
+      "catalogName": "Barren Fork River"
+    },
+    {
+      "slug": "buffalo-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03604000"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03604000"
+        ],
+        "keep": [
+          "03604000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040004",
+        "lat": "35.49591",
+        "lon": "-87.83280"
+      },
+      "catalogName": "Buffalo River"
+    },
+    {
+      "slug": "calfkiller-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          9
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03419530"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03419530"
+        ],
+        "keep": [
+          "03419530"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "White",
+        "huc8": "05130108",
+        "lat": "35.92650",
+        "lon": "-85.46743"
+      },
+      "catalogName": "Calfkiller River"
+    },
+    {
+      "slug": "caney-fork-upper",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03422500",
+          "03420130",
+          "03419110",
+          "03419120",
+          "03422495"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Walleye run — Jan 1–Apr 30: \"restricted to the use of one (1) hook having a single barb or lure containing a single hook with one barb\"; max",
+      "identity": {
+        "county": null,
+        "huc8": "05130108",
+        "lat": "35.80774",
+        "lon": "-85.63364"
+      },
+      "catalogName": "Caney Fork River (above Center Hill Lake)"
+    },
+    {
+      "slug": "collins-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03421000"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03421000",
+          "03421500",
+          "03420300",
+          "03419530"
+        ],
+        "keep": [
+          "03421000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "05130107",
+        "lat": "35.70828",
+        "lon": "-85.73183"
+      },
+      "catalogName": "Collins River"
+    },
+    {
+      "slug": "cumberland-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03431500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03431500"
+        ]
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black bass 5/day combined (Largemouth 14\" min, Smallmouth 18\" min, Spotted no limit); Crappie 30/day combined 10\" min; Sauger 10/day 15\" min",
+      "identity": {
+        "county": "Davidson",
+        "huc8": "05130202",
+        "lat": "36.16150",
+        "lon": "-86.77268"
+      },
+      "catalogName": "Cumberland River"
+    },
+    {
+      "slug": "duck-river-lower",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "unset",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03597860",
+          "03598000",
+          "03599500",
+          "03598185",
+          "03599240",
+          "03599419"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03597860",
+          "03598000",
+          "03596500"
+        ],
+        "keep": [
+          "03597860",
+          "03598000"
+        ],
+        "unwireCandidates": [
+          "03599500",
+          "03598185",
+          "03599240",
+          "03599419"
+        ],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black bass (LMB/SMB/spotted combined) 5/day, no length limits; Rock Bass 20/day; Catfish one >34\"/day, unlimited below 34\"; trout 7/day wher",
+      "identity": {
+        "county": null,
+        "huc8": "06040002",
+        "lat": "35.48293",
+        "lon": "-86.46258"
+      },
+      "catalogName": "Duck River (Shelbyville to Columbia)"
+    },
+    {
+      "slug": "east-fork-stones-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03427500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03427500"
+        ],
+        "keep": [
+          "03427500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Trout — statewide 7/day any combination, no minimum length, no closed season on this water | Source: https://www.tn.gov/twra/fishing-regs/tr",
+      "identity": {
+        "county": "Rutherford",
+        "huc8": "05130203",
+        "lat": "35.91840",
+        "lon": "-86.33388"
+      },
+      "catalogName": "East Fork Stones River"
+    },
+    {
+      "slug": "elk-river-lower",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03582000"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03582000",
+          "03580750"
+        ],
+        "keep": [
+          "03582000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03580750"
+        ]
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Lincoln",
+        "huc8": "06030003",
+        "lat": "35.13456",
+        "lon": "-86.53970"
+      },
+      "catalogName": "Elk River (Prospect to state line)"
+    },
+    {
+      "slug": "emory-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "unset",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03540500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03540500"
+        ],
+        "keep": [
+          "03540500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Emory River special rule — January 1 through April 30, from the Highway 27 Bridge at Harriman upstream to the Highway 299 Bridge at Oakdale:",
+      "identity": {
+        "county": "Morgan",
+        "huc8": "06010208",
+        "lat": "35.98313",
+        "lon": "-84.55799"
+      },
+      "catalogName": "Emory River"
+    },
+    {
+      "slug": "harpeth-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "none",
+        "bucket": "CONFLICT claim-candidate"
+      },
+      "season": {
+        "ledgerMonths": [
+          11
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03432350",
+          "03433500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03432350",
+          "03433500"
+        ],
+        "keep": [
+          "03432350",
+          "03433500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide warmwater — black bass 5/day any combination, no length limit; crappie 15/day, 10-in minimum; catfish no limit under 34 in, 1/day ",
+      "identity": {
+        "county": "Williamson",
+        "huc8": "05130204",
+        "lat": "35.92085",
+        "lon": "-86.86549"
+      },
+      "catalogName": "Harpeth River (Williamson County reaches)"
+    },
+    {
+      "slug": "hatchie-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07030050"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Crappie 30/day, no length limit (Hatchie incl. tributaries, per exceptions page); statewide black bass 5/day, catfish 34-in rule otherwise |",
+      "identity": {
+        "county": null,
+        "huc8": "08010208",
+        "lat": "35.63733",
+        "lon": "-89.60946"
+      },
+      "catalogName": "Hatchie River"
+    },
+    {
+      "slug": "holston-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03495500",
+          "03493510"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black bass 5/day combo; smallmouth 13–17 in PLR, only 1/day over 17 in (Cherokee Dam to I-40 bridge); trout statewide — 7 trout/day any comb",
+      "identity": {
+        "county": "Jefferson",
+        "huc8": "06010104",
+        "lat": "36.16620",
+        "lon": "-83.49934"
+      },
+      "catalogName": "Holston River"
+    },
+    {
+      "slug": "little-pigeon-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03470000"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03470000"
+        ],
+        "keep": [
+          "03470000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Smallmouth bass 1/day, 20-in minimum (mouth upstream to GSMNP boundary, incl. West Prong and East Fork); statewide rules otherwise (black ba",
+      "identity": {
+        "county": "Sevier",
+        "huc8": "06010107",
+        "lat": "35.878469",
+        "lon": "-83.577539"
+      },
+      "catalogName": "Little Pigeon River (Sevierville reach)"
+    },
+    {
+      "slug": "little-tennessee-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "none",
+        "bucket": "CONFLICT claim-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03518500",
+          "03519800",
+          "03497000",
+          "03498500",
+          "03499000",
+          "03499500",
+          "03500000",
+          "03510500",
+          "03511000",
+          "03512000",
+          "03513000",
+          "03512500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Tellico Lake Chota Refuge Unit (Little Tennessee River Miles 26.0 upstream to 29.7) closed to all forms of use and trespass Nov 15–Feb 28 ex",
+      "identity": {
+        "county": "Blount and Monroe",
+        "huc8": "06010204",
+        "lat": "35.78147",
+        "lon": "-84.25270"
+      },
+      "catalogName": "Little Tennessee River"
+    },
+    {
+      "slug": "mississippi-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07032000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "07032000"
+        ]
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34, stripers 6, sauger 6, white bass 30, sunfish 50); statewi",
+      "identity": {
+        "county": "Shelby",
+        "huc8": "08010100",
+        "lat": "35.12315",
+        "lon": "-90.07759"
+      },
+      "catalogName": "Mississippi River"
+    },
+    {
+      "slug": "new-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03408500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03408500"
+        ],
+        "keep": [
+          "03408500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide black bass rules apply (5 black bass/day any combination, no minimum length); no New River/Clear Fork exception exists on TWRA's e",
+      "identity": {
+        "county": "Scott",
+        "huc8": "05130104",
+        "lat": "36.38553",
+        "lon": "-84.55470"
+      },
+      "catalogName": "New River"
+    },
+    {
+      "slug": "nolichucky-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03465500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03465500"
+        ],
+        "keep": [
+          "03465500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day (\"ENKA Dam upstream to the state line includes Davy Crockett",
+      "identity": {
+        "county": "Washington",
+        "huc8": "06010108",
+        "lat": "36.17825",
+        "lon": "-82.45517"
+      },
+      "catalogName": "Nolichucky River"
+    },
+    {
+      "slug": "north-fork-holston-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "none",
+        "bucket": "agree-none"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03490200",
+          "03490100",
+          "03489500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day — TN reach from the state line downstream to the confluence ",
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.58954",
+        "lon": "-82.60599"
+      },
+      "catalogName": "North Fork Holston River"
+    },
+    {
+      "slug": "obed-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03538830"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03538830",
+          "03539800"
+        ],
+        "keep": [
+          "03538830"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Cumberland",
+        "huc8": "06010208",
+        "lat": "36.06167",
+        "lon": "-84.96139"
+      },
+      "catalogName": "Obed River"
+    },
+    {
+      "slug": "obion-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          6,
+          10
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07026040",
+          "07026000",
+          "07026300"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Crappie 30 per day, no length limit (\"Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries)\") | Source: https://",
+      "identity": {
+        "county": "Obion",
+        "huc8": "08010202",
+        "lat": "36.24085",
+        "lon": "-89.21764"
+      },
+      "catalogName": "Obion River"
+    },
+    {
+      "slug": "ocoee-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03559500"
+        ],
+        "catalogVendor": [
+          "tva:OCBT1"
+        ],
+        "ledgerUsgs": [
+          "03559500"
+        ],
+        "keep": [
+          "03559500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "no TWRA regulation-exception entry for the Ocoee; statewide rules apply (trout: \"Daily Limit: seven (7)\", \"Minimum Length Limit: None\") | So",
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": "34.99147",
+        "lon": "-84.37659"
+      },
+      "catalogName": "Ocoee River (upper, Copperhill reach)"
+    },
+    {
+      "slug": "pigeon-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03461500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03461500"
+        ],
+        "keep": [
+          "03461500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Smallmouth 1/day, 20-in minimum; Walleye 15-in minimum, walleye/sauger 5/day combo, only 1 sauger over 16 in/day — Hwy 321 bridge at Newport",
+      "identity": {
+        "county": "Cocke",
+        "huc8": "06010106",
+        "lat": "35.96064907",
+        "lon": "-83.17432170"
+      },
+      "catalogName": "Pigeon River (Hartford corridor)"
+    },
+    {
+      "slug": "piney-river-rhea",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03542500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Rhea",
+        "huc8": "06010201",
+        "lat": "35.6996985",
+        "lon": "-84.8544798"
+      },
+      "catalogName": "Piney River (Rhea County)"
+    },
+    {
+      "slug": "powell-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "trout",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03532000"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03532000"
+        ],
+        "keep": [
+          "03532000"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Powell River \"Gap Creek confluence upstream to the state line\" — Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only one smallmou",
+      "identity": {
+        "county": "station in Claiborne",
+        "huc8": "06010206",
+        "lat": "36.54252190",
+        "lon": "-83.63002944"
+      },
+      "catalogName": "Powell River"
+    },
+    {
+      "slug": "red-river-clarksville",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03436100"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03436100"
+        ],
+        "keep": [
+          "03436100"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "no Red River exception listed on TWRA's exceptions page — statewide rules govern: black bass 5/day any combination, no minimum; crappie 15/d",
+      "identity": {
+        "county": "Montgomery",
+        "huc8": "05130206",
+        "lat": "36.55472222",
+        "lon": "-87.14194444"
+      },
+      "catalogName": "Red River (Montgomery County)"
+    },
+    {
+      "slug": "sequatchie-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "unclear",
+        "catalog": "trout",
+        "bucket": "ledger-unclear"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03571000"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03571000",
+          "03570500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [
+          "03571000"
+        ],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "not among the special-regulation waters listed on TWRA's trout or statewide pages, so statewide limits apply: trout 7/day no minimum length ",
+      "identity": {
+        "county": "station in Marion",
+        "huc8": "06020004",
+        "lat": "35.20572",
+        "lon": "-85.49703"
+      },
+      "catalogName": "Sequatchie River (headwaters)"
+    },
+    {
+      "slug": "shoal-creek",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03588500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03588500",
+          "03588000"
+        ],
+        "keep": [
+          "03588500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Lawrence",
+        "huc8": "06030005",
+        "lat": "35.02415",
+        "lon": "-87.57902"
+      },
+      "catalogName": "Shoal Creek"
+    },
+    {
+      "slug": "south-fork-cumberland",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03410210"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03410210"
+        ],
+        "keep": [
+          "03410210"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "NPS: \"follows the same rules and regulations set forth by the Tennessee Wildlife Resources Agency and the Kentucky Department of Fish and Wi",
+      "identity": {
+        "county": "Scott",
+        "huc8": "05130104",
+        "lat": "36.47739",
+        "lon": "-84.66935"
+      },
+      "catalogName": "South Fork Cumberland River"
+    },
+    {
+      "slug": "stones-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03430200"
+        ],
+        "catalogVendor": [
+          "usace:JPPT1"
+        ],
+        "ledgerUsgs": [
+          "03430200"
+        ],
+        "keep": [
+          "03430200"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Davidson",
+        "huc8": "05130203",
+        "lat": "36.18648",
+        "lon": "-86.63276"
+      },
+      "catalogName": "Stones River (Davidson County)"
+    },
+    {
+      "slug": "tellico-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          9
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03518500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03518500"
+        ],
+        "keep": [
+          "03518500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "DELAYED HARVEST — \"Tellico River: Mouth of North River upstream to the Tennessee - North Carolina state line\"; catch-and-release Oct 1 - Feb",
+      "identity": {
+        "county": "Monroe",
+        "huc8": "06010204",
+        "lat": "35.36202",
+        "lon": "-84.27901"
+      },
+      "catalogName": "Tellico River"
+    },
+    {
+      "slug": "tennessee-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03593500",
+          "03600500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Sauger 10/day, 15-in min; Walleye 5/day, 16-in min; black bass 5/day combined — 15-in min largemouth/smallmouth, no length limit spotted; cr",
+      "identity": {
+        "county": "Hardin",
+        "huc8": "06040001",
+        "lat": "35.22480",
+        "lon": "-88.25726"
+      },
+      "catalogName": "Tennessee River"
+    },
+    {
+      "slug": "watauga-river-wilbur-reach",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03481500",
+          "03484000",
+          "03486000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03486000"
+        ]
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.34411",
+        "lon": "-82.12956"
+      },
+      "catalogName": "Watauga River (Watauga Dam to Wilbur Lake)"
+    },
+    {
+      "slug": "west-fork-stones-river",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03428200"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03428200"
+        ],
+        "keep": [
+          "03428200"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "statewide trout (7/day, no min) at the stocked site; warmwater statewide — black bass 5/day no min; crappie 15/day 10-in (Region 2 default);",
+      "identity": {
+        "county": "Rutherford",
+        "huc8": "05130203",
+        "lat": "35.90287",
+        "lon": "-86.42998"
+      },
+      "catalogName": "West Fork Stones River"
+    },
+    {
+      "slug": "wolf-river-west-tennessee",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          11
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "07031650"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "07031650",
+          "07030392",
+          "07030500",
+          "07030600",
+          "07031660",
+          "07031700",
+          "07031740",
+          "08010210"
+        ],
+        "keep": [
+          "07031650"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "08010210"
+        ]
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Crappie 30/day, no length limit (Wolf River incl. tributaries, west TN); statewide defaults apply otherwise — black bass 5/day any combinati",
+      "identity": {
+        "county": "Shelby",
+        "huc8": "08010210",
+        "lat": "35.11649",
+        "lon": "-89.80147"
+      },
+      "catalogName": "Wolf River"
+    },
+    {
+      "slug": "covington-fbc-pond",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          11
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Tipton",
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Covington First Baptist Church Pond"
+    },
+    {
+      "slug": "martin-city-pond",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Weakley",
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Martin City Pond"
+    },
+    {
+      "slug": "milan-city-pond",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "ledger-unparsed"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Gibson",
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Milan City Pond"
+    },
+    {
+      "slug": "union-city-reelfoot-pond",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "match"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Obion",
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Union City Reelfoot Packing Site"
+    },
+    {
+      "slug": "valentine-park-pond",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "bucket": "differ"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Tipton",
+        "huc8": null,
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Valentine Park"
+    },
+    {
+      "slug": "sinking-creek-wilson",
+      "wave": 2,
+      "class": null,
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03425600",
+          "03425604",
+          "03425605"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Wilson",
+        "huc8": "05130201",
+        "lat": "36.21889",
+        "lon": "-86.30722"
+      },
+      "catalogName": "Sinking Creek (Wilson County)"
+    },
+    {
+      "slug": "beaverdam-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          6
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03472600",
+          "03472500",
+          "03472511"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Johnson",
+        "huc8": "06010102",
+        "lat": "36.5207",
+        "lon": "-81.9318"
+      },
+      "catalogName": "Beaverdam Creek"
+    },
+    {
+      "slug": "big-rock-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03598800",
+          "03598460",
+          "03598470",
+          "03598480",
+          "03598490",
+          "03598600",
+          "03598700",
+          "03598705",
+          "03598990",
+          "03599000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040002",
+        "lat": "35.5765",
+        "lon": "-86.7754"
+      },
+      "catalogName": "Big Rock Creek"
+    },
+    {
+      "slug": "boiling-fork-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03579900",
+          "03580000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06030003",
+        "lat": "35.2038",
+        "lon": "-86.1572"
+      },
+      "catalogName": "Boiling Fork Creek"
+    },
+    {
+      "slug": "bradley-creek",
+      "wave": 3,
+      "class": "warmwater",
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03578500",
+          "03578390",
+          "03578395",
+          "03578467"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03578500",
+          "03578390",
+          "03578395",
+          "03578467"
+        ]
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06030003",
+        "lat": "35.3349",
+        "lon": "-85.9903"
+      },
+      "catalogName": "Bradley Creek"
+    },
+    {
+      "slug": "brush-creek-cocke",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03486500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "statewide trout — 7/day, no size limit; Brush Creek (Cocke) is NOT on the TWRA wild-trout named list and has no exceptions entry | Source: h",
+      "identity": {
+        "county": "Cocke",
+        "huc8": "06010105",
+        "lat": "35.9665",
+        "lon": "-82.9265"
+      },
+      "catalogName": "Brush Creek (Cocke County)"
+    },
+    {
+      "slug": "buffalo-creek-grainger",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          10
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03494528",
+          "03494530"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "(1) Special: Buffalo Creek and tributaries within the WMA boundary (Grainger County) — from the mill dam upstream closed year-round to all f",
+      "identity": {
+        "county": "Grainger",
+        "huc8": "06010104",
+        "lat": "36.19398",
+        "lon": "-83.56240"
+      },
+      "catalogName": "Buffalo Creek (Grainger County)"
+    },
+    {
+      "slug": "cane-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4,
+          5,
+          10
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03419200",
+          "03419220"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Van Buren",
+        "huc8": "05130108",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Cane Creek"
+    },
+    {
+      "slug": "charles-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03421200",
+          "03421210",
+          "03421150"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Warren",
+        "huc8": "05130107",
+        "lat": "-85.9606",
+        "lon": "35.7992"
+      },
+      "catalogName": "Charles Creek"
+    },
+    {
+      "slug": "citico-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          7,
+          11
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03518410",
+          "03518400",
+          "03518390",
+          "03518395"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Tellico-Citico Permit Area \"from Little Citico Creek confluence upstream to the North/South Fork junction\": permit required Mar 1–Aug 15; cl",
+      "identity": {
+        "county": "Monroe",
+        "huc8": "06010204",
+        "lat": "35.5410",
+        "lon": "-84.0978"
+      },
+      "catalogName": "Citico Creek"
+    },
+    {
+      "slug": "clear-creek-obed",
+      "wave": 3,
+      "class": "warmwater",
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03539778"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03539778",
+          "03539750"
+        ],
+        "keep": [
+          "03539778"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03539750"
+        ]
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Obed WSR park waters — current TN fishing license + rod and reel (NPS); statewide TWRA trout rules (7/day, no length limit) outside park; Cl",
+      "identity": {
+        "county": "Morgan",
+        "huc8": "06010208",
+        "lat": "36.1031293",
+        "lon": "-84.7182771"
+      },
+      "catalogName": "Clear Creek (Obed system)"
+    },
+    {
+      "slug": "clear-fork",
+      "wave": 3,
+      "class": "warmwater",
+      "verdict": {
+        "ledger": "none",
+        "catalog": "unset",
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03409500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03409500",
+          "03408800"
+        ],
+        "keep": [
+          "03409500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Scott",
+        "huc8": "05130104",
+        "lat": "36.38829775",
+        "lon": "-84.6301691"
+      },
+      "catalogName": "Clear Fork"
+    },
+    {
+      "slug": "cosby-creek",
+      "wave": 3,
+      "class": "wild-self-sustaining",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03459600",
+          "03459650",
+          "03459750",
+          "03459900",
+          "03468800",
+          "03469320",
+          "03469140"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round | Source: https://www.nps.gov/grsm/planyourvisit/",
+      "identity": {
+        "county": "Cocke",
+        "huc8": "06010106",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Cosby Creek"
+    },
+    {
+      "slug": "daddys-creek",
+      "wave": 3,
+      "class": "warmwater",
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03539600"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03539600",
+          "03539500",
+          "03539000"
+        ],
+        "keep": [
+          "03539600"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Obed WSR park waters — current TN fishing license + rod and reel (NPS); statewide TWRA trout rules (7/day, no length) outside park; not on T",
+      "identity": {
+        "county": "Cumberland",
+        "huc8": "06010208",
+        "lat": "35.99766528",
+        "lon": "-84.8224946"
+      },
+      "catalogName": "Daddy’s Creek"
+    },
+    {
+      "slug": "doe-creek-johnson",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03482150",
+          "03482200",
+          "03482220"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Johnson",
+        "huc8": "06010103",
+        "lat": "36.3827",
+        "lon": "-81.9588"
+      },
+      "catalogName": "Doe Creek (Johnson County)"
+    },
+    {
+      "slug": "doe-river",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          6,
+          10
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03485500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03485500",
+          "03484500",
+          "03484470",
+          "03484800"
+        ],
+        "keep": [
+          "03485500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Delayed harvest: \"Doe River: Roan Mountain State Park boundaries. • Catch-and-release season is Oct. 1– Feb 28.\" General DH rules: harvest/p",
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.3445",
+        "lon": "-82.2101"
+      },
+      "catalogName": "Doe River"
+    },
+    {
+      "slug": "east-fork-shoal-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03585215",
+          "03585200"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06030004",
+        "lat": "35.0079",
+        "lon": "-87.0995"
+      },
+      "catalogName": "East Fork Shoal Creek"
+    },
+    {
+      "slug": "fletchers-fork",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03436440",
+          "03436433",
+          "03436437",
+          "03436441",
+          "03436444",
+          "03436446"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Fort Campbell special regulations under CAM Regulation 200-4 (source: https://ftcampbell.isportsman.net/Fishing.aspx — QC citation correctio",
+      "identity": {
+        "county": null,
+        "huc8": "05130206",
+        "lat": "36.6005",
+        "lon": "-87.4232"
+      },
+      "catalogName": "Fletchers Fork"
+    },
+    {
+      "slug": "forge-creek-johnson",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03481575"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Johnson",
+        "huc8": "06010103",
+        "lat": "36.4342",
+        "lon": "-81.7764"
+      },
+      "catalogName": "Forge Creek (Johnson County)"
+    },
+    {
+      "slug": "gap-creek-claiborne",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03532012",
+          "03532050"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Claiborne",
+        "huc8": "06010206",
+        "lat": "36.59869",
+        "lon": "-83.66936"
+      },
+      "catalogName": "Gap Creek (Claiborne County)"
+    },
+    {
+      "slug": "goforth-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": "35.0836",
+        "lon": "-84.5147"
+      },
+      "catalogName": "Goforth Creek"
+    },
+    {
+      "slug": "greasy-creek-polk",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03563100",
+          "03563101",
+          "03563105",
+          "03556990",
+          "03556991"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": "35.1093",
+        "lon": "-84.5719"
+      },
+      "catalogName": "Greasy Creek (Polk County)"
+    },
+    {
+      "slug": "gulf-fork-big-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions entry | Source: https://www.tn.gov/twra/fishing-regs/sta",
+      "identity": {
+        "county": "Cocke",
+        "huc8": "06010105",
+        "lat": "35.9190",
+        "lon": "-83.0277"
+      },
+      "catalogName": "Gulf Fork Big Creek"
+    },
+    {
+      "slug": "horse-creek-greene",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          6
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03466245",
+          "03484900",
+          "03484911",
+          "03484170",
+          "03484200",
+          "03481550",
+          "03481850",
+          "03482000",
+          "03482500",
+          "03484470",
+          "03484500",
+          "03484800",
+          "03485500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "\"Horse Creek: Greene County, U.S. Forest Service Boundary Line upstream to the junction of Squibb Creek. Daily limit: Seven (7) trout per da",
+      "identity": {
+        "county": "Greene",
+        "huc8": "06010108",
+        "lat": "36.1620",
+        "lon": "-82.7010"
+      },
+      "catalogName": "Horse Creek (Greene County)"
+    },
+    {
+      "slug": "hurricane-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03606020",
+          "03603500",
+          "03603505"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040005",
+        "lat": "36.3365",
+        "lon": "-87.9035"
+      },
+      "catalogName": "Hurricane Creek"
+    },
+    {
+      "slug": "indian-creek-claiborne",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03531900"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Claiborne",
+        "huc8": "06010206",
+        "lat": "36.5884",
+        "lon": "-83.6055"
+      },
+      "catalogName": "Indian Creek (Claiborne County)"
+    },
+    {
+      "slug": "laurel-creek-johnson",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          6
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03472400",
+          "03472198",
+          "03472260",
+          "03472700"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Johnson",
+        "huc8": "06010102",
+        "lat": "36.6110",
+        "lon": "-81.7536"
+      },
+      "catalogName": "Laurel Creek (Johnson County)"
+    },
+    {
+      "slug": "laurel-fork-carter",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          6
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03484900",
+          "03484911",
+          "03484170",
+          "03484200",
+          "03481550",
+          "03481850",
+          "03482000",
+          "03482500",
+          "03466245",
+          "03484470",
+          "03484500",
+          "03484800",
+          "03485500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Wild stream reach (above cable crossing near Dennis Cove): daily creel 5 trout, no length limit, single-hook artificial lures only, bait/mul",
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.2876",
+        "lon": "-82.1715"
+      },
+      "catalogName": "Laurel Fork (Carter County)"
+    },
+    {
+      "slug": "leconte-creek",
+      "wave": 3,
+      "class": "wild-self-sustaining",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03469255",
+          "03469260"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round; special Gatlinburg permit needed once the creek ",
+      "identity": {
+        "county": "Sevier",
+        "huc8": "06010107",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "LeConte Creek"
+    },
+    {
+      "slug": "little-buffalo-river",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03603610",
+          "03603620",
+          "03603660",
+          "03603693"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040004",
+        "lat": "35.4502",
+        "lon": "-87.5316"
+      },
+      "catalogName": "Little Buffalo River"
+    },
+    {
+      "slug": "little-river",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4,
+          5,
+          10,
+          11
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03497300",
+          "03498500"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03497300",
+          "03498500",
+          "03498000",
+          "03498850"
+        ],
+        "keep": [
+          "03497300",
+          "03498500"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "TWO ZONES. Inside GRSM (NPS): 5 brook/rainbow/brown trout or smallmouth bass per day combined, 7-inch min on trout/smallmouth, artificial fl",
+      "identity": {
+        "county": null,
+        "huc8": "06010201",
+        "lat": "35.8779",
+        "lon": "-83.9869"
+      },
+      "catalogName": "Little River (Smokies / Blount County)"
+    },
+    {
+      "slug": "little-sequatchie-river",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03571500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Marion",
+        "huc8": "06020004",
+        "lat": "35.0946",
+        "lon": "-85.5736"
+      },
+      "catalogName": "Little Sequatchie River"
+    },
+    {
+      "slug": "little-west-fork-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03436426",
+          "03436460"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Fort Campbell special regulations under CAM Regulation 200-4; Post Fishing Permit required in addition to a valid TN fishing license and tro",
+      "identity": {
+        "county": null,
+        "huc8": "05130206",
+        "lat": "36.5831",
+        "lon": "-87.3639"
+      },
+      "catalogName": "Little West Fork Creek"
+    },
+    {
+      "slug": "mccutcheon-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          2,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03599966"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040003",
+        "lat": "35.7140",
+        "lon": "-86.9214"
+      },
+      "catalogName": "McCutcheon Creek"
+    },
+    {
+      "slug": "middle-prong-little-pigeon",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03468800",
+          "03469235",
+          "03469200"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round | Source: https://www.nps.gov/grsm/planyourvisit/",
+      "identity": {
+        "county": "Sevier",
+        "huc8": "06010107",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Middle Prong Little Pigeon River (Tremont)"
+    },
+    {
+      "slug": "mill-creek-overton",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03539778"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout Streams list | Source: https://www.tn.gov/twra/fishing-re",
+      "identity": {
+        "county": "Overton",
+        "huc8": "05130106",
+        "lat": "36.4714",
+        "lon": "-85.4195"
+      },
+      "catalogName": "Mill Creek (Overton County)"
+    },
+    {
+      "slug": "mossy-creek-jefferson",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          11,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03493000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "statewide trout — 7/day, no size limit; Mossy Creek (Jefferson) is NOT on the wild-trout named list and has no exceptions entry [QC: the cit",
+      "identity": {
+        "county": "Jefferson",
+        "huc8": "06010104",
+        "lat": "36.1368",
+        "lon": "-83.5049"
+      },
+      "catalogName": "Mossy Creek (Jefferson County)"
+    },
+    {
+      "slug": "north-chickamauga-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4,
+          11
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03566535"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03566535",
+          "03566530",
+          "03566633"
+        ],
+        "keep": [
+          "03566535"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Hamilton",
+        "huc8": "06020001",
+        "lat": "35.1292",
+        "lon": "-85.2155"
+      },
+      "catalogName": "North Chickamauga Creek"
+    },
+    {
+      "slug": "north-prong-barren-fork",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03420470",
+          "03420880",
+          "03420890",
+          "03420900",
+          "03420500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "05130107",
+        "lat": "35.6977",
+        "lon": "-85.9560"
+      },
+      "catalogName": "North Prong Barren Fork River"
+    },
+    {
+      "slug": "pine-creek-dekalb",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03422700",
+          "03422710",
+          "03422619"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout Streams list | Source: https://www.tn.gov/twra/fishing-re",
+      "identity": {
+        "county": "DeKalb",
+        "huc8": "05130108",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Pine Creek (DeKalb County)"
+    },
+    {
+      "slug": "puncheon-camp-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03414700",
+          "03596755",
+          "03312413"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Campbell",
+        "huc8": "06010205",
+        "lat": "36.3231",
+        "lon": "-84.3288"
+      },
+      "catalogName": "Puncheon Camp Creek"
+    },
+    {
+      "slug": "reedy-creek",
+      "wave": 3,
+      "class": "warmwater",
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03487550",
+          "03487600"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Sullivan",
+        "huc8": "06010102",
+        "lat": "36.5556",
+        "lon": "-82.5666"
+      },
+      "catalogName": "Reedy Creek"
+    },
+    {
+      "slug": "richardson-byrd-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03527690",
+          "03527701"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "TWRA statewide trout limits — 7 trout any combination, no size limit; water is NOT in TWRA special-regulation list | Source: https://www.tn.",
+      "identity": {
+        "county": "Hancock",
+        "huc8": "06010205",
+        "lat": "36.5303",
+        "lon": "-83.1331"
+      },
+      "catalogName": "Richardson “Byrd” Creek"
+    },
+    {
+      "slug": "roaring-fork",
+      "wave": 3,
+      "class": "none-found",
+      "verdict": {
+        "ledger": "none",
+        "catalog": "trout",
+        "bucket": "CONFLICT strip-candidate"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03469270",
+          "03469280"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "park-wide NPS rules — 5 fish combo, 7 in min trout/bass, single-hook artificials only, no bait/scent, year-round | Source: https://www.nps.g",
+      "identity": {
+        "county": "Sevier",
+        "huc8": "06010107",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Roaring Fork"
+    },
+    {
+      "slug": "rocky-river",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03420110",
+          "03420116",
+          "03420120"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout Streams list; the Caney Fork 14-20\" PLR special regs appl",
+      "identity": {
+        "county": "Van Buren",
+        "huc8": "05130108",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "Rocky River"
+    },
+    {
+      "slug": "salt-lick-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          1,
+          3
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "05110002",
+        "lat": "36.5909",
+        "lon": "-85.8805"
+      },
+      "catalogName": "Salt Lick Creek"
+    },
+    {
+      "slug": "spring-creek-polk",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03556990",
+          "03556991",
+          "03563100",
+          "03563101",
+          "03563105"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020002",
+        "lat": "35.2197",
+        "lon": "-84.5169"
+      },
+      "catalogName": "Spring Creek (Polk County)"
+    },
+    {
+      "slug": "standing-rock-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03606125"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040005",
+        "lat": "36.4368",
+        "lon": "-87.9985"
+      },
+      "catalogName": "Standing Rock Creek"
+    },
+    {
+      "slug": "station-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03531900",
+          "03532000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "TWRA statewide trout limits (7 trout, no size limit) on stocked reaches outside the park; inside Cumberland Gap NHP, NPS compendium governs ",
+      "identity": {
+        "county": "Claiborne",
+        "huc8": "06010206",
+        "lat": "36.5886",
+        "lon": "-83.6049"
+      },
+      "catalogName": "Station Creek"
+    },
+    {
+      "slug": "stoney-creek-carter",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4,
+          5
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03484170",
+          "03484200",
+          "03484900",
+          "03484911",
+          "03481550",
+          "03481850",
+          "03482000",
+          "03482500",
+          "03466245",
+          "03484470",
+          "03484500",
+          "03484800",
+          "03485500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Carter",
+        "huc8": "06010103",
+        "lat": "36.3715",
+        "lon": "-82.1551"
+      },
+      "catalogName": "Stoney Creek (Carter County)"
+    },
+    {
+      "slug": "sulfur-fork-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          12
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03435770",
+          "03436000",
+          "03435550",
+          "03435570",
+          "03435610",
+          "03435620",
+          "03435700",
+          "03435800",
+          "03435810",
+          "03436082"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "05130206",
+        "lat": "36.5549",
+        "lon": "-87.1413"
+      },
+      "catalogName": "Sulfur Fork Creek"
+    },
+    {
+      "slug": "trail-fork-big-creek",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "unparsed",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions entry | Source: https://www.tn.gov/twra/fishing-regs/sta",
+      "identity": {
+        "county": "Cocke",
+        "huc8": "06010105",
+        "lat": "35.7987",
+        "lon": "-82.9629"
+      },
+      "catalogName": "Trail Fork (Big Creek tributary)"
+    },
+    {
+      "slug": "tumbling-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03562300",
+          "03602680",
+          "03602700",
+          "03602710"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Polk",
+        "huc8": "06020003",
+        "lat": "35.0017",
+        "lon": "-84.4694"
+      },
+      "catalogName": "Tumbling Creek"
+    },
+    {
+      "slug": "upper-hills-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03420260"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "05130107",
+        "lat": "35.5636",
+        "lon": "-85.6557"
+      },
+      "catalogName": "Upper Hills Creek"
+    },
+    {
+      "slug": "upper-roan-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          3,
+          6
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03482000",
+          "03482500",
+          "03481850",
+          "03481550",
+          "03484900",
+          "03484911",
+          "03484170",
+          "03484200",
+          "03466245",
+          "03484470",
+          "03484500",
+          "03484800",
+          "03485500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Johnson",
+        "huc8": "06010103",
+        "lat": "36.3860",
+        "lon": "-81.8690"
+      },
+      "catalogName": "Upper Roan Creek"
+    },
+    {
+      "slug": "west-prong-little-pigeon",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": null,
+        "ledgerBasis": "none",
+        "catalogMonths": null,
+        "bucket": "both-unset"
+      },
+      "gauges": {
+        "catalogUsgs": [
+          "03469251"
+        ],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03469251",
+          "03469230"
+        ],
+        "keep": [
+          "03469251"
+        ],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03469230"
+        ]
+      },
+      "hasSpecialRegs": true,
+      "specialRegLead": "park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round; special permit required for Gatlinburg city wate",
+      "identity": {
+        "county": "Sevier",
+        "huc8": "06010107",
+        "lat": null,
+        "lon": null
+      },
+      "catalogName": "West Prong Little Pigeon River"
+    },
+    {
+      "slug": "white-oak-creek",
+      "wave": 3,
+      "class": "stocked-winter",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03605980",
+          "03605968",
+          "03605970",
+          "03606020",
+          "03606125",
+          "03420470",
+          "03420260",
+          "03603500"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": []
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": null,
+        "huc8": "06040005",
+        "lat": "36.2590",
+        "lon": "-87.8716"
+      },
+      "catalogName": "White Oak Creek"
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "wave": 3,
+      "class": "mixed",
+      "verdict": {
+        "ledger": "trout",
+        "catalog": "trout",
+        "bucket": "agree-trout"
+      },
+      "season": {
+        "ledgerMonths": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "ledgerBasis": "parsed",
+        "catalogMonths": null,
+        "bucket": "catalog-unset (fill-gap)"
+      },
+      "gauges": {
+        "catalogUsgs": [],
+        "catalogVendor": [],
+        "ledgerUsgs": [
+          "03416000"
+        ],
+        "keep": [],
+        "unwireCandidates": [],
+        "offReachFlagged": [],
+        "wireCandidates": [
+          "03416000"
+        ]
+      },
+      "hasSpecialRegs": false,
+      "specialRegLead": null,
+      "identity": {
+        "county": "Fentress",
+        "huc8": "05130105",
+        "lat": "36.560278",
+        "lon": "-85.073056"
+      },
+      "catalogName": "Wolf River (Fentress County headwaters)"
+    }
+  ]
+}

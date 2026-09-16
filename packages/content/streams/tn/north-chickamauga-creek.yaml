@@ -15,9 +15,8 @@ idealFlow:
     max: 250
     unit: cfs
 idealFlowSource: editorial
-notes: Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring
-  stocking in the valley reaches. The Mile Straight gauge helps separate rain events from
-  baseline.
+notes: Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring stocking in
+  the valley reaches. The Mile Straight gauge helps separate rain events from baseline.
 officialSources:
   - label: USGS Water Data — monitoring location 03566535
     url: https://waterdata.usgs.gov/monitoring-location/03566535/

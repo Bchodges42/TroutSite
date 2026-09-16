@@ -14,7 +14,13 @@ idealFlow:
     max: 120
     unit: cfs
 idealFlowSource: editorial
-notes: TWRA spring-stocked Van Buren County creek. Karst-influenced flows can change quickly.
+notes: >-
+  TWRA spring-stocked Van Buren County creek. Karst-influenced flows can change quickly.
+
+
+  Regulations: Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout Streams
+  list; the Caney Fork 14-20" PLR special regs apply only to the tailwater below Center Hill Dam, not this
+  tributary (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
