@@ -5,6 +5,11 @@
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-east-holston",
+    "hydroIdentity": {
+      "gnisIds": ["01327068"],
+      "huc8s": ["06010102"],
+      "counties": ["Sullivan"]
+    },
     "gaugeIds": [
       "03476500"
     ],
@@ -43,6 +48,11 @@
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-northeast-watauga",
+    "hydroIdentity": {
+      "gnisIds": ["01327321"],
+      "huc8s": ["06010103"],
+      "counties": ["Carter"]
+    },
     "gaugeIds": [
       "03467000"
     ],
@@ -76,6 +86,11 @@
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-se-hiwassee",
+    "hydroIdentity": {
+      "gnisIds": ["01328447"],
+      "huc8s": ["06020002"],
+      "counties": ["Polk"]
+    },
     "gaugeIds": [
       "03566000"
     ],
@@ -109,6 +124,11 @@
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-middle-caney-fork",
+    "hydroIdentity": {
+      "gnisIds": ["01326386"],
+      "huc8s": ["05130108", "05130201"],
+      "counties": ["DeKalb"]
+    },
     "gaugeIds": [
       "03414000"
     ],
@@ -142,6 +162,11 @@
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-middle-duck-elk",
+    "hydroIdentity": {
+      "gnisIds": ["00117929"],
+      "huc8s": ["06030003", "06030004"],
+      "counties": ["Franklin"]
+    },
     "gaugeIds": [
       "03597000"
     ],
@@ -175,6 +200,11 @@
     "stateId": "TN",
     "waterbodyType": "creek",
     "regionId": "tn-middle-nashville",
+    "hydroIdentity": {
+      "gnisIds": ["01304469"],
+      "huc8s": ["05130203"],
+      "counties": ["Rutherford"]
+    },
     "gaugeIds": [],
     "stockingProgram": true,
     "idealFlow": [],
