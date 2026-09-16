@@ -268,6 +268,15 @@ function recipeFor(stream, feature) {
   };
 }
 
+function displayTierFor(stream, feature) {
+  const authored = stream.display ?? feature?.properties?.displayTier;
+  if (authored === 'featured' || authored === 'standard' || authored === 'reference') return authored;
+  const labelMinZoom = Number(
+    additionsById.get(stream.id)?.labelMinZoom ?? feature?.properties?.labelMinZoom ?? 0,
+  );
+  return labelMinZoom >= 9 ? 'reference' : 'standard';
+}
+
 function makeTrace(stream, feature) {
   const raw = rawEdgesFor(stream);
   const recipes = recipeFor(stream, feature);
@@ -313,6 +322,7 @@ function makeTrace(stream, feature) {
     ...existing,
     id: stream.id,
     name: stream.name,
+    displayTier: displayTierFor(stream, existing),
     waterbodyType: stream.waterbodyType,
     source: 'nhd',
     geometrySource: 'nhd',
@@ -348,6 +358,7 @@ function makeTrace(stream, feature) {
 
 const recipes = [];
 const builtFeatures = new Map();
+const streamById = new Map(streams.map(({ stream }) => [stream.id, stream]));
 for (const { stream } of streams.sort((a, b) => a.stream.id.localeCompare(b.stream.id))) {
   const existing = atlasById.get(stream.id);
   const result = makeTrace(stream, existing);
@@ -360,8 +371,9 @@ for (const feature of atlas.features) {
   const replacement = builtFeatures.get(id);
   if (replacement) continue;
   if (!lineTypes.has(feature.properties.waterbodyType)) continue;
-  const stream = streams.find(({ stream: row }) => row.id === id)?.stream;
+  const stream = streamById.get(id);
   if (!stream) continue;
+  feature.properties.displayTier = displayTierFor(stream, feature);
   const rawIds = (feature.properties.sourceIds ?? []).map(String).filter((id) => byPid.has(id));
   feature.properties.nhdPermanentIds ??= [];
   feature.properties.nhdPlusIds ??= uniqueSorted((feature.properties.sourceIds ?? []).map(String).filter((id) => !byPid.has(id)));

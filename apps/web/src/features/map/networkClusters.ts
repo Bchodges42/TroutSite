@@ -1,4 +1,5 @@
 import type { Map as MlMap } from 'maplibre-gl';
+import { MAP_ZOOM_TIERS } from './mapStyle';
 
 /**
  * Statewide named-creek network — on-demand per-cluster loading.
@@ -10,20 +11,16 @@ import type { Map as MlMap } from 'maplibre-gl';
  * each pointing at a network/<clusterId>.geojson FeatureCollection.
  *
  * Rules (reviewable constants below):
- *  - On moveend at zoom >= NETWORK_LOAD_ZOOM, every manifest cluster whose
- *    (padded) bbox intersects the viewport is fetched ONCE per page session
- *    and added as source `network-<id>` + layer `network-minor-<id>` with the
- *    proof layer's exact paint, inserted before 'rivers-casing' so catalog
- *    rivers keep painting on top.
- *  - At zoom >= NETWORK_RELEASE_ZOOM, loaded clusters whose padded bbox no
- *    longer intersects the viewport are removed (source + layer) to bound
- *    renderer memory. Below that zoom the viewport spans most of the state,
- *    so nothing ever qualifies for removal; layers stay visually gated by
- *    minzoom anyway.
+ *  - On moveend at zoom >= NETWORK_LOAD_ZOOM, only the latest retained
+ *    viewport request can install cluster sources. Cluster bytes are cached
+ *    once per page session, even when a result becomes stale while panning.
+ *  - Loaded clusters use 25% viewport padding to enter and 75% padding to
+ *    leave. The recent renderer set is bounded so short pans do not churn
+ *    every source in the state.
  *  - The creeks stay NON-SELECTABLE by construction: cluster layers are never
  *    added to the selection hit layers (TennesseeMap) — hover tooltip only.
- *  - A missing/invalid manifest (404 before SESSION A lands, schema drift)
- *    disables the feature entirely — fail closed, never half-render.
+ *  - A missing/invalid manifest disables the feature entirely — fail closed,
+ *    never half-render.
  */
 
 export interface NetworkManifestCluster {
@@ -48,34 +45,37 @@ export const NETWORK_LAYER_PREFIX = 'network-minor-';
 /** Cluster layers insert before this catalog layer: rivers paint above creeks. */
 export const NETWORK_BEFORE_LAYER = 'rivers-casing';
 /** moveend zoom gate for loading intersecting clusters. */
-export const NETWORK_LOAD_ZOOM = 9.4;
-/** Below-padded-viewport release only counts at this zoom or higher. */
-export const NETWORK_RELEASE_ZOOM = 8.5;
-/** Visual gate — matches the proof layer exactly (fade completes at 10.8). */
-export const NETWORK_MINZOOM = 9.6;
-/** Viewport padding for intersection tests: fraction of each axis span. */
-export const NETWORK_PAD_RATIO = 0.25;
+export const NETWORK_LOAD_ZOOM = MAP_ZOOM_TIERS.context.load;
+/** Below this zoom the statewide context layer is not retained in the renderer. */
+export const NETWORK_RELEASE_ZOOM = NETWORK_LOAD_ZOOM;
+/** Visual gate for the detailed context network. */
+export const NETWORK_MINZOOM = MAP_ZOOM_TIERS.context.start;
+/** Viewport padding used to load a new cluster. */
+export const NETWORK_LOAD_PAD_RATIO = 0.25;
+/** Wider hysteresis padding used to retain a loaded cluster. */
+export const NETWORK_RELEASE_PAD_RATIO = 0.75;
+/** A recent renderer set is enough for a short pan without unbounded growth. */
+export const NETWORK_MAX_LOADED_CLUSTERS = 6;
+/** Small bounded concurrency keeps a wide viewport from starting 20 fetches. */
+export const NETWORK_FETCH_CONCURRENCY = 3;
 
 /**
- * Catalog-water names (lowercase) the network must NOT render: the catalog
- * already draws those exact waters, and the near-twin lines read as doubled
- * rivers (the Tennessee corridor, the Obion forks). TennesseeMap seeds this
- * from the river index at module load — before any cluster can load — so the
- * first addSource is already deduped.
+ * Drop a context feature only when its exact NHD permanent reach identifier is
+ * owned by a catalog water. Names are labels, not identities: same-name
+ * waters with different PIDs remain visible, unnamed reaches are handled too,
+ * and a missing PID fails open.
  */
-let catalogWaterNames: Set<string> = new Set();
-export function setCatalogWaterNames(names: Iterable<string>): void {
-  catalogWaterNames = new Set([...names].filter((n) => n.length > 0));
-}
-
-/** Drop catalog-water features from a fetched cluster (dedup, see above). */
-function dedupeAgainstCatalog(fc: NetworkFeatureCollection): NetworkFeatureCollection {
-  if (catalogWaterNames.size === 0) return fc;
-  const features = (fc.features as Array<{ properties?: { name?: string } }>).filter((f) => {
-    const name = String(f.properties?.name ?? '').toLowerCase();
-    return name.length > 0 && !catalogWaterNames.has(name);
+export function dedupeAgainstCatalog(
+  fc: NetworkFeatureCollection,
+  excludedPermanentIds: Iterable<string>,
+): NetworkFeatureCollection {
+  const excluded = new Set([...excludedPermanentIds].map(String));
+  if (excluded.size === 0) return { type: 'FeatureCollection', features: [...fc.features] };
+  const features = (fc.features as Array<{ properties?: { pid?: unknown } }>).filter((feature) => {
+    const pid = feature.properties?.pid;
+    return typeof pid !== 'string' || !excluded.has(pid);
   });
-  return { type: 'FeatureCollection', features } as NetworkFeatureCollection;
+  return { type: 'FeatureCollection', features };
 }
 
 /** Minimal GeoJSON typing — avoids a standalone @types/geojson dependency. */
@@ -143,7 +143,7 @@ export function bboxesIntersect(a: BBox, b: BBox): boolean {
 export function clustersForViewport(
   clusters: NetworkManifestCluster[],
   viewport: BBox,
-  padRatio = NETWORK_PAD_RATIO,
+  padRatio = NETWORK_LOAD_PAD_RATIO,
 ): string[] {
   const padded = paddedBBox(viewport, padRatio);
   return clusters.filter((c) => bboxesIntersect(padded, c.bounds)).map((c) => c.id);
@@ -154,7 +154,7 @@ export function clustersToRelease(
   clusters: NetworkManifestCluster[],
   loadedIds: Iterable<string>,
   viewport: BBox,
-  padRatio = NETWORK_PAD_RATIO,
+  padRatio = NETWORK_RELEASE_PAD_RATIO,
 ): string[] {
   const padded = paddedBBox(viewport, padRatio);
   const byId = new Map(clusters.map((c) => [c.id, c]));
@@ -164,29 +164,11 @@ export function clustersToRelease(
   });
 }
 
-interface MapNetworkState {
-  added: Set<string>;
-  queue: Promise<void>;
-  disposed: boolean;
-}
-
-const stateFor = (map: MlMap): MapNetworkState => {
-  const states = networkStates as WeakMap<MlMap, MapNetworkState | undefined>;
-  let state = states.get(map);
-  if (!state) {
-    state = { added: new Set(), queue: Promise.resolve(), disposed: false };
-    states.set(map, state);
-  }
-  return state;
-};
-const networkStates = new WeakMap<MlMap, MapNetworkState | undefined>();
-
 // Per-page-session caches. The manifest and every cluster file are fetched at
 // most once per session regardless of viewport churn; removal only drops the
 // MapLibre source, never the cached bytes.
 let manifestCache: Promise<NetworkManifest | null> | null = null;
-const dataCache = new Map<string, Promise<NetworkFeatureCollection | null>>();
-/** Actual network fetches, in order (dev-only seam for load-once evidence). */
+/** Actual cluster URL fetches, in order; exposed only through the DEV seam. */
 const fetchLog: string[] = [];
 
 function loadManifest(): Promise<NetworkManifest | null> {
@@ -210,21 +192,220 @@ export function clusterFileUrl(file: string): string {
   return `/atlas/network/${base}`;
 }
 
-function loadCluster(cluster: NetworkManifestCluster) {
-  let promise = dataCache.get(cluster.id);
-  if (!promise) {
-    const url = clusterFileUrl(cluster.file);
-    fetchLog.push(url);
-    promise = fetch(url)
-      .then((res) => (res.ok ? res.json() : null))
-      .catch(() => null);
-    dataCache.set(cluster.id, promise);
+export interface NetworkSchedulerCounters {
+  fetches: number;
+  additions: number;
+  removals: number;
+  staleResultsIgnored: number;
+  loadedIds: string[];
+}
+
+export interface NetworkSchedulerAdapter {
+  isAlive(): boolean;
+  /** Returns true when a source/layer was actually installed. */
+  addCluster(cluster: NetworkManifestCluster, data: NetworkFeatureCollection): boolean;
+  removeCluster(id: string): void;
+}
+
+export interface NetworkViewportRequest {
+  zoom: number;
+  bbox: BBox;
+  generation: number;
+  sequence: number;
+}
+
+export interface NetworkSchedulerOptions {
+  clusters: NetworkManifestCluster[];
+  adapter: NetworkSchedulerAdapter;
+  fetchCluster: (cluster: NetworkManifestCluster) => Promise<NetworkFeatureCollection | null>;
+  onChange?: (counters: NetworkSchedulerCounters) => void;
+}
+
+/**
+ * Latest-only viewport scheduler. It deliberately owns the byte cache and
+ * renderer bookkeeping separately: a stale request may populate the byte
+ * cache, but it can never mutate the current MapLibre style.
+ */
+export class LatestOnlyNetworkScheduler {
+  private readonly clusters: NetworkManifestCluster[];
+  private readonly adapter: NetworkSchedulerAdapter;
+  private readonly fetchCluster: NetworkSchedulerOptions['fetchCluster'];
+  private readonly onChange?: NetworkSchedulerOptions['onChange'];
+  private readonly bytes = new Map<string, Promise<NetworkFeatureCollection | null>>();
+  private readonly loaded = new Set<string>();
+  private readonly loadOrder = new Map<string, number>();
+  private latest: NetworkViewportRequest | null = null;
+  private running = false;
+  private disposed = false;
+  private generation = 0;
+  private sequence = 0;
+  private order = 0;
+  private readonly stats = { fetches: 0, additions: 0, removals: 0, staleResultsIgnored: 0 };
+
+  constructor(options: NetworkSchedulerOptions) {
+    this.clusters = options.clusters;
+    this.adapter = options.adapter;
+    this.fetchCluster = options.fetchCluster;
+    this.onChange = options.onChange;
   }
-  return promise;
+
+  request(zoom: number, bbox: BBox): void {
+    if (this.disposed) return;
+    this.latest = { zoom, bbox, generation: this.generation, sequence: ++this.sequence };
+    if (!this.running) {
+      this.running = true;
+      void this.drain();
+    }
+  }
+
+  /** MapLibre style reload: clear source bookkeeping, retain byte promises. */
+  styleReload(zoom: number, bbox: BBox): void {
+    if (this.disposed) return;
+    this.generation += 1;
+    this.loaded.clear();
+    this.loadOrder.clear();
+    this.request(zoom, bbox);
+    this.publish();
+  }
+
+  dispose(): void {
+    this.disposed = true;
+    this.latest = null;
+    this.loaded.clear();
+    this.loadOrder.clear();
+  }
+
+  getCounters(): NetworkSchedulerCounters {
+    return {
+      ...this.stats,
+      loadedIds: [...this.loaded].sort((a, b) => a.localeCompare(b)),
+    };
+  }
+
+  private neededFor(request: NetworkViewportRequest): string[] {
+    if (request.zoom < NETWORK_LOAD_ZOOM) return [];
+    return clustersForViewport(this.clusters, request.bbox, NETWORK_LOAD_PAD_RATIO);
+  }
+
+  private current(request: NetworkViewportRequest, clusterId?: string): boolean {
+    if (this.disposed || !this.adapter.isAlive() || this.latest !== request) return false;
+    if (request.generation !== this.generation) return false;
+    return clusterId == null || this.neededFor(request).includes(clusterId);
+  }
+
+  private async load(cluster: NetworkManifestCluster): Promise<NetworkFeatureCollection | null> {
+    let promise = this.bytes.get(cluster.id);
+    if (!promise) {
+      this.stats.fetches += 1;
+      promise = Promise.resolve()
+        .then(() => this.fetchCluster(cluster))
+        .catch(() => null);
+      this.bytes.set(cluster.id, promise);
+      this.publish();
+    }
+    return promise;
+  }
+
+  private async drain(): Promise<void> {
+    try {
+      while (this.latest && !this.disposed) {
+        const request = this.latest;
+        await this.sync(request);
+        if (this.latest === request) this.latest = null;
+      }
+    } finally {
+      this.running = false;
+      if (this.latest && !this.disposed) {
+        this.running = true;
+        void this.drain();
+      }
+    }
+  }
+
+  private async sync(request: NetworkViewportRequest): Promise<void> {
+    if (!this.current(request)) return;
+    const needed = this.neededFor(request);
+    const retained = new Set(
+      request.zoom < NETWORK_RELEASE_ZOOM
+        ? []
+        : clustersForViewport(this.clusters, request.bbox, NETWORK_RELEASE_PAD_RATIO),
+    );
+    for (const id of [...this.loaded]) {
+      if (!retained.has(id)) this.remove(id);
+    }
+
+    // Never start more than the bounded recent set in one viewport. The
+    // manifest order is deterministic, so unusually wide views degrade
+    // predictably instead of creating an unbounded source burst.
+    const candidates = needed
+      .filter((id) => !this.loaded.has(id))
+      .slice(0, NETWORK_MAX_LOADED_CLUSTERS);
+    let cursor = 0;
+    const worker = async () => {
+      while (cursor < candidates.length && !this.disposed) {
+        const id = candidates[cursor++]!;
+        const cluster = this.clusters.find((entry) => entry.id === id);
+        if (!cluster) continue;
+        const data = await this.load(cluster);
+        if (!data) continue;
+        if (!this.current(request, id)) {
+          this.stats.staleResultsIgnored += 1;
+          this.publish();
+          continue;
+        }
+        try {
+          if (!this.loaded.has(id)) {
+            if (this.adapter.addCluster(cluster, data)) this.stats.additions += 1;
+            this.loaded.add(id);
+            this.loadOrder.set(id, ++this.order);
+            this.publish();
+          }
+        } catch {
+          // A style can tear down between the alive check and addSource.
+          // The next style.load request will retry from the byte cache.
+        }
+      }
+    };
+    await Promise.all(
+      Array.from({ length: Math.min(NETWORK_FETCH_CONCURRENCY, candidates.length) }, () =>
+        worker(),
+      ),
+    );
+    this.enforceBound(new Set(needed.slice(0, NETWORK_MAX_LOADED_CLUSTERS)));
+  }
+
+  private remove(id: string): void {
+    try {
+      if (this.adapter.isAlive()) this.adapter.removeCluster(id);
+    } catch {
+      /* style teardown already removed it */
+    }
+    this.loaded.delete(id);
+    this.loadOrder.delete(id);
+    this.stats.removals += 1;
+    this.publish();
+  }
+
+  private enforceBound(protectedIds: Set<string>): void {
+    while (this.loaded.size > NETWORK_MAX_LOADED_CLUSTERS) {
+      const removable = [...this.loaded]
+        .filter((id) => !protectedIds.has(id))
+        .sort((a, b) => (this.loadOrder.get(a) ?? 0) - (this.loadOrder.get(b) ?? 0))[0];
+      const oldest = removable ?? [...this.loaded].sort(
+        (a, b) => (this.loadOrder.get(a) ?? 0) - (this.loadOrder.get(b) ?? 0),
+      )[0];
+      if (!oldest) break;
+      this.remove(oldest);
+    }
+  }
+
+  private publish(): void {
+    this.onChange?.(this.getCounters());
+  }
 }
 
 /** Same paint/layout as the replaced proof layer, per cluster. */
-function clusterLayerSpec(cluster: NetworkManifestCluster): {
+function clusterLayerSpec(cluster: NetworkManifestCluster, reducedMotion: boolean): {
   id: string;
   type: 'line';
   source: string;
@@ -240,75 +421,18 @@ function clusterLayerSpec(cluster: NetworkManifestCluster): {
     layout: { 'line-cap': 'round', 'line-join': 'round' },
     paint: {
       'line-color': '#5f8fb8',
-      'line-opacity': ['interpolate', ['linear'], ['zoom'], 9.6, 0, 10.8, 0.95],
-      'line-width': ['interpolate', ['linear'], ['zoom'], 9.6, 0.8, 13.5, 1.8],
+      'line-opacity': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        MAP_ZOOM_TIERS.context.start,
+        0,
+        MAP_ZOOM_TIERS.context.end,
+        0.95,
+      ],
+      'line-opacity-transition': { duration: reducedMotion ? 0 : 200 },
+      'line-width': ['interpolate', ['linear'], ['zoom'], NETWORK_MINZOOM, 0.8, 13.5, 1.8],
     },
-  };
-}
-
-async function syncNetworkClusters(map: MlMap): Promise<void> {
-  const state = stateFor(map);
-  const manifest = await loadManifest();
-  if (!manifest || state.disposed) return;
-  const zoom = map.getZoom();
-  const b = map.getBounds();
-  const viewport: BBox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
-  const padded = paddedBBox(viewport, NETWORK_PAD_RATIO);
-
-  // Release first so panning across the state replaces rather than accumulates.
-  if (zoom >= NETWORK_RELEASE_ZOOM) {
-    for (const id of clustersToRelease(manifest.clusters, state.added, viewport)) {
-      if (map.getLayer(NETWORK_LAYER_PREFIX + id)) map.removeLayer(NETWORK_LAYER_PREFIX + id);
-      if (map.getSource(NETWORK_SOURCE_PREFIX + id)) map.removeSource(NETWORK_SOURCE_PREFIX + id);
-      state.added.delete(id);
-    }
-  }
-
-  if (zoom >= NETWORK_LOAD_ZOOM) {
-    for (const cluster of manifest.clusters) {
-      if (state.disposed) return;
-      if (state.added.has(cluster.id)) continue;
-      if (!bboxesIntersect(padded, cluster.bounds)) continue;
-      const data = await loadCluster(cluster);
-      if (!data || state.disposed) continue;
-      const deduped = dedupeAgainstCatalog(data);
-      if (deduped.features.length === 0) {
-        // every feature in this cluster is a catalog water — nothing to add
-        state.added.add(cluster.id);
-        continue;
-      }
-      // A style swap while awaiting drops both the source and our bookkeeping
-      // (see style.load below); re-check before adding.
-      const sourceId = NETWORK_SOURCE_PREFIX + cluster.id;
-      if (map.getSource(sourceId)) {
-        state.added.add(cluster.id);
-        continue;
-      }
-      map.addSource(sourceId, {
-        type: 'geojson',
-        data: deduped,
-        ...(manifest.attribution ? { attribution: manifest.attribution } : {}),
-      });
-      // If 'rivers-casing' is momentarily absent (style mid-swap), append to
-      // the top — the next style.load resync re-inserts in the right order.
-      map.addLayer(
-        clusterLayerSpec(cluster) as never,
-        map.getLayer(NETWORK_BEFORE_LAYER) ? NETWORK_BEFORE_LAYER : undefined,
-      );
-      state.added.add(cluster.id);
-    }
-  }
-
-  publishDevSeam(map, manifest, state);
-}
-
-function publishDevSeam(map: MlMap, manifest: NetworkManifest, state: MapNetworkState): void {
-  if (!import.meta.env.DEV) return;
-  (window as unknown as Record<string, unknown>).__troutNetwork = {
-    manifestClusters: manifest.clusters.map((c) => c.id),
-    added: [...state.added],
-    fetchedFiles: [...fetchLog],
-    fetchedOnce: new Set(fetchLog).size === fetchLog.length,
   };
 }
 
@@ -316,29 +440,95 @@ function publishDevSeam(map: MlMap, manifest: NetworkManifest, state: MapNetwork
  * Subscribes one map to the on-demand cluster loader. Returns a disposer;
  * TennesseeMap calls it from its map effect cleanup.
  */
-export function initNetworkClusters(map: MlMap): () => void {
-  const state = stateFor(map);
+export function initNetworkClusters(
+  map: MlMap,
+  excludedPermanentIds: Iterable<string> = [],
+  options: { reducedMotion?: boolean } = {},
+): () => void {
+  let disposed = false;
+  let scheduler: LatestOnlyNetworkScheduler | null = null;
+  const catalogPids = new Set([...excludedPermanentIds].map(String));
+  const readViewport = (): { zoom: number; bbox: BBox } | null => {
+    try {
+      const b = map.getBounds();
+      return { zoom: map.getZoom(), bbox: [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()] };
+    } catch {
+      return null;
+    }
+  };
+  const publish = (manifest: NetworkManifest, counters: NetworkSchedulerCounters) => {
+    const diagnostics =
+      import.meta.env.DEV || new URLSearchParams(window.location.search).get('qa') === '1';
+    if (!diagnostics) return;
+    (window as unknown as Record<string, unknown>).__troutNetwork = {
+      manifestClusters: manifest.clusters.map((c) => c.id),
+      ...counters,
+      fetchedFiles: [...fetchLog],
+      fetchedOnce: new Set(fetchLog).size === fetchLog.length,
+    };
+  };
+  const ensureScheduler = (manifest: NetworkManifest) => {
+    if (scheduler) return scheduler;
+    scheduler = new LatestOnlyNetworkScheduler({
+      clusters: manifest.clusters,
+      adapter: {
+        isAlive: () => !disposed,
+        addCluster: (cluster, data) => {
+          const deduped = dedupeAgainstCatalog(data, catalogPids);
+          if (deduped.features.length === 0) return false;
+          const sourceId = NETWORK_SOURCE_PREFIX + cluster.id;
+          if (map.getSource(sourceId)) return false;
+          map.addSource(sourceId, {
+            type: 'geojson',
+            data: deduped,
+            ...(manifest.attribution ? { attribution: manifest.attribution } : {}),
+          });
+          map.addLayer(
+            clusterLayerSpec(cluster, Boolean(options.reducedMotion)) as never,
+            map.getLayer(NETWORK_BEFORE_LAYER) ? NETWORK_BEFORE_LAYER : undefined,
+          );
+          return true;
+        },
+        removeCluster: (id) => {
+          if (map.getLayer(NETWORK_LAYER_PREFIX + id)) map.removeLayer(NETWORK_LAYER_PREFIX + id);
+          if (map.getSource(NETWORK_SOURCE_PREFIX + id)) map.removeSource(NETWORK_SOURCE_PREFIX + id);
+        },
+      },
+      fetchCluster: (cluster) => {
+        const url = clusterFileUrl(cluster.file);
+        fetchLog.push(url);
+        return fetch(url).then((res) => (res.ok ? res.json() : null));
+      },
+      onChange: (counters) => publish(manifest, counters),
+    });
+    return scheduler;
+  };
   const schedule = () => {
-    state.queue = state.queue
-      .then(() => syncNetworkClusters(map))
-      .catch(() => {
-        /* never let a cluster fetch break the map */
-      });
+    if (disposed) return;
+    const viewport = readViewport();
+    if (!viewport) return;
+    void loadManifest().then((manifest) => {
+      if (!manifest || disposed) return;
+      ensureScheduler(manifest)?.request(viewport.zoom, viewport.bbox);
+    });
   };
   const onMoveend = () => schedule();
   map.on('moveend', onMoveend);
-  // A style swap rebuilds sources from atlasStyle() — which carries no network
-  // sources — so forget what the old style had and resync for the viewport.
   const onStyleLoad = () => {
-    state.added.clear();
-    schedule();
+    const viewport = readViewport();
+    if (!viewport) return;
+    void loadManifest().then((manifest) => {
+      if (!manifest || disposed) return;
+      const current = ensureScheduler(manifest);
+      current?.styleReload(viewport.zoom, viewport.bbox);
+    });
   };
   map.on('style.load', onStyleLoad);
   if (map.isStyleLoaded()) schedule();
   else map.once('load', schedule);
   return () => {
-    state.disposed = true;
-    state.added.clear();
+    disposed = true;
+    scheduler?.dispose();
     map.off('moveend', onMoveend);
     map.off('style.load', onStyleLoad);
   };
@@ -347,6 +537,5 @@ export function initNetworkClusters(map: MlMap): () => void {
 /** Test seam: reset the per-session caches (module state, not map state). */
 export function resetNetworkSessionCaches(): void {
   manifestCache = null;
-  dataCache.clear();
   fetchLog.length = 0;
 }

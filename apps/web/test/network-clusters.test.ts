@@ -1,9 +1,14 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   bboxesIntersect,
   clusterFileUrl,
   clustersForViewport,
   clustersToRelease,
+  dedupeAgainstCatalog,
+  LatestOnlyNetworkScheduler,
+  NETWORK_MAX_LOADED_CLUSTERS,
+  type NetworkFeatureCollection,
+  type NetworkSchedulerAdapter,
   paddedBBox,
   parseNetworkManifest,
   type NetworkManifestCluster,
@@ -148,5 +153,137 @@ describe('viewport intersection (padded)', () => {
   it('treats touching edges as intersecting', () => {
     expect(bboxesIntersect([0, 0, 1, 1], [1, 0, 2, 1])).toBe(true);
     expect(bboxesIntersect([0, 0, 1, 1], [1.00001, 0, 2, 1])).toBe(false);
+  });
+});
+
+describe('exact-PID context dedupe', () => {
+  const context: NetworkFeatureCollection = {
+    type: 'FeatureCollection',
+    features: [
+      { properties: { name: 'Twin Creek', pid: 'same-name-context' } },
+      { properties: { name: 'Different Name', pid: 'catalog-pid' } },
+      { properties: { name: 'Unnamed reach', pid: 'unnamed-catalog-pid' } },
+      { properties: { name: 'Missing PID' } },
+    ],
+  };
+
+  it('drops only exact permanent identifiers and never names', () => {
+    const result = dedupeAgainstCatalog(context, ['catalog-pid', 'unnamed-catalog-pid']);
+    expect(result.features).toHaveLength(2);
+    expect(result.features).toEqual([
+      { properties: { name: 'Twin Creek', pid: 'same-name-context' } },
+      { properties: { name: 'Missing PID' } },
+    ]);
+    expect(context.features).toHaveLength(4);
+  });
+
+  it('fails open for a missing PID and keeps same-name different-PID reaches', () => {
+    const result = dedupeAgainstCatalog(context, ['not-present']);
+    expect(result.features).toHaveLength(4);
+  });
+});
+
+describe('latest-only network scheduler', () => {
+  const makeAdapter = () => {
+    const added: string[] = [];
+    const removed: string[] = [];
+    const adapter: NetworkSchedulerAdapter = {
+      isAlive: () => true,
+      addCluster: (cluster) => {
+        added.push(cluster.id);
+        return true;
+      },
+      removeCluster: (id) => removed.push(id),
+    };
+    return { adapter, added, removed };
+  };
+  const data = (): NetworkFeatureCollection => ({ type: 'FeatureCollection', features: [] });
+  const waitFor = async (condition: () => void) => {
+    await vi.waitFor(condition, { timeout: 1000, interval: 0 });
+  };
+
+  it('ignores a stale viewport result while allowing its bytes to be cached', async () => {
+    const a = cluster('a', [0, 0, 1, 1]);
+    const b = cluster('b', [2, 0, 3, 1]);
+    const { adapter, added } = makeAdapter();
+    const deferred = new Map<string, (value: NetworkFeatureCollection) => void>();
+    const fetchCluster = vi.fn(
+      (entry: NetworkManifestCluster) =>
+        new Promise<NetworkFeatureCollection>((resolve) => deferred.set(entry.id, resolve)),
+    );
+    const scheduler = new LatestOnlyNetworkScheduler({
+      clusters: [a, b],
+      adapter,
+      fetchCluster,
+    });
+
+    scheduler.request(10, [0, 0, 1, 1]);
+    await waitFor(() => expect(fetchCluster).toHaveBeenCalledWith(a));
+    scheduler.request(10, [2, 0, 3, 1]);
+    deferred.get('a')!(data());
+    await waitFor(() => expect(fetchCluster).toHaveBeenCalledWith(b));
+    deferred.get('b')!(data());
+    await waitFor(() => expect(added).toEqual(['b']));
+
+    expect(scheduler.getCounters().staleResultsIgnored).toBe(1);
+    expect(scheduler.getCounters().loadedIds).toEqual(['b']);
+
+    scheduler.request(10, [0, 0, 1, 1]);
+    await waitFor(() => expect(added).toEqual(['b', 'a']));
+    expect(fetchCluster).toHaveBeenCalledTimes(2);
+  });
+
+  it('reuses bytes across a style reload and never adds after disposal', async () => {
+    const a = cluster('a', [0, 0, 1, 1]);
+    const { adapter, added } = makeAdapter();
+    let resolve!: (value: NetworkFeatureCollection) => void;
+    const fetchCluster = vi.fn(
+      () => new Promise<NetworkFeatureCollection>((next) => (resolve = next)),
+    );
+    const scheduler = new LatestOnlyNetworkScheduler({ clusters: [a], adapter, fetchCluster });
+    scheduler.request(10, [0, 0, 1, 1]);
+    await waitFor(() => expect(fetchCluster).toHaveBeenCalledTimes(1));
+    scheduler.styleReload(10, [0, 0, 1, 1]);
+    resolve(data());
+    await waitFor(() => expect(added).toEqual(['a']));
+    expect(fetchCluster).toHaveBeenCalledTimes(1);
+
+    const late = cluster('late', [2, 0, 3, 1]);
+    let resolveLate!: (value: NetworkFeatureCollection) => void;
+    const lateFetch = vi.fn(
+      () => new Promise<NetworkFeatureCollection>((next) => (resolveLate = next)),
+    );
+    const lateScheduler = new LatestOnlyNetworkScheduler({
+      clusters: [late],
+      adapter,
+      fetchCluster: lateFetch,
+    });
+    lateScheduler.request(10, [2, 0, 3, 1]);
+    await waitFor(() => expect(lateFetch).toHaveBeenCalledTimes(1));
+    lateScheduler.dispose();
+    resolveLate(data());
+    await Promise.resolve();
+    expect(added).toEqual(['a']);
+  });
+
+  it('keeps a nearby loaded cluster through the hysteresis band and bounds additions', async () => {
+    const nearby = cluster('nearby', [1.1, 0, 1.2, 1]);
+    const wide = Array.from({ length: NETWORK_MAX_LOADED_CLUSTERS + 2 }, (_, i) =>
+      cluster(`wide-${i}`, [-1 + i * 0.01, 0, -0.99 + i * 0.01, 1]),
+    );
+    const { adapter, added, removed } = makeAdapter();
+    const fetchCluster = vi.fn(async () => data());
+    const scheduler = new LatestOnlyNetworkScheduler({
+      clusters: [nearby, ...wide],
+      adapter,
+      fetchCluster,
+    });
+    scheduler.request(10, [0, 0, 1, 1]);
+    await waitFor(() => expect(added).toContain('nearby'));
+    scheduler.request(10, [0.2, 0, 1.2, 1]);
+    await Promise.resolve();
+    expect(removed).not.toContain('nearby');
+    scheduler.request(10, [-1, 0, 1, 1]);
+    await waitFor(() => expect(scheduler.getCounters().loadedIds.length).toBeLessThanOrEqual(NETWORK_MAX_LOADED_CLUSTERS));
   });
 });
