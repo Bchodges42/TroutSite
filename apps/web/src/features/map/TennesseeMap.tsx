@@ -7,6 +7,7 @@ import {
   atlasStyle,
   MAP_ZOOM_TIERS,
   catalogTierFilter,
+  TIER_HIT_LAYERS,
   type BasemapVariant,
   type RoadsSpec,
 } from './mapStyle';
@@ -18,10 +19,10 @@ import { labelSpeciesNote, shouldShowLabel } from './labelPolicy';
 import {
   buildFlowArrowSource,
   EMPTY_FLOW_SOURCE,
-  FLOW_ARROW_ICON,
   FLOW_ARROWS_SOURCE,
   makeFlowArrowImage,
   orientationFor,
+  registerFlowArrowIcon,
 } from './flowArrows';
 import index from './riverIndex.json';
 import { chooseWaterCandidate, type ScreenGeometry, type SelectionCandidate } from './selection';
@@ -428,12 +429,6 @@ export function TennesseeMap(props: Props) {
       }
       labelsRef.current();
     };
-    const tierHitLayers: Array<[string, ['==', '$type', 'LineString' | 'Polygon' | 'Point']]> = [
-      ['rivers-hit', ['==', '$type', 'LineString']],
-      ['rivers-water-hit', ['==', '$type', 'Polygon']],
-      ['rivers-water-hit-outline', ['==', '$type', 'Polygon']],
-      ['rivers-point-hit', ['==', '$type', 'Point']],
-    ];
     let lastHitTier: 0 | 1 | 2 | null = null;
     const updateTierHitFilters = (fromZoom = false) => {
       const z = map.getZoom();
@@ -442,12 +437,14 @@ export function TennesseeMap(props: Props) {
       if (lastHitTier === tier) return;
       lastHitTier = tier;
       const tierFilter = catalogTierFilter(z);
-      for (const [layer, baseFilter] of tierHitLayers) {
+      for (const [layer, baseFilter] of TIER_HIT_LAYERS) {
         if (map.getLayer(layer)) map.setFilter(layer, ['all', baseFilter, tierFilter] as never);
       }
       if (fromZoom) {
         mapMetrics.current.zoomTierCrossings += 1;
-        mapMetrics.current.zoomFilterMutations += tierHitLayers.filter(([layer]) => Boolean(map.getLayer(layer))).length;
+        mapMetrics.current.zoomFilterMutations += TIER_HIT_LAYERS.filter(([layer]) =>
+          Boolean(map.getLayer(layer)),
+        ).length;
       }
       if (qaDiagnostics())
         (window as unknown as Record<string, unknown>).__troutMapMetrics = {
@@ -1127,7 +1124,9 @@ export function TennesseeMap(props: Props) {
     if (!map || !ready) return;
     let cancelled = false;
     const rebuild = async () => {
-      // addImage replaces an existing image of the same name cleanly. The
+      // maplibre's addImage does NOT replace an existing image name — it
+      // fires an ErrorEvent and keeps the old pixels — so theme swaps must
+      // re-register via registerFlowArrowIcon (hasImage → updateImage). The
       // glyph is PAPER on an ink halo — light-on-dark reads on the rust
       // selected corridor and on every theme's water color alike.
       // Theme-specific glyph (2026-09-10): dark core on white rim in light
@@ -1138,7 +1137,7 @@ export function TennesseeMap(props: Props) {
         theme.map.flowArrowHalo,
         theme.map.flowArrowTip,
       );
-      if (icon) map.addImage(FLOW_ARROW_ICON, icon);
+      if (icon) registerFlowArrowIcon(map, icon);
       const id = latest.current.selectedId;
       const source = map.getSource(FLOW_ARROWS_SOURCE) as maplibregl.GeoJSONSource | undefined;
       if (!source) return;

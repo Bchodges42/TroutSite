@@ -49,6 +49,25 @@ export const FLOW_ARROW_ICON = 'flow-arrow';
 export const FLOW_ARROWS_SOURCE = 'flow-arrows';
 export const FLOW_ARROWS_LAYER = 'rivers-flow-arrows';
 
+/**
+ * Register the runtime arrow icon, replacing it when already present (theme
+ * swap / selection rebuild). map.addImage does NOT replace an existing name —
+ * it fires an ErrorEvent ('An image named "flow-arrow" already exists.') and
+ * keeps the OLD pixels — so any re-registration must go through updateImage.
+ * Structural map typing keeps this module dependency-free for unit tests.
+ */
+export function registerFlowArrowIcon(
+  map: {
+    hasImage(id: string): boolean;
+    addImage(id: string, image: unknown): unknown;
+    updateImage(id: string, image: unknown): unknown;
+  },
+  icon: { width: number; height: number; data: Uint8ClampedArray },
+): void {
+  if (map.hasImage(FLOW_ARROW_ICON)) map.updateImage(FLOW_ARROW_ICON, icon);
+  else map.addImage(FLOW_ARROW_ICON, icon);
+}
+
 /** Minimal GeoJSON typing — avoids a standalone @types/geojson dependency. */
 export interface FlowLineGeometry {
   type: 'MultiLineString' | 'LineString';

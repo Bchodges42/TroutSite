@@ -148,6 +148,25 @@ function catalogTieredOpacity(base: StyleExpression, selectedOpacity?: number): 
   ];
 }
 
+/**
+ * Geometry predicates for the pointer hit layers — EXPRESSION FORM ONLY.
+ * updateTierHitFilters combines each with catalogTierFilter (expression
+ * syntax) inside one 'all' compound, and style-spec ≥25 compiles any filter
+ * mixing legacy tokens with expression operators as a pure expression: a
+ * legacy '$type' key then evaluates as a literal property lookup (always
+ * false) and the hit layers match zero features — every map click and hover
+ * dies. The standalone LINES_ONLY/POLYS_ONLY/POINTS_ONLY above are pure
+ * legacy and convert cleanly; never combine them with expression operators.
+ */
+export type GeometryKind = 'LineString' | 'Polygon' | 'Point';
+type GeometryTypeFilter = ['==', ['geometry-type'], GeometryKind];
+export const TIER_HIT_LAYERS: Array<readonly [string, GeometryTypeFilter]> = [
+  ['rivers-hit', ['==', ['geometry-type'], 'LineString']],
+  ['rivers-water-hit', ['==', ['geometry-type'], 'Polygon']],
+  ['rivers-water-hit-outline', ['==', ['geometry-type'], 'Polygon']],
+  ['rivers-point-hit', ['==', ['geometry-type'], 'Point']],
+];
+
 /** Feature filter used by the small set of pointer hit layers. */
 export function catalogTierFilter(zoom: number): FilterSpecification {
   const tiers: CatalogDisplayTier[] =
