@@ -37,26 +37,43 @@ export const REVIEW_LABELS_PATH = join(REPO_ROOT, 'packages', 'content', 'resear
 
 /**
  * Three-source composite (official schedule + ArcGIS feed + warmwater
- * workbook, reconciled with documented precedence) — the authoritative
- * program evidence. STRICT WHITELIST when building state: recommendedClass,
- * programClasses, modifiers, seasonMonths, confidence, flags ONLY. The file's
- * `jev` column is Jev's own prior answer and must NEVER enter the state (the
- * 2026-09-17 audit found that exact answer-key leak producing a fake 94.7%).
+ * workbook, reconciled with documented precedence). STRICT WHITELIST when
+ * building state: only direct source facts and their source-derived program
+ * union may enter. `recommendedClass`, `confidence`, `flags`, `catalog`, and
+ * `jev` are excluded because the composite's own methodology says those fields
+ * use the prior Jev answer. Reintroducing any of them would be answer leakage.
  */
 function compositeEvidenceFor(slug) {
   const entry = COMPOSITE_BY_SLUG.get(slug);
   if (!entry) {
     return { available: false, sourceRole: 'no composite row for this water' };
   }
+  const sources = entry.sources ?? {};
   return {
     available: true,
-    sourceRole: 'three-source reconciliation (official schedule, live feed, warmwater workbook) with documented precedence — authoritative over any single raw source; where sourceConfidence is conflict, spread confidence and defer to owner review',
-    recommendedClass: entry.recommendedClass ?? null,
+    sourceRole: 'direct facts from the official schedule, live stocking feed, and warmwater workbook, reconciled for water identity; authoritative for stocking-program identity and timing only, not habitat survival. All prior-model-derived composite fields are excluded.',
     programClasses: entry.programClasses ?? [],
     modifiers: entry.modifiers ?? [],
     seasonMonths: entry.seasonMonths ?? null,
-    sourceConfidence: entry.confidence ?? null,
-    flags: (entry.flags ?? []).map((f) => String(f)),
+    directSources: {
+      officialSchedule: sources.schedule_xlsx ? {
+        types: sources.schedule_xlsx.types ?? [],
+        months: sources.schedule_xlsx.months ?? null,
+        rows: sources.schedule_xlsx.rows ?? null,
+        lastStockedDay: sources.schedule_xlsx.lastStockedDay ?? null,
+        nextTbd: sources.schedule_xlsx.nextTbd ?? null,
+      } : null,
+      liveStockingFeed: sources.arcgis_feed ? {
+        programs: sources.arcgis_feed.programs ?? [],
+        programPoints: sources.arcgis_feed.programPoints ?? {},
+        waterClasses: sources.arcgis_feed.waterClasses ?? [],
+        stockingPoints: sources.arcgis_feed.stockingPoints ?? null,
+      } : null,
+      warmwaterStocking: sources.warmwater_xlsx ? {
+        species: sources.warmwater_xlsx.species ?? [],
+        eventCount: sources.warmwater_xlsx.eventCount ?? null,
+      } : null,
+    },
   };
 }
 
@@ -83,11 +100,11 @@ export const CATEGORY_LABELS = {
  */
 export const CATEGORY_CRITERIA = {
   'trout-stream-year-round':
-    'A water where trout can LIVE AND SURVIVE THROUGH THE WHOLE YEAR — cold headwaters, wild trout streams, cold tailwaters and tailrace reaches that stay cold enough every season. Regular stocking strengthens this: a cold stream stocked every spring/summer whose trout hold over between stockings is a year-round trout stream. The signal: trout presence in EVERY month, including the hot ones, or habitat (elevation, canopy, cold tailwater release, cited summer temperatures) that clearly supports year-round survival. A few trout catches or a trout regulation alone is not enough.',
+    'Evidence supports freshwater trout remaining in this exact catalog segment through the entire year because habitat supports survival: for example a wild/self-sustaining population, documented holdover, a cold headwater, or a cold controlled release. Regular stocking does not disqualify the water and can strengthen the case when trout hold over between stockings. A long or year-round stocking calendar is program evidence, not survival proof by itself. A few catches, a trout regulation, or a schedule label alone is not enough.',
   'warmwater-yearly-stocked-winter-trout':
-    'A water too warm to hold trout year-round that receives a RECURRING stocking in some season — winter put-and-take (December-February), a spring put-and-take season on a creek that heats up by mid-summer, or a Delayed-Harvest window. The trout are only there around the stocking; they do not survive the summer. Program records (winter/spring/seasonal) are strong evidence, but the deciding fact is summer survival: if trout die or leave when the water warms, it is this category, not a year-round trout stream.',
+    'Evidence supports a recurring trout stocking program, but does not support trout persisting in this exact segment through the whole year. This includes winter or spring put-and-take programs and Delayed Harvest windows on habitat that becomes unsuitable or loses trout seasonally. Some fish may hold over beyond a stocking date; the distinction is that year-round population presence is not supported. A schedule called Seasonal or Spring proves a program, not warm habitat by itself.',
   'warmwater-no-trout':
-    'A warmwater Tennessee water with no recurring trout stocking program and no year-round trout presence. This is about fishery type, not a claim that every trout species is absent: a reservoir can contain lake trout and still be warm water(no trout) when it has no trout stocking program. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
+    'Evidence supports neither a recurring trout stocking program nor year-round trout presence in this exact segment. This is a fishery classification, not a claim that no individual trout species can occur: a reservoir with incidental or non-program lake trout can still belong here. Missing Fishbrain data is not negative evidence; when official and audited evidence are also thin, reduce confidence instead of treating missing data as proof.',
 };
 
 
@@ -283,21 +300,26 @@ function catalogEvidence(slug) {
   const doc = water.doc ?? {};
   return {
     available: true,
+    sourceRole: 'existing authored product metadata. Classification-like fields are claims to corroborate, not calibration truth or direct biological evidence; notes and cited sources may be stronger when they contain specific facts.',
     id: slug,
     name: doc.name ?? slug,
     stateId: doc.stateId ?? null,
     waterbodyType: doc.waterbodyType ?? null,
     counties: countiesOf(doc),
-    fishery: doc.fishery ?? null,
-    species: doc.species ?? null,
-    targetSpecies: doc.targetSpecies ?? [],
-    stockingProgram: doc.stockingProgram ?? null,
-    yearRound: doc.yearRound ?? null,
-    seasonMonths: doc.seasonMonths ?? null,
-    seasonKind: doc.seasonKind ?? null,
-    speciesEvidence: (doc.speciesEvidence ?? []).slice(0, 10),
-    notes: String(doc.notes ?? '').slice(0, 1800),
-    officialSources: (doc.officialSources ?? []).slice(0, 10),
+    authoredClaims: {
+      fishery: doc.fishery ?? null,
+      species: doc.species ?? null,
+      targetSpecies: doc.targetSpecies ?? [],
+      stockingProgram: doc.stockingProgram ?? null,
+      yearRound: doc.yearRound ?? null,
+      seasonMonths: doc.seasonMonths ?? null,
+      seasonKind: doc.seasonKind ?? null,
+    },
+    documentedEvidence: {
+      speciesEvidence: (doc.speciesEvidence ?? []).slice(0, 10),
+      notes: String(doc.notes ?? '').slice(0, 1800),
+      officialSources: (doc.officialSources ?? []).slice(0, 10),
+    },
   };
 }
 
@@ -318,12 +340,12 @@ function ledgerEvidence(slug) {
   }
   return {
     available: true,
-    class: water.class ?? null,
+    researchVerdict: water.class ?? null,
     completeness: water.completeness ?? {},
     gaugeActive: Boolean(water.gaugeActive),
     identity: water.identity ?? null,
     slots,
-    sourceRole: 'audited research ledger; direct evidence and explicit negative findings are both meaningful',
+    sourceRole: 'human-audited research ledger. Attributed slot records and explicit searches with no finding are evidence; researchVerdict is an analyst synthesis to verify, not calibration truth.',
   };
 }
 
@@ -395,32 +417,50 @@ export function questionsForMonth(month = new Date().getMonth() + 1) {
     category: {
       type: 'choice',
       instructions: [
-        'Classify this one Tennessee water into exactly one fishery category. Judge the fishery/system, not whether anyone has ever logged a trout.',
-        'The category describes the water system and should not flip merely because the requested month is outside a stocking window; use current_month_trout and the annual month questions for seasonal presence.',
-        'Use the evidence hierarchy in the state: official or audited evidence and the current TWRA program outrank Fishbrain discovery. Fishbrain is aggregate user catch volume, not abundance or residency.',
-        'A river with 20 trout catches is not automatically a trout stream. Treat it as seasonal winter stocking when a recurring winter program is documented, and do not call it year-round without year-round biological or coldwater-management evidence.',
+        'Classify this one Tennessee water into exactly one fishery category by resolving two facts: (A) whether trout remain in this exact segment through the whole year, and (B) whether a recurring trout stocking program exists.',
+        'Mapping: A=true means trout-stream-year-round regardless of stocking cadence; A=false and B=true means warmwater-yearly-stocked-winter-trout; A=false and B=false means warmwater-no-trout. If A or B is genuinely uncertain, spread probability across the affected categories and reduce confidence.',
+        'The category is annual and must not flip merely because the requested month is outside a stocking window. Use current_month_trout and the annual month questions for month-level presence.',
+        'Use direct agency/audited facts first. Existing catalog fields and analyst researchVerdict values are claims to corroborate, not answer keys. Fishbrain is aggregate user catch volume, not abundance, residency, or absence evidence.',
+        'TWRA program names such as Spring, Seasonal, Tailwater, Reservoir, Winter, Weekly, and Delayed Harvest establish program identity or timing only. They do not by themselves prove or disprove year-round habitat survival. A long stocking season is not automatic year-round habitat; a short stocking season does not refute documented wild fish or holdover.',
+        'A river with trout catches is not automatically a year-round trout stream. Do not call it year-round without biological, habitat, coldwater-management, or holdover evidence that applies to the exact segment.',
         'Judge the exact segment named in water.name/id: a reservoir, its tailwater, and an upstream river reach are different systems. Do not transfer a lake label to its tailwater or a tailwater label to its lake. A lake trout in a reservoir is freshwater species evidence, but it does not by itself make the reservoir a trout stream.',
-        'On "year round": the label describes the standing trout-stream system and its management, not a promise of catchable trout in every month. Seasonal stocking windows on a designated trout stream belong in the month answers, not in the category.',
+        'On "year round": apply the owner\'s habitat-survival test. The evidence must support trout presence through every season, including the warmest months; a management designation alone is not enough.',
         'Ignore marine/brackish species explicitly marked excluded. In particular, Sea trout, Spotted seatrout, Red drum, Black drum, Bluefish, Gafftopsail sea catfish, and Steelhead are not Tennessee freshwater-trout evidence.',
-        'When state.evidence.composite is available, its reconciled program class, season months, and source confidence are AUTHORITATIVE over the raw schedule/feed lines below it; if it marks sourceConfidence conflict, spread probability and reduce confidence.',
+        'When state.evidence.composite is available, its reconciled direct-source facts may settle program identity and timing. The composite intentionally excludes its prior Jev answer and cannot settle habitat survival.',
         'If sources conflict or are too thin, spread probability across the plausible categories and reduce confidence. Do not turn missing evidence into certainty.',
       ],
       criteria: CATEGORY_CRITERIA,
     },
+    year_round_trout_presence: {
+      type: 'noul',
+      instructions: 'Does credible evidence support freshwater trout remaining in this exact catalog segment through the entire year, including the warmest season? Stocking cadence alone is not proof. When survival evidence is missing or conflicted, stay uncertain rather than treating missing evidence as false.',
+      criteria: {
+        true: 'Direct biological, habitat, coldwater-management, or holdover evidence supports trout presence through all seasons in the exact segment.',
+        false: 'Direct evidence supports seasonal loss or unsuitable warm-season habitat, or strong exact-segment evidence supports no year-round trout presence.',
+      },
+    },
+    recurring_trout_program: {
+      type: 'noul',
+      instructions: 'Does credible evidence support a recurring trout stocking program for this exact catalog segment? A single historical event or a sibling-water row is insufficient. Missing discovery data is uncertainty, not false.',
+      criteria: {
+        true: 'An official recurring schedule/program or multiple attributable stocking records resolve to the exact segment.',
+        false: 'Authoritative or audited evidence supports no recurring trout program for the exact segment.',
+      },
+    },
     current_month_trout: {
       type: 'noul',
-      instructions: `Does this water normally hold catchable freshwater trout during the requested month, ${monthName} (month ${monthNumber})? Use the requested month in state.requestedMonth. A year-round wild/coldwater system can be true in every month; a winter-stocked warmwater water is true only around its documented stocking/holdover window. Fishbrain-only catch counts do not prove the month.`,
+      instructions: `Are freshwater trout normally present in this exact segment during the requested month, ${monthName} (month ${monthNumber})? This is presence, not catchability. Use the requested month in state.requestedMonth. A year-round wild/coldwater system can be true in every month; a seasonal program is true only during supported stocking/holdover months. Fishbrain-only catch counts do not prove the month. If evidence cannot resolve the month, stay uncertain rather than treating missing evidence as absence.`,
       criteria: {
-        true: 'Credible evidence supports catchable freshwater trout being present during this specific month in a normal year.',
-        false: 'The month is outside the supported window, or the supplied evidence does not support trout presence in this month.',
+        true: 'Credible evidence supports freshwater trout being present during this specific month in a normal year.',
+        false: 'Credible evidence supports trout being absent during this month or places the month outside a documented presence/holdover window.',
       },
     },
     ...Object.fromEntries(MONTHS.map((name, index) => [`month_${name}`, {
       type: 'noul',
-      instructions: `Does this water normally hold catchable freshwater trout during ${name} (month ${index + 1})? Apply the same wild/year-round versus winter-stocking distinction; do not infer presence from Fishbrain catch volume alone.`,
+      instructions: `Are freshwater trout normally present in this exact segment during ${name} (month ${index + 1})? This is presence, not catchability. Apply the same year-round-survival versus seasonal-program distinction; do not infer presence from Fishbrain catch volume alone, and do not turn missing month evidence into absence.`,
       criteria: {
-        true: 'Credible evidence supports catchable freshwater trout during this month.',
-        false: 'The month is outside the supported window, or evidence is absent/insufficient.',
+        true: 'Credible evidence supports freshwater trout being present during this month.',
+        false: 'Credible evidence supports absence during this month or places it outside a documented presence/holdover window.',
       },
     }])),
     evidence_quality: {
@@ -475,32 +515,60 @@ export function evidenceState(slug, { month = new Date().getMonth() + 1 } = {}) 
       'A river with a small or moderate trout catch count may be winter-stocked or a broad-page artifact; it is not year-round without direct year-round evidence.',
       'Do not confuse a reservoir with its tailwater or a broad Fishbrain page with the catalog segment.',
       'A lake trout in a reservoir does not automatically make that reservoir a trout stream.',
+      'Catalog fishery, species, stockingProgram, and yearRound fields are authored claims to corroborate, not answer keys.',
+      'Stocking-program names and months prove program activity, not year-round habitat survival.',
+      'The composite state contains direct source facts only; its prior Jev answer, model-influenced recommendation, confidence, and flags are excluded.',
       'No answer is a direct catalog change; low confidence or source conflict requires review.',
     ],
   };
 }
 
 /**
- * Post-hoc consistency check between the authoritative category and the twelve
- * independent month Nouls. TypeSafe questions are independent, so nothing
- * enforces this inside the model; callers (validator/pipeline) use this to
- * flag contradictions for review instead. Month answers NEVER change the
- * system category — a warmwater winter-stocked water is that category in
- * August too, and a designated trout stream stays one with zero trout months.
+ * Post-hoc consistency check across the independent category, two decision
+ * axes, current-month answer, and twelve annual month Nouls. The answers never
+ * silently override one another; contradictions are made visible for review.
  */
-export function categoryMonthConsistency(category, monthNouls) {
-  const monthsTrue = Object.values(monthNouls ?? {}).filter((v) => v !== null && v >= 0.5).length;
+export function categoryMonthConsistency(category, monthNouls, {
+  yearRoundPresence = null,
+  recurringProgram = null,
+  currentMonthTrout = null,
+  requestedMonth = null,
+} = {}) {
+  const monthValues = Object.values(monthNouls ?? {}).filter((v) => Number.isFinite(v));
+  const monthsTrue = monthValues.filter((v) => v >= 0.5).length;
+  const monthsStrongTrue = monthValues.filter((v) => v >= 0.67).length;
+  const monthsStrongFalse = monthValues.filter((v) => v <= 0.33).length;
   const flags = [];
-  if (category === 'warmwater-no-trout' && monthsTrue >= 6) {
-    flags.push(`warmwater-no-trout but ${monthsTrue}/12 months have trout-presence probability ≥0.5 — category or month answers need review`);
+  if (category === 'warmwater-no-trout' && (monthsStrongTrue > 0 || monthsTrue >= 6)) {
+    flags.push(`warmwater-no-trout but ${monthsTrue}/12 months are at least 0.5 (${monthsStrongTrue} strongly present) — category or month answers need review`);
   }
-  if (category === 'warmwater-yearly-stocked-winter-trout' && monthsTrue >= 10) {
-    flags.push(`winter-stocked but ${monthsTrue}/12 months trout-presence — confirm this is not actually a year-round trout system`);
+  if (category === 'warmwater-yearly-stocked-winter-trout' && (monthsTrue === 12 || monthsStrongTrue >= 10)) {
+    flags.push(`seasonal/winter-stocked but ${monthsTrue}/12 months are at least 0.5 (${monthsStrongTrue} strongly present) — confirm this is not actually year-round`);
   }
-  if (category === 'trout-stream-year-round' && monthsTrue === 0) {
-    flags.push('trout-stream-year-round but every month answered below 0.5 — unusual for a designated trout system; verify evidence');
+  if (category === 'trout-stream-year-round' && monthValues.length === 12 && monthsTrue < 10) {
+    flags.push(`trout-stream-year-round but only ${monthsTrue}/12 months are at least 0.5 (${monthsStrongFalse} strongly absent) — category or month answers need review`);
   }
-  return { monthsTrue, flags };
+  if (Number.isFinite(yearRoundPresence)) {
+    if (category === 'trout-stream-year-round' && yearRoundPresence <= 0.33) {
+      flags.push(`trout-stream-year-round but year_round_trout_presence=${yearRoundPresence} — decision-axis contradiction`);
+    } else if (category !== 'trout-stream-year-round' && yearRoundPresence >= 0.67) {
+      flags.push(`${category} but year_round_trout_presence=${yearRoundPresence} — decision-axis contradiction`);
+    }
+  }
+  if (Number.isFinite(recurringProgram)) {
+    if (category === 'warmwater-yearly-stocked-winter-trout' && recurringProgram <= 0.33) {
+      flags.push(`seasonal/winter-stocked but recurring_trout_program=${recurringProgram} — decision-axis contradiction`);
+    } else if (category === 'warmwater-no-trout' && recurringProgram >= 0.67) {
+      flags.push(`warmwater-no-trout but recurring_trout_program=${recurringProgram} — decision-axis contradiction`);
+    }
+  }
+  if (Number.isInteger(requestedMonth) && requestedMonth >= 1 && requestedMonth <= 12 && Number.isFinite(currentMonthTrout)) {
+    const annual = monthNouls?.[MONTHS[requestedMonth - 1]];
+    if (Number.isFinite(annual) && Math.abs(currentMonthTrout - annual) >= 0.34) {
+      flags.push(`current_month_trout=${currentMonthTrout} but month_${MONTHS[requestedMonth - 1]}=${annual} — duplicate month answers disagree`);
+    }
+  }
+  return { monthsTrue, monthsStrongTrue, monthsStrongFalse, monthsAnswered: monthValues.length, flags };
 }
 
 export async function callJev(state, { month, attempt = 1 } = {}) {
@@ -536,6 +604,8 @@ export function categoryAnswer(response) {
     probabilities: answer?.probabilities ?? {},
     confidence: answer?.confidence ?? 0,
     label: answer?.choice ? CATEGORY_LABELS[answer.choice] ?? answer.choice : null,
+    yearRoundPresence: response?.answers?.year_round_trout_presence?.noul ?? null,
+    recurringProgram: response?.answers?.recurring_trout_program?.noul ?? null,
     currentMonthTrout: response?.answers?.current_month_trout?.noul ?? null,
     evidenceQuality: response?.answers?.evidence_quality?.score ?? null,
     model: response?.model ?? MODEL,

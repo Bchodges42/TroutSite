@@ -49,6 +49,8 @@ for (const r of evalDoc.results) {
   if (r.error) continue;
   const s = evidenceState(r.slug, { month: evalDoc.month.number });
   const fb = s.evidence.fishbrainDiscovery;
+  const catalogClaims = s.evidence.catalog.authoredClaims ?? {};
+  const catalogEvidence = s.evidence.catalog.documentedEvidence ?? {};
   const species = [
     ...(fb.freshwaterTrout ?? []).map((x) => ({ name: x.name, catches: x.catches ?? 0, role: 'trout' })),
     ...(fb.topFreshwaterSpecies ?? []).map((x) => ({ name: x.name, catches: x.catches ?? 0, role: 'context' })),
@@ -61,20 +63,20 @@ for (const r of evalDoc.results) {
     waterbodyType: s.water.waterbodyType,
     counties: s.water.counties ?? [],
     ledger: s.evidence.auditedLedger.available,
-    ledgerClass: s.evidence.auditedLedger.class ?? null,
+    ledgerClass: s.evidence.auditedLedger.researchVerdict ?? null,
     stockingEvents: s.evidence.twraStocking.matchedEvents.length,
     stockingPrograms: [...new Set(s.evidence.twraStocking.matchedEvents.map((e) => e.program))],
     species,
     fishbrainPageUrl: fb.pageUrl ?? null,
     fishbrainWaterName: fb.pageName ?? null,
     loggedCatches: fb.loggedCatches ?? null,
-    catalogSpecies: s.evidence.catalog.species ?? null,
+    catalogSpecies: catalogClaims.species ?? null,
     composite: compositeBySlug[r.slug] ?? null,
-    catalogFishery: s.evidence.catalog.fishery ?? null,
-    catalogYearRound: s.evidence.catalog.yearRound ?? null,
-    catalogSeasonMonths: s.evidence.catalog.seasonMonths ?? null,
-    officialSources: (s.evidence.catalog.officialSources ?? []).slice(0, 4).map((x) => x.label ?? x.url ?? ''),
-    notes: String(s.evidence.catalog.notes ?? '').slice(0, 500),
+    catalogFishery: catalogClaims.fishery ?? null,
+    catalogYearRound: catalogClaims.yearRound ?? null,
+    catalogSeasonMonths: catalogClaims.seasonMonths ?? null,
+    officialSources: (catalogEvidence.officialSources ?? []).slice(0, 4).map((x) => x.label ?? x.url ?? ''),
+    notes: String(catalogEvidence.notes ?? '').slice(0, 500),
   };
 }
 

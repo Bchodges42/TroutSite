@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /* eslint-disable no-undef -- Node script run directly (no bundler types) */
 /**
- * Run or dry-run the Jev fishery classifier over the complete Fishbrain
- * GraphQL research set (featured + standard tier = 190 Tennessee waters),
- * then score against the owner-reviewed labels.
+ * Run or dry-run the Jev fishery classifier over the complete Tennessee
+ * catalog. Fishbrain featured/standard discovery is optional evidence, never
+ * the roster authority. Score only against the owner-reviewed labels.
  *
  * Examples:
  *   node packages/content/scripts/classification/validate-jev-classification.mjs --dry-run
@@ -23,6 +23,7 @@ import { join } from 'node:path';
 import {
   DIFF_OUT_DIR,
   REPO_ROOT,
+  loadCatalog,
 } from './lib.mjs';
 import {
   CATEGORY_LABELS,
@@ -56,14 +57,18 @@ if (limit !== Infinity && (!Number.isInteger(limit) || limit < 0)) {
 }
 
 const fishbrainSlugs = fishbrainCatalogSlugs();
-const targetSlugs = fishbrainSlugs.slice(0, limit);
+const catalogSlugs = loadCatalog().map((water) => water.slug);
+const targetSlugs = catalogSlugs.slice(0, limit);
+const fishbrainSlugSet = new Set(fishbrainSlugs);
 
 console.log(JSON.stringify({
   model: MODEL,
   month: { number: month, name: MONTHS[month - 1] },
   fishbrainRecords: fishbrainRecordCount(),
   targets: targetSlugs.length,
-  scope: 'Fishbrain GraphQL featured + standard records (190 unique Tennessee waters)',
+  catalogWaters: catalogSlugs.length,
+  fishbrainCoverage: catalogSlugs.filter((slug) => fishbrainSlugSet.has(slug)).length,
+  scope: 'complete Tennessee catalog; Fishbrain is one optional evidence source, not the target roster',
   ownerReviewInState: false,
   dryRun,
 }, null, 2));
@@ -84,6 +89,7 @@ if (dryRun) {
       excludedMarineSpecies: fishbrainEvidence.excludedMarineOrBrackish?.map((item) => item.name) ?? [],
       segmentReviewReasons: fishbrainEvidence.segmentReviewReasons?.length ?? 0,
       ownerReviewInState: 'ownerReview' in state.evidence,
+      previousModelLeakInComposite: ['jev', 'recommendedClass', 'sourceConfidence', 'flags'].some((key) => key in state.evidence.composite),
       categoryOptions: Object.keys(CATEGORY_LABELS),
     };
   });
@@ -95,6 +101,8 @@ if (dryRun) {
     withLedger: checks.filter((c) => c.ledgerAvailable).length,
     withStockingEvents: checks.filter((c) => c.stockingEvents > 0).length,
     anyOwnerReviewLeak: checks.some((c) => c.ownerReviewInState),
+    anyPreviousModelLeak: checks.some((c) => c.previousModelLeakInComposite),
+    fishbrainCoverage: checks.filter((c) => c.tier !== 'absent').length,
   };
   console.log(JSON.stringify({ summary, checks }, null, 2));
   process.exit(0);
@@ -112,7 +120,12 @@ async function worker() {
       const answer = categoryAnswer(response);
       const monthNouls = {};
       for (const name of MONTHS) monthNouls[name] = response?.answers?.[`month_${name}`]?.noul ?? null;
-      const consistency = categoryMonthConsistency(answer.choice, monthNouls);
+      const consistency = categoryMonthConsistency(answer.choice, monthNouls, {
+        yearRoundPresence: answer.yearRoundPresence,
+        recurringProgram: answer.recurringProgram,
+        currentMonthTrout: answer.currentMonthTrout,
+        requestedMonth: month,
+      });
       const reviewed = reviewedCategory(slug);
       results.push({
         slug,
@@ -124,9 +137,15 @@ async function worker() {
         effectiveCategory: effectiveCategory(slug, answer.choice),
         overrideApplied: reviewed !== null && reviewed !== answer.choice,
         reviewedLabelAvailable: reviewed !== null,
+        yearRoundPresence: answer.yearRoundPresence,
+        recurringProgram: answer.recurringProgram,
         currentMonthTrout: answer.currentMonthTrout,
+        monthProbabilities: monthNouls,
         evidenceQuality: answer.evidenceQuality,
         monthsTrue: consistency.monthsTrue,
+        monthsStrongTrue: consistency.monthsStrongTrue,
+        monthsStrongFalse: consistency.monthsStrongFalse,
+        monthsAnswered: consistency.monthsAnswered,
         consistencyFlags: consistency.flags,
         model: answer.model,
       });
@@ -144,11 +163,18 @@ results.sort((a, b) => a.slug.localeCompare(b.slug));
 const scored = results.filter((r) => !r.error);
 const errors = results.filter((r) => r.error);
 const reviewedRows = scored.filter((r) => r.reviewedLabelAvailable);
+const heldOutRows = scored.filter((r) => !r.reviewedLabelAvailable);
 const rawHits = reviewedRows.filter((r) => r.rawChoice === reviewedCategory(r.slug));
 const effectiveHits = reviewedRows.filter((r) => r.effectiveCategory === reviewedCategory(r.slug));
 const overrides = scored.filter((r) => r.overrideApplied);
-const categoryCounts = scored.reduce((m, r) => ((m[r.effectiveCategory] = (m[effectiveKey(r)] ?? 0) + 1), m), {});
-function effectiveKey(r) { return r.effectiveCategory; }
+const countCategories = (rows, key) => rows.reduce((m, r) => {
+  const category = r[key] ?? 'unanswered';
+  m[category] = (m[category] ?? 0) + 1;
+  return m;
+}, {});
+const rawCategoryCounts = countCategories(scored, 'rawChoice');
+const effectiveCategoryCounts = countCategories(scored, 'effectiveCategory');
+const heldOutCategoryCounts = countCategories(heldOutRows, 'rawChoice');
 const confidenceBuckets = { '<0.4': 0, '0.4-0.6': 0, '0.6-0.8': 0, '>=0.8': 0 };
 for (const r of scored) {
   if (r.confidence < 0.4) confidenceBuckets['<0.4'] += 1;
@@ -170,7 +196,8 @@ const output = {
   fishbrainPaths: [FISHBRAIN_PATH, FISHBRAIN_STANDARD_PATH].map((path) => path.slice(REPO_ROOT.length + 1)),
   evaluationIntegrity: {
     ownerReviewInState: false,
-    note: 'Raw = model answer with no reviewed labels in state. Effective = reviewed label applied as a code override where available. Conditional accuracy is over the 8 reviewed waters only; the rest are held out.',
+    priorModelAnswerInState: false,
+    note: 'Raw = model answer with no reviewed labels or prior composite Jev answer in state. Effective = reviewed label applied as a code override where available. Conditional accuracy is over the reviewed waters only; held-out counts use raw answers and exclude reviewed waters.',
   },
   summary: {
     targets: targetSlugs.length,
@@ -192,9 +219,13 @@ const output = {
         match: r.rawChoice === reviewedCategory(r.slug),
       })),
     },
+    allWaters: {
+      rawCategoryCounts,
+      effectiveCategoryCounts,
+    },
     heldOut: {
-      waters: scored.length - reviewedRows.length,
-      categoryCounts,
+      waters: heldOutRows.length,
+      categoryCounts: heldOutCategoryCounts,
       note: 'no ground truth; counts and confidence only',
     },
     confidenceDistribution: confidenceBuckets,
@@ -217,7 +248,9 @@ for (const r of reviewedRows) {
   const reviewed = reviewedCategory(r.slug);
   console.log(`  ${r.slug.padEnd(26)} reviewed=${(reviewed ?? '—').padEnd(36)} raw=${(r.rawChoice ?? '—').padEnd(36)} conf=${r.confidence} ${r.rawChoice === reviewed ? 'MATCH' : 'DIFFER'}`);
 }
-console.log(`held-out category counts:`, JSON.stringify(categoryCounts));
+console.log(`all-water raw category counts:`, JSON.stringify(rawCategoryCounts));
+console.log(`all-water effective category counts:`, JSON.stringify(effectiveCategoryCounts));
+console.log(`held-out raw category counts (${heldOutRows.length}):`, JSON.stringify(heldOutCategoryCounts));
 console.log(`confidence distribution:`, JSON.stringify(confidenceBuckets));
 console.log(`low-confidence (<0.6): ${lowConfidence.length}`);
 lowConfidence.slice(0, 10).forEach((r) => console.log(`  ${r.slug} ${r.confidence} ${r.category}`));

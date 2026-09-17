@@ -40,6 +40,8 @@ describe('Jev Tennessee fishery classifier setup', () => {
     const questions = questionsForMonth('July');
     expect(questions.current_month_trout.instructions).toContain('July (month 7)');
     expect(questions.month_December.instructions).toContain('December (month 12)');
+    expect(questions.year_round_trout_presence.type).toBe('noul');
+    expect(questions.recurring_trout_program.type).toBe('noul');
     expect(questions.evidence_quality.type).toBe('score');
     expect(Object.keys(questions).filter((key) => key.startsWith('month_'))).toHaveLength(12);
   });
@@ -85,11 +87,24 @@ describe('Jev Tennessee fishery classifier setup', () => {
   });
 
   it('never places owner-reviewed labels in the model state (no answer-key leakage)', () => {
-    for (const slug of ['boone-tailwater', 'boone-lake', 'south-holston-lake', 'parksville-tailwater', 'elk-river', 'barren-fork-river']) {
+    for (const { slug } of loadCatalog()) {
       const state = evidenceState(slug, { month: 3 });
+      const serialized = JSON.stringify(state);
       expect('ownerReview' in state.evidence).toBe(false);
-      expect(JSON.stringify(state)).not.toContain('"category"');
+      expect('jev' in state.evidence.composite).toBe(false);
+      expect('recommendedClass' in state.evidence.composite).toBe(false);
+      expect('sourceConfidence' in state.evidence.composite).toBe(false);
+      expect('flags' in state.evidence.composite).toBe(false);
+      for (const category of Object.keys(CATEGORY_LABELS)) expect(serialized).not.toContain(category);
     }
+  });
+
+  it('labels authored catalog classifications as claims instead of direct evidence', () => {
+    const catalog = evidenceState('doe-river').evidence.catalog;
+    expect(catalog.sourceRole).toContain('claims to corroborate');
+    expect(catalog.authoredClaims.yearRound).toBe(true);
+    expect(catalog.documentedEvidence.notes).toContain('Delayed harvest');
+    expect('yearRound' in catalog).toBe(false);
   });
 
   it('applies reviewed labels as a code-level override, reported separately from raw', () => {
@@ -127,20 +142,24 @@ describe('Jev Tennessee fishery classifier setup', () => {
     // OWNER RULING 2026-09-17: 'year round' now means trout PRESENT year-round
     // (cold controlled water). The Parksville seasonal-stocking question is
     // flagged for owner decision — the reviewed label still rules overrides.
-    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('LIVE AND SURVIVE THROUGH THE WHOLE YEAR');
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('through the entire year');
   });
 
-  it('separates seasonal stocking (system stays) from month presence (answers change)', () => {
+  it('uses the habitat-survival mapping and keeps month presence separate', () => {
     const questions = questionsForMonth('August');
-    expect(questions.category.instructions.join(' ')).toContain('should not flip merely because the requested month is outside a stocking window');
-    expect(questions.category.instructions.join(' ')).toContain('not a promise of catchable trout in every month');
+    const instructions = questions.category.instructions.join(' ');
+    expect(instructions).toContain('A=true means trout-stream-year-round');
+    expect(instructions).toContain('must not flip merely because the requested month is outside a stocking window');
+    expect(instructions).toContain('program identity or timing only');
+    expect(questions.month_August.instructions).toContain('presence, not catchability');
+    expect(questions.month_August.criteria.false).not.toContain('insufficient');
   });
 
   it('refuses to let catch counts establish a trout system', () => {
     const state = evidenceState('boone-tailwater');
     expect(state.evidence.fishbrainDiscovery.interpretationRule).toContain('cannot establish abundance');
-    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('A few trout catches or a trout regulation alone is not enough');
-    expect(CATEGORY_CRITERIA['warmwater-yearly-stocked-winter-trout']).toContain('they do not survive the summer');
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('A few catches, a trout regulation, or a schedule label alone is not enough');
+    expect(CATEGORY_CRITERIA['warmwater-yearly-stocked-winter-trout']).toContain('year-round population presence is not supported');
   });
 
   it('flags category/month contradictions instead of silently trusting independent questions', () => {
@@ -151,6 +170,22 @@ describe('Jev Tennessee fishery classifier setup', () => {
     expect(leak.flags[0]).toContain('need review');
     const dryStream = categoryMonthConsistency('trout-stream-year-round', Object.fromEntries(MONTHS.map((m) => [m, 0.1])));
     expect(dryStream.flags.length).toBeGreaterThan(0);
+    const partialYearRound = categoryMonthConsistency('trout-stream-year-round', Object.fromEntries(MONTHS.map((m, i) => [m, i < 9 ? 0.9 : 0.2])));
+    expect(partialYearRound.monthsTrue).toBe(9);
+    expect(partialYearRound.flags[0]).toContain('only 9/12');
+  });
+
+  it('flags contradictions between category, decision axes, and duplicate month answers', () => {
+    const months = Object.fromEntries(MONTHS.map((m) => [m, 0.2]));
+    const result = categoryMonthConsistency('warmwater-no-trout', months, {
+      yearRoundPresence: 0.8,
+      recurringProgram: 0.9,
+      currentMonthTrout: 0.9,
+      requestedMonth: 1,
+    });
+    expect(result.flags.join(' ')).toContain('year_round_trout_presence');
+    expect(result.flags.join(' ')).toContain('recurring_trout_program');
+    expect(result.flags.join(' ')).toContain('duplicate month answers disagree');
   });
 
   it('normalizes only valid one-based months', () => {
