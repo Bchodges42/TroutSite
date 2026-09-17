@@ -17,6 +17,15 @@ That file contains aggregate public water-page summaries only: no angler names,
 photos, catch coordinates, or individual catch records. It is research input,
 not a shipped catalog and is never loaded by the runtime or content pack.
 
+The full-waterway Fishbrain research pass is in
+[`packages/content/research/fishbrain-tn-graphql-discovery.json`](../packages/content/research/fishbrain-tn-graphql-discovery.json).
+It covers the project’s 38 `display:featured` waters, mapped to 34 unique public
+water pages, and uses the read-only `topSpeciesSummary` result with cursor
+pagination to capture every returned species. Its `catchesCount` values are
+aggregate logged catches on Fishbrain; they are not unique-angler counts,
+biological abundance estimates, or official survey results. Broad or ambiguous
+Fishbrain pages remain marked for segment review.
+
 Evidence types mean:
 
 - `agency-fishery-list` — an agency water page or reviewed fishery description
@@ -48,8 +57,9 @@ species from a waterbody type or from a generic “trout water” flag.
 
 ## Updating the snapshot
 
-1. Review a candidate in `research/fishbrain-tn-discovery.json`, or identify a
-   candidate from an agency source, and resolve the exact catalog water segment.
+1. Review a candidate in `research/fishbrain-tn-discovery.json` or
+   `research/fishbrain-tn-graphql-discovery.json`, or identify a candidate from
+   an agency source, and resolve the exact catalog water segment.
 2. Re-read the official source and record its current URL and retrieval date.
 3. Add or revise the source-backed group in
    `packages/content/data/species-occurrences.json`.

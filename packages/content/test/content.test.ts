@@ -32,6 +32,25 @@ const fishbrainResearch = JSON.parse(
   rejectedMatches: { catalogWaterId: string; reason: string }[];
   notFoundDuringPass: string[];
 };
+const fishbrainGraphqlResearch = JSON.parse(
+  readFileSync(join(import.meta.dirname, '..', 'research', 'fishbrain-tn-graphql-discovery.json'), 'utf8'),
+) as {
+  schema: string;
+  stateId: string;
+  endpoint: string;
+  scope: { classification: string };
+  records: {
+    catalogWaterId: string;
+    fishbrainExternalId: string;
+    fishbrainPageUrl: string;
+    fishbrainLoggedCatches: number;
+    matchStatus: string;
+    totalSpecies: number;
+    speciesReturned: number;
+    speciesHasNextPage: boolean;
+    species: { fishbrainSpeciesExternalId: string; displayName: string; catchesCount: number }[];
+  }[];
+};
 
 describe('content pack validation (CI gate)', () => {
   it('has no validation issues', () => {
@@ -130,6 +149,29 @@ describe('content pack validation (CI gate)', () => {
     expect(fishbrainResearch.records.some((record) => record.matchStatus === 'needs-segment-review')).toBe(true);
     expect(fishbrainResearch.rejectedMatches.length).toBeGreaterThan(0);
     expect(fishbrainResearch.notFoundDuringPass.length).toBeGreaterThan(0);
+  });
+
+  it('captures every species page for the featured-water GraphQL research snapshot', () => {
+    expect(fishbrainGraphqlResearch.schema).toBe('trout/fishbrain-graphql-discovery/1');
+    expect(fishbrainGraphqlResearch.stateId).toBe('TN');
+    expect(fishbrainGraphqlResearch.endpoint).toBe('https://rutilus.fishbrain.com/graphql');
+    expect(fishbrainGraphqlResearch.scope.classification).toBe('display:featured');
+    expect(fishbrainGraphqlResearch.records.length).toBe(38);
+    expect(new Set(fishbrainGraphqlResearch.records.map((record) => record.catalogWaterId)).size).toBe(38);
+    expect(fishbrainGraphqlResearch.records.every((record) => streams.has(record.catalogWaterId))).toBe(true);
+    expect(fishbrainGraphqlResearch.records.every((record) => record.fishbrainExternalId.length > 0)).toBe(true);
+    expect(fishbrainGraphqlResearch.records.every((record) => record.fishbrainPageUrl.startsWith('https://fishbrain.com/'))).toBe(true);
+    expect(fishbrainGraphqlResearch.records.every((record) => Number.isInteger(record.fishbrainLoggedCatches) && record.fishbrainLoggedCatches >= 0)).toBe(true);
+    expect(fishbrainGraphqlResearch.records.every((record) => record.totalSpecies === record.speciesReturned)).toBe(true);
+    expect(fishbrainGraphqlResearch.records.every((record) => record.speciesHasNextPage === false)).toBe(true);
+    expect(fishbrainGraphqlResearch.records.some((record) => record.totalSpecies > 3)).toBe(true);
+    expect(fishbrainGraphqlResearch.records.some((record) => record.matchStatus === 'needs-segment-review')).toBe(true);
+    expect(fishbrainGraphqlResearch.records.every((record) => record.species.every((speciesRecord) => (
+      speciesRecord.fishbrainSpeciesExternalId.length > 0
+      && speciesRecord.displayName.length > 0
+      && Number.isInteger(speciesRecord.catchesCount)
+      && speciesRecord.catchesCount >= 0
+    )))).toBe(true);
   });
 
   it('describes the Fentress Wolf River as a Dale Hollow arm, not Memphis-bound (T1-7)', () => {
