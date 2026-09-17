@@ -20,6 +20,7 @@ import {
   loadCatalog, loadStockingGeojson, loadLedgerDiff, loadOwnerVerdicts,
   eventsFromGeojson, resolveEvent, eventKey, ALIASES,
 } from './lib.mjs';
+import { evidenceState, callJev, MONTHS } from './jev-classify.mjs';
 
 const writeReport = process.argv.includes('--write-report');
 
@@ -166,6 +167,45 @@ const summary = {
 
 const output = { generated: new Date().toISOString().replace('T', ' ').slice(0, 16), summary, waters };
 
+console.log(JSON.stringify(summary, null, 2));
+
+// ------------------------------------------------- Jev advisory proposals
+// Owner-directed use: for waters with NO species verdict, NO audited ledger
+// answer, and NO owner ruling, ask Jev to classify from the evidence pack.
+// Output lands in a decision box labeled advisory — never a direct YAML
+// write, never on top of an existing verdict. Gated: the 2026-09-17 run
+// scored 84% concrete-class accuracy, zero hallucinated trout (its one
+// "false trout" was red-river-clarksville detecting the real feed-vs-audit
+// conflict), and its disagreements with thin ledger labels sided with the
+// owner's own later fills.
+if (process.argv.includes('--jev-advisory')) {
+  const gapWaters = waters.filter((w) => !w.catalog.species
+    && !w.ledgerBucket
+    && !w.ownerVerdict
+    && !w.stockedTrout);
+  console.log(`jev-advisory: classifying ${gapWaters.length} gap waters...`);
+  const proposals = [];
+  for (const w of gapWaters) {
+    try {
+      const json = await callJev(evidenceState(w.slug));
+      const cls = json.answers?.trout_class?.choice ?? 'unknown';
+      if (cls === 'unknown') continue;
+      proposals.push({
+        slug: w.slug,
+        proposed: cls,
+        confidence: json.answers?.trout_class?.confidence ?? 0,
+        months: MONTHS.filter((m) => (json.answers?.[`month_${m}`]?.noul ?? 0) >= 0.5).map((m) => MONTHS.indexOf(m) + 1),
+        advisory: true,
+        model: json.model,
+      });
+    } catch (e) {
+      console.log(`jev-advisory: ${w.slug} failed: ${e.message}`);
+    }
+  }
+  boxes.jevSpeciesProposals = proposals;
+  summary.jevAdvisoryProposals = proposals.length;
+}
+
 if (writeReport) {
   mkdirSync(DIFF_OUT_DIR, { recursive: true });
   writeFileSync(join(DIFF_OUT_DIR, 'classification-output.json'), JSON.stringify(output, null, 2));
@@ -177,8 +217,6 @@ if (writeReport) {
   writeFileSync(join(DIFF_OUT_DIR, 'DIFF-REPORT.md'), renderReport(summary, boxes, resolution));
   console.log(`report written to ${join(DIFF_OUT_DIR, 'DIFF-REPORT.md')}`);
 }
-
-console.log(JSON.stringify(summary, null, 2));
 
 export { output, resolution, boxes, summary };
 

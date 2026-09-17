@@ -36,6 +36,11 @@ function loadKey() {
   return line ? line.slice('TYPESAFE_API_KEY='.length).trim() : null;
 }
 
+/** Key accessor for the validation harnesses (never logged, never committed). */
+export function readKey() {
+  return loadKey();
+}
+
 /**
  * Ask Jev which catalog water a TWRA stocking row refers to.
  * candidates: [{ slug, name, counties, bounds }] — pure data in, typed

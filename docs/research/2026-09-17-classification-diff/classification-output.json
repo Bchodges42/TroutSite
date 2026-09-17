@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-17 04:18",
+  "generated": "2026-09-17 04:35",
   "summary": {
     "feedRows": 725,
     "events": 177,
@@ -12,7 +12,8 @@
     "watersWindowUnpinned": 6,
     "speciesProposals": 0,
     "stockingProgramFlags": 102,
-    "seasonCorrections": 49
+    "seasonCorrections": 49,
+    "jevAdvisoryProposals": 0
   },
   "waters": [
     {

@@ -1,0 +1,2311 @@
+{
+  "generated": "2026-09-17T04:30:33.951Z",
+  "model": "jev-latest",
+  "results": [
+    {
+      "slug": "boone-tailwater",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.91,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        9,
+        12
+      ]
+    },
+    {
+      "slug": "duck-river-tailwater",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.89,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "clinch-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.74,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "slug": "caney-fork-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.78,
+      "months": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "french-broad-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "hiwassee-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.82,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "ft-patrick-henry-tailwater",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.44,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "slug": "obey-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 1,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "south-holston-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.52,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "slug": "parksville-tailwater",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.49,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "elk-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.54,
+      "months": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "watauga-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.34,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "beech-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.83,
+      "months": [
+        1,
+        2
+      ],
+      "ledgerMonths": [
+        1,
+        2
+      ]
+    },
+    {
+      "slug": "boone-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.84,
+      "months": [
+        2,
+        3
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "calderwood-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.63,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "cherokee-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.97,
+      "months": [],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "cameron-brown-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.37,
+      "months": [
+        2,
+        3
+      ],
+      "ledgerMonths": [
+        3
+      ]
+    },
+    {
+      "slug": "center-hill-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.99,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "chickamauga-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "chilhowee-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.62,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "douglas-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.56,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        6,
+        12
+      ]
+    },
+    {
+      "slug": "fort-loudoun-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "fort-patrick-henry-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.48,
+      "months": [
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "dale-hollow-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.4,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "great-falls-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "j-percy-priest-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.98,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "johnson-park-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.59,
+      "months": [
+        2
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        8
+      ]
+    },
+    {
+      "slug": "kentucky-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "lake-barkley",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "lake-graham",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.95,
+      "months": [
+        12
+      ],
+      "ledgerMonths": [
+        5
+      ]
+    },
+    {
+      "slug": "melton-hill-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.1,
+      "months": [
+        9
+      ],
+      "ledgerMonths": [
+        7
+      ]
+    },
+    {
+      "slug": "normandy-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.94,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "norris-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.91,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "paris-city-park-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.98,
+      "months": [
+        1,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        12
+      ]
+    },
+    {
+      "slug": "pickwick-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "old-hickory-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "reelfoot-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "shelby-farms-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.86,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "south-holston-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.43,
+      "months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "tims-ford-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.94,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "tellico-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.72,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "watauga-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.27,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "wilbur-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.94,
+      "months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "watts-bar-lake",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "yale-road-park-lake",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.98,
+      "months": [
+        1,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "woods-reservoir",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "buffalo-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "barren-fork-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.9,
+      "months": [
+        3,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "calfkiller-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.74,
+      "months": [],
+      "ledgerMonths": [
+        9
+      ]
+    },
+    {
+      "slug": "cumberland-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.98,
+      "months": [
+        1,
+        2,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "collins-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.73,
+      "months": [],
+      "ledgerMonths": [
+        4
+      ]
+    },
+    {
+      "slug": "caney-fork-upper",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "east-fork-stones-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.62,
+      "months": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "hatchie-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.97,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "harpeth-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.51,
+      "months": [
+        1,
+        2,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        11
+      ]
+    },
+    {
+      "slug": "holston-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.89,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "elk-river-lower",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.86,
+      "months": [],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "mississippi-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "new-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-pigeon-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-tennessee-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.68,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "nolichucky-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.98,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "north-fork-holston-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "obed-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "obion-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.99,
+      "months": [],
+      "ledgerMonths": [
+        6,
+        10
+      ]
+    },
+    {
+      "slug": "ocoee-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.96,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "pigeon-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.92,
+      "months": [],
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "red-river-clarksville",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "mixed",
+      "confidence": 0.77,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "piney-river-rhea",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.5,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "shoal-creek",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.38,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "stones-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.79,
+      "months": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "tellico-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.88,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        9
+      ]
+    },
+    {
+      "slug": "south-fork-cumberland",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "warmwater",
+      "confidence": 0.75,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "west-fork-stones-river",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.87,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "wolf-river-west-tennessee",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.82,
+      "months": [
+        2
+      ],
+      "ledgerMonths": [
+        2,
+        11
+      ]
+    },
+    {
+      "slug": "tennessee-river",
+      "truthClass": null,
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "watauga-river-wilbur-reach",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-year-round",
+      "confidence": 0.91,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "slug": "covington-fbc-pond",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.83,
+      "months": [
+        1,
+        2,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        11
+      ]
+    },
+    {
+      "slug": "martin-city-pond",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.58,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "milan-city-pond",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.41,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "union-city-reelfoot-pond",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.96,
+      "months": [
+        1,
+        2,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "valentine-park-pond",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.77,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "sinking-creek-wilson",
+      "truthClass": null,
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.88,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "beaverdam-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.4,
+      "months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        11
+      ],
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "big-rock-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.71,
+      "months": [
+        1,
+        2,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "bradley-creek",
+      "truthClass": "warmwater",
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "brush-creek-cocke",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.97,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "boiling-fork-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.9,
+      "months": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "buffalo-creek-grainger",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.76,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        10
+      ]
+    },
+    {
+      "slug": "cane-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.98,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        10
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        5,
+        10
+      ]
+    },
+    {
+      "slug": "citico-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.6,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "ledgerMonths": [
+        2,
+        7,
+        11
+      ]
+    },
+    {
+      "slug": "charles-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.93,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "clear-creek-obed",
+      "truthClass": "warmwater",
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "daddys-creek",
+      "truthClass": "warmwater",
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "cosby-creek",
+      "truthClass": "wild-self-sustaining",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.98,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "clear-fork",
+      "truthClass": "warmwater",
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 1,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "doe-creek-johnson",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.98,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "doe-river",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.81,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        6,
+        10
+      ]
+    },
+    {
+      "slug": "east-fork-shoal-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.91,
+      "months": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "forge-creek-johnson",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.96,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "fletchers-fork",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.97,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "ledgerMonths": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "slug": "gap-creek-claiborne",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.98,
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "goforth-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.53,
+      "months": [
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        5
+      ]
+    },
+    {
+      "slug": "greasy-creek-polk",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.52,
+      "months": [
+        4,
+        5
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "gulf-fork-big-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.7,
+      "months": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "horse-creek-greene",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.41,
+      "months": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "hurricane-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.94,
+      "months": [
+        2,
+        3
+      ],
+      "ledgerMonths": [
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "laurel-creek-johnson",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.97,
+      "months": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "indian-creek-claiborne",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.87,
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        2,
+        4
+      ]
+    },
+    {
+      "slug": "laurel-fork-carter",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.99,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "leconte-creek",
+      "truthClass": "wild-self-sustaining",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.97,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-buffalo-river",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.91,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "little-sequatchie-river",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.57,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "little-west-fork-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.98,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "ledgerMonths": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "slug": "little-river",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.45,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        5,
+        10,
+        11
+      ]
+    },
+    {
+      "slug": "mccutcheon-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.81,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        2,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "mossy-creek-jefferson",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.98,
+      "months": [
+        1,
+        11,
+        12
+      ],
+      "ledgerMonths": [
+        1,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "middle-prong-little-pigeon",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.63,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "mill-creek-overton",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.95,
+      "months": [
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "north-chickamauga-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.99,
+      "months": [
+        2,
+        3,
+        4,
+        11
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        11
+      ]
+    },
+    {
+      "slug": "north-prong-barren-fork",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.96,
+      "months": [
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "puncheon-camp-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.96,
+      "months": [
+        3,
+        4
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "pine-creek-dekalb",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.97,
+      "months": [
+        2,
+        3
+      ],
+      "ledgerMonths": [
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "reedy-creek",
+      "truthClass": "warmwater",
+      "ledgerSpecies": "none",
+      "predicted": "warmwater",
+      "confidence": 0.98,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "richardson-byrd-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.94,
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "roaring-fork",
+      "truthClass": "trout-wild",
+      "ledgerSpecies": "none",
+      "predicted": "trout-wild",
+      "confidence": 0.84,
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "salt-lick-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.82,
+      "months": [
+        1,
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        1,
+        3
+      ]
+    },
+    {
+      "slug": "rocky-river",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.97,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "spring-creek-polk",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.61,
+      "months": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "standing-rock-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.96,
+      "months": [
+        2,
+        3
+      ],
+      "ledgerMonths": [
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "station-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.9,
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "stoney-creek-carter",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.37,
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "sulfur-fork-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.91,
+      "months": [
+        2,
+        3,
+        12
+      ],
+      "ledgerMonths": [
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "tumbling-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.95,
+      "months": [
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "trail-fork-big-creek",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-wild",
+      "confidence": 0.87,
+      "months": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "upper-hills-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.97,
+      "months": [
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        3
+      ]
+    },
+    {
+      "slug": "upper-roan-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.99,
+      "months": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "west-prong-little-pigeon",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.34,
+      "months": [],
+      "ledgerMonths": null
+    },
+    {
+      "slug": "white-oak-creek",
+      "truthClass": "stocked-winter",
+      "ledgerSpecies": "trout",
+      "predicted": "trout-stocked-seasonal",
+      "confidence": 0.88,
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "truthClass": "mixed",
+      "ledgerSpecies": "trout",
+      "predicted": "mixed",
+      "confidence": 0.98,
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ]
+}
