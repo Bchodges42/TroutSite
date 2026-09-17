@@ -19,6 +19,11 @@ export const STOCKING_OVERRIDE_DAYS = 30;
 export type RecentStocking = {
   /** ISO day of the newest matched stocking event (from /v1/stocking). */
   lastEventDay: string;
+  /** ISO day the override expires. When absent it is derived: event + 30
+   *  days, extended to window end + 21 days when a window is declared. The
+   *  caller's until is authoritative when present (the hook refreshes it
+   *  hourly); the decision only ever validates the clock, never extends it. */
+  until?: string;
   /** Authored stocking window months, when the catalog declares one. */
   windowMonths?: number[];
 } | null;
@@ -29,17 +34,25 @@ export function recentStockingActive(
   now: Date = new Date(),
 ): boolean {
   if (!recent?.lastEventDay) return false;
+  if (recent.until) {
+    return now.getTime() <= new Date(`${recent.until}T23:59:59Z`).getTime();
+  }
   const event = new Date(`${recent.lastEventDay}T00:00:00Z`).getTime();
   if (!Number.isFinite(event)) return false;
   let until = event + STOCKING_OVERRIDE_DAYS * 86_400_000;
   if (recent.windowMonths?.length) {
-    // a documented window keeps the override alive to window end + 21 days
-    const year = now.getUTCFullYear();
-    const ends = recent.windowMonths.map((m) => Date.UTC(year, m, 1));
-    const windowEnd = Math.max(...ends.filter((t) => t <= Date.UTC(year, 12, 1)));
-    if (Number.isFinite(windowEnd)) {
-      until = Math.max(until, windowEnd + 21 * 86_400_000);
+    // a documented window keeps the override alive to that window's end
+    // (+ 21 days holdover) — the window end that FOLLOWS the event, walking
+    // into next year when needed (a Dec 20 stocking with a Dec–Feb window
+    // must stay alive through March)
+    let windowEnd = 0;
+    for (const m of recent.windowMonths) {
+      for (const y of [new Date(event).getUTCFullYear(), new Date(event).getUTCFullYear() + 1]) {
+        const end = Date.UTC(y, m, 1); // month m is 1-based → first day after it
+        if (end >= event && end > windowEnd) windowEnd = end;
+      }
     }
+    if (windowEnd > 0) until = Math.max(until, windowEnd + 21 * 86_400_000);
   }
   return now.getTime() <= until;
 }
@@ -176,21 +189,27 @@ export function toWaterDecisionView(
   const seasonMonths = feature.stream.seasonMonths ?? (feature.stream.yearRound === false ? [11, 12, 1, 2, 3] : undefined);
   const seasonKind = feature.stream.seasonKind ?? (feature.stream.yearRound === false ? 'programmatic' : undefined);
   const inSeason = month === undefined || seasonMonths === undefined || seasonMonths.includes(month);
+  // A WARMWATER water with a documented stocking window (the owner's
+  // winter-stocked identity, 2026-09-17) is month-gated exactly like a
+  // seasonal trout water: the trout overlay applies in its window and is
+  // absent outside it — the identity label never changes with the month.
+  const winterStocked = warmwater && (feature.stream.stockingProgram === true || stockedNow) && seasonMonths !== undefined;
   const seasonal =
-    feature.species === 'trout' && seasonMonths !== undefined
+    (feature.species === 'trout' || winterStocked) && seasonMonths !== undefined
       ? inSeason
         ? ('seasonal-uncertain' as const)
         : ('seasonal-likely-absent' as const)
       : null;
-  const troutApplicability = seasonal ?? (warmwater
-    ? stockedNow
-      ? ('confirmed-current' as const)
-      : ('not-trout' as const)
+  // a LIVE stocking report outranks the seasonal guess — fresh fish trump the calendar
+  const troutApplicability = stockedNow
+    ? ('confirmed-current' as const)
+    : (seasonal ?? (warmwater
+    ? ('not-trout' as const)
     : speciesUnknown
       ? ('unknown' as const)
       : assessed
         ? ('confirmed-current' as const)
-        : ('unknown' as const));
+        : ('unknown' as const)));
   // F6 (TASK 3): in all-fish mode a water whose snapshot carries an ASSESSED
   // comfort score for the focus species wears that fishability metric —
   // warmwater waters finally get their own real score. Unknown-species waters
@@ -207,9 +226,9 @@ export function toWaterDecisionView(
   const visibility: WaterDecisionView['visibility'] =
     mode === 'trout'
       ? warmwater
-        ? stockedNow
+        ? stockedNow || (winterStocked && inSeason)
           ? 'include'
-          : feature.stream.stockingProgram ||
+          : winterStocked || feature.stream.stockingProgram ||
             (FEATURED_WARMWATER_CONTEXT && feature.stream.display === 'featured')
             ? 'deemphasize'
             : 'exclude'
@@ -230,9 +249,9 @@ export function toWaterDecisionView(
     // never borrow a metric they have no data for.
     displayMetric: fishabilityActive
       ? ('fishability' as const)
-      : (troutApplicability === 'confirmed-current' ||
-          (troutApplicability === 'seasonal-uncertain' && inSeason === true)) &&
-        assessed
+      : assessed &&
+        ((troutApplicability === 'confirmed-current' && !(warmwater && !stockedNow)) ||
+          (troutApplicability === 'seasonal-uncertain' && inSeason === true && !winterStocked))
         ? ('trout-condition' as const)
         : ('unassessed' as const),
     // No generic fishability source exists in the current pipeline. The field
@@ -240,9 +259,9 @@ export function toWaterDecisionView(
     fishability: undefined,
     confidence: fishabilityActive
       ? (fishability!.comfort.freshness ? 'high' : 'medium')
-      : (troutApplicability === 'confirmed-current' ||
-          (troutApplicability === 'seasonal-uncertain' && inSeason === true)) &&
-        assessed
+      : assessed &&
+        ((troutApplicability === 'confirmed-current' && !(warmwater && !stockedNow)) ||
+          (troutApplicability === 'seasonal-uncertain' && inSeason === true && !winterStocked))
         ? (feature.snapshot?.readings.length ? 'high' : 'medium')
         : 'low',
     // A per-water trout calendar bundle may yet drive month-level presence;
@@ -324,6 +343,31 @@ export function metricLabel(view: Pick<WaterDecisionView, 'displayMetric'>): str
   if (view.displayMetric === 'trout-condition') return 'Trout conditions';
   if (view.displayMetric === 'fishability') return 'Fishability';
   return 'Unassessed';
+}
+
+/**
+ * The water's fishery IDENTITY, phrased the way the owner wants it on the
+ * field atlas (2026-09-17): a winter-stocked warmwater water SAYS
+ * "Warmwater — Winter Stocked w/ trout" all year long, while the month-gated
+ * applicability decides whether trout apply right now. The identity never
+ * changes with the season; the season chip carries the "right now" verdict.
+ */
+export function identityLabel(
+  feature: Pick<RiverMapFeature, 'species' | 'stream'>,
+): string {
+  const seasonMonths = feature.stream.seasonMonths ?? null;
+  const window = seasonMonths ? ` (${monthWindowLabel(seasonMonths)})` : '';
+  if (feature.species === 'warmwater' && feature.stream.stockingProgram === true) {
+    return `Warmwater — Winter Stocked w/ trout${window}`;
+  }
+  if (feature.species === 'warmwater') return 'Warmwater';
+  if (feature.species === 'trout') {
+    if (feature.stream.yearRound === true) return 'Trout Stream — Year Round';
+    if (feature.stream.seasonKind === 'regulatory') return `Trout Stream — Regulated Season${window}`;
+    if (feature.stream.seasonMonths) return `Trout Stream — Stocked Seasonally${window}`;
+    return 'Trout Stream';
+  }
+  return 'Unclassified';
 }
 
 /**

@@ -10,7 +10,7 @@ import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
-import { toWaterDecisionView, seasonalChipText, seasonalVerdict } from './waterDecision';
+import { toWaterDecisionView, seasonalChipText, seasonalVerdict, identityLabel } from './waterDecision';
 import { FishabilityCard } from '../../components/FishabilityCard';
 import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
@@ -241,6 +241,7 @@ function WaterTab({
           <div>
             <span className="assessment-label">Conditions assessment</span>
             <h3 className="assessment-name">{title}</h3>
+            <p className="assessment-identity">{identityLabel(feature)}</p>
           </div>
           {decision.displayMetric === 'trout-condition' && feature.score !== null && (
             <span

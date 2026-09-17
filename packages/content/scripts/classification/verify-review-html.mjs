@@ -31,5 +31,12 @@ check('south-holston-lake has species with catch counts', (sh.species || []).len
 check('no ownerReview key anywhere in payload', !s.includes('ownerReview'));
 check('no unresolved template literals in page JS', !html.slice(html.indexOf('<script>')).includes('${'));
 check('drawer + export functions present', ['openDrawer', 'buildExport', 'setCat', 'setNote', 'resetOne'].every((f) => html.includes('window.' + f)));
+const withComposite = Object.values(data.evidence).filter((e) => e.composite && e.composite.recommendedClass).length;
+check(`composite program class wired for all waters (${withComposite})`, withComposite === 190);
+check('drawer defines comp from embedded evidence (no undefined-reference crash)', html.includes('var comp = ev.composite ||'));
+check('stable localStorage key + restore (answers survive close/reopen)', html.includes("LS_KEY = 'jev-review-v3'") && html.includes('localStorage.getItem'));
+check('legacy v2 per-generation saves are migrated', html.includes("indexOf('jev-review-v2-') === 0"));
+check('restore only re-applies touched decisions (override or note)', html.includes('(sv.modified || sv.note)'));
+check('search index uses species names', html.includes("map(function (s) { return s.name; })"));
 console.log(ok ? '\nREVIEW PAGE PAYLOAD OK' : '\nPAYLOAD PROBLEMS');
 process.exit(ok ? 0 : 1);

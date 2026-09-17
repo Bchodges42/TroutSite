@@ -25,12 +25,30 @@ import { evidenceState, reviewedCategory, CATEGORY_LABELS } from './jev-classify
 const evalPath = join(DIFF_OUT_DIR, 'jev-classification-eval.json');
 const evalDoc = JSON.parse(readFileSync(evalPath, 'utf8'));
 
+// Composite program classification (classification-composite.json, 2026-09-17):
+// per-water TWRA StockingProgram conclusion (Spring/Tailwater/Winter/Reservoir)
+// from schedule workbook + live stocking feed + warmwater workbook. Optional:
+// the review page renders it in the drawer when the file is present.
+const compositePath = join(DIFF_OUT_DIR, 'classification-composite.json');
+const compositeBySlug = {};
+if (existsSync(compositePath)) {
+  for (const [slug, v] of Object.entries(JSON.parse(readFileSync(compositePath, 'utf8')).waters ?? {})) {
+    compositeBySlug[slug] = {
+      recommendedClass: v.recommendedClass ?? null,
+      programClasses: v.programClasses ?? [],
+      modifiers: v.modifiers ?? [],
+      seasonMonths: v.seasonMonths ?? null,
+      confidence: v.confidence ?? null,
+      flags: v.flags ?? [],
+    };
+  }
+}
+
 const evidence = {};
 for (const r of evalDoc.results) {
   if (r.error) continue;
   const s = evidenceState(r.slug, { month: evalDoc.month.number });
   const fb = s.evidence.fishbrainDiscovery;
-  const comp = s.evidence.composite || {};
   const species = [
     ...(fb.freshwaterTrout ?? []).map((x) => ({ name: x.name, catches: x.catches ?? 0, role: 'trout' })),
     ...(fb.topFreshwaterSpecies ?? []).map((x) => ({ name: x.name, catches: x.catches ?? 0, role: 'context' })),
@@ -51,10 +69,7 @@ for (const r of evalDoc.results) {
     fishbrainWaterName: fb.pageName ?? null,
     loggedCatches: fb.loggedCatches ?? null,
     catalogSpecies: s.evidence.catalog.species ?? null,
-    compositeClass: comp.recommendedClass ?? null,
-    compositeMonths: comp.seasonMonths ?? null,
-    compositeConfidence: comp.sourceConfidence ?? null,
-    compositeFlags: (comp.flags ?? []).length,
+    composite: compositeBySlug[r.slug] ?? null,
     catalogFishery: s.evidence.catalog.fishery ?? null,
     catalogYearRound: s.evidence.catalog.yearRound ?? null,
     catalogSeasonMonths: s.evidence.catalog.seasonMonths ?? null,
@@ -122,7 +137,7 @@ const css = `
        border-bottom:1px solid var(--hair); cursor:pointer; user-select:none; white-space:nowrap; z-index:4; }
   th:hover { color:var(--accent); }
   th .dir { font-size:9px; }
-  td { padding:9px 12px; border-bottom:1px solid var(--hair2); vertical-align:top; }
+  td { padding:9px 12px; border:1px solid #000; vertical-align:top; }
   tbody tr:hover td { background:#f2ecdd; }
   .wname { font-family:Fraunces, Georgia, serif; font-style:italic; font-weight:560; font-size:15.5px;
            cursor:pointer; border-bottom:1px dotted var(--dim); }
@@ -186,19 +201,41 @@ const css = `
 const pageJs = `
 var CATS = ['trout-stream-year-round','warmwater-yearly-stocked-winter-trout','warmwater-no-trout'];
 var SHORT = { 'trout-stream-year-round':'Trout yr', 'warmwater-yearly-stocked-winter-trout':'Winter-stocked', 'warmwater-no-trout':'Warmwater' };
-var LS_KEY = 'jev-review-v2-' + DATA.generated;
-var decisions = {};
-for (var i = 0; i < DATA.results.length; i++) {
-  var r0 = DATA.results[i];
-  if (r0.error) continue;
-  var pre = DATA.prefills[r0.slug];
-  if (pre) decisions[r0.slug] = { category: pre, note: '', origin: pre === r0.rawChoice ? 'jev' : 'reviewed', modified: false };
-}
+// Stable key: answers survive closing/reopening the page AND eval re-runs.
+// Legacy per-generation keys (jev-review-v2-<generated>) are migrated once.
+var LS_KEY = 'jev-review-v3';
+var decisions = {}, restored = 0;
+(function () {
+  var saved = {};
+  try {
+    for (var li = 0; li < localStorage.length; li++) {
+      var lk = localStorage.key(li);
+      if (lk && lk.indexOf('jev-review-v2-') === 0) {
+        var lp = {};
+        try { lp = JSON.parse(localStorage.getItem(lk) || '{}') || {}; } catch (pe) { lp = {}; }
+        for (var ls in lp) if (lp[ls] && lp[ls].category) saved[ls] = lp[ls];
+      }
+    }
+    var v3 = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
+    if (v3 && v3.decisions) for (var vs in v3.decisions) if (v3.decisions[vs] && v3.decisions[vs].category) saved[vs] = v3.decisions[vs];
+  } catch (se) { saved = {}; }
+  for (var i = 0; i < DATA.results.length; i++) {
+    var r0 = DATA.results[i];
+    if (r0.error) continue;
+    var sv = saved[r0.slug];
+    // Only decisions the owner actually TOUCHED (override or note) survive a
+    // restore; saved prefill echoes must never freeze a stale Jev call when
+    // the eval is re-run — those rows re-derive from the current prefill.
+    if (sv && sv.category && (sv.modified || sv.note)) { decisions[r0.slug] = sv; restored += 1; continue; }
+    var pre = DATA.prefills[r0.slug];
+    if (pre) decisions[r0.slug] = { category: pre, note: '', origin: pre === r0.rawChoice ? 'jev' : 'reviewed', modified: false };
+  }
+})();
 var sortKey = 'confidence', sortDir = -1;
 function changedFromPrev(slug) { var now = decisions[slug] ? decisions[slug].category : null; var was = DATA.prevChoices[slug]; return was && now && was !== now ? was : null; }
 
 function el(id) { return document.getElementById(id); }
-function save() { localStorage.setItem(LS_KEY, JSON.stringify(decisions)); }
+function save() { localStorage.setItem(LS_KEY, JSON.stringify({ generated: DATA.generated, savedAt: new Date().toISOString(), decisions: decisions })); }
 function toast(msg) {
   var t = el('toast'); t.textContent = msg; t.style.display = 'block';
   clearTimeout(t._h); t._h = setTimeout(function () { t.style.display = 'none'; }, 2400);
@@ -223,7 +260,7 @@ function rows() {
     if (el('fflag').checked && !(r.consistencyFlags || []).length) return false;
     if (el('fnotfound').checked && ev.matchStatus !== 'not-found') return false;
     if (q) {
-      var hay = [r.slug, ev.waterName, ev.notes].concat(ev.fishbrainTrout || []).join(' ').toLowerCase();
+      var hay = [r.slug, ev.waterName, ev.notes].concat((ev.species || []).map(function (s) { return s.name; })).join(' ').toLowerCase();
       if (hay.indexOf(q) === -1) return false;
     }
     return true;
@@ -300,6 +337,7 @@ window.resetOne = function (slug) {
 };
 window.openDrawer = function (slug) {
   var ev = DATA.evidence[slug] || {};
+  var comp = ev.composite || {};
   var r = null;
   for (var i = 0; i < DATA.results.length; i++) if (DATA.results[i].slug === slug) r = DATA.results[i];
   el('dName').textContent = ev.waterName || slug;
@@ -318,7 +356,14 @@ window.openDrawer = function (slug) {
   var kv = [];
   kv.push('<div class="kv"><b>Jev:</b> <span class="pill ' + (r.rawChoice || '') + '">' + (SHORT[r.rawChoice] || '\\u2014') + '</span> confidence ' + (r.confidence == null ? '\\u2014' : r.confidence.toFixed(2)) + ' \\u00b7 trout months ' + (r.monthsTrue == null ? '\\u2014' : r.monthsTrue) + '/12</div>');
   kv.push('<div class="kv"><b>Current decision:</b> ' + ((decisions[slug] || {}).category ? SHORT[decisions[slug].category] : '\\u2014') + '</div>');
-  kv.push('<div class="kv"><b>Composite:</b> ' + esc([comp.recommendedClass, comp.compositeConfidence, (comp.compositeMonths || []).length ? 'months ' + JSON.stringify(comp.compositeMonths) : null].filter(Boolean).join(' · ') || 'no composite row') + '</div>');
+  kv.push('<div class="kv"><b>Composite program (2026-09-17):</b> ' + esc([
+    comp.recommendedClass,
+    (comp.programClasses || []).length ? 'programs ' + comp.programClasses.join('/') : null,
+    (comp.modifiers || []).length ? comp.modifiers.join(' + ') : null,
+    (comp.seasonMonths || []).length ? 'months ' + JSON.stringify(comp.seasonMonths) : null,
+    comp.confidence ? 'conf ' + comp.confidence : null,
+    (comp.flags || []).length ? comp.flags.length + ' flag(s)' : null,
+  ].filter(Boolean).join(' \\u00b7 ') || 'no composite row') + '</div>');
   kv.push('<div class="kv"><b>Catalog today:</b> ' + esc([ev.catalogSpecies ? 'species ' + ev.catalogSpecies : 'species unset', ev.catalogFishery ? ev.catalogFishery : null, ev.catalogYearRound == null ? null : (ev.catalogYearRound ? 'yearRound' : 'seasonal'), ev.catalogSeasonMonths ? 'months ' + JSON.stringify(ev.catalogSeasonMonths) : null].filter(Boolean).join(' \\u00b7 ') || '\\u2014') + '</div>');
   kv.push('<div class="kv"><b>Ledger:</b> ' + (ev.ledger ? 'audited (' + esc(ev.ledgerClass || 'no class line') + ')' : 'none') + ' \\u00b7 <b>TWRA feed:</b> ' + (ev.stockingEvents ? ev.stockingEvents + ' events (' + (ev.stockingPrograms || []).join('/') + ')' : 'none matched') + '</div>');
   kv.push('<div class="kv"><b>Fishbrain:</b> ' + esc(ev.matchStatus || '') + (ev.fishbrainWaterName ? ' \\u2014 "' + esc(ev.fishbrainWaterName) + '"' : '') + (ev.loggedCatches != null ? ' \\u00b7 ' + ev.loggedCatches + ' logged catches' : '') + '</div>');
@@ -389,6 +434,7 @@ Array.prototype.forEach.call(document.querySelectorAll('th'), function (th) {
   el(id).addEventListener('input', render);
 });
 render();
+if (restored > 0) toast('Restored ' + restored + ' saved decision' + (restored === 1 ? '' : 's') + ' from your last visit');
 `;
 
 const html = `<!DOCTYPE html>
@@ -445,9 +491,12 @@ const html = `<!DOCTYPE html>
   <tbody id="rows"></tbody>
 </table>
 <footer>
-  Click a <i>water name</i> for its full Fishbrain species list with catch counts. Export downloads
+  Click a <i>water name</i> for its full Fishbrain species list with catch counts, the composite program
+  class, and the Fishbrain page link. Decisions autosave in this browser under a stable key and are
+  restored when you come back — closing the tab or regenerating the eval will not lose them; old
+  per-generation saves are migrated. Export downloads
   <code>jev-tn-review-labels.json</code> — the complete 190-water truth set; hand it to a session or drop it into
-  <code>packages/content/research/</code>. Decisions autosave in this browser.
+  <code>packages/content/research/</code>.
 </footer>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer">

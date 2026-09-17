@@ -1064,6 +1064,12 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   text-transform: uppercase;
   color: var(--ui-muted);
 }
+.assessment-identity {
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ui-muted);
+}
 .assessment-name {
   font-family: var(--trout-font-display);
   font-size: 27px;
