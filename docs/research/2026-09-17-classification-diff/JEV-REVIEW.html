@@ -43,7 +43,9 @@
   th:hover { color:var(--accent); }
   th .dir { font-size:9px; }
   td { padding:9px 12px; border:1px solid #000; vertical-align:top; }
-  tbody tr:hover td { background:#f2ecdd; }
+  tbody tr:nth-child(odd) td { background:#faf5e3; }
+  tbody tr:nth-child(even) td { background:#dcd7ca; }
+  tbody tr:hover td { background:#cfc7b2; }
   .wname { font-family:Fraunces, Georgia, serif; font-style:italic; font-weight:560; font-size:15.5px;
            cursor:pointer; border-bottom:1px dotted var(--dim); }
   .wname:hover { color:var(--accent); border-color:var(--accent); }
@@ -138,9 +140,9 @@
   <thead><tr>
     <th data-k="slug">Water</th>
     <th data-k="decision">Decision</th>
-    <th data-k="rawChoice">Jev raw</th>
+    <th data-k="rawChoice">Jev: system identity</th>
     <th data-k="confidence">Confidence</th>
-    <th data-k="monthsTrue">Trout mo.</th>
+    <th data-k="monthsTrue">Trout mo. now-yr</th>
     <th data-k="tier">Tier</th>
     <th data-k="note">Note</th>
   </tr></thead>
