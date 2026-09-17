@@ -26,6 +26,15 @@ aggregate logged catches on Fishbrain; they are not unique-angler counts,
 biological abundance estimates, or official survey results. Broad or ambiguous
 Fishbrain pages remain marked for segment review.
 
+The corresponding pass for the remaining catalog waters is in
+[`packages/content/research/fishbrain-tn-graphql-standard-discovery.json`](../packages/content/research/fishbrain-tn-graphql-standard-discovery.json).
+It covers all 152 `display:standard` waters, mapping 109 catalog records to 108
+unique public pages and capturing 1,899 species rows. Twenty-five mappings are
+flagged for segment review and 43 have no unambiguous Tennessee public page in
+this pass. The same interpretation applies: `catchesCount` is an aggregate
+logged-catch total, and the snapshot is research-only rather than biological
+verification or a live application dependency.
+
 Evidence types mean:
 
 - `agency-fishery-list` — an agency water page or reviewed fishery description
@@ -58,8 +67,9 @@ species from a waterbody type or from a generic “trout water” flag.
 ## Updating the snapshot
 
 1. Review a candidate in `research/fishbrain-tn-discovery.json` or
-   `research/fishbrain-tn-graphql-discovery.json`, or identify a candidate from
-   an agency source, and resolve the exact catalog water segment.
+   `research/fishbrain-tn-graphql-discovery.json` or
+   `research/fishbrain-tn-graphql-standard-discovery.json`, or identify a
+   candidate from an agency source, and resolve the exact catalog water segment.
 2. Re-read the official source and record its current URL and retrieval date.
 3. Add or revise the source-backed group in
    `packages/content/data/species-occurrences.json`.

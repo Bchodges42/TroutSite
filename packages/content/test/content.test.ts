@@ -51,6 +51,35 @@ const fishbrainGraphqlResearch = JSON.parse(
     species: { fishbrainSpeciesExternalId: string; displayName: string; catchesCount: number }[];
   }[];
 };
+const fishbrainStandardGraphqlResearch = JSON.parse(
+  readFileSync(join(import.meta.dirname, '..', 'research', 'fishbrain-tn-graphql-standard-discovery.json'), 'utf8'),
+) as {
+  schema: string;
+  stateId: string;
+  endpoint: string;
+  scope: { classification: string };
+  summary: {
+    catalogWaterCount: number;
+    mappedWaterCount: number;
+    uniqueFishbrainPages: number;
+    speciesRowCount: number;
+    completeSpeciesLists: number;
+    needsSegmentReview: number;
+    notFound: number;
+    graphqlErrors: unknown[];
+  };
+  records: {
+    catalogWaterId: string;
+    fishbrainExternalId: string | null;
+    fishbrainPageUrl: string | null;
+    fishbrainLoggedCatches: number | null;
+    matchStatus: string;
+    totalSpecies: number | null;
+    speciesReturned: number;
+    speciesHasNextPage: boolean | null;
+    species: { fishbrainSpeciesExternalId: string; displayName: string; catchesCount: number }[];
+  }[];
+};
 
 describe('content pack validation (CI gate)', () => {
   it('has no validation issues', () => {
@@ -172,6 +201,45 @@ describe('content pack validation (CI gate)', () => {
       && Number.isInteger(speciesRecord.catchesCount)
       && speciesRecord.catchesCount >= 0
     )))).toBe(true);
+  });
+
+  it('covers every remaining standard-tier water without shipping Fishbrain data', () => {
+    const records = fishbrainStandardGraphqlResearch.records;
+    expect(fishbrainStandardGraphqlResearch.schema).toBe('trout/fishbrain-graphql-discovery/1');
+    expect(fishbrainStandardGraphqlResearch.stateId).toBe('TN');
+    expect(fishbrainStandardGraphqlResearch.endpoint).toBe('https://rutilus.fishbrain.com/graphql');
+    expect(fishbrainStandardGraphqlResearch.scope.classification).toBe('display:standard');
+    expect(records.length).toBe(152);
+    expect(new Set(records.map((record) => record.catalogWaterId)).size).toBe(152);
+    expect(records.every((record) => streams.has(record.catalogWaterId))).toBe(true);
+    expect(fishbrainStandardGraphqlResearch.summary.catalogWaterCount).toBe(records.length);
+    expect(fishbrainStandardGraphqlResearch.summary.mappedWaterCount).toBe(records.filter((record) => record.fishbrainExternalId).length);
+    expect(fishbrainStandardGraphqlResearch.summary.uniqueFishbrainPages).toBe(new Set(records.map((record) => record.fishbrainExternalId).filter(Boolean)).size);
+    expect(fishbrainStandardGraphqlResearch.summary.speciesRowCount).toBe(records.reduce((sum, record) => sum + record.species.length, 0));
+    expect(fishbrainStandardGraphqlResearch.summary.graphqlErrors).toEqual([]);
+    for (const record of records) {
+      expect(['candidate', 'needs-segment-review', 'not-found']).toContain(record.matchStatus);
+      if (!record.fishbrainExternalId) {
+        expect(record.fishbrainPageUrl).toBeNull();
+        expect(record.fishbrainLoggedCatches).toBeNull();
+        expect(record.totalSpecies).toBeNull();
+        expect(record.speciesReturned).toBe(0);
+        expect(record.speciesHasNextPage).toBeNull();
+        expect(record.species).toEqual([]);
+        continue;
+      }
+      expect(record.fishbrainPageUrl).toMatch(/^https:\/\/fishbrain\.com\/fishing-waters\//);
+      expect(Number.isInteger(record.fishbrainLoggedCatches)).toBe(true);
+      expect(record.fishbrainLoggedCatches!).toBeGreaterThanOrEqual(0);
+      expect(record.totalSpecies).toBe(record.speciesReturned);
+      expect(record.speciesHasNextPage).toBe(false);
+      for (const speciesRecord of record.species) {
+        expect(speciesRecord.fishbrainSpeciesExternalId.length).toBeGreaterThan(0);
+        expect(speciesRecord.displayName.length).toBeGreaterThan(0);
+        expect(Number.isInteger(speciesRecord.catchesCount)).toBe(true);
+        expect(speciesRecord.catchesCount).toBeGreaterThanOrEqual(0);
+      }
+    }
   });
 
   it('describes the Fentress Wolf River as a Dale Hollow arm, not Memphis-bound (T1-7)', () => {
