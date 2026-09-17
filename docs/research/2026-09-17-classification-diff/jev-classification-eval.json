@@ -1,0 +1,2864 @@
+{
+  "generated": "2026-09-17T15:23:42.989Z",
+  "model": "jev-latest",
+  "month": {
+    "number": 1,
+    "name": "January"
+  },
+  "fishbrainPaths": [
+    "packages\\content\\research\\fishbrain-tn-graphql-discovery.json",
+    "packages\\content\\research\\fishbrain-tn-graphql-standard-discovery.json"
+  ],
+  "results": [
+    {
+      "slug": "barren-fork-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.75,
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.24
+      },
+      "confidence": 0.64,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.89,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "beaverdam-creek",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 1,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.87,
+      "evidenceQuality": 2.84,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "beech-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.79,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "beech-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.03,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-bigby-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.33,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-rock-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.98,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-sandy-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.39,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-sewee-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.43,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-soddy-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.03,
+        "warmwater-yearly-stocked-winter-trout": 0.9,
+        "warmwater-no-trout": 0.07
+      },
+      "confidence": 0.84,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.19,
+      "evidenceQuality": 1.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-swan-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.36,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "blackburn-fork",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.33,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "boiling-fork-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.99,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "boone-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.97,
+        "warmwater-yearly-stocked-winter-trout": 0.02
+      },
+      "confidence": 0.96,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.38,
+      "evidenceQuality": 1.82,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "boone-tailwater",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "trout-stream-year-round": 0.99,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.46,
+      "evidenceQuality": 2.53,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "bradley-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.65,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "brimstone-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.02,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "brush-creek-cocke",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.72,
+        "warmwater-no-trout": 0.27,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.59,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.31,
+      "evidenceQuality": 2.61,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "buffalo-creek-grainger",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.02,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.98
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.89,
+      "evidenceQuality": 2.91,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "buffalo-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.61,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "bullrun-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.34,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "calderwood-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.55,
+      "evidenceQuality": 2.21,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "calfkiller-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.75,
+        "warmwater-no-trout": 0.24
+      },
+      "confidence": 0.62,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.16,
+      "evidenceQuality": 1.96,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "cameron-brown-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.92,
+      "evidenceQuality": 2.3,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "candies-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.35,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "cane-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.65,
+        "trout-stream-year-round": 0.02,
+        "warmwater-no-trout": 0.33
+      },
+      "confidence": 0.49,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.96,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "cane-creek-hickman-perry",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.17,
+        "trout-stream-year-round": 0.02,
+        "warmwater-yearly-stocked-winter-trout": 0.81
+      },
+      "confidence": 0.72,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.15,
+      "evidenceQuality": 1.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "caney-fork-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.15,
+        "trout-stream-year-round": 0.85,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.77,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.6,
+      "evidenceQuality": 2.48,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "caney-fork-upper",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 2.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "center-hill-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 1.91,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "charles-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.17,
+        "warmwater-yearly-stocked-winter-trout": 0.82,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.74,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 2.97,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "cherokee-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.96,
+        "warmwater-yearly-stocked-winter-trout": 0.04,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.94,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.24,
+      "evidenceQuality": 2.37,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "chestuee-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02
+      },
+      "confidence": 0.96,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.41,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "chickamauga-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.98,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "chilhowee-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.56,
+      "evidenceQuality": 2.19,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "citico-creek",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "trout-stream-year-round": 0.6,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.39
+      },
+      "confidence": 0.4,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.31,
+      "evidenceQuality": 2.91,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "clear-creek-obed",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.02,
+      "evidenceQuality": 2.91,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "clear-fork",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.68,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "clinch-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.07,
+        "trout-stream-year-round": 0.92
+      },
+      "confidence": 0.89,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.23,
+      "evidenceQuality": 2.52,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "collins-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.41,
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.58
+      },
+      "confidence": 0.38,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 1.88,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "conasauga-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "warmwater-no-trout": 0.97,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.95,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.03,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "cosby-creek",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.05,
+        "trout-stream-year-round": 0.94
+      },
+      "confidence": 0.91,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.68,
+      "evidenceQuality": 1.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "covington-fbc-pond",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.9,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "crab-orchard-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.39,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "cumberland-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.02,
+        "warmwater-yearly-stocked-winter-trout": 0.98
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.79,
+      "evidenceQuality": 1.71,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "daddys-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.9,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "dale-hollow-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.96,
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.03
+      },
+      "confidence": 0.95,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.33,
+      "evidenceQuality": 1.15,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "doe-creek-johnson",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.03,
+        "warmwater-yearly-stocked-winter-trout": 0.96
+      },
+      "confidence": 0.95,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.37,
+      "evidenceQuality": 2.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "doe-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.97,
+        "trout-stream-year-round": 0.03,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.95,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.87,
+      "evidenceQuality": 2.92,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "douglas-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 1.01,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "duck-river-lower",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.2,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "duck-river-mouth",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.84,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "duck-river-tailwater",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.95,
+        "warmwater-yearly-stocked-winter-trout": 0.05
+      },
+      "confidence": 0.93,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.83,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "dumplin-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.96,
+        "warmwater-yearly-stocked-winter-trout": 0.04,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.93,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 0.04,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "east-fork-obey-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02
+      },
+      "confidence": 0.96,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "east-fork-shoal-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.13,
+        "warmwater-yearly-stocked-winter-trout": 0.87
+      },
+      "confidence": 0.8,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.37,
+      "evidenceQuality": 1.82,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "east-fork-stones-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.84,
+        "warmwater-no-trout": 0.03,
+        "trout-stream-year-round": 0.13
+      },
+      "confidence": 0.75,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.68,
+      "evidenceQuality": 1.64,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.87,
+      "evidenceQuality": 2.23,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "elk-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0.99,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.99,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.51,
+      "evidenceQuality": 2.33,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "elk-river-lower",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "warmwater-no-trout": 0.02,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.59,
+      "evidenceQuality": 1.58,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "emory-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.06,
+        "warmwater-no-trout": 0.57,
+        "trout-stream-year-round": 0.37
+      },
+      "confidence": 0.35,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.52,
+      "evidenceQuality": 0.99,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "falling-water-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.43,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "fletchers-fork",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.69,
+      "evidenceQuality": 2.46,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "forge-creek-johnson",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "warmwater-no-trout": 0.01,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.98,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.45,
+      "evidenceQuality": 2.35,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "forked-deer-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.02,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "fort-loudoun-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 1.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "fort-patrick-henry-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.75,
+        "trout-stream-year-round": 0.16,
+        "warmwater-no-trout": 0.09
+      },
+      "confidence": 0.62,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.6,
+      "evidenceQuality": 2.3,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "french-broad-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.58,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "ft-patrick-henry-tailwater",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.07,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.93
+      },
+      "confidence": 0.89,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.46,
+      "evidenceQuality": 2.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "gap-creek-claiborne",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.69,
+        "warmwater-no-trout": 0.31,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.54,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.41,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "goforth-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.9400000000000001,
+        "warmwater-no-trout": 0.06,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.9,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.48,
+      "evidenceQuality": 1.91,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "greasy-creek-polk",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.06,
+        "warmwater-yearly-stocked-winter-trout": 0.94
+      },
+      "confidence": 0.91,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.59,
+      "evidenceQuality": 1.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "great-falls-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.27,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "gulf-fork-big-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.42,
+        "warmwater-no-trout": 0.14,
+        "warmwater-yearly-stocked-winter-trout": 0.44
+      },
+      "confidence": 0.16,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.27,
+      "evidenceQuality": 2.88,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "harpeth-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.86,
+      "evidenceQuality": 2.23,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "hatchie-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 0.5,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "hiwassee-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "trout-stream-year-round": 0.97
+      },
+      "confidence": 0.95,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.96,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "holston-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "horse-creek-greene",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.63,
+        "trout-stream-year-round": 0.35,
+        "warmwater-no-trout": 0.02
+      },
+      "confidence": 0.45,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.23,
+      "evidenceQuality": 2.89,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "hurricane-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.99
+      },
+      "confidence": 0.98,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.53,
+      "evidenceQuality": 2.41,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "indian-creek-claiborne",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.02
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.52,
+      "evidenceQuality": 2.18,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "j-percy-priest-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.97,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.03
+      },
+      "confidence": 0.96,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.33,
+      "evidenceQuality": 2.56,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "johnson-park-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.86,
+      "evidenceQuality": 1.95,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "kentucky-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 0.8,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "lake-barkley",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 0.76,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "lake-graham",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.91,
+      "evidenceQuality": 2.43,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "laurel-creek-johnson",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.95,
+        "warmwater-no-trout": 0.05
+      },
+      "confidence": 0.92,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.39,
+      "evidenceQuality": 2.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "laurel-fork-carter",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "trout-stream-year-round": 1,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.87,
+      "evidenceQuality": 2.71,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "leconte-creek",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.99
+      },
+      "confidence": 0.99,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.81,
+      "evidenceQuality": 2.04,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-buffalo-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.23,
+        "warmwater-yearly-stocked-winter-trout": 0.77,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.65,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.34,
+      "evidenceQuality": 2.22,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-chuckey-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.97,
+        "warmwater-yearly-stocked-winter-trout": 0.03
+      },
+      "confidence": 0.95,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.03,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-harpeth-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.97
+      },
+      "confidence": 0.95,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.88,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-pigeon-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.06,
+        "warmwater-no-trout": 0.92,
+        "trout-stream-year-round": 0.02
+      },
+      "confidence": 0.88,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.2,
+      "evidenceQuality": 1.32,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.04,
+        "trout-stream-year-round": 0.96,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.94,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.76,
+      "evidenceQuality": 2.54,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-sequatchie-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.78,
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.21
+      },
+      "confidence": 0.68,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.3,
+      "evidenceQuality": 2.31,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-tennessee-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.99
+      },
+      "confidence": 0.98,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.27,
+      "evidenceQuality": 2.77,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "little-west-fork-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.69,
+      "evidenceQuality": 2.61,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "loosahatchie-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.46,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "martin-city-pond",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.83,
+      "evidenceQuality": 2.19,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "mccutcheon-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.98,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "melton-hill-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.13,
+        "warmwater-no-trout": 0.77,
+        "warmwater-yearly-stocked-winter-trout": 0.1
+      },
+      "confidence": 0.65,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.48,
+      "evidenceQuality": 1.12,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "middle-fork-forked-deer-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.36,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "middle-fork-obion-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.56,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "middle-prong-little-pigeon",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "trout-stream-year-round": 0.8,
+        "warmwater-no-trout": 0.03,
+        "warmwater-yearly-stocked-winter-trout": 0.17
+      },
+      "confidence": 0.7,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.55,
+      "evidenceQuality": 1.79,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "milan-city-pond",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.86,
+      "evidenceQuality": 2.11,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "mill-creek-overton",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.2,
+        "warmwater-yearly-stocked-winter-trout": 0.79
+      },
+      "confidence": 0.69,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 2.69,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "mississippi-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.55,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "mossy-creek-jefferson",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.99,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "new-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.37,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "nickajack-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.87,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "nolichucky-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0.07,
+        "warmwater-no-trout": 0.92
+      },
+      "confidence": 0.88,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.26,
+      "evidenceQuality": 0.59,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "nonconnah-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 0.63,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "normandy-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 2.25,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "norris-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 1.47,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-chickamauga-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.1,
+        "warmwater-yearly-stocked-winter-trout": 0.89
+      },
+      "confidence": 0.83,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 2.73,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-fork-forked-deer-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "warmwater-no-trout": 0.97,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.95,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.84,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-fork-holston-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.48,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-fork-obion-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.02,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-mouse-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.84,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-prong-barren-fork",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "warmwater-no-trout": 0.02,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.51,
+      "evidenceQuality": 2.28,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "obed-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.76,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "obey-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0.99,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.99,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.87,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "obion-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.13,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "ocoee-number-three-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.93,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "ocoee-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.96,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.54,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "old-hickory-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.39,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "oostanaula-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "paint-creek-greene",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.85,
+        "trout-stream-year-round": 0.08,
+        "warmwater-no-trout": 0.07
+      },
+      "confidence": 0.78,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.23,
+      "evidenceQuality": 1.88,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "paris-city-park-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.97,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "parksville-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.96,
+        "warmwater-yearly-stocked-winter-trout": 0.04
+      },
+      "confidence": 0.94,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 1.66,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "parksville-tailwater",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0.98,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 0.96,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.24,
+      "evidenceQuality": 2.29,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "pickwick-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.87,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "pigeon-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.8099999999999999,
+        "warmwater-yearly-stocked-winter-trout": 0.17,
+        "trout-stream-year-round": 0.02
+      },
+      "confidence": 0.73,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.49,
+      "evidenceQuality": 0.57,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "pine-creek-dekalb",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.11,
+        "warmwater-yearly-stocked-winter-trout": 0.88,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.82,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 2.96,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "piney-river-hickman",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.4,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "piney-river-rhea",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "trout-stream-year-round": 0.67,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.32
+      },
+      "confidence": 0.49,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.72,
+      "evidenceQuality": 2.25,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "powell-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "trout-stream-year-round": 0.6799999999999999,
+        "warmwater-no-trout": 0.31,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.53,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.63,
+      "evidenceQuality": 1.65,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "puncheon-camp-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.66,
+      "evidenceQuality": 2.1,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "red-river-clarksville",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.79,
+        "warmwater-no-trout": 0.21,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.69,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.51,
+      "evidenceQuality": 1.72,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "reedy-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.41,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "reelfoot-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.69,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "richardson-byrd-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.46,
+      "evidenceQuality": 2.59,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "richland-creek-maury",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.39,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "roaring-fork",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "trout-stream-year-round": 0.95,
+        "warmwater-no-trout": 0.02
+      },
+      "confidence": 0.92,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.7,
+      "evidenceQuality": 1.71,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "roaring-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.96,
+        "warmwater-yearly-stocked-winter-trout": 0.04
+      },
+      "confidence": 0.94,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 0.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "rocky-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.24,
+        "warmwater-yearly-stocked-winter-trout": 0.75,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.63,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 2.96,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "rutherford-fork-obion-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.35,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "sale-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.41,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "salt-lick-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.7,
+      "evidenceQuality": 2.29,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "sequatchie-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.39,
+        "warmwater-no-trout": 0.6,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.41,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 1.57,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "shelby-farms-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.97,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "shoal-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.47,
+        "warmwater-no-trout": 0.52
+      },
+      "confidence": 0.29,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 1.63,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "sinking-creek-wilson",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.91,
+      "evidenceQuality": 2.94,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-chickamauga-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.96,
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.94,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 0.03,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-fork-cumberland",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0.39,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0.59
+      },
+      "confidence": 0.38,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.51,
+      "evidenceQuality": 1.33,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-fork-forked-deer-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-fork-obion-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.36,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-holston-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.05,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.95
+      },
+      "confidence": 0.93,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.28,
+      "evidenceQuality": 1.02,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-holston-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 0.99,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.26,
+      "evidenceQuality": 2.94,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "south-mouse-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.34,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "spring-creek-polk",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.74,
+      "evidenceQuality": 1.97,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "standing-rock-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "warmwater-no-trout": 0.02
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.54,
+      "evidenceQuality": 2.17,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "station-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.6,
+      "evidenceQuality": 2.43,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "stones-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.95,
+      "evidenceQuality": 2.81,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "stoney-creek-carter",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.25,
+        "trout-stream-year-round": 0.74
+      },
+      "confidence": 0.61,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.56,
+      "evidenceQuality": 2.86,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "sulfur-fork-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.78,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "tellico-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.03,
+        "warmwater-yearly-stocked-winter-trout": 0.97
+      },
+      "confidence": 0.95,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.28,
+      "evidenceQuality": 1.98,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "tellico-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.71,
+        "warmwater-yearly-stocked-winter-trout": 0.29
+      },
+      "confidence": 0.56,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.89,
+      "evidenceQuality": 2.77,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "tennessee-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 0.99,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.81,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "tims-ford-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.04,
+        "warmwater-no-trout": 0.96,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.94,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.26,
+      "evidenceQuality": 2.62,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "trail-fork-big-creek",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.01,
+        "trout-stream-year-round": 0.97
+      },
+      "confidence": 0.95,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.62,
+      "evidenceQuality": 2.85,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "tumbling-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.99
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.6,
+      "evidenceQuality": 2.37,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "union-city-reelfoot-pond",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.96,
+      "evidenceQuality": 3,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "upper-hills-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.02,
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.5,
+      "evidenceQuality": 2.29,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "upper-roan-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.05,
+        "warmwater-yearly-stocked-winter-trout": 0.94
+      },
+      "confidence": 0.92,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.29,
+      "evidenceQuality": 2.23,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "valentine-park-pond",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.97,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "watauga-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.42,
+        "warmwater-yearly-stocked-winter-trout": 0.57
+      },
+      "confidence": 0.35,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.45,
+      "evidenceQuality": 1.46,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "watauga-river",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.98
+      },
+      "confidence": 0.96,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.45,
+      "evidenceQuality": 2.34,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "watauga-river-wilbur-reach",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.04,
+        "warmwater-yearly-stocked-winter-trout": 0.61,
+        "trout-stream-year-round": 0.35
+      },
+      "confidence": 0.41,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.68,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "watts-bar-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.56,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-fork-obey-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.97,
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.96,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.38,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-fork-stones-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.9,
+      "evidenceQuality": 2.58,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-harpeth-river",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.98,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.4,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-prong-little-pigeon",
+      "requestedMonth": 1,
+      "choice": "trout-stream-year-round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.1,
+        "trout-stream-year-round": 0.75,
+        "warmwater-no-trout": 0.15
+      },
+      "confidence": 0.62,
+      "label": "Trout Stream - year round",
+      "currentMonthTrout": 0.61,
+      "evidenceQuality": 1.69,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "white-oak-creek",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "warmwater-no-trout": 0.01
+      },
+      "confidence": 0.99,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.57,
+      "evidenceQuality": 2.29,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "wilbur-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.33,
+        "warmwater-yearly-stocked-winter-trout": 0.65,
+        "trout-stream-year-round": 0.02
+      },
+      "confidence": 0.48,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.54,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.02,
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.96,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.22,
+      "evidenceQuality": 2.61,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "wolf-river-west-tennessee",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.9,
+        "warmwater-no-trout": 0.1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.85,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.28,
+      "evidenceQuality": 1.12,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "woods-reservoir",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.26,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "yale-road-park-lake",
+      "requestedMonth": 1,
+      "choice": "warmwater-yearly-stocked-winter-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 1,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "label": "Warm water - Yearly stocked winter trout",
+      "currentMonthTrout": 0.95,
+      "evidenceQuality": 2.97,
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "yellow-creek-houston",
+      "requestedMonth": 1,
+      "choice": "warmwater-no-trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.97,
+      "label": "warm water(no trout)",
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.02,
+      "model": "jev-1.13.0"
+    }
+  ]
+}

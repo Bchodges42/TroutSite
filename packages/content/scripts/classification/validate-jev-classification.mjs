@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /* eslint-disable no-undef -- Node script run directly (no bundler types) */
 /**
- * Run or dry-run the Jev fishery classifier over the Fishbrain research set.
+ * Run or dry-run the Jev fishery classifier over the complete Fishbrain
+ * GraphQL research set (featured and standard-tier waters).
  *
  * Examples:
  *   node packages/content/scripts/classification/validate-jev-classification.mjs --dry-run
@@ -11,7 +12,7 @@
  * Live results are advisory evidence for review. This script never edits a
  * stream YAML file. Use --write to save the returned distributions.
  */
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   DIFF_OUT_DIR,
@@ -22,11 +23,13 @@ import {
 import {
   CATEGORY_CRITERIA,
   FISHBRAIN_PATH,
+  FISHBRAIN_STANDARD_PATH,
   MODEL,
   MONTHS,
   categoryAnswer,
   callJev,
   evidenceState,
+  fishbrainCatalogSlugs,
   fishbrainRecordCount,
   normalizeMonth,
 } from './jev-classify.mjs';
@@ -47,10 +50,9 @@ if (limit !== Infinity && (!Number.isInteger(limit) || limit < 0)) {
   throw new Error(`--limit must be a non-negative integer; got ${limitArg}`);
 }
 
-const fishbrain = JSON.parse(readFileSync(FISHBRAIN_PATH, 'utf8'));
 const ledgerSlugs = loadLedgerDiff().rows.map((row) => row.slug);
 const catalogSlugs = loadCatalog().map((water) => water.slug);
-const fishbrainSlugs = (fishbrain.records ?? []).map((record) => record.catalogWaterId).filter(Boolean);
+const fishbrainSlugs = fishbrainCatalogSlugs();
 const seed = includeAll ? catalogSlugs : fishbrainSlugs;
 const targetSlugs = [...new Set([
   ...seed,
@@ -62,7 +64,7 @@ console.log(JSON.stringify({
   month: { number: month, name: MONTHS[month - 1] },
   fishbrainRecords: fishbrainRecordCount(),
   targets: targetSlugs.length,
-  scope: includeAll ? 'all catalog waters' : includeLedger ? 'Fishbrain records + audited ledger waters' : 'Fishbrain records',
+  scope: includeAll ? 'all catalog waters' : includeLedger ? 'Fishbrain GraphQL records + audited ledger waters' : 'Fishbrain GraphQL featured + standard records',
   dryRun,
 }, null, 2));
 
@@ -112,7 +114,7 @@ const output = {
   generated: new Date().toISOString(),
   model: MODEL,
   month: { number: month, name: MONTHS[month - 1] },
-  fishbrainPath: FISHBRAIN_PATH.slice(REPO_ROOT.length + 1),
+  fishbrainPaths: [FISHBRAIN_PATH, FISHBRAIN_STANDARD_PATH].map((path) => path.slice(REPO_ROOT.length + 1)),
   results,
 };
 if (writeResults) {

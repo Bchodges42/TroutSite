@@ -30,7 +30,9 @@ import { readKey } from './judge.mjs';
 
 export const MODEL = 'jev-latest';
 export const FISHBRAIN_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'fishbrain-tn-graphql-discovery.json');
+export const FISHBRAIN_STANDARD_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'fishbrain-tn-graphql-standard-discovery.json');
 export const SPECIES_OCCURRENCES_PATH = join(REPO_ROOT, 'packages', 'content', 'data', 'species-occurrences.json');
+export const REVIEW_LABELS_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'jev-tn-review-labels.json');
 
 export const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -46,11 +48,11 @@ export const CATEGORY_LABELS = {
 
 export const CATEGORY_CRITERIA = {
   'trout-stream-year-round':
-    'A freshwater Tennessee stream or tailwater with credible agency or audited evidence of a self-sustaining/wild trout population or a coldwater management regime that keeps catchable trout present throughout the year. A few trout catches, a trout regulation, or a winter stocking event alone is not enough.',
+    'A freshwater Tennessee stream or tailwater with credible agency or audited evidence of a self-sustaining/wild trout population or a coldwater management regime that keeps catchable trout present throughout the year. A few trout catches, a trout regulation, or a winter stocking event alone is not enough. A reviewed coldwater/tailwater segment label is authoritative for that exact segment.',
   'warmwater-yearly-stocked-winter-trout':
-    'A warmwater-first Tennessee water with a recurring or clearly documented winter trout stocking program. Trout may be catchable during the stocking window, but the evidence does not establish a year-round trout system. A TWRA winter-program record is stronger than Fishbrain counts; one historic catch is not a stocking program.',
+    'A warmwater-first Tennessee water with a recurring or clearly documented winter trout stocking program. Trout may be catchable during the stocking window, but the evidence does not establish a year-round trout system. A TWRA winter-program record is stronger than Fishbrain counts; one historic catch is not a stocking program. Do not use this category for a reviewed trout-stream segment.',
   'warmwater-no-trout':
-    'A warmwater Tennessee water with no credible resident trout population and no current/recurring trout stocking program. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
+    'A warmwater Tennessee water with no trout-stream classification and no current/recurring winter trout program. This category is about fishery/system type, not a claim that every lake lacks every trout species: a reservoir can contain lake trout and still be warmwater-no-trout when it is not a trout stream. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
 };
 
 export const FRESHWATER_TROUT_NAMES = new Set([
@@ -85,18 +87,28 @@ const ledgerDocument = JSON.parse(readFileSync(join(LEDGER_DIR, 'ledger', 'water
 const ledgerWaters = Array.isArray(ledgerDocument) ? ledgerDocument : (ledgerDocument.waters ?? []);
 const LEDGER_BY_SLUG = new Map(ledgerWaters.map((water) => [water.slug, water]));
 
-const fishbrainDocument = readJsonIfPresent(FISHBRAIN_PATH, { records: [] });
+const fishbrainDocuments = [
+  { path: FISHBRAIN_PATH, document: readJsonIfPresent(FISHBRAIN_PATH, { records: [] }) },
+  { path: FISHBRAIN_STANDARD_PATH, document: readJsonIfPresent(FISHBRAIN_STANDARD_PATH, { records: [] }) },
+].filter(({ document }) => Array.isArray(document.records));
+const fishbrainDocument = fishbrainDocuments[0]?.document ?? { records: [] };
+const reviewLabelsDocument = readJsonIfPresent(REVIEW_LABELS_PATH, { labels: {} });
+const REVIEW_LABELS_BY_SLUG = new Map(Object.entries(reviewLabelsDocument.labels ?? {}));
 const FISHBRAIN_BY_SLUG = new Map();
-for (const record of fishbrainDocument.records ?? []) {
-  if (record.catalogWaterId && !FISHBRAIN_BY_SLUG.has(record.catalogWaterId)) {
-    FISHBRAIN_BY_SLUG.set(record.catalogWaterId, record);
+for (const dataset of fishbrainDocuments) {
+  for (const record of dataset.document.records ?? []) {
+    if (record.catalogWaterId && !FISHBRAIN_BY_SLUG.has(record.catalogWaterId)) {
+      FISHBRAIN_BY_SLUG.set(record.catalogWaterId, { record, dataset: dataset.document });
+    }
   }
 }
 const FISHBRAIN_REVIEW_BY_SLUG = new Map();
-for (const review of fishbrainDocument.rejectedOrNeedsReview ?? []) {
-  const list = FISHBRAIN_REVIEW_BY_SLUG.get(review.catalogWaterId) ?? [];
-  list.push(review.reason ?? 'Fishbrain water-to-segment mapping needs review.');
-  FISHBRAIN_REVIEW_BY_SLUG.set(review.catalogWaterId, list);
+for (const dataset of fishbrainDocuments) {
+  for (const review of dataset.document.rejectedOrNeedsReview ?? []) {
+    const list = FISHBRAIN_REVIEW_BY_SLUG.get(review.catalogWaterId) ?? [];
+    list.push(review.reason ?? 'Fishbrain water-to-segment mapping needs review.');
+    FISHBRAIN_REVIEW_BY_SLUG.set(review.catalogWaterId, list);
+  }
 }
 
 const occurrencesDocument = readJsonIfPresent(SPECIES_OCCURRENCES_PATH, null);
@@ -137,17 +149,23 @@ function fishbrainSpeciesRole(name) {
   return 'freshwater-context-or-unclassified';
 }
 
+function fishbrainDatasetSummary(document) {
+  return {
+    schema: document.schema ?? null,
+    stateId: document.stateId ?? null,
+    collectedAt: document.collectedAt ?? null,
+    scope: document.scope ?? null,
+    collectionNote: document.collectionNote ?? null,
+  };
+}
+
 function fishbrainEvidence(slug) {
-  const record = FISHBRAIN_BY_SLUG.get(slug);
-  if (!record) {
+  const entry = FISHBRAIN_BY_SLUG.get(slug);
+  if (!entry) {
     return {
       available: false,
-      dataset: {
-        schema: fishbrainDocument.schema ?? null,
-        stateId: fishbrainDocument.stateId ?? null,
-        collectedAt: fishbrainDocument.collectedAt ?? null,
-        collectionNote: fishbrainDocument.collectionNote ?? null,
-      },
+      dataset: fishbrainDatasetSummary(fishbrainDocument),
+      datasets: fishbrainDocuments.map(({ document }) => fishbrainDatasetSummary(document)),
       sourceRole: 'not available for this catalog water',
       caveat: 'No Fishbrain discovery record is not evidence that trout are absent.',
       freshwaterTrout: [],
@@ -156,6 +174,7 @@ function fishbrainEvidence(slug) {
     };
   }
 
+  const { record, dataset } = entry;
   const freshwaterTrout = [];
   const excludedMarineOrBrackish = [];
   const topFreshwaterSpecies = [];
@@ -172,17 +191,15 @@ function fishbrainEvidence(slug) {
 
   return {
     available: true,
-    dataset: {
-      schema: fishbrainDocument.schema ?? null,
-      stateId: fishbrainDocument.stateId ?? null,
-      collectedAt: fishbrainDocument.collectedAt ?? null,
-      scope: fishbrainDocument.scope ?? null,
-      collectionNote: fishbrainDocument.collectionNote ?? null,
-    },
-    sourceRole: 'discovery-only aggregate public catches; never biological truth',
+    dataset: fishbrainDatasetSummary(dataset),
+    datasets: fishbrainDocuments.map(({ document }) => fishbrainDatasetSummary(document)),
+    datasetClassification: dataset.scope?.classification ?? null,
+    sourceRole: record.matchStatus === 'not-found'
+      ? 'no matching public Fishbrain page found; this is missing discovery evidence, not a biological negative'
+      : 'discovery-only aggregate public catches; never biological truth',
     pageUrl: record.fishbrainPageUrl ?? null,
     pageName: record.fishbrainWaterName ?? null,
-    loggedCatches: Number(record.fishbrainLoggedCatches ?? 0),
+    loggedCatches: record.fishbrainLoggedCatches == null ? null : Number(record.fishbrainLoggedCatches),
     matchStatus: record.matchStatus ?? 'unknown',
     mappingNote: record.mappingNote ?? null,
     segmentReviewReasons: FISHBRAIN_REVIEW_BY_SLUG.get(slug) ?? [],
@@ -190,7 +207,27 @@ function fishbrainEvidence(slug) {
     freshwaterTroutCatchTotal: freshwaterTrout.reduce((sum, item) => sum + item.catches, 0),
     excludedMarineOrBrackish,
     topFreshwaterSpecies,
-    interpretationRule: 'A catch count is a report-volume signal only. It cannot establish abundance, residency, a trout system, or year-round presence; broad/segment-review pages are especially weak evidence.',
+    interpretationRule: record.matchStatus === 'not-found'
+      ? 'No matching Fishbrain page is a discovery gap only; it cannot establish that trout are absent.'
+      : 'A catch count is a report-volume signal only. It cannot establish abundance, residency, a trout system, or year-round presence; broad/segment-review pages are especially weak evidence.',
+  };
+}
+
+function reviewedClassification(slug) {
+  const review = REVIEW_LABELS_BY_SLUG.get(slug);
+  if (!review) {
+    return {
+      available: false,
+      sourceRole: 'no owner-reviewed calibration label for this exact segment',
+    };
+  }
+  return {
+    available: true,
+    sourceRole: reviewLabelsDocument.source ?? 'owner-reviewed calibration label',
+    interpretation: reviewLabelsDocument.interpretation ?? null,
+    category: review.category ?? null,
+    label: CATEGORY_LABELS[review.category] ?? review.category ?? null,
+    note: review.note ?? null,
   };
 }
 
@@ -303,6 +340,7 @@ export function questionsForMonth(month = new Date().getMonth() + 1) {
         'Use the evidence hierarchy in the state: official or audited evidence and the current TWRA program outrank Fishbrain discovery. Fishbrain is aggregate user catch volume, not abundance or residency.',
         'A river with 20 trout catches is not automatically a trout stream. Treat it as seasonal winter stocking when a recurring winter program is documented, and do not call it year-round without year-round biological or coldwater-management evidence.',
         'Ignore marine/brackish species explicitly marked excluded. In particular, Sea trout, Spotted seatrout, Red drum, Black drum, Bluefish, Gafftopsail sea catfish, and Steelhead are not Tennessee freshwater-trout evidence.',
+        'If state.evidence.ownerReview is available, use its reviewed category as the calibration label for that exact named segment. Do not transfer a lake label to its tailwater or a tailwater label to its lake. A lake trout in a reservoir is freshwater species evidence, but it does not by itself make the reservoir a trout stream.',
         'If sources conflict or are too thin, spread probability across the plausible categories and reduce confidence. Do not turn missing evidence into certainty.',
       ],
       criteria: CATEGORY_CRITERIA,
@@ -367,12 +405,14 @@ export function evidenceState(slug, { month = new Date().getMonth() + 1 } = {}) 
       twraStocking: stockingEvidence(slug),
       canonicalSpecies: canonicalSpeciesEvidence(slug),
       fishbrainDiscovery: fishbrainEvidence(slug),
+      ownerReview: reviewedClassification(slug),
     },
     safeguards: [
       'Only Tennessee freshwater fishery evidence counts for trout classification.',
       'A trout species name in a public catch aggregate is not proof of a trout system.',
       'A river with a small or moderate trout catch count may be winter-stocked or a broad-page artifact; it is not year-round without direct year-round evidence.',
       'Do not confuse a reservoir with its tailwater or a broad Fishbrain page with the catalog segment.',
+      'An owner-reviewed label applies only to the exact segment named in the review fixture. Lake trout in a reservoir do not automatically make that reservoir a trout stream.',
       'No answer is a direct catalog change; low confidence or source conflict requires review.',
     ],
   };
@@ -418,5 +458,9 @@ export function categoryAnswer(response) {
 }
 
 export function fishbrainRecordCount() {
-  return fishbrainDocument.records?.length ?? 0;
+  return fishbrainDocuments.reduce((total, { document }) => total + (document.records?.length ?? 0), 0);
+}
+
+export function fishbrainCatalogSlugs() {
+  return [...FISHBRAIN_BY_SLUG.keys()];
 }

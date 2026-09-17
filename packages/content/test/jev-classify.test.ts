@@ -4,6 +4,8 @@ import {
   CATEGORY_LABELS,
   MONTHS,
   evidenceState,
+  fishbrainCatalogSlugs,
+  fishbrainRecordCount,
   normalizeMonth,
   questionsForMonth,
 } from '../scripts/classification/jev-classify.mjs';
@@ -41,6 +43,17 @@ describe('Jev Tennessee fishery classifier setup', () => {
     expect(discovery.excludedMarineOrBrackish.map((item) => item.name)).toContain('Sea trout');
     expect(discovery.segmentReviewReasons.length).toBeGreaterThan(0);
     expect(discovery.interpretationRule).toContain('not establish abundance');
+  });
+
+  it('loads both featured and standard-tier Fishbrain GraphQL scrapes', () => {
+    expect(fishbrainRecordCount()).toBe(190);
+    expect(fishbrainCatalogSlugs()).toHaveLength(190);
+    expect(fishbrainCatalogSlugs()).toContain('barren-fork-river');
+    const notFound = evidenceState('barren-fork-river').evidence.fishbrainDiscovery;
+    expect(notFound.available).toBe(true);
+    expect(notFound.matchStatus).toBe('not-found');
+    expect(notFound.loggedCatches).toBeNull();
+    expect(notFound.sourceRole).toContain('missing discovery evidence');
   });
 
   it('keeps a warmwater river from becoming trout water due to Fishbrain absence', () => {

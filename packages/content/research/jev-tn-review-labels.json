@@ -1,0 +1,40 @@
+{
+  "schema": "trout.jev-tn-review-labels.v1",
+  "stateId": "TN",
+  "source": "owner review supplied in conversation on 2026-09-17",
+  "interpretation": "These are reviewed segment labels for classifier calibration. Warmwater-no-trout means not a trout-stream fishery; it does not claim that every trout species is absent from a lake.",
+  "labels": {
+    "boone-tailwater": {
+      "category": "trout-stream-year-round",
+      "note": "Reviewed as the trout stream below Boone Dam; do not merge it with Boone Lake."
+    },
+    "boone-lake": {
+      "category": "warmwater-no-trout",
+      "note": "Reviewed as the warmwater reservoir; trout catches do not convert the lake into the Boone tailwater trout system."
+    },
+    "dale-hollow-lake": {
+      "category": "warmwater-no-trout",
+      "note": "Reviewed as the warmwater reservoir; do not infer trout-stream status from seasonal or historic stocking evidence."
+    },
+    "j-percy-priest-lake": {
+      "category": "warmwater-no-trout",
+      "note": "Reviewed as a warmwater reservoir with no trout-stream classification."
+    },
+    "duck-river-tailwater": {
+      "category": "trout-stream-year-round",
+      "note": "Reviewed as the trout stream below Normandy Dam; do not merge it with the general Duck River reaches."
+    },
+    "south-holston-lake": {
+      "category": "warmwater-no-trout",
+      "note": "Reviewed as warmwater lake fishery even though lake trout are present; lake trout do not by themselves make the reservoir a trout stream or winter-stocked stream."
+    },
+    "parksville-tailwater": {
+      "category": "trout-stream-year-round",
+      "note": "Reviewed as the trout stream below Parksville Dam, the Ocoee No. 1 reach; keep this segment separate from Parksville Lake."
+    },
+    "elk-river": {
+      "category": "trout-stream-year-round",
+      "note": "Reviewed as the Tims Ford tailwater trout stream; do not let seasonal stocking months alone downgrade the stream classification."
+    }
+  }
+}
