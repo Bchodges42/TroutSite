@@ -29,9 +29,9 @@ describe('Jev Tennessee fishery classifier setup', () => {
       'warmwater-no-trout',
     ]);
     expect(Object.values(CATEGORY_LABELS)).toEqual([
-      'Trout Stream - year round',
-      'Warmwater - Winter/Seasonal trout stocking',
-      'warm water(no trout)',
+      'Year Round - Cold Trout Water',
+      'Warmwater - Seasonal/Winter Stocking',
+      'Warmwater - No Trout',
     ]);
     expect(Object.keys(questionsForMonth('July').category.criteria)).toEqual(Object.keys(CATEGORY_CRITERIA));
   });
@@ -116,8 +116,8 @@ describe('Jev Tennessee fishery classifier setup', () => {
     // that lake trout are present. Neither makes the reservoir a trout stream.
     expect(discovery.freshwaterTrout.map((item) => item.name.toLowerCase())).toContain('rainbow trout');
     expect(state.safeguards.join(' ')).toContain('does not automatically make that reservoir a trout stream');
-    expect(reviewedCategory('south-holston-lake')).toBe('warmwater-no-trout');
-    expect(effectiveCategory('south-holston-lake', 'trout-stream-year-round')).toBe('warmwater-no-trout');
+    expect(reviewedCategory('south-holston-lake')).toBe('warmwater-yearly-stocked-winter-trout');
+    expect(effectiveCategory('south-holston-lake', 'trout-stream-year-round')).toBe('warmwater-yearly-stocked-winter-trout');
   });
 
   it('classifies the Parksville / Ocoee No. 1 tailwater as a designated trout-stream segment', () => {
@@ -127,7 +127,7 @@ describe('Jev Tennessee fishery classifier setup', () => {
     // OWNER RULING 2026-09-17: 'year round' now means trout PRESENT year-round
     // (cold controlled water). The Parksville seasonal-stocking question is
     // flagged for owner decision — the reviewed label still rules overrides.
-    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('The test is whether the WATER ITSELF stays trout habitat all year');
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('LIVE AND SURVIVE THROUGH THE WHOLE YEAR');
   });
 
   it('separates seasonal stocking (system stays) from month presence (answers change)', () => {
@@ -139,8 +139,8 @@ describe('Jev Tennessee fishery classifier setup', () => {
   it('refuses to let catch counts establish a trout system', () => {
     const state = evidenceState('boone-tailwater');
     expect(state.evidence.fishbrainDiscovery.interpretationRule).toContain('cannot establish abundance');
-    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('A few trout catches');
-    expect(CATEGORY_CRITERIA['warmwater-yearly-stocked-winter-trout']).toContain('one isolated stocking event is not a program');
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('A few trout catches or a trout regulation alone is not enough');
+    expect(CATEGORY_CRITERIA['warmwater-yearly-stocked-winter-trout']).toContain('they do not survive the summer');
   });
 
   it('flags category/month contradictions instead of silently trusting independent questions', () => {

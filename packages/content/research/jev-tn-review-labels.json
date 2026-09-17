@@ -1,7 +1,7 @@
 {
   "schema": "trout.jev-tn-review-labels.v1",
   "stateId": "TN",
-  "source": "owner review supplied in conversation on 2026-09-17",
+  "source": "owner review; dale-hollow + south-holston reversed 2026-09-17 (owner: composite stocking evidence was right — these are winter/seasonal stocked lakes)",
   "interpretation": "These are reviewed segment labels for classifier calibration. Warmwater-no-trout means not a trout-stream fishery; it does not claim that every trout species is absent from a lake.",
   "labels": {
     "boone-tailwater": {
@@ -13,8 +13,8 @@
       "note": "Reviewed as the warmwater reservoir; trout catches do not convert the lake into the Boone tailwater trout system."
     },
     "dale-hollow-lake": {
-      "category": "warmwater-no-trout",
-      "note": "Reviewed as the warmwater reservoir; do not infer trout-stream status from seasonal or historic stocking evidence."
+      "category": "warmwater-yearly-stocked-winter-trout",
+      "note": "Owner reversal 2026-09-17: reservoir trout stocking events are a real program; users can catch trout around stockings."
     },
     "j-percy-priest-lake": {
       "category": "warmwater-no-trout",
@@ -25,8 +25,8 @@
       "note": "Reviewed as the trout stream below Normandy Dam; do not merge it with the general Duck River reaches."
     },
     "south-holston-lake": {
-      "category": "warmwater-no-trout",
-      "note": "Reviewed as warmwater lake fishery even though lake trout are present; lake trout do not by themselves make the reservoir a trout stream or winter-stocked stream."
+      "category": "warmwater-yearly-stocked-winter-trout",
+      "note": "Owner reversal 2026-09-17: reservoir trout stocking events are a real program (lake trout present too); stocked-season fishery, not a year-round trout stream."
     },
     "parksville-tailwater": {
       "category": "trout-stream-year-round",

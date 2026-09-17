@@ -67,9 +67,9 @@ export const MONTHS = [
 
 /** Stable API keys; use CATEGORY_LABELS when presenting them to people. */
 export const CATEGORY_LABELS = {
-  'trout-stream-year-round': 'Trout Stream - year round',
-  'warmwater-yearly-stocked-winter-trout': 'Warmwater - Winter/Seasonal trout stocking',
-  'warmwater-no-trout': 'warm water(no trout)',
+  'trout-stream-year-round': 'Year Round - Cold Trout Water',
+  'warmwater-yearly-stocked-winter-trout': 'Warmwater - Seasonal/Winter Stocking',
+  'warmwater-no-trout': 'Warmwater - No Trout',
 };
 
 /**
@@ -83,7 +83,7 @@ export const CATEGORY_LABELS = {
  */
 export const CATEGORY_CRITERIA = {
   'trout-stream-year-round':
-    'A water where trout can LIVE AND SURVIVE THROUGH THE WHOLE YEAR — cold headwaters, wild trout streams, cold tailwaters and tailrace reaches that stay cold enough every season. Regular stocking strengthens this: a cold stream stocked every spring/summer whose trout hold over between stockings is a year-round trout stream. The signal: trout presence in EVERY month, including the hot ones, or habitat (elevation, canopy, cold tailwater release, cited summer temperatures) that clearly supports year-round survival.',
+    'A water where trout can LIVE AND SURVIVE THROUGH THE WHOLE YEAR — cold headwaters, wild trout streams, cold tailwaters and tailrace reaches that stay cold enough every season. Regular stocking strengthens this: a cold stream stocked every spring/summer whose trout hold over between stockings is a year-round trout stream. The signal: trout presence in EVERY month, including the hot ones, or habitat (elevation, canopy, cold tailwater release, cited summer temperatures) that clearly supports year-round survival. A few trout catches or a trout regulation alone is not enough.',
   'warmwater-yearly-stocked-winter-trout':
     'A water too warm to hold trout year-round that receives a RECURRING stocking in some season — winter put-and-take (December-February), a spring put-and-take season on a creek that heats up by mid-summer, or a Delayed-Harvest window. The trout are only there around the stocking; they do not survive the summer. Program records (winter/spring/seasonal) are strong evidence, but the deciding fact is summer survival: if trout die or leave when the water warms, it is this category, not a year-round trout stream.',
   'warmwater-no-trout':
