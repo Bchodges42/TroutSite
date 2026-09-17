@@ -3,11 +3,14 @@ import {
   CATEGORY_CRITERIA,
   CATEGORY_LABELS,
   MONTHS,
+  categoryMonthConsistency,
+  effectiveCategory,
   evidenceState,
   fishbrainCatalogSlugs,
   fishbrainRecordCount,
   normalizeMonth,
   questionsForMonth,
+  reviewedCategory,
 } from '../scripts/classification/jev-classify.mjs';
 
 describe('Jev Tennessee fishery classifier setup', () => {
@@ -45,15 +48,23 @@ describe('Jev Tennessee fishery classifier setup', () => {
     expect(discovery.interpretationRule).toContain('not establish abundance');
   });
 
-  it('loads both featured and standard-tier Fishbrain GraphQL scrapes', () => {
+  it('loads both featured and standard-tier Fishbrain GraphQL scrapes (190 unique waters)', () => {
     expect(fishbrainRecordCount()).toBe(190);
     expect(fishbrainCatalogSlugs()).toHaveLength(190);
     expect(fishbrainCatalogSlugs()).toContain('barren-fork-river');
     const notFound = evidenceState('barren-fork-river').evidence.fishbrainDiscovery;
     expect(notFound.available).toBe(true);
     expect(notFound.matchStatus).toBe('not-found');
+    expect(notFound.tier).toBe('standard');
     expect(notFound.loggedCatches).toBeNull();
     expect(notFound.sourceRole).toContain('missing discovery evidence');
+  });
+
+  it('marks featured-tier and standard-tier evidence distinctly', () => {
+    const featured = evidenceState('boone-lake').evidence.fishbrainDiscovery;
+    const standard = evidenceState('barren-fork-river').evidence.fishbrainDiscovery;
+    expect(featured.tier).toBe('featured');
+    expect(standard.tier).toBe('standard');
   });
 
   it('keeps a warmwater river from becoming trout water due to Fishbrain absence', () => {
@@ -63,6 +74,74 @@ describe('Jev Tennessee fishery classifier setup', () => {
     expect(state.evidence.twraStocking.matchedEvents).toHaveLength(0);
     expect(state.evidence.fishbrainDiscovery.freshwaterTrout).toHaveLength(0);
     expect(state.safeguards.join(' ')).toContain('not year-round without direct year-round evidence');
+  });
+
+  it('never places owner-reviewed labels in the model state (no answer-key leakage)', () => {
+    for (const slug of ['boone-tailwater', 'boone-lake', 'south-holston-lake', 'parksville-tailwater', 'elk-river', 'barren-fork-river']) {
+      const state = evidenceState(slug, { month: 3 });
+      expect('ownerReview' in state.evidence).toBe(false);
+      expect(JSON.stringify(state)).not.toContain('"category"');
+    }
+  });
+
+  it('applies reviewed labels as a code-level override, reported separately from raw', () => {
+    expect(reviewedCategory('boone-lake')).toBe('warmwater-no-trout');
+    expect(reviewedCategory('boone-tailwater')).toBe('trout-stream-year-round');
+    // raw model answer (even a wrong one) is overridden post-hoc, never pre-seeded
+    expect(effectiveCategory('boone-lake', 'trout-stream-year-round')).toBe('warmwater-no-trout');
+    expect(effectiveCategory('barren-fork-river', 'warmwater-no-trout')).toBe('warmwater-no-trout');
+  });
+
+  it('keeps a lake and its tailwater as separate classified systems', () => {
+    const lake = evidenceState('boone-lake');
+    const tailwater = evidenceState('boone-tailwater');
+    expect(lake.water.id).not.toBe(tailwater.water.id);
+    expect(lake.water.waterbodyType).toBe('lake');
+    expect(tailwater.water.waterbodyType).toBe('tailrace');
+    expect(reviewedCategory('boone-lake')).not.toBe(reviewedCategory('boone-tailwater'));
+  });
+
+  it('treats South Holston Lake trout species as evidence, not trout-stream status', () => {
+    const state = evidenceState('south-holston-lake');
+    const discovery = state.evidence.fishbrainDiscovery;
+    // Fishbrain documents rainbow/brown trout catches; the owner review adds
+    // that lake trout are present. Neither makes the reservoir a trout stream.
+    expect(discovery.freshwaterTrout.map((item) => item.name.toLowerCase())).toContain('rainbow trout');
+    expect(state.safeguards.join(' ')).toContain('does not automatically make that reservoir a trout stream');
+    expect(reviewedCategory('south-holston-lake')).toBe('warmwater-no-trout');
+    expect(effectiveCategory('south-holston-lake', 'trout-stream-year-round')).toBe('warmwater-no-trout');
+  });
+
+  it('classifies the Parksville / Ocoee No. 1 tailwater as a designated trout-stream segment', () => {
+    const state = evidenceState('parksville-tailwater');
+    expect(state.water.waterbodyType).toBe('tailrace');
+    expect(reviewedCategory('parksville-tailwater')).toBe('trout-stream-year-round');
+    // the "year round" label is system identity: the criteria explicitly keep
+    // seasonal-stocking segments in this category
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('seasonal stocking window on a designated trout stream does not disqualify it');
+  });
+
+  it('separates seasonal stocking (system stays) from month presence (answers change)', () => {
+    const questions = questionsForMonth('August');
+    expect(questions.category.instructions.join(' ')).toContain('should not flip merely because the requested month is outside a stocking window');
+    expect(questions.category.instructions.join(' ')).toContain('not a promise of catchable trout in every month');
+  });
+
+  it('refuses to let catch counts establish a trout system', () => {
+    const state = evidenceState('boone-tailwater');
+    expect(state.evidence.fishbrainDiscovery.interpretationRule).toContain('cannot establish abundance');
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('A few trout catches');
+    expect(CATEGORY_CRITERIA['warmwater-yearly-stocked-winter-trout']).toContain('one isolated stocking event is not a program');
+  });
+
+  it('flags category/month contradictions instead of silently trusting independent questions', () => {
+    const ok = categoryMonthConsistency('warmwater-no-trout', { January: 0.1, August: 0.2 });
+    expect(ok.flags).toHaveLength(0);
+    const leak = categoryMonthConsistency('warmwater-no-trout', Object.fromEntries(MONTHS.map((m) => [m, 0.9])));
+    expect(leak.monthsTrue).toBe(12);
+    expect(leak.flags[0]).toContain('need review');
+    const dryStream = categoryMonthConsistency('trout-stream-year-round', Object.fromEntries(MONTHS.map((m) => [m, 0.1])));
+    expect(dryStream.flags.length).toBeGreaterThan(0);
   });
 
   it('normalizes only valid one-based months', () => {

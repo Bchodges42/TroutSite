@@ -48,11 +48,11 @@ export const CATEGORY_LABELS = {
 
 export const CATEGORY_CRITERIA = {
   'trout-stream-year-round':
-    'A freshwater Tennessee stream or tailwater with credible agency or audited evidence of a self-sustaining/wild trout population or a coldwater management regime that keeps catchable trout present throughout the year. A few trout catches, a trout regulation, or a winter stocking event alone is not enough. A reviewed coldwater/tailwater segment label is authoritative for that exact segment.',
+    'A freshwater Tennessee water whose SYSTEM is a trout stream: a designated/managed trout water — a wild or self-sustaining trout population, a coldwater tailwater management regime, or a regular trout stocking program on that exact segment. "Year round" describes this standing system identity and management, NOT a guarantee of catchable trout in all twelve months; month-by-month availability is answered separately and a seasonal stocking window on a designated trout stream does not disqualify it (e.g. the Parksville Dam / Ocoee No. 1 tailwater belongs here). A few trout catches, a trout regulation, or one winter stocking event alone is not enough.',
   'warmwater-yearly-stocked-winter-trout':
-    'A warmwater-first Tennessee water with a recurring or clearly documented winter trout stocking program. Trout may be catchable during the stocking window, but the evidence does not establish a year-round trout system. A TWRA winter-program record is stronger than Fishbrain counts; one historic catch is not a stocking program. Do not use this category for a reviewed trout-stream segment.',
+    'A warmwater-first Tennessee water whose trout presence comes from a RECURRING, documented winter put-and-take stocking program (annual winter window), on a water that is not itself a trout-stream system. Trout may be catchable during the stocking window, but the evidence does not establish a trout-stream system. A TWRA winter-program record is stronger than Fishbrain counts; one historic catch or one isolated stocking event is not a program. Do not use this category for a designated trout-stream segment.',
   'warmwater-no-trout':
-    'A warmwater Tennessee water with no trout-stream classification and no current/recurring winter trout program. This category is about fishery/system type, not a claim that every lake lacks every trout species: a reservoir can contain lake trout and still be warmwater-no-trout when it is not a trout stream. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
+    'A warmwater Tennessee water that is NOT a trout-stream system and has no current/recurring winter trout program. This category is about fishery/system type, not a claim that every trout species is absent: a reservoir can contain lake trout and still be warm water(no trout) when it is not a trout-stream system. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
 };
 
 export const FRESHWATER_TROUT_NAMES = new Set([
@@ -95,10 +95,11 @@ const fishbrainDocument = fishbrainDocuments[0]?.document ?? { records: [] };
 const reviewLabelsDocument = readJsonIfPresent(REVIEW_LABELS_PATH, { labels: {} });
 const REVIEW_LABELS_BY_SLUG = new Map(Object.entries(reviewLabelsDocument.labels ?? {}));
 const FISHBRAIN_BY_SLUG = new Map();
-for (const dataset of fishbrainDocuments) {
+for (const [index, dataset] of fishbrainDocuments.entries()) {
+  const tier = index === 0 ? 'featured' : 'standard';
   for (const record of dataset.document.records ?? []) {
     if (record.catalogWaterId && !FISHBRAIN_BY_SLUG.has(record.catalogWaterId)) {
-      FISHBRAIN_BY_SLUG.set(record.catalogWaterId, { record, dataset: dataset.document });
+      FISHBRAIN_BY_SLUG.set(record.catalogWaterId, { record, dataset: dataset.document, tier });
     }
   }
 }
@@ -164,6 +165,7 @@ function fishbrainEvidence(slug) {
   if (!entry) {
     return {
       available: false,
+      tier: 'absent',
       dataset: fishbrainDatasetSummary(fishbrainDocument),
       datasets: fishbrainDocuments.map(({ document }) => fishbrainDatasetSummary(document)),
       sourceRole: 'not available for this catalog water',
@@ -174,7 +176,7 @@ function fishbrainEvidence(slug) {
     };
   }
 
-  const { record, dataset } = entry;
+  const { record, dataset, tier } = entry;
   const freshwaterTrout = [];
   const excludedMarineOrBrackish = [];
   const topFreshwaterSpecies = [];
@@ -191,6 +193,7 @@ function fishbrainEvidence(slug) {
 
   return {
     available: true,
+    tier,
     dataset: fishbrainDatasetSummary(dataset),
     datasets: fishbrainDocuments.map(({ document }) => fishbrainDatasetSummary(document)),
     datasetClassification: dataset.scope?.classification ?? null,
@@ -213,22 +216,20 @@ function fishbrainEvidence(slug) {
   };
 }
 
-function reviewedClassification(slug) {
-  const review = REVIEW_LABELS_BY_SLUG.get(slug);
-  if (!review) {
-    return {
-      available: false,
-      sourceRole: 'no owner-reviewed calibration label for this exact segment',
-    };
-  }
-  return {
-    available: true,
-    sourceRole: reviewLabelsDocument.source ?? 'owner-reviewed calibration label',
-    interpretation: reviewLabelsDocument.interpretation ?? null,
-    category: review.category ?? null,
-    label: CATEGORY_LABELS[review.category] ?? review.category ?? null,
-    note: review.note ?? null,
-  };
+/**
+ * The owner-reviewed category for a slug, or null. CALIBRATION/OVERRIDE DATA:
+ * never placed in the model state (that would leak the answer key — the
+ * 2026-09-17 audit found exactly that in the prior implementation). Applied
+ * in code AFTER the call; validators must report raw and effective separately.
+ */
+export function reviewedCategory(slug) {
+  return REVIEW_LABELS_BY_SLUG.get(slug)?.category ?? null;
+}
+
+/** Production override: the reviewed label wins when one exists; otherwise
+ * the model's raw choice stands. */
+export function effectiveCategory(slug, rawChoice) {
+  return reviewedCategory(slug) ?? rawChoice ?? null;
 }
 
 function catalogEvidence(slug) {
@@ -339,8 +340,9 @@ export function questionsForMonth(month = new Date().getMonth() + 1) {
         'The category describes the water system and should not flip merely because the requested month is outside a stocking window; use current_month_trout and the annual month questions for seasonal presence.',
         'Use the evidence hierarchy in the state: official or audited evidence and the current TWRA program outrank Fishbrain discovery. Fishbrain is aggregate user catch volume, not abundance or residency.',
         'A river with 20 trout catches is not automatically a trout stream. Treat it as seasonal winter stocking when a recurring winter program is documented, and do not call it year-round without year-round biological or coldwater-management evidence.',
+        'Judge the exact segment named in water.name/id: a reservoir, its tailwater, and an upstream river reach are different systems. Do not transfer a lake label to its tailwater or a tailwater label to its lake. A lake trout in a reservoir is freshwater species evidence, but it does not by itself make the reservoir a trout stream.',
+        'On "year round": the label describes the standing trout-stream system and its management, not a promise of catchable trout in every month. Seasonal stocking windows on a designated trout stream belong in the month answers, not in the category.',
         'Ignore marine/brackish species explicitly marked excluded. In particular, Sea trout, Spotted seatrout, Red drum, Black drum, Bluefish, Gafftopsail sea catfish, and Steelhead are not Tennessee freshwater-trout evidence.',
-        'If state.evidence.ownerReview is available, use its reviewed category as the calibration label for that exact named segment. Do not transfer a lake label to its tailwater or a tailwater label to its lake. A lake trout in a reservoir is freshwater species evidence, but it does not by itself make the reservoir a trout stream.',
         'If sources conflict or are too thin, spread probability across the plausible categories and reduce confidence. Do not turn missing evidence into certainty.',
       ],
       criteria: CATEGORY_CRITERIA,
@@ -405,17 +407,39 @@ export function evidenceState(slug, { month = new Date().getMonth() + 1 } = {}) 
       twraStocking: stockingEvidence(slug),
       canonicalSpecies: canonicalSpeciesEvidence(slug),
       fishbrainDiscovery: fishbrainEvidence(slug),
-      ownerReview: reviewedClassification(slug),
     },
     safeguards: [
       'Only Tennessee freshwater fishery evidence counts for trout classification.',
       'A trout species name in a public catch aggregate is not proof of a trout system.',
       'A river with a small or moderate trout catch count may be winter-stocked or a broad-page artifact; it is not year-round without direct year-round evidence.',
       'Do not confuse a reservoir with its tailwater or a broad Fishbrain page with the catalog segment.',
-      'An owner-reviewed label applies only to the exact segment named in the review fixture. Lake trout in a reservoir do not automatically make that reservoir a trout stream.',
+      'A lake trout in a reservoir does not automatically make that reservoir a trout stream.',
       'No answer is a direct catalog change; low confidence or source conflict requires review.',
     ],
   };
+}
+
+/**
+ * Post-hoc consistency check between the authoritative category and the twelve
+ * independent month Nouls. TypeSafe questions are independent, so nothing
+ * enforces this inside the model; callers (validator/pipeline) use this to
+ * flag contradictions for review instead. Month answers NEVER change the
+ * system category — a warmwater winter-stocked water is that category in
+ * August too, and a designated trout stream stays one with zero trout months.
+ */
+export function categoryMonthConsistency(category, monthNouls) {
+  const monthsTrue = Object.values(monthNouls ?? {}).filter((v) => v !== null && v >= 0.5).length;
+  const flags = [];
+  if (category === 'warmwater-no-trout' && monthsTrue >= 6) {
+    flags.push(`warmwater-no-trout but ${monthsTrue}/12 months have trout-presence probability ≥0.5 — category or month answers need review`);
+  }
+  if (category === 'warmwater-yearly-stocked-winter-trout' && monthsTrue >= 10) {
+    flags.push(`winter-stocked but ${monthsTrue}/12 months trout-presence — confirm this is not actually a year-round trout system`);
+  }
+  if (category === 'trout-stream-year-round' && monthsTrue === 0) {
+    flags.push('trout-stream-year-round but every month answered below 0.5 — unusual for a designated trout system; verify evidence');
+  }
+  return { monthsTrue, flags };
 }
 
 export async function callJev(state, { month, attempt = 1 } = {}) {
