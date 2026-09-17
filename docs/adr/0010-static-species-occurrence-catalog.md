@@ -11,9 +11,10 @@ the fishability scorer. That field answers “what is this water managed for?”
 does not provide a general fish inventory, species-level trout composition, or a
 way to distinguish a regulation mention from a wild-population record.
 
-The product needs better Tennessee water accuracy without depending on Fishbrain
-or another restricted user-generated platform. A live species scraper would also
-make provenance, change review, and offline behavior harder to reason about.
+The product needs better Tennessee water accuracy, and Fishbrain public water
+pages can provide useful discovery candidates. A live species scraper or direct
+runtime dependency would make provenance, change review, and offline behavior
+harder to reason about.
 
 ## Decision
 
@@ -32,9 +33,12 @@ Each association records:
 - a dated HTTPS source record with a curator basis.
 
 The first snapshot is a static normalization of already-reviewed TWRA, NPS,
-USGS, and other agency references in the repository. It does not scrape
-Fishbrain, copy private/user-generated observations, claim survey counts, or make
-runtime network requests. A new snapshot requires a human-reviewed commit.
+USGS, and other agency references in the repository. A separate
+`packages/content/research/fishbrain-tn-discovery.json` file records aggregate
+public-page candidates for later verification; it is not emitted or loaded by
+the app. The runtime catalog does not copy private/user-generated details, claim
+survey counts, or make Fishbrain requests. A new canonical snapshot requires a
+human-reviewed commit.
 
 `targetSpecies` remains the fishability scorer's managed-species input. The new
 catalog is additive and descriptive; regulation-only rows are never treated as
