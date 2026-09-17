@@ -29,9 +29,9 @@ describe('Jev Tennessee fishery classifier setup', () => {
       'warmwater-no-trout',
     ]);
     expect(Object.values(CATEGORY_LABELS)).toEqual([
-      'Year Round - Cold Trout Water',
-      'Warmwater - Seasonal/Winter Stocking',
-      'Warmwater - No Trout',
+      'Year Round - Trout Stream (tailwaters, wild trout waters)',
+      'Warm Water - Seasonal/Winter Stocking Program',
+      'Warm Water - No Trout',
     ]);
     expect(Object.keys(questionsForMonth('July').category.criteria)).toEqual(Object.keys(CATEGORY_CRITERIA));
   });

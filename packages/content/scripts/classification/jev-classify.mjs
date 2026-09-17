@@ -67,9 +67,9 @@ export const MONTHS = [
 
 /** Stable API keys; use CATEGORY_LABELS when presenting them to people. */
 export const CATEGORY_LABELS = {
-  'trout-stream-year-round': 'Year Round - Cold Trout Water',
-  'warmwater-yearly-stocked-winter-trout': 'Warmwater - Seasonal/Winter Stocking',
-  'warmwater-no-trout': 'Warmwater - No Trout',
+  'trout-stream-year-round': 'Year Round - Trout Stream (tailwaters, wild trout waters)',
+  'warmwater-yearly-stocked-winter-trout': 'Warm Water - Seasonal/Winter Stocking Program',
+  'warmwater-no-trout': 'Warm Water - No Trout',
 };
 
 /**
