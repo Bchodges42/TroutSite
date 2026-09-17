@@ -404,3 +404,15 @@ releases, and the read-path archive + auto-rollback are the safety net under all
 of it. `backups/autoupdate.status` / `backups/watchdog.status` are the two files
 to glance at — anything other than `OK` / `UP-TO-DATE` / `DEPLOYED` / `HEALED-*`
 needs a human.
+
+### Jev fishability scorer (2026-09-17)
+
+Hourly (trout-jev-fishability, registered with the other schedules): reads
+/v1 conditions + stocking + streams, asks TypeSafe Jev
+for a 0-100 fishability score in the owner's fixed 10-point bands, writes
+v1/fishability-jev/latest.json (read-path only; never touches the DB or
+catalog YAML). Cost control: Jev is consulted only when a water's input
+fingerprint changed or its score is older than TROUT_JEV_STALE_HOURS
+(default 6); hard cap TROUT_JEV_MAX_CALLS per run (default 60); without a
+key the file carries deterministic fallback scores labeled source: fallback.
+The TYPESAFE_API_KEY lives in the gitignored repo-root .env.

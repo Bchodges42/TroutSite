@@ -16,6 +16,7 @@ import { snapshotUrls } from '../../lib/endpoints';
 import { db } from '../../lib/db';
 import { fetchSnapshot } from '../../lib/snapshots';
 import { matchStocking } from '../../lib/stockingMatch';
+import { recentStockingActive, stockedTroutScore, STOCKING_OVERRIDE_DAYS } from './waterDecision';
 import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from './riverMapSelectors';
 import { atlas } from './mapTokens';
 
@@ -134,8 +135,27 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
     return (streams as Array<{ id: string; name: string; regionId: string; species?: 'trout' | 'warmwater' } & Record<string, unknown>>).map((stream) => {
       const snap = snapshotById.get((stream as { id: string }).id);
       const hasData = !!snap;
-      const score = snap?.score?.value ?? null;
-      const status = statusForScore(score, hasData, snap?.score?.assessed);
+      let score = snap?.score?.value ?? null;
+      let status = statusForScore(score, hasData, snap?.score?.assessed);
+      // Live stocking override: a fresh TWRA stocking report on a water that is
+      // NOT a documented trout water displays as trout (trout temperature curve
+      // re-score) until the decay date. Date-computed — expires itself.
+      let stockedTroutNow: RiverMapFeature['stockedTroutNow'] = null;
+      const newestStocking = (stockingByStream.get((stream as { id: string }).id)?.[0] ?? null) as { date?: string } | null;
+      if (stream.species !== 'trout' && newestStocking?.date) {
+        const recent = { lastEventDay: newestStocking.date, windowMonths: (stream as { seasonMonths?: number[] }).seasonMonths };
+        if (recentStockingActive(recent)) {
+          stockedTroutNow = {
+            lastEventDay: newestStocking.date,
+            until: new Date(Date.now() + STOCKING_OVERRIDE_DAYS * 86_400_000).toISOString().slice(0, 10),
+          };
+          const rescore = stockedTroutScore(stream as never, (snap?.readings ?? []) as never);
+          if (rescore?.assessed) {
+            score = rescore.value;
+            status = statusForScore(score, true, true);
+          }
+        }
+      }
       // Freshness is the age of this stream's newest gauge reading — not when
       // the snapshot file happened to be fetched (they diverge for hours).
       const freshness = snap ? newestReadingAt(snap.readings ?? []) : null;
@@ -143,9 +163,9 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
       // Waters with NO catalog species stay unclassified here; waterDecision
       // owns what that means downstream. Never default unknowns to trout.
       const color =
-        stream.species === 'warmwater'
+        stream.species === 'warmwater' && !stockedTroutNow
           ? atlas.warmwater
-          : stream.species === 'trout'
+          : stream.species === 'trout' || stockedTroutNow
             ? colorForStatus(status)
             : atlas.noData;
       const chart = hatchMap.get((stream as { regionId: string }).regionId) as HatchChart | undefined ?? null;
@@ -170,6 +190,7 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
         hatchDominant: dominant,
         hatchHalo: halo,
         stocking: stockingByStream.get((stream as { id: string }).id)?.[0] as RiverMapFeature['stocking'] | null,
+        stockedTroutNow,
         stockingCount: stockingByStream.get((stream as { id: string }).id)?.length ?? 0,
         report: reports.find((r) => r.streamId === (stream as { id: string }).id) as RiverMapFeature['report'] | null,
         reportCount: reportCountByStream.get((stream as { id: string }).id) ?? 0,

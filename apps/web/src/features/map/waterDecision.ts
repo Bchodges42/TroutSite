@@ -1,7 +1,63 @@
 import type { RiverMapFeature } from './riverMapSelectors';
 import type { FishabilityScore, SpeciesKey } from '@trout/contracts';
+import { scoreConditions } from '@trout/contracts';
 import type { TroutCalendar, TroutPresenceNow } from '../../lib/troutCalendar';
 import { monthWindowLabel } from '../../lib/troutCalendar';
+
+/**
+ * Live stocking override (owner direction 2026-09-17): when a NEW stocking
+ * report lands on a water that is NOT a documented winter/seasonal trout
+ * water, the site treats it as a trout stream for a limited window — trout
+ * styling, trout temperature curve, trout-condition metric — instead of the
+ * all-species one. It expires by DATE (30 days after the last report, or
+ * window end + 21 days when an authored window exists), so a stale snapshot
+ * can never pin the override forever; the caller passes the stocked fact, the
+ * decision validates the clock.
+ */
+export const STOCKING_OVERRIDE_DAYS = 30;
+
+export type RecentStocking = {
+  /** ISO day of the newest matched stocking event (from /v1/stocking). */
+  lastEventDay: string;
+  /** Authored stocking window months, when the catalog declares one. */
+  windowMonths?: number[];
+} | null;
+
+/** True when `lastEventDay` is inside the live-override window ending `until`. */
+export function recentStockingActive(
+  recent: RecentStocking,
+  now: Date = new Date(),
+): boolean {
+  if (!recent?.lastEventDay) return false;
+  const event = new Date(`${recent.lastEventDay}T00:00:00Z`).getTime();
+  if (!Number.isFinite(event)) return false;
+  let until = event + STOCKING_OVERRIDE_DAYS * 86_400_000;
+  if (recent.windowMonths?.length) {
+    // a documented window keeps the override alive to window end + 21 days
+    const year = now.getUTCFullYear();
+    const ends = recent.windowMonths.map((m) => Date.UTC(year, m, 1));
+    const windowEnd = Math.max(...ends.filter((t) => t <= Date.UTC(year, 12, 1)));
+    if (Number.isFinite(windowEnd)) {
+      until = Math.max(until, windowEnd + 21 * 86_400_000);
+    }
+  }
+  return now.getTime() <= until;
+}
+
+/** The trout-curve re-score for a freshly stocked non-trout water, or null
+ *  when there are no readings to re-score (honest absence, never a guess). */
+export function stockedTroutScore(
+  stream: { id: string; idealFlow: { min: number; max: number }[]; gaugeIds: string[] },
+  readings: { gaugeId: string; timestamp: string; cfs?: number; tempC?: number }[],
+): { value: number; reasons: string[]; assessed: boolean } | null {
+  if (readings.length === 0) return null;
+  const scored = scoreConditions({ ...stream, species: 'trout' } as never, readings as never);
+  return {
+    value: scored.value,
+    reasons: [`Fresh TWRA stocking report — scored on the trout curve through ${STOCKING_OVERRIDE_DAYS}-day decay window.`, ...scored.reasons],
+    assessed: scored.assessed === true,
+  };
+}
 
 /**
  * The focus species' comfort score for one water, when the snapshot has it
@@ -105,6 +161,17 @@ export function toWaterDecisionView(
   const speciesUnknown = feature.species == null;
   const assessed = feature.status !== 'no-data' && feature.score !== null;
   const reasons = feature.snapshot?.score.reasons ?? [];
+  const stockedTroutNowField = (feature as { stockedTroutNow?: { lastEventDay: string } }).stockedTroutNow;
+  const stockedNow = !!stockedTroutNowField
+    && recentStockingActive({
+      lastEventDay: stockedTroutNowField.lastEventDay,
+      windowMonths: feature.stream.seasonMonths,
+    });
+  if (stockedNow) {
+    reasons.unshift(
+      `Fresh TWRA stocking report (${stockedTroutNowField.lastEventDay}) — displayed as a trout water for the decay window.`,
+    );
+  }
   // 1-based months; authored windows carry their regulatory/programmatic kind.
   const seasonMonths = feature.stream.seasonMonths ?? (feature.stream.yearRound === false ? [11, 12, 1, 2, 3] : undefined);
   const seasonKind = feature.stream.seasonKind ?? (feature.stream.yearRound === false ? 'programmatic' : undefined);
@@ -116,7 +183,9 @@ export function toWaterDecisionView(
         : ('seasonal-likely-absent' as const)
       : null;
   const troutApplicability = seasonal ?? (warmwater
-    ? ('not-trout' as const)
+    ? stockedNow
+      ? ('confirmed-current' as const)
+      : ('not-trout' as const)
     : speciesUnknown
       ? ('unknown' as const)
       : assessed
@@ -138,10 +207,12 @@ export function toWaterDecisionView(
   const visibility: WaterDecisionView['visibility'] =
     mode === 'trout'
       ? warmwater
-        ? feature.stream.stockingProgram ||
-          (FEATURED_WARMWATER_CONTEXT && feature.stream.display === 'featured')
-          ? 'deemphasize'
-          : 'exclude'
+        ? stockedNow
+          ? 'include'
+          : feature.stream.stockingProgram ||
+            (FEATURED_WARMWATER_CONTEXT && feature.stream.display === 'featured')
+            ? 'deemphasize'
+            : 'exclude'
         : troutApplicability === 'seasonal-likely-absent'
           ? 'deemphasize'
           : 'include'

@@ -40,6 +40,7 @@ jobs=(
   "trout-watchdog|*/15 or MINUTE/MO 15|bash infra/watchdog.sh"
   "trout-refresh-data|hourly|bash infra/refresh-data.sh"
   "trout-autoupdate|hourly|bash infra/autoupdate.sh"
+  "trout-jev-fishability|hourly|node infra/jev-fishability.mjs"
   "trout-db-backup|daily 03:30|bash infra/backup.sh"
 )
 

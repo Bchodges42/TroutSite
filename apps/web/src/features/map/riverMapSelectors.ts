@@ -112,6 +112,10 @@ export interface RiverMapFeature {
   hatchHalo: { active: boolean; color: string };
   stocking: StockingEvent | null;
   stockingCount: number;
+  /** Live stocking override (2026-09-17): a fresh TWRA stocking report on a
+   *  non-trout-classified water displays as a trout stream until this date
+   *  (30-day decay; waterDecision validates the clock). */
+  stockedTroutNow?: { lastEventDay: string; until: string } | null;
   report: ShopReport | null;
   reportCount: number;
   logCount: number;
