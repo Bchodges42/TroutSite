@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-17T19:51:23.180Z",
+  "generated": "2026-09-17T17:20:00.653Z",
   "model": "jev-latest",
   "month": {
     "number": 9,
@@ -19,42 +19,42 @@
     "errors": 0,
     "conditionalAccuracy": {
       "reviewedWaters": 8,
-      "rawCorrect": 6,
-      "rawAccuracy": 0.75,
+      "rawCorrect": 7,
+      "rawAccuracy": 0.875,
       "effectiveCorrect": 8,
       "effectiveAccuracy": 1,
-      "overridesApplied": 2,
+      "overridesApplied": 1,
       "perLabel": [
         {
           "slug": "boone-lake",
           "reviewed": "warmwater-no-trout",
-          "raw": "warmwater-no-trout",
+          "raw": "trout-stream-year-round",
           "effective": "warmwater-no-trout",
-          "confidence": 0.62,
-          "match": true
+          "confidence": 0.13,
+          "match": false
         },
         {
           "slug": "boone-tailwater",
           "reviewed": "trout-stream-year-round",
           "raw": "trout-stream-year-round",
           "effective": "trout-stream-year-round",
-          "confidence": 0.99,
+          "confidence": 0.95,
           "match": true
         },
         {
           "slug": "dale-hollow-lake",
           "reviewed": "warmwater-no-trout",
-          "raw": "warmwater-yearly-stocked-winter-trout",
+          "raw": "warmwater-no-trout",
           "effective": "warmwater-no-trout",
-          "confidence": 0.39,
-          "match": false
+          "confidence": 0.82,
+          "match": true
         },
         {
           "slug": "duck-river-tailwater",
           "reviewed": "trout-stream-year-round",
           "raw": "trout-stream-year-round",
           "effective": "trout-stream-year-round",
-          "confidence": 0.89,
+          "confidence": 0.78,
           "match": true
         },
         {
@@ -62,7 +62,7 @@
           "reviewed": "trout-stream-year-round",
           "raw": "trout-stream-year-round",
           "effective": "trout-stream-year-round",
-          "confidence": 1,
+          "confidence": 0.99,
           "match": true
         },
         {
@@ -70,7 +70,7 @@
           "reviewed": "warmwater-no-trout",
           "raw": "warmwater-no-trout",
           "effective": "warmwater-no-trout",
-          "confidence": 0.94,
+          "confidence": 0.95,
           "match": true
         },
         {
@@ -78,183 +78,274 @@
           "reviewed": "trout-stream-year-round",
           "raw": "trout-stream-year-round",
           "effective": "trout-stream-year-round",
-          "confidence": 0.98,
+          "confidence": 0.96,
           "match": true
         },
         {
           "slug": "south-holston-lake",
           "reviewed": "warmwater-no-trout",
-          "raw": "warmwater-yearly-stocked-winter-trout",
+          "raw": "warmwater-no-trout",
           "effective": "warmwater-no-trout",
-          "confidence": 0.25,
-          "match": false
+          "confidence": 0.3,
+          "match": true
         }
       ]
     },
     "heldOut": {
       "waters": 182,
       "categoryCounts": {
-        "trout-stream-year-round": 68,
-        "warmwater-yearly-stocked-winter-trout": 39,
-        "warmwater-no-trout": 83
+        "trout-stream-year-round": 56,
+        "warmwater-yearly-stocked-winter-trout": 48,
+        "warmwater-no-trout": 86
       },
       "note": "no ground truth; counts and confidence only"
     },
     "confidenceDistribution": {
-      "<0.4": 14,
-      "0.4-0.6": 15,
-      "0.6-0.8": 29,
-      ">=0.8": 132
+      "<0.4": 28,
+      "0.4-0.6": 18,
+      "0.6-0.8": 17,
+      ">=0.8": 127
     },
     "lowConfidenceBelow06": [
       {
         "slug": "barren-fork-river",
-        "confidence": 0.51,
+        "confidence": 0.34,
         "category": "trout-stream-year-round"
       },
       {
+        "slug": "boone-lake",
+        "confidence": 0.13,
+        "category": "warmwater-no-trout"
+      },
+      {
         "slug": "calfkiller-river",
-        "confidence": 0.16,
+        "confidence": 0.34,
         "category": "warmwater-yearly-stocked-winter-trout"
       },
       {
         "slug": "cane-creek-hickman-perry",
-        "confidence": 0.47,
+        "confidence": 0.3,
         "category": "trout-stream-year-round"
       },
       {
         "slug": "charles-creek",
-        "confidence": 0.47,
+        "confidence": 0.3,
         "category": "trout-stream-year-round"
       },
       {
         "slug": "collins-river",
-        "confidence": 0.41,
+        "confidence": 0.09,
         "category": "trout-stream-year-round"
       },
       {
-        "slug": "dale-hollow-lake",
-        "confidence": 0.39,
-        "category": "warmwater-no-trout"
-      },
-      {
-        "slug": "east-fork-stones-river",
-        "confidence": 0.37,
-        "category": "warmwater-yearly-stocked-winter-trout"
-      },
-      {
-        "slug": "gap-creek-claiborne",
-        "confidence": 0.31,
-        "category": "warmwater-yearly-stocked-winter-trout"
-      },
-      {
-        "slug": "holston-river",
-        "confidence": 0.32,
-        "category": "warmwater-yearly-stocked-winter-trout"
-      },
-      {
-        "slug": "hurricane-creek",
-        "confidence": 0.32,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "indian-creek-claiborne",
-        "confidence": 0.46,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "little-west-fork-creek",
-        "confidence": 0.34,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "north-prong-barren-fork",
-        "confidence": 0.25,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "parksville-lake",
-        "confidence": 0.4,
-        "category": "warmwater-yearly-stocked-winter-trout"
-      },
-      {
-        "slug": "pine-creek-dekalb",
-        "confidence": 0.41,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "rocky-river",
-        "confidence": 0.47,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "salt-lick-creek",
-        "confidence": 0.4,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "sequatchie-river",
-        "confidence": 0.31,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "shoal-creek",
-        "confidence": 0.15,
-        "category": "warmwater-yearly-stocked-winter-trout"
-      },
-      {
-        "slug": "south-holston-lake",
-        "confidence": 0.25,
-        "category": "warmwater-no-trout"
-      },
-      {
-        "slug": "spring-creek-polk",
-        "confidence": 0.45,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "standing-rock-creek",
-        "confidence": 0.51,
-        "category": "trout-stream-year-round"
-      },
-      {
-        "slug": "station-creek",
+        "slug": "doe-river",
         "confidence": 0.58,
         "category": "trout-stream-year-round"
       },
       {
-        "slug": "sulfur-fork-creek",
-        "confidence": 0.56,
-        "category": "warmwater-yearly-stocked-winter-trout"
-      },
-      {
-        "slug": "upper-hills-creek",
-        "confidence": 0.55,
+        "slug": "east-fork-shoal-creek",
+        "confidence": 0.26,
         "category": "trout-stream-year-round"
       },
       {
-        "slug": "watauga-lake",
-        "confidence": 0.46,
+        "slug": "east-fork-stones-river",
+        "confidence": 0.32,
         "category": "warmwater-yearly-stocked-winter-trout"
       },
       {
-        "slug": "white-oak-creek",
-        "confidence": 0.34,
+        "slug": "emory-river",
+        "confidence": 0.44,
+        "category": "warmwater-no-trout"
+      },
+      {
+        "slug": "fletchers-fork",
+        "confidence": 0.44,
         "category": "warmwater-yearly-stocked-winter-trout"
       },
       {
-        "slug": "wilbur-lake",
+        "slug": "forge-creek-johnson",
+        "confidence": 0.27,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "gap-creek-claiborne",
+        "confidence": 0.42,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "goforth-creek",
+        "confidence": 0.49,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "greasy-creek-polk",
+        "confidence": 0.21,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "holston-river",
+        "confidence": 0.52,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "hurricane-creek",
+        "confidence": 0.51,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "indian-creek-claiborne",
+        "confidence": 0.36,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "laurel-creek-johnson",
         "confidence": 0.31,
         "category": "trout-stream-year-round"
       },
       {
-        "slug": "wolf-river-fentress",
+        "slug": "little-buffalo-river",
+        "confidence": 0.39,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "little-sequatchie-river",
+        "confidence": 0.45,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "little-tennessee-river",
+        "confidence": 0.44,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "little-west-fork-creek",
+        "confidence": 0.42,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "melton-hill-lake",
+        "confidence": 0.49,
+        "category": "warmwater-no-trout"
+      },
+      {
+        "slug": "mill-creek-overton",
+        "confidence": 0.55,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "north-chickamauga-creek",
+        "confidence": 0.28,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "north-prong-barren-fork",
+        "confidence": 0.52,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "pine-creek-dekalb",
+        "confidence": 0.26,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "powell-river",
+        "confidence": 0.53,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "puncheon-camp-creek",
+        "confidence": 0.32,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "red-river-clarksville",
         "confidence": 0.36,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "richardson-byrd-creek",
+        "confidence": 0.38,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "rocky-river",
+        "confidence": 0.24,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "sequatchie-river",
+        "confidence": 0.09,
+        "category": "warmwater-no-trout"
+      },
+      {
+        "slug": "shoal-creek",
+        "confidence": 0.07,
+        "category": "warmwater-no-trout"
+      },
+      {
+        "slug": "south-fork-cumberland",
+        "confidence": 0.34,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "south-holston-lake",
+        "confidence": 0.3,
+        "category": "warmwater-no-trout"
+      },
+      {
+        "slug": "spring-creek-polk",
+        "confidence": 0.59,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "standing-rock-creek",
+        "confidence": 0.5,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "station-creek",
+        "confidence": 0.32,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "tumbling-creek",
+        "confidence": 0.27,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "upper-hills-creek",
+        "confidence": 0.38,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "watauga-lake",
+        "confidence": 0.32,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "white-oak-creek",
+        "confidence": 0.57,
+        "category": "warmwater-yearly-stocked-winter-trout"
+      },
+      {
+        "slug": "wilbur-lake",
+        "confidence": 0.36,
+        "category": "trout-stream-year-round"
+      },
+      {
+        "slug": "wolf-river-fentress",
+        "confidence": 0.5,
         "category": "warmwater-yearly-stocked-winter-trout"
       }
     ],
     "notFoundEvidenceWaters": 43,
     "consistencyFlags": [
+      {
+        "slug": "boone-lake",
+        "flags": [
+          "trout-stream-year-round but every month answered below 0.5 — unusual for a designated trout system; verify evidence"
+        ]
+      },
       {
         "slug": "south-fork-cumberland",
         "flags": [
@@ -270,17 +361,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.68,
-        "warmwater-no-trout": 0.08,
-        "warmwater-yearly-stocked-winter-trout": 0.24
+        "warmwater-no-trout": 0.13,
+        "warmwater-yearly-stocked-winter-trout": 0.31,
+        "trout-stream-year-round": 0.56
       },
-      "confidence": 0.51,
+      "confidence": 0.34,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 2.98,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.94,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -290,16 +381,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 1,
         "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 1
       },
       "confidence": 1,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.83,
-      "evidenceQuality": 2.91,
+      "currentMonthTrout": 0.88,
+      "evidenceQuality": 2.92,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -310,8 +401,8 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-no-trout": 0,
         "warmwater-yearly-stocked-winter-trout": 0.99,
+        "warmwater-no-trout": 0,
         "trout-stream-year-round": 0.01
       },
       "confidence": 0.98,
@@ -319,13 +410,73 @@
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.93,
+      "evidenceQuality": 2.88,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "beech-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.02,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-bigby-creek",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 1,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.42,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-rock-creek",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.1,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.9
+      },
+      "confidence": 0.86,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 2.9,
+      "monthsTrue": 3,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "big-sandy-river",
       "requestedMonth": 9,
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
@@ -339,67 +490,7 @@
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.64,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "big-bigby-creek",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.94,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "big-rock-creek",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "trout-stream-year-round": 0.21,
-        "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.79
-      },
-      "confidence": 0.68,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.88,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "big-sandy-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.87,
+      "evidenceQuality": 0.53,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -410,16 +501,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 1,
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
       },
-      "confidence": 1,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 0.79,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.51,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -430,17 +521,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.16,
-        "trout-stream-year-round": 0.83
+        "warmwater-yearly-stocked-winter-trout": 0.19,
+        "warmwater-no-trout": 0.02,
+        "trout-stream-year-round": 0.79
       },
-      "confidence": 0.74,
+      "confidence": 0.69,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.11,
-      "evidenceQuality": 2.32,
-      "monthsTrue": 5,
+      "currentMonthTrout": 0.21,
+      "evidenceQuality": 2.05,
+      "monthsTrue": 6,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -450,16 +541,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.98,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.46,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -474,12 +565,12 @@
         "warmwater-yearly-stocked-winter-trout": 0,
         "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.91,
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.39,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -490,16 +581,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.22,
+        "warmwater-yearly-stocked-winter-trout": 0.86,
         "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.78
+        "trout-stream-year-round": 0.14
       },
-      "confidence": 0.66,
+      "confidence": 0.78,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.91,
+      "evidenceQuality": 2.95,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -507,21 +598,23 @@
     {
       "slug": "boone-lake",
       "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.16,
-        "warmwater-no-trout": 0.75,
-        "warmwater-yearly-stocked-winter-trout": 0.09
+        "warmwater-no-trout": 0.41,
+        "warmwater-yearly-stocked-winter-trout": 0.17,
+        "trout-stream-year-round": 0.42
       },
-      "confidence": 0.62,
+      "confidence": 0.13,
       "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
+      "overrideApplied": true,
       "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.4,
-      "evidenceQuality": 1.79,
+      "currentMonthTrout": 0.43,
+      "evidenceQuality": 1.57,
       "monthsTrue": 0,
-      "consistencyFlags": [],
+      "consistencyFlags": [
+        "trout-stream-year-round but every month answered below 0.5 — unusual for a designated trout system; verify evidence"
+      ],
       "model": "jev-1.13.0"
     },
     {
@@ -530,42 +623,22 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.03,
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.99,
-        "warmwater-yearly-stocked-winter-trout": 0.01
+        "trout-stream-year-round": 0.97
       },
-      "confidence": 0.99,
+      "confidence": 0.95,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.29,
-      "evidenceQuality": 2.66,
-      "monthsTrue": 4,
+      "currentMonthTrout": 0.3,
+      "evidenceQuality": 2.38,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "bradley-creek",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.8,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "brimstone-creek",
       "requestedMonth": 9,
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
@@ -578,8 +651,28 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.57,
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.54,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "brimstone-creek",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.98,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.01,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -590,16 +683,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.91,
-        "warmwater-yearly-stocked-winter-trout": 0.05,
-        "warmwater-no-trout": 0.04
+        "warmwater-yearly-stocked-winter-trout": 0.07,
+        "trout-stream-year-round": 0.87,
+        "warmwater-no-trout": 0.06
       },
-      "confidence": 0.87,
+      "confidence": 0.8,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.88,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.83,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -610,17 +703,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.92,
-        "warmwater-yearly-stocked-winter-trout": 0.08
+        "trout-stream-year-round": 0.85,
+        "warmwater-yearly-stocked-winter-trout": 0.15,
+        "warmwater-no-trout": 0
       },
-      "confidence": 0.88,
+      "confidence": 0.77,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.26,
-      "evidenceQuality": 2.7,
-      "monthsTrue": 9,
+      "currentMonthTrout": 0.27,
+      "evidenceQuality": 2.79,
+      "monthsTrue": 7,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -630,16 +723,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0,
         "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "trout-stream-year-round": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.31,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 1.37,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -650,16 +743,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.88,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.42,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -678,9 +771,9 @@
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.95,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.16,
+      "evidenceQuality": 2.28,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -690,17 +783,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.42,
-        "warmwater-no-trout": 0.14,
-        "warmwater-yearly-stocked-winter-trout": 0.44
+        "trout-stream-year-round": 0.27,
+        "warmwater-no-trout": 0.17,
+        "warmwater-yearly-stocked-winter-trout": 0.56
       },
-      "confidence": 0.16,
+      "confidence": 0.34,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 2.67,
-      "monthsTrue": 1,
+      "currentMonthTrout": 0.18,
+      "evidenceQuality": 1.82,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -710,17 +803,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.98,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.01
       },
       "confidence": 0.98,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.59,
-      "monthsTrue": 3,
+      "evidenceQuality": 2.48,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -738,8 +831,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.91,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.43,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -750,15 +843,15 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.9,
-        "warmwater-no-trout": 0.03,
-        "warmwater-yearly-stocked-winter-trout": 0.07
+        "warmwater-no-trout": 0.04,
+        "trout-stream-year-round": 0.87,
+        "warmwater-yearly-stocked-winter-trout": 0.09
       },
-      "confidence": 0.85,
+      "confidence": 0.82,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.13,
+      "currentMonthTrout": 0.17,
       "evidenceQuality": 2.99,
       "monthsTrue": 5,
       "consistencyFlags": [],
@@ -770,17 +863,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.65,
-        "warmwater-no-trout": 0.03,
-        "warmwater-yearly-stocked-winter-trout": 0.32
+        "warmwater-yearly-stocked-winter-trout": 0.4,
+        "warmwater-no-trout": 0.06,
+        "trout-stream-year-round": 0.54
       },
-      "confidence": 0.47,
+      "confidence": 0.3,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.39,
-      "monthsTrue": 3,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.06,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -790,16 +883,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
         "trout-stream-year-round": 1,
-        "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-no-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.96,
-      "evidenceQuality": 2.96,
+      "currentMonthTrout": 0.94,
+      "evidenceQuality": 2.82,
       "monthsTrue": 10,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -811,15 +904,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.05,
-      "evidenceQuality": 2.66,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 2.23,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -834,12 +927,12 @@
         "warmwater-no-trout": 1,
         "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.27,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 1.46,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -850,17 +943,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.31,
-        "warmwater-no-trout": 0.04,
-        "trout-stream-year-round": 0.65
+        "warmwater-no-trout": 0.09,
+        "trout-stream-year-round": 0.54,
+        "warmwater-yearly-stocked-winter-trout": 0.37
       },
-      "confidence": 0.47,
+      "confidence": 0.3,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.12,
+      "currentMonthTrout": 0.1,
       "evidenceQuality": 2.99,
-      "monthsTrue": 2,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -870,8 +963,8 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 0.99,
-        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
         "trout-stream-year-round": 0
       },
       "confidence": 0.98,
@@ -879,7 +972,7 @@
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.74,
+      "evidenceQuality": 2.4,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -890,16 +983,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.86,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.54,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -910,16 +1003,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
         "warmwater-no-trout": 1
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 1.93,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.91,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -931,15 +1024,15 @@
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
         "warmwater-yearly-stocked-winter-trout": 0.9400000000000001,
-        "trout-stream-year-round": 0.06,
-        "warmwater-no-trout": 0
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.06
       },
       "confidence": 0.9,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.19,
-      "evidenceQuality": 2.91,
+      "currentMonthTrout": 0.26,
+      "evidenceQuality": 2.23,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -954,18 +1047,38 @@
         "warmwater-yearly-stocked-winter-trout": 0.01,
         "warmwater-no-trout": 0
       },
-      "confidence": 0.98,
+      "confidence": 0.97,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.44,
-      "evidenceQuality": 2.98,
-      "monthsTrue": 6,
+      "currentMonthTrout": 0.57,
+      "evidenceQuality": 2.94,
+      "monthsTrue": 7,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "clear-creek-obed",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.03,
+      "evidenceQuality": 2.91,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "clear-fork",
       "requestedMonth": 9,
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
@@ -978,28 +1091,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.02,
-      "evidenceQuality": 2.94,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "clear-fork",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.28,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 1.67,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1018,8 +1111,8 @@
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.77,
-      "evidenceQuality": 2.68,
+      "currentMonthTrout": 0.66,
+      "evidenceQuality": 2.51,
       "monthsTrue": 7,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1030,16 +1123,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.29,
-        "trout-stream-year-round": 0.61,
-        "warmwater-no-trout": 0.1
+        "warmwater-yearly-stocked-winter-trout": 0.34,
+        "warmwater-no-trout": 0.26,
+        "trout-stream-year-round": 0.4
       },
-      "confidence": 0.41,
+      "confidence": 0.09,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.11,
-      "evidenceQuality": 2.53,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 2.03,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1050,16 +1143,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.99,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 0.61,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.01,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1070,17 +1163,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.02,
         "warmwater-no-trout": 0.01,
-        "trout-stream-year-round": 0.97
+        "trout-stream-year-round": 0.97,
+        "warmwater-yearly-stocked-winter-trout": 0.02
       },
       "confidence": 0.95,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.54,
-      "evidenceQuality": 2.25,
-      "monthsTrue": 4,
+      "currentMonthTrout": 0.61,
+      "evidenceQuality": 1.94,
+      "monthsTrue": 8,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1091,16 +1184,16 @@
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
         "trout-stream-year-round": 0.02,
-        "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.98
+        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "warmwater-no-trout": 0
       },
       "confidence": 0.97,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.89,
-      "monthsTrue": 3,
+      "evidenceQuality": 2.92,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1111,15 +1204,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 0.96,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.49,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1130,16 +1223,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.08,
-        "warmwater-yearly-stocked-winter-trout": 0.91,
-        "warmwater-no-trout": 0.01
+        "warmwater-no-trout": 0.17,
+        "warmwater-yearly-stocked-winter-trout": 0.8099999999999999,
+        "trout-stream-year-round": 0.02
       },
-      "confidence": 0.87,
+      "confidence": 0.72,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.24,
+      "evidenceQuality": 1.17,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1159,7 +1252,7 @@
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.9,
+      "evidenceQuality": 2.87,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1167,20 +1260,20 @@
     {
       "slug": "dale-hollow-lake",
       "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0.07,
-        "warmwater-yearly-stocked-winter-trout": 0.6,
-        "warmwater-no-trout": 0.33
+        "warmwater-yearly-stocked-winter-trout": 0.09,
+        "trout-stream-year-round": 0.03,
+        "warmwater-no-trout": 0.88
       },
-      "confidence": 0.39,
+      "confidence": 0.82,
       "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": true,
+      "overrideApplied": false,
       "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.14,
-      "evidenceQuality": 1.91,
-      "monthsTrue": 1,
+      "currentMonthTrout": 0.23,
+      "evidenceQuality": 1.05,
+      "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1190,16 +1283,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.1,
-        "trout-stream-year-round": 0.89
+        "warmwater-no-trout": 0.02,
+        "trout-stream-year-round": 0.76,
+        "warmwater-yearly-stocked-winter-trout": 0.22
       },
-      "confidence": 0.83,
+      "confidence": 0.65,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.78,
+      "evidenceQuality": 2.73,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1210,322 +1303,22 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.84,
-        "warmwater-yearly-stocked-winter-trout": 0.16,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.28,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.72
       },
-      "confidence": 0.76,
+      "confidence": 0.58,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.2,
-      "evidenceQuality": 2.89,
+      "currentMonthTrout": 0.21,
+      "evidenceQuality": 2.91,
       "monthsTrue": 9,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "douglas-lake",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 1.88,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "duck-river-lower",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
-      },
-      "confidence": 0.99,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.64,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "duck-river-mouth",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 1.08,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "duck-river-tailwater",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "trout-stream-year-round": 0.93,
-        "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.07
-      },
-      "confidence": 0.89,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.22,
-      "evidenceQuality": 2.37,
-      "monthsTrue": 7,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "dumplin-creek",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0
-      },
-      "confidence": 0.99,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.11,
-      "evidenceQuality": 0.53,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "east-fork-obey-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0
-      },
-      "confidence": 0.99,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.8,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "east-fork-shoal-creek",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "warmwater-no-trout": 0.04,
-        "trout-stream-year-round": 0.76,
-        "warmwater-yearly-stocked-winter-trout": 0.2
-      },
-      "confidence": 0.64,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.11,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "east-fork-stones-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "warmwater-no-trout": 0.28,
-        "warmwater-yearly-stocked-winter-trout": 0.58,
-        "trout-stream-year-round": 0.14
-      },
-      "confidence": 0.37,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 0.91,
-      "monthsTrue": 4,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "edmund-orgill-lake",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.99,
-        "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.01
-      },
-      "confidence": 0.99,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.69,
-      "monthsTrue": 2,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "elk-river",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 0,
-        "trout-stream-year-round": 1
-      },
-      "confidence": 1,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.95,
-      "evidenceQuality": 2.96,
-      "monthsTrue": 10,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "elk-river-lower",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "warmwater-no-trout": 0.06,
-        "warmwater-yearly-stocked-winter-trout": 0.78,
-        "trout-stream-year-round": 0.16
-      },
-      "confidence": 0.67,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.19,
-      "evidenceQuality": 1.27,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "emory-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.07,
-        "warmwater-no-trout": 0.88,
-        "trout-stream-year-round": 0.05
-      },
-      "confidence": 0.81,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.27,
-      "evidenceQuality": 1.23,
-      "monthsTrue": 2,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "falling-water-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.79,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "fletchers-fork",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.18,
-        "trout-stream-year-round": 0.81
-      },
-      "confidence": 0.71,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.17,
-      "evidenceQuality": 2.84,
-      "monthsTrue": 6,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "forge-creek-johnson",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "warmwater-no-trout": 0.01,
-        "trout-stream-year-round": 0.75,
-        "warmwater-yearly-stocked-winter-trout": 0.24
-      },
-      "confidence": 0.62,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.84,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "forked-deer-river",
       "requestedMonth": 9,
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
@@ -1538,8 +1331,308 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 0.58,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.91,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "duck-river-lower",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 1.98,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "duck-river-mouth",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 1,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.91,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "duck-river-tailwater",
+      "requestedMonth": 9,
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.85,
+        "warmwater-yearly-stocked-winter-trout": 0.15
+      },
+      "confidence": 0.78,
+      "effectiveCategory": "trout-stream-year-round",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": true,
+      "currentMonthTrout": 0.24,
+      "evidenceQuality": 2.2,
+      "monthsTrue": 8,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "dumplin-creek",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.97
+      },
+      "confidence": 0.96,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 0.01,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "east-fork-obey-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.98,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.45,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "east-fork-shoal-creek",
+      "requestedMonth": 9,
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.39,
+        "trout-stream-year-round": 0.51,
+        "warmwater-no-trout": 0.1
+      },
+      "confidence": 0.26,
+      "effectiveCategory": "trout-stream-year-round",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 1.99,
+      "monthsTrue": 4,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "east-fork-stones-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.55,
+        "warmwater-no-trout": 0.31,
+        "trout-stream-year-round": 0.14
+      },
+      "confidence": 0.32,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 1.24,
+      "monthsTrue": 4,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.99
+      },
+      "confidence": 0.98,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.51,
+      "monthsTrue": 5,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "elk-river",
+      "requestedMonth": 9,
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
+      "probabilities": {
+        "trout-stream-year-round": 1,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "trout-stream-year-round",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": true,
+      "currentMonthTrout": 0.92,
+      "evidenceQuality": 2.77,
+      "monthsTrue": 10,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "elk-river-lower",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.14,
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.85
+      },
+      "confidence": 0.78,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 0.98,
+      "monthsTrue": 3,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "emory-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.13,
+        "trout-stream-year-round": 0.25,
+        "warmwater-no-trout": 0.62
+      },
+      "confidence": 0.44,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.33,
+      "evidenceQuality": 0.83,
+      "monthsTrue": 4,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "falling-water-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.42,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "fletchers-fork",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.01,
+        "trout-stream-year-round": 0.36,
+        "warmwater-yearly-stocked-winter-trout": 0.63
+      },
+      "confidence": 0.44,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.21,
+      "evidenceQuality": 2.47,
+      "monthsTrue": 9,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "forge-creek-johnson",
+      "requestedMonth": 9,
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.47,
+        "warmwater-no-trout": 0.02,
+        "trout-stream-year-round": 0.51
+      },
+      "confidence": 0.27,
+      "effectiveCategory": "trout-stream-year-round",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 2.87,
+      "monthsTrue": 3,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "forked-deer-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.01,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1558,8 +1651,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.05,
-      "evidenceQuality": 2.45,
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 1.67,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1570,16 +1663,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.2,
-        "trout-stream-year-round": 0.77,
+        "trout-stream-year-round": 0.79,
+        "warmwater-yearly-stocked-winter-trout": 0.18,
         "warmwater-no-trout": 0.03
       },
-      "confidence": 0.66,
+      "confidence": 0.68,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.64,
-      "evidenceQuality": 2.26,
+      "currentMonthTrout": 0.63,
+      "evidenceQuality": 2.28,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1591,15 +1684,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.63,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 2.47,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1610,17 +1703,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 1
+        "trout-stream-year-round": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.43,
-      "evidenceQuality": 2.67,
-      "monthsTrue": 7,
+      "currentMonthTrout": 0.46,
+      "evidenceQuality": 2.5,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1630,16 +1723,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-no-trout": 0.07,
-        "warmwater-yearly-stocked-winter-trout": 0.54,
-        "trout-stream-year-round": 0.39
+        "warmwater-yearly-stocked-winter-trout": 0.61,
+        "trout-stream-year-round": 0.31,
+        "warmwater-no-trout": 0.08
       },
-      "confidence": 0.31,
+      "confidence": 0.42,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 2.82,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 2.58,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1650,17 +1743,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.86,
-        "warmwater-yearly-stocked-winter-trout": 0.12,
-        "warmwater-no-trout": 0.02
+        "trout-stream-year-round": 0.66,
+        "warmwater-yearly-stocked-winter-trout": 0.31,
+        "warmwater-no-trout": 0.03
       },
-      "confidence": 0.8,
+      "confidence": 0.49,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.48,
-      "monthsTrue": 2,
+      "evidenceQuality": 2.09,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1670,17 +1763,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-no-trout": 0.03,
-        "warmwater-yearly-stocked-winter-trout": 0.21,
-        "trout-stream-year-round": 0.76
+        "warmwater-yearly-stocked-winter-trout": 0.46,
+        "warmwater-no-trout": 0.07,
+        "trout-stream-year-round": 0.47
       },
-      "confidence": 0.64,
+      "confidence": 0.21,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.29,
-      "monthsTrue": 2,
+      "evidenceQuality": 1.95,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1698,8 +1791,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.71,
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.33,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1710,16 +1803,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.98,
         "warmwater-yearly-stocked-winter-trout": 0.01,
-        "warmwater-no-trout": 0.01
+        "warmwater-no-trout": 0.03,
+        "trout-stream-year-round": 0.96
       },
-      "confidence": 0.96,
+      "confidence": 0.94,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.17,
-      "evidenceQuality": 2.97,
+      "currentMonthTrout": 0.26,
+      "evidenceQuality": 2.93,
       "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1730,16 +1823,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.95,
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.05
+        "warmwater-yearly-stocked-winter-trout": 0.97,
+        "trout-stream-year-round": 0.03
       },
-      "confidence": 0.92,
+      "confidence": 0.96,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.93,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 2.09,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1751,15 +1844,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 1.79,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 0.34,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1770,16 +1863,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 1
+        "trout-stream-year-round": 0.99
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.7,
-      "evidenceQuality": 2.82,
+      "currentMonthTrout": 0.87,
+      "evidenceQuality": 2.81,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1790,16 +1883,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.68,
         "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.55,
-        "trout-stream-year-round": 0.44
+        "trout-stream-year-round": 0.31
       },
-      "confidence": 0.32,
+      "confidence": 0.52,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.09,
-      "evidenceQuality": 2.47,
+      "evidenceQuality": 2.65,
       "monthsTrue": 6,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1810,16 +1903,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.93,
+        "warmwater-yearly-stocked-winter-trout": 0.06,
         "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.06
+        "trout-stream-year-round": 0.93
       },
       "confidence": 0.9,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.24,
-      "evidenceQuality": 2.98,
+      "currentMonthTrout": 0.39,
+      "evidenceQuality": 2.95,
       "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1827,19 +1920,19 @@
     {
       "slug": "hurricane-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.54,
-        "warmwater-no-trout": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.44
+        "trout-stream-year-round": 0.32,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.67
       },
-      "confidence": 0.32,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.51,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.05,
-      "evidenceQuality": 2.74,
+      "evidenceQuality": 2.72,
       "monthsTrue": 2,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1847,20 +1940,20 @@
     {
       "slug": "indian-creek-claiborne",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.33,
-        "warmwater-no-trout": 0.03,
-        "trout-stream-year-round": 0.64
+        "warmwater-yearly-stocked-winter-trout": 0.58,
+        "warmwater-no-trout": 0.04,
+        "trout-stream-year-round": 0.38
       },
-      "confidence": 0.46,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.36,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.73,
-      "monthsTrue": 3,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.52,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1870,16 +1963,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.04,
-        "warmwater-no-trout": 0.96,
+        "warmwater-no-trout": 0.97,
+        "warmwater-yearly-stocked-winter-trout": 0.03,
         "trout-stream-year-round": 0
       },
-      "confidence": 0.94,
+      "confidence": 0.95,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.67,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 2.01,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1890,17 +1983,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.03,
         "warmwater-yearly-stocked-winter-trout": 0.97,
-        "warmwater-no-trout": 0
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.03
       },
       "confidence": 0.95,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.35,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.99,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -1910,16 +2003,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
         "warmwater-no-trout": 1
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.01,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.67,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1930,16 +2023,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
         "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 1.96,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 0.51,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1950,16 +2043,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.01,
         "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.99
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "trout-stream-year-round": 0.01
       },
       "confidence": 0.99,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.83,
+      "evidenceQuality": 2.66,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1970,16 +2063,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.44,
         "warmwater-no-trout": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.25,
-        "trout-stream-year-round": 0.73
+        "trout-stream-year-round": 0.54
       },
-      "confidence": 0.6,
+      "confidence": 0.31,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.92,
+      "evidenceQuality": 2.87,
       "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -1998,8 +2091,8 @@
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.86,
-      "evidenceQuality": 2.8,
+      "currentMonthTrout": 0.88,
+      "evidenceQuality": 2.77,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2010,16 +2103,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
         "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.01,
-        "trout-stream-year-round": 0.99
+        "trout-stream-year-round": 1
       },
-      "confidence": 0.98,
+      "confidence": 0.99,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.79,
-      "evidenceQuality": 1.95,
+      "currentMonthTrout": 0.78,
+      "evidenceQuality": 1.99,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2030,16 +2123,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.81,
-        "warmwater-no-trout": 0.04,
-        "warmwater-yearly-stocked-winter-trout": 0.15
+        "trout-stream-year-round": 0.6,
+        "warmwater-yearly-stocked-winter-trout": 0.33,
+        "warmwater-no-trout": 0.07
       },
-      "confidence": 0.71,
+      "confidence": 0.39,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.84,
+      "evidenceQuality": 2.78,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2050,16 +2143,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.01
       },
-      "confidence": 1,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.67,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.01,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2070,16 +2163,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.01,
-        "warmwater-no-trout": 0.99
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0
       },
-      "confidence": 0.99,
+      "confidence": 0.97,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 1.02,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.92,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2090,16 +2183,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.02,
-        "warmwater-no-trout": 0.97
+        "warmwater-no-trout": 0.93,
+        "warmwater-yearly-stocked-winter-trout": 0.04,
+        "trout-stream-year-round": 0.03
       },
-      "confidence": 0.95,
+      "confidence": 0.88,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.18,
-      "evidenceQuality": 1.74,
+      "currentMonthTrout": 0.25,
+      "evidenceQuality": 1.13,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2110,17 +2203,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.03,
         "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.05,
-        "trout-stream-year-round": 0.94
+        "trout-stream-year-round": 0.96
       },
-      "confidence": 0.91,
+      "confidence": 0.94,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.63,
-      "evidenceQuality": 2.85,
-      "monthsTrue": 7,
+      "currentMonthTrout": 0.72,
+      "evidenceQuality": 2.66,
+      "monthsTrue": 11,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2130,16 +2223,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.85,
-        "warmwater-yearly-stocked-winter-trout": 0.11,
-        "warmwater-no-trout": 0.04
+        "warmwater-no-trout": 0.07,
+        "trout-stream-year-round": 0.63,
+        "warmwater-yearly-stocked-winter-trout": 0.3
       },
-      "confidence": 0.78,
+      "confidence": 0.45,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.83,
+      "evidenceQuality": 2.88,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2150,16 +2243,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-no-trout": 0.03,
-        "trout-stream-year-round": 0.19,
-        "warmwater-yearly-stocked-winter-trout": 0.78
+        "warmwater-yearly-stocked-winter-trout": 0.63,
+        "trout-stream-year-round": 0.36,
+        "warmwater-no-trout": 0.01
       },
-      "confidence": 0.66,
+      "confidence": 0.44,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.18,
-      "evidenceQuality": 1.91,
+      "currentMonthTrout": 0.16,
+      "evidenceQuality": 2.6,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2167,20 +2260,20 @@
     {
       "slug": "little-west-fork-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.43,
-        "trout-stream-year-round": 0.56,
-        "warmwater-no-trout": 0.01
+        "trout-stream-year-round": 0.38,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.61
       },
-      "confidence": 0.34,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.42,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.24,
-      "evidenceQuality": 2.47,
-      "monthsTrue": 8,
+      "currentMonthTrout": 0.2,
+      "evidenceQuality": 2.6,
+      "monthsTrue": 9,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2198,8 +2291,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.8,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.51,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2210,17 +2303,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
+        "warmwater-no-trout": 0,
         "trout-stream-year-round": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.98,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.98
       },
-      "confidence": 0.97,
+      "confidence": 0.96,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.73,
-      "monthsTrue": 2,
+      "evidenceQuality": 2.54,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2230,11 +2323,11 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.88,
+        "warmwater-yearly-stocked-winter-trout": 0.96,
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.12
+        "trout-stream-year-round": 0.04
       },
-      "confidence": 0.82,
+      "confidence": 0.94,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
@@ -2250,16 +2343,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0.07,
-        "warmwater-no-trout": 0.89,
-        "warmwater-yearly-stocked-winter-trout": 0.04
+        "warmwater-no-trout": 0.66,
+        "warmwater-yearly-stocked-winter-trout": 0.16,
+        "trout-stream-year-round": 0.18
       },
-      "confidence": 0.84,
+      "confidence": 0.49,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.42,
-      "evidenceQuality": 1.32,
+      "currentMonthTrout": 0.48,
+      "evidenceQuality": 1.1,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2274,12 +2367,12 @@
         "warmwater-yearly-stocked-winter-trout": 0,
         "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.94,
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.47,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2290,16 +2383,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0
+        "trout-stream-year-round": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.81,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.6,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2310,17 +2403,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.86,
-        "warmwater-no-trout": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.12
+        "trout-stream-year-round": 0.91,
+        "warmwater-yearly-stocked-winter-trout": 0.05,
+        "warmwater-no-trout": 0.04
       },
-      "confidence": 0.79,
+      "confidence": 0.86,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.42,
-      "evidenceQuality": 2.19,
-      "monthsTrue": 6,
+      "currentMonthTrout": 0.59,
+      "evidenceQuality": 1.69,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2338,9 +2431,9 @@
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.38,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.18,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2350,16 +2443,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.15,
-        "warmwater-no-trout": 0.05,
-        "trout-stream-year-round": 0.8
+        "warmwater-yearly-stocked-winter-trout": 0.22,
+        "warmwater-no-trout": 0.07,
+        "trout-stream-year-round": 0.71
       },
-      "confidence": 0.7,
+      "confidence": 0.55,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.15,
-      "evidenceQuality": 2.91,
+      "currentMonthTrout": 0.17,
+      "evidenceQuality": 2.79,
       "monthsTrue": 2,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2370,16 +2463,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.12,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 1.14,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2390,17 +2483,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.86,
-        "trout-stream-year-round": 0.14,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.93,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.07
       },
-      "confidence": 0.79,
+      "confidence": 0.89,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.99,
-      "monthsTrue": 3,
+      "evidenceQuality": 2.98,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2410,16 +2503,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.6,
+      "evidenceQuality": 2.19,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2430,16 +2523,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "warmwater-no-trout": 1,
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.6,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 1.47,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2450,16 +2543,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "trout-stream-year-round": 0.01,
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.01
       },
-      "confidence": 1,
+      "confidence": 0.97,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.15,
-      "evidenceQuality": 1.47,
+      "currentMonthTrout": 0.21,
+      "evidenceQuality": 0.77,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2470,16 +2563,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 1.06,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.68,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2490,16 +2583,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 0.99,
-        "warmwater-yearly-stocked-winter-trout": 0.01
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
+        "trout-stream-year-round": 0
       },
       "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.05,
-      "evidenceQuality": 2.8,
+      "evidenceQuality": 2.07,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2511,15 +2604,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1
       },
       "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.16,
-      "evidenceQuality": 2.35,
+      "currentMonthTrout": 0.2,
+      "evidenceQuality": 1.5,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2527,20 +2620,20 @@
     {
       "slug": "north-chickamauga-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-no-trout": 0.02,
-        "trout-stream-year-round": 0.73,
-        "warmwater-yearly-stocked-winter-trout": 0.25
+        "trout-stream-year-round": 0.45,
+        "warmwater-no-trout": 0.03,
+        "warmwater-yearly-stocked-winter-trout": 0.52
       },
-      "confidence": 0.6,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.28,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.13,
-      "evidenceQuality": 2.97,
-      "monthsTrue": 4,
+      "currentMonthTrout": 0.19,
+      "evidenceQuality": 2.84,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2550,16 +2643,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.98,
+        "trout-stream-year-round": 0
       },
-      "confidence": 0.99,
+      "confidence": 0.97,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.95,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.91,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2578,14 +2671,74 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.2,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 1.42,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "north-fork-obion-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
+      },
+      "confidence": 1,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.01,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-mouse-creek",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.87,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "north-prong-barren-fork",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.3,
+        "warmwater-yearly-stocked-winter-trout": 0.68,
+        "warmwater-no-trout": 0.02
+      },
+      "confidence": 0.52,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.52,
+      "monthsTrue": 5,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "obed-river",
       "requestedMonth": 9,
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
@@ -2598,68 +2751,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.72,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "north-mouse-creek",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 1.01,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "north-prong-barren-fork",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "warmwater-no-trout": 0.03,
-        "trout-stream-year-round": 0.49,
-        "warmwater-yearly-stocked-winter-trout": 0.48
-      },
-      "confidence": 0.25,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 2.39,
-      "monthsTrue": 2,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "obed-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.82,
+      "evidenceQuality": 2.73,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2678,8 +2771,8 @@
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.96,
-      "evidenceQuality": 2.99,
+      "currentMonthTrout": 0.95,
+      "evidenceQuality": 2.97,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2691,15 +2784,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.04,
-      "evidenceQuality": 1.89,
+      "evidenceQuality": 1.03,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2710,16 +2803,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "warmwater-no-trout": 1,
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 1.66,
+      "currentMonthTrout": 0.07,
+      "evidenceQuality": 0.68,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2730,16 +2823,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-no-trout": 0.97,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.99,
+      "confidence": 0.95,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 0.9,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.62,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2750,16 +2843,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0
+        "warmwater-no-trout": 1
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.04,
-      "evidenceQuality": 1.94,
+      "evidenceQuality": 1.16,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2774,12 +2867,12 @@
         "warmwater-no-trout": 1,
         "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 0.84,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.47,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2790,16 +2883,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.05,
+        "trout-stream-year-round": 0.9,
         "warmwater-no-trout": 0.01,
-        "trout-stream-year-round": 0.94
+        "warmwater-yearly-stocked-winter-trout": 0.09
       },
-      "confidence": 0.92,
+      "confidence": 0.85,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.14,
-      "evidenceQuality": 2.31,
+      "currentMonthTrout": 0.2,
+      "evidenceQuality": 2.08,
       "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2810,37 +2903,37 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.01,
         "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.99
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.98,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.02,
+      "currentMonthTrout": 0.03,
       "evidenceQuality": 2.98,
-      "monthsTrue": 3,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "parksville-lake",
       "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.6,
-        "warmwater-no-trout": 0.27,
-        "trout-stream-year-round": 0.13
+        "warmwater-yearly-stocked-winter-trout": 0.09,
+        "warmwater-no-trout": 0.91,
+        "trout-stream-year-round": 0
       },
-      "confidence": 0.4,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "confidence": 0.86,
+      "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.15,
-      "evidenceQuality": 1.43,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 1.34,
+      "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2850,16 +2943,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.99,
-        "warmwater-yearly-stocked-winter-trout": 0.01,
-        "warmwater-no-trout": 0
+        "trout-stream-year-round": 0.98,
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.02
       },
-      "confidence": 0.98,
+      "confidence": 0.96,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": true,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 2.8,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.72,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2871,15 +2964,15 @@
       "rawLabel": "warm water(no trout)",
       "probabilities": {
         "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
       },
       "confidence": 1,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.89,
+      "evidenceQuality": 2.83,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2890,16 +2983,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 0.95,
-        "warmwater-yearly-stocked-winter-trout": 0.04,
-        "trout-stream-year-round": 0.01
+        "warmwater-yearly-stocked-winter-trout": 0.18,
+        "warmwater-no-trout": 0.8,
+        "trout-stream-year-round": 0.02
       },
-      "confidence": 0.92,
+      "confidence": 0.7,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.22,
-      "evidenceQuality": 1.28,
+      "currentMonthTrout": 0.29,
+      "evidenceQuality": 0.43,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2910,17 +3003,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.6,
-        "warmwater-yearly-stocked-winter-trout": 0.37,
-        "warmwater-no-trout": 0.03
+        "warmwater-yearly-stocked-winter-trout": 0.46,
+        "trout-stream-year-round": 0.5,
+        "warmwater-no-trout": 0.04
       },
-      "confidence": 0.41,
+      "confidence": 0.26,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.13,
-      "evidenceQuality": 2.99,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.15,
+      "evidenceQuality": 2.98,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2930,16 +3023,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "warmwater-no-trout": 1,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.86,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.51,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2951,16 +3044,16 @@
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
         "trout-stream-year-round": 0.99,
-        "warmwater-yearly-stocked-winter-trout": 0.01,
-        "warmwater-no-trout": 0
+        "warmwater-no-trout": 0,
+        "warmwater-yearly-stocked-winter-trout": 0.01
       },
       "confidence": 0.98,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.23,
-      "evidenceQuality": 2.61,
-      "monthsTrue": 5,
+      "currentMonthTrout": 0.42,
+      "evidenceQuality": 2.27,
+      "monthsTrue": 8,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -2970,16 +3063,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.83,
-        "warmwater-no-trout": 0.17,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "trout-stream-year-round": 0.69,
+        "warmwater-no-trout": 0.3,
+        "warmwater-yearly-stocked-winter-trout": 0.01
       },
-      "confidence": 0.73,
+      "confidence": 0.53,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.64,
-      "evidenceQuality": 1.87,
+      "currentMonthTrout": 0.65,
+      "evidenceQuality": 1.55,
       "monthsTrue": 8,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -2990,16 +3083,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-no-trout": 0.01,
-        "trout-stream-year-round": 0.77,
-        "warmwater-yearly-stocked-winter-trout": 0.22
+        "warmwater-no-trout": 0.02,
+        "warmwater-yearly-stocked-winter-trout": 0.43,
+        "trout-stream-year-round": 0.55
       },
-      "confidence": 0.65,
+      "confidence": 0.32,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.64,
+      "evidenceQuality": 2.67,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3010,16 +3103,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.83,
-        "trout-stream-year-round": 0.02,
-        "warmwater-no-trout": 0.15
+        "warmwater-no-trout": 0.42,
+        "warmwater-yearly-stocked-winter-trout": 0.57,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.75,
+      "confidence": 0.36,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 1.75,
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 1.51,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3030,16 +3123,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 0.85,
-        "trout-stream-year-round": 0.07,
-        "warmwater-yearly-stocked-winter-trout": 0.08
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0
       },
-      "confidence": 0.77,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 1.25,
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 2.39,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3050,16 +3143,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0,
         "warmwater-no-trout": 1,
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.78,
+      "evidenceQuality": 2.55,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3070,16 +3163,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.25,
-        "trout-stream-year-round": 0.74,
-        "warmwater-no-trout": 0.01
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.4,
+        "trout-stream-year-round": 0.59
       },
-      "confidence": 0.61,
+      "confidence": 0.38,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.89,
+      "evidenceQuality": 2.96,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3094,12 +3187,12 @@
         "warmwater-no-trout": 1,
         "warmwater-yearly-stocked-winter-trout": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.9,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.49,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3110,17 +3203,17 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.9299999999999999,
-        "warmwater-yearly-stocked-winter-trout": 0.04,
-        "warmwater-no-trout": 0.03
+        "warmwater-no-trout": 0.04,
+        "warmwater-yearly-stocked-winter-trout": 0.03,
+        "trout-stream-year-round": 0.93
       },
       "confidence": 0.9,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.67,
-      "evidenceQuality": 1.82,
-      "monthsTrue": 9,
+      "currentMonthTrout": 0.71,
+      "evidenceQuality": 1.59,
+      "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -3130,16 +3223,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "trout-stream-year-round": 0
       },
-      "confidence": 0.99,
+      "confidence": 0.97,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 0.99,
+      "currentMonthTrout": 0.14,
+      "evidenceQuality": 0.91,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3150,16 +3243,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.65,
-        "warmwater-no-trout": 0.08,
-        "warmwater-yearly-stocked-winter-trout": 0.27
+        "warmwater-yearly-stocked-winter-trout": 0.41,
+        "warmwater-no-trout": 0.1,
+        "trout-stream-year-round": 0.49
       },
-      "confidence": 0.47,
+      "confidence": 0.24,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.12,
-      "evidenceQuality": 2.99,
+      "currentMonthTrout": 0.15,
+      "evidenceQuality": 2.98,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3170,16 +3263,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 1,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.89,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.41,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3190,16 +3283,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "warmwater-no-trout": 0.99,
         "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.95,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.41,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3207,40 +3300,40 @@
     {
       "slug": "salt-lick-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.38,
-        "trout-stream-year-round": 0.6,
-        "warmwater-no-trout": 0.02
+        "trout-stream-year-round": 0.24,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.75
       },
-      "confidence": 0.4,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.62,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.59,
-      "monthsTrue": 1,
+      "evidenceQuality": 2.58,
+      "monthsTrue": 2,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "sequatchie-river",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0.54,
-        "warmwater-no-trout": 0.25,
-        "warmwater-yearly-stocked-winter-trout": 0.21
+        "trout-stream-year-round": 0.34,
+        "warmwater-no-trout": 0.39,
+        "warmwater-yearly-stocked-winter-trout": 0.27
       },
-      "confidence": 0.31,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.09,
+      "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 2.14,
-      "monthsTrue": 2,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 1.73,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -3250,36 +3343,36 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.98,
-        "trout-stream-year-round": 0.02,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.99,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.97,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
       "evidenceQuality": 2.98,
-      "monthsTrue": 3,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "shoal-creek",
       "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 0.22,
-        "trout-stream-year-round": 0.35,
-        "warmwater-yearly-stocked-winter-trout": 0.43
+        "warmwater-yearly-stocked-winter-trout": 0.34,
+        "warmwater-no-trout": 0.38,
+        "trout-stream-year-round": 0.28
       },
-      "confidence": 0.15,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "confidence": 0.07,
+      "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.11,
-      "evidenceQuality": 1.85,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 1.64,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3291,14 +3384,14 @@
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.13,
-        "warmwater-yearly-stocked-winter-trout": 0.87
+        "warmwater-yearly-stocked-winter-trout": 0.94,
+        "trout-stream-year-round": 0.06
       },
-      "confidence": 0.8,
+      "confidence": 0.9,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.05,
+      "currentMonthTrout": 0.06,
       "evidenceQuality": 2.78,
       "monthsTrue": 3,
       "consistencyFlags": [],
@@ -3310,16 +3403,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.01,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.99,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.1,
-      "evidenceQuality": 0.82,
+      "currentMonthTrout": 0.15,
+      "evidenceQuality": 0.02,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3330,16 +3423,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.77,
         "warmwater-yearly-stocked-winter-trout": 0.01,
-        "warmwater-no-trout": 0.22
+        "warmwater-no-trout": 0.42,
+        "trout-stream-year-round": 0.5700000000000001
       },
-      "confidence": 0.66,
+      "confidence": 0.34,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.45,
-      "evidenceQuality": 1.39,
+      "currentMonthTrout": 0.5,
+      "evidenceQuality": 1.1,
       "monthsTrue": 0,
       "consistencyFlags": [
         "trout-stream-year-round but every month answered below 0.5 — unusual for a designated trout system; verify evidence"
@@ -3352,16 +3445,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 1,
         "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
+        "warmwater-yearly-stocked-winter-trout": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.83,
+      "currentMonthTrout": 0.09,
+      "evidenceQuality": 0.46,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3372,16 +3465,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
         "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0,
         "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.9,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.45,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3389,19 +3482,19 @@
     {
       "slug": "south-holston-lake",
       "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-no-trout": 0.36,
-        "trout-stream-year-round": 0.15,
-        "warmwater-yearly-stocked-winter-trout": 0.49
+        "warmwater-yearly-stocked-winter-trout": 0.42,
+        "warmwater-no-trout": 0.53,
+        "trout-stream-year-round": 0.05
       },
-      "confidence": 0.25,
+      "confidence": 0.3,
       "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": true,
+      "overrideApplied": false,
       "reviewedLabelAvailable": true,
       "currentMonthTrout": 0.41,
-      "evidenceQuality": 1.62,
+      "evidenceQuality": 1.42,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3412,8 +3505,8 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-no-trout": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 0,
         "trout-stream-year-round": 1
       },
       "confidence": 1,
@@ -3432,16 +3525,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "trout-stream-year-round": 0,
         "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0
+        "warmwater-yearly-stocked-winter-trout": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 0.79,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 0.37,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3449,39 +3542,39 @@
     {
       "slug": "spring-creek-polk",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.35,
-        "trout-stream-year-round": 0.63,
+        "warmwater-yearly-stocked-winter-trout": 0.73,
+        "trout-stream-year-round": 0.25,
         "warmwater-no-trout": 0.02
       },
-      "confidence": 0.45,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.59,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.2,
-      "monthsTrue": 4,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 1.95,
+      "monthsTrue": 6,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "standing-rock-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.67,
         "warmwater-no-trout": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.31,
-        "trout-stream-year-round": 0.67
+        "trout-stream-year-round": 0.31
       },
-      "confidence": 0.51,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.5,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.05,
-      "evidenceQuality": 2.68,
+      "currentMonthTrout": 0.06,
+      "evidenceQuality": 2.57,
       "monthsTrue": 2,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3492,16 +3585,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.27,
-        "trout-stream-year-round": 0.72,
-        "warmwater-no-trout": 0.01
+        "trout-stream-year-round": 0.55,
+        "warmwater-no-trout": 0.01,
+        "warmwater-yearly-stocked-winter-trout": 0.44
       },
-      "confidence": 0.58,
+      "confidence": 0.32,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.91,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.88,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3512,16 +3605,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.73,
-        "trout-stream-year-round": 0.27,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.79,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.21
       },
-      "confidence": 0.6,
+      "confidence": 0.69,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.93,
+      "evidenceQuality": 2.91,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3536,13 +3629,13 @@
         "warmwater-no-trout": 0.01,
         "trout-stream-year-round": 0.92
       },
-      "confidence": 0.89,
+      "confidence": 0.88,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.48,
-      "evidenceQuality": 2.92,
-      "monthsTrue": 3,
+      "currentMonthTrout": 0.66,
+      "evidenceQuality": 2.79,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -3552,11 +3645,11 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.71,
-        "trout-stream-year-round": 0.29,
-        "warmwater-no-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0.75,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.25
       },
-      "confidence": 0.56,
+      "confidence": 0.63,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
@@ -3572,16 +3665,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-no-trout": 0.03,
-        "warmwater-yearly-stocked-winter-trout": 0.93,
-        "trout-stream-year-round": 0.04
+        "warmwater-no-trout": 0.09,
+        "warmwater-yearly-stocked-winter-trout": 0.89,
+        "trout-stream-year-round": 0.02
       },
-      "confidence": 0.89,
+      "confidence": 0.84,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.16,
-      "evidenceQuality": 1.94,
+      "currentMonthTrout": 0.15,
+      "evidenceQuality": 1.91,
       "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3592,16 +3685,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
+        "warmwater-no-trout": 0,
         "warmwater-yearly-stocked-winter-trout": 0.01,
-        "trout-stream-year-round": 0.99,
-        "warmwater-no-trout": 0
+        "trout-stream-year-round": 0.99
       },
       "confidence": 0.99,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.9,
-      "evidenceQuality": 2.75,
+      "evidenceQuality": 2.7,
       "monthsTrue": 12,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3612,16 +3705,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "trout-stream-year-round": 0,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "warmwater-no-trout": 1
+        "warmwater-no-trout": 0.99,
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.99,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 1.92,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.77,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3632,16 +3725,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.02,
+        "warmwater-no-trout": 0.97,
         "trout-stream-year-round": 0,
-        "warmwater-no-trout": 0.98
+        "warmwater-yearly-stocked-winter-trout": 0.03
       },
-      "confidence": 0.97,
+      "confidence": 0.95,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.13,
-      "evidenceQuality": 2.77,
+      "currentMonthTrout": 0.15,
+      "evidenceQuality": 2.51,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3652,36 +3745,36 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.98,
-        "warmwater-yearly-stocked-winter-trout": 0.01,
-        "warmwater-no-trout": 0.01
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "warmwater-no-trout": 0.01,
+        "trout-stream-year-round": 0.99
       },
-      "confidence": 0.98,
+      "confidence": 0.97,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.56,
-      "evidenceQuality": 2.94,
-      "monthsTrue": 4,
+      "currentMonthTrout": 0.63,
+      "evidenceQuality": 2.86,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "tumbling-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.79,
-        "warmwater-yearly-stocked-winter-trout": 0.2,
-        "warmwater-no-trout": 0.01
+        "trout-stream-year-round": 0.47,
+        "warmwater-yearly-stocked-winter-trout": 0.51,
+        "warmwater-no-trout": 0.02
       },
-      "confidence": 0.68,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.27,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.91,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.92,
       "monthsTrue": 2,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3692,37 +3785,37 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.02,
         "warmwater-yearly-stocked-winter-trout": 0.98,
-        "warmwater-no-trout": 0
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.02
       },
-      "confidence": 0.97,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.02,
+      "currentMonthTrout": 0.03,
       "evidenceQuality": 2.99,
-      "monthsTrue": 3,
+      "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "upper-hills-creek",
       "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.28,
+        "warmwater-yearly-stocked-winter-trout": 0.59,
         "warmwater-no-trout": 0.02,
-        "trout-stream-year-round": 0.7
+        "trout-stream-year-round": 0.39
       },
-      "confidence": 0.55,
-      "effectiveCategory": "trout-stream-year-round",
+      "confidence": 0.38,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.06,
-      "evidenceQuality": 2.73,
-      "monthsTrue": 1,
+      "evidenceQuality": 2.78,
+      "monthsTrue": 2,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -3732,16 +3825,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "trout-stream-year-round": 0.87,
-        "warmwater-no-trout": 0.01,
-        "warmwater-yearly-stocked-winter-trout": 0.12
+        "warmwater-no-trout": 0.02,
+        "trout-stream-year-round": 0.76,
+        "warmwater-yearly-stocked-winter-trout": 0.22
       },
-      "confidence": 0.79,
+      "confidence": 0.65,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 2.95,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 2.92,
       "monthsTrue": 4,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3752,17 +3845,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.98,
+        "warmwater-yearly-stocked-winter-trout": 0.99,
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 0.02
+        "trout-stream-year-round": 0.01
       },
-      "confidence": 0.97,
+      "confidence": 0.98,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
       "evidenceQuality": 2.98,
-      "monthsTrue": 3,
+      "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -3772,16 +3865,16 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.18,
-        "warmwater-no-trout": 0.18,
-        "warmwater-yearly-stocked-winter-trout": 0.64
+        "warmwater-yearly-stocked-winter-trout": 0.55,
+        "warmwater-no-trout": 0.26,
+        "trout-stream-year-round": 0.19
       },
-      "confidence": 0.46,
+      "confidence": 0.32,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.53,
-      "evidenceQuality": 1.62,
+      "currentMonthTrout": 0.47,
+      "evidenceQuality": 1.54,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3793,15 +3886,15 @@
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
         "warmwater-no-trout": 0,
-        "trout-stream-year-round": 1,
-        "warmwater-yearly-stocked-winter-trout": 0
+        "warmwater-yearly-stocked-winter-trout": 0,
+        "trout-stream-year-round": 1
       },
       "confidence": 1,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.94,
-      "evidenceQuality": 2.9,
+      "currentMonthTrout": 0.93,
+      "evidenceQuality": 2.83,
       "monthsTrue": 10,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3812,16 +3905,16 @@
       "rawChoice": "trout-stream-year-round",
       "rawLabel": "Trout Stream - year round",
       "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.05,
-        "warmwater-no-trout": 0.07,
-        "trout-stream-year-round": 0.88
+        "warmwater-yearly-stocked-winter-trout": 0.11,
+        "warmwater-no-trout": 0.05,
+        "trout-stream-year-round": 0.84
       },
-      "confidence": 0.82,
+      "confidence": 0.76,
       "effectiveCategory": "trout-stream-year-round",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.18,
-      "evidenceQuality": 2.24,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 2.5,
       "monthsTrue": 5,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -3841,13 +3934,173 @@
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.04,
-      "evidenceQuality": 2.84,
+      "evidenceQuality": 2.51,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
     {
       "slug": "west-fork-obey-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 0.99,
+        "warmwater-yearly-stocked-winter-trout": 0.01
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.13,
+      "evidenceQuality": 0.47,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-fork-stones-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.83,
+        "warmwater-no-trout": 0,
+        "trout-stream-year-round": 0.17
+      },
+      "confidence": 0.74,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.05,
+      "evidenceQuality": 2.31,
+      "monthsTrue": 4,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-harpeth-river",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-no-trout",
+      "rawLabel": "warm water(no trout)",
+      "probabilities": {
+        "trout-stream-year-round": 0,
+        "warmwater-no-trout": 1,
+        "warmwater-yearly-stocked-winter-trout": 0
+      },
+      "confidence": 0.99,
+      "effectiveCategory": "warmwater-no-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.1,
+      "evidenceQuality": 0.46,
+      "monthsTrue": 0,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "west-prong-little-pigeon",
+      "requestedMonth": 9,
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
+      "probabilities": {
+        "warmwater-no-trout": 0.22,
+        "warmwater-yearly-stocked-winter-trout": 0.04,
+        "trout-stream-year-round": 0.74
+      },
+      "confidence": 0.61,
+      "effectiveCategory": "trout-stream-year-round",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.61,
+      "evidenceQuality": 1.55,
+      "monthsTrue": 8,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "white-oak-creek",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "trout-stream-year-round": 0.26,
+        "warmwater-no-trout": 0.02,
+        "warmwater-yearly-stocked-winter-trout": 0.72
+      },
+      "confidence": 0.57,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.08,
+      "evidenceQuality": 2.36,
+      "monthsTrue": 4,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "wilbur-lake",
+      "requestedMonth": 9,
+      "rawChoice": "trout-stream-year-round",
+      "rawLabel": "Trout Stream - year round",
+      "probabilities": {
+        "warmwater-no-trout": 0.11,
+        "trout-stream-year-round": 0.58,
+        "warmwater-yearly-stocked-winter-trout": 0.31
+      },
+      "confidence": 0.36,
+      "effectiveCategory": "trout-stream-year-round",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.16,
+      "evidenceQuality": 2.28,
+      "monthsTrue": 5,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-yearly-stocked-winter-trout": 0.67,
+        "trout-stream-year-round": 0.31,
+        "warmwater-no-trout": 0.02
+      },
+      "confidence": 0.5,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.23,
+      "evidenceQuality": 2.9,
+      "monthsTrue": 4,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "wolf-river-west-tennessee",
+      "requestedMonth": 9,
+      "rawChoice": "warmwater-yearly-stocked-winter-trout",
+      "rawLabel": "Warm water - Yearly stocked winter trout",
+      "probabilities": {
+        "warmwater-no-trout": 0.16,
+        "warmwater-yearly-stocked-winter-trout": 0.83,
+        "trout-stream-year-round": 0.01
+      },
+      "confidence": 0.75,
+      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
+      "overrideApplied": false,
+      "reviewedLabelAvailable": false,
+      "currentMonthTrout": 0.11,
+      "evidenceQuality": 0.83,
+      "monthsTrue": 1,
+      "consistencyFlags": [],
+      "model": "jev-1.13.0"
+    },
+    {
+      "slug": "woods-reservoir",
       "requestedMonth": 9,
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
@@ -3860,168 +4113,8 @@
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.09,
-      "evidenceQuality": 0.72,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "west-fork-stones-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "trout-stream-year-round": 0.15,
-        "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.85
-      },
-      "confidence": 0.78,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.05,
-      "evidenceQuality": 2.93,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "west-harpeth-river",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 0.85,
-      "monthsTrue": 0,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "west-prong-little-pigeon",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "trout-stream-year-round": 0.87,
-        "warmwater-yearly-stocked-winter-trout": 0.05,
-        "warmwater-no-trout": 0.08
-      },
-      "confidence": 0.81,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.61,
-      "evidenceQuality": 1.93,
-      "monthsTrue": 6,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "white-oak-creek",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.56,
-        "trout-stream-year-round": 0.42,
-        "warmwater-no-trout": 0.02
-      },
-      "confidence": 0.34,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.07,
-      "evidenceQuality": 2.3,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "wilbur-lake",
-      "requestedMonth": 9,
-      "rawChoice": "trout-stream-year-round",
-      "rawLabel": "Trout Stream - year round",
-      "probabilities": {
-        "warmwater-no-trout": 0.12,
-        "warmwater-yearly-stocked-winter-trout": 0.33,
-        "trout-stream-year-round": 0.55
-      },
-      "confidence": 0.31,
-      "effectiveCategory": "trout-stream-year-round",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.3,
-      "evidenceQuality": 1.89,
-      "monthsTrue": 5,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "wolf-river-fentress",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "warmwater-no-trout": 0.02,
-        "warmwater-yearly-stocked-winter-trout": 0.57,
-        "trout-stream-year-round": 0.41
-      },
-      "confidence": 0.36,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.19,
-      "evidenceQuality": 2.96,
-      "monthsTrue": 3,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "wolf-river-west-tennessee",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-yearly-stocked-winter-trout",
-      "rawLabel": "Warm water - Yearly stocked winter trout",
-      "probabilities": {
-        "warmwater-yearly-stocked-winter-trout": 0.86,
-        "trout-stream-year-round": 0.01,
-        "warmwater-no-trout": 0.13
-      },
-      "confidence": 0.8,
-      "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.12,
-      "evidenceQuality": 0.75,
-      "monthsTrue": 1,
-      "consistencyFlags": [],
-      "model": "jev-1.13.0"
-    },
-    {
-      "slug": "woods-reservoir",
-      "requestedMonth": 9,
-      "rawChoice": "warmwater-no-trout",
-      "rawLabel": "warm water(no trout)",
-      "probabilities": {
-        "warmwater-no-trout": 1,
-        "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0
-      },
-      "confidence": 1,
-      "effectiveCategory": "warmwater-no-trout",
-      "overrideApplied": false,
-      "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.78,
+      "currentMonthTrout": 0.04,
+      "evidenceQuality": 1.91,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
@@ -4032,17 +4125,17 @@
       "rawChoice": "warmwater-yearly-stocked-winter-trout",
       "rawLabel": "Warm water - Yearly stocked winter trout",
       "probabilities": {
-        "trout-stream-year-round": 0.02,
+        "trout-stream-year-round": 0.01,
         "warmwater-no-trout": 0,
-        "warmwater-yearly-stocked-winter-trout": 0.98
+        "warmwater-yearly-stocked-winter-trout": 0.99
       },
-      "confidence": 0.97,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-yearly-stocked-winter-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
       "currentMonthTrout": 0.03,
-      "evidenceQuality": 2.99,
-      "monthsTrue": 2,
+      "evidenceQuality": 2.97,
+      "monthsTrue": 3,
       "consistencyFlags": [],
       "model": "jev-1.13.0"
     },
@@ -4052,16 +4145,16 @@
       "rawChoice": "warmwater-no-trout",
       "rawLabel": "warm water(no trout)",
       "probabilities": {
+        "warmwater-no-trout": 1,
         "warmwater-yearly-stocked-winter-trout": 0,
-        "trout-stream-year-round": 0,
-        "warmwater-no-trout": 1
+        "trout-stream-year-round": 0
       },
-      "confidence": 1,
+      "confidence": 0.99,
       "effectiveCategory": "warmwater-no-trout",
       "overrideApplied": false,
       "reviewedLabelAvailable": false,
-      "currentMonthTrout": 0.08,
-      "evidenceQuality": 0.72,
+      "currentMonthTrout": 0.12,
+      "evidenceQuality": 0.01,
       "monthsTrue": 0,
       "consistencyFlags": [],
       "model": "jev-1.13.0"

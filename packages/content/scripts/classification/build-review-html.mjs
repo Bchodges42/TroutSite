@@ -30,6 +30,7 @@ for (const r of evalDoc.results) {
   if (r.error) continue;
   const s = evidenceState(r.slug, { month: evalDoc.month.number });
   const fb = s.evidence.fishbrainDiscovery;
+  const comp = s.evidence.composite || {};
   const species = [
     ...(fb.freshwaterTrout ?? []).map((x) => ({ name: x.name, catches: x.catches ?? 0, role: 'trout' })),
     ...(fb.topFreshwaterSpecies ?? []).map((x) => ({ name: x.name, catches: x.catches ?? 0, role: 'context' })),
@@ -50,6 +51,10 @@ for (const r of evalDoc.results) {
     fishbrainWaterName: fb.pageName ?? null,
     loggedCatches: fb.loggedCatches ?? null,
     catalogSpecies: s.evidence.catalog.species ?? null,
+    compositeClass: comp.recommendedClass ?? null,
+    compositeMonths: comp.seasonMonths ?? null,
+    compositeConfidence: comp.sourceConfidence ?? null,
+    compositeFlags: (comp.flags ?? []).length,
     catalogFishery: s.evidence.catalog.fishery ?? null,
     catalogYearRound: s.evidence.catalog.yearRound ?? null,
     catalogSeasonMonths: s.evidence.catalog.seasonMonths ?? null,
@@ -313,6 +318,7 @@ window.openDrawer = function (slug) {
   var kv = [];
   kv.push('<div class="kv"><b>Jev:</b> <span class="pill ' + (r.rawChoice || '') + '">' + (SHORT[r.rawChoice] || '\\u2014') + '</span> confidence ' + (r.confidence == null ? '\\u2014' : r.confidence.toFixed(2)) + ' \\u00b7 trout months ' + (r.monthsTrue == null ? '\\u2014' : r.monthsTrue) + '/12</div>');
   kv.push('<div class="kv"><b>Current decision:</b> ' + ((decisions[slug] || {}).category ? SHORT[decisions[slug].category] : '\\u2014') + '</div>');
+  kv.push('<div class="kv"><b>Composite:</b> ' + esc([comp.recommendedClass, comp.compositeConfidence, (comp.compositeMonths || []).length ? 'months ' + JSON.stringify(comp.compositeMonths) : null].filter(Boolean).join(' · ') || 'no composite row') + '</div>');
   kv.push('<div class="kv"><b>Catalog today:</b> ' + esc([ev.catalogSpecies ? 'species ' + ev.catalogSpecies : 'species unset', ev.catalogFishery ? ev.catalogFishery : null, ev.catalogYearRound == null ? null : (ev.catalogYearRound ? 'yearRound' : 'seasonal'), ev.catalogSeasonMonths ? 'months ' + JSON.stringify(ev.catalogSeasonMonths) : null].filter(Boolean).join(' \\u00b7 ') || '\\u2014') + '</div>');
   kv.push('<div class="kv"><b>Ledger:</b> ' + (ev.ledger ? 'audited (' + esc(ev.ledgerClass || 'no class line') + ')' : 'none') + ' \\u00b7 <b>TWRA feed:</b> ' + (ev.stockingEvents ? ev.stockingEvents + ' events (' + (ev.stockingPrograms || []).join('/') + ')' : 'none matched') + '</div>');
   kv.push('<div class="kv"><b>Fishbrain:</b> ' + esc(ev.matchStatus || '') + (ev.fishbrainWaterName ? ' \\u2014 "' + esc(ev.fishbrainWaterName) + '"' : '') + (ev.loggedCatches != null ? ' \\u00b7 ' + ev.loggedCatches + ' logged catches' : '') + '</div>');

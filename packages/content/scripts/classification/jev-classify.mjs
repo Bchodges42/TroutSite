@@ -32,8 +32,34 @@ import { readKey } from './judge.mjs';
 export const MODEL = 'jev-latest';
 export const FISHBRAIN_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'fishbrain-tn-graphql-discovery.json');
 export const FISHBRAIN_STANDARD_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'fishbrain-tn-graphql-standard-discovery.json');
+export const COMPOSITE_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'CLASSIFICATION-COMPOSITE-2026-09-17.json');
 export const SPECIES_OCCURRENCES_PATH = join(REPO_ROOT, 'packages', 'content', 'data', 'species-occurrences.json');
 export const REVIEW_LABELS_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'jev-tn-review-labels.json');
+
+/**
+ * Three-source composite (official schedule + ArcGIS feed + warmwater
+ * workbook, reconciled with documented precedence) — the authoritative
+ * program evidence. STRICT WHITELIST when building state: recommendedClass,
+ * programClasses, modifiers, seasonMonths, confidence, flags ONLY. The file's
+ * `jev` column is Jev's own prior answer and must NEVER enter the state (the
+ * 2026-09-17 audit found that exact answer-key leak producing a fake 94.7%).
+ */
+function compositeEvidenceFor(slug) {
+  const entry = COMPOSITE_BY_SLUG.get(slug);
+  if (!entry) {
+    return { available: false, sourceRole: 'no composite row for this water' };
+  }
+  return {
+    available: true,
+    sourceRole: 'three-source reconciliation (official schedule, live feed, warmwater workbook) with documented precedence — authoritative over any single raw source; where sourceConfidence is conflict, spread confidence and defer to owner review',
+    recommendedClass: entry.recommendedClass ?? null,
+    programClasses: entry.programClasses ?? [],
+    modifiers: entry.modifiers ?? [],
+    seasonMonths: entry.seasonMonths ?? null,
+    sourceConfidence: entry.confidence ?? null,
+    flags: (entry.flags ?? []).map((f) => String(f)),
+  };
+}
 
 export const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -136,6 +162,8 @@ for (const event of stockingFeed.events) {
   }
 }
 
+const COMPOSITE_DOCUMENT = readJsonIfPresent(COMPOSITE_PATH, { waters: {} });
+const COMPOSITE_BY_SLUG = new Map(Object.entries(COMPOSITE_DOCUMENT.waters ?? {}));
 const scheduleDocument = loadSchedule();
 const SCHEDULE_BY_SLUG = buildSchedulePrograms(CATALOG, scheduleDocument.rows ?? [], resolveEvent, { ...ALIASES, ...loadScheduleAliases() }).bySlug;
 
@@ -361,6 +389,7 @@ export function questionsForMonth(month = new Date().getMonth() + 1) {
         'Judge the exact segment named in water.name/id: a reservoir, its tailwater, and an upstream river reach are different systems. Do not transfer a lake label to its tailwater or a tailwater label to its lake. A lake trout in a reservoir is freshwater species evidence, but it does not by itself make the reservoir a trout stream.',
         'On "year round": the label describes the standing trout-stream system and its management, not a promise of catchable trout in every month. Seasonal stocking windows on a designated trout stream belong in the month answers, not in the category.',
         'Ignore marine/brackish species explicitly marked excluded. In particular, Sea trout, Spotted seatrout, Red drum, Black drum, Bluefish, Gafftopsail sea catfish, and Steelhead are not Tennessee freshwater-trout evidence.',
+        'When state.evidence.composite is available, its reconciled program class, season months, and source confidence are AUTHORITATIVE over the raw schedule/feed lines below it; if it marks sourceConfidence conflict, spread probability and reduce confidence.',
         'If sources conflict or are too thin, spread probability across the plausible categories and reduce confidence. Do not turn missing evidence into certainty.',
       ],
       criteria: CATEGORY_CRITERIA,
@@ -424,6 +453,7 @@ export function evidenceState(slug, { month = new Date().getMonth() + 1 } = {}) 
       auditedLedger: ledgerEvidence(slug),
       twraStocking: stockingEvidence(slug),
       canonicalSpecies: canonicalSpeciesEvidence(slug),
+      composite: compositeEvidenceFor(slug),
       fishbrainDiscovery: fishbrainEvidence(slug),
     },
     safeguards: [
