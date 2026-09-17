@@ -1,0 +1,43 @@
+{
+  "schema": "trout/species-occurrences/1",
+  "stateId": "TN",
+  "updatedAt": "2026-09-16",
+  "collectionNote": "Fixture subset of the static, source-backed Tennessee fish occurrence snapshot; it does not scrape Fishbrain or any other restricted user-generated database.",
+  "sources": [
+    {
+      "id": "twra",
+      "url": "https://www.tn.gov/twra/fishing.html",
+      "label": "TWRA — Tennessee fishing information",
+      "retrieved": "2026-09-14",
+      "basis": "Representative fixture source for the curated occurrence contract."
+    }
+  ],
+  "species": [
+    { "id": "rainbow-trout", "displayName": "Rainbow trout", "scientificName": "Oncorhynchus mykiss", "group": "trout" },
+    { "id": "brown-trout", "displayName": "Brown trout", "scientificName": "Salmo trutta", "group": "trout" },
+    { "id": "brook-trout", "displayName": "Brook trout", "scientificName": "Salvelinus fontinalis", "group": "trout" },
+    { "id": "largemouth-bass", "displayName": "Largemouth bass", "scientificName": "Micropterus salmoides", "group": "bass" },
+    { "id": "smallmouth-bass", "displayName": "Smallmouth bass", "scientificName": "Micropterus dolomieu", "group": "bass" },
+    { "id": "spotted-bass", "displayName": "Spotted bass", "scientificName": "Micropterus punctulatus", "group": "bass" },
+    { "id": "crappie", "displayName": "Crappie (black & white)", "scientificName": "Pomoxis spp.", "group": "panfish" },
+    { "id": "bluegill", "displayName": "Bluegill", "scientificName": "Lepomis macrochirus", "group": "panfish" },
+    { "id": "channel-catfish", "displayName": "Channel catfish", "scientificName": "Ictalurus punctatus", "group": "catfish" },
+    { "id": "striped-bass", "displayName": "Striped bass", "scientificName": "Morone saxatilis", "group": "predator" }
+  ],
+  "occurrences": [
+    {
+      "waterIds": ["south-holston-river"],
+      "speciesIds": ["rainbow-trout", "brown-trout", "brook-trout"],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "twra"
+    },
+    {
+      "waterIds": ["boone-lake"],
+      "speciesIds": ["largemouth-bass", "smallmouth-bass", "spotted-bass", "crappie", "bluegill", "channel-catfish", "striped-bass"],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "twra"
+    }
+  ]
+}

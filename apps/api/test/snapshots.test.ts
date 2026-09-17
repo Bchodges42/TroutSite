@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   ConditionSnapshotSchema,
+  SpeciesOccurrenceCatalogSchema,
   ShopSchema,
   ShopReportSchema,
   StreamSchema,
@@ -285,8 +286,8 @@ describe('scoring parity (server snapshot == client recompute)', () => {
   });
 });
 
-/** Content-pack emission (integration seam): /v1/hatch/* + /content/{taxa,patterns}.json
- *  are derived from the built pack (packages/content/dist/pack) in the same run. */
+/** Content-pack emission (integration seam): /v1/hatch/* + /content/{taxa,patterns,
+ * species-occurrences}.json are derived from the built pack in the same run. */
 describe('content pack emission', () => {
   it('emits hatch charts at /v1/hatch and bare-array content payloads, stripping pack extras', () => {
     const env2 = makeEnv();
@@ -329,6 +330,41 @@ describe('content pack emission', () => {
       writeFileSync(join(pack, 'bugs.json'), JSON.stringify({ taxa: [taxon] }));
       writeFileSync(join(pack, 'patterns.json'), JSON.stringify({ patterns: [pattern] }));
       writeFileSync(
+        join(pack, 'species-occurrences.json'),
+        JSON.stringify({
+          schema: 'trout/species-occurrences/1',
+          stateId: 'TN',
+          updatedAt: '2026-09-16',
+          collectionNote: 'Curated source-backed occurrence records for Tennessee waters.',
+          sources: [
+            {
+              id: 'twra',
+              url: 'https://www.tn.gov/twra/fishing.html',
+              label: 'Tennessee Wildlife Resources Agency',
+              retrieved: '2026-09-16',
+              basis: 'Agency fishery and stocking information.',
+            },
+          ],
+          species: [
+            {
+              id: 'rainbow-trout',
+              displayName: 'Rainbow trout',
+              scientificName: 'Oncorhynchus mykiss',
+              group: 'trout',
+            },
+          ],
+          occurrences: [
+            {
+              waterIds: ['tn-test-water'],
+              speciesIds: ['rainbow-trout'],
+              evidenceType: 'stocking-record',
+              confidence: 'high',
+              sourceId: 'twra',
+            },
+          ],
+        }),
+      );
+      writeFileSync(
         join(pack, 'hatch', 'tn-test-region', '4.json'),
         JSON.stringify({
           regionId: 'tn-test-region',
@@ -356,6 +392,11 @@ describe('content pack emission', () => {
 
       const patterns = JSON.parse(readOut(env2.snapshotsDir, join('content', 'patterns.json'))) as unknown[];
       expect(patterns).toHaveLength(1);
+
+      const occurrences = JSON.parse(
+        readOut(env2.snapshotsDir, join('content', 'species-occurrences.json')),
+      );
+      expect(SpeciesOccurrenceCatalogSchema.parse(occurrences).occurrences).toHaveLength(1);
 
       const chart = JSON.parse(
         readOut(env2.snapshotsDir, join('v1', 'hatch', 'tn-test-region', '4.json')),

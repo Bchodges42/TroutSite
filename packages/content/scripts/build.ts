@@ -3,7 +3,8 @@
 // Output: dist/pack/ — bugs.json, patterns.json, streams.json, shops.json, regions.json,
 // fishing.json (data-sources lane: structured fishing-information content),
 // hatch/{regionId}/{month}.json (same shape as the /v1/hatch/{regionId}/{month}.json snapshot),
-// plus meta.json. Returns non-zero if the pack exceeds the size budget.
+// plus meta.json and the static species-occurrence catalog. Returns non-zero if
+// the pack exceeds the size budget.
 import { accessSync, mkdirSync, readFileSync, rmSync, writeFileSync, constants } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { FishingInformationSchema } from '@trout/contracts';
@@ -11,7 +12,7 @@ import { loadContent, loadSpeciesReference, FLOORS } from './lib.js';
 import { REGIONS } from './regions.js';
 
 const OUT = resolve(import.meta.dirname, '..', 'dist', 'pack');
-const { bugs, patterns, streams, shops, hatch, illustrations, issues } = loadContent();
+const { bugs, patterns, streams, speciesOccurrences, shops, hatch, illustrations, issues } = loadContent();
 const { species, issues: speciesIssues } = loadSpeciesReference();
 issues.push(...speciesIssues);
 
@@ -47,6 +48,10 @@ const files: Record<string, string> = {
   // F2 species reference (comfort + activity bands, every value cited) — the
   // fishability scorer's data source once contracts v2 lands (Session A).
   'species.json': JSON.stringify({ species: [...species.entries()].map(([id, ref]) => ({ id, ...ref })) }),
+  // Static, source-backed fish occurrences. Unlike the conditions and stocking
+  // snapshots, this file is intentionally unchanged between content builds
+  // until a curator reviews and commits a new snapshot.
+  'species-occurrences.json': JSON.stringify(speciesOccurrences),
   // Per-water trout calendar (research lane 2026-09-10): months each water
   // plausibly holds trout + stocking-event months, cited per row in
   // docs/research/SPECIES-CLASSIFICATION.md. Passed through verbatim — the

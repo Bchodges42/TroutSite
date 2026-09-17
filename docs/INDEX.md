@@ -39,6 +39,7 @@ instead.
 | [`TN-DATA-SOURCES.md`](TN-DATA-SOURCES.md) | Tennessee source inventory |
 | [`DATA-SOURCE-COVERAGE.md`](DATA-SOURCE-COVERAGE.md) (+ `data-source-coverage.json`) | Gauge/feed coverage per water |
 | [`FISHING-INFORMATION-SOURCES.md`](FISHING-INFORMATION-SOURCES.md) | Regulations pack provenance & review dates |
+| [`SPECIES-DATABASE.md`](SPECIES-DATABASE.md) | Static fish occurrence catalog, source policy, and update workflow |
 | [`STILLWATER-COVERAGE.md`](STILLWATER-COVERAGE.md) | Lake/pond coverage decisions |
 | [`WATERBODY-GEOMETRY-CONTRACT.md`](WATERBODY-GEOMETRY-CONTRACT.md) · [`REFERENCE-WATERBODY-INVENTORY.md`](REFERENCE-WATERBODY-INVENTORY.md) (+ `waterbody-inventory.json`) | Geometry property contract + per-waterbody inventory |
 

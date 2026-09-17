@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   StreamSchema, ConditionSnapshotSchema, StockingEventSchema, HatchChartSchema,
-  ShopSchema, ShopReportSchema, BugTaxonSchema, FlyPatternSchema,
+  ShopSchema, ShopReportSchema, BugTaxonSchema, FlyPatternSchema, SpeciesOccurrenceCatalogSchema,
 } from '@trout/contracts';
 
 /**
@@ -82,6 +82,14 @@ describe('fixture data conforms to the frozen contracts', () => {
     for (const p of patterns) {
       for (const tid of p.imitates) expect(taxonIds.has(tid), `${p.id} imitates unknown ${tid}`).toBe(true);
     }
+  });
+
+  it('the static species occurrence catalog parses and carries attribution', () => {
+    const catalog = SpeciesOccurrenceCatalogSchema.parse(readJson('content/species-occurrences.json'));
+    expect(catalog.stateId).toBe('TN');
+    expect(catalog.species.length).toBeGreaterThanOrEqual(10);
+    expect(catalog.occurrences.length).toBeGreaterThan(0);
+    expect(catalog.sources.every((source) => source.url.startsWith('https://'))).toBe(true);
   });
 
   it('every region/month hatch chart parses with resolvable taxa and patterns', () => {

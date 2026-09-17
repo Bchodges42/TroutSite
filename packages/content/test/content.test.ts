@@ -15,7 +15,7 @@ import {
 } from '../scripts/lib.js';
 import { REGIONS } from '../scripts/regions.js';
 
-const { bugs, patterns, streams, shops, hatch, illustrations, issues, warnings } = loadContent();
+const { bugs, patterns, streams, speciesOccurrences, shops, hatch, illustrations, issues, warnings } = loadContent();
 const { species, issues: speciesIssues } = loadSpeciesReference();
 
 describe('content pack validation (CI gate)', () => {
@@ -92,6 +92,15 @@ describe('content pack validation (CI gate)', () => {
     for (const shop of shops.values()) {
       expect(shop.websiteUrl).toMatch(/^https:\/\//);
       expect(shop.reportsEnabled, 'shops ship un-onboarded').toBe(false);
+    }
+  });
+
+  it('loads the static fish occurrence catalog with covered waters and species', () => {
+    expect(speciesOccurrences.stateId).toBe('TN');
+    expect(speciesOccurrences.species.length).toBeGreaterThanOrEqual(10);
+    expect(speciesOccurrences.occurrences.length).toBeGreaterThan(0);
+    for (const group of speciesOccurrences.occurrences) {
+      for (const waterId of group.waterIds) expect(streams.has(waterId), waterId).toBe(true);
     }
   });
 

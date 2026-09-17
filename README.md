@@ -24,7 +24,7 @@ months; 555 routes are prerendered for SEO. Open items live in
 |---|---|
 | `packages/contracts` | Zod schemas, `ENDPOINTS`, `scoreConditions`, `matchHatch` — shared truth (additive changes only, via ADR + tag bump) |
 | `packages/ui` | Design tokens + base primitives |
-| `packages/content` | YAML content pack (streams, hatch charts, taxa, patterns, shops, regs) + validate/build scripts |
+| `packages/content` | YAML/JSON content pack (streams, hatch charts, taxa, patterns, shops, regs, fish occurrences) + validate/build scripts |
 | `apps/web` | React 18 + Vite 5 PWA (MapLibre, Workbox, Dexie, Tailwind) — the product |
 | `apps/api` | Fastify + better-sqlite3: ingest jobs, snapshot builder, the only live routes |
 | `apps/admin` | Shop portal SPA (HMAC token auth — see `apps/admin/TOKENS.md`) |
@@ -60,9 +60,10 @@ pnpm e2e
 
 ## Architecture invariants
 
-- **Read path is static files.** `/v1/*` and `/content/*` are JSON snapshots regenerated
-  hourly by the data job; the one dynamic GET is `/v1/streams?state=`; the one write
-  surface is `POST /v1/portal/reports` (HMAC shop token). ADRs 0004–0006 record why.
+- **Read path is static files.** `/v1/*` JSON snapshots are regenerated hourly by the
+  data job; `/content/*` is the bundled content pack, including reviewed static fish
+  occurrences. The one dynamic GET is `/v1/streams?state=`; the one write surface is
+  `POST /v1/portal/reports` (HMAC shop token). ADRs 0004–0006 record why.
 - **Offline layer** = Workbox service worker + Dexie in the browser. Snapshot routes are
   served `no-store` so HTTP caching can never masquerade as live data.
 - **Privacy by architecture.** No accounts, no cookies, no analytics unless compiled in
@@ -72,7 +73,7 @@ pnpm e2e
 ## Contracts (`packages/contracts`)
 
 Schemas: `Stream`, `GaugeReading`, `ConditionSnapshot`, `ConditionScore`, `StockingEvent`,
-`BugTaxon`, `FlyPattern`, `HatchChart`, `Shop`, `ShopReport`, `BugObservation`. `ENDPOINTS`
+`SpeciesOccurrenceCatalog`, `BugTaxon`, `FlyPattern`, `HatchChart`, `Shop`, `ShopReport`, `BugObservation`. `ENDPOINTS`
 is the frozen route map. Pure functions `scoreConditions` and `matchHatch` are
 deterministic and run client-side so they work offline. Additive changes only, via ADR +
 tag bump — see `packages/contracts/README.md`.

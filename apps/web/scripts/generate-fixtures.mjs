@@ -25,6 +25,7 @@ import {
   BugTaxonSchema,
   FlyPatternSchema,
   FishingInformationSchema,
+  SpeciesOccurrenceCatalogSchema,
 } from '@trout/contracts';
 
 const appRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -791,10 +792,19 @@ if (!existsSync(packFishingPath)) {
 }
 validate('content/fishing', FishingInformationSchema, JSON.parse(readFileSync(packFishingPath, 'utf8')));
 writeJson('content/fishing.json', JSON.parse(readFileSync(packFishingPath, 'utf8')));
+// The species catalog is also a checked-in static snapshot. Fixture generation
+// mirrors the source data so demo mode exercises the same contract and UI copy.
+const speciesOccurrencesPath = join(appRoot, '..', '..', 'packages', 'content', 'data', 'species-occurrences.json');
+if (!existsSync(speciesOccurrencesPath)) {
+  throw new Error('species-occurrences.json missing at packages/content/data — fixture species catalog cannot mirror production');
+}
+const speciesOccurrences = JSON.parse(readFileSync(speciesOccurrencesPath, 'utf8'));
+validate('content/species-occurrences', SpeciesOccurrenceCatalogSchema, speciesOccurrences);
+writeJson('content/species-occurrences.json', speciesOccurrences);
 for (const chart of chartsByRegionMonth.values()) {
   writeJson(`v1/hatch/${chart.regionId}/${chart.month}.json`, chart);
 }
-written = chartsByRegionMonth.size + 7;
+written = chartsByRegionMonth.size + 8;
 
 console.log(`fixtures: wrote ${written} files → apps/web/fixtures/data`);
 console.log(`fixtures: ${streams.length} streams · ${taxa.length} taxa · ${patterns.length} patterns · ${chartsByRegionMonth.size} hatch charts · ${stocking.length} stocking events · ${conditions.length} condition snapshots`);

@@ -31,6 +31,8 @@ import { FishabilityCard } from '../components/FishabilityCard';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
+import { useSpeciesOccurrences } from '../lib/useSpeciesOccurrences';
+import { WaterSpeciesCard } from '../components/WaterSpeciesCard';
 
 const CONDITIONS_TTL_MIN = 60;
 
@@ -56,6 +58,7 @@ export function StreamDetailPage() {
     60 * 24,
     true,
   );
+  const speciesOccurrencesQuery = useSpeciesOccurrences();
   const stream = streamsQuery.data?.data.find((s) => s.id === streamId);
   const snapshot = conditionsQuery.data?.data.find((s) => s.streamId === streamId);
 
@@ -367,6 +370,12 @@ export function StreamDetailPage() {
       )}
 
       <WaterRegulations streamId={streamId} />
+
+      <WaterSpeciesCard
+        waterId={streamId}
+        catalog={speciesOccurrencesQuery.data?.data}
+        loading={speciesOccurrencesQuery.isLoading}
+      />
 
       <section aria-labelledby="stocking-history-heading">
         <h2 className="section-title" id="stocking-history-heading">

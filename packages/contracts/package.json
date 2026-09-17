@@ -1,7 +1,7 @@
 {
-  "//": "OWNER: ROLE 1 — frozen at tag contracts-v2.2.0. Additive changes require an ADR + tag bump; never rename or remove (see 00-SHARED-CONTEXT §6).",
+  "//": "OWNER: ROLE 1 — frozen at tag contracts-v2.3.0. Additive changes require an ADR + tag bump; never rename or remove (see 00-SHARED-CONTEXT §6).",
   "name": "@trout/contracts",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "description": "Frozen data contracts, endpoint map, and pure client-side logic (scoreConditions, matchHatch).",

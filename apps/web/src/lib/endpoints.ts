@@ -9,6 +9,7 @@ export const V1_STATES = ['TN'] as const;
 export const CONTENT_URLS = {
   taxa: '/content/taxa.json',
   patterns: '/content/patterns.json',
+  speciesOccurrences: '/content/species-occurrences.json',
 } as const;
 
 export const snapshotUrls = {

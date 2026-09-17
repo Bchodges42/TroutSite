@@ -10,6 +10,7 @@ import {
   ShopSchema,
   ReleaseScheduleSchema,
   SpeciesKeySchema,
+  SpeciesOccurrenceCatalogSchema,
   StreamSchema,
   StockingEventSchema,
   WaterEvidenceSetSchema,
@@ -37,14 +38,16 @@ export interface BuildOptions {
   db: Db;
   /**
    * Web public root (apps/web/public). Snapshots are written AT their served URLs:
-   * v1/** per the frozen ENDPOINTS map + content/*.json (bundled content pack).
+   * v1/** per the frozen ENDPOINTS map + content/*.json (bundled content pack,
+   * including the reviewed static species occurrence catalog).
    * Served from disk without a web rebuild, so cron refreshes them in place.
    */
   snapshotsDir: string;
   /**
    * Built content pack (packages/content/dist/pack, Role 4). Source for the /v1/hatch
-   * charts and the /content/{taxa,patterns}.json precache payloads. When absent, hatch
-   * + content emission is skipped with a warning (empty pack in Phase 0).
+   * charts, species occurrences, and the /content/{taxa,patterns}.json precache
+   * payloads. When absent, hatch + content emission is skipped with a warning
+   * (empty pack in Phase 0).
    */
   contentPackDir?: string;
   now: Date;
@@ -387,6 +390,21 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
       files.push(fishingPath);
     } else {
       warnings.push('content pack has no fishing.json — /content/fishing.json not regenerated');
+    }
+
+    // Static fish occurrence content is curated between builds. It is copied
+    // to the same content mount as fishing.json and contract-validated before
+    // it becomes publicly served.
+    const occurrencePackPath = join(packDir, 'species-occurrences.json');
+    if (existsSync(occurrencePackPath)) {
+      const occurrences = SpeciesOccurrenceCatalogSchema.parse(
+        JSON.parse(readFileSync(occurrencePackPath, 'utf8')),
+      );
+      const occurrencePath = join(snapshotsDir, 'content', 'species-occurrences.json');
+      writeJsonAtomic(occurrencePath, occurrences);
+      files.push(occurrencePath);
+    } else {
+      warnings.push('content pack has no species-occurrences.json — /content/species-occurrences.json not regenerated');
     }
 
     const hatchRoot = join(packDir, 'hatch');

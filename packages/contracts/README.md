@@ -1,6 +1,6 @@
 # @trout/contracts
 
-**Frozen at tag `contracts-v2.2.0`. OWNER: ROLE 1.** Every other role consumes this package; only
+**Frozen at tag `contracts-v2.3.0`. OWNER: ROLE 1.** Every other role consumes this package; only
 Role 1 may change it, and only additively with an ADR in `docs/adr/` plus a tag bump. Never
 rename or remove an export.
 

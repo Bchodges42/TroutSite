@@ -16,6 +16,7 @@ hatch/{stateId}/{regionId}.yaml # 12-month hatch chart per region; one file per 
                                 #   months[] (contract HatchChart shape unchanged)
 streams/{stateId}/{stream-id}.yaml  # 188 Tennessee waters (48 carry verified gaugeIds;
                                 #   documented ungauged waters → validator WARN)
+data/species-occurrences.json       # static, source-backed fish/water associations; no live scraper
 shops/{stateId}/{shop-id}.yaml  # 23 real TN fly/tackle shops, all reportsEnabled: false
                                 #   until individually onboarded via the shop portal
 data/verified-gauges.json       # USGS gauge-ID verification fixture (51 IDs, 2026-09-02)

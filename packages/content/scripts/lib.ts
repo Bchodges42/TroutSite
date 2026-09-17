@@ -9,11 +9,13 @@ import {
   StreamSchema,
   ShopSchema,
   HatchChartSchema,
+  SpeciesOccurrenceCatalogSchema,
   type BugTaxon,
   type FlyPattern,
   type Stream,
   type Shop,
   type HatchChart,
+  type SpeciesOccurrenceCatalog,
 } from '@trout/contracts';
 import { REGION_IDS } from './regions.js';
 
@@ -26,6 +28,7 @@ export interface LoadedContent {
   bugs: Map<string, BugTaxon & { illustration: string; stages: string[] }>;
   patterns: Map<string, FlyPattern>;
   streams: Map<string, Stream>;
+  speciesOccurrences: SpeciesOccurrenceCatalog;
   shops: Map<string, Shop>;
   /** regionId -> month -> HatchChart-shaped month payload */
   hatch: Map<string, HatchChart[]>;
@@ -179,6 +182,15 @@ export function loadContent(): LoadedContent {
   const shops = new Map<string, Shop>();
   const hatch = new Map<string, HatchChart[]>();
   const illustrations = new Map<string, string>();
+  let speciesOccurrences: SpeciesOccurrenceCatalog = {
+    schema: 'trout/species-occurrences/1',
+    stateId: 'TN',
+    updatedAt: '1970-01-01',
+    collectionNote: 'No species occurrence catalog was loaded; this placeholder is never shipped after validation.',
+    sources: [{ id: 'missing', url: 'https://www.tn.gov/twra/fishing.html', label: 'TWRA fishing information', retrieved: '1970-01-01', basis: 'Placeholder used only after a load failure.' }],
+    species: [],
+    occurrences: [],
+  };
 
   // --- bugs ---
   for (const file of collectYamlFiles(join(CONTENT_ROOT, 'bugs'))) {
@@ -332,6 +344,29 @@ export function loadContent(): LoadedContent {
     }
   }
 
+  // --- static fish occurrence catalog ---
+  const occurrenceFile = join(CONTENT_ROOT, 'data', 'species-occurrences.json');
+  try {
+    const parsed = SpeciesOccurrenceCatalogSchema.safeParse(JSON.parse(readFileSync(occurrenceFile, 'utf8')));
+    if (!parsed.success) {
+      issues.push({ file: rel(occurrenceFile), message: parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ') });
+    } else {
+      speciesOccurrences = parsed.data;
+      if (speciesOccurrences.stateId !== 'TN') {
+        issues.push({ file: rel(occurrenceFile), message: 'the initial occurrence catalog must be Tennessee (stateId TN)' });
+      }
+      for (const group of speciesOccurrences.occurrences) {
+        for (const waterId of group.waterIds) {
+          if (!streams.has(waterId)) {
+            issues.push({ file: rel(occurrenceFile), message: `occurrence references unknown water ${waterId}` });
+          }
+        }
+      }
+    }
+  } catch (err) {
+    issues.push({ file: rel(occurrenceFile), message: `invalid JSON: ${(err as Error).message}` });
+  }
+
   // --- shops ---
   for (const file of collectYamlFiles(join(CONTENT_ROOT, 'shops'))) {
     let data: unknown;
@@ -440,7 +475,7 @@ export function loadContent(): LoadedContent {
     }
   }
 
-  return { bugs, patterns, streams, shops, hatch, illustrations, issues, warnings };
+  return { bugs, patterns, streams, speciesOccurrences, shops, hatch, illustrations, issues, warnings };
 }
 
 function collectSvgFiles(dir: string): string[] {
