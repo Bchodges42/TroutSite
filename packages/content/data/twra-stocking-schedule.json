@@ -1,0 +1,6170 @@
+{
+ "schema": "trout.twra-stocking-schedule.v1",
+ "stateId": "TN",
+ "source": "TWRA official stocking schedule workbook (owner-supplied 2026-09-17)",
+ "sourceRole": "authoritative program calendar: type + months + exact dates; outranks the map feed's coarse season labels",
+ "collectedAt": "2026-09-17",
+ "rowCount": 616,
+ "rows": [
+  {
+   "region": 1,
+   "county": "Caroll",
+   "location": "McKenzie City Park",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Caroll",
+   "location": "McKenzie City Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Gibson",
+   "location": "Milan City Pond",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Gibson",
+   "location": "Milan City Pond",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Henderson",
+   "location": "Beech Lake",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Henderson",
+   "location": "Beech Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Henry",
+   "location": "Paris City Park",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Henry",
+   "location": "Paris City Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Houston",
+   "location": "Hurricane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Houston",
+   "location": "Hurricane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Houston",
+   "location": "Hurricane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Houston",
+   "location": "Whiteoak Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Houston",
+   "location": "Whiteoak Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Houston",
+   "location": "Whiteoak Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Humphreys",
+   "location": "Hurricane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Humphreys",
+   "location": "Hurricane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Madison",
+   "location": "Lake Graham",
+   "type": "Winter",
+   "stockingDay": "1/8/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Madison",
+   "location": "Lake Graham",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Obion",
+   "location": "Union City Reelfoot Packing Site",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Obion",
+   "location": "Union City Reelfoot Packing Site",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Perry",
+   "location": "Cane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Perry",
+   "location": "Cane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Perry",
+   "location": "Cane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Cameron Brown Lake",
+   "type": "Winter",
+   "stockingDay": "1/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Cameron Brown Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Edmund-Orgill Park",
+   "type": "Winter",
+   "stockingDay": "1/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Edmund-Orgill Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Johnson Park Lake",
+   "type": "Winter",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Johnson Park Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Shelby Farms",
+   "type": "Winter",
+   "stockingDay": "1/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Shelby Farms",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Yale Road Park",
+   "type": "Winter",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Shelby",
+   "location": "Yale Road Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Stewart",
+   "location": "Standing Rock Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Stewart",
+   "location": "Standing Rock Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Stewart",
+   "location": "Standing Rock Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Tipton",
+   "location": "Covington First Baptist Church Pond (NEW)",
+   "type": "Winter",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Tipton",
+   "location": "Covington First Baptist Church Pond (NEW)",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Tipton",
+   "location": "Valentine Park",
+   "type": "Winter",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Tipton",
+   "location": "Valentine Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Weakley",
+   "location": "Martin City Pond",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 1,
+   "county": "Weakley",
+   "location": "Martin City Pond",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Cheatham",
+   "location": "L.L. Burns Park",
+   "type": "Winter",
+   "stockingDay": "2/12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Cheatham",
+   "location": "L.L. Burns Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Coffee/Bedford",
+   "location": "Normandy TW / Duck River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "J, F, M, N, D",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Cedar Hill Park Pond",
+   "type": "Winter",
+   "stockingDay": "1/9/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Cedar Hill Park Pond",
+   "type": "Winter",
+   "stockingDay": "02/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Cedar Hill Park Pond",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "J. Percy Priest TW / Stones River",
+   "type": "Winter",
+   "stockingDay": "1/9/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "J. Percy Priest TW / Stones River",
+   "type": "Winter",
+   "stockingDay": "02/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "J. Percy Priest TW / Stones River",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Marrowbone Lake",
+   "type": "Winter",
+   "stockingDay": "2/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Marrowbone Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Shelby Bottoms",
+   "type": "Winter",
+   "stockingDay": "1/22/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Shelby Bottoms",
+   "type": "Winter",
+   "stockingDay": "2/27/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Davidson",
+   "location": "Shelby Bottoms",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Dickson",
+   "location": "Acorn Lake (Montgomery Bell SP)",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "12/6/2026",
+   "stockingMonthsRaw": "J, F, M, D",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Dickson",
+   "location": "J.D. Buckner Park",
+   "type": "Winter",
+   "stockingDay": "2/12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Dickson",
+   "location": "J.D. Buckner Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Franklin",
+   "location": "Cowan City Park",
+   "type": "Winter",
+   "stockingDay": "1/20/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Franklin",
+   "location": "Cowan City Park",
+   "type": "Winter",
+   "stockingDay": "2/19/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Franklin",
+   "location": "Cowan City Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Franklin/Moore",
+   "location": "Tims Ford TW / Elk River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M, J, J, A, S, O, N, D",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 2,
+   "county": "Hickman",
+   "location": "Cane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Hickman",
+   "location": "Cane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Hickman",
+   "location": "Cane Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Hickman",
+   "location": "Mill Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Hickman",
+   "location": "Mill Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Hickman",
+   "location": "Mill Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "East Fork Shoal Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "East Fork Shoal Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "East Fork Shoal Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "East Fork Shoal Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "East Fork Shoal Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "Little Buffalo River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "Little Buffalo River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "Little Buffalo River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lawrence",
+   "location": "Little Buffalo River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lincoln",
+   "location": "Stone Bridge Park",
+   "type": "Winter",
+   "stockingDay": "2/5/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Lincoln",
+   "location": "Stone Bridge Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Macon",
+   "location": "Lafayette City Park",
+   "type": "Winter",
+   "stockingDay": "02/10/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Macon",
+   "location": "Salt Lick Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Macon",
+   "location": "Salt Lick Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Marshall",
+   "location": "Big Rock Greenway",
+   "type": "Winter",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Marshall",
+   "location": "Big Rock Greenway",
+   "type": "Winter",
+   "stockingDay": "2/27/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Marshall",
+   "location": "Big Rock Greenway",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Maury",
+   "location": "McCutcheon Creek",
+   "type": "Winter",
+   "stockingDay": "1/23/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Maury",
+   "location": "McCutcheon Creek",
+   "type": "Winter",
+   "stockingDay": "2/20/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Maury",
+   "location": "McCutcheon Creek",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Billy Dunlop Park",
+   "type": "Winter",
+   "stockingDay": "02/18/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Billy Dunlop Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Fort Campbell Streams",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Fort Campbell Streams",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Fort Campbell Streams",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Fort Campbell Streams",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Fort Campbell Streams",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Montgomery",
+   "location": "Fort Campbell Streams",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/23/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Robertson",
+   "location": "Sulphur Fork Creek",
+   "type": "Winter",
+   "stockingDay": "02/04/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Robertson",
+   "location": "Sulphur Fork Creek",
+   "type": "Winter",
+   "stockingDay": "02/26/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Robertson",
+   "location": "Sulphur Fork Creek",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Rutherford",
+   "location": "Nice Mill",
+   "type": "Winter",
+   "stockingDay": "1/16/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Rutherford",
+   "location": "Nice Mill",
+   "type": "Winter",
+   "stockingDay": "2/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Rutherford",
+   "location": "Nice Mill",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Rutherford",
+   "location": "W. Fork Stones River - Manson Pike Trailhead",
+   "type": "Winter",
+   "stockingDay": "02/04/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Rutherford",
+   "location": "W. Fork Stones River - Manson Pike Trailhead",
+   "type": "Winter",
+   "stockingDay": "2/27/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Rutherford",
+   "location": "W. Fork Stones River - Manson Pike Trailhead",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Williamson",
+   "location": "Harpeth River at Eastern Flank Battle Park",
+   "type": "Winter",
+   "stockingDay": "1/23/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Williamson",
+   "location": "Harpeth River at Eastern Flank Battle Park",
+   "type": "Winter",
+   "stockingDay": "2/20/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Williamson",
+   "location": "Harpeth River at Eastern Flank Battle Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Wilson",
+   "location": "Don Fox Park Community Park",
+   "type": "Winter",
+   "stockingDay": "2/11/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 2,
+   "county": "Wilson",
+   "location": "Don Fox Park Community Park",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Clay",
+   "location": "Dale Hollow TW / Obey River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "J, F, M, A, M, J, J, A, S, O, N, D",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 3,
+   "county": "Clay",
+   "location": "Dale Hollow Reservoir",
+   "type": "Reservoir",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "A",
+   "species": "Brown Trout"
+  },
+  {
+   "region": 3,
+   "county": "Cumberland",
+   "location": "Cumberland Mountain State Park",
+   "type": "Winter",
+   "stockingDay": "1/8/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Cumberland",
+   "location": "Cumberland Mountain State Park",
+   "type": "Winter",
+   "stockingDay": "2/18/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Cumberland",
+   "location": "Sequatchie River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Cumberland",
+   "location": "Sequatchie River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Cumberland",
+   "location": "Sequatchie River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "DeKalb",
+   "location": "Pine Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "DeKalb",
+   "location": "Pine Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "DeKalb",
+   "location": "Pine Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "DeKalb/Smith",
+   "location": "Center Hill TW / Caney Fork River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M, J, J, A, S, O, N, D",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 3,
+   "county": "Fentress",
+   "location": "Wolf River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Fentress",
+   "location": "Wolf River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Fentress",
+   "location": "Wolf River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Grundy",
+   "location": "Collins River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Grundy",
+   "location": "Collins River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Grundy",
+   "location": "Collins River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Grundy",
+   "location": "Grundy Lake #4 / Fiery Gizzard SP",
+   "type": "Winter",
+   "stockingDay": "1/20/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Grundy",
+   "location": "Grundy Lake #4 / Fiery Gizzard SP",
+   "type": "Winter",
+   "stockingDay": "2/19/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "02/08/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Big Soddy Creek",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "11/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Dickert Pond / Camp Jordan",
+   "type": "Winter",
+   "stockingDay": "1/7/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Dickert Pond / Camp Jordan",
+   "type": "Winter",
+   "stockingDay": "2/4/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Lake Junior",
+   "type": "Winter",
+   "stockingDay": "1/7/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "Lake Junior",
+   "type": "Winter",
+   "stockingDay": "2/4/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "N. Chickamauga Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "N. Chickamauga Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "N. Chickamauga Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Hamilton",
+   "location": "N. Chickamauga Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Marion",
+   "location": "Little Sequatchie River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Marion",
+   "location": "Little Sequatchie River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Marion",
+   "location": "Little Sequatchie River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Marion",
+   "location": "Pocket Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Marion",
+   "location": "Pocket Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "McMinn",
+   "location": "Athens City Park Pond",
+   "type": "Winter",
+   "stockingDay": "1/8/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "McMinn",
+   "location": "Athens City Park Pond",
+   "type": "Winter",
+   "stockingDay": "2/18/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/28/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Citico Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/28/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "9/27/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/11/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Green Cove Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "12/6/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "02/08/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/28/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/2/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/9/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "9/27/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/11/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "11/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "11/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Monroe",
+   "location": "Tellico River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "12/6/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Morgan",
+   "location": "Flat Fork Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Morgan",
+   "location": "Flat Fork Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Morgan",
+   "location": "Flat Fork Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Morgan",
+   "location": "Flat Fork Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Overton",
+   "location": "Mill Creek (Standing Stone State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Overton",
+   "location": "Mill Creek (Standing Stone State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Pickett",
+   "location": "Pickett Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Pickett",
+   "location": "Pickett Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Pickett",
+   "location": "Pickett Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Pickett",
+   "location": "Pickett Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Pickett",
+   "location": "Pickett Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Apalachia TW / Hiwassee River*",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M, J, J, A",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Apalachia TW / Hiwassee River*",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "F, O, N",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Goforth Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Goforth Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Goforth Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Greasy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Greasy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Greasy Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "McKamy Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "McKamy Lake",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Parksville(Ocoee #1) TW / Ocoee River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Spring Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Spring Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Spring Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Spring Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Spring Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Spring Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Tumbling Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Tumbling Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Polk",
+   "location": "Tumbling Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Putnam",
+   "location": "Calfkiller River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Putnam",
+   "location": "Calfkiller River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Putnam",
+   "location": "Cane Creek Park",
+   "type": "Winter",
+   "stockingDay": "1/21/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Rhea",
+   "location": "Piney River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Rhea",
+   "location": "Piney River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Rhea",
+   "location": "Piney River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Rhea",
+   "location": "Piney River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Sequatchie",
+   "location": "Coops Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Sequatchie",
+   "location": "Coops Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Sequatchie",
+   "location": "Coops Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (Fall Creek Falls State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (Fall Creek Falls State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (Fall Creek Falls State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (Fall Creek Falls State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (Fall Creek Falls State Park)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (lower)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (lower)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Cane Creek (lower)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Rocky River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Rocky River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Van Buren",
+   "location": "Rocky River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Barren Fork River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Barren Fork River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Barren Fork River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Charles Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Charles Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Charles Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "N Barren Fork Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "N Barren Fork Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 3,
+   "county": "Warren",
+   "location": "Upper Hills Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Anderson",
+   "location": "Norris Tailwater / Clinch River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M, J, J, A, S",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Little River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Pistol Creek/Greenbelt Lake",
+   "type": "Winter",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Pistol Creek/Greenbelt Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 11/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount",
+   "location": "Pistol Creek/Greenbelt Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount/Monroe",
+   "location": "Calderwood Reservoir",
+   "type": "Reservoir",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "N, D",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Blount/Monroe",
+   "location": "Chilhowee Reservoir",
+   "type": "Reservoir",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "F, N, D",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Campbell",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Campbell",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Campbell",
+   "location": "Tackett Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Campbell",
+   "location": "Tackett Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Doe River",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/4/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Laurel Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Stony Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Stony Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Stony Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter",
+   "location": "Stony Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Carter/Washington",
+   "location": "Wilbur Tailwater / Watauga River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M, J, J, A, S",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Gap Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Gap Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Gap Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Station Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Station Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Station Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Station Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Claiborne",
+   "location": "Station Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Brush Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Brush Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Brush Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Brush Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Brush Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Cosby Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Gulf Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Gulf Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Gulf Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Gulf Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Gulf Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Trail Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Trail Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Trail Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Trail Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Cocke",
+   "location": "Trail Fork Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/28/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "7/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/2/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/9/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/16/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "8/23/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Buffalo Creek",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/4/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Puncheon Camp Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Puncheon Camp Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Puncheon Camp Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Grainger",
+   "location": "Puncheon Camp Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "9/27/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Dillard Ponds",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/18/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Horse Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/28/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Greene",
+   "location": "Paint Creek",
+   "type": "Delayed Harvest",
+   "stockingDay": null,
+   "stockingWeek": "10/4/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hamblen",
+   "location": "Panther Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hamblen",
+   "location": "Panther Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hamblen",
+   "location": "Panther Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hamblen",
+   "location": "Panther Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hamblen",
+   "location": "Panther Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hamblen",
+   "location": "Panther Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hancock",
+   "location": "Mantooth Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hancock",
+   "location": "Mantooth Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/4/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hancock",
+   "location": "Richardson 'Byrd' Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hancock",
+   "location": "Richardson 'Byrd' Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hancock",
+   "location": "Richardson 'Byrd' Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hancock",
+   "location": "Richardson 'Byrd' Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Alexander Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Alexander Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Alexander Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Alexander Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Hawkins",
+   "location": "Big Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Jefferson",
+   "location": "Mossy Creek (NEW)",
+   "type": "Winter",
+   "stockingDay": "1/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Jefferson",
+   "location": "Mossy Creek (NEW)",
+   "type": "Winter",
+   "stockingDay": "TBD 11/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Jefferson",
+   "location": "Mossy Creek (NEW)",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Jefferson/Grainger",
+   "location": "Cherokee TW / Holston River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "J, F, M, A, N, D",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Beaverdam Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Beaverdam Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Beaverdam Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Beaverdam Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Beaverdam Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Doe Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Forge Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Forge Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Forge Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Forge Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Goose Creek / Town Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Goose Creek / Town Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Goose Creek / Town Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/5/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Goose Creek / Town Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Goose Creek / Town Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/3/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Goose Creek / Town Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Laurel Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Ralph Stout Park Pond",
+   "type": "Winter",
+   "stockingDay": "1/5/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Ralph Stout Park Pond",
+   "type": "Winter",
+   "stockingDay": "TBD 11/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Ralph Stout Park Pond",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Upper Roan Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Upper Roan Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Upper Roan Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Johnson",
+   "location": "Upper Roan Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Knox",
+   "location": "Fountain City Lake",
+   "type": "Winter",
+   "stockingDay": "1/16/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Knox",
+   "location": "Fountain City Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 11/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Knox",
+   "location": "Fountain City Lake",
+   "type": "Winter",
+   "stockingDay": "TBD 12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Scott",
+   "location": "Oneida City Park Lake",
+   "type": "Winter",
+   "stockingDay": "1/7/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "1/1/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "1/8/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "1/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "1/22/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "1/29/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "2/5/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "2/12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "2/19/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "2/26/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "3/5/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "3/12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "3/19/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "3/26/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "4/2/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "4/9/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "4/16/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "4/23/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "4/30/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "5/7/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "5/14/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "5/21/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "5/28/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "6/4/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "6/11/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "6/18/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "6/25/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "7/2/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "7/9/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "7/16/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "7/23/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "7/30/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "8/6/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "8/13/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "8/20/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "8/27/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "9/3/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "9/10/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "9/17/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "9/24/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "10/1/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "10/8/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "10/15/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "10/22/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "10/29/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "11/5/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "11/12/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "11/19/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Weekly",
+   "stockingDay": "11/26/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "12/3/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "12/10/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "12/17/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Gatlinburg Streams",
+   "type": "Delayed Harvest",
+   "stockingDay": "12/24/2026",
+   "stockingWeek": null,
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "Mid. Prong Little Pigeon River",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "11/8/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "1/4/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sevier",
+   "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/25/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sullivan",
+   "location": "Ft. Patrick Henry TW / S. Fork Holston River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, D",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sullivan",
+   "location": "S. Holston TW / S. Fork Holston River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, M, J, J, A, S",
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Sullivan/Washington",
+   "location": "Boone TW / S. Fork Holston River",
+   "type": "Tailwater",
+   "stockingDay": null,
+   "stockingWeek": null,
+   "stockingMonthsRaw": "M, A, N, D",
+   "species": "Rainbow, Brown Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Clark Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Fishery Park Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "2/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Fishery Park Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Fishery Park Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Fishery Park Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Fishery Park Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Fishery Park Pond",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "10/11/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "North Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/08/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "03/22/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "04/05/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "04/19/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "05/03/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "05/17/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "05/31/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "06/14/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "Rocky Fork",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "06/28/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/1/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/15/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "3/29/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/12/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "4/26/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/10/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "5/24/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/7/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  },
+  {
+   "region": 4,
+   "county": "Unicoi",
+   "location": "South Indian Creek",
+   "type": "Seasonal",
+   "stockingDay": null,
+   "stockingWeek": "6/21/2026",
+   "stockingMonthsRaw": null,
+   "species": "Rainbow Trout"
+  }
+ ]
+}

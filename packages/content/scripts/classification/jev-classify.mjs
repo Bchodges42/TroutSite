@@ -26,6 +26,7 @@ import {
   resolveEvent,
   countiesOf,
 } from './lib.mjs';
+import { loadSchedule, buildSchedulePrograms } from './stocking-schedule.mjs';
 import { readKey } from './judge.mjs';
 
 export const MODEL = 'jev-latest';
@@ -134,6 +135,9 @@ for (const event of stockingFeed.events) {
     EVENTS_BY_SLUG.set(resolution.slug, list);
   }
 }
+
+const scheduleDocument = loadSchedule();
+const SCHEDULE_BY_SLUG = buildSchedulePrograms(CATALOG, scheduleDocument.rows ?? [], resolveEvent, ALIASES).bySlug;
 
 function readJsonIfPresent(path, fallback) {
   return existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : fallback;
@@ -299,6 +303,7 @@ function canonicalSpeciesEvidence(slug) {
 
 function stockingEvidence(slug) {
   const events = EVENTS_BY_SLUG.get(slug) ?? [];
+  const schedule = SCHEDULE_BY_SLUG.get(slug);
   return {
     sourceRole: 'current TWRA trout stocking feed; deduplicated access-point events resolved to this catalog water',
     feedRows: stockingFeed.events.length,
@@ -313,6 +318,19 @@ function stockingEvidence(slug) {
       accessSites: event.accessSites,
       points: event.points,
     })),
+    officialSchedule: schedule
+      ? {
+          available: true,
+          sourceRole: 'official TWRA stocking schedule workbook: program types, month windows, exact stocking dates — authoritative over the feed\'s coarse season labels',
+          programs: schedule.types,
+          programMeaning: schedule.meaning,
+          months: schedule.months,
+          windowPinned: schedule.months !== null,
+          lastStockedDay: schedule.lastStockedDay,
+          nextScheduledDay: schedule.nextTbd,
+          scheduleRows: schedule.rowCount,
+        }
+      : { available: false, sourceRole: 'this water has no resolvable row in the official schedule workbook (the schedule often names access points, not waters); absence is not a program negative' },
     absenceMeaning: 'No matching current feed event is only a feed-level negative; it does not prove no trout have ever occurred.',
   };
 }

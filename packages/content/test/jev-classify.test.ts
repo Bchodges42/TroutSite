@@ -12,6 +12,14 @@ import {
   questionsForMonth,
   reviewedCategory,
 } from '../scripts/classification/jev-classify.mjs';
+import {
+  parseMonthLetters,
+  parseScheduleDate,
+  parseScheduleDateMonth,
+  buildSchedulePrograms,
+  loadSchedule,
+} from '../scripts/classification/stocking-schedule.mjs';
+import { loadCatalog, ALIASES, resolveEvent } from '../scripts/classification/lib.mjs';
 
 describe('Jev Tennessee fishery classifier setup', () => {
   it('exposes exactly the requested three category probabilities', () => {
@@ -149,5 +157,60 @@ describe('Jev Tennessee fishery classifier setup', () => {
     expect(normalizeMonth('December')).toBe(12);
     expect(() => normalizeMonth(0)).toThrow(RangeError);
     expect(MONTHS).toHaveLength(12);
+  });
+});
+
+describe('TWRA stocking-schedule ingest (official program calendar)', () => {
+  const catalog = loadCatalog();
+
+  it('reconstructs month windows from TWRA ordered month initials', () => {
+    expect(parseMonthLetters('M, A, M, J, J, A, S')).toEqual([3, 4, 5, 6, 7, 8, 9]);
+    expect(parseMonthLetters('J, F, M, N, D')).toEqual([1, 2, 3, 11, 12]);
+    expect(parseMonthLetters('J, F, M, D')).toEqual([1, 2, 3, 12]);
+    expect(parseMonthLetters('A')).toEqual([4]);
+    expect(parseMonthLetters('')).toBeNull();
+    expect(parseMonthLetters('X, Q')).toBeNull();
+  });
+
+  it('parses exact stocking dates and TBD windows', () => {
+    expect(parseScheduleDate('1/14/2026')).toBe('2026-01-14');
+    expect(parseScheduleDate('TBD 12/2026')).toEqual({ tbd: '2026-12' });
+    expect(parseScheduleDate('')).toBeNull();
+    expect(parseScheduleDateMonth('2/22/2026')).toBe(2);
+    expect(parseScheduleDateMonth('TBD 12/2026')).toBe(12);
+  });
+
+  it('derives per-water programs: declared windows, else observed from scheduled dates', () => {
+    const { bySlug } = buildSchedulePrograms(catalog, loadSchedule().rows, resolveEvent, ALIASES);
+    const obey = bySlug.get('obey-river');
+    expect(obey.types).toContain('Tailwater');
+    expect(obey.months).toHaveLength(12); // year-round tailwater program
+    const beaverdam = bySlug.get('beaverdam-creek');
+    expect(beaverdam.types).toContain('Seasonal');
+    expect(beaverdam.months).toEqual([3, 4, 5, 6]); // observed from its scheduled dates
+  });
+
+  it('resolves compound "TW / river" schedule names without merging lake and tailwater', () => {
+    const { bySlug } = buildSchedulePrograms(catalog, loadSchedule().rows, resolveEvent, ALIASES);
+    expect(bySlug.get('parksville-tailwater').types).toContain('Tailwater');
+    expect(bySlug.get('parksville-tailwater').months).toEqual([3, 4, 5]);
+  });
+
+  it('queues schedule locations with no catalog water instead of guessing', () => {
+    const { unmatched } = buildSchedulePrograms(catalog, loadSchedule().rows, resolveEvent, ALIASES);
+    expect(unmatched.length).toBeGreaterThan(0);
+    expect(unmatched.some((u) => /McKenzie City Park/i.test(u.location))).toBe(true);
+  });
+
+  it('exposes the official schedule to the Jev evidence state', () => {
+    const state = evidenceState('obey-river', { month: 3 });
+    const sched = state.evidence.twraStocking.officialSchedule;
+    expect(sched.available).toBe(true);
+    expect(sched.programs).toContain('Tailwater');
+    expect(sched.months).toHaveLength(12);
+    expect(sched.sourceRole).toContain('authoritative');
+    const absent = evidenceState('west-prong-little-pigeon', { month: 3 }).evidence.twraStocking.officialSchedule;
+    expect(absent.available).toBe(false);
+    expect(absent.sourceRole).toContain('not a program negative');
   });
 });

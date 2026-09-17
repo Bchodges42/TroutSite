@@ -1,0 +1,1877 @@
+{
+  "generated": "2026-09-17T17:04:37.542Z",
+  "summary": {
+    "scheduleRows": 616,
+    "resolvedWaters": 67,
+    "unmatchedRows": 285,
+    "uniqueUnmatchedLocations": 66,
+    "calendarGaps": 2,
+    "flagReplacements": 67,
+    "watersWithPinnedWindows": 5,
+    "watersWithExactDates": 16
+  },
+  "waters": [
+    {
+      "slug": "barren-fork-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "beaverdam-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "beech-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-14",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "big-soddy-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Delayed Harvest",
+          "Seasonal"
+        ],
+        "meaning": "delayed-harvest window (fall stocking, C&R, spring harvest); scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 9
+      }
+    },
+    {
+      "slug": "brush-creek-cocke",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "buffalo-creek-grainger",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Seasonal",
+          "Delayed Harvest"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 30
+      }
+    },
+    {
+      "slug": "cameron-brown-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-13",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "cane-creek-hickman-perry",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 6
+      }
+    },
+    {
+      "slug": "cane-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 8
+      }
+    },
+    {
+      "slug": "charles-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "citico-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 22
+      }
+    },
+    {
+      "slug": "clinch-river",
+      "catalog": {
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "collins-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "cosby-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 9
+      }
+    },
+    {
+      "slug": "covington-fbc-pond",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-15",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "doe-creek-johnson",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 7
+      }
+    },
+    {
+      "slug": "doe-river",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Seasonal",
+          "Delayed Harvest"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 9
+      }
+    },
+    {
+      "slug": "east-fork-shoal-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": null
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-13",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "forge-creek-johnson",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "ft-patrick-henry-tailwater",
+      "catalog": {
+        "seasonMonths": [
+          3,
+          4
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "gap-creek-claiborne",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "goforth-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "greasy-creek-polk",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "gulf-fork-big-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "horse-creek-greene",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 8
+      }
+    },
+    {
+      "slug": "hurricane-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "indian-creek-claiborne",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "johnson-park-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-15",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "lake-graham",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-08",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "laurel-creek-johnson",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "laurel-fork-carter",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 8
+      }
+    },
+    {
+      "slug": "little-buffalo-river",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "little-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 10
+      }
+    },
+    {
+      "slug": "little-sequatchie-river",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "martin-city-pond",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-14",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "mccutcheon-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-02-20",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "milan-city-pond",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-14",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "mill-creek-overton",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "mossy-creek-jefferson",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-14",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "north-chickamauga-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "obey-river",
+      "catalog": {
+        "seasonMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "paint-creek-greene",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal",
+          "Delayed Harvest"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 10
+      }
+    },
+    {
+      "slug": "paris-city-park-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-14",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "parksville-tailwater",
+      "catalog": {
+        "seasonMonths": [
+          3,
+          4,
+          5
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "pine-creek-dekalb",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "piney-river-rhea",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Seasonal",
+          "Delayed Harvest"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "puncheon-camp-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "richardson-byrd-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "rocky-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "salt-lick-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "sequatchie-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "shelby-farms-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-13",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "south-holston-river",
+      "catalog": {
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "spring-creek-polk",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 6
+      }
+    },
+    {
+      "slug": "standing-rock-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "station-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "stones-river",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-02-13",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "tellico-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Delayed Harvest",
+          "Seasonal"
+        ],
+        "meaning": "delayed-harvest window (fall stocking, C&R, spring harvest); scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 32
+      }
+    },
+    {
+      "slug": "trail-fork-big-creek",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 5
+      }
+    },
+    {
+      "slug": "tumbling-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "union-city-reelfoot-pond",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-14",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "upper-hills-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "upper-roan-creek",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
+      }
+    },
+    {
+      "slug": "valentine-park-pond",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-15",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "yale-road-park-lake",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": null,
+        "windowPinned": false,
+        "lastStockedDay": "2026-01-15",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 2
+      }
+    }
+  ],
+  "unmatched": [
+    {
+      "location": "McKenzie City Park",
+      "county": "Caroll",
+      "type": "Winter"
+    },
+    {
+      "location": "Whiteoak Creek",
+      "county": "Houston",
+      "type": "Seasonal"
+    },
+    {
+      "location": "L.L. Burns Park",
+      "county": "Cheatham",
+      "type": "Winter"
+    },
+    {
+      "location": "Normandy TW / Duck River",
+      "county": "Coffee/Bedford",
+      "type": "Tailwater"
+    },
+    {
+      "location": "Cedar Hill Park Pond",
+      "county": "Davidson",
+      "type": "Winter"
+    },
+    {
+      "location": "Marrowbone Lake",
+      "county": "Davidson",
+      "type": "Winter"
+    },
+    {
+      "location": "Shelby Bottoms",
+      "county": "Davidson",
+      "type": "Winter"
+    },
+    {
+      "location": "Acorn Lake (Montgomery Bell SP)",
+      "county": "Dickson",
+      "type": "Delayed Harvest"
+    },
+    {
+      "location": "J.D. Buckner Park",
+      "county": "Dickson",
+      "type": "Winter"
+    },
+    {
+      "location": "Cowan City Park",
+      "county": "Franklin",
+      "type": "Winter"
+    },
+    {
+      "location": "Tims Ford TW / Elk River",
+      "county": "Franklin/Moore",
+      "type": "Tailwater"
+    },
+    {
+      "location": "Mill Creek",
+      "county": "Hickman",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Stone Bridge Park",
+      "county": "Lincoln",
+      "type": "Winter"
+    },
+    {
+      "location": "Lafayette City Park",
+      "county": "Macon",
+      "type": "Winter"
+    },
+    {
+      "location": "Big Rock Greenway",
+      "county": "Marshall",
+      "type": "Winter"
+    },
+    {
+      "location": "Billy Dunlop Park",
+      "county": "Montgomery",
+      "type": "Winter"
+    },
+    {
+      "location": "Fort Campbell Streams",
+      "county": "Montgomery",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Sulphur Fork Creek",
+      "county": "Robertson",
+      "type": "Winter"
+    },
+    {
+      "location": "Nice Mill",
+      "county": "Rutherford",
+      "type": "Winter"
+    },
+    {
+      "location": "W. Fork Stones River - Manson Pike Trailhead",
+      "county": "Rutherford",
+      "type": "Winter"
+    },
+    {
+      "location": "Harpeth River at Eastern Flank Battle Park",
+      "county": "Williamson",
+      "type": "Winter"
+    },
+    {
+      "location": "Don Fox Park Community Park",
+      "county": "Wilson",
+      "type": "Winter"
+    },
+    {
+      "location": "Dale Hollow Reservoir",
+      "county": "Clay",
+      "type": "Reservoir"
+    },
+    {
+      "location": "Cumberland Mountain State Park",
+      "county": "Cumberland",
+      "type": "Winter"
+    },
+    {
+      "location": "Center Hill TW / Caney Fork River",
+      "county": "DeKalb/Smith",
+      "type": "Tailwater"
+    },
+    {
+      "location": "Grundy Lake #4 / Fiery Gizzard SP",
+      "county": "Grundy",
+      "type": "Winter"
+    },
+    {
+      "location": "Dickert Pond / Camp Jordan",
+      "county": "Hamilton",
+      "type": "Winter"
+    },
+    {
+      "location": "Lake Junior",
+      "county": "Hamilton",
+      "type": "Winter"
+    },
+    {
+      "location": "Pocket Creek",
+      "county": "Marion",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Athens City Park Pond",
+      "county": "McMinn",
+      "type": "Winter"
+    },
+    {
+      "location": "Green Cove Pond",
+      "county": "Monroe",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Flat Fork Creek",
+      "county": "Morgan",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Pickett Lake",
+      "county": "Pickett",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Apalachia TW / Hiwassee River*",
+      "county": "Polk",
+      "type": "Delayed Harvest"
+    },
+    {
+      "location": "McKamy Lake",
+      "county": "Polk",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Calfkiller River",
+      "county": "Putnam",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Cane Creek Park",
+      "county": "Putnam",
+      "type": "Winter"
+    },
+    {
+      "location": "Coops Creek",
+      "county": "Sequatchie",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Laurel Creek",
+      "county": "Van Buren",
+      "type": "Seasonal"
+    },
+    {
+      "location": "N Barren Fork Creek",
+      "county": "Warren",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Pistol Creek/Greenbelt Lake",
+      "county": "Blount",
+      "type": "Winter"
+    },
+    {
+      "location": "Calderwood Reservoir",
+      "county": "Blount/Monroe",
+      "type": "Reservoir"
+    },
+    {
+      "location": "Chilhowee Reservoir",
+      "county": "Blount/Monroe",
+      "type": "Reservoir"
+    },
+    {
+      "location": "Laurel Fork",
+      "county": "Campbell",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Tackett Creek",
+      "county": "Campbell",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Stony Creek",
+      "county": "Carter",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Wilbur Tailwater / Watauga River",
+      "county": "Carter/Washington",
+      "type": "Tailwater"
+    },
+    {
+      "location": "Dillard Ponds",
+      "county": "Greene",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Panther Creek",
+      "county": "Hamblen",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Mantooth Pond",
+      "county": "Hancock",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Alexander Creek",
+      "county": "Hawkins",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Big Creek",
+      "county": "Hawkins",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Cherokee TW / Holston River",
+      "county": "Jefferson/Grainger",
+      "type": "Tailwater"
+    },
+    {
+      "location": "Goose Creek / Town Creek",
+      "county": "Johnson",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Ralph Stout Park Pond",
+      "county": "Johnson",
+      "type": "Winter"
+    },
+    {
+      "location": "Fountain City Lake",
+      "county": "Knox",
+      "type": "Winter"
+    },
+    {
+      "location": "Oneida City Park Lake",
+      "county": "Scott",
+      "type": "Winter"
+    },
+    {
+      "location": "Gatlinburg Streams",
+      "county": "Sevier",
+      "type": "Delayed Harvest"
+    },
+    {
+      "location": "Mid. Prong Little Pigeon River",
+      "county": "Sevier",
+      "type": "Seasonal"
+    },
+    {
+      "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
+      "county": "Sevier",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Boone TW / S. Fork Holston River",
+      "county": "Sullivan/Washington",
+      "type": "Tailwater"
+    },
+    {
+      "location": "Clark Creek",
+      "county": "Unicoi",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Fishery Park Pond",
+      "county": "Unicoi",
+      "type": "Seasonal"
+    },
+    {
+      "location": "North Indian Creek",
+      "county": "Unicoi",
+      "type": "Seasonal"
+    },
+    {
+      "location": "Rocky Fork",
+      "county": "Unicoi",
+      "type": "Seasonal"
+    },
+    {
+      "location": "South Indian Creek",
+      "county": "Unicoi",
+      "type": "Seasonal"
+    }
+  ]
+}
