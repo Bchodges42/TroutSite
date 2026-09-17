@@ -29,6 +29,7 @@ import { loadSchedule, buildSchedulePrograms, loadScheduleAliases } from './stoc
 import { readKey } from './judge.mjs';
 
 export const MODEL = 'jev-latest';
+export const STATE_SCHEMA_VERSION = 'trout/jev-classification-state/2';
 export const FISHBRAIN_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'fishbrain-tn-graphql-discovery.json');
 export const FISHBRAIN_STANDARD_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'fishbrain-tn-graphql-standard-discovery.json');
 export const COMPOSITE_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'CLASSIFICATION-COMPOSITE-2026-09-17.json');
@@ -488,6 +489,7 @@ export function evidenceState(slug, { month = new Date().getMonth() + 1 } = {}) 
   const monthNumber = normalizeMonth(month);
   const catalog = catalogEvidence(slug);
   return {
+    schema: STATE_SCHEMA_VERSION,
     task: 'Tennessee-only freshwater fishery classification for Trout; return advisory probabilities, not a catalog write.',
     requestedMonth: {
       number: monthNumber,
@@ -539,13 +541,13 @@ export function categoryMonthConsistency(category, monthNouls, {
   const monthsStrongTrue = monthValues.filter((v) => v >= 0.67).length;
   const monthsStrongFalse = monthValues.filter((v) => v <= 0.33).length;
   const flags = [];
-  if (category === 'warmwater-no-trout' && (monthsStrongTrue > 0 || monthsTrue >= 6)) {
+  if (category === 'warmwater-no-trout' && monthsStrongTrue > 0) {
     flags.push(`warmwater-no-trout but ${monthsTrue}/12 months are at least 0.5 (${monthsStrongTrue} strongly present) — category or month answers need review`);
   }
-  if (category === 'warmwater-yearly-stocked-winter-trout' && (monthsTrue === 12 || monthsStrongTrue >= 10)) {
+  if (category === 'warmwater-yearly-stocked-winter-trout' && monthsStrongTrue >= 10) {
     flags.push(`seasonal/winter-stocked but ${monthsTrue}/12 months are at least 0.5 (${monthsStrongTrue} strongly present) — confirm this is not actually year-round`);
   }
-  if (category === 'trout-stream-year-round' && monthValues.length === 12 && monthsTrue < 10) {
+  if (category === 'trout-stream-year-round' && monthValues.length === 12 && monthsStrongFalse > 0) {
     flags.push(`trout-stream-year-round but only ${monthsTrue}/12 months are at least 0.5 (${monthsStrongFalse} strongly absent) — category or month answers need review`);
   }
   if (Number.isFinite(yearRoundPresence)) {

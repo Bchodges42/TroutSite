@@ -18,6 +18,7 @@
  *     The other 182 are held out: category counts + confidence only.
  *   - No accuracy number from this script is a formal benchmark.
  */
+import { createHash } from 'node:crypto';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
@@ -31,6 +32,7 @@ import {
   FISHBRAIN_STANDARD_PATH,
   MODEL,
   MONTHS,
+  STATE_SCHEMA_VERSION,
   callJev,
   categoryAnswer,
   categoryMonthConsistency,
@@ -39,6 +41,7 @@ import {
   fishbrainCatalogSlugs,
   fishbrainRecordCount,
   normalizeMonth,
+  questionsForMonth,
   reviewedCategory,
 } from './jev-classify.mjs';
 
@@ -49,6 +52,10 @@ const arg = (name) => {
 const limitArg = arg('--limit');
 const limit = limitArg === null ? Infinity : Number(limitArg);
 const month = normalizeMonth(arg('--month') ?? new Date().getMonth() + 1);
+const questionDefinitionHash = createHash('sha256')
+  .update(JSON.stringify(questionsForMonth(month)))
+  .digest('hex')
+  .slice(0, 16);
 const dryRun = process.argv.includes('--dry-run');
 const writeResults = process.argv.includes('--write');
 
@@ -63,6 +70,8 @@ const fishbrainSlugSet = new Set(fishbrainSlugs);
 
 console.log(JSON.stringify({
   model: MODEL,
+  stateSchema: STATE_SCHEMA_VERSION,
+  questionDefinitionHash,
   month: { number: month, name: MONTHS[month - 1] },
   fishbrainRecords: fishbrainRecordCount(),
   targets: targetSlugs.length,
@@ -192,6 +201,12 @@ const inconsistent = scored.filter((r) => r.consistencyFlags.length > 0);
 const output = {
   generated: new Date().toISOString(),
   model: MODEL,
+  requestDefinition: {
+    stateSchema: STATE_SCHEMA_VERSION,
+    questionDefinitionHash,
+    requestedModel: MODEL,
+    responseModels: [...new Set(scored.map((r) => r.model).filter(Boolean))],
+  },
   month: { number: month, name: MONTHS[month - 1] },
   fishbrainPaths: [FISHBRAIN_PATH, FISHBRAIN_STANDARD_PATH].map((path) => path.slice(REPO_ROOT.length + 1)),
   evaluationIntegrity: {

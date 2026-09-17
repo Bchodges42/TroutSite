@@ -49,6 +49,7 @@ describe('Jev Tennessee fishery classifier setup', () => {
   it('keeps Fishbrain freshwater trout separate from excluded marine labels', () => {
     const state = evidenceState('boone-tailwater', { month: 'July' });
     const discovery = state.evidence.fishbrainDiscovery;
+    expect(state.schema).toBe('trout/jev-classification-state/2');
     expect(state.requestedMonth).toMatchObject({ number: 7, name: 'July' });
     expect(discovery.available).toBe(true);
     expect(discovery.dataset.collectionNote).toContain('Research-only');
