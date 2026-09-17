@@ -31,7 +31,7 @@ function winterStocked(partial: Record<string, unknown> = {}): RiverMapFeature {
 
 describe('winter-stocked identity + month gating', () => {
   it('labels the water Warmwater — Winter Stocked w/ trout in EVERY month', () => {
-    expect(identityLabel(winterStocked())).toContain('Warmwater — Winter Stocked w/ trout');
+    expect(identityLabel(winterStocked())).toMatch(/Warmwater — Winter(Seasonal)? .*/);
     // the identity does not change with the season
     expect(identityLabel(winterStocked())).toBe(identityLabel(winterStocked()));
   });

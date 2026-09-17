@@ -30,7 +30,7 @@ describe('Jev Tennessee fishery classifier setup', () => {
     ]);
     expect(Object.values(CATEGORY_LABELS)).toEqual([
       'Trout Stream - year round',
-      'Warm water - Yearly stocked winter trout',
+      'Warmwater - Winter/Seasonal trout stocking',
       'warm water(no trout)',
     ]);
     expect(Object.keys(questionsForMonth('July').category.criteria)).toEqual(Object.keys(CATEGORY_CRITERIA));
@@ -124,9 +124,10 @@ describe('Jev Tennessee fishery classifier setup', () => {
     const state = evidenceState('parksville-tailwater');
     expect(state.water.waterbodyType).toBe('tailrace');
     expect(reviewedCategory('parksville-tailwater')).toBe('trout-stream-year-round');
-    // the "year round" label is system identity: the criteria explicitly keep
-    // seasonal-stocking segments in this category
-    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('seasonal stocking window on a designated trout stream does not disqualify it');
+    // OWNER RULING 2026-09-17: 'year round' now means trout PRESENT year-round
+    // (cold controlled water). The Parksville seasonal-stocking question is
+    // flagged for owner decision — the reviewed label still rules overrides.
+    expect(CATEGORY_CRITERIA['trout-stream-year-round']).toContain('The test is whether the WATER ITSELF stays trout habitat all year');
   });
 
   it('separates seasonal stocking (system stays) from month presence (answers change)', () => {

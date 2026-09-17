@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /* eslint-disable no-undef -- Node script run directly (no bundler types) */
 /**
  * Jev species/fishery classifier for Tennessee waters.
@@ -69,18 +68,32 @@ export const MONTHS = [
 /** Stable API keys; use CATEGORY_LABELS when presenting them to people. */
 export const CATEGORY_LABELS = {
   'trout-stream-year-round': 'Trout Stream - year round',
-  'warmwater-yearly-stocked-winter-trout': 'Warm water - Yearly stocked winter trout',
+  'warmwater-yearly-stocked-winter-trout': 'Warmwater - Winter/Seasonal trout stocking',
   'warmwater-no-trout': 'warm water(no trout)',
 };
 
+/**
+ * Category semantics — OWNER RULING 2026-09-17 (supersedes the earlier
+ * "system identity" reading): "year round" means TROUT PRESENT YEAR-ROUND —
+ * a year-round cold controlled water (tailwater releases, wild population).
+ * A water stocked only in some season is a Warmwater with Winter/Seasonal
+ * trout stocking, whether the program runs in winter (put-and-take lakes) or
+ * in spring/fall (seasonal creeks, Delayed Harvest). The UI shows stockings
+ * and schedules on top, so lumping seasonal programs is fine.
+ */
 export const CATEGORY_CRITERIA = {
   'trout-stream-year-round':
-    'A freshwater Tennessee water whose SYSTEM is a trout stream: a designated/managed trout water — a wild or self-sustaining trout population, a coldwater tailwater management regime, or a regular trout stocking program on that exact segment. "Year round" describes this standing system identity and management, NOT a guarantee of catchable trout in all twelve months; month-by-month availability is answered separately and a seasonal stocking window on a designated trout stream does not disqualify it (e.g. the Parksville Dam / Ocoee No. 1 tailwater belongs here). A few trout catches, a trout regulation, or one winter stocking event alone is not enough.',
+    'Trout are present YEAR-ROUND: a cold, controlled water that holds trout every month — a dam tailwater with continuous cold releases, or a wild/self-sustaining trout population in cold water. The test is whether the WATER ITSELF stays trout habitat all year, not whether it is stocked all year. A spring-only or fall-only stocking program on a water that warms up outside the season does NOT qualify — that is a seasonal/stocked water. A few trout catches or a trout regulation alone is not enough.',
   'warmwater-yearly-stocked-winter-trout':
-    'A warmwater-first Tennessee water whose trout presence comes from a RECURRING, documented winter put-and-take stocking program (annual winter window), on a water that is not itself a trout-stream system. Trout may be catchable during the stocking window, but the evidence does not establish a trout-stream system. A TWRA winter-program record is stronger than Fishbrain counts; one historic catch or one isolated stocking event is not a program. Do not use this category for a designated trout-stream segment.',
+    'A water that is NOT year-round trout habitat but receives a RECURRING trout stocking program in some season — winter put-and-take (December-February), a spring stocking season on a creek that warms up later, or a Delayed-Harvest window. Trout are present when stocked and absent outside the program. One historic catch or one isolated stocking event is not a program; a TWRA program record is stronger than Fishbrain counts. Do not use this category for a water that stays cold enough to hold trout year-round — that is a year-round trout stream.',
   'warmwater-no-trout':
-    'A warmwater Tennessee water that is NOT a trout-stream system and has no current/recurring winter trout program. This category is about fishery/system type, not a claim that every trout species is absent: a reservoir can contain lake trout and still be warm water(no trout) when it is not a trout-stream system. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
+    'A warmwater Tennessee water with no recurring trout stocking program and no year-round trout presence. This category is about fishery/system type, not a claim that every trout species is absent: a reservoir can contain lake trout and still be warm water(no trout) when it is not a stocked or year-round trout water. Fishbrain absence is not proof by itself, but missing evidence should lower confidence rather than manufacture a trout claim.',
 };
+
+
+
+/** Stable API keys; use CATEGORY_LABELS when presenting them to people. */
+
 
 export const FRESHWATER_TROUT_NAMES = new Set([
   'rainbow trout',

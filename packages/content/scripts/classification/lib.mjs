@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /* eslint-disable no-undef -- Node script run directly (no bundler types) */
 /**
  * Shared library for the tiered classification pipeline.
