@@ -209,7 +209,7 @@ describe('TWRA stocking-schedule ingest (official program calendar)', () => {
     expect(sched.programs).toContain('Tailwater');
     expect(sched.months).toHaveLength(12);
     expect(sched.sourceRole).toContain('authoritative');
-    const absent = evidenceState('west-prong-little-pigeon', { month: 3 }).evidence.twraStocking.officialSchedule;
+    const absent = evidenceState('chickamauga-lake', { month: 3 }).evidence.twraStocking.officialSchedule;
     expect(absent.available).toBe(false);
     expect(absent.sourceRole).toContain('not a program negative');
   });

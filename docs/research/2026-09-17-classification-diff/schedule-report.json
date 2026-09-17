@@ -1,14 +1,14 @@
 {
-  "generated": "2026-09-17T17:04:37.542Z",
+  "generated": "2026-09-17T17:29:59.849Z",
   "summary": {
     "scheduleRows": 616,
-    "resolvedWaters": 67,
-    "unmatchedRows": 285,
-    "uniqueUnmatchedLocations": 66,
-    "calendarGaps": 2,
-    "flagReplacements": 67,
-    "watersWithPinnedWindows": 5,
-    "watersWithExactDates": 16
+    "resolvedWaters": 83,
+    "unmatchedRows": 176,
+    "uniqueUnmatchedLocations": 47,
+    "calendarGaps": 44,
+    "flagReplacements": 83,
+    "watersWithPinnedWindows": 83,
+    "watersWithExactDates": 19
   },
   "waters": [
     {
@@ -23,8 +23,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -42,11 +45,16 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
-        "rowCount": 5
+        "rowCount": 11
       }
     },
     {
@@ -67,8 +75,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-14",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -87,11 +98,45 @@
           "Seasonal"
         ],
         "meaning": "delayed-harvest window (fall stocking, C&R, spring harvest); scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          10,
+          11
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 9
+      }
+    },
+    {
+      "slug": "boone-tailwater",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          3,
+          4
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
       }
     },
     {
@@ -110,8 +155,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -134,11 +183,63 @@
           "Delayed Harvest"
         ],
         "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 30
+      }
+    },
+    {
+      "slug": "calderwood-lake",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Reservoir"
+        ],
+        "meaning": "reservoir stocking row",
+        "months": [
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "calfkiller-river",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": [
+          3
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 2
       }
     },
     {
@@ -159,8 +260,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-13",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -178,8 +282,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 6
@@ -197,11 +305,58 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          10
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 8
+      }
+    },
+    {
+      "slug": "caney-fork-river",
+      "catalog": {
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
       }
     },
     {
@@ -216,11 +371,37 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
+      }
+    },
+    {
+      "slug": "chilhowee-lake",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Reservoir"
+        ],
+        "meaning": "reservoir stocking row",
+        "months": [
+          2,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
       }
     },
     {
@@ -235,8 +416,15 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 22
@@ -288,8 +476,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -307,8 +498,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 9
@@ -332,11 +528,35 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-15",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
+      }
+    },
+    {
+      "slug": "dale-hollow-lake",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": null
+      },
+      "schedule": {
+        "types": [
+          "Reservoir"
+        ],
+        "meaning": "reservoir stocking row",
+        "months": [
+          4
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
       }
     },
     {
@@ -355,8 +575,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 7
@@ -379,11 +603,51 @@
           "Delayed Harvest"
         ],
         "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          10
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 9
+      }
+    },
+    {
+      "slug": "duck-river-tailwater",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          1,
+          2,
+          3,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
       }
     },
     {
@@ -402,8 +666,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -427,11 +695,85 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-13",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
+      }
+    },
+    {
+      "slug": "elk-river",
+      "catalog": {
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
+      }
+    },
+    {
+      "slug": "fletchers-fork",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": [
+          2,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 6
       }
     },
     {
@@ -450,8 +792,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -495,8 +841,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -518,8 +868,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -541,8 +894,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -560,11 +916,117 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
+      }
+    },
+    {
+      "slug": "harpeth-river",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": "2026-02-20",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 3
+      }
+    },
+    {
+      "slug": "hiwassee-river",
+      "catalog": {
+        "seasonMonths": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Tailwater",
+          "Delayed Harvest"
+        ],
+        "meaning": "year-round tailwater program; delayed-harvest window (fall stocking, C&R, spring harvest)",
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 2
+      }
+    },
+    {
+      "slug": "holston-river",
+      "catalog": {
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3,
+          4
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Tailwater"
+        ],
+        "meaning": "year-round tailwater program",
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 1
       }
     },
     {
@@ -579,8 +1041,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 8
@@ -602,8 +1069,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -625,8 +1095,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -650,8 +1124,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-15",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -675,8 +1152,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-08",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -698,8 +1178,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -717,8 +1202,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 8
@@ -740,8 +1230,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -759,8 +1252,15 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          10,
+          11
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 10
@@ -782,8 +1282,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -807,8 +1310,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-14",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -830,11 +1336,41 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-02-20",
         "nextScheduledDay": "2026-12",
         "rowCount": 3
+      }
+    },
+    {
+      "slug": "middle-prong-little-pigeon",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          10,
+          11
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 10
       }
     },
     {
@@ -855,8 +1391,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-14",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -874,8 +1413,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 2
@@ -897,8 +1439,12 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          11,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-14",
         "nextScheduledDay": "2026-12",
         "rowCount": 3
@@ -916,8 +1462,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          11
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -981,8 +1532,14 @@
           "Delayed Harvest"
         ],
         "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          10
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 10
@@ -1006,8 +1563,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-14",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -1052,8 +1612,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -1072,8 +1635,13 @@
           "Delayed Harvest"
         ],
         "meaning": "scheduled trout-season program on managed trout water; delayed-harvest window (fall stocking, C&R, spring harvest)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          10
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -1095,8 +1663,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -1118,8 +1690,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -1137,8 +1713,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -1160,8 +1740,10 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 2
@@ -1179,8 +1761,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -1204,8 +1789,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-13",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -1262,8 +1850,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          11
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 6
@@ -1285,8 +1878,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -1308,8 +1904,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -1332,11 +1932,38 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-02-13",
         "nextScheduledDay": "2026-12",
         "rowCount": 3
+      }
+    },
+    {
+      "slug": "stoney-creek-carter",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Seasonal"
+        ],
+        "meaning": "scheduled trout-season program on managed trout water",
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
+        "lastStockedDay": null,
+        "nextScheduledDay": null,
+        "rowCount": 4
       }
     },
     {
@@ -1352,8 +1979,20 @@
           "Seasonal"
         ],
         "meaning": "delayed-harvest window (fall stocking, C&R, spring harvest); scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 32
@@ -1371,8 +2010,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 5
@@ -1394,8 +2038,11 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -1419,8 +2066,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-14",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -1442,8 +2092,10 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 1
@@ -1465,8 +2117,13 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 4
@@ -1490,11 +2147,76 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-15",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
+      }
+    },
+    {
+      "slug": "west-fork-stones-river",
+      "catalog": {
+        "seasonMonths": [
+          12,
+          1,
+          2,
+          3
+        ],
+        "stockingProgram": true,
+        "yearRound": false
+      },
+      "schedule": {
+        "types": [
+          "Winter"
+        ],
+        "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": "2026-02-27",
+        "nextScheduledDay": "2026-12",
+        "rowCount": 6
+      }
+    },
+    {
+      "slug": "west-prong-little-pigeon",
+      "catalog": {
+        "seasonMonths": null,
+        "stockingProgram": true,
+        "yearRound": true
+      },
+      "schedule": {
+        "types": [
+          "Delayed Harvest",
+          "Weekly",
+          "Seasonal"
+        ],
+        "meaning": "delayed-harvest window (fall stocking, C&R, spring harvest); weekly year-round program; scheduled trout-season program on managed trout water",
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "windowPinned": true,
+        "lastStockedDay": "2026-12-24",
+        "nextScheduledDay": null,
+        "rowCount": 62
       }
     },
     {
@@ -1509,8 +2231,12 @@
           "Seasonal"
         ],
         "meaning": "scheduled trout-season program on managed trout water",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "windowPinned": true,
         "lastStockedDay": null,
         "nextScheduledDay": null,
         "rowCount": 3
@@ -1534,8 +2260,11 @@
           "Winter"
         ],
         "meaning": "winter put-and-take on a warm water (cold-month recruitment program)",
-        "months": null,
-        "windowPinned": false,
+        "months": [
+          1,
+          12
+        ],
+        "windowPinned": true,
         "lastStockedDay": "2026-01-15",
         "nextScheduledDay": "2026-12",
         "rowCount": 2
@@ -1557,11 +2286,6 @@
       "location": "L.L. Burns Park",
       "county": "Cheatham",
       "type": "Winter"
-    },
-    {
-      "location": "Normandy TW / Duck River",
-      "county": "Coffee/Bedford",
-      "type": "Tailwater"
     },
     {
       "location": "Cedar Hill Park Pond",
@@ -1594,11 +2318,6 @@
       "type": "Winter"
     },
     {
-      "location": "Tims Ford TW / Elk River",
-      "county": "Franklin/Moore",
-      "type": "Tailwater"
-    },
-    {
       "location": "Mill Creek",
       "county": "Hickman",
       "type": "Seasonal"
@@ -1624,28 +2343,8 @@
       "type": "Winter"
     },
     {
-      "location": "Fort Campbell Streams",
-      "county": "Montgomery",
-      "type": "Seasonal"
-    },
-    {
       "location": "Sulphur Fork Creek",
       "county": "Robertson",
-      "type": "Winter"
-    },
-    {
-      "location": "Nice Mill",
-      "county": "Rutherford",
-      "type": "Winter"
-    },
-    {
-      "location": "W. Fork Stones River - Manson Pike Trailhead",
-      "county": "Rutherford",
-      "type": "Winter"
-    },
-    {
-      "location": "Harpeth River at Eastern Flank Battle Park",
-      "county": "Williamson",
       "type": "Winter"
     },
     {
@@ -1654,19 +2353,9 @@
       "type": "Winter"
     },
     {
-      "location": "Dale Hollow Reservoir",
-      "county": "Clay",
-      "type": "Reservoir"
-    },
-    {
       "location": "Cumberland Mountain State Park",
       "county": "Cumberland",
       "type": "Winter"
-    },
-    {
-      "location": "Center Hill TW / Caney Fork River",
-      "county": "DeKalb/Smith",
-      "type": "Tailwater"
     },
     {
       "location": "Grundy Lake #4 / Fiery Gizzard SP",
@@ -1709,18 +2398,8 @@
       "type": "Seasonal"
     },
     {
-      "location": "Apalachia TW / Hiwassee River*",
-      "county": "Polk",
-      "type": "Delayed Harvest"
-    },
-    {
       "location": "McKamy Lake",
       "county": "Polk",
-      "type": "Seasonal"
-    },
-    {
-      "location": "Calfkiller River",
-      "county": "Putnam",
       "type": "Seasonal"
     },
     {
@@ -1749,16 +2428,6 @@
       "type": "Winter"
     },
     {
-      "location": "Calderwood Reservoir",
-      "county": "Blount/Monroe",
-      "type": "Reservoir"
-    },
-    {
-      "location": "Chilhowee Reservoir",
-      "county": "Blount/Monroe",
-      "type": "Reservoir"
-    },
-    {
       "location": "Laurel Fork",
       "county": "Campbell",
       "type": "Seasonal"
@@ -1766,11 +2435,6 @@
     {
       "location": "Tackett Creek",
       "county": "Campbell",
-      "type": "Seasonal"
-    },
-    {
-      "location": "Stony Creek",
-      "county": "Carter",
       "type": "Seasonal"
     },
     {
@@ -1804,16 +2468,6 @@
       "type": "Seasonal"
     },
     {
-      "location": "Cherokee TW / Holston River",
-      "county": "Jefferson/Grainger",
-      "type": "Tailwater"
-    },
-    {
-      "location": "Goose Creek / Town Creek",
-      "county": "Johnson",
-      "type": "Seasonal"
-    },
-    {
       "location": "Ralph Stout Park Pond",
       "county": "Johnson",
       "type": "Winter"
@@ -1827,26 +2481,6 @@
       "location": "Oneida City Park Lake",
       "county": "Scott",
       "type": "Winter"
-    },
-    {
-      "location": "Gatlinburg Streams",
-      "county": "Sevier",
-      "type": "Delayed Harvest"
-    },
-    {
-      "location": "Mid. Prong Little Pigeon River",
-      "county": "Sevier",
-      "type": "Seasonal"
-    },
-    {
-      "location": "W. Prong Little Pigeon R. (Pigeon Forge)",
-      "county": "Sevier",
-      "type": "Seasonal"
-    },
-    {
-      "location": "Boone TW / S. Fork Holston River",
-      "county": "Sullivan/Washington",
-      "type": "Tailwater"
     },
     {
       "location": "Clark Creek",

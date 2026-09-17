@@ -26,7 +26,7 @@ import {
   resolveEvent,
   countiesOf,
 } from './lib.mjs';
-import { loadSchedule, buildSchedulePrograms } from './stocking-schedule.mjs';
+import { loadSchedule, buildSchedulePrograms, loadScheduleAliases } from './stocking-schedule.mjs';
 import { readKey } from './judge.mjs';
 
 export const MODEL = 'jev-latest';
@@ -128,7 +128,7 @@ for (const occurrence of occurrencesDocument?.occurrences ?? []) {
 const stockingFeed = eventsFromGeojson(loadStockingGeojson());
 const EVENTS_BY_SLUG = new Map();
 for (const event of stockingFeed.events) {
-  const resolution = resolveEvent(event, CATALOG, ALIASES);
+  const resolution = resolveEvent(event, CATALOG, { ...ALIASES, ...loadScheduleAliases() });
   if (resolution.slug) {
     const list = EVENTS_BY_SLUG.get(resolution.slug) ?? [];
     list.push(event);
@@ -137,7 +137,7 @@ for (const event of stockingFeed.events) {
 }
 
 const scheduleDocument = loadSchedule();
-const SCHEDULE_BY_SLUG = buildSchedulePrograms(CATALOG, scheduleDocument.rows ?? [], resolveEvent, ALIASES).bySlug;
+const SCHEDULE_BY_SLUG = buildSchedulePrograms(CATALOG, scheduleDocument.rows ?? [], resolveEvent, { ...ALIASES, ...loadScheduleAliases() }).bySlug;
 
 function readJsonIfPresent(path, fallback) {
   return existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : fallback;

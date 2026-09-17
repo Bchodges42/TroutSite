@@ -17,11 +17,11 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadCatalog, ALIASES, resolveEvent, REPO_ROOT, DIFF_OUT_DIR } from './lib.mjs';
-import { loadSchedule, buildSchedulePrograms } from './stocking-schedule.mjs';
+import { loadSchedule, buildSchedulePrograms, loadScheduleAliases } from './stocking-schedule.mjs';
 
 const write = process.argv.includes('--write');
 const catalog = loadCatalog();
-const { bySlug, unmatched } = buildSchedulePrograms(catalog, loadSchedule().rows, resolveEvent, ALIASES);
+const { bySlug, unmatched } = buildSchedulePrograms(catalog, loadSchedule().rows, resolveEvent, { ...ALIASES, ...loadScheduleAliases() });
 
 const waters = [];
 for (const { slug, doc } of catalog) {

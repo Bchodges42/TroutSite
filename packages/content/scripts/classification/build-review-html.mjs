@@ -17,7 +17,7 @@
  * The browser-side script avoids template literals so the page can live
  * inside one Node template literal.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DIFF_OUT_DIR } from './lib.mjs';
 import { evidenceState, reviewedCategory, CATEGORY_LABELS } from './jev-classify.mjs';
@@ -65,7 +65,13 @@ for (const r of evalDoc.results) {
   prefills[r.slug] = reviewed ?? r.rawChoice ?? null;
 }
 
+const prevPath = join(DIFF_OUT_DIR, 'jev-classification-eval.pre-schedule.json');
+const prevChoices = {};
+if (existsSync(prevPath)) {
+  for (const r of JSON.parse(readFileSync(prevPath, 'utf8')).results) if (!r.error) prevChoices[r.slug] = r.rawChoice ?? null;
+}
 const payload = JSON.stringify({
+  prevChoices,
   generated: evalDoc.generated,
   month: evalDoc.month,
   model: evalDoc.model,
@@ -184,6 +190,7 @@ for (var i = 0; i < DATA.results.length; i++) {
   if (pre) decisions[r0.slug] = { category: pre, note: '', origin: pre === r0.rawChoice ? 'jev' : 'reviewed', modified: false };
 }
 var sortKey = 'confidence', sortDir = -1;
+function changedFromPrev(slug) { var now = decisions[slug] ? decisions[slug].category : null; var was = DATA.prevChoices[slug]; return was && now && was !== now ? was : null; }
 
 function el(id) { return document.getElementById(id); }
 function save() { localStorage.setItem(LS_KEY, JSON.stringify(decisions)); }

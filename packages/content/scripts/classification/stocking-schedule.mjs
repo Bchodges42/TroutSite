@@ -24,6 +24,24 @@ import { join } from 'node:path';
 import { REPO_ROOT, normalizeName, normCounty } from './lib.mjs';
 
 export const SCHEDULE_PATH = join(REPO_ROOT, 'packages', 'content', 'data', 'twra-stocking-schedule.json');
+export const SCHEDULE_ALIASES_PATH = join(REPO_ROOT, 'packages', 'content', 'research', 'schedule-location-aliases.json');
+
+/**
+ * Researched schedule-location aliases (schedule-location-aliases.json):
+ * { slug, relationship, confidence, source } per 'normalized location|county'
+ * key. Owner-directed research 2026-09-17; every entry carries provenance and
+ * the file's candidateAdds section documents waters with no catalog entry.
+ */
+export function loadScheduleAliases() {
+  if (!existsSync(SCHEDULE_ALIASES_PATH)) return {};
+  const doc = JSON.parse(readFileSync(SCHEDULE_ALIASES_PATH, 'utf8'));
+  const out = {};
+  for (const [key, value] of Object.entries(doc.aliases ?? {})) {
+    const [name, county] = key.split('|');
+    out[`${normalizeName(name)}|${normCounty(county)}`] = { slug: value.slug, reason: `${value.relationship} (${value.confidence}): ${value.source}` };
+  }
+  return out;
+}
 
 const MONTH_INITIALS = ['j', 'f', 'm', 'a', 'm', 'j', 'j', 'a', 's', 'o', 'n', 'd'];
 
@@ -113,24 +131,22 @@ export function buildSchedulePrograms(catalog, rows = loadSchedule().rows, resol
   const bySlug = new Map();
   const unmatched = [];
   const resolveScheduleLocation = (row) => {
-    const event = {
-      water: row.location,
-      site: row.location,
-      county: row.county ?? '',
-      program: row.type ?? '',
-      waterClass: '',
-    };
-    const direct = resolveEvent(event, catalog, aliases);
-    if (direct.slug) return direct;
-    const segments = String(row.location ?? '')
+    const counties = String(row.county ?? '').split('/').map((c) => c.trim()).filter(Boolean);
+    const tryCandidates = [];
+    const locations = [row.location, ...String(row.location ?? '')
       .split('/')
       .map((seg) => seg.replace(/\s*(TW|Tailwater|Dam)\s*$/i, '').trim())
-      .filter(Boolean);
-    for (const seg of segments) {
-      const hit = resolveEvent({ water: seg, site: row.location, county: row.county ?? '', program: row.type ?? '' }, catalog, aliases);
-      if (hit.slug) return hit;
+      .filter(Boolean)];
+    // full location first, then each '/' segment, crossed with each county part
+    for (const loc of locations) {
+      tryCandidates.push(resolveEvent({ water: loc, site: row.location, county: counties[0] ?? '', program: row.type ?? '' }, catalog, aliases));
+      for (const county of counties.slice(1)) {
+        tryCandidates.push(resolveEvent({ water: loc, site: row.location, county, program: row.type ?? '' }, catalog, aliases));
+      }
     }
-    return direct;
+    const hit = tryCandidates.find((r) => r.slug);
+    if (hit) return hit;
+    return tryCandidates[tryCandidates.length - 1] ?? { slug: null, how: 'unmatched' };
   };
   for (const row of rows) {
     const resolution = resolveScheduleLocation(row);

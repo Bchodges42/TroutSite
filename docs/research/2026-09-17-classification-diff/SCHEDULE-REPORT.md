@@ -9,12 +9,12 @@ the map feed remains the coverage source. Nothing here is applied to the catalog
 
 | Metric | Count |
 |---|---|
-| Catalog waters with a resolved schedule program | 67 |
-| …with pinned month windows | 5 |
-| …with exact stocking dates (recency!) | 16 |
-| Calendar gaps (schedule months ≠ catalog seasonMonths) | 2 |
-| stockingProgram flags replaceable from the schedule | 67 |
-| Schedule locations with no catalog water (candidate adds) | 66 (of 285 rows) |
+| Catalog waters with a resolved schedule program | 83 |
+| …with pinned month windows | 83 |
+| …with exact stocking dates (recency!) | 19 |
+| Calendar gaps (schedule months ≠ catalog seasonMonths) | 44 |
+| stockingProgram flags replaceable from the schedule | 83 |
+| Schedule locations with no catalog water (candidate adds) | 47 (of 176 rows) |
 
 ## Program types, in plain English
 
@@ -25,43 +25,77 @@ the map feed remains the coverage source. Nothing here is applied to the catalog
 
 ## Box A — calendar gaps (schedule vs catalog seasonMonths)
 
+- **beech-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **boone-tailwater**: schedule [3,4,11,12] (Tailwater) vs catalog [12,3,4]
+- **brush-creek-cocke**: schedule [3,4,5] (Seasonal) vs catalog [12,1,2]
+- **buffalo-creek-grainger**: schedule [2,3,4,5,6,7,8,10] (Seasonal/Delayed Harvest) vs catalog [12,1,2]
+- **cameron-brown-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
 - **clinch-river**: schedule [3,4,5,6,7,8,9] (Tailwater) vs catalog [3,4,5,6,7,8]
+- **covington-fbc-pond**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **doe-creek-johnson**: schedule [3,4,5] (Seasonal) vs catalog [12,1,2]
+- **doe-river**: schedule [3,4,5,6,10] (Seasonal/Delayed Harvest) vs catalog [12,1,2]
+- **duck-river-tailwater**: schedule [1,2,3,11,12] (Tailwater) vs catalog [11,12,1,2,3,4,5,6]
+- **east-fork-shoal-creek**: schedule [2,3,5] (Seasonal) vs catalog [12,1,2]
+- **edmund-orgill-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **fletchers-fork**: schedule [2,4,5,6,7,8] (Seasonal) vs catalog [12,1,2]
+- **forge-creek-johnson**: schedule [3,4,5] (Seasonal) vs catalog [12,1,2]
 - **ft-patrick-henry-tailwater**: schedule [3,4,12] (Tailwater) vs catalog [3,4]
+- **goforth-creek**: schedule [3,4] (Seasonal) vs catalog [12,1,2]
+- **greasy-creek-polk**: schedule [3,4] (Seasonal) vs catalog [12,1,2]
+- **hiwassee-river**: schedule [2,3,4,5,6,7,8,10,11] (Tailwater/Delayed Harvest) vs catalog [10,11,12,1,2,3,4,5,6,7]
+- **hurricane-creek**: schedule [2,3] (Seasonal) vs catalog [12,1,2]
+- **indian-creek-claiborne**: schedule [2,3,4] (Seasonal) vs catalog [12,1,2]
+- **johnson-park-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **lake-graham**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **laurel-creek-johnson**: schedule [3,4,5,6] (Seasonal) vs catalog [12,1,2]
+- **little-buffalo-river**: schedule [3,5] (Seasonal) vs catalog [12,1,2]
+- **little-sequatchie-river**: schedule [3,5] (Seasonal) vs catalog [12,1,2]
+- **martin-city-pond**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **milan-city-pond**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **mossy-creek-jefferson**: schedule [1,11,12] (Winter) vs catalog [12,1,2]
+- **paris-city-park-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **puncheon-camp-creek**: schedule [2,3,4] (Seasonal) vs catalog [12,1,2]
+- **richardson-byrd-creek**: schedule [2,3,4] (Seasonal) vs catalog [12,1,2]
+- **salt-lick-creek**: schedule [3] (Seasonal) vs catalog [12,1,2]
+- **shelby-farms-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **spring-creek-polk**: schedule [2,3,4,11] (Seasonal) vs catalog [12,1,2]
+- **standing-rock-creek**: schedule [2,3] (Seasonal) vs catalog [12,1,2]
+- **station-creek**: schedule [2,3,4] (Seasonal) vs catalog [12,1,2]
+- **stones-river**: schedule [1,2,12] (Winter) vs catalog [12,1,2,3]
+- **tumbling-creek**: schedule [3,4] (Seasonal) vs catalog [12,1,2]
+- **union-city-reelfoot-pond**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **upper-hills-creek**: schedule [3] (Seasonal) vs catalog [12,1,2]
+- **upper-roan-creek**: schedule [3,4,5,6] (Seasonal) vs catalog [12,1,2]
+- **valentine-park-pond**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
+- **west-fork-stones-river**: schedule [1,2,12] (Winter) vs catalog [12,1,2,3]
+- **yale-road-park-lake**: schedule [1,12] (Winter) vs catalog [11,12,1,2,3]
 
 ## Box B — hand-set stockingProgram flags the schedule can replace
 
-67 waters still carry the deprecated boolean; 67 of them now have a schedule-backed program view.
+83 waters still carry the deprecated boolean; 83 of them now have a schedule-backed program view.
 
 ## Box C — stocked waters missing from the catalog (candidate adds)
 
-<details><summary>66 locations (owner: some are access points for catalog waters; some are true gaps like McKenzie City Park)</summary>
+<details><summary>47 locations (owner: some are access points for catalog waters; some are true gaps like McKenzie City Park)</summary>
 
 ```
 McKenzie City Park (Caroll) — Winter
 Whiteoak Creek (Houston) — Seasonal
 L.L. Burns Park (Cheatham) — Winter
-Normandy TW / Duck River (Coffee/Bedford) — Tailwater
 Cedar Hill Park Pond (Davidson) — Winter
 Marrowbone Lake (Davidson) — Winter
 Shelby Bottoms (Davidson) — Winter
 Acorn Lake (Montgomery Bell SP) (Dickson) — Delayed Harvest
 J.D. Buckner Park (Dickson) — Winter
 Cowan City Park (Franklin) — Winter
-Tims Ford TW / Elk River (Franklin/Moore) — Tailwater
 Mill Creek (Hickman) — Seasonal
 Stone Bridge Park (Lincoln) — Winter
 Lafayette City Park (Macon) — Winter
 Big Rock Greenway (Marshall) — Winter
 Billy Dunlop Park (Montgomery) — Winter
-Fort Campbell Streams (Montgomery) — Seasonal
 Sulphur Fork Creek (Robertson) — Winter
-Nice Mill (Rutherford) — Winter
-W. Fork Stones River - Manson Pike Trailhead (Rutherford) — Winter
-Harpeth River at Eastern Flank Battle Park (Williamson) — Winter
 Don Fox Park Community Park (Wilson) — Winter
-Dale Hollow Reservoir (Clay) — Reservoir
 Cumberland Mountain State Park (Cumberland) — Winter
-Center Hill TW / Caney Fork River (DeKalb/Smith) — Tailwater
 Grundy Lake #4 / Fiery Gizzard SP (Grundy) — Winter
 Dickert Pond / Camp Jordan (Hamilton) — Winter
 Lake Junior (Hamilton) — Winter
@@ -70,34 +104,23 @@ Athens City Park Pond (McMinn) — Winter
 Green Cove Pond (Monroe) — Seasonal
 Flat Fork Creek (Morgan) — Seasonal
 Pickett Lake (Pickett) — Seasonal
-Apalachia TW / Hiwassee River* (Polk) — Delayed Harvest
 McKamy Lake (Polk) — Seasonal
-Calfkiller River (Putnam) — Seasonal
 Cane Creek Park (Putnam) — Winter
 Coops Creek (Sequatchie) — Seasonal
 Laurel Creek (Van Buren) — Seasonal
 N Barren Fork Creek (Warren) — Seasonal
 Pistol Creek/Greenbelt Lake (Blount) — Winter
-Calderwood Reservoir (Blount/Monroe) — Reservoir
-Chilhowee Reservoir (Blount/Monroe) — Reservoir
 Laurel Fork (Campbell) — Seasonal
 Tackett Creek (Campbell) — Seasonal
-Stony Creek (Carter) — Seasonal
 Wilbur Tailwater / Watauga River (Carter/Washington) — Tailwater
 Dillard Ponds (Greene) — Seasonal
 Panther Creek (Hamblen) — Seasonal
 Mantooth Pond (Hancock) — Seasonal
 Alexander Creek (Hawkins) — Seasonal
 Big Creek (Hawkins) — Seasonal
-Cherokee TW / Holston River (Jefferson/Grainger) — Tailwater
-Goose Creek / Town Creek (Johnson) — Seasonal
 Ralph Stout Park Pond (Johnson) — Winter
 Fountain City Lake (Knox) — Winter
 Oneida City Park Lake (Scott) — Winter
-Gatlinburg Streams (Sevier) — Delayed Harvest
-Mid. Prong Little Pigeon River (Sevier) — Seasonal
-W. Prong Little Pigeon R. (Pigeon Forge) (Sevier) — Seasonal
-Boone TW / S. Fork Holston River (Sullivan/Washington) — Tailwater
 Clark Creek (Unicoi) — Seasonal
 Fishery Park Pond (Unicoi) — Seasonal
 North Indian Creek (Unicoi) — Seasonal
