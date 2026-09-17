@@ -94,6 +94,33 @@ describe('entity resolution (ambiguous joins queue, never guess)', () => {
     expect(r).toMatchObject({ slug: 'south-holston-river', how: 'core+county', confidence: 'medium' });
   });
 
+  it('resolves a named candidate with the coordinate tie-breaker (Betty\'s Island)', () => {
+    // Real feed point: inside caney-fork-river's bounds, outside caney-fork-upper's.
+    const r = resolveEvent(
+      { water: 'Caney Fork River', site: "Betty'S Island", county: 'Smith', program: 'Tailwater', sampleCoord: [-85.839226, 36.147737] },
+      catalog,
+      ALIASES,
+    );
+    expect(r).toMatchObject({ slug: 'caney-fork-river', how: 'name+coord' });
+  });
+
+  it('coord never overrides the county guard (Mill Creek Hickman still queues)', () => {
+    // Even with a coordinate inside some other water, the staged order means
+    // the county-contradiction trap queues rather than grabbing.
+    const r = resolveEvent({ water: 'Mill Creek', site: 'Mill Creek', county: 'Hickman', program: 'Spring', sampleCoord: [-85.839226, 36.147737] }, catalog, ALIASES);
+    expect(r.slug).toBeNull();
+  });
+
+  it('vetoes still/moving class mismatches in the coord stage (Watauga Reservoir ≠ Wilbur reach)', () => {
+    const r = resolveEvent(
+      { water: 'Watauga Reservoir', site: 'Lakeshore Marina', county: 'Carter', program: 'Reservoir', waterClass: 'Reservoir', sampleCoord: [-82.08, 36.34] },
+      catalog,
+      ALIASES,
+    );
+    // Must NOT grab the Wilbur river reach; lake candidates or queue only.
+    expect(r.slug === null || r.slug.includes('lake')).toBe(true);
+  });
+
   it('returns counties arrays normalized', () => {
     const doc = catalog.find((w) => w.slug === 'cane-creek')!.doc;
     expect(countiesOf(doc)).toContain('vanburen');

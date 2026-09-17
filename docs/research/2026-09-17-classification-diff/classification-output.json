@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-17 03:16",
+  "generated": "2026-09-17 04:18",
   "summary": {
     "feedRows": 725,
     "events": 177,
     "unparsedSpeciesRows": 9,
-    "matchedEvents": 97,
-    "matchedWaters": 81,
-    "ambiguousEvents": 8,
-    "unmatchedEvents": 72,
-    "watersWithComputedStocking": 81,
-    "watersWindowUnpinned": 5,
+    "matchedEvents": 99,
+    "matchedWaters": 82,
+    "ambiguousEvents": 5,
+    "unmatchedEvents": 73,
+    "watersWithComputedStocking": 82,
+    "watersWindowUnpinned": 6,
     "speciesProposals": 0,
     "stockingProgramFlags": 102,
     "seasonCorrections": 49
@@ -342,10 +342,10 @@
     {
       "slug": "boone-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -510,10 +510,10 @@
     {
       "slug": "buffalo-river",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -544,7 +544,7 @@
         "fishery": "stocked",
         "stockingProgram": true,
         "seasonMonths": null,
-        "display": "standard",
+        "display": "featured",
         "counties": []
       },
       "stockedTrout": null,
@@ -730,7 +730,22 @@
           "DeKalb"
         ]
       },
-      "stockedTrout": null,
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": null,
+        "windowUnpinned": true,
+        "programs": [
+          "Tailwater"
+        ],
+        "eventCount": 2,
+        "species": [
+          "brook",
+          "brown",
+          "rainbow"
+        ]
+      },
       "proposal": null,
       "ownerVerdict": null,
       "ledgerBucket": "agree-trout",
@@ -771,7 +786,7 @@
         "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -824,7 +839,7 @@
         "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -858,10 +873,10 @@
     {
       "slug": "chickamauga-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -877,7 +892,7 @@
         "fishery": "stocked",
         "stockingProgram": true,
         "seasonMonths": null,
-        "display": "standard",
+        "display": "featured",
         "counties": []
       },
       "stockedTrout": null,
@@ -1122,10 +1137,10 @@
     {
       "slug": "cumberland-river",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Davidson"
         ]
@@ -1267,10 +1282,10 @@
     {
       "slug": "douglas-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -1282,10 +1297,10 @@
     {
       "slug": "duck-river-lower",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Bedford",
           "Marshall",
@@ -1304,7 +1319,7 @@
         "species": null,
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Maury",
           "Hickman",
@@ -1709,10 +1724,10 @@
     {
       "slug": "fort-loudoun-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -1728,7 +1743,7 @@
         "fishery": "stocked",
         "stockingProgram": true,
         "seasonMonths": null,
-        "display": "standard",
+        "display": "featured",
         "counties": []
       },
       "stockedTrout": null,
@@ -1746,7 +1761,7 @@
         "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Sevier"
         ]
@@ -1980,7 +1995,7 @@
           1,
           2
         ],
-        "display": "standard",
+        "display": "featured",
         "counties": [
           "Williamson"
         ]
@@ -2097,7 +2112,7 @@
           3,
           4
         ],
-        "display": "standard",
+        "display": "featured",
         "counties": [
           "Jefferson"
         ]
@@ -2241,10 +2256,10 @@
     {
       "slug": "j-percy-priest-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -2282,10 +2297,10 @@
     {
       "slug": "kentucky-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -2297,10 +2312,10 @@
     {
       "slug": "lake-barkley",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -2936,10 +2951,10 @@
     {
       "slug": "mississippi-river",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Shelby"
         ]
@@ -3081,7 +3096,7 @@
         "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -3238,7 +3253,7 @@
         "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Cumberland"
         ]
@@ -3366,10 +3381,10 @@
     {
       "slug": "old-hickory-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -3539,10 +3554,10 @@
     {
       "slug": "pickwick-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -3554,7 +3569,7 @@
     {
       "slug": "pigeon-river",
       "catalog": {
-        "species": "trout",
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
         "display": "standard",
@@ -3633,7 +3648,7 @@
         "fishery": "stocked",
         "stockingProgram": true,
         "seasonMonths": null,
-        "display": "standard",
+        "display": "featured",
         "counties": [
           "Rhea"
         ]
@@ -3792,10 +3807,10 @@
     {
       "slug": "reelfoot-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -4071,7 +4086,7 @@
           2,
           3
         ],
-        "display": "reference",
+        "display": "featured",
         "counties": []
       },
       "stockedTrout": {
@@ -4577,7 +4592,7 @@
           3,
           4
         ],
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -4630,10 +4645,10 @@
     {
       "slug": "tennessee-river",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": [
           "Hardin"
         ]
@@ -4650,7 +4665,7 @@
         "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -4977,10 +4992,10 @@
     {
       "slug": "watts-bar-lake",
       "catalog": {
-        "species": null,
+        "species": "warmwater",
         "fishery": null,
         "seasonMonths": null,
-        "display": "featured",
+        "display": "standard",
         "counties": []
       },
       "stockedTrout": null,
@@ -5071,7 +5086,7 @@
         "fishery": "stocked",
         "stockingProgram": true,
         "seasonMonths": null,
-        "display": "standard",
+        "display": "featured",
         "counties": [
           "Sevier"
         ]

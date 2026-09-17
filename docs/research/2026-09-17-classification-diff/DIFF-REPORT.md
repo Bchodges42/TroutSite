@@ -10,11 +10,11 @@ Tiers: T1 = stocking feed + USGS facts (automatic) · T2 = official pages for co
 |---|---|
 | Feed rows (points) | 725 |
 | Deduped stocking events | 177 |
-| Events resolved to a catalog water | 97 (81 waters) |
-| Ambiguous joins (QUEUED — multiple same-named waters) | 8 |
-| Unmatched events (site not in catalog) | 72 |
-| Waters with computed stockedTrout view | 81 |
-| …of which window unpinned (Tailwater/Reservoir — T2) | 5 |
+| Events resolved to a catalog water | 99 (82 waters) |
+| Ambiguous joins (QUEUED — multiple same-named waters) | 5 |
+| Unmatched events (site not in catalog) | 73 |
+| Waters with computed stockedTrout view | 82 |
+| …of which window unpinned (Tailwater/Reservoir — T2) | 6 |
 | Species proposals (unset waters, T1-only evidence) | 0 |
 | stockingProgram flags queued for deprecation | 102 |
 | Season windows: events vs audited ledger | 49 |
@@ -44,7 +44,7 @@ calfkiller-river — T1
 cameron-brown-lake — T2-needed
 cane-creek-hickman-perry — T1
 cane-creek — T1
-caney-fork-river — T2-needed
+caney-fork-river — T1
 charles-creek — T1
 chilhowee-lake — T2-needed
 citico-creek — T1
@@ -193,14 +193,11 @@ yale-road-park-lake — T1
 - **** (Campbell Co, Spring) → candidates: laurel-fork-carter
 - **Bone Cave Rd. Bridge Crossing (S1)** (Vanburen Co, Spring) → candidates: laurel-creek-johnson
 - **Dement Bridge** (Bedford Co, Tailwater) → candidates: duck-river-lower, duck-river-mouth, duck-river-tailwater
-- **Betty'S Island** (Smith Co, Tailwater) → candidates: caney-fork-river, caney-fork-upper
 - **Long Branch Recreation Area** (Dekalb Co, Tailwater) → candidates: caney-fork-river, caney-fork-upper
-- **Happy Hollow** (Putnam Co, Tailwater) → candidates: caney-fork-river, caney-fork-upper
-- **Lakeshore Marina** (Carter Co, Reservoir) → candidates: watauga-river-wilbur-reach, watauga-river
 
 ## Box 5 — feed sites with no catalog water (candidate adds / out-of-scope)
 
-<details><summary>72 unmatched sites</summary>
+<details><summary>73 unmatched sites</summary>
 
 ```
 Kinzer Pond (Montgomery Co, Spring)
@@ -271,6 +268,7 @@ Hwy. 92 / Cherokee Dam (Jefferson Co, Tailwater)
 Massengill Bridge (Anderson Co, Tailwater)
 Siam Bridge (Carter Co, Tailwater)
  (Blount Co, Reservoir)
+Lakeshore Marina (Carter Co, Reservoir)
  (Blount Co, Reservoir)
  (Washington Co, Reservoir)
  (Blount Co, Reservoir)

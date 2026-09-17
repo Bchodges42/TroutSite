@@ -15,15 +15,22 @@
  *
  *   node packages/content/scripts/classification/validate-jev.mjs
  */
-import { loadCatalog, normalizeName, normCounty, coreName, resolveEvent, ALIASES } from './lib.mjs';
+import { loadCatalog, normalizeName, normCounty, coreName, resolveEvent, ALIASES, loadStockingGeojson, eventsFromGeojson } from './lib.mjs';
 import { jevResolve } from './judge.mjs';
 
 const catalog = loadCatalog();
 const bySlug = (slug) => {
   const w = catalog.find((x) => x.slug === slug);
   if (!w) throw new Error(`fixture slug missing: ${slug}`);
-  return { slug, name: w.doc.name, counties: (w.doc.hydroIdentity?.counties ?? []).map(normCounty) };
+  return { slug, name: w.doc.name, counties: (w.doc.hydroIdentity?.counties ?? []).map(normCounty), bounds: w.bounds };
 };
+// Borrow real coordinates from the committed feed so the coord evidence is
+// authentic, not invented.
+const realCoords = new Map();
+for (const ev of eventsFromGeojson(loadStockingGeojson()).events) {
+  if (ev.sampleCoord) realCoords.set(`${normCounty(ev.county)}|${normalizeName(ev.water)}`, ev.sampleCoord);
+}
+const coordFor = (ev) => realCoords.get(`${normCounty(ev.county)}|${normalizeName(ev.water)}`) ?? null;
 
 // [event, expected slug | {family:[...]}, candidates, note]
 const CASES = [
@@ -44,7 +51,8 @@ const CASES = [
 const results = [];
 for (const [ev, expected, candidateSlugs, note] of CASES) {
   const candidates = candidateSlugs.map(bySlug);
-  const event = { ...ev, normName: normalizeName(ev.water), normCounty: normCounty(ev.county), normCore: coreName(ev.water) };
+  const sampleCoord = coordFor(ev);
+  const event = { ...ev, sampleCoord, normName: normalizeName(ev.water), normCounty: normCounty(ev.county), normCore: coreName(ev.water) };
   let jev;
   try {
     jev = await jevResolve(event, candidates);

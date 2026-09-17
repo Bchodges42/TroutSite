@@ -617,6 +617,13 @@
       "how": "name+county"
     },
     {
+      "site": "Betty'S Island",
+      "county": "Smith",
+      "slug": "caney-fork-river",
+      "confidence": "high",
+      "how": "name+coord"
+    },
+    {
       "site": "",
       "county": "Sullivan",
       "slug": "ft-patrick-henry-tailwater",
@@ -643,6 +650,13 @@
       "slug": "boone-tailwater",
       "confidence": "high",
       "how": "name"
+    },
+    {
+      "site": "Happy Hollow",
+      "county": "Putnam",
+      "slug": "caney-fork-river",
+      "confidence": "high",
+      "how": "name+coord"
     },
     {
       "site": "Dale Hollow Dam Recreation Area",
@@ -720,16 +734,6 @@
       ]
     },
     {
-      "site": "Betty'S Island",
-      "water": "Caney Fork River",
-      "county": "Smith",
-      "program": "Tailwater",
-      "candidates": [
-        "caney-fork-river",
-        "caney-fork-upper"
-      ]
-    },
-    {
       "site": "Long Branch Recreation Area",
       "water": "Caney Fork River",
       "county": "Dekalb",
@@ -737,26 +741,6 @@
       "candidates": [
         "caney-fork-river",
         "caney-fork-upper"
-      ]
-    },
-    {
-      "site": "Happy Hollow",
-      "water": "Caney Fork River",
-      "county": "Putnam",
-      "program": "Tailwater",
-      "candidates": [
-        "caney-fork-river",
-        "caney-fork-upper"
-      ]
-    },
-    {
-      "site": "Lakeshore Marina",
-      "water": "Watauga Reservoir",
-      "county": "Carter",
-      "program": "Reservoir",
-      "candidates": [
-        "watauga-river-wilbur-reach",
-        "watauga-river"
       ]
     }
   ],
@@ -1099,6 +1083,11 @@
     {
       "site": "",
       "county": "Blount",
+      "program": "Reservoir"
+    },
+    {
+      "site": "Lakeshore Marina",
+      "county": "Carter",
       "program": "Reservoir"
     },
     {

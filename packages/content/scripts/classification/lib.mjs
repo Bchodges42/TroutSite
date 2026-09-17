@@ -63,14 +63,37 @@ export function parseFeedSpecies(s) {
   return [...out].sort();
 }
 
-/** All catalog waters: { slug, doc, path }. */
+/** All catalog waters: { slug, doc, path, bounds? }. Bounds come from the
+ * committed atlas geometry (rivers.geojson properties.bounds) so resolution
+ * can use the feed rows' coordinates. */
 export function loadCatalog() {
   const out = [];
   for (const f of readdirSync(CATALOG_DIR).filter((f) => f.endsWith('.yaml')).sort()) {
     const path = join(CATALOG_DIR, f);
-    out.push({ slug: f.replace(/\.yaml$/, ''), doc: parse(readFileSync(path, 'utf8')), path });
+    out.push({ slug: f.replace(/\.yaml$/, ''), doc: parse(readFileSync(path, 'utf8')), path, bounds: null });
   }
+  const boundsById = atlasBounds();
+  for (const w of out) w.bounds = boundsById.get(w.slug) ?? null;
   return out;
+}
+
+let boundsCache = null;
+/** id → [minLon, minLat, maxLon, maxLat] from the committed atlas geometry. */
+export function atlasBounds() {
+  if (boundsCache) return boundsCache;
+  boundsCache = new Map();
+  const fc = JSON.parse(readFileSync(join(REPO_ROOT, 'apps', 'web', 'public', 'atlas', 'rivers.geojson'), 'utf8'));
+  for (const f of fc.features ?? []) {
+    if (f.properties?.id && f.properties?.bounds) boundsCache.set(f.properties.id, f.properties.bounds);
+  }
+  return boundsCache;
+}
+
+/** Point-in-bbox test with a small default buffer (~2 km) for edge points. */
+export function pointInBounds(bounds, [lon, lat], bufferDeg = 0.02) {
+  if (!Array.isArray(bounds) || bounds.length !== 4 || !Number.isFinite(lon) || !Number.isFinite(lat)) return false;
+  const [minLon, minLat, maxLon, maxLat] = bounds;
+  return lon >= minLon - bufferDeg && lon <= maxLon + bufferDeg && lat >= minLat - bufferDeg && lat <= maxLat + bufferDeg;
 }
 
 /** Counties compare space-insensitively: the feed writes "Vanburen", the
@@ -161,12 +184,14 @@ export const ALIASES = {
 /**
  * Deterministic entity resolution: feed event → catalog water.
  *
- * Exact normalized-name match; several same-named waters are narrowed by the
- * event's county against hydroIdentity.counties; still several (TN has ~12
- * Mill Creeks) → 'ambiguous' — QUEUED, never guessed. A unique name match
- * whose county CONTRADICTS the event's county is also queued (the Mill Creek
- * (Hickman) → mill-creek-overton class of false positive). Zero hits →
- * 'unmatched'. Alias table only for documented identity corrections.
+ * Stage order (each stage must be UNIQUELY satisfied, else fall through):
+ *   1. documented alias → 2. exact normalized name (county guard: a unique
+ *   name match whose county contradicts the event is QUEUED — the Mill Creek
+ *   (Hickman) trap) → 3. name + county → 4. county-gated core name →
+ *   5. COORDINATE: the feed row's point against catalog bounds — first among
+ *   the earlier name candidates (name+coord), else across the whole catalog
+ *   only if exactly ONE water contains it (coord). Ambiguity queues, never
+ *   guesses. Alias table only for documented identity corrections.
  */
 export function resolveEvent(event, catalog, aliases = {}) {
   const alias = aliases[eventKey(event)];
@@ -182,45 +207,70 @@ export function resolveEvent(event, catalog, aliases = {}) {
   const countyKnown = Boolean(event.county);
   const evCounty = normCounty(event.county);
   const byCounty = candidates.filter((w) => countiesOf(w.doc).includes(evCounty));
+  let nameStageVerdict = null;
   if (candidates.length === 1) {
     const w = candidates[0];
     const counties = countiesOf(w.doc);
     if (countyKnown && counties.length > 0 && !counties.includes(evCounty)) {
-      return { slug: null, confidence: null, how: 'ambiguous', candidates: [w.slug], reason: `county mismatch: event says ${event.county}, catalog water is in ${counties.join('/')}` };
+      nameStageVerdict = { slug: null, confidence: null, how: 'ambiguous', candidates: [w.slug], reason: `county mismatch: event says ${event.county}, catalog water is in ${counties.join('/')}` };
+    } else {
+      return { slug: w.slug, confidence: 'high', how: 'name' };
     }
-    return { slug: w.slug, confidence: 'high', how: 'name' };
-  }
-  if (candidates.length > 1) {
+  } else if (candidates.length > 1) {
     if (byCounty.length === 1) {
       return { slug: byCounty[0].slug, confidence: 'high', how: 'name+county' };
     }
-    return { slug: null, confidence: null, how: 'ambiguous', candidates: candidates.map((c) => c.slug), reason: countyKnown ? `no unique ${event.county} county match` : 'no county on feed row' };
+    nameStageVerdict = { slug: null, confidence: null, how: 'ambiguous', candidates: candidates.map((c) => c.slug), reason: countyKnown ? `no unique ${event.county} county match` : 'no county on feed row' };
   }
+
   // County-gated core-name fallback: TWRA naming conventions put the type
   // word last and vary it ("South Holston Tailwater" = catalog
   // "South Holston River"). Only fires when the county confirms uniquely —
   // bare core names are far too generic to match on alone.
+  let coreCandidates = [];
   if (countyKnown) {
     const wantCore = coreName(event.water || event.site);
     if (wantCore) {
-      const coreHits = catalog.filter(
+      coreCandidates = catalog.filter(
         (w) => countiesOf(w.doc).includes(evCounty) && [w.doc.name, w.slug.replace(/-/g, ' ')].some((n) => coreName(n) === wantCore),
       );
-      if (coreHits.length === 1) {
-        return { slug: coreHits[0].slug, confidence: 'medium', how: 'core+county' };
-      }
-      if (coreHits.length > 1) {
-        return {
-          slug: null,
-          confidence: null,
-          how: 'ambiguous',
-          candidates: coreHits.map((c) => c.slug),
-          reason: `core name matches ${coreHits.length} waters in ${event.county}`,
-        };
+      if (coreCandidates.length === 1) {
+        return { slug: coreCandidates[0].slug, confidence: 'medium', how: 'core+county' };
       }
     }
   }
+
+  // Coordinate stage — TIE-BREAKER ONLY. Catalog bboxes are crude: a parent
+  // river's bounds swallow its tributaries' access points, and a mega-river
+  // bbox (tennessee-river) swallows half the state, so a bare point-in-bbox
+  // match across the whole catalog grabs wrong waters (proven 2026-09-17:
+  // Pickett Lake → tennessee-river). Coordinates may only arbitrate AMONG
+  // name-plausible candidates (exact or core name hits), and a still/moving
+  // water class mismatch (stocking a "Lake"/"Reservoir" row into a river)
+  // vetoes the grab.
+  if (Array.isArray(event.sampleCoord)) {
+    const coord = event.sampleCoord;
+    const namedCandidates = [...candidates, ...coreCandidates];
+    const sane = namedCandidates.filter((w) => !stillVsMovingMismatch(event, w));
+    const amongNamed = sane.filter((w) => w.bounds && pointInBounds(w.bounds, coord));
+    if (amongNamed.length === 1) {
+      return { slug: amongNamed[0].slug, confidence: 'high', how: 'name+coord' };
+    }
+  }
+  if (nameStageVerdict) return nameStageVerdict;
   return { slug: null, confidence: null, how: 'unmatched' };
+}
+
+/** A still-water stocking row (lake/pond/reservoir class) must not be grabbed
+ * by a flowing water (river) and vice versa. */
+function stillVsMovingMismatch(event, water) {
+  const cls = String(event.waterClass ?? '').toLowerCase();
+  const type = String(water.doc.waterbodyType ?? '').toLowerCase();
+  const still = new Set(['lake', 'pond', 'reservoir']);
+  const moving = new Set(['river', 'stream', 'creek']);
+  if (still.has(cls) && moving.has(type)) return true;
+  if (moving.has(cls) && still.has(type)) return true;
+  return false;
 }
 
 export function eventKey(event) {

@@ -19,6 +19,9 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { pointInBounds } from './lib.mjs';
+
+const insideLabel = (bounds, coord) => (coord && bounds ? (pointInBounds(bounds, coord) ? "the stocking point IS inside this water's mapped bounds" : 'stocking point outside its bounds') : 'no bounds check');
 
 export const ACTIVE = 'deterministic'; // jev scored 10/12 (83%) < 90% bar on
 // validate-jev.mjs 2026-09-17 — both misses were SAFE ABSTENTIONS (it refused
@@ -35,19 +38,22 @@ function loadKey() {
 
 /**
  * Ask Jev which catalog water a TWRA stocking row refers to.
- * candidates: [{ slug, name, counties }] — pure data in, typed verdict out.
- * Always includes a 'none' escape hatch; returns {choice, confidence,
- * probabilities, model} or throws on non-2xx (caller decides fallback).
+ * candidates: [{ slug, name, counties, bounds }] — pure data in, typed
+ * verdict out. When the event carries a point, each candidate gets a
+ * computed containment fact (point inside its mapped bounds?) — evidence,
+ * not judgment. Always includes a 'none' escape hatch; returns {choice,
+ * confidence, probabilities, model} or throws on non-2xx.
  */
 export async function jevResolve(event, candidates) {
   const key = loadKey();
   if (!key) throw new Error('TYPESAFE_API_KEY not set (gitignored .env)');
-  const criteria = { none: 'none of these catalog waters — the row refers to a water not in the catalog, or the county rules every candidate out' };
+  const criteria = { none: 'none of these catalog waters — the row refers to a water not in the catalog, or the evidence rules every candidate out' };
   const stateLines = [
     `TWRA trout stocking row: water="${event.water}", access site="${event.site}", county=${event.county || '(none)'}, program=${event.program}.`,
+    event.sampleCoord ? `The row's mapped stocking point is [${event.sampleCoord[1]}, ${event.sampleCoord[0]}] (lat, lon).` : null,
     'Candidate waters from the site catalog:',
-    ...candidates.map((c, i) => `${i + 1}. ${c.slug} — ${c.name}${c.counties.length ? ` (counties: ${c.counties.join(', ')})` : ''}`),
-  ].join('\n');
+    ...candidates.map((c, i) => `${i + 1}. ${c.slug} — ${c.name}${c.counties.length ? ` (counties: ${c.counties.join(', ')})` : ''} — ${insideLabel(c.bounds, event.sampleCoord)}`),
+  ].filter(Boolean).join('\n');
   for (const c of candidates) criteria[c.slug] = c.name + (c.counties.length ? ` (${c.counties.join(', ')})` : '');
   const res = await fetch('https://api.typesafe.ai/v1/systemone', {
     method: 'POST',
@@ -58,7 +64,7 @@ export async function jevResolve(event, candidates) {
       questions: {
         water: {
           type: 'choice',
-          instructions: 'Which catalog water does this TWRA stocking row refer to? Judge by the water name and county; if the county contradicts every candidate or no candidate matches the water, answer none.',
+          instructions: 'Which catalog water does this TWRA stocking row refer to? Judge by the water name and county; if the county contradicts every candidate or no candidate matches the water, answer none. (Do NOT promote bounds/name above county: the 2026-09-17 gate run proved that weighting recovers two abstentions but makes a confident wrong grab on the Mill Creek (Hickman) county-contradiction trap — abstaining is the failure mode we can live with, grabbing is not.)',
           criteria,
         },
       },
