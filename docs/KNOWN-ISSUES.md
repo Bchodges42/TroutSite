@@ -262,6 +262,31 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 - Review PASS6-1 scope note: uncataloged candidate ponds are an accepted limitation;
   the broader "tailwater rows unmatched" claim was retracted by the review itself.
 
+## JEV CLASSIFICATION REVIEW — 2026-09-17
+
+Full evidence and owner decision boxes:
+[`reports/classification-review-2026-09-17.md`](reports/classification-review-2026-09-17.md).
+
+- [x] **T1-59 — Prior Jev answers leaked back into classifier state.** Composite
+  `recommendedClass`, `confidence`, and 11 explicit Jev-derived flags bypassed the
+  literal `jev`-column exclusion. The state now whitelists direct source facts only;
+  all 190 states have a structural no-leak regression test.
+- [ ] **T1-60 — Habitat-survival evidence is not first-class.** The fixed category
+  semantics require year-round survival, but structured inputs chiefly describe
+  stocking programs. Add exact-segment summer temperature, cold-release, wild/
+  recruitment, and holdover evidence; unknown must remain distinct from seasonal loss.
+- [ ] **T2-61 — Ground-truth and reproducibility harness is incomplete.** Add blinded,
+  stratified labels beyond the current eight, restore the missing known-answer command,
+  pin a Jev version if supported, and report calibration/repeated-run stability. Do not
+  use override-backed effective accuracy as model quality.
+- [ ] **T1-62 — Hourly Jev fishability can emit misleading output.** It includes waters
+  without readings, can label a null fallback `skip-it`, omits observation timestamps,
+  applies trout scoring beyond applicable trout months/waters, and uses a weaker
+  stocking matcher. Keep advisory/non-consumed until the safeguards in the review land.
+- [ ] **T2-63 — Stocking month parser treats ambiguous initials as exact.** A bare `A`
+  becomes April although August is also possible. Resolve from cited row/date context
+  or preserve ambiguity.
+
 ## ACCURACY CAMPAIGN CLOSEOUT — 2026-09-13/14
 
 - [x] **NEW-1 / OA-01** — Conditions now use an absolute observation-age gate; a fresh
