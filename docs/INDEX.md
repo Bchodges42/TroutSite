@@ -27,6 +27,9 @@ instead.
 | [`ASSUMPTIONS.md`](ASSUMPTIONS.md) | Living log of decisions/deviations — append, don't rewrite |
 | [`adr/`](adr/) | Architecture Decision Records (read-path, tokens, snapshot layout, ...) |
 | [`OPERATIONS-ANALYTICS.md`](OPERATIONS-ANALYTICS.md) | Analytics opt-in design, WAF kill-switch, ads-readiness checklist |
+| [`CODEBASE-GUIDE.md`](CODEBASE-GUIDE.md) | Guided tour of the code: packages, data flow, where things live |
+| [`AUDIT-PROMPT.md`](AUDIT-PROMPT.md) | Paste-ready prompt for an accuracy audit/planning session |
+| [`GAUGE-CATALOG-GAPS.md`](GAUGE-CATALOG-GAPS.md) | Gauged rivers missing from / under-wired in the catalog (2026-09-15 worklist) |
 
 ## Reference — data provenance & contracts (consult before touching that data)
 
@@ -41,15 +44,24 @@ instead.
 | [`FISHING-INFORMATION-SOURCES.md`](FISHING-INFORMATION-SOURCES.md) | Regulations pack provenance & review dates |
 | [`STILLWATER-COVERAGE.md`](STILLWATER-COVERAGE.md) | Lake/pond coverage decisions |
 | [`WATERBODY-GEOMETRY-CONTRACT.md`](WATERBODY-GEOMETRY-CONTRACT.md) · [`REFERENCE-WATERBODY-INVENTORY.md`](REFERENCE-WATERBODY-INVENTORY.md) (+ `waterbody-inventory.json`) | Geometry property contract + per-waterbody inventory |
+| [`NHD-CONVENTIONS.md`](NHD-CONVENTIONS.md) | Frozen NHD trace-engine conventions (GEOCONV-0 contract) |
+| [`STATEWIDE-RIVER-COVERAGE.md`](STATEWIDE-RIVER-COVERAGE.md) | Displayed vs selectable NHD network coverage (2026-09-15) |
+| [`imagery-provenance.csv`](imagery-provenance.csv) | Imagery/relief layer provenance table |
 
 ## Evidence — point-in-time audits (historical; superseded by newer data wins)
 
 `GEO-AUDIT.md`, `CONTINUITY-AUDIT.md`, `GEO-CONTINUITY-AUDIT-lane.md`,
-`SPECIES-REVIEW.md`, `WATERBODY-IMPLEMENTATION-CHECKLIST.md`, `audits/*`
+`SPECIES-REVIEW.md`, `WATERBODY-IMPLEMENTATION-CHECKLIST.md`, `HARDEN-AUDIT.md`,
+`NETWORK-ROLLOUT.md`, `NHD-BEFORE-AFTER.md` (+ `nhd-before-after/`),
+`audits/*`
 (hydrography, connectivity, duplicates, self-intersection, UI-conditions),
 `lane-results/*`, and `reports/*` — role handoffs plus
 [`reports/review-2026-09-11.md`](reports/review-2026-09-11.md), the latest full-spectrum
 review (its confirmed defects are summarized in [`KNOWN-ISSUES.md`](KNOWN-ISSUES.md)).
+
+Every tracked doc is classified above (completed 2026-09-17 audit — no unindexed
+strays remain; superseded pre-2026-09-12 session material stays retired in git
+history per the note at the top, so there is no `docs/archive/`).
 
 ## App docs
 
