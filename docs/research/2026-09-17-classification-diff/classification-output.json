@@ -1,0 +1,5316 @@
+{
+  "generated": "2026-09-17 03:16",
+  "summary": {
+    "feedRows": 725,
+    "events": 177,
+    "unparsedSpeciesRows": 9,
+    "matchedEvents": 97,
+    "matchedWaters": 81,
+    "ambiguousEvents": 8,
+    "unmatchedEvents": 72,
+    "watersWithComputedStocking": 81,
+    "watersWindowUnpinned": 5,
+    "speciesProposals": 0,
+    "stockingProgramFlags": 102,
+    "seasonCorrections": 49
+  },
+  "waters": [
+    {
+      "slug": "barren-fork-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Warren"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "beaverdam-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Johnson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "beech-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2
+      ]
+    },
+    {
+      "slug": "beech-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "big-bigby-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "big-rock-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "big-sandy-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "big-sewee-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "big-soddy-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "big-swan-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "blackburn-fork",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "boiling-fork-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "boone-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "boone-tailwater",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          3,
+          4
+        ],
+        "display": "featured",
+        "counties": [
+          "Sullivan"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": null,
+        "windowUnpinned": true,
+        "programs": [
+          "Tailwater"
+        ],
+        "eventCount": 1,
+        "species": [
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        9,
+        12
+      ]
+    },
+    {
+      "slug": "bradley-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "brimstone-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "brush-creek-cocke",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Cocke"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "buffalo-creek-grainger",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Grainger"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        10
+      ]
+    },
+    {
+      "slug": "buffalo-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "bullrun-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "calderwood-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "calfkiller-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "White"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        9
+      ]
+    },
+    {
+      "slug": "cameron-brown-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3
+      ]
+    },
+    {
+      "slug": "candies-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "cane-creek-hickman-perry",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Hickman",
+          "Perry"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "cane-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Bledsoe",
+          "Van Buren"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        5,
+        10
+      ]
+    },
+    {
+      "slug": "caney-fork-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "display": "featured",
+        "counties": [
+          "DeKalb"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "caney-fork-upper",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Cumberland",
+          "DeKalb"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "center-hill-lake",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-none",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "charles-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Warren"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "cherokee-lake",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-none",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "chestuee-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "chickamauga-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "chilhowee-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "citico-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        7,
+        11
+      ]
+    },
+    {
+      "slug": "clear-creek-obed",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Morgan"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "clear-fork",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Scott"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "clinch-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "display": "featured",
+        "counties": [
+          "Anderson"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "slug": "collins-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        4
+      ]
+    },
+    {
+      "slug": "conasauga-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "cosby-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Cocke"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "covington-fbc-pond",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        11
+      ]
+    },
+    {
+      "slug": "crab-orchard-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "cumberland-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Davidson"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "daddys-creek",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Cumberland"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "dale-hollow-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "kept featured trout lake (nine-reservoir list + 7/day regs) despite absent in-lake stocking row; Obey tailwater is the trout reach",
+        "ownerConfirmed": "2026-09-16 (prominence package flaggedNotChanged)"
+      },
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "doe-creek-johnson",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Johnson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "doe-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Carter"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        6,
+        10
+      ]
+    },
+    {
+      "slug": "douglas-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "duck-river-lower",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Bedford",
+          "Marshall",
+          "Maury"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "duck-river-mouth",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Maury",
+          "Hickman",
+          "Humphreys"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "species stays unset until sourced; no fill proposed",
+        "ownerConfirmed": "2026-09-16 (prominence package flaggedNotChanged)"
+      },
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "duck-river-tailwater",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "display": "featured",
+        "counties": [
+          "Bedford"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "dumplin-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "east-fork-obey-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "east-fork-shoal-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "east-fork-stones-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "wild",
+        "seasonMonths": [
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "standard",
+        "counties": [
+          "Rutherford"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "winter-stocked (Dec–Feb), owner-confirmed on the record",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": null,
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        6,
+        12
+      ]
+    },
+    {
+      "slug": "elk-river-lower",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Lincoln"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter",
+          "Tailwater"
+        ],
+        "eventCount": 2,
+        "species": [
+          "brook",
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "elk-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "display": "featured",
+        "counties": [
+          "Franklin"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "emory-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Morgan"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "falling-water-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "fletchers-fork",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "slug": "forge-creek-johnson",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Johnson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "forked-deer-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "fort-loudoun-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "fort-patrick-henry-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "french-broad-river",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Sevier"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "ft-patrick-henry-tailwater",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4
+        ],
+        "display": "featured",
+        "counties": [
+          "Sullivan"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": null,
+        "windowUnpinned": true,
+        "programs": [
+          "Tailwater",
+          "Reservoir"
+        ],
+        "eventCount": 2,
+        "species": [
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "slug": "gap-creek-claiborne",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Claiborne"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "goforth-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        5
+      ]
+    },
+    {
+      "slug": "greasy-creek-polk",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "great-falls-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "gulf-fork-big-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Cocke"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "harpeth-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Williamson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "mixed: warmwater base + winter trout program Dec–Feb (claim confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT claim-candidate",
+      "ledgerMonths": [
+        11
+      ]
+    },
+    {
+      "slug": "hatchie-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "hiwassee-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "display": "featured",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": null,
+        "windowUnpinned": true,
+        "programs": [
+          "Tailwater"
+        ],
+        "eventCount": 1,
+        "species": [
+          "brook",
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "holston-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3,
+          4
+        ],
+        "display": "standard",
+        "counties": [
+          "Jefferson"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "horse-creek-greene",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Greene"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "hurricane-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Houston",
+          "Humphreys"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "indian-creek-claiborne",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Claiborne"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        4
+      ]
+    },
+    {
+      "slug": "j-percy-priest-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "johnson-park-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        8
+      ]
+    },
+    {
+      "slug": "kentucky-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "lake-barkley",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "lake-graham",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        5
+      ]
+    },
+    {
+      "slug": "laurel-creek-johnson",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Johnson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "laurel-fork-carter",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Carter"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "leconte-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sevier"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-buffalo-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "little-chuckey-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-harpeth-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-pigeon-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": null,
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sevier"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Blount"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        5,
+        10,
+        11
+      ]
+    },
+    {
+      "slug": "little-sequatchie-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Marion"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        5
+      ]
+    },
+    {
+      "slug": "little-tennessee-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          2,
+          3,
+          4
+        ],
+        "display": "standard",
+        "counties": [
+          "Blount",
+          "Monroe"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "trout (claim confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT claim-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "little-west-fork-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "slug": "loosahatchie-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "martin-city-pond",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "mccutcheon-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "melton-hill-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        7
+      ]
+    },
+    {
+      "slug": "middle-fork-forked-deer-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "middle-fork-obion-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "middle-prong-little-pigeon",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sevier"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "milan-city-pond",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "mill-creek-overton",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Overton"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "mississippi-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Shelby"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "mossy-creek-jefferson",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Jefferson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "new-river",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Scott"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "nickajack-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "nolichucky-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Washington"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "nonconnah-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "normandy-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "norris-lake",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-none",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "north-chickamauga-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Hamilton"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        11
+      ]
+    },
+    {
+      "slug": "north-fork-forked-deer-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "north-fork-holston-river",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sullivan"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-none",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "north-fork-obion-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "north-mouse-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "north-prong-barren-fork",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "obed-river",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Cumberland"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (NPS + 29.7 °C record; strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "obey-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "display": "featured",
+        "counties": [
+          "Clay"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": null,
+        "windowUnpinned": true,
+        "programs": [
+          "Tailwater"
+        ],
+        "eventCount": 1,
+        "species": [
+          "brook",
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "obion-river",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Obion"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        6,
+        10
+      ]
+    },
+    {
+      "slug": "ocoee-number-three-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "ocoee-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "old-hickory-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "oostanaula-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "paint-creek-greene",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Greene"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "paris-city-park-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        12
+      ]
+    },
+    {
+      "slug": "parksville-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "parksville-tailwater",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5
+        ],
+        "display": "featured",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring",
+          "Tailwater"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "pickwick-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "pigeon-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Cocke"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "pine-creek-dekalb",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "DeKalb"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "piney-river-hickman",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Hickman"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "piney-river-rhea",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Rhea"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "powell-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "wild",
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "puncheon-camp-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Campbell"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "red-river-clarksville",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Montgomery"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "reedy-creek",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sullivan"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "warmwater (strip confirmed 2026-09-15)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "reelfoot-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "richardson-byrd-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Hancock"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "richland-creek-maury",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "roaring-fork",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sevier"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "CONFLICT strip-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "roaring-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "rocky-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Van Buren"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "rutherford-fork-obion-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "sale-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "salt-lick-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Macon",
+          "Jackson",
+          "Putnam"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        3
+      ]
+    },
+    {
+      "slug": "sequatchie-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "ledger-unclear",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "shelby-farms-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "shoal-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Lawrence"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "sinking-creek-wilson",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "reference",
+        "counties": [
+          "Wilson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "south-chickamauga-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "south-fork-cumberland",
+      "catalog": {
+        "species": "trout",
+        "fishery": "wild",
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Scott"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "south-fork-forked-deer-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "south-fork-obion-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "south-holston-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "trout, stocked (claim confirmed 2026-09-15; stocking months unpinned)",
+        "ownerConfirmed": "2026-09-15"
+      },
+      "ledgerBucket": "CONFLICT claim-candidate",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "south-holston-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "display": "featured",
+        "counties": [
+          "Sullivan"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": null,
+        "windowUnpinned": true,
+        "programs": [
+          "Tailwater",
+          "Reservoir"
+        ],
+        "eventCount": 3,
+        "species": [
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "slug": "south-mouse-creek",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "spring-creek-polk",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "standing-rock-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "station-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Claiborne"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "stones-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "standard",
+        "counties": [
+          "Davidson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "stoney-creek-carter",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Carter"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "sulfur-fork-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "tellico-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          2,
+          3,
+          4
+        ],
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": {
+        "verdict": "species stays trout, reach-limited (upper arm below Chilhowee Dam, ~4,500 RB/yr, Feb–Apr)",
+        "ownerConfirmed": "2026-09-16 (prominence package flaggedNotChanged)"
+      },
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "tellico-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "brown",
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        9
+      ]
+    },
+    {
+      "slug": "tennessee-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": [
+          "Hardin"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "tims-ford-lake",
+      "catalog": {
+        "species": "warmwater",
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-none",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "trail-fork-big-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Cocke"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 2,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "tumbling-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Polk"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "union-city-reelfoot-pond",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "upper-hills-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3
+      ]
+    },
+    {
+      "slug": "upper-roan-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": [
+          "Johnson"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        6
+      ]
+    },
+    {
+      "slug": "valentine-park-pond",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "watauga-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "watauga-river-wilbur-reach",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "display": "standard",
+        "counties": [
+          "Carter"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "slug": "watauga-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "tailwater",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "display": "featured",
+        "counties": [
+          "Carter"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "watts-bar-lake",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "featured",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "west-fork-obey-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "west-fork-stones-river",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "standard",
+        "counties": [
+          "Rutherford"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        3,
+        12
+      ]
+    },
+    {
+      "slug": "west-harpeth-river",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    },
+    {
+      "slug": "west-prong-little-pigeon",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Sevier"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 3,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "white-oak-creek",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          12,
+          1,
+          2
+        ],
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "slug": "wilbur-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Fentress",
+          "Fentress County headwaters"
+        ]
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          3,
+          4,
+          5
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Spring"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "slug": "wolf-river-west-tennessee",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": [
+          "Shelby"
+        ]
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": [
+        2,
+        11
+      ]
+    },
+    {
+      "slug": "woods-reservoir",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "catalog-unset (fill-gap)",
+      "ledgerMonths": null
+    },
+    {
+      "slug": "yale-road-park-lake",
+      "catalog": {
+        "species": "trout",
+        "fishery": "stocked",
+        "stockingProgram": true,
+        "seasonMonths": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "display": "reference",
+        "counties": []
+      },
+      "stockedTrout": {
+        "computed": true,
+        "tier": "T1",
+        "source": "TWRA trout stocking sites feed (Tier 1, automatic)",
+        "windowMonths": [
+          1,
+          2,
+          12
+        ],
+        "windowUnpinned": false,
+        "programs": [
+          "Winter"
+        ],
+        "eventCount": 1,
+        "species": [
+          "rainbow"
+        ]
+      },
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": "agree-trout",
+      "ledgerMonths": [
+        1,
+        2,
+        12
+      ]
+    },
+    {
+      "slug": "yellow-creek-houston",
+      "catalog": {
+        "species": null,
+        "fishery": null,
+        "seasonMonths": null,
+        "display": "standard",
+        "counties": []
+      },
+      "stockedTrout": null,
+      "proposal": null,
+      "ownerVerdict": null,
+      "ledgerBucket": null,
+      "ledgerMonths": null
+    }
+  ]
+}

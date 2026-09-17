@@ -1,0 +1,34 @@
+{
+  "verdicts": {
+    "east-fork-stones-river": {
+      "verdict": "winter-stocked (Dec–Feb), owner-confirmed on the record",
+      "ownerConfirmed": "2026-09-15",
+      "neverRepropose": true
+    },
+    "tellico-lake": {
+      "verdict": "species stays trout, reach-limited (upper arm below Chilhowee Dam, ~4,500 RB/yr, Feb–Apr)",
+      "ownerConfirmed": "2026-09-16 (prominence package flaggedNotChanged)",
+      "neverRepropose": true
+    },
+    "dale-hollow-lake": {
+      "verdict": "kept featured trout lake (nine-reservoir list + 7/day regs) despite absent in-lake stocking row; Obey tailwater is the trout reach",
+      "ownerConfirmed": "2026-09-16 (prominence package flaggedNotChanged)",
+      "neverRepropose": true
+    },
+    "duck-river-mouth": {
+      "verdict": "species stays unset until sourced; no fill proposed",
+      "ownerConfirmed": "2026-09-16 (prominence package flaggedNotChanged)",
+      "neverRepropose": true
+    },
+    "obed-river": { "verdict": "warmwater (NPS + 29.7 °C record; strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "new-river": { "verdict": "warmwater (strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "french-broad-river": { "verdict": "warmwater (strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "red-river-clarksville": { "verdict": "warmwater (strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "clear-creek-obed": { "verdict": "warmwater (strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "daddys-creek": { "verdict": "warmwater (strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "reedy-creek": { "verdict": "warmwater (strip confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "south-holston-lake": { "verdict": "trout, stocked (claim confirmed 2026-09-15; stocking months unpinned)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "harpeth-river": { "verdict": "mixed: warmwater base + winter trout program Dec–Feb (claim confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true },
+    "little-tennessee-river": { "verdict": "trout (claim confirmed 2026-09-15)", "ownerConfirmed": "2026-09-15", "neverRepropose": true }
+  }
+}

@@ -1,0 +1,26 @@
+
+=== KNOWN-ANSWER VALIDATION ===
+
+PASS  strip-verdict-catalog        7/7 (100%)
+PASS  strip-verdict-protected      7/7 (100%)
+PASS  claim-verdict-catalog        3/3 (100%)
+PASS  claim-verdict-protected      3/3 (100%)
+PASS  resolution-guard             1/1 (100%)
+PASS  resolution-alias             1/1 (100%)
+PASS  resolution-exact             1/1 (100%)
+
+--- T1 corroboration of ledger classes ---
+PASS  stocked-winter corroborated by feed  100%
+PASS  mixed corroborated by feed           100%
+
+INFO  Season windows (feed program vs ledger audit): 51/57 overlap (89%) — feed program labels are coarse; mismatches ship in decision boxes
+  ✗ lake-graham: feed [1,2,12] vs ledger [5]
+  ✗ calfkiller-river: feed [3,4,5] vs ledger [9]
+  ✗ harpeth-river: feed [1,2,12] vs ledger [11]
+  ✗ tellico-river: feed [3,4,5] vs ledger [9]
+  ✗ buffalo-creek-grainger: feed [3,4,5] vs ledger [1,10]
+  ✗ citico-creek: feed [3,4,5] vs ledger [2,7,11]
+INFO  warmwater contradictions surfaced as conflict boxes: reedy-creek, red-river-clarksville (owner decision)
+INFO  wild-class waters with feed events: cosby-creek, leconte-creek (stocking at park access points; character unchanged)
+
+VERDICT: ABOVE BAR — pipeline output may inform decision boxes
