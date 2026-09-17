@@ -11,6 +11,8 @@
     "validate": "tsx scripts/validate.ts",
     "build": "tsx scripts/build.ts",
     "report": "tsx scripts/report.ts",
+    "jev": "node scripts/classification/validate-jev-classification.mjs",
+    "jev:dry-run": "node scripts/classification/validate-jev-classification.mjs --dry-run",
     "test": "vitest run",
     "lint": "eslint ."
   },
