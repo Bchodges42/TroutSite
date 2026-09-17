@@ -4,7 +4,7 @@
     "shopId": "high-country-fly",
     "shopName": "High Country Fly Shop",
     "streamId": "south-holston-river",
-    "date": "2026-09-13",
+    "date": "2026-09-14",
     "body": "Sulphurs came off strong from 2 to 5 pm between the Weir and Rock Creek. Size 16 parachute duns and pheasant tails in 18 fished well; generation has been light in the afternoons.",
     "hotPatterns": [
       {
@@ -18,14 +18,14 @@
     ],
     "photoUrl": "/img/report-1.jpg",
     "attributionUrl": "https://example.com/high-country-fly-shop",
-    "publishedAt": "2026-09-13T05:34:47Z"
+    "publishedAt": "2026-09-14T02:43:32Z"
   },
   {
     "id": "report-hiwassee-week32",
     "shopId": "hiwassee-trading",
     "shopName": "Hiwassee Trading Company",
     "streamId": "hiwassee-river",
-    "date": "2026-09-11",
+    "date": "2026-09-12",
     "body": "Golden stone nymphs in the boulder field above Reliance are producing before noon. Afternoon caddis swings with an elk hair are still taking fish when one generator runs.",
     "hotPatterns": [
       {
@@ -38,14 +38,14 @@
       }
     ],
     "attributionUrl": "https://example.com/hiwassee-trading-company",
-    "publishedAt": "2026-09-11T04:14:47Z"
+    "publishedAt": "2026-09-12T01:23:32Z"
   },
   {
     "id": "report-caney-week33",
     "shopId": "caney-fork-fly",
     "shopName": "Caney Fork Fly Shop",
     "streamId": "caney-fork-river",
-    "date": "2026-09-14",
+    "date": "2026-09-15",
     "body": "Gray sowbugs around the silt weeds below the dam are the most consistent bite. Zebra midges are the follow-up when the surface is quiet.",
     "hotPatterns": [
       {
@@ -58,14 +58,14 @@
       }
     ],
     "attributionUrl": "https://example.com/caney-fork-fly-shop",
-    "publishedAt": "2026-09-14T05:14:47Z"
+    "publishedAt": "2026-09-15T02:23:32Z"
   },
   {
     "id": "report-watauga-week33",
     "shopId": "tailwater-outfitters",
     "shopName": "Tailwater Outfitters",
     "streamId": "watauga-river",
-    "date": "2026-09-10",
+    "date": "2026-09-11",
     "body": "High generation all week — drift boats only. Blue-winged olives in the rain on Saturday; size 20 RS2 behind a stonefly got the eat of the day.",
     "hotPatterns": [
       {
@@ -78,6 +78,6 @@
       }
     ],
     "attributionUrl": "https://example.com/tailwater-outfitters",
-    "publishedAt": "2026-09-10T02:54:47Z"
+    "publishedAt": "2026-09-11T00:03:32Z"
   }
 ]

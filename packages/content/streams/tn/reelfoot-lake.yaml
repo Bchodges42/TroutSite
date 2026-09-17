@@ -2,7 +2,7 @@ id: reelfoot-lake
 name: Reelfoot Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-west
 gaugeIds:
   - "07027000"
@@ -17,6 +17,9 @@ notes: >-
   Regulations: LMB 5/day 15-in; spotted bass no length limit; crappie 20/day combo 10-in (regulatory table —
   page narrative separately says 30/day; internal discrepancy noted, see DISPUTES); catfish 34-in rule;
   paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+    Prominence A species fill (high): TWRA Reelfoot Lake where-to-fish (fetched) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) — bluegill + white crappie ('best in state'); catfish dense
 officialSources:
   - label: TWRA — Reelfoot Lake information
     url: https://www.tn.gov/twra.html
+species: warmwater

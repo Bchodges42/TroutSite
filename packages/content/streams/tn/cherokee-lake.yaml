@@ -2,7 +2,7 @@ id: cherokee-lake
 name: Cherokee Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-holston
 gaugeIds: []
 stockingProgram: false

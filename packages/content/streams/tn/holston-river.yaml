@@ -2,7 +2,7 @@ id: holston-river
 name: Holston River
 stateId: TN
 waterbodyType: river
-display: standard
+display: featured
 regionId: tn-east-pigeon-frenchbroad
 gaugeIds: []
 stockingProgram: true
@@ -42,6 +42,11 @@ seasonMonths:
   - 4
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01303469", "01487063"]
-  huc8s: ["06010104", "06010201"]
-  counties: ["Jefferson"]
+  gnisIds:
+    - "01303469"
+    - "01487063"
+  huc8s:
+    - "06010104"
+    - "06010201"
+  counties:
+    - Jefferson

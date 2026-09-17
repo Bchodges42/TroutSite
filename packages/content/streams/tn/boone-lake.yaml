@@ -2,7 +2,7 @@ id: boone-lake
 name: Boone Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-holston
 gaugeIds:
   - tva:BOOT1
@@ -60,6 +60,8 @@ notes: >-
   Regulations: LMB/SMB 5/day combined, 15" min; spotted bass 15/day no limit; crappie 15/day combined 10" min;
   striped/hybrid 2/day combined (1 striped max; 36" min striped, 15" min hybrid); (retrieved 2026-09-14;
   verify current rules with TWRA before you go).
+
+    Prominence A species fill (high): TWRA Boone Lake where-to-fish + absence from trout-reservoir list — largemouth/smallmouth/spotted, striped bass + hybrids, blue catfish; trout regs apply only on cold Watauga arm to Hwy 11E (drift-in fish)
 officialSources:
   - label: USGS Water Data — monitoring location 03486810 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03486810/
@@ -69,3 +71,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Boone Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html
+species: warmwater

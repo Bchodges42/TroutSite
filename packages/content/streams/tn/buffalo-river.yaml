@@ -2,18 +2,19 @@ id: buffalo-river
 name: Buffalo River
 stateId: TN
 waterbodyType: river
-display: featured
+display: standard
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03604000"
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck
-  River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River
-  is a separate water. USGS 03604000 provides verified flow, stage, and temperature context.
-  Detailed angler notes are still being prepared — check TWRA and
-  local access areas in the meantime.
+  Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River tributary through
+  Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water. USGS 03604000 provides
+  verified flow, stage, and temperature context. Detailed angler notes are still being prepared — check TWRA
+  and local access areas in the meantime.
+
+    Prominence A species fill (high): Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); State Scenic River smallmouth identity — smallmouth signature (1-4 lb), rock bass, bream, catfish
 officialSources:
   - label: USGS Water Data — monitoring location 03604000
     url: https://waterdata.usgs.gov/monitoring-location/03604000/
@@ -22,5 +23,9 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01295866", "01305509"]
-  huc8s: ["06040004"]
+  gnisIds:
+    - "01295866"
+    - "01305509"
+  huc8s:
+    - "06040004"
+species: warmwater

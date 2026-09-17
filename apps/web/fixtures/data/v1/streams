@@ -868,6 +868,7 @@
       "tva:BOOT1"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -875,14 +876,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake. Aliases: Boone Reservoir. TWRA's Boone Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).\nStriped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: LMB/SMB 5/day combined, 15\" min; spotted bass 15/day no limit; crappie 15/day combined 10\" min; striped/hybrid 2/day combined (1 striped max; 36\" min striped, 15\" min hybrid); (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed by the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake. Aliases: Boone Reservoir. TWRA's Boone Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).\nStriped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: LMB/SMB 5/day combined, 15\" min; spotted bass 15/day no limit; crappie 15/day combined 10\" min; striped/hybrid 2/day combined (1 striped max; 36\" min striped, 15\" min hybrid); (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Boone Lake where-to-fish + absence from trout-reservoir list — largemouth/smallmouth/spotted, striped bass + hybrids, blue catfish; trout regs apply only on cold Watauga arm to Hwy 11E (drift-in fish)",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -1143,6 +1144,7 @@
       "03604000"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 70,
@@ -1150,7 +1152,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water. USGS 03604000 provides verified flow, stage, and temperature context. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water. USGS 03604000 provides verified flow, stage, and temperature context. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.\n\n  Prominence A species fill (high): Absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html); State Scenic River smallmouth identity — smallmouth signature (1-4 lb), rock bass, bream, catfish",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -1166,7 +1168,7 @@
         "06040004"
       ]
     },
-    "display": "featured"
+    "display": "standard"
   },
   {
     "id": "bullrun-creek",
@@ -1222,7 +1224,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "standard",
+    "display": "featured",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -1398,6 +1400,7 @@
         "05130108"
       ],
       "counties": [
+        "Bledsoe",
         "Van Buren"
       ],
       "receivingWater": "Caney Fork River"
@@ -1503,7 +1506,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -1611,7 +1614,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -1705,6 +1708,7 @@
     "regionId": "tn-se-hiwassee",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -1712,14 +1716,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar Dam and receiving the Hiwassee River (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac. TWRA's Chickamauga Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day combined, largemouth 15-in min; crappie 15/day, 10-in min; catfish no limit ≤34 in, only 1/day >34 in; striped/hybrid 2/day, 15-in min; walleye 5/day 16-in, sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge, 35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar Dam and receiving the Hiwassee River (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac. TWRA's Chickamauga Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day combined, largemouth 15-in min; crappie 15/day, 10-in min; catfish no limit ≤34 in, only 1/day >34 in; striped/hybrid 2/day, 15-in min; walleye 5/day 16-in, sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Chickamauga where-to-fish + absence from trout-reservoir list — elite largemouth (FLMB program), smallmouth/spotted, nationally ranked crappie, stripers, walleye, blue catfish",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -1797,7 +1801,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "standard",
+    "display": "featured",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -2142,6 +2146,7 @@
       "03431500"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 70,
@@ -2149,7 +2154,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties; the South Fork Cumberland River is a separate water. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.\n\nRegulations: Black bass 5/day combined (Largemouth 14\" min, Smallmouth 18\" min, Spotted no limit); Crappie 30/day combined 10\" min; Sauger 10/day 15\" min; Striped/hybrid 2/day combined 15\" min; White Bass 15/day; Walleye 5/day 16\" min; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main stem across Davidson to Stewart counties; the South Fork Cumberland River is a separate water. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.\n\nRegulations: Black bass 5/day combined (Largemouth 14\" min, Smallmouth 18\" min, Spotted no limit); Crappie 30/day combined 10\" min; Sauger 10/day 15\" min; Striped/hybrid 2/day combined 15\" min; White Bass 15/day; Walleye 5/day 16\" min; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): Absence from all TWRA trout program lists; trout rivers named in TWRA Trout Mgmt Plan 2017-2027 (tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf) — main-stem bass/crappie/stripes; TN trout fishing lives in tributary tailwaters",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2167,7 +2172,7 @@
         "Davidson"
       ]
     },
-    "display": "featured"
+    "display": "standard"
   },
   {
     "id": "daddys-creek",
@@ -2375,6 +2380,7 @@
     "regionId": "tn-east-pigeon-frenchbroad",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -2382,14 +2388,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater toward the Holston/French Broad confluence. TWRA maps the reservoir at 28,738 ac. Aliases: Douglas Reservoir. TWRA's Douglas Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day; Oct 1–May 31 no length limit; Jun 1–Sep 30 only one LMB/SMB >16 in/day; crappie 15/day, 10-in min; catfish 1/day >34 in; white/striped/hybrid 15/day; walleye+sauger 5/day combined, walleye 15-in min; muskellunge 1/day 36-in min; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878). Receives the French Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater toward the Holston/French Broad confluence. TWRA maps the reservoir at 28,738 ac. Aliases: Douglas Reservoir. TWRA's Douglas Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day; Oct 1–May 31 no length limit; Jun 1–Sep 30 only one LMB/SMB >16 in/day; crappie 15/day, 10-in min; catfish 1/day >34 in; white/striped/hybrid 15/day; walleye+sauger 5/day combined, walleye 15-in min; muskellunge 1/day 36-in min; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Douglas Reservoir where-to-fish (zero trout content) + absence from trout-reservoir list — crappie ('best in East TN'), largemouth, bluegill, catfish; sauger/walleye runs up tributaries; NO trout",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -2459,6 +2465,7 @@
       "03599419"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 200,
@@ -2466,7 +2473,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources). reaches seasonally. The 03597860 stage reading is currently anomalous (10.11 ft versus 2.60 ft at neighboring 03598000); treat it as a datum/sensor question, not absolute water level. Conservative flag; verify current TWRA stocking before planning a trout trip here.\n\nRegulations: Black bass (LMB/SMB/spotted combined) 5/day, no length limits; Rock Bass 20/day; Catfish one >34\"/day, unlimited below 34\"; trout 7/day where stocked (tailwater reach only); wading on private banks/bottom is trespassing (floating legal) (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see officialSources). reaches seasonally. The 03597860 stage reading is currently anomalous (10.11 ft versus 2.60 ft at neighboring 03598000); treat it as a datum/sensor question, not absolute water level. Conservative flag; verify current TWRA stocking before planning a trout trip here.\n\nRegulations: Black bass (LMB/SMB/spotted combined) 5/day, no length limits; Rock Bass 20/day; Catfish one >34\"/day, unlimited below 34\"; trout 7/day where stocked (tailwater reach only); wading on private banks/bottom is trespassing (floating legal) (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Duck River where-to-fish (fetched): tailwater dam-to-Three-Forks-Bridge is the trout water; below is warmwater — smallmouth/spotted/rock bass/catfish; the stocked trout reach ends at Three Forks Bridge",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -2487,7 +2494,7 @@
         "Maury"
       ]
     },
-    "display": "featured",
+    "display": "standard",
     "idealFlowSource": "editorial",
     "targetSpecies": [
       "largemouth-bass",
@@ -2562,7 +2569,7 @@
         "Humphreys"
       ]
     },
-    "display": "featured",
+    "display": "standard",
     "idealFlowSource": "editorial",
     "targetSpecies": [
       "largemouth-bass",
@@ -2963,6 +2970,7 @@
     "regionId": "tn-east-clinch",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -2970,14 +2978,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and French Broad main stems and the Little Tennessee arm (Tellico Lake joins via the canal); discharges into Watts Bar Lake. TVA lists the reservoir at 14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir. TWRA's Fort Loudoun Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.",
+    "notes": "TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and French Broad main stems and the Little Tennessee arm (Tellico Lake joins via the canal); discharges into Watts Bar Lake. TVA lists the reservoir at 14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir. TWRA's Fort Loudoun Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\n  Prominence A species fill (high): TWRA Fort Loudoun where-to-fish + absence from trout programs — largemouth/smallmouth, white bass, crappie/bluegill/catfish, sauger run at 'forks of the river'",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -3057,7 +3065,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "standard",
+    "display": "featured",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -3147,7 +3155,7 @@
         "Sevier"
       ]
     },
-    "display": "featured",
+    "display": "standard",
     "idealFlowSource": "editorial"
   },
   {
@@ -3465,7 +3473,7 @@
         "Williamson"
       ]
     },
-    "display": "standard",
+    "display": "featured",
     "idealFlowSource": "editorial",
     "seasonMonths": [
       12,
@@ -3553,7 +3561,7 @@
         "Jefferson"
       ]
     },
-    "display": "standard",
+    "display": "featured",
     "seasonMonths": [
       11,
       12,
@@ -3698,6 +3706,7 @@
     "regionId": "tn-middle-nashville",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -3705,14 +3714,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Stones River reservoir southeast of Nashville in Davidson, Rutherford, and Wilson counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's J. Percy Priest Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Stones River reservoir southeast of Nashville in Davidson, Rutherford, and Wilson counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's J. Percy Priest Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\n  Prominence A species fill (high): TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) row 'J. Percy Priest TW / Stones River' = tailwater reach, not the lake; no lake trout row — bass/crappie; the winter trout site is the TW / Stones River tailwater below the dam",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -3808,6 +3817,7 @@
     "regionId": "tn-west",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -3815,14 +3825,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through West Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Kentucky Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum (spotted none); crappie 20/day, 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid \"Five (2) per day in combination,\" 15-in min (page typo); white bass 15/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through West Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Kentucky Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum (spotted none); crappie 20/day, 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid \"Five (2) per day in combination,\" 15-in min (page typo); white bass 15/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Kentucky Reservoir where-to-fish (tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html) + absence from trout programs — crappie (20/day, 10-in), sauger Dec-Mar, blue catfish, LMB/smallmouth",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -3885,6 +3895,7 @@
     "regionId": "tn-middle-nashville",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -3892,14 +3903,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Barkley Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum, spotted no limit; crappie 20/day 10-in min (page elsewhere says \"thirty in any combination\" — internal contradiction, flagged); catfish no creel ≤34 in, one >34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Barkley Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum, spotted no limit; crappie 20/day 10-in min (page elsewhere says \"thirty in any combination\" — internal contradiction, flagged); catfish no creel ≤34 in, one >34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (medium): TWRA Region-1 where-to-fish locations list (fetched) + absence from trout programs — crappie/bass/catfish",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -4823,6 +4834,7 @@
       "07032000"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 70,
@@ -4830,7 +4842,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.\n\nRegulations: Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34, stripers 6, sauger 6, white bass 30, sunfish 50); statewide catfish rule agrees (only one catfish over 34 in per day; no harvest limit under 34 in) (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime.\n\nRegulations: Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34, stripers 6, sauger 6, white bass 30, sunfish 50); statewide catfish rule agrees (only one catfish over 34 in per day; no harvest limit under 34 in) (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (medium): Lower Mississippi River Conservation Committee angler guide (lmrcc.org) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) — blue/flathead/channel catfish-led trophy fishery; bass",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -4848,7 +4860,7 @@
         "Shelby"
       ]
     },
-    "display": "featured"
+    "display": "standard"
   },
   {
     "id": "mossy-creek-jefferson",
@@ -5174,7 +5186,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -5477,7 +5489,7 @@
         "Cumberland"
       ]
     },
-    "display": "featured",
+    "display": "standard",
     "idealFlowSource": "editorial"
   },
   {
@@ -5646,6 +5658,7 @@
     "regionId": "tn-middle-nashville",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -5653,14 +5666,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Old Hickory Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day combined, largemouth 14-in min, smallmouth 18-in min, spotted no limit; crappie 30/day combined 10-in min; striped/hybrid 2/day combined 15-in min; walleye 5/day 16-in; sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31, no culling; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Cumberland River reservoir east of Nashville across Davidson, Sumner, Wilson, Smith, and Trousdale counties. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Old Hickory Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day combined, largemouth 14-in min, smallmouth 18-in min, spotted no limit; crappie 30/day combined 10-in min; striped/hybrid 2/day combined 15-in min; walleye 5/day 16-in; sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31, no culling; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): Absence from all TWRA trout program lists — bass/crappie/striped bass",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -5926,6 +5939,7 @@
     "regionId": "tn-west",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -5933,14 +5947,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at Pickwick Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the north. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Pickwick Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day combo 15-in (spotted no length); crappie 30/day combo 9-in; striped/hybrid 2/day 15-in; white bass 15/day; walleye 5/day 16-in; sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31, no culling; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at Pickwick Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the north. Detailed angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Pickwick Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: black bass 5/day combo 15-in (spotted no length); crappie 30/day combo 9-in; striped/hybrid 2/day 15-in; white bass 15/day; walleye 5/day 16-in; sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31, no culling; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Pickwick Reservoir where-to-fish (fetched) + absence from trout programs — trophy smallmouth ('rivals Dale Hollow'), LMB/spotted, blue-cat-led catfishery",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -6005,7 +6019,7 @@
       "03461500"
     ],
     "stockingProgram": false,
-    "species": "trout",
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 300,
@@ -6013,7 +6027,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line down to the Douglas Lake arm. TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources).\n\nRegulations: Smallmouth 1/day, 20-in minimum; Walleye 15-in minimum, walleye/sauger 5/day combo, only 1 sauger over 16 in/day — Hwy 321 bridge at Newport upstream to NC line (the full TN reach incl. Hartford) (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC line down to the Douglas Lake arm. TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources).\n\nRegulations: Smallmouth 1/day, 20-in minimum; Walleye 15-in minimum, walleye/sauger 5/day combo, only 1 sauger over 16 in/day — Hwy 321 bridge at Newport upstream to NC line (the full TN reach incl. Hartford) (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): wave-3 ledger: Managed warmwater river (smallmouth/walleye, state-record redhorse); trout row pairing unconfirmable in schedule scrape; troutEvidence=none — ",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -6141,7 +6155,7 @@
         "Rhea"
       ]
     },
-    "display": "standard",
+    "display": "featured",
     "idealFlowSource": "editorial"
   },
   {
@@ -6309,6 +6323,7 @@
       "07027000"
     ],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -6316,14 +6331,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West Tennessee). Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline best fished by boat; check TWRA guides for the commercial fishing and boating rules that apply on this lake.\n\nRegulations: LMB 5/day 15-in; spotted bass no length limit; crappie 20/day combo 10-in (regulatory table — page narrative separately says 30/day; internal discrepancy noted, see DISPUTES); catfish 34-in rule; paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West Tennessee). Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline best fished by boat; check TWRA guides for the commercial fishing and boating rules that apply on this lake.\n\nRegulations: LMB 5/day 15-in; spotted bass no length limit; crappie 20/day combo 10-in (regulatory table — page narrative separately says 30/day; internal discrepancy noted, see DISPUTES); catfish 34-in rule; paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Reelfoot Lake where-to-fish (fetched) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) — bluegill + white crappie ('best in state'); catfish dense",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured"
+    "display": "standard"
   },
   {
     "id": "richardson-byrd-creek",
@@ -6673,7 +6688,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "reference",
+    "display": "featured",
     "seasonMonths": [
       11,
       12,
@@ -7269,7 +7284,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "seasonMonths": [
       2,
       3,
@@ -7377,6 +7392,7 @@
     "regionId": "tn-west",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 70,
@@ -7384,7 +7400,7 @@
         "unit": "cfs"
       }
     ],
-    "notes": "One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424) upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the river legitimately leaves the state between mile 424 and Pickwick. Warm main-stem water — the trout fishing lives in the cold tailwaters below the dams, and the moving reaches are smallmouth water.\n\nRegulations: Sauger 10/day, 15-in min; Walleye 5/day, 16-in min; black bass 5/day combined — 15-in min largemouth/smallmouth, no length limit spotted; crappie 20/day, 10-in min (reservoir-specific); catfish no limit under 34 in, only 1 over 34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424) upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the river legitimately leaves the state between mile 424 and Pickwick. Warm main-stem water — the trout fishing lives in the cold tailwaters below the dams, and the moving reaches are smallmouth water.\n\nRegulations: Sauger 10/day, 15-in min; Walleye 5/day, 16-in min; black bass 5/day combined — 15-in min largemouth/smallmouth, no length limit spotted; crappie 20/day, 10-in min (reservoir-specific); catfish no limit under 34 in, only 1 over 34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Kentucky Reservoir page + absence from all TWRA trout program lists — main-stem reservoir chain; sauger run below dams Dec-Mar; no trout program",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
@@ -7402,7 +7418,7 @@
         "Hardin"
       ]
     },
-    "display": "featured"
+    "display": "standard"
   },
   {
     "id": "tims-ford-lake",
@@ -7427,7 +7443,7 @@
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -7836,6 +7852,7 @@
     "regionId": "tn-east-clinch",
     "gaugeIds": [],
     "stockingProgram": false,
+    "species": "warmwater",
     "idealFlow": [
       {
         "min": 8,
@@ -7843,14 +7860,14 @@
         "unit": "cfs"
       }
     ],
-    "notes": "Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328; Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties — including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm. Discharges through Watts Bar Dam into Chickamauga Lake. TVA lists the reservoir at 39,090 ac at full pool. TWRA's Watts Bar Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: Black Bass 5/day 15-inch; Crappie 15/day 10-inch; Catfish 34-inch rule; Striped Bass/Hybrid — Apr 1-Oct 31: 2/day 15-inch, Nov 1-Mar 31: 2/day only one striped bass (15-inch hybrid / 36-inch striper Nov-Mar); White Bass 15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules with TWRA before you go).",
+    "notes": "Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328; Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties — including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm. Discharges through Watts Bar Dam into Chickamauga Lake. TVA lists the reservoir at 39,090 ac at full pool. TWRA's Watts Bar Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.\n\nRegulations: Black Bass 5/day 15-inch; Crappie 15/day 10-inch; Catfish 34-inch rule; Striped Bass/Hybrid — Apr 1-Oct 31: 2/day 15-inch, Nov 1-Mar 31: 2/day only one striped bass (15-inch hybrid / 36-inch striper Nov-Mar); White Bass 15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules with TWRA before you go).\n\n  Prominence A species fill (high): TWRA Watts Bar where-to-fish + absence from trout-reservoir list — largemouth/smallmouth/crappie + stocked stripers, walleye, FLMB; no trout",
     "officialSources": [
       {
         "label": "TWRA trout stocking — verify officially",
         "url": "https://www.tn.gov/twra/fishing/stocking.html"
       }
     ],
-    "display": "featured",
+    "display": "standard",
     "targetSpecies": [
       "largemouth-bass",
       "smallmouth-bass",
@@ -8050,7 +8067,7 @@
         "Sevier"
       ]
     },
-    "display": "standard",
+    "display": "featured",
     "idealFlowSource": "editorial"
   },
   {

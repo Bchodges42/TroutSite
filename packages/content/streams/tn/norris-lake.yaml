@@ -2,7 +2,7 @@ id: norris-lake
 name: Norris Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false

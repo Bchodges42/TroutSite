@@ -2,7 +2,7 @@ id: watts-bar-lake
 name: Watts Bar Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false
@@ -58,6 +58,8 @@ notes: >-
   Apr 1-Oct 31: 2/day 15-inch, Nov 1-Mar 31: 2/day only one striped bass (15-inch hybrid / 36-inch striper
   Nov-Mar); White Bass 15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules with TWRA
   before you go).
+
+    Prominence A species fill (high): TWRA Watts Bar where-to-fish + absence from trout-reservoir list — largemouth/smallmouth/crappie + stocked stripers, walleye, FLMB; no trout
 officialSources:
   - label: USGS Water Data — monitoring location 03543005
     url: https://waterdata.usgs.gov/monitoring-location/03543005/
@@ -69,3 +71,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Watts Bar Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+species: warmwater

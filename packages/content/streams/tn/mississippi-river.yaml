@@ -2,7 +2,7 @@ id: mississippi-river
 name: Mississippi River
 stateId: TN
 waterbodyType: river
-display: featured
+display: standard
 regionId: tn-west
 gaugeIds:
   - "07032000"
@@ -17,12 +17,18 @@ notes: >-
   Regulations: Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34, stripers 6,
   sauger 6, white bass 30, sunfish 50); statewide catfish rule agrees (only one catfish over 34 in per day; no
   harvest limit under 34 in) (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+    Prominence A species fill (medium): Lower Mississippi River Conservation Committee angler guide (lmrcc.org) + absence from TWRA 2026 stocking schedule (tn.gov/twra/fishing/trout-information-stockings.html) — blue/flathead/channel catfish-led trophy fishery; bass
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01629903"]
-  huc8s: ["08010100"]
-  counties: ["Shelby"]
+  gnisIds:
+    - "01629903"
+  huc8s:
+    - "08010100"
+  counties:
+    - Shelby
+species: warmwater

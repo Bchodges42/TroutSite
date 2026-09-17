@@ -2,7 +2,7 @@ id: tellico-lake
 name: Tellico Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-clinch
 gaugeIds:
   - tva:TDTT1

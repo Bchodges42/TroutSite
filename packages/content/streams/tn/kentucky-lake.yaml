@@ -2,7 +2,7 @@ id: kentucky-lake
 name: Kentucky Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false
@@ -57,6 +57,8 @@ notes: >-
   20/day, 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid "Five (2) per day in
   combination," 15-in min (page typo); white bass 15/day; (retrieved 2026-09-14; verify current rules with
   TWRA before you go).
+
+    Prominence A species fill (high): TWRA Kentucky Reservoir where-to-fish (tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html) + absence from trout programs — crappie (20/day, 10-in), sauger Dec-Mar, blue catfish, LMB/smallmouth
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -64,3 +66,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Kentucky Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html
+species: warmwater

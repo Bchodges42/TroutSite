@@ -2,7 +2,7 @@ id: pickwick-lake
 name: Pickwick Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false
@@ -56,6 +56,8 @@ notes: >-
   Regulations: black bass 5/day combo 15-in (spotted no length); crappie 30/day combo 9-in; striped/hybrid
   2/day 15-in; white bass 15/day; walleye 5/day 16-in; sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31, no
   culling; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+    Prominence A species fill (high): TWRA Pickwick Reservoir where-to-fish (fetched) + absence from trout programs — trophy smallmouth ('rivals Dale Hollow'), LMB/spotted, blue-cat-led catfishery
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -63,3 +65,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Pickwick Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html
+species: warmwater

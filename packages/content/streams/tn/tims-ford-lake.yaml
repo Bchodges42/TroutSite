@@ -2,7 +2,7 @@ id: tims-ford-lake
 name: Tims Ford Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false

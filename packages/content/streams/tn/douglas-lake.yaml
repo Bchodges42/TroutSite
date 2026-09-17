@@ -2,7 +2,7 @@ id: douglas-lake
 name: Douglas Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-pigeon-frenchbroad
 gaugeIds: []
 stockingProgram: false
@@ -58,6 +58,8 @@ notes: >-
   crappie 15/day, 10-in min; catfish 1/day >34 in; white/striped/hybrid 15/day; walleye+sauger 5/day combined,
   walleye 15-in min; muskellunge 1/day 36-in min; (retrieved 2026-09-14; verify current rules with TWRA before
   you go).
+
+    Prominence A species fill (high): TWRA Douglas Reservoir where-to-fish (zero trout content) + absence from trout-reservoir list — crappie ('best in East TN'), largemouth, bluegill, catfish; sauger/walleye runs up tributaries; NO trout
 officialSources:
   - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog entry)
     url: https://waterdata.usgs.gov/monitoring-location/03468510/
@@ -69,3 +71,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Douglas Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+species: warmwater

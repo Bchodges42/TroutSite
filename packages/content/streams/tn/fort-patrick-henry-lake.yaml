@@ -2,7 +2,7 @@ id: fort-patrick-henry-lake
 name: Fort Patrick Henry Lake
 stateId: TN
 waterbodyType: lake
-display: standard
+display: featured
 regionId: tn-east-holston
 gaugeIds:
   - tva:FPHT1

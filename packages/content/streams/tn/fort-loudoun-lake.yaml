@@ -2,7 +2,7 @@ id: fort-loudoun-lake
 name: Fort Loudoun Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false
@@ -45,14 +45,15 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03499510/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir at Knoxville across Knox, Blount, and Loudon counties,
-  impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge,
-  35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and
-  French Broad main stems and the Little Tennessee arm (Tellico Lake joins via
-  the canal); discharges into Watts Bar Lake. TVA lists the reservoir at
-  14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.
-  TWRA's Fort Loudoun Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort Loudoun Dam (USGS
+  03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and French
+  Broad main stems and the Little Tennessee arm (Tellico Lake joins via the canal); discharges into Watts Bar
+  Lake. TVA lists the reservoir at 14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir. TWRA's
+  Fort Loudoun Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie,
+  bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag
+  here; reservoir temperature/oxygen refuge context is not a scored input.
+
+    Prominence A species fill (high): TWRA Fort Loudoun where-to-fish + absence from trout programs — largemouth/smallmouth, white bass, crappie/bluegill/catfish, sauger run at 'forks of the river'
 officialSources:
   - label: USGS Water Data — monitoring location 03499510
     url: https://waterdata.usgs.gov/monitoring-location/03499510/
@@ -64,3 +65,4 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Fort Loudoun Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+species: warmwater

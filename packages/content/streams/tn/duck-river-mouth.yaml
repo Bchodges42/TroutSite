@@ -2,7 +2,7 @@ id: duck-river-mouth
 name: Duck River (Columbia to the mouth)
 stateId: TN
 waterbodyType: river
-display: featured
+display: standard
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03601600"
@@ -36,16 +36,14 @@ speciesEvidence:
     kind: agency
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
     retrieved: 2026-09-14
-notes: The reach the catalog was missing — roughly 100 river miles from Columbia (Maury Co)
-  down through the Western Highland Rim to the Tennessee River confluence near
-  New Johnsonville (Humphreys Co). Same agency-documented warmwater fishery as the rest of
-  the Duck — TWRA documents largemouth/smallmouth/spotted bass, rock bass and catfish with
-  150+ fish species river-wide; gauge drainage grows from ~1,030 sq mi above Columbia to
-  2,557 sq mi at Hurricane Mills, so the editorial flow band is deliberately wide. The
-  2026 scenic river amendment designates this reach (Class II Pastoral segments below
-  Columbia). Float-fish country — TWRA lists ~30 fee-free access sites river-wide; on this
-  reach the USGS gauge crossings (Hwy 100 at Centerville, Hurricane Mills) are the
-  documented public anchors, and the TWRA boating/fishing access map carries the full
+notes: The reach the catalog was missing — roughly 100 river miles from Columbia (Maury Co) down through the
+  Western Highland Rim to the Tennessee River confluence near New Johnsonville (Humphreys Co). Same
+  agency-documented warmwater fishery as the rest of the Duck — TWRA documents largemouth/smallmouth/spotted
+  bass, rock bass and catfish with 150+ fish species river-wide; gauge drainage grows from ~1,030 sq mi above
+  Columbia to 2,557 sq mi at Hurricane Mills, so the editorial flow band is deliberately wide. The 2026 scenic
+  river amendment designates this reach (Class II Pastoral segments below Columbia). Float-fish country — TWRA
+  lists ~30 fee-free access sites river-wide; on this reach the USGS gauge crossings (Hwy 100 at Centerville,
+  Hurricane Mills) are the documented public anchors, and the TWRA boating/fishing access map carries the full
   ramp list.
 officialSources:
   - label: USGS Water Data — monitoring location 03601600 (near Shady Grove)
@@ -61,6 +59,12 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269541"]
-  huc8s: ["06040003", "06040005"]
-  counties: ["Maury", "Hickman", "Humphreys"]
+  gnisIds:
+    - "01269541"
+  huc8s:
+    - "06040003"
+    - "06040005"
+  counties:
+    - Maury
+    - Hickman
+    - Humphreys

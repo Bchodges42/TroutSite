@@ -2,7 +2,7 @@ id: center-hill-lake
 name: Center Hill Lake
 stateId: TN
 waterbodyType: lake
-display: featured
+display: standard
 regionId: tn-middle-caney-fork
 gaugeIds: []
 stockingProgram: false

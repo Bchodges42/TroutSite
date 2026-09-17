@@ -2,7 +2,7 @@ id: tennessee-river
 name: Tennessee River
 stateId: TN
 waterbodyType: river
-display: featured
+display: standard
 regionId: tn-west
 gaugeIds: []
 stockingProgram: false
@@ -20,12 +20,18 @@ notes: >-
   largemouth/smallmouth, no length limit spotted; crappie 20/day, 10-in min (reservoir-specific); catfish no
   limit under 34 in, only 1 over 34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before you
   go).
+
+    Prominence A species fill (high): TWRA Kentucky Reservoir page + absence from all TWRA trout program lists — main-stem reservoir chain; sauger run below dams Dec-Mar; no trout program
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00517033"]
-  huc8s: ["06040001"]
-  counties: ["Hardin"]
+  gnisIds:
+    - "00517033"
+  huc8s:
+    - "06040001"
+  counties:
+    - Hardin
+species: warmwater

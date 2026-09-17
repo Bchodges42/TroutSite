@@ -2,7 +2,7 @@ id: calderwood-lake
 name: Calderwood Lake
 stateId: TN
 waterbodyType: lake
-display: standard
+display: featured
 regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true

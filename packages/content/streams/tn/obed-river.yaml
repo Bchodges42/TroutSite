@@ -2,7 +2,7 @@ id: obed-river
 name: Obed River
 stateId: TN
 waterbodyType: river
-display: featured
+display: standard
 regionId: tn-cumberland-plateau
 gaugeIds:
   - "03538830"
@@ -14,11 +14,11 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — a plateau smallmouth and
-  rock bass river. Flashy plateau watershed: rises fast, drops fast. Stocking flag
-  false by design — verify NPS/TWRA notices. It runs its full named length across the Cumberland Plateau to
-  the Emory confluence. USGS 03538830 is an upstream Obed reach about 20 river miles above the Emory junction,
-  so its conditions are representative context rather than a point measurement for every mapped access area.
+  Wild-river sandstone gorge country in the Obed Wild & Scenic River corridor — a plateau smallmouth and rock
+  bass river. Flashy plateau watershed: rises fast, drops fast. Stocking flag false by design — verify
+  NPS/TWRA notices. It runs its full named length across the Cumberland Plateau to the Emory confluence. USGS
+  03538830 is an upstream Obed reach about 20 river miles above the Emory junction, so its conditions are
+  representative context rather than a point measurement for every mapped access area.
 
 
   Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — NPS
@@ -32,6 +32,9 @@ officialSources:
   - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
     url: https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm
 hydroIdentity:
-  gnisIds: ["01303513"]
-  huc8s: ["06010208"]
-  counties: ["Cumberland"]
+  gnisIds:
+    - "01303513"
+  huc8s:
+    - "06010208"
+  counties:
+    - Cumberland

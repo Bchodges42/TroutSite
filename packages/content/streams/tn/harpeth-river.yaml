@@ -2,7 +2,7 @@ id: harpeth-river
 name: Harpeth River (Williamson County reaches)
 stateId: TN
 waterbodyType: river
-display: standard
+display: featured
 regionId: tn-middle-nashville
 gaugeIds:
   - "03432350"
@@ -52,6 +52,9 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01303466"]
-  huc8s: ["05130204"]
-  counties: ["Williamson"]
+  gnisIds:
+    - "01303466"
+  huc8s:
+    - "05130204"
+  counties:
+    - Williamson

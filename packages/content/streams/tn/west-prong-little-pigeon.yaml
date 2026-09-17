@@ -2,7 +2,7 @@ id: west-prong-little-pigeon
 name: West Prong Little Pigeon River
 stateId: TN
 waterbodyType: creek
-display: standard
+display: featured
 regionId: tn-east-smokies
 gaugeIds:
   - "03469251"
@@ -33,6 +33,10 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01274222", "01275649"]
-  huc8s: ["06010107"]
-  counties: ["Sevier"]
+  gnisIds:
+    - "01274222"
+    - "01275649"
+  huc8s:
+    - "06010107"
+  counties:
+    - Sevier
