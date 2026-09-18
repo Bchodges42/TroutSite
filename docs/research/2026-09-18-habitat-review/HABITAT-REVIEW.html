@@ -6,6 +6,9 @@
  .slug{font-weight:bold;font-size:17px} .pill{font-size:12px;background:#eee7d8;border-radius:10px;padding:2px 8px;margin-left:6px;font-weight:normal}
  .pill.lean{background:#dfe9f5} .why{margin-top:6px;font-style:italic;color:#555} .conflict{margin-top:6px;color:#8c2f1b;font-weight:bold}
  .reasons{margin-top:4px;color:#666;font-size:14px}
+ .jev{margin-top:6px;color:#1f4e79}
+ .jev.pending{color:#8a6d1a;font-style:italic}
+ .card.disagree{border-color:#8c2f1b;border-width:2px;background:#fff7f5}
  table{border-collapse:collapse;width:100%;font-size:14px} td,th{border:1px solid #ddd8cc;padding:6px 8px;text-align:left;vertical-align:top}
  .note{background:#efe9db;border-left:4px solid #8b6f47;padding:10px 14px;margin:14px 0}
  .count{font-size:14px;color:#666}
@@ -35,13 +38,17 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
 <div class="card"><div class="slug">paris-city-park-lake <span class="pill">batch 3</span></div><div class="why">Stocking segment unresolved: TWRA lists "Paris City Park", local news places it at the Eiffel Tower Park pond, the catalog maps Green Acres Lake.</div></div>
 <div class="card"><div class="slug">salt-lick-creek <span class="pill">batch 3</span></div><div class="why">Catalog seasonMonths (Dec/Jan/Feb) vs workbook March rows — internally inconsistent.</div></div>
 <div class="card"><div class="slug">calderwood-lake <span class="pill">batch 3</span></div><div class="why">TWRA live page lists Brook/Brown/Rainbow; the stocking dataset rows say Rainbow only.</div></div>
-<h2>3 · Classifier escalations — code could not decide (30 waters)</h2>
-<div class="count">These go to Jev for a second opinion under the target architecture; disagreement or abstention lands here.</div>
+<h2>3 · Jev vs code — the actual review items (JEV NOT RUN — needs TYPESAFE_API_KEY in clone .env)</h2>
+<div class="count">These 30 waters could not be decided by the code alone. Run <b>rate-escalations.mjs</b> with a TYPESAFE_API_KEY in the clone .env to fetch Jev's second opinions — then only the disagreements need your review.</div>
+<h2>4 · Jev agreed with the code — accepted (0)</h2>
+<div class="count">not run yet</div>
+<h2>5 · Full escalation detail with second-opinion status (30 waters)</h2>
 
   <div class="card">
     <div class="slug">boone-tailwater <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">The documented stocking program runs Mar, Apr, Nov, Dec - the fishery is maintained in cold months, and whether trout persist through the unstocked summer months (survival or unrecorded stocking) is unresolved because no temperature data or documented release type was found; the catalog's yearRound:true flag remains the owner's call.</div>
     <div class="conflict">CONFLICT: catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 4 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -49,6 +56,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">duck-river-tailwater <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (medium)</span></div>
     <div class="why">Evidence points both ways and the decisive fact is unresolved: TWRA's 2000 study found lethal summer temperatures below the dam, yet the owner confirms year-round stocking (which under the 2026-09-17 owner policy would itself define a year-round trout fishery) while the 2026-09-17 workbook shows winter-months-only stocking - the current stocking regime sits in the owner box.</div>
     <div class="conflict">CONFLICT: catalog claims year-round but the documented stocking program is cold-season only (Duck-tailwater pattern) — decisive fact unresolved · catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 5 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -56,6 +64,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">east-fork-stones-river <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">Conflicting picture: the catalog asserts uncited wild rainbows in the upper East Fork, but no agency documentation, no stocking row for this reach (stockings are on the West Fork and Percy Priest tailwater instead), and no temperature data were found — read left unknown.</div>
     <div class="conflict">CONFLICT: catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">no stocking row and no trout facet; catalog documents a warmwater fishery</div>
   </div>
 
@@ -63,6 +72,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">edmund-orgill-lake <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA's own plan classes these hatchery-supported lakes as warmwater habitats that cannot support trout year round, and the site is stocked only during the winter rainbow program (workbook: 1/13/2026, next TBD 12/2026; spring stocking starts March 1).</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -70,6 +80,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">elk-river-lower <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">The nearest mainstem gauge just upstream of this reach averaged ~25 C (max 27.8 C) in July 2025, and the only trout stocking documented anywhere in Lincoln County in the 2026 schedule is a winter town-pond event in Fayetteville — nothing supports resident trout in the Prospect-to-state-line mainstem.</div>
     <div class="conflict">CONFLICT: catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -77,6 +88,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">fort-patrick-henry-lake <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: probably (medium)</span></div>
     <div class="why">TWRA includes Fort Patrick Henry in its reservoir trout-stocking program stated to 'provide year-round trout fishing opportunities' (Brown and Rainbow), and TVA's own reservoir page calls it 'a popular site for fishing, particularly rainbow trout' — but no lake stocking months, thermal data, or holdover evidence pins persistence outside the program's stated intent.</div>
     <div class="conflict">CONFLICT: catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -84,6 +96,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">ft-patrick-henry-tailwater <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">TWRA stocks this reach Mar/Apr/Dec (a cold-shoulder pattern unlike the Mar-Sep program on the year-round South Holston tailwater upstream), but the catalog's 'reliable cold release' claim is matched by no agency temperature or release-type document found in this pass.</div>
     <div class="conflict">CONFLICT: catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 3 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -91,6 +104,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">harpeth-river <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (high)</span></div>
     <div class="why">The only trout program is a winter-only catchable rainbow put-and-take (Dec-Feb) at a Franklin park, while the on-reach USGS gauge at Franklin recorded 27.5 C water in August and TWRA maintains no trout regulation or wild-trout status for the river.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 3 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -98,6 +112,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">hurricane-creek <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">USGS summer grab samples 1984-1988 on the Houston County creek (03606020) ran 20-28 C with 26-28 C in July-August, and the only documented fishery is a 2-3-week Feb-Mar seasonal rainbow stocking.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -105,6 +120,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">johnson-park-lake <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA's own plan classes these hatchery-supported lakes as warmwater habitats that cannot support trout year round, and the site is stocked only during the winter rainbow program (workbook: 1/15/2026, next TBD 12/2026; spring stocking starts March 1).</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -112,6 +128,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">little-pigeon-river <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">No agency record resolves for this reach: TWRA's Little Pigeon program rows are the park/city prongs, no temperature data exists at the Sevierville gage, and the stocking claim rests on an owner local-knowledge note.</div>
     <div class="conflict">CONFLICT: catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -119,6 +136,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">little-tennessee-river <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: probably (medium)</span></div>
     <div class="why">TWRA documents ~4,500 rainbows planted annually in the Chilhowee-tailwater Little Tennessee Arm and states its cold, well-oxygenated releases can support trout there.</div>
     <div class="conflict">CONFLICT: catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -126,6 +144,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">north-chickamauga-creek <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (medium)</span></div>
     <div class="why">TWRA stocks rainbow only seasonally (Feb-Apr + Nov) over a documented warmwater smallmouth/redeye/sunfish fishery, and TDEC summer grab samples 2003-2006 conflict: the mile-12.4 station stayed 18.8-19.3 C (compatible with trout survival) while the mile-19.3 station hit 23.1-25.7 C (marginal to lethal).</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 4 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -133,6 +152,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">paris-city-park-lake <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA's own plan classes these hatchery-supported lakes as warmwater habitats that cannot support trout year round, and the site is stocked only during the winter rainbow program (workbook: 1/14/2026, next TBD 12/2026; spring stocking starts March 1).</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -140,6 +160,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">parksville-lake <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">Conflicting agency signals: TWRA lists Parksville Reservoir (Rainbow) among reservoirs it stocks 'to provide year-round trout fishing opportunities', yet TWRA's own reservoir page frames the pool as a warmwater fishery, the stocking workbook pins no lake stocking dates (only the Mar-Apr-May tailwater row), and no thermal or holdover data exists — per owner rules this conflict reads as unknown.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -147,6 +168,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">parksville-tailwater <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA stocks this reach only March-May and agency/outdoor sources describe the lower Ocoee as warm summer water (walleye-managed reservoir, smallmouth-favoring pools) - no cold-storage mechanism or summer trout data was found.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 3 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -154,6 +176,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">piney-river-rhea <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">A managed put-and-take/delayed-harvest rainbow fishery (stocked Feb-Apr plus a late-Oct DH event, C&R Nov 1-Feb 28) exists, but there is no temperature, holdover, or wild-population evidence for the summer months on this ungaged river.</div>
     <div class="conflict">CONFLICT: catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 4 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -161,6 +184,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">powell-river <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA regulates and frames the Powell River as a smallmouth bass river, the stocking dataset has no Powell rows, and no agency source documenting trout on the Tennessee reach was found — a warmwater/no-trout case.</div>
     <div class="conflict">CONFLICT: catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">no stocking row and no trout facet; catalog documents a warmwater fishery</div>
   </div>
 
@@ -168,6 +192,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">red-river-clarksville <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA's only trout program in Montgomery County is the winter put-take stocking at Billy Dunlop Park (site-on-river but pond-vs-river ambiguous); the Red River reach itself has no trout program, no trout documentation, and is a warmwater muddy river at ~376 ft elevation.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -175,6 +200,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">salt-lick-creek <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA itself types Salt Lick Creek 'Seasonal' with discrete winter/spring rainbow trout events (Jan 7, Mar 1, Mar 22, 2026) and no documentation of cold summer water, a cold source, or trout survival between stockings was found in any source checked.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 1 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -182,6 +208,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">sequatchie-river <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">Spring-seasonal rainbow stockings (Mar-May 2026) are the only trout program; the river's only temperature record (lower river near Whitwell, 1960s daily values) ran 23.5-25.6 C in July, and nothing documents headwater summer temperatures or survival.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -189,6 +216,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">south-fork-cumberland <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">Agency sources document trout presence and a TDEC trout-stream (TS) designation on the TN mainstem, but the naturally-reproducing designation belongs only to a Laurel Fork tributary, there is no current TWRA stocking row, and no summer temperature data exists for the reach — the year-round mainstem survival question is unresolved.</div>
     <div class="conflict">CONFLICT: catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -196,6 +224,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">standing-rock-creek <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">USGS summer grab samples 1984-1988 at the stocking-site station (03606125) ran 21-26 C with 25-26 C in June-July, and the only documented fishery is a 3-week Feb-Mar seasonal rainbow stocking.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -203,6 +232,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">station-creek <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (medium)</span></div>
     <div class="why">NPS summer grab samples 2003-2006 on the lower creek were mostly 15-22 C (marginal but survivable) with a single peak of 23.95 C in Aug 2006, yet stocking is Feb-Apr seasonal only and no wild-trout or holdover evidence exists either way.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 3 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -210,6 +240,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">tellico-lake <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: probably (low)</span></div>
     <div class="why">TWRA calls Tellico a cool-water impoundment with cool temperatures and good oxygen throughout the summer (cold inflows from Chilhowee Reservoir and the Tellico River) and stocks ~4,500 catchable rainbows each late winter, but no summer temperature numbers or holdover evidence were found.</div>
     <div class="conflict">CONFLICT: catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -217,6 +248,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">valentine-park-pond <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA's own plan classes these hatchery-supported lakes as warmwater habitats that cannot support trout year round, and the site is stocked only during the winter rainbow program (workbook: 1/15/2026, next TBD 12/2026; spring stocking starts March 1).</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -224,6 +256,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">white-oak-creek <span class="pill lean">code lean: Warm Water - No Trout</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">USGS summer grab samples 1984-1985 on the upper creek (03605968) hit 28 C in July (23 C in September, 21 C in June), and the only documented fishery is a 3-week Feb-Mar seasonal rainbow stocking.</div>
     <div class="conflict">CONFLICT: catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)</div>
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">insufficient evidence either way — defaulting to no-trout at low confidence (missing data is not proof of absence)</div>
   </div>
 
@@ -231,6 +264,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">wilbur-lake <span class="pill lean">code lean: Year Round - Trout Stream</span> <span class="pill">researcher read: unknown (low)</span></div>
     <div class="why">A small, cold-inflow regulating reservoir whose bottom water must be cold (it discharges a year-round cold trout tailwater), but no stocking row, temperature record, or holdover data for the reservoir itself could be verified in this pass.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">coldSource.damTailwater.releaseType=bottom-draw — cold-release facet</div>
   </div>
 
@@ -238,6 +272,7 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">wolf-river-fentress <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unknown (medium)</span></div>
     <div class="why">Spring-only rainbow put-and-take (Mar-May 2026) is the only trout program, over a TWRA-documented warmwater spotted/smallmouth bass fishery on the managed reach, and no water-temperature evidence exists for the stocked Fentress headwaters.</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 3 month(s)/year without a survival facet — seasonal program</div>
   </div>
 
@@ -245,10 +280,11 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
     <div class="slug">yale-road-park-lake <span class="pill lean">code lean: Warm Water - Seasonal/Winter Stocking</span> <span class="pill">researcher read: unlikely (medium)</span></div>
     <div class="why">TWRA's own plan classes these hatchery-supported lakes as warmwater habitats that cannot support trout year round, and the site is stocked only during the winter rainbow program (workbook: 1/15/2026, next TBD 12/2026; spring stocking starts March 1).</div>
     
+    <div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>
     <div class="reasons">stocking program runs 2 month(s)/year without a survival facet — seasonal program</div>
   </div>
-<h2>4 · Auto-accepted at high confidence (42 waters — spot-check list)</h2>
-<table><tr><th>water</th><th>label</th><td></th><th>researcher read</th><th>why</th></tr>
+<h2>6 · Auto-accepted at high confidence — no Jev needed (42 waters — spot-check list)</h2>
+<table><tr><th>water</th><th>label</th><th>researcher read</th><th>why</th></tr>
   <tr><td>beaverdam-creek</td><td>Year Round - Trout Stream</td><td>0.6</td><td>yes (high)</td><td>TWRA itself calls Beaverdam Creek one of Tennessee's best-known wild trout streams, annually monitored since 1991 for resident rainbow and brown trout — a self-sustaining population in a designated wild-trout water.</td></tr>
 
   <tr><td>blackburn-fork</td><td>Warm Water - No Trout</td><td>0.6</td><td>unlikely (medium)</td><td>TDEC's own scenic-river profile describes a smallmouth bass fishery with no trout mention, and TWRA lists no stocking program or trout regulation for Blackburn Fork.</td></tr>

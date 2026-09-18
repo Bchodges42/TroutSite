@@ -9,7 +9,7 @@
  *
  * Usage: node docs/research/2026-09-18-habitat-review/build-review.mjs
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { classify } from '../../../packages/content/scripts/classification/code-classify.mjs';
@@ -51,6 +51,14 @@ const rows = batches.map((rec) => {
 const escalations = rows.filter((r) => r.gate === 'low').sort((a, b) => a.slug.localeCompare(b.slug));
 const accepts = rows.filter((r) => r.gate === 'high').sort((a, b) => a.slug.localeCompare(b.slug));
 
+/** Jev second opinions, when rate-escalations.mjs has been run with a key. */
+let ratings = null;
+const ratingsPath = join(dirname(fileURLToPath(import.meta.url)), 'jev-ratings.json');
+if (existsSync(ratingsPath)) ratings = JSON.parse(readFileSync(ratingsPath, 'utf8')).results;
+const ratingOf = (slug) => (ratings ?? []).find((r) => r.slug === slug) ?? null;
+const disagreements = (ratings ?? []).filter((r) => r.resolution?.resolution === 'owner-box');
+const agreements = (ratings ?? []).filter((r) => r.resolution?.resolution === 'accept');
+
 /** Research-flagged catalog conflicts from batch reports 1-3 (owner boxes). */
 const researchBoxes = [
   ['batch 1', 'duck-river-tailwater', 'Catalog says TWRA stocks it year-round; the 2026 workbook says winter months only (Jan, Feb, Mar, Nov, Dec). Decisive fact is yours.'],
@@ -85,6 +93,39 @@ const esc = escalations.map((r) => `
 const acc = accepts.map((r) => `
   <tr><td>${r.slug}</td><td>${r.labelText}</td><td>${r.confidence}</td><td>${r.read}</td><td>${r.readWhy}</td></tr>`).join('\n');
 
+const escCards = escalations.map((r) => {
+  const rt = ratingOf(r.slug);
+  const jevLine = rt
+    ? (rt.error
+      ? `<div class="conflict">Jev call errored: ${rt.error}</div>`
+      : `<div class="jev">Jev: <b>${rt.jev.choice}</b> (confidence ${rt.jev.choiceConfidence ?? '?'}) → <b>${rt.resolution.resolution}</b>${rt.resolution.reason ? ` — ${rt.resolution.reason}` : ''}</div>`)
+    : '<div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>';
+  return `
+  <div class="card">
+    <div class="slug">${r.slug} <span class="pill lean">code lean: ${r.labelText}</span> <span class="pill">researcher read: ${r.read}</span></div>
+    <div class="why">${r.readWhy}</div>
+    ${r.conflicts.length ? `<div class="conflict">CONFLICT: ${r.conflicts.join(' · ')}</div>` : ''}
+    ${jevLine}
+    <div class="reasons">${r.reasons.join(' · ')}</div>
+  </div>`;
+}).join('\n');
+
+const disagreeRows = disagreements.map((rt) => {
+  const row = rows.find((r) => r.slug === rt.slug);
+  const abstained = rt.jev?.choice === 'none';
+  return `
+  <div class="card disagree">
+    <div class="slug">${rt.slug} <span class="pill">${abstained ? 'Jev abstained' : 'Jev disagrees'}</span> <span class="pill lean">code lean: ${LABEL_TEXT[rt.codeLabel] ?? rt.codeLabel}</span> <span class="pill">researcher read: ${row?.read ?? '?'}</span></div>
+    <div class="conflict">CODE says ${LABEL_TEXT[rt.codeLabel] ?? rt.codeLabel} — JEV says ${rt.jev?.choice === 'none' ? 'cannot decide (abstained)' : (LABEL_TEXT[rt.jev.choice] ?? rt.jev.choice)}${rt.jev?.choiceConfidence != null ? ` (confidence ${rt.jev.choiceConfidence})` : ''}</div>
+    ${rt.conflicts?.length ? `<div class="why">structural conflicts: ${rt.conflicts.join(' · ')}</div>` : ''}
+    <div class="why">${row?.readWhy ?? ''}</div>
+  </div>`;
+}).join('\n');
+
+const agreeTable = agreements.length
+  ? `<table><tr><th>water</th><th>code + Jev agree on</th><th>Jev confidence</th></tr>${agreements.map((rt) => `<tr><td>${rt.slug}</td><td>${LABEL_TEXT[rt.codeLabel] ?? rt.codeLabel}</td><td>${rt.jev?.choiceConfidence ?? '?'}</td></tr>`).join('')}</table>`
+  : '<div class="count">none yet</div>';
+
 const boxes = researchBoxes.map(([b, w, d]) => `
   <div class="card"><div class="slug">${w} <span class="pill">${b}</span></div><div class="why">${d}</div></div>`).join('\n');
 const policyHtml = researchBoxes.filter(([b]) => b === 'policy')
@@ -100,6 +141,9 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><title>Habitat Ev
  .slug{font-weight:bold;font-size:17px} .pill{font-size:12px;background:#eee7d8;border-radius:10px;padding:2px 8px;margin-left:6px;font-weight:normal}
  .pill.lean{background:#dfe9f5} .why{margin-top:6px;font-style:italic;color:#555} .conflict{margin-top:6px;color:#8c2f1b;font-weight:bold}
  .reasons{margin-top:4px;color:#666;font-size:14px}
+ .jev{margin-top:6px;color:#1f4e79}
+ .jev.pending{color:#8a6d1a;font-style:italic}
+ .card.disagree{border-color:#8c2f1b;border-width:2px;background:#fff7f5}
  table{border-collapse:collapse;width:100%;font-size:14px} td,th{border:1px solid #ddd8cc;padding:6px 8px;text-align:left;vertical-align:top}
  .note{background:#efe9db;border-left:4px solid #8b6f47;padding:10px 14px;margin:14px 0}
  .count{font-size:14px;color:#666}
@@ -112,11 +156,16 @@ The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.h
 ${policyHtml}
 <h2>2 · Research-flagged catalog conflicts (${researchBoxes.length - 1} boxes)</h2>
 ${conflictHtml}
-<h2>3 · Classifier escalations — code could not decide (${escalations.length} waters)</h2>
-<div class="count">These go to Jev for a second opinion under the target architecture; disagreement or abstention lands here.</div>
-${esc}
-<h2>4 · Auto-accepted at high confidence (${accepts.length} waters — spot-check list)</h2>
-<table><tr><th>water</th><th>label</th><td></th><th>researcher read</th><th>why</th></tr>${acc}</table>
+<h2>3 · Jev vs code — the actual review items (${ratings ? disagreements.length + ' disagree/abstain' : 'JEV NOT RUN — needs TYPESAFE_API_KEY in clone .env'})</h2>
+${ratings
+    ? (disagreements.length ? disagreeRows : '<div class="count">Zero disagreements — Jev agreed with the code or abstained everywhere (sections 4-5).</div>')
+    : `<div class="count">These ${escalations.length} waters could not be decided by the code alone. Run <b>rate-escalations.mjs</b> with a TYPESAFE_API_KEY in the clone .env to fetch Jev's second opinions — then only the disagreements need your review.</div>`}
+<h2>4 · Jev agreed with the code — accepted (${ratings ? agreements.length : 0})</h2>
+${ratings ? agreeTable : '<div class="count">not run yet</div>'}
+<h2>5 · Full escalation detail with second-opinion status (${escalations.length} waters)</h2>
+${escCards}
+<h2>6 · Auto-accepted at high confidence — no Jev needed (${accepts.length} waters — spot-check list)</h2>
+<table><tr><th>water</th><th>label</th><th>researcher read</th><th>why</th></tr>${acc}</table>
 </body></html>`;
 
 const out = join(dirname(fileURLToPath(import.meta.url)), 'HABITAT-REVIEW.html');
