@@ -98,6 +98,12 @@ const conflicts = [
   ['paris-city-park-lake', 'Stocking segment unresolved: TWRA lists "Paris City Park", local news says Eiffel Tower Park pond, catalog maps Green Acres Lake.'],
   ['salt-lick-creek', 'Catalog seasonMonths (Dec/Jan/Feb) vs workbook March rows — internally inconsistent.'],
   ['calderwood-lake', 'TWRA live page lists Brook/Brown/Rainbow; the stocking dataset rows say Rainbow only.'],
+  ['holston-river', 'Four-way composite: site feed claims "no trout program"; catalog claims Nov-Apr stocking; the repo workbook row has EMPTY months; TWRA live feed (2026-09-18) confirms the same row WITH months J,F,M,A,N,D (rainbow+brown) — catalog+live-feed vs workbook+feed.'],
+  ['puncheon-camp-creek', 'Identity conflict: catalog hydroIdentity counties say [Campbell] (GNIS 01298693) while catalog notes, the TWRA workbook, and WQP station metadata all say Grainger.'],
+  ['conasauga-river', 'Catalog hydroIdentity huc8s says 06020002 (Hiwassee) but the Conasauga is Coosa basin (03150101); GA-reach trout literature does not transfer to the TN reach.'],
+  ['spring-creek-polk', 'Catalog editorial says "spring-stocked", seasonMonths Dec-Feb; the live 2026 TWRA schedule shows Feb-Apr + Nov seasonal weeks and no winter program type.'],
+  ['gulf-fork-big-creek', 'Program-vs-habitat: cataloged as seasonal put-and-take, but TDEC 2020-2025 grabs run 17.5-21.7C Jun-Sep and the STMP documents reproducing brook trout in Gulf Fork tributaries (tributary-level evidence, not the stocked reach).'],
+  ['little-sequatchie-river', 'Catalog editorially calls it "spring-influenced"; both measured lower-river July maxima (22.0-28.0C, USGS 03571500 + TDEC) are trout-hostile and no agency doc supports spring influence.'],
 ];
 
 const rows = [];
