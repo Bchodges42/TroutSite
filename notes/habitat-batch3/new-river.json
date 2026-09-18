@@ -1,0 +1,55 @@
+{
+  "slug": "new-river",
+  "segment": {
+    "description": "New River, Scott County, in the New River-Clear Fork system of the South Fork Cumberland basin (HUC 05130104); catalog notes it runs its full named length (Scott/Anderson counties) down to the Clear Fork confluence country. Acid-buffered plateau freestone, rain-driven flows. This is the Scott County New River, not the West Virginia New River.",
+    "boundaries": "Catalog covers the named river; the on-reach USGS gauge 03408500 'NEW RIVER AT NEW RIVER, TN' sits at 36.38553, -84.55470 (382 sq mi drainage)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03408500&siteOutput=expanded&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1092,
+    "notes": "USGS 03408500 'NEW RIVER AT NEW RIVER, TN': Scott County (FIPS 151), HUC 05130104, altitude 1,092.01 ft NAVD88, drainage 382 sq mi, free-flowing river station (verified via waterservices expanded site output: https://waterservices.usgs.gov/nwis/site/?sites=03408500&siteOutput=expanded&format=rdb). The river is NOT on TDEC's Tennessee Scenic Rivers index (index consulted 2026-09-18; no New River entry among its 24 named waters): https://www.tn.gov/environment/natural-areas/tn-scenic-rivers.html"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.9,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03408500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover is possible to document: the water has no TWRA trout stocking program at all (no New River row in the 2026 row-level TWRA stocking schedule; the only '(NEW)' tags on the schedule page are newness labels for other waters).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild-trout status: the river is absent from TWRA's Wild Trout Streams list (that list covers Monroe/Carter/Johnson/Greene/Unicoi county waters only) and no trout survey record for this New River was found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The on-reach USGS gauge recorded 29.9 C water in July 2025 and TWRA maintains no trout stocking, wild-trout status, or special regulation for this New River.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://waterservices.usgs.gov/nwis/site/?sites=03408500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03408500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers.html",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/new-river.html (HTTP 404 - no such scenic-river page exists)",
+    "https://waterdata.usgs.gov/monitoring-location/03408500/"
+  ]
+}

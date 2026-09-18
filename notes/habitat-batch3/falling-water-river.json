@@ -1,0 +1,33 @@
+{
+  "slug": "falling-water-river",
+  "segment": {
+    "description": "Falling Water River mainstem, rising east of Cookeville in Putnam County and flowing through the Burgess Falls corridor (Putnam/White county line) to the Center Hill Lake backwater.",
+    "boundaries": "Headwaters near Cookeville (USGS 03422800 near Algood; 03423000 near Cookeville) downstream past Cookeville City Lake at Burgess Falls Dam (USGS 03423152 below the dam, 847.89 ft) and the Burgess Falls gorge to Center Hill Lake."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": "Burgess Falls Dam (impounds Cookeville City Lake)", "operator": "City of Cookeville (municipal)", "releaseType": "unknown", "evidenceUrl": "https://tennesseeencyclopedia.net/entries/burgess-falls/" },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 891.9,
+    "notes": "Elevation is the gage altitude (NAVD88) of USGS 03423000 Falling Water River near Cookeville, TN, from the NWIS site file. Tennessee Encyclopedia: in 1924 the city of Cookeville built a dam near the falls for municipal power, rebuilt in concrete after a flood; the hydroelectric installation closed in 1944, but the dam remains, creating a lake that is popular for fishing. No cold-release (bottom-draw/epilimnion) documentation exists for this decommissioned municipal dam."
+  },
+  "summerTemperature": [],
+  "holdover": { "documented": null, "detail": "No trout stocking program exists for this river in TWRA data (the river is not on TWRA's 2026 stocking schedule), so no put-and-take holdover applies; no other holdover documentation found.", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": { "documented": null, "detail": "No wild trout documentation found in sources checked; the river is absent from TWRA's trout regulations page and regional descriptions of the Burgess Falls corridor mention bass fishing, not trout.", "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html" },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The river is absent from TWRA's 2026 stocking schedule and trout regulations, and the only dam on the reach is a decommissioned (since 1944) municipal hydro impounding City Lake with no documented cold release - no cold-water source or trout fishery is documented anywhere on this segment.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://tennesseeencyclopedia.net/entries/burgess-falls/",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations",
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03423000,03418000,03423152,03418180&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03423000,03418000,03414500,03415000,03418180,03423152&parameterCd=00010&startDT=1950-01-01&endDT=2010-12-31&format=json",
+    "https://cumberlandriverbasin.org/place/burgess-falls-state-park (describes bass/panfish fishing along the river trail; lead, not sole evidence)",
+    "https://npgallery.nps.gov (Burgess Falls Hydroelectric Station NRHP registration form surfaced in search; exact asset URL not captured)"
+  ]
+}

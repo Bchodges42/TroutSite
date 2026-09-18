@@ -1,0 +1,47 @@
+{
+  "slug": "hurricane-creek",
+  "segment": {
+    "description": "Hurricane Creek as cataloged spans two same-name TWRA-stocked creeks in West Tennessee: the Houston County creek (TWRA 'Hurricane Creek Trout Stocking Site' at 36.3365, -87.9035) draining west to Kentucky Lake/Tennessee River (HUC 06040005), and the Humphreys County same-name creek at Hurricane Mills (HUC 06040003). Both receive TWRA Seasonal rainbow stockings; temperature evidence below is from the Houston County creek only.",
+    "boundaries": "Houston County creek from its upper reach to the Kentucky Lake mouth (~36.35, -87.97), keyed to USGS 03606020 at the Houston/Stewart county line; Humphreys County creek at Hurricane Mills (USGS 03603500 area) carries its own 2026 stocking rows."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Identity: USGS 03606020 'HURRICANE CREEK NEAR STEWART, TN' verified via https://waterservices.usgs.gov/nwis/site/?sites=03606020,03606125,03605968&siteOutput=expanded&format=rdb (Stewart County at the county line, HUC 06040005) - it is on the Houston County stocked creek, not the Humphreys County Hurricane Mills namesake (03603500), which was rejected as a same-name trap in the prior verified pass."
+  },
+  "summerTemperature": [
+    { "celsius": 24, "monthObserved": 6, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&siteid=USGS-03605968&siteid=USGS-03603500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26, "monthObserved": 7, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&siteid=USGS-03605968&siteid=USGS-03603500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 28, "monthObserved": 8, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&siteid=USGS-03605968&siteid=USGS-03603500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24.5, "monthObserved": 7, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&siteid=USGS-03605968&siteid=USGS-03603500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20, "monthObserved": 9, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&siteid=USGS-03605968&siteid=USGS-03603500&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. Stocking is Seasonal only: Houston County rows for weeks of 2/22, 3/22, 3/29/2026 and Humphreys County rows for 2/22, 3/29/2026, all Rainbow Trout.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout population documented. Neither same-name creek appears anywhere on TWRA's trout-regulations page (no wild-trout, special-regulation, or delayed-harvest entry; verified by string search of the live page) and no trout survey record was found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS summer grab samples 1984-1988 on the Houston County creek (03606020) ran 20-28 C with 26-28 C in July-August, and the only documented fishery is a 2-3-week Feb-Mar seasonal rainbow stocking.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03606020,03606125,03605968&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&siteid=USGS-03605968&siteid=USGS-03603500&characteristicName=Temperature%2C%20water&mimeType=csv (03603500, the Humphreys Co. creek, returned no temperature rows)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (no mention of this creek)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (prior verified pass; consulted for leads, not cited as evidence)"
+  ]
+}

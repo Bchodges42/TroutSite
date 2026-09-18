@@ -1,0 +1,31 @@
+{
+  "slug": "salt-lick-creek",
+  "segment": {
+    "description": "Macon County reach of Salt Lick Creek as carried in TWRA's trout stocking schedule (Region 2 stocking location 'Salt Lick Creek', Dale Hollow fringe). This is the Macon County water resolved by a prior project pass - not the same-named West Tennessee creek.",
+    "boundaries": "County-level TWRA listing; exact stocking points are not documented in sources checked. USGS stations on the creek (Macon County) mark the drainage: 03312255 at Red Boiling Springs, 03312259 below Red Boiling Springs (gage altitude 731.38 ft NAVD88), and 03312280 at Bugtussle (47.7 sq mi drainage)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 731.38,
+    "notes": "Elevation is the gage altitude (NAVD88) of USGS 03312259 Salt Lick Creek below Red Boiling Springs, TN, from the NWIS site file (HUC 05110002, Macon County). No dam tailwater or spring influence is documented for the stocked reach in sources checked."
+  },
+  "summerTemperature": [],
+  "holdover": { "documented": null, "detail": "No holdover documentation found in sources checked. TWRA's own schedule types the fishery 'Seasonal' with discrete cold-season rainbow trout events (workbook rows: Macon County, weeks of 3/1/2026 and 3/22/2026; live TWRA 2026 schedule row: 'Salt Lick Creek 1/7/2026'), i.e., a put-and-take program; whether trout survive between events is not documented.", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": { "documented": null, "detail": "No wild trout documentation found in sources checked; the creek carries no special trout regulation on TWRA's trout regulations or exceptions pages.", "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html" },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA itself types Salt Lick Creek 'Seasonal' with discrete winter/spring rainbow trout events (Jan 7, Mar 1, Mar 22, 2026) and no documentation of cold summer water, a cold source, or trout survival between stockings was found in any source checked.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations",
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST",
+    "packages/content/data/twra-stocking-schedule.json (repo-local TWRA stocking data: Region 2, Macon County, Seasonal, Rainbow Trout, stocking weeks 3/1/2026 and 03/22/2026 - local file, TWRA-sourced; live page cited as evidenceUrl)"
+  ]
+}

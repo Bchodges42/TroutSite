@@ -1,0 +1,50 @@
+{
+  "slug": "doe-river",
+  "segment": {
+    "description": "Doe River mainstem, Carter County: a freestone mountain creek rising on Roan Mountain, flowing through Roan Mountain State Park (delayed-harvest reach between the park boundaries), past Hampton, to its confluence with the Watauga River at Elizabethton. TWRA's Region IV Trout Fisheries Report 2017 states much of the river lies within Roan Mountain State Park.",
+    "boundaries": "Roan Mountain headwaters to the Watauga River confluence at Elizabethton; catalog keyed to USGS 03485500 at Elizabethton (36.3445, -82.2101), near the mouth."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1524.5,
+    "notes": "Elevation is the USGS 03485500 gauge datum (1524.52 ft NAVD88, Elizabethton near the mouth), not a headwater value. Station identity verified via https://waterservices.usgs.gov/nwis/site/?sites=03566535,03485500&siteOutput=expanded&format=rdb (DOE RIVER AT ELIZABETHTON, Carter Co., HUC 06010103, 137 sq mi)."
+  },
+  "summerTemperature": [
+    { "celsius": 24.5, "monthObserved": 7, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24, "monthObserved": 7, "year": 1982, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24, "monthObserved": 8, "year": 1981, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.5, "monthObserved": 8, "year": 1978, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.9, "monthObserved": 8, "year": 1967, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No measurement-based holdover record found. The TWRA delayed-harvest regulation ('Doe River: Roan Mountain State Park boundaries. Catch-and-release season is Oct. 1 - Feb 28') is designed around an overwintering fishery between the October stocking and spring harvest, which is program design rather than a survival measurement.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA Fisheries Report 18-01 (Region IV Trout Fisheries Report 2017): 'Some stocked steams (e.g., Beaverdam Creek, Doe Creek, Laurel Fork, and Doe River) do support excellent wild trout populations as well.' The report's Appendix A lists Doe River (Watauga HUC, Carter County) as a monitoring stream with 14 quantitative wild-trout samples over 1995-99, 2002-04, 2009, 2012, 2015, primary species RBT/BKT/BNT. Caution: the same report's recovery anecdote names 'Doe Creek' (Johnson County), which is a different water.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "both", "evidenceUrl": "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports" },
+    { "species": "brown", "basis": "wild", "evidenceUrl": "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports" },
+    { "species": "brook", "basis": "wild", "evidenceUrl": "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA's Region IV Trout Fisheries Report 2017 names Doe River among stocked streams that 'support excellent wild trout populations' (Appendix A: 14 quantitative samples 1995-2015, RBT/BKT/BNT) - a self-sustaining population is by definition year-round; note the lowermost Elizabethton reach is the warm part (historical July-August gauge samples there reached 24-24.5 C).",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03566535,03485500&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/",
+    "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (mentions Doe Creek, a different water, but not the Doe River by name)"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "slug": "station-creek",
+  "segment": {
+    "description": "Station Creek, Claiborne County at Cumberland Gap (TWRA 2026 schedule lists 'Station Creek', Region 4, seasonal rainbow stockings). Upper reach lies in/next to Cumberland Gap National Historical Park; the creek flows to Indian Creek and thence to the Powell River arm of Norris Lake. The NPS water-quality station used for temperature is on the lower creek about 2 km above the mouth.",
+    "boundaries": "Claiborne County reach from the Cumberland Gap area to the Indian Creek confluence (~36.5886, -83.6049 per catalog hydroIdentity); NPS station CUGA_PM_ST10 at 36.5979, -83.6254."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No gauge on the creek (NWIS bounding-box sweep found none); no elevation, spring, or dam evidence found."
+  },
+  "summerTemperature": [
+    { "celsius": 15.82, "monthObserved": 7, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.2, "monthObserved": 7, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.18, "monthObserved": 6, "year": 2005, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 22.43, "monthObserved": 8, "year": 2005, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.95, "monthObserved": 8, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. Stocking is seasonal only (weeks of 2/15, 3/1, 3/15, 3/29, 4/12 in 2026, all Rainbow Trout).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout population documented. Station Creek has no entry on TWRA's trout-regulations page (no wild-trout, special-regulation, or delayed-harvest listing; verified by string search of the live page) and no wild-trout survey record was found. Inside Cumberland Gap NHP the NPS compendium permits fishing in all waters except a closed Davis Branch reach (blackside dace restoration); Station Creek carries no special restriction there.",
+    "evidenceUrl": "https://www.nps.gov/cuga/learn/management/compendium.htm"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "NPS summer grab samples 2003-2006 on the lower creek were mostly 15-22 C (marginal but survivable) with a single peak of 23.95 C in Aug 2006, yet stocking is Feb-Apr seasonal only and no wild-trout or holdover evidence exists either way.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.nps.gov/cuga/learn/management/compendium.htm",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A025&mimeType=csv",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&siteid=TDECWPC-STATI000.1CL&siteid=TDECWR_WQX-TNW000005983&characteristicName=Temperature%2C%20water&mimeType=csv (TDEC mouth stations returned no temperature results; all 61 temperature rows are the NPS station)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (no mention of this creek)",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/ (TWRA Region IV Trout Fisheries Report 2017: no Station Creek survey; its wild-trout stream appendix does not include Claiborne County)"
+  ]
+}

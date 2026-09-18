@@ -1,0 +1,46 @@
+{
+  "slug": "brimstone-creek",
+  "segment": {
+    "description": "Brimstone Creek, a Scott County tributary of the New River in the Big South Fork subbasin of the Cumberland Plateau; no active USGS gauge and no documented access or fishery program.",
+    "boundaries": "Full named length of Brimstone Creek in Scott County to its confluence with the New River (HUC 05130104); historic USGS 03408200 'Brimstone Creek near Robbins' (36.3454, -84.5394, drainage 48.7 sq mi) is the only on-creek station."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": ""
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover or trout evidence of any kind located for this creek.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No fish survey, trout record, or fishery documentation located. Program-level absence is documented: no row in TWRA's 2026 trout stocking schedule, not on TWRA's wild-trout-stream list, and the NPS Big South Fork fishing page does not cover this creek. The only USGS station (03408200, near Robbins) holds just 1965-1983-era discrete field samples with no continuous record.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "No agency temperature, fishery, or survey record exists for this small New River tributary; only its absence from TWRA trout programs is documented.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&siteStatus=all&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03408200&seriesCatalogOutput=true&format=rdb&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03408200&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.nps.gov/biso/planyourvisit/fishing.htm"
+  ]
+}

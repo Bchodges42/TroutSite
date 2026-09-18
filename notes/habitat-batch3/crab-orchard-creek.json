@@ -1,0 +1,61 @@
+{
+  "slug": "crab-orchard-creek",
+  "segment": {
+    "description": "Crab Orchard Creek, a substantial Emory River tributary in Cumberland and Morgan County country (Emory/Obed basin, HUC 06010208). Catalog gives no named reach bounds; the temperature evidence below is from USGS station 03540100 on the upper creek (Morgan County).",
+    "boundaries": "No formal reach bounds in the catalog; USGS discrete temperature samples cited here come from station 03540100 'CRAB ORCHARD CREEK NEAR DEERMONT, TN' (36.01109, -84.61199), on the upper creek in Morgan County."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03540100&seriesCatalogOutput=true&siteStatus=all&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 911,
+    "notes": "USGS 03540100 'CRAB ORCHARD CREEK NEAR DEERMONT, TN': Morgan County (FIPS 129), HUC 06010208, altitude 911.16 ft, drainage 33.7 sq mi — a free-flowing upper-creek station with only a 1966-1981 historical record (discharge and discrete water-quality samples), verified via waterservices series catalog: https://waterservices.usgs.gov/nwis/site/?sites=03540090,03540100,03540102,03540105&seriesCatalogOutput=true&siteStatus=all&format=rdb"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.9,
+      "monthObserved": 7,
+      "year": 1966,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03540100&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03540100&characteristicName=Temperature%2C%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover can be documented: the creek has no TWRA trout stocking row (checked 'Crab Orchard' against the 2026 row-level stocking schedule) and no trout regulation of any kind.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Absent from TWRA's Wild Trout Streams list (that list covers Monroe/Carter/Johnson/Greene/Unicoi county waters only); no trout survey record for Crab Orchard Creek was found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS discrete samples on the upper creek reached 28.9 C (Jul 1966) and 27.0 C (Jul 1980), and the creek carries no TWRA trout stocking row, wild-trout listing, or special regulation.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03540100&characteristicName=Temperature%2C%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&countyCd=47035&siteOutput=expanded&siteStatus=all (no Crab Orchard Creek station in Cumberland County - the 'near Crab Orchard' stations 03539498/03539500 are on Byrd Creek and Daddys Creek, different waters)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&countyCd=47129&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03540090,03540100,03540102,03540105&seriesCatalogOutput=true&siteStatus=all&format=rdb",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  ]
+}

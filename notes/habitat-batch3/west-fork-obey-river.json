@@ -1,0 +1,31 @@
+{
+  "slug": "west-fork-obey-river",
+  "segment": {
+    "description": "West Fork Obey River mainstem - named headwater fork of the Obey River in Overton County (near Allred and Alpine), joining the East Fork to form the Obey River above Dale Hollow Lake. Upstream of, and distinct from, the Dale Hollow Dam Obey River tailwater (a separate catalog water).",
+    "boundaries": "Overton County reaches at and upstream of USGS 03415000 West Fork Obey River near Alpine, TN (115 sq mi drainage area), to the East Fork confluence below Dale Hollow Lake."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 680.66,
+    "notes": "Elevation is the gage altitude (NAVD88) of USGS 03415000 West Fork Obey River near Alpine, TN, from the NWIS site file. No dam, spring influence, or cold-water source is documented for this fork in sources checked; no agency fishery description of this fork was found."
+  },
+  "summerTemperature": [],
+  "holdover": { "documented": null, "detail": "No trout stocking program exists for this fork in TWRA data (the nearby stocked waters are the Dale Hollow TW/Obey River tailwater and Dale Hollow Reservoir), and no holdover documentation was found.", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": { "documented": null, "detail": "No wild trout documentation found in sources checked; the fork is absent from TWRA's trout regulations page.", "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html" },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "No trout stocking, no trout regulation, no USGS temperature record, and no agency fishery documentation of any kind was found for this fork in sources checked - the evidence base is empty rather than positive either way.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations",
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03423000,03418000,03414500,03415000,03418180,03423152&parameterCd=00010&startDT=1950-01-01&endDT=2010-12-31&format=json",
+    "https://www.onwaterapp.com/us/tennessee/water/west-fork-obey-river-w1 (lead only - species list is vendor content, not cited)",
+    "https://fishbrain.com (lead only, not cited)"
+  ]
+}

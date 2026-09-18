@@ -1,0 +1,45 @@
+{
+  "slug": "ocoee-number-three-lake",
+  "segment": {
+    "description": "Ocoee Reservoir No. 3, the small run-of-river impoundment of the Ocoee River created by TVA's Ocoee Dam No. 3 in Polk County, upstream of Parksville Lake (TVA: 360 acres of water surface, 24 miles of shoreline, stretching ~11 miles upriver to the Tennessee-Georgia state line). The upper Ocoee (ocoee-river catalog entry) enters from the Copperhill end and the river resumes below the dam. Alias caution: the catalog claims TWRA records this pool under the historical name 'Hiwassee Lake' (443 ac) — that alias could NOT be verified in the sources checked (TWRA's Parksville Reservoir page, the obvious candidate, never uses the name), so it is recorded as unverified and no Parksville facts are transferred here.",
+    "boundaries": "Ocoee Dam No. 3 downstream to the Tennessee-Georgia state line upstream, Ocoee River, Polk County, in the Cherokee National Forest along US 64."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Ocoee Dam No. 3",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/ocoee3.htm"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TVA's Ocoee No. 3 page: 110-ft-high, 612-ft-long concrete dam built 1941-42; water is diverted from the reservoir through a tunnel to a powerhouse more than two miles downstream, and generation/recreation releases are made only on selected days — a small, flushed, diversion-type pool, not a deep storage lake. No measured temperature or depth profile found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No record of any kind resolved: the TWRA stocking dataset snapshot (repo, 616 rows) has no Ocoee No. 3 / Ocoee Reservoir No. 3 entry (and no 'Hiwassee Lake' trout row either), and TWRA's live trout page does not mention the pool.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild-trout record resolved for this pool.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "No TWRA trout stocking record and no temperature/depth evidence exists for this small TVA diversion impoundment; even its claimed TWRA alias is unverified.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://lakeinfo.tva.gov/web/sites/ocoee3.htm",
+    "https://tva.com/energy/our-power-system/hydroelectric/ocoee-no.-3",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+    "https://waterservices.usgs.gov/nwis/site/?bBox=-84.75,34.9,-84.25,35.25&parameterCd=00010&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=1900-01-01&endDT=2026-09-17&format=json",
+    "repo-local TWRA stocking schedule snapshot packages/content/data/twra-stocking-schedule.json (no Ocoee No. 3 / Hiwassee Lake row)"
+  ]
+}

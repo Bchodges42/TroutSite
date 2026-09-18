@@ -1,0 +1,50 @@
+{
+  "slug": "north-chickamauga-creek",
+  "segment": {
+    "description": "North Chickamauga Creek mainstem, Hamilton County (Chattanooga area), flowing through North Chickamauga Creek Gorge State Park to the Tennessee River (Chickamauga Reservoir). TDEC State Parks documents rainbow trout 'periodically stocked downstream of the Blue Hole' in the gorge; the USGS gauge at Mile Straight sits near the lower end.",
+    "boundaries": "Creek rises toward the Sequatchie County line and flows southeast to the Tennessee River confluence (~35.10, -85.22); catalog reach is the Hamilton County mainstem, keyed to USGS 03566535 at Mile Straight (35.2112, -85.2152)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 662.5,
+    "notes": "Elevation is the USGS 03566535 gauge datum (662.5 ft NAVD88, near the mouth at Mile Straight), not a headwater value. TDEC State Parks describes the same creek as supporting smallmouth bass, redeye and sunfish alongside periodically stocked rainbow trout (https://tnstateparks.com/parks/north-chickamauga/fishing). Station identity verified via https://waterservices.usgs.gov/nwis/site/?sites=03566535,03485500&siteOutput=expanded&format=rdb (NORTH CHICKAMAUGA CR AT MILE STRAIGHT, Hamilton Co., HUC 06020001, 74 sq mi)."
+  },
+  "summerTemperature": [
+    { "celsius": 18.8, "monthObserved": 7, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&siteid=TDECWPC-NCHIC019.3HM&siteid=TDECWPC-NCHIC028.1HM&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.2, "monthObserved": 8, "year": 2003, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&siteid=TDECWPC-NCHIC019.3HM&siteid=TDECWPC-NCHIC028.1HM&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.13, "monthObserved": 7, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&siteid=TDECWPC-NCHIC019.3HM&siteid=TDECWPC-NCHIC028.1HM&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 25.39, "monthObserved": 7, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&siteid=TDECWPC-NCHIC019.3HM&siteid=TDECWPC-NCHIC028.1HM&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 25.7, "monthObserved": 8, "year": 2003, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&siteid=TDECWPC-NCHIC019.3HM&siteid=TDECWPC-NCHIC028.1HM&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency holdover documentation found. The documented stocking pattern (Seasonal rainbow weeks of 2/22, 3/22, 4/19 and 11/1/2026, TWRA 2026 schedule) keeps trout in the creek across the cooler half of the year, but no creel or survey evidence of survival between stockings was found. The North Chickamauga Creek Conservancy describes the trout fishery as best November-May upstream from Dayton Pike, but a conservancy website is a lead, not acceptable sole evidence.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout population documented. The creek has no entry anywhere on TWRA's trout-regulations page (no wild-trout, special-regulation, or delayed-harvest listing containing 'Chickamauga', verified by string search of the live page), and no wild-trout survey record was found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://tnstateparks.com/parks/north-chickamauga/fishing" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "TWRA stocks rainbow only seasonally (Feb-Apr + Nov) over a documented warmwater smallmouth/redeye/sunfish fishery, and TDEC summer grab samples 2003-2006 conflict: the mile-12.4 station stayed 18.8-19.3 C (compatible with trout survival) while the mile-19.3 station hit 23.1-25.7 C (marginal to lethal).",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://tnstateparks.com/parks/north-chickamauga/fishing",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03566535,03485500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03566535&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no water-temperature parameter at this gauge)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&siteid=TDECWPC-NCHIC019.3HM&siteid=TDECWPC-NCHIC028.1HM&characteristicName=Temperature%2C%20water&mimeType=csv",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566535&siteid=USGS-03485500&characteristicName=Temperature%2C%20water&mimeType=csv (USGS station has only one non-summer sample, 1988/2002)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (no mention of this creek)",
+    "https://www.northchick.org (trout-fishing page: lead only, not cited as evidence)"
+  ]
+}

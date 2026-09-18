@@ -1,0 +1,33 @@
+{
+  "slug": "blackburn-fork",
+  "segment": {
+    "description": "Blackburn Fork mainstem (Cummins Fork), a tributary of the Roaring River rising near Cookeville and flowing through Jackson County past Cummins Falls State Park; catalog covers the stream, including the 14.7-mile Tennessee state scenic river reach.",
+    "boundaries": "TDEC scenic designation (April 4, 1968): Class I Natural River Area - 1.5 mi from the county road at Cummings Mill downstream; Class II Pastoral River Area - the following 13.2 mi downstream to the junction with the Roaring River."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TDEC scenic-river profile: 14.7 mi designated in Jackson County on April 4, 1968; 'Smallmouth bass are a favorite catch for anglers who wade the river or fish from rocky banks'; Cummins Falls (Tennessee's eighth-largest waterfall) is the river's most significant geological, scenic, and recreational feature. No dam, spring, or cold-water source is documented in sources checked. USGS lists one station on the fork: 03418180 Blackburn Fork near Dodson Branch, TN (61 sq mi drainage, no gage altitude given)."
+  },
+  "summerTemperature": [],
+  "holdover": { "documented": null, "detail": "No trout stocking program exists for this stream in TWRA data, so put-and-take holdover is not applicable; no wild-holdover documentation found in sources checked.", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": { "documented": null, "detail": "No wild trout documentation found; TDEC's profile describes the fishery as smallmouth bass, and no trout is mentioned on the TDEC page.", "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/blackburn-fork.html" },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC's own scenic-river profile describes a smallmouth bass fishery with no trout mention, and TWRA lists no stocking program or trout regulation for Blackburn Fork.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/blackburn-fork.html",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations",
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03423000,03418000,03423152,03418180&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03423000,03418000,03414500,03415000,03418180,03423152&parameterCd=00010&startDT=1950-01-01&endDT=2010-12-31&format=json",
+    "https://reserve.tnstateparks.com (Cummins Falls guided fishing program listing surfaced in search; trout stamp 'not needed', smallmouth bass and bluegill expected - exact event URL not captured, treated as lead only)"
+  ]
+}

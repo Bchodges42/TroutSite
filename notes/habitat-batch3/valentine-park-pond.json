@@ -1,0 +1,43 @@
+{
+  "slug": "valentine-park-pond",
+  "segment": {
+    "description": "The stocked lake at Valentine Park, Munford, Tipton County, which TWRA's 2026 trout stocking schedule lists as 'Valentine Park' (Region 1). The City of Munford's official park page describes Valentine Park as offering 'two playgrounds, a picnic pavilion, restroom facilities, soccer fields, two 18-hole Disc Golf courses, a stocked lake, and nature trails.' TWRA's statewide plan classifies such hatchery-supported lakes as 'primarily warmwater habitats that cannot support trout year round,' managed as winter put-and-take.",
+    "boundaries": "Entire stocked lake within Valentine Park, Munford (Tipton County). Stocking window: TWRA's 2025-26 winter rainbow trout program (stockings continue through February; spring stocking begins March 1 per TWRA's Dec 31, 2025 release). The TWRA stocking schedule workbook (owner-supplied, repo data file twra-stocking-schedule.json) lists this site as type 'Winter', Rainbow Trout, stocked 1/15/2026 with next event 'TBD 12/2026'."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA Statewide Trout Management Plan 2017-2027, Streams and Small Lakes section: hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round' and 'Because survival of stocked trout is usually limited by summer water temperatures, harvest of trout in these waters is generally encouraged.'"
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence found for this pond. Program-level context: TWRA's plan says survival of stocked trout in these warmwater hatchery-supported lakes is usually limited by summer water temperatures and harvest is encouraged. Exact 2026 dates for this site (Winter type; 1/15/2026; TBD 12/2026) come from the TWRA stocking schedule workbook (owner-supplied, no public URL).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's statewide plan states wild trout are generally limited to East Tennessee's mountain streams; this is a hatchery-supported put-and-take park pond in West Tennessee.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's own plan classes these hatchery-supported lakes as warmwater habitats that cannot support trout year round, and the site is stocked only during the winter rainbow program (workbook: 1/15/2026, next TBD 12/2026; spring stocking starts March 1).",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://www.tn.gov/twra/news/2025/12/31/2025-26-winter-trout-stocking-program-continues-.html",
+    "https://www.munford.com/valentine-park/ (verified live, HTTP 200, contains 'stocked lake')",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+    "https://www.tn.gov/twra/news.html",
+    "https://www.musiccitytu.com/tn-trout-stocking-schedule.html (guessed URL 404; Music City TU reportedly lists 'Valentine Park, Munford' - not directly verified)",
+    "TWRA stocking schedule workbook (owner-supplied 2026-09-17; repo packages/content/data/twra-stocking-schedule.json; no public URL)"
+  ]
+}

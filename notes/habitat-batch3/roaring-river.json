@@ -1,0 +1,34 @@
+{
+  "slug": "roaring-river",
+  "segment": {
+    "description": "Roaring River mainstem, rising on the Highland Rim near Livingston (Overton County) and flowing 37.7 miles to the Cordell Hull Lake confluence in Jackson County; includes the 20.5-mile Tennessee state scenic river reach.",
+    "boundaries": "TDEC scenic designation (April 4, 1968): Class I Natural River Area - 2 mi from State Route 136 downstream; Class II Pastoral River Area - approximately 18.5 mi from a point 2 mi downstream of SR 136 to the Cordell Hull Lake confluence. Upper Overton County headwater reaches above SR 136 are also part of the catalog water."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 776.64,
+    "notes": "Elevation is the gage altitude (NAVD88) of USGS 03418000 Roaring River near Hilham, TN, from the NWIS site file. TDEC: the river originates on the Highland Rim near Livingston and flows 37.7 mi to Cordell Hull Lake; features include The Boils WMA (TWRA) and the USACE Roaring River Recreation Area at the confluence. The one impoundment on the reach - Tennessee's largest dam removal to date - was removed in 2018, reconnecting fish passage for warmwater natives (white bass, redhorse, Eastern hellbender)."
+  },
+  "summerTemperature": [],
+  "holdover": { "documented": null, "detail": "No trout stocking program exists for this river in TWRA data (TWRA's stocking schedule carries only Dale Hollow TW/Obey and Dale Hollow Reservoir in this area), and no holdover documentation was found.", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": { "documented": null, "detail": "No wild trout documentation found in sources checked; agency and conservation descriptions of the river center on paddling, general fishing access, and warmwater native species, with no trout mention.", "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/roaring.html" },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC, TWRA (Boils WMA), and the 2018 dam-removal record (white bass, redhorse, hellbender reconnection) all document a warmwater scenic river, and TWRA lists no trout stocking or trout regulation for it.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/roaring.html",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers.html",
+    "https://www.tn.gov/twra/wildlife-management-areas/cumberland-plateau-r3/the-boils-wma.html",
+    "https://www.americanrivers.org/2018/05/fish-swim-free-in-roaring-river-tennessee",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03423000,03418000,03423152,03418180&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03423000,03418000,03414500,03415000,03418180,03423152&parameterCd=00010&startDT=1950-01-01&endDT=2010-12-31&format=json",
+    "https://www.onwaterapp.com/us/tennessee/water/roaring-river-w1 (vendor trout claim, lead only - not cited)"
+  ]
+}

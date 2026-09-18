@@ -1,0 +1,72 @@
+{
+  "slug": "sequatchie-river",
+  "segment": {
+    "description": "Sequatchie Valley headwaters in Cumberland County, which TWRA spring-stocks with catchable rainbows; the river runs the full valley from the Cumberland County headwaters down toward the Tennessee River at Shellmound. The Whitwell gauge sits far downstream and is treated as a valley-level trend, not headwater truth.",
+    "boundaries": "Stocked segment: Cumberland County headwaters (TWRA 2026 schedule row 'Cumberland | Sequatchie River'). USGS 03571000 'SEQUATCHIE RIVER NEAR WHITWELL, TN' (35.20572, -85.49703) is on the LOWER river in Marion County — outside the stocked headwater segment."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03571000&siteOutput=expanded&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "USGS 03571000 'SEQUATCHIE RIVER NEAR WHITWELL, TN': Marion County (FIPS 115), HUC 06020004, altitude 632.42 ft, drainage 402 sq mi, free-flowing river station (https://waterservices.usgs.gov/nwis/site/?sites=03571000&siteOutput=expanded&format=rdb). Its only water-temperature record is historical daily values 1962-1971; July daily maxima at this lower-river station reached 23.9 C (Jul 1965), 25.6 C (Jul 1966) and 25.0 C (Jul 1968) (https://waterservices.usgs.gov/nwis/dv/?sites=03571000&parameterCd=00010&statCd=00001&startDT=1965-07-01&endDT=1965-07-31&format=json and same endpoint for 1966/1968)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 23.9,
+      "monthObserved": 7,
+      "year": 1965,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/dv/?sites=03571000&parameterCd=00010&statCd=00001&startDT=1965-07-01&endDT=1965-07-31&format=json"
+    },
+    {
+      "celsius": 25.6,
+      "monthObserved": 7,
+      "year": 1966,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/dv/?sites=03571000&parameterCd=00010&statCd=00001&startDT=1966-07-01&endDT=1966-07-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence located; the documented program is spring-seasonal put-and-take (rainbows, weeks of 3/22, 3/29 and 5/17/2026).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Sequatchie River is absent from TWRA's Wild Trout Streams list (that list covers Monroe/Carter/Johnson/Greene/Unicoi county waters only); no trout survey record found. (A federally documented fish for the river is the sickle darter, a warmwater darter, per the ESA final rule consulted in the prior project pass.)",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Spring-seasonal rainbow stockings (Mar-May 2026) are the only trout program; the river's only temperature record (lower river near Whitwell, 1960s daily values) ran 23.5-25.6 C in July, and nothing documents headwater summer temperatures or survival.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03571000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03571000&seriesCatalogOutput=true&siteStatus=all&format=rdb",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03571000&parameterCd=00010&statCd=00001&startDT=1965-07-01&endDT=1965-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03571000&parameterCd=00010&statCd=00001&startDT=1966-07-01&endDT=1966-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03571000&parameterCd=00010&statCd=00001&startDT=1968-07-01&endDT=1968-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03571000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no data - recent temperature record does not exist at this station)",
+    "https://pubs.usgs.gov/publication/sir20245089/full (USGS karst study of Little Sequatchie/Pryor Cove tributaries; does not describe the Sequatchie headwaters)",
+    "https://pubs.geoscienceworld.org/gsa/books/edited-volume/891/chapter/4687354/Sequatchie-Valley-structure-and-stratigraphy (HTTP 403 to fetch - search snippets describe Grassy Cove underground drainage emerging as a large spring forming the Sequatchie River, but content could not be consulted, so the headwater-spring claim is recorded as unknown)",
+    "https://tennacadsci.org/~tasc/docs/JTAS27-4-291.pdf (downloaded but scanned-image only, no extractable text - could not consult content)"
+  ]
+}

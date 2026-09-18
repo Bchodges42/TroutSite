@@ -1,0 +1,52 @@
+{
+  "slug": "wolf-river-fentress",
+  "segment": {
+    "description": "Fentress County headwaters of the Wolf River, the small riffly plateau stream that drains north into the Wolf River arm of Dale Hollow Reservoir (Obey River system, HUC 05130105). TWRA spring-stocks this reach with catchable rainbows. NOT the West Tennessee Wolf River that runs to Memphis.",
+    "boundaries": "Stocked reach: Fentress County headwaters (TWRA 2026 schedule row 'Fentress | Wolf River'). The USGS gauge 03416000 'WOLF RIVER NEAR BYRDSTOWN, TN' (36.560278, -85.073056) sits at the lower (Pickett County) end near the reservoir arm and is treated here as a downstream trend only, not headwater truth."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03416000&siteOutput=expanded&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "USGS 03416000 'WOLF RIVER NEAR BYRDSTOWN, TN': Pickett County (FIPS 137), HUC 051301050403 (Obey/Dale Hollow), altitude 704.38 ft, drainage 106 sq mi, active since 1942 — a LOWER-river station (https://waterservices.usgs.gov/nwis/site/?sites=03416000&siteOutput=expanded&format=rdb). Its series catalog carries NO water-temperature parameter (only discharge/gage height/precipitation): https://waterservices.usgs.gov/nwis/site/?sites=03416000&seriesCatalogOutput=true&siteStatus=all&format=rdb. TWRA manages smallmouth bass through 'Wolf River upstream to South Ford Road bridge' (2/day, 16-21 in protected range) and reports anglers catching spotted bass 'in the upper portions of the Wolf River' — a documented warmwater fishery base on the managed reach (https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence located; the documented program is spring-only put-and-take (rainbows, weeks of 3/8, 4/12 and 5/10/2026), with no winter or carry-over program element.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Wolf River (Fentress) is absent from TWRA's Wild Trout Streams list (that list covers Monroe/Carter/Johnson/Greene/Unicoi county waters only) and has no trout-specific regulation.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Spring-only rainbow put-and-take (Mar-May 2026) is the only trout program, over a TWRA-documented warmwater spotted/smallmouth bass fishery on the managed reach, and no water-temperature evidence exists for the stocked Fentress headwaters.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03416000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03416000&seriesCatalogOutput=true&siteStatus=all&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03416000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no data - station has no temperature parameter)"
+  ]
+}

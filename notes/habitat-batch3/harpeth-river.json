@@ -1,0 +1,62 @@
+{
+  "slug": "harpeth-river",
+  "segment": {
+    "description": "Harpeth River Williamson County reaches near Franklin — a mostly warmwater river whose only trout element is TWRA's winter put-and-take season stocking catchable rainbow trout at Eastern Flank Battle Park (December-February window per the schedule). Not the TDEC-designated scenic-river segments (those are Rutherford + Davidson counties only).",
+    "boundaries": "Stocked site: 'Harpeth River at Eastern Flank Battle Park', Franklin (TWRA 2026 schedule). USGS 03432350 'HARPETH RIVER AT FRANKLIN, TN' brackets the stocked corridor on-reach; USGS 03433500 (Bellevue) is downstream in Davidson County, outside the catalog segment."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03432350&siteOutput=expanded&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 604.5,
+    "notes": "USGS 03432350 'HARPETH RIVER AT FRANKLIN, TN': Williamson County (FIPS 187), HUC 05130204, altitude 604.54 ft, drainage 192 sq mi, free-flowing river station (https://waterservices.usgs.gov/nwis/site/?sites=03432350&siteOutput=expanded&format=rdb). TRAP CONFIRMED BY CONSULTATION: TDEC's scenic-river designation for the Harpeth covers Rutherford and Davidson county segments only (21.1 mi); the 1972 designation language explicitly excludes 'those segments located in Cheatham, Dickson and Williamson counties' — so this catalog's Williamson reaches are not the scenic-river segments, and the TDEC page names no fish species (https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/harpeth.html)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 27.5,
+      "monthObserved": 8,
+      "year": 2014,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03432350&parameterCd=00010&startDT=2014-08-01&endDT=2014-09-30&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence located; the documented program is the winter urban put-and-take (stockings 1/23/2026, 2/20/2026 and TBD 12/2026 per the row-level schedule).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Absent from TWRA's Wild Trout Streams list; no Harpeth trout regulation or wild-trout record exists (no Harpeth entry on TWRA's trout regulations page).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The only trout program is a winter-only catchable rainbow put-and-take (Dec-Feb) at a Franklin park, while the on-reach USGS gauge at Franklin recorded 27.5 C water in August and TWRA maintains no trout regulation or wild-trout status for the river.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/harpeth.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03432350&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03432350&seriesCatalogOutput=true&siteStatus=all&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03432350&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no data - the station's only temperature record is Aug-Oct 2014)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03432350&parameterCd=00010&startDT=2014-08-01&endDT=2014-09-30&format=json"
+  ]
+}

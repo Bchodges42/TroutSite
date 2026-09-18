@@ -1,0 +1,56 @@
+{
+  "slug": "obed-river",
+  "segment": {
+    "description": "Obed River main stem across the Cumberland Plateau (Cumberland and Morgan counties) to the Obed-Emory confluence, within the Obed Wild & Scenic River corridor. This is the Tennessee Obed River, NOT the Obey River (Dale Hollow dam tailwater), which is catalog entry obey-river.",
+    "boundaries": "Headwaters in Cumberland County (USGS 03538830 at Adams Bridge sits on an upstream reach, ~20 river miles above the Emory junction per catalog) downstream to the confluence with the Emory River; TDEC scenic-river designation runs from the western edge of Catoosa WMA to the Emory confluence."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/obed.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1366,
+    "notes": "No dam tailwater: TDEC describes the Obed segment as Tennessee's only National Wild and Scenic River (designated 1976), a free-flowing main stem. Elevation is the USGS 03538830 gauge (Adams Bridge, 1365.98 ft). NRCA: Obed River 1982-1998 temperatures ranged 0.5-28.6 C with highs late June-August; continuous data at Adams Bridge Oct 2013-Sep 2016 reached ~28 C in summer."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.7,
+      "monthObserved": 7,
+      "year": 2026,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03538830&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout fishery documented on this water (see wildPopulation), so holdover evidence was not sought or found.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "NPS documents a warmwater fishery: 'The most common game fish caught at the Obed WSR is the Smallmouth Bass', plus muskellunge, catfish, drum, crappie, bluegill, darters - no trout on the NPS fish page. The 2017 NPS Natural Resource Condition Assessment lists 55 park fish species (Appendix G, Russ 2006 + Scott 2010a) with no Salmonidae; a string search of the full report text returns zero 'trout' hits.",
+    "evidenceUrl": "https://npshistory.com/publications/obed/nrr-2017-1554.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "NPS documents a warmwater smallmouth-muskie river with zero trout in the park's certified fish list, and the on-river gauge hit 29.7 C on 2026-07-02.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/obed/learn/nature/fish.htm",
+    "https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/obed.html",
+    "https://npshistory.com/publications/obed/nrr-2017-1554.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03538830&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03538830&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+  ]
+}

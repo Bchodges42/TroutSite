@@ -1,0 +1,56 @@
+{
+  "slug": "daddys-creek",
+  "segment": {
+    "description": "Daddy's Creek (Cumberland County), gorge water in the Obed system, running its full named length to the Obed confluence near Hebbertsburg; lower reach inside Obed Wild & Scenic River.",
+    "boundaries": "Headwaters in Cumberland County (USGS 03539600 near Hebbertsburg at 35.9977, -84.8225) downstream to the confluence with the Obed River; TDEC scenic-river designation covers Daddy's Creek from the Morgan County line to its Obed confluence."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/obed.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1445,
+    "notes": "No dam tailwater: TDEC's Obed scenic-river designation includes Daddy's Creek from the Morgan County line to its Obed confluence as part of the free-flowing Wild & Scenic system. Elevation is the USGS 03539600 gauge near Hebbertsburg (1444.69 ft). NRCA: Daddy's Creek 1982-1998 temperatures ranged 0.3-28.4 C with the highest in July and September (mean 14.1 C)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 30.0,
+      "monthObserved": 7,
+      "year": 2026,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03539600&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout fishery documented on this water (see wildPopulation), so holdover evidence was not sought or found.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "NPS fish-assemblage inventories document zero trout: Russ (2006) sampled two Daddy's Creek locations inside Obed WSR (19 species, whitetail/telescope shiners, rock bass, smallmouth) and Scott (2010b) found 13 species; the park's certified 55-species fish list (Appendix G) contains no Salmonidae, and a text search of the full NRCA report returns zero 'trout' hits. Daddy's Creek is also absent from TWRA's 2026 trout stocking schedule and wild-trout-stream list.",
+    "evidenceUrl": "https://npshistory.com/publications/obed/nrr-2017-1554.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "NPS surveys at two Daddy's Creek park locations recorded zero salmonids and the Hebbertsburg gauge reached 30.0 C on 2026-07-02.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/obed/learn/nature/fish.htm",
+    "https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/obed.html",
+    "https://npshistory.com/publications/obed/nrr-2017-1554.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03539600&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03539600&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+  ]
+}

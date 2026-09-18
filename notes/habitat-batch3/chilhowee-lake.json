@@ -1,0 +1,49 @@
+{
+  "slug": "chilhowee-lake",
+  "segment": {
+    "description": "Chilhowee Reservoir, impoundment of the Little Tennessee River in Blount and Monroe counties below the Chilhowee Mountains (TWRA where-to-fish page: 1,747 acres, dam completed 1957). Receives the Little Tennessee from Calderwood Reservoir upstream and discharges through Chilhowee Dam to the upper Tellico Reservoir arm. Does not cover the free-flowing Little Tennessee tailwater below the dam or Tellico Reservoir proper.",
+    "boundaries": "Chilhowee Dam downstream to Calderwood Dam upstream, Little Tennessee River, Blount/Monroe counties, along US 129."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Chilhowee Dam",
+      "operator": "private",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.safewaters.com/facilities/chilhowee"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Brookfield Renewable (Smoky Mountain Hydropower, ex-ALCOA Tapoco project; construction began 1955, operating 1957) operates Chilhowee Dam 'in a run-of-river mode' like Cheoah and Calderwood, following TVA Fontana Dam's peaking cycle upstream (safewaters.com facility page). TWRA's Tellico Reservoir page states the releases from Chilhowee Reservoir are cold and well oxygenated, which is why the reach below the dam can support trout. No measured release temperature found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "Agency prose, not creel data: TWRA's Chilhowee Reservoir page says trout are 'stocked on an annual basis and thrive in the cool, clear water' and that 'the cool water and good dissolved oxygen levels create an ideal habitat'. TWRA's live trout page separately places Chilhowee (Rainbow) in its year-round reservoir stocking program.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild self-sustaining population record resolved; TWRA describes an annually stocked trout fishery alongside bass/panfish species.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+    { "species": "lake", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA's live trout page lists Chilhowee in its year-round reservoir trout stocking program (Rainbow) and TWRA's reservoir page credits the cool, well-oxygenated water as ideal trout habitat.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html",
+    "https://www.safewaters.com/facilities/chilhowee",
+    "https://www.safewaters.com/facilities/calderwood",
+    "https://waterservices.usgs.gov/nwis/site/?bBox=-84.5,35.3,-83.8,36.0&parameterCd=00010&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=1900-01-01&endDT=2026-09-17&format=json",
+    "repo-local TWRA stocking schedule snapshot packages/content/data/twra-stocking-schedule.json (rows: Chilhowee Reservoir, type Reservoir, months F,N,D, Rainbow Trout)"
+  ]
+}

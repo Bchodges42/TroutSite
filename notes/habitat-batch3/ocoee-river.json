@@ -1,0 +1,47 @@
+{
+  "slug": "ocoee-river",
+  "segment": {
+    "description": "Upper Ocoee River, Copperhill reach, Polk County: from Copperhill (which sits at the upper end of TVA's Ocoee No. 3 impoundment — TVA says that reservoir stretches ~11 miles upriver to the Tennessee-Georgia state line) through Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head. Reach discipline: the middle Ocoee whitewater corridor below Ocoee Dam No. 2 and the Parksville/Ocoee No. 1 tailwater are separate catalog waters (documented in another batch) — their facts are not transferred here. USGS 03559500 (identity verified: 'OCOEE RIVER AT COPPERHILL, TN', gage elevation 1,445.1 ft, drainage 352 sq mi) sits in the upper pool at Copperhill.",
+    "boundaries": "Copperhill/TN-GA line downstream through the Ocoee No. 3 impoundment and the Ocoee No. 3 / No. 2 dam gorge to the head of Parksville Reservoir (Ocoee Dam No. 1 pool), Polk County."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Ocoee Dam No. 3 (upstream impoundment boundary; TVA diverts water from the dam through a tunnel to a powerhouse more than two miles downstream)",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/ocoee3.htm"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1445.1,
+    "notes": "Elevation is the USGS gage datum for 03559500 at Copperhill. TVA's Ocoee No. 3 page: 110-ft-high, 612-ft-long dam (built 1941-42), 360-acre reservoir, water 'diverted ... and sluiced from the dam on selected days' with releases partly timed for whitewater recreation — flow in the gorge is release-dependent. No measured water temperature found: 03559500 records only streamflow/gage height (July 2025 IV query empty), and TVA powerhouse gauge 03562551 ('OCOEE R AT OCOEE NO 3 PWERHOUSE') returned no retrievable temperature series in IV/DV queries."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Nothing resolved. No agency stocking or carryover record exists for the upper Ocoee: TWRA's live trout page and stocking dataset contain only 'Parksville(Ocoee #1) TW / Ocoee River' (tailwater below Ocoee Dam No. 1, March-May rainbow) and Parksville in the reservoir list — no upper-Ocoee/Copperhill entry. Outfitter claims that TWRA stocks the upper Ocoee were found only on guide-marketing pages and are not acceptable as sole evidence; they are leads only.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No agency record of a wild trout population in the Copperhill reach found.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "No agency stocking or temperature record resolves for the Copperhill reach, and TVA's tunnel diversion makes flow (and any cold-water refugia) release-dependent — the habitat question is simply undocumented in the sources checked.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://lakeinfo.tva.gov/web/sites/ocoee3.htm",
+    "https://tva.com/energy/our-power-system/hydroelectric/ocoee-no.-3",
+    "https://waterdata.usgs.gov/monitoring-location/03559500/",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03470000,03559500,03566000,03519750&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03559500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03470000,03559500&parameterCd=00010&startDT=2024-06-01&endDT=2025-09-30&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03470000,03559500&parameterCd=00010&startDT=2019-01-01&endDT=2025-09-30&format=json",
+    "https://waterservices.usgs.gov/nwis/site/?bBox=-84.75,34.9,-84.25,35.25&parameterCd=00010&siteOutput=expanded&format=rdb",
+    "repo-local TWRA stocking schedule snapshot packages/content/data/twra-stocking-schedule.json (only Ocoee row: Parksville(Ocoee #1) TW, months M,A,M, rainbow)"
+  ]
+}

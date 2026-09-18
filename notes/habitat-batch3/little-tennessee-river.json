@@ -1,0 +1,49 @@
+{
+  "slug": "little-tennessee-river",
+  "segment": {
+    "description": "Main-stem Little Tennessee River in Tennessee below Fontana Dam (NC): the Calderwood and Chilhowee pools and the Chilhowee tailwater arm down through Tellico Reservoir to Tellico Dam. TWRA's own where-to-fish text places the trout water in 'the upper reaches of Tellico Reservoir in the Little Tennessee Arm below Chilhowee Dam' — the impounded tailwater arm, not the warm lower river or the NC river above Fontana. Owner-box note: evidence is recorded both ways below and intentionally not resolved.",
+    "boundaries": "From Fontana Dam (NC) down the Calderwood and Chilhowee pools to Chilhowee Dam, then the Little Tennessee Arm of Tellico Reservoir to Tellico Dam (Blount/Monroe/Loudon counties)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Chilhowee Dam",
+      "operator": "private",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.safewaters.com/facilities/chilhowee"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Brookfield Renewable operates Chilhowee Dam run-of-river (safewaters.com). TWRA's Tellico Reservoir page is direct about the mechanism: 'The upper reaches of Tellico Reservoir in the Little Tennessee Arm below Chilhowee Dam can support trout due to the cold, well-oxygenated water' released from Chilhowee Reservoir. USGS has a temperature-parameter site 03518300 (Little Tennessee River below Chilhowee Dam) but waterservices returned no temperature series for it (July 2025 IV and full-record DV queries empty), so no measured tailwater temperature is citable."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Both ways, unresolved: (a) POSITIVE — TWRA's Tellico Reservoir page documents 'About 4,500 catchable Rainbow Trout are released there in the late winter and early spring annually' in the Little Tennessee Arm below Chilhowee Dam, and states the cold, well-oxygenated Chilhowee releases can support trout (agency capability statement, not creel data). (b) NEGATIVE/ABSENCE — the TWRA stocking schedule dataset snapshot (repo: packages/content/data/twra-stocking-schedule.json, 616 rows) contains no Little Tennessee River row, and TWRA's live trout page never mentions the Little Tennessee River. TWRA's year-round reservoir program list includes 'Tellico Upper (Rainbow)', which plausibly refers to this upper Tellico/Little Tennessee arm, but TWRA does not say so explicitly — identity left unresolved.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild self-sustaining population record resolved for the TN main stem; the documented fishery is the stocked Chilhowee-tailwater arm.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TWRA documents ~4,500 rainbows planted annually in the Chilhowee-tailwater Little Tennessee Arm and states its cold, well-oxygenated releases can support trout there.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html",
+    "https://www.safewaters.com/facilities/chilhowee",
+    "https://www.safewaters.com/facilities/calderwood",
+    "https://waterdata.usgs.gov/monitoring-location/03519750/",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03470000,03559500,03566000,03519750&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03518300,03517950&startDT=2020-01-01&endDT=2020-12-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=1900-01-01&endDT=2026-09-17&format=json",
+    "repo-local TWRA stocking schedule snapshot packages/content/data/twra-stocking-schedule.json (no Little Tennessee River row in 616 rows)"
+  ]
+}

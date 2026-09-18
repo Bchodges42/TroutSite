@@ -1,0 +1,31 @@
+{
+  "slug": "east-fork-obey-river",
+  "segment": {
+    "description": "East Fork Obey River mainstem - the principal Obey headwater fork rising in Fentress County (near Clarkrange, Wilder, and Jamestown) and flowing through Overton County to the East Fork arm of Dale Hollow Lake. Upstream of, and distinct from, the Dale Hollow Dam Obey River tailwater (a separate catalog water).",
+    "boundaries": "Fentress/Overton county headwaters downstream to the lake-influenced lower reach at Compton Boat Ramp; TWRA's published walleye-run regulation spans 'Compton Boat Ramp upstream to the Highway 52 bridge' on this fork."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 679.54,
+    "notes": "Elevation is the gage altitude (NAVD88) of USGS 03414500 East Fork Obey River near Jamestown, TN, from the NWIS site file. Agency fishery evidence on this fork is a walleye-run regulation (TWRA exceptions book): 'Anglers restricted to use of one hook having a single barb or lure containing a single hook with one barb from Jan. 1-April 15' from Compton Boat Ramp upstream to the Highway 52 bridge, with a 5/day, 16-in minimum walleye creel - a documented cool/warm-water spawning run, not a trout fishery."
+  },
+  "summerTemperature": [],
+  "holdover": { "documented": null, "detail": "No trout stocking program exists for this fork in TWRA data (the nearby stocked waters are the Dale Hollow TW/Obey River tailwater and Dale Hollow Reservoir), and no holdover documentation was found.", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": { "documented": null, "detail": "No wild trout documentation found in sources checked; the fork is absent from TWRA's trout regulations page.", "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html" },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's official exceptions book regulates a January 1-April 15 walleye run on this exact reach (Compton Boat Ramp to Hwy 52), documenting a warm/cool-water sportfishery, and TWRA lists no trout stocking or trout regulation for the fork.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03423000,03418000,03414500,03415000,03418180,03423152&parameterCd=00010&startDT=1950-01-01&endDT=2010-12-31&format=json",
+    "https://www.onwaterapp.com/us/tennessee/water/east-fork-obey-river-w1 (lead only, not cited)",
+    "https://fishbrain.com (lead only, not cited)"
+  ]
+}

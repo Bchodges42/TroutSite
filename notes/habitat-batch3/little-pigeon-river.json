@@ -1,0 +1,41 @@
+{
+  "slug": "little-pigeon-river",
+  "segment": {
+    "description": "Out-of-park main-stem Little Pigeon River at Sevierville (USGS 03470000, gage elevation 878.91 ft, Sevier County) between the GSMNP boundary and Douglas Lake head. Reach discipline: the GSMNP prongs (Middle Prong, West Prong) are separate catalog waters documented as wild in another batch — park facts are NOT transferred here; TWRA's own Little Pigeon stocking rows are prong reaches ('Mid. Prong Little Pigeon River', 'W. Prong Little Pigeon R. (Pigeon Forge)'), not this main stem.",
+    "boundaries": "GSMNP boundary downstream through Pigeon Forge/Sevierville to the Douglas Reservoir backwater, Sevier County; gage 03470000 at Sevierville."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 878.91,
+    "notes": "Free-flowing valley river at low elevation in a city corridor; no cold-water source documented in any source checked. USGS 03470000 (identity verified via waterservices expanded site output: 'LITTLE PIGEON RIVER AT SEVIERVILLE, TN') records only streamflow and gage height — no water-temperature parameter (July 2025 IV query returned zero temperature series)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Nothing resolved for the Sevierville main stem. The catalog itself carries an owner-confirmed local-knowledge claim (September 2026) that TWRA stocks this reach, explicitly because the TWRA dataset does not list it; no agency document found confirms a main-stem stocking. TWRA's live trout page lists only prong entries for the Little Pigeon system, and the TWRA stocking dataset rows (repo snapshot) are Mid Prong (Feb-May and late Oct-Nov weeks, rainbow) and W Prong at Pigeon Forge (Jan-May and Oct weeks, rainbow) — different reaches.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No out-of-park main-stem wild-trout record resolved. Wild-fish claims for the prongs inside the park belong to separate catalog waters and are not transferable.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "unknown", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "No agency record resolves for this reach: TWRA's Little Pigeon program rows are the park/city prongs, no temperature data exists at the Sevierville gage, and the stocking claim rests on an owner local-knowledge note.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterdata.usgs.gov/monitoring-location/03470000/",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03470000,03559500,03566000,03519750&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03470000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03470000,03559500&parameterCd=00010&startDT=2024-06-01&endDT=2025-09-30&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03470000,03559500&parameterCd=00010&startDT=2019-01-01&endDT=2025-09-30&format=json",
+    "repo-local TWRA stocking schedule snapshot packages/content/data/twra-stocking-schedule.json (only 'Mid. Prong' and 'W. Prong (Pigeon Forge)' Little Pigeon rows; no Sevierville main-stem row)"
+  ]
+}

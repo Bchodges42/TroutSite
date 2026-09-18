@@ -1,0 +1,51 @@
+{
+  "slug": "piney-river-rhea",
+  "segment": {
+    "description": "Piney River, Rhea County, in the Spring City corridor on the Cumberland Plateau escarpment, running down to the Watts Bar embayment head (HUC 06010201). TWRA manages the reach as a Delayed Harvest trout water and spring-stocks it with catchable rainbows.",
+    "boundaries": "TWRA Delayed Harvest reach: 'Piney River: Cumberland Trail State Park downstream to Highway 27 Bridge' (catch-and-release Nov 1 - Feb 28). TDEC state scenic river segment: Moccasin Creek confluence downstream to RockHouse Branch (5.7 mi, Class I Natural River Area, designated 2020-06-22)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03542500&siteOutput=expanded&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "USGS 03542500 'PINEY RIVER AT SPRING CITY, TN' (Rhea County, HUC 06010201, altitude 749.65 ft, drainage 95.9 sq mi) is a discontinued station (daily record 1927-1931 only) — no current gauge or temperature record exists for the river: https://waterservices.usgs.gov/nwis/site/?sites=03542500&siteOutput=expanded&format=rdb. TDEC scenic-river page (segment identity above; no water-quality or fishery character stated): https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/piney.html"
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Program facet, not survival evidence: the Delayed Harvest season (catch-and-release, artificial lures only, Nov 1 - Feb 28) is supported by a late-October DH stocking (week of 10/25/2026, rainbows), meaning stocked fish are intended to be present through the winter months — but no evidence addresses summer carry-over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Piney River (Rhea) is absent from TWRA's Wild Trout Streams list (that list covers Monroe/Carter/Johnson/Greene/Unicoi county waters only); no wild-trout survey record found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "A managed put-and-take/delayed-harvest rainbow fishery (stocked Feb-Apr plus a late-Oct DH event, C&R Nov 1-Feb 28) exists, but there is no temperature, holdover, or wild-population evidence for the summer months on this ungaged river.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/piney.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03542500&siteOutput=expanded&format=rdb",
+    "https://waterdata.usgs.gov/monitoring-location/USGS-03542500/"
+  ]
+}

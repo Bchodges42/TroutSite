@@ -1,0 +1,49 @@
+{
+  "slug": "calderwood-lake",
+  "segment": {
+    "description": "Calderwood Reservoir, the narrow deep impoundment of the Little Tennessee River on the Tennessee/North Carolina line in Blount and Monroe counties (TWRA where-to-fish page: 541 acres, 8 miles long, described as deep with cold, clear water; bordered by GSMNP and Cherokee NF, Cheoah Reservoir upstream and Chilhowee downstream). Does not cover the Chilhowee pool below or the Little Tennessee free-river segments.",
+    "boundaries": "Calderwood Dam (Little Tennessee River mile ~10.5 area, near Tallassee TN) upstream to Cheoah Reservoir; most of the pool lies in Tennessee, boat access only from North Carolina per TWRA."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Calderwood Dam",
+      "operator": "private",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.safewaters.com/facilities/calderwood"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Brookfield Renewable (Smoky Mountain Hydropower, ex-ALCOA Tapoco project) owns/operates Calderwood Dam and runs it 'in a run-of-river mode' following TVA Fontana Dam's daily peaking cycle upstream, so the pool is continuously flushed by Fontana releases (safewaters.com facility page). TWRA's Calderwood Reservoir page: 'Trout are stocked on an annual basis and do well all year in the cold, oxygenated water.' No measured release temperature found; release draw depth not documented in the sources checked."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "Agency prose, not creel data: TWRA's Calderwood Reservoir page states stocked trout 'do well all year in the cold, oxygenated water' and that trout are a primary game fish there. TWRA's live trout page separately places Calderwood in its year-round reservoir stocking program (listed species there: Brook, Brown and Rainbow).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild self-sustaining population record resolved; TWRA describes the fishery as annually stocked (alongside bass/crappie/rock bass).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+    { "species": "brown", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+    { "species": "brook", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA's live trout page lists Calderwood in its year-round reservoir trout stocking program and TWRA's reservoir page says stocked trout 'do well all year in the cold, oxygenated water'.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html",
+    "https://www.safewaters.com/facilities/calderwood",
+    "https://www.safewaters.com/facilities/chilhowee",
+    "https://waterservices.usgs.gov/nwis/site/?bBox=-84.5,35.3,-83.8,36.0&parameterCd=00010&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03517950,03518210,03518300,03562551&parameterCd=00010&startDT=1900-01-01&endDT=2026-09-17&format=json",
+    "repo-local TWRA stocking schedule snapshot packages/content/data/twra-stocking-schedule.json (rows: Calderwood Reservoir, type Reservoir, months N,D, Rainbow Trout)"
+  ]
+}

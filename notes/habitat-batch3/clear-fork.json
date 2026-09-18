@@ -1,0 +1,53 @@
+{
+  "slug": "clear-fork",
+  "segment": {
+    "description": "Clear Fork in Scott County, the wild branch of the New River system near the Big South Fork boundary, running its full named length to the New Fork/Big South Fork formation.",
+    "boundaries": "Headwaters near the Morgan County line (upper reach above USGS 03409500 near Robbins at 36.3883, -84.6302, drainage 272 sq mi) downstream to the confluence with the New River forming the Big South Fork of the Cumberland; HUC 05130104."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1081,
+    "notes": ""
+  },
+  "summerTemperature": [
+    {
+      "celsius": 30.2,
+      "monthObserved": 8,
+      "year": 2026,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03409500&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout fishery documented on this water; no holdover evidence located.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No fish survey or trout record located for the Scott County Clear Fork. Absence is documented only at program level: the water has no row in TWRA's 2026 trout stocking schedule and is not on TWRA's wild-trout-stream list (the TWRA live-bait 'Clear Fork' is a different water in Claiborne/Campbell counties). The NPS Big South Fork fishing page names no species and does not cover this upstream reach.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "No trout program or trout record exists for this water anywhere in TWRA/NPS sources and the on-river gauge (03409500) reached 30.2 C on 2026-08-18.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://waterservices.usgs.gov/nwis/site/?sites=03409500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03409500&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.nps.gov/biso/planyourvisit/fishing.htm"
+  ]
+}

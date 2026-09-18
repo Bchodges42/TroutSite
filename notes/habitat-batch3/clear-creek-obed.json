@@ -1,0 +1,56 @@
+{
+  "slug": "clear-creek-obed",
+  "segment": {
+    "description": "Clear Creek of the Obed system (Morgan County, headwaters in Cumberland County), including the Lilly Bridge gorge reach inside Obed Wild & Scenic River, to the Obed confluence near Lancing.",
+    "boundaries": "Headwaters (Cumberland County line) downstream to the confluence with the Obed River near Lancing; TDEC scenic-river designation covers Clear Creek from the Morgan County line to its Obed confluence; USGS 03539778 sits at Lilly Bridge near Lancing."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/obed.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1041,
+    "notes": "No dam tailwater: TDEC's Obed scenic-river designation includes Clear Creek from the Morgan County line to its Obed confluence as part of the free-flowing Wild & Scenic system. Elevation is the USGS 03539778 gauge at Lilly Bridge (1040.99 ft). NRCA: Clear Creek 1982-1998 temperatures ranged 0.3-29.2 C with highs in June-July; continuous data at Lilly Bridge Oct 2013-Sep 2016 reached 'just above 30 C (86 F) during the summer of 2016'."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 2026,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03539778&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout fishery documented on this water (see wildPopulation), so holdover evidence was not sought or found.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "NPS fish-assemblage inventories document zero trout: Russ (2006) sampled five Clear Creek locations inside Obed WSR (24 species, darters/sunfish/bass/shiners) and Scott (2010b) found 18 species including blacknose dace; the park's certified 55-species fish list (Appendix G) contains no Salmonidae, and a text search of the full NRCA report returns zero 'trout' hits. Note: the 'Clear Creek' on TWRA's trout-regulations page is a different water (Clinch River tributary, Anderson County).",
+    "evidenceUrl": "https://npshistory.com/publications/obed/nrr-2017-1554.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "NPS surveys at five Clear Creek transects recorded zero salmonids and the Lilly Bridge gauge reached 29.0 C on 2026-07-03 (NRCA continuous record topped 30 C in summer 2016).",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/obed/learn/nature/fish.htm",
+    "https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/obed.html",
+    "https://npshistory.com/publications/obed/nrr-2017-1554.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03539778&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03539778&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json"
+  ]
+}

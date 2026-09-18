@@ -1,0 +1,54 @@
+{
+  "slug": "emory-river",
+  "segment": {
+    "description": "Emory River, the Obed's downstream continuation: from its Morgan County headwaters (upper reach inside Obed Wild & Scenic River) past the Obed confluence and Nemo Bridge, through Oakdale and Harriman, to the Watts Bar embayment head where the pool carries to the Tennessee River.",
+    "boundaries": "Headwaters in Morgan County downstream to the Watts Bar Reservoir embayment head (Roane County); USGS 03540500 is at Oakdale (35.9831, -84.5580, drainage 764 sq mi) on the upper regulated reach; TWRA special rules run from the Hwy 27 Bridge at Harriman upstream to the Hwy 299 Bridge at Oakdale."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 761,
+    "notes": "No dam on the Emory itself: TWRA treats the Emory as a Watts Bar Reservoir tributary (its lower end is a reservoir arm; paddlefish closure runs from the Emory mouth upstream to the Hwy 299 Bridge at Oakdale). Elevation is the USGS 03540500 gauge at Oakdale (760.98 ft). NRCA, upper Emory inside Obed WSR: 1982-1998 temperatures ranged 0.2-28.5 C with the highest in July (mean 14.1 C); 2009-2016 APHN monitoring ranged 4.4-26.1 C."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 24.9,
+      "monthObserved": 8,
+      "year": 2009,
+      "sourceType": "study",
+      "evidenceUrl": "https://npshistory.com/publications/obed/nrr-2017-1554.pdf"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout fishery documented on this water (see wildPopulation), so holdover evidence was not sought or found.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout documented. NPS NRCA fish inventories in the upper (park) Emory found 29 species (Russ 2006) and 34 species at five sites (Scott 2010b) with no trout; the Emory was the only OBRI watershed where muskellunge, channel catfish, and logperch were found. TWRA's Watts Bar page names the Emory a premier muskie river and lists no trout program. Segment caveat: these surveys cover the upper Emory inside Obed WSR, not the Harriman/Kingston reach.",
+    "evidenceUrl": "https://npshistory.com/publications/obed/nrr-2017-1554.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA documents the Emory as a muskie/smallmouth river (Watts Bar arm) with no trout program, NPS park-reach surveys found zero trout, and the 1982-1998 July high reached 28.5 C.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://waterservices.usgs.gov/nwis/site/?sites=03540500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03540500&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html",
+    "https://npshistory.com/publications/obed/nrr-2017-1554.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  ]
+}
