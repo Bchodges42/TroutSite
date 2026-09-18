@@ -181,17 +181,25 @@ export function classify(input) {
 export function composeJevState({ evidenceRecord, catalogRow, stockingRow }) {
   const facets = extractFacets({ evidenceRecord, stockingRow });
   const catalog = catalogRow ?? {};
+  const yn = (b) => (b === true ? 'yes' : b === false ? 'no' : 'unknown');
   const lines = [];
-  lines.push('Classify this Tennessee water into one of three owner-fixed fishery categories using only the evidence below.');
+  lines.push('Classify this Tennessee water into one of three owner-fixed fishery categories using only the evidence below. The three categories: "Year Round - Trout Stream (tailwaters, wild trout waters)" / "Warm Water - Seasonal/Winter Stocking Program" / "Warm Water - No Trout".');
+  lines.push('--- facet summary (derived from the cited evidence below) ---');
+  lines.push(`wild/self-sustaining trout population documented: ${yn(evidenceRecord?.wildPopulation?.documented)}`);
+  lines.push(`holdover documented: ${yn(evidenceRecord?.holdover?.documented)}`);
+  lines.push(`cold controlled release (bottom-draw dam tailwater): ${yn(facets.coldRelease ? true : (evidenceRecord?.coldSource?.damTailwater?.releaseType === 'epilimnion' ? false : null))}`);
+  lines.push(`stocking program months: ${facets.stockingMonths.length ? `${facets.stockingMonths.join(', ')} (${facets.stockingMonths.length} of 12)` : 'none resolved'}`);
   if (evidenceRecord?.segment?.description) lines.push(`Catalog segment: ${evidenceRecord.segment.description} (boundaries: ${evidenceRecord.segment.boundaries ?? 'n/a'}).`);
   if (evidenceRecord?.coldSource?.damTailwater?.dam) lines.push(`Dam tailwater: ${evidenceRecord.coldSource.damTailwater.dam} (${evidenceRecord.coldSource.damTailwater.operator ?? 'operator unknown'}), release type ${evidenceRecord.coldSource.damTailwater.releaseType ?? 'unknown'} — ${evidenceRecord.coldSource.damTailwater.evidenceUrl ?? 'no url'}.`);
-  if (evidenceRecord?.holdover) lines.push(`Holdover: ${JSON.stringify(evidenceRecord.holdover)}.`);
-  if (evidenceRecord?.wildPopulation) lines.push(`Wild population: ${JSON.stringify(evidenceRecord.wildPopulation)}.`);
-  if (evidenceRecord?.troutSpecies?.length) lines.push(`Documented trout species: ${JSON.stringify(evidenceRecord.troutSpecies)}.`);
+  if (evidenceRecord?.holdover) lines.push(`Holdover detail: ${evidenceRecord.holdover.documented === null ? 'unknown' : evidenceRecord.holdover.documented ? 'documented' : 'not documented'} — ${evidenceRecord.holdover.detail ?? ''} (${evidenceRecord.holdover.evidenceUrl ?? ''}).`);
+  if (evidenceRecord?.wildPopulation) lines.push(`Wild population detail: ${evidenceRecord.wildPopulation.documented === null ? 'unknown' : evidenceRecord.wildPopulation.documented ? 'documented' : 'not documented'} — ${evidenceRecord.wildPopulation.detail ?? ''} (${evidenceRecord.wildPopulation.evidenceUrl ?? ''}).`);
+  if (evidenceRecord?.troutSpecies?.length) lines.push(`Documented trout species: ${evidenceRecord.troutSpecies.map((s) => `${s.species} (${s.basis})`).join('; ')}.`);
   for (const t of evidenceRecord?.summerTemperature ?? []) lines.push(`Summer water temperature: ${t.celsius} C in month ${t.monthObserved} ${t.year} (${t.sourceType}) — ${t.evidenceUrl}.`);
-  lines.push(`TWRA stocking program months: ${facets.stockingMonths.length ? facets.stockingMonths.join(', ') : 'none resolved'}${stockingRow?.type ? ` (${stockingRow.type})` : ''}${stockingRow?.species ? `, species: ${stockingRow.species}` : ''}.`);
-  lines.push(`Catalog flags: stockingProgram=${catalog.stockingProgram ?? 'unknown'}, yearRound=${catalog.yearRound ?? 'unknown'}, species=${catalog.species ?? 'unknown'}.`);
-  lines.push('Policy rules: (1) wild/self-sustaining population, documented holdover, or a cold controlled release supports year-round on its own. (2) A 12-month stocking program qualifies a water as a year-round trout fishery by itself. (3) Holdover absence never by itself rules out year-round. (4) A seasonal stocking program without a survival facet is a seasonal trout program on warm water. (5) When evidence conflicts, abstain rather than guess.');
+  lines.push(`TWRA stocking program: ${facets.stockingMonths.length ? `months ${facets.stockingMonths.join(', ')}` : 'none resolved'}${stockingRow?.type ? ` (${stockingRow.type})` : ''}${stockingRow?.species ? `, species: ${stockingRow.species}` : ''}.`);
+  lines.push(`Catalog flags (may be stale or wrong — evidence outranks them): stockingProgram=${catalog.stockingProgram ?? 'unknown'}, yearRound=${catalog.yearRound ?? 'unknown'}, species=${catalog.species ?? 'unknown'}.`);
+  lines.push('--- policy rules (owner-fixed) ---');
+  lines.push('(1) A wild/self-sustaining population, documented holdover, or a cold controlled release supports "Year Round - Trout Stream" on its own. (2) A 12-month continuous stocking program qualifies a water as "Year Round - Trout Stream" by itself. (3) Holdover absence never by itself rules out year-round. (4) A seasonal stocking program without any year-round facet is "Warm Water - Seasonal/Winter Stocking Program". (5) No trout program and no trout evidence is "Warm Water - No Trout".');
+  lines.push('Weigh ALL the cited evidence and pick the best-supported category. Catalog flags conflicting with program data are a reason to weigh evidence carefully, NOT a reason to abstain. Reserve "none" ONLY for the case where no cited source speaks to trout in this segment at all.');
   return lines;
 }
 
@@ -222,24 +230,24 @@ export async function escalateJev(input) {
       questions: {
         classification: {
           type: 'choice',
-          instructions: 'Which category does the evidence support for this exact catalog segment? When evidence conflicts or is too thin to decide, answer none.',
+          instructions: 'Which category does the cited evidence best support for this exact catalog segment? Weigh the facet summary and the detailed evidence; catalog flags may be stale. Answer none ONLY if no cited source speaks to trout in this segment at all.',
           criteria: {
             [LABELS.YEAR_ROUND]: LABEL_TEXT[LABELS.YEAR_ROUND],
             [LABELS.SEASONAL]: LABEL_TEXT[LABELS.SEASONAL],
             [LABELS.NO_TROUT]: LABEL_TEXT[LABELS.NO_TROUT],
-            none: 'evidence conflicts or is too thin to decide — abstain',
+            none: 'no cited source speaks to trout in this segment at all',
           },
         },
         yearRoundSurvival: {
           type: 'noul',
-          instructions: 'True or false: the evidence supports trout remaining in this exact segment through the entire year.',
+          instructions: 'True or false: the cited evidence supports trout remaining in this exact segment through the entire year (via survival, self-sustaining population, cold release, or continuous stocking).',
         },
         evidenceStrength: {
           type: 'score',
           instructions: 'Rate the strength of the cited evidence (0-1) for deciding this water at all.',
           criteria: [
             '1.0 = multiple agency documents directly address trout presence/survival in this exact segment',
-            '0.5 = agency documents address the water or its program but leave survival unresolved',
+            '0.5 = agency documents address the water or its program but leave the category unresolved',
             '0.0 = no cited source speaks to trout in this segment',
           ],
         },
@@ -249,6 +257,7 @@ export async function escalateJev(input) {
   if (!res.ok) throw new Error(`typesafe ${res.status}: ${await res.text()}`);
   const json = await res.json();
   const a = json.answers ?? {};
+  const strength = a.evidenceStrength?.score;
   return {
     decision: 'jev-rated',
     backend: 'jev',
@@ -256,8 +265,8 @@ export async function escalateJev(input) {
     choice: a.classification?.choice ?? 'none',
     choiceConfidence: a.classification?.confidence ?? 0,
     probabilities: a.classification?.probabilities ?? {},
-    yearRoundSurvival: a.yearRoundSurvival?.value ?? a.yearRoundSurvival?.confidence ?? null,
-    evidenceStrength: a.evidenceStrength?.value ?? a.evidenceStrength?.score ?? null,
+    yearRoundSurvival: typeof a.yearRoundSurvival?.noul === 'number' ? a.yearRoundSurvival.noul : null,
+    evidenceStrength: typeof strength === 'number' ? Math.max(0, Math.min(1, strength)) : null,
   };
 }
 
