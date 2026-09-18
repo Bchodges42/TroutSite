@@ -1,5 +1,5 @@
 {
-  "ratedAt": "2026-09-18T16:54:47.198Z",
+  "ratedAt": "2026-09-18T18:14:15.783Z",
   "model": "jev-latest",
   "results": [
     {
@@ -15,15 +15,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.73,
+        "choiceConfidence": 0.77,
         "probabilities": {
-          "trout-stream-year-round": 0.2,
-          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.83,
+          "trout-stream-year-round": 0.17,
           "warmwater-no-trout": 0,
-          "warmwater-yearly-stocked-winter-trout": 0.8
+          "none": 0
         },
         "yearRoundSurvival": 0.18,
-        "evidenceStrength": 0.26
+        "evidenceStrength": 0.28
       },
       "resolution": {
         "resolution": "accept"
@@ -41,14 +41,14 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.63,
+        "choiceConfidence": 0.69,
         "probabilities": {
-          "warmwater-no-trout": 0.01,
-          "warmwater-yearly-stocked-winter-trout": 0.72,
+          "warmwater-yearly-stocked-winter-trout": 0.77,
           "none": 0,
-          "trout-stream-year-round": 0.27
+          "warmwater-no-trout": 0.01,
+          "trout-stream-year-round": 0.22
         },
-        "yearRoundSurvival": 0.22,
+        "yearRoundSurvival": 0.2,
         "evidenceStrength": 0.99
       },
       "resolution": {
@@ -67,15 +67,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.61,
+        "choiceConfidence": 0.66,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 0.71,
-          "warmwater-no-trout": 0.01,
           "none": 0,
-          "trout-stream-year-round": 0.28
+          "trout-stream-year-round": 0.25,
+          "warmwater-no-trout": 0.01,
+          "warmwater-yearly-stocked-winter-trout": 0.74
         },
         "yearRoundSurvival": 0.21,
-        "evidenceStrength": 0.97
+        "evidenceStrength": 0.98
       },
       "resolution": {
         "resolution": "accept"
@@ -91,15 +91,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "trout-stream-year-round",
-        "choiceConfidence": 0.65,
+        "choiceConfidence": 0.55,
         "probabilities": {
-          "none": 0.03,
-          "warmwater-no-trout": 0.13,
-          "warmwater-yearly-stocked-winter-trout": 0.11,
-          "trout-stream-year-round": 0.73
+          "trout-stream-year-round": 0.66,
+          "warmwater-yearly-stocked-winter-trout": 0.12,
+          "warmwater-no-trout": 0.17,
+          "none": 0.05
         },
-        "yearRoundSurvival": 0.71,
-        "evidenceStrength": 0.99
+        "yearRoundSurvival": 0.67,
+        "evidenceStrength": 0.98
       },
       "resolution": {
         "resolution": "accept"
@@ -117,13 +117,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 0.91,
         "probabilities": {
-          "trout-stream-year-round": 0.06,
           "warmwater-no-trout": 0,
           "warmwater-yearly-stocked-winter-trout": 0.9400000000000001,
+          "trout-stream-year-round": 0.06,
           "none": 0
         },
         "yearRoundSurvival": 0.08,
-        "evidenceStrength": 0.83
+        "evidenceStrength": 0.86
       },
       "resolution": {
         "resolution": "accept"
@@ -142,15 +142,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.42,
+        "choiceConfidence": 0.44,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 0.57,
+          "warmwater-no-trout": 0.4,
+          "trout-stream-year-round": 0.01,
           "none": 0.01,
-          "warmwater-no-trout": 0.41,
-          "trout-stream-year-round": 0.01
+          "warmwater-yearly-stocked-winter-trout": 0.58
         },
         "yearRoundSurvival": 0.06,
-        "evidenceStrength": 0.89
+        "evidenceStrength": 0.91
       },
       "resolution": {
         "resolution": "accept"
@@ -168,15 +168,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-no-trout",
-        "choiceConfidence": 0.98,
+        "choiceConfidence": 0.99,
         "probabilities": {
+          "trout-stream-year-round": 0,
+          "none": 0.01,
           "warmwater-no-trout": 0.99,
-          "trout-stream-year-round": 0.01,
-          "warmwater-yearly-stocked-winter-trout": 0,
-          "none": 0
+          "warmwater-yearly-stocked-winter-trout": 0
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.28
+        "evidenceStrength": 0.27
       },
       "resolution": {
         "resolution": "accept"
@@ -195,14 +195,14 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-no-trout",
-        "choiceConfidence": 0.76,
+        "choiceConfidence": 0.75,
         "probabilities": {
-          "warmwater-no-trout": 0.82,
-          "none": 0.03,
-          "trout-stream-year-round": 0.14,
-          "warmwater-yearly-stocked-winter-trout": 0.01
+          "warmwater-no-trout": 0.81,
+          "trout-stream-year-round": 0.15,
+          "none": 0.02,
+          "warmwater-yearly-stocked-winter-trout": 0.02
         },
-        "yearRoundSurvival": 0.09,
+        "yearRoundSurvival": 0.08,
         "evidenceStrength": 1
       },
       "resolution": {
@@ -219,15 +219,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.62,
+        "choiceConfidence": 0.63,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 0.72,
-          "none": 0,
           "trout-stream-year-round": 0.25,
-          "warmwater-no-trout": 0.03
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.73,
+          "warmwater-no-trout": 0.02
         },
-        "yearRoundSurvival": 0.18,
-        "evidenceStrength": 0.83
+        "yearRoundSurvival": 0.21,
+        "evidenceStrength": 0.81
       },
       "resolution": {
         "resolution": "accept"
@@ -243,15 +243,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-no-trout",
-        "choiceConfidence": 0.92,
+        "choiceConfidence": 0.89,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 0.04,
+          "warmwater-yearly-stocked-winter-trout": 0.07,
           "none": 0.01,
           "trout-stream-year-round": 0.01,
-          "warmwater-no-trout": 0.94
+          "warmwater-no-trout": 0.91
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.28
+        "evidenceStrength": 0.3
       },
       "resolution": {
         "resolution": "owner-box",
@@ -270,15 +270,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "trout-stream-year-round",
-        "choiceConfidence": 0.53,
+        "choiceConfidence": 0.5,
         "probabilities": {
-          "none": 0.04,
-          "warmwater-no-trout": 0.28,
+          "warmwater-no-trout": 0.3,
           "warmwater-yearly-stocked-winter-trout": 0.03,
-          "trout-stream-year-round": 0.65
+          "trout-stream-year-round": 0.63,
+          "none": 0.04
         },
         "yearRoundSurvival": 0.16,
-        "evidenceStrength": 0.93
+        "evidenceStrength": 0.95
       },
       "resolution": {
         "resolution": "owner-box",
@@ -297,15 +297,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-no-trout",
-        "choiceConfidence": 0.68,
+        "choiceConfidence": 0.55,
         "probabilities": {
-          "warmwater-no-trout": 0.76,
           "none": 0.01,
-          "warmwater-yearly-stocked-winter-trout": 0.16,
-          "trout-stream-year-round": 0.07
+          "warmwater-yearly-stocked-winter-trout": 0.22,
+          "warmwater-no-trout": 0.67,
+          "trout-stream-year-round": 0.1
         },
         "yearRoundSurvival": 0.1,
-        "evidenceStrength": 0.93
+        "evidenceStrength": 0.94
       },
       "resolution": {
         "resolution": "accept"
@@ -321,15 +321,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.72,
+        "choiceConfidence": 0.73,
         "probabilities": {
-          "warmwater-no-trout": 0.21,
-          "warmwater-yearly-stocked-winter-trout": 0.79,
-          "none": 0,
-          "trout-stream-year-round": 0
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.8,
+          "warmwater-no-trout": 0.2,
+          "none": 0
         },
         "yearRoundSurvival": 0.08,
-        "evidenceStrength": 0.97
+        "evidenceStrength": 0.96
       },
       "resolution": {
         "resolution": "accept"
@@ -349,13 +349,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 0.99,
         "probabilities": {
-          "none": 0,
           "trout-stream-year-round": 0,
-          "warmwater-yearly-stocked-winter-trout": 1,
-          "warmwater-no-trout": 0
+          "warmwater-no-trout": 0,
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
         },
         "yearRoundSurvival": 0.06,
-        "evidenceStrength": 0.38
+        "evidenceStrength": 0.42
       },
       "resolution": {
         "resolution": "accept"
@@ -374,15 +374,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.56,
+        "choiceConfidence": 0.66,
         "probabilities": {
-          "trout-stream-year-round": 0.33,
-          "warmwater-yearly-stocked-winter-trout": 0.67,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0.25,
           "none": 0,
-          "warmwater-no-trout": 0
+          "warmwater-yearly-stocked-winter-trout": 0.75
         },
         "yearRoundSurvival": 0.24,
-        "evidenceStrength": 0.83
+        "evidenceStrength": 0.86
       },
       "resolution": {
         "resolution": "accept"
@@ -400,15 +400,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-no-trout",
-        "choiceConfidence": 0.79,
+        "choiceConfidence": 0.8,
         "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.08,
+          "warmwater-no-trout": 0.86,
           "none": 0.06,
-          "warmwater-no-trout": 0.85,
-          "warmwater-yearly-stocked-winter-trout": 0.09,
           "trout-stream-year-round": 0
         },
-        "yearRoundSurvival": 0.08,
-        "evidenceStrength": 0.99
+        "yearRoundSurvival": 0.07,
+        "evidenceStrength": 0.98
       },
       "resolution": {
         "resolution": "accept"
@@ -426,13 +426,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 0.99,
         "probabilities": {
-          "warmwater-no-trout": 0.01,
+          "none": 0,
           "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 0.99,
-          "none": 0
+          "warmwater-no-trout": 0.01
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.22
+        "evidenceStrength": 0.23
       },
       "resolution": {
         "resolution": "accept"
@@ -450,15 +450,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.83,
+        "choiceConfidence": 0.82,
         "probabilities": {
           "trout-stream-year-round": 0.13,
-          "warmwater-yearly-stocked-winter-trout": 0.87,
           "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.87,
           "warmwater-no-trout": 0
         },
-        "yearRoundSurvival": 0.07,
-        "evidenceStrength": 0.63
+        "yearRoundSurvival": 0.08,
+        "evidenceStrength": 0.65
       },
       "resolution": {
         "resolution": "accept"
@@ -474,15 +474,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.67,
+        "choiceConfidence": 0.71,
         "probabilities": {
-          "none": 0.05,
+          "warmwater-yearly-stocked-winter-trout": 0.79,
           "trout-stream-year-round": 0,
-          "warmwater-no-trout": 0.2,
-          "warmwater-yearly-stocked-winter-trout": 0.75
+          "warmwater-no-trout": 0.16,
+          "none": 0.05
         },
-        "yearRoundSurvival": 0.05,
-        "evidenceStrength": 0.92
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.91
       },
       "resolution": {
         "resolution": "accept"
@@ -500,13 +500,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0,
           "none": 0
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.15
+        "evidenceStrength": 0.13
       },
       "resolution": {
         "resolution": "accept"
@@ -525,14 +525,14 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.67,
+        "choiceConfidence": 0.72,
         "probabilities": {
-          "trout-stream-year-round": 0.12,
+          "warmwater-no-trout": 0.07,
+          "trout-stream-year-round": 0.13,
           "none": 0.02,
-          "warmwater-yearly-stocked-winter-trout": 0.74,
-          "warmwater-no-trout": 0.12
+          "warmwater-yearly-stocked-winter-trout": 0.78
         },
-        "yearRoundSurvival": 0.12,
+        "yearRoundSurvival": 0.13,
         "evidenceStrength": 1
       },
       "resolution": {
@@ -552,15 +552,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-yearly-stocked-winter-trout",
-        "choiceConfidence": 0.58,
+        "choiceConfidence": 0.57,
         "probabilities": {
-          "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0.31,
-          "warmwater-yearly-stocked-winter-trout": 0.6900000000000001,
-          "none": 0
+          "none": 0,
+          "trout-stream-year-round": 0.32,
+          "warmwater-yearly-stocked-winter-trout": 0.68,
+          "warmwater-no-trout": 0
         },
-        "yearRoundSurvival": 0.38,
-        "evidenceStrength": 0.89
+        "yearRoundSurvival": 0.39,
+        "evidenceStrength": 0.9
       },
       "resolution": {
         "resolution": "owner-box",
@@ -579,14 +579,14 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "trout-stream-year-round",
-        "choiceConfidence": 0.33,
+        "choiceConfidence": 0.34,
         "probabilities": {
-          "trout-stream-year-round": 0.5,
-          "warmwater-yearly-stocked-winter-trout": 0.3,
-          "none": 0.03,
-          "warmwater-no-trout": 0.17
+          "warmwater-yearly-stocked-winter-trout": 0.29,
+          "trout-stream-year-round": 0.51,
+          "warmwater-no-trout": 0.17,
+          "none": 0.03
         },
-        "yearRoundSurvival": 0.16,
+        "yearRoundSurvival": 0.15,
         "evidenceStrength": 1
       },
       "resolution": {
@@ -606,13 +606,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 1,
-          "warmwater-no-trout": 0,
+          "none": 0,
           "trout-stream-year-round": 0,
-          "none": 0
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
         },
         "yearRoundSurvival": 0.06,
-        "evidenceStrength": 0.82
+        "evidenceStrength": 0.84
       },
       "resolution": {
         "resolution": "accept"
@@ -630,13 +630,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "trout-stream-year-round": 0,
-          "none": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "warmwater-no-trout": 0
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0,
+          "none": 0
         },
         "yearRoundSurvival": 0.05,
-        "evidenceStrength": 0.24
+        "evidenceStrength": 0.26
       },
       "resolution": {
         "resolution": "accept"
@@ -660,7 +660,7 @@
           "warmwater-yearly-stocked-winter-trout": 1
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.24
+        "evidenceStrength": 0.28
       },
       "resolution": {
         "resolution": "accept"
@@ -678,13 +678,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "trout-stream-year-round": 0,
-          "warmwater-no-trout": 0,
           "none": 0,
-          "warmwater-yearly-stocked-winter-trout": 1
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0
         },
-        "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.25
+        "yearRoundSurvival": 0.05,
+        "evidenceStrength": 0.3
       },
       "resolution": {
         "resolution": "accept"
@@ -705,12 +705,12 @@
         "choiceConfidence": 1,
         "probabilities": {
           "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "none": 0
+          "none": 0,
+          "trout-stream-year-round": 0
         },
         "yearRoundSurvival": 0.05,
-        "evidenceStrength": 0.3
+        "evidenceStrength": 0.28
       },
       "resolution": {
         "resolution": "accept"
@@ -730,13 +730,13 @@
         "choice": "warmwater-no-trout",
         "choiceConfidence": 0.87,
         "probabilities": {
-          "none": 0.03,
+          "warmwater-yearly-stocked-winter-trout": 0.02,
+          "none": 0.04,
           "warmwater-no-trout": 0.9,
-          "warmwater-yearly-stocked-winter-trout": 0.03,
           "trout-stream-year-round": 0.04
         },
         "yearRoundSurvival": 0.08,
-        "evidenceStrength": 0.95
+        "evidenceStrength": 0.94
       },
       "resolution": {
         "resolution": "accept"
@@ -754,13 +754,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "none": 0,
           "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0,
-          "warmwater-yearly-stocked-winter-trout": 1
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0,
+          "trout-stream-year-round": 0
         },
         "yearRoundSurvival": 0.06,
-        "evidenceStrength": 0.83
+        "evidenceStrength": 0.82
       },
       "resolution": {
         "resolution": "accept"
@@ -779,12 +779,12 @@
         "choiceConfidence": 1,
         "probabilities": {
           "none": 0,
-          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "trout-stream-year-round": 0
+          "warmwater-no-trout": 0
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.1
+        "evidenceStrength": 0.11
       },
       "resolution": {
         "resolution": "accept"
@@ -802,13 +802,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
+          "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "none": 0,
           "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0
+          "none": 0
         },
         "yearRoundSurvival": 0.03,
-        "evidenceStrength": 0.16
+        "evidenceStrength": 0.19
       },
       "resolution": {
         "resolution": "accept"
@@ -826,13 +826,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 1,
           "none": 0,
+          "trout-stream-year-round": 0,
           "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0
+          "warmwater-yearly-stocked-winter-trout": 1
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.81
+        "evidenceStrength": 0.83
       },
       "resolution": {
         "resolution": "accept"
@@ -850,13 +850,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 1,
-          "warmwater-no-trout": 0,
           "trout-stream-year-round": 0,
-          "none": 0
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0,
+          "warmwater-no-trout": 0
         },
-        "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.1
+        "yearRoundSurvival": 0.03,
+        "evidenceStrength": 0.12
       },
       "resolution": {
         "resolution": "accept"
@@ -875,12 +875,12 @@
         "choiceConfidence": 1,
         "probabilities": {
           "none": 0,
-          "warmwater-no-trout": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "trout-stream-year-round": 0
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.09
+        "evidenceStrength": 0.1
       },
       "resolution": {
         "resolution": "accept"
@@ -898,10 +898,10 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 1,
+          "trout-stream-year-round": 0,
           "none": 0,
-          "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0
         },
         "yearRoundSurvival": 0.04,
         "evidenceStrength": 0.08
@@ -922,13 +922,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "trout-stream-year-round": 0,
-          "none": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "warmwater-no-trout": 0
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.1
+        "evidenceStrength": 0.12
       },
       "resolution": {
         "resolution": "accept"
@@ -946,13 +946,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
           "none": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "trout-stream-year-round": 0
+          "warmwater-no-trout": 0
         },
-        "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.21
+        "yearRoundSurvival": 0.03,
+        "evidenceStrength": 0.22
       },
       "resolution": {
         "resolution": "accept"
@@ -970,10 +970,10 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "trout-stream-year-round": 0,
-          "none": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
-          "warmwater-no-trout": 0
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0
         },
         "yearRoundSurvival": 0.03,
         "evidenceStrength": 0.05
@@ -994,13 +994,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
+          "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
           "none": 0,
-          "trout-stream-year-round": 0,
           "warmwater-no-trout": 0
         },
         "yearRoundSurvival": 0.03,
-        "evidenceStrength": 0.19
+        "evidenceStrength": 0.2
       },
       "resolution": {
         "resolution": "accept"
@@ -1019,12 +1019,12 @@
         "choiceConfidence": 1,
         "probabilities": {
           "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
           "trout-stream-year-round": 0,
-          "none": 0,
-          "warmwater-yearly-stocked-winter-trout": 1
+          "none": 0
         },
         "yearRoundSurvival": 0.03,
-        "evidenceStrength": 0.17
+        "evidenceStrength": 0.16
       },
       "resolution": {
         "resolution": "accept"
@@ -1044,13 +1044,13 @@
         "choice": "warmwater-no-trout",
         "choiceConfidence": 0.96,
         "probabilities": {
-          "warmwater-yearly-stocked-winter-trout": 0.02,
-          "warmwater-no-trout": 0.98,
+          "warmwater-no-trout": 0.97,
+          "warmwater-yearly-stocked-winter-trout": 0.03,
           "trout-stream-year-round": 0,
           "none": 0
         },
         "yearRoundSurvival": 0.05,
-        "evidenceStrength": 0.21
+        "evidenceStrength": 0.18
       },
       "resolution": {
         "resolution": "accept"
@@ -1068,9 +1068,9 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "trout-stream-year-round": 0,
-          "none": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0,
+          "trout-stream-year-round": 0,
           "warmwater-no-trout": 0
         },
         "yearRoundSurvival": 0.03,
@@ -1092,13 +1092,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
-          "warmwater-no-trout": 0,
           "trout-stream-year-round": 0,
           "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0,
           "none": 0
         },
         "yearRoundSurvival": 0.03,
-        "evidenceStrength": 0.27
+        "evidenceStrength": 0.23
       },
       "resolution": {
         "resolution": "accept"
@@ -1116,13 +1116,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 0.99,
         "probabilities": {
-          "none": 0,
           "warmwater-no-trout": 0,
-          "trout-stream-year-round": 0.01,
-          "warmwater-yearly-stocked-winter-trout": 0.99
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "trout-stream-year-round": 0.01
         },
         "yearRoundSurvival": 0.04,
-        "evidenceStrength": 0.53
+        "evidenceStrength": 0.54
       },
       "resolution": {
         "resolution": "accept"
@@ -1140,15 +1140,15 @@
         "backend": "jev",
         "model": "jev-1.13.0",
         "choice": "warmwater-no-trout",
-        "choiceConfidence": 0.94,
+        "choiceConfidence": 0.92,
         "probabilities": {
-          "none": 0.02,
-          "trout-stream-year-round": 0.01,
           "warmwater-yearly-stocked-winter-trout": 0.02,
-          "warmwater-no-trout": 0.95
+          "trout-stream-year-round": 0.02,
+          "warmwater-no-trout": 0.94,
+          "none": 0.02
         },
         "yearRoundSurvival": 0.05,
-        "evidenceStrength": 0.74
+        "evidenceStrength": 0.77
       },
       "resolution": {
         "resolution": "accept"
@@ -1168,13 +1168,13 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 0.99,
         "probabilities": {
-          "trout-stream-year-round": 0.01,
           "none": 0,
           "warmwater-yearly-stocked-winter-trout": 0.99,
+          "trout-stream-year-round": 0.01,
           "warmwater-no-trout": 0
         },
         "yearRoundSurvival": 0.05,
-        "evidenceStrength": 0.58
+        "evidenceStrength": 0.63
       },
       "resolution": {
         "resolution": "accept"
@@ -1195,13 +1195,429 @@
         "choice": "warmwater-yearly-stocked-winter-trout",
         "choiceConfidence": 1,
         "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.05,
+        "evidenceStrength": 0.59
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "big-soddy-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.98,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "trout-stream-year-round": 0.01,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.07,
+        "evidenceStrength": 0.82
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "goforth-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0.01
+        },
+        "yearRoundSurvival": 0.07,
+        "evidenceStrength": 0.87
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "greasy-creek-polk",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.05,
+        "evidenceStrength": 0.76
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "little-sequatchie-river",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "none": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.68
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "north-mouse-creek",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.65,
+        "probabilities": {
+          "warmwater-no-trout": 0.75,
+          "trout-stream-year-round": 0.02,
+          "none": 0.21,
+          "warmwater-yearly-stocked-winter-trout": 0.02
+        },
+        "yearRoundSurvival": 0.07,
+        "evidenceStrength": 1
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "spring-creek-polk",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.65
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "tumbling-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "none": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.05,
+        "evidenceStrength": 0.75
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "buffalo-creek-grainger",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.81,
+        "probabilities": {
+          "trout-stream-year-round": 0.14,
+          "warmwater-yearly-stocked-winter-trout": 0.86,
+          "warmwater-no-trout": 0,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.51,
+        "evidenceStrength": 0.16
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "gap-creek-claiborne",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
           "warmwater-yearly-stocked-winter-trout": 1,
           "trout-stream-year-round": 0,
           "none": 0,
           "warmwater-no-trout": 0
         },
-        "yearRoundSurvival": 0.05,
+        "yearRoundSurvival": 0.06,
         "evidenceStrength": 0.6
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "indian-creek-claiborne",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.2
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "puncheon-camp-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.25
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "richardson-byrd-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "trout-stream-year-round": 0.01,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.18
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "brush-creek-cocke",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0.01
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.21
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "holston-river",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "trout-stream-year-round": 0.01,
+          "none": 0,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.17
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "mossy-creek-jefferson",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.18
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "nolichucky-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.71,
+        "probabilities": {
+          "none": 0.07,
+          "trout-stream-year-round": 0.1,
+          "warmwater-yearly-stocked-winter-trout": 0.05,
+          "warmwater-no-trout": 0.78
+        },
+        "yearRoundSurvival": 0.1,
+        "evidenceStrength": 1
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "pigeon-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.91,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 0,
+          "none": 0.06,
+          "warmwater-no-trout": 0.9400000000000001
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 1
       },
       "resolution": {
         "resolution": "accept"
