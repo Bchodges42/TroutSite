@@ -1,0 +1,167 @@
+{
+  "generatedAt": "2026-09-18T15:31:00.217Z",
+  "decisions": [
+    {
+      "key": "reedy-creek",
+      "kind": "disagreement",
+      "decision": "warmwater-no-trout",
+      "note": null
+    },
+    {
+      "key": "south-fork-cumberland",
+      "kind": "disagreement",
+      "decision": "warmwater-yearly-stocked-winter-trout",
+      "note": "has branches in the mountains and connected to pickett lake which is maintained year round. "
+    },
+    {
+      "key": "little-pigeon-river",
+      "kind": "disagreement",
+      "decision": "warmwater-yearly-stocked-winter-trout",
+      "note": null
+    },
+    {
+      "key": "little-tennessee-river",
+      "kind": "disagreement",
+      "decision": "warmwater-yearly-stocked-winter-trout",
+      "note": "Tailwater below Chilhowee dam is year round from the cold generation releases. Further the tellico river is fully stocked year round.  "
+    },
+    {
+      "key": "ocoee-river",
+      "kind": "disagreement",
+      "decision": "trout-stream-year-round",
+      "note": "Ocoee river TW: year round... the lower half of the ocoee leads into Parksville lake and transitions to warm water. "
+    },
+    {
+      "key": "conflict:duck-river-tailwater",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:wilbur-lake",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:leconte-creek",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:roaring-fork",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:cosby-creek",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:red-river-clarksville",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:powell-river",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:east-fork-stones-river",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": "W Fork and TW are stocked... not the East. "
+    },
+    {
+      "key": "conflict:boone-lake",
+      "kind": "conflict",
+      "decision": "research",
+      "note": "What I am seeing is Boone Lake supportstrout year round from two coldwater rivers flowing into it and its depths.. It supposedly has trophy brown trout. Verify it yourself... If you see what I am talking about we need to adjust our sources some. If we can find multiple high quality, but non government sources claiming year round trout... or even an uncovered government site too. "
+    },
+    {
+      "key": "conflict:melton-hill-lake",
+      "kind": "conflict",
+      "decision": "research",
+      "note": "The upper section of Melton Hill Lake is actually the lower stretch of the Clinch River(year round trout)..  As you travel further down the reservoir toward Oak Ridge and the Melton Hill Dam, the river widens, slows down, and warms up significantly."
+    },
+    {
+      "key": "conflict:little-tennessee-river",
+      "kind": "conflict",
+      "decision": "research",
+      "note": "This is a disagreement not a conflict. I couldnt find it on the stocking report... but I do see people say it has trout. "
+    },
+    {
+      "key": "conflict:ocoee-number-three-lake",
+      "kind": "conflict",
+      "decision": "research",
+      "note": "Im seeing reports of it being high elavation, and fed my mountain streams.. "
+    },
+    {
+      "key": "conflict:hurricane-creek",
+      "kind": "conflict",
+      "decision": "research",
+      "note": "Cant verify location more research needed to determine whether its a duplicate hurricane creek... I already know theres one off of center hill lake aswell. "
+    },
+    {
+      "key": "conflict:standing-rock-creek",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:white-oak-creek",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:harpeth-river",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": "harpeth river in franklin is 100% stocked in the winter. So we should keep as is"
+    },
+    {
+      "key": "conflict:new-river",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:johnson-park-lake",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:paris-city-park-lake",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:salt-lick-creek",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": null
+    },
+    {
+      "key": "conflict:calderwood-lake",
+      "kind": "conflict",
+      "decision": "keep-catalog",
+      "note": "Stocked annually and supports year round. Includes Lake trout"
+    },
+    {
+      "key": "policy:year-round",
+      "kind": "policy",
+      "decision": "confirm-new",
+      "note": "Yeah if something is stocked year round (12 months) its considered year round. It should also be considered yuear round if there is evidence that trout can survive long enough between stockings and done in enough numbers to supply consistent trout catching oppurtunities for anglers. "
+    }
+  ]
+}

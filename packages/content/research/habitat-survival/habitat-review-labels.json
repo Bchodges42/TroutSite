@@ -1,0 +1,12 @@
+{
+  "schema": "trout/habitat-review-labels/1",
+  "decidedBy": "owner review 2026-09-18 (habitat-review-decisions.json export)",
+  "note": "Owner rulings on Jev-vs-code disagreements. These are OWNER classifications; research agents never classify.",
+  "labels": {
+    "reedy-creek": "warmwater-no-trout",
+    "south-fork-cumberland": "warmwater-yearly-stocked-winter-trout",
+    "little-pigeon-river": "warmwater-yearly-stocked-winter-trout",
+    "little-tennessee-river": "warmwater-yearly-stocked-winter-trout",
+    "ocoee-river": "trout-stream-year-round"
+  }
+}
