@@ -1,0 +1,52 @@
+{
+  "slug": "ft-patrick-henry-tailwater",
+  "segment": {
+    "description": "South Fork Holston River below Fort Patrick Henry Dam (Fort Patrick Henry tailwater), Sullivan County",
+    "boundaries": "Fort Patrick Henry Dam downstream to the Kingsport confluence where the Holston main stem forms; TWRA rule reach quoted as 'Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive'"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Fort Patrick Henry Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "TWRA's official regulations publication describes the water below Fort Patrick Henry Dam as a coldwater trout tailwater receiving fingerling and adult stockings, and Fort Patrick Henry is included in TWRA's trout-stocked waters. No agency document stating the withdrawal type or tailwater summer temperatures was reachable in this pass. The TWRA workbook stocking pattern for this reach is Mar, Apr, Dec (rainbow+brown) - a cold-shoulder program, not the Mar-Sep pattern of the cold year-round South Holston tailwater upstream."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency or multiple-independent-angler documentation of summer holdover in this short urban reach found in this pass.",
+    "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of natural reproduction found in this pass; unknown.",
+    "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "TWRA stocks this reach Mar/Apr/Dec (a cold-shoulder pattern unlike the Mar-Sep program on the year-round South Holston tailwater upstream), but the catalog's 'reliable cold release' claim is matched by no agency temperature or release-type document found in this pass.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://perfectflystore.com/your-streams/fly-fishing-fort-patrick-henry-tailwatertennessee/",
+    "https://tva.com/environment/lake-levels"
+  ]
+}

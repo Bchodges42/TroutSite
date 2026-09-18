@@ -1,0 +1,49 @@
+{
+  "slug": "wilbur-lake",
+  "segment": {
+    "description": "Wilbur Reservoir (Wilbur Lake), the ~72-acre TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River, Carter County",
+    "boundaries": "Entire small reservoir: receives Watauga Dam releases via the short watauga-river-wilbur-reach (separate catalog entry) and discharges through Wilbur Dam into the Watauga River Wilbur tailwater (separate catalog entry)"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Watauga Dam (upstream inflow); impounded by Wilbur Dam",
+      "operator": "TVA",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": 1550,
+    "notes": "TWRA's Wilbur Tailwater plan documents that Watauga Dam discharges (turbine-vented) feed Wilbur Reservoir and that Wilbur Dam bottom releases meet TVA's 6.0 mg/L DO target year-round - indirect evidence the reservoir's deeper water stays cold. USGS 03483980 sits on the reservoir discharge and 03484000 just below Wilbur Dam (~1,550 ft); neither carries a temperature parameter in summer 2025 (checked via waterservices.usgs.gov IV queries). SOURCE DISCREPANCY for reviewers: the 2026-09 wave-ledger recorded a TWRA row 'Watauga Dam, Wilbur Reservoir - Rainbow - March through July', but the owner-supplied 2026-09-17 TWRA workbook contains NO Wilbur Reservoir row (only the Wilbur Tailwater/Watauga River row, Mar-Sep). Owner call pending in catalog (yearRound: false)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency holdover data for the reservoir itself was found; the TWRA Wilbur plan covers the tailwater below Wilbur Dam, not the reservoir fishery.",
+    "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of natural reproduction in the reservoir found in this pass; unknown.",
+    "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "A small, cold-inflow regulating reservoir whose bottom water must be cold (it discharges a year-round cold trout tailwater), but no stocking row, temperature record, or holdover data for the reservoir itself could be verified in this pass.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03483980,03484000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03483980&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03484000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tva.com/environment/lake-levels"
+  ]
+}

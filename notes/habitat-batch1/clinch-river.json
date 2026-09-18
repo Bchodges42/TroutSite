@@ -1,0 +1,55 @@
+{
+  "slug": "clinch-river",
+  "segment": {
+    "description": "Clinch River below Norris Dam (Norris tailwater), Anderson County, including the trophy-regulation water below the dam",
+    "boundaries": "Norris Dam through Melton Hill Lake down to the Clinch mouth at Kingston / Watts Bar Lake; the cold trout water is concentrated in roughly the first 13 river miles below the dam before warming limits habitat"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Norris Dam",
+      "operator": "TVA",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://tva.com/the-powerhouse/stories/big-ones-below-norris"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "TVA describes constant deep releases from Norris keeping the tailwater near 50 F year-round (TVA 'Big Ones Below Norris'). Downstream the reach is impounded by Melton Hill Lake, which buffers/warms the lower river toward Kingston; trout-grade cold water ends roughly 13 miles below the dam (guide consensus, not agency-quantified). TWRA weekly reports have cited ~48 F water 'coming out of the dam' in summer (https://www.tn.gov/twra/fishing/weekly-fishing-report.html)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "Bettinger & Bettoli (2004, North American Journal of Fisheries Management 24; DOI 10.1577/M03-144.1) radiotracked 15 trophy brown trout below Norris Dam for a full year; fish held in the tailwater year-round with limited movement (<2 km) in winter, spring and summer, and 2-4 lb fish are routine in the fishery.",
+    "evidenceUrl": "https://www.usgs.gov/publications/seasonal-movement-brown-trout-clinch-river-tennessee"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "Inferred but not nailed to a citable agency age-0 survey in this pass: Bettinger & Bettoli (2004) report fall movements >5 km 'presumably to spawn', and AFS Southern Division Trout Committee minutes (2002) quote TWRA's Jim Habera that sampling indicated natural rainbow reproduction from a Tennessee tailwater — but neither document confirms in-tailwater age-0 recruitment for the Clinch specifically. TWRA Region IV trout reports (Habera) are the likely authority; not verified in this pass.",
+    "evidenceUrl": "https://www.usgs.gov/publications/seasonal-movement-brown-trout-clinch-river-tennessee"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "both",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TVA-documented deep-release temperatures near 50 F year-round below Norris Dam, with radio-telemetry showing trophy browns resident in the tailwater through all seasons.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://tva.com/the-powerhouse/stories/big-ones-below-norris",
+    "https://www.usgs.gov/publications/seasonal-movement-brown-trout-clinch-river-tennessee",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/weekly-fishing-report.html",
+    "https://units.fisheries.org/sdafstroutcommittee/wp-content/uploads/sites/25/2017/02/2002.pdf",
+    "https://www.researchgate.net/profile/Jim-Habera/publication/330449740_TWRA_Region_IV_Trout_Fisheries_Report_2017",
+    "https://water.noaa.gov/gauges/nrtt1"
+  ]
+}

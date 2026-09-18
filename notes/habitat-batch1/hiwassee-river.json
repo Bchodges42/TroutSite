@@ -1,0 +1,63 @@
+{
+  "slug": "hiwassee-river",
+  "segment": {
+    "description": "Hiwassee River trout tailwater (Apalachia release water), Polk County - the powerhouse release through Reliance",
+    "boundaries": "Catalog entry says 'Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head'; research shows the cold trout water begins at Apalachia POWERHOUSE - a pipeline/tunnel carries release water ~8.3 miles downstream from the dam, so the first ~10 miles of riverbed below the dam are bypassed and are not the trout water (TVA; TU Hiwassee chapter). Reliance is the mid-reach trout anchor; the lower reach warms toward the Chickamauga Lake head."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Apalachia Dam (release via pipeline/tunnel to Apalachia Powerhouse)",
+      "operator": "TVA",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://tva.com/energy/our-power-system/hydroelectric/apalachia"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": 759,
+    "notes": "TVA describes Apalachia Reservoir as 'a small, deep, cool-water reservoir' whose water is carried ~8.3 miles by pipeline/tunnel to the powerhouse - i.e. deep (cold) source water for the trout reach. USGS 03556590 (Hiwassee River above Reliance, ~759 ft elevation) is the correct trout-reach gauge; catalog's other gauge 03566000 is Hiwassee River AT CHARLESTON, far downstream near the Chickamauga head - wrong reach for trout temperatures (verified via USGS site catalog)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 23.8,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03556590&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency survival figure found in this pass. The delayed-harvest program (stocked Feb/Oct/Nov per TWRA workbook, catch-and-release Oct 1-Feb 28) structurally requires multi-month carry-over of stocked fish from fall to spring, but no published Hiwassee-specific holdover estimate was located.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "TVA's tailwater trout page says cold releases support trout 'including natural (wild) reproduction' in some TVA tailwaters, but no Hiwassee-specific age-0 survey or agency reproduction statement was found. TU's Hiwassee chapter describes the fishery as stocked (not native). TWRA Region IV reports not verified in this pass.",
+    "evidenceUrl": "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "Cold deep-source tunnel releases sustain the trout reach, but the Reliance gauge hit 23.8 C on 27 July 2025 with 11 days at or above 22 C that month - summer is survivable but marginal in low water.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://tva.com/energy/our-power-system/hydroelectric/apalachia",
+    "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03556590&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03556590,03566000&siteOutput=expanded&format=rdb",
+    "https://hiwassee.tu.org/a-year-on-the-hiwassee-river-with-trout-unlimited/",
+    "https://trace.tennessee.edu/utk_gradthes/7001/",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  ]
+}

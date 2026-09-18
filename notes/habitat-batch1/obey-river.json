@@ -1,0 +1,54 @@
+{
+  "slug": "obey-river",
+  "segment": {
+    "description": "Obey River below Dale Hollow Dam (Dale Hollow tailwater), Clay County",
+    "boundaries": "Dale Hollow Dam downstream ~7.5 miles to the Cumberland River confluence (short tailwater; warms toward the confluence). NOT the Obed River (Obed Wild & Scenic tributary of the Emory) - different river despite the near-identical name; that catalog entry is a separate warmwater water."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Dale Hollow Dam",
+      "operator": "USACE",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://www.npshistory.com/brochures/nwr/dale-hollow-2017.pdf"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "USFWS Dale Hollow National Fish Hatchery (sits directly below the dam) brochure: the deep reservoir stratifies in summer/fall and the dam releases cold bottom water, creating the cold tailwater (USFWS agency brochure, hosted copy cited). TWRA's gauge reference usace:DHTT1 is the below-dam release gauge."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency holdover estimate found in this pass. The fishery is managed as put-grow-take with 12-month stocking (TWRA workbook: rainbow+brown, all 12 months - the only full-year stocking row in the workbook's Middle/Upper Cumberland tailwaters), supported by the adjacent federal hatchery.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of natural reproduction found in this pass; unknown.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "USFWS documents cold bottom-water releases from stratified Dale Hollow and TWRA stocks the tailwater all 12 months - the only full-year tailwater stocking program in its workbook.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.npshistory.com/brochures/nwr/dale-hollow-2017.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://troutzoneanglers.com/tennessee-tailwaters/obey-river/",
+    "https://troybassooutdoors.com/2017/03/04/the-obey-river-our-overlooked-tailwater/",
+    "https://www.gameandfishmag.com/editorial/fishing_trout-fishing_tn_aa045003a/191751",
+    "https://www.tn.gov/twra/fishing/weekly-fishing-report.html"
+  ]
+}

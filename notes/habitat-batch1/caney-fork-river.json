@@ -1,0 +1,56 @@
+{
+  "slug": "caney-fork-river",
+  "segment": {
+    "description": "Caney Fork River below Center Hill Dam (Center Hill tailwater), DeKalb County",
+    "boundaries": "Center Hill Dam down to the Cumberland River confluence; stocking and study reach is the first 26 km below the dam; Stonewall gauge reach"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Center Hill Dam",
+      "operator": "USACE",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://americas-engineers.com/corps-of-engineers-enhances-caney-fork-river-ecosystem-with-center-hill-dam-orifice-gate-reinstallation/"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "USACE Nashville District project; the reservoir is thermally stratified and hypolimnial release drives tailwater temperature (Devlin & Bettoli 1999, Proc. SEAFWA 53:100-109, https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf). In June 2024 USACE reinstalled a ~120-ft-deep orifice gate establishing a 250 cfs summer/fall minimum continuous flow specifically to 'mitigat[e] the risk of elevated temperatures' and support the 'renowned cold-water trout fishery' (USACE-affiliated account). PEER report 'Last Gasp' documents historical summer/fall low-flow DO problems (https://peer.org/wp-content/uploads/attachments/05_23_8_centerhilldam.pdf). Temperature: generation-period tailwater temperatures ranged 9-19 C across 1997, the warmest at November fall turnover (Devlin & Bettoli 1999); no summer-month-attributed numeric reading is stated in that study - hence empty summerTemperature. USGS 03424860 (Caney Fork at Stonewall) is confirmed the correct tailwater-reach gauge but carries no temperature parameter (checked via https://waterservices.usgs.gov/nwis/iv/?sites=03424860&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "Devlin & Bettoli (1999): brown trout stocked in 1997 survived at 34% after 200 days post-stocking vs 7-14% for the three rainbow cohorts; i.e., stocked browns persist through summer and beyond in the tailwater.",
+    "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No confirmed natural-reproduction anchor found in this pass. The Devlin & Bettoli (1999) study examined only stocked cohorts and reports no age-0 wild recruitment data; the fishery is managed as put-grow-take with a trophy brown program. TWRA Region IV reports may address Caney reproduction - unverified here.",
+    "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "Hypolimnial releases kept generation-period tailwater temperatures at 9-19 C through 1997 and 34% of stocked browns survived 200 days, with USACE now guaranteeing a 250 cfs cold-season minimum flow to protect the fishery.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf",
+    "https://americas-engineers.com/corps-of-engineers-enhances-caney-fork-river-ecosystem-with-center-hill-dam-orifice-gate-reinstallation/",
+    "https://peer.org/wp-content/uploads/attachments/05_23_8_centerhilldam.pdf",
+    "https://www.lrn-wc.usace.army.mil/basin_project.shtml?p=cen",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03424860&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03424860&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.thetroutzone.com/2022/05/absolutely-huge-opportunity-to-improve.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  ]
+}

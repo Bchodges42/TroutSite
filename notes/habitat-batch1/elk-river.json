@@ -1,0 +1,54 @@
+{
+  "slug": "elk-river",
+  "segment": {
+    "description": "Elk River below Tims Ford Dam (Tims Ford tailwater), Franklin County",
+    "boundaries": "Tims Ford Dam downstream; TWRA regulations run to the I-65 bridge and stocking references extend roughly 15 miles below the dam; catalog notes winter stocking in lower county reaches"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Tims Ford Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "TVA lists the Tims Ford tailwater in its cold-water trout program (releases 'can be very cold even during the summer'), but no TVA document stating the withdrawal structure type was reachable in this pass, so releaseType stays unknown. CRITICAL GAUGE CORRECTION: catalog cites USGS 03578000 for this water, but USGS's own catalog shows 03578000 is ELK RIVER NEAR PELHAM TN (Grundy County, 65.6 sq mi drainage, ~981 ft) - an upper-headwater gauge ABOVE Tims Ford Lake, not the tailwater. No USGS temperature gauge was found on the tailwater reach."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "Multiple independent angling references (On The Fly South magazine, Perfect Fly Store stream guide, Middle Tennessee Fly Fishers) agree that stocked trout hold over for roughly 15 miles below Tims Ford Dam and that most fish caught away from recent stocking points are holdovers. No agency survival study was found - this is the angler-consensus tier the evidence rules allow for holdover only.",
+    "evidenceUrl": "https://ontheflysouth.com/tims-ford-tailwater-trout/"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "Angling references state there is no known natural reproduction in the tailwater (all fish originate from stocking); no agency age-0 survey or statement either way was found, so this remains unknown rather than a confirmed negative.",
+    "evidenceUrl": "https://perfectflystore.com/your-streams/fly-fishin-elk-river-tailwater-tennessee/"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TWRA stocks rainbow and brown trout March through December and multiple independent references report stocked fish holding over ~15 miles below the dam, but no gauge or study documents summer temperatures on this reach.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters",
+    "https://ontheflysouth.com/tims-ford-tailwater-trout/",
+    "https://perfectflystore.com/your-streams/fly-fishin-elk-river-tailwater-tennessee/",
+    "https://www.middletennesseeflyfishers.org/elk-river-tn.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03578000&siteOutput=expanded&format=rdb",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  ]
+}

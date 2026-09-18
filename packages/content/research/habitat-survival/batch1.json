@@ -1,0 +1,735 @@
+[
+  {
+    "slug": "south-holston-river",
+    "segment": {
+      "description": "South Fork Holston River immediately below South Holston Dam (the South Holston tailwater), Sullivan County",
+      "boundaries": "South Holston Dam down to the Boone Lake arm head; TWRA trophy regulations run from the dam toward the Hwy 11E reach"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "South Holston Dam",
+        "operator": "TVA",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://tva.com/energy/our-power-system/hydroelectric/south-holston"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "TVA built an aerating labyrinth weir at river mile 48.5 in 1991 under its Reservoir Releases Improvement Program: it maintains a 90 cfs minimum flow and recovers ~40-50% of the oxygen deficit; turbine venting with hub baffles helps meet the 6 ppm DO target (TWRA South Holston Tailwater Trout Fishery Management Plan 2022-2027, https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf). Caveat: TWRA and TVA addressed increased temperatures in the LOWER tailwater during June-July 2011 and 2014 after extended 90 cfs minimum-flow periods (same plan)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "Overwintering trout biomass of 170-232 kg/ha (80% Brown Trout) documented by Bettoli et al. (1999); overwintering Brown Trout biomass 207 kg/ha during 2003-2004, the highest among Tennessee tailwaters (Meerbeek & Bettoli 2005); Mork (2011) verified some tailwater brown trout use Boone Lake in winter. All per the TWRA management plan.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "TWRA plan: Bettoli et al. (1999) documented substantial natural reproduction, particularly by Brown Trout. No Brown Trout have been stocked since 2003 because of the wild fishery that developed. 60 wild age-0 Rainbow Trout <=100 mm were collected in July 2018 with no fingerling stocking that year, proving natural rainbow reproduction; fingerling rainbow stocking was discontinued in 2021 because natural reproduction may replace it.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      },
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA-measured overwintering brown trout biomass of 207 kg/ha (highest among TN tailwaters) plus self-sustaining reproduction with no brown stocking since 2003.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://tva.com/energy/our-power-system/hydroelectric/south-holston",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03578000,03566000,03556590,03424860,03597860,03486000,03484000&siteOutput=expanded&format=rdb&siteStatus=all",
+      "https://www.tva.com/environment/lake-levels"
+    ]
+  },
+  {
+    "slug": "clinch-river",
+    "segment": {
+      "description": "Clinch River below Norris Dam (Norris tailwater), Anderson County, including the trophy-regulation water below the dam",
+      "boundaries": "Norris Dam through Melton Hill Lake down to the Clinch mouth at Kingston / Watts Bar Lake; the cold trout water is concentrated in roughly the first 13 river miles below the dam before warming limits habitat"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Norris Dam",
+        "operator": "TVA",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://tva.com/the-powerhouse/stories/big-ones-below-norris"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "TVA describes constant deep releases from Norris keeping the tailwater near 50 F year-round (TVA 'Big Ones Below Norris'). Downstream the reach is impounded by Melton Hill Lake, which buffers/warms the lower river toward Kingston; trout-grade cold water ends roughly 13 miles below the dam (guide consensus, not agency-quantified). TWRA weekly reports have cited ~48 F water 'coming out of the dam' in summer (https://www.tn.gov/twra/fishing/weekly-fishing-report.html)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "Bettinger & Bettoli (2004, North American Journal of Fisheries Management 24; DOI 10.1577/M03-144.1) radiotracked 15 trophy brown trout below Norris Dam for a full year; fish held in the tailwater year-round with limited movement (<2 km) in winter, spring and summer, and 2-4 lb fish are routine in the fishery.",
+      "evidenceUrl": "https://www.usgs.gov/publications/seasonal-movement-brown-trout-clinch-river-tennessee"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "Inferred but not nailed to a citable agency age-0 survey in this pass: Bettinger & Bettoli (2004) report fall movements >5 km 'presumably to spawn', and AFS Southern Division Trout Committee minutes (2002) quote TWRA's Jim Habera that sampling indicated natural rainbow reproduction from a Tennessee tailwater — but neither document confirms in-tailwater age-0 recruitment for the Clinch specifically. TWRA Region IV trout reports (Habera) are the likely authority; not verified in this pass.",
+      "evidenceUrl": "https://www.usgs.gov/publications/seasonal-movement-brown-trout-clinch-river-tennessee"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "both",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TVA-documented deep-release temperatures near 50 F year-round below Norris Dam, with radio-telemetry showing trophy browns resident in the tailwater through all seasons.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://tva.com/the-powerhouse/stories/big-ones-below-norris",
+      "https://www.usgs.gov/publications/seasonal-movement-brown-trout-clinch-river-tennessee",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/weekly-fishing-report.html",
+      "https://units.fisheries.org/sdafstroutcommittee/wp-content/uploads/sites/25/2017/02/2002.pdf",
+      "https://www.researchgate.net/profile/Jim-Habera/publication/330449740_TWRA_Region_IV_Trout_Fisheries_Report_2017",
+      "https://water.noaa.gov/gauges/nrtt1"
+    ]
+  },
+  {
+    "slug": "watauga-river",
+    "segment": {
+      "description": "Watauga River below Wilbur Dam (the Wilbur tailwater), Carter County (lower reach into Washington County)",
+      "boundaries": "Wilbur Dam down ~16 miles through Carter and Washington counties to the Boone Lake Watauga-arm head (per TWRA plan); Quality Zone is Smallings Bridge to the CSX railroad bridges. NOT the short watauga-river-wilbur-reach segment between Watauga Dam and Wilbur Dam, which is a separate catalog entry."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Wilbur Dam (re-regulating pool fed by Watauga Dam releases)",
+        "operator": "TVA",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": 1550,
+      "notes": "TWRA Wilbur Tailwater Trout Fishery Management Plan 2022-2027 (TWRA-authored PDF, hosted copy cited): the Wilbur tailwater flows ~16 mi from Wilbur Dam through Carter and Washington counties to Boone Reservoir; turbine venting of Watauga Dam discharges helps Wilbur Dam releases meet TVA's 6.0 mg/L DO target. USGS site 03484000 (Watauga River below Wilbur Dam) sits at ~1,550 ft (https://waterservices.usgs.gov/nwis/site/?sites=03484000&siteOutput=expanded&format=rdb). Temperature: after angler concern about 2021 low flows, TWRA loggers at Lovers Lane (RM 26.0) and Wagner Road (RM 17.5) recorded NO water temperatures exceeding 21 C (70 F) from 27 Aug through 10 Nov 2021 (same plan). No month-attributed numeric summer reading is available beyond that - hence empty summerTemperature."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "TWRA plan: survival of stocked adult Rainbow Trout after 200 days was 17-27%, considered good by Bettoli (1999) - i.e. stocked fish persist through multiple seasons.",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "TWRA plan: Brown Trout stocking was discontinued throughout the tailwater in 2015 to manage for a wild Brown Trout fishery (Habera et al. 2016); the wild brown population has grown since 2010, particularly in the upper half, with 'substantial natural reproduction' noted alongside the put-and-take rainbow fishery; abundant wild age-0 Rainbow Trout were observed during 2019 whirling-disease screening efforts.",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      },
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      },
+      {
+        "species": "brook",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA-verified wild brown trout fishery (no brown stocking since 2015) plus documented 200-day survival of stocked rainbows in a tailwater whose 2021 temperature loggers never exceeded 21 C in late summer/fall.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "https://www.blueridgeguide.org/s/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03484000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03483980&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03486000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://riverreports.com/river-intel/destinations/tennessee-fly-fishing"
+    ]
+  },
+  {
+    "slug": "caney-fork-river",
+    "segment": {
+      "description": "Caney Fork River below Center Hill Dam (Center Hill tailwater), DeKalb County",
+      "boundaries": "Center Hill Dam down to the Cumberland River confluence; stocking and study reach is the first 26 km below the dam; Stonewall gauge reach"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Center Hill Dam",
+        "operator": "USACE",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://americas-engineers.com/corps-of-engineers-enhances-caney-fork-river-ecosystem-with-center-hill-dam-orifice-gate-reinstallation/"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "USACE Nashville District project; the reservoir is thermally stratified and hypolimnial release drives tailwater temperature (Devlin & Bettoli 1999, Proc. SEAFWA 53:100-109, https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf). In June 2024 USACE reinstalled a ~120-ft-deep orifice gate establishing a 250 cfs summer/fall minimum continuous flow specifically to 'mitigat[e] the risk of elevated temperatures' and support the 'renowned cold-water trout fishery' (USACE-affiliated account). PEER report 'Last Gasp' documents historical summer/fall low-flow DO problems (https://peer.org/wp-content/uploads/attachments/05_23_8_centerhilldam.pdf). Temperature: generation-period tailwater temperatures ranged 9-19 C across 1997, the warmest at November fall turnover (Devlin & Bettoli 1999); no summer-month-attributed numeric reading is stated in that study - hence empty summerTemperature. USGS 03424860 (Caney Fork at Stonewall) is confirmed the correct tailwater-reach gauge but carries no temperature parameter (checked via https://waterservices.usgs.gov/nwis/iv/?sites=03424860&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "Devlin & Bettoli (1999): brown trout stocked in 1997 survived at 34% after 200 days post-stocking vs 7-14% for the three rainbow cohorts; i.e., stocked browns persist through summer and beyond in the tailwater.",
+      "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No confirmed natural-reproduction anchor found in this pass. The Devlin & Bettoli (1999) study examined only stocked cohorts and reports no age-0 wild recruitment data; the fishery is managed as put-grow-take with a trophy brown program. TWRA Region IV reports may address Caney reproduction - unverified here.",
+      "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "Hypolimnial releases kept generation-period tailwater temperatures at 9-19 C through 1997 and 34% of stocked browns survived 200 days, with USACE now guaranteeing a 250 cfs cold-season minimum flow to protect the fishery.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://seafwa.org/sites/default/files/journal-articles/DEVLIN-100-109.pdf",
+      "https://americas-engineers.com/corps-of-engineers-enhances-caney-fork-river-ecosystem-with-center-hill-dam-orifice-gate-reinstallation/",
+      "https://peer.org/wp-content/uploads/attachments/05_23_8_centerhilldam.pdf",
+      "https://www.lrn-wc.usace.army.mil/basin_project.shtml?p=cen",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03424860&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03424860&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.thetroutzone.com/2022/05/absolutely-huge-opportunity-to-improve.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    ]
+  },
+  {
+    "slug": "hiwassee-river",
+    "segment": {
+      "description": "Hiwassee River trout tailwater (Apalachia release water), Polk County - the powerhouse release through Reliance",
+      "boundaries": "Catalog entry says 'Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head'; research shows the cold trout water begins at Apalachia POWERHOUSE - a pipeline/tunnel carries release water ~8.3 miles downstream from the dam, so the first ~10 miles of riverbed below the dam are bypassed and are not the trout water (TVA; TU Hiwassee chapter). Reliance is the mid-reach trout anchor; the lower reach warms toward the Chickamauga Lake head."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Apalachia Dam (release via pipeline/tunnel to Apalachia Powerhouse)",
+        "operator": "TVA",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://tva.com/energy/our-power-system/hydroelectric/apalachia"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": 759,
+      "notes": "TVA describes Apalachia Reservoir as 'a small, deep, cool-water reservoir' whose water is carried ~8.3 miles by pipeline/tunnel to the powerhouse - i.e. deep (cold) source water for the trout reach. USGS 03556590 (Hiwassee River above Reliance, ~759 ft elevation) is the correct trout-reach gauge; catalog's other gauge 03566000 is Hiwassee River AT CHARLESTON, far downstream near the Chickamauga head - wrong reach for trout temperatures (verified via USGS site catalog)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 23.8,
+        "monthObserved": 7,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03556590&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+      }
+    ],
+    "holdover": {
+      "documented": null,
+      "detail": "No agency survival figure found in this pass. The delayed-harvest program (stocked Feb/Oct/Nov per TWRA workbook, catch-and-release Oct 1-Feb 28) structurally requires multi-month carry-over of stocked fish from fall to spring, but no published Hiwassee-specific holdover estimate was located.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "TVA's tailwater trout page says cold releases support trout 'including natural (wild) reproduction' in some TVA tailwaters, but no Hiwassee-specific age-0 survey or agency reproduction statement was found. TU's Hiwassee chapter describes the fishery as stocked (not native). TWRA Region IV reports not verified in this pass.",
+      "evidenceUrl": "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "probably",
+      "oneLineWhy": "Cold deep-source tunnel releases sustain the trout reach, but the Reliance gauge hit 23.8 C on 27 July 2025 with 11 days at or above 22 C that month - summer is survivable but marginal in low water.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://tva.com/energy/our-power-system/hydroelectric/apalachia",
+      "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03556590&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03556590,03566000&siteOutput=expanded&format=rdb",
+      "https://hiwassee.tu.org/a-year-on-the-hiwassee-river-with-trout-unlimited/",
+      "https://trace.tennessee.edu/utk_gradthes/7001/",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    ]
+  },
+  {
+    "slug": "elk-river",
+    "segment": {
+      "description": "Elk River below Tims Ford Dam (Tims Ford tailwater), Franklin County",
+      "boundaries": "Tims Ford Dam downstream; TWRA regulations run to the I-65 bridge and stocking references extend roughly 15 miles below the dam; catalog notes winter stocking in lower county reaches"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Tims Ford Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "TVA lists the Tims Ford tailwater in its cold-water trout program (releases 'can be very cold even during the summer'), but no TVA document stating the withdrawal structure type was reachable in this pass, so releaseType stays unknown. CRITICAL GAUGE CORRECTION: catalog cites USGS 03578000 for this water, but USGS's own catalog shows 03578000 is ELK RIVER NEAR PELHAM TN (Grundy County, 65.6 sq mi drainage, ~981 ft) - an upper-headwater gauge ABOVE Tims Ford Lake, not the tailwater. No USGS temperature gauge was found on the tailwater reach."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "Multiple independent angling references (On The Fly South magazine, Perfect Fly Store stream guide, Middle Tennessee Fly Fishers) agree that stocked trout hold over for roughly 15 miles below Tims Ford Dam and that most fish caught away from recent stocking points are holdovers. No agency survival study was found - this is the angler-consensus tier the evidence rules allow for holdover only.",
+      "evidenceUrl": "https://ontheflysouth.com/tims-ford-tailwater-trout/"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "Angling references state there is no known natural reproduction in the tailwater (all fish originate from stocking); no agency age-0 survey or statement either way was found, so this remains unknown rather than a confirmed negative.",
+      "evidenceUrl": "https://perfectflystore.com/your-streams/fly-fishin-elk-river-tailwater-tennessee/"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "probably",
+      "oneLineWhy": "TWRA stocks rainbow and brown trout March through December and multiple independent references report stocked fish holding over ~15 miles below the dam, but no gauge or study documents summer temperatures on this reach.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters",
+      "https://ontheflysouth.com/tims-ford-tailwater-trout/",
+      "https://perfectflystore.com/your-streams/fly-fishin-elk-river-tailwater-tennessee/",
+      "https://www.middletennesseeflyfishers.org/elk-river-tn.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03578000&siteOutput=expanded&format=rdb",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    ]
+  },
+  {
+    "slug": "duck-river-tailwater",
+    "segment": {
+      "description": "Duck River below Normandy Dam (Normandy tailwater), Bedford County",
+      "boundaries": "Normandy Dam downstream through the stocked tailwater reach (TWRA: Normandy Dam to Hall's Mill swift/rocky trout water); USGS 03597860 (Duck River at Shelbyville) is well BELOW this reach and was not used for tailwater conditions"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Normandy Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "TVA includes the Normandy tailwater in its cold-water trout program, but the TWRA-commissioned creel study found dam discharges EXCEED the 22 C downstream temperature target every summer, and September-October 2000 dam-area temperatures were 'the highest recorded in any Tennessee tailwater managed for trout' (Bettoli 2001, TWRA Fisheries Report 01-43, https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 27,
+        "monthObserved": 8,
+        "year": 2000,
+        "sourceType": "study",
+        "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "TWRA electrofishing in 1998 found FEW rainbow trout hold over from one season to the next, attributed to elevated late-summer/fall water temperatures (Bettoli 2001, TWRA Fisheries Report 01-43). The same report states stocking in late summer when temperatures routinely exceed 25 C 'is clearly a waste of resources'.",
+      "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No natural-reproduction data found for this tailwater in the creel report or elsewhere in this pass; unknown.",
+      "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "TWRA's own commissioned study measured 27 C (acutely lethal to rainbow trout) below Normandy Dam in late August 2000 and found few stocked trout survive summer - consistent with TWRA's current winter-months stocking pattern (Jan, Feb, Mar, Nov, Dec rainbow per the owner-supplied 2026-09-17 TWRA workbook).",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf",
+      "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters",
+      "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03597860&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03597860&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "boone-tailwater",
+    "segment": {
+      "description": "South Fork Holston River below Boone Dam (Boone tailwater), Sullivan County",
+      "boundaries": "Short flashy reach from Boone Dam to the Fort Patrick Henry Reservoir head; TWRA regs for the reach are set under the Fort Patrick Henry rule (Boone Dam downstream to Louis Milhorn Bridge)"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Boone Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://tva.com/energy/our-power-system/hydroelectric/boone"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "No reachable TVA document states Boone Dam's withdrawal structure type; TVA's Boone Reservoir health page shows poor forebay/mid-reservoir dissolved oxygen ratings (https://tva.com/environment/environmental-stewardship/water-quality/reservoir-health-ratings/boone-reservoir), consistent with strong stratification, but that is not direct evidence of release temperature. The strongest documented pattern is TWRA's own stocking program for this reach: cold-season only (Mar, Apr, Nov, Dec rainbow+brown per the owner-supplied 2026-09-17 TWRA workbook), the complement of what a cold year-round tailwater would receive."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No agency or multiple-independent-angler documentation of summer holdover found in this pass.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of natural reproduction found in this pass; unknown.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "TWRA's stocking program for this exact reach is cold-season only (Mar, Apr, Nov, Dec) - a pattern that fits a summer-warm reach - but no temperature data or documented release type was found to settle it; the catalog's yearRound:true flag remains the owner's call.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://tva.com/energy/our-power-system/hydroelectric/boone",
+      "https://tva.com/environment/environmental-stewardship/water-quality/reservoir-health-ratings/boone-reservoir",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://water.noaa.gov/gauges/boot1"
+    ]
+  },
+  {
+    "slug": "ft-patrick-henry-tailwater",
+    "segment": {
+      "description": "South Fork Holston River below Fort Patrick Henry Dam (Fort Patrick Henry tailwater), Sullivan County",
+      "boundaries": "Fort Patrick Henry Dam downstream to the Kingsport confluence where the Holston main stem forms; TWRA rule reach quoted as 'Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive'"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Fort Patrick Henry Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "TWRA's official regulations publication describes the water below Fort Patrick Henry Dam as a coldwater trout tailwater receiving fingerling and adult stockings, and Fort Patrick Henry is included in TWRA's trout-stocked waters. No agency document stating the withdrawal type or tailwater summer temperatures was reachable in this pass. The TWRA workbook stocking pattern for this reach is Mar, Apr, Dec (rainbow+brown) - a cold-shoulder program, not the Mar-Sep pattern of the cold year-round South Holston tailwater upstream."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No agency or multiple-independent-angler documentation of summer holdover in this short urban reach found in this pass.",
+      "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of natural reproduction found in this pass; unknown.",
+      "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "TWRA stocks this reach Mar/Apr/Dec (a cold-shoulder pattern unlike the Mar-Sep program on the year-round South Holston tailwater upstream), but the catalog's 'reliable cold release' claim is matched by no agency temperature or release-type document found in this pass.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://perfectflystore.com/your-streams/fly-fishing-fort-patrick-henry-tailwatertennessee/",
+      "https://tva.com/environment/lake-levels"
+    ]
+  },
+  {
+    "slug": "wilbur-lake",
+    "segment": {
+      "description": "Wilbur Reservoir (Wilbur Lake), the ~72-acre TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River, Carter County",
+      "boundaries": "Entire small reservoir: receives Watauga Dam releases via the short watauga-river-wilbur-reach (separate catalog entry) and discharges through Wilbur Dam into the Watauga River Wilbur tailwater (separate catalog entry)"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Watauga Dam (upstream inflow); impounded by Wilbur Dam",
+        "operator": "TVA",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": 1550,
+      "notes": "TWRA's Wilbur Tailwater plan documents that Watauga Dam discharges (turbine-vented) feed Wilbur Reservoir and that Wilbur Dam bottom releases meet TVA's 6.0 mg/L DO target year-round - indirect evidence the reservoir's deeper water stays cold. USGS 03483980 sits on the reservoir discharge and 03484000 just below Wilbur Dam (~1,550 ft); neither carries a temperature parameter in summer 2025 (checked via waterservices.usgs.gov IV queries). SOURCE DISCREPANCY for reviewers: the 2026-09 wave-ledger recorded a TWRA row 'Watauga Dam, Wilbur Reservoir - Rainbow - March through July', but the owner-supplied 2026-09-17 TWRA workbook contains NO Wilbur Reservoir row (only the Wilbur Tailwater/Watauga River row, Mar-Sep). Owner call pending in catalog (yearRound: false)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No agency holdover data for the reservoir itself was found; the TWRA Wilbur plan covers the tailwater below Wilbur Dam, not the reservoir fishery.",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of natural reproduction in the reservoir found in this pass; unknown.",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "A small, cold-inflow regulating reservoir whose bottom water must be cold (it discharges a year-round cold trout tailwater), but no stocking row, temperature record, or holdover data for the reservoir itself could be verified in this pass.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03483980,03484000&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03483980&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03484000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.tva.com/environment/lake-levels"
+    ]
+  },
+  {
+    "slug": "parksville-tailwater",
+    "segment": {
+      "description": "Ocoee River No. 1 reach below Parksville Dam (Parksville Lake tailwater), Polk County",
+      "boundaries": "Parksville Dam downstream through the Ocoee No. 1 (scheduled recreational flow) reach"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Parksville Dam (Ocoee No. 1)",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tva.com/environment/lake-levels"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": 717,
+      "notes": "Parksville is a shallow warmwater reservoir TVA/TWRA manage primarily for walleye (TWRA Parksville Reservoir page: walleye spawn at 42-50 F), not a deep cold-storage impoundment; no document found stating a cold withdrawal. USGS 03564500 (Ocoee River at Parksville, ~717 ft) is the correct-reach site but carries NO temperature parameter (verified via USGS site catalog and IV query) - note: prior project flags said this gauge was 'not live'; the site exists in the USGS catalog."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found; TWRA's own program for this reach is spring-only (Mar, Apr, May rainbow per the owner-supplied 2026-09-17 workbook), which does not rely on summer carry-over.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of natural reproduction found in this pass; unknown.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "TWRA stocks this reach only March-May and agency/outdoor sources describe the lower Ocoee as warm summer water (walleye-managed reservoir, smallmouth-favoring pools) - no cold-storage mechanism or summer trout data was found.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tva.com/environment/lake-levels",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03564500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03564500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "obey-river",
+    "segment": {
+      "description": "Obey River below Dale Hollow Dam (Dale Hollow tailwater), Clay County",
+      "boundaries": "Dale Hollow Dam downstream ~7.5 miles to the Cumberland River confluence (short tailwater; warms toward the confluence). NOT the Obed River (Obed Wild & Scenic tributary of the Emory) - different river despite the near-identical name; that catalog entry is a separate warmwater water."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Dale Hollow Dam",
+        "operator": "USACE",
+        "releaseType": "bottom-draw",
+        "evidenceUrl": "https://www.npshistory.com/brochures/nwr/dale-hollow-2017.pdf"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "USFWS Dale Hollow National Fish Hatchery (sits directly below the dam) brochure: the deep reservoir stratifies in summer/fall and the dam releases cold bottom water, creating the cold tailwater (USFWS agency brochure, hosted copy cited). TWRA's gauge reference usace:DHTT1 is the below-dam release gauge."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No agency holdover estimate found in this pass. The fishery is managed as put-grow-take with 12-month stocking (TWRA workbook: rainbow+brown, all 12 months - the only full-year stocking row in the workbook's Middle/Upper Cumberland tailwaters), supported by the adjacent federal hatchery.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of natural reproduction found in this pass; unknown.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "USFWS documents cold bottom-water releases from stratified Dale Hollow and TWRA stocks the tailwater all 12 months - the only full-year tailwater stocking program in its workbook.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.npshistory.com/brochures/nwr/dale-hollow-2017.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://troutzoneanglers.com/tennessee-tailwaters/obey-river/",
+      "https://troybassooutdoors.com/2017/03/04/the-obey-river-our-overlooked-tailwater/",
+      "https://www.gameandfishmag.com/editorial/fishing_trout-fishing_tn_aa045003a/191751",
+      "https://www.tn.gov/twra/fishing/weekly-fishing-report.html"
+    ]
+  },
+  {
+    "slug": "french-broad-river",
+    "segment": {
+      "description": "French Broad River below Douglas Dam (Douglas tailwater), Sevier County, Tennessee - CONTROL RECORD: cataloged as tailrace but ruled warmwater",
+      "boundaries": "Douglas Dam downstream to the Holston confluence (Knoxville); trout references on the French Broad belong to the NC headwaters, not this reach"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Douglas Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tva.com/environment/lake-levels"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": ""
+      },
+      "elevationFt": null,
+      "notes": "CONTROL RECORD - why this is NOT a cold trout tailwater: (1) TWRA maintains NO trout program here - the owner-supplied 2026-09-17 workbook contains no Douglas/French Broad trout row, unlike every other tailwater in this batch; (2) TWRA's Douglas Reservoir page manages the reach as warmwater (black bass rules), and the catalog's 2026-09-15 correction records an agency-sourced warmwater finding with 'no trout program or record'; (3) Douglas is a large, relatively warm mainstem reservoir whose releases, while cooler than ambient summer river temperatures, do not produce a trout fishery. Angling sources describe summer smallmouth (not trout) as the tailwater fishery."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout stocking program exists on this reach (no TWRA workbook row; TWRA Douglas Reservoir page documents bass/crappie management), so there is no stocked-trout population to hold over. Documented wild trout references on the French Broad apply to the NC headwaters.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of trout in the Tennessee reach found in this pass; unknown rather than a confirmed negative.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "TWRA maintains no trout stocking row and manages this reach as warmwater black bass habitat - the French Broad's trout water is the North Carolina headwaters, not the Douglas Dam tailwater.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://randrflyfishing.com/2013/06/03/signs-of-summer-hot-smallmouth-bite/",
+      "https://www.tva.com/environment/lake-levels"
+    ]
+  }
+]

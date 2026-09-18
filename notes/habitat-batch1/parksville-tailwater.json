@@ -1,0 +1,48 @@
+{
+  "slug": "parksville-tailwater",
+  "segment": {
+    "description": "Ocoee River No. 1 reach below Parksville Dam (Parksville Lake tailwater), Polk County",
+    "boundaries": "Parksville Dam downstream through the Ocoee No. 1 (scheduled recreational flow) reach"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Parksville Dam (Ocoee No. 1)",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tva.com/environment/lake-levels"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": 717,
+    "notes": "Parksville is a shallow warmwater reservoir TVA/TWRA manage primarily for walleye (TWRA Parksville Reservoir page: walleye spawn at 42-50 F), not a deep cold-storage impoundment; no document found stating a cold withdrawal. USGS 03564500 (Ocoee River at Parksville, ~717 ft) is the correct-reach site but carries NO temperature parameter (verified via USGS site catalog and IV query) - note: prior project flags said this gauge was 'not live'; the site exists in the USGS catalog."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; TWRA's own program for this reach is spring-only (Mar, Apr, May rainbow per the owner-supplied 2026-09-17 workbook), which does not rely on summer carry-over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of natural reproduction found in this pass; unknown.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA stocks this reach only March-May and agency/outdoor sources describe the lower Ocoee as warm summer water (walleye-managed reservoir, smallmouth-favoring pools) - no cold-storage mechanism or summer trout data was found.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tva.com/environment/lake-levels",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03564500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03564500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

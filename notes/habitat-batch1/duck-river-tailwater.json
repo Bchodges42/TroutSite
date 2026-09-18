@@ -1,0 +1,57 @@
+{
+  "slug": "duck-river-tailwater",
+  "segment": {
+    "description": "Duck River below Normandy Dam (Normandy tailwater), Bedford County",
+    "boundaries": "Normandy Dam downstream through the stocked tailwater reach (TWRA: Normandy Dam to Hall's Mill swift/rocky trout water); USGS 03597860 (Duck River at Shelbyville) is well BELOW this reach and was not used for tailwater conditions"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Normandy Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "TVA includes the Normandy tailwater in its cold-water trout program, but the TWRA-commissioned creel study found dam discharges EXCEED the 22 C downstream temperature target every summer, and September-October 2000 dam-area temperatures were 'the highest recorded in any Tennessee tailwater managed for trout' (Bettoli 2001, TWRA Fisheries Report 01-43, https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 27,
+      "monthObserved": 8,
+      "year": 2000,
+      "sourceType": "study",
+      "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "TWRA electrofishing in 1998 found FEW rainbow trout hold over from one season to the next, attributed to elevated late-summer/fall water temperatures (Bettoli 2001, TWRA Fisheries Report 01-43). The same report states stocking in late summer when temperatures routinely exceed 25 C 'is clearly a waste of resources'.",
+    "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No natural-reproduction data found for this tailwater in the creel report or elsewhere in this pass; unknown.",
+    "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's own commissioned study measured 27 C (acutely lethal to rainbow trout) below Normandy Dam in late August 2000 and found few stocked trout survive summer - consistent with TWRA's current winter-months stocking pattern (Jan, Feb, Mar, Nov, Dec rainbow per the owner-supplied 2026-09-17 TWRA workbook).",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf",
+    "https://tva.com/environment/recreation/trout-fishing-the-tva-tailwaters",
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03597860&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03597860&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

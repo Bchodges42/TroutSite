@@ -1,0 +1,60 @@
+{
+  "slug": "watauga-river",
+  "segment": {
+    "description": "Watauga River below Wilbur Dam (the Wilbur tailwater), Carter County (lower reach into Washington County)",
+    "boundaries": "Wilbur Dam down ~16 miles through Carter and Washington counties to the Boone Lake Watauga-arm head (per TWRA plan); Quality Zone is Smallings Bridge to the CSX railroad bridges. NOT the short watauga-river-wilbur-reach segment between Watauga Dam and Wilbur Dam, which is a separate catalog entry."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Wilbur Dam (re-regulating pool fed by Watauga Dam releases)",
+      "operator": "TVA",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": 1550,
+    "notes": "TWRA Wilbur Tailwater Trout Fishery Management Plan 2022-2027 (TWRA-authored PDF, hosted copy cited): the Wilbur tailwater flows ~16 mi from Wilbur Dam through Carter and Washington counties to Boone Reservoir; turbine venting of Watauga Dam discharges helps Wilbur Dam releases meet TVA's 6.0 mg/L DO target. USGS site 03484000 (Watauga River below Wilbur Dam) sits at ~1,550 ft (https://waterservices.usgs.gov/nwis/site/?sites=03484000&siteOutput=expanded&format=rdb). Temperature: after angler concern about 2021 low flows, TWRA loggers at Lovers Lane (RM 26.0) and Wagner Road (RM 17.5) recorded NO water temperatures exceeding 21 C (70 F) from 27 Aug through 10 Nov 2021 (same plan). No month-attributed numeric summer reading is available beyond that - hence empty summerTemperature."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "TWRA plan: survival of stocked adult Rainbow Trout after 200 days was 17-27%, considered good by Bettoli (1999) - i.e. stocked fish persist through multiple seasons.",
+    "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA plan: Brown Trout stocking was discontinued throughout the tailwater in 2015 to manage for a wild Brown Trout fishery (Habera et al. 2016); the wild brown population has grown since 2010, particularly in the upper half, with 'substantial natural reproduction' noted alongside the put-and-take rainbow fishery; abundant wild age-0 Rainbow Trout were observed during 2019 whirling-disease screening efforts.",
+    "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    {
+      "species": "brook",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA-verified wild brown trout fishery (no brown stocking since 2015) plus documented 200-day survival of stocked rainbows in a tailwater whose 2021 temperature loggers never exceeded 21 C in late summer/fall.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://static1.squarespace.com/static/63597fd3259a125cc5dbd66e/t/648729c7221be03abd209f24/1686579658012/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+    "https://www.blueridgeguide.org/s/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03484000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03483980&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03486000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://riverreports.com/river-intel/destinations/tennessee-fly-fishing"
+  ]
+}

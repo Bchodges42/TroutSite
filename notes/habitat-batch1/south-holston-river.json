@@ -1,0 +1,53 @@
+{
+  "slug": "south-holston-river",
+  "segment": {
+    "description": "South Fork Holston River immediately below South Holston Dam (the South Holston tailwater), Sullivan County",
+    "boundaries": "South Holston Dam down to the Boone Lake arm head; TWRA trophy regulations run from the dam toward the Hwy 11E reach"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "South Holston Dam",
+      "operator": "TVA",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://tva.com/energy/our-power-system/hydroelectric/south-holston"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "TVA built an aerating labyrinth weir at river mile 48.5 in 1991 under its Reservoir Releases Improvement Program: it maintains a 90 cfs minimum flow and recovers ~40-50% of the oxygen deficit; turbine venting with hub baffles helps meet the 6 ppm DO target (TWRA South Holston Tailwater Trout Fishery Management Plan 2022-2027, https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf). Caveat: TWRA and TVA addressed increased temperatures in the LOWER tailwater during June-July 2011 and 2014 after extended 90 cfs minimum-flow periods (same plan)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "Overwintering trout biomass of 170-232 kg/ha (80% Brown Trout) documented by Bettoli et al. (1999); overwintering Brown Trout biomass 207 kg/ha during 2003-2004, the highest among Tennessee tailwaters (Meerbeek & Bettoli 2005); Mork (2011) verified some tailwater brown trout use Boone Lake in winter. All per the TWRA management plan.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA plan: Bettoli et al. (1999) documented substantial natural reproduction, particularly by Brown Trout. No Brown Trout have been stocked since 2003 because of the wild fishery that developed. 60 wild age-0 Rainbow Trout <=100 mm were collected in July 2018 with no fingerling stocking that year, proving natural rainbow reproduction; fingerling rainbow stocking was discontinued in 2021 because natural reproduction may replace it.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA-measured overwintering brown trout biomass of 207 kg/ha (highest among TN tailwaters) plus self-sustaining reproduction with no brown stocking since 2003.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://tva.com/energy/our-power-system/hydroelectric/south-holston",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03578000,03566000,03556590,03424860,03597860,03486000,03484000&siteOutput=expanded&format=rdb&siteStatus=all",
+    "https://www.tva.com/environment/lake-levels"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "boone-tailwater",
+  "segment": {
+    "description": "South Fork Holston River below Boone Dam (Boone tailwater), Sullivan County",
+    "boundaries": "Short flashy reach from Boone Dam to the Fort Patrick Henry Reservoir head; TWRA regs for the reach are set under the Fort Patrick Henry rule (Boone Dam downstream to Louis Milhorn Bridge)"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Boone Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://tva.com/energy/our-power-system/hydroelectric/boone"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "No reachable TVA document states Boone Dam's withdrawal structure type; TVA's Boone Reservoir health page shows poor forebay/mid-reservoir dissolved oxygen ratings (https://tva.com/environment/environmental-stewardship/water-quality/reservoir-health-ratings/boone-reservoir), consistent with strong stratification, but that is not direct evidence of release temperature. The strongest documented pattern is TWRA's own stocking program for this reach: cold-season only (Mar, Apr, Nov, Dec rainbow+brown per the owner-supplied 2026-09-17 TWRA workbook), the complement of what a cold year-round tailwater would receive."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency or multiple-independent-angler documentation of summer holdover found in this pass.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of natural reproduction found in this pass; unknown.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "TWRA's stocking program for this exact reach is cold-season only (Mar, Apr, Nov, Dec) - a pattern that fits a summer-warm reach - but no temperature data or documented release type was found to settle it; the catalog's yearRound:true flag remains the owner's call.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://tva.com/energy/our-power-system/hydroelectric/boone",
+    "https://tva.com/environment/environmental-stewardship/water-quality/reservoir-health-ratings/boone-reservoir",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://water.noaa.gov/gauges/boot1"
+  ]
+}

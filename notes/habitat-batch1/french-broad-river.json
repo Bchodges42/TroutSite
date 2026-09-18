@@ -1,0 +1,41 @@
+{
+  "slug": "french-broad-river",
+  "segment": {
+    "description": "French Broad River below Douglas Dam (Douglas tailwater), Sevier County, Tennessee - CONTROL RECORD: cataloged as tailrace but ruled warmwater",
+    "boundaries": "Douglas Dam downstream to the Holston confluence (Knoxville); trout references on the French Broad belong to the NC headwaters, not this reach"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Douglas Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tva.com/environment/lake-levels"
+    },
+    "springFed": { "value": null, "evidenceUrl": "" },
+    "elevationFt": null,
+    "notes": "CONTROL RECORD - why this is NOT a cold trout tailwater: (1) TWRA maintains NO trout program here - the owner-supplied 2026-09-17 workbook contains no Douglas/French Broad trout row, unlike every other tailwater in this batch; (2) TWRA's Douglas Reservoir page manages the reach as warmwater (black bass rules), and the catalog's 2026-09-15 correction records an agency-sourced warmwater finding with 'no trout program or record'; (3) Douglas is a large, relatively warm mainstem reservoir whose releases, while cooler than ambient summer river temperatures, do not produce a trout fishery. Angling sources describe summer smallmouth (not trout) as the tailwater fishery."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout stocking program exists on this reach (no TWRA workbook row; TWRA Douglas Reservoir page documents bass/crappie management), so there is no stocked-trout population to hold over. Documented wild trout references on the French Broad apply to the NC headwaters.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of trout in the Tennessee reach found in this pass; unknown rather than a confirmed negative.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA maintains no trout stocking row and manages this reach as warmwater black bass habitat - the French Broad's trout water is the North Carolina headwaters, not the Douglas Dam tailwater.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://randrflyfishing.com/2013/06/03/signs-of-summer-hot-smallmouth-bite/",
+    "https://www.tva.com/environment/lake-levels"
+  ]
+}
