@@ -1,0 +1,65 @@
+{
+  "slug": "watauga-lake",
+  "segment": {
+    "description": "Watauga Lake (Watauga Reservoir), the 6,430-acre TVA impoundment of the Watauga River in the northeast Tennessee mountains (Carter County; formed 1948), with the pool running to Watauga Dam at its west end.",
+    "boundaries": "Entire reservoir pool behind Watauga Dam (TVA). Excludes the short Watauga River reach between Watauga Dam and Wilbur Lake (catalog watauga-river-wilbur-reach), Wilbur Reservoir, and the Wilbur Dam tailwater (catalog watauga-river) - all separate entries downstream."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Watauga Dam (TVA, completed 1948) impounds the lake; its deep releases feed the downstream Wilbur chain",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "TWRA's Watauga Reservoir page (fetched live 2026-09-18) states lake trout were 'selected for stocking because of the cold, well-oxygenated, habitat present', that the best lake trout fishing is between Watauga Point and Butler Bridge, and directs summer anglers to troll spoons for lake trout 'in 90 to 120 feet of water' (rainbow/brown summer trolling at 30-50 ft) - a TWRA-documented cold, oxygenated deep layer through summer. Water levels fluctuate up to 44 ft between summer full pool and winter drawdown (same page). No verified surface-elevation figure was found on citable pages, so elevationFt is null. The deep-release character of the system is corroborated downstream: USGS-03483980 at Wilbur Dam (discharge of the Watauga-Dam-fed chain) measured 8.0-9.5 C in June-July and 10.0 C in mid-August 1976 (see the watauga-river-wilbur-reach record for that station's data)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency holdover/creel study located for the reservoir. TWRA's statewide plan states stocking 'is required to maintain' these nine reservoir trout fisheries (Watauga among them), i.e. the fishery is maintained by stocking rather than claimed as self-sustaining; the summer lake-trout fishery itself implies multi-year residence of stocked fish but no citable holdover metric was found.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No natural trout reproduction documented in the reservoir; TWRA's plan states stocking is required to maintain the reservoir trout fishery.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html"
+    },
+    {
+      "species": "lake",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "Watauga is named on TWRA's live reservoir trout stocking list - 'TWRA stocks the following reservoirs with trout to provide year-round trout fishing opportunities' ('Region IV, Watauga - Lake and Rainbow') - and TWRA's own page documents the cold, well-oxygenated deep habitat that lets it stock lake trout, a species requiring summer water far colder than any warmwater impoundment provides.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html (fetched live 2026-09-18: 6,430-ac TVA reservoir formed 1948, 106-mi shoreline, 44-ft winter drawdown; 'TWRA has stocked rainbow, brown, and lake trout in the reservoir'; lake trout chosen 'because of the cold, well-oxygenated, habitat present'; best lake trout fishing between Watauga Point and Butler Bridge; summer trolling depths 30-50 ft and 90-120 ft; trout regs 7/day, only 2 lake trout)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched live 2026-09-18: 'Region IV, Watauga - Lake and Rainbow' appears verbatim under the year-round reservoir stocking list; NOTE the owner-supplied 2026-09-17 weekly workbook JSON (616 rows, repo-local packages/content/data/twra-stocking-schedule.json) contains NO Watauga-reservoir row - grep /watauga/i = 1 row only, 'Wilbur Tailwater / Watauga River' - so the reservoir program lives in the static Reservoir Trout Stocking table, not the weekly JSON; both sides recorded for reviewers)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (canon, not fetched per PDF policy; wave-ledger extraction: 'Tennessee has nine reservoirs that currently support trout fisheries: Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, and Tellico... stocking is required to maintain reservoir fisheries'; 'Lake Trout (S. namaycush) are stocked in Watauga, South Holston, and Chilhowee reservoirs (about 150,000 6-inch fish annually)')",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf (cited URL, not fetched per PDF policy; documents Watauga Dam's turbine-vented deep releases into the downstream Wilbur chain)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483500&characteristicName=Temperature,%20water&mimeType=csv (on-lake station 'WATAUGA LAKE' - 0 temperature rows; miss)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06010103&characteristicName=Temperature,%20water&mimeType=csv (no TDEC/TVA on-lake temperature stations on Watauga Lake in the HUC listing; station identities for the downstream chain verified here: USGS-03483950 'WATAUGA RIVER BELOW WATAUGA DAM, TENN', USGS-03483980 'WATAUGA RIVER AT WILBUR DAM, TN (TAILWATER)', USGS-03484000 'WATAUGA RIVER BELOW WILBUR DAM, TN')",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06010103&siteType=Lake&mimeType=csv (returned empty twice - WQP siteType filter quirk; recorded as a miss)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03483950&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (0 temperature series below Watauga Dam July 2025; miss)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE1-TAILWATERS-LAKES.md (lead source: watauga-lake block with TWRA species/stocking/gauge leads, re-verified live against tn.gov pages above)"
+  ]
+}

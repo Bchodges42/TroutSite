@@ -1,0 +1,70 @@
+{
+  "slug": "west-fork-stones-river",
+  "segment": {
+    "description": "West Fork Stones River, Rutherford County, Tennessee (catalog) — the named West Fork through Murfreesboro, anchored on USGS 03428200 'West Fork Stones River at Murfreesboro, TN'. TWRA's urban winter-trout site here is the Stones River Greenway at Manson Pike Trailhead. Identity disambiguation: this is the WEST Fork of the Stones (HUC 05130203) — not the Fort Campbell Little West Fork (batch-4 slug little-west-fork-creek, HUC 05130206), not the East Fork (east-fork-stones-river), and not the Davidson County mainstem (stones-river).",
+    "boundaries": "The named West Fork within Rutherford County; gauge 03428200 (35.90287, -86.42998; Rutherford Co.; 177 sq mi drainage; alt 514.31 ft NAVD88). The TWRA stocking site string is 'W. Fork Stones River - Manson Pike Trailhead' (workbook)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 514,
+    "notes": "Elevation is the USGS gauge altitude at Murfreesboro (514.31 ft NAVD88, waterservices site output; identity verified via the waterservices site service because the USGS identity endpoint has been 503ing). NPS Water Resources Division station metadata for Stones River National Battlefield documents small spring inputs to the West Fork — Battlefield Spring ('discharging approximately 2 liters/minute into West Fork') and McFadden Spring (USGS 03428126, on the west bank ~300 ft downstream of Thompson Lane) — but these are trivially small discharges, not a reach-scale cold-water source. The same NPS station metadata records that 'West Fork Stones River itself is listed by the State of Tennessee as a 303d water.' TWRA's Percy Priest reservoir page documents the West Fork as a warmwater white bass/yellow bass spring-run fishery ('Productive fishing spots include the East and West Forks of the Stones River, as well as Stewart Creek') and contains no trout content. USGS has no instantaneous temperature sensor at 03428200 (IV query for July 2025 returned zero series)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 30.0,
+      "monthObserved": 7,
+      "year": 2016,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-STRI_MFWF&siteid=11NPSWRD_WQX-STRI_RBWF&siteid=11NPSWRD_WQX-STRI_BSBS&siteid=TDECWPC-ECO71I09&siteid=TDECWPC-ECO71I16&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 28.0,
+      "monthObserved": 7,
+      "year": 2024,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-STRI_MFWF&siteid=11NPSWRD_WQX-STRI_RBWF&siteid=11NPSWRD_WQX-STRI_BSBS&siteid=TDECWPC-ECO71I09&siteid=TDECWPC-ECO71I16&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 30.0,
+      "monthObserved": 8,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03428200&characteristicName=Temperature%2C+water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found either way. The TWRA program at this site is a winter-only catchable-rainbow stocking (2026 workbook rows 'W. Fork Stones River - Manson Pike Trailhead': 02/04/2026, 2/27/2026, TBD 12/2026, Rainbow Trout, type Winter); agency text documents no between-stocking survival on this reach, and on-reach monitoring shows 28-30 deg C summer water (NPS grabs 2003-2024; USGS grab 30.0 deg C Aug 1988 at 03428200).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation for the West Fork. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout resources in East Tennessee streams and describes hatchery-supported waters as 'primarily warmwater habitats that cannot support trout year round' (plan PDF not fetched per no-PDF rule; URL cited). The urban greenway reach is a 303d-listed warmwater creek per NPS station metadata.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "On-reach agency monitoring records 28-30 deg C summer water at McFadden's Ford/Redoubt Brannon (2003-2024, NPS) and a 30.0 deg C USGS grab (1988), with the trout fishery being a winter-only catchable-rainbow program at Manson Pike Trailhead.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied TWRA workbook, collected 2026-09-17: 3 Winter rainbow rows at 'W. Fork Stones River - Manson Pike Trailhead', Rutherford)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched 2026-09-18; site string present in live table, columns scrambled)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html (fetched 2026-09-18; West Fork white/yellow bass fishery quote verified; no trout content on page)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03430200,03428200&siteOutput=expanded&format=rdb (identity/altitude)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03428200&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (zero series — no temp sensor)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03428200&characteristicName=Temperature%2C+water&mimeType=csv (84 discrete temps 1975-1993)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=05130203&characteristicName=Temperature%2C%20water&mimeType=csv (station sweep; found NPS STRI and TDECWPC stations on the West Fork)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-STRI_MFWF&siteid=11NPSWRD_WQX-STRI_RBWF&siteid=11NPSWRD_WQX-STRI_BSBS&siteid=TDECWPC-ECO71I09&siteid=TDECWPC-ECO71I16&characteristicName=Temperature%2C%20water&mimeType=csv (374 results incl. NPS battlefield grabs 2003-2024)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (cited only; PDF fetch banned)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (lead source; underlying URLs independently re-verified above)"
+  ]
+}

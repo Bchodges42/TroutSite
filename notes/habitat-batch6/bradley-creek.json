@@ -1,0 +1,52 @@
+{
+  "slug": "bradley-creek",
+  "segment": {
+    "description": "Bradley Creek, a Franklin/Coffee County stream near Tullahoma and Manchester that drains through AEDC Woods Reservoir into the Elk River system. Open to public fishing; not a stocked trout fishery (catalog).",
+    "boundaries": "Creek above Woods Reservoir. The USGS/TDEC gauged segment documented here is USGS-03578500 'BRADLEY CREEK NR PRAIRIE PLAINS, TN' (35.3563/-85.9790, Coffee County, HUC 06030003) - the upper creek upstream of the reservoir arm."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No documented cold-source mechanism. The creek's gauged temperature record (below) is nonetheless cool for the region, consistent with an upper-drainage creek on the Highland Rim margin, but no spring influence is documented in any source consulted."
+  },
+  "summerTemperature": [
+    { "celsius": 19.0, "monthObserved": 8, "year": 2004, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03578500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.2, "monthObserved": 8, "year": 2018, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03578500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 16.8, "monthObserved": 7, "year": 2019, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03578500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 16.5, "monthObserved": 6, "year": 2016, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03578500&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence exists - no trout are stocked in Bradley Creek (TWRA workbook has zero rows; TWRA trout regs do not list it), so there is no stocking program from which holdover could occur.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented for Bradley Creek in TWRA or USGS sources consulted, despite the cool grab-sample regime. Absence of documentation, not documented absence.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "The gauged upper creek shows trout-viable temperatures year-round in the USGS/TDEC grab record (33 samples 1988-2020; Jun-Sep values 15.1-19.0 deg C, winter values 6.9-12.5 deg C), but no trout stocking program and no wild-trout documentation exist for the creek, so whether trout actually live there is undocumented.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03578500&characteristicName=Temperature%2C%20water&mimeType=csv (33 temperature grabs 1988-2020 at 'BRADLEY CREEK NR PRAIRIE PLAINS, TN'; summer grabs all 15.1-19.0 deg C: 1988-07-07 17.0, 1999-09-23 15.1, 2004-06-01 17.5, 2004-08-02 19.0, 2004-09-28 16.0, 2005-06-02 18.0, 2005-08-02 16.0, 2012-06-19 15.1, 2014-07-08 16.1, 2014-09-25 16.2, 2016-06-22 16.5, 2016-09-20 16.6, 2018-08-21 18.2, 2019-07-16 16.8; winter grabs 6.9-12.5 deg C)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03578500&mimeType=csv (station identity: name 'BRADLEY CREEK NR PRAIRIE PLAINS, TN', Stream, county FIPS 031 = Coffee, 35.3563/-85.9790, HUC 06030003)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03578500&siteOutput=expanded&format=rdb (identity cross-check attempted 2026-09-18 - endpoint returned 503 both attempts, per known batch-5 issue; identity taken from WQP station metadata instead)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03578500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (instantaneous July 2025 temps attempted - empty/failed response)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep 'Bradley': zero rows)",
+    "repo-local: packages/content/streams/tn/bradley-creek.yaml (stockingProgram: false, 'not a stocked trout fishery', gauge 03578500)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (fetched 2026-09-18; Bradley Creek not listed as a trout water)"
+  ]
+}

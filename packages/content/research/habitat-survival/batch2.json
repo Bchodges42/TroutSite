@@ -1,0 +1,1399 @@
+[
+  {
+    "slug": "elk-river-lower",
+    "segment": {
+      "description": "Elk River (Prospect to state line) — the wider, warmer lower mainstem below the Tims Ford tailwater trout fishery, in the lower county reaches toward the Tennessee-Alabama line (catalog counties: Lincoln; HUC 06030003/06030004). Sibling entry elk-river.yaml covers the Tims Ford tailwater — segment discipline: facts here do not describe the tailwater reach.",
+      "boundaries": "Catalog segment runs from Prospect to the Tennessee-Alabama state line. TWRA's special trout regulation nominally extends 'Elk River: Tims Ford Dam to I-65 bridge, including tributaries' (the I-65 Elk River crossing is in Giles County roughly 4 miles north of the state line), so the head of this lower reach falls inside that regulatory boundary, but no evidence documents trout stocking or cold water this far downstream. USGS 03582000 ('Elk River above Fayetteville', verified via USGS site service, 827 sq mi drainage) sits on the mainstem upstream of the mapped reach — flow/temperature context only, per the catalog's own caveat."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "Tims Ford Dam impounds the river far upstream, but no citation places a cold dam release in this reach — the nearest mainstem gauge upstream of the reach shows summer means of 21.6-25.0 C (below). Trout regulation text: https://www.eregulations.com/tennessee/fishing/trout-regulations."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 21.6,
+        "monthObserved": 6,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-06-01&endDT=2025-06-30&format=json"
+      },
+      {
+        "celsius": 24.95,
+        "monthObserved": 7,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+      },
+      {
+        "celsius": 23.5,
+        "monthObserved": 8,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-08-01&endDT=2025-08-31&format=json"
+      }
+    ],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover evidence for this reach. The only Lincoln County entry in the TWRA 2026 stocking schedule is 'Stone Bridge Park' (Winter, week of 2/5/2026, Rainbow Trout) — and Stone Bridge Park Pond is a town park pond at Norris Creek and the Elk River behind Walgreens in Fayetteville (TWRA event page), i.e., a winter community-pond stocking, not mainstem stocking of the Prospect-to-state-line reach. Catalog note claims 'winter stocking in the lower county reaches'; the 2026 workbook supports only the Fayetteville pond event, and the tailwater row itself is stocked March-December (no Jan/Feb).",
+      "evidenceUrl": "https://license.gooutdoorstennessee.com/Event/ViewEvent.aspx?id=50570"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No trout records found for the Prospect-to-state-line reach. Nearest mainstem gauge (03582000, Elk River above Fayetteville — upstream of the reach) recorded a July 2025 mean of 24.95 C (max 27.8 C), June mean 21.6 C, August mean 23.5 C — warmwater mainstem conditions. Supporting (semi-authoritative tourism, not sole evidence): Tennessee River Valley Geotourism describes the tailwater transitioning into smallmouth water downstream toward Fayetteville and Prospect. The designated trout water and TWRA stocking (March-December, rainbow/brown) belong to the upstream Tims Ford tailwater segment, not this one.",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "The nearest mainstem gauge just upstream of this reach averaged ~25 C (max 27.8 C) in July 2025, and the only trout stocking documented anywhere in Lincoln County in the 2026 schedule is a winter town-pond event in Fayetteville — nothing supports resident trout in the Prospect-to-state-line mainstem.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://waterdata.usgs.gov/monitoring-location/03582000/",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://license.gooutdoorstennessee.com/Event/ViewEvent.aspx?id=50570",
+      "https://tennesseerivervalleygeotourism.org/entries/trout-fishing-on-the-elk-river/4cbbb127-31ce-49ae-8455-14db824d23a7 (supporting context only)",
+      "https://data.swtimes.com/bridge/tennessee/giles/i-65n-over-elk-river/47-28I00650009 (I-65 Elk River crossing location, Giles County)",
+      "https://www.fayettevilletn.com/departments/parks___recreation/parks.php (Stone Bridge Park location)",
+      "https://fishbrain.com (lead only, not cited)",
+      "https://piscamaps.com (lead only, not cited)"
+    ]
+  },
+  {
+    "slug": "powell-river",
+    "segment": {
+      "description": "Powell River, Tennessee — Cumberland (Norris Lake) drainage river from the Virginia line down to the Norris Lake arm, Claiborne/Union counties. Agency framing and TWRA regulation structure describe it as a warmwater smallmouth bass river; no trout program on the Tennessee reach was found in any source consulted.",
+      "boundaries": "Tennessee reach, Claiborne/Union counties; USGS 03532000 'Powell River near Arthur, TN' (verified via waterservices.usgs.gov site service: 36.5425, -83.6300, Claiborne County, HUC 06010206, altitude 1043.24 ft). TWRA regulation exception reach: 'Gap Creek confluence upstream to the state line'."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 1043,
+      "notes": "Elevation is the USGS gauge altitude near Arthur (1043.24 ft, from the waterservices.usgs.gov expanded site output). No cold-water source documented for this reach; the Norris Lake trout fishery TWRA documents is on the Clinch River below Norris Dam, a different water."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found and no stocking signal to hold over: the TWRA stocking dataset contains no Powell River rows of any season, and TWRA's trout stockings page lists no Powell River program.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No agency documentation of trout in the Tennessee Powell River was found. Direct agency framing is warmwater: TWRA's statewide regulation exceptions page sets a smallmouth bass rule on the Powell River ('Gap Creek confluence upstream to the state line' — Black Bass 5/day combination; Smallmouth 13-17 in PLR, one over 17 in/day). The TWRA Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee mountain waters (Regions 3/4, GSMNP), not this river. The catalog's editorial note claiming wild rainbow and brown trout in upper reaches could not be verified in any agency source consulted; the only upper-Powell trout claims found were non-agency (town tourism page, fishing-app listings).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "TWRA regulates and frames the Powell River as a smallmouth bass river, the stocking dataset has no Powell rows, and no agency source documenting trout on the Tennessee reach was found — a warmwater/no-trout case.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03532000&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03532000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterdata.usgs.gov/monitoring-location/03532000/",
+      "https://www.townofcumberlandgap.com",
+      "https://www.tn.gov/twra/fishing.html"
+    ]
+  },
+  {
+    "slug": "wolf-river-west-tennessee",
+    "segment": {
+      "description": "Wolf River, West Tennessee — the west-flowing lowland Wolf through Fayette and Shelby counties in the Memphis area (a different water from the Fentress County Wolf River headwaters, which IS seasonally trout-stocked by TWRA). Documented as a warmwater river with a 67-species fish assemblage and no trout program on the river.",
+      "boundaries": "West Tennessee reach, Shelby County focus; USGS 07031650 'Wolf River at Germantown, TN' (verified via waterservices.usgs.gov site service: 35.1165, -89.8015, Shelby County, HUC 08010210, altitude 235.87 ft)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 236,
+      "notes": "Elevation is the USGS gauge altitude at Germantown (235.87 ft, from the waterservices.usgs.gov expanded site output). A 236-ft Mississippi-valley floodplain river; no cold-water source documented in any source found."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found and no river stocking signal: TWRA's stocking dataset contains no Wolf River rows. TWRA's Memphis-area winter rainbow trout stockings go to Shelby County park LAKES (Cameron Brown Lake, Edmund-Orgill Park, Johnson Park Lake, Shelby Farms, Yale Road Park), not the Wolf River.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No trout documented. The Wolf River Conservancy's fish summary reports about 67 species in 13 families known from the river (largemouth bass, bluegill, crappie, channel and flathead catfish, bullheads, redhorses, darters, etc.) and mentions no trout. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee (Regions 3/4 mountains, GSMNP).",
+      "evidenceUrl": "https://www.wolfriver.org/news-press/natural-highlights-wolf-river-fishes"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "A ~236-ft West Tennessee lowland river documented with a 67-species warmwater fish assemblage listing no trout, with TWRA's regional trout stockings confined to Shelby County park lakes rather than the river.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.wolfriver.org/news-press/natural-highlights-wolf-river-fishes",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07031650&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07031650&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterdata.usgs.gov/monitoring-location/07031650/",
+      "https://www.tn.gov/twra/fishing.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tnwatchablewildlife.org"
+    ]
+  },
+  {
+    "slug": "east-fork-stones-river",
+    "segment": {
+      "description": "East Fork Stones River, upper reach in Rutherford County, Tennessee (plateau-headwater reach above and around Murfreesboro; the catalog claims a modest wild rainbow population here). Not to be confused with TWRA's stocked Stones River reaches: the West Fork Stones River greenway at Manson Pike Trailhead (Rutherford) and the J. Percy Priest tailwater / Stones River (Davidson), which are separate waters in TWRA's stocking data.",
+      "boundaries": "Rutherford County upper East Fork; USGS 03427500 'East Fork Stones River near Lascassas, TN' (verified via waterservices.usgs.gov site service: 35.9184, -86.3339, Rutherford County, HUC 05130203, altitude 507.63 ft)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 508,
+      "notes": "Elevation is the USGS gauge altitude near Lascassas (507.63 ft, from the waterservices.usgs.gov expanded site output). No cold-water source documented for this reach in any source found."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found and no stocking signal on this reach: TWRA's stocking dataset contains no East Fork Stones River rows. The Stones River system stockings in TWRA's 2026 data are winter rainbows at W. Fork Stones River - Manson Pike Trailhead (Rutherford) and J. Percy Priest TW / Stones River (Davidson) — different reaches.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "Unresolved conflict. The catalog's editorial note claims a modest wild rainbow population in the upper East Fork, but no agency documentation of trout on the East Fork Stones River was found. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout resources in East Tennessee (about 600 stream miles in Regions 3/4 plus GSMNP), and TWRA's own plan names the WEST Fork Stones River greenway in Murfreesboro as its hatchery-supported Stones River example — not the East Fork. Only single community-app catch reports (Fishidy/Fishbrain) exist, which are not acceptable as sole evidence.",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "Conflicting picture: the catalog asserts uncited wild rainbows in the upper East Fork, but no agency documentation, no stocking row for this reach (stockings are on the West Fork and Percy Priest tailwater instead), and no temperature data were found — read left unknown.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03427500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03427500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterdata.usgs.gov/monitoring-location/03427500/",
+      "https://www.wkrn.com",
+      "https://www.fishidy.com",
+      "https://www.onwaterapp.com",
+      "https://www.tn.gov/twra/fishing.html"
+    ]
+  },
+  {
+    "slug": "cosby-creek",
+    "segment": {
+      "description": "Cosby Creek, Cocke County — Great Smoky Mountains National Park stream draining the Cosby area (GNIS 01327978, HUC 06010106). Catalog note describes wild rainbows and brook trout upstream with park-wide NPS regulations.",
+      "boundaries": "Catalog covers the creek generically; no sub-reach boundaries documented. TWRA 2026 stocking schedule lists 'Cosby Creek' (Cocke County) seasonally without specifying stocked access points relative to the park boundary."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-source documentation found specific to Cosby Creek. Park context only: NPS states the park safeguards 'one of the last remaining wild trout habitats in the eastern United States' across ~2,900 stream miles (https://www.nps.gov/grsm/planyourvisit/fishing.htm)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover-specific evidence sought/found. Holdover is largely moot here because NPS has not stocked the park since 1975 — trout present are resident wild fish, not seasonal stockers.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "NPS: stocking of non-native trout in GSMNP ended in 1975 as 'inconsistent with NPS policies' (restoration stocking only for native non-game species); monitoring shows healthy wild trout densities of 2,000-4,000 fish/mile park-wide. Stream-specific: NPS brook trout research names Cosby Creek directly ('a brook trout caught at Cosby Creek is still classified the same species of fish as a brook trout caught at Lynn Camp Prong'), and the TWRA Trout Management Plan 2017-2027 names Cosby Creek as a potential donor stream for native brook trout restoration. CONFLICT to flag: the TWRA 2026 stocking schedule (packages/content/data/twra-stocking-schedule.json, sourced from tn.gov) lists 'Cosby Creek', Cocke County, seasonal Rainbow Trout weeks 3/1-6/21/2026 — while NPS says the park does not stock. The stocked location relative to the park boundary is not documented in sources consulted; both facts stand as recorded.",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+    },
+    "troutSpecies": [
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+      },
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "NPS has managed the park's streams as unstocked wild trout water since 1975 and agency sources (NPS and TWRA) document brook trout in Cosby Creek itself — a self-sustaining resident population by definition.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+      "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+      "https://www.flyfishingsmokymountains.com (guide lead only, not cited)",
+      "https://perfectflystore.com (guide lead only, not cited)"
+    ]
+  },
+  {
+    "slug": "parksville-lake",
+    "segment": {
+      "description": "Entire Parksville Lake (also Ocoee Lake / Ocoee Lake No. 1), a 1,930 ac TVA impoundment of the Ocoee River formed by Ocoee Dam No. 1 (built 1911 by Tennessee Electric Power Co., acquired by TVA 1939) in Polk County. This record covers the LAKE only — the Parksville tailwater (Ocoee River below the dam) is a separate catalog entry.",
+      "boundaries": "Ocoee Dam No. 1 at the pool's west edge upstream along the Ocoee River arm (receives the upper Ocoee below Ocoee No. 3)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Ocoee Dam No. 1 (Parksville Dam)",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/parksville.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TVA's reservoir page describes recreation (Cherokee National Forest campgrounds, whitewater outfitting) but publishes no depth or thermal-stratification figures on the page fetched; 'shallow/warm' characterization could not be pinned to an agency citation, so it is NOT asserted here. The dam draws for whitewater/hydro operations; no intake-depth documentation found."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found. TWRA's stocking workbook shows no Parksville lake row (only 'Parksville(Ocoee #1) TW / Ocoee River' tailwater — Rainbow; months M, A, M); yet the live TWRA trout page lists 'Region II, Parksville - Rainbow' among reservoirs stocked 'to provide year-round trout fishing opportunities', and TWRA's reservoir page notes the reservoir 'has been stocked by TWRA with bluegill, redear sunfish, black crappie, muskie, walleye, and trout' while characterizing the fishery as warmwater ('Parksville Reservoir contains various types of warmwater fish species').",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No documentation found of natural trout reproduction in the reservoir.",
+      "evidenceUrl": null
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "Conflicting agency signals: TWRA lists Parksville Reservoir (Rainbow) among reservoirs it stocks 'to provide year-round trout fishing opportunities', yet TWRA's own reservoir page frames the pool as a warmwater fishery, the stocking workbook pins no lake stocking dates (only the Mar-Apr-May tailwater row), and no thermal or holdover data exists — per owner rules this conflict reads as unknown.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://lakeinfo.tva.gov/web/sites/parksville.htm",
+      "https://www.tva.com/environment/lake-levels",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03564500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "south-holston-lake",
+    "segment": {
+      "description": "Entire South Holston Lake (TVA reservoir, 7,580 ac at full pool), a deep storage impoundment of the South Fork Holston River above Bristol; about 1,250 acres lie in Virginia (Washington County, VA) with the remainder in Sullivan County, TN. This record covers the LAKE only — the famous South Holston tailwater below the dam is a separate catalog entry and facts do not transfer.",
+      "boundaries": "South Holston Dam upstream ~23-24 miles of reservoir to the headwaters; crosses the Tennessee-Virginia state line (per TWRA reservoir page and VA DWR 2020 report)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "South Holston Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/sholston.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 1729,
+      "notes": "Full pool 1,729 ft, maximum depth 245 ft, 7,580 ac (VA DWR 2020 fisheries report, https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf). TVA: earth-and-rockfill dam 285 ft high; weir below dam added 1991 to oxygenate non-generating releases; winter drawdown ~25-30 ft (TVA/VA DWR; TWRA says levels can drop 40 ft below summer pool). Deep-intake/bottom-draw release is widely described but I found no acceptable agency source stating intake depth, hence releaseType unknown. The tailwater facts (weir, turbine releases) describe the DISCHARGE below the dam, not lake habitat itself."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "TWRA's reservoir page documents a summer lake trout fishery: trolling tips for summer rainbows/browns at 30-50 ft and Lake Trout at 90 ft, creel of 7 trout/day with only 2 Lake Trout; TWRA states the water is 'cool enough and has adequate dissolved oxygen to support trout' but summer DO 'can sometimes fall below optimum levels... limiting the success of the fishery, especially Lake Trout.' A maintained lake-trout component implies multi-year survival of stocked fish in the hypolimnion.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No documentation of natural trout reproduction in the lake found; VA DWR 2020 states annual stockings maintain the trout (and walleye) populations — i.e., not self-sustaining.",
+      "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+      },
+      {
+        "species": "lake",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA states South Holston's water is cool enough with adequate DO to support trout and stocks Lake + Rainbow trout in it under its program of reservoirs stocked 'to provide year-round trout fishing opportunities,' and VA DWR confirms both states stock trout annually to maintain the population in this 245-ft-deep reservoir — with documented summer low-DO as the main seasonal limiter.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html",
+      "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://lakeinfo.tva.gov/web/sites/sholston.htm",
+      "https://www.tva.com/environment/lake-levels/south-holston",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03476500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://dwr.virginia.gov/waterbody/south-holston-reservoir/"
+    ]
+  },
+  {
+    "slug": "trail-fork-big-creek",
+    "segment": {
+      "description": "Trail Fork of Big Creek, Cocke County, Tennessee (French Broad watershed, Bald Mountains) — a small TWRA-stocked trout stream; TWRA also documents a wild rainbow trout population in its upper reaches, and since 2021 it is an active native brook trout reintroduction site above a natural waterfall barrier.",
+      "boundaries": "Cocke County; TWRA stocks the stream as 'Trail Fork Big Creek' (same 2026 stocking group as Gulf Fork Big Creek in the Bald Mountain headwaters of the Big Creek drainage). Wild rainbows documented in Upper Trail Fork and headwater tributaries upstream of ~2,720 ft per TWRA's Trout Management Plan."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No gauge; no numeric elevation for the stocked reach found. TWRA's Trout Management Plan places the wild rainbow population upstream of ~2,720 ft. The catalog's 'spring-stocked' wording refers to the stocking season (spring weeks), not a spring-fed source; no spring-influence evidence was found. The brook trout restoration relies on a natural waterfall as a downstream barrier (TU/EBTJV), consistent with steep mountain headwater habitat but not by itself a temperature citation."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found. TWRA's stocking is seasonal: the 2026 dataset shows rainbow trout stocking weeks of 2/22, 3/15, 4/5, 4/26 and 5/17/2026 (Feb-May), with the same stream named on TWRA's trout stockings page.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "TWRA Trout Management Plan 2017-2027 (Fisheries Report No. 17-10), proposed brook trout restoration waters (Tier 1): 'Upper Trail Fork currently has a wild Rainbow Trout population, as do some of its headwater tributaries (upstream of 2,720')'. Separately, since 2021 the stream is an active native (Southern Appalachian) brook trout reintroduction water: EBTJV project 'Improving Connectivity for Reintroduced Native Brook Trout in Trail Fork of Big Creek, Cocke County, TN' (FSR 96 culvert replacement over Wolf Creek), with brook trout releases by the Tennessee Aquarium Conservation Institute with TWRA/TU/USFWS (TU Nov 2021; USFWS 2024). Whether the reintroduced brook trout population is established is not documented.",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+      },
+      {
+        "species": "brook",
+        "basis": "unknown",
+        "evidenceUrl": "https://easternbrooktrout.org/projects/2021-projects/improving-connectivity-for-reintroduced-native-brook-trout-in-trail-fork-of-big-creek-cocke-county-tn"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "probably",
+      "oneLineWhy": "TWRA's own Trout Management Plan documents a wild (self-sustaining) rainbow trout population in upper Trail Fork above ~2,720 ft, and the stream is now an agency/partner brook trout reintroduction water — year-round trout survival is documented on the water, though the TWRA put-take stocking (Feb-May rainbows) is seasonal and applies to the lower stocked reach.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+      "https://easternbrooktrout.org/projects/2021-projects/improving-connectivity-for-reintroduced-native-brook-trout-in-trail-fork-of-big-creek-cocke-county-tn",
+      "https://www.tu.org/magazine/conservation/from-the-field/brookies-in-tennessee-get-a-new-improved-home",
+      "https://www.fws.gov/story/2024-06/bringing-back-brook-trout",
+      "https://www.tn.gov/twra/fishing.html"
+    ]
+  },
+  {
+    "slug": "tellico-river",
+    "segment": {
+      "description": "Free-flowing upper Tellico River, Monroe County, from the Tellico Plains corridor (USGS 03518500, alt 846 ft) upstream to the North Carolina state line. TWRA stocked reach with a delayed-harvest section from the mouth of North River upstream to the state line. The lower ~20 miles of the Tellico are impounded as the Tellico River arm of Tellico Lake and are covered by the separate tellico-lake entry, not this one.",
+      "boundaries": "Tellico River main stem; delayed harvest 'Mouth of North River upstream to the Tennessee - North Carolina state line' (TWRA trout regulations)"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03518500&siteOutput=expanded&format=rdb"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 846,
+      "notes": "No dam tailwater on this reach: Tellico Dam impounds the Little Tennessee River, not the Tellico River (TWRA: at full pool Tellico Reservoir extends 20 miles up the Tellico River). elevationFt 846 is the USGS gauge altitude at Tellico Plains, the downstream end of the stocked reach. TWRA trout regulations mention 'the dam on Tellico River' upstream of Sourwood Campground, a small structure above the main stocked water whose operator is not documented in sources consulted."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No independent holdover reports found. Circumstantial only: TWRA delayed harvest (catch-and-release, artificials only) runs Oct 1 - Feb 28 on the North River mouth-to-state-line reach, and the 2026 TWRA stocking workbook lists Tellico River stockings in every month February through December, so stocked fish are carried through winter by program design. This is agency program structure, not a documented holdover observation.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "TWRA lists Tellico River tributaries North River and Bald River (Monroe County) among designated wild trout waters (5/day creel, single-hook artificials). Wild trout in the stocked mainstem itself is not directly documented by sources consulted.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA stocks the Tellico River in every month February-December 2026 (delayed harvest Feb, weekly seasonal stockings Mar-Aug, delayed harvest Sep-Dec) and runs a catch-and-release delayed harvest Oct 1-Feb 28, with TWRA-designated wild trout tributaries (North River, Bald River) in the watershed.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03518500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03518500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/dv/?sites=03518500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterdata.usgs.gov/monitoring-location/03518500/",
+      "https://www.tva.com/environment/lake-levels/tellico",
+      "https://hiwassee.tu.org",
+      "https://tennesseerivervalleygeotourism.org/entries/tellico-river-fishing-areas/tn013/",
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r3/tellico-river.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+    ]
+  },
+  {
+    "slug": "boone-lake",
+    "segment": {
+      "description": "Entire Boone Lake (TVA reservoir, ~4,400 ac surface) on the South Fork Holston and Watauga rivers in Sullivan/Washington counties; TWRA's reservoir definition runs from Boone Dam upstream to the Hwy. 390 Bridge at Bluff City on the South Fork Holston arm and to the new Austin Springs Bridge on the Watauga arm. The lake receives the South Holston and Wilbur (Watauga) dam tailwaters at its upper arms; this record covers the LAKE only, not those tailwaters or the Boone tailwater below Boone Dam.",
+      "boundaries": "Boone Dam upstream to Hwy. 390 Bridge (SF Holston arm) and new Austin Springs Bridge (Watauga arm), per TWRA Boone Reservoir regulations text."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Boone Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://tva.com/newsroom/boone-dam-project"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TVA's Boone Dam Project page (verified via search snippet; tva.com blocks direct fetch) documents the 2014 sinkhole/seepage discovery, the multi-year drawdown, and completion of the seven-year repair on May 25, 2022 with return to normal pool; the Community Q&A states the reservoir was held ~10 ft below normal winter pool during the work. No thermal-stratification or release-depth documentation found for the lake."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover or lake trout survival documentation found. The TWRA stocking workbook shows NO Boone Reservoir lake row — only 'Boone TW / S. Fork Holston River' (tailwater below Boone Dam; Rainbow, Brown; months M, A, N, D) — and Boone Reservoir is absent from TWRA's live list of reservoirs stocked 'to provide year-round trout fishing opportunities.'",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No documentation found of natural trout reproduction in the reservoir.",
+      "evidenceUrl": null
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "TWRA stocks the Boone tailwater but excludes Boone Reservoir from its year-round reservoir trout program and lists no trout among the reservoir's fishery species — yet trout regulations (7/day with a 16-22 in PLR) extend into the lake's Watauga arm to the 11E bridge, indicating tailwater-origin trout occur there; no lake stocking, thermal, or holdover evidence was found to resolve persistence.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://tva.com/newsroom/boone-dam-project",
+      "https://tva.com/newsroom/boone-dam-project/boone-community-q-a",
+      "https://lakeinfo.tva.gov/web/sites/boone.htm",
+      "https://tva.com/environment/lake-levels/boone",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03486810&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "middle-prong-little-pigeon",
+    "segment": {
+      "description": "Middle Prong Little Pigeon River in Great Smoky Mountains National Park (Tremont area), Sevier County, plus its watershed including Lynn Camp Prong, an NPS brook-trout restoration tributary. GSMNP waters have had no trout stocking since 1975; the TWRA stocking workbook lists seasonal rainbow rows under 'Mid. Prong Little Pigeon River' (Sevier County, Feb-May and late Oct-Nov 2026) whose precise put-points are not given in the workbook and which cannot be inside the park under NPS policy.",
+      "boundaries": "Park reach in the Tremont drainage; no gauge; lower out-of-park reaches near the park boundary carry the TWRA-listed stockings"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": null
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "Not applicable as normally framed: the park reach holds wild resident trout (GSMNP has stocked no non-native trout since 1975), so no stocking-based holdover question arises inside the park. No holdover reports found for the out-of-park stocked reach.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975. Stream-specific: NPS documents brook trout restoration in this stream's watershed - 'Restoration projects at Lynn Camp Prong and LeConte Creek sourced brook trout from several nearby streams in the park to strengthen brook trout populations at these sites' - and 'Brook trout populations at Lynn Camp Prong are annually monitored by fisheries scientists.' Lynn Camp Prong is a tributary, not the mainstem.",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+    },
+    "troutSpecies": [
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+      },
+      {
+        "species": "rainbow",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "NPS has documented self-sustaining wild trout in GSMNP streams since stocking ended in 1975 (2,000-4,000 trout/mile in many streams), including brook trout restoration and annual monitoring on Lynn Camp Prong in the Tremont/Middle Prong watershed.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+    ]
+  },
+  {
+    "slug": "dale-hollow-lake",
+    "segment": {
+      "description": "Entire Dale Hollow Reservoir (USACE Obey River impoundment; 25,519 ac total per KDFWR, with 6,614 ac in Kentucky), at the Kentucky line in Clay, Pickett, Overton (and Fentress) counties, TN and Clinton/Cumberland counties, KY. This record covers the LAKE only — the Dale Hollow tailwater (Obey River below the dam) is a separate catalog entry and its year-round trout stocking does not transfer to the lake.",
+      "boundaries": "Dale Hollow Dam upstream on the Obey River and impounded arms; Kentucky-Tennessee line crosses the lower pool near the dam."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Dale Hollow Dam",
+        "operator": "USACE",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA: 'The operating authority is the U.S. Corps of Engineers' (dam completed 1943 on the Obey River). USACE Nashville District water-control documentation lists normal pool 651.0 ft msl (verified only via search snippet of the USACE Dale Hollow water control manual; full URL not captured, so elevation left null). Adjacent USFWS Dale Hollow NFH exists to mitigate federal-dam impacts by 'stocking rainbow, brown, lake, and brook trout in waters impacted by federal dams' — i.e., primarily the cold tailwaters below the dam, not the lake."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": true,
+      "detail": "TWRA's reservoir page documents persistence across seasons: 'Rainbow trout are typically stocked annually into Dale Hollow Reservoir during the wintertime,' and anglers 'begin trolling for trout in deeper water near the dam in May,' June is best (downriggers, spoons in 30-50 ft), with trout also caught 'in the summer months at night' — winter-stocked trout documented in the creel guidance through early summer. Composition conflict (flagged by catalog owner): the live TWRA page describes wintertime rainbow stocking, while the TWRA stocking workbook row reads 'Dale Hollow Reservoir / Reservoir / April / Brown Trout', and the TWRA program list reads 'Region II, Dale Hollow, - Rainbow'.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No documentation found of natural trout reproduction in the reservoir; fisheries rely on annual stocking (TWRA page; USFWS hatchery program).",
+      "evidenceUrl": "https://www.fws.gov/fish-hatchery/dale-hollow"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=99"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA documents winter stocking of rainbow trout into the reservoir AND a summer deep-water fishery for them (trolling near the dam from May, best in June, summer night fishing), and lists Dale Hollow among reservoirs stocked 'to provide year-round trout fishing opportunities' — multi-season survival of stocked trout is documented by the managing agency itself.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.fws.gov/fish-hatchery/dale-hollow",
+      "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=99",
+      "https://www.lrd.usace.army.mil/Missions/Civil-Works/Recreation/Dale-Hollow-Lake/",
+      "https://www.lrn-wc.usace.army.mil/"
+    ]
+  },
+  {
+    "slug": "roaring-fork",
+    "segment": {
+      "description": "Roaring Fork, Sevier County — Great Smoky Mountains National Park stream draining the north slope of Mount Le Conte, paralleled by the Roaring Fork Motor Nature Trail near Gatlinburg (GNIS 01299568, HUC 06010107). Catalog note describes steep cascading park water with wild rainbows and brook trout.",
+      "boundaries": "Catalog covers the park stream along the Motor Nature Trail corridor; no formal reach boundaries documented. Park-wide NPS fishing regulations apply."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-source documentation found specific to Roaring Fork. Park context: NPS describes ~2,900 stream miles of wild trout habitat in the park (https://www.nps.gov/grsm/planyourvisit/fishing.htm); the TWRA Trout Management Plan notes the Tennessee portion of GSMNP (Cocke, Sevier, Blount counties) contains another 245 miles of wild trout streams (https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover-specific evidence found. Holdover is moot if the reach is unstocked wild water, as NPS policy (no stocking since 1975) and the absence of any Roaring Fork rows in the TWRA 2026 stocking schedule suggest.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "Park-wide agency evidence: NPS states stocking ended in 1975 and monitoring shows healthy wild trout densities of 2,000-4,000 fish/mile across ~2,900 park stream miles, with brook, brown and rainbow trout present (fishing page), and NPS confirms brook trout as one of the three trout species in the Smokies (fish page). TWRA Trout Management Plan corroborates 245 miles of wild trout streams in the Tennessee portion of GSMNP including Sevier County. No stream-specific agency document naming Roaring Fork trout was found in searches; stream-specific wild-rainbow/brook claims come from angling guides (leads only, not cited as evidence). DISCREPANCY to flag: the catalog note claims 'TWRA listing spring stocking for the Roaring Fork area', but the TWRA 2026 stocking schedule supplied with the repo contains ZERO rows for Roaring Fork (searched all name variants) — consistent with NPS no-stocking policy.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "The stream lies wholly inside GSMNP, where NPS policy since 1975 maintains entirely wild, self-sustaining trout populations (2,000-4,000 fish/mile) with year-round fishing and no stocking — and the TWRA 2026 schedule lists no Roaring Fork stocking at all.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.flyfishingsmokymountains.com (guide lead only, not cited)",
+      "https://www.gatlinburg.com (lead only)",
+      "https://www.neonscience.org (LeConte Creek NEON site — adjacent drainage, NOT Roaring Fork; not cited)"
+    ]
+  },
+  {
+    "slug": "reedy-creek",
+    "segment": {
+      "description": "Reedy Creek — small urban creek through Kingsport, Sullivan County (HUC 06010102), cataloged as a warmwater water with no trout program. Catalog correction (2026-09-15) states agency sources document a warmwater fishery with no trout program, 303(d) listed, zero trout rows in the TWRA 2026 schedule.",
+      "boundaries": "Catalog covers the creek through Kingsport; no formal reach boundaries documented. USGS monitoring locations 03487600 ('Reedy Creek at Kingsport') and 03487602 ('Reedy Creek ab Clinchfield RR at Kingsport'), both Sullivan County, verified via USGS site service."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-water source documentation found. Catalog notes 'spring-fed pockets' but no agency citation was located."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "Not applicable as documented: there is no trout stocking program on this creek — the TWRA 2026 stocking schedule contains zero rows for Reedy Creek (checked the repo copy of the TWRA schedule across all name variants), so there are no stocked trout to hold over.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No evidence of any trout population found. Zero rows in the TWRA 2026 stocking schedule; no TWRA/USGS/TDEC trout reference located in searches. TDEC maintains a water-quality monitoring segment on the creek (TDECWPC REEDY000.1SU in Sullivan County via waterqualitydata.us) consistent with standard warmwater stream assessment; EPA ATTAINS status could not be re-queried here (API key required). Catalog treats the creek as warmwater 303(d) listed.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "No trout program and no trout records of any kind: zero rows in the TWRA 2026 stocking schedule and no agency trout documentation — the creek is monitored as an ordinary warmwater urban stream.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterdata.usgs.gov/monitoring-location/03487602/",
+      "https://waterdata.usgs.gov/monitoring-location/03487600/",
+      "https://www.waterqualitydata.us (TDEC monitoring site REEDY000.1SU, Sullivan County)",
+      "https://attains.epa.gov/attains-public/api/waterbodies?state=TN&waterbodyName=Reedy%20Creek (MISS: requires api.data.gov key)",
+      "https://www.tn.gov/environment/program-areas/wr-water-resources/water-quality-rules-reports-and-publications.html (303(d) list pointer; segment status not individually verified)"
+    ]
+  },
+  {
+    "slug": "west-prong-little-pigeon",
+    "segment": {
+      "description": "West Prong Little Pigeon River, Sevier County: the park reach draining the Chimneys corridor above Gatlinburg (USGS 03469251 'West Prong Little Pigeon R nr Gatlinburg', gauge altitude 1,352.77 ft) plus the lower out-of-park reach through Pigeon Forge/Gatlinburg. GSMNP waters have had no trout stocking since 1975; the TWRA stocking workbook rows for this water are all 'W. Prong Little Pigeon R. (Pigeon Forge)' (Jan-May and Oct 2026, rainbow trout), i.e. the out-of-park lower reach.",
+      "boundaries": "Park reach above Gatlinburg (wild) and out-of-park Pigeon Forge reach (TWRA seasonal stockings); gauge 03469251 sits at the park end near Gatlinburg"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 1353,
+      "notes": "elevationFt is the USGS gauge altitude (1,352.77 ft NAVD88) at station 03469251 near Gatlinburg, the park end of the reach (USGS site service)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "Not applicable inside the park (wild resident trout; GSMNP has stocked no non-native trout since 1975). No holdover reports found for the out-of-park Pigeon Forge stocking reach.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975; fishing is open year-round in all park streams. No stream-specific wild-population study for the West Prong itself was found in sources consulted.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+      },
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "The park reach sits in NPS-documented wild trout habitat (no stocking since 1975, trout densities of 2,000-4,000 fish/mile in many park streams), while TWRA rainbow stockings are confined to the out-of-park Pigeon Forge reach.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03469251&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03469251&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03469251&parameterCd=00010&startDT=2024-07-01&endDT=2024-07-31&format=json",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    ]
+  },
+  {
+    "slug": "south-fork-cumberland",
+    "segment": {
+      "description": "South Fork (Big South Fork) Cumberland River within Big South Fork National River & Recreation Area, Scott County, Tennessee — free-flowing mainstem in the New River/Clear Fork confluence country down to the Kentucky line; Leatherwood Ford area. This is a Cumberland Plateau river, NOT the tailwater Cumberland River below Lake Cumberland in Kentucky.",
+      "boundaries": "Tennessee reach, Scott County; USGS 03410210 'South Fk Cumberland River at Leatherwood Ford, TN' sits on this reach (site verified via waterservices.usgs.gov site service: 36.4774, -84.6694, Scott County, HUC 05130104, altitude 861.65 ft); catalog describes the reach as running from the New River/Clear Fork confluence country to the Kentucky line."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 862,
+      "notes": "Elevation is the USGS gauge altitude at Leatherwood Ford (861.65 ft, NAVD88, from the waterservices.usgs.gov expanded site output). NPS Natural Resource Condition Assessment: TDEC stream-use classification table lists the Big South Fork Cumberland River 'from KY-TN line to origin' as designated uses including TS (trout stream); in the same sub-basin, the only reach marked 'naturally reproducing trout stream' is Laurel Fork of Station Camp Creek (upper ~3 km), not the mainstem. NPS game-fish brochure states brown trout are limited to tributary streams within the park and are not typically found in the main Big South Fork River."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found. There is also no current-stocking signal to hold over: the TWRA stocking dataset in this repo (2026 schedule) contains no rows for the South Fork/Big South Fork Cumberland River (only Oneida City Park Lake, a Scott County lake, and Kentucky's Rock Creek per KDFWR, neither of which is this reach). No gauge temperature record exists at 03410210 (waterservices USGS iv/dv queries for parameter 00010, July 2025, returned no series).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "Mixed evidence, honestly unresolved. Trout presence in the drainage is agency-documented: the NPS Natural Resource Condition Assessment fish list reports Rainbow Trout (non-native; reported by Scott 2010 and earlier surveys) and Brown Trout (Scott 2010; Comiskey & Etnier 1972) in the BSF watershed, and TDEC designates the TN mainstem a trout stream (TS). But self-sustaining reproduction on the cataloged TN mainstem is NOT documented by sources found: the only 'naturally reproducing trout stream' designation in the sub-basin belongs to a tributary (Laurel Fork of Station Camp Creek), and the NPS brochure places browns in park tributaries rather than the mainstem. A single 1940-era brook trout record is attributed to hatchery introductions.",
+      "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "unknown",
+        "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf"
+      },
+      {
+        "species": "brown",
+        "basis": "unknown",
+        "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf"
+      },
+      {
+        "species": "brook",
+        "basis": "unknown",
+        "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "Agency sources document trout presence and a TDEC trout-stream (TS) designation on the TN mainstem, but the naturally-reproducing designation belongs only to a Laurel Fork tributary, there is no current TWRA stocking row, and no summer temperature data exists for the reach — the year-round mainstem survival question is unresolved.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf",
+      "https://www.nps.gov/biso/learn/nature/fish.htm",
+      "https://npshistory.com/publications/biso/brochures/game-fish.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03410210&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03410210&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterdata.usgs.gov/monitoring-location/03410210/",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://seafwa.org/journal?page=52",
+      "https://www.nps.gov/biso/planyourvisit/fishing.htm",
+      "https://fw.ky.gov/Education/Pages/Big-South-Fork.aspx",
+      "https://www.tn.gov/twra/fishing.html"
+    ]
+  },
+  {
+    "slug": "melton-hill-lake",
+    "segment": {
+      "description": "Entire Melton Hill Lake, a ~5,690 ac (TWRA) run-of-river TVA reservoir on the Clinch River between Norris Dam and Melton Hill Dam (Clinch River mile 23.1), in Anderson/Roane counties near Oak Ridge. The Norris tailwater (Clinch River) runs the length of this pool; this record covers the LAKE/pool itself, not the clinch-river tailwater catalog entry upstream.",
+      "boundaries": "Melton Hill Dam upstream ~38 miles of Clinch River to Clinton (per TVA); TWRA reservoir regulation text extends striped-bass waters 'including Clinch River upstream to Highway 61 bridge in Clinton.'"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Norris Dam (upstream cold inflow); pool impounded by Melton Hill Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA: 'Melton Hill is a cool water reservoir with relatively low productivity... The cold water released through Norris Dam negatively impacts warm water fish species like Largemouth Bass and Bluegill, causing slow growth and limited reproduction. The cool flowing water, however, guarantees that dissolved oxygen levels remain good throughout the summer.' No lake temperature profile or release-draw documentation found."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No lake trout survival documentation found. TWRA's stocking workbook and 2026 schedule show NO Melton Hill lake row; the reservoir is absent from TWRA's list of reservoirs stocked 'to provide year-round trout fishing opportunities.' The adjacent stocking is 'Norris Tailwater / Clinch River' (Anderson County; Rainbow, Brown; months M, A, M, J, J, A, S) — that is the tailwater reach that terminates at the upper (Clinton/Hwy 61) end of this pool per Clinch River TU; a fact about the tailwater does not establish lake stocking.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No documentation found of natural trout reproduction in the reservoir.",
+      "evidenceUrl": null
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "probably",
+      "oneLineWhy": "TWRA's own reservoir page documents trout-grade habitat — cold Norris Dam releases make Melton Hill a 'cool water reservoir' that suppresses warmwater bass and keeps summer dissolved oxygen good — but TWRA does not stock the lake with trout, excludes it from its year-round reservoir trout program, and documents no lake trout fishery, so a year-round trout fishery is unproven.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://lakeinfo.tva.gov/web/sites/meltonhill.htm",
+      "https://www.crctu.org/fishing",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03535912&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.tva.com/environment/lake-levels/melton-hill"
+    ]
+  },
+  {
+    "slug": "laurel-fork-carter",
+    "segment": {
+      "description": "Laurel Fork, Carter County — mountain creek in the Watauga HUC (06010103) near Hampton/Dennis Cove, mostly within Cherokee National Forest; tributary of the Doe River drainage. TWRA Region IV Trout Fisheries Report 2018 describes it as flowing through a mountainous, forested watershed with low-gradient upper sections despite elevations above 915 m (3,000 ft).",
+      "boundaries": "Wild-trout water: 'Laurel Fork and tributaries beginning at the cable crossing 0.5 mile upstream from the USFS Dennis Cove' (TWRA special trout regulations, wild trout streams table) — 5 trout/day, no length limit, single-hook artificials only. Downstream of the cable crossing: statewide trout rules. TWRA stocks adult rainbow trout in the Dennis Cove area only."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No dam or spring source documented. TWRA 2018 monitoring stations sat at 2,660 ft and 2,880 ft in the upper (wild) reach (https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 18.4,
+        "monthObserved": 9,
+        "year": 2018,
+        "sourceType": "study",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      },
+      {
+        "celsius": 17.4,
+        "monthObserved": 9,
+        "year": 2018,
+        "sourceType": "study",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      }
+    ],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover-specific evidence found. The decisive currency here is the documented resident wild trout population (below) rather than stocked-fish survival; Dennis Cove-area rainbows are stocked March-June (~3,700 adults per TWRA 2018 report; biweekly seasonal rows through 6/7/2026 in the TWRA 2026 schedule).",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "TWRA Region IV Trout Fisheries Report 2018: 'Laurel Fork is one of the few Tennessee streams where wild Brown Trout dominate'; 'the upper portion of Laurel Fork and nine of its tributaries currently support Brook Trout'; abundance/growth/production/movement of wild brown and brook trout in upper Laurel Fork documented by Strange et al. (2000); stream monitored annually since 1991 (primary species BNT). Designated wild-trout water above the Dennis Cove cable crossing under special regulations (single-hook artificials, 5/day).",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    "troutSpecies": [
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      },
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      },
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA's own monitoring documents a resident wild population — wild brown trout dominating with brook trout in the upper reach and nine tributaries — in a designated wild-trout water; September 2018 sampling temperatures of 17.4-18.4 C at 2,660-2,880 ft are consistent with year-round trout habitat.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4",
+      "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+      "https://www.gameandfishmag.com (guide/magazine lead only, not cited)",
+      "https://www.onwaterapp.com (app lead only, not cited)"
+    ]
+  },
+  {
+    "slug": "beaverdam-creek",
+    "segment": {
+      "description": "Beaverdam Creek, Johnson County — northeast Tennessee spring-creek-character creek in the Watauga HUC (06010102, South Fork Holston basin), flowing through Cherokee National Forest country toward the Virginia line near Damascus. TWRA Region IV report treats it as an annually monitored wild trout stream.",
+      "boundaries": "Wild-trout water: 'Beaverdam Creek and tributaries from its confluence with Birch Branch downstream to Tank Hollow' (TWRA special trout regulations, wild trout streams table) — 5 trout/day, no length limit, single-hook artificials only. Reaches outside that designation: statewide trout rules. TWRA 2026 stocking schedule lists seasonal rainbow stocking weeks 3/1-6/21/2026 (every 4 weeks)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "Catalog calls it a spring creek but no agency text confirming spring influence was found. Elevation context from TWRA Trout Management Plan: a 2006 qualitative survey of Green Mountain Branch (a Beaverdam Creek tributary) found a relatively abundant wild Rainbow Trout population at 3,080 ft elevation along Hwy 421 (https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover-specific evidence found. Decisive currency is the documented resident wild trout population (below); TWRA 2026 seasonal rainbow stocking (Mar-Jun) coexists with the wild fishery.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "TWRA Region IV Trout Fisheries Report 2018: 'Beaverdam Creek is one of Tennessee's best-known wild trout streams and is on an annual monitoring schedule' — monitored since 1991 with primary species RBT/BNT; qualitative surveys found RBT and BNT at mainstem sites. Brook trout documented in Beaverdam Creek tributaries (Birch Branch listed among sympatric Brook/Rainbow waters; East Fork Beaverdam Creek listed as a potential native Brook Trout donor stream) — tributary evidence, not mainstem. TWRA Trout Management Plan 2017-2027 names Beaverdam Creek among former degraded streams that now 'provide excellent wild trout fisheries'.",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "both",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      },
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      },
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "TWRA itself calls Beaverdam Creek one of Tennessee's best-known wild trout streams, annually monitored since 1991 for resident rainbow and brown trout — a self-sustaining population in a designated wild-trout water.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4",
+      "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+      "https://johnsoncitypress.com/news/2166/the-reel-thing-trout-fishing-to-pick-up-with-cooler-weather (newspaper lead, supports TWRA wild-brown sampling note; not cited as sole evidence)",
+      "https://perfectflystore.com (guide lead only, not cited)",
+      "https://wellerfish.me (blog lead only, not cited)"
+    ]
+  },
+  {
+    "slug": "little-river",
+    "segment": {
+      "description": "Little River from the Great Smoky Mountains National Park headwaters (Elkmont corridor) down to the Fort Loudoun Lake embayment near Maryville/Alcoa, Blount County. Park reach is wild trout water (GSMNP has stocked no non-native trout since 1975); TWRA stocking workbook rows under 'Little River' (Blount County, Feb-May and late Oct-Nov 2026, rainbow trout) apply to the lower out-of-park reaches near Walland/Maryville. USGS 03497300 'Little River above Townsend' (gauge altitude 1,106.92 ft) sits at the park boundary; 03498500 'Little River near Maryville' is the lower out-of-park gauge.",
+      "boundaries": "GSMNP headwaters to Fort Loudoun Lake embayment; two verified gauges bracket the reach (Townsend boundary and Maryville)"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 1107,
+      "notes": "elevationFt is the USGS gauge altitude (1,106.92 ft) at station 03497300, Little River above Townsend - the downstream (park-boundary) end of the park reach, not the headwaters (USGS site service)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 21.4,
+        "monthObserved": 7,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+      },
+      {
+        "celsius": 24.6,
+        "monthObserved": 7,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+      },
+      {
+        "celsius": 18.4,
+        "monthObserved": 7,
+        "year": 2025,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+      }
+    ],
+    "holdover": {
+      "documented": null,
+      "detail": "Not applicable inside the park (wild resident trout; GSMNP has stocked no non-native trout since 1975). No holdover reports found for the out-of-park TWRA-stocked reaches near Walland/Maryville.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975; brook, rainbow, and brown trout are the documented park trout species. July 2025 USGS temperatures at the Townsend boundary gauge (median 21.4 C, max 24.6 C, min 18.4 C) show summer conditions at the lower end of the park reach.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      {
+        "species": "brown",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+      },
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "NPS documents self-sustaining wild trout (brook/rainbow/brown) in GSMNP streams with no stocking since 1975, and USGS gauge 03497300 recorded July 2025 water temperatures of 18.4-24.6 C (median 21.4 C) at the park boundary, consistent with a headwater-to-boundary wild trout gradient.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03497300,03498500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03498500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    ]
+  },
+  {
+    "slug": "leconte-creek",
+    "segment": {
+      "description": "LeConte Creek, a small Great Smoky Mountains National Park stream near Gatlinburg, Sevier County, under heavy canopy pocket water. The park reach is wild trout water (GSMNP has stocked no non-native trout since 1975); NPS names LeConte Creek as a brook trout restoration stream. Note: the current TWRA stocking workbook (checked 2026-09-18) contains no LeConte Creek row, so the catalog's 'TWRA spring stocking listed' note could not be confirmed against the current schedule.",
+      "boundaries": "Park reach above the Gatlinburg city boundary; no gauge; Gatlinburg city permit waters begin where the creek reaches city waters"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": null
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "Not applicable as normally framed: the park reach holds wild resident trout (GSMNP has stocked no non-native trout since 1975), so no stocking-based holdover question arises inside the park.",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "wildPopulation": {
+      "documented": true,
+      "detail": "Stream-specific: NPS documents brook trout restoration on this creek - 'Restoration projects at Lynn Camp Prong and LeConte Creek sourced brook trout from several nearby streams in the park to strengthen brook trout populations at these sites.' Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975.",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+    },
+    "troutSpecies": [
+      {
+        "species": "brook",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+      },
+      {
+        "species": "rainbow",
+        "basis": "wild",
+        "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "yes",
+      "oneLineWhy": "NPS names LeConte Creek a brook trout restoration stream (wild self-sustaining park population) and GSMNP park streams have carried wild trout with no stocking since 1975.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+      "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "https://www.nps.gov/grsm/learn/nature/fish.htm",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout.htm",
+      "https://www.nps.gov/grsm/learn/nature/brooktrout.htm",
+      "https://www.nps.gov/grsm/learn/nature/brook-trout-restoration.htm"
+    ]
+  },
+  {
+    "slug": "red-river-clarksville",
+    "segment": {
+      "description": "Red River at Clarksville, Montgomery County, Tennessee — warmwater Clarksville-area river (bass and catfish water, mud-prone watershed). Catalog entry is the Montgomery County reach near the Port Royal gauge.",
+      "boundaries": "Montgomery County, TN reach; USGS 03436100 'Red River at Port Royal, TN' (verified via waterservices.usgs.gov site service: 36.5547, -87.1419, Montgomery County, HUC 05130206, altitude 376.25 ft)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 376,
+      "notes": "Elevation is the USGS gauge altitude at Port Royal (376.25 ft, from the waterservices.usgs.gov expanded site output). No cold-water source documented for this reach in any source found."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found. TWRA's stocking dataset contains no Red River rows; the only Montgomery County trout stocking in TWRA's data is winter rainbow trout at Billy Dunlop Park in Clarksville (2/18/2026 and TBD 12/2026 in the 2026 workbook; also listed on TWRA's trout stockings page). Billy Dunlop Park is a city park on the Red River, but whether the fish go into the river channel or a park pond is not stated in the agency sources consulted — local news (ClarksvilleNow, Dec 2016) and Visit Clarksville describe the stocking at the park and Red River trout fishing without resolving pond-vs-river.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No agency documentation of wild trout in the Red River (Montgomery County) was found. The TWRA Trout Management Plan 2017-2027 places Tennessee's wild trout resources in East Tennessee (approximately 600 stream miles in TWRA Regions 3 and 4 plus GSMNP), not Middle/West Tennessee streams like this one. The catalog's own correction note (2026-09-15) states agency sources document a warmwater fishery with no trout program or trout record.",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "TWRA's only trout program in Montgomery County is the winter put-take stocking at Billy Dunlop Park (site-on-river but pond-vs-river ambiguous); the Red River reach itself has no trout program, no trout documentation, and is a warmwater muddy river at ~376 ft elevation.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03436100&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03436100&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://waterdata.usgs.gov/monitoring-location/03436100/",
+      "https://clarksvillenow.com/local/twra-stocks-billy-dunlop-park-with-winter-trout/",
+      "https://www.visitclarksvilletn.com",
+      "https://www.tn.gov/twra/fishing.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+    ]
+  },
+  {
+    "slug": "tellico-lake",
+    "segment": {
+      "description": "TVA Tellico Reservoir (Tellico Lake), impounded by Tellico Dam near Lenoir City in Loudon, Monroe, and Blount counties. Per TWRA, at full pool the reservoir extends 33 miles up the Little Tennessee River to Chilhowee Dam and 20 miles up the Tellico River. The free-flowing Tellico River above the pool is a separate catalog entry (tellico-river).",
+      "boundaries": "Tellico Dam (Little Tennessee River mile ~23) upstream to Chilhowee Dam on the Little Tennessee and 20 miles up the Tellico River arm, per TWRA"
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Tellico Dam",
+        "operator": "TVA",
+        "releaseType": null,
+        "evidenceUrl": "https://www.tva.com/environment/lake-levels/tellico"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA: 'Tellico is a cool water impoundment due to the cold water inflows from Chilhowee Reservoir and the Tellico River' and it has 'cool water temperatures and good oxygen levels throughout the summer.' TVA's Tellico lake page documents TVA operation of Tellico Dam; the dam's release draw type is not documented in sources consulted. TVA notes there is no tailwater gage at Tellico Dam."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover reports found. TWRA documents the trout fishery as seasonal put-and-take: 'About 4,500 catchable Rainbow Trout are released there in the late winter and early spring annually,' and the current TWRA stocking workbook contains no Tellico Lake/Reservoir row (nearest reservoir row is Chilhowee Reservoir, a different waterbody upstream).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No evidence of wild (self-sustaining) trout in the reservoir found in sources consulted. TWRA frames the rainbow trout fishery as stocked catchables; the TWRA reservoir species list is otherwise warmwater/coolwater (largemouth, smallmouth, spotted, crappie, bluegill, walleye, catfish, striped/hybrid bass).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "probably",
+      "oneLineWhy": "TWRA calls Tellico a cool-water impoundment with cool temperatures and good oxygen throughout the summer (cold inflows from Chilhowee Reservoir and the Tellico River) and stocks ~4,500 catchable rainbows each late winter, but no summer temperature numbers or holdover evidence were found.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html",
+      "https://www.tva.com/environment/lake-levels/tellico",
+      "https://en.wikipedia.org/wiki/Tellico_Reservoir",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tellicowater.org"
+    ]
+  },
+  {
+    "slug": "fort-patrick-henry-lake",
+    "segment": {
+      "description": "Entire Fort Patrick Henry Lake, a small (~895 ac per TWRA; 872 ac per some TVA material) run-of-river TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County), extending ~10 miles from Fort Patrick Henry Dam upstream to Boone Dam. It receives the Boone tailwater at its upper arm; this record covers the LAKE only, not the Fort Patrick Henry tailwater below the dam.",
+      "boundaries": "Fort Patrick Henry Dam upstream to Boone Dam (per TVA reservoir description)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Fort Patrick Henry Dam",
+        "operator": "TVA",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/fortpatrickhenry.htm"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TVA: run-of-river reservoir ('water is passed through the reservoir without being stored long term'), normal pool 1,258-1,263 ft, dam 95 ft high; reservoir extends 10 miles upstream to Boone Dam. Its cold input is the inflowing Boone Dam tailwater rather than a deep storage hypolimnion; no lake thermal-profile documentation found."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found. TWRA's stocking workbook shows no Fort Patrick Henry lake row (only the tailwater row 'Ft. Patrick Henry TW / S. Fork Holston River' — Rainbow, Brown; months M, A, D), but TWRA's live trout page lists Fort Patrick Henry Reservoir (Region IV — Brown and Rainbow) among reservoirs it stocks 'to provide year-round trout fishing opportunities'; stocking months unpinned.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No documentation found of natural trout reproduction in the reservoir.",
+      "evidenceUrl": null
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "probably",
+      "oneLineWhy": "TWRA includes Fort Patrick Henry in its reservoir trout-stocking program stated to 'provide year-round trout fishing opportunities' (Brown and Rainbow), and TVA's own reservoir page calls it 'a popular site for fishing, particularly rainbow trout' — but no lake stocking months, thermal data, or holdover evidence pins persistence outside the program's stated intent.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-patrick-henry.html",
+      "https://lakeinfo.tva.gov/web/sites/fortpatrickhenry.htm",
+      "https://tva.com/energy/our-power-system/hydroelectric/fort-patrick-henry",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03487010&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  }
+]

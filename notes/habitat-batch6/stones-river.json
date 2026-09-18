@@ -1,0 +1,62 @@
+{
+  "slug": "stones-river",
+  "segment": {
+    "description": "Stones River MAIN STEM, Davidson County, Tennessee (catalog) — the Nashville-metro reach below J. Percy Priest Dam, anchored on the Donelson gauge. This is the below-dam tailwater reach where TWRA's winter rainbow program occurs; it is distinct from the East Fork (batch-2 record east-fork-stones-river) and the West Fork (its own catalog slug). Composite-trap check: TWRA's 2026 workbook tags the stocking site 'J. Percy Priest TW / Stones River' to Davidson County — the same county as this catalog entry — and NWS gauge JPPT1 'Stones River below J Percy Priest Dam' is also Davidson, so the stocked tailwater coincides with (at least the upper part of) this catalog reach. The dam itself sits on the Rutherford/Wilson/Davidson line; agency text does not distinguish stocking banks above or below the county line.",
+    "boundaries": "J. Percy Priest Dam downstream to the Cumberland River confluence (TWRA's regulation-exceptions reach: 'Stones River from its confluence with the Cumberland upstream to J. Percy Priest Dam'); USGS 03430200 'Stones River at US Hwy 70 near Donelson, TN' (36.18648, -86.63276; Davidson County; HUC 05130203; 934 sq mi drainage)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "J. Percy Priest Dam",
+      "operator": "USACE",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://api.water.noaa.gov/nwps/v1/gauges/JPPT1"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 382,
+    "notes": "Elevation is the USGS gauge altitude at Donelson (382.36 ft NAVD88, waterservices site output). NWS gauge JPPT1 'Stones River below J Percy Priest Dam' carries data attribution to the US Army Corps of Engineers (Nashville District, lrn.usace.army.mil). TWRA manages this tailwater as a winter put-and-take, not a cold-release trout tailwater: TWRA's Cheatham Reservoir page says the tailwater's trout 'will not survive the warm summer water temperatures' — i.e., the agency itself documents that the below-dam releases do not keep this reach cold through summer. USGS identity verified via waterservices site service (the USGS identity endpoint has been 503ing this week); WQP returned zero discrete temperature samples for 03430200 (header-only CSV)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.2,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03430200&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "TWRA explicitly documents the opposite of holdover on this reach: 'Trout are good to eat and will not survive the warm summer water temperatures. Anglers are encouraged to harvest...' The USGS continuous record at Donelson for July 2025 (n=2,974 readings) shows min 22.5, mean 25.0, max 28.2 deg C — consistent with TWRA's statement. The fishery is a Dec-Mar catchable rainbow put-and-take: Dale Hollow National Fish Hatchery stocks ~2,000 rainbows below the dam beginning the first Friday in December, with January and February events (2026 workbook rows: 1/9/2026, 02/13/2026, TBD 12/2026; TWRA table row 'J. Percy Priest Dam, Stones River — Rainbow — December through March').",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation for this reach. The fishery TWRA describes is entirely stocked put-and-take (Dale Hollow NFH catchable rainbows, winter only). TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout resources in East Tennessee streams and states that hatchery-supported waters are 'primarily warmwater habitats that cannot support trout year round' (plan not fetched per PDF ban; URL cited).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA states outright that trout in the J. Percy Priest tailwater 'will not survive the warm summer water temperatures', and the July 2025 USGS record at Donelson (max 28.2 C, mean 25.0 C) corroborates it — a Dec-Mar ~2,000-per-event put-and-take, not year-round trout habitat.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html (fetched 2026-09-18; trout passages grepped and quoted verbatim)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched 2026-09-18 on retry after one connection reset; table scrapes scrambled but 'J. Percy Priest TW / Stones River' and 'J. Percy Priest Dam, Stones River' site strings present)",
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied TWRA workbook, collected 2026-09-17: 3 Winter rainbow rows, county Davidson)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03430200&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03430200,03428200&siteOutput=expanded&format=rdb (identity/elevation; used in place of the 503ing USGS identity endpoint)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03430200&characteristicName=Temperature%2C+water&mimeType=csv (HTTP 200, header-only — zero discrete temp samples)",
+    "https://api.water.noaa.gov/nwps/v1/gauges/JPPT1",
+    "https://www.lrn.usace.army.mil/Locations/Dams/J-Percy-Priest-Dam/ (curl failed: TLS SNI/certificate error — operator evidence taken from JPPT1 attribution instead)",
+    "https://waterdata.usgs.gov/monitoring-location/03430200/",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (cited only; PDF fetch banned)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (lead source; underlying URLs independently re-verified above)"
+  ]
+}

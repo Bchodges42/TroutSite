@@ -1,0 +1,87 @@
+{
+  "slug": "buffalo-river",
+  "segment": {
+    "description": "Buffalo River main stem (GNIS 01295866 / 01305509, HUC-8 06040004), the longest un-impounded river in Middle Tennessee and longest tributary of the Duck River, flowing north ~125+ miles from Lawrence County through Lewis, Wayne, Perry, and Humphreys counties to its Duck River confluence - NOT the Little Buffalo River (separate catalog water) and NOT Buffalo Creek (Grainger). Temperature record cited here is USGS 03604000 'BUFFALO RIVER NEAR FLAT WOODS, TN' (Perry County), the catalog's gauge; TDEC also maintains BUFFA017.7PE and USGS has 03604400/03604500 at Lobelville on the lower river.",
+    "boundaries": "Catalog: 'north-flowing Duck River tributary through Lewis, Perry, and Humphreys counties' with USGS 03604000 as the reference gauge - i.e., the middle/lower agricultural and gorge reaches around Perry/Humphreys. TDEC's 2026 scenic designation covers 'The entire river' (~127.8 mi including the Lawrence/Wayne headwaters), a longer reach than the catalog notes name."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/buffalo.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": null,
+    "notes": "TDEC: 'The Buffalo River is the longest un-impounded river in middle Tennessee and the longest tributary of the Duck River' - there is no dam anywhere on the main stem, so no tailwater mechanism exists. The river meanders over 125 miles through the southern and western portions of Middle Tennessee supporting 'a diversity of wildlife including nearly 85 species of fish' (TDEC), and is a noted canoeing/kayaking stream with a TWRA access at Henryville. No spring influence and no cold-water mechanism is documented in any source checked; the Flat Woods gauge reads 24-27 C in summer."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 25.0,
+      "monthObserved": 8,
+      "year": 1998,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.0,
+      "monthObserved": 7,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.9,
+      "monthObserved": 8,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.5,
+      "monthObserved": 8,
+      "year": 2002,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.0,
+      "monthObserved": 7,
+      "year": 2005,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind is documented, so no holdover question arises. TWRA has never stocked the Buffalo River main stem: the 2026 row-level schedule contains zero 'Buffalo River' rows (only Little Buffalo River in Lawrence Co. and Buffalo Creek in Grainger Co., both different waters), and the catalog itself carries stockingProgram false.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. TDEC's scenic-river page describes a diverse warmwater fish community ('nearly 85 species of fish') with no trout mention; TWRA's trout regulations page (fetched 2026-09-18) carries no Buffalo River entry - its only 'Buffalo' trout entries are Buffalo Creek (Grainger Co.).",
+    "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/buffalo.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The un-impounded main stem reads 24.0-27.0 C in June-September grabs across 1998-2005 at USGS 03604000, TDEC describes a ~85-species warmwater fish community, and no trout stocking, trout regulation, or cold-water mechanism exists anywhere on the river.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - ZERO 'Buffalo River' rows anywhere; the only 'Buffalo' rows are Little Buffalo River (Lawrence, separate water) and Buffalo Creek (Grainger, 29 Seasonal + 1 DH, separate water)",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers.html (index page fetched live 2026-09-18; links to the Buffalo entry)",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/buffalo.html (fetched live 2026-09-18: 'Buffalo River Tennessee Scenic River - Class II Pastoral River Area... Located in Lawrence, Lewis, Wayne, Perry, and Humphreys counties... Approximately 127.8 miles designated. First designated... April 4, 1968 as The entire river; April 1, 1969 amended to except the portion within Wayne, Perry, Humphreys and Lewis counties; May 5, 2026 amended by deleting the 1969 definition and re-designating The entire river' plus the longest-un-impounded / ~85-fish-species description quoted in the record)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A135&characteristicName=Temperature%2C%20water&siteType=Stream&mimeType=csv (Perry Co. sweep 2026-09-18: USGS-03604000 'BUFFALO RIVER NEAR FLAT WOODS, TN', 03604400 'BELOW LOBELVILLE', 03604500 'NEAR LOBELVILLE', TDECWPC-BUFFA017.7PE, all HUC 06040004; identity from WQP station metadata - waterservices.usgs.gov identity endpoint 503'd all week)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv (long QW record; June-September values 23.8-27.0 C across 1998-2005 incl. 27.0 C 2001-07-25, 26.9 C 2001-08-22, 26.5 C 2002-08-07, 27.0 C 2005-07-19 and 2005-08-25; one implausible 32.0 C 2001-01-10 January grab excluded as an apparent data error)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03604000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (attempted for recent July 2025 instantaneous temps; returned 0 bytes - service unavailable this week; historic WQP record above used instead)",
+    "https://www.eregulations.com/tennessee/fishing/region-2 (fetched live 2026-09-18: zero Buffalo mentions - no trout program in the region regs)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18: only 'Buffalo' entries are Buffalo Creek (Grainger Co. WMA / delayed harvest); no Buffalo River trout regulation or wild-trout status)",
+    "WebSearch 2026-09-18 'TWRA Buffalo River Tennessee smallmouth bass fishery study tn.gov' - no agency stream-fishery report for the Buffalo surfaced; smallmouth-fishery characterization left to the TDEC warmwater fish-community description rather than an angling source",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)"
+  ]
+}

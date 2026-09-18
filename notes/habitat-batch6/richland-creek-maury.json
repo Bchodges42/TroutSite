@@ -1,0 +1,51 @@
+{
+  "slug": "richland-creek-maury",
+  "segment": {
+    "description": "Richland Creek (GNIS 01299358, NHD reachcode series 060300040xxxxx), a long order-6 tributary of the Elk River draining southern Maury County (Cornersville area) south through Giles County past Pulaski to the Elk River near Prospect (~35.046 N). This is the Giles/Maury County Richland Creek of HUC 06030004 (Lower Elk), NOT the Nashville-area Richland Creek of Davidson/Williamson counties.",
+    "boundaries": "Catalog gives no reach limits; record covers the HUC 06030004 main stem from the upper reaches near Cornersville (USGS 03583300, 47.5 sq mi, Maury Co.) and Milky Way (USGS 03583320, 149 sq mi) past Pulaski and Aspen Hill (USGS 03584220, 421 sq mi) down to the Prospect-Elkton Road station near the mouth (TDEC RICHL002.0GS). Identity cross-checked against NHD flowline geometry (lat 35.05-35.32, lon -87.03 to -86.84)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 754,
+    "notes": "Low-elevation limestone-valley stream: gauge datum 754.28 ft NGVD29 at the Cornersville station (upper reach). No tailwater, no documented cold-water source."
+  },
+  "summerTemperature": [
+    { "celsius": 28.56, "monthObserved": 8, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RICHL002.0GS&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 28.0, "monthObserved": 8, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03583320&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.1, "monthObserved": 6, "year": 1967, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03583300&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 25.6, "monthObserved": 8, "year": 1966, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03583300&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.4, "monthObserved": 7, "year": 1976, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03584220&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 8, "year": 1976, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03584220&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 22.02, "monthObserved": 6, "year": 2003, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RICHL018.3GS&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Moot for this water: TWRA has never stocked it. The live 2026 TWRA datatable (616 rows, fetched 2026-09-18) contains zero 'Richland' rows statewide, and the catalog itself carries stockingProgram: false. No holdover documentation exists.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation of any kind found; absent from TWRA wild trout, delayed-harvest, and special-regulation lists; statewide trout rules are the only applicable regulation.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Four independent stations on the HUC 06030004 main stem (USGS Cornersville/Milky Way/Aspen Hill and TDEC Prospect-Elkton Rd) all record June-September water in the 22-28.6 C range - classic warmwater conditions - with no TWRA stocking program and no trout presence documented.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_id%3D%2701299358%27&outFields=gnis_id,gnis_name,reachcode,lengthkm&returnGeometry=true&outSR=4326&f=pjson (177 flowline segments, all reachcodes 060300040xxxxx, confirming this is the Elk-drainage Giles/Maury creek, not a Nashville-area Richland Creek)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-87.05,35.0,-86.8,35.35&characteristicName=Temperature,%20water&mimeType=csv (TDEC-first sweep: 3 USGS + 9 TDEC stations named Richland Creek, all HUC 06030004; USGS-03583300 identity 'RICHLAND CREEK NEAR CORNERSVILLE, TN', 47.5 sq mi, Maury Co. 117, datum 754.28 ft; USGS-03583320 'RICHLAND CREEK AT MILKY WAY, TENN', 149 sq mi, Giles Co. 055; USGS-03584220 'RICHLAND CREEK NR ASPEN HILL, TN', 421 sq mi, Giles Co.)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03583300&characteristicName=Temperature,%20water&mimeType=csv (1966-1967, 1988)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03583320&characteristicName=Temperature,%20water&mimeType=csv (1980-1981)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03584220&characteristicName=Temperature,%20water&mimeType=csv (1975-1976)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RICHL002.0GS&characteristicName=Temperature,%20water&mimeType=csv (2006-2007, station at Prospect-Elkton Road near the mouth)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RICHL018.3GS&characteristicName=Temperature,%20water&mimeType=csv (2002-2003, mid-reach '@ Green Field')",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RICHL022.1GS&characteristicName=Temperature,%20water&mimeType=csv (only October samples, no summer coverage - miss for our purpose)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (zero 'Richland' rows statewide; adjacent-trap check: the Maury County winter trout water McCutcheon Creek (rows 1/23, 2/20, TBD-12/2026) is a separate small water and does not bind to Richland Creek)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  ]
+}

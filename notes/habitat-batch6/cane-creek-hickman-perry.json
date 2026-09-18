@@ -1,0 +1,86 @@
+{
+  "slug": "cane-creek-hickman-perry",
+  "segment": {
+    "description": "Cane Creek (GNIS 01307376), the Buffalo-River-system creek whose course runs Hickman County into Perry County (HUC-8 06040004, NHD reachcodes 06040004xxxx, discharging to the Buffalo River) - NOT the Van Buren Co. Cane Creek of the Caney Fork basin, NOT the Putnam Co. Cane Creek, and NOT the adjoining Hickman Co. Mill Creek that TWRA stocks separately. Identity pinned by catalog GNIS/HUC plus NHD: gnis_id 01307376 resolves only to reachcodes under HUC 06040004 (Buffalo). TWRA's Trout MASTER layer places the stocked reaches in Hickman Co. at two gravel pull-off sites (35.6331,-87.6231 and 35.6482,-87.6604, the latter coincident with USGS station 03604200 'CANE CREEK AT FARMERS EXCHANGE, TN', 45.1 sq mi drainage) and in Perry Co. at 'Cane Creek Middle' (35.7041,-87.7558) and 'Cane Creek Downstream' (35.7091,-87.7745, coincident with TDECWPC-CANE004.1PE river-mile 4.1 and TDECWR_WQX-TNW000000900).",
+    "boundaries": "Catalog: 'stocked reaches in Hickman and Perry Counties', receiving water Buffalo River. Hickman stocked reach ~35.63-35.65 N (Little Lot area); Perry stocked reach ~35.70 N, river-mile 0.0-4.1 above the Buffalo confluence."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": null,
+    "notes": "Free-flowing Western Highland Rim tributary; no dam is documented on the stocked reaches in any source checked, and no spring influence is documented. Summer agency grabs on both stocked reaches read 22.0-23.5 C (see below), i.e. warm Rim stream behavior."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 23.5,
+      "monthObserved": 8,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604200&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.15,
+      "monthObserved": 6,
+      "year": 2000,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-CANE004.1PE&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.01,
+      "monthObserved": 7,
+      "year": 2014,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000900&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found in any source checked. TWRA's 2026 row-level schedule stocks this water only in late-winter/spring 'Seasonal' weeks (2/22, 3/22, 4/26/2026 in BOTH the Perry Co. and Hickman Co. 'Cane Creek' rows), a put-and-take calendar with no published between-stocking survival claim.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. TWRA's trout regulations page (fetched 2026-09-18) contains no entry for Cane Creek (Hickman or Perry) - no special regulation, no wild-trout listing; the page's only 'Cane' entry is the Caney Fork River tailwater and the only 'Piney River' entry is the Rhea County water.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(County)%3D%27HICKMAN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200"
+    },
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(County)%3D%27PERRY%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies%2CLATITUDE%2CLONGITUDE&returnGeometry=false&f=json&resultRecordCount=100"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "All three agency summer measurements on the stocked reaches read 22.0-23.5 C (Aug 2001 Hickman; Jun 2000 and Jul 2014 Perry) and TWRA stocks only in Feb-Apr seasonal weeks with no holdover, cold-source, or wild-trout evidence anywhere.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 3 'Cane Creek' Perry Co. rows (weeks 2/22, 3/22, 4/26/2026, Seasonal, Rainbow Trout) + 3 'Cane Creek' Hickman Co. rows (same weeks, Region 2, Seasonal, Rainbow Trout); the adjacent 'Mill Creek' Hickman rows (same weeks) are a separate small water, and the Van Buren/Putnam Cane Creek rows are different same-named waters (identity traps avoided)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook; cited from repo workbook copy)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(County)%3D%27HICKMAN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200 (fetched live 2026-09-18: 3 Hickman sites total - 2 'Cane Creek' Spring/rainbow sites plus 1 'Mill Creek'; Cane Creek sites are 24-hr gravel pull-offs, no delayed harvest)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(County)%3D%27PERRY%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies%2CLATITUDE%2CLONGITUDE&returnGeometry=false&f=json&resultRecordCount=100 (fetched live 2026-09-18: exactly 2 Perry sites, 'Cane Creek Middle' 35.7041,-87.7558 and 'Cane Creek Downstream' 35.7091,-87.7745, Spring/rainbow)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_id%3D%2701307376%27&outFields=gnis_id%2Cgnis_name%2Clengthkm%2Creachcode%2Cfcode&returnGeometry=false&f=json&resultRecordCount=10 (GNIS 01307376 = Cane Creek, all reachcodes 06040004xxxx confirming Buffalo River basin identity)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A081&characteristicName=Temperature%2C%20water&siteType=Stream&mimeType=csv (Hickman Co. sweep: USGS-03604200 'CANE CREEK AT FARMERS EXCHANGE, TN' HUC 06040004, 45.1 sq mi, at 35.6481,-87.6650 - the only temperature station on this creek in Hickman; sweep also surfaced the Piney River/Mill Creek station sets used for sibling records; waterservices.usgs.gov identity endpoint NOT used - persistent 503s this week, identity taken from WQP station metadata)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A135&characteristicName=Temperature%2C%20water&siteType=Stream&mimeType=csv (Perry Co. sweep: TDECWPC-CANE004.1PE 'CANE CREEK' 35.6991,-87.7474 and TDECWR_WQX-TNW000000900 'Cane Creek' 35.7091,-87.7751, both HUC 06040004, sitting on the stocked Perry reach)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604200&characteristicName=Temperature,%20water&mimeType=csv (2 grabs: 23.5 C 2001-08-20, 16.0 C 2001-05-03)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-CANE004.1PE&characteristicName=Temperature,%20water&mimeType=csv (6 grabs 1999-12 to 2000-06; summer-window 22.15 C 2000-06-28, 20.02 C 2000-05-30; winter 10.6-12.5 C)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000900&characteristicName=Temperature,%20water&mimeType=csv (1 grab: 22.01 C 2014-07-10)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18, 63,723 bytes; zero entries for Cane Creek/Hickman/Perry - no special trout regulation, no wild-trout waters listing)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)"
+  ]
+}

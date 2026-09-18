@@ -1,0 +1,72 @@
+{
+  "slug": "rocky-river",
+  "segment": {
+    "description": "Rocky River (GNIS 01299930) of Van Buren County, the Caney Fork tributary that flows north from the Bledsoe County line country to its mouth in Great Falls Lake (the Caney Fork arm of Center Hill Lake) - NOT the Shelby County Rocky River, NOT Rocky Fork (Unicoi Co.). Identity pinned by catalog HUC 05130108 plus USGS: the stocked reach sits at the same bridge crossing as USGS station 03420116 (35.7012,-85.5778, Van Buren Co., 72 sq mi drainage).",
+    "boundaries": "Catalog: TWRA spring-stocked Van Buren County creek (no reach limits given). The single TWRA stocking site is 'Rocky River Rd. Bridge Crossing (S1)' at 35.7010,-85.5779 near Campaign, 'Private Land, Contact Region 3', spring program - immediately adjacent to USGS 03420116, so the temperature record is at the stocked reach itself."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "notes": "Free-flowing tributary, no dam on the stocked reach. TWRA's regulation-exceptions page lists Rocky River among 'Above Center Hill Dam and tributaries, including Collins River, Calfkiller River, Rocky River, Cane Creek, and their tributaries' (muskellunge rule) - upstream of Center Hill Dam, so the Caney Fork tailwater trout PLR does not govern this creek (the tailwater rule reads 'Center Hill Dam to Cumberland River'). Catalog notes karst-influenced flows; no citable cold-water source found."
+  },
+  "summerTemperature": [
+    { "celsius": 18.0, "monthObserved": 6, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.0, "monthObserved": 6, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.5, "monthObserved": 7, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.0, "monthObserved": 7, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.0, "monthObserved": 7, "year": 1987, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 22.5, "monthObserved": 7, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.0, "monthObserved": 8, "year": 1981, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.5, "monthObserved": 8, "year": 1986, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 8, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.5, "monthObserved": 8, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.0, "monthObserved": 9, "year": 1979, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.0, "monthObserved": 9, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.0, "monthObserved": 9, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; TWRA's program here is a seasonal spring put-and-take rainbow stocking (2026 schedule: weeks of 3/8, 4/12 and 5/17; 1,100 rainbows listed per event at the single S1 site in the TWRA stocking-locations layer).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. The creek has no entry (special regulation or wild-trout listing) on TWRA's Tennessee Trout Regulations page as fetched 2026-09-18; catalog notes statewide trout rules apply.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27VANBUREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Ten years of USGS grab samples at the stocked-reach bridge show August temperatures up to 26.5 C (1988) and 24.5 C (1986) - warmwater summer peaks incompatible with year-round trout survival - under a seasonal spring-only stocking program.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 3 'Rocky River' rows, county Van Buren, Seasonal, Rainbow Trout (weeks 3/8, 4/12, 5/17/2026); only Van Buren rows match this name in the workbook",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27VANBUREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200 (live 2026-09-18: 'Rocky River Rd. Bridge Crossing (S1)', 35.7010,-85.5779, near Campaign, NumStocked 1100, Spring, rainbow, Private Land/Region 3)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv (21 temperature results 1979-05-23 through 1988-08-30; 13 June-September observations extracted and attributed)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420110&characteristicName=Temperature,%20water&mimeType=csv (0 rows - no temperature record at the upstream 1970s station)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03420116&mimeType=csv (identity: ROCKY RIVER AT ROCKY RIVER ROAD AT RIVERVIEW TN, Van Buren Co. 175, HUC 05130108, 72 sq mi; used because waterservices.usgs.gov site endpoint returned HTTP 503 on 2026-09-18)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03420116&siteOutput=expanded&format=rdb (attempted for gage datum; HTTP 503 - elevation left null)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (fetched live; Rocky River named in the 'Above Center Hill Dam and tributaries' muskellunge rule)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18; zero entries for Rocky River - no special regulation, no wild-trout listing)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only: station numbers and identity rulings; all facts re-verified against the primary URLs above)"
+  ]
+}

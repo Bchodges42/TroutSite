@@ -1,0 +1,54 @@
+{
+  "slug": "east-fork-shoal-creek",
+  "segment": {
+    "description": "East Fork Shoal Creek (GNIS 01283364, NHD reachcode 06030004000241), a small Giles County tributary joining Shoal Creek at ~35.0079,-87.0995 (HUC 06030004 Lower Elk per NHD/TDEC station metadata). TWRA's 2026 stocking schedule lists a Lawrence County trout water of this name - an identity mismatch flagged below, since the TWRA stocking sites plot on the Shoal Creek main stem in Lawrenceburg, not on the GNIS-named fork.",
+    "boundaries": "Catalog gives no reach limits. Record covers the GNIS/NHD-named East Fork Shoal Creek (Giles Co., HUC 06030004) and separately documents the TWRA 'East Fork Shoal Creek' fishery, whose 2026 stocking sites are 'Park' (35.2308,-87.3295) and 'Water Plant' (35.2435,-87.3464), Lawrenceburg - coordinates that fall on the Shoal Creek main stem (HUC 06030005) per NHD."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Small low-elevation stream: the TDEC station at the mouth sits at ~35.008 N on Shoal Creek Road and the upstream TDEC station at 35.0205,-87.0931; no published elevation datum found. A documented spring exists in the same HUC (USGS 'WEST FORK SHOAL CREEK SPRING NEAR MINOR HILL, TN', WQP station USGS-350223087074201, 780 ft) but it belongs to the West Fork, a different water."
+  },
+  "summerTemperature": [
+    { "celsius": 25.4, "monthObserved": 8, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-EFSHO000.2GS&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.7, "monthObserved": 9, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-EFSHO000.2GS&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 23.97, "monthObserved": 8, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002129&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 23.34, "monthObserved": 7, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002129&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 21.14, "monthObserved": 9, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002129&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 23.1, "monthObserved": 6, "year": 2018, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002129&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.97, "monthObserved": 6, "year": 2023, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002129&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. The TWRA program is a put-and-take 'Seasonal' spring schedule (five 2026 stocking weeks: 2/15, 3/8, 3/22, 5/10, 5/31), not a year-round program, and no TWRA sampling or creel document speaks to survival between stockings on this water.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Not on TWRA's wild trout stream list; statewide trout rules apply (7 trout/day, no length limit) with no special regulation on this water. The TDEC fish-community sampling program at these stations reports no trout records in WQP.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC monitoring shows June-September water of 21.0-25.4 C (most recently 21.1-24.0 C in summer 2022) at the mouth and mid-fork stations, too warm for trout to carry through summer beyond TWRA's Feb-May put-and-take window.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03585215&mimeType=csv (identity: 'EAST FORK SHOAL CREEK NEAR BETHEL, TN', HUC 06030004 - verified via WQP; gauge record is field measurements 2006-2008, discontinued, per USGS via WQP/NWIS catalog)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03585215&characteristicName=Temperature,%20water&mimeType=csv (MISS: zero temperature results at the USGS gauge)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-87.25,34.95,-86.95,35.15&characteristicName=Temperature,%20water&mimeType=csv (TDEC-first sweep: found TDECWPC-EFSHO000.2GS 'EAST FORK SHOAL CREEK' ON SHOAL CREEK ROAD, HUC 06030004, Giles Co. 055; TDECWR_WQX-TNW000002128/2129 'East Fork Shoal Creek', HUC 06030004, Giles Co.)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-EFSHO000.2GS&characteristicName=Temperature,%20water&mimeType=csv (2006-2007 series)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002128&characteristicName=Temperature,%20water&mimeType=csv (2009-2013 series, mostly non-summer)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002129&characteristicName=Temperature,%20water&mimeType=csv (2018-2023 series with summer coverage)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_id%3D%2701283364%27&outFields=gnis_id,gnis_name,reachcode,lengthkm&returnGeometry=false&f=pjson (NHD flowline confirms GNIS 01283364 'East Fork Shoal Creek', reachcode 06030004000241)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live TWRA 2026 datatable fetched 2026-09-18: exactly 5 rows, all 'East Fork Shoal Creek', Lawrence Co., Region 2, Seasonal, Rainbow Trout, stocking weeks 2/15, 3/8, 3/22, 5/10, 5/31)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (HTTP 200; not on wild trout / special regulation lists per wave-3 verification of this page)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (leads: TWRA stocking-site coordinates 'Park'/'Water Plant' in Lawrenceburg whose NHD plot is the main stem, the GNIS-vs-TWRA identity mismatch, gauge 03585215 period - all re-verified at primary URLs above except the ArcGIS stocking-location service, which is JS-only)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query (lead from ledger; not re-fetched this pass)",
+    "catalog YAML packages/content/streams/tn/east-fork-shoal-creek.yaml (seasonMonths 12,1,2 'programmatic' vs live workbook Feb-May 'Seasonal' weeks - conflict recorded; YAML has no counties key; Giles per NHD/TDEC, Lawrence per TWRA labeling - OWNER-BOX CANDIDATE: the stocked fishery name and the GNIS feature do not coincide, unresolved since wave 3)"
+  ]
+}

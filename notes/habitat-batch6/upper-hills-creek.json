@@ -1,0 +1,60 @@
+{
+  "slug": "upper-hills-creek",
+  "segment": {
+    "description": "'Upper Hills Creek' is TWRA's site label for the stocked upper reach of Hills Creek (GNIS 01287839) near Irving College, Warren County, in the Collins River subbasin (HUC 05130107) - not a separate GNIS-named stream and not any same-named Hills Creek in White/Van Buren/Haywood-NC/SC. Identity resolved from catalog hydroIdentity (GNIS 01287839, HUC 05130107) plus catalog notes ('TWRA spring-stocked Warren County creek') plus USGS station 03420260 (Warren Co. 177, HUC 05130107, 55.59 sq mi).",
+    "boundaries": "Catalog gives no reach limits beyond 'TWRA spring-stocked Warren County creek'. TWRA stocking sites S1 (35.5636,-85.6557) and S2 (35.5642,-85.6568), Irving College, spring program - the USGS temperature station 03420260 'HILLS CREEK NEAR IRVING COLLEGE, TN' (35.5684,-85.6803) sits on the same creek a short distance west of the sites."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03420260&mimeType=csv",
+    "notes": "Free-flowing tributary of the Dry Creek/Slaughter Cove Creek drainage, thence the Collins River (Caney Fork system above Center Hill Dam); no dam on the stocked reach. Catalog YAML carries no counties field (identity had to be resolved from hydroIdentity GNIS/HUC + notes + workbook county) - flagging as a catalog completeness item; USGS station county (177 Warren) confirms Warren."
+  },
+  "summerTemperature": [
+    { "celsius": 28.0, "monthObserved": 7, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420260&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.0, "monthObserved": 8, "year": 1981, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420260&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 22.0, "monthObserved": 9, "year": 1979, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420260&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; TWRA's program here is seasonal spring put-and-take rainbow (2026 schedule: a single week, 3/22/2026, for 'Upper Hills Creek').",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. The creek has no entry (special regulation or wild-trout listing) on TWRA's Tennessee Trout Regulations page as fetched 2026-09-18.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27WARREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The USGS grab record at Irving College includes a 28.0 C July reading (1980) and 22.0 C in September 1979 - classic warmwater summer peaks on a creek TWRA stocks only one spring week per year.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 1 'Upper Hills Creek' row, county Warren, Seasonal, Rainbow Trout (week 3/22/2026)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27WARREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100 (live 2026-09-18: 'Upper Hills Creek' sites S1 35.5636,-85.6557 and S2 35.5642,-85.6568, Irving College, Spring, rainbow, Private Land; NumStocked 0/backfilled)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420260&characteristicName=Temperature,%20water&mimeType=csv (6 grab samples 1979-05-24 through 1981-08-19; 3 summer-window values extracted)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03420260&mimeType=csv (identity: HILLS CREEK NEAR IRVING COLLEGE TN, Warren Co. 177, HUC 05130107, 55.59 sq mi; used because waterservices.usgs.gov site endpoint returned HTTP 503 on 2026-09-18)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03420260&siteOutput=expanded&format=rdb (attempted for gage datum; HTTP 503 - elevation left null)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18; zero entries for Hills Creek - no special regulation, no wild-trout listing)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only: station number, same-name rulings, site coordinates; all facts re-verified against the primary URLs above)"
+  ]
+}

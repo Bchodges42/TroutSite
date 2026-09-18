@@ -1,0 +1,67 @@
+{
+  "slug": "little-buffalo-river",
+  "segment": {
+    "description": "Little Buffalo River (GNIS 01291406, HUC-8 06040004), the Buffalo-River-system stream of Lawrence County (headwaters and stocked course) flowing north into Lewis County to enter the Buffalo River near Napier - a separate water from the Buffalo River main stem and from Buffalo Creek (Grainger). TWRA's Trout MASTER layer places all 4 stocking/access sites on ~6 km of the Lawrence County course at 35.4001,-87.5127 / 35.3773,-87.5115 / 35.3631,-87.5112 / 35.3524,-87.5036 (24-hr gravel pull-offs, each under 25 spaces, contact TWRA Region 2); TDEC anchors coincide (TDECWPC-LBUFF010.4LW, LBUFF006.5LW in Lawrence; LBUFF000.8LS near the Lewis Co. mouth).",
+    "boundaries": "Catalog: 'TWRA spring-stocked Lawrence County creek in the Buffalo River system' - the stocked reach spans roughly RM 10.4 to 6.5 (TDEC river-mile anchors) NE of Lawrenceburg; lower Lewis County reach (USGS 03603660/03603693, RM 0.8) is unstocked country."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": null,
+    "notes": "No dam and no documented spring influence on the stocked reaches. The only agency summer measurement on the creek is 21.5 C (2001-08-21, USGS 03603693 on the lower Lewis County reach) - warm Rim-stream behavior; the stocked Lawrence reach has May (18.6 C) but no June-September grabs."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 21.5,
+      "monthObserved": 8,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603693&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found in any source checked. TWRA's 2026 row-level schedule stocks the creek only in 'Seasonal' weeks of 3/8, 3/22, 5/10 and 5/31/2026 (rainbow, Region 2) - a spring put-and-take calendar with no published between-stocking survival claim. NOTE a segment-vs-program discrepancy: the catalog carries seasonMonths 12/1/2 (programmatic winter), but the 2026 workbook rows and the MASTER layer's 'Spring' program label put the actual events in March-May; the wave-3 ledger made the same call, resolving a 'winter program near Lawrenceburg' hint to this spring fishery.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. TWRA's trout regulations page (fetched 2026-09-18) names no Little Buffalo River entry - its only 'Buffalo' trout entries are Buffalo Creek (Grainger Co. WMA and delayed-harvest reaches), a different water - and no agency wild-trout reference was found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%3D%27LITTLE%20BUFFALO%20RIVER%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies%2CLATITUDE%2CLONGITUDE&returnGeometry=false&f=pjson"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The only agency summer measurement on the creek is 21.5 C in late August 2001 (lower reach) and TWRA's program is a four-week spring put-and-take rainbow fishery with no holdover, cold-source, or wild-trout evidence anywhere.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 4 'Little Buffalo River' Lawrence Co. rows (weeks 3/8, 3/22, 5/10, 5/31/2026, Seasonal, Rainbow Trout, Region 2)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook; cited from repo workbook copy)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%3D%27LITTLE%20BUFFALO%20RIVER%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies%2CLATITUDE%2CLONGITUDE&returnGeometry=false&f=pjson (fetched live 2026-09-18: exactly 4 sites, all Lawrence Co., StockingProgram 'Spring', Species rainbow)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A099&characteristicName=Temperature%2C%20water&siteType=Stream&mimeType=csv (Lawrence Co. sweep via county code in batch tooling; TDEC LBUFF river-mile anchors LBUFF010.4LW/LBUFF006.5LW sit on the stocked reach; identity per WQP station metadata - waterservices.usgs.gov identity endpoint 503'd all week)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603693&characteristicName=Temperature,%20water&mimeType=csv (2 grabs: 21.5 C 2001-08-21, 22.0 C 2001-05-02 - 'LITTLE BUFFALO RIVER NEAR HOHENWALD, TN', Lewis Co., HUC 06040004)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LBUFF006.5LW&characteristicName=Temperature,%20water&mimeType=csv (7 grabs 1999-10 to 2000-05: winter 2.9-10.6 C, spring 16.87-18.6 C; NO June-September values on the stocked reach)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LBUFF010.4LW&characteristicName=Temperature,%20water&mimeType=csv (empty - no temperature data)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LBUFF000.8LS&characteristicName=Temperature,%20water&mimeType=csv (empty - no temperature data)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603610&characteristicName=Temperature,%20water&mimeType=csv (empty - 'NEAR DEERFIELD' site visits 1961-1972 carry no temperature in WQP)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18: only 'Buffalo' entries are Buffalo Creek (Grainger Co.); no Little Buffalo River regulation or wild-trout status)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only: gauge inventory 03603610/03603620/03603660/03603693 all discontinued; identity GNIS 01291406 Lawrence+Lewis, HUC 06040004; all facts above re-verified against the primary URLs listed here, not the ledger)"
+  ]
+}

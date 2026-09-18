@@ -1,0 +1,87 @@
+{
+  "slug": "big-bigby-creek",
+  "segment": {
+    "description": "Big Bigby Creek (GNIS 01305201, HUC-8 06040003), the major west-bank Duck River tributary draining Maury County through the Columbia area - NOT Little Bigby Creek (separate GNIS water, TDECWPC-LBIGB004.1MY) and NOT the stocked McCutcheon Creek winter-trout water in Columbia. Agency monitoring spans the whole creek: USGS 03601500 'AT CROSS BRIDGES' (upper), USGS 03601100 'AT NEEDMORE' (middle), USGS 03600500 'AT SANDY HOOK' (lower), and TDECWPC-BBIGB008.5MY / 014.0MY / 016.3MY river-mile stations.",
+    "boundaries": "Catalog: 'Major Maury County tributary in the Duck River basin' - full course within Maury County from the Cross Bridges headwater country to the Duck River confluence below Columbia (NHD reachcodes 06040003xxxx)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": null,
+    "notes": "Un-dammed Western Highland Rim agricultural/residential creek. Four agency stations over four decades record June-September water temperatures of 20.5-31.0 C - no cold-water mechanism exists in the record."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 31.0,
+      "monthObserved": 6,
+      "year": 1981,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03600500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03600500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.0,
+      "monthObserved": 8,
+      "year": 1987,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601100&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.5,
+      "monthObserved": 7,
+      "year": 1973,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 29.6,
+      "monthObserved": 7,
+      "year": 2001,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BBIGB008.5MY&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind is documented, so no holdover question arises. TWRA has never stocked this creek: the 2026 row-level schedule contains zero Bigby rows (the only trout rows in Maury County are McCutcheon Creek winter stockings), and the Trout MASTER layer returns zero Bigby sites.",
+    "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%20LIKE%20%27%25BIGBY%25%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies&returnGeometry=false&f=json&resultRecordCount=50"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found; TWRA's trout regulations page (fetched 2026-09-18) contains zero Bigby entries - no special regulation, no wild-trout listing.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Four agency stations (USGS 03600500/03601100/03601500 + TDECWPC-BBIGB008.5MY) record 20.5-31.0 C June-September temperatures across 1966-2008, and no trout stocking, regulation, or occurrence is documented for the creek anywhere.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - ZERO rows matching 'Bigby' in any county; the nearest Maury Co. trout program is 'McCutcheon Creek' (Winter, 1/23/2026, 2/20/2026, TBD 12/2026) which is a different Columbia water (adjacency trap avoided). Catalog stockingProgram is false.",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%20LIKE%20%27%25BIGBY%25%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies&returnGeometry=false&f=json&resultRecordCount=50 (fetched live 2026-09-18: 0 features - no Bigby sites in the Trout MASTER layer)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_id%3D%2701305201%27&outFields=gnis_id%2Cgnis_name%2Clengthkm%2Creachcode&returnGeometry=false&f=json&resultRecordCount=5 (GNIS 01305201 = Big Bigby Creek, reachcodes 06040003xxxx confirming Duck River basin identity)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A119&characteristicName=Temperature%2C%20water&siteType=Stream&mimeType=csv (Maury Co. sweep 2026-09-18, 221 stations: 3 USGS Big Bigby gauges + 3 TDECWPC BBIGB river-mile stations + 7 TDECWR Big Bigby stations, all HUC 06040003; identity from WQP station metadata - waterservices.usgs.gov identity endpoint 503'd all week)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03600500&characteristicName=Temperature,%20water&mimeType=csv (124 grabs 1966-1989, 'BIG BIGBY CREEK AT SANDY HOOK, TN'; June-September values 20.6-31.0 C incl. 31.0 C 1981-06-24, 29.5 C 1978-08-02, 29.0 C 1976-07-21, 28.5 C 1987-08-18)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601100&characteristicName=Temperature,%20water&mimeType=csv (21 grabs 1980-1988, 'AT NEEDMORE'; June-September values 20.0-26.0 C)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601500&characteristicName=Temperature,%20water&mimeType=csv (13 grabs 1970-1973, 'AT CROSS BRIDGES' on the upper creek; June-September values 20.5-23.5 C - even the headwater station is warm)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BBIGB008.5MY&characteristicName=Temperature,%20water&mimeType=csv (33 grabs 1999-2008; June-September values 15.3-29.6 C incl. 29.6 C 2001-07-11, 23.47 C 2000-06-14, 22.6 C 2004-06-22)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18: zero 'Bigby' mentions - no trout regulation or wild-trout status)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "cherokee-lake",
+  "segment": {
+    "description": "Cherokee Lake (Cherokee Reservoir), the TVA impoundment of the Holston River across Grainger, Hamblen, Hawkins, and Jefferson counties northeast of Knoxville, impounded at its southwest end by Cherokee Dam. TWRA's fishery description covers the 30,300-surface-acre pool itself.",
+    "boundaries": "Entire reservoir pool (TWRA: 30,300 ac, 393 mi shoreline; TVA owns up to the 1,075-ft contour). Excludes the Holston River Cherokee tailwater below Cherokee Dam, which is stocked by TWRA and is a separate catalog entry."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Cherokee Dam (TVA) impounds the lake; the dam's cold deep releases form the downstream Holston River Cherokee tailwater, which is a different catalog entry and does not cold-water this pool",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1075,
+    "notes": "Full-pool contour 1,075 ft per TWRA's Cherokee Reservoir page ('TVA owns up to the 1,075-ft...'). TWRA: 'The reservoir thermally stratifies in the summer when warm oxygenated surface water cannot mix with the cold [deeper water]... During most summers and in many locations, oxygen levels below 30 ft. can become too low to support most fish species.' On-lake TDEC profile station TDECWPC-HOLST093.5HSS/HOLST093.5HSB 'CHEROKEE LAKE NEAR JOHNSON HOLLOW' (HUC 06010104) recorded 27.0 C surface / 24.4 C bottom on 2000-08-09. USGS identity note: identity endpoint was down this week; stations verified via WQP Station search CSV (e.g. USGS-03493510 'HOLSTON RIVER AT CHEROKEE DAM(TW), TN', HUC 06010104)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 27.0,
+      "monthObserved": 8,
+      "year": 2000,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HOLST093.5HSS&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.4,
+      "monthObserved": 8,
+      "year": 2000,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HOLST093.5HSB&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable as a trout question - no trout fishery is documented for the reservoir. TWRA notes even the coldwater-striped-bass program is marginal here: stripers 'must be maintained by stocking' and 'do not normally grow big in Cherokee Reservoir, due to low summer dissolved [oxygen]'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout population of any kind documented. TWRA's Cherokee Reservoir 'What you can catch' page lists Largemouth, Smallmouth, Striped, Cherokee (striper x white hybrid) bass, Crappie, Walleye, Saugeye, Paddlefish, White Bass, Bluegill, Catfish - no trout species appear anywhere in the fishery text (the only 'trout' strings on the page are navigation-menu items).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA documents a warmwater fishery with no trout; the lake thermally stratifies each summer with 27 C surface water (TDEC on-lake profile, Aug 2000) and oxygen below 30 ft too low for most fish in most summers, and Cherokee is absent from TWRA's year-round reservoir trout stocking list while eight other reservoirs are on it.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html (fetched live 2026-09-18; species list, 30,300 ac, 1,075-ft contour, summer stratification/low-DO text, striper put-grow-take text; no trout in fishery body)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched live 2026-09-18; 'Reservoir Trout Stocking Information - TWRA stocks the following reservoirs with trout to provide year-round trout fishing opportunities' lists Dale Hollow, Parksville, Calderwood, Chilhowee, Fort Patrick Henry, South Holston, Tellico (Upper), Watauga - Cherokee is NOT on the list; static tailwater table row 'Cherokee Dam, Holston River - Brown, Rainbow - November through April' is the tailwater below the dam, not the lake)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook, 616 rows; grep /cherokee/i = 1 row, 'Cherokee TW / Holston River' Jefferson/Grainger Tailwater J,F,M,A,N,D Rainbow+Brown - below the dam; zero rows for Cherokee Lake itself)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06010104&characteristicName=Temperature,%20water&mimeType=csv (station identity + discovery: TDECWPC lake-profile stations named 'CHEROKEE LAKE AT POOR VALLEY CREEK EMBAYMENT', 'CHEROKEE LAKE NEAR JOHNSON HOLLOW', 'CHEROKEE LAKE AT MALINDA BRIDGE'; USGS-03493510 'HOLSTON RIVER AT CHEROKEE DAM(TW), TN')",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HOLST093.5HSS&characteristicName=Temperature,%20water&mimeType=csv (surface: 27.0 C 2000-08-09)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HOLST093.5HSB&characteristicName=Temperature,%20water&mimeType=csv (bottom: 24.4 C 2000-08-09)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (canon, not fetched per PDF policy: 'hatchery-supported streams and lakes are primarily warmwater habitats that cannot support trout year round')",
+    "https://waterdata.usgs.gov/monitoring-location/03493500/ (ledger-verified on-lake station 'CHEROKEE LAKE', site type LK, discontinued 2006-2007; not re-queried - USGS identity endpoint 503 this week, identities verified via WQP station CSV instead)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE1-TAILWATERS-LAKES.md (lead source; its Cherokee facts re-verified live against tn.gov pages cited above)",
+    "https://www.tva.com/environment/lake-levels (tva.com blocks automated fetch per batch experience; TVA dam/release facts carried via TWRA page instead)"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "duck-river-lower",
+  "segment": {
+    "description": "Duck River mainstem from Shelbyville (Bedford County) downstream to Columbia (Maury County), through Bedford, Marshall and Maury counties. Warmwater black-bass/rock-bass/catfish river; this reach lies entirely BELOW the Normandy-tailwater trout water, which TWRA bounds at Three Forks Bridge, upstream of Shelbyville.",
+    "boundaries": "State Highway 41A bridge at Shelbyville down to Columbia; bracketed by USGS 03598000 'Duck River near Shelbyville' (Bedford Co., 35.4804/-86.4992, HUC 06040002) and USGS 03599500 'Duck River at Columbia' (Maury Co., 35.6181/-87.0323, HUC 06040003). The duck-river-tailwater catalog entry (dam to Three Forks Bridge area) is upstream and is a separate water."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null,
+      "note": "The nearest cold release is Normandy Dam (TVA) far upstream, but its trout-stocked tailwater ends at Three Forks Bridge, above Shelbyville (TWRA Duck River page), so no dam tailwater applies to this reach. TWRA states even that upstream tailwater 'usually warm[s] above the 70 F mark' in non-stocking months, 'exceeding the upper limit for trout survival' - this reach is downstream of and warmer than that reach."
+    },
+    "springFed": {
+      "value": false,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+      "note": "TWRA describes the Shelbyville-to-Columbia river as a warmwater bass/rock-bass/catfish float river; no spring influence is documented anywhere consulted."
+    },
+    "elevationFt": null,
+    "notes": "Reach-specific USGS/TDEC grab record documents classic warmwater temps: summer highs of 25-28 deg C at Shelbyville and 28-32 deg C at Columbia."
+  },
+  "summerTemperature": [
+    { "celsius": 28.0, "monthObserved": 7, "year": 2002, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03598000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.6, "monthObserved": 8, "year": 2005, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03598000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 32.0, "monthObserved": 8, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 30.0, "monthObserved": 8, "year": 2005, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599500&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 29.0, "monthObserved": 7, "year": 2001, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599500&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation exists for this reach and none is expected: TWRA stocks no trout anywhere on this reach (workbook has zero rows from Shelbyville to Columbia), and TWRA's own biologist text - written for the cooler tailwater immediately upstream - says river water temperatures 'usually warm above the 70 F mark' outside the Nov-Jun stocking season, 'exceeding the upper limit for trout survival'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented in this reach; TWRA documents smallmouth/spotted bass, rock bass and catfish as the fishery. Winter put-and-take programs in the same counties (Big Rock Greenway, Marshall Co.; McCutcheon Creek, Maury Co.) are separate tributary/greenway waters, not the Duck mainstem.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+      "note": "TWRA's page lists Rainbow Trout among the Duck River's fisheries, but every documented trout element on the page (Nov-Jun rainbow stocking dam-to-Three-Forks-Bridge, 7-trout creel) belongs to the tailwater reach ABOVE Shelbyville - a different catalog entry. No trout stocking or trout fishery is documented within Shelbyville-to-Columbia."
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Reach-specific USGS/TDEC grab records show 25-28 deg C summer water at Shelbyville and 28-32 deg C at Columbia, and TWRA stocks no trout here while stating even the cooler tailwater above Shelbyville exceeds the trout-survival limit outside the Nov-Jun stocking window.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03598000&characteristicName=Temperature%2C%20water&mimeType=csv (229 dated temps 1967-2005 at 'DUCK RIVER NEAR SHELBYVILLE, TN'; Jun-Sep maxima: 2002-07-16 28.0, 2005-08-25 27.6, 1980/1997/2003-07 27.0, 1999-08-17 26.5, multiple 25.2-26.0; 76 summer results)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599500&characteristicName=Temperature%2C%20water&mimeType=csv (148 dated temps 1966-2005 at 'DUCK RIVER AT COLUMBIA, TN'; Jun-Sep maxima: 1980-08-14 32.0, 1993-08-25 30.4, 1980-07-08 30.0, 2005-08-11 30.0, 1995-08-21 29.3, 2001-07-24 29.0; 49 summer results)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03598000&mimeType=csv and https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03599500&mimeType=csv (station identity: Shelbyville gauge in Bedford Co. HUC 06040002; Columbia gauge in Maury Co. HUC 06040003 - both bracket this catalog reach)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html (fetched 2026-09-18; key passage: 'the Normandy tailwater section of the Duck River from the dam downstream to Three Forks Bridge is stocked annually with Rainbow Trout from November through June. Water temperatures usually warm above the 70 F mark during the remaining months exceeding the upper limit for trout survival.' Three Forks Bridge to SH-41A at Shelbyville and downstream are described as rock-bass/smallmouth float water with no trout element)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03598000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (recent instantaneous temps attempted - endpoint returned empty/503)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (zero rows for the Duck River mainstem in Bedford/Marshall/Maury; adjacent sites are tributary greenway/creek winter programs: Big Rock Greenway Marshall Co., McCutcheon Creek Maury Co.; the only Duck-named row is 'Normandy TW / Duck River' Tailwater J,F,M,N,D - the upstream tailwater catalog entry)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (fetched 2026-09-18; Region II trout list names only 'Normandy Dam, Duck River - Rainbow - November through June' - the tailwater reach above this segment)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (TWRA Trout Management Plan 2017-2027; canonical quote, not fetched per PDF ban)",
+    "Sibling-trap check: batch 1's duck-river-tailwater record (Bettoli TWRA 01-43, 27 deg C Aug 2000, winter stocking) applies only to the dam-to-Three-Forks reach - deliberately NOT transferred to this record; this record cites only Shelbyville/Columbia-gauge and TWRA-page facts specific to Shelbyville-to-Columbia"
+  ]
+}

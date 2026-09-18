@@ -1,0 +1,67 @@
+{
+  "slug": "pine-creek-dekalb",
+  "segment": {
+    "description": "Pine Creek (GNIS 01314030) of DeKalb County, the Caney Fork/Center Hill fringe tributary near Smithville that runs ENE from headwaters ~35.93,-85.86 to its mouth in the Center Hill Lake pool at ~35.911,-85.712. Identity pinned by catalog HUC 05130108 (Caney) plus USGS/TDEC: all Pine Creek stations in DeKalb carry HUC 05130108 (same-name Pine Creeks in Scott Co. and elsewhere are different waters).",
+    "boundaries": "Catalog: TWRA spring-stocked DeKalb County creek in the Center Hill fringe (no reach limits given). TWRA stocking sites, both spring program, 900 rainbow each: S1 Big Rock Rd. Bridge Crossing 35.9080,-85.7715 and S2 Student Home Rd. Bridge Crossing 35.9048,-85.7840. The TDEC temperature record (TDECWPC-PINE005.7DB, 35.9077,-85.7712) sits at the Big Rock Rd crossing, i.e. inside the stocked reach."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Station/search?siteid=TDECWPC-PINE005.7DB&mimeType=csv",
+    "notes": "Free-flowing tributary entering the Center Hill Lake pool well upstream of Center Hill Dam; no dam on the stocked reach. A USGS station named 'PINE CREEK SPRINGS NEAR SMITHVILLE, TN' (03422619) documents a mapped spring site in this drainage but has no published data series - not sufficient to call the creek spring-fed. Caney Fork tailwater stocking sites (Long Branch / Buffalo Valley recreation areas) in the same county are a DIFFERENT water (the Caney Fork itself) and were excluded."
+  },
+  "summerTemperature": [
+    { "celsius": 17.75, "monthObserved": 6, "year": 2003, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINE005.7DB&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.29, "monthObserved": 6, "year": 2008, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINE005.7DB&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.43, "monthObserved": 7, "year": 2007, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINE005.7DB&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.96, "monthObserved": 8, "year": 2007, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINE005.7DB&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.93, "monthObserved": 9, "year": 2007, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINE005.7DB&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; TWRA's program here is seasonal spring put-and-take rainbow (2026 schedule: weeks of 2/22, 3/22 and 3/29 only).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. The creek has no entry (special regulation or wild-trout listing) on TWRA's Tennessee Trout Regulations page as fetched 2026-09-18.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27DEKALB%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "TDEC grabs at the stocked Big Rock Rd crossing (2003-2008) show July-August water peaking at 19.96 C - cool enough that summer trout survival is physically plausible - but the stocking program is spring-only and no holdover or wild-trout evidence exists, so year-round survival is unproven in both directions.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 3 'Pine Creek' rows, county DeKalb, Seasonal, Rainbow Trout (weeks 2/22, 3/22, 3/29/2026)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27DEKALB%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100 (live 2026-09-18: Pine Creek S1 Big Rock Rd + S2 Student Home Rd, Smithville, 900 rainbow each, Spring; Caney Fork tailwater rows excluded as a different water)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A041&characteristicName=Temperature%2C+water&siteType=Stream&mimeType=csv (DeKalb County sweep: 89 stream stations with temperature data; Pine Creek is carried by USGS-03422700, TDECWPC-PINE005.7DB and TDECWR_WQX-TNW000004793, all HUC 05130108)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINE005.7DB&characteristicName=Temperature,%20water&mimeType=csv (19 results 2002-2008; summer-window values extracted, 2007-09-04 and 2008-06-10 duplicated rows deduplicated)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004793&characteristicName=Temperature,%20water&mimeType=csv (3 results, April/May visits only 2015-2023: 14.03-16.84 C - no summer data)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=TDECWPC-PINE005.7DB&mimeType=csv (identity: 'PINE CREEK', River/Stream, 35.9077/-85.7712, DeKalb 041, HUC 05130108 - co-located with TWRA site S1)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422700&characteristicName=Temperature,%20water&mimeType=csv (0 rows; station exists but no published series per wave-3 probes)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422710&characteristicName=Temperature,%20water&mimeType=csv (0 rows)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422619&characteristicName=Temperature,%20water&mimeType=csv (0 rows; the Pine Creek Springs station)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03422700&siteOutput=expanded&format=rdb (attempted; HTTP 503 on 2026-09-18 - elevation left null)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18; zero entries for Pine Creek - no special regulation, no wild-trout listing)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only: station numbers, site coordinates, identity rulings; all facts re-verified against the primary URLs above)"
+  ]
+}

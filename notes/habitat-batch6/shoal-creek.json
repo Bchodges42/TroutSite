@@ -1,0 +1,59 @@
+{
+  "slug": "shoal-creek",
+  "segment": {
+    "description": "Lawrence County, TN main stem of Shoal Creek (GNIS 00153439, HUC 06030005 Pickwick Lake subbasin) - a large free-flowing Highland Rim stream flowing southwest from the Lawrenceburg area past David Crockett State Park to the Iron City area at the Alabama line, continuing to the Tennessee River at Florence AL (the Alabama reach is a different jurisdiction and is not covered here). Documented at two USGS stations on the TN reach: 03588000 Shoal Creek at Lawrenceburg (55.4 sq mi drainage) and 03588500 Shoal Creek at Iron City (348 sq mi drainage).",
+    "boundaries": "Catalog gives no reach limits; record covers the TN main stem in Lawrence County from the Lawrenceburg area (~784 ft gauge datum) downstream to Iron City (~534 ft gauge datum) near the state line. All temperature facts below are from the two TN gauge stations."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null,
+      "note": "The catalog YAML notes call Shoal Creek 'spring-fed', but no agency document verifying spring influence on this reach was found; treated as unverified."
+    },
+    "elevationFt": 534,
+    "notes": "Low-elevation Highland Rim stream: gauge datum 534.22 ft NGVD29 at Iron City (lower end of the TN reach) and 784.41 ft at Lawrenceburg (upper end), per WQP station metadata. David Crockett State Park (Lawrenceburg) sits on this creek west of town (park page describes the park as along Shoal Creek); the park page documents no trout fishery. Wave-2 ledger also flagged a second in-town station (03588000, discontinued daily record 1932-1991; WQP water-quality samples 1967-1991)."
+  },
+  "summerTemperature": [
+    { "celsius": 28.0, "monthObserved": 8, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.8, "monthObserved": 8, "year": 1975, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 7, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 7, "year": 1990, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.0, "monthObserved": 7, "year": 2001, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 25.0, "monthObserved": 8, "year": 2005, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 23.9, "monthObserved": 7, "year": 1975, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 7, "year": 1979, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 8, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.5, "monthObserved": 7, "year": 1991, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588000&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation of any kind found, and no put-and-take basis on this water: TWRA's live 2026 stocking datatable (616 rows, fetched 2026-09-18) contains zero rows for a location named 'Shoal Creek' - the only Shoal token is 'East Fork Shoal Creek' (Lawrence Co.), a different catalog water. A 2005 Tuscaloosa News report describes historical TWRA stockings of ~1,000 trout into Shoal Creek (January and March) in a normal season, but this is a newspaper item, not an acceptable sole source, and no agency schedule confirms it; noted as a lead only.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation found on any TN reach of Shoal Creek. Peer-reviewed survey of Factory Creek (Shoal Creek system, Pickwick Lake subbasin; 2017 collections, 58 species extant of 75 historical) documents a species-rich warmwater fish assemblage and names no trout. Shoal Creek appears on no TWRA wild trout, delayed-harvest, or special-regulation trout list; its regional reputation is a smallmouth/black bass stream.",
+    "evidenceUrl": "https://www.eaglehill.us/SENAonline/articles/SENA-18-4/17-Ray.shtml"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples at the Iron City station (348 sq mi, representative of the whole TN reach below Lawrenceburg) show July-August water up to 28.0 C across 1974-2005, with the smaller upper station also reaching 26.5 C - warmwater summer conditions on a stream TWRA does not stock and where no trout are documented.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03588500&mimeType=csv (identity: 'SHOAL CREEK AT IRON CITY, TN', HUC 06030005, 348 sq mi, Lawrence Co. 099, datum 534.22 ft - verified via WQP because USGS identity pages were 503ing this week)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03588000&mimeType=csv (identity: 'SHOAL CREEK AT LAWRENCEBURG, TN', HUC 06030005, 55.4 sq mi, datum 784.41 ft)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588500&characteristicName=Temperature,%20water&mimeType=csv (69 summer samples 1974-2005)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03588000&characteristicName=Temperature,%20water&mimeType=csv (37 summer samples 1967-1991)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03588500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (MISS: no instantaneous temperature series returned - no temp sensor on this gauge)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live TWRA 2026 datatable: 0 'Shoal Creek' rows; 5 'East Fork Shoal Creek' rows - a different catalog water)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://tnstateparks.com/parks/david-crockett-state-park (park on Shoal Creek west of Lawrenceburg; no trout fishery documented - page verified via search snippets; direct fetch 403s bots)",
+    "https://www.eaglehill.us/SENAonline/articles/SENA-18-4/17-Ray.shtml (Factory Creek / Shoal Creek system fish survey, Southeastern Naturalist 2019 - verified live)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (leads only: gauge identities, station periods, ledger's independent finding of zero mainstem stocking rows; cited facts re-verified at primary URLs above)",
+    "https://www.tuscaloosanews.com (2005 Shoal Creek trout-stocking item surfaced in search - newspaper lead, not citable as sole evidence, not fetched behind archive/paywall)",
+    "catalog YAML packages/content/streams/tn/shoal-creek.yaml (claims stockingProgram: true + spring-fed; conflicts with live TWRA datatable absence - conflict recorded, not resolved)"
+  ]
+}

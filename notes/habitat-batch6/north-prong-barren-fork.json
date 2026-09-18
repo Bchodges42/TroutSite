@@ -1,0 +1,90 @@
+{
+  "slug": "north-prong-barren-fork",
+  "segment": {
+    "description": "North Prong Barren Fork River, the small headwater prong of the Barren Fork in the same Warren County drainage (HUC 05130107), cataloged as a creek-scale stocked water. TWRA's stocking feed row for this water is 'N Barren Fork Creek' (Warren County) - the only 'N Barren Fork' water in the feed.",
+    "boundaries": "The North Prong from its headwaters to its confluence with the South Prong/main Barren Fork in Warren County. Temperature evidence: TDEC station TNW000004552 on the prong (35.697 N) and USGS 03420470 at Oak Grove (35.711 N), both on the lower prong."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No cold-water source documented by any agency. However, this prong's summer thermal regime is measurably cooler than the main-stem Barren Fork downstream: TDEC's 2023 sampling on the prong peaked at 19.77 C (Jul 2023), versus 26.8 C on the main stem the same era (2007). No canopy/gradient documentation was found.",
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 19.77,
+      "monthObserved": 7,
+      "year": 2023,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 19.43,
+      "monthObserved": 8,
+      "year": 2023,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 19.72,
+      "monthObserved": 9,
+      "year": 2023,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 21.5,
+      "monthObserved": 8,
+      "year": 1985,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.5,
+      "monthObserved": 6,
+      "year": 1985,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No documentation either way. TWRA stocks the prong only twice in the 2026 calendar ('N Barren Fork Creek': seasonal rainbow weeks of 3/22 and 4/26); no survival-between-stockings evidence exists.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented: the North Prong Barren Fork appears in no TWRA trout category - the wild-trout list on TWRA's trout regulations page names only East Tennessee streams (North River, Bald River, Left Prong of Hampton Creek, Rocky Fork, etc.) and no Middle Tennessee prong (page checked live this session).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "The only measured summer temperatures on this prong (TDEC 2023: 19.09-19.77 C; USGS 1985: 19.0-23.5 C) are the coolest of the Caney Fork headwater group and do not rule out summer trout survival, but TWRA stocks it just two spring weeks and no agency evidence documents trout surviving between stockings.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv (USGS 03420470 'NORTH PRONG BARREN FORK AT OAK GROVE, TN': 8 rows 1983-1985 - Jun 1984 20.0, Jun 1985 23.5, Jul 1985 19.0, Aug 1985 21.5 C; a Sep 1984 row of '1020' C is an obvious data-entry error and was excluded. TDECWR_WQX-TNW000004552 'North Prong Barren Fork': 13 rows 2015-2024 - summer maxima 17.87-19.77 C, the coolest summer record of the Caney Fork headwater group)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-86.05%2C35.50%2C-85.55%2C35.90&characteristicName=Temperature%2C+water&mimeType=csv (station search: 'NORTH PRONG BARREN FORK AT OAK GROVE, TN' and TDEC 'North Prong Barren Fork' confirmed as the only two temperature stations on the prong; also located 'SOUTH PRONG BARREN FORK NEAR TROUSDALE, TN' 03420440)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (fetched this session: 'N Barren Fork Creek', Region 3, Warren County, Seasonal, Rainbow Trout, weeks 3/22 and 4/26/2026)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied workbook: 2 'N Barren Fork Creek' rows, Warren, Seasonal, Rainbow - CONFLICTS with the catalog YAML's seasonMonths 12/1/2 'programmatic' winter claim; the workbook is the authoritative program calendar, so this record reports spring seasonal stocking while noting the catalog's winter-months claim)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched this session: no North Prong Barren Fork entry in any trout category; wild-trout list is East Tennessee only)",
+    "repo-local: packages/content/streams/tn/north-prong-barren-fork.yaml (catalog claims: stockingProgram true, seasonMonths Dec/Jan/Feb programmatic - unverified by any agency page found)",
+    "repo-local: docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (Barren Fork drainage gauge and stocking verification; underlying URLs re-cited above)"
+  ]
+}

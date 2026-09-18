@@ -1,0 +1,59 @@
+{
+  "slug": "tims-ford-lake",
+  "segment": {
+    "description": "Tims Ford Lake/Reservoir itself - the 10,600-acre Elk River impoundment near Winchester with a major portion in Franklin County (catalog: Franklin/Moore counties). This record deliberately does NOT transfer tailwater facts to the lake: the trout fishery and March-December stocking TWRA documents are for the Elk River BELOW Tims Ford Dam, which is the separate elk-river catalog entry (evidenced in the habitat-survival batch 1).",
+    "boundaries": "Catalog: reference waterbody from the Tennessee waterways inventory - the whole reservoir, Tims Ford Dam (completed 1970, TVA-owned/operated per TWRA's live page) upstream along the Elk River and its arms (including the Boiling Fork and Tims Ford Creek arms). Full pool 888 ft msl, winter pool 873 ft msl."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 888,
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/tims-ford-reservoir.html",
+    "notes": "This water is the IMPOUNDMENT, not a tailwater - damTailwater is null for the lake itself. The impounding structure is Tims Ford Dam, completed 1970; TWRA's live reservoir page states 'The Tennessee Valley Authority (TVA) owns and operates Tims Ford Reservoir' (note: the roster's working assumption of USACE operation is contradicted by TWRA's page - TVA-built and TVA-operated). Full pool elevation 888 ft msl (value above). The dam's deep cold releases support the documented Elk River tailwater trout stocking below the dam - a different catalog water; none of that program applies inside the lake."
+  },
+  "summerTemperature": [
+    { "celsius": 27.3, "monthObserved": 6, "year": 2002, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=NALMS-F1272660&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 28.2, "monthObserved": 6, "year": 2002, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=NALMS-F1272660&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 31.0, "monthObserved": 7, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 29.31, "monthObserved": 8, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.0, "monthObserved": 9, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 25.87, "monthObserved": 9, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.7, "monthObserved": 6, "year": 2023, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable as documented - TWRA stocks no trout in the reservoir at all (the TWRA stocking workbook and its official source table contain zero trout rows for Tims Ford Lake; the only 'Tims Ford' trout row is 'Tims Ford TW / Elk River', the tailwater below the dam), so there is no stocked cohort that could hold over. No agency holdover documentation exists for the lake.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild or resident trout documentation of any kind for the reservoir. TWRA's 'What you can catch' list and regulations for Tims Ford are entirely warmwater (black bass, crappie, catfish, striped/hybrid bass, white/yellow bass, walleye, sunfish); no trout entry appears anywhere on the page.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/tims-ford-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Measured summer surface temperatures on the reservoir run 27.3-31.0 C (2002-2023), TWRA stocks trout only in the river below Tims Ford Dam and not in the lake, and the lake is absent from TWRA's 8-water year-round reservoir trout program.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/tims-ford-reservoir.html (live 2026-09-18 via redirect: 10,600-acre impoundment, Franklin County major portion, TVA owns and operates, dam completed 1970, full pool 888 ft / winter pool 873 ft, warmwater-only 'What you can catch' list and regs - zero trout in the fishery; the only 'trout' strings on the page are the site navigation menu)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (live 2026-09-18: 'Reservoir Trout Stocking Information - TWRA stocks the following reservoirs with trout to provide year-round trout fishing opportunities: Dale Hollow, Parksville, Calderwood, Chilhowee, Fort Patrick Henry, South Holston, Tellico (Upper), Watauga' - Tims Ford Lake is NOT on the list; tailwater section lists 'Tims Ford Dam, Elk River - Brook, Brown, Cutthroat, Rainbow - March through December - Special Trout Regulations', i.e. below the dam)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - exactly 1 'Tims Ford' row: 'Tims Ford TW / Elk River', Franklin/Moore, Tailwater, Rainbow+Brown, months M,A,M,J,J,A,S,O,N,D - zero trout stocking rows for the LAKE (absence itself is the fact)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18, contains the same single Tims Ford tailwater row)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-86.30%2C35.05%2C-85.90%2C35.45&siteType=Lake%2C%20Reservoir%2C%20Impoundment&characteristicName=Temperature%2C+water&mimeType=csv (4 lake-type stations with temperature data in the Tims Ford bBox; NALMS-F1272660 is the only one named for Tims Ford Lake itself)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=NALMS-F1272660&characteristicName=Temperature,%20water&mimeType=csv (2 surface measurements on Tims Ford Lake, 2002-06-24: 27.3 and 28.2 C)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature,%20water&mimeType=csv (20 measurements 2012-2023 at the TDEC 'Boiling Fork Creek' reservoir-type station, 35.1893,-86.1101, sampling the Tims Ford lake arm near Winchester; summer values extracted - 23.37-31.0 C. Attribution note: this station is named for the inflowing creek, so its warmest readings may include arm/creek-head influence; the mid-lake NALMS 27-28 C values corroborate warm surface conditions)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (live 2026-09-18: the only Tims Ford trout rule is 'Elk River: Tims Ford Dam to I-65 bridge, including tributaries - Brown Trout 20-inch minimum...' - a below-the-dam tailwater rule that does not govern the lake)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (canonical context: TWRA's plan describes hatchery-supported streams and lakes as primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (lead source only: Elk River reach disambiguation; all facts re-verified against the primary URLs above)"
+  ]
+}

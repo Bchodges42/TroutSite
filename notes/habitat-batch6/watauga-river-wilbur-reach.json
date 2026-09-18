@@ -1,0 +1,82 @@
+{
+  "slug": "watauga-river-wilbur-reach",
+  "segment": {
+    "description": "The short (~1.5 mile) riverine Watauga River between Watauga Dam and Wilbur Lake (Wilbur Reservoir) in Carter County - the cold, clear release water closing the Watauga Lake -> Wilbur Lake -> Watauga River tailwater chain.",
+    "boundaries": "Watauga Dam (USGS 03483950 below-dam gauge; spillway-release station 03483600) downstream ~1.5 miles to the head of Wilbur Reservoir (Wilbur Dam sits ~3 river miles below Watauga Dam at Watauga River Mile 34 per TWRA's Wilbur Tailwater plan). SIBLING TRAP GUARD: this is NOT the celebrated Wilbur tailwater below Wilbur Dam (catalog watauga-river, batch-1 high-confidence record) - none of that record's facts are transferred here."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Watauga Dam (TVA)",
+      "operator": "TVA",
+      "releaseType": "bottom-draw",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1550,
+    "notes": "TWRA's Wilbur Tailwater Trout Fishery Management Plan 2022-2027 (cited URL, not fetched per PDF policy; text quoted in batch-1/wave-ledger records) fixes the geometry - Wilbur Dam at WRM 34 impounds a ~72-acre re-regulating pool about 3 miles below Watauga Dam - and documents turbine venting of Watauga Dam discharges so the chain's releases meet TVA's 6.0 mg/L DO target, i.e. deep (bottom) releases. Direct temperature evidence for water transiting this dam-to-dam chain: USGS-03483980 'WATAUGA RIVER AT WILBUR DAM, TN (TAILWATER)' - the discharge at the far (downstream) end of Wilbur Reservoir - measured 8.0 C (6/22/1976), 8.0 C (7/19/1976), 9.5 C (7/20/1976), 10.0 C (8/16/1976), 12.0-13.0 C in September, and 6.0-11.0 C across winter 1975-76 (WQP Result search below). Those samples sit below the 72-acre pool, so the release water is at or colder than that when it enters this reach; ~1,550 ft elevation per USGS 03484000 datum used for the chain in batch-1. Dam-release flow in this reach follows TVA generation schedules; minimum-flow/intermittency was not assessed in this pass."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 8.0,
+      "monthObserved": 6,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483980&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 9.5,
+      "monthObserved": 7,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483980&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 10.0,
+      "monthObserved": 8,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483980&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 13.0,
+      "monthObserved": 9,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483980&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No fishery survey or holdover study specific to this 1.5-mile reach was found; TWRA's Wilbur plan documents holdover/survival for the tailwater BELOW Wilbur Dam (a different catalog entry), and the 2017-2027 statewide plan counts Wilbur Reservoir among the nine reservoirs with maintained trout fisheries. For the reach itself: unknown.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No natural-reproduction data specific to the reach. Trout stocked at both ends of the chain (Watauga Lake; Wilbur Reservoir Mar-Jul; Wilbur tailwater below) necessarily transit this water, but no in-reach survey documents reproduction.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "The release water transiting this Watauga-Dam-to-Wilbur chain measured 8.0-9.5 C in June-July 1976 and never exceeded 13 C in any season at the chain's discharge gauge (USGS-03483980) - bottom-draw dam water far below any summer trout stress threshold, year-round.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483980&characteristicName=Temperature,%20water&mimeType=csv (16 rows 1975-1976 at 'WATAUGA RIVER AT WILBUR DAM, TN (TAILWATER)': summer 8.0/8.0/9.5/10.0 C; Sept 12.0/13.0 C; winter 6.0-11.0 C; station identity verified via WQP Station CSV)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03483600&characteristicName=Temperature,%20water&mimeType=csv (Watauga Dam spillway-release station - 0 temperature rows; miss)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03483950&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no July 2025 temperature series below Watauga Dam; miss)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched live 2026-09-18; static table rows BOTH present: 'Wilbur Dam, Watauga River - Rainbow - March through December - Special Trout Regulations' [that is the sibling tailwater below Wilbur Dam] and 'Watauga Dam, Wilbur Reservoir - Rainbow - March through July - Statewide Regulations' [the 72-acre reservoir at THIS reach's downstream end]; live stocking-locations report shows separate destinations 'Wilbur' stocked 08/25/2026 and 'Wilbur TW' stocked 08/28/2026 - OWNER BOX from batch-1 now resolved on the affirmative side: the Wilbur Reservoir program is real on TWRA's static tables even though the 616-row weekly workbook JSON (repo-local packages/content/data/twra-stocking-schedule.json, grep /wilbur/i = 1 row, 'Wilbur Tailwater / Watauga River') omits it; no row names the riverine reach itself, so in-reach stocking stays unknown)",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations (fetched live 2026-09-18; Region 4 tailwater table lists 'Watauga River Wilbur Dam Rainbow March through December' and separately 'Wilbur Reservoir Watauga Dam Rainbow March through July' - corroborates the two distinct programs)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf (cited URL, not fetched per PDF policy; geometry + turbine-venting quotes carried from batch-1 record which fetched and quoted it)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06010103&characteristicName=Temperature,%20water&mimeType=csv (identity for 03483950/03483980/03484000; USGS identity endpoint down this week, WQP metadata used instead)"
+  ]
+}

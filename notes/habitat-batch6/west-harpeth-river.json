@@ -1,0 +1,64 @@
+{
+  "slug": "west-harpeth-river",
+  "segment": {
+    "description": "West Harpeth River, Williamson County, Tennessee (catalog) — the principal western fork of the Harpeth, flowing from the Leiper's Fork/Fairview area northeast to its confluence with the Harpeth River mainstem near the Williamson-Davidson county line. Sibling of the mainstem slug harpeth-river (batch 3), not the same water. Disambiguation: the TWRA trout-stocking row 'Harpeth River at Eastern Flank Battle Park' (Williamson) is on the Harpeth MAINSTEM at Franklin — Eastern Flank Battlefield Park fronts the mainstem and is a Harpeth Blueway put-in (Eastern Flank to Pinkerton Park run) — so that stocking row belongs to the mainstem sibling, not to this West Harpeth catalog entry.",
+    "boundaries": "The named West Harpeth River within Williamson County (HUC 05130204); identity stations USGS-03432500 'West Harpeth River near Leipers Fork, TN' (35.89893, -86.96706; 66.9 sq mi) and USGS-03432550 'West Harpeth River at Boyd Mill Rd nr Bingham, TN' (98.6 sq mi)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 634,
+    "notes": "Elevation is the USGS station altitude near Leipers Fork (634.10 ft NGVD29). Identity verified from WQP station metadata columns (station name 'WEST HARPETH RIVER NEAR LEIPERS FORK, TN', Williamson County code 187, HUC 05130204) because the USGS identity endpoint has been 503ing this week. No cold-water source, gorge, or canopy documentation found. TDEC keeps multiple 'West Harpeth River' monitoring stations in this HUC (TDECWPC-WHARP000.3WI Del Rio Pike; TDECWPC-WHARP017.7WI West Harpeth Rd; TDECWR_WQX-TNW000006771/674/676/7116)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.55,
+      "monthObserved": 7,
+      "year": 2016,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432500&siteid=USGS-03432550&siteid=TDECWPC-WHARP000.3WI&siteid=TDECWPC-WHARP017.7WI&siteid=TDECWR_WQX-TNW000006771&siteid=TDECWR_WQX-TNW000006774&siteid=TDECWR_WQX-TNW000006776&siteid=TDECWR_WQX-TNW000007116&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 28.4,
+      "monthObserved": 8,
+      "year": 2018,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432500&siteid=USGS-03432550&siteid=TDECWPC-WHARP000.3WI&siteid=TDECWPC-WHARP017.7WI&siteid=TDECWR_WQX-TNW000006771&siteid=TDECWR_WQX-TNW000006774&siteid=TDECWR_WQX-TNW000006776&siteid=TDECWR_WQX-TNW000007116&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.1,
+      "monthObserved": 7,
+      "year": 2026,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432500&siteid=USGS-03432550&siteid=TDECWPC-WHARP000.3WI&siteid=TDECWPC-WHARP017.7WI&siteid=TDECWR_WQX-TNW000006771&siteid=TDECWR_WQX-TNW000006774&siteid=TDECWR_WQX-TNW000006776&siteid=TDECWR_WQX-TNW000007116&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.0,
+      "monthObserved": 7,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432500&siteid=USGS-03432550&siteid=TDECWPC-WHARP000.3WI&siteid=TDECWPC-WHARP017.7WI&siteid=TDECWR_WQX-TNW000006771&siteid=TDECWR_WQX-TNW000006774&siteid=TDECWR_WQX-TNW000006776&siteid=TDECWR_WQX-TNW000007116&characteristicName=Temperature%2C%20water&mimeType=csv"
+    }
+  ],
+  "holdover": { "documented": null, "detail": "No holdover documentation and no trout stocking program on this fork: the 2026 TWRA stocking workbook contains zero rows for the West Harpeth (catalog stockingProgram: false). The only Williamson County trout row in the workbook, 'Harpeth River at Eastern Flank Battle Park', is on the Harpeth mainstem at Franklin — a different water (sibling slug harpeth-river).", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No trout of any kind (wild or stocked) documented on the West Harpeth in any agency source found. Summer grab temperatures of 26-28.6 deg C across 1988-2026 (USGS/TDEC, cited above) are consistent with a warmwater stream; TWRA's Trout Management Plan 2017-2027 places wild trout in East Tennessee (canon quote; PDF not fetched per rule).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS/TDEC grab samples record 26-28.6 deg C summer water on the West Harpeth (1988-2026, incl. July 2026) and no trout stocking program or trout documentation exists for this fork.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied TWRA workbook, collected 2026-09-17: zero West Harpeth rows; only Williamson trout row is 'Harpeth River at Eastern Flank Battle Park')",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched 2026-09-18; 'Eastern Flank' string present, no West Harpeth string)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=05130204&characteristicName=Temperature%2C%20water&mimeType=csv (337 stations; West Harpeth identity stations verified from name/county/HUC columns)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432500&siteid=USGS-03432550&siteid=TDECWPC-WHARP000.3WI&siteid=TDECWPC-WHARP017.7WI&siteid=TDECWR_WQX-TNW000006771&siteid=TDECWR_WQX-TNW000006774&siteid=TDECWR_WQX-TNW000006776&siteid=TDECWR_WQX-TNW000007116&characteristicName=Temperature%2C%20water&mimeType=csv (135 temp results incl. July 2026)",
+    "https://www.nationalriversproject.com/?location=Harpeth+River (Eastern Flank-to-Pinkerton Park mainstem blueway run — used to place the Eastern Flank stocking site on the mainstem, not the West Harpeth; corroborated by city-of-Franklin park pages via WebSearch)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (batch-03 harpeth-river section, lead source for the mainstem sibling's stocking row)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (cited only; PDF fetch banned)"
+  ]
+}

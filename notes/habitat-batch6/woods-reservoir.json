@@ -1,0 +1,49 @@
+{
+  "slug": "woods-reservoir",
+  "segment": {
+    "description": "Woods Reservoir (AEDC Reservoir), the ~3,600-4,000-acre impoundment at Arnold Air Force Base created by Elk River Dam, Franklin County near Tullahoma/Manchester. Built to supply cooling water for the Arnold Engineering Development Complex wind-tunnel facilities and open to public fishing.",
+    "boundaries": "Entire reservoir behind Elk River Dam (completed September 1952), fed by Bradley Creek and the upper Elk River drainage; TWRA manages the AEDC Woods Reservoir WMA on its shores."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Elk River Dam (AEDC)",
+      "operator": "US Air Force (AEDC Base Civil Engineering, Arnold AFB)",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.arnold.af.mil/News/Article-Display/Article/3163926/woods-reservoir-completed-70-years-ago-this-month",
+      "note": "Elk River Dam was completed September 1952 expressly to impound a cooling-water supply for AEDC test facilities - i.e., a warm industrial-cooling reservoir, not a cold-release storage project. No documentation of the release draw depth was found; the dam's tailwater is not a trout fishery."
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Reservoir purpose is cooling-water supply for AEDC per the official Arnold AFB history article; no cold-water habitat design documented anywhere consulted."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout holdover evidence exists for Woods Reservoir: TWRA's Woods Reservoir fishing page documents a warmwater fishery (largemouth/smallmouth/spotted bass, crappie, bluegill, catfish) with no trout program, and the TWRA stocking workbook has zero trout rows for the reservoir. TWRA Trout Management Plan 2017-2027 classes hatchery-supported lakes as 'primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented. TWRA lists only warmwater gamefish for the reservoir; the Trout Management Plan places wild trout in East Tennessee mountain waters.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The reservoir exists to supply AEDC cooling water, TWRA documents it solely as a warmwater bass/crappie/catfish fishery, and the TWRA stocking workbook carries zero trout stocking rows for it.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html (fetched 2026-09-18; page body lists warmwater species only - all 'trout' hits are sitewide navigation menu)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep 'Woods': zero rows; Franklin County rows are only Cowan City Park winter rainbows)",
+    "repo-local: packages/content/streams/tn/woods-reservoir.yaml (stockingProgram: false; warmwater targetSpecies; AEDC/Arnold Engineering Development Complex noted)",
+    "https://www.arnold.af.mil/News/Article-Display/Article/3163926/woods-reservoir-completed-70-years-ago-this-month (Air Force history: Elk River Dam completed Sept 1952, ~4,000-acre Woods Reservoir built for AEDC cooling water; verified via WebSearch snippets)",
+    "https://www.arnold.af.mil/News/Article-Display/Article/4467721/aedc-at-75-early-attention-focuses-on-aedc-lake (corroborating AEDC history article)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&statecode=US%3A47&countycode=US%3A47%3A051&mimeType=csv (Franklin County WQP temperature-station search: no Woods Reservoir open-water station - stations are AEDC monitoring wells, Spring Creek at AEDC, Tims Ford Lake, and small TDEC tributary/impoundment sites)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (TWRA Trout Management Plan 2017-2027; canonical quote, not fetched per PDF ban)",
+    "WebSearch: 'Woods Reservoir water temperature summer' (only commercial lake-data sites - seatemperature.net, LakeMonster, Omnia - inadmissible as sole evidence under sweep rules, so no temp entry recorded)"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "duck-river-mouth",
+  "segment": {
+    "description": "Duck River mainstem from Columbia (Maury County) down through the Western Highland Rim to its confluence with the Tennessee River (Kentucky Reservoir) near New Johnsonville (Humphreys County), roughly 100 river miles through Maury, Hickman and Humphreys counties. TWRA documents it as a warmwater catfish/bass float river; no trout program exists on this reach.",
+    "boundaries": "Columbia (Riverwalk Park, the most downstream impoundment on the Duck per TWRA) to the Tennessee River confluence near New Johnsonville. Bracketed by USGS 03601990 'Duck River at Hwy 100 at Centerville' (Hickman Co., 35.7842/-87.4600, HUC 06040003) and USGS 03603000 'Duck River above Hurricane Mills' (Humphreys Co., 35.9301/-87.7431, HUC 06040003)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+      "note": "No dam tailwater on this reach: TWRA calls Riverwalk Park in Columbia 'the most downstream impoundment on the Duck River'. The nearest trout-relevant release (Normandy Dam tailwater) ends at Three Forks Bridge far upstream above Shelbyville - a different catalog reach entirely."
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "TWRA describes Centerville-to-mouth habitat as 'large pools, snags and trees, sand bars, and long wide shoals' - lowland warmwater structure. TDEC's scenic-river page documents the river's confluence with the Tennessee River near New Johnsonville; the receiving water is Kentucky Reservoir, a warmwater mainstem reservoir. No cold-water mechanism is documented anywhere consulted."
+  },
+  "summerTemperature": [
+    { "celsius": 29.0, "monthObserved": 7, "year": 2001, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601990&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 29.0, "monthObserved": 8, "year": 2005, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601990&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 33.5, "monthObserved": 8, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 30.0, "monthObserved": 7, "year": 1990, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 29.5, "monthObserved": 7, "year": 2000, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603000&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation exists and no trout are stocked on this reach: the TWRA stocking workbook has zero Duck-mainstem rows in Maury/Hickman/Humphreys. Seasonal rainbow programs in the same counties (Cane Creek and Mill Creek, Hickman Co.; Hurricane Creek, Humphreys Co.) are separate small creeks, not the Duck mainstem. TWRA Trout Management Plan 2017-2027: hatchery-supported streams are 'primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented on the lower Duck. TWRA's page describes the reach's fishery as catfish (Columbia-Centerville 'among the best for catfish in middle Tennessee') and warmwater habitat; rock bass are noted as more abundant upstream of Columbia.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Reach-specific USGS/TDEC grab records show summer water of 29 deg C at Centerville and up to 33.5 deg C above Hurricane Mills, and TWRA documents the reach purely as a warmwater catfish/bass river with no trout stocking anywhere from Columbia to the mouth.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03601990&characteristicName=Temperature%2C%20water&mimeType=csv (28 dated temps 2001-2005 at 'DUCK RIVER AT HWY 100 AT CENTERVILLE, TN'; summer maxima 2001-07-13 29.0, 2001-08-24 29.0, 2005-08-25 29.0, 2002-07-15 28.0, 2003-07-28 27.1)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603000&characteristicName=Temperature%2C%20water&mimeType=csv (150 dated temps 1966-2000 at 'DUCK RIVER ABOVE HURRICANE MILLS, TN'; summer maxima 1984-08-14 33.5, 1985-07-15 30.0, 1990-07-09 30.0, 2000-07-12 29.5, 1966-07-26 28.3; 45 summer results)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03601990&mimeType=csv and https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03603000&mimeType=csv (station identity: Centerville gauge Hickman Co., Hurricane Mills gauge Humphreys Co., both HUC 06040003 - both on this catalog reach)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html (fetched 2026-09-18; passages: 'Columbia downstream to Centerville is also a very good area to fish... among the best for catfish in middle Tennessee'; 'the most downstream stretch of the Duck is from Centerville to the mouth... habitat is dominated by large pools, snags and trees, sand bars, and long wide shoals'; 'Riverwalk Park in Columbia is the most downstream impoundment on the Duck River and fish have a straight shot to the Tennessee River'; no trout element attributed below Columbia)",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/duck.html (fetched 2026-09-18; TDEC scenic river page: river 'flows through seven middle Tennessee counties before reaching its confluence with the Tennessee River near New Johnsonville'; quick facts: Coffee, Bedford, Marshall, Maury, Hickman, Humphreys counties)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (Hickman rows: Cane Creek and Mill Creek, Seasonal-type Rainbow Trout; Humphreys rows: Hurricane Creek, Seasonal Rainbow Trout - all separate creeks; zero rows for the Duck River mainstem)",
+    "repo-local: packages/content/streams/tn/duck-river-mouth.yaml (stockingProgram: false; warmwater targetSpecies; counties Maury/Hickman/Humphreys)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (TWRA Trout Management Plan 2017-2027; canonical quote, not fetched per PDF ban)"
+  ]
+}

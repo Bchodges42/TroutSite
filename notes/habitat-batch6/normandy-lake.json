@@ -1,0 +1,49 @@
+{
+  "slug": "normandy-lake",
+  "segment": {
+    "description": "Normandy Reservoir, the TVA impoundment of the Duck River headwaters upstream of Normandy Dam (Bedford/Coffee County line near Normandy and Manchester). This is the lake itself; the duck-river-tailwater catalog entry (a separate water, evidenced in batch 1) begins below the dam.",
+    "boundaries": "Entire reservoir from the Duck River headwaters backwater to Normandy Dam (TVA forebay monitoring station at Duck River Mile 251.3). Reservoir is ~17 miles long; full pool 875 ft MSL."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Normandy Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tva.com/energy/power/valley-weather/lake-information/normandy-reservoir",
+      "note": "Normandy Dam (completed 1976) is one of TVA's largest non-generating dams, operated for flood damage reduction, water supply and recreation. Release draw depth is not documented on the pages consulted, so releaseType stays unknown. The cold, trout-stocked reach is the tailwater BELOW the dam (separate duck-river-tailwater catalog entry) - the reservoir itself is not that reach."
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 875,
+    "notes": "Full summer pool 875 ft MSL (winter pool 864 ft), per TVA lake information. A eutrophic tributary reservoir per the Tennessee 305(b) reporting cited by EPA NEPIS archives - warm, productive basin, not a cold deep-release storage reservoir in the South Holston/Watauga sense."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout holdover evidence exists or is expected to be documented: TWRA's Normandy Reservoir fishing page documents a warmwater fishery (largemouth/smallmouth/spotted bass, crappie, bluegill, catfish, walleye) with no trout fishery, and the repo TWRA stocking workbook contains zero trout stocking rows for the reservoir. The only nearby trout program is 'Normandy TW / Duck River' (Tailwater-type rainbow stockings, months J/F/M/N/D) which belongs to the duck-river-tailwater catalog entry, not this reservoir. TWRA Trout Management Plan 2017-2027: hatchery-supported lakes are 'primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented anywhere for Normandy Reservoir. TWRA's page lists only warmwater gamefish; the Trout Management Plan places wild trout in East Tennessee mountain streams, not Middle Tennessee impoundments.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA documents Normandy Reservoir solely as a warmwater black-bass/crappie/catfish fishery, the TWRA stocking workbook carries zero trout rows for the reservoir, and the Trout Management Plan classes hatchery-supported lakes like this as warmwater habitats that cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html (fetched 2026-09-18; page body lists warmwater species only - all 'trout' hits are sitewide navigation menu)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep 'Normandy': exactly 1 row = 'Normandy TW / Duck River', Coffee/Bedford, Tailwater type, Rainbow Trout, months J,F,M,N,D - the tailwater below the dam, a different catalog entry; zero rows for the reservoir itself)",
+    "repo-local: packages/content/streams/tn/normandy-lake.yaml (stockingProgram: false; warmwater targetSpecies)",
+    "https://www.tva.com/energy/power/valley-weather/lake-information/normandy-reservoir (TVA official lake page; forebay at Duck River Mile 251.3, full pool 875 ft MSL - tva.com blocks plain fetch, facts taken from search-result snippets of the page)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&statecode=US%3A47&countycode=US%3A47%3A003&mimeType=csv (Bedford County WQP temperature-station search: only USGS-03596500 'Duck River at Normandy, TN' - below the dam, wrong reach - and a TDEC Thompson Creek tributary station; no open-water reservoir temperature station found)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (TWRA Trout Management Plan 2017-2027; canonical quote, not fetched per PDF ban)",
+    "https://www.tva.com/environment/lake-levels (catalog officialSource; generic TVA lake levels page)",
+    "WebSearch: 'Normandy Reservoir water temperature dissolved oxygen summer profile' (found eutrophic status in 305(b)/EPA NEPIS and TVA DO study references, plus a below-dam 30.5C temperature standard in Environmental Defense v. TVA litigation - no reservoir-specific citable summer temp table)"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "piney-river-hickman",
+  "segment": {
+    "description": "Piney River of the Duck River basin (GNIS 01306897, HUC-8 06040003), formed at the Dickson County confluence of the West and East Piney and flowing southeast to its Duck River confluence near Vernon in Hickman County - NOT the Rhea County Piney River (Watts Bar watershed, TWRA delayed-harvest water covered in batch 3) and NOT any other Tennessee Piney. Agency monitoring sits on the Hickman course: USGS 03602500 'PINEY RIVER AT VERNON, TN' on the lower reach, TDECWPC-PINEY008.4HI (river-mile 8.4) and TDECWPC-PINEY017.9HI (river-mile 17.9) mid-reach, plus a dense 1996-2000s USGS station set above Pinewood.",
+    "boundaries": "Catalog: 'Duck River tributary and paddling/fishing corridor in Hickman County' (county: Hickman). TDEC-designated scenic segment runs from the West/East Piney confluence in Dickson County to the Duck River confluence in Hickman County (~24.2 mi, designated 2026-05-05), so the catalog's Hickman reach is the lower portion of the scenic segment."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": null,
+    "notes": "Free-flowing Western Highland Rim stream. TDEC's scenic-river page calls the Buffalo the longest un-impounded Duck tributary; the Piney is likewise un-dammed along the designated segment (Class II Pastoral River Area, no impoundments named). No cold-water mechanism is documented in any source checked; agency summer grabs read 21.8-28.0 C along the Hickman course."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.0,
+      "monthObserved": 7,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03602500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.0,
+      "monthObserved": 7,
+      "year": 1977,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03602500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.0,
+      "monthObserved": 7,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03602500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.0,
+      "monthObserved": 8,
+      "year": 2004,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03602500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 21.94,
+      "monthObserved": 7,
+      "year": 2008,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINEY008.4HI&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.77,
+      "monthObserved": 8,
+      "year": 2003,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINEY017.9HI&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Moot given the record: TWRA has never stocked this Piney. The 2026 row-level TWRA schedule contains zero Piney rows outside Rhea County, the Trout MASTER layer lists Piney River sites only at Piney Falls State Natural Area (Rhea Co.), and no holdover claim appears in any source checked.",
+    "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%20LIKE%20%27%25PINEY%25%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies&returnGeometry=false&f=json&resultRecordCount=50"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. TWRA's trout regulations page (fetched 2026-09-18) lists 'Piney River: Cumberland Trail State Park downstream to Highway 27 Bridge' - that is the RHEA County water; the Hickman Piney carries no trout regulation and no wild-trout status. Its 2026 Class II Pastoral River Area designation is a conservation/waterway-protection status, not a cold-water fishery designation.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Four decades of agency grabs at USGS 03602500 (Vernon) plus two TDEC mid-reach stations show June-September water temperatures of 20.6-28.0 C, and no stocking, trout regulation, holdover, or wild-trout evidence exists for this Piney anywhere.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - ZERO rows for any Hickman County Piney River; only 'Piney River' rows are Rhea Co. (3 Seasonal + 1 Delayed Harvest). Absence of stocking is itself the finding; catalog stockingProgram is false.",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%20LIKE%20%27%25PINEY%25%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies&returnGeometry=false&f=json&resultRecordCount=50 (fetched live 2026-09-18: 3 features, ALL 'Piney Falls State Natural Area (S1/S2)', County RHEA - no Hickman sites in the Trout MASTER layer)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A081&characteristicName=Temperature%2C%20water&siteType=Stream&mimeType=csv (Hickman Co. station sweep 2026-09-18: USGS-03602500 'PINEY RIVER AT VERNON, TN' HUC 06040003 plus TDECWPC-PINEY008.4HI / PINEY017.9HI and a 1996-2000s USGS Piney station set NR OAK GROVE / AT PINEWOOD; identity taken from WQP station metadata because waterservices.usgs.gov 503'd all week)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03602500&characteristicName=Temperature,%20water&mimeType=csv (200 grabs 1966-2005; June-September values 19.0-28.0 C including 28.0 C 1986-07-01, 24.0 C 1977-07-14, 24.0 C 1985-07-10 and 1985-08-19, 23.0 C 2001-07-16, 23.0 C 2002-07-11, 23.1 C 2003-07-28, 23.0 C 2004-08-10)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINEY008.4HI&characteristicName=Temperature,%20water&mimeType=csv (13 grabs 1999-2009; summer 20.2 C 2000-05-18, 21.94 C 2008-07-24, 20.88 C 2008-08-14, 21.82 C 2008-09-09)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-PINEY017.9HI&characteristicName=Temperature,%20water&mimeType=csv (20 grabs 2003-2009; summer 24.77 C 2003-08-20, 21.8 C 2004-07-20, 22.51 C 2008-07-24, 21.78 C 2008-08-14, 21.8 C 2008-09-09 - upper mid-reach is no cooler)",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/piney-2.html (fetched live 2026-09-18: 'Piney River (Duck River Watershed) Tennessee Scenic River - Class II Pastoral River Area... Located in Dickson and Hickman counties, Approximately 24.2 miles designated, Designated a Class II Pastoral River Area on May 5, 2026 as That segment beginning with the confluence of the West Piney River and the East Piney River in Dickson County and ending with its confluence with the Duck River in Hickman County'; found via the index page https://www.tn.gov/environment/natural-areas/tn-scenic-rivers.html)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18: the page's only 'Piney River' trout entry is the Rhea Co. water - 'Cumberland Trail State Park downstream to Highway 27 Bridge'; nothing for the Hickman Piney)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)"
+  ]
+}

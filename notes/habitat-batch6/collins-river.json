@@ -1,0 +1,90 @@
+{
+  "slug": "collins-river",
+  "segment": {
+    "description": "The Collins River, a 67-mile Cumberland Plateau river flowing from Grundy County (Savage Gulf gorge headwaters) to its confluence with the Caney Fork above Great Falls Dam. Cataloged with USGS gauge 03421000 (Collins River near McMinnville, mid-basin, below the Barren Fork confluence); TWRA's stocked reach is the lower/mid river.",
+    "boundaries": "Grundy and Warren counties; HUC 05130107 (Collins subbasin). The 6.4-mile Scenic River segment lies in the Savage Gulf gorge in the upper reach; temperature evidence below is from the near-McMinnville gauge on the lower-mid river."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No cold-water source documented for the stocked reach. TDEC documents the UPPER scenic segment (Savage Gulf gorge) as a losing stream that 'flows predominantly underground... except during periods of heavy rainfall' - the gorge headwaters are intermittently dewatered by karst sinks, not a reliable cold source. TDEC: beyond the scenic stretch the Collins is 'one of few rivers in Tennessee with a good population of muskie,' a warmwater indicator for the main river."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.5,
+      "monthObserved": 8,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.8,
+      "monthObserved": 7,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.5,
+      "monthObserved": 8,
+      "year": 1999,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 18.9,
+      "monthObserved": 6,
+      "year": 1966,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421000&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency documentation of holdover either way. TWRA stocks the Collins only in spring/early summer (three seasonal 2026 weeks: 3/1, 3/22, 5/10, Rainbow Trout); no summer or winter stocking rows and no creel or sampling evidence of between-stocking survival were found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented: the Collins appears in no TWRA trout-regulation category (absent from the wild-trout list and every special-regulation section of TWRA's trout regulations page, checked live this session), and the fisheries TWRA/TDEC document for the river are musky and black bass.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS 03421000 at McMinnville recorded summer water temperatures up to 29.5 C (Aug 1986; 27.5-29 C in four other summers of 1964-2005) while TWRA stocks the Collins only in spring/early summer - seasonal put-and-take rainbow with no documented between-stocking survival.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421000&characteristicName=Temperature,%20water&mimeType=csv (206 temperature rows 1964-2005 at the near-McMinnville gauge; June-September values span 18.9-29.5 C with most summers 20-27 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03421000&siteOutput=expanded&format=rdb (identity verified this session: 'COLLINS RIVER NEAR MCMINNVILLE, TN')",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (fetched this session: 'Collins River', Region 3, TYPE Seasonal, Rainbow Trout, weeks 3/1, 3/22, 5/10/2026; feed COUNTY field reads 'Grundy' - the river spans Grundy/Warren)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied workbook mirrors the feed: 3 Collins rows, Seasonal, Rainbow)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched this session: no Collins entry in any trout category)",
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/collins.html (fetched this session: 67-mile river to Caney Fork above Great Falls Dam; Savage Gulf scenic segment is a karst losing stream; musky population below the scenic stretch)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html (musky 'best abundance in the upper reaches of the reservoir, such as the Calfkiller and Collins Rivers' - warmwater management context for the river's mouth)",
+    "repo-local: docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (wave-2 verification of gauge identity, stocking rows, and trout-category exclusion; underlying URLs re-cited above)"
+  ]
+}

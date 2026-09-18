@@ -1,0 +1,76 @@
+{
+  "slug": "stoney-creek-carter",
+  "segment": {
+    "description": "Stoney Creek, a Carter County mountain tributary (GNIS 01327124, HUC 06010103) draining the Holston Mountain slopes to the Watauga River near Hunter/Elizabethton; TWRA spring-stocked trout water.",
+    "boundaries": "Catalog covers the creek (workbook rows are undivided 'Stony Creek', Carter County). Temperature facts attribute to named stations: TDECWPC-STONY006.1CT (RM 6.1, Liberty Hollow Rd off SR 91), TDECWPC-STONY009.9CT (RM 9.9, upstream of the Watauga WTP), and USGS-03484200 'STONEY CREEK AT HUNTER, TN' (58.2 sq mi drainage, lower creek). IDENTITY NOTE: the wild-trout-list entry 'Little Stony Creek ... upstream of the confluence with Plot Branch (1.3 miles upstream of Hwy 321 crossing)' is a SEPARATE small stream near Hampton/SR-67 (TDECWPC-LSTON001.2CT at 36.3081,-82.0719; TDECWPC-FECO66D07), not the stocked Stoney Creek at Hunter/Elizabethton (TDECWPC-STONY000.3CT at 36.3706,-82.1556) - do not conflate the two."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Steep-gradient free-flowing mountain creek (catalog note); no dam, no spring influence claimed. Station identities verified via WQP Station metadata (USGS identity endpoint down this week)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 16.5,
+      "monthObserved": 7,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03484200&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 17.3,
+      "monthObserved": 8,
+      "year": 2001,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-STONY006.1CT&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 16.61,
+      "monthObserved": 8,
+      "year": 2001,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-STONY009.9CT&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation of any kind found for Stoney Creek. Stocking is spring-only (see troutSpecies), and no survey of post-stocking persistence was located.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "The stocked Stoney Creek does not appear on TWRA's wild-trout-streams list or special-regulation lists on the state's regulations publisher page. (Its namesake neighbor Little Stony Creek near Hampton IS on the wild-trout list - separate stream, see segment identity note.)",
+    "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "Single-day summer grabs show genuinely cool water - 16.5 C at Hunter (July 1988) and 16.6-17.3 C on the upper creek (Aug 2001) - but stocking is spring-only, and nothing documents trout persisting past the stocking season.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook, 616 rows; Carter County 'Stony Creek' Seasonal rainbow rows at weeks 3/8, 4/5, 5/3, 5/31/2026 - spring-only program, no summer/winter rows)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched live 2026-09-18; stocking program calendar source)",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations (fetched live 2026-09-18; 'Stony' appears once on the page - the wild-trout list entry for Little Stony Creek near the Plot Branch confluence; the stocked Stoney Creek carries no special regulation)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06010103&characteristicName=Temperature,%20water&mimeType=csv (station discovery/identity: USGS-03484200 'STONEY CREEK AT HUNTER, TN' 58.2 sq mi; TDECWPC-STONY000.3CT/006.1CT/009.9CT on the main creek; TDECWPC-LSTON001.2CT and FECO66D07 on the separate Little Stony Creek)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03484200&characteristicName=Temperature,%20water&mimeType=csv (16.5 C 1988-07-06; 1 row total)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-STONY006.1CT&characteristicName=Temperature,%20water&mimeType=csv (17.3 C 2001-08-07; 1 summer row)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-STONY009.9CT&characteristicName=Temperature,%20water&mimeType=csv (16.61 C 2001-08-07; 1 summer row)",
+    "https://storymaps.arcgis.com/stories/dbb92bdf718f4fd7839bf4b08fb82747 (TWRA trout forecast StoryMap - JS-rendered, no content retrievable to automated fetch; not consulted further)"
+  ]
+}

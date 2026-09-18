@@ -1,0 +1,86 @@
+{
+  "slug": "caney-fork-upper",
+  "segment": {
+    "description": "Free-flowing upper Caney Fork River above Center Hill Lake: Cumberland County headwaters down through the Great Falls Lake pool at Rock Island (Warren/White county line) to the slackwater pools pooled above Center Hill Dam. This is NOT the celebrated Center Hill Dam tailwater (cataloged separately as caney-fork-river) - the tailwater's cold-release facts do not transfer to this reach.",
+    "boundaries": "Cumberland County headwaters downstream to the Center Hill Lake slackwater, passing through Great Falls Lake at Rock Island; the TWRA walleye-run regulation names the free-flowing span 'Rock Island State Park's boat ramp extending upstream to Great Falls Dam.'"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 647,
+    "notes": "No cold-water source documented for this reach. The USGS station at the reach's downstream end (03422500, Caney Fork near Rock Island, at Great Falls Dam) has a datum of 647.09 ft - low relative to the Cumberland Plateau headwaters upstream. TWRA manages the reach as warmwater: the Great Falls Reservoir page lists bass/crappie/catfish/walleye/musky, and the only trout program on the Caney Fork is the Center Hill TAILWATER below the dam (a different catalog reach). TWRA's weekly fishing report covers the Caney Fork as 'Center Hill Tailwater' only."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 26.0,
+      "monthObserved": 7,
+      "year": 1971,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.0,
+      "monthObserved": 8,
+      "year": 1985,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.5,
+      "monthObserved": 7,
+      "year": 1987,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 20.5,
+      "monthObserved": 6,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 17.6,
+      "monthObserved": 6,
+      "year": 1993,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422500&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover is possible to document: TWRA stocks nothing into this reach (the stocking feed's only Caney Fork row is 'Center Hill TW / Caney Fork River', the tailwater below Center Hill Dam), so there is no source of trout to hold over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented anywhere on the upper Caney Fork: the reach appears in no TWRA trout category (absent from the wild-trout list and every other trout designation on TWRA's trout regulations page), and TWRA's Great Falls Reservoir documentation describes a warmwater assemblage (largemouth/spotted/smallmouth bass, white crappie, channel and flathead catfish, walleye, musky, sunfish). A seasonal walleye run (Jan 1-Apr 30 single-hook rule, Rock Island ramp upstream to Great Falls Dam) is the documented cold-season fishery.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples at Caney Fork near Rock Island (03422500) across 1964-1995 show summer water temperatures of 19-26 C (26.0 C in Jul 1971 and Aug 1985) and neither TWRA stocking nor any trout designation exists above Center Hill Dam.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422500&characteristicName=Temperature,%20water&mimeType=csv (80 temperature rows 1964-1995, station verified this session; 32 June-September values spanning 15.0-26.0 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03422500&siteOutput=expanded&format=rdb (identity verified: 'CANEY FORK NEAR ROCK ISLAND, TN', White County TN, datum 647.09 ft, 1,678 sq mi drainage, HUC 05130108)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (fetched this session: zero rows for the upper river; the only Caney Fork row is 'Center Hill TW / Caney Fork River', Type Tailwater, months M,A,M,J,J,A,S,O,N,D, Rainbow/Brown - a different reach)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (live page fetched this session: year-round reservoir program list = Dale Hollow, Parksville, Calderwood, Chilhowee, Fort Patrick Henry, South Holston, Tellico Upper, Watauga - no upper-Caney entry; tailwater section covers Center Hill Dam below the dam only)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (wild-trout and trout-category lists exclude the upper Caney Fork)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html (warmwater species assemblage and musky management for the Caney Fork impoundment reach)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (walleye-run and musky rules for the free-flowing reach above Center Hill Dam)",
+    "https://www.tn.gov/twra/fishing/weekly-fishing-report.html (Caney Fork coverage is tailwater-only)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied workbook, 616 rows; 'caney'/'center hill' pattern search yields only the tailwater row; zero upper-river rows)",
+    "repo-local: docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (wave-2 verification of gauge identities and trout-category exclusions; underlying URLs re-cited above)"
+  ]
+}

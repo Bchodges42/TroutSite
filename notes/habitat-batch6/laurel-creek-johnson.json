@@ -1,0 +1,59 @@
+{
+  "slug": "laurel-creek-johnson",
+  "segment": {
+    "description": "Laurel Creek (GNIS 01290727), a Johnson County, TN stream in the South Fork Holston drainage (HUC 06010102) that rises near the headwaters south of Laurel Bloomery and flows N-NW across the Laurel Bloomery community to the Virginia line, joining the South Fork Holston system in VA (the VA continuation is monitored by Virginia SWCB stations 21VASWCB-6CLAL..., Washington Co VA). Identity verified via WQP station metadata: TDEC stations 'LAUREL CK'/'Laurel Creek' with CountyCode 091 (Johnson) and HUCEightDigitCode 06010102, spanning RM 6.3 above the mouth (36.6110,-81.7536) to RM 15.0 in the headwaters (36.5267,-81.8017), plus USGS-03472400 'LAUREL CREEK ABOVELAUREL BLOOMERY' [sic] verified in a tight WQP bbox. NOT Laurel Fork (Carter Co), NOT the Damascus-VA whitewater Laurel, and NOT the Van Buren County Laurel Creek. USGS's monitoring-location identity service was persistently 503 this week; WQP station columns were used instead.",
+    "boundaries": "Catalog gives no reach limits; TWRA stocks it countywide as 'Laurel Creek'. Record covers the TN main stem RM 6.3-15.0 above the VA line. OWNER-BOX CANDIDATE: the catalog note says TWRA lists the creek 'for both Johnson and Van Buren county access points', but TWRA's 2026 workbook carries separate 'Laurel Creek' rows for Van Buren Co (Region 3, weeks of 3/8-5/17/2026) and Johnson Co (Region 4, weeks of 3/1-6/21/2026) - two distinct waters ~200 airline miles apart sharing a name; this record covers only the Johnson County water."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Free-flowing upland creek in the South Fork Holston HUC (06010102); TDEC winter grabs read 0.2-3.1 C (Dec-Feb 2017-2023), and the creek runs through the Laurel Bloomery valley with roadside access along Route 91 (regional outdoors reference; no agency access citation). No gorge/canopy/elevation citation found."
+  },
+  "summerTemperature": [
+    { "celsius": 16.3, "monthObserved": 7, "year": 2007, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LAURE010.6JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.3, "monthObserved": 6, "year": 2008, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LAURE010.6JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 21.4, "monthObserved": 8, "year": 2010, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003428&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.8, "monthObserved": 7, "year": 2012, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003431&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.1, "monthObserved": 9, "year": 2012, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003431&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.3, "monthObserved": 7, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003429&siteid=TDECWR_WQX-TNW000003431&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 16.4, "monthObserved": 8, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003429&siteid=TDECWR_WQX-TNW000003431&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.0, "monthObserved": 6, "year": 2018, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003429&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.0, "monthObserved": 7, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003429&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 15.2, "monthObserved": 9, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003429&siteid=TDECWR_WQX-TNW000003431&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found for the Johnson County Laurel Creek; regional fly-fishing websites claim wild rainbow trout between Laurel Bloomery TN and Damascus VA, but those are content-farm/guide-shop domains excluded by the evidence rules and no agency survey corroborates them.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No acceptable-source documentation: Laurel Creek is not named in TWRA's Region IV Trout Fisheries Report 2017 wild-trout discussion (its 'Laurel Fork' is the Carter County Dennis Cove water), is absent from TWRA's Wild Trout Streams and special-regulation lists (2026 regs page grepped; the only Johnson County wild-trout entry is Beaverdam Creek), and no TWRA/university survey of this creek surfaced. Unverified wild-rainbow claims exist on fly-shop sites only.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "82 TDEC grab samples (2002-2023) show summer highs mostly 15-19 C (max 21.4 C, Aug 2010, lower creek near the VA line) - borderline-trout habitat - but trout presence is documented only within the Mar 1-Jun 21 TWRA stocking window and by no acceptable source outside it.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-81.85,36.49,-81.68,36.65&characteristicName=Temperature,%20water&mimeType=csv (identity: TDECWPC-LAURE006.3CT/LAURE006.3JO/LAURE010.6JO/LAURE012.4JO/LAURE013.8JO/LAURE015.0JO + TDECWR_WQX-TNW000003428/TNW000003429/TNW000003431 all named Laurel Creek/LAUREL CK, county 091 Johnson, HUC 06010102; VA SWCB 6CLAL stations downstream in Washington Co VA)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-81.78,36.54,-81.75,36.58&mimeType=csv (verified USGS-03472400 'LAUREL CREEK ABOVELAUREL BLOOMERY' HUC 06010102; ledger lead: single 1900-07-29 field measurement, 16.4 sq mi drainage, no continuous record - https://waterdata.usgs.gov/monitoring-location/03472400/)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LAURE006.3CT&siteid=TDECWPC-LAURE006.3JO&siteid=TDECWPC-LAURE010.6JO&siteid=TDECWPC-LAURE012.4JO&siteid=TDECWPC-LAURE013.8JO&siteid=TDECWPC-LAURE015.0JO&siteid=TDECWR_WQX-TNW000003428&siteid=TDECWR_WQX-TNW000003429&siteid=TDECWR_WQX-TNW000003431&characteristicName=Temperature,%20water&mimeType=csv (82 temp results 2002-2023)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (2026 workbook, owner-supplied copy in repo: Region 4 Johnson Co 'Laurel Creek', Seasonal Rainbow Trout, weeks of 3/1, 3/29, 4/26, 5/24, 6/21/2026; separate Van Buren Co Region 3 'Laurel Creek' rows weeks of 3/8, 4/12, 5/17/2026 are a different water - flagged above)",
+    "https://www.eregulations.com/tennessee/fishing/region-4 (fetched and grepped: Laurel Creek not mentioned - statewide trout rules apply)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (fetched and grepped 2026-09-18: 'Laurel Creek' absent; 'Laurel Fork' Carter Co and Beaverdam Creek Johnson Co are different waters)",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/ (Region IV Trout Fisheries Report 2017 - this creek not among named wild-trout streams)",
+    "https://storymaps.arcgis.com/stories/dbb92bdf718f4fd7839bf4b08fb82747 (TWRA forecast StoryMap JS-rendered, no fetchable per-water content checked)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (canon citation, not fetched per PDF ban)",
+    "WebSearch '\"Laurel Creek\" Laurel Bloomery Johnson County Tennessee trout' (found only excluded-domain wild-rainbow claims: savequitfish.com, perfectflystore.com, onwaterapp.com, abingdonoutdoors.com; confirmed the GSMNP and Van Buren/Warren Co Laurel Creeks are different waters)"
+  ]
+}

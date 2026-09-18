@@ -1,0 +1,65 @@
+{
+  "slug": "mccutcheon-creek",
+  "segment": {
+    "description": "McCutcheon Creek, Maury County, Tennessee (catalog) — a Duck River tributary through the Spring Hill area on the Maury/Williamson county line. County identity resolved from the catalog YAML (hydroIdentity: GNIS 01293235, HUC 06040003, county Maury) and confirmed by the TWRA workbook, whose three 2026 winter rows all read 'McCutcheon Creek', county Maury. The Clarksville-area McCutcheon possibility was checked and does NOT exist in the 2026 workbook: Montgomery County's winter trout sites are Billy Dunlop Park and the Fort Campbell streams, with no McCutcheon row.",
+    "boundaries": "The named creek in Maury County (HUC 06040003); identity stations USGS-03599967 'McCutcheon Creek at Spring Hill, TN' (35.74118, -86.92472; 4.32 sq mi) and TDECWR_WQX-TNW000008151 'McCutcheon Creek' (35.72801, -86.92410, Maury Co. 119). TWRA's workbook site string is 'McCutcheon Creek' with no reach detail."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No elevation, spring, or cold-water-source documentation found. Identity verified from WQP station metadata columns (USGS/TDEC station names, Maury County code 119, HUC 06040003) because the USGS identity endpoint has been 503ing this week. USGS station naming ('McCutcheon Creek at Spring Hill', plus multiple tributary stations) reflects a small urbanizing-suburb creek."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.0,
+      "monthObserved": 6,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599967&siteid=USGS-035999665&siteid=USGS-035999675&siteid=USGS-03599968&siteid=USGS-035999682&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.17,
+      "monthObserved": 8,
+      "year": 2016,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008151&siteid=TDECWR_WQX-TNW000007732&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 21.61,
+      "monthObserved": 6,
+      "year": 2019,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008151&siteid=TDECWR_WQX-TNW000007732&characteristicName=Temperature%2C%20water&mimeType=csv"
+    }
+  ],
+  "holdover": { "documented": null, "detail": "No holdover documentation found. The TWRA program is winter-only catchable rainbows: 2026 workbook rows 'McCutcheon Creek' (Maury, type Winter): 1/23/2026, 2/20/2026, TBD 12/2026, Rainbow Trout; the live TWRA schedule page contains the site string. No source documents survival between stockings or through summer.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee and describes hatchery-supported waters as 'primarily warmwater habitats that cannot support trout year round' (canon quote; PDF not fetched per rule).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "The temperature record is too sparse to call: one 29.0 deg C USGS grab (June 1986) versus mild recent TDEC grabs (21.6-23.2 deg C, 2016/2019) on this winter-only stocked creek, with no survival documentation either way.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied TWRA workbook, collected 2026-09-17: 3 Winter rainbow rows 'McCutcheon Creek', Maury; Montgomery County winter rows checked for a Clarksville McCutcheon — none exist)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched 2026-09-18; 'McCutcheon Creek' string present in live table, columns scrambled)",
+    "https://www.waterqualitydata.us/data/Station/search?countycode=US%3A47%3A119&characteristicName=Temperature%2C%20water&mimeType=csv (263 Maury County stations; USGS McCutcheon stations verified)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06040003&characteristicName=Temperature%2C%20water&mimeType=csv (449 stations; TDECWR_WQX McCutcheon Creek stations found)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599967&siteid=USGS-035999665&siteid=USGS-035999675&siteid=USGS-03599968&siteid=USGS-035999682&characteristicName=Temperature%2C%20water&mimeType=csv (11 results, 1986-1987)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008151&siteid=TDECWR_WQX-TNW000007732&characteristicName=Temperature%2C%20water&mimeType=csv (2 results, 2016/2019)",
+    "statewide sitename=McCutcheon station search attempted — WQP timed out (curl 28) and was skipped in favor of the county/HUC sweeps",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (cited only; PDF fetch banned)"
+  ]
+}

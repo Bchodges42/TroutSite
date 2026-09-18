@@ -1,0 +1,90 @@
+{
+  "slug": "barren-fork-river",
+  "segment": {
+    "description": "The Barren Fork River, Warren County, flowing through McMinnville to its confluence with the Collins River just north of McMinnville (the Barren Fork lies inside the Collins HUC-8 05130107). TWRA's stocked reach is the Warren County main stem; the cataloged North Prong Barren Fork is cataloged separately (north-prong-barren-fork).",
+    "boundaries": "Warren County main stem through McMinnville; HUC 05130107. Temperature evidence: TDEC stations at river-miles 4.4, 15.2, and 16.4 (35.63-35.68 N, the McMinnville reach) and USGS 03420500 near Trousdale."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No cold-water source documented. Catalog describes a gentle-gradient rain-driven river through McMinnville - no dam, no spring source cited by any agency.",
+    "evidenceUrl": null
+  },
+  "summerTemperature": [
+    {
+      "celsius": 26.8,
+      "monthObserved": 8,
+      "year": 2007,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BFORK004.4WA%3BTDECWPC-BFORK004.5WA%3BTDECWPC-BFORK015.2WA%3BTDECWPC-BFORK016.4WA&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.4,
+      "monthObserved": 7,
+      "year": 2007,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BFORK004.4WA%3BTDECWPC-BFORK004.5WA%3BTDECWPC-BFORK015.2WA%3BTDECWPC-BFORK016.4WA&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 21.7,
+      "monthObserved": 8,
+      "year": 2007,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BFORK004.4WA%3BTDECWPC-BFORK004.5WA%3BTDECWPC-BFORK015.2WA%3BTDECWPC-BFORK016.4WA&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.36,
+      "monthObserved": 6,
+      "year": 2008,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BFORK004.4WA%3BTDECWPC-BFORK004.5WA%3BTDECWPC-BFORK015.2WA%3BTDECWPC-BFORK016.4WA&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 19.5,
+      "monthObserved": 8,
+      "year": 2005,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420500&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency documentation of holdover either way. TWRA's stocking is seasonal (three 2026 weeks: 3/15, 3/22, 5/10, Rainbow Trout); no summer/winter stocking rows and no creel or sampling evidence of between-stocking survival were found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented: the Barren Fork appears in NO TWRA trout category - the wild-trout list and every other trout designation on TWRA's trout regulations page exclude it (checked live this session), so the agency trout record here is stocking-based put-and-take rainbow only. (Wave-2's audit 'wild-trout candidate' flag was refuted at page level; a stocking program is not a wild-trout designation.)",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC's 2007-2008 sampling on the McMinnville reach shows summer water of 20-26.8 C (26.8 C in Aug 2007 at river-mile 4.4) and TWRA stocks the Barren Fork only in three spring weeks - seasonal put-and-take rainbow with no documented between-stocking survival.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-BFORK004.4WA%3BTDECWPC-BFORK004.5WA%3BTDECWPC-BFORK015.2WA%3BTDECWPC-BFORK016.4WA&characteristicName=Temperature,%20water&mimeType=csv (41 TDEC temperature rows 2001-2008 on the Barren Fork in Warren County: summer values 19.3-26.8 C, coolest at river-mile 16.4 [21.1-21.7 C Jul-Aug 2007], warmest at river-mile 4.4 [26.8 C Aug 2007])",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420500&characteristicName=Temperature,%20water&mimeType=csv (USGS 03420500 'BARREN FORK NEAR TROUSDALE, TN': 3 rows, all 2005 - Apr 17.0, May 13.0, Aug 19.5 C)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (fetched this session: all five Barren rows are Region 3, WARREN County - 'Barren Fork River' weeks 3/15, 3/22, 5/10/2026 and 'N Barren Fork Creek' weeks 3/22, 4/26/2026, all Seasonal Rainbow Trout; no Cumberland County pairing exists, confirming wave-2's scrambled-HTML correction)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied workbook mirrors the feed exactly: 3 'Barren Fork River' rows + 2 'N Barren Fork Creek' rows, Warren, Seasonal, Rainbow)",
+    "repo-local: packages/content/streams/tn/barren-fork-river.yaml (catalog claims: stockingProgram true, yearRound false, gaugeIds EMPTY - the roster's former 03421500 wiring was removed; wave-2 proved 03421500 is actually 'COLLINS RIVER NEAR ROWLAND, TN', discontinued 1924, and no active USGS gauge exists on the Barren Fork itself)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched this session: no Barren Fork entry in any trout category)",
+    "repo-local: docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (wave-2 stocked-fishery correction, wild-trout-list refutation, and gauge-miswire history; underlying URLs re-cited above)"
+  ]
+}

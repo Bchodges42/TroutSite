@@ -1,0 +1,56 @@
+{
+  "slug": "sulfur-fork-creek",
+  "segment": {
+    "description": "Sulfur Fork Creek (USGS/TDEC spelling 'Sulphur Fork'), Robertson County, Tennessee (catalog) — a Red River tributary flowing through Springfield, Tennessee. This is the Red River-drainage creek in Robertson County, not any same-named water elsewhere; identity verified by HUC 05130206 and Robertson County (county code 147) on USGS/TDEC station metadata. TWRA's winter-trout site string is simply 'Sulphur Fork Creek' (Robertson) in the 2026 workbook; local reporting places the stocking along the Springfield Greenway, but that site detail is not from an agency source.",
+    "boundaries": "The named creek in Robertson County from the Springfield area down to the Red River confluence near Port Royal (TDEC stations span river-mile 0.1 at Port Royal Rd to mile 23.2-23.3 at the Springfield STP); USGS-03435770 'Sulphur Fk Red R above Springfield, TN' (65.6 sq mi drainage, alt 538.17 ft NGVD29)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 538,
+    "notes": "Elevation is the USGS station altitude above Springfield. Identity verified from WQP station metadata columns (USGS station names 'SULPHUR FORK RED RIVER ...' and TDECWPC 'SULPHUR FORK'/'Sulphur FK CK' stations, all HUC 05130206, Robertson County) because the USGS identity endpoint has been 503ing this week. No cold-water source, spring, or canopy documentation found; the monitoring record (Springfield STP stations on the creek) indicates a developed-edge warmwater creek."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.4,
+      "monthObserved": 8,
+      "year": 2000,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03435550&siteid=USGS-03435570&siteid=USGS-03435610&siteid=USGS-03435620&siteid=USGS-03435637&siteid=USGS-03435700&siteid=USGS-03435770&siteid=TDECWPC-SFORK000.1RN&siteid=TDECWPC-SFORK023.2RN&siteid=TDECWPC-SFORK023.3RN&siteid=TDECWPC-SULPH000.1RN&siteid=TDECWPC-SULPH000.2RN&siteid=TDECWPC-SULPH023.2RN&characteristicName=Temperature%2C%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.0,
+      "monthObserved": 8,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03435550&siteid=USGS-03435570&siteid=USGS-03435610&siteid=USGS-03435620&siteid=USGS-03435637&siteid=USGS-03435700&siteid=USGS-03435770&siteid=TDECWPC-SFORK000.1RN&siteid=TDECWPC-SFORK023.2RN&siteid=TDECWPC-SFORK023.3RN&siteid=TDECWPC-SULPH000.1RN&siteid=TDECWPC-SULPH000.2RN&siteid=TDECWPC-SULPH023.2RN&characteristicName=Temperature%2C%20water&mimeType=csv"
+    }
+  ],
+  "holdover": { "documented": null, "detail": "No holdover documentation found. The TWRA program is winter-only catchable rainbows: 2026 workbook rows 'Sulphur Fork Creek' (Robertson, type Winter): 02/04/2026, 02/26/2026, TBD 12/2026, Rainbow Trout; the live TWRA schedule page contains the site string. No source documents survival between stockings or through summer.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee streams and describes hatchery-supported waters as 'primarily warmwater habitats that cannot support trout year round' (canon quote; PDF not fetched per rule).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC/USGS grab record shows 25-28.4 deg C summer water on Sulphur Fork (1980-2009) and the trout fishery is a winter-only catchable-rainbow program with no survival documentation.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied TWRA workbook, collected 2026-09-17: 3 Winter rainbow rows 'Sulphur Fork Creek', Robertson)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched 2026-09-18; 'Sulphur Fork Creek' string present in live table, columns scrambled)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=05130206&characteristicName=Temperature%2C%20water&mimeType=csv (393 stations; Sulphur Fork identity verified from name/county/HUC columns)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03435550&siteid=USGS-03435570&siteid=USGS-03435610&siteid=USGS-03435620&siteid=USGS-03435637&siteid=USGS-03435700&siteid=USGS-03435770&siteid=TDECWPC-SFORK000.1RN&siteid=TDECWPC-SFORK023.2RN&siteid=TDECWPC-SFORK023.3RN&siteid=TDECWPC-SULPH000.1RN&siteid=TDECWPC-SULPH000.2RN&siteid=TDECWPC-SULPH023.2RN&characteristicName=Temperature%2C%20water&mimeType=csv (149 temp results through 2009)",
+    "WebSearch 'TWRA Sulphur Fork Creek trout stocking Springfield' (corroborated the winter program and a Springfield Greenway stocking location via local news — noted as lead-tier only, not cited as evidence; eRegulations listed as official schedule publisher)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (cited only; PDF fetch banned)"
+  ]
+}

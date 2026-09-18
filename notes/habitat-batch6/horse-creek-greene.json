@@ -1,0 +1,62 @@
+{
+  "slug": "horse-creek-greene",
+  "segment": {
+    "description": "Horse Creek, a Greene County Cherokee National Forest tributary running out of the Bald Mountains down to the Nolichucky River; TWRA spring-stocked with a special trout regulation on its national-forest reach.",
+    "boundaries": "Special trout regulation reach (live-verified on the state's regs publisher): 'Horse Creek: Greene County, U.S. Forest Service Boundary Line upstream to the junction of Squibb Creek.' Stocking workbook rows are undivided 'Horse Creek' (Greene County). Stocking-identity pin: the 2026-09-17 workbook contains NO 'Camp Creek' row for Greene County (its only Camp Creek entry is 'Puncheon Camp Creek', Grainger County) - all 8 weekly rows name 'Horse Creek', so the catalog reach identity is unambiguous. TDEC stations used: TDECWPC-HORSE007.0GE (RM 7.0, Horse Creek Rd - inside the stocked drainage) and TDECWPC-HORSE000.7GE (RM 0.7, near the Nolichucky mouth)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Free-flowing forest creek ('classic bank-and-boulder small water' per catalog); no dam, no spring claim. Neighbor context (different stream, clearly attributed): USGS-03466295 'CAMP CREEK AT CAMP CREEK, TN' (9.99 sq mi, the adjacent Cherokee NF creek in the same Camp Creek community) grabbed 14.0-18.5 C across nine summer days 1984-1988 - the Horse Creek/Camp Creek forest drainage cluster runs cool. Station identities verified via WQP Station metadata (USGS identity endpoint down this week)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 19.42,
+      "monthObserved": 9,
+      "year": 2007,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HORSE007.0GE&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; stocking is weekly seasonal (Mar 1 - Jun 7 in the 2026 workbook) with no posted post-stocking persistence data.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Horse Creek does not appear on the wild-trout-streams list on TWRA's regulations publisher page; the county's wild waters are Paint Creek and Rocky Fork. Horse Creek instead carries its own stocked-fishery special regulation (7 trout/day, dropping to 2/day May 1-Sep 30 above the USFS boundary).",
+    "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "The only in-reach summer grab ran 19.42 C (RM 7.0, Sept 2007) and the adjacent Camp Creek gauge in the same forest drainage grabbed 14.0-18.5 C across nine summer days 1984-88 - cool headwater habitat - but stocking is spring-only and nothing documents trout persisting past the season.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook, 616 rows; 'Horse Creek' Greene County Seasonal rainbow rows at 8 weekly stocking weeks 3/1-6/7/2026; 'Dillard Ponds' Greene rows 3/8-5/3 and 9/27, 10/18/2026 are nearby put-and-take ponds, not this creek; zero 'Camp Creek' rows in Greene County - identity pinned to Horse Creek)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched live 2026-09-18; stocking program calendar source)",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations (fetched live 2026-09-18; special regulation 'Horse Creek: Greene County, U.S. Forest Service Boundary Line upstream to the junction of Squibb Creek. Daily limit: seven (7) trout per day, except from May 1-Sep. 30 daily limit is two (2) trout'; wild-trout list checked - Horse Creek absent, Paint Creek and Rocky Fork present for Greene County)",
+    "https://www.waterqualitydata.us/data/Station/search?huc=06010108&characteristicName=Temperature,%20water&mimeType=csv (station discovery/identity: TDECWPC-HORSE007.0GE 'SR 107 S. ON HORSE CK ROAD', TDECWPC-HORSE000.7GE '50 yds u/s Fellers Rd', USGS-03466295 'CAMP CREEK AT CAMP CREEK, TN' 9.99 sq mi)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HORSE007.0GE&characteristicName=Temperature,%20water&mimeType=csv (19.42 C 2007-09-24; single summer row)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-HORSE000.7GE&characteristicName=Temperature,%20water&mimeType=csv (1 row, no summer values; miss)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03466295&characteristicName=Temperature,%20water&mimeType=csv (Camp Creek neighbor: summer grabs 14.0/14.5 C Jun 1984, 14.0 C Jul 1985, 18.5 C Jul 1986, 17.5 C Sep 1987, 16.0-17.0 C Jul-Aug 1988)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (canon, not fetched per PDF policy: 'hatchery-supported streams and lakes are primarily warmwater habitats that cannot support trout year round')"
+  ]
+}

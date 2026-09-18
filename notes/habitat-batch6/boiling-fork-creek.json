@@ -1,0 +1,59 @@
+{
+  "slug": "boiling-fork-creek",
+  "segment": {
+    "description": "Boiling Fork Creek, a small Franklin County stream in the Sewanee/Cowan area draining to the Elk River system (GNIS 01269369, HUC 06030003). TWRA winter put-and-take rainbow trout water, stocked at Cowan City Park (Franklin County).",
+    "boundaries": "Entire creek per catalog hydroIdentity (GNIS 01269369, HUC 06030003); the stocking site is Cowan City Park on the creek in Cowan, Franklin County. Catalog seasonMonths: Dec/Jan/Feb."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Small warmwater-drainage creek in the Elk River HUC; no cold-source mechanism documented in any source consulted. Its cold season is simply winter (TDEC grabs 9.76-13.82 deg C in Dec-Mar, below)."
+  },
+  "summerTemperature": [
+    { "celsius": 31.0, "monthObserved": 7, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 31.0, "monthObserved": 8, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 29.31, "monthObserved": 8, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.7, "monthObserved": 6, "year": 2023, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. Program design is winter put-and-take only (catalog seasonMonths Dec/Jan/Feb; TWRA workbook rows for the site are Winter-type). TDEC's own grabs show the creek at 27.7-31 deg C across June-September in 2017/2022/2023 - lethally warm for stocked rainbows - consistent with the Trout Management Plan statement that hatchery-supported streams are 'primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented; the creek is outside TWRA's wild trout waters and sits in a warmwater Elk River drainage.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC grab samples put the creek at 29-31 deg C in summer 2017/2022/2023 and TWRA stocks it as a Winter-only rainbow put-and-take site (Cowan City Park), so trout cannot live through the warm season here.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv (TDEC 'Boiling Fork Creek' station TNW000000389, HUC 06030003, 35.1893/-86.1101, station typed Reservoir - possibly a small impounded pool on the creek; 20 temp grabs 2012-2023: Jul 2012 23.37, Jul 2017 31, Aug 2017 31, Sep 2017 26, Oct 2017 22.28, Nov 2017 14.08, Feb 2018 13.82, Mar 2018 15.31, Apr 2018 18.76, Aug 2022 29.31, Sep 2022 25.87, Oct 2022 20.4, Nov 2022 13.6, Dec 2022 9.76, Jan 2023 13.32, Feb 2023 13.1, Mar 2023 14.67, Apr 2023 18.86, May 2023 23.36, Jun 2023 27.7)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&statecode=US%3A47&countycode=US%3A47%3A051&mimeType=csv (station metadata: name 'Boiling Fork Creek', HUC 06030003)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched 2026-09-18; Franklin County winter site listed as 'Cowan City Park' - the page does not spell out 'Boiling Fork'; zero page hits for 'Boiling')",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (Franklin County rows: Cowan City Park Winter rainbows 1/20/2026, 2/19/2026, TBD 12/2026; zero rows name Boiling Fork directly)",
+    "repo-local: packages/content/streams/tn/boiling-fork-creek.yaml (catalog binds the winter program to this creek: stockingProgram true, species trout, seasonMonths Dec/Jan/Feb, GNIS 01269369, HUC 06030003, 'winter-stocked Franklin County creek near Sewanee/Cowan')",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (fetched 2026-09-18; Region II trout-waters list does not name Boiling Fork or Cowan)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (TWRA Trout Management Plan 2017-2027; canonical quote, not fetched per PDF ban)",
+    "WebSearch: 'TWRA Boiling Fork Cowan City Park winter trout stocking Franklin County' (confirms Cowan City Park on TWRA's 2025-2026 winter schedule, 12/3/2025 date; no source names 'Boiling Fork' in the schedule text itself)"
+  ]
+}

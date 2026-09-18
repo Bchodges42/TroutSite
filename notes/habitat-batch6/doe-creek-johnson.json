@@ -1,0 +1,60 @@
+{
+  "slug": "doe-creek-johnson",
+  "segment": {
+    "description": "Doe Creek (GNIS 01328063), a tributary of Roan Creek in Johnson County, TN (HUC 06010103 Watauga) that joins Roan Creek near Doeville. This is NOT the Doe River of Carter County (a separate catalog entry evidenced in batch 3). Identity verified via WQP station metadata: TDEC stations named 'Doe Creek' with CountyCode 091 (Johnson) and HUCEightDigitCode 06010103, spanning river-mile ~1.2 (36.3831,-81.9561) to river-mile ~7.6 (36.4344,-81.9139). USGS's own monitoring-location identity service was persistently 503 this week, so station name/county/HUC columns in the WQP CSV were used.",
+    "boundaries": "Catalog gives no reach limits and TWRA stocks it countywide as 'Doe Creek'. Record covers the main stem from the upper TDEC station (RM 7.6 near Little Doe) to the mouth at Roan Creek near Doeville; eRegulations' walleye-run reach is 'Old Cabin Private Road downstream to Roan Creek'."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Free-flowing mountain tributary in the Watauga HUC (06010103); TDEC's Jan 2002 grab at RM 7.6 read 8.16 C and at RM 1.2 read 4.34 C, consistent with a cold upland stream. Corroborating agency context (not trout-specific): the creek's lower reach is one of the few Region 4 waters TWRA/eRegulations protect with a Jan 1-Apr 30 one-hook walleye-run restriction ('Doe Creek (Old Cabin Private Road downstream to Roan Creek)'), a restriction TWRA applies to cold spawning-run tributaries of Watauga Lake country. No gorge/canopy citation found."
+  },
+  "summerTemperature": [
+    { "celsius": 17.6, "monthObserved": 7, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-DOE001.2JO&siteid=TDECWPC-DOE006.1JO&siteid=TDECWPC-DOE006.2JO&siteid=TDECWPC-DOE007.6JO&siteid=TDECWR_WQX-TNW000001726&siteid=USGS-03482200&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 16.6, "monthObserved": 7, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-DOE006.1JO&siteid=TDECWPC-DOE006.2JO&siteid=TDECWPC-DOE007.6JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 16.0, "monthObserved": 7, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-DOE006.1JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.2, "monthObserved": 8, "year": 2016, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.7, "monthObserved": 6, "year": 2017, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 16.6, "monthObserved": 7, "year": 2021, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 16.1, "monthObserved": 8, "year": 2021, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 14.9, "monthObserved": 9, "year": 2021, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 16.6, "monthObserved": 6, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.9, "monthObserved": 7, "year": 2026, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001726&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover-specific creel or angler-verified documentation found for Doe Creek. A documented wild trout population (below) necessarily implies multi-season in-stream survival, but over-summer survival of stocked fish specifically is not separately documented.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA Fisheries Report 18-01 (Region IV Trout Fisheries Report 2017): 'Some stocked steams (e.g., Beaverdam Creek, Doe Creek, Laurel Fork, and Doe River) do support excellent wild trout populations as well.' In that report's Johnson County context 'Doe Creek' is this Roan Creek tributary (the batch-3 Doe River record flagged the same sentence and explicitly identified its 'Doe Creek' as the Johnson County water). The report further characterizes the creek as one of the region's productive wild trout streams alongside its seasonal hatchery-supported fishery. Species composition of the wild component is not stated in the cited sentence. Note: the creek is NOT on TWRA's current Wild Trout Streams special-regulation list (that list's only Johnson County entry is Beaverdam Creek), so the wild fishery runs under statewide trout rules.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA's own Region IV Trout Fisheries Report 2017 documents an excellent wild trout population in this exact creek - wild reproduction requires year-round in-stream survival - and TDEC grab samples 2001-2026 show summer peaks of only 14.9-18.2 C.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-82.02,36.35,-81.72,36.45&characteristicName=Temperature,%20water&mimeType=csv (identity: TDECWPC-DOE001.2JO/DOE006.1JO/DOE006.2JO/DOE007.6JO + TDECWR_WQX-TNW000001726 all named 'Doe Creek', county 091 Johnson, HUC 06010103)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-DOE001.2JO&siteid=TDECWPC-DOE006.1JO&siteid=TDECWPC-DOE006.2JO&siteid=TDECWPC-DOE007.6JO&siteid=TDECWR_WQX-TNW000001726&siteid=USGS-03482200&characteristicName=Temperature,%20water&mimeType=csv (41 temp results 2001-2026; USGS-03482200 contributed none)",
+    "https://waterdata.usgs.gov/monitoring-location/03482200/ (ledger lead: 'Doe Creek at Doeville', 1998 field measurements only, no continuous record)",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/ (Region IV Trout Fisheries Report 2017 landing; PDF itself not downloaded per batch policy)",
+    "https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1004&context=govpubs-tn-wra-region-iv-stream-reports (report PDF URL cited; quote verified in repo batch-3 record and corroborated by WebSearch snippets)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (2026 workbook, owner-supplied copy in repo: Region 4 Johnson Co 'Doe Creek', Seasonal Rainbow Trout, weeks of 3/8, 3/22, 4/5, 4/19, 5/3, 5/17, 5/31/2026)",
+    "https://www.eregulations.com/tennessee/fishing/region-4 (fetched and grepped: Doe Creek appears only in the Watauga walleye-run one-hook restriction; statewide trout rules 7/day otherwise apply)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (fetched and grepped 2026-09-18: 'Doe Creek' absent from wild-trout/delayed-harvest lists; Doe River, Laurel Fork, Beaverdam Creek are different waters)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (canon citation, not fetched per PDF ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only; all cited URLs re-verified directly; ledger itself not cited as evidence)",
+    "WebSearch 'TWRA Region IV trout fisheries report Doe Creek wild trout Johnson County' (corroborated 18-01 quote; secondary sites like onwaterapp/TNToutdoors not used as evidence)"
+  ]
+}

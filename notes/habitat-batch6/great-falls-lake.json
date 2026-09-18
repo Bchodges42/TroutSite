@@ -1,0 +1,49 @@
+{
+  "slug": "great-falls-lake",
+  "segment": {
+    "description": "Great Falls Reservoir - the small TVA impoundment (2,110 surface acres) of the Caney Fork and Collins River above Great Falls Dam at Rock Island, on the Warren/White county line (TWRA also lists Van Buren), immediately upstream of and adjacent to Center Hill Lake. The free-flowing caney-fork-upper catalog reach passes through this pool.",
+    "boundaries": "Great Falls Dam (Rock Island) upstream to the Collins and Calfkiller river arms; Warren, White, and Van Buren counties per TWRA."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Great Falls Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "TWRA: 'The main operations for the Great Falls reservoir are controlled by the Tennessee Valley Authority (TVA). Great Falls Dam was completed in 1916' (TV-A-purchased TEPCO dam per TVA's own account, which tva.com serves only to browsers - 403 to fetchers). No cold-release program is documented: the dam's discharges are generation-driven with an irregular schedule, and no trout fishery exists below it - the water runs a short distance to the Center Hill Lake pool. TWRA's lake page describes a warmwater fishery (largemouth/spotted/smallmouth bass, white crappie, walleye, channel+flathead catfish, musky concentrated in the Calfkiller/Collins upper arms, sunfish) and notes musky fishing turns tough 'as water temperatures rise during the summer.'"
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout are stocked into Great Falls Lake (zero 'Great Falls' rows in TWRA's 2026 stocking feed and owner-supplied workbook), so there is no trout population to hold over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's Great Falls Reservoir page documents a warmwater gamefish assemblage (black bass, crappie, walleye, catfish, muskellunge, sunfish) with no trout mention; the lake is absent from TWRA's year-round reservoir trout stocking list (Dale Hollow, Parksville, Calderwood, Chilhowee, Fort Patrick Henry, South Holston, Tellico Upper, Watauga) verified live this session, and absent from all trout categories on the trout regulations page.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA manages this 2,110-acre TVA impoundment purely as a warmwater bass/crappie/musky fishery (musky action reportedly shuts down as summer water temperatures rise), no trout have ever been stocked into it, and it is absent from TWRA's year-round reservoir trout list.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html (fetched this session: TVA operations, 1916 dam, 2,110 acres, Warren/White/Van Buren counties, warmwater species list, musky-in-upper-arms note, summer musky heat note; no trout)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (fetched this session: year-round reservoir trout list excludes Great Falls; zero trout mentions for the reservoir)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (fetched this session: zero 'Great Falls' stocking rows)",
+    "https://www.tva.com/energy/our-power-system/hydroelectric/great-falls (canonical TVA dam page; HTTP 403 to fetchers - operator/1916/TEPCO-purchase facts corroborated via WebSearch of TVA's account and TWRA's page above)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03422495&characteristicName=Temperature,%20water&mimeType=csv (USGS 03422495 'Caney Fork at Great Falls Powerhouse': single temperature row, 12.0 C on 1977-11-22 - November, outside the summer window; no summer lake temperature found anywhere)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-86.05%2C35.80%2C-85.55%2C36.15&characteristicName=Temperature%2C+water&mimeType=csv (station search around Rock Island: no reservoir-type temperature station on the Great Falls pool)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no trout category includes Great Falls)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied workbook: zero 'great falls' rows)",
+    "repo-local: docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (wave-2 verification of the 03422495 single-sample-day status; underlying URLs re-cited above)"
+  ]
+}

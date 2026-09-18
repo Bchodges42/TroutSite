@@ -1,0 +1,76 @@
+{
+  "slug": "north-fork-holston-river",
+  "segment": {
+    "description": "The short Tennessee reach of the North Fork Holston River in Sullivan County: from where the fork enters Tennessee from Virginia to its confluence with the South Fork Holston at Kingsport (the head of the Holston River main stem).",
+    "boundaries": "State line (the fork forms the TN/VA line for its final miles) downstream to the South Fork Holston confluence at Kingsport, per the catalog. The Virginia reach upstream (famous smallmouth/musky fishery, e.g. near Gate City VA) is OUT of scope and none of its facts transfer to this record."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No cold-water source identified or claimed: this is a free-flowing Valley-and-Ridge river reach with no dam upstream in Tennessee (nearest upstream station USGS-03490000 is in Virginia). USGS-03490090 'NORTH FORK HOLSTON RIVER NEAR CLOUD FORD, TN' (HUC 06010101, 716.91 sq mi drainage) and TDECWPC-NFHOL004.6SU (river mile 4.6, Carter Valley Rd bridge - i.e. inside this reach) verify the reach identity. SourcesChecked note: USGS identity endpoint 503 all week, so station identity was verified via WQP Station metadata CSV (bBox around Kingsport)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.5,
+      "monthObserved": 7,
+      "year": 1995,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03490090&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.6,
+      "monthObserved": 7,
+      "year": 1998,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03490090&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.14,
+      "monthObserved": 7,
+      "year": 2007,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NFHOL004.6SU&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.69,
+      "monthObserved": 7,
+      "year": 2003,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NFHOL004.6SU&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Moot - no trout are stocked or documented in the Tennessee reach, so there is no trout population to hold over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout presence of any kind documented for the TN reach. TWRA manages it through a black-bass special regulation (Smallmouth 13-17 in protected length range, one over 17 in/day, state line downstream to the South Fork Holston confluence), i.e. a warmwater black-bass fishery. The renowned smallmouth/musky river in VIRGINIA upstream is a different water and management regime.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Summer grab samples in the Sullivan County reach ran 22.7-29.5 C across 1995-2008 (USGS 03490090 and TDEC NFHOL004.6), and TWRA has no trout program on the river - zero stocking workbook rows and no appearance anywhere in the state trout regulations.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook, 616 rows; grep for 'north fork holston' / 'north-fork-holston' = 0 rows)",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations (fetched live 2026-09-18; 'North Fork' 0 occurrences across the wild-trout list, special-regulation list, tailwater table, and Gatlinburg section - the river has no trout regulation or program)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (smallmouth PLR rule for the TN reach is documented in the catalog yaml from this URL, retrieved 2026-09-14; live refetch on 2026-09-18 failed twice with connection reset - rule carried from catalog documentation, not re-verified today)",
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-82.80,36.48,-82.35,36.70&characteristicName=Temperature,%20water&mimeType=csv (station discovery + identity: USGS-03490090 'NORTH FORK HOLSTON RIVER NEAR CLOUD FORD, TN' HUC 06010101; TDECWPC-NFHOL004.6SU 'BRIDGE AT CLOUD FORD ON CARTER VALLEY ROAD'; also confirms USGS-03490000 'N F HOLSTON RIVER NEAR GATE CITY, VA' is the Virginia reach)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03490090&characteristicName=Temperature,%20water&mimeType=csv (26.6 C 1998-07-14; 29.5 C 1995-07-31)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NFHOL004.6SU&characteristicName=Temperature,%20water&mimeType=csv (July samples 2001-2008: 24.59, 22.69, 22.84, 22.86, 24.61, 27.14, 25.88 C; 20.22 C on 2002-09-24)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (canon, not fetched per PDF policy: 'hatchery-supported streams and lakes are primarily warmwater habitats that cannot support trout year round')"
+  ]
+}

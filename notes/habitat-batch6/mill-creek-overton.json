@@ -1,0 +1,71 @@
+{
+  "slug": "mill-creek-overton",
+  "segment": {
+    "description": "Mill Creek (GNIS 01303503) of Overton County, the stream through Standing Stone State Park near Allons/Hilham that flows NW into the Dale Hollow Lake/Obey River arm. Basin identity is the upper Cumberland (HUC 05130106 'Upper Cumberland-Cordell Hull Reservoir'), NOT the Caney Fork basin despite the catalog's 'tn-middle-caney-fork' region tag - a catalog geography flag noted below. NOT the Hickman County Mill Creek also stocked by TWRA.",
+    "boundaries": "Catalog: 'TWRA spring-stocked Overton County creek on the plateau's eastern rim' (no reach limits given). The three TWRA stocking sites, all named 'Mill Creek (Standing Stone State Park)' (TDEC-managed, spring, 250 rainbow each), cluster at 36.4709-36.4727, -85.4183 to -85.4208 in the park. The temperature record (TDECWPC-MILL013.2OV / TDECWR_WQX-TNW000004167 at 36.4764,-85.4236, and TDECWR_WQX-TNW000004169 at 36.4722,-85.4194) is at and immediately adjacent to the stocked park reach."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Station/search?siteid=TDECWPC-MILL013.2OV&mimeType=csv",
+    "notes": "Free-flowing park stream, no dam on the stocked reach. Catalog wiring note: the roster gauge 03539778 flagged in an earlier wave was proven to be 'CLEAR CREEK AT LILLY BRIDGE NEAR LANCING, TN' (Obed-system Clear Creek, Morgan Co.) and is no longer referenced - catalog gaugeIds is now empty, which is correct since no USGS station exists on this creek (documented Overton County and statewide sweeps); leaving the region tag mismatch (Caney Fork label on an Obey/Cordell Hull-basin creek) as an owner-visible catalog item."
+  },
+  "summerTemperature": [
+    { "celsius": 24.8, "monthObserved": 7, "year": 2000, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-MILL013.2OV&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 25.5, "monthObserved": 8, "year": 2000, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-MILL013.2OV&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 6, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-MILL013.2OV&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.9, "monthObserved": 8, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-MILL013.2OV&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.95, "monthObserved": 9, "year": 2000, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-MILL013.2OV&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 28.02, "monthObserved": 7, "year": 2025, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004167&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.7, "monthObserved": 8, "year": 2025, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004167&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 22.1, "monthObserved": 9, "year": 2025, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004167&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 25.63, "monthObserved": 6, "year": 2026, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004167&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.88, "monthObserved": 8, "year": 2015, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004169&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.52, "monthObserved": 9, "year": 2015, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004169&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; TWRA's program here is seasonal spring put-and-take rainbow managed with TDEC inside Standing Stone State Park (2026 schedule: weeks of 3/22 and 4/26 only; 250 rainbows per site per the stocking-locations layer).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. The creek has no entry (special regulation or wild-trout listing) on TWRA's Tennessee Trout Regulations page as fetched 2026-09-18.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27OVERTON%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC monitoring at the Standing Stone State Park stocking reach recorded 28.0 C in July 2025, 26.7-27.9 C in other Julys/Augusts (2000-2025) and 25.6 C in June 2026 - summer temperatures far beyond trout tolerance under a two-week spring stocking program.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 2 'Mill Creek (Standing Stone State Park)' rows, county Overton, Seasonal, Rainbow Trout (weeks 3/22, 4/26/2026); the 3 Hickman Co. 'Mill Creek' rows are a DIFFERENT same-named water (identity trap avoided)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27OVERTON%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100 (live 2026-09-18: 3 'Mill Creek (Standing Stone State Park)' sites, Allons, 36.4709-36.4727/-85.4183 to -85.4208, 250 rainbow each, Spring, TDEC management)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A133&characteristicName=Temperature%2C+water&siteType=Stream&mimeType=csv (Overton County sweep: 61 stream stations with temperature data; Mill Creek is carried by TDECWPC-MILL013.2OV, TDECWR_WQX-TNW000004167, TDECWR_WQX-TNW000004169 - all HUC 05130106; no USGS Mill Creek station exists, confirming the earlier wave's USGS-only sweep)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-MILL013.2OV&characteristicName=Temperature,%20water&mimeType=csv (16 results 2000-2004)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004167&characteristicName=Temperature,%20water&mimeType=csv (17 results 2016-2026 including summer 2025 and June 2026; duplicated rows deduplicated)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004169&characteristicName=Temperature,%20water&mimeType=csv (10 results 2015-2016)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=TDECWPC-MILL013.2OV&mimeType=csv and https://www.waterqualitydata.us/data/Station/search?siteid=TDECWR_WQX-TNW000004167&mimeType=csv (station coordinates 36.4764,-85.4236 - inside/adjacent to the stocked park reach)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=TDECWR_WQX-TNW000004169&mimeType=csv (station coordinates 36.4722,-85.4194)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18; zero entries for Mill Creek/Overton - no special regulation, no wild-trout listing)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only: no-USGS-station ruling, 03539778 wrong-gauge closure, basin identity; all facts re-verified against the primary URLs above)"
+  ]
+}

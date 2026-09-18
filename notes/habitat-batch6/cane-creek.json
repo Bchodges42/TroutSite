@@ -1,0 +1,70 @@
+{
+  "slug": "cane-creek",
+  "segment": {
+    "description": "Cane Creek (GNIS 01279516), the Fall Creek Falls/Spencer stream of the Caney Fork basin (Van Buren/Bledsoe counties) - NOT the Hickman Co. or Perry Co. Cane Creeks also stocked by TWRA, and NOT the Putnam Co. Cane Creek of Falling Water River. Identity pinned by catalog HUC 05130108 plus USGS/WBD: HUC-10 watershed 0513010802 inside the Caney Fork HUC-8 is literally named 'Cane Creek'. Covers TWRA's stocked lower valley reaches near Spencer and the TDEC-stocked Upper Cane Creek reach in Fall Creek Falls State Park.",
+    "boundaries": "Catalog: 'the Bledsoe/Van Buren stocked gorge-and-valley reaches'. TWRA stocking sites (all 'Contact Region 3', spring program): S1 Hwy 285 Bridge Crossing 35.7532,-85.3934; S2 Cane Creek Church 35.7661,-85.3965; S3 Haston Farm 35.7828,-85.4041. TDEC-managed in-park site: Village Camp Rd. Bridge 35.6608,-85.3469 (Upper Cane Creek) and the small pond 'The George Hole'. Temperature record is at USGS 03419200 'CANE CREEK NEAR SPENCER, TN' (35.7434,-85.3925, 134 sq mi drainage, HUC 05130108) at the lower end of the stocked reaches."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "notes": "No dam on the stocked reaches. TWRA's regulation-exceptions page names Cane Creek among 'Above Center Hill Dam and tributaries, including Collins River, Calfkiller River, Rocky River, Cane Creek, and their tributaries' (muskellunge rule) - i.e. TWRA manages it as a free-flowing Caney Fork tributary upstream of Center Hill Dam, so the Caney Fork tailwater PLR (Center Hill Dam downstream) does not govern it. Catalog's 'gorge-and-valley' character could not be tied to a citable cold-water source; tnstateparks.com blocks automated fetches (HTTP 403). Other agency grabs on this reach: 12.0 C on 1980-03-20, 16.0 C on 1979-05-23, 15.6 C on 1965-05-21, 12.0 C on 1979-11-07 (same WQP source as the temperature entry)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 21.0,
+      "monthObserved": 9,
+      "year": 1979,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03419200&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found for this Cane Creek in any agency source checked; TWRA's program here is seasonal spring put-and-take rainbow plus one late-October park event in the 2026 schedule (weeks of 2/22, 3/15, 3/29, 5/17, 10/25 for the park reach and 3/8, 4/12, 5/17 for 'Cane Creek (lower)').",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. The creek has no entry (special regulation or wild-trout listing) on TWRA's Tennessee Trout Regulations page as fetched 2026-09-18, and no agency wild-trout reference was found in any source checked.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27VANBUREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The only summer-season agency measurement on the stocked reach shows 21.0 C by September 1979 and TWRA stocks this creek only in seasonal spring events (plus one October park event) with no cold-source, holdover, or wild-trout evidence anywhere.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 5 'Cane Creek (Fall Creek Falls State Park)' Van Buren rows + 3 'Cane Creek (lower)' Van Buren rows, Seasonal, Rainbow; note the 3 Perry Co. and 2 Hickman Co. 'Cane Creek' rows and the Putnam 'Cane Creek Park' winter row are DIFFERENT same-named waters (identity trap avoided)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18, 108,620 bytes, contains the same rows)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27VANBUREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200 (live 2026-09-18: 3 Spencer Cane Creek sites S1-S3, Spring, rainbow, Private Land/Region 3; plus TDEC-managed 'Upper Cane Creek' Village Camp Rd. Bridge and pond 'The George Hole')",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27BLEDSOE%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100 (live 2026-09-18: 1 site, 'Hwy 284 Bridge Crossing' on Upper Cane Creek, TDEC-managed, Spring, rainbow)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03419200&characteristicName=Temperature,%20water&mimeType=csv (5 temperature grabs 1965-1980; only summer-window value 21.0 C 1979-09-05)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03419200&mimeType=csv (identity: CANE CREEK NEAR SPENCER TN, stream, 35.7434/-85.3925, county 175 Van Buren, HUC 05130108, 134 sq mi - matches catalog; used because waterservices.usgs.gov site endpoint returned HTTP 503 on every attempt 2026-09-18)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03419200&siteOutput=expanded&format=rdb (attempted for gage datum; HTTP 503 both attempts - elevation left null)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (fetched live; 'Above Center Hill Dam and tributaries, including Collins River, Calfkiller River, Rocky River, Cane Creek, and their tributaries')",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18; zero entries for Cane Creek - no special regulation, no wild-trout listing)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_id%3D%2701279516%27&outFields=gnis_id%2Cgnis_name%2Clengthkm%2Creachcode&returnGeometry=false&f=json&resultRecordCount=5 (GNIS 01279516 = Cane Creek, reachcodes 05130108xx confirming Caney Fork basin)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/5/query?where=HUC10%3D%270513010802%27&outFields=huc10%2Cname&returnGeometry=false&f=json (HUC-10 0513010802 named 'Cane Creek')",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A007&characteristicName=Temperature%2C+water&siteType=Stream&mimeType=csv (Bledsoe County sweep: 100 stations with temperature data, none named Cane Creek - no TDEC temperature record for the park reach)",
+    "https://tnstateparks.com/parks/fall-creek-falls (HTTP 403 to automated fetch; gorge/elevation context left uncited)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only; all facts above re-verified against the primary URLs listed here, not the ledger)"
+  ]
+}

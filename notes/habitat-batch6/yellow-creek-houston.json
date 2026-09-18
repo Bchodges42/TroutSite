@@ -1,0 +1,62 @@
+{
+  "slug": "yellow-creek-houston",
+  "segment": {
+    "description": "Yellow Creek (Houston/Dickson Counties), Tennessee (catalog) — a large tributary of the lower Cumberland River, rising in Dickson County (Compact watershed pages describe it originating near Tennessee City and flowing north toward the Cumberland; consistent with station geometry, which runs from headwater stations at 36.115-36.138 in Dickson County to downstream stations at 36.31 in Houston County) and joining the Cumberland in the Ellis Mills area of Houston County. Identity resolved from the catalog hydroIdentity (GNIS 01275277, HUC8 05130205) and confirmed against WQP station metadata: every Yellow Creek station found sits in HUC 05130205 with county codes 043 (Dickson) or 083 (Houston), exactly the two catalog counties; the HUC places the creek in the lower-Cumberland watershed below Cheatham Dam (Cumberland River Basin council's Lower Cumberland watershed page lists Yellow Creek among its streams). The county qualifier in the catalog name distinguishes it from Tennessee's other Yellow Creeks.",
+    "boundaries": "The named Yellow Creek within Houston and Dickson counties (HUC 05130205); identity stations USGS-03436690 'YELLOW CREEK AT ELLIS MILLS, TN' (103 sq mi, Houston Co., downstream-most) and USGS-03436655 'YELLOW CREEK NEAR RUSKIN, TENN' (52.2 sq mi, Dickson Co.); TDEC mainstem stations TDECWPC-YELLO013.1HO/018.8HO (Houston) and -024.9DI/-029.2DI/-031.3DI (Dickson, mile-numbered above mouth)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No elevation, spring, or cold-water-source documentation found — neither USGS gauge carries a published station altitude in WQP. The Dickson headwater station TDECWPC-YELLO031.3DI sits on 'WALNUT GROVE SPRINGS ROAD' (a toponym only, offered as no evidence of spring influence). Identity verified from WQP station metadata columns (station names, county codes 043/083, HUC 05130205) because the USGS identity endpoint has been 503ing this week.",
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Station/search?countycode=US%3A47%3A043&countycode=US%3A47%3A083&characteristicName=Temperature%2C%20water&mimeType=csv"
+  },
+  "summerTemperature": [
+    { "celsius": 28.5, "monthObserved": 8, "year": 1987, "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.9, "monthObserved": 7, "year": 1993, "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.5, "monthObserved": 8, "year": 2001, "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 7, "year": 1988, "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.6, "monthObserved": 8, "year": 2025, "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.8, "monthObserved": 8, "year": 2010, "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 25.0, "monthObserved": 8, "year": 1980, "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.36, "monthObserved": 6, "year": 2006, "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.0, "monthObserved": 7, "year": 2001, "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 22.6, "monthObserved": 6, "year": 2026, "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": { "documented": null,
+    "detail": "No holdover documentation and no stocking program at all: the 2026 TWRA stocking workbook contains zero rows for any Yellow Creek (all 616 rows scanned; catalog stockingProgram: false), and the live TWRA stocking page contains no 'Yellow' string. With no stockings there is no stock source for holdover; the creek is a warmwater bass/panfish stream in every source consulted.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout of any kind (wild or stocked) documented for this Yellow Creek in any agency source found; species lists in non-agency fishing references report only warmwater sportfish (smallmouth/largemouth/spotted bass, crappie, bluegill, catfish, carp — source tier below citation standard, consulted as leads only). TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee and describes hatchery-supported streams and lakes as 'primarily warmwater habitats that cannot support trout year round' (canon quote; PDF not fetched per rule).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS-03436690 at Ellis Mills recorded 27.0-28.5 deg C in July/August grabs across 1987-2001 and TDEC recorded 26.6 deg C in August 2025 on this unstocked lower-Cumberland tributary, whose coolest summer grab anywhere on the creek is 20.0 deg C.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied TWRA workbook, collected 2026-09-17: all 616 rows scanned, zero 'Yellow Creek' rows of any type)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (live page, fetched 2026-09-18 by predecessor wave and cached locally: zero 'Yellow' strings)",
+    "https://www.waterqualitydata.us/data/Station/search?countycode=US%3A47%3A043&countycode=US%3A47%3A083&characteristicName=Temperature%2C%20water&mimeType=csv (Dickson+Houston county sweep: USGS-03436655/-03436690 and TDECWPC-YELLO013.1HO/018.8HO/024.9DI/029.2DI/031.3DI plus TDECWR_WQX-TNW000006992/6993/6995/9034 and tributary stations, all HUC 05130205, counties 043/083)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03436655&siteid=USGS-03436690&siteid=TDECWPC-YELLO013.1HO&siteid=TDECWPC-YELLO018.8HO&siteid=TDECWPC-YELLO024.9DI&siteid=TDECWPC-YELLO029.2DI&siteid=TDECWPC-YELLO031.3DI&siteid=TDECWR_WQX-TNW000006992&siteid=TDECWR_WQX-TNW000006993&siteid=TDECWR_WQX-TNW000006995&siteid=TDECWR_WQX-TNW000009034&characteristicName=Temperature%2C%20water&mimeType=csv (234 temperature results 1980-2026; 75 June-September values)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03599000,03599100,03436690&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (empty response) and nwis/dv for July 2024 (HTTP 503) — no modern continuous USGS temperature data obtainable; USGS identity endpoint also 503ing, identities verified from WQP station metadata instead",
+    "https://cumberlandriverbasin.org/watershed/lower-cumberland-watershed (Cumberland River Basin council watershed page listing Yellow Creek among Lower Cumberland streams; Compact Yellow Creek materials describing the Tennessee City origin and northward flow to the Cumberland seen via WebSearch snippets)",
+    "https://hydro.tn.gov/pages/3d-hydrography-program-3dhp (state 3DHP listing HUC10 0603000511 'Little Yellow Creek-Yellow Creek', seen via WebSearch snippet; corroborates watershed identity)",
+    "https://waterdata.usgs.gov/monitoring-location/USGS-03436690 (identity cross-check via WebSearch result listing; station metadata itself taken from WQP CSV)",
+    "https://piscamaps.com and https://fishbrain.com Yellow Creek pages (species lists — warmwater sportfish only, no trout; non-agency sources, consulted as leads only, cited for no record fact)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (cited only; PDF fetch banned)"
+  ]
+}

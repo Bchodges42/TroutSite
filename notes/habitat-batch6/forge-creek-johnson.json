@@ -1,0 +1,55 @@
+{
+  "slug": "forge-creek-johnson",
+  "segment": {
+    "description": "Forge Creek (GNIS 01328209), a Roan Creek tributary in Johnson County, TN (HUC 06010103 Watauga) with its mouth near 36.434,-81.776. Identity resolved from the catalog hydroIdentity plus WQP station metadata - TDEC stations named 'Forge Creek' with CountyCode 091 (Johnson) and HUCEightDigitCode 06010103 (TDECWPC-FORGE000.5JO at 36.4342,-81.7764; FORGE001.2JO at 36.4412,-81.7706; TDECWR_WQX-TNW000002492 at 36.43294,-81.78059; TDECWR_WQX-TNW000002493 at 36.4342,-81.7770). This excludes the other Tennessee Forge Creeks (Knox/Sevier/Great Smoky areas) by county + HUC-8. USGS's monitoring-location identity service was persistently 503 this week; WQP station columns were used instead.",
+    "boundaries": "Catalog gives no reach limits; TWRA stocks it countywide as 'Forge Creek'. Record covers the main stem river-mile 0.5 to 1.2 above the Roan Creek confluence, which is where all agency monitoring sits."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Small upland creek: the on-creek USGS station (03481575, Forge Creek near Walnut Grove) lists only a 14.2 sq mi drainage area; catalog describes it as small, brushy, and rain-flashy. TDEC winter grabs at RM 0.5 read 0.43-1.05 C (Jan-Feb 2001-2007), showing a cold winter regime, but no gorge/canopy/elevation citation was found."
+  },
+  "summerTemperature": [
+    { "celsius": 18.7, "monthObserved": 7, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-FORGE000.5JO&siteid=TDECWPC-FORGE001.2JO&siteid=TDECWR_WQX-TNW000002492&siteid=TDECWR_WQX-TNW000002493&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.3, "monthObserved": 8, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-FORGE000.5JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.6, "monthObserved": 9, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-FORGE000.5JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.3, "monthObserved": 6, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-FORGE001.2JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.1, "monthObserved": 7, "year": 2006, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-FORGE000.5JO&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 17.8, "monthObserved": 8, "year": 2016, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002493&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 21.8, "monthObserved": 7, "year": 2026, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002492&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation of any kind found for Forge Creek; no creel, survey, or independent angler sources from acceptable domains mention the creek outside the stocking season.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found: Forge Creek is not named in TWRA's Region IV Trout Fisheries Report 2017 wild-trout discussion (which names Beaverdam Creek, Doe Creek, Laurel Fork, and Doe River for this region), is absent from TWRA's Wild Trout Streams and delayed-harvest regulation lists (2026 regs page grepped), and no TWRA or university stream-fish survey of the creek surfaced in searches.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "TDEC summer grab samples read a trout-friendly 17.3-18.7 C in every sampled summer 2001-2016, but the only recent sample (21.8 C, Jul 21 2026, near the mouth) is above comfortable trout range, and with the Mar-May stocking season over by June there is zero documented trout presence the rest of the year.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Station/search?bBox=-82.02,36.35,-81.72,36.45&characteristicName=Temperature,%20water&mimeType=csv (identity: TDECWPC-FORGE000.5JO/FORGE001.2JO + TDECWR_WQX-TNW000002492/TNW000002493 all named 'Forge Creek', county 091 Johnson, HUC 06010103)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-FORGE000.5JO&siteid=TDECWPC-FORGE001.2JO&siteid=TDECWR_WQX-TNW000002492&siteid=TDECWR_WQX-TNW000002493&characteristicName=Temperature,%20water&mimeType=csv (18 temp results 2001-2026)",
+    "https://waterdata.usgs.gov/monitoring-location/03481575/ (ledger lead: 'FORGE CREEK NEAR WALNUT GROVE, TN', single 1900 field measurement, 14.2 sq mi drainage, no continuous record)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (2026 workbook, owner-supplied copy in repo: Region 4 Johnson Co 'Forge Creek', Seasonal Rainbow Trout, weeks of 3/8, 4/5, 5/3, 5/31/2026 - stocking ends before summer)",
+    "https://www.eregulations.com/tennessee/fishing/region-4 (fetched and grepped: Forge Creek not mentioned - statewide trout rules apply)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (fetched and grepped 2026-09-18: Forge Creek absent from wild-trout and special-regulation lists)",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/ (Region IV Trout Fisheries Report 2017 - Forge Creek not among the named wild-trout streams)",
+    "https://storymaps.arcgis.com/stories/dbb92bdf718f4fd7839bf4b08fb82747 (TWRA trout forecast StoryMap is JS-rendered; no fetchable per-water content checked for Forge Creek)",
+    "WebSearch '\"Forge Creek\" Johnson County Tennessee trout fishing' (only Fishbrain and content-farm hits, not used as evidence; confirmed a different Forge Creek exists in the Smokies area)"
+  ]
+}

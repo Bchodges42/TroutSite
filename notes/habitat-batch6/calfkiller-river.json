@@ -1,0 +1,92 @@
+{
+  "slug": "calfkiller-river",
+  "segment": {
+    "description": "The Calfkiller River, a White County tributary of the Caney Fork rising in Putnam County and flowing south through Sparta to its mouth at the Great Falls Lake/Caney Fork pool. Cataloged with USGS gauge 03419530 (Calfkiller River at Hwy 70 at Sparta); TWRA's stocked reach is the White County river.",
+    "boundaries": "County spread: White (GNIS 01305600; the cataloged river), headwaters in Putnam; HUC 05130108. Temperature evidence below comes from stations at/below Sparta on the lower-mid river."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No cold-water source documented. The catalog's 'spring-fed-ish' characterization is an editorial note without an agency citation. TWRA's Great Falls Reservoir page documents the river's lower reach as musky habitat whose fishing 'is tough [a]s water temperatures rise during the summer' - a warmwater signal for the lower river."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 25.0,
+      "monthObserved": 6,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.5,
+      "monthObserved": 7,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.0,
+      "monthObserved": 8,
+      "year": 1981,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 21.78,
+      "monthObserved": 9,
+      "year": 2007,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-CALFK012.6WH&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No agency documentation of holdover either way. TWRA stocks the river only in spring (two seasonal 2026 weeks of 3/22 and 3/29, Rainbow Trout); no summer or winter stocking rows exist, and no creel or sampling evidence of between-stocking survival was found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented: the Calfkiller appears in no TWRA trout-regulation category (absent from the wild-trout list and every special-regulation section of TWRA's trout regulations page, checked live this session); the musky/bass fishery TWRA documents for the river's lower reach is warmwater.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA stocks the Calfkiller only in spring (2 seasonal rainbow weeks in March 2026) and grab samples below Sparta show summer water up to 29.0 C (Jul 1980), with 21.8-25 C typical - warmwater summer conditions with no documented between-stocking survival.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (fetched this session: 'Calfkiller River', Region 3, TYPE Seasonal, Rainbow Trout, stocking weeks 3/22/2026 and 3/29/2026; the feed's COUNTY field reads 'Putnam' while the catalog, GNIS and the TDEC station naming place the stocked river in White County - noted as a feed data quirk)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied workbook mirrors the feed: 2 Calfkiller rows, Seasonal, Rainbow)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420000&characteristicName=Temperature,%20water&mimeType=csv (USGS 03420000 'CALFKILLER RIVER BELOW SPARTA, TN': 10 temperature rows 1965-1988; June-September values 18.9-29.0 C)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-CALFK012.6WH&characteristicName=Temperature,%20water&mimeType=csv (TDEC station near Sparta, White County: 8 rows 2007-2008; September 2007 reading 21.78 C)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03419530&characteristicName=Temperature,%20water&mimeType=csv (zero temperature rows at the cataloged Sparta gauge)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03419530&startDT=2025-07-01&endDT=2025-07-03&format=json (gauge carries only parameters 00060 streamflow and 00065 gage height - no water-temperature parameter, so no recent summer temps exist at the cataloged gauge)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched this session: no Calfkiller entry in any trout category)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html (lower Calfkiller documented as musky water with summer heat slowing the fishery)",
+    "repo-local: docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (wave-2 verified gauge 03419530 on-reach and the absence of trout-category listings; underlying URLs re-cited above)",
+    "https://www.eregulations.com/tennessee/fishing (eRegulations confirms Calfkiller on TWRA's tentative stocking schedule - seasonal program only)"
+  ]
+}

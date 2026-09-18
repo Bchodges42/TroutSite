@@ -1,0 +1,70 @@
+{
+  "slug": "charles-creek",
+  "segment": {
+    "description": "Charles Creek (GNIS 01305863) of Warren County, a Collins River tributary (HUC 05130107) whose upper course runs west toward the Van Buren line and whose mouth enters the Collins River at ~35.719,-85.741 on the west side of McMinnville. Identity pinned by catalog HUC 05130107 + Warren County and USGS station 03421150 (Warren Co. 177, HUC 05130107, 13.8 sq mi). Small warmwater presumption of the coordinator's brief is tested below against the agency grab record.",
+    "boundaries": "Catalog: 'TWRA spring-stocked Warren County creek' (no reach limits given). The single TWRA stocking site is 'Frances Ferry (S1)' at 35.7177,-85.7596 (McMinnville city, spring program, Private Land). The temperature record is at USGS 03421150 'CHARLES CREEK AT DAYLIGHT, TN' (35.7423,-85.8533), upstream of the McMinnville stocked reach on the same creek."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "notes": "Free-flowing Collins River tributary above Center Hill Dam (TWRA's muskellunge rule names the Collins River and its tributaries among 'Above Center Hill Dam and tributaries'); no dam on the stocked reach. Barren Fork/Collins drainage per catalog region."
+  },
+  "summerTemperature": [
+    { "celsius": 17.0, "monthObserved": 6, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.0, "monthObserved": 6, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 21.0, "monthObserved": 7, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.0, "monthObserved": 7, "year": 1987, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.5, "monthObserved": 7, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 21.0, "monthObserved": 8, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 8, "year": 1986, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 23.0, "monthObserved": 8, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 19.4, "monthObserved": 8, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 18.5, "monthObserved": 9, "year": 1984, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 20.5, "monthObserved": 9, "year": 1985, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; TWRA's program here is seasonal spring put-and-take rainbow (2026 schedule: weeks of 3/15, 3/22 and 5/10; single Frances Ferry site in the city).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found. The creek has no entry (special regulation or wild-trout listing) on TWRA's Tennessee Trout Regulations page as fetched 2026-09-18.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27WARREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Six years of USGS grab samples at Daylight show August water up to 26.5 C (1986) and routinely 20-23 C in July-September - warmwater summer conditions on a creek TWRA stocks only three spring weeks per year.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 TWRA workbook) - 3 'Charles Creek' rows, county Warren, Seasonal, Rainbow Trout (weeks 3/15, 3/22, 5/10/2026)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (official TWRA table behind the workbook, fetched live 2026-09-18)",
+    "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27WARREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100 (live 2026-09-18: 'Frances Ferry (S1)' on Charles Creek, McMinnville, 35.7177,-85.7596, Spring, rainbow, Private Land)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421150&characteristicName=Temperature,%20water&mimeType=csv (16 grab samples 1983-11-01 through 1988-08-29; 11 June-September observations extracted)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03421200&characteristicName=Temperature,%20water&mimeType=csv (0 rows - the active crest-stage gage near McMinnville publishes peaks only, no water quality)",
+    "https://www.waterqualitydata.us/data/Station/search?siteid=USGS-03421150&mimeType=csv (identity: CHARLES CREEK AT DAYLIGHT TN, Warren Co. 177, HUC 05130107, 13.8 sq mi; used because waterservices.usgs.gov site endpoint returned HTTP 503 on 2026-09-18)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03421150&siteOutput=expanded&format=rdb (attempted for gage datum; HTTP 503 - elevation left null)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (fetched live; Collins River named in the 'Above Center Hill Dam and tributaries' muskellunge rule)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (fetched live 2026-09-18; zero entries for Charles Creek - no special regulation, no wild-trout listing)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan.pdf (context only: hatchery-supported streams are primarily warmwater habitats that cannot support trout year round; PDF not fetched per evidence-sweep download ban)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (lead source only: station numbers, HUC correction note, mouth coordinates; all facts re-verified against the primary URLs above)"
+  ]
+}
