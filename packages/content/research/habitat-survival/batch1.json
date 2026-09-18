@@ -389,7 +389,7 @@
     ],
     "holdover": {
       "documented": false,
-      "detail": "TWRA electrofishing in 1998 found FEW rainbow trout hold over from one season to the next, attributed to elevated late-summer/fall water temperatures (Bettoli 2001, TWRA Fisheries Report 01-43). The same report states stocking in late summer when temperatures routinely exceed 25 C 'is clearly a waste of resources'.",
+      "detail": "TWRA electrofishing in 1998 found FEW rainbow trout hold over from one season to the next, attributed to elevated late-summer/fall water temperatures (Bettoli 2001, TWRA Fisheries Report 01-43). The same report states stocking in late summer when temperatures routinely exceed 25 C 'is clearly a waste of resources'. NOTE (2026-09-17 owner policy): absence of holdover does NOT rule out year-round status - a continuously stocked reach qualifies on its own. This fact is one facet, not the verdict.",
       "evidenceUrl": "https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf"
     },
     "wildPopulation": {
@@ -405,8 +405,8 @@
       }
     ],
     "overallSurvivalRead": {
-      "yearRoundSurvivalLikely": "unlikely",
-      "oneLineWhy": "TWRA's own commissioned study measured 27 C (acutely lethal to rainbow trout) below Normandy Dam in late August 2000 and found few stocked trout survive summer - consistent with TWRA's current winter-months stocking pattern (Jan, Feb, Mar, Nov, Dec rainbow per the owner-supplied 2026-09-17 TWRA workbook).",
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "Evidence points both ways and the decisive fact is unresolved: TWRA's 2000 study found lethal summer temperatures below the dam, yet the owner confirms year-round stocking (which under the 2026-09-17 owner policy would itself define a year-round trout fishery) while the 2026-09-17 workbook shows winter-months-only stocking - the current stocking regime sits in the owner box.",
       "confidence": "medium"
     },
     "sourcesChecked": [
@@ -436,7 +436,7 @@
         "evidenceUrl": ""
       },
       "elevationFt": null,
-      "notes": "No reachable TVA document states Boone Dam's withdrawal structure type; TVA's Boone Reservoir health page shows poor forebay/mid-reservoir dissolved oxygen ratings (https://tva.com/environment/environmental-stewardship/water-quality/reservoir-health-ratings/boone-reservoir), consistent with strong stratification, but that is not direct evidence of release temperature. The strongest documented pattern is TWRA's own stocking program for this reach: cold-season only (Mar, Apr, Nov, Dec rainbow+brown per the owner-supplied 2026-09-17 TWRA workbook), the complement of what a cold year-round tailwater would receive."
+      "notes": "No reachable TVA document states Boone Dam's withdrawal structure type; TVA's Boone Reservoir health page shows poor forebay/mid-reservoir dissolved oxygen ratings (https://tva.com/environment/environmental-stewardship/water-quality/reservoir-health-ratings/boone-reservoir), consistent with strong stratification, but that is not direct evidence of release temperature. Documented stocking program for this reach (owner-supplied 2026-09-17 TWRA workbook): Mar, Apr, Nov, Dec rainbow+brown - the fishery is actively maintained in the cold months; whether trout also persist through summer (via survival, or unrecorded stocking) is the open question."
     },
     "summerTemperature": [],
     "holdover": {
@@ -463,7 +463,7 @@
     ],
     "overallSurvivalRead": {
       "yearRoundSurvivalLikely": "unknown",
-      "oneLineWhy": "TWRA's stocking program for this exact reach is cold-season only (Mar, Apr, Nov, Dec) - a pattern that fits a summer-warm reach - but no temperature data or documented release type was found to settle it; the catalog's yearRound:true flag remains the owner's call.",
+      "oneLineWhy": "The documented stocking program runs Mar, Apr, Nov, Dec - the fishery is maintained in cold months, and whether trout persist through the unstocked summer months (survival or unrecorded stocking) is unresolved because no temperature data or documented release type was found; the catalog's yearRound:true flag remains the owner's call.",
       "confidence": "low"
     },
     "sourcesChecked": [
@@ -491,7 +491,7 @@
         "evidenceUrl": ""
       },
       "elevationFt": null,
-      "notes": "TWRA's official regulations publication describes the water below Fort Patrick Henry Dam as a coldwater trout tailwater receiving fingerling and adult stockings, and Fort Patrick Henry is included in TWRA's trout-stocked waters. No agency document stating the withdrawal type or tailwater summer temperatures was reachable in this pass. The TWRA workbook stocking pattern for this reach is Mar, Apr, Dec (rainbow+brown) - a cold-shoulder program, not the Mar-Sep pattern of the cold year-round South Holston tailwater upstream."
+      "notes": "TWRA's official regulations publication describes the water below Fort Patrick Henry Dam as a coldwater trout tailwater receiving fingerling and adult stockings, and Fort Patrick Henry is included in TWRA's trout-stocked waters. Documented stocking program for this reach (owner-supplied 2026-09-17 TWRA workbook): Mar, Apr, Dec (rainbow+brown); the catalog additionally notes a 'reliable cold release'. No agency document stating the withdrawal type or tailwater summer temperatures was reachable in this pass, so whether the reach carries trout through the unstocked months is unresolved."
     },
     "summerTemperature": [],
     "holdover": {
