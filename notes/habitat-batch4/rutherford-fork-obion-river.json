@@ -1,0 +1,43 @@
+{
+  "slug": "rutherford-fork-obion-river",
+  "segment": {
+    "description": "Rutherford Fork Obion River, a major named fork of the Obion system (HUC 08010203) flowing northwest through Gibson County (Milan, Bradford, Rutherford) toward the Kenton area (Obion County); catalog describes it as a major named fork through Gibson and adjoining West Tennessee counties. Not related to Rutherford County, Tennessee (Middle Tennessee).",
+    "boundaries": "Catalog gives no explicit boundaries; documented evidence reach is the Gibson County reach at TDEC stations RFOBI024.4GI (near 35.994, -88.792) and RFOBI029.9GI (near Milan), with downstream USGS gages near Bradford (07025000) and near Kenton (07025100)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 317,
+    "notes": "Gage elevation 316.54 ft NGVD29 at 07025000 near Bradford (USGS site service). The fork drains low-gradient West Tennessee bottomland in the channelized Obion system (TWRA 2015 SWAP Obion River COA); TDEC's monitoring station names for the Gibson County reach include 'Rutherford Fork Obion River Drainage Canal,' reflecting channelization."
+  },
+  "summerTemperature": [
+    { "celsius": 22.6, "monthObserved": 8, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 22.1, "monthObserved": 8, "year": 2001, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover trout fishery documented. TWRA stocks no trout on the Rutherford Fork Obion River (no stocking row in the 2025-2026 workbook; the 'Rutherford' rows in that workbook are Rutherford County Middle Tennessee sites — Nice Mill and W. Fork Stones River — unrelated to this fork), and the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Dickinson's 1973 UT survey of the Obion River system verified 100 fish species with collections from the system's principal streams and forks and lists no salmonids; TWRA's crappie regulation for 'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries)' confirms a warmwater sport fishery on this Obion tributary.",
+    "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "No trout program or salmonid occurrence is documented on this channelized warmwater fork (TDEC August grabs were 22.1-22.6 C in 2001; the 1973 system-wide fish survey lists no salmonids).",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024705;USGS-07024770;USGS-07024790;USGS-07025025;USGS-07025100;USGS-07024880;USGS-07024900&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+    "https://trace.tennessee.edu/utk_gradthes/8225"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "slug": "north-fork-forked-deer-river",
+  "segment": {
+    "description": "North Fork Forked Deer River as cataloged: the northwestern West Tennessee fork running from the Carroll/Gibson County area through Trenton and on to Dyersburg (Dyer County), above its junction with the other forks. Warmwater fishery (TWRA groups the Forked Deer with the Hatchie under crappie rules); no trout program.",
+    "boundaries": "Catalog covers the whole fork (hydroIdentity HUC8 08010204, GNIS 01295887). Gaged reaches: USGS 07028500 NORTH FORK FORKED DEER RIVER AT TRENTON, TN (Gibson County, gage altitude 311.85 ft, drainage 73.5 sq mi) and 07029100 AT DYERSBURG, TN (Dyer County, gage altitude 244.86 ft, drainage 939 sq mi); identities verified via waterservices.usgs.gov expanded site output."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 244.86,
+    "notes": "elevationFt = USGS gage altitude 244.86 ft (NGVD29) at the Dyersburg gage 07029100 (https://waterservices.usgs.gov/nwis/site/?sites=07029100&siteOutput=expanded&format=rdb). No dam or spring evidence found on this fork; USGS literature describes the lower-fork floodplain around Tigrett WMA (Dyer County) as an agricultural/channel-modified bottomland system."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 32.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 30.5,
+      "monthObserved": 7,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 30.0,
+      "monthObserved": 7,
+      "year": 1981,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 24.0,
+      "monthObserved": 7,
+      "year": 2004,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout documentation on the North Fork. Absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero 'Forked Deer' mentions); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented; TWRA regulates the fork under warmwater rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit') with no trout provision.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples at the Dyersburg gage (07029100) reached 32.0 C in July 1980 and exceeded 30 C in three separate Julys, and TWRA stocks no trout on any Forked Deer reach.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07028500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07029100&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07028500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://pubs.usgs.gov/search?q=%22North+Fork+Forked+Deer%22"
+  ]
+}

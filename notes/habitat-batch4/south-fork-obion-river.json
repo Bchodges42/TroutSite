@@ -1,0 +1,47 @@
+{
+  "slug": "south-fork-obion-river",
+  "segment": {
+    "description": "South Fork Obion River, the principal southern fork of the Obion system (HUC 08010203), rising near McKenzie (Carroll County) and flowing through Gibson County (Christmasville, Skullbone, Rutherford, Sidonia) and Weakley County (Greenfield) reaches; catalog describes it as a locally important general-fishing water.",
+    "boundaries": "Catalog gives no explicit boundaries; documented evidence reach is the USGS-gaged reach near Greenfield (07024500, Weakley County), with upstream gages at McKenzie and Skullbone and TDEC stations SFOBI006.0OB/SFOBI009.7WY nearby."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 296,
+    "notes": "Gage elevation 295.85 ft NAVD88 at 07024500 near Greenfield (USGS site service). System character is channelized West Tennessee bottomland: 'the Obion and most of its tributaries have been channelized' amid bottomland hardwood forests, swamps, oxbows and sloughs (TWRA 2015 SWAP Obion River COA, which lists Hop-In Refuge and Harts Mill Wetland among public lands in the Obion River COA)."
+  },
+  "summerTemperature": [
+    { "celsius": 30.0, "monthObserved": 7, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 28.0, "monthObserved": 8, "year": 1980, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 6, "year": 2002, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.5, "monthObserved": 6, "year": 2005, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover trout fishery documented. TWRA stocks no trout anywhere on the South Fork Obion River (winter rainbow program is park/pond sites), and the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Dickinson's 1973 UT survey of the Obion River system — collections from the principal forks including the South Fork — verified 100 fish species and lists no salmonids.",
+    "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples near Greenfield hit 30.0 C in July 1980 and 28.0 C in August 1980 — summer temperatures well beyond trout survival — on an unstocked channelized warmwater fork.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07025900,07024500,07025400,07025000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+    "https://trace.tennessee.edu/utk_gradthes/8225",
+    "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/hop-in-refuge.html",
+    "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/harts-mill-wma.html"
+  ]
+}

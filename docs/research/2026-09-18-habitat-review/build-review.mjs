@@ -31,6 +31,7 @@ const batches = [
   ...read('packages/content/research/habitat-survival/batch1.json'),
   ...read('packages/content/research/habitat-survival/batch2.json'),
   ...read('packages/content/research/habitat-survival/batch3.json'),
+  ...read('packages/content/research/habitat-survival/batch4.json'),
 ];
 const bySlug = new Map(batches.map((r) => [r.slug, r]));
 const { composite, fishbrainBySlug, troutNames } = loadExtracted();

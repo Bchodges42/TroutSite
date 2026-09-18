@@ -1,0 +1,65 @@
+{
+  "slug": "reelfoot-lake",
+  "segment": {
+    "description": "Reelfoot Lake — Tennessee's largest natural lake (10,427 acres), formed by the 1811-12 New Madrid earthquakes when the Mississippi ran backward into a shallow basin; roughly 68% is 3 feet deep or less. Spans Lake and Obion counties (plus Fulton Co., KY). TWRA documents it as one of the state's premier crappie and bluegill fisheries; trout are not mentioned anywhere on TWRA's lake page.",
+    "boundaries": "Entire lake as cataloged. USGS lake gage 07027000 'REELFOOT LAKE NR TIPTONVILLE, TN' (36.3531,-89.4062, Lake County) monitors lake stage. TWRA page: US Fish and Wildlife Service oversees part of the lake (Kirby Pocket to Brewer's Bar); Reelfoot Lake State Park borders it. The only 'Reelfoot' trout row in TWRA's 2026 schedule — 'Union City Reelfoot Packing Site' (Obion Co., Winter rainbow) — is the separate Union City winter-trout pond cataloged as union-city-reelfoot-pond, NOT this lake."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html"
+    },
+    "springFed": {
+      "value": false,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html"
+    },
+    "elevationFt": 270.11,
+    "notes": "Natural lake, no dam tailwater: TWRA describes it as created by the 1811-12 earthquakes. SpringFed=false basis: documented origin is river backwater filling a shallow surface basin (a runoff/bayou-fed lake, e.g. Running Reelfoot Bayou), not a spring system. elevationFt = USGS gage altitude 270.11 ft (NAVD88) at station 07027000, identity verified via waterservices expanded site output."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.55,
+      "monthObserved": 6,
+      "year": 2001,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF00001LA&siteid=TDECWPC-REELF000.1LA&siteid=TDECWPC-REELF000.2LA&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 34.4,
+      "monthObserved": 6,
+      "year": 2001,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF000.3OB&siteid=TDECWPC-REELF000.4OB&siteid=TDECWPC-REELF000.5OB&siteid=TDECWPC-REELF000.6OB&siteid=USGS-362513089215501&siteid=USGS-362727089213200&siteid=USGS-362801089190702&siteid=USGS-362815089204000&characteristicName=Temperature%2C%20water"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented on the lake: no Reelfoot Lake row exists in TWRA's 2026 trout stocking schedule (the only 'Reelfoot' row is the separate Union City Packing Site pond), trout are absent from TWRA's lake page, and no holdover record exists. A WebSearch synthesis additionally characterizes the lake as hypereutrophic (EPA report lead, not fetched) — extreme summer warmth is consistent with the TDEC June samples (25.5-34.4 C).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's lake page describes an entirely warmwater assemblage (white/black crappie, bluegill, redear, warmouth, largemouth/spotted bass, yellow bass, channel catfish, paddlefish); the Trout Management Plan places wild trout in East Tennessee mountain streams and contains no Reelfoot mention.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Shallow natural warmwater lake: TDEC water-quality samples on 2001-06-12 read 25.5-34.4 C across lake stations and embayments, TWRA documents a crappie/bluegill fishery with zero trout, and TWRA stocks no trout into the lake.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07027000&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF00001LA&siteid=TDECWPC-REELF000.1LA&siteid=TDECWPC-REELF000.2LA&characteristicName=Temperature%2C%20water",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF000.3OB&siteid=TDECWPC-REELF000.4OB&siteid=TDECWPC-REELF000.5OB&siteid=TDECWPC-REELF000.6OB&siteid=USGS-362513089215501&siteid=USGS-362727089213200&siteid=USGS-362801089190702&siteid=USGS-362815089204000&characteristicName=Temperature%2C%20water",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07027000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (stage-only gauge; no temperature series)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: 'Reelfoot' — only Union City Reelfoot Packing Site pond rows)",
+    "WebSearch leads not fetched: pubs.usgs.gov Heal 2022 Reelfoot outlet model; nepis.epa.gov Reelfoot hypereutrophication report; utm.edu Reelfoot Lake Environmental Field Station"
+  ]
+}

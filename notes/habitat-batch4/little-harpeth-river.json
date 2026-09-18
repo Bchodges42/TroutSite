@@ -1,0 +1,38 @@
+{
+  "slug": "little-harpeth-river",
+  "segment": {
+    "description": "Little Harpeth River — a Nashville-area Harpeth River tributary (HUC 05130204, Harpeth) rising in Williamson County and flowing through Davidson County, including the Edwin Warner Park reach in Nashville. No trout program exists on this water: the TWRA winter-stocking site on the Harpeth system is 'Harpeth River at Eastern Flank Battle Park' (Williamson Co.), which is on the MAIN Harpeth in Franklin — a different catalog water — and no workbook or TWRA trout-page entry exists for the Little Harpeth itself.",
+    "boundaries": "Per catalog: the Little Harpeth main stem, Williamson County headwaters to its confluence with the Harpeth in Davidson County; no dam or impounded reach is documented."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-source documentation of any kind found: no dam, no spring influence documented, no temperature record located (USGS IV temperature series absent at gage 03432900 'Little Harpeth River near Brentwood, TN' for July 2025)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout holdover is documented and no trout stocking exists to hold over: the TWRA 2026 stocking schedule and the owner workbook list no Little Harpeth entry (the Harpeth-system winter stockings — 'Harpeth River at Eastern Flank Battle Park', rainbow trout, 1/23/2026, 2/20/2026, TBD 12/2026 — are on the main Harpeth in Franklin, the sibling harpeth-river catalog water).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout population documented on any agency source checked. Metro Parks' Nashville fishing information treats the Edwin Warner Park reach as general (warmwater) fishing water; no trout management listing exists for the stream.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "No trout program and no trout documentation exists for the Little Harpeth itself on any TWRA source checked — TWRA's Harpeth-system winter rainbow stockings are confined to the main Harpeth at Eastern Flank Battle Park in Franklin, a different catalog water.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?countyCd=47187&format=rdb&siteOutput=expanded&siteType=ST (Little Harpeth gages incl. 03432900 'LITTLE HARPETH RIVER NEAR BRENTWOOD, TN')",
+    "https://nwis.waterservices.usgs.gov/nwis/iv/?sites=03432900&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature series — empty timeSeries)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432900&characteristicName=Temperature%2C%20water (no summer temperature records returned)",
+    "https://www.nashville.gov/departments/parks/activities/fishing (404 at guessed path; Metro Parks 'Fishing in Metro Parks' page confirming Little Harpeth fishing holes in Edwin Warner Park exists per WebSearch but exact URL unresolved)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Little Harpeth' rows; 'Harpeth' rows are 'Harpeth River at Eastern Flank Battle Park' only)"
+  ]
+}

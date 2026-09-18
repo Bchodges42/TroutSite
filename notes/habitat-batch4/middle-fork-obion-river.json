@@ -1,0 +1,43 @@
+{
+  "slug": "middle-fork-obion-river",
+  "segment": {
+    "description": "Middle Fork Obion River, a principal fork of the Obion system (HUC 08010203), flowing from its upper reach near Como (Henry/Carroll county line area) through Weakley County (Gleason, Sharon, Dresden) into Gibson County (Sidonia) toward the fork confluences; catalog describes it as a principal Obion fork whose access and lowland conditions vary by reach.",
+    "boundaries": "Catalog gives no explicit boundaries; documented evidence reaches are the USGS-gaged upper reach near Gleason (07024705) and near Sidonia (07024790), plus TDEC stations MFOBI026.3HN (upper, near Como), MFOBI014.6WY and MFOBI004.5WY (lower, Weakley County)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 360,
+    "notes": "Gage elevation 360.00 ft NGVD29 at 07024705 near Gleason, falling to about 310 ft at the downstream Sidonia gage (USGS site service) — a low-gradient West Tennessee bottomland fork in the channelized Obion system (TWRA 2015 SWAP Obion River COA)."
+  },
+  "summerTemperature": [
+    { "celsius": 29.0, "monthObserved": 8, "year": 1988, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024705;USGS-07024770;USGS-07024790;USGS-07025025;USGS-07025100;USGS-07024880;USGS-07024900&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 24.3, "monthObserved": 8, "year": 2007, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover trout fishery documented. TWRA stocks no trout on the Middle Fork Obion River (the county-level winter rainbow sites are ponds/parks such as McKenzie City Park and Milan City Pond), and the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Dickinson's 1973 UT survey of the Obion River system — most collections from the Reelfoot Lake area and the principal forks of the system — verified 100 fish species and lists no salmonids.",
+    "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A USGS grab at the Sidonia gage measured 29.0 C in August 1988, and TWRA stocks no trout on this channelized warmwater fork.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024705;USGS-07024770;USGS-07024790;USGS-07025025;USGS-07025100;USGS-07024880;USGS-07024900&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+    "https://trace.tennessee.edu/utk_gradthes/8225"
+  ]
+}

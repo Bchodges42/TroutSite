@@ -1,0 +1,43 @@
+{
+  "slug": "lake-graham",
+  "segment": {
+    "description": "Lake Graham — ~500-acre TWRA-owned lake about 9 miles east of Jackson on Cotton Grove Road, Madison County, West Tennessee. TWRA's where-to-fish page lists the fishery as largemouth bass, crappie, bluegill, redear sunfish, and blue & channel catfish; trout appear only in the regulations (7/day, no length limit), reflecting the winter put-and-take program.",
+    "boundaries": "Entire lake. TWRA's 2026 trout stocking schedule lists 'Lake Graham' as a Winter-type Rainbow Trout site (repo workbook rows: Madison Co., 1/8/2026 and TBD 12/2026). No trout stockings of any other type found for the lake."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": ""
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the only trout rows for Lake Graham in TWRA's 2026 schedule are Winter-type, and the TWRA Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; TWRA's Lake Graham page lists no trout among the species found in the lake.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule carries Lake Graham (Madison Co.) solely as a Winter rainbow site, TWRA's own page lists a warmwater species mix, and the Trout Management Plan states hatchery-supported lakes like this cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Madison/'Lake Graham' Winter Rainbow Trout rows; zero non-winter rows)"
+  ]
+}

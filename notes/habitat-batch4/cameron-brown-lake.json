@@ -1,0 +1,40 @@
+{
+  "slug": "cameron-brown-lake",
+  "segment": {
+    "description": "Cameron Brown Lake, the small fishing pond in the City of Germantown's Cameron Brown Park (Shelby County), TN — a TWRA Region 1 winter put-and-take trout water. TWRA's live stocking table lists 'Cameron Brown Lake' (Region 1, Shelby County) with Winter-type rainbow trout stockings on 1/13/2026 and 'TBD 12/2026'; TWRA's 11/26/2025 winter-program press release counts Germantown among the five-creel-limit Community Lakes sites.",
+    "boundaries": "Entire lake in Cameron Brown Park, Germantown, Shelby County, TN; TWRA Region 1 winter stocking program site (stockings in the Nov/Dec-Mar cold window only)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source evidence of any kind found. City of Germantown pages were unreachable (HTTP 403 to fetchers), so no city-level lake characterization was available; the only cited characterization is TWRA program-level."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-level holdover documentation found in any consulted source. Program-level context: TWRA's Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record for this lake. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No source consulted places any wild trout in this Germantown park lake.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA stocks this Germantown park lake with rainbow trout only in the winter program (1/13/2026 + TBD 12/2026 rows), and TWRA's own plan says warmwater hatchery-supported waters cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://www.germantown-tn.gov/645/Parks-Recreation (miss: HTTP 403 to fetchers)",
+    "https://www.tn.gov/twra/news.html (miss: release list is JS-rendered; no lake-level pages retrieved)"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "slug": "pickwick-lake",
+  "segment": {
+    "description": "Pickwick Reservoir — TVA mainstream impoundment of the Tennessee River behind Pickwick Landing Dam; 43,100 acres total with the Tennessee portion (~6,159 acres) in Hardin County; max depth 85 ft. TWRA documents a warmwater fishery including the famous smallmouth water and a sauger/walleye component — trout are not mentioned on TWRA's page.",
+    "boundaries": "Tennessee portion (Hardin County) of the reservoir as cataloged; water levels fluctuate around 414.0 ft (summer full pool) to 408 MSL (winter). TWRA notes a KY/TN/MS reciprocal agreement covering waters from Pickwick Dam to Tennessee River Mile 224.8 (excluding Bear Creek and upper Yellow Creek). Tennessee embayments include Yellow Creek, Winn Springs, Dry Creek, and Pickwick Landing State Park."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Pickwick Landing Dam",
+      "operator": "TVA",
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 414,
+    "notes": "Mainstem reservoir, not a trout tailwater: TWRA's page describes the TVA mainstream reservoir (TVA manages lake levels; dam anchored by the reciprocal-agreement description 'Pickwick Dam to TN River Mile 224.8'). A WebSearch snippet of TVA's Pickwick Reservoir Land Management Plan (tva.com; blocks plain fetch) places the dam at Tennessee River mile 206.7. The documented cold-season tailwater fishery below the dam is SAUGER — per TWRA, prime fishing runs December to March on the downstream side of TVA dams like Pickwick Dam. No cold-release regime documented. elevationFt = summer full pool from TWRA."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 31.0,
+      "monthObserved": 7,
+      "year": 1975,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 30.0,
+      "monthObserved": 7,
+      "year": 1977,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 30.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented: no Pickwick row of any type exists in the 616-row TWRA 2026 trout stocking schedule, Pickwick is absent from the TWRA Trout Management Plan's list of nine reservoirs supporting trout fisheries, and TWRA's lake page lists no trout. TWRA's warmwater archive shows Pickwick warmwater stockings (black crappie, channel catfish, bluegill entries near Pickwick rows, e.g. 04/23/2026).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's species list is entirely warmwater (largemouth/smallmouth/spotted bass, bluegill, redear, warmouth and other sunfish, three catfish species, crappie, striped/hybrid, white/yellow bass, walleye, sauger, paddlefish); the Trout Management Plan places wild trout in East Tennessee mountain streams.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm TVA mainstem reservoir: USGS grab samples at Pickwick Landing Dam (03593005) repeatedly hit 30-31 C in July samples (1975-1988), TWRA documents the tailwater's winter fishery as SAUGER, and no trout stocking program exists for the lake.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html (sauger Dec-Mar below TVA dams incl. Pickwick Dam)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03593005&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water",
+    "waterservices.usgs.gov/nwis/site/?huc=06040001,06040002,06040004&siteOutput=expanded&format=rdb (HUC gauge sweep: no lake temperature reporting sites)",
+    "tva.com Pickwick Reservoir Land Management Plan and lakeinfo.tva.gov Pickwick page (WebSearch snippets only — tva.com 403s plain fetch)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero Pickwick rows)"
+  ]
+}

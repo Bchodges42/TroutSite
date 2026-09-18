@@ -1,0 +1,69 @@
+{
+  "slug": "tennessee-river",
+  "segment": {
+    "description": "Tennessee River main stem, West Tennessee reach as cataloged (regionId tn-west): the river's impounded main-stem reach from Pickwick Lake north to the Kentucky line — the Kentucky Lake pool of the Tennessee River (the river legitimately leaves Tennessee between mile 424 at Shellmound upstream and Pickwick). Warm main-stem water: TWRA documents the reach's famous winter SAUGER run (a warmwater percids fish, not a trout), and the catalog notes the trout fishing lives in the separate cold tailwaters below the dams.",
+    "boundaries": "Main-stem reach within West Tennessee from Pickwick Lake to the Kentucky line (hydroIdentity GNIS 00517033, HUC8 06040001; catalog counties: Hardin). USGS mainstem stations in the reach: 03593500 Tennessee River at Savannah (Kentucky Lake pool, Hardin County) and 03594500 Tennessee River at Perryville (Decatur County)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "The reach is a TVA mainstem reservoir pool (Kentucky Lake) bounded by mainstem dams, not a trout tailwater; evidenceUrl documents TWRA's description of this TVA mainstream water, its pool range (354-359 ft MSL), and the sauger fishery on the downstream side of TVA dams. No cold-release regime documented for this reach; no trout fishery of any kind is documented."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 1999,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 30.5,
+      "monthObserved": 8,
+      "year": 1999,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 26.7,
+      "monthObserved": 8,
+      "year": 1967,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented on the main stem: no Kentucky Lake/Kentucky/Tennessee River row appears anywhere on TWRA's 2026 trout stocking schedule (full-page scan; 616-row workbook), the mainstem reservoirs are absent from the TWRA Trout Management Plan's list of nine trout reservoirs, and TWRA's documented main-stem fishery is warmwater (sauger run December to March below TVA dams like Pickwick Dam; largemouth bass the dominant harvest).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's Trout Management Plan states 'Wild trout are generally limited to East Tennessee's mountain streams'; TWRA's documented main-stem species (Kentucky Reservoir page) are entirely warmwater with no trout.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm main-stem water: USGS grab samples at Savannah (03593500) read 26.7-30.5 C in July-August samples (1967-1999), TWRA documents the reach's signature winter fishery as the SAUGER run (Dec-Mar, downstream side of TVA dams), and no trout stocking exists anywhere on the main stem.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html (archived warmwater report shows a 'Tennessee River' row near 'Sauger X Walleye Hybrid' text — warmwater stocking only)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03593500,03594500&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03593500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (mainstem gauges report stage/discharge only; no IV temperature)",
+    "https://tva.com/environment/lake-levels/how-tva-manages-water-levels (URL verified via WebSearch snippet; tva.com 403s plain fetch)",
+    "tva.com Kentucky Reservoir Land Management Plan (WebSearch snippet: Kentucky Dam at Tennessee River mile 22.4; full path not captured)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no Kentucky/Pickwick/Tennessee River trout rows)"
+  ]
+}

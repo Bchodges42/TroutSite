@@ -1,0 +1,42 @@
+{
+  "slug": "old-hickory-lake",
+  "segment": {
+    "description": "Old Hickory Reservoir — a 22,500-acre USACE impoundment of the Cumberland River in northern middle Tennessee (dam completed 1954), catalog counties Davidson, Sumner, Wilson, Smith, and Trousdale. TWRA documents an entirely warmwater fishery (largemouth/smallmouth/spotted bass, crappie, striped/hybrid/white/yellow bass, walleye, sauger, paddlefish, catfish, sunfish) with no trout content anywhere on the page. This is a control-style water: no trout program has been found on any source checked.",
+    "boundaries": "Reservoir pool behind Old Hickory Dam (Cumberland River mile 216.2), east of Nashville; catalog counties Davidson, Sumner, Wilson, Smith, Trousdale."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Old Hickory Dam",
+      "operator": "USACE",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA: 'The US Army Corps of Engineers (USACE) owns and operates Old Hickory Reservoir'; 'Old Hickory Reservoir is a 22,500-acre impoundment on the Cumberland River in northern middle Tennessee'; 'Dam completion occurred in 1954.' The reservoir is the impoundment itself, not a cold tailwater; no cold-release regime is documented."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented: TWRA's reservoir page contains no mention of trout, the 2026 TWRA stocking schedule and owner workbook contain no Old Hickory trout rows, and no winter-program site on this impoundment exists (nearby Davidson winter sites — Shelby Bottoms, Cedar Hill Park Pond, Marrowbone Lake — are separate park/lake waters).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater; the documented cold-season fishery associated with USACE dams on this river is sauger (a warmwater percids), not trout.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm mainstream Cumberland impoundment: TWRA's own reservoir page documents only warmwater species and no trout program exists for the lake on the 2026 stocking schedule or in the stocking workbook.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.lrn.usace.army.mil/Missions/Recreation/Old-Hickory-Lake/ (unreachable: host serves mismatched certificate / edge rejects request)",
+    "https://www.lrd.usace.army.mil (Nashville District project references surfaced via WebSearch only; direct pages not fetched)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Old Hickory' rows across 616 rows)"
+  ]
+}

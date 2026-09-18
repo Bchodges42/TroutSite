@@ -1,0 +1,39 @@
+{
+  "slug": "covington-fbc-pond",
+  "segment": {
+    "description": "Covington First Baptist Church Pond, Covington (Tipton County), TN — a NEW addition to TWRA's 2025-26 winter rainbow trout stocking program. TWRA's 11/26/2025 press release names 'the Covington First Baptist Church pond (Tipton County)' as one of two new program sites; TWRA's live stocking table lists 'Covington First Baptist Church Pond (NEW)' (Region 1, Tipton County) with Winter-type rainbow trout stockings on 1/15/2026 and 'TBD 12/2026'.",
+    "boundaries": "Entire church pond at First Baptist Church, Covington, Tipton County, TN; TWRA Region 1 winter stocking program site (cold-window stockings only)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source evidence found. Sister Tipton County winter-program pond (Valentine Park, Covington) rows in the same TWRA table confirm the local program pattern."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-level holdover documentation found; the site is new to the program as of 2025-26, so no holdover history exists to document. Program-level context: TWRA's Trout Management Plan 2017-2027 states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record for this pond. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A newly added (2025-26) TWRA winter put-and-take pond — rainbows stocked only in the winter program (1/15/2026 + TBD 12/2026 rows) — in a county where TWRA's plan says warmwater hatchery-supported waters cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/news.html (miss: release list is JS-rendered; 12/31/2025 winter-program-continues release not retrievable at a verified URL)"
+  ]
+}

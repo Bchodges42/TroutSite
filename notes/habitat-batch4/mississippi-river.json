@@ -1,0 +1,40 @@
+{
+  "slug": "mississippi-river",
+  "segment": {
+    "description": "The Mississippi River mainstem forming Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties, as cataloged (this entry's hydroIdentity lists Shelby County, HUC 08010100). The reference gauge on this reach is USGS 'MISSISSIPPI RIVER AT MEMPHIS, TN' (07032000, gauge altitude 184.03 ft NAVD88, drainage area 932,800 sq mi, HUC 08010100).",
+    "boundaries": "Tennessee reach of the Mississippi River mainstem along the state's western border (catalog entry's hydroIdentity: Shelby County); USGS 07032000 at Memphis is the segment reference gauge."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 184.03,
+    "notes": "Elevation is the USGS gauge altitude (NAVD88) at Memphis (https://waterservices.usgs.gov/nwis/site/?sites=07032000&siteOutput=expanded&format=rdb). Mainstem alluvial river of the coastal plain; no cold-water source documented anywhere consulted."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind documented on the Tennessee reach: the TWRA stocking table contains no Mississippi River rows, and no trout fishery record was found. Control-style record.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No consulted source places any trout in the Tennessee reach of the Mississippi.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A low-elevation (184 ft at Memphis) alluvial mainstem with no trout stocking anywhere on the Tennessee reach in TWRA's table and no cold-water source; TWRA's Memphis-area winter trout program sites are community lakes and ponds, not this river.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (checked: no Mississippi row)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07032000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07032000&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=07032000&parameterCd=00010&startDT=1975-01-01&endDT=2025-09-30&format=json (miss: no daily temperature series 1975-2025)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07032000&characteristicName=Temperature%2C%20water (miss: HTTP 406; api.waterqualitydata.us unreachable)",
+    "https://www.usgs.gov/publications/effects-air-temperature-and-discharge-upper-mississippi-river-summer-water (lead only: Upper Mississippi study, wrong reach — not cited as reach evidence)"
+  ]
+}

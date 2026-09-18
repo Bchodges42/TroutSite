@@ -1,0 +1,54 @@
+{
+  "slug": "beech-lake",
+  "segment": {
+    "description": "Beech Lake (USGS/TVA 'Beech Reservoir') on the Beech River at Lexington, Henderson County, West Tennessee. TWRA Region 1 winter put-and-take trout lake (catalog: seasonMonths Nov-Mar) over a warmwater bass/bream/catfish fishery; one of the 'Beech River Watershed Lakes' group in TWRA's regulation exceptions.",
+    "boundaries": "Entire lake. TWRA's 2026 trout stocking schedule lists 'Beech Lake' as a Winter-type Rainbow Trout site (repo workbook rows: Henderson Co., 1/14/2026 and TBD 12/2026; the schedule page renders dates 1/13/2026 and 2/10/2026 adjacent to the Beech Lake entry). No trout stockings of any other type found for the lake."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Beech Dam",
+      "operator": "TVA",
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03594413&siteOutput=expanded&format=rdb"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Dam identity basis: USGS inactive station 03594413 is named 'BEECH LAKE NEAR LEXINGTON, TENN (TVA)' (Henderson Co., HUC 06040001 Lower Tennessee-Beech, 35.66118,-88.41727). TVA's 'Beech Reservoir' page (tva.com, verified via WebSearch snippet only — tva.com blocks plain fetch) describes flood-storage of 4,430 acre-feet, ~3.65 miles long, and Beech Dam as a non-hydro dam; a WebSearch synthesis adds the dam was built early 1960s for water supply/flood control/recreation. No cold-release (deep-draw) regime documented; no evidence the lake receives or needs cold dam water."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the only trout rows for Beech Lake in TWRA's 2026 schedule are Winter-type, and the TWRA Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round'. Warmwater stockings (bluegill/redear) also appear for the lake in TWRA's warmwater stocking archive.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; no wild-trout listing or record exists for this West Tennessee reservoir.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule carries Beech Lake (Henderson Co.) solely as a Winter rainbow site, and the Trout Management Plan states hatchery-supported lakes like this are warmwater habitats that cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/beech-river-wma.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03594413&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008178&format=json (TDEC Beech Lake station holds a single E. coli sample — no temperature data)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Henderson/'Beech Lake' Winter Rainbow Trout rows; zero non-winter rows)",
+    "tva.com 'Beech Reservoir' page (WebSearch snippet only — full path not captured; tva.com 403s plain fetch)",
+    "tennesseeencyclopedia.net BRWDA entry (404)",
+    "beechriver.org (DNS failure); brwdalakes.com (ledger lead, not fetched)"
+  ]
+}

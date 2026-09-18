@@ -1,0 +1,57 @@
+{
+  "slug": "cumberland-river",
+  "segment": {
+    "description": "Cumberland River main stem, Nashville-to-Lake Barkley reach across Davidson to Stewart counties (catalog) — the pool-and-navigation-river continuum below Old Hickory Dam through Nashville (USGS gage 03431500, drainage 12,856 sq mi) and on to the Kentucky line. This is the Tennessee main stem; the South Fork Cumberland is a separate water, and the trout-bearing Cumberland tailwater is in Kentucky, not Tennessee.",
+    "boundaries": "Per catalog: Nashville to Lake Burkley (Lake Barkley), Davidson through Stewart counties, TN; impounded in pools behind USACE navigation/flood dams (Old Hickory Dam at river mile 216.2 forms the upstream pool boundary)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Old Hickory Dam (pool boundary at Nashville reach)",
+      "operator": "USACE",
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA states 'The US Army Corps of Engineers (USACE) owns and operates Old Hickory Reservoir', a 22,500-acre impoundment on the Cumberland River (dam completed 1954). No source documents a cold-release trout regime on the Tennessee main stem; TWRA's Region 2 tailwater trout list does not include any Cumberland main-stem reach. KDFWR documents that the Cumberland trout tailwater (below Wolf Creek Dam, KY) runs 'from Wolf Creek Dam downstream to the Tennessee state line' — i.e., the managed trout water ends at the Tennessee line and does not include this TN main-stem segment."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 21.1,
+      "monthObserved": 9,
+      "year": 1995,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03431500&siteid=USGS-03432900&siteid=USGS-03430100&characteristicName=Temperature%2C%20water"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout holdover or trout fishery of any kind is documented on this main-stem segment: TWRA's 2026 trout stocking schedule lists no Cumberland main-stem stocking location (the only 'Cumberland' entries are Cumberland County park/tributary waters in Region 3), TWRA's Region 2 tailwater list has no Cumberland main-stem entry, and the workbook has no main-stem trout rows. Winter rainbow stockings at 'Shelby Bottoms' and 'Cedar Hill Park Pond' (Davidson Co.) are park-pond/adjacent program sites, not a documented open-main-stem trout fishery.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented for the Tennessee main stem. TWRA's reservoir/species documentation for this reach is entirely warmwater (black bass, crappie, sauger, striped/hybrid bass, walleye, catfish), and the managed Cumberland trout fishery documented by Kentucky lies above the Tennessee state line in the Lake Cumberland tailwater.",
+    "evidenceUrl": "https://fw.ky.gov/Education/Pages/Cumberland-River-Tailwater.aspx"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm USACE navigation/reservoir main stem: TWRA documents no trout program anywhere on the TN main stem, KDFWR places the managed Cumberland trout tailwater entirely above the Tennessee state line, and the only summer grab sample on record (gage 03431500) is 21.1 C in late September 1995.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03431500&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03431500&siteid=USGS-03432900&siteid=USGS-03430100&characteristicName=Temperature%2C%20water",
+    "https://nwis.waterservices.usgs.gov/nwis/iv/?sites=03431500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature series — empty timeSeries)",
+    "https://fw.ky.gov/Education/Pages/Cumberland-River-Tailwater.aspx (URL verified via WebSearch snippet)",
+    "https://fw.ky.gov/Fish/Pages/Wade-the-Lake-Cumberland-tailwater-to-beat-the-heat-and-catch-fish.aspx (URL verified via WebSearch snippet: 'best trout fishing water in Kentucky' from Wolf Creek Dam to the Tennessee state line)",
+    "https://fw.ky.gov/Fish/Pages/Fall-Fishing-Festival--Fly-fishing-the-Cumberland-tailwater.aspx (URL verified via WebSearch snippet: 75 miles of trout water Wolf Creek Dam to Tennessee line)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03430100&characteristicName=Temperature%2C%20water (no summer records at Stones-River-confluence main-stem site)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no main-stem Cumberland trout rows; 'Cumberland' matches are Cumberland County Region 3 waters)"
+  ]
+}

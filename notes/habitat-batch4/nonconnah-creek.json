@@ -1,0 +1,39 @@
+{
+  "slug": "nonconnah-creek",
+  "segment": {
+    "description": "Nonconnah Creek mainstem, the Memphis-area urban waterway and Mississippi River tributary (HUC 08010211), Shelby County, TN. Cataloged as a no-stocking-program warmwater creek. USGS maintains stream gauges on the reach — e.g., 'NONCONNAH CREEK NEAR GERMANTOWN, TN' (07032200, gauge altitude 262.81 ft, HUC 08010211) and 'NONCONNAH CREEK AT RIVERPORT RD AT MEMPHIS, TN' (07032252, gauge altitude 174.60 ft) — but neither gauge carries a water-temperature record in NWIS.",
+    "boundaries": "Nonconnah Creek mainstem in Shelby County from the Germantown area down to the Mississippi River confluence at Memphis; catalog entry covers the whole creek."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 262.81,
+    "notes": "Elevation is the USGS gauge altitude (NAVD88) at the near-Germantown gauge (https://waterservices.usgs.gov/nwis/site/?sites=07032200&siteOutput=expanded&format=rdb); it characterizes the lowland urban fall line of the creek. No cold-water source (dam release or spring) documented anywhere consulted."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind documented for this creek in TWRA's stocking table or the Trout Management Plan; with no stocking program there is no put-and-take cycle whose carryover could be documented. Control-style record.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No consulted source places any trout in Nonconnah Creek.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The creek is absent from TWRA's stocking table (no trout program of any kind) and no cold-water source or trout record exists for this lowland urban Memphis creek.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (checked: no Nonconnah row)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07032200&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07032252&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07032200&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=07032200&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+    "https://waterservices.usgs.gov/nwis/site/?bBox=-90.35,34.95,-89.75,35.30&format=rdb&siteStatus=all&siteOutput=expanded (area site inventory used to enumerate Memphis-area gauges)"
+  ]
+}

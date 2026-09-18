@@ -1,0 +1,81 @@
+{
+  "slug": "south-fork-forked-deer-river",
+  "segment": {
+    "description": "South Fork Forked Deer River as cataloged: the long West Tennessee fork rising in Chester County and running through Henderson and Jackson (Madison County) to the lower Lauderdale County lowlands where it approaches the Forked Deer mainstem. Warmwater fishery (crappie/catfish/bass rules); no trout program.",
+    "boundaries": "Catalog covers the whole fork (hydroIdentity HUC8 08010205, GNIS 01270865). Gaged reaches: USGS 07027500 SOUTH FORK FORKED DEER RIVER AT JACKSON, TN (Madison County, gage altitude 330.76 ft, drainage 495 sq mi); 07027800 NEAR GATES and 07028000 AT CHESTNUT BLUFF on the lower fork (Lauderdale County); 07027300 NEAR HENDERSON (Chester County). Identities verified via waterservices.usgs.gov expanded site output."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 330.76,
+    "notes": "elevationFt = USGS gage altitude 330.76 ft (NGVD29) at the Jackson gage 07027500 (https://waterservices.usgs.gov/nwis/site/?sites=07027500&siteOutput=expanded&format=rdb). USGS WRIR 92-4146 documents the Jackson area sitting between the Middle and South Fork Forked Deer Rivers (https://pubs.usgs.gov/publication/wri924146). No dam or spring evidence found on this fork."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 26.0,
+      "monthObserved": 8,
+      "year": 1987,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 27.5,
+      "monthObserved": 8,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 27.0,
+      "monthObserved": 8,
+      "year": 2001,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout documentation on the South Fork. Absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero 'Forked Deer' mentions); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented; TWRA regulates the fork under warmwater rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit') with no trout provision.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples on this fork reached 29.0 C in July 1986 near Gates and 27.5 C in August 1988 at Jackson, and TWRA stocks no trout on any Forked Deer reach.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07027500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07027800&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07028000&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://pubs.usgs.gov/publication/wri924146",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07027500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

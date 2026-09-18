@@ -1,0 +1,71 @@
+{
+  "slug": "kentucky-lake",
+  "segment": {
+    "description": "Kentucky Lake / Kentucky Reservoir — the TVA mainstream impoundment of the Tennessee River behind Kentucky Dam; 108,217 acres in Tennessee across nine counties (catalog: Hardin, Decatur, Benton, Houston, Stewart) plus 52,083 acres in Kentucky. TWRA documents a warmwater fishery: largemouth/smallmouth/spotted bass, crappie, bluegill/redear, channel/blue/flathead catfish, white/yellow bass, striped/hybrid bass, paddlefish, and sauger/walleye/saugeye — trout are not mentioned on the page.",
+    "boundaries": "Tennessee portion of the reservoir as cataloged; pool fluctuates between 359 ft (summer full pool) and 354 ft MSL (winter pool). KY reciprocal water runs between the Ned McWherter Bridge (Hwy 79) and Eggners Ferry Bridge (Hwy 68/80) except Blood River. Big Sandy, Duck, and Beech rivers enter as major embayments."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Kentucky Dam",
+      "operator": "TVA",
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 359,
+    "notes": "Mainstem navigation/storage reservoir, not a trout tailwater: TWRA's page describes a TVA mainstream reservoir with levels tracked via the TVA Lake Info app and full pool 359 ft MSL. TVA's 'Understanding the Drawdown' page (full URL verified via WebSearch snippet; tva.com blocks plain fetch) states the seasonal drawdown on Kentucky Reservoir begins after the July 4th weekend. No cold-release regime documented; the documented winter fishery below the dam is SAUGER (a warmwater percids fish, not a trout). elevationFt = summer full pool from TWRA."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 30.5,
+      "monthObserved": 8,
+      "year": 1999,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 29.0,
+      "monthObserved": 7,
+      "year": 1999,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    },
+    {
+      "celsius": 28.6,
+      "monthObserved": 8,
+      "year": 1997,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented: no Kentucky/Kentucky Lake/Kentucky Reservoir row exists on TWRA's 2026 trout stocking schedule (full-page scan), the lake is absent from the TWRA Trout Management Plan's list of nine reservoirs that support trout fisheries (Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, Tellico), and TWRA's lake page lists no trout. Warmwater stockings (largemouth bass, bluegill, threadfin shad entries near 'Kentucky' rows) appear in TWRA's warmwater archive — that is the reservoir's actual stocking program.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater; the Trout Management Plan states 'Wild trout are generally limited to East Tennessee's mountain streams' and names no trout water in West Tennessee.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm TVA mainstem reservoir: USGS grab samples in the Kentucky Lake pool at Savannah (03593500) read 28.6-30.5 C in July-August (1997-1999), TWRA documents the winter fishery here as SAUGER (Dec-Mar below TVA dams), and no trout stocking program exists for the lake.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03593500&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03593500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature series reported)",
+    "https://tva.com/environment/managing-the-river/flood-management/understanding-the-drawdown (URL verified via WebSearch snippet; tva.com 403s plain fetch)",
+    "https://tva.com/environment/lake-levels/how-tva-manages-water-levels (URL verified via WebSearch snippet)",
+    "https://tva.com/environment/lake-levels/tva-lake-info-app (URL verified via WebSearch snippet)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=NALMS-F1269701&format=json (Kentucky Lake NALMS station holds depth/weather metadata only — no temperature)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no Kentucky/Pickwick/Tennessee River trout rows)"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "lake-barkley",
+  "segment": {
+    "description": "Lake Barkley (Barkley Reservoir) Tennessee portion — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties (catalog); TWRA describes roughly 10,350 acres in Tennessee and 47,570 acres in Kentucky, managed by the U.S. Army Corps of Engineers, with an entirely warmwater sportfish list (largemouth/smallmouth/spotted bass, black/white crappie, bluegill/redear, white bass, catfish, sauger/walleye/saugeye, striped/hybrid bass, paddlefish). Trout are never mentioned on TWRA's page. Control-style water.",
+    "boundaries": "Tennessee portion of Barkley Reservoir along the Cumberland River (catalog counties Stewart and Montgomery), upstream of Barkley Dam which lies in Kentucky; TWRA references reaches 'between Cumberland City and the Kentucky state line'."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Barkley Dam",
+      "operator": "USACE",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA: the reservoir 'lies along the Cumberland River and is managed by the U.S. Army Corps of Engineers'. It is a flood-control/navigation impoundment, not a cold tailwater; no cold-release regime is documented. Note the relevant geography: KDFWR documents that Cumberland River trout water runs from Wolf Creek Dam (Lake Cumberland, KY) only 'downstream to the Tennessee state line' — the managed trout reach ends at the state line and does not extend into this reservoir."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented: TWRA's Barkley page lists no trout in its species, regulations, or fishing-tips content; the 2026 TWRA stocking schedule contains no Barkley entry (TWRA's page-note: Dale Hollow, not Barkley, is the regional trout reservoir); and the owner workbook has zero Barkley rows.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's species documentation is entirely warmwater; the trout fishery on this section of the Cumberland system is Kentucky's Lake Cumberland tailwater above the state line, managed by KDFWR.",
+    "evidenceUrl": "https://fw.ky.gov/Fish/Pages/Wade-the-Lake-Cumberland-tailwater-to-beat-the-heat-and-catch-fish.aspx"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm USACE impoundment with an entirely warmwater documented fishery; the Cumberland's managed trout tailwater ends at the Tennessee state line above this reservoir, and no trout stocking program exists for Barkley on any source checked.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://fw.ky.gov/Fish/Pages/Wade-the-Lake-Cumberland-tailwater-to-beat-the-heat-and-catch-fish.aspx (URL verified via WebSearch snippet)",
+    "https://fw.ky.gov/Education/Pages/Cumberland-River-Tailwater.aspx (URL verified via WebSearch snippet)",
+    "https://www.lrn.usace.army.mil/Missions/Recreation/Barkley-Dam-and-Lake/ (unreachable: host serves mismatched certificate / edge rejects request)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Barkley' rows)"
+  ]
+}

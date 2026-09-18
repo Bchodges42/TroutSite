@@ -1,0 +1,40 @@
+{
+  "slug": "fletchers-fork",
+  "segment": {
+    "description": "Fletchers Fork — a stream on the Fort Campbell military reservation in Montgomery County, Tennessee (catalog; HUC 05130206), stocked with trout under the post's program governed by CAM Regulation 200-4. This is a put-and-take military-post fishery, not a TWRA wild-trout or year-round water: Fort Campbell's official iSportsman page shows 2026 trout stockings running February through August, supplied by KDFWR (Feb/Apr) and TWRA (Jun-Aug).",
+    "boundaries": "The stocked reach(s) of Fletchers Fork within the Fort Campbell reservation, Montgomery County (catalog GNIS 01284476); the post straddles the Tennessee-Kentucky line, and stocking events are listed post-wide under 'Fort Campbell Streams'."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-source documentation found; no gage or temperature record located for the creek."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover documentation found. The program is put-and-take with recurring stockings roughly monthly February-August 2026 (workbook weekly-of dates 2/15, 4/19, 5/17, 6/21, 7/12, 8/23; iSportsman lists KDFWR events 2/12/2026 [1,200 rainbow total] and 4/7/2026, and TWRA events 6/25, 7/22, 8/26/2026 at ~1,000-1,024 rainbow each), and no source documents survival between stockings. Note the catalog's programmatic seasonMonths (12,1,2) conflicts with the documented 2026 pattern (no December/January rows; documented stocking months are February-August).",
+    "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation found; the fishery is a stocked put-and-take program on a military reservation (CAM Regulation 200-4 governs; state fishing license required in addition to post requirements).",
+    "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx" },
+    { "species": "brown", "basis": "stocked-only", "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Put-and-take post fishery restocked with rainbow and brown trout about monthly February through August 2026 (Fletchers Fork specifically received '750 Brown Trout & 240 Rainbow Trout' in April 2026), with no evidence of survival between stockings or outside the stocked season.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://ftcampbell.isportsman.net/Fishing.aspx",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html ('Fort Campbell Streams' schedule entry; 'Ft. Campbell' report 08/13/2026)",
+    "https://www.tn.gov/twra/fishing/trout-information.html (404 — page does not exist at this path)",
+    "twra 2026 regs PDF naming Fort Campbell streams (surfaced in WebSearch snippets only; exact tn.gov page/PDF URL unresolved — noted, not cited)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: six 'Fort Campbell Streams' Seasonal rainbow rows, weekly-of 2/15/2026 through 8/23/2026, Montgomery Co.)"
+  ]
+}

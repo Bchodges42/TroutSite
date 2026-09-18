@@ -1,0 +1,43 @@
+{
+  "slug": "j-percy-priest-lake",
+  "segment": {
+    "description": "J. Percy Priest Reservoir itself — the 14,200-acre USACE impoundment near east Nashville on the Stones River, in Davidson, Rutherford, and Wilson counties (catalog). TWRA documents an entirely warmwater fishery: largemouth/smallmouth/spotted bass, crappie, hybrid/striped/white/yellow bass, catfish, rock bass, and sunfish — trout are not mentioned on TWRA's reservoir page. The prior composite pass's 'warmwater stocking events' flag is corrected here: the trout rows associated with this name are RAINBOW TROUT stocked in the TAILWATER reach below the dam (Stones River), a separate catalog water, not in the lake.",
+    "boundaries": "USACE reservoir pool behind J. Percy Priest Dam; catalog counties Davidson, Rutherford, Wilson. The winter trout stocking site 'J. Percy Priest TW / Stones River' (Davidson Co.) is the dam tailwater below the lake, outside this segment."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "J. Percy Priest Dam",
+      "operator": "USACE",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA: 'The US Army Corps of Engineers (USACE) owns and operates J. Percy Priest Reservoir' — 'a 14,200-acre impoundment located near east Nashville'. No cold-release characterization is documented for the dam. The tailwater below the dam receives winter rainbow trout stockings (TWRA Region 2 tailwater list: 'J. Percy Priest Dam, Stones River - Rainbow - December through March - Statewide Regulations'; 2026 workbook rows 1/9/2026, 02/13/2026, TBD 12/2026 under 'J. Percy Priest TW / Stones River') — that program belongs to the tailwater segment, not this lake segment."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery is documented in the lake itself: TWRA's reservoir page lists no trout among its species, the 2026 stocking schedule/workbook contains no in-lake trout stocking location, and the only trout program bearing this name is the December-March put-take rainbow stocking in the Stones River tailwater below the dam (different segment).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater (bass, crappie, striped/hybrid bass, catfish, sunfish).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm 14,200-acre USACE flood-control reservoir whose documented fishery is entirely warmwater; TWRA confines the associated trout program to a December-March rainbow stocking in the tailwater below the dam, which by design is not year-round lake habitat.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?countyCd=47037&format=rdb&siteOutput=expanded&siteType=ST (Stones River below J Percy Priest Dam = USGS 03430100; no lake temperature series found for the reservoir)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03430100&characteristicName=Temperature%2C%20water (no summer temperature records at the below-dam stream site)",
+    "https://www.lrn.usace.army.mil/Missions/Recreation/J-Percy-Priest-Dam-and-Lake/ (unreachable: host serves mismatched certificate / edge rejects request)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: 'J. Percy Priest TW / Stones River' winter rainbow rows — tailwater segment; no in-lake rows)"
+  ]
+}

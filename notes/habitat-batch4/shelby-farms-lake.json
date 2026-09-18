@@ -1,0 +1,40 @@
+{
+  "slug": "shelby-farms-lake",
+  "segment": {
+    "description": "The TWRA-stocked trout water at Shelby Farms Park, Memphis (Shelby County). TWRA's live stocking table lists 'Shelby Farms' (Region 1, Shelby County) with Winter-type rainbow trout stockings on 1/13/2026 and 'TBD 12/2026'. The park's own fishing page identifies the stocked water as Jones Pond: 'Trout are stocked in Jones Pond every December and January.'",
+    "boundaries": "Jones Pond, Shelby Farms Park, Memphis, Shelby County, TN; TWRA Region 1 winter stocking program site (cold-window stockings only)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Park's fishing page describes 20+ warmwater fishing lakes/ponds (catfish, crappie, bream, largemouth bass) with no cold-water source mentioned for any lake. https://www.shelbyfarmspark.org/fishing"
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-level holdover documentation found. Program-level context: TWRA's Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round.' The park restocks annually every December-January, consistent with a put-and-take cycle.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record for this park lake. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The park says trout are stocked in Jones Pond every December and January (annual restart of a winter program), and TWRA's plan says warmwater hatchery-supported waters cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.shelbyfarmspark.org/fishing",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://www.tn.gov/twra/news.html (miss: release list is JS-rendered; 12/31/2025 winter-program-continues release not retrievable at a verified URL)"
+  ]
+}

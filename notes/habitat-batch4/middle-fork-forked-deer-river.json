@@ -1,0 +1,58 @@
+{
+  "slug": "middle-fork-forked-deer-river",
+  "segment": {
+    "description": "Middle Fork Forked Deer River as cataloged: the central West Tennessee fork running through the lowlands between Jackson and the Crockett/Gibson county corridor (Alamo area) above its junction with the North Fork. Warmwater fishery (TWRA groups the Forked Deer with the Hatchie under crappie rules); no trout program.",
+    "boundaries": "Catalog covers the whole fork (hydroIdentity HUC8 08010204, GNIS 01293673). Gaged reach: USGS 07029000 MIDDLE FORK FORKED DEER RIVER NEAR ALAMO, TN (Crockett County, gage altitude 288.17 ft, drainage 369 sq mi); additional nearby stations 07028960 NEAR FAIRVIEW and 07028990 NEAR HUMBOLDT. Identities verified via waterservices.usgs.gov expanded site output. Middle Fork Bottoms State Park (Jackson/Three Way area) sits on the river's south side."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 288.17,
+    "notes": "elevationFt = USGS gage altitude 288.17 ft (NGVD29) at the Alamo gage 07029000 (https://waterservices.usgs.gov/nwis/site/?sites=07029000&siteOutput=expanded&format=rdb). USGS WRIR 92-4146 documents the Jackson study area lying 'between the Middle Fork Forked Deer and South Fork Forked Deer Rivers' (https://pubs.usgs.gov/publication/wri924146). Tennessee State Parks: Middle Fork Bottoms State Park (861 acres of former agricultural land converted to grassland and wetlands) has an 'accessible overlook on the south side of the Middle Fork Forked Deer River, offering fishing opportunities' (https://tnstateparks.com/parks/middle-fork-bottoms). No dam or spring evidence found on this fork."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.0,
+      "monthObserved": 7,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout documentation on the Middle Fork. Absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero 'Forked Deer' mentions); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented; TWRA regulates the fork under warmwater rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit') with no trout provision.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Single USGS grab sample at the Alamo gage (07029000) measured 28.0 C in July 1988 on this lowland farm-country fork, and TWRA stocks no trout on any Forked Deer reach.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07029000&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://pubs.usgs.gov/publication/wri924146",
+    "https://tnstateparks.com/parks/middle-fork-bottoms",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07029000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "slug": "obion-river",
+  "segment": {
+    "description": "Main stem of the Obion River in northwest Tennessee, formed by the Obion system forks and flowing west/northwest through bottomland country north of the Hatchie; catalog covers the warmwater main-stem river (Obion/Dyer/Lake counties per catalog notes). Documented gaged reaches: near Kenton, near Rives, and at Obion (Hwy 51), Obion County.",
+    "boundaries": "Catalog gives no explicit dam-to-X boundaries; documented evidence reach is the main stem at USGS gages 07024800 (near Kenton), 07025900 (near Rives) and 07026040 (at Hwy 51 near Obion, HUC 08010202); HUC8s 08010202/08010203."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 244,
+    "notes": "Lowland channelized bottomland river: 'the Obion and most of its tributaries have been channelized' and the area is bottomland hardwood forest, swamps, oxbows and sloughs (TWRA TN State Wildlife Action Plan 2015 Obion River COA). Gage elevation 244.37 ft NAVD88 at 07026040 (USGS site service)."
+  },
+  "summerTemperature": [
+    { "celsius": 30.6, "monthObserved": 7, "year": 1991, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 29.5, "monthObserved": 8, "year": 1995, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.5, "monthObserved": 6, "year": 2005, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.7, "monthObserved": 8, "year": 2005, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover trout fishery documented. TWRA's West Tennessee winter rainbow program stocks park/pond-type sites only — the nearest is 'Union City Reelfoot Packing Site' (Obion County), not the river — and no stocking row exists for the Obion River itself. The TN Trout Management Plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "The 1973 UT survey of the Obion River system (183 collections, 100 species verified) documents the system's fish fauna and lists no salmonids; TWRA's 2015 SWAP Obion River COA priority fish are Plains Minnow, Piebald Madtom and Pallid Sturgeon — a warmwater lowland assemblage. TWRA regulates the river for warmwater species (crappie 30/day, no length limit).",
+    "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS summer samples at Hwy 51 near Obion reached 30.6 C (Jul 1991) and 29.5 C (Aug 1995) on this channelized bottomland river, and TWRA stocks no trout here.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07025900,07024500,07025400,07025000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://nwis.waterdata.usgs.gov/tn/nwis/qwdata/?site_no=07025900&parameterCd=00010&format=rdb",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+    "https://trace.tennessee.edu/utk_gradthes/8225",
+    "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/obion-river-wma.html"
+  ]
+}

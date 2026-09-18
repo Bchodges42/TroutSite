@@ -1,0 +1,41 @@
+{
+  "slug": "big-sandy-river",
+  "segment": {
+    "description": "Big Sandy River — West Tennessee tributary of the Tennessee River draining Henry, Benton, Carroll, and Henderson counties through the Big Sandy embayment into Kentucky Lake. TWRA names Big Sandy one of the 'three major river embayments' of Kentucky Reservoir (with Duck and Beech rivers). Warmwater bottomland river; no trout program exists anywhere on it.",
+    "boundaries": "Catalog covers the whole river to its Kentucky Lake confluence near Big Sandy, TN (hydroIdentity GNIS 01277382, HUC8 06040005). TWRA's Big Sandy WMA (2,370 acres, Benton and Henry counties) protects riverbottom hardwoods, croplands, and swamps along the river; the Big Sandy Unit of Tennessee National Wildlife Refuge lies on the same peninsula between the river and the Tennessee River."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": ""
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented: the river appears nowhere on TWRA's 2026 trout stocking schedule (full scan of the 616-row workbook — no 'Big Sandy' trout row of any type), it is absent from TWRA's warmwater stocking archive as well, and the TWRA Trout Management Plan places wild trout in East Tennessee mountain streams with no West Tennessee mention.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. The documented riparian context is lowland and warm: TWRA's Big Sandy WMA page (via WebSearch snippet; direct fetch of the page 404'd) describes riverbottom hardwoods, croplands, and swamps following the Big Sandy River in Benton and Henry counties; TWRA's Kentucky Reservoir page treats the Big Sandy embayment as warmwater (dewatering-area crappie rules; adjacent West Sandy/Big Sandy waterfowl closures).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Warm bottomland West Tennessee tributary: TWRA stocks no trout anywhere on the river (absent from both trout and warmwater stocking archives), it drains swampy riverbottom lowlands into the Kentucky Lake embayment, and no cold-water source is documented.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+    "https://www.tn.gov/content/tn/twra/wildlife-management-areas/west-tennessee-r1/Big-Sandy-WMA.html (URL verified via WebSearch snippet; guessed variant paths 404'd)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?countyCd=47071,47039,47005,47083&siteOutput=expanded&format=rdb&siteStatus=active (active gauges in Hardin/Decatur/Benton/Henry counties: only Yellow Creek, Horse Creek, Cypress Creek — no Big Sandy River gauge)",
+    "https://www.waterqualitydata.us/data/Result/search?countyCd=47083,47005&format=json (zero WQP stations named Big Sandy in Henry/Benton counties — no temperature data)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no 'Big Sandy' rows of any species)",
+    "en.wikipedia.org Big Sandy River (Tennessee) — lead only (60-mi tributary; not used as evidence)"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "slug": "union-city-reelfoot-pond",
+  "segment": {
+    "description": "Union City Reelfoot Packing Site — the pond at the former Reelfoot Packing plant site in Union City, Obion County, listed on TWRA's official trout stocking schedule as 'Union City Reelfoot Packing Site' (Region 1). Lead-level context (not sole evidence): the abandoned Reelfoot Meat Packing Co. property on Reelfoot Avenue was the subject of a brownfield redevelopment plan. The project's curated anchor file (packages/content/data/west-tn-ponds.json) anchors it approximately at Union City town center.",
+    "boundaries": "Entire pond. TWRA Region 1 winter put-and-take site; 2025-26 program stockings run through February and TWRA spring stocking begins March 1."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": ""
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the 2025-26 winter program runs through February (spring stocking begins March 1), and the TWRA Trout Management Plan states hatchery-supported waters like these 'are primarily warmwater habitats that cannot support trout year round' and that 'survival of stocked trout is usually limited by summer water temperatures'.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; this is a warmwater northwest Tennessee pond at a former industrial site.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule lists 'Union City Reelfoot Packing Site' (Obion Co.) as a Region 1 Winter rainbow site (workbook rows 1/14/2026 and TBD 12/2026), the program ends in February, and the Trout Management Plan states such stocked warmwater habitats cannot support trout year round.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+    "https://www.tn.gov/twra/news/2025/12/31/2025-26-winter-trout-stocking-program-continues-.html",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Obion/'Union City Reelfoot Packing Site' Winter Rainbow Trout rows)",
+    "repo-local: packages/content/data/west-tn-ponds.json (curated anchor, approximate at Union City)",
+    "https://www.unioncitytn.gov/ (parks link only; no trout/pond mention)",
+    "https://www.reelfoot.com/ (lead only: calls it 'Union City's Reelfoot Packing Plant Lake')",
+    "https://www.nwtntoday.com/ (lead only: Reelfoot Meat Packing Co. property, Reelfoot Avenue)"
+  ]
+}

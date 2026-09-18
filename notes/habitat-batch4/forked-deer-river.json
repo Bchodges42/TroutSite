@@ -1,0 +1,53 @@
+{
+  "slug": "forked-deer-river",
+  "segment": {
+    "description": "Mainstem Forked Deer River as cataloged: the West Tennessee lowland river below the confluence of its North, Middle, and South forks, draining toward the Mississippi through the Halls/Chestnut Bluff/Lauderdale County corridor. General warmwater fishing water (TWRA groups it with the Hatchie under West TN crappie rules); no trout program.",
+    "boundaries": "Catalog covers the mainstem below the forks (hydroIdentity HUC8 08010202, GNIS 01306450). No USGS gage sits on this mainstem reach; nearest gaged reaches are the South Fork near Gates and at Chestnut Bluff (07027800, 07028000, Lauderdale County) and the North Fork at Dyersburg (07029100, Dyer County), all identified via the USGS statewide site file."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No gage and no dam/spring evidence was found for the mainstem reach itself; elevation and temperature left null rather than borrowed from the forks. USGS WRIR 92-4146 (Bailey 1993) places the forks: the 136-square-mile Jackson study area 'is between the Middle Fork Forked Deer and South Fork Forked Deer Rivers'."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout documentation of any kind on the Forked Deer system. The river is absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero mentions of 'Forked Deer'); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented anywhere on the Forked Deer system; TWRA's plan and stocking list contain no reference, and TWRA regulates the river under warmwater species rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit').",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Ungaged warmwater lowland mainstem, but every nearby gaged fork in the same system shows summer water temperatures of 27.0-32.0 C (USGS grab samples) and TWRA lists no trout program on any Forked Deer reach.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07027800&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07028000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07029100&siteOutput=expanded&format=rdb",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://pubs.usgs.gov/publication/wri924146",
+    "https://nwis.waterdata.usgs.gov/tn/nwis/qwdata/?site_no=07029500&parameterCd=00010&format=rdb&date_format=YYYY-MM-DD",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07027500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

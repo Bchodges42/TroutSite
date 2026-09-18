@@ -1,0 +1,41 @@
+{
+  "slug": "beech-river",
+  "segment": {
+    "description": "Beech River main stem — a warmwater West Tennessee stream in Henderson and Decatur counties (USGS county codes 077 and 039), HUC8 06040001 (Lower Tennessee basin), draining east-central West Tennessee toward the Tennessee River/Kentucky Lake reach. USGS lists 8 Beech River gaging sites, all discontinued (several TVA-era); the furthest downstream is 03594484 'BEECH RIVER NEAR DECATURVILLE, TN' (251 sq mi drainage area). Distinct from nearby Beech Lake, a warmwater flood-control/water-supply reservoir in the Beech River watershed cluster that DOES receive TWRA winter rainbow stockings.",
+    "boundaries": "Catalog gives no reach limits; record covers the Henderson County headwater reach near Lexington downstream through Decatur County near Decaturville. No trout program exists on the river itself."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 428.83,
+    "notes": "Gage datum 428.83 ft (NGVD29) at discontinued USGS 03594415 'BEECH RIVER NEAR LEXINGTON TENN (TVA)' — lowland West TN elevation; no active USGS gage remains on the river (waterservices site service, checked 2026-09-18)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout stocking program exists on the Beech River: TWRA's 2026 schedule (and the owner-supplied workbook grep) contains no 'Beech River' rows — only neighboring 'Beech Lake' (Henderson Co.) shows Region 1 Winter rainbow rows (1/14/2026, TBD 12/2026). With no stockings, holdover is not a documented facet of this water.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation. The TWRA Trout Management Plan states 'Wild trout are generally limited to East Tennessee's mountain streams'; the Beech River is a lowland West Tennessee warmwater tributary.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Control-style warmwater record: TWRA's stocking schedule has no Beech River trout rows at all, the Trout Management Plan places wild trout only in East Tennessee mountains, and no USGS temperature or coldwater habitat evidence exists for this lowland (~429 ft) stream.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteType=ST (full TN list; 8 BEECH RIVER sites, all discontinued, counties 077/039, HUC 06040001)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03594484&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature data)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03594484,03594415&parameterCd=00010&format=rdb&siteOutput=expanded (no 00010 data)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (Beech Lake present, Beech River absent)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep /beech/i: only Beech Lake rows, no Beech River)",
+    "https://www.tva.com/environment/lake-management/beech-reservoir (403 blocked — lead only: Beech Reservoir is one of eight flood-control/water-supply reservoirs in the Beech River watershed)",
+    "https://www.beechriver.org/ (DNS failure)",
+    "https://www.eregulations.com/ (lead only: Beech River Watershed Lakes warmwater regs — catfish/crappie/largemouth)"
+  ]
+}

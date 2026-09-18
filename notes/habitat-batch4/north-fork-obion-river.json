@@ -1,0 +1,44 @@
+{
+  "slug": "north-fork-obion-river",
+  "segment": {
+    "description": "North Fork Obion River, the principal northern fork of the Obion system in northwest Tennessee (HUC 08010202), flowing through Weakley County (Jones Mill, Latham, McConnell, Martin) into Obion County (Union City, Rives) to join the main system; catalog describes it as a first-class regional warmwater fishing corridor.",
+    "boundaries": "Catalog gives no explicit boundaries; documented evidence reach is the USGS-gaged reach near Martin (07025400, 372 sq mi drainage, Weakley County) with downstream gages near Union City (07025500) and near Rives."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 303,
+    "notes": "Gage elevation 303.19 ft NAVD88 at 07025400 near Martin (USGS site service). System character is channelized bottomland: 'the Obion and most of its tributaries have been channelized' (TWRA 2015 SWAP Obion River COA)."
+  },
+  "summerTemperature": [
+    { "celsius": 28.0, "monthObserved": 7, "year": 1986, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 8, "year": 2002, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.0, "monthObserved": 7, "year": 2002, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No holdover trout fishery documented. TWRA's winter rainbow program in this part of West Tennessee stocks park/pond-type sites only (nearest: Union City Reelfoot Packing Site), with no stocking row for the North Fork Obion River; the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Dickinson's 1973 UT survey of the Obion River system — with most collections from the principal forks, including this fork — verified 100 fish species and lists no salmonids.",
+    "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples at the Martin gage reached 28.0 C in July (1986) and 27.0 C in August (2002), and no trout stocking or salmonid occurrence is documented on this channelized warmwater fork.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07025900,07024500,07025400,07025000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+    "https://trace.tennessee.edu/utk_gradthes/8225"
+  ]
+}

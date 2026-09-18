@@ -1,0 +1,38 @@
+{
+  "slug": "loosahatchie-river",
+  "segment": {
+    "description": "Loosahatchie River mainstem, a major Memphis-area drainage flowing through Fayette, Tipton, and Shelby counties (HUC 08010209); per the catalog, much of the mapped main channel is officially named Loosahatchie River Canal. USGS maintains 'LOOSAHATCHIE RIVER AT BRUNSWICK, TN' (07030280, gauge altitude 227.25 ft, HUC 08010209) on the reach, but the gauge carries no water-temperature record in NWIS.",
+    "boundaries": "Loosahatchie River mainstem from the Fayette/Tipton county area down through Shelby County to its mouth at the Mississippi River; catalog entry covers the whole drainage reach."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 227.25,
+    "notes": "Elevation is the USGS gauge altitude (NAVD88) at the Brunswick gauge (https://waterservices.usgs.gov/nwis/site/?sites=07030280&siteOutput=expanded&format=rdb), a lowland coastal-plain stream profile. No dam release or spring inflow documented anywhere consulted."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind documented for this river; it is absent from TWRA's stocking table (no trout program) and no put-and-take cycle exists whose carryover could be documented. Control-style record.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No consulted source places any trout in the Loosahatchie.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The river is absent from TWRA's stocking table (no trout program of any kind) and no cold-water source or trout record exists for this lowland West Tennessee drainage.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (checked: no Loosahatchie row)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07030280&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07030280&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=07030280&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+    "https://waterservices.usgs.gov/nwis/site/?bBox=-90.35,34.95,-89.75,35.30&format=rdb&siteStatus=all&siteOutput=expanded (area site inventory used to enumerate Memphis-area gauges)"
+  ]
+}

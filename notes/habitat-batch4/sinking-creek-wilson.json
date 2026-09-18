@@ -1,0 +1,38 @@
+{
+  "slug": "sinking-creek-wilson",
+  "segment": {
+    "description": "Sinking Creek (Wilson County) — the karst-influenced creek flowing through Don Fox Community Park in Lebanon, Tennessee, the Wilson County water in TWRA's winter trout stocking program. TWRA's 2026 schedule and the owner workbook list the site as 'Don Fox Park Community Park' (Wilson Co., Winter, rainbow trout: 2/11/2026 and TBD 12/2026); regional reporting identifies the stocked stream through the park as Sinking Creek. The catalog lists this water as a spring-type karst water — hence 'the name is the geology lesson'.",
+    "boundaries": "The stocked reach of Sinking Creek through Don Fox Community Park, Lebanon, Wilson County (catalog GNIS 01270380, HUC 05130201)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Karst character is noted in the catalog, but no agency documentation of spring influence, baseflow temperature, or any cold-water characteristic was located. No temperature record found for the creek."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found either way. The program is winter-only by design (workbook: Winter-type stockings 2/11/2026 and TBD 12/2026; regional reporting describes the creek being added to the winter schedule in winter 2021-22 after a local petition, stocked when 'temperatures reached optimal winter levels'), and no source documents whether any stocked fish survive past the winter season.",
+    "evidenceUrl": "https://mainstreetmediatn.com/articles/cheathamcountyexchange/second-trout-stocking-set-for-sinking-creek"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation found; the fishery is TWRA's winter put-and-take stocking of catchable rainbow trout at the Don Fox Community Park reach.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Winter-only put-and-take water: TWRA stocks rainbow trout at the Don Fox Park reach only in the winter program (December-February events), and no temperature or holdover data exists to say whether trout could survive the summer in this small karst creek.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html ('Don Fox Park Community Park' winter listing; 'Sinking Creek' name not present on TWRA page)",
+    "https://mainstreetmediatn.com/articles/cheathamcountyexchange/second-trout-stocking-set-for-sinking-creek (URL verified via WebSearch snippet: 'The stretch of Sinking Creek that runs through Lebanon's Don Fox Community Park')",
+    "https://www.change.org/p/tennessee-wildlife-resources-agency-ask-twra-to-stock-trout-in-lebanon-tn-winter-fishery/u/29655787 (petition trail for the 2021 program addition — lead only, not used as sole evidence)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Sinking' rows; Wilson County rows are 'Don Fox Park Community Park' Winter rainbow 2/11/2026 and TBD 12/2026 — those are this water under the park site name)"
+  ]
+}

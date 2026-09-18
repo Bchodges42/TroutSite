@@ -1,0 +1,76 @@
+{
+  "slug": "hatchie-river",
+  "segment": {
+    "description": "The Hatchie River in West Tennessee as cataloged: the free-flowing bottomland swamp river running west through the Hardeman/Haywood corridor and on through Tipton and Lauderdale counties toward the Mississippi. Warmwater fishery (crappie/catfish/bass rules), no trout program.",
+    "boundaries": "Catalog covers the whole Tennessee river (hydroIdentity HUC8 08010208). TDEC scenic-river page: approximately 202.8 designated miles located in McNairy, Hardeman, Madison, Haywood, Tipton, and Lauderdale counties, designated February 12, 1970 as 'a swamp river' (Class I Natural River Area)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html"
+    },
+    "springFed": {
+      "value": false,
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html"
+    },
+    "elevationFt": 266.99,
+    "notes": "No dam tailwater: TDEC describes the Hatchie as 'the longest free-flowing tributary of the lower Mississippi River totaling 238 miles'. SpringFed=false basis: TDEC records its 1970 designation as 'a swamp river' — a rain/backwater-fed bottomland system, not a spring-fed stream; TDEC adds it 'provides habitat for more than 100 species of fish including 11 species of catfish' (warmwater-native assemblage, no trout mentioned). elevationFt = USGS gage altitude 266.99 ft (NGVD29) at HATCHIE RIVER NEAR STANTON, TN (07030000), identity verified via https://waterservices.usgs.gov/nwis/site/?sites=07030000&siteOutput=expanded&format=rdb and the statewide site file https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 31.0,
+      "monthObserved": 7,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 29.5,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    },
+    {
+      "celsius": 28.5,
+      "monthObserved": 8,
+      "year": 2005,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented on the Hatchie. The river is absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero mentions of 'Hatchie'); that plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'. Absence of a program is documented; absence of individual stocked fish was not surveyed.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TDEC's scenic-river page describes >100 native fish species including 11 catfish species with no trout; TWRA's Trout Management Plan contains no Hatchie reference.",
+    "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Free-flowing warmwater swamp river: USGS grab samples at the Bolivar gage (07029500, 88 summer samples 1976-2005) peaked at 31.0 C in July 1986 and still hit 28.5 C in August 2005, and TWRA stocks no trout anywhere on the river.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html",
+    "https://www.fws.gov/refuge/hatchie",
+    "https://www.tn.gov/twra/twra-outdoors-blog/2024/5/7/hatchie-river-work-group-provided-insight-on-tour.html",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+    "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/Hatchie-River-WMA.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07029500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07030000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+    "https://nwis.waterdata.usgs.gov/nwis/qwdata?site_no=07029500&parameterCd=00010&format=rdb&date_format=YYYY-MM-DD",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07029500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}
