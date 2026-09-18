@@ -10,8 +10,9 @@ that way we can cut down on costs."
 
 1. **Curated (slow) layer** — catalog YAML + habitat-survival evidence records
    (this folder) + TWRA stocking workbook. Citation-backed, batch-produced,
-   changes on year-to-decade timescales. This is the ONLY layer a model
-   produces; the cost is amortized per research batch, not per decision.
+   changes on year-to-decade timescales. This is the only layer
+   text-generation models (research sessions) produce; the cost is amortized
+   per research batch, not per decision.
 2. **Periodic (decision) layer** — a deterministic classifier: pure function
    over (evidence record, catalog row, stocking row) →
    {label, confidence, reasons[], provenance}. Zero marginal cost, re-runnable
@@ -23,7 +24,7 @@ that way we can cut down on costs."
    CLIMATOLOGY (e.g. July maxima) belongs to layer 1 as evidence; TODAY'S
    reading belongs here.
 
-## Decision flow (replaces the model-per-run loop)
+## Decision flow (replaces classifying all 190 waters through Jev every run)
 
     evidence record + catalog + workbook
       → CODE CLASSIFIER (pure function)
@@ -52,8 +53,16 @@ evidence strength — one call, answers branched on in code.
 Rules:
 
 - **The confidence gate is structural** — computed from the record: facets
-  present, source tiers, recency, explicit conflict flags. Not model vibes.
-  The escalation must be reproducible and auditable.
+  present, source tiers, recency, explicit conflict flags. The escalation
+  must be reproducible and auditable.
+- **The escalation state is whitelist evidence-only — NO answer leakage.**
+  The state composed for Jev carries the evidence record, catalog row,
+  stocking row, and policy rules. It must NOT contain the code classifier's
+  tentative label, any prior Jev answer (recommendedClass/confidence/flags),
+  or anything derived from either. jev-classify.mjs already documents this
+  trap for the composite; the 2026-09-17 review caught a real leak of exactly
+  this kind (composite fields reintroducing prior Jev answers, contaminating
+  an 8/8 result down to an honest 5/8). Inherit the guard.
 - **Disagreement between code and Jev auto-escalates to the owner box.**
   Disagreement is itself evidence of thin data; the owner arbitrates exactly
   the waters that need a human.
