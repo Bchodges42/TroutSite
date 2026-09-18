@@ -237,6 +237,11 @@ export async function escalateJev(input) {
         evidenceStrength: {
           type: 'score',
           instructions: 'Rate the strength of the cited evidence (0-1) for deciding this water at all.',
+          criteria: [
+            '1.0 = multiple agency documents directly address trout presence/survival in this exact segment',
+            '0.5 = agency documents address the water or its program but leave survival unresolved',
+            '0.0 = no cited source speaks to trout in this segment',
+          ],
         },
       },
     }),
