@@ -1,0 +1,29 @@
+{
+  "basis": "lowest 30 confidence from jev-classification-eval.json + 7 named waters per HABITAT-EVIDENCE-PROMPT.md; batch-1 slugs excluded",
+  "roster": [
+    "elk-river-lower",
+    "powell-river",
+    "wolf-river-west-tennessee",
+    "east-fork-stones-river",
+    "cosby-creek",
+    "parksville-lake",
+    "south-holston-lake",
+    "trail-fork-big-creek",
+    "tellico-river",
+    "boone-lake",
+    "middle-prong-little-pigeon",
+    "dale-hollow-lake",
+    "roaring-fork",
+    "reedy-creek",
+    "west-prong-little-pigeon",
+    "south-fork-cumberland",
+    "melton-hill-lake",
+    "laurel-fork-carter",
+    "beaverdam-creek",
+    "little-river",
+    "leconte-creek",
+    "red-river-clarksville",
+    "tellico-lake",
+    "fort-patrick-henry-lake"
+  ]
+}
