@@ -1,174 +1,365 @@
 #!/usr/bin/env node
 /* eslint-disable no-undef */
 /**
- * Build the owner review page for the habitat-evidence lane.
- * Runs the stage-2 code classifier over every evidenced water (batches 1-3),
- * buckets results into OWNER DECISIONS (escalations + conflicts) vs
- * AUTO-ACCEPTED (high-confidence), embeds the research-flagged catalog
- * conflicts, and writes a single self-contained HTML file.
+ * Build the owner review page for the habitat-evidence lane, in the same
+ * format as the 2026-09-17 JEV-REVIEW.html decision table the owner knows:
+ * sortable table + filters + per-item drawer + autosave + JSON export.
+ * Decision rows = Jev-vs-code disagreements, research-flagged catalog
+ * conflicts, and the one policy ruling. Jev agreements and code auto-accepts
+ * are reference-only (no controls).
  *
  * Usage: node docs/research/2026-09-18-habitat-review/build-review.mjs
+ * (run rate-escalations.mjs first so jev-ratings.json exists)
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { classify } from '../../../packages/content/scripts/classification/code-classify.mjs';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const here = dirname(fileURLToPath(import.meta.url));
+const root = join(here, '..', '..', '..');
 const read = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
-const batches = [
-  ...read('packages/content/research/habitat-survival/batch1.json'),
-  ...read('packages/content/research/habitat-survival/batch2.json'),
-  ...read('packages/content/research/habitat-survival/batch3.json'),
-];
-const composite = read('packages/content/research/CLASSIFICATION-COMPOSITE-2026-09-17.json');
-const LABEL_TEXT = {
+
+const LABELS = {
   'trout-stream-year-round': 'Year Round - Trout Stream',
   'warmwater-yearly-stocked-winter-trout': 'Warm Water - Seasonal/Winter Stocking',
   'warmwater-no-trout': 'Warm Water - No Trout',
 };
 
-const rows = batches.map((rec) => {
+const batches = [
+  ...read('packages/content/research/habitat-survival/batch1.json'),
+  ...read('packages/content/research/habitat-survival/batch2.json'),
+  ...read('packages/content/research/habitat-survival/batch3.json'),
+];
+const bySlug = new Map(batches.map((r) => [r.slug, r]));
+const composite = read('packages/content/research/CLASSIFICATION-COMPOSITE-2026-09-17.json');
+const ratingsPath = join(here, 'jev-ratings.json');
+const ratings = existsSync(ratingsPath) ? JSON.parse(readFileSync(ratingsPath, 'utf8')).results : [];
+const ratingOf = (slug) => ratings.find((r) => r.slug === slug) ?? null;
+
+function verdictOf(rec) {
   const cw = composite.waters[rec.slug] ?? {};
-  const v = classify({
-    evidenceRecord: rec,
-    catalogRow: cw.catalog ?? {},
-    stockingRow: { months: cw.seasonMonths ?? [] },
-  });
-  return {
-    slug: rec.slug,
-    name: rec.segment?.description?.split('(')[0]?.trim() || rec.slug,
-    read: `${rec.overallSurvivalRead.yearRoundSurvivalLikely} (${rec.overallSurvivalRead.confidence})`,
-    readWhy: rec.overallSurvivalRead.oneLineWhy,
-    label: v.label,
-    labelText: LABEL_TEXT[v.label] ?? v.label,
-    confidence: v.confidence,
-    gate: v.confidenceGate,
-    reasons: v.reasons,
-    conflicts: v.conflicts,
-  };
-});
-const escalations = rows.filter((r) => r.gate === 'low').sort((a, b) => a.slug.localeCompare(b.slug));
-const accepts = rows.filter((r) => r.gate === 'high').sort((a, b) => a.slug.localeCompare(b.slug));
+  return classify({ evidenceRecord: rec, catalogRow: cw.catalog ?? {}, stockingRow: { months: cw.seasonMonths ?? [] } });
+}
+function drawerFacts(rec) {
+  if (!rec) return [];
+  const cw = composite.waters[rec.slug] ?? {};
+  const v = verdictOf(rec);
+  const f = v.facets;
+  const yn = (b) => (b === true ? 'yes' : b === false ? 'no' : 'unknown');
+  const facts = [
+    `wild population: ${yn(f.wild)}`,
+    `holdover: ${yn(f.holdover)}`,
+    `cold bottom-draw release: ${yn(f.coldRelease)}`,
+    `stocking months: ${f.stockingMonths.length ? `${f.stockingMonths.join(', ')} (${f.stockingMonths.length}/12)` : 'none resolved'}`,
+  ];
+  if (rec.summerTemperature?.length) facts.push(`summer temps: ${rec.summerTemperature.map((t) => `${t.celsius}°C m${t.monthObserved}/${t.year}`).join('; ')}`);
+  void cw;
+  return facts;
+}
 
-/** Jev second opinions, when rate-escalations.mjs has been run with a key. */
-let ratings = null;
-const ratingsPath = join(dirname(fileURLToPath(import.meta.url)), 'jev-ratings.json');
-if (existsSync(ratingsPath)) ratings = JSON.parse(readFileSync(ratingsPath, 'utf8')).results;
-const ratingOf = (slug) => (ratings ?? []).find((r) => r.slug === slug) ?? null;
-const disagreements = (ratings ?? []).filter((r) => r.resolution?.resolution === 'owner-box');
-const agreements = (ratings ?? []).filter((r) => r.resolution?.resolution === 'accept');
+const disagreements = ratings.filter((r) => r.resolution?.resolution === 'owner-box');
+const jevAgreed = ratings.filter((r) => r.resolution?.resolution === 'accept');
+const autoAccepts = [...bySlug.values()]
+  .map((rec) => ({ rec, v: verdictOf(rec) }))
+  .filter(({ v }) => v.confidenceGate === 'high');
 
-/** Research-flagged catalog conflicts from batch reports 1-3 (owner boxes). */
-const researchBoxes = [
-  ['batch 1', 'duck-river-tailwater', 'Catalog says TWRA stocks it year-round; the 2026 workbook says winter months only (Jan, Feb, Mar, Nov, Dec). Decisive fact is yours.'],
-  ['batch 1', 'wilbur-lake', 'An earlier ledger recorded a "Rainbow, March-July" reservoir row; the 2026-09-17 workbook has NO Wilbur Reservoir row at all.'],
-  ['batch 2', 'leconte-creek', 'Catalog note says "TWRA spring stocking listed" but the 2026 workbook has zero LeConte Creek rows; GSMNP policy says the park stopped stocking in 1975.'],
-  ['batch 2', 'roaring-fork', 'Catalog note claims spring stocking; the 2026 workbook has zero Roaring Fork rows.'],
-  ['batch 2', 'cosby-creek', 'TWRA 2026 schedule lists seasonal Cosby Creek stocking (Mar-Jun) while NPS says the park does not stock — where does TWRA actually stock?'],
-  ['batch 2', 'red-river-clarksville', 'TWRA stocks winter rainbows at Billy Dunlop Park — but no source pins whether that is the Red River channel or a park pond.'],
-  ['batch 2', 'powell-river', 'Catalog claims wild rainbow/brown trout in upper reaches; zero agency support found. TWRA manages it as smallmouth water.'],
-  ['batch 2', 'east-fork-stones-river', 'Catalog is internally conflicted (trout/wild fishery flags, yearRound false, no stocking row); nothing agency-side supports wild trout.'],
-  ['batch 2', 'boone-lake + melton-hill-lake', 'TWRA live page names its year-round reservoir trout program — Boone and Melton Hill are NOT on it, and neither has a lake stocking row.'],
-  ['batch 3', 'little-tennessee-river', 'TWRA program list entry "Tellico Upper (Rainbow)" plausibly IS the Chilhowee-tailwater Little Tennessee arm, but TWRA never says so explicitly (legacy composite owner box).'],
-  ['batch 3', 'ocoee-number-three-lake', 'Catalog claims TWRA calls this pool "Hiwassee Lake" (443 ac) — could not be verified anywhere; TVA says 360 ac.'],
-  ['batch 3', 'hurricane-creek / standing-rock-creek / white-oak-creek', 'These are Kentucky-Lake drainage creeks (Houston/Humphreys/Stewart counties) per their own GPS data, but carry stale "upper Cumberland" region labels. hurricane-creek GNIS IDs also mismatch.'],
-  ['batch 3', 'harpeth-river', "TDEC's scenic-river designation excludes the Williamson County reach this catalog entry covers — any scenic-river fishery framing misattributes the reach."],
-  ['batch 3', 'new-river', 'Catalog frames it as a state scenic river; TDEC live scenic-rivers index (24 waters) does not list it.'],
-  ['batch 3', 'johnson-park-lake', 'Catalog says Memphis; sourced locality is W.C. Johnson Park, Collierville.'],
-  ['batch 3', 'paris-city-park-lake', 'Stocking segment unresolved: TWRA lists "Paris City Park", local news places it at the Eiffel Tower Park pond, the catalog maps Green Acres Lake.'],
-  ['batch 3', 'salt-lick-creek', 'Catalog seasonMonths (Dec/Jan/Feb) vs workbook March rows — internally inconsistent.'],
-  ['batch 3', 'calderwood-lake', 'TWRA live page lists Brook/Brown/Rainbow; the stocking dataset rows say Rainbow only.'],
-  ['policy', 'ALL', 'Ruling needed: the new year-round policy (continuous stocking alone = year-round) supersedes one sentence in the older 2026-09-17 category criteria ("a long stocking calendar is program evidence, not survival proof by itself"). The classifier implements the NEW policy; confirm.'],
+const conflicts = [
+  ['duck-river-tailwater', 'Catalog says TWRA stocks it year-round; the 2026 workbook says winter months only (Jan, Feb, Mar, Nov, Dec).'],
+  ['wilbur-lake', 'An earlier ledger recorded a "Rainbow, March-July" reservoir row; the 2026-09-17 workbook has NO Wilbur Reservoir row at all.'],
+  ['leconte-creek', 'Catalog note says "TWRA spring stocking listed" but the 2026 workbook has zero LeConte Creek rows; GSMNP stopped stocking in 1975.'],
+  ['roaring-fork', 'Catalog note claims spring stocking; the 2026 workbook has zero Roaring Fork rows.'],
+  ['cosby-creek', 'TWRA 2026 schedule lists seasonal stocking (Mar-Jun) while NPS says the park does not stock — where does TWRA actually stock?'],
+  ['red-river-clarksville', 'TWRA stocks winter rainbows at Billy Dunlop Park — no source pins whether that is the river channel or a park pond.'],
+  ['powell-river', 'Catalog claims wild rainbow/brown trout in upper reaches; zero agency support found. TWRA manages it as smallmouth water.'],
+  ['east-fork-stones-river', 'Catalog is internally conflicted (trout/wild fishery flags, yearRound false, no stocking row); nothing agency-side supports wild trout.'],
+  ['boone-lake', "TWRA's live trout page names its year-round reservoir program — Boone is NOT on it and has no lake stocking row."],
+  ['melton-hill-lake', "TWRA's live trout page names its year-round reservoir program — Melton Hill is NOT on it and has no lake stocking row."],
+  ['little-tennessee-river', 'TWRA program list entry "Tellico Upper (Rainbow)" plausibly IS the Chilhowee-tailwater Little Tennessee arm; TWRA never says so explicitly.'],
+  ['ocoee-number-three-lake', 'Catalog claims TWRA calls this pool "Hiwassee Lake" (443 ac) — unverifiable; TVA says 360 ac.'],
+  ['hurricane-creek', 'Kentucky-Lake drainage creek (Houston/Humphreys) per its own hydroIdentity, but carries a stale "upper Cumberland" region label; GNIS IDs also mismatch.'],
+  ['standing-rock-creek', 'Kentucky-Lake drainage creek (Stewart Co.) per hydroIdentity, stale "upper Cumberland" region label.'],
+  ['white-oak-creek', 'Kentucky-Lake drainage creek (Houston Co.) per hydroIdentity, stale "upper Cumberland" region label.'],
+  ['harpeth-river', "TDEC's scenic-river designation excludes the Williamson County reach this entry covers — scenic-river fishery framing misattributes the reach."],
+  ['new-river', 'Catalog frames it as a state scenic river; TDEC live scenic-rivers index (24 waters) does not list it.'],
+  ['johnson-park-lake', 'Catalog says Memphis; sourced locality is W.C. Johnson Park, Collierville.'],
+  ['paris-city-park-lake', 'Stocking segment unresolved: TWRA lists "Paris City Park", local news says Eiffel Tower Park pond, catalog maps Green Acres Lake.'],
+  ['salt-lick-creek', 'Catalog seasonMonths (Dec/Jan/Feb) vs workbook March rows — internally inconsistent.'],
+  ['calderwood-lake', 'TWRA live page lists Brook/Brown/Rainbow; the stocking dataset rows say Rainbow only.'],
 ];
 
-const esc = escalations.map((r) => `
-  <div class="card">
-    <div class="slug">${r.slug} <span class="pill lean">code lean: ${r.labelText}</span> <span class="pill">researcher read: ${r.read}</span></div>
-    <div class="why">${r.readWhy}</div>
-    ${r.conflicts.length ? `<div class="conflict">CONFLICT: ${r.conflicts.join(' · ')}</div>` : ''}
-    <div class="reasons">${r.reasons.join(' · ')}</div>
-  </div>`).join('\n');
+const rows = [];
 
-const acc = accepts.map((r) => `
-  <tr><td>${r.slug}</td><td>${r.labelText}</td><td>${r.confidence}</td><td>${r.read}</td><td>${r.readWhy}</td></tr>`).join('\n');
+for (const rt of disagreements) {
+  const rec = bySlug.get(rt.slug);
+  const v = verdictOf(rec);
+  rows.push({
+    key: rt.slug,
+    kind: 'disagreement',
+    water: rt.slug,
+    code: v.labelText,
+    jev: LABELS[rt.jev?.choice] ?? 'abstained',
+    jevConfidence: rt.jev?.choiceConfidence ?? null,
+    jevNoul: rt.jev?.yearRoundSurvival ?? null,
+    jevStrength: rt.jev?.evidenceStrength ?? null,
+    researcher: rec ? `${rec.overallSurvivalRead.yearRoundSurvivalLikely} (${rec.overallSurvivalRead.confidence})` : '',
+    summary: rec?.overallSurvivalRead?.oneLineWhy ?? '',
+    conflicts: v.conflicts,
+    options: [
+      { value: rt.jev?.choice ?? 'research', label: `Jev: ${LABELS[rt.jev?.choice] ?? '—'}` },
+      { value: v.label, label: `Code: ${v.labelText}` },
+      ...Object.entries(LABELS).filter(([k]) => k !== rt.jev?.choice && k !== v.label).map(([k, t]) => ({ value: k, label: t })),
+      { value: 'research', label: 'Send back for research' },
+    ],
+    prefill: rt.jev?.choice ?? 'research',
+    facts: drawerFacts(rec),
+    sources: (rec?.sourcesChecked ?? []).slice(0, 12),
+  });
+}
 
-const escCards = escalations.map((r) => {
-  const rt = ratingOf(r.slug);
-  const jevLine = rt
-    ? (rt.error
-      ? `<div class="conflict">Jev call errored: ${rt.error}</div>`
-      : `<div class="jev">Jev: <b>${rt.jev.choice}</b> (confidence ${rt.jev.choiceConfidence ?? '?'}) → <b>${rt.resolution.resolution}</b>${rt.resolution.reason ? ` — ${rt.resolution.reason}` : ''}</div>`)
-    : '<div class="jev pending">Jev second opinion: PENDING — run rate-escalations.mjs with TYPESAFE_API_KEY in the clone .env</div>';
-  return `
-  <div class="card">
-    <div class="slug">${r.slug} <span class="pill lean">code lean: ${r.labelText}</span> <span class="pill">researcher read: ${r.read}</span></div>
-    <div class="why">${r.readWhy}</div>
-    ${r.conflicts.length ? `<div class="conflict">CONFLICT: ${r.conflicts.join(' · ')}</div>` : ''}
-    ${jevLine}
-    <div class="reasons">${r.reasons.join(' · ')}</div>
-  </div>`;
-}).join('\n');
+for (const [slug, detail] of conflicts) {
+  const rec = bySlug.get(slug);
+  const rt = ratingOf(slug);
+  rows.push({
+    key: 'conflict:' + slug,
+    kind: 'conflict',
+    water: slug,
+    code: rec ? verdictOf(rec).labelText : '',
+    jev: rt?.jev ? (LABELS[rt.jev.choice] ?? '—') : '',
+    jevConfidence: rt?.jev?.choiceConfidence ?? null,
+    researcher: rec ? `${rec.overallSurvivalRead.yearRoundSurvivalLikely} (${rec.overallSurvivalRead.confidence})` : '',
+    summary: detail,
+    conflicts: [detail],
+    options: [
+      { value: 'accept-evidence', label: 'Fix catalog to match evidence' },
+      { value: 'keep-catalog', label: 'Keep catalog as-is' },
+      { value: 'research', label: 'Send back for research' },
+    ],
+    prefill: 'accept-evidence',
+    facts: drawerFacts(rec),
+    sources: (rec?.sourcesChecked ?? []).slice(0, 12),
+  });
+}
 
-const disagreeRows = disagreements.map((rt) => {
-  const row = rows.find((r) => r.slug === rt.slug);
-  const abstained = rt.jev?.choice === 'none';
-  return `
-  <div class="card disagree">
-    <div class="slug">${rt.slug} <span class="pill">${abstained ? 'Jev abstained' : 'Jev disagrees'}</span> <span class="pill lean">code lean: ${LABEL_TEXT[rt.codeLabel] ?? rt.codeLabel}</span> <span class="pill">researcher read: ${row?.read ?? '?'}</span></div>
-    <div class="conflict">CODE says ${LABEL_TEXT[rt.codeLabel] ?? rt.codeLabel} — JEV says ${rt.jev?.choice === 'none' ? 'cannot decide (abstained)' : (LABEL_TEXT[rt.jev.choice] ?? rt.jev.choice)}${rt.jev?.choiceConfidence != null ? ` (confidence ${rt.jev.choiceConfidence})` : ''}</div>
-    ${rt.conflicts?.length ? `<div class="why">structural conflicts: ${rt.conflicts.join(' · ')}</div>` : ''}
-    <div class="why">${row?.readWhy ?? ''}</div>
-  </div>`;
-}).join('\n');
+rows.push({
+  key: 'policy:year-round',
+  kind: 'policy',
+  water: 'POLICY — year-round rule precedence',
+  code: 'classifier implements the NEW rule',
+  jev: '',
+  jevConfidence: null,
+  researcher: '',
+  summary: 'Confirm that continuous (12-month) stocking alone qualifies a water as Year Round - Trout Stream. This supersedes one sentence in the older 2026-09-17 category criteria ("a long stocking calendar is program evidence, not survival proof by itself"). The classifier and Jev prompts already follow the new rule.',
+  conflicts: [],
+  options: [
+    { value: 'confirm-new', label: 'Confirm: continuous stocking = year-round' },
+    { value: 'revert-old', label: 'Revert: calendar is program evidence only' },
+  ],
+  prefill: '',
+  facts: [],
+  sources: [],
+});
 
-const agreeTable = agreements.length
-  ? `<table><tr><th>water</th><th>code + Jev agree on</th><th>Jev confidence</th></tr>${agreements.map((rt) => `<tr><td>${rt.slug}</td><td>${LABEL_TEXT[rt.codeLabel] ?? rt.codeLabel}</td><td>${rt.jev?.choiceConfidence ?? '?'}</td></tr>`).join('')}</table>`
-  : '<div class="count">none yet</div>';
+const reference = {
+  jevAgreed: jevAgreed.map((rt) => ({ slug: rt.slug, label: LABELS[rt.codeLabel] ?? rt.codeLabel })),
+  codeAuto: autoAccepts.map(({ rec, v }) => ({ slug: rec.slug, label: v.labelText })),
+};
 
-const boxes = researchBoxes.map(([b, w, d]) => `
-  <div class="card"><div class="slug">${w} <span class="pill">${b}</span></div><div class="why">${d}</div></div>`).join('\n');
-const policyHtml = researchBoxes.filter(([b]) => b === 'policy')
-  .map(([, w, d]) => `<div class="card"><div class="slug">${w}</div><div class="why">${d}</div></div>`).join('\n');
-const conflictHtml = researchBoxes.filter(([b]) => b !== 'policy')
-  .map(([b, w, d]) => `<div class="card"><div class="slug">${w} <span class="pill">${b}</span></div><div class="why">${d}</div></div>`).join('\n');
+const styleHtml = (() => {
+  const legacy = readFileSync(join(root, 'docs', 'research', '2026-09-17-classification-diff', 'JEV-REVIEW.html'), 'utf8');
+  const m = legacy.match(/<style>[\s\S]*?<\/style>/);
+  return m ? m[0] : '<style>body{font-family:Georgia,serif;max-width:1100px;margin:20px auto;padding:0 14px}</style>';
+})();
 
-const html = `<!doctype html><html><head><meta charset="utf-8"><title>Habitat Evidence Review — items needing owner rulings</title>
+const DATA = { generatedAt: new Date().toISOString(), rows, reference };
+const counts = {
+  disagreements: disagreements.length,
+  conflicts: conflicts.length,
+  policy: 1,
+  jevAgreed: reference.jevAgreed.length,
+  codeAuto: reference.codeAuto.length,
+};
+
+const html = `<!doctype html><html><head><meta charset="utf-8">
+<title>Habitat Evidence — decision review</title>
+${styleHtml}
 <style>
- body{font-family:Georgia,serif;max-width:980px;margin:24px auto;padding:0 16px;color:#222;background:#faf7f0}
- h1{font-size:26px} h2{margin-top:36px;border-bottom:2px solid #8b6f47;padding-bottom:4px}
- .card{background:#fff;border:1px solid #ddd8cc;border-radius:6px;padding:10px 14px;margin:10px 0}
- .slug{font-weight:bold;font-size:17px} .pill{font-size:12px;background:#eee7d8;border-radius:10px;padding:2px 8px;margin-left:6px;font-weight:normal}
- .pill.lean{background:#dfe9f5} .why{margin-top:6px;font-style:italic;color:#555} .conflict{margin-top:6px;color:#8c2f1b;font-weight:bold}
- .reasons{margin-top:4px;color:#666;font-size:14px}
- .jev{margin-top:6px;color:#1f4e79}
- .jev.pending{color:#8a6d1a;font-style:italic}
- .card.disagree{border-color:#8c2f1b;border-width:2px;background:#fff7f5}
- table{border-collapse:collapse;width:100%;font-size:14px} td,th{border:1px solid #ddd8cc;padding:6px 8px;text-align:left;vertical-align:top}
- .note{background:#efe9db;border-left:4px solid #8b6f47;padding:10px 14px;margin:14px 0}
- .count{font-size:14px;color:#666}
+ td .dim{color:var(--dim);font-size:12px}
+ select.dec{max-width:240px}
+ h2.ref{margin-top:34px;font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:560;font-size:20px}
+ .kindpill{font-size:11px;border:1px solid var(--line);border-radius:9px;padding:1px 7px;margin-left:6px}
+ .kind-disagreement{background:#fdeceb} .kind-conflict{background:#fdf6e3} .kind-policy{background:#eaf2fb}
+ .refline{color:var(--dim);font-size:13px;margin-top:6px}
 </style></head><body>
-<h1>Habitat Evidence Review — what needs your ruling</h1>
-<div class="note">Generated from 72 sourced evidence records (batches 1–3) run through the free code classifier.
-<b>Escalations</b> are waters the code would not decide on its own. <b>Auto-accepted</b> waters decided themselves at high confidence (list included so you can spot-check).
-The old <a href="../2026-09-17-classification-diff/JEV-REVIEW.html">JEV-REVIEW.html</a> page is untouched for the legacy 190-water pass.</div>
-<h2>1 · Policy ruling needed (one item)</h2>
-${policyHtml}
-<h2>2 · Research-flagged catalog conflicts (${researchBoxes.length - 1} boxes)</h2>
-${conflictHtml}
-<h2>3 · Jev vs code — the actual review items (${ratings ? disagreements.length + ' disagree/abstain' : 'JEV NOT RUN — needs TYPESAFE_API_KEY in clone .env'})</h2>
-${ratings
-    ? (disagreements.length ? disagreeRows : '<div class="count">Zero disagreements — Jev agreed with the code or abstained everywhere (sections 4-5).</div>')
-    : `<div class="count">These ${escalations.length} waters could not be decided by the code alone. Run <b>rate-escalations.mjs</b> with a TYPESAFE_API_KEY in the clone .env to fetch Jev's second opinions — then only the disagreements need your review.</div>`}
-<h2>4 · Jev agreed with the code — accepted (${ratings ? agreements.length : 0})</h2>
-${ratings ? agreeTable : '<div class="count">not run yet</div>'}
-<h2>5 · Full escalation detail with second-opinion status (${escalations.length} waters)</h2>
-${escCards}
-<h2>6 · Auto-accepted at high confidence — no Jev needed (${accepts.length} waters — spot-check list)</h2>
-<table><tr><th>water</th><th>label</th><th>researcher read</th><th>why</th></tr>${acc}</table>
+<header>
+  <div class="masthead"><span class="rule">TROUT</span> <em>· habitat decision review</em></div>
+  <div class="colophon"><b>${rows.length} decisions</b> · ${counts.disagreements} Jev-vs-code disagreements · ${counts.conflicts} catalog conflicts · 1 policy ruling ·
+    ${counts.jevAgreed} Jev-agreed + ${counts.codeAuto} code-accepted need no action · generated ${DATA.generatedAt.slice(0, 10)}</div>
+  <div class="bar">
+    <input type="search" id="q" placeholder="filter item, note…" size="24">
+    <select id="fkind">
+      <option value="">all kinds</option>
+      <option value="disagreement">Jev vs code</option>
+      <option value="conflict">catalog conflicts</option>
+      <option value="policy">policy ruling</option>
+    </select>
+    <select id="fdec">
+      <option value="">all decisions</option>
+      <option value="pending">still to decide</option>
+      <option value="overridden">changed by you</option>
+    </select>
+    <button id="resetVisible">Reset visible to prefill</button>
+    <span id="progress"><b>0</b>/${rows.length} changed · rest keep prefill</span>
+    <button class="primary" id="export">Export decisions JSON</button>
+    <button id="peek">Peek</button>
+  </div>
+</header>
+<table id="t">
+  <thead><tr>
+    <th data-k="water">Item</th>
+    <th data-k="kind">Kind</th>
+    <th data-k="decision">Decision</th>
+    <th data-k="code">Code says</th>
+    <th data-k="jev">Jev says</th>
+    <th data-k="researcher">Researcher</th>
+    <th data-k="note">Note</th>
+  </tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+<footer>
+  Click an <i>item name</i> for the evidence drawer (facets, conflicts, sources checked). Disagreements are prefilled with Jev's pick —
+  flip what you disagree with; conflicts are prefilled "fix catalog"; the policy ruling starts undecided. Decisions autosave in this
+  browser under a stable key and survive regeneration. Export downloads <code>habitat-review-decisions.json</code> — hand it to a
+  session or drop it into <code>packages/content/research/</code>.
+</footer>
+<h2 class="ref">Reference — already decided, no action needed</h2>
+<div class="refline">Jev agreed with the code (${counts.jevAgreed}): ${reference.jevAgreed.map((r) => `${r.slug} → ${r.label}`).join(' · ')}</div>
+<div class="refline">Code decided alone at high confidence (${counts.codeAuto}): ${reference.codeAuto.map((r) => `${r.slug} → ${r.label}`).join(' · ')}</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <button class="close" id="closeDrawerBtn">✕</button>
+  <h2 id="dName">—</h2>
+  <div class="sub2" id="dSub">—</div>
+  <h3>Evidence facets</h3>
+  <div id="dFacts"></div>
+  <h3>Summary</h3>
+  <div id="dSummary"></div>
+  <h3>Conflicts</h3>
+  <div id="dConflicts"></div>
+  <h3>Sources checked</h3>
+  <div id="dSources"></div>
+</aside>
+<dialog id="peekdlg"><h3 style="margin-top:0">Export preview</h3><pre id="peekpre"></pre>
+<button onclick="document.getElementById('peekdlg').close()">Close</button></dialog>
+<div class="toast" id="toast"></div>
+<script>
+const DATA = ${JSON.stringify(DATA)};
+const LS_KEY = 'habitat-review-v1';
+const saved = (JSON.parse(localStorage.getItem(LS_KEY) || '{}').rows) || {};
+const state = {};
+for (const r of DATA.rows) {
+  const sv = saved[r.key];
+  state[r.key] = { decision: sv && sv.decision !== undefined ? sv.decision : r.prefill, note: (sv && sv.note) || '', modified: !!(sv && sv.modified) };
+}
+let sortKey = '', sortDir = 1;
+function esc(s) { return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+function fmtRow(r) {
+  const st = state[r.key];
+  const opts = r.options.map(o => '<option value="' + esc(o.value) + '"' + (st.decision === o.value ? ' selected' : '') + '>' + esc(o.label) + '</option>').join('');
+  const conf = r.jevConfidence != null ? ' <span class="dim">(' + Number(r.jevConfidence).toFixed(2) + ')</span>' : '';
+  return '<tr data-key="' + esc(r.key) + '">' +
+    '<td><a href="#" class="wlink">' + esc(r.water) + '</a><span class="kindpill kind-' + r.kind + '">' + r.kind + '</span></td>' +
+    '<td>' + r.kind + '</td>' +
+    '<td><select class="dec" data-key="' + esc(r.key) + '">' + (r.prefill ? '' : '<option value="">— decide —</option>') + opts + '</select></td>' +
+    '<td>' + esc(r.code) + '</td>' +
+    '<td>' + esc(r.jev) + conf + '</td>' +
+    '<td>' + esc(r.researcher) + '</td>' +
+    '<td><input class="note" data-key="' + esc(r.key) + '" value="' + esc(st.note) + '" placeholder="note…" size="18"></td></tr>';
+}
+function visible(r) {
+  const q = document.getElementById('q').value.toLowerCase();
+  if (q && !(r.water + ' ' + r.summary + ' ' + (state[r.key].note || '')).toLowerCase().includes(q)) return false;
+  const k = document.getElementById('fkind').value;
+  if (k && r.kind !== k) return false;
+  const d = document.getElementById('fdec').value;
+  const decided = r.prefill ? state[r.key].modified : !!state[r.key].decision;
+  if (d === 'pending' && decided) return false;
+  if (d === 'overridden' && !state[r.key].modified) return false;
+  return true;
+}
+function render() {
+  let list = DATA.rows.filter(visible);
+  if (sortKey) list = list.slice().sort((a, b) => String(a[sortKey] ?? '').localeCompare(String(b[sortKey] ?? '')) * sortDir);
+  document.getElementById('rows').innerHTML = list.map(fmtRow).join('');
+  updateProgress();
+  bind();
+}
+function updateProgress() {
+  const changed = DATA.rows.filter(r => state[r.key].modified).length;
+  document.getElementById('progress').innerHTML = '<b>' + changed + '</b>/' + DATA.rows.length + ' changed · rest keep prefill';
+}
+function persist() { localStorage.setItem(LS_KEY, JSON.stringify({ rows: state })); }
+function bind() {
+  const tb = document.getElementById('rows');
+  tb.querySelectorAll('select.dec').forEach(sel => sel.onchange = () => {
+    const k = sel.dataset.key; state[k].decision = sel.value; state[k].modified = true; persist(); render();
+  });
+  tb.querySelectorAll('input.note').forEach(inp => inp.oninput = () => {
+    const k = inp.dataset.key; state[k].note = inp.value; state[k].modified = true; persist(); updateProgress();
+  });
+  tb.querySelectorAll('a.wlink').forEach(a => a.onclick = (e) => { e.preventDefault(); openDrawer(a.closest('tr').dataset.key); });
+}
+function openDrawer(key) {
+  const r = DATA.rows.find(x => x.key === key); if (!r) return;
+  document.getElementById('dName').textContent = r.water;
+  document.getElementById('dSub').textContent = r.kind + (r.researcher ? ' · researcher read: ' + r.researcher : '');
+  document.getElementById('dFacts').innerHTML = (r.facts || []).map(f => '<div>· ' + esc(f) + '</div>').join('') || '<div class="dim">n/a</div>';
+  document.getElementById('dSummary').innerHTML = '<div>' + esc(r.summary) + '</div>' +
+    (r.jevNoul != null ? '<div class="dim">Jev year-round truth: ' + Number(r.jevNoul).toFixed(2) + ' · evidence strength: ' + (r.jevStrength != null ? Number(r.jevStrength).toFixed(2) : 'n/a') + '</div>' : '');
+  document.getElementById('dConflicts').innerHTML = (r.conflicts || []).map(c => '<div>⚠ ' + esc(c) + '</div>').join('') || '<div class="dim">none</div>';
+  document.getElementById('dSources').innerHTML = (r.sources || []).map(s => '<div><a href="' + esc(s) + '" target="_blank" rel="noopener">' + esc(String(s).replace(/^https?:\\/\\//, '').slice(0, 72)) + '</a></div>').join('') || '<div class="dim">none</div>';
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('scrim').classList.add('on');
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('scrim').classList.remove('on');
+}
+function buildExport() {
+  return {
+    generatedAt: DATA.generatedAt,
+    decisions: DATA.rows.map(r => ({ key: r.key, kind: r.kind, decision: state[r.key].decision || null, note: state[r.key].note || null })),
+  };
+}
+document.getElementById('closeDrawerBtn').onclick = closeDrawer;
+document.getElementById('scrim').onclick = closeDrawer;
+document.getElementById('q').oninput = render;
+document.getElementById('fkind').onchange = render;
+document.getElementById('fdec').onchange = render;
+document.getElementById('resetVisible').onclick = () => {
+  DATA.rows.filter(visible).forEach(r => { state[r.key].decision = r.prefill; state[r.key].note = ''; state[r.key].modified = false; });
+  persist(); render(); toast('visible rows reset');
+};
+document.getElementById('export').onclick = () => {
+  const blob = new Blob([JSON.stringify(buildExport(), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'habitat-review-decisions.json'; a.click();
+  toast('exported');
+};
+document.getElementById('peek').onclick = () => {
+  document.getElementById('peekpre').textContent = JSON.stringify(buildExport(), null, 2).slice(0, 4000);
+  document.getElementById('peekdlg').showModal();
+};
+document.querySelectorAll('#t th').forEach(th => th.onclick = () => {
+  const k = th.dataset.k; if (!k) return;
+  sortDir = sortKey === k ? -sortDir : 1; sortKey = k; render();
+});
+function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1600); }
+render();
+</script>
 </body></html>`;
 
-const out = join(dirname(fileURLToPath(import.meta.url)), 'HABITAT-REVIEW.html');
+const out = join(here, 'HABITAT-REVIEW.html');
 writeFileSync(out, html);
 console.log(`wrote ${out}`);
-console.log(`escalations: ${escalations.length}, auto-accepted: ${accepts.length}, research boxes: ${researchBoxes.length - 1} + 1 policy ruling`);
+console.log(`decision rows: ${rows.length} (${counts.disagreements} disagreements, ${counts.conflicts} conflicts, 1 policy)`);
+console.log(`reference: ${counts.jevAgreed} jev-agreed, ${counts.codeAuto} code-auto`);
