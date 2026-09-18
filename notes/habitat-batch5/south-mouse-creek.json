@@ -1,0 +1,57 @@
+{
+  "slug": "south-mouse-creek",
+  "segment": {
+    "description": "South Mouse Creek (GNIS 01270901, HUC-8 06020002 Hiwassee) in the Cleveland, Tennessee area per the catalog: the companion to North Mouse Creek, flowing through Cleveland (Bradley County) north to the Hiwassee River near Charleston. USGS stations document the urban course (03566030 'at South Cleveland', 03566050 'at Cleveland', 03566113/03566114 'near Charleston'). Identity checked against the catalog: this is the Bradley County creek, not the McMinn County North Mouse Creek system.",
+    "boundaries": "Bradley County course through Cleveland to the Hiwassee River near Charleston; full named creek per catalog (no sub-reach boundaries documented)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Urban valley creek: USGS station 03566039 is named 'SOUTH MOUSE CR BL SEWAGE PLANT BL CLEVELAND', documenting a wastewater-plant discharge point on the reach; the Cleveland/Bradley Greenway follows the creek corridor. No cold-water source documented."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 20.0,
+      "monthObserved": 7,
+      "year": 1967,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566050&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover record found; no trout program exists on the creek, so no carryover question has been surveyed or reported by any acceptable source.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented: zero hits for 'Mouse Creek' on TWRA's trout-regulations page and zero rows in TWRA's 2026 stocking schedule (live exceldriven JSON and repo workbook — 'MOUSE' returns 0 hits). No fish-community survey naming trout was located for the creek.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "The only temperature datum on the creek is a single USGS grab (20.0 degC, July 1967, station 03566050) and no trout program, survey, or listing exists — the evidence is too thin to read either way.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566050&characteristicName=Temperature,%20water&mimeType=csv (single qw temperature sample 1967-07-17, 20.0 degC)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=03566030,03566039,03566044,03566045,03566114,03566113&seriesCatalogOutput=true&siteStatus=all (all South Mouse stations are site-visit-only except 03566050's 1967-68 qw block)",
+    "https://waterdata.usgs.gov/monitoring-location/03566050/",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A011&mimeType=csv (Bradley County WQX station sweep: USGS 03566039 'BL SEWAGE PLANT BL CLEVELAND' identity; no TDEC-named Mouse Creek stations surfaced)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live 2026 schedule: 0 'Mouse' rows)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (0 'Mouse Creek' hits)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (616-row grep: no Mouse Creek rows)",
+    "Web search for a TDEC Hiwassee watershed plan / clevelandtn.gov TDEC document naming Mouse Creek — referenced in search snippets but the underlying tn.gov/clevelandtn.gov PDF could not be located and fetched; not cited",
+    "TVA 'Chickamauga Reservoir Embayment Study - 1990' (digital.library.unt.edu) surfaced for Mouse Creek embayment context — not fetched, not cited"
+  ]
+}

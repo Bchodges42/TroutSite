@@ -1,0 +1,92 @@
+{
+  "slug": "little-sequatchie-river",
+  "segment": {
+    "description": "Little Sequatchie River in Marion County (catalog county), the Sequatchie-valley tributary that joins the Sequatchie River drainage reaching the Tennessee River/Nickajack pool — verified distinct from the Sequatchie River itself (separate stations 03571000/03571610 on the Sequatchie vs 03571485/03571500 on the Little Sequatchie) and from Cumberland-Plateau namesakes. The two agency stations with data both sit on the cataloged Marion County lower river: USGS 03571500 'LITTLE SEQUATCHIE RIVER AT SEQUATCHIE, TN' (35.1298, -85.5861, 116 sq mi drainage) and TDEC TDECWPC-LSEQU000.5MI 'LITTLE SEQUATCHIE RIVER NEAR MOUTH' (35.0946, -85.5736).",
+    "boundaries": "Full Marion County reach of the river (HUC-8 06020004, Sequatchie), from the headwater area downstream to the mouth at ~35.0946, -85.5736. All temperature evidence is from the lower river near Sequatchie/Whitwell; no data was located for upstream reaches."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Catalog describes the stream as 'spring-influenced... modest, steady flows by Highland Rim standards' — that is an editorial catalog note; no agency page located this session documents spring inflow to this river. The measured summer grabs at the two lower-river stations (22.0-28.0 degC in July) bound whatever spring influence exists. No elevation figure published on an agency page.",
+    "evidenceUrl": null
+  },
+  "summerTemperature": [
+    {
+      "celsius": 28.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03571500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.0,
+      "monthObserved": 8,
+      "year": 1981,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03571500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.0,
+      "monthObserved": 7,
+      "year": 2001,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LSEQU000.5MI&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 20.6,
+      "monthObserved": 9,
+      "year": 1965,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03571500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 18.5,
+      "monthObserved": 9,
+      "year": 1979,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03571500&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence found: no creel data, holdover notes, or multiple independent angler reports were located for the Little Sequatchie River.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found: the river carries no entry on TWRA's trout-regulations lists (wild trout waters / special regulation / delayed harvest — the wave-3 verification explicitly confirmed no Little Sequatchie entry), and no fish-community inventory documenting trout was located.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Two independent agency stations on the lower Marion County river both recorded July maxima hostile to trout — 28.0 degC (USGS 03571500, 1980) and 22.0 degC (TDEC near-mouth station, 2001) — and TWRA's own program treats the water as a seasonal spring-stocked put-and-take (Mar 15, Mar 22, May 10 2026 weeks only).",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: 3 Region 3 / Marion / 'Little Sequatchie River' / Seasonal / Rainbow Trout rows — weeks 3/15, 3/22, 5/10/2026; the Cumberland County 'Sequatchie River' rows are a different water)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live TWRA 2026 schedule; 3 Marion seasonal rainbow weeks per the parallel batch-5 verification pass)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03571500&characteristicName=Temperature,%20water&mimeType=csv (8 USGS qw grabs 1965-1981 at 'LITTLE SEQUATCHIE RIVER AT SEQUATCHIE, TN': Jul 1980 28.0, Aug 1981 22.0, Sep 1979 18.5, Sep 1965 20.6, May 1965 15.0/21.1, winter 11.0-13.0 degC)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-LSEQU000.5MI&characteristicName=Temperature,%20water&mimeType=csv (9 TDEC grabs 2001-2006 'NEAR MOUTH': Jul 2001 22.0, Oct 2001 13.8, cool-season 6.4-16.9 degC)",
+    "https://www.waterqualitydata.us/provider/STORET/TDECWPC/TDECWPC-LSEQU000.5MI/ (station identity 'LITTLE SEQUATCHIE RIVER NEAR MOUTH' at 35.0946,-85.5736 per wave-3 verification)",
+    "https://waterdata.usgs.gov/monitoring-location/USGS-03571500/ (station catalog page; JS-rendered, station attributes confirmed via the wave-3 series-catalog verification: Marion County, HUC 06020004, 116 sq mi — waterservices.usgs.gov returned 503 on re-check 2026-09-18)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (no Little Sequatchie entry on the special-regulation lists)",
+    "notes/habitat-batch5/_tmp_g2_wqp_lseq.csv (predecessor scratch copy of the 03571500 WQP temperature result, re-parsed this session)",
+    "notes/habitat-batch5/_tmp_g2_tmp2.txt (pre-extracted TWRA Trout Management Plan 2017-2027 text: zero occurrences of 'Sequatchie' — the river appears on none of the plan's program lists)"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "brush-creek-cocke",
+  "segment": {
+    "description": "Brush Creek (Cocke County) — a TWRA hatchery-supported trout creek in the Big Creek corridor of Cocke County (catalog). Identity verified by county: all five 'Brush Creek' rows in TWRA's 2026 stocking schedule are Cocke County (Region 4), matching the catalog's Cocke County / HUC 06010105 (French Broad) / GNIS 01278672 entry; other Tennessee Brush Creeks (e.g., a separately promoted stocked Brush Creek in Greene County) are different waters and carry no rows here.",
+    "boundaries": "Whole creek in Cocke County as stocked by TWRA; no formal agency reach boundaries documented."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source documented. No dam, no spring influence, no elevation figure in any checked source. The stocking program type is the agency signal: five Seasonal-type (spring) rainbow rows (weeks of 3/8 through 5/3/2026) and no winter entries, and the TWRA Trout Management Plan 2017-2027 classifies hatchery-supported streams as 'primarily warmwater habitats that cannot support trout year round'."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. Program design is spring put-and-take: the creek's only TWRA 2026 rows are five Seasonal-type Rainbow Trout stockings (3/8, 3/22, 4/5, 4/19, 5/3/2026).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Not on TWRA's Wild Trout Streams list (trout regulations page checked 2026-09-18 — no Brush Creek entry; catalog concurs) and no wild trout record found in any checked agency source. Note: a native brook trout restoration project exists on Trail Fork Big Creek, a different Big Creek tributary, not on Brush Creek.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Spring-only put-and-take rainbow water: TWRA's 2026 schedule stocks Brush Creek (Cocke Co.) solely as five Seasonal March-May rainbow events, with the Trout Management Plan classifying hatchery-supported streams like this as 'primarily warmwater habitats that cannot support trout year round'.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live feed fetched 2026-09-18: five Cocke Co. 'Brush Creek' Seasonal rows — 3/8, 3/22, 4/5, 4/19, 5/3/2026 — Rainbow Trout; no Winter rows; no Brush Creek rows in any other county)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (Wild Trout Streams and Delayed Harvest lists checked 2026-09-18 — no Brush Creek entry)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (plan text searched: no Brush Creek mention; hatchery-supported 'cannot support trout year round' statement verified)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&countycode=US%3A47%3A029&mimeType=csv (Cocke County temperature-station list pulled 2026-09-18 — no temperature station on Brush Creek; nearest are Pigeon River, French Broad River and Big Creek tributary stations)",
+    "https://digitalcommons.memphis.edu (TWRA Region IV Trout Fisheries Report 2017 mirror located; full text is a ~10.5 MB PDF — not fetched per method size rules, no content verified)",
+    "Web search 'Brush Creek Cocke County Tennessee trout TWRA stocked' (no site-specific habitat or temperature sources; general-web stocking lists do not carry the Cocke creek, while the official TWRA workbook does)"
+  ]
+}

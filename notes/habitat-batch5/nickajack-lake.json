@@ -1,0 +1,84 @@
+{
+  "slug": "nickajack-lake",
+  "segment": {
+    "description": "Nickajack Lake / Nickajack Reservoir — the TVA mainstem Tennessee River impoundment formed by Nickajack Dam (at Tennessee River mile 427.7, near New Hope in Marion County, impounded 1967) and backing 46 miles upstream through Chattanooga to Chickamauga Dam (catalog: Marion/Hamilton counties). TWRA documents the fishery entirely as warmwater: largemouth/smallmouth/spotted bass, crappie, bluegill/redear, catfish, white/striped/hybrid bass, sauger, walleye, paddlefish — 'no mention of trout or trout stocking anywhere on this page'. At full summer pool it covers 10,370 acres with 192 miles of shoreline (TWRA). The USGS tailwater gauge at the dam is 03570525 'TENNESSEE RIVER AT NICKAJACK DAM (TAILWATER), TN'.",
+    "boundaries": "Nickajack Dam upstream to Chickamauga Dam, Tennessee portion (the downstream continuation toward Guntersville Lake in Alabama is cataloged separately as tennessee-river)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Nickajack Dam",
+      "operator": "TVA",
+      "releaseType": null,
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 634,
+    "notes": "Mainstem run-of-river reservoir: TVA operates Nickajack near a constant full pool (~633.5-634 ft) with a short retention time of roughly 3-4 days, so the impoundment tracks mainstem Tennessee River temperature rather than behaving like a cold deep-release storage project; no selective cold-water withdrawal regime is documented for the dam. The tailwater gauge record (below) shows warm releases. elevationFt = full pool per TVA data (~633.5-634 ft; TVA land-plan summary ~10,200 acres vs TWRA's 10,370).",
+    "evidenceUrl": "https://www.tva.com/environment/lake-levels/nickajack-reservoir"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 30.56,
+      "monthObserved": 8,
+      "year": 2007,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 29.8,
+      "monthObserved": 7,
+      "year": 2000,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 28.0,
+      "monthObserved": 8,
+      "year": 1977,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.5,
+      "monthObserved": 7,
+      "year": 1999,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 29.2,
+      "monthObserved": 9,
+      "year": 2002,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout fishery of any kind is documented: zero Nickajack rows in TWRA's 2026 trout stocking workbook, the reservoir is absent from the TWRA Trout Management Plan's list of the nine Tennessee reservoirs that support trout fisheries (Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, Tellico), and TWRA's Nickajack Reservoir page lists no trout and no holdover fishery.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater (bass, crappie, sunfish, catfish, striped/hybrid bass, sauger/walleye, paddlefish), and the Trout Management Plan's wild-trout discussion limits wild trout to East Tennessee mountain streams with no mention of Nickajack.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The USGS tailwater gauge at Nickajack Dam (03570525) recorded 23.0-30.56 degC across 1975-2008 summer grabs — lethal-to-stressful temperatures for trout on a short-retention run-of-river mainstem impoundment that TWRA manages exclusively as a warmwater fishery.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html (fetched 2026-09-18: TVA operator, dam at New Hope TN, impounded 1967, 10,370 acres / 192 mi shoreline at full summer pool, full warmwater species list, zero trout mentions)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv (100 temperature grabs 1974-2008 at 'TENNESSEE RIVER AT NICKAJACK DAM (TAILWATER)': summer range 23.0-30.56 degC — Jun 23-27, Jul 26.7-29.8, Aug 27.0-30.56, Sep 24.0-29.2; winter min 2.2 degC; notes/habitat-batch5/_tmp_g2_wqp_nickres.csv is the predecessor scratch copy re-parsed this session)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: zero rows matching 'Nickajack' — the reservoir is on no TWRA trout stocking calendar)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (text pre-extracted repo-locally at notes/habitat-batch5/_tmp_g2_tmp2.txt: 'Tennessee has nine reservoirs that currently support trout fisheries: Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, and Tellico' — Nickajack absent; zero 'Nickajack' occurrences)",
+    "https://www.tva.com/environment/lake-levels/nickajack-reservoir (canonical TVA reservoir page; tva.com blocks plain fetch per prior batches — facts cross-verified via search snippets of TVA's Nickajack Reservoir Land Management Plan: dam at TRM 427.7, surface 10,200 acres, run-of-river ~633.5 ft pool, 3-4 day retention)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03570525,03570520&siteOutput=expanded&format=rdb (predecessor scratch copy notes/habitat-batch5/_tmp_g2_nwis_nick.txt: 03570525 'TENNESSEE RIVER AT NICKAJACK DAM (TAILWATER)' at 35.0026,-85.6211, Marion County; 03570520 'NICKAJACK LAKE' open-water station, 21,870 sq mi drainage; live re-check not retried after waterservices 503)",
+    "https://waterdata.usgs.gov/monitoring-location/03570525/ (catalog officialSources gauge page)"
+  ]
+}

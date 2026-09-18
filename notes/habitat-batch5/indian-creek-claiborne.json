@@ -1,0 +1,64 @@
+{
+  "slug": "indian-creek-claiborne",
+  "segment": {
+    "description": "Indian Creek in Claiborne County, Tennessee — the 62.5 sq mi Powell River tributary that TWRA spring-stocks with rainbow trout ('TWRA spring-stocked Clinch River tributary. Small, warm-summer water; best March-May' per catalog; hydrologically it drains to the Powell River arm of the Clinch/Norris system). Distinct from Indian Creek near Tate Springs in Grainger County (USGS 03528030, HUC 06010205).",
+    "boundaries": "Full named length per catalog. TDEC monitoring points span the lower creek: TDECWR_WQX-TNW000003182 (36.5579,-83.6064, near the Powell River confluence — TDEC also lists 'Powell River ... near confl. Indian Cr.' station POWEL067.8CL) and TNW000003202/TNW000003203 near Greers Chapel (36.586-36.588,-83.603-83.608). USGS 03531900 'INDIAN CREEK AT GREERS CHAPEL, TN' (HUC 06010206, Claiborne Co.) anchors the upper station. Temperature record cited is from the lower-creek station TNW000003182."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No dam, spring, elevation, gradient, or canopy documentation found on agency pages. Valley-floor Powell Valley creek (station elevations not published in WQP); the catalog's own 'warm-summer water' note is corroborated by the measured record below."
+  },
+  "summerTemperature": [
+    { "celsius": 20.1, "monthObserved": 8, "year": 2014, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 22.37, "monthObserved": 8, "year": 2014, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.5, "monthObserved": 7, "year": 2019, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.6, "monthObserved": 8, "year": 2019, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 22.6, "monthObserved": 9, "year": 2019, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.69, "monthObserved": 6, "year": 2020, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.56, "monthObserved": 7, "year": 2024, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.73, "monthObserved": 8, "year": 2024, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.2, "monthObserved": 6, "year": 2025, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence found. Documented program is five spring Seasonal stockings (Feb 15, Mar 1, Mar 15, Mar 29, Apr 12, 2026; Rainbow Trout) with no delayed-harvest or warm-season rows — no program mechanism documenting carry-over past spring.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout record found. Indian Creek (Claiborne) is not on the TWRA Trout Management Plan 2017-2027 wild trout waters list (plan text searched), and the plan describes hatchery-supported streams as 'primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC grab samples on lower Indian Creek (station TNW000003182, 2014-2025) ran 18.5-23.56 C across Jun-Sep — warm-summer water at the edge of trout tolerance — matching TWRA's five-date Feb-Apr put-and-take program design and the catalog's own 'warm-summer water' note.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003182&siteid=TDECWR_WQX-TNW000003202&siteid=TDECWR_WQX-TNW000003203&siteid=TDECWPC-INDIA000.1CL&siteid=TDECWPC-INDIA003.5CL&characteristicName=Temperature%2C%20water&mimeType=csv (29 temperature results, all at TNW000003182, 2014-2025; 12 Jun-Sep values)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03531900&characteristicName=Temperature%2C%20water&mimeType=csv (single NAWQA historical result: 17.9 C on 1998-05-21; no summer values)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (no Indian Creek entry)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt: 'Indian Creek' zero hits)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (Claiborne/'Indian Creek': 5 Seasonal rainbow rows 2/15-4/12/2026; Unicoi 'North/South Indian Creek' rows are different waters)",
+    "repo-local: notes/habitat-batch5/_tmp_g4_stations_claiborne.csv (USGS 03531900 Greers Chapel 62.5 sq mi; TDEC stations incl. POWEL067.8CL 'Powell River ... near confl. Indian Cr.')",
+    "WebSearch (rate-limited 429 on early queries; WQP data sufficient, not retried)"
+  ]
+}

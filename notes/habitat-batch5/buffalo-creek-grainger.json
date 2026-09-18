@@ -1,0 +1,67 @@
+{
+  "slug": "buffalo-creek-grainger",
+  "segment": {
+    "description": "Buffalo Creek in Grainger County, Tennessee — the TWRA-stocked trout stream near Rutledge and Tampico that runs through Buffalo Springs WMA (TWRA's 342-acre WMA with the Buffalo Springs trout hatchery on site). Explicitly a different stream from Buffalo Creek at Norris in Anderson County (USGS 03534500), as the catalog notes.",
+    "boundaries": "TWRA regulation exceptions treat 'Buffalo Creek (and tributaries) within the WMA boundary, Grainger County' as one unit: from the mill dam upstream is closed year-round to all fishing; from the mill dam downstream is open year-round to rod-and-reel fishing. Temperature evidence cited here is from the TDEC monitoring point at the Tamipco Road bridge (36.1941,-83.5627), the same reach USGS lists as 'BUFFALO CREEK AT TAMPICO, TN' (USGS 03494530, HUC 06010104, Grainger County)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No dam on the stocked reach. TWRA's Buffalo Springs WMA page (Grainger County) places a fish hatchery on the WMA and describes Buffalo Creek itself as accessible along the WMA dirt road; the WMA sits ~1 km upstream of the Tampico gauge point, tying the stocked creek to the same watershed as the temperature record. The catchment is a ~19.6 sq mi lowland Grainger County basin (USGS 03494528 'BUFFALO CREEK NR TAMPICO' drainage area); no gorge, gradient, or canopy description found on an agency page."
+  },
+  "summerTemperature": [
+    { "celsius": 17.9, "monthObserved": 6, "year": 2010, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 17.31, "monthObserved": 7, "year": 2014, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 16.97, "monthObserved": 7, "year": 2014, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 17.62, "monthObserved": 7, "year": 2014, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 15.76, "monthObserved": 7, "year": 2014, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 16.57, "monthObserved": 7, "year": 2019, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 17.52, "monthObserved": 8, "year": 2019, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.05, "monthObserved": 9, "year": 2019, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.16, "monthObserved": 7, "year": 2024, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 17.53, "monthObserved": 8, "year": 2024, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 15.49, "monthObserved": 8, "year": 2024, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 17.49, "monthObserved": 9, "year": 2024, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover survey exists. The program structure itself documents multi-month carry-over of stocked fish: TWRA's exceptions text sets a Delayed Harvest season on Buffalo Creek (WMA boundary reach) from Oct 1 to Jan 31 with catch-and-release and artificial lures only, i.e., fall-stocked trout must survive in-stream for months to be available to the Feb 1-Sept 30 harvest season that follows.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout listing or natural-reproduction documentation found for Buffalo Creek (Grainger). The TWRA Trout Management Plan 2017-2027 treats wild trout as an East Tennessee mountain/tailwater phenomenon and lists hatchery-supported streams as warmwater habitats; Buffalo Creek appears only as a stocked stream, and all workbook stocking rows are hatchery rainbow trout. (Name collision note: TWRA's Buffalo Springs HATCHERY is on this WMA — 'Buffalo' there refers to the spring/hatchery, not a wild trout stream.)",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TDEC grab samples at the Tamipco Road bridge show summer water of only 15.5-19.2 C across 2010-2025 (12 Jun-Sep observations, max 19.16 C in Jul 2024), and TWRA stocks the creek weekly from February through August plus an Oct 1-Jan 31 delayed-harvest catch-and-release season — near-year-round trout presence both measured and programmatic.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&siteid=TDECWPC-BUFFA000.2GR&siteid=USGS-03494530&characteristicName=Temperature%2C%20water&mimeType=csv (TDEC TNW000000754 Tamipco Rd bridge station, 2010-2025 series incl. 12 summer values)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (Buffalo Creek WMA-boundary entry: DH Oct 1-Jan 31; mill-dam closure)",
+    "https://www.tn.gov/twra/wildlife-management-areas/east-tennessee-r4/buffalo-springs-wma.html (342-ac WMA, Grainger Co, hatchery on site, Buffalo Creek access, WMA lat/lon 36.206951,-83.561863)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt: hatchery-supported streams are primarily warmwater; Buffalo Springs hatchery production)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (Grainger/'Buffalo Creek': 29 weekly Seasonal rainbow rows 2/8-8/23/2026 plus 1 Delayed Harvest row 10/4/2026; no other species)",
+    "repo-local: predecessor WQP station lists notes/habitat-batch5/_tmp_g4_stations_grainger.csv (USGS 03494528/03494530 Buffalo Creek at Tampico, HUC 06010104, county 057; distinct from Anderson Co. Buffalo Creek at Norris USGS 03534500)",
+    "WebSearch: 'TWRA Buffalo Creek Grainger County trout delayed harvest' and 'Buffalo Creek Grainger Buffalo Springs hatchery' (identified Buffalo Springs WMA; OnWater claim of 250 lb/week mid-Feb-early Sept not adopted — non-agency source)"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "richardson-byrd-creek",
+  "segment": {
+    "description": "Richardson 'Byrd' Creek, Hancock County — the small TWRA hatchery-supported trout creek that runs down to the upper Clinch River above the Norris pool (catalog). Identity verified by county: TWRA's 2026 stocking schedule carries 'Richardson 'Byrd' Creek' only under Hancock County (Region 4); other Byrd Creek namesakes elsewhere are not in the schedule. Catalog hydroIdentity: HUC 06010205 (Upper Clinch), GNIS 01269411/01299343/01299344.",
+    "boundaries": "Whole creek in Hancock County as stocked by TWRA; no formal agency reach boundaries documented. Catalog notes a narrow, wooded, rain-flashy channel dropping to the Clinch headwater reach above the Norris pool."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source documented. No dam upstream, no spring influence on record. The stocking program type is itself the TWRA signal: the creek carries Seasonal-type (spring, Feb-Apr 2026 weeks) rainbow rows only, and the TWRA Trout Management Plan 2017-2027 places hatchery-supported streams in the class that 'are primarily warmwater habitats that cannot support trout year round'."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found in any checked source. Program design is spring put-and-take: all four TWRA 2026 rows for the creek (weeks of 2/8, 3/1, 3/22 and 4/12/2026) are Seasonal-type Rainbow Trout stockings with no winter program entries.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Not on TWRA's Wild Trout Streams list (trout regulations page checked 2026-09-18 — no Byrd/Richardson entry) and the Trout Management Plan contains no wild trout record for the creek.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Spring-only put-and-take rainbow water: TWRA's 2026 schedule stocks Richardson 'Byrd' Creek (Hancock Co.) solely as four Seasonal Feb-Apr rainbow events, and the Trout Management Plan classifies hatchery-supported streams like this as 'primarily warmwater habitats that cannot support trout year round'.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live feed fetched 2026-09-18: four Hancock Co. 'Richardson 'Byrd' Creek' Seasonal rows — 2/8, 3/1, 3/22, 4/12/2026 — Rainbow Trout; no Winter rows)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (Wild Trout Streams and Delayed Harvest lists checked 2026-09-18 — no Byrd Creek entry)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (plan text searched: no Byrd/Richardson mention; hatchery-supported 'cannot support trout year round' statement verified)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&countycode=US%3A47%3A067&mimeType=csv (Hancock County temperature-station list pulled 2026-09-18 — no station on Byrd Creek; stations are Clinch/Powell mainstem and wells/springs)",
+    "Web search 'TWRA Byrd Creek Hancock County trout stocked' (confirmed rainbow stocking reporting only; no temperature/habitat data)"
+  ]
+}

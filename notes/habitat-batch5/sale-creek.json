@@ -1,0 +1,78 @@
+{
+  "slug": "sale-creek",
+  "segment": {
+    "description": "Sale Creek (GNIS 01300534, HUC-8 06020001) in Hamilton County: a named Chickamauga Lake tributary near the community of Sale Creek. The agency temperature record cited below is from TDEC station TDECWPC-SALE001.2HM at river-mile 1.2 (35.3667, -85.0678), i.e. the lower creek approaching its Chickamauga Reservoir embayment; the upper course is unmeasured in any source found.",
+    "boundaries": "Hamilton County creek draining north-to-south into the Chickamauga Lake arm near Sale Creek, TN; full named creek per catalog (no dam upstream of it on this water)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No dam or cold-release regime exists on the creek itself; the lower reach is an embayment of TVA's Chickamauga Reservoir, whose TWRA fishery account is a warmwater gamefish fishery (largemouth, smallmouth, striped bass, bluegill, redear, walleye, sauger, crappie, catfish) with no trout fishery documented."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 29.04,
+      "monthObserved": 8,
+      "year": 1999,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE001.2HM&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 28.24,
+      "monthObserved": 7,
+      "year": 1999,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE001.2HM&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.1,
+      "monthObserved": 6,
+      "year": 1999,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE001.2HM&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.76,
+      "monthObserved": 9,
+      "year": 1999,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE001.2HM&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover record found and no trout program exists on the creek, so no carryover question has been surveyed or reported by any acceptable source.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented: zero hits for 'Sale Creek' on TWRA's trout-regulations page (no wild-trout, special-regulation, or delayed-harvest listing) and zero rows in TWRA's 2026 stocking schedule ('Sale Creek' — 0 hits in the live exceldriven JSON and the repo workbook). USGS historic stations 03566292/03566297 confirm the creek's identity and reach but hold no trout records.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC monitoring 1.2 miles above the creek's Chickamauga Lake embayment recorded 29.0 degC in August 1999 and 28.2 degC in July — classic warmwater embayment-creek temperatures with no trout program of any kind.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE001.2HM&characteristicName=Temperature,%20water&mimeType=csv (Apr-Sep 1999 series; summer 27.1-29.04 degC extracted)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE007.7RH&characteristicName=Temperature,%20water&mimeType=csv (single winter sample Jan 2009, 4.58 degC)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SALE003.3HM&characteristicName=Temperature,%20water&mimeType=csv (no temperature rows)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A065&mimeType=csv (station identity: SALE001.2HM, Hamilton Co., HUC 06020001)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=03565440,03565500,03565432,03566050,03566297,03566292,03567500,03567700,03567000&seriesCatalogOutput=true&siteStatus=all (Sale Creek stations: qw 1979-1981, no summer grabs; site-visit-only records elsewhere)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html (TWRA Chickamauga Reservoir fishery account — warmwater species list, no trout; page fetched)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live 2026 schedule: 0 'Sale Creek' rows)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (0 'Sale Creek' hits)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (616-row grep: no Sale Creek rows)"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "gulf-fork-big-creek",
+  "segment": {
+    "description": "Gulf Fork Big Creek — a small TWRA hatchery-supported trout tributary of the Big Creek drainage near the North Carolina line in Cocke County (catalog; HUC 06010105 French Broad, GNIS 01269381/01328352). Identity verified by county: TWRA's 2026 schedule carries 'Gulf Fork Big Creek' only under Cocke County; the Hawkins County 'Big Creek' rows in the same schedule are a different water, as is 'Trail Fork Big Creek' (sibling tributary).",
+    "boundaries": "Whole creek in Cocke County as stocked by TWRA; no formal agency reach boundaries. Two TDEC monitoring stations bracket the stream: TNW000002599 (35.9013, -83.0459, upper creek toward the NC-line headwaters) and TNW000002600 (35.8206, -83.0858, lower creek), both HUC 06010105."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No dam; no spring-fed characterization on record. Cool-water signal is observational, not structural: TDEC monitoring shows June-September surface water of 17.5-21.7 C at both the upper and lower stations (2020-2025), and the TWRA Trout Management Plan documents reproducing native Brook Trout in the stream's tributaries — a habitat that stays trout-viable through summer."
+  },
+  "summerTemperature": [
+    { "celsius": 17.51, "monthObserved": 6, "year": 2021, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002599&siteid=TDECWR_WQX-TNW000002600&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.31, "monthObserved": 7, "year": 2020, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002599&siteid=TDECWR_WQX-TNW000002600&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.66, "monthObserved": 9, "year": 2020, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002599&siteid=TDECWR_WQX-TNW000002600&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.18, "monthObserved": 8, "year": 2020, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002599&siteid=TDECWR_WQX-TNW000002600&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.11, "monthObserved": 7, "year": 2025, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002599&siteid=TDECWR_WQX-TNW000002600&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover record found; TWRA's program rows for the creek are five Seasonal-type (spring) Rainbow Trout stockings (weeks of 2/22 through 5/17/2026). However, the Trout Management Plan documents a naturally reproducing native Brook Trout population in the stream's tributaries (see wildPopulation), which is itself evidence of year-round survival in the headwater portion.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "Reach caveat: the documented wild trout are in the TRIBUTARIES, not necessarily the stocked main reach. TWRA's Trout Management Plan 2017-2027 twice identifies 'Gulf Fork of Big Creek tributaries (Middle Prong Gulf Creek or Brown Gap Creek)' as a donor source of native Brook Trout for planned restoration projects (Table 1: 'Use fish from Gulf Fork tribs'; Little Paint Creek rationale), which documents a self-sustaining native Brook Trout population in this stream system's headwater tributaries.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TDEC monitoring at two stations bracketing the creek shows June-September water of 17.5-21.7 C (2020-2025) and the TWRA Trout Management Plan documents reproducing native Brook Trout in Gulf Fork of Big Creek's tributaries — a stream system that demonstrably holds trout through summer, though the brook evidence is tributary-level and the main stocked reach is stocked as spring-only put-and-take.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live feed fetched 2026-09-18: five Cocke Co. 'Gulf Fork Big Creek' Seasonal rows — 2/22, 3/15, 4/5, 4/26, 5/17/2026 — Rainbow Trout; no Winter rows)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (plan text verified locally: Table 1 'Use fish from Gulf Fork tribs' (Trail Fork project); Little Paint Creek rationale 'native Brook Trout from the French Broad watershed, possibly from Gulf Fork of Big Creek tributaries (Middle Prong Gulf Creek or Brown Gap Creek)')",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000002599&siteid=TDECWR_WQX-TNW000002600&characteristicName=Temperature%2C%20water&mimeType=csv (pulled 2026-09-18: 15 TDEC temperature records 2015-2025; June-Sept readings 17.51/21.31/21.66/20.18/21.11 C, all at the two creek stations; winter readings 3.31-6.57 C)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&countycode=US%3A47%3A029&mimeType=csv (Cocke County station list pulled 2026-09-18: TNW000002599 35.9013/-83.0459 and TNW000002600 35.8206/-83.0858, both 'Gulf Fork Big Creek', River/Stream, HUC 06010105)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no Gulf Fork entry on wild trout / delayed harvest lists, checked 2026-09-18)"
+  ]
+}

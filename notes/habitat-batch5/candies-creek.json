@@ -1,0 +1,56 @@
+{
+  "slug": "candies-creek",
+  "segment": {
+    "description": "Candies Creek, a large Bradley County tributary of the Hiwassee River near Cleveland, TN (HUC 06020002 Hiwassee), with two USGS stations on the main stem: 03566230 'CANDIES CREEK NR CLEVELAND, TN' (59.7 sq mi) and 03566250 'CANDIES CREEK NEAR CLEVELAND, TN' (88.7 sq mi, near the Hiwassee confluence). No trout program of any kind exists on the creek.",
+    "boundaries": "Catalog gives no reach limits; record covers the Bradley County main stem from above Cleveland downstream to the swampy Hiwassee River backwater confluence."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Valley-and-Ridge creek draining toward the Hiwassee bottomlands; no agency-published elevation, gorge, or spring influence documentation located.",
+    "evidenceUrl": null
+  },
+  "summerTemperature": [
+    {
+      "celsius": 14.0,
+      "monthObserved": 7,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566250&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable - no trout stockings: TWRA's stocking workbook contains zero 'Candies' rows and the creek has no entry anywhere on TWRA's trout regulations page.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation of any kind; creek never mentioned in the TWRA Trout Management Plan 2017-2027 and absent from the wild-trout, delayed-harvest, and special-regulation lists on TWRA's trout regulations page.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "A single 1988 USGS grab at the lower creek (03566250) recorded 14 C in early July - a cool reading that hints at possible cool-water influence - but with zero trout stockings, no wild-trout documentation, and no other temperature record, year-round survival cannot be evaluated either way.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep /candies/i: 0 rows)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no Candies entry in cached page HTML - absent from delayed-harvest, wild-trout, and special-regulation lists)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (text extract notes/habitat-batch5/_tmp_g1_stmp.txt: 'Candies' 0 occurrences)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03565120,03565250,03566230,03566250,03566400,035664005,03566510&siteOutput=expanded&format=rdb (identity check: both stations Bradley Co. FIPS 011, HUC 06020002, drainages 59.7/88.7 sq mi, ST-type, no altitude recorded)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566250&characteristicName=Temperature,%20water&mimeType=csv (1 sample: 1988-07-07 14.0 deg C - parsed from predecessor scratch _tmp_g1_03566250.csv and re-confirmed)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566230&characteristicName=Temperature,%20water&mimeType=csv (header-only, 0 results - predecessor scratch _tmp_g1_03566230.csv)",
+    "WebSearch 'Candies Creek Cleveland Tennessee trout stocking' (only app/aggregator/forum sources - Fishbrain, FishAngler, OnWater, Chattanooga forum - none acceptable as evidence and none claim trout)"
+  ]
+}

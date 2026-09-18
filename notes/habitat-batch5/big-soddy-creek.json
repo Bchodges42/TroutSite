@@ -1,0 +1,86 @@
+{
+  "slug": "big-soddy-creek",
+  "segment": {
+    "description": "Big Soddy Creek (locally 'Soddy Creek'), Hamilton County, draining the Soddy Creek Gorge country on Walden Ridge into Chickamauga Lake at Soddy-Daisy (Tennessee River HUC 06020001). TWRA stocks rainbow trout with a Seasonal (spring) program plus a Delayed-Harvest reach; the DH regulations define the special-regulation water as 'Big Soddy Creek: Upstream of Back Valley Road.'",
+    "boundaries": "TWRA Delayed-Harvest reach: upstream of Back Valley Road (C&R season Nov 1 - Feb 28). USGS temperature record is at the lower creek (03566400 'SODDY CREEK AT SODDY' near the US-27 corridor/lake arm) and speaks to the lower reach, not the gorge DH reach."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Creek drains the Soddy Creek Gorge / Cumberland Trail section on the Walden Ridge escarpment above Soddy-Daisy, but no agency-published elevation or gorge microclimate figure was located. No creek-specific mining/AMD water-quality report was found: the closest peer-reviewed coal-drainage literature covers neighboring North Chickamauga Creek (OSTI 20727845, pH 3.6 fishless AMD zone), not Big Soddy - no impact is inferred here.",
+    "evidenceUrl": "https://www.osti.gov/biblio/20727845"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 33.0,
+      "monthObserved": 7,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566400&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 27.0,
+      "monthObserved": 9,
+      "year": 1979,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566400&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 25.0,
+      "monthObserved": 6,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566400&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.0,
+      "monthObserved": 8,
+      "year": 1981,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566400&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover study or creel evidence found. The Delayed-Harvest design (stockings in late Oct and Nov, catch-and-release Nov 1 - Feb 28 upstream of Back Valley Road, harvest reopening March) keeps stocked rainbows in the creek through winter by program design, but no agency documentation of trout carrying over into the following summer exists.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Not on TWRA's Wild Trout Streams list - the creek's only trout regulation entry is the Delayed-Harvest reach (upstream of Back Valley Road); no wild trout survey or self-sustaining population documentation found.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Historic USGS grabs at the lower creek (03566400) hit 33 C in July 1980 and 27 C in September 1979, and the fishery is exactly the seasonal-plus-DH rainbow put-and-take design the TWRA Trout Management Plan describes as warmwater habitat that 'cannot support trout year round'.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (9 'Big Soddy Creek' rows, Region 3, Hamilton Co.: DH weeks 2/8, 2/22, 10/25, 11/29/2026 + Seasonal weeks 3/8, 3/22 (x2), 4/19, 4/26/2026, all Rainbow Trout)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (DH text 'Big Soddy Creek: Upstream of Back Valley Road - Catch-and-release season Nov. 1 - Feb 28' verified in cached page HTML; creek absent from wild-trout and special-reg lists)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (program calendar)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566400&characteristicName=Temperature,%20water&mimeType=csv (10 historic grab samples 1967-1981, 5 in summer months; parsed from predecessor scratch _tmp_g1_03566400.csv)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03565120,03565250,03566230,03566250,03566400,035664005,03566510&siteOutput=expanded&format=rdb (identity check: 03566400 SODDY CREEK AT SODDY, Hamilton Co., 49 sq mi, HUC 06020001; 035664005 'NEAR SODDY' has no data)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-035664005&characteristicName=Temperature,%20water&mimeType=csv (header-only, no data)",
+    "https://www.osti.gov/biblio/20727845 (coal mine drainage/fish study - is North Chickamauga Creek, NOT Soddy; checked to avoid false mining attribution)",
+    "https://scholar.utc.edu/honors-theses/531 (UTC honors thesis - also North Chickamauga Creek AMD)",
+    "STMP notes/habitat-batch5/_tmp_g1_stmp.txt (Big Soddy Creek: zero mentions in the Trout Management Plan 2017-2027 text - it is not on the STMP delayed-harvest or wild-trout lists, which predate the DH program's expansion)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf ('hatchery-supported streams and lakes are primarily warmwater habitats that cannot support trout year round')"
+  ]
+}

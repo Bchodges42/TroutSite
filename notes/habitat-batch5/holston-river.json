@@ -1,0 +1,55 @@
+{
+  "slug": "holston-river",
+  "segment": {
+    "description": "Holston River MAIN STEM from the North/South Fork confluence at Kingsport through Hawkins, Grainger, Jefferson, and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake (catalog boundaries). The documented trout fact set sits entirely on the Cherokee Dam tailwater sub-reach of this main stem (Jefferson/Grainger counties); South Fork Holston tailwaters and North Fork Holston are separate catalog waters.",
+    "boundaries": "Kingsport (fork confluence) to French Broad confluence; TWRA's smallmouth exception manages 'I-40 bridge upstream to Cherokee Dam' on this main stem; the stocking program is reach-pinned to 'Cherokee TW / Holston River' (Jefferson/Grainger)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Cherokee Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA Trout Management Plan 2017-2027 (Fisheries Report 17-10): 'The Cherokee and Apalachia tailwaters also have summer thermal bottlenecks (with water temperatures >70 F) and receive adult Rainbow and Brown Trout during the fall and spring' — an agency-documented summer thermal ceiling on this tailwater, and a seasonally (not year-round) cold regime. TDEC's 2026 303(d) list records a 26.9-mile Holston River segment in Jefferson County (unit TN06010104001_2000) impaired for DISSOLVED OXYGEN with source 'DAM OR IMPOUNDMENT' (plus FLOW REGIME MODIFICATION, dam-sourced) — the dam-release water-quality signature on the Cherokee-Dam-downstream reach; the 303(d) sheet prints unit IDs and miles but not boundary text, so reach attribution rests on the dam-sourced source field and Jefferson County location. Release draw level (bottom-draw vs epilimnion) is not documented in any source retrieved; TVA's Cherokee page could not be fetched (blocked). Gauge note: USGS 03493510 'HOLSTON RIVER AT CHEROKEE DAM(TW), TN' (Jefferson Co., HUC 06010104, drainage 3,428 sq mi) is a discontinued discrete-sampling site, and no active USGS gauge reports on the Holston main stem in Tennessee."
+  },
+  "summerTemperature": [
+    { "celsius": 26.0, "monthObserved": 9, "year": 1978, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03493510&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 25.0, "monthObserved": 8, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03493510&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 12.5, "monthObserved": 6, "year": 1976, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03493510&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover or year-round survival documentation found for the Cherokee tailwater reach. TWRA's own plan designs this as a seasonal fishery: adult trout stocked fall and spring around a documented >70 F summer thermal bottleneck; STMP documents significant natural brown trout reproduction only for the South Holston and Wilbur tailwaters, not Cherokee.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout population documented on the Holston main stem / Cherokee tailwater. The STMP statement that significant natural brown trout reproduction enables wild management applies only to the South Holston and Wilbur tailwaters ('no Brown Trout are stocked' there — unlike Cherokee, which receives adult Browns).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" },
+    { "species": "brown", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Owner-box conflict, stated both sides: the site feed (repo trout-calendar.json) claims 'No trout program (warmwater fishery)' and the owner-supplied workbook row 'Cherokee TW / Holston River' carries NO stocking months, while the catalog YAML claims a Nov-Apr program and TWRA's LIVE 2026 schedule (fetched 2026-09-18) confirms the row WITH months 'J, F, M, A, N, D' (Rainbow + Brown) — and TWRA's own plan documents >70 F summer thermal bottlenecks on this tailwater, i.e., a documented seasonal fishery rather than documented year-round survival.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live fetch 2026-09-18: 'Cherokee TW / Holston River', Jefferson/Grainger, Tailwater, months J,F,M,A,N,D, Rainbow+Brown)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (Cherokee tailwater >70 F summer thermal bottleneck; fall/spring adult stockings; Cherokee listed as lacking a tailwater management plan; wild brown reproduction limited to South Holston/Wilbur)",
+    "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx (TN06010104001_2000, Holston River, Jefferson Co, 26.9 mi, dissolved oxygen + flow regime modification, source DAM OR IMPOUNDMENT)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03493510&characteristicName=Temperature,%20water&mimeType=csv (75 discrete temperature results 1975-1979 at Cherokee Dam TW; summer rows show June release temps 12-13.5 C but 25-26 C by Aug-Sep)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03465500,03461500,03493000,03493510&siteOutput=expanded&format=rdb (identity check: 03493510 is Holston River at Cherokee Dam TW, Jefferson Co., drainage 3,428 sq mi)",
+    "https://waterdata.usgs.gov/monitoring-location/03493510/",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (verified: 'I-40 bridge upstream to Cherokee Dam and John Sevier Dam upstream to the North Fork Holston River' black bass/smallmouth rule)",
+    "packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: one 'Cherokee TW / Holston River' row, Tailwater, Rainbow+Brown, stocking day/week/month ALL EMPTY)",
+    "packages/content/data/trout-calendar.json (site feed: holston-river classification 'warmwater', presence 'none', window 'No trout program (warmwater fishery)')",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html (fetch attempt returned connection reset; not used as evidence)",
+    "tva.com Cherokee reservoir page (blocked to fetch in prior passes; not cited)"
+  ]
+}

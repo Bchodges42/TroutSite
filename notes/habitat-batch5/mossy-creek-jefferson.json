@@ -1,0 +1,43 @@
+{
+  "slug": "mossy-creek-jefferson",
+  "segment": {
+    "description": "Mossy Creek in Jefferson County — the small farmland creek through Jefferson City where TWRA's winter trout program stocks on and around the Carson-Newman University campus (program reach per the stocking event documentation). Identity verified by county: all 'Mossy Creek' rows in TWRA's 2026 schedule are Jefferson County ('Mossy Creek (NEW)'); the Robertson County namesake does not exist in the schedule, and Virginia's Mossy Creek is a different state. TDEC lists a separate Mossy Creek impairment unit (TN06010104004T_2600, 9.08 mi, Jefferson County, HUC 06010104 Holston).",
+    "boundaries": "Jefferson County creek; documented stocking reach is the Carson-Newman University campus segment in downtown Jefferson City; catalog gives no formal boundaries."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source documented. Catalog: 'Small farmland creek; flows track rain and groundwater closely.' TDEC's 2026 303(d) list records Mossy Creek (Jefferson County, 9.08 mi) impaired for SEDIMENTATION/SILTATION (High, municipal/urbanized source), ALTERATION IN STREAM-SIDE VEGETATIVE COVERS (Medium), NUTRIENTS (Low), and ESCHERICHIA COLI (sanitary sewer overflows and urban sources) — an agricultural/urban valley creek. The winter-only stocking design itself is TWRA's cold-season program: the STMP describes the winter trout program as placing 'events... near town centers on public property' to recruit new anglers where trout opportunity is otherwise limited."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. Program design is winter put-and-take: 300 Rainbow Trout released on the Carson-Newman campus Nov 21, 2025 with ~600 more planned for December and January, matching TWRA's plan statement that hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Not on TWRA's wild trout stream list (trout regulations page checked); no wild trout record found in any agency source.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.cn.edu/campus-onlookers-brave-weather-find-something-fishy-at-mossy-creek/" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A brand-new winter put-and-take site (300 Buffalo Springs rainbows stocked on the Carson-Newman campus 11/21/2025, ~600 more Dec-Jan; TWRA named 'Mossy Creek in Jefferson County' among 40+ winter program locations) on a 303(d)-listed sedimentation/E. coli-impaired creek that TWRA's own plan places in the class of 'primarily warmwater habitats that cannot support trout year round'.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live fetch 2026-09-18: three Jefferson Co 'Mossy Creek (NEW)' Winter rows — 1/14/2026 stocked; TBD 11/2026; TBD 12/2026 — Rainbow Trout)",
+    "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html (verified: 'New locations this year include Mossy Creek in Jefferson County...'; >70,000 trout, 40+ locations)",
+    "https://www.cn.edu/campus-onlookers-brave-weather-find-something-fishy-at-mossy-creek/ (verified: 300 RBT Nov 21 2025, Buffalo Springs Hatchery, ~600 more Dec/Jan, 'Not since the 1980s has TWRA stocked Rainbow Trout into Mossy Creek')",
+    "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx (TN06010104004T_2600 Mossy Creek, Jefferson County, 9.08 mi: sedimentation High / riparian alteration Medium / nutrients Low / E. coli)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (winter program design and 'cannot support trout year round' statement)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (wild trout list checked — no Mossy Creek entry)",
+    "https://waterdata.usgs.gov/monitoring-location/03493000/ (USGS 03493000 'MOSSY CREEK AT JEFFERSON CITY, TN', Jefferson Co., 38.8 sq mi — discontinued; daily discharge 1932-06 to 1934-03 only, no temperature record)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03493000&characteristicName=Temperature,%20water&mimeType=csv (zero temperature rows)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03465500,03461500,03493000,03493510&siteOutput=expanded&format=rdb (identity check)"
+  ]
+}

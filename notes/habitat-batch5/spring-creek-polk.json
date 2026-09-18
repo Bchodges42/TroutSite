@@ -1,0 +1,76 @@
+{
+  "slug": "spring-creek-polk",
+  "segment": {
+    "description": "Spring Creek (GNIS 01327083) in Polk County per the catalog: the TWRA-stocked creek in the Coker Creek/Reliance area that enters the Hiwassee River at Reliance. Identity verified against the catalog this session: TDEC station TDECWR_WQX-TNW000005903 'Spring Creek' sits at 35.2240, -84.5129 in Polk County (county 139), HUC-8 06020002 (Hiwassee), matching the Reliance-mouth creek — distinct from the Blount County Spring Creek (Calderwood area) and the McMinn County Spring Creek (HUC 06020003) that share the name.",
+    "boundaries": "Polk County creek from the Coker Creek area to the Hiwassee River confluence at Reliance; full named creek per catalog (no sub-reach boundaries documented)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Cherokee NF / Hiwassee-side valley creek; no dam and no spring-influence documentation found for the creek itself. Historic USGS stations 03556990 'near Reliance' (site visits 1943-1963) and 03556991 'at mouth near Reliance' confirm the course; no active gauge."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 25.07,
+      "monthObserved": 7,
+      "year": 2022,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000005903&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.94,
+      "monthObserved": 8,
+      "year": 2017,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000005903&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.55,
+      "monthObserved": 6,
+      "year": 2023,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000005903&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover record found — no TWRA stocking-location GIS holdover notes, creel data, or acceptable independent angler agreement was located for this creek.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented: the creek is absent from TWRA's trout-regulations lists (0 'Spring Creek' hits on the wild/special/DH page — the wild list carries no Polk County Spring Creek entry) and no fish-community survey was located. Trout presence rests entirely on the stocking program.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's 2026 schedule stocks this creek as a seasonal put-and-take (Feb-Apr plus Nov weeks, no summer events) and TDEC grabs at the Reliance reach recorded 23.9-25.1 degC in July-August of 2017 and 2022 — warm summer water on a seasonal-program creek.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live 2026 schedule: REGION 3, COUNTY Polk, 'Spring Creek', Seasonal, Rainbow Trout — weeks 2/1, 3/1, 3/29, 4/26, 11/1, 11/29/2026; resolves the wave-3 ledger's flattened-table caution about the Calderwood/Blount namesake)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (rows 2602-2660: 6 Polk Spring Creek Seasonal rainbow rows matching the live page exactly)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000005903&characteristicName=Temperature,%20water&mimeType=csv (2013-2023 TDEC series; summer grabs 22.03-25.07 degC extracted)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-SPRIN000.5PO&characteristicName=Temperature,%20water&mimeType=csv (station header only — no temperature rows)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A139&mimeType=csv (Polk County station sweep — identity confirmation at 35.2240, -84.5129, HUC 06020002; also listed the McMinn HUC-06020003 Spring Creek as a same-name trap)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteStatus=all&siteOutput=expanded (USGS-03556990/03556991 identity; plus multiple other Tennessee Spring Creek namesakes noted)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (0 'Spring Creek' hits)",
+    "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf (2023 tentative schedule 'Polk | Spring Creek | 4 weekly dots' per wave-3 ledger — PDF not re-fetched this session; superseded by the live 2026 exceldriven JSON)"
+  ]
+}

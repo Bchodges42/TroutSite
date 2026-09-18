@@ -1,0 +1,54 @@
+{
+  "slug": "puncheon-camp-creek",
+  "segment": {
+    "description": "Puncheon Camp Creek in GRAINGER County, Tennessee — the tiny TWRA spring-stocked trout creek near the Clinch/Norris Lake side of northeastern Grainger County that the catalog notes describe ('TWRA spring-stocked Grainger County creek. Tiny water'). TWRA's 2026 stocking workbook carries 'Puncheon Camp Creek' with county = Grainger, and WQP station metadata places the named 'Puncheon Camp Creek' monitoring points in Grainger County (county code 057), HUC 06010205 (Upper Clinch).",
+    "boundaries": "No reach boundaries documented on any agency page consulted; the stocked creek is treated as a single unnamed-boundary put-and-take water. WQP stations: TDECWR_WQX-TNW000004746 (36.34621,-83.51927) and TDECWPC-PCAMP001.1GR at Cracker/Puncheon Creek Rds (36.31610,-83.53890)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No dam, spring, elevation, gradient, or canopy documentation found for this creek on any agency page. IDENTITY CONFLICT (owner-box): the catalog hydroIdentity lists counties: [\"Campbell\"] (GNIS 01298693, HUC 06010205) while the catalog notes and the TWRA stocking workbook say Grainger County; WQP station metadata also places Puncheon Camp Creek stations in Grainger County (057). Every fact in this record is attributed to the GRAINGER COUNTY creek. GNIS feature 01298693 could not be resolved to a county online (geonames.usgs.gov apex query returned no usable content; name searches found no GNIS page), so the Campbell tag could not be independently confirmed or refuted."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence of any kind found. The documented program is four spring Seasonal stockings (Feb 8, Mar 1, Mar 22, Apr 12, 2026; Rainbow Trout) with no delayed-harvest season and no winter or summer stocking rows — no program mechanism documenting in-stream carry-over beyond spring.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout record found. The TWRA Trout Management Plan 2017-2027 lists wild trout as mountain/tailwater waters and describes hatchery-supported streams as 'primarily warmwater habitats that cannot support trout year round'; Puncheon Camp Creek is not on its wild trout waters list.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's own program treats the creek as a four-date spring put-and-take (Feb-Apr rainbow stockings only, no DH or summer rows), and no cold-water source or temperature evidence exists for it — though with zero site measurements this rests on program design and the STMP's class statement about hatchery-supported streams, hence low confidence.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004746&siteid=TDECWPC-PCAMP001.1GR&characteristicName=Temperature%2C%20water&mimeType=csv (zero result rows — no temperature data for Puncheon Camp Creek stations)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (no Puncheon Camp Creek entry — no special trout regulations)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt: 'Puncheon' zero hits)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (4 Seasonal rainbow rows, county Grainger, 2/8-4/12/2026)",
+    "repo-local: notes/habitat-batch5/_tmp_g4_stations_grainger.csv (TDECWPC-PCAMP001.1GR and TDECWR_WQX-TNW000004746 'Puncheon Camp Creek', county 057 Grainger, HUC 06010205)",
+    "https://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:01298693 (no usable content returned)",
+    "WebSearch: '\"Puncheon Camp Creek\" Tennessee Grainger OR Campbell GNIS' (no GNIS entry surfaced; only a genealogical deed reference to 'Puncheon Creek, Grainger Co')"
+  ]
+}

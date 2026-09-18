@@ -1,0 +1,78 @@
+{
+  "slug": "north-mouse-creek",
+  "segment": {
+    "description": "North Mouse Creek (GNIS 01295930), Hiwassee-basin (HUC-8 06020002) creek that the catalog calls the 'principal Cleveland-area waterway... locally important general-fishing creek'. The course runs from the Niota/Athens area in McMinn County (stations 03566115 'AT OLD ACME MILL NR NIOTA' 4.8 sq mi; 03566127 'AT ST HWY 30 NR ATHENS' 35 sq mi; 035661285 'NR ROCKY MT HOLLOW NR ATHENS' 42.1 sq mi at 775 ft; 03566129 'NEAR RICEVILLE' 51 sq mi; 03566132 'NEAR SANFORD' 55.8 sq mi) southwesterly to its Hiwassee River confluence near the McMinn/Bradley county line (mouth ~35.326, -84.803 per NHD) — the lower reach being the Cleveland-area/Bradley County waterway the catalog references. Distinct from South Mouse Creek and Little South Mouse Creek, which drain the Cleveland side and have their own (numerous) USGS stations.",
+    "boundaries": "Full named creek per NHD: headwaters near Niota/Athens (lat ~35.55) to the Hiwassee River mouth (~35.326, -84.803). The temperature evidence below is from the middle creek near Athens (42.1 sq mi), upstream of the cataloged Bradley County reach; no temperature station exists on the lower reach."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 775,
+    "notes": "Valley creek at low elevation (775 ft at the Athens-area gauge, USGS 035661285), falling to the Hiwassee at the state-line valley floor; no dam, no spring-influence documentation, and no gorge/canyon shading documented. No agency statement of cold-water character was located.",
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A107&mimeType=csv"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 27.0,
+      "monthObserved": 8,
+      "year": 1995,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-035661285&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.5,
+      "monthObserved": 7,
+      "year": 2002,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-035661285&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.2,
+      "monthObserved": 7,
+      "year": 2000,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-035661285&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 20.6,
+      "monthObserved": 7,
+      "year": 1997,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-035661285&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind is documented for the creek — no stocking program rows, no trout designation, no creel or survey records located — so holdover cannot be assessed.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation found: zero 'North Mouse' rows in TWRA's stocking workbook, no entry on TWRA's wild-trout/special-regulation lists, and no fish-community inventory documenting trout was located (the water-quality literature found for the creek — EPA compendium and TDEC standards entries — concerns general monitoring, not trout).",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grabs at 035661285 (42.1 sq mi, near Athens, 1995-2004, n=42) show July-August water of 18.5-27.0 degC — routinely at or above trout stress thresholds on a low-elevation (775 ft) valley creek with no trout stocking or designation.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: zero rows matching 'Mouse' — no TWRA trout stocking on North, South, or Little South Mouse creeks)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-035661285&characteristicName=Temperature,%20water&mimeType=csv (42 USGS grabs 1995-2004: Jul-Aug values 18.5-27.0 degC; winter 9.2-12.1 degC)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A107&mimeType=csv (McMinn County station sweep: NORTH MOUSE CREEK stations 03566115/03566117/03566118/03566124/03566125/03566127/03566128/035661285/03566129/03566132 with drainage areas 2.9-55.8 sq mi; 035661285 altitude 775 ft, HUC 06020002)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A011&mimeType=csv (Bradley County station sweep, predecessor scratch copy notes/habitat-batch5/_tmp_g2_wqp_bradley.csv: zero North Mouse stations — only South Mouse / Little South Mouse / Fillauer Branch, confirming the Cleveland-side creeks are distinct waters)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query (predecessor NHD flowline capture for GNIS 01295930: 77 segments, extent lat 35.326-35.589, lon -84.804 to -84.562; southernmost vertex = mouth at 35.326,-84.803)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&bBox=-84.99,35.05,-84.70,35.35&siteTypeCd=ST&siteOutput=expanded&siteStatus=all (Cleveland/Charleston bbox sweep: no North Mouse station in the lower-reach bbox — all listed stations are South Mouse, Chatata, Oostanaula, or the Hiwassee itself)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (no North Mouse Creek entry on the wild trout / special regulation / delayed-harvest lists)",
+    "https://www.waterqualitydata.us (WQX portal search results confirming North Mouse Creek station catalog; EPA NEPIS compendium and TDEC water-quality-standards references surfaced in search note general monitoring only — standards compendium is a PDF and was not fetched)"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "slug": "nolichucky-river",
+  "segment": {
+    "description": "The full Tennessee main stem of the Nolichucky River from the NC state line to its Douglas Lake confluence (catalog boundaries). Facts below are attributed by reach: the USGS gauge and temperature record are at Embreeville (Washington County agricultural valley, 805 sq mi drainage), NOT the upstream Erwin gorge; TDEC's 303(d) agricultural impairments sit on the Greene/Washington County middle reaches; trout evidence in agency sources is tributary-level (Nolichucky-watershed headwater streams), not main stem.",
+    "boundaries": "NC line to Douglas Lake confluence; TWRA's exception boundary is 'ENKA Dam upstream to the state line includes Davy Crockett Lake', with the lower reach managed under Douglas Reservoir rules; catalog gauge is 03465500 at Embreeville."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1519,
+    "notes": "Freestone, undammed main stem (no dam or release-type record exists for this water). USGS station 03465500 'NOLICHUCKY RIVER AT EMBREEVILLE, TN' (Washington County, HUC 06010108, drainage 805 sq mi, station altitude 1,518.95 ft, TVA co-op; identity verified via the site service before citation) — the gauge documents the Embreeville valley reach, not the Erwin gorge. Catalog character ('clear and cold in spring, warm by August') is consistent with the gauge's temperature record below. No canopy/gorge microclimate documentation found in agency sources for the main stem."
+  },
+  "summerTemperature": [
+    { "celsius": 27.7, "monthObserved": 6, "year": 2001, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03465500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 26.9, "monthObserved": 7, "year": 2002, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03465500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 30.0, "monthObserved": 7, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03465500&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found; there is no stocking program to hold over fish and no creel or study record for this river was located.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "Main-stem wild trout presence: unknown. The catalog claims 'upstream reaches hold scattered wild fish' but no agency source located documents trout in the Nolichucky main stem. What agency sources DO document is tributary-level: the TWRA Trout Management Plan's brook-restoration table lists Nolichucky-watershed headwater streams with resident trout (Phillips Hollow 'RBT/BKT', Devil Fork 'RBT', Jennings Creek 'hatchery-influenced Brook Trout population') and states native brook restoration 'would establish native Brook Trout populations in the Nolichucky watershed (where none exist)' — brook trout absent watershed-wide, and all named trout populations are small headwater tributaries, not the river.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "unknown", "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS/WQP water temperatures at the catalog's own Embreeville gauge reach 26.9-30 C in summer (June 2001: 27.7 C; July 2002: 26.9 C; July 1977: 30 C), TWRA stocks nothing into the river (zero rows in the live 2026 schedule), and TWRA manages the reach for smallmouth/walleye — a documented warm summer profile on the documented reach.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live fetch 2026-09-18: zero rows for Nolichucky — no stocking program; matches the owner workbook, which also has zero Nolichucky rows)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03465500&characteristicName=Temperature,%20water&mimeType=csv (154 temperature results 1976-2004 at Embreeville; summer maxima repeatedly 24-30 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03465500,03461500,03493000,03493510&siteOutput=expanded&format=rdb (identity check: 03465500 = Nolichucky River at Embreeville, Washington Co., HUC 06010108, 805 sq mi, alt 1518.95 ft)",
+    "https://waterdata.usgs.gov/monitoring-location/03465500/ (active daily-value station, continuous since 1990)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03465500&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json (0 temperature series — no current sensor)",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03465500&parameterCd=00010&startDT=2025-07-01&endDT=2025-08-31&format=json (0 temperature series)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (verified: 'ENKA Dam upstream to the state line includes Davy Crockett Lake' — black bass 5/day, smallmouth 13-17 in PLR)",
+    "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx (Nolichucky main-stem units TN06010108001/08005/08010: mercury in fish tissue throughout; sedimentation/E. coli from crop production and riparian grazing on the Greene/Washington agricultural reaches; no temperature impairment listed)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (Nolichucky-watershed tributary trout table; brook trout absent watershed-wide)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html (lower reach to ENKA Dam managed under Douglas reservoir rules — walleye/sauger arm fishery; cited in prior wave pass, not re-fetched this session)"
+  ]
+}

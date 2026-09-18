@@ -1,0 +1,2058 @@
+[
+  {
+    "slug": "beech-lake",
+    "segment": {
+      "description": "Beech Lake (USGS/TVA 'Beech Reservoir') on the Beech River at Lexington, Henderson County, West Tennessee. TWRA Region 1 winter put-and-take trout lake (catalog: seasonMonths Nov-Mar) over a warmwater bass/bream/catfish fishery; one of the 'Beech River Watershed Lakes' group in TWRA's regulation exceptions.",
+      "boundaries": "Entire lake. TWRA's 2026 trout stocking schedule lists 'Beech Lake' as a Winter-type Rainbow Trout site (repo workbook rows: Henderson Co., 1/14/2026 and TBD 12/2026; the schedule page renders dates 1/13/2026 and 2/10/2026 adjacent to the Beech Lake entry). No trout stockings of any other type found for the lake."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Beech Dam",
+        "operator": "TVA",
+        "releaseType": null,
+        "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03594413&siteOutput=expanded&format=rdb"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "Dam identity basis: USGS inactive station 03594413 is named 'BEECH LAKE NEAR LEXINGTON, TENN (TVA)' (Henderson Co., HUC 06040001 Lower Tennessee-Beech, 35.66118,-88.41727). TVA's 'Beech Reservoir' page (tva.com, verified via WebSearch snippet only — tva.com blocks plain fetch) describes flood-storage of 4,430 acre-feet, ~3.65 miles long, and Beech Dam as a non-hydro dam; a WebSearch synthesis adds the dam was built early 1960s for water supply/flood control/recreation. No cold-release (deep-draw) regime documented; no evidence the lake receives or needs cold dam water."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the only trout rows for Beech Lake in TWRA's 2026 schedule are Winter-type, and the TWRA Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round'. Warmwater stockings (bluegill/redear) also appear for the lake in TWRA's warmwater stocking archive.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; no wild-trout listing or record exists for this West Tennessee reservoir.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule carries Beech Lake (Henderson Co.) solely as a Winter rainbow site, and the Trout Management Plan states hatchery-supported lakes like this are warmwater habitats that cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/beech-river-wma.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03594413&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008178&format=json (TDEC Beech Lake station holds a single E. coli sample — no temperature data)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Henderson/'Beech Lake' Winter Rainbow Trout rows; zero non-winter rows)",
+      "tva.com 'Beech Reservoir' page (WebSearch snippet only — full path not captured; tva.com 403s plain fetch)",
+      "tennesseeencyclopedia.net BRWDA entry (404)",
+      "beechriver.org (DNS failure); brwdalakes.com (ledger lead, not fetched)"
+    ]
+  },
+  {
+    "slug": "beech-river",
+    "segment": {
+      "description": "Beech River main stem — a warmwater West Tennessee stream in Henderson and Decatur counties (USGS county codes 077 and 039), HUC8 06040001 (Lower Tennessee basin), draining east-central West Tennessee toward the Tennessee River/Kentucky Lake reach. USGS lists 8 Beech River gaging sites, all discontinued (several TVA-era); the furthest downstream is 03594484 'BEECH RIVER NEAR DECATURVILLE, TN' (251 sq mi drainage area). Distinct from nearby Beech Lake, a warmwater flood-control/water-supply reservoir in the Beech River watershed cluster that DOES receive TWRA winter rainbow stockings.",
+      "boundaries": "Catalog gives no reach limits; record covers the Henderson County headwater reach near Lexington downstream through Decatur County near Decaturville. No trout program exists on the river itself."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 428.83,
+      "notes": "Gage datum 428.83 ft (NGVD29) at discontinued USGS 03594415 'BEECH RIVER NEAR LEXINGTON TENN (TVA)' — lowland West TN elevation; no active USGS gage remains on the river (waterservices site service, checked 2026-09-18)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No trout stocking program exists on the Beech River: TWRA's 2026 schedule (and the owner-supplied workbook grep) contains no 'Beech River' rows — only neighboring 'Beech Lake' (Henderson Co.) shows Region 1 Winter rainbow rows (1/14/2026, TBD 12/2026). With no stockings, holdover is not a documented facet of this water.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No wild trout documentation. The TWRA Trout Management Plan states 'Wild trout are generally limited to East Tennessee's mountain streams'; the Beech River is a lowland West Tennessee warmwater tributary.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Control-style warmwater record: TWRA's stocking schedule has no Beech River trout rows at all, the Trout Management Plan places wild trout only in East Tennessee mountains, and no USGS temperature or coldwater habitat evidence exists for this lowland (~429 ft) stream.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteType=ST (full TN list; 8 BEECH RIVER sites, all discontinued, counties 077/039, HUC 06040001)",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03594484&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature data)",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03594484,03594415&parameterCd=00010&format=rdb&siteOutput=expanded (no 00010 data)",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html (Beech Lake present, Beech River absent)",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep /beech/i: only Beech Lake rows, no Beech River)",
+      "https://www.tva.com/environment/lake-management/beech-reservoir (403 blocked — lead only: Beech Reservoir is one of eight flood-control/water-supply reservoirs in the Beech River watershed)",
+      "https://www.beechriver.org/ (DNS failure)",
+      "https://www.eregulations.com/ (lead only: Beech River Watershed Lakes warmwater regs — catfish/crappie/largemouth)"
+    ]
+  },
+  {
+    "slug": "big-sandy-river",
+    "segment": {
+      "description": "Big Sandy River — West Tennessee tributary of the Tennessee River draining Henry, Benton, Carroll, and Henderson counties through the Big Sandy embayment into Kentucky Lake. TWRA names Big Sandy one of the 'three major river embayments' of Kentucky Reservoir (with Duck and Beech rivers). Warmwater bottomland river; no trout program exists anywhere on it.",
+      "boundaries": "Catalog covers the whole river to its Kentucky Lake confluence near Big Sandy, TN (hydroIdentity GNIS 01277382, HUC8 06040005). TWRA's Big Sandy WMA (2,370 acres, Benton and Henry counties) protects riverbottom hardwoods, croplands, and swamps along the river; the Big Sandy Unit of Tennessee National Wildlife Refuge lies on the same peninsula between the river and the Tennessee River."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": ""
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented: the river appears nowhere on TWRA's 2026 trout stocking schedule (full scan of the 616-row workbook — no 'Big Sandy' trout row of any type), it is absent from TWRA's warmwater stocking archive as well, and the TWRA Trout Management Plan places wild trout in East Tennessee mountain streams with no West Tennessee mention.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. The documented riparian context is lowland and warm: TWRA's Big Sandy WMA page (via WebSearch snippet; direct fetch of the page 404'd) describes riverbottom hardwoods, croplands, and swamps following the Big Sandy River in Benton and Henry counties; TWRA's Kentucky Reservoir page treats the Big Sandy embayment as warmwater (dewatering-area crappie rules; adjacent West Sandy/Big Sandy waterfowl closures).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm bottomland West Tennessee tributary: TWRA stocks no trout anywhere on the river (absent from both trout and warmwater stocking archives), it drains swampy riverbottom lowlands into the Kentucky Lake embayment, and no cold-water source is documented.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+      "https://www.tn.gov/content/tn/twra/wildlife-management-areas/west-tennessee-r1/Big-Sandy-WMA.html (URL verified via WebSearch snippet; guessed variant paths 404'd)",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?countyCd=47071,47039,47005,47083&siteOutput=expanded&format=rdb&siteStatus=active (active gauges in Hardin/Decatur/Benton/Henry counties: only Yellow Creek, Horse Creek, Cypress Creek — no Big Sandy River gauge)",
+      "https://www.waterqualitydata.us/data/Result/search?countyCd=47083,47005&format=json (zero WQP stations named Big Sandy in Henry/Benton counties — no temperature data)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no 'Big Sandy' rows of any species)",
+      "en.wikipedia.org Big Sandy River (Tennessee) — lead only (60-mi tributary; not used as evidence)"
+    ]
+  },
+  {
+    "slug": "cameron-brown-lake",
+    "segment": {
+      "description": "Cameron Brown Lake, the small fishing pond in the City of Germantown's Cameron Brown Park (Shelby County), TN — a TWRA Region 1 winter put-and-take trout water. TWRA's live stocking table lists 'Cameron Brown Lake' (Region 1, Shelby County) with Winter-type rainbow trout stockings on 1/13/2026 and 'TBD 12/2026'; TWRA's 11/26/2025 winter-program press release counts Germantown among the five-creel-limit Community Lakes sites.",
+      "boundaries": "Entire lake in Cameron Brown Park, Germantown, Shelby County, TN; TWRA Region 1 winter stocking program site (stockings in the Nov/Dec-Mar cold window only)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-water source evidence of any kind found. City of Germantown pages were unreachable (HTTP 403 to fetchers), so no city-level lake characterization was available; the only cited characterization is TWRA program-level."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-level holdover documentation found in any consulted source. Program-level context: TWRA's Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout record for this lake. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No source consulted places any wild trout in this Germantown park lake.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "TWRA stocks this Germantown park lake with rainbow trout only in the winter program (1/13/2026 + TBD 12/2026 rows), and TWRA's own plan says warmwater hatchery-supported waters cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://www.germantown-tn.gov/645/Parks-Recreation (miss: HTTP 403 to fetchers)",
+      "https://www.tn.gov/twra/news.html (miss: release list is JS-rendered; no lake-level pages retrieved)"
+    ]
+  },
+  {
+    "slug": "covington-fbc-pond",
+    "segment": {
+      "description": "Covington First Baptist Church Pond, Covington (Tipton County), TN — a NEW addition to TWRA's 2025-26 winter rainbow trout stocking program. TWRA's 11/26/2025 press release names 'the Covington First Baptist Church pond (Tipton County)' as one of two new program sites; TWRA's live stocking table lists 'Covington First Baptist Church Pond (NEW)' (Region 1, Tipton County) with Winter-type rainbow trout stockings on 1/15/2026 and 'TBD 12/2026'.",
+      "boundaries": "Entire church pond at First Baptist Church, Covington, Tipton County, TN; TWRA Region 1 winter stocking program site (cold-window stockings only)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-water source evidence found. Sister Tipton County winter-program pond (Valentine Park, Covington) rows in the same TWRA table confirm the local program pattern."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-level holdover documentation found; the site is new to the program as of 2025-26, so no holdover history exists to document. Program-level context: TWRA's Trout Management Plan 2017-2027 states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout record for this pond. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "A newly added (2025-26) TWRA winter put-and-take pond — rainbows stocked only in the winter program (1/15/2026 + TBD 12/2026 rows) — in a county where TWRA's plan says warmwater hatchery-supported waters cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news.html (miss: release list is JS-rendered; 12/31/2025 winter-program-continues release not retrievable at a verified URL)"
+    ]
+  },
+  {
+    "slug": "forked-deer-river",
+    "segment": {
+      "description": "Mainstem Forked Deer River as cataloged: the West Tennessee lowland river below the confluence of its North, Middle, and South forks, draining toward the Mississippi through the Halls/Chestnut Bluff/Lauderdale County corridor. General warmwater fishing water (TWRA groups it with the Hatchie under West TN crappie rules); no trout program.",
+      "boundaries": "Catalog covers the mainstem below the forks (hydroIdentity HUC8 08010202, GNIS 01306450). No USGS gage sits on this mainstem reach; nearest gaged reaches are the South Fork near Gates and at Chestnut Bluff (07027800, 07028000, Lauderdale County) and the North Fork at Dyersburg (07029100, Dyer County), all identified via the USGS statewide site file."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No gage and no dam/spring evidence was found for the mainstem reach itself; elevation and temperature left null rather than borrowed from the forks. USGS WRIR 92-4146 (Bailey 1993) places the forks: the 136-square-mile Jackson study area 'is between the Middle Fork Forked Deer and South Fork Forked Deer Rivers'."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout documentation of any kind on the Forked Deer system. The river is absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero mentions of 'Forked Deer'); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented anywhere on the Forked Deer system; TWRA's plan and stocking list contain no reference, and TWRA regulates the river under warmwater species rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit').",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Ungaged warmwater lowland mainstem, but every nearby gaged fork in the same system shows summer water temperatures of 27.0-32.0 C (USGS grab samples) and TWRA lists no trout program on any Forked Deer reach.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07027800&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07028000&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07029100&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://pubs.usgs.gov/publication/wri924146",
+      "https://nwis.waterdata.usgs.gov/tn/nwis/qwdata/?site_no=07029500&parameterCd=00010&format=rdb&date_format=YYYY-MM-DD",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07027500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "hatchie-river",
+    "segment": {
+      "description": "The Hatchie River in West Tennessee as cataloged: the free-flowing bottomland swamp river running west through the Hardeman/Haywood corridor and on through Tipton and Lauderdale counties toward the Mississippi. Warmwater fishery (crappie/catfish/bass rules), no trout program.",
+      "boundaries": "Catalog covers the whole Tennessee river (hydroIdentity HUC8 08010208). TDEC scenic-river page: approximately 202.8 designated miles located in McNairy, Hardeman, Madison, Haywood, Tipton, and Lauderdale counties, designated February 12, 1970 as 'a swamp river' (Class I Natural River Area)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html"
+      },
+      "springFed": {
+        "value": false,
+        "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html"
+      },
+      "elevationFt": 266.99,
+      "notes": "No dam tailwater: TDEC describes the Hatchie as 'the longest free-flowing tributary of the lower Mississippi River totaling 238 miles'. SpringFed=false basis: TDEC records its 1970 designation as 'a swamp river' — a rain/backwater-fed bottomland system, not a spring-fed stream; TDEC adds it 'provides habitat for more than 100 species of fish including 11 species of catfish' (warmwater-native assemblage, no trout mentioned). elevationFt = USGS gage altitude 266.99 ft (NGVD29) at HATCHIE RIVER NEAR STANTON, TN (07030000), identity verified via https://waterservices.usgs.gov/nwis/site/?sites=07030000&siteOutput=expanded&format=rdb and the statewide site file https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all"
+    },
+    "summerTemperature": [
+      {
+        "celsius": 31,
+        "monthObserved": 7,
+        "year": 1986,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 29.5,
+        "monthObserved": 7,
+        "year": 1980,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 28.5,
+        "monthObserved": 8,
+        "year": 2005,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented on the Hatchie. The river is absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero mentions of 'Hatchie'); that plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'. Absence of a program is documented; absence of individual stocked fish was not surveyed.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TDEC's scenic-river page describes >100 native fish species including 11 catfish species with no trout; TWRA's Trout Management Plan contains no Hatchie reference.",
+      "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Free-flowing warmwater swamp river: USGS grab samples at the Bolivar gage (07029500, 88 summer samples 1976-2005) peaked at 31.0 C in July 1986 and still hit 28.5 C in August 2005, and TWRA stocks no trout anywhere on the river.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html",
+      "https://www.fws.gov/refuge/hatchie",
+      "https://www.tn.gov/twra/twra-outdoors-blog/2024/5/7/hatchie-river-work-group-provided-insight-on-tour.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+      "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/Hatchie-River-WMA.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07029500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07030000&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://nwis.waterdata.usgs.gov/nwis/qwdata?site_no=07029500&parameterCd=00010&format=rdb&date_format=YYYY-MM-DD",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07029500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "kentucky-lake",
+    "segment": {
+      "description": "Kentucky Lake / Kentucky Reservoir — the TVA mainstream impoundment of the Tennessee River behind Kentucky Dam; 108,217 acres in Tennessee across nine counties (catalog: Hardin, Decatur, Benton, Houston, Stewart) plus 52,083 acres in Kentucky. TWRA documents a warmwater fishery: largemouth/smallmouth/spotted bass, crappie, bluegill/redear, channel/blue/flathead catfish, white/yellow bass, striped/hybrid bass, paddlefish, and sauger/walleye/saugeye — trout are not mentioned on the page.",
+      "boundaries": "Tennessee portion of the reservoir as cataloged; pool fluctuates between 359 ft (summer full pool) and 354 ft MSL (winter pool). KY reciprocal water runs between the Ned McWherter Bridge (Hwy 79) and Eggners Ferry Bridge (Hwy 68/80) except Blood River. Big Sandy, Duck, and Beech rivers enter as major embayments."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Kentucky Dam",
+        "operator": "TVA",
+        "releaseType": null,
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 359,
+      "notes": "Mainstem navigation/storage reservoir, not a trout tailwater: TWRA's page describes a TVA mainstream reservoir with levels tracked via the TVA Lake Info app and full pool 359 ft MSL. TVA's 'Understanding the Drawdown' page (full URL verified via WebSearch snippet; tva.com blocks plain fetch) states the seasonal drawdown on Kentucky Reservoir begins after the July 4th weekend. No cold-release regime documented; the documented winter fishery below the dam is SAUGER (a warmwater percids fish, not a trout). elevationFt = summer full pool from TWRA."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 30.5,
+        "monthObserved": 8,
+        "year": 1999,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 29,
+        "monthObserved": 7,
+        "year": 1999,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 28.6,
+        "monthObserved": 8,
+        "year": 1997,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented: no Kentucky/Kentucky Lake/Kentucky Reservoir row exists on TWRA's 2026 trout stocking schedule (full-page scan), the lake is absent from the TWRA Trout Management Plan's list of nine reservoirs that support trout fisheries (Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, Tellico), and TWRA's lake page lists no trout. Warmwater stockings (largemouth bass, bluegill, threadfin shad entries near 'Kentucky' rows) appear in TWRA's warmwater archive — that is the reservoir's actual stocking program.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater; the Trout Management Plan states 'Wild trout are generally limited to East Tennessee's mountain streams' and names no trout water in West Tennessee.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm TVA mainstem reservoir: USGS grab samples in the Kentucky Lake pool at Savannah (03593500) read 28.6-30.5 C in July-August (1997-1999), TWRA documents the winter fishery here as SAUGER (Dec-Mar below TVA dams), and no trout stocking program exists for the lake.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03593500&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03593500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature series reported)",
+      "https://tva.com/environment/managing-the-river/flood-management/understanding-the-drawdown (URL verified via WebSearch snippet; tva.com 403s plain fetch)",
+      "https://tva.com/environment/lake-levels/how-tva-manages-water-levels (URL verified via WebSearch snippet)",
+      "https://tva.com/environment/lake-levels/tva-lake-info-app (URL verified via WebSearch snippet)",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=NALMS-F1269701&format=json (Kentucky Lake NALMS station holds depth/weather metadata only — no temperature)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no Kentucky/Pickwick/Tennessee River trout rows)"
+    ]
+  },
+  {
+    "slug": "lake-graham",
+    "segment": {
+      "description": "Lake Graham — ~500-acre TWRA-owned lake about 9 miles east of Jackson on Cotton Grove Road, Madison County, West Tennessee. TWRA's where-to-fish page lists the fishery as largemouth bass, crappie, bluegill, redear sunfish, and blue & channel catfish; trout appear only in the regulations (7/day, no length limit), reflecting the winter put-and-take program.",
+      "boundaries": "Entire lake. TWRA's 2026 trout stocking schedule lists 'Lake Graham' as a Winter-type Rainbow Trout site (repo workbook rows: Madison Co., 1/8/2026 and TBD 12/2026). No trout stockings of any other type found for the lake."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": ""
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the only trout rows for Lake Graham in TWRA's 2026 schedule are Winter-type, and the TWRA Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round'.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; TWRA's Lake Graham page lists no trout among the species found in the lake.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule carries Lake Graham (Madison Co.) solely as a Winter rainbow site, TWRA's own page lists a warmwater species mix, and the Trout Management Plan states hatchery-supported lakes like this cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Madison/'Lake Graham' Winter Rainbow Trout rows; zero non-winter rows)"
+    ]
+  },
+  {
+    "slug": "loosahatchie-river",
+    "segment": {
+      "description": "Loosahatchie River mainstem, a major Memphis-area drainage flowing through Fayette, Tipton, and Shelby counties (HUC 08010209); per the catalog, much of the mapped main channel is officially named Loosahatchie River Canal. USGS maintains 'LOOSAHATCHIE RIVER AT BRUNSWICK, TN' (07030280, gauge altitude 227.25 ft, HUC 08010209) on the reach, but the gauge carries no water-temperature record in NWIS.",
+      "boundaries": "Loosahatchie River mainstem from the Fayette/Tipton county area down through Shelby County to its mouth at the Mississippi River; catalog entry covers the whole drainage reach."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 227.25,
+      "notes": "Elevation is the USGS gauge altitude (NAVD88) at the Brunswick gauge (https://waterservices.usgs.gov/nwis/site/?sites=07030280&siteOutput=expanded&format=rdb), a lowland coastal-plain stream profile. No dam release or spring inflow documented anywhere consulted."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No trout presence of any kind documented for this river; it is absent from TWRA's stocking table (no trout program) and no put-and-take cycle exists whose carryover could be documented. Control-style record.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout record. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No consulted source places any trout in the Loosahatchie.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "The river is absent from TWRA's stocking table (no trout program of any kind) and no cold-water source or trout record exists for this lowland West Tennessee drainage.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (checked: no Loosahatchie row)",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07030280&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07030280&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+      "https://waterservices.usgs.gov/nwis/dv/?sites=07030280&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+      "https://waterservices.usgs.gov/nwis/site/?bBox=-90.35,34.95,-89.75,35.30&format=rdb&siteStatus=all&siteOutput=expanded (area site inventory used to enumerate Memphis-area gauges)"
+    ]
+  },
+  {
+    "slug": "martin-city-pond",
+    "segment": {
+      "description": "Martin City Pond — the small city park pond in Martin, Weakley County, listed on TWRA's official trout stocking schedule as 'Martin City Pond' (Region 1). The project's curated anchor file (packages/content/data/west-tn-ponds.json) places it at Martin City Park, Martin (OSM-resolved anchor).",
+      "boundaries": "Entire pond. TWRA Region 1 winter put-and-take site; 2025-26 program stockings run through February and TWRA spring stocking begins March 1."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": ""
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the 2025-26 winter program runs through February (spring stocking begins March 1), and the TWRA Trout Management Plan states hatchery-supported waters like these 'are primarily warmwater habitats that cannot support trout year round' and that 'survival of stocked trout is usually limited by summer water temperatures'.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; this is a warmwater West Tennessee city pond.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule lists 'Martin City Pond' (Weakley Co.) as a Region 1 Winter rainbow site (workbook rows 1/14/2026 and TBD 12/2026), the program ends in February, and the Trout Management Plan states such stocked warmwater habitats cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://www.tn.gov/twra/news/2025/12/31/2025-26-winter-trout-stocking-program-continues-.html",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Weakley/'Martin City Pond' Winter Rainbow Trout rows)",
+      "repo-local: packages/content/data/west-tn-ponds.json (curated anchor, Martin City Park)",
+      "https://www.cityofmartin.net/ (no fishing/trout mention on homepage)",
+      "https://www.cityofmartin.net/departments/parks-and-recreation/ (404 miss)"
+    ]
+  },
+  {
+    "slug": "middle-fork-forked-deer-river",
+    "segment": {
+      "description": "Middle Fork Forked Deer River as cataloged: the central West Tennessee fork running through the lowlands between Jackson and the Crockett/Gibson county corridor (Alamo area) above its junction with the North Fork. Warmwater fishery (TWRA groups the Forked Deer with the Hatchie under crappie rules); no trout program.",
+      "boundaries": "Catalog covers the whole fork (hydroIdentity HUC8 08010204, GNIS 01293673). Gaged reach: USGS 07029000 MIDDLE FORK FORKED DEER RIVER NEAR ALAMO, TN (Crockett County, gage altitude 288.17 ft, drainage 369 sq mi); additional nearby stations 07028960 NEAR FAIRVIEW and 07028990 NEAR HUMBOLDT. Identities verified via waterservices.usgs.gov expanded site output. Middle Fork Bottoms State Park (Jackson/Three Way area) sits on the river's south side."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 288.17,
+      "notes": "elevationFt = USGS gage altitude 288.17 ft (NGVD29) at the Alamo gage 07029000 (https://waterservices.usgs.gov/nwis/site/?sites=07029000&siteOutput=expanded&format=rdb). USGS WRIR 92-4146 documents the Jackson study area lying 'between the Middle Fork Forked Deer and South Fork Forked Deer Rivers' (https://pubs.usgs.gov/publication/wri924146). Tennessee State Parks: Middle Fork Bottoms State Park (861 acres of former agricultural land converted to grassland and wetlands) has an 'accessible overlook on the south side of the Middle Fork Forked Deer River, offering fishing opportunities' (https://tnstateparks.com/parks/middle-fork-bottoms). No dam or spring evidence found on this fork."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 28,
+        "monthObserved": 7,
+        "year": 1988,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout documentation on the Middle Fork. Absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero 'Forked Deer' mentions); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented; TWRA regulates the fork under warmwater rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit') with no trout provision.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Single USGS grab sample at the Alamo gage (07029000) measured 28.0 C in July 1988 on this lowland farm-country fork, and TWRA stocks no trout on any Forked Deer reach.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07029000&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://pubs.usgs.gov/publication/wri924146",
+      "https://tnstateparks.com/parks/middle-fork-bottoms",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07029000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "middle-fork-obion-river",
+    "segment": {
+      "description": "Middle Fork Obion River, a principal fork of the Obion system (HUC 08010203), flowing from its upper reach near Como (Henry/Carroll county line area) through Weakley County (Gleason, Sharon, Dresden) into Gibson County (Sidonia) toward the fork confluences; catalog describes it as a principal Obion fork whose access and lowland conditions vary by reach.",
+      "boundaries": "Catalog gives no explicit boundaries; documented evidence reaches are the USGS-gaged upper reach near Gleason (07024705) and near Sidonia (07024790), plus TDEC stations MFOBI026.3HN (upper, near Como), MFOBI014.6WY and MFOBI004.5WY (lower, Weakley County)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 360,
+      "notes": "Gage elevation 360.00 ft NGVD29 at 07024705 near Gleason, falling to about 310 ft at the downstream Sidonia gage (USGS site service) — a low-gradient West Tennessee bottomland fork in the channelized Obion system (TWRA 2015 SWAP Obion River COA)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 29,
+        "monthObserved": 8,
+        "year": 1988,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024705;USGS-07024770;USGS-07024790;USGS-07025025;USGS-07025100;USGS-07024880;USGS-07024900&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 24.3,
+        "monthObserved": 8,
+        "year": 2007,
+        "sourceType": "study",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover trout fishery documented. TWRA stocks no trout on the Middle Fork Obion River (the county-level winter rainbow sites are ponds/parks such as McKenzie City Park and Milan City Pond), and the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "Dickinson's 1973 UT survey of the Obion River system — most collections from the Reelfoot Lake area and the principal forks of the system — verified 100 fish species and lists no salmonids.",
+      "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "A USGS grab at the Sidonia gage measured 29.0 C in August 1988, and TWRA stocks no trout on this channelized warmwater fork.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024705;USGS-07024770;USGS-07024790;USGS-07025025;USGS-07025100;USGS-07024880;USGS-07024900&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+      "https://trace.tennessee.edu/utk_gradthes/8225"
+    ]
+  },
+  {
+    "slug": "milan-city-pond",
+    "segment": {
+      "description": "Milan City Pond — the small city park pond in Milan, Gibson County, listed on TWRA's official trout stocking schedule as 'Milan City Pond' (Region 1). The project's curated anchor file (packages/content/data/west-tn-ponds.json) places it in Milan City Park, Milan (OSM-resolved anchor).",
+      "boundaries": "Entire pond. TWRA Region 1 winter put-and-take site; 2025-26 program stockings run through February and TWRA spring stocking begins March 1."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": ""
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the 2025-26 winter program runs through February (spring stocking begins March 1), and the TWRA Trout Management Plan states hatchery-supported waters like these 'are primarily warmwater habitats that cannot support trout year round' and that 'survival of stocked trout is usually limited by summer water temperatures'.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; this is a warmwater West Tennessee city pond.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule lists 'Milan City Pond' (Gibson Co.) as a Region 1 Winter rainbow site (workbook rows 1/14/2026 and TBD 12/2026), the program ends in February, and the Trout Management Plan states such stocked warmwater habitats cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://www.tn.gov/twra/news/2025/12/31/2025-26-winter-trout-stocking-program-continues-.html",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Gibson/'Milan City Pond' Winter Rainbow Trout rows)",
+      "repo-local: packages/content/data/west-tn-ponds.json (curated anchor, Milan City Park)",
+      "https://milantn.com/ (placeholder site, not an official city page — miss)",
+      "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf (lead only, not consulted as evidence)"
+    ]
+  },
+  {
+    "slug": "mississippi-river",
+    "segment": {
+      "description": "The Mississippi River mainstem forming Tennessee's western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties, as cataloged (this entry's hydroIdentity lists Shelby County, HUC 08010100). The reference gauge on this reach is USGS 'MISSISSIPPI RIVER AT MEMPHIS, TN' (07032000, gauge altitude 184.03 ft NAVD88, drainage area 932,800 sq mi, HUC 08010100).",
+      "boundaries": "Tennessee reach of the Mississippi River mainstem along the state's western border (catalog entry's hydroIdentity: Shelby County); USGS 07032000 at Memphis is the segment reference gauge."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 184.03,
+      "notes": "Elevation is the USGS gauge altitude (NAVD88) at Memphis (https://waterservices.usgs.gov/nwis/site/?sites=07032000&siteOutput=expanded&format=rdb). Mainstem alluvial river of the coastal plain; no cold-water source documented anywhere consulted."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No trout presence of any kind documented on the Tennessee reach: the TWRA stocking table contains no Mississippi River rows, and no trout fishery record was found. Control-style record.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout record. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No consulted source places any trout in the Tennessee reach of the Mississippi.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "A low-elevation (184 ft at Memphis) alluvial mainstem with no trout stocking anywhere on the Tennessee reach in TWRA's table and no cold-water source; TWRA's Memphis-area winter trout program sites are community lakes and ponds, not this river.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (checked: no Mississippi row)",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07032000&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07032000&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+      "https://waterservices.usgs.gov/nwis/dv/?sites=07032000&parameterCd=00010&startDT=1975-01-01&endDT=2025-09-30&format=json (miss: no daily temperature series 1975-2025)",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07032000&characteristicName=Temperature%2C%20water (miss: HTTP 406; api.waterqualitydata.us unreachable)",
+      "https://www.usgs.gov/publications/effects-air-temperature-and-discharge-upper-mississippi-river-summer-water (lead only: Upper Mississippi study, wrong reach — not cited as reach evidence)"
+    ]
+  },
+  {
+    "slug": "nonconnah-creek",
+    "segment": {
+      "description": "Nonconnah Creek mainstem, the Memphis-area urban waterway and Mississippi River tributary (HUC 08010211), Shelby County, TN. Cataloged as a no-stocking-program warmwater creek. USGS maintains stream gauges on the reach — e.g., 'NONCONNAH CREEK NEAR GERMANTOWN, TN' (07032200, gauge altitude 262.81 ft, HUC 08010211) and 'NONCONNAH CREEK AT RIVERPORT RD AT MEMPHIS, TN' (07032252, gauge altitude 174.60 ft) — but neither gauge carries a water-temperature record in NWIS.",
+      "boundaries": "Nonconnah Creek mainstem in Shelby County from the Germantown area down to the Mississippi River confluence at Memphis; catalog entry covers the whole creek."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 262.81,
+      "notes": "Elevation is the USGS gauge altitude (NAVD88) at the near-Germantown gauge (https://waterservices.usgs.gov/nwis/site/?sites=07032200&siteOutput=expanded&format=rdb); it characterizes the lowland urban fall line of the creek. No cold-water source (dam release or spring) documented anywhere consulted."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No trout presence of any kind documented for this creek in TWRA's stocking table or the Trout Management Plan; with no stocking program there is no put-and-take cycle whose carryover could be documented. Control-style record.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout record. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.' No consulted source places any trout in Nonconnah Creek.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "The creek is absent from TWRA's stocking table (no trout program of any kind) and no cold-water source or trout record exists for this lowland urban Memphis creek.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (checked: no Nonconnah row)",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07032200&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07032252&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07032200&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+      "https://waterservices.usgs.gov/nwis/dv/?sites=07032200&parameterCd=00010&startDT=2025-06-15&endDT=2025-09-15&format=json (miss: no temperature series)",
+      "https://waterservices.usgs.gov/nwis/site/?bBox=-90.35,34.95,-89.75,35.30&format=rdb&siteStatus=all&siteOutput=expanded (area site inventory used to enumerate Memphis-area gauges)"
+    ]
+  },
+  {
+    "slug": "north-fork-forked-deer-river",
+    "segment": {
+      "description": "North Fork Forked Deer River as cataloged: the northwestern West Tennessee fork running from the Carroll/Gibson County area through Trenton and on to Dyersburg (Dyer County), above its junction with the other forks. Warmwater fishery (TWRA groups the Forked Deer with the Hatchie under crappie rules); no trout program.",
+      "boundaries": "Catalog covers the whole fork (hydroIdentity HUC8 08010204, GNIS 01295887). Gaged reaches: USGS 07028500 NORTH FORK FORKED DEER RIVER AT TRENTON, TN (Gibson County, gage altitude 311.85 ft, drainage 73.5 sq mi) and 07029100 AT DYERSBURG, TN (Dyer County, gage altitude 244.86 ft, drainage 939 sq mi); identities verified via waterservices.usgs.gov expanded site output."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 244.86,
+      "notes": "elevationFt = USGS gage altitude 244.86 ft (NGVD29) at the Dyersburg gage 07029100 (https://waterservices.usgs.gov/nwis/site/?sites=07029100&siteOutput=expanded&format=rdb). No dam or spring evidence found on this fork; USGS literature describes the lower-fork floodplain around Tigrett WMA (Dyer County) as an agricultural/channel-modified bottomland system."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 32,
+        "monthObserved": 7,
+        "year": 1980,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 30.5,
+        "monthObserved": 7,
+        "year": 1986,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 30,
+        "monthObserved": 7,
+        "year": 1981,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 24,
+        "monthObserved": 7,
+        "year": 2004,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout documentation on the North Fork. Absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero 'Forked Deer' mentions); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented; TWRA regulates the fork under warmwater rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit') with no trout provision.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "USGS grab samples at the Dyersburg gage (07029100) reached 32.0 C in July 1980 and exceeded 30 C in three separate Julys, and TWRA stocks no trout on any Forked Deer reach.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07028500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07029100&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07028500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://pubs.usgs.gov/search?q=%22North+Fork+Forked+Deer%22"
+    ]
+  },
+  {
+    "slug": "north-fork-obion-river",
+    "segment": {
+      "description": "North Fork Obion River, the principal northern fork of the Obion system in northwest Tennessee (HUC 08010202), flowing through Weakley County (Jones Mill, Latham, McConnell, Martin) into Obion County (Union City, Rives) to join the main system; catalog describes it as a first-class regional warmwater fishing corridor.",
+      "boundaries": "Catalog gives no explicit boundaries; documented evidence reach is the USGS-gaged reach near Martin (07025400, 372 sq mi drainage, Weakley County) with downstream gages near Union City (07025500) and near Rives."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 303,
+      "notes": "Gage elevation 303.19 ft NAVD88 at 07025400 near Martin (USGS site service). System character is channelized bottomland: 'the Obion and most of its tributaries have been channelized' (TWRA 2015 SWAP Obion River COA)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 28,
+        "monthObserved": 7,
+        "year": 1986,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 27,
+        "monthObserved": 8,
+        "year": 2002,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 26,
+        "monthObserved": 7,
+        "year": 2002,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover trout fishery documented. TWRA's winter rainbow program in this part of West Tennessee stocks park/pond-type sites only (nearest: Union City Reelfoot Packing Site), with no stocking row for the North Fork Obion River; the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "Dickinson's 1973 UT survey of the Obion River system — with most collections from the principal forks, including this fork — verified 100 fish species and lists no salmonids.",
+      "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "USGS grab samples at the Martin gage reached 28.0 C in July (1986) and 27.0 C in August (2002), and no trout stocking or salmonid occurrence is documented on this channelized warmwater fork.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07025900,07024500,07025400,07025000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+      "https://trace.tennessee.edu/utk_gradthes/8225"
+    ]
+  },
+  {
+    "slug": "obion-river",
+    "segment": {
+      "description": "Main stem of the Obion River in northwest Tennessee, formed by the Obion system forks and flowing west/northwest through bottomland country north of the Hatchie; catalog covers the warmwater main-stem river (Obion/Dyer/Lake counties per catalog notes). Documented gaged reaches: near Kenton, near Rives, and at Obion (Hwy 51), Obion County.",
+      "boundaries": "Catalog gives no explicit dam-to-X boundaries; documented evidence reach is the main stem at USGS gages 07024800 (near Kenton), 07025900 (near Rives) and 07026040 (at Hwy 51 near Obion, HUC 08010202); HUC8s 08010202/08010203."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 244,
+      "notes": "Lowland channelized bottomland river: 'the Obion and most of its tributaries have been channelized' and the area is bottomland hardwood forest, swamps, oxbows and sloughs (TWRA TN State Wildlife Action Plan 2015 Obion River COA). Gage elevation 244.37 ft NAVD88 at 07026040 (USGS site service)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 30.6,
+        "monthObserved": 7,
+        "year": 1991,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 29.5,
+        "monthObserved": 8,
+        "year": 1995,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 27.5,
+        "monthObserved": 6,
+        "year": 2005,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 26.7,
+        "monthObserved": 8,
+        "year": 2005,
+        "sourceType": "study",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover trout fishery documented. TWRA's West Tennessee winter rainbow program stocks park/pond-type sites only — the nearest is 'Union City Reelfoot Packing Site' (Obion County), not the river — and no stocking row exists for the Obion River itself. The TN Trout Management Plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "The 1973 UT survey of the Obion River system (183 collections, 100 species verified) documents the system's fish fauna and lists no salmonids; TWRA's 2015 SWAP Obion River COA priority fish are Plains Minnow, Piebald Madtom and Pallid Sturgeon — a warmwater lowland assemblage. TWRA regulates the river for warmwater species (crappie 30/day, no length limit).",
+      "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "USGS summer samples at Hwy 51 near Obion reached 30.6 C (Jul 1991) and 29.5 C (Aug 1995) on this channelized bottomland river, and TWRA stocks no trout here.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07025900,07024500,07025400,07025000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://nwis.waterdata.usgs.gov/tn/nwis/qwdata/?site_no=07025900&parameterCd=00010&format=rdb",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+      "https://trace.tennessee.edu/utk_gradthes/8225",
+      "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/obion-river-wma.html"
+    ]
+  },
+  {
+    "slug": "pickwick-lake",
+    "segment": {
+      "description": "Pickwick Reservoir — TVA mainstream impoundment of the Tennessee River behind Pickwick Landing Dam; 43,100 acres total with the Tennessee portion (~6,159 acres) in Hardin County; max depth 85 ft. TWRA documents a warmwater fishery including the famous smallmouth water and a sauger/walleye component — trout are not mentioned on TWRA's page.",
+      "boundaries": "Tennessee portion (Hardin County) of the reservoir as cataloged; water levels fluctuate around 414.0 ft (summer full pool) to 408 MSL (winter). TWRA notes a KY/TN/MS reciprocal agreement covering waters from Pickwick Dam to Tennessee River Mile 224.8 (excluding Bear Creek and upper Yellow Creek). Tennessee embayments include Yellow Creek, Winn Springs, Dry Creek, and Pickwick Landing State Park."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Pickwick Landing Dam",
+        "operator": "TVA",
+        "releaseType": null,
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 414,
+      "notes": "Mainstem reservoir, not a trout tailwater: TWRA's page describes the TVA mainstream reservoir (TVA manages lake levels; dam anchored by the reciprocal-agreement description 'Pickwick Dam to TN River Mile 224.8'). A WebSearch snippet of TVA's Pickwick Reservoir Land Management Plan (tva.com; blocks plain fetch) places the dam at Tennessee River mile 206.7. The documented cold-season tailwater fishery below the dam is SAUGER — per TWRA, prime fishing runs December to March on the downstream side of TVA dams like Pickwick Dam. No cold-release regime documented. elevationFt = summer full pool from TWRA."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 31,
+        "monthObserved": 7,
+        "year": 1975,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 30,
+        "monthObserved": 7,
+        "year": 1977,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 30,
+        "monthObserved": 7,
+        "year": 1980,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented: no Pickwick row of any type exists in the 616-row TWRA 2026 trout stocking schedule, Pickwick is absent from the TWRA Trout Management Plan's list of nine reservoirs supporting trout fisheries, and TWRA's lake page lists no trout. TWRA's warmwater archive shows Pickwick warmwater stockings (black crappie, channel catfish, bluegill entries near Pickwick rows, e.g. 04/23/2026).",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's species list is entirely warmwater (largemouth/smallmouth/spotted bass, bluegill, redear, warmouth and other sunfish, three catfish species, crappie, striped/hybrid, white/yellow bass, walleye, sauger, paddlefish); the Trout Management Plan places wild trout in East Tennessee mountain streams.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm TVA mainstem reservoir: USGS grab samples at Pickwick Landing Dam (03593005) repeatedly hit 30-31 C in July samples (1975-1988), TWRA documents the tailwater's winter fishery as SAUGER, and no trout stocking program exists for the lake.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html (sauger Dec-Mar below TVA dams incl. Pickwick Dam)",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03593005&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water",
+      "waterservices.usgs.gov/nwis/site/?huc=06040001,06040002,06040004&siteOutput=expanded&format=rdb (HUC gauge sweep: no lake temperature reporting sites)",
+      "tva.com Pickwick Reservoir Land Management Plan and lakeinfo.tva.gov Pickwick page (WebSearch snippets only — tva.com 403s plain fetch)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero Pickwick rows)"
+    ]
+  },
+  {
+    "slug": "reelfoot-lake",
+    "segment": {
+      "description": "Reelfoot Lake — Tennessee's largest natural lake (10,427 acres), formed by the 1811-12 New Madrid earthquakes when the Mississippi ran backward into a shallow basin; roughly 68% is 3 feet deep or less. Spans Lake and Obion counties (plus Fulton Co., KY). TWRA documents it as one of the state's premier crappie and bluegill fisheries; trout are not mentioned anywhere on TWRA's lake page.",
+      "boundaries": "Entire lake as cataloged. USGS lake gage 07027000 'REELFOOT LAKE NR TIPTONVILLE, TN' (36.3531,-89.4062, Lake County) monitors lake stage. TWRA page: US Fish and Wildlife Service oversees part of the lake (Kirby Pocket to Brewer's Bar); Reelfoot Lake State Park borders it. The only 'Reelfoot' trout row in TWRA's 2026 schedule — 'Union City Reelfoot Packing Site' (Obion Co., Winter rainbow) — is the separate Union City winter-trout pond cataloged as union-city-reelfoot-pond, NOT this lake."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html"
+      },
+      "springFed": {
+        "value": false,
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html"
+      },
+      "elevationFt": 270.11,
+      "notes": "Natural lake, no dam tailwater: TWRA describes it as created by the 1811-12 earthquakes. SpringFed=false basis: documented origin is river backwater filling a shallow surface basin (a runoff/bayou-fed lake, e.g. Running Reelfoot Bayou), not a spring system. elevationFt = USGS gage altitude 270.11 ft (NAVD88) at station 07027000, identity verified via waterservices expanded site output."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 29.55,
+        "monthObserved": 6,
+        "year": 2001,
+        "sourceType": "study",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF00001LA&siteid=TDECWPC-REELF000.1LA&siteid=TDECWPC-REELF000.2LA&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 34.4,
+        "monthObserved": 6,
+        "year": 2001,
+        "sourceType": "study",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF000.3OB&siteid=TDECWPC-REELF000.4OB&siteid=TDECWPC-REELF000.5OB&siteid=TDECWPC-REELF000.6OB&siteid=USGS-362513089215501&siteid=USGS-362727089213200&siteid=USGS-362801089190702&siteid=USGS-362815089204000&characteristicName=Temperature%2C%20water"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented on the lake: no Reelfoot Lake row exists in TWRA's 2026 trout stocking schedule (the only 'Reelfoot' row is the separate Union City Packing Site pond), trout are absent from TWRA's lake page, and no holdover record exists. A WebSearch synthesis additionally characterizes the lake as hypereutrophic (EPA report lead, not fetched) — extreme summer warmth is consistent with the TDEC June samples (25.5-34.4 C).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's lake page describes an entirely warmwater assemblage (white/black crappie, bluegill, redear, warmouth, largemouth/spotted bass, yellow bass, channel catfish, paddlefish); the Trout Management Plan places wild trout in East Tennessee mountain streams and contains no Reelfoot mention.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Shallow natural warmwater lake: TDEC water-quality samples on 2001-06-12 read 25.5-34.4 C across lake stations and embayments, TWRA documents a crappie/bluegill fishery with zero trout, and TWRA stocks no trout into the lake.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07027000&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF00001LA&siteid=TDECWPC-REELF000.1LA&siteid=TDECWPC-REELF000.2LA&characteristicName=Temperature%2C%20water",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-REELF000.3OB&siteid=TDECWPC-REELF000.4OB&siteid=TDECWPC-REELF000.5OB&siteid=TDECWPC-REELF000.6OB&siteid=USGS-362513089215501&siteid=USGS-362727089213200&siteid=USGS-362801089190702&siteid=USGS-362815089204000&characteristicName=Temperature%2C%20water",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07027000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (stage-only gauge; no temperature series)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: 'Reelfoot' — only Union City Reelfoot Packing Site pond rows)",
+      "WebSearch leads not fetched: pubs.usgs.gov Heal 2022 Reelfoot outlet model; nepis.epa.gov Reelfoot hypereutrophication report; utm.edu Reelfoot Lake Environmental Field Station"
+    ]
+  },
+  {
+    "slug": "rutherford-fork-obion-river",
+    "segment": {
+      "description": "Rutherford Fork Obion River, a major named fork of the Obion system (HUC 08010203) flowing northwest through Gibson County (Milan, Bradford, Rutherford) toward the Kenton area (Obion County); catalog describes it as a major named fork through Gibson and adjoining West Tennessee counties. Not related to Rutherford County, Tennessee (Middle Tennessee).",
+      "boundaries": "Catalog gives no explicit boundaries; documented evidence reach is the Gibson County reach at TDEC stations RFOBI024.4GI (near 35.994, -88.792) and RFOBI029.9GI (near Milan), with downstream USGS gages near Bradford (07025000) and near Kenton (07025100)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 317,
+      "notes": "Gage elevation 316.54 ft NGVD29 at 07025000 near Bradford (USGS site service). The fork drains low-gradient West Tennessee bottomland in the channelized Obion system (TWRA 2015 SWAP Obion River COA); TDEC's monitoring station names for the Gibson County reach include 'Rutherford Fork Obion River Drainage Canal,' reflecting channelization."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 22.6,
+        "monthObserved": 8,
+        "year": 2001,
+        "sourceType": "study",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 22.1,
+        "monthObserved": 8,
+        "year": 2001,
+        "sourceType": "study",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover trout fishery documented. TWRA stocks no trout on the Rutherford Fork Obion River (no stocking row in the 2025-2026 workbook; the 'Rutherford' rows in that workbook are Rutherford County Middle Tennessee sites — Nice Mill and W. Fork Stones River — unrelated to this fork), and the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "Dickinson's 1973 UT survey of the Obion River system verified 100 fish species with collections from the system's principal streams and forks and lists no salmonids; TWRA's crappie regulation for 'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries)' confirms a warmwater sport fishery on this Obion tributary.",
+      "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "No trout program or salmonid occurrence is documented on this channelized warmwater fork (TDEC August grabs were 22.1-22.6 C in 2001; the 1973 system-wide fish survey lists no salmonids).",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI;TDECWPC-MFOBI004.5WY;TDECWPC-MFOBI014.6WY;TDECWPC-MFOBI026.3HN;TDECWPC-OBION062.5OB;TDECWPC-OBION071.2OB&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024705;USGS-07024770;USGS-07024790;USGS-07025025;USGS-07025100;USGS-07024880;USGS-07024900&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+      "https://trace.tennessee.edu/utk_gradthes/8225"
+    ]
+  },
+  {
+    "slug": "shelby-farms-lake",
+    "segment": {
+      "description": "The TWRA-stocked trout water at Shelby Farms Park, Memphis (Shelby County). TWRA's live stocking table lists 'Shelby Farms' (Region 1, Shelby County) with Winter-type rainbow trout stockings on 1/13/2026 and 'TBD 12/2026'. The park's own fishing page identifies the stocked water as Jones Pond: 'Trout are stocked in Jones Pond every December and January.'",
+      "boundaries": "Jones Pond, Shelby Farms Park, Memphis, Shelby County, TN; TWRA Region 1 winter stocking program site (cold-window stockings only)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "Park's fishing page describes 20+ warmwater fishing lakes/ponds (catfish, crappie, bream, largemouth bass) with no cold-water source mentioned for any lake. https://www.shelbyfarmspark.org/fishing"
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-level holdover documentation found. Program-level context: TWRA's Trout Management Plan 2017-2027 states hatchery-supported streams and lakes 'are primarily warmwater habitats that cannot support trout year round.' The park restocks annually every December-January, consistent with a put-and-take cycle.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout record for this park lake. TWRA Trout Management Plan 2017-2027: 'Wild trout are generally limited to East Tennessee's mountain streams.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "The park says trout are stocked in Jones Pond every December and January (annual restart of a winter program), and TWRA's plan says warmwater hatchery-supported waters cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.shelbyfarmspark.org/fishing",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://www.tn.gov/twra/news.html (miss: release list is JS-rendered; 12/31/2025 winter-program-continues release not retrievable at a verified URL)"
+    ]
+  },
+  {
+    "slug": "south-fork-forked-deer-river",
+    "segment": {
+      "description": "South Fork Forked Deer River as cataloged: the long West Tennessee fork rising in Chester County and running through Henderson and Jackson (Madison County) to the lower Lauderdale County lowlands where it approaches the Forked Deer mainstem. Warmwater fishery (crappie/catfish/bass rules); no trout program.",
+      "boundaries": "Catalog covers the whole fork (hydroIdentity HUC8 08010205, GNIS 01270865). Gaged reaches: USGS 07027500 SOUTH FORK FORKED DEER RIVER AT JACKSON, TN (Madison County, gage altitude 330.76 ft, drainage 495 sq mi); 07027800 NEAR GATES and 07028000 AT CHESTNUT BLUFF on the lower fork (Lauderdale County); 07027300 NEAR HENDERSON (Chester County). Identities verified via waterservices.usgs.gov expanded site output."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 330.76,
+      "notes": "elevationFt = USGS gage altitude 330.76 ft (NGVD29) at the Jackson gage 07027500 (https://waterservices.usgs.gov/nwis/site/?sites=07027500&siteOutput=expanded&format=rdb). USGS WRIR 92-4146 documents the Jackson area sitting between the Middle and South Fork Forked Deer Rivers (https://pubs.usgs.gov/publication/wri924146). No dam or spring evidence found on this fork."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 29,
+        "monthObserved": 7,
+        "year": 1986,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 26,
+        "monthObserved": 8,
+        "year": 1987,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 27.5,
+        "monthObserved": 8,
+        "year": 1988,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      },
+      {
+        "celsius": 27,
+        "monthObserved": 8,
+        "year": 2001,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout documentation on the South Fork. Absent from TWRA's live trout stocking list (checked 2026-09-18) and from the TWRA Trout Management Plan 2017-2027 (zero 'Forked Deer' mentions); the plan states hatchery-supported waters 'are primarily warmwater habitats that cannot support trout year round'.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented; TWRA regulates the fork under warmwater rules ('Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries) - Crappie: 30 per day, no length limit') with no trout provision.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "USGS grab samples on this fork reached 29.0 C in July 1986 near Gates and 27.5 C in August 1988 at Jackson, and TWRA stocks no trout on any Forked Deer reach.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1.html",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07027500&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07027800&siteOutput=expanded&format=rdb",
+      "https://waterservices.usgs.gov/nwis/site/?sites=07028000&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS",
+      "https://pubs.usgs.gov/publication/wri924146",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07027500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    ]
+  },
+  {
+    "slug": "south-fork-obion-river",
+    "segment": {
+      "description": "South Fork Obion River, the principal southern fork of the Obion system (HUC 08010203), rising near McKenzie (Carroll County) and flowing through Gibson County (Christmasville, Skullbone, Rutherford, Sidonia) and Weakley County (Greenfield) reaches; catalog describes it as a locally important general-fishing water.",
+      "boundaries": "Catalog gives no explicit boundaries; documented evidence reach is the USGS-gaged reach near Greenfield (07024500, Weakley County), with upstream gages at McKenzie and Skullbone and TDEC stations SFOBI006.0OB/SFOBI009.7WY nearby."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": 296,
+      "notes": "Gage elevation 295.85 ft NAVD88 at 07024500 near Greenfield (USGS site service). System character is channelized West Tennessee bottomland: 'the Obion and most of its tributaries have been channelized' amid bottomland hardwood forests, swamps, oxbows and sloughs (TWRA 2015 SWAP Obion River COA, which lists Hop-In Refuge and Harts Mill Wetland among public lands in the Obion River COA)."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 30,
+        "monthObserved": 7,
+        "year": 1980,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 28,
+        "monthObserved": 8,
+        "year": 1980,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 26.5,
+        "monthObserved": 6,
+        "year": 2002,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      },
+      {
+        "celsius": 24.5,
+        "monthObserved": 6,
+        "year": 2005,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover trout fishery documented. TWRA stocks no trout anywhere on the South Fork Obion River (winter rainbow program is park/pond sites), and the TN Trout Management Plan states hatchery-supported warmwater habitats 'cannot support trout year round.'",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "Dickinson's 1973 UT survey of the Obion River system — collections from the principal forks including the South Fork — verified 100 fish species and lists no salmonids.",
+      "evidenceUrl": "https://trace.tennessee.edu/utk_gradthes/8225"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "USGS grab samples near Greenfield hit 30.0 C in July 1980 and 28.0 C in August 1980 — summer temperatures well beyond trout survival — on an unstocked channelized warmwater fork.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040;USGS-07025400;USGS-07024500;USGS-07025000&characteristicName=Temperature,%20water&mimeType=csv",
+      "https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=tn&siteOutput=expanded&siteStatus=all",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=07025900,07024500,07025400,07025000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/swap/coa/ObionRiverCOA2015TNSWAP.pdf",
+      "https://trace.tennessee.edu/utk_gradthes/8225",
+      "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/hop-in-refuge.html",
+      "https://www.tn.gov/twra/wildlife-management-areas/west-tennessee-r1/harts-mill-wma.html"
+    ]
+  },
+  {
+    "slug": "tennessee-river",
+    "segment": {
+      "description": "Tennessee River main stem, West Tennessee reach as cataloged (regionId tn-west): the river's impounded main-stem reach from Pickwick Lake north to the Kentucky line — the Kentucky Lake pool of the Tennessee River (the river legitimately leaves Tennessee between mile 424 at Shellmound upstream and Pickwick). Warm main-stem water: TWRA documents the reach's famous winter SAUGER run (a warmwater percids fish, not a trout), and the catalog notes the trout fishing lives in the separate cold tailwaters below the dams.",
+      "boundaries": "Main-stem reach within West Tennessee from Pickwick Lake to the Kentucky line (hydroIdentity GNIS 00517033, HUC8 06040001; catalog counties: Hardin). USGS mainstem stations in the reach: 03593500 Tennessee River at Savannah (Kentucky Lake pool, Hardin County) and 03594500 Tennessee River at Perryville (Decatur County)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "The reach is a TVA mainstem reservoir pool (Kentucky Lake) bounded by mainstem dams, not a trout tailwater; evidenceUrl documents TWRA's description of this TVA mainstream water, its pool range (354-359 ft MSL), and the sauger fishery on the downstream side of TVA dams. No cold-release regime documented for this reach; no trout fishery of any kind is documented."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 29,
+        "monthObserved": 7,
+        "year": 1999,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 30.5,
+        "monthObserved": 8,
+        "year": 1999,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      },
+      {
+        "celsius": 26.7,
+        "monthObserved": 8,
+        "year": 1967,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented on the main stem: no Kentucky Lake/Kentucky/Tennessee River row appears anywhere on TWRA's 2026 trout stocking schedule (full-page scan; 616-row workbook), the mainstem reservoirs are absent from the TWRA Trout Management Plan's list of nine trout reservoirs, and TWRA's documented main-stem fishery is warmwater (sauger run December to March below TVA dams like Pickwick Dam; largemouth bass the dominant harvest).",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's Trout Management Plan states 'Wild trout are generally limited to East Tennessee's mountain streams'; TWRA's documented main-stem species (Kentucky Reservoir page) are entirely warmwater with no trout.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm main-stem water: USGS grab samples at Savannah (03593500) read 26.7-30.5 C in July-August samples (1967-1999), TWRA documents the reach's signature winter fishery as the SAUGER run (Dec-Mar, downstream side of TVA dams), and no trout stocking exists anywhere on the main stem.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/warmwater-stockings.html (archived warmwater report shows a 'Tennessee River' row near 'Sauger X Walleye Hybrid' text — warmwater stocking only)",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03593500,03594500&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03593000&siteid=USGS-03593500&siteid=USGS-03594500&siteid=USGS-03593005&characteristicName=Temperature%2C%20water",
+      "https://waterservices.usgs.gov/nwis/iv/?sites=03593500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (mainstem gauges report stage/discharge only; no IV temperature)",
+      "https://tva.com/environment/lake-levels/how-tva-manages-water-levels (URL verified via WebSearch snippet; tva.com 403s plain fetch)",
+      "tva.com Kentucky Reservoir Land Management Plan (WebSearch snippet: Kentucky Dam at Tennessee River mile 22.4; full path not captured)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no Kentucky/Pickwick/Tennessee River trout rows)"
+    ]
+  },
+  {
+    "slug": "union-city-reelfoot-pond",
+    "segment": {
+      "description": "Union City Reelfoot Packing Site — the pond at the former Reelfoot Packing plant site in Union City, Obion County, listed on TWRA's official trout stocking schedule as 'Union City Reelfoot Packing Site' (Region 1). Lead-level context (not sole evidence): the abandoned Reelfoot Meat Packing Co. property on Reelfoot Avenue was the subject of a brownfield redevelopment plan. The project's curated anchor file (packages/content/data/west-tn-ponds.json) anchors it approximately at Union City town center.",
+      "boundaries": "Entire pond. TWRA Region 1 winter put-and-take site; 2025-26 program stockings run through February and TWRA spring stocking begins March 1."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": ""
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No site-specific holdover evidence found. Program design is winter put-and-take: the 2025-26 winter program runs through February (spring stocking begins March 1), and the TWRA Trout Management Plan states hatchery-supported waters like these 'are primarily warmwater habitats that cannot support trout year round' and that 'survival of stocked trout is usually limited by summer water temperatures'.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "wildPopulation": {
+      "documented": null,
+      "detail": "No wild trout presence documented. The Trout Management Plan states wild trout are generally limited to East Tennessee's mountain streams; this is a warmwater northwest Tennessee pond at a former industrial site.",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Winter put-and-take only: TWRA's 2026 schedule lists 'Union City Reelfoot Packing Site' (Obion Co.) as a Region 1 Winter rainbow site (workbook rows 1/14/2026 and TBD 12/2026), the program ends in February, and the Trout Management Plan states such stocked warmwater habitats cannot support trout year round.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf",
+      "https://www.tn.gov/twra/news/2025/11/26/twra-begins-2025-26-winter-trout-stocking-program.html",
+      "https://www.tn.gov/twra/news/2025/12/31/2025-26-winter-trout-stocking-program-continues-.html",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: Obion/'Union City Reelfoot Packing Site' Winter Rainbow Trout rows)",
+      "repo-local: packages/content/data/west-tn-ponds.json (curated anchor, approximate at Union City)",
+      "https://www.unioncitytn.gov/ (parks link only; no trout/pond mention)",
+      "https://www.reelfoot.com/ (lead only: calls it 'Union City's Reelfoot Packing Plant Lake')",
+      "https://www.nwtntoday.com/ (lead only: Reelfoot Meat Packing Co. property, Reelfoot Avenue)"
+    ]
+  },
+  {
+    "slug": "cumberland-river",
+    "segment": {
+      "description": "Cumberland River main stem, Nashville-to-Lake Barkley reach across Davidson to Stewart counties (catalog) — the pool-and-navigation-river continuum below Old Hickory Dam through Nashville (USGS gage 03431500, drainage 12,856 sq mi) and on to the Kentucky line. This is the Tennessee main stem; the South Fork Cumberland is a separate water, and the trout-bearing Cumberland tailwater is in Kentucky, not Tennessee.",
+      "boundaries": "Per catalog: Nashville to Lake Burkley (Lake Barkley), Davidson through Stewart counties, TN; impounded in pools behind USACE navigation/flood dams (Old Hickory Dam at river mile 216.2 forms the upstream pool boundary)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Old Hickory Dam (pool boundary at Nashville reach)",
+        "operator": "USACE",
+        "releaseType": null,
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA states 'The US Army Corps of Engineers (USACE) owns and operates Old Hickory Reservoir', a 22,500-acre impoundment on the Cumberland River (dam completed 1954). No source documents a cold-release trout regime on the Tennessee main stem; TWRA's Region 2 tailwater trout list does not include any Cumberland main-stem reach. KDFWR documents that the Cumberland trout tailwater (below Wolf Creek Dam, KY) runs 'from Wolf Creek Dam downstream to the Tennessee state line' — i.e., the managed trout water ends at the Tennessee line and does not include this TN main-stem segment."
+    },
+    "summerTemperature": [
+      {
+        "celsius": 21.1,
+        "monthObserved": 9,
+        "year": 1995,
+        "sourceType": "usgs-gauge",
+        "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03431500&siteid=USGS-03432900&siteid=USGS-03430100&characteristicName=Temperature%2C%20water"
+      }
+    ],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout holdover or trout fishery of any kind is documented on this main-stem segment: TWRA's 2026 trout stocking schedule lists no Cumberland main-stem stocking location (the only 'Cumberland' entries are Cumberland County park/tributary waters in Region 3), TWRA's Region 2 tailwater list has no Cumberland main-stem entry, and the workbook has no main-stem trout rows. Winter rainbow stockings at 'Shelby Bottoms' and 'Cedar Hill Park Pond' (Davidson Co.) are park-pond/adjacent program sites, not a documented open-main-stem trout fishery.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented for the Tennessee main stem. TWRA's reservoir/species documentation for this reach is entirely warmwater (black bass, crappie, sauger, striped/hybrid bass, walleye, catfish), and the managed Cumberland trout fishery documented by Kentucky lies above the Tennessee state line in the Lake Cumberland tailwater.",
+      "evidenceUrl": "https://fw.ky.gov/Education/Pages/Cumberland-River-Tailwater.aspx"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm USACE navigation/reservoir main stem: TWRA documents no trout program anywhere on the TN main stem, KDFWR places the managed Cumberland trout tailwater entirely above the Tennessee state line, and the only summer grab sample on record (gage 03431500) is 21.1 C in late September 1995.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html",
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html",
+      "https://waterservices.usgs.gov/nwis/site/?sites=03431500&siteOutput=expanded&format=rdb",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03431500&siteid=USGS-03432900&siteid=USGS-03430100&characteristicName=Temperature%2C%20water",
+      "https://nwis.waterservices.usgs.gov/nwis/iv/?sites=03431500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature series — empty timeSeries)",
+      "https://fw.ky.gov/Education/Pages/Cumberland-River-Tailwater.aspx (URL verified via WebSearch snippet)",
+      "https://fw.ky.gov/Fish/Pages/Wade-the-Lake-Cumberland-tailwater-to-beat-the-heat-and-catch-fish.aspx (URL verified via WebSearch snippet: 'best trout fishing water in Kentucky' from Wolf Creek Dam to the Tennessee state line)",
+      "https://fw.ky.gov/Fish/Pages/Fall-Fishing-Festival--Fly-fishing-the-Cumberland-tailwater.aspx (URL verified via WebSearch snippet: 75 miles of trout water Wolf Creek Dam to Tennessee line)",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03430100&characteristicName=Temperature%2C%20water (no summer records at Stones-River-confluence main-stem site)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: no main-stem Cumberland trout rows; 'Cumberland' matches are Cumberland County Region 3 waters)"
+    ]
+  },
+  {
+    "slug": "fletchers-fork",
+    "segment": {
+      "description": "Fletchers Fork — a stream on the Fort Campbell military reservation in Montgomery County, Tennessee (catalog; HUC 05130206), stocked with trout under the post's program governed by CAM Regulation 200-4. This is a put-and-take military-post fishery, not a TWRA wild-trout or year-round water: Fort Campbell's official iSportsman page shows 2026 trout stockings running February through August, supplied by KDFWR (Feb/Apr) and TWRA (Jun-Aug).",
+      "boundaries": "The stocked reach(s) of Fletchers Fork within the Fort Campbell reservation, Montgomery County (catalog GNIS 01284476); the post straddles the Tennessee-Kentucky line, and stocking events are listed post-wide under 'Fort Campbell Streams'."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-source documentation found; no gage or temperature record located for the creek."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover documentation found. The program is put-and-take with recurring stockings roughly monthly February-August 2026 (workbook weekly-of dates 2/15, 4/19, 5/17, 6/21, 7/12, 8/23; iSportsman lists KDFWR events 2/12/2026 [1,200 rainbow total] and 4/7/2026, and TWRA events 6/25, 7/22, 8/26/2026 at ~1,000-1,024 rainbow each), and no source documents survival between stockings. Note the catalog's programmatic seasonMonths (12,1,2) conflicts with the documented 2026 pattern (no December/January rows; documented stocking months are February-August).",
+      "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documentation found; the fishery is a stocked put-and-take program on a military reservation (CAM Regulation 200-4 governs; state fishing license required in addition to post requirements).",
+      "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Put-and-take post fishery restocked with rainbow and brown trout about monthly February through August 2026 (Fletchers Fork specifically received '750 Brown Trout & 240 Rainbow Trout' in April 2026), with no evidence of survival between stockings or outside the stocked season.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://ftcampbell.isportsman.net/Fishing.aspx",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html ('Fort Campbell Streams' schedule entry; 'Ft. Campbell' report 08/13/2026)",
+      "https://www.tn.gov/twra/fishing/trout-information.html (404 — page does not exist at this path)",
+      "twra 2026 regs PDF naming Fort Campbell streams (surfaced in WebSearch snippets only; exact tn.gov page/PDF URL unresolved — noted, not cited)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: six 'Fort Campbell Streams' Seasonal rainbow rows, weekly-of 2/15/2026 through 8/23/2026, Montgomery Co.)"
+    ]
+  },
+  {
+    "slug": "j-percy-priest-lake",
+    "segment": {
+      "description": "J. Percy Priest Reservoir itself — the 14,200-acre USACE impoundment near east Nashville on the Stones River, in Davidson, Rutherford, and Wilson counties (catalog). TWRA documents an entirely warmwater fishery: largemouth/smallmouth/spotted bass, crappie, hybrid/striped/white/yellow bass, catfish, rock bass, and sunfish — trout are not mentioned on TWRA's reservoir page. The prior composite pass's 'warmwater stocking events' flag is corrected here: the trout rows associated with this name are RAINBOW TROUT stocked in the TAILWATER reach below the dam (Stones River), a separate catalog water, not in the lake.",
+      "boundaries": "USACE reservoir pool behind J. Percy Priest Dam; catalog counties Davidson, Rutherford, Wilson. The winter trout stocking site 'J. Percy Priest TW / Stones River' (Davidson Co.) is the dam tailwater below the lake, outside this segment."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "J. Percy Priest Dam",
+        "operator": "USACE",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA: 'The US Army Corps of Engineers (USACE) owns and operates J. Percy Priest Reservoir' — 'a 14,200-acre impoundment located near east Nashville'. No cold-release characterization is documented for the dam. The tailwater below the dam receives winter rainbow trout stockings (TWRA Region 2 tailwater list: 'J. Percy Priest Dam, Stones River - Rainbow - December through March - Statewide Regulations'; 2026 workbook rows 1/9/2026, 02/13/2026, TBD 12/2026 under 'J. Percy Priest TW / Stones River') — that program belongs to the tailwater segment, not this lake segment."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery is documented in the lake itself: TWRA's reservoir page lists no trout among its species, the 2026 stocking schedule/workbook contains no in-lake trout stocking location, and the only trout program bearing this name is the December-March put-take rainbow stocking in the Stones River tailwater below the dam (different segment).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater (bass, crappie, striped/hybrid bass, catfish, sunfish).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm 14,200-acre USACE flood-control reservoir whose documented fishery is entirely warmwater; TWRA confines the associated trout program to a December-March rainbow stocking in the tailwater below the dam, which by design is not year-round lake habitat.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?countyCd=47037&format=rdb&siteOutput=expanded&siteType=ST (Stones River below J Percy Priest Dam = USGS 03430100; no lake temperature series found for the reservoir)",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03430100&characteristicName=Temperature%2C%20water (no summer temperature records at the below-dam stream site)",
+      "https://www.lrn.usace.army.mil/Missions/Recreation/J-Percy-Priest-Dam-and-Lake/ (unreachable: host serves mismatched certificate / edge rejects request)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: 'J. Percy Priest TW / Stones River' winter rainbow rows — tailwater segment; no in-lake rows)"
+    ]
+  },
+  {
+    "slug": "lake-barkley",
+    "segment": {
+      "description": "Lake Barkley (Barkley Reservoir) Tennessee portion — the Cumberland River reservoir at the Kentucky line in Stewart and Montgomery counties (catalog); TWRA describes roughly 10,350 acres in Tennessee and 47,570 acres in Kentucky, managed by the U.S. Army Corps of Engineers, with an entirely warmwater sportfish list (largemouth/smallmouth/spotted bass, black/white crappie, bluegill/redear, white bass, catfish, sauger/walleye/saugeye, striped/hybrid bass, paddlefish). Trout are never mentioned on TWRA's page. Control-style water.",
+      "boundaries": "Tennessee portion of Barkley Reservoir along the Cumberland River (catalog counties Stewart and Montgomery), upstream of Barkley Dam which lies in Kentucky; TWRA references reaches 'between Cumberland City and the Kentucky state line'."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Barkley Dam",
+        "operator": "USACE",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA: the reservoir 'lies along the Cumberland River and is managed by the U.S. Army Corps of Engineers'. It is a flood-control/navigation impoundment, not a cold tailwater; no cold-release regime is documented. Note the relevant geography: KDFWR documents that Cumberland River trout water runs from Wolf Creek Dam (Lake Cumberland, KY) only 'downstream to the Tennessee state line' — the managed trout reach ends at the state line and does not extend into this reservoir."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented: TWRA's Barkley page lists no trout in its species, regulations, or fishing-tips content; the 2026 TWRA stocking schedule contains no Barkley entry (TWRA's page-note: Dale Hollow, not Barkley, is the regional trout reservoir); and the owner workbook has zero Barkley rows.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's species documentation is entirely warmwater; the trout fishery on this section of the Cumberland system is Kentucky's Lake Cumberland tailwater above the state line, managed by KDFWR.",
+      "evidenceUrl": "https://fw.ky.gov/Fish/Pages/Wade-the-Lake-Cumberland-tailwater-to-beat-the-heat-and-catch-fish.aspx"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm USACE impoundment with an entirely warmwater documented fishery; the Cumberland's managed trout tailwater ends at the Tennessee state line above this reservoir, and no trout stocking program exists for Barkley on any source checked.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://fw.ky.gov/Fish/Pages/Wade-the-Lake-Cumberland-tailwater-to-beat-the-heat-and-catch-fish.aspx (URL verified via WebSearch snippet)",
+      "https://fw.ky.gov/Education/Pages/Cumberland-River-Tailwater.aspx (URL verified via WebSearch snippet)",
+      "https://www.lrn.usace.army.mil/Missions/Recreation/Barkley-Dam-and-Lake/ (unreachable: host serves mismatched certificate / edge rejects request)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Barkley' rows)"
+    ]
+  },
+  {
+    "slug": "little-harpeth-river",
+    "segment": {
+      "description": "Little Harpeth River — a Nashville-area Harpeth River tributary (HUC 05130204, Harpeth) rising in Williamson County and flowing through Davidson County, including the Edwin Warner Park reach in Nashville. No trout program exists on this water: the TWRA winter-stocking site on the Harpeth system is 'Harpeth River at Eastern Flank Battle Park' (Williamson Co.), which is on the MAIN Harpeth in Franklin — a different catalog water — and no workbook or TWRA trout-page entry exists for the Little Harpeth itself.",
+      "boundaries": "Per catalog: the Little Harpeth main stem, Williamson County headwaters to its confluence with the Harpeth in Davidson County; no dam or impounded reach is documented."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-source documentation of any kind found: no dam, no spring influence documented, no temperature record located (USGS IV temperature series absent at gage 03432900 'Little Harpeth River near Brentwood, TN' for July 2025)."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout holdover is documented and no trout stocking exists to hold over: the TWRA 2026 stocking schedule and the owner workbook list no Little Harpeth entry (the Harpeth-system winter stockings — 'Harpeth River at Eastern Flank Battle Park', rainbow trout, 1/23/2026, 2/20/2026, TBD 12/2026 — are on the main Harpeth in Franklin, the sibling harpeth-river catalog water).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout population documented on any agency source checked. Metro Parks' Nashville fishing information treats the Edwin Warner Park reach as general (warmwater) fishing water; no trout management listing exists for the stream.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "No trout program and no trout documentation exists for the Little Harpeth itself on any TWRA source checked — TWRA's Harpeth-system winter rainbow stockings are confined to the main Harpeth at Eastern Flank Battle Park in Franklin, a different catalog water.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://waterservices.usgs.gov/nwis/site/?countyCd=47187&format=rdb&siteOutput=expanded&siteType=ST (Little Harpeth gages incl. 03432900 'LITTLE HARPETH RIVER NEAR BRENTWOOD, TN')",
+      "https://nwis.waterservices.usgs.gov/nwis/iv/?sites=03432900&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (no temperature series — empty timeSeries)",
+      "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03432900&characteristicName=Temperature%2C%20water (no summer temperature records returned)",
+      "https://www.nashville.gov/departments/parks/activities/fishing (404 at guessed path; Metro Parks 'Fishing in Metro Parks' page confirming Little Harpeth fishing holes in Edwin Warner Park exists per WebSearch but exact URL unresolved)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Little Harpeth' rows; 'Harpeth' rows are 'Harpeth River at Eastern Flank Battle Park' only)"
+    ]
+  },
+  {
+    "slug": "little-west-fork-creek",
+    "segment": {
+      "description": "Little West Fork Creek — a stream on the Fort Campbell military reservation in Montgomery County, Tennessee (catalog; HUC 05130206; the creek's basin also extends into Christian County, Kentucky on the post). It is one of the post's stocked trout streams under CAM Regulation 200-4. The post-wide 2026 program runs February through August, supplied by KDFWR (Feb/Apr) and TWRA (Jun-Aug).",
+      "boundaries": "The stocked reach(s) of Little West Fork Creek on the Fort Campbell reservation (catalog GNIS 00499492, 01291707); stocking events are published post-wide under 'Fort Campbell Streams' (TWRA, Montgomery Co.) and by KDFWR for the Kentucky-side reaches."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "No cold-source documentation found; no gage or temperature record located for the creek."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No holdover documentation found. The post's trout program is put-and-take with recurring February-August stockings (TWRA workbook: 'Fort Campbell Streams', Montgomery Co., Seasonal weekly-of 2/15/2026 through 8/23/2026, rainbow; iSportsman: KDFWR events Feb 12 and Apr 7, TWRA events Jun 25, Jul 22, Aug 26, 2026). KDFWR's February 2026 stocking record for the Kentucky side names 'Fort Campbell (Little West Fork Creek)' at ~960 trout (surfaced via WebSearch snippet of fw.ky.gov's stocking archive; exact archive URL unresolved — noted, not cited). No source documents survival between stockings. The catalog's programmatic seasonMonths (12,1,2) conflicts with the documented 2026 pattern (documented stocking months are February-August).",
+      "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documentation found; the fishery is a stocked put-and-take program on a military reservation under CAM Regulation 200-4, with a state fishing license plus post permit requirements.",
+      "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+      },
+      {
+        "species": "brown",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://ftcampbell.isportsman.net/Fishing.aspx"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Put-and-take post stream restocked with rainbow (and brown) trout about monthly February through August 2026 under the Fort Campbell program, with no evidence of survival between stockings or outside the stocked season.",
+      "confidence": "medium"
+    },
+    "sourcesChecked": [
+      "https://ftcampbell.isportsman.net/Fishing.aspx",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html ('Fort Campbell Streams' schedule entry; 'Ft. Campbell' report 08/13/2026)",
+      "https://www.tn.gov/twra/fishing/trout-information.html (404 — page does not exist at this path)",
+      "https://fw.ky.gov stocking archive (February 2026 'Fort Campbell (Little West Fork Creek)', Christian Co., ~960 trout — surfaced via WebSearch snippet; exact archive URL unresolved — noted, not cited)",
+      "twra 2026 regs page naming Dry Creek/Little West Fork/Fletcher's Fork (surfaced in WebSearch snippets; exact tn.gov URL unresolved — noted, not cited)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: six 'Fort Campbell Streams' Seasonal rainbow rows, weekly-of 2/15/2026 through 8/23/2026, Montgomery Co.; zero rows naming 'Little West Fork' or 'Fletchers' individually)"
+    ]
+  },
+  {
+    "slug": "old-hickory-lake",
+    "segment": {
+      "description": "Old Hickory Reservoir — a 22,500-acre USACE impoundment of the Cumberland River in northern middle Tennessee (dam completed 1954), catalog counties Davidson, Sumner, Wilson, Smith, and Trousdale. TWRA documents an entirely warmwater fishery (largemouth/smallmouth/spotted bass, crappie, striped/hybrid/white/yellow bass, walleye, sauger, paddlefish, catfish, sunfish) with no trout content anywhere on the page. This is a control-style water: no trout program has been found on any source checked.",
+      "boundaries": "Reservoir pool behind Old Hickory Dam (Cumberland River mile 216.2), east of Nashville; catalog counties Davidson, Sumner, Wilson, Smith, Trousdale."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": "Old Hickory Dam",
+        "operator": "USACE",
+        "releaseType": "unknown",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html"
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "TWRA: 'The US Army Corps of Engineers (USACE) owns and operates Old Hickory Reservoir'; 'Old Hickory Reservoir is a 22,500-acre impoundment on the Cumberland River in northern middle Tennessee'; 'Dam completion occurred in 1954.' The reservoir is the impoundment itself, not a cold tailwater; no cold-release regime is documented."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": false,
+      "detail": "No trout fishery of any kind is documented: TWRA's reservoir page contains no mention of trout, the 2026 TWRA stocking schedule and owner workbook contain no Old Hickory trout rows, and no winter-program site on this impoundment exists (nearby Davidson winter sites — Shelby Bottoms, Cedar Hill Park Pond, Marrowbone Lake — are separate park/lake waters).",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documented. TWRA's species list for the reservoir is entirely warmwater; the documented cold-season fishery associated with USACE dams on this river is sauger (a warmwater percids), not trout.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html"
+    },
+    "troutSpecies": [],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unlikely",
+      "oneLineWhy": "Warm mainstream Cumberland impoundment: TWRA's own reservoir page documents only warmwater species and no trout program exists for the lake on the 2026 stocking schedule or in the stocking workbook.",
+      "confidence": "high"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html",
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "https://www.lrn.usace.army.mil/Missions/Recreation/Old-Hickory-Lake/ (unreachable: host serves mismatched certificate / edge rejects request)",
+      "https://www.lrd.usace.army.mil (Nashville District project references surfaced via WebSearch only; direct pages not fetched)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Old Hickory' rows across 616 rows)"
+    ]
+  },
+  {
+    "slug": "sinking-creek-wilson",
+    "segment": {
+      "description": "Sinking Creek (Wilson County) — the karst-influenced creek flowing through Don Fox Community Park in Lebanon, Tennessee, the Wilson County water in TWRA's winter trout stocking program. TWRA's 2026 schedule and the owner workbook list the site as 'Don Fox Park Community Park' (Wilson Co., Winter, rainbow trout: 2/11/2026 and TBD 12/2026); regional reporting identifies the stocked stream through the park as Sinking Creek. The catalog lists this water as a spring-type karst water — hence 'the name is the geology lesson'.",
+      "boundaries": "The stocked reach of Sinking Creek through Don Fox Community Park, Lebanon, Wilson County (catalog GNIS 01270380, HUC 05130201)."
+    },
+    "coldSource": {
+      "damTailwater": {
+        "dam": null,
+        "operator": null,
+        "releaseType": null,
+        "evidenceUrl": null
+      },
+      "springFed": {
+        "value": null,
+        "evidenceUrl": null
+      },
+      "elevationFt": null,
+      "notes": "Karst character is noted in the catalog, but no agency documentation of spring influence, baseflow temperature, or any cold-water characteristic was located. No temperature record found for the creek."
+    },
+    "summerTemperature": [],
+    "holdover": {
+      "documented": null,
+      "detail": "No holdover documentation found either way. The program is winter-only by design (workbook: Winter-type stockings 2/11/2026 and TBD 12/2026; regional reporting describes the creek being added to the winter schedule in winter 2021-22 after a local petition, stocked when 'temperatures reached optimal winter levels'), and no source documents whether any stocked fish survive past the winter season.",
+      "evidenceUrl": "https://mainstreetmediatn.com/articles/cheathamcountyexchange/second-trout-stocking-set-for-sinking-creek"
+    },
+    "wildPopulation": {
+      "documented": false,
+      "detail": "No wild trout documentation found; the fishery is TWRA's winter put-and-take stocking of catchable rainbow trout at the Don Fox Community Park reach.",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    "troutSpecies": [
+      {
+        "species": "rainbow",
+        "basis": "stocked-only",
+        "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+      }
+    ],
+    "overallSurvivalRead": {
+      "yearRoundSurvivalLikely": "unknown",
+      "oneLineWhy": "Winter-only put-and-take water: TWRA stocks rainbow trout at the Don Fox Park reach only in the winter program (December-February events), and no temperature or holdover data exists to say whether trout could survive the summer in this small karst creek.",
+      "confidence": "low"
+    },
+    "sourcesChecked": [
+      "https://www.tn.gov/twra/fishing/trout-information-stockings.html ('Don Fox Park Community Park' winter listing; 'Sinking Creek' name not present on TWRA page)",
+      "https://mainstreetmediatn.com/articles/cheathamcountyexchange/second-trout-stocking-set-for-sinking-creek (URL verified via WebSearch snippet: 'The stretch of Sinking Creek that runs through Lebanon's Don Fox Community Park')",
+      "https://www.change.org/p/tennessee-wildlife-resources-agency-ask-twra-to-stock-trout-in-lebanon-tn-winter-fishery/u/29655787 (petition trail for the 2021 program addition — lead only, not used as sole evidence)",
+      "repo-local: packages/content/data/twra-stocking-schedule.json (grep: zero 'Sinking' rows; Wilson County rows are 'Don Fox Park Community Park' Winter rainbow 2/11/2026 and TBD 12/2026 — those are this water under the park site name)"
+    ]
+  }
+]

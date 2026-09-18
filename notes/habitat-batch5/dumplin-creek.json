@@ -1,0 +1,39 @@
+{
+  "slug": "dumplin-creek",
+  "segment": {
+    "description": "Dumplin Creek — a Douglas Lake tributary draining portions of Jefferson and Sevier counties (catalog; HUC 06010107 Lower French Broad, GNIS 01283130), entering the reservoir headwaters area near the Jefferson/Sevier county line. The catalog entry carries no trout program (stockingProgram: false).",
+    "boundaries": "No formal agency reach boundaries documented; the creek runs from the Jefferson County uplands down to the Douglas Lake headwaters. USGS station 03470215 'DUMPLIN CREEK AT MT. HAREB, TN' (36.0831, -83.4307, Jefferson Co., HUC 06010107, 4.23 sq mi drainage, station altitude 1,200 ft) documents the upper-creek reach."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1200,
+    "notes": "No cold-water source documented; no dam on the creek and no spring-fed characterization found in any checked source. Elevation basis: USGS station altitude (1,200 ft NGVD29) at the Mt. Hareb headwater station — not a documented source-water attribution. The creek terminates in Douglas Lake, a TVA warmwater reservoir documented separately in this batch."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout stocking has ever been documented on the creek — TWRA's 2026 schedule (live feed, 616 rows, re-verified 2026-09-18) contains zero 'Dumplin' rows — so there is no stocked-trout population to hold over. No angler or agency holdover record exists either.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "Not on TWRA's Wild Trout Streams list (trout regulations page checked 2026-09-18 — no Dumplin entry); no wild trout record found in any checked agency source.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "No trout presence of any kind is documented — zero TWRA stocking rows, no wild-trout listing, no trout species record — and the creek's only water-temperature readings on file are non-summer (9.0 C in Dec 2004 at USGS 03470215; 16.4 C in Nov 2015 at the TDEC station), so summer suitability cannot be evaluated from evidence.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live feed fetched 2026-09-18: zero rows matching 'Dumplin')",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (Wild Trout Streams and Delayed Harvest lists checked 2026-09-18 — no Dumplin entry)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03470215&siteOutput=expanded&format=rdb (identity check 2026-09-18: 'DUMPLIN CREEK AT MT. HAREB, TN', Jefferson Co., HUC 06010107, 4.23 sq mi, altitude 1,200 ft)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03470215&siteid=TDECWR_WQX-TNW000007669&characteristicName=Temperature%2C%20water&mimeType=csv (pulled 2026-09-18: exactly two temperature rows on file — USGS-03470215 2004-12-09 9.0 C surface; TDECWR_WQX-TNW000007669 2015-11-06 16.43 C surface; no June-September readings)",
+    "https://www.waterqualitydata.us/data/Station/search?characteristicName=Temperature%2C%20water&countycode=US%3A47%3A089&mimeType=csv (Jefferson County temperature-station list pulled 2026-09-18 — two Dumplin Creek stations found: USGS-03470215 and TDECWR_WQX-TNW000007669)",
+    "Web search 'Dumplin Creek trout stocking Jefferson Sevier' (no site-specific trout record found)"
+  ]
+}

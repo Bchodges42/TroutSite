@@ -1,0 +1,80 @@
+{
+  "slug": "conasauga-river",
+  "segment": {
+    "description": "Conasauga River (GNIS 00327507), Coosa-basin drainage — restricted to the TENNESSEE reaches the catalog entry covers. TDEC designates the Tennessee reach as a State Scenic River: 'The entire segment of the river in Polk County, upstream from the Highway 411 bridge', Class I Natural River Area, designated April 23, 1969, ~10.1 miles, one of only two Tennessee Scenic Rivers in the Cherokee National Forest. The river crosses the TN/GA line more than once near Tennga; the famous rare-species research (Conasauga logperch, amber darter, listed mussels) and Georgia's 2015 Outstanding National Resource Water designation apply to the GEORGIA reaches (Cohutta Wilderness headwaters, Jacks River) and are NOT attributed to the Tennessee reach here.",
+    "boundaries": "Polk County segments of the river upstream of the US-411 bridge (take-out 35.00888, -84.73389, at the state line near Tennga) per the TDEC Scenic Rivers designation; the USGS gauge 02384000 'CONASAUGA RIVER AT US 411, NEAR TENNGA' (35.0095, -84.7338, 108 sq mi — listed under Polk County TN, operated by the USGS Georgia center) sits at the downstream boundary of this reach."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Freestone river draining the Cohutta Mountains through the Cherokee National Forest; the Tennessee scenic segment is a narrow valley run with Class II-III rapids per TDEC's paddling description. No dam, no spring-influence documentation for the TN reach. Gauge altitude at the US-411 boundary is ~756 ft (USGS 02384000), so the TN reach is low-elevation; no agency statement on TN-reach summer cold-water refuge was located.",
+    "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/conasauga.html"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 24.0,
+      "monthObserved": 6,
+      "year": 1996,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-02384000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.0,
+      "monthObserved": 8,
+      "year": 1996,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-02384000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.0,
+      "monthObserved": 9,
+      "year": 1996,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-02384000&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 20.0,
+      "monthObserved": 9,
+      "year": 1957,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-02384000&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No trout presence of any kind documented for the Tennessee reach — no stocking program rows, no trout designation, no creel or angler documentation located — so holdover cannot be assessed.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documented in the Tennessee reach. TDEC's Scenic River page describes a rich native fish community — 'more than 90 fish species and 25 mussel species' with federal and state-listed aquatic species — and names no trout. The celebrated rare-fish work and any trout headwater fishery (Cohutta Wilderness, Jacks River, GA's 2015 ONRW designation) are on the Georgia reaches and do not transfer to the TN reach. TWRA's stocking workbook contains zero Conasauga rows, and the river is absent from TWRA's wild-trout/special-regulation lists.",
+    "evidenceUrl": "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/conasauga.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "The only summer data for the Tennessee reach — USGS grabs at the US-411 state-line crossing bounding it — read 20.0-24.0 degC (1957-1996), marginal for trout, and no source documents any trout presence, stocking, or fishery on the TN reach itself.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/conasauga.html (TDEC Tennessee Scenic Rivers: entire Polk County segment upstream of the US-411 bridge, Class I Natural River Area, 10.1 mi, designated 1969-04-23; 90+ fish species / 25 mussel species; GA Jacks River-to-411 paddling description)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: zero rows matching 'Conasauga' — no TWRA trout stocking program on this river in any county)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-02384000&characteristicName=Temperature,%20water&mimeType=csv (20 USGS grabs 1957-2001 at 'CONASAUGA RIVER AT US 411, NEAR TENNGA': Jun 1996 24.0, Aug 1996 24.0, Sep 1996 22.0, Sep 1957 20.0, winter 2.0-7.5 degC)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A139&mimeType=csv (Polk County station sweep — 02384000 listed under Polk County TN at 35.0095,-84.7338, 108 sq mi; also TDEC Conasauga stations at 34.9906,-84.7747 on the Georgia-side reach, and 21GAEPD_WQX-RV_14_4410 'SR 61 near Tennga' — GA-operated)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query (predecessor NHD flowline capture for GNIS 00327507: 187 reach segments, extent lat 34.543-35.011, lon -84.945 to -84.592 — the TN portion north of the line is a short set of segments; TN-side vertices plotted at lat >= 34.998)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (no Conasauga River entry on the wild trout / special regulation / delayed-harvest lists)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/opportunities/fishing (Cherokee NF fishing page per wave-3 verification: stocked-stream list does not name the Conasauga River)",
+    "https://en.wikipedia.org/wiki/Conasauga_River (course context only — rises in the Cohutta Wilderness, flows north into Polk County TN then back to Georgia; not cited as evidence)",
+    "notes/habitat-batch5/_tmp_g2_nhd_conasauga.json and _tmp_g2_nhd_conasauga2.json (predecessor scratch NHD geometry, re-parsed this session; the conasauga2 query returned zero features)",
+    "notes/habitat-batch5/_tmp_g2_wqp_polk_stations.csv (predecessor scratch copy of the Polk County WQP station list)"
+  ]
+}

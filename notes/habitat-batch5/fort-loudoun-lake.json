@@ -1,0 +1,61 @@
+{
+  "slug": "fort-loudoun-lake",
+  "segment": {
+    "description": "Fort Loudoun Lake (Fort Loudoun Reservoir), the 14,600-acre mainstem Tennessee River reservoir created by TVA's Fort Loudoun Dam in 1943 at Knoxville, spanning Knox, Blount, and Loudon counties and extending 55 miles upstream from the dam to the confluence of the Holston and French Broad rivers (Little Tennessee/Tellico arm joins via the canal).",
+    "boundaries": "Entire pool: Fort Loudoun Dam (Tennessee River mile 602.3; USGS tailwater station 03499510 at 35.79174,-84.24325) upstream 55 miles to the Holston/French Broad confluence; discharges via lock and mainstem to Watts Bar Reservoir."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Fort Loudoun Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 813,
+    "notes": "TWRA: 'Fort Loudoun contains 14,600 acres and was created by the Tennessee Valley Authority in 1943'; it is 'a navigable mainstream waterway' with only a six-foot annual drawdown (pool fluctuating 807-813 ft) — a low-storage run-of-river mainstem pool, the opposite of a deep cold-release storage reservoir. No agency page states a release type; the historical record measured in the dam's own tailwater (USGS 03499510, 1975-1979) shows summer release temperatures of 19-27 C, empirically confirming no cold bottom-draw regime."
+  },
+  "summerTemperature": [
+    { "celsius": 21.41, "monthObserved": 6, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 22.51, "monthObserved": 7, "year": 2021, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.97, "monthObserved": 7, "year": 2026, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 25.72, "monthObserved": 8, "year": 2011, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24.85, "monthObserved": 8, "year": 2016, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.7, "monthObserved": 8, "year": 2026, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.59, "monthObserved": 9, "year": 2012, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 25.81, "monthObserved": 9, "year": 2016, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 8, "year": 1975, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03499510&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.0, "monthObserved": 7, "year": 1975, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03499510&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.0, "monthObserved": 6, "year": 1976, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03499510&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.5, "monthObserved": 8, "year": 1979, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03499510&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout presence to hold over: TWRA's Fort Loudoun fishery profile lists largemouth/smallmouth/white bass, bluegill, crappie, and catfish with zero trout content, Fort Loudoun appears nowhere in TWRA's 2026 trout stocking workbook, and the STMP's list of the nine Tennessee reservoirs that maintain year-round cold, well-oxygenated water and support trout fisheries does not include it.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation. Fort Loudoun is absent from the STMP wild trout waters list, and no trout record exists for the reservoir in TWRA materials (catalog targetSpecies are bass/crappie/panfish/catfish/striped bass, consistent with TWRA's profile).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A shallow navigable mainstem Tennessee River pool (807-813 ft, six-foot drawdown) with documented summer temperatures of 20.6-27.0 C in the reservoir (TDEC 2011-2026) and 19-27 C in its own dam tailwater (USGS 03499510, 1975-1979), zero trout stocking rows, and no trout content in TWRA's fishery profile — excluded from the STMP's nine cold-water trout reservoirs.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html (fetched 2026-09-18: TVA 1943, 14,600 ac, 55 mi to Holston/French Broad confluence, 807-813 ft pool, six-foot drawdown, species list with zero trout, TDEC PCB/mercury advisories)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt: 'Fort Loudoun' zero hits — absent from nine-reservoir trout list and wild trout list)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000006316&characteristicName=Temperature%2C%20water&mimeType=csv (TDEC 'Tennessee River' reservoir station 35.7915,-84.2454 at the dam, Knox Co.: 17 results 2011-2026 incl. 12 summer values 20.58-26.97 C)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03499510&characteristicName=Temperature%2C%20water&mimeType=csv (historical NWIS series at TENNESSEE RIVER AT FORT LOUDOUN DAM (TW): 1974-1979, 18 summer values 19-27 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03499500,03499510&siteOutput=expanded&format=rdb (identity: 03499500 FORT LOUDOUN LAKE LK station, 9,550 sq mi drainage, HUC 06010201; 03499510 tailwater station)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (zero Fort Loudoun rows of any type in the 616-row workbook)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE1-TAILWATERS-LAKES.md (URL leads only; fort-loudoun entry corroborates no-trout profile and absence from stocking schedule)"
+  ]
+}

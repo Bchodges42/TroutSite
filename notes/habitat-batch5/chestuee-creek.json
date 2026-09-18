@@ -1,0 +1,48 @@
+{
+  "slug": "chestuee-creek",
+  "segment": {
+    "description": "Chestuee Creek, a Hiwassee River tributary draining McMinn County (HUC 06020002 Hiwassee) toward the Hiwassee arm of Chickamauga Lake. Two USGS stations document the stream: 03565120 'CHESTUEE CREEK AT ZION HILL, TN' (upper, 37.8 sq mi, gage datum 778 ft) and 03565250 'CHESTUEE CREEK AT DENTVILLE TENN (TVA)' (lower, 114 sq mi, gage datum 723 ft). No trout program of any kind exists on the creek.",
+    "boundaries": "Catalog gives no reach limits; record covers the McMinn County main stem from the Zion Hill area downstream past Dentville to the Hiwassee/Chickamauga Lake confluence."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 723,
+    "notes": "Gage datum 723 ft (NGVD29) at lower station 03565250 (TVA co-op era); upper station 03565120 sits at 778 ft - a low-to-mid elevation Valley-and-Ridge tributary, not a cold mountain stream. The 03565120/03565250 identity, county (McMinn, FIPS 107), drainage areas, and datums were verified on the USGS waterservices site endpoint.",
+    "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03565120,03565250,03566230,03566250,03566400,035664005,03566510&siteOutput=expanded&format=rdb"
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable - no trout have ever been stocked: TWRA's stocking workbook contains zero 'Chestuee' rows, the creek has no entry on TWRA's trout regulations page (delayed harvest, wild trout, or special regulation lists), and it is never mentioned in the TWRA Trout Management Plan 2017-2027.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation of any kind found. The Trout Management Plan places wild trout in East Tennessee mountain streams; Chestuee Creek is a lowland Valley-and-Ridge agricultural tributary (TDEC has listed it for siltation/biological-integrity impairment in past 303(d) cycles per search leads, not re-verified to a primary document here).",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Control-style warmwater record: zero TWRA stocking rows, no trout regulation or Trout Management Plan mention, no wild-trout documentation, and no water temperature record at all for this ~723-ft McMinn County Hiwassee tributary.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep /chestuee/i: 0 rows - absence is itself the finding)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no Chestuee entry anywhere in cached page HTML: absent from delayed-harvest, wild-trout, and special-regulation lists)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (text extract notes/habitat-batch5/_tmp_g1_stmp.txt: 'Chestuee' 0 occurrences)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03565120,03565250,03566230,03566250,03566400,035664005,03566510&siteOutput=expanded&format=rdb (station identity, county 107, HUC 06020002, drainages 37.8/114 sq mi, datums 778/723 ft)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03565120&siteid=USGS-03565250&characteristicName=Temperature,%20water&mimeType=csv (fetched 2026-09-18: header only, 0 temperature results)",
+    "predecessor scratch _tmp_g1_03565120.csv and _tmp_g1_03565250.csv (same WQP query, header-only - confirmed independently)",
+    "WebSearch 'Chestuee Creek Tennessee trout fishery watershed McMinn' (no trout or temperature source surfaced; TDEC 303(d) siltation listing and UT BMP watershed study surfaced as leads without fetchable URLs; 1974 TN Academy of Science 'Fishes of the Hiwassee River System' documents warmwater fish assemblages incl. a cyprinid in highland Chestuee Creek near Nonaburg - lead only, no article-level URL found)"
+  ]
+}

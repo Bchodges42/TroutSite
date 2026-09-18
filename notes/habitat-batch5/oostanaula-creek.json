@@ -1,0 +1,72 @@
+{
+  "slug": "oostanaula-creek",
+  "segment": {
+    "description": "Oostanaula Creek (GNIS 01329064, HUC-8 06020002 Hiwassee) in the catalog's McMinn/Monroe county reach: a substantial Hiwassee tributary that runs through the center of Athens, Tennessee and drains to the Hiwassee River near Calhoun (USGS 03565500 'Oostanaula Creek near Sanford, TN' sits on the main course at 35.3276, -84.7051; USGS 03565504/03565700 document the approach to the mouth near Calhoun). The nearby Georgia Oostanaula River is a different water — not covered here.",
+    "boundaries": "Headwaters in the McMinn/Monroe county area, through Athens, to the Hiwassee River confluence near Calhoun; exact catalog reach is the full named creek (no sub-reach boundaries are documented in the catalog)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Small unnamed impoundment near Athens documented only by the USGS station name 'OOSTANAULA CREEK ABOVE DAM NEAR ATHENS, TN' (03565432, 21.3 sq mi drainage); dam name, operator, and release type are not documented in any agency source found",
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterdata.usgs.gov/monitoring-location/03565432/"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 716,
+    "notes": "Elevation is the gauge altitude of USGS 03565500 (716.03 ft). Valley-floor creek through the City of Athens; a UT Extension account of the 10-year Oostanaula Creek watershed remediation (McMinn County) describes erosion/runoff/sedimentation from farms and urban surfaces as the creek's water-quality story and confirms it 'runs through the center of Athens' and drains to the Hiwassee. No cold-water source (deep-release dam or spring influence on the creek itself) is documented; Athens Utilities Board's Ingleside spring/aquifer supply parallels the creek but is a groundwater source, not a documented creek cold-inflow."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 26.5,
+      "monthObserved": 8,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03565500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.0,
+      "monthObserved": 7,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03565500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 19.0,
+      "monthObserved": 8,
+      "year": 1979,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03565500&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover record found — no TWRA trout program exists on the creek, so no put-and-take carryover question has been surveyed or reported by any acceptable source.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented: the creek is absent from TWRA's wild-trout and special-trout regulation lists (grep of the live trout-regulations page returns zero hits for 'Oostanaula'), absent from TWRA's 2026 stocking schedule (0 rows for 'Oostanaula' in the live exceldriven JSON and the repo workbook, 616 rows scanned), and no fish-community survey was located for the Tennessee Oostanaula Creek.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples at 03565500 across 1976-2004 show August water up to 26.5 degC on this warmwater Athens valley creek, which carries no TWRA trout stocking row and no wild-trout designation.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03565500&characteristicName=Temperature,%20water&mimeType=csv (1976-2004 grab temps; summer values 13.0-26.5 degC extracted)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03565440,03565500,03565432,03566050,03566297,03566292,03567500,03567700,03567000&seriesCatalogOutput=true&siteStatus=all (03565500 active: daily discharge 1954-present; qw temperature 1975-2004; 03565432 qw to 2004)",
+    "https://waterdata.usgs.gov/monitoring-location/03565500/",
+    "https://waterdata.usgs.gov/monitoring-location/03565432/ ('ABOVE DAM' station identity)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live 2026 schedule: 0 'Oostanaula' rows)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (0 'Oostanaula' hits — no wild/special/DH listing)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (616-row grep: no Oostanaula rows)",
+    "https://our.tennessee.edu/water-water-everywhere/ (UT Extension watershed-remediation account; fetched)",
+    "TDEC WQX station search for McMinn County (US:47:007) — no TDEC station named Oostanaula surfaced (identity noted as a gap)",
+    "aub.org drinking-water pages (WebSearch snippet only — Ingleside spring is AUB's groundwater supply, not a documented creek cold-inflow; not cited as creek evidence)"
+  ]
+}

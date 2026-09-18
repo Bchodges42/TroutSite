@@ -1,0 +1,50 @@
+{
+  "slug": "watts-bar-lake",
+  "segment": {
+    "description": "Watts Bar Lake (USGS station name 'WATTS BAR LAKE'; TVA 'Watts Bar Reservoir') — mainstem Tennessee River impoundment from Watts Bar Dam (TN River mile 529.9/530) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea and Loudon counties, including the Clinch arm up to Melton Hill Dam and the Emory River arm (catalog; TWRA). Discharges through Watts Bar Dam into Chickamauga Lake.",
+    "boundaries": "Fort Loudoun Dam downstream to Watts Bar Dam (mainstem), plus the Clinch arm to Melton Hill Dam and the Emory arm; 39,600 acres and 722 miles of shoreline per TWRA."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Watts Bar Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Warmwater presumption verified: TWRA describes the water as 'a mainstem impoundment on the Tennessee River... built in 1942 with the completion of Watts Bar Dam at TN River mile 530 in both Rhea and Meigs counties', with a 5-6 ft drawdown, receiving the Clinch, Emory, White's Creek and Piney Creek tributaries. It receives Fort Loudoun and Melton Hill (Norris/Clinch) discharges; no deep cold-release regime is documented for Watts Bar Dam itself. tva.com reservoir pages block automated fetch (403), so no TVA release-specification citation is available; the lake's own USGS lake station 03543000 is discontinued (2006-2007 only)."
+  },
+  "summerTemperature": [
+    { "celsius": 23.0, "monthObserved": 6, "year": 1973, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543005&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 7, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543005&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 8, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543005&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 9, "year": 1975, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543005&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout are stocked here at all — the owner-supplied 2026 TWRA schedule (616 rows, live feed re-verified 2026-09-18) contains zero 'Watts Bar' trout rows and TWRA's reservoir page documents an entirely warmwater management program (Florida largemouth bass since 2015, walleye since 2011, striped bass, black crappie) — so there is no stocked-trout population to hold over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout record in any checked agency source; TWRA's reservoir species account (largemouth/smallmouth/spotted bass, crappie, bluegill/redear, catfish, striped/hybrid, white bass, sauger/walleye, yellow perch, muskie) mentions no trout, and the water has no entry on TWRA's wild trout or delayed-harvest lists.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Historic USGS grab samples at the Watts Bar Dam tailwater gauge (03543005) show 26.5-27.0 C water in July-September (1973-1986), TWRA stocks zero trout rows for the reservoir, and TWRA's own page manages it purely as a warmwater bass/crappie/striped bass fishery.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html (full text verified locally 2026-09-18: mainstem impoundment, dam 1942 at mile 530, Rhea/Meigs; 39,600 ac, 722 mi shoreline; 5-6 ft drawdown; warmwater species list and warmwater stocking programs; no trout)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live feed fetched 2026-09-18: zero rows matching 'Watts Bar')",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543005&characteristicName=Temperature%2C%20water&mimeType=csv (predecessor-fetched CSV re-parsed 2026-09-18: 162 USGS grab samples 1973-1986 at the dam tailwater; June 20.5-24.0, July 23.0-26.5, Aug 24.0-27.0, Sep 22.5-26.5 C surface)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03543005,03543000&siteOutput=expanded&format=rdb (identity check: 03543005 'TENNESSEE RIVER AT WATTS BAR DAM (TAILWATER), TN' Rhea Co.; 03543000 'WATTS BAR LAKE' site type LK)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03543005&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (empty — no current temperature series at this site)",
+    "https://www.tva.com/environment/lake-levels (tva.com blocks automated fetch — no TVA release specification verifiable; catalog official source listed)",
+    "https://lakeinfo.tva.gov (TVA lake-info result in search: dam completed January 1942, 112 ft high, 2,960 ft across the Tennessee River — not machine-verifiable)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no Watts Bar entry on wild trout / delayed harvest lists, checked 2026-09-18)"
+  ]
+}

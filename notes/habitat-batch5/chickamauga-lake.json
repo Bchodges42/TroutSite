@@ -1,0 +1,79 @@
+{
+  "slug": "chickamauga-lake",
+  "segment": {
+    "description": "Chickamauga Lake - the mainstem Tennessee River reservoir impounded by TVA's Chickamauga Dam, spanning Hamilton, Bradley, Meigs, and Rhea counties from Watts Bar Dam downstream to Chickamauga Dam (HUC 06020001), receiving the Hiwassee River. TWRA maps the pool at 33,973 ac. The catalog's species list (largemouth/smallmouth/spotted bass, crappie, bluegill, catfish, striped bass) is a warmwater fishery; no trout fishery exists on the reservoir.",
+    "boundaries": "Entire reservoir: Watts Bar Dam tailwater to Chickamauga Dam. Tailwater identity: USGS 03566510 'TENNESSEE RIVER AT CHICKAMAUGA DAM (TW)' (35.10313/-85.22968, 20,790 sq mi drainage, gage datum 626.5 ft). Note: the stocked 'N. Chickamauga Creek' in TWRA's schedule is a separate tributary creek, not the reservoir."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Chickamauga Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://lakeinfo.tva.gov"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 682,
+    "notes": "Elevation is TVA's typical summer operating range (681.5-682.5 ft) for the reservoir; the 03566510 tailwater gage datum is 626.5 ft. Chickamauga Dam is a mainstem hydroelectric facility. No cold deep-draw release regime is documented - a mainstream storage impoundment, unlike TVA's deep-storage tributary dams. Historic tailwater grabs at 03566510 (below the dam) reached 27.5 C in August 1977, confirming warm releases.",
+    "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566510&characteristicName=Temperature,%20water&mimeType=csv"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 27.5,
+      "monthObserved": 8,
+      "year": 1977,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566510&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 26.0,
+      "monthObserved": 8,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566510&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 25.0,
+      "monthObserved": 7,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566510&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.0,
+      "monthObserved": 6,
+      "year": 1978,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566510&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable - no trout are stocked: TWRA's stocking workbook contains zero rows for Chickamauga Lake (the only 'Chickamauga' rows are for North Chickamauga Creek, a distinct tributary stream). TWRA's Chickamauga Reservoir page states the only species TWRA stocks there are striped bass, walleye, and Florida largemouth bass.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "TWRA's own Chickamauga Reservoir page lists the fishery as warmwater species (largemouth/spotted/smallmouth bass, crappie, bluegill, redear, sauger/walleye, catfish, white/yellow bass, striped/hybrid bass, paddlefish) with no trout mention of any kind; and the TWRA Trout Management Plan's list of the nine Tennessee reservoirs that 'currently support trout fisheries' (Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, Tellico) does not include Chickamauga.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A mainstem warmwater reservoir whose tailwater grabs hit 27.5 C in August: TWRA stocks no trout in it, TWRA's reservoir fishery page names no trout at all, and the Trout Management Plan's nine-reservoir trout list excludes it.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep /chickamauga/i: only 4 'N. Chickamauga Creek' Hamilton Co. Seasonal rainbow rows - a separate creek; zero Chickamauga Lake rows)",
+    "notes/habitat-batch5/_tmp_g1_stmp.txt (pre-extracted STMP text: 'Tennessee has nine reservoirs that currently support trout fisheries: Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, and Tellico' - Chickamauga absent)",
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html (fetched 2026-09-18: warmwater species list verbatim, no trout, stocking limited to striped bass/walleye/Florida largemouth)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP source document)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03566510&characteristicName=Temperature,%20water&mimeType=csv (128 grab results 1975-1990s; 15 summer values 22-27.5 C - parsed from predecessor scratch _tmp_g1_03566510.csv)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03565120,03565250,03566230,03566250,03566400,035664005,03566510&siteOutput=expanded&format=rdb (identity: TENNESSEE RIVER AT CHICKAMAUGA DAM (TW), Hamilton Co., 20,790 sq mi, datum 626.5 ft)",
+    "https://lakeinfo.tva.gov (via WebSearch: Chickamauga Dam is a hydroelectric facility; typical summer pool 681.5-682.5 ft; tva.com 403s direct fetch)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (cached HTML: 0 'Chickamauga' trout-regulation entries)",
+    "https://waterdata.usgs.gov/monitoring-location/03566510/ (catalog officialSource for the reservoir gauge)"
+  ]
+}

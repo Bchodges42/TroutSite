@@ -1,0 +1,84 @@
+{
+  "slug": "big-sewee-creek",
+  "segment": {
+    "description": "Big Sewee Creek, an order-5 Watts Bar tributary in Rhea and Meigs County country (GNIS 01269344, HUC 06020001), documented at USGS 03543500 'SEWEE CREEK NEAR DECATUR, TN' (Meigs Co., 117 sq mi drainage, gage datum 694.32 ft). No trout program exists on the creek.",
+    "boundaries": "Catalog gives no reach limits; record covers the Rhea/Meigs main stem downstream to the Watts Bar Lake arm near Decatur. Temperature record is at the Decatur station near the lower end."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 694,
+    "notes": "Gage datum 694.32 ft (NGVD29) at USGS 03543500 - a low-elevation Valley-and-Ridge tributary. Station identity verified on USGS waterservices (name 'SEWEE CREEK NEAR DECATUR, TN', county 121 Meigs, HUC 06020001).",
+    "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03543500&siteOutput=expanded&format=rdb"
+  },
+  "summerTemperature": [
+    {
+      "celsius": 25.0,
+      "monthObserved": 8,
+      "year": 1988,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 24.0,
+      "monthObserved": 7,
+      "year": 1986,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 23.0,
+      "monthObserved": 8,
+      "year": 1980,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 21.0,
+      "monthObserved": 6,
+      "year": 1976,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543500&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.5,
+      "monthObserved": 9,
+      "year": 1981,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543500&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable - no trout stockings: TWRA's 2026 stocking workbook contains zero 'Sewee' rows, and in fact zero rows for all of Meigs County (neighboring Rhea County's only trout water is Piney River).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout documentation of any kind; creek never mentioned in the TWRA Trout Management Plan 2017-2027 and absent from the wild-trout, delayed-harvest, and special-regulation lists on TWRA's trout regulations page.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "USGS grab samples at the Decatur station across 1975-1994 show summer water temperatures of 20-25 C (max 25.0 C in Aug 1988) in nearly every year - warmwater summer conditions - and TWRA has never stocked the creek or Meigs County at all.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "predecessor scratch _tmp_g1_sewee_wqx.csv (WQP Result query for Sewee Creek area; 117 temperature rows 1975-1994 all at USGS-03543500; summer values re-extracted and attributed) - same query cited live as https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03543500&characteristicName=Temperature,%20water&mimeType=csv",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03543500&siteOutput=expanded&format=rdb (identity: SEWEE CREEK NEAR DECATUR TN, Meigs Co., 117 sq mi, datum 694.32 ft)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (grep /sewee/i: 0 rows; county sweep: Meigs 0 rows, Rhea only Piney River)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (program calendar)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no Sewee entry in cached page HTML)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (text extract notes/habitat-batch5/_tmp_g1_stmp.txt: 'Sewee' 0 occurrences)",
+    "WebSearch 'Sewee Creek Tennessee trout stocking Meigs Rhea' (search-synthesis asserted Sewee was in the winter stocking program, but no citable source row exists in the authoritative 616-row workbook; synthesized news/ereggulations claims treated as unverified leads)"
+  ]
+}

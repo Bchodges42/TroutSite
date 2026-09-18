@@ -1,0 +1,70 @@
+{
+  "slug": "tumbling-creek",
+  "segment": {
+    "description": "Tumbling Creek in Polk County per the catalog: a small (11.8 sq mi drainage) Cherokee National Forest tributary in the Big Frog Mountain / Allen Gap country near the Ocoee, stocked by TWRA Region 3. Identity verified: USGS 03562300 'TUMBLING CREEK NEAR ALLEN GAP, TN' (approx 35.0017, -84.4694) and TDEC station TDECWPC-TUMBL000.9PO at 35.0190, -84.4656 (0.9 mi above the mouth, county 139, HUC-8 06020003) both sit on the Polk County creek — the stocked namesakes in Humphreys/Houston counties and in Virginia/Missouri are different waters.",
+    "boundaries": "Cherokee NF headwaters in the Big Frog Mountain area down past the USFS Tumbling Creek Campground to the Ocoee/Hiwassee-basin confluence; full named creek per catalog (no sub-reach boundaries documented)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Small, steep, forested Cherokee NF mountain creek (the catalog's 'gradient earns the name'); USFS operates the remote 8-site Tumbling Creek Campground on its banks near the Ocoee Whitewater Center's Tanasi trail complex. No dam or spring documentation found for the creek itself."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 20.8,
+      "monthObserved": 8,
+      "year": 2006,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-TUMBL000.9PO&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 18.21,
+      "monthObserved": 9,
+      "year": 2006,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-TUMBL000.9PO&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover record found — no creel data, stocking-location notes, or acceptable independent angler agreement was located for carryover of the spring-stocked rainbows.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout presence documented: zero hits for 'Tumbling' on TWRA's trout-regulations lists (no wild-trout/special/DH designation; also absent from the Trout Management Plan text per the wave-3 sweep) and no fish-community survey was located. Trout presence rests entirely on the stocking program.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TDEC grabs 0.9 miles above the mouth show August water of 20.8 degC and September water of 18.2 degC in this shaded Cherokee NF mountain creek — summer temperatures at the warmest sampled point are cool enough that carryover of its spring-stocked rainbows is plausible, though no survey documents survival.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live 2026 schedule: REGION 3, COUNTY Polk, 'Tumbling Creek', Seasonal, Rainbow Trout — weeks 3/1, 3/29, 4/26/2026)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (rows 2662-2690: 3 Polk Tumbling Creek Seasonal rainbow rows matching the live page)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-TUMBL000.9PO&characteristicName=Temperature,%20water&mimeType=csv (2006-2007 TDEC series; Aug 2006 20.8 degC, Sep 2006 18.21 degC)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A139&mimeType=csv (station identity: TDECWPC-TUMBL000.9PO at 35.0190, -84.4656, HUC 06020003)",
+    "https://waterdata.usgs.gov/monitoring-location/03562300/ (historic station 'NEAR ALLEN GAP' — site visits 1943-1963 only, no continuous record)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=03565440,03565500,03565432,03566050,03566297,03566292,03567500,03567700,03567000&seriesCatalogOutput=true&siteStatus=all (station period/type verification)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/tumbling-creek-campground (USFS campground page fetched live — creek-bank campground in the Big Frog Mtn / Ocoee Whitewater Center area)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (0 'Tumbling' hits)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (repo-local lead source: tumbling-creek block; its URLs re-verified and cited directly above, never the ledger)"
+  ]
+}

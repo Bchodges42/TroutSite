@@ -1,0 +1,71 @@
+{
+  "slug": "goforth-creek",
+  "segment": {
+    "description": "Goforth Creek (GNIS 01328281), a Cherokee National Forest tributary of the Ocoee River in Polk County — the TWRA-stocked trout creek along the old US-64/Ocoee River gorge corridor that the catalog describes ('steep, scenic pocket water'). No USGS gauge exists on the creek (the Polk County USGS surface-water station inventory contains no GOFORTH station). TDEC's ambient monitoring station TDECWPC-GOFOR000.2PO ('U/S OF PARKING AREA AT CREEK', 35.0869, -84.5145) sits at river mile 0.2 near the mouth.",
+    "boundaries": "Full named creek: Ocoee River confluence at ~35.0836, -84.5147 (mouth on the Ocoee upstream of Parksville Lake) upstream to ~35.1144, -84.4796 near Boyd Gap, HUC-8 06020003 (Ocoee), per the NHD flowline query used by the wave-3 verification pass. Polk County only."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Steep forested Cherokee NF pocket-water gorge draining to the Ocoee corridor; no dam on the creek and no spring-influence documentation found. No published elevation for the creek's reach was located on an agency page. Corridor context only (NOT a statement about Goforth Creek itself): TWRA's Trout Management Plan states 'The Normandy and Ocoee tailwaters do not have cold water year-round and receive only 9-inch Rainbow Trout seasonally' — that refers to the Ocoee tailwater below the dam, not this tributary, whose own coldwater status rests on the TDEC temperature grabs recorded below."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 20.23,
+      "monthObserved": 7,
+      "year": 2006,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-GOFOR000.2PO&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 18.71,
+      "monthObserved": 9,
+      "year": 2006,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-GOFOR000.2PO&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence found: no creel survey, stocking-location holdover note, or multiple independent angler reports were located for Goforth Creek.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No creek-specific wild-trout documentation found. The USFS Cherokee National Forest fishing page states generally that the forest holds 'wild trout, rainbow, brown and native brookies... above 1000 feet', but it does not name Goforth Creek, and no agency fish-community inventory for the creek was located in this or the prior verification pass.",
+    "evidenceUrl": "https://www.fs.usda.gov/r08/cherokee/recreation/opportunities/fishing"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TDEC grabs at the creek's lower reach (0.2 mi above the Ocoee mouth) read 20.23 degC in late July 2006 and 18.71 degC in September — trout-viable summer temperatures on a steep, fully forested Cherokee NF creek — but the series is a single 2006-2008 grab set, so confidence is limited.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: 3 Region 3 / Polk / 'Goforth Creek' / Seasonal / Rainbow Trout rows — weeks 3/1, 3/29, 4/26/2026; no other trout rows)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live TWRA 2026 schedule; same 3 Goforth seasonal rainbow weeks per the parallel batch-5 verification pass)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-GOFOR000.2PO&characteristicName=Temperature,%20water&mimeType=csv (8 TDEC grabs 2006-07-24 to 2008-04-14: Jul 20.23, Sep 18.71, Nov 7.66, Jan 4.66/5.2, Mar 3.54, May 13.45, Apr 9.4 degC)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_name%3D%27Goforth%20Creek%27 (NHD flowline: mouth 35.0836,-84.5147; upper end 35.1144,-84.4796 near Boyd Gap; HUC 06020003)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&countyCd=47139&siteTypeCd=ST&siteOutput=expanded&siteStatus=all (Polk County USGS station inventory — no GOFORTH station; service returned 503 on re-check 2026-09-18, prior verification stands)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (no Goforth entry on the wild trout / special regulation / delayed-harvest lists — statewide trout rules apply)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/opportunities/fishing (general Cherokee NF trout statement; Goforth not named on the page)",
+    "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf (2023 tentative schedule row 'Polk | Goforth Creek | 7 weekly dots' per wave-3 ledger; PDF not re-fetched this session)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (text pre-extracted repo-locally: no 'Goforth' occurrence; Normandy/Ocoee tailwater cold-water quote captured for corridor context)",
+    "https://tennesseerivervalleygeotourism.org (geotourism entry describes Goforth as 'a stocked trout stream' — non-agency reference, supporting only)"
+  ]
+}

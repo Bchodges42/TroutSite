@@ -1,0 +1,54 @@
+{
+  "slug": "norris-lake",
+  "segment": {
+    "description": "Norris Lake (Norris Reservoir), the 34,200-acre TVA reservoir impounded by Norris Dam (completed 1936, the first TVA reservoir) on the Clinch River across Anderson, Campbell, Claiborne, Grainger, and Union counties. This record covers the RESERVOIR only; the cold-water trout fishery the dam creates is the Clinch River Norris tailwater below the dam (separate catalog entry), and TWRA's Norris stocking program content applies to that tailwater, not the lake.",
+    "boundaries": "Entire pool from Norris Dam upstream along the Clinch arm (to the Virginia-line Clinch headwaters) and the Powell River arm (pool extends upstream to Gap Creek's confluence per TWRA's Powell River regulation boundary)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Norris Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "TWRA's Norris page states Norris 'was the first reservoir constructed by the Tennessee Valley Authority (TVA)' with the dam completed in 1936, impounding the Clinch and Powell rivers; primary purposes flood control and hydroelectric power. The dam's cold-release regime sustains the famous Norris TAILWATER trout fishery (STMP: Norris is among the heavily-fished stocked tailwaters with a 14-20 inch protected length limit and adult Brook Trout plants) — that fishery lies below the dam and is attributed to the clinch-river catalog entry, not this lake. Deep-main-lake summer cold-pool characteristics were not measured in this pass (the catalog notes reservoir temperature/oxygen refuge context is not a scored input); the documented lake temperatures here are warm upper-arm surface values."
+  },
+  "summerTemperature": [
+    { "celsius": 29.7, "monthObserved": 7, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008577&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 29.75, "monthObserved": 7, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008578&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 29.73, "monthObserved": 7, "year": 2022, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008580&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout holdover is documented because no trout fishery exists in the reservoir: TWRA's Norris page documents striped bass (~103,000 fingerlings/yr), walleye (~240,000/yr, mostly Lake Erie strain), and crappie (~103,000/yr) stocking plus black bass — with zero trout content anywhere in the fishery text. The only TWRA trout rows carrying the Norris name are 'Norris Tailwater / Clinch River' (Tailwater type, Rainbow+Brown+Brook, months M,A,M,J,J,A,S) — the river below the dam. The STMP's list of the nine Tennessee reservoirs that maintain year-round cold, well-oxygenated water and support trout fisheries (Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry, Calderwood, Chilhowee, Tellico) does not include Norris.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation of any kind for the reservoir; Norris is absent from the STMP wild trout waters list, and tributary spawning attempts are described by the STMP as 'largely unsuccessful' in Tennessee reservoir trout programs generally.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's nine-reservoir list of Tennessee waters that maintain year-round cold, well-oxygenated water and support trout fisheries excludes Norris; TWRA's own Norris page documents an entirely warmwater fishery (striped bass, walleye, crappie, black bass; zero trout content), and TDEC measured 29.7-29.75 C surface water in the Clinch, Big Barren, and Powell arms in July 2022.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html (fetched 2026-09-18: first TVA reservoir, dam 1936, 34,200 ac, Clinch+Powell impounded; species/stocking text has zero trout content)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt: nine-reservoir trout list without Norris; 'Only reservoirs that maintain a year-round supply of cold, well-oxygenated water can support trout fisheries'; Norris tailwater trout management; reservoir tributary spawning largely unsuccessful)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008577&characteristicName=Temperature%2C%20water&mimeType=csv (Clinch River arm of Norris Reservoir, Claiborne Co.: 29.7 C 2022-07-05)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008578&characteristicName=Temperature%2C%20water&mimeType=csv (Big Barren Creek embayment: 29.75 C 2022-07-05)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000008580&characteristicName=Temperature%2C%20water&mimeType=csv (Powell River embayment, Union Co.: 29.73 C 2022-07-05)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03532500&characteristicName=Temperature%2C%20water&mimeType=csv (zero results at the NORRIS LAKE LK gauge station)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03532500,03533000&siteOutput=expanded&format=rdb (03532500 NORRIS LAKE lake station on Clinch arm, HUC 06010205; 03533000 CLINCH RIVER BELOW NORRIS DAM = tailwater station)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (only 'Norris Tailwater / Clinch River' rows, region 4 Anderson Co., Tailwater type; zero Norris Reservoir rows)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE1-TAILWATERS-LAKES.md (URL leads only; norris-lake entry corroborates no-trout/no-lake-stocking; TVA lakeinfo NRST1 verified in prior batch)"
+  ]
+}

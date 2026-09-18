@@ -1,0 +1,50 @@
+{
+  "slug": "douglas-lake",
+  "segment": {
+    "description": "Douglas Lake (TVA Douglas Reservoir) — the TVA impoundment of the French Broad River east of Knoxville across Cocke, Jefferson, Sevier and Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge at the dam, Sevier County). Receives the French Broad River and the Pigeon River; discharges through the dam into the French Broad tailwater. Sibling of the cataloged french-broad-river tailwater, which batch 1 documented as a warmwater control — this record addresses the LAKE itself with lake-specific evidence.",
+    "boundaries": "Entire reservoir; TWRA full-pool harvest-restriction boundary extends up the Nolichucky to ENKA Dam, up the Pigeon to the Hwy 321 bridge at Newport, and up the French Broad to the Hwy 321 bridge. 30,600 acres, 555 miles of shoreline (TWRA); summer pool 1,000 ft with winter drawdown to ~940 ft."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Douglas Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1000,
+    "notes": "TWRA describes Douglas as 'a fertile, Tennessee Valley Authority reservoir' whose pool 'can fluctuate 60 feet from the summer elevation of 1000 feet above sea level to the winter elevation of 940 feet', with 'thermal stratification... common during the summer months' and 'low dissolved oxygen concentrations... common during the summer' — a warm, fertile tributary impoundment, not a cold hypolimnetic-release body. No TVA release-depth specification is machine-verifiable (tva.com blocks automated fetch). Angling context per TWRA: in summer, fish hold below the thermocline and fishing is 'at depths of less than 10 feet (above the thermocline)'."
+  },
+  "summerTemperature": [
+    { "celsius": 17.0, "monthObserved": 6, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03468510&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.0, "monthObserved": 7, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03468510&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.5, "monthObserved": 8, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03468510&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 9, "year": 1975, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03468510&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout are stocked in the reservoir — the owner-supplied 2026 TWRA schedule (live feed re-verified 2026-09-18) contains zero 'Douglas' trout rows — and TWRA's reservoir page documents supplemental stocking only for sauger/walleye ('hatchery-reared fish are stocked if numbers become low'). There is no stocked-trout population to hold over; the same finding was made for the tailwater reach in the batch 1 french-broad-river control record.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout in TWRA's reservoir species account (largemouth bass 'one of the best largemouth bass fisheries in east Tennessee', 'best crappie reservoir in East Tennessee', bluegill, catfish, smallmouth, spotted bass, sauger/walleye, white bass); the reservoir has no entry on TWRA's wild trout or delayed-harvest lists.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Lake-specific evidence matches the tailwater control: zero TWRA trout stocking rows, a TWRA species account with no trout, and USGS grab samples at the dam (03468510) showing release water climbing to 26.5-27.0 C by August-September (1975-1980) in a reservoir TWRA documents as summer-stratified with low dissolved oxygen.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html (full text verified locally 2026-09-18: TVA reservoir, 30,600 ac / 555 mi shoreline, 1000→940 ft fluctuation, summer thermal stratification + low DO, warmwater species account, sauger/walleye-only supplemental stocking; no trout)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live feed fetched 2026-09-18: zero rows matching 'Douglas')",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03468510&characteristicName=Temperature%2C%20water&mimeType=csv (predecessor-fetched CSV re-parsed 2026-09-18: 52 USGS grab samples 1975-1980 at FRENCH BROAD RIVER AT DOUGLAS DAM (TW); June 16.2-20.9 (surface and 1 m), July 19.0-23.0, Aug 22.0-26.5, Sep 24.0-27.0 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03468510&siteOutput=expanded&format=rdb (identity check: 'FRENCH BROAD RIVER AT DOUGLAS DAM(TW), TN', Sevier Co., HUC 06010107)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (no Douglas entry on wild trout / delayed harvest lists, checked 2026-09-18)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (plan text searched: no Douglas Reservoir trout program mention)",
+    "https://lakeinfo.tva.gov (TVA lake-info search result: Douglas varies ~44 ft summer-to-winter for flood storage; not machine-verifiable)",
+    "https://www.tva.com/environment/lake-levels (tva.com blocks automated fetch — release type not verifiable; catalog official source listed)"
+  ]
+}

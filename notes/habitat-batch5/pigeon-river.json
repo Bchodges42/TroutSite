@@ -1,0 +1,52 @@
+{
+  "slug": "pigeon-river",
+  "segment": {
+    "description": "Pigeon River, Hartford corridor — the Tennessee main stem in Cocke County from the NC state line (Waterville) down the whitewater/I-40 gorge past Hartford to the Douglas Lake arm (catalog boundaries). Facts are reach-attributed: the dam-related temperature record is the upper dam-sourced segment, the USGS gauge and warm summer temperatures are at Newport on the LOWER reach, and the smallmouth/walleye quality regulations span 'Hwy 321 bridge at Newport upstream to NC state line'.",
+    "boundaries": "NC state line (Waterville) to Douglas Lake arm; TWRA exception boundary 'From the Highway 321 bridge at Newport upstream to NC state line'; catalog gauge 03461500 at Newport."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Waterville Dam",
+      "operator": null,
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "The catalog names Waterville (upstream generation driving the Hartford whitewater reach) but no agency page retrieved this session verifies the dam's operator or release draw (duke-energy and TDEC Pigeon River URLs 404'd; tva.com blocked in prior passes — the Pigeon is not a TVA reservoir). What TDEC's 2026 303(d) list DOES document is thermal: Cocke County assessment unit TN06010106001_4000 (5.03 mi) is impaired for TEMPERATURE (Low) with source 'DAM OR IMPOUNDMENT', plus FLOW REGIME MODIFICATION (dam), and COLOR from 'INDUSTRIAL POINT SOURCE DISCHARGE' and 'SOURCES OUTSIDE STATE JURISDICTION OR BORDERS' (the Canton NC paper mill signature) — the 303(d) extract prints unit IDs and miles but not boundary text; unit _4000 is the only dam-sourced Pigeon segment and the 5.03-mile length matches the Waterville-to-Hartford gorge, so the temperature impairment is attributable to the dam-regulated upper reach. This is a documented WARM-release (temperature non-support) signal, not evidence of cold tailwater. USGS station altitude at Newport is 1,038 ft; the gorge reach upstream is higher but no verified elevation figure was located."
+  },
+  "summerTemperature": [
+    { "celsius": 25.7, "monthObserved": 8, "year": 2002, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03461500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 22.6, "monthObserved": 7, "year": 2007, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03461500&characteristicName=Temperature,%20water&mimeType=csv" },
+    { "celsius": 27.0, "monthObserved": 7, "year": 1977, "sourceType": "usgs-gauge", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03461500&characteristicName=Temperature,%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation exists for the Tennessee reach. The catalog's 'holds trout in cooler months' is an angling-level claim with no agency source found (the USFS Pigeon River area page mentions fishing and whitewater but names no trout for the river).",
+    "evidenceUrl": "https://www.fs.usda.gov/r08/cherokee/recreation/pigeon-river-0"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No agency record of a trout population on the Tennessee Pigeon was located: the river is absent from TWRA's stocking schedule and wild trout list, and the USFS Cherokee NF Pigeon River area page describes whitewater and fishing without naming trout. (North Carolina's upper-reach trout management is a different jurisdiction and was not transferred to this reach.)",
+    "evidenceUrl": "https://www.fs.usda.gov/r08/cherokee/recreation/pigeon-river-0"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TDEC's 2026 303(d) list records a 5.03-mile dam-sourced Cocke County Pigeon River segment as TEMPERATURE-impaired (source 'DAM OR IMPOUNDMENT'), TWRA stocks nothing into the TN reach and manages it under smallmouth (20-in minimum)/walleye quality rules, and the only gauge on the river (Newport, lower reach) recorded 25.7 C in August — no agency evidence of a year-round coldwater reach.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live fetch 2026-09-18: only 'Mid. Prong Little Pigeon River' (Sevier Co.) rows match 'Pigeon' — ZERO rows for the Pigeon River TN main stem, Cocke County)",
+    "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx (units TN06010106001_4000: TEMPERATURE Low/DAM OR IMPOUNDMENT, FLOW REGIME MODIFICATION, COLOR industrial + out-of-state, E. coli; unit TN06010106001_1000: 15.44 mi lower reach, sedimentation + mercury)",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (verified verbatim: 'From the Highway 321 bridge at Newport upstream to NC state line' — Smallmouth Bass one/day 20-in minimum; walleye/sauger combo)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03461500&characteristicName=Temperature,%20water&mimeType=csv (69 temperature results 1974-2007 at Newport; summer maxima 22.6-27 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03465500,03461500,03493000,03493510&siteOutput=expanded&format=rdb (identity check: 03461500 = PIGEON RIVER AT NEWPORT, TN, Cocke Co., HUC 06010106, 666 sq mi, alt 1038.39 ft)",
+    "https://waterdata.usgs.gov/monitoring-location/03461500/",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03461500&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json (0 temperature series — no current sensor)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/pigeon-river-0 (USFS Pigeon River area: whitewater rafting 'a favorite pastime', 'canoeing and fishing' on the French Broad, no trout named for the Pigeon, no dam statement)",
+    "https://www.tn.gov/environment/program-areas/wr-water-resources/water-quality/pigeon-river.html (404 — attempted TDEC Pigeon River recovery page)",
+    "https://coastalanglermag.com/the-pigeon-river-a-river-restored/ (404 at guessed URL; the 2023 'Pigeon River... A River Restored' article surfaced in web search snippets describing trophy smallmouth water and mill recovery — not fetched, not used as sole evidence)",
+    "Web searches on Waterville Dam release type/operator returned only app, forum, and social-media sources (not acceptable) plus rate-limit errors; dam operator left null"
+  ]
+}

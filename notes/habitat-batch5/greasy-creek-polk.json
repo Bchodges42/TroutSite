@@ -1,0 +1,78 @@
+{
+  "slug": "greasy-creek-polk",
+  "segment": {
+    "description": "Greasy Creek (GNIS 01328320) in Polk County — the Ocoee-drainage creek near Coker Creek/Archville that the catalog describes ('TWRA spring-stocked... small and flashy'). Identity locked to the Polk County / HUC-8 06020003 (Ocoee) namesake: the historic USGS gauge 03563100 'GREASY CREEK NEAR ARCHVILLE, TN.' (18.5 sq mi drainage, 35.1179, -84.5705) and TDEC station TDECWPC-GREAS000.4PO (35.1220, -84.5569) both fall on this creek. This is NOT the Warren County Greasy Creek (Collins River drainage) that a flattened 2026 TWRA schedule table visually paired with a Collins River row, nor the Bradley County Greasy Creek (HUC 06020002) that appears in the Chickamauga-side station lists.",
+    "boundaries": "Full named creek: Ocoee River confluence near Archville/Caney Creek (~35.1093, -84.5719 per NHD flowline) upstream through the Coker Creek area, Polk County, HUC 06020003. No sub-reach boundaries documented by an agency."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "Small, flashy Ocoee-drainage creek (18.5 sq mi at the historic Archville gauge) in the Cherokee NF / Coker Creek area; no dam and no spring-influence documentation found. No published reach elevation located on an agency page.",
+    "evidenceUrl": null
+  },
+  "summerTemperature": [
+    {
+      "celsius": 19.5,
+      "monthObserved": 7,
+      "year": 1972,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03563100&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 19.5,
+      "monthObserved": 9,
+      "year": 1972,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03563100&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 19.0,
+      "monthObserved": 9,
+      "year": 1971,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03563100&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence found: no creel data, holdover notes, or multiple independent angler reports were located for the Polk County Greasy Creek.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No creek-specific wild-trout documentation found: the creek carries no entry on TWRA's trout-regulations lists (wild trout waters / special regulation / delayed harvest) and no agency fish-community inventory was located. Trout presence rests entirely on the seasonal stocking program.",
+    "evidenceUrl": "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "The historic USGS gauge at Archville (03563100) never exceeded 19.5 degC in its 1970-1972 summer grabs — cool enough for trout survival year-round in principle — but the record is a discontinued 10-sample 1970s series with no modern temperature or biological confirmation.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "repo-local: packages/content/data/twra-stocking-schedule.json (owner-supplied 2026-09-17 workbook: 3 Region 3 / Polk / 'Greasy Creek' / Seasonal / Rainbow Trout rows — weeks 3/1, 3/29, 4/26/2026; the separately-listed Warren County 'Greasy Creek' row is a different water)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live TWRA 2026 schedule; Polk Greasy Creek 3 seasonal rainbow weeks per the parallel batch-5 verification pass)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03563100&characteristicName=Temperature,%20water&mimeType=csv (10 USGS qw grabs 1970-11-17 to 1972-09-25 at 'GREASY CREEK NEAR ARCHVILLE, TN.': Jul 1972 19.5, Sep 1972 19.5, Sep 1971 19.0, May 1971 14.0, winter 3.0-7.0 degC)",
+    "https://www.waterqualitydata.us/data/Station/search?statecode=US%3A47&countycode=US%3A47%3A139&mimeType=csv (Polk County station sweep — 03563100 at 35.1179,-84.5705 HUC 06020003, 18.5 sq mi; TDECWPC-GREAS000.4PO at 35.1220,-84.5569; identity confirmation)",
+    "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6/query?where=gnis_name%3D%27Greasy%20Creek%27 (NHD flowline, Polk envelope: mouth ~35.1093,-84.5719 on the Ocoee near Archville/Caney Creek; GNIS 01328320)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=03563100,03563101,03563105&seriesCatalogOutput=true&siteStatus=all (three discontinued historic stations; qw 1970-72 on 03563100 per the wave-3 verification — service returned 503 on re-check 2026-09-18, prior verification stands)",
+    "https://www.tn.gov/content/tn/twra/fishing-regs/trout-regulations.html (no Greasy Creek entry on the special-regulation lists)",
+    "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf (2023 tentative schedule row 'Polk | Greasy Creek | 3 weekly dots' per wave-3 ledger; PDF not re-fetched this session)",
+    "notes/habitat-batch5/_tmp_g2_wqp_polk_stations.csv (predecessor scratch copy of the Polk County WQP station list, used for station identity)"
+  ]
+}

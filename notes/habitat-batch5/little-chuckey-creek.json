@@ -1,0 +1,39 @@
+{
+  "slug": "little-chuckey-creek",
+  "segment": {
+    "description": "Little Chuckey Creek (also spelled Little Chucky Creek), a major Greene County agricultural tributary of the Nolichucky River (HUC 06010108). Identity verified by county and HUC before citing: TDEC's 2026 303(d) list carries 'Little Chucky Creek, Greene County, RIVER, 21.9 Miles' in Nolichucky assessment unit TN06010108034; the catalog carries GNIS 01326826. Same-name creeks elsewhere were screened out.",
+    "boundaries": "Entire Greene County creek (21.9 mi assessed length in TDEC's 2026 303(d) list); catalog gives no sub-reach boundaries."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source of any kind documented. TDEC's 2026 303(d) list records the creek as E. coli-impaired with the cause 'GRAZING IN RIPARIAN OR SHORELINE ZONES' — a documented agricultural-grazing valley creek, the opposite of a coldwater profile. No canopy/gorge/elevation statements found in any agency source retrieved."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation exists or is expected for a creek with no trout program and no trout record; nothing found.",
+    "evidenceUrl": null
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout presence of any kind documented. The creek is absent from TWRA's 2026 trout stocking schedule (live JSON feed searched for 'Chuckey' and 'Chucky', zero rows, fetched 2026-09-18), absent from TWRA's wild trout stream list on the trout regulations page, and absent from the STMP. The only agency fish/water record retrieved is the TDEC 303(d) agricultural impairment.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "No trout program, no trout record, and no wild-trout listing anywhere in agency sources, while TDEC's 2026 303(d) list documents 21.9 miles of Little Chucky Creek (Greene County) E. coli-impaired from riparian grazing — an agricultural warmwater creek with no documented cold-water source.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live fetch 2026-09-18: zero rows matching Chuckey/Chucky — no TWRA stocking program)",
+    "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx (unit TN06010108034_1000 'Little Chucky Creek', Greene County, 21.9 mi, ESCHERICHIA COLI, GRAZING IN RIPARIAN OR SHORELINE ZONES)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (wild trout stream list checked — no Little Chuckey/Little Chucky entry)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (full-text search: no Little Chuckey/Chucky mention)",
+    "https://www.usgs.gov/national-hydrography/national-hydrography-dataset (catalog identity source; GNIS 01326826 per catalog)",
+    "https://www.tn.gov/twra/fishing.html (regulations landing; no creek-specific entry)",
+    "Web search 'Little Chucky Creek trout' attempted via search tool — search backend returned rate-limit errors (429) on the attempt; no result used"
+  ]
+}

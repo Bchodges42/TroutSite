@@ -1,0 +1,81 @@
+{
+  "slug": "citico-creek",
+  "segment": {
+    "description": "Citico Creek main stem, Monroe County, in the Cherokee National Forest, flowing north to Tellico Lake (Little Tennessee HUC 06010204). The catalog covers both the stocked main stem and the wild-trout headwater forks. TWRA's Tellico-Citico Permit Area regulates the creek from its confluence with Little Citico Creek upstream to the confluence of the North and South Forks; the North/South Fork headwaters (incl. Falls Branch, a South Fork tributary) hold the documented wild brook trout.",
+    "boundaries": "Permitted reach: Little Citico Creek confluence upstream to the North/South Fork junction (TWRA trout regulations page). Stocked reach is the main stem; wild trout are documented in the forks above."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 3200,
+    "notes": "Elevation figure applies to the headwaters, not the main stem: the TWRA Trout Management Plan 2017-2027 places Goat Falls on North Fork Citico Creek 'at ~3,200' (brook trout habitat discussion) - https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf . The plan also describes the watershed as steep, remote, rain-flashy Cherokee NF terrain. No dam on the creek; cold source is forested mountain headwater elevation."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 23.24,
+      "monthObserved": 6,
+      "year": 2014,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001989&characteristicName=Temperature,%20water&mimeType=csv"
+    },
+    {
+      "celsius": 22.76,
+      "monthObserved": 9,
+      "year": 2013,
+      "sourceType": "study",
+      "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001989&characteristicName=Temperature,%20water&mimeType=csv"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover study found. The main stem receives 22 consecutive weekly TWRA seasonal stockings (weeks of 2/22 through 7/19 in the 2026 schedule) and the permit area remains open to daily fishing Aug 16 - end of February without a permit, which implies fish availability into fall/winter, but no creel or tag-return evidence of holdover was located.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA's Trout Management Plan 2017-2027 documents that until recently two streams in the Citico Creek watershed supported brook trout - upper North Fork Citico Creek and Falls Branch (South Fork Citico tributary); a 2013 distribution survey found only the Falls Branch population remains (naturalized, hatchery origin per 1990s genetics), with North Fork Citico extirpated above Goat Falls. USFS Cherokee NF states 'Wild trout, rainbow, brown and native brookies are present in most of the mountain streams above 1000 feet' (general CNF statement, not Citico-specific). The stocked main stem itself is not a wild trout water and is NOT on TWRA's Wild Trout Streams list.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+    },
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://www.fs.usda.gov/r08/cherokee/recreation/opportunities/fishing"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "A naturalized brook trout population persisted in the watershed (Falls Branch, 2013 TWRA survey) - documented year-round survival in the headwaters - while the stocked main stem showed ~23 C grab temperatures in June 2014 near its mouth, consistent with its put-grow-take role rather than fail.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "notes/habitat-batch5/_tmp_g1_stmp.txt (pre-extracted text of https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf - Tellico-Citico stocking, Falls Branch/North Fork Citico brook trout 2013 survey, Goat Falls elevation)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (22 Citico Creek rows, Region 3, Monroe Co., Rainbow Trout, Seasonal, weekly 2/22/2026-7/19/2026)",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (Tellico-Citico permit area text verified in page HTML cached 2026-09-18)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html (stocking schedule page)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/opportunities/fishing (CNF wild trout statement; wave-3 QC verified verbatim)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03518410&siteid=TDECWR_WQX-TNW000001184&siteid=TDECWR_WQX-TNW000001187&siteid=TDECWR_WQX-TNW000001989&siteid=TDECWR_WQX-TNW000009067&characteristicName=Temperature,%20water&mimeType=csv (7 temp rows, all at TNW000001989; USGS-03518410 'CITICO CREEK NR CITICO BEACH' has no WQP temperature data - discontinued 1958)",
+    "https://www.waterqualitydata.us/data/Station/search?countryCode=US&statecode=US%3A47&countyCode=US%3A47%3A123&mimeType=csv (station identity check; rejected Chattanooga Citico Creek stations 03567900-03567950 and TDECWPC-CITIC***HM as a different urban Hamilton County creek)",
+    "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=03518410,03518400,03518390,03518395&seriesCatalogOutput=true&siteStatus=all (wave-3 gauge probe: all four on-creek USGS stations discontinued, latest record 1971 - no active gauge)",
+    "https://www.eregulations.com/assets/docs/resources/TN/Trout_Stocking.pdf (2023 tentative schedule corroboration via wave-3 ledger; not re-fetched)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE3-CREEKS.md (citico-creek block, QC-verified 2026-09-14 - primary URLs re-cited above, not the ledger)"
+  ]
+}

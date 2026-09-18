@@ -1,0 +1,61 @@
+{
+  "slug": "bullrun-creek",
+  "segment": {
+    "description": "Bullrun Creek (alias Bull Run Creek), Tennessee — the long Clinch River tributary rising in Union County (near Luttrell) and flowing southwest through Union and Knox County country to enter the Clinch River near Solway at the Anderson/Knox county line, as the catalog describes. NOT related to Bull Run Creek waters in other states and NOT the Holston mainstem (a prior wave ledger explicitly rejected USGS 03535000 as an off-reach Holston probe).",
+    "boundaries": "Whole documented creek, Union and Knox counties, HUC 06010207 (Upper Tennessee-Clinch below Norris). Gauge points: USGS 03534927 'BULLRUN CREEK NEAR LUTRELL, TN' (Union Co., gauge elev 1,160 ft) and USGS 03535000 'BULLRUN CREEK NEAR HALLS CROSSROADS, TN' (Knox Co., gauge elev 854 ft, 68.5 sq mi drainage) — the temperature record below is from the Halls Crossroads station, which integrates most of the watershed above the Clinch confluence."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 854,
+    "notes": "No dam on the creek. Gauge elevation 854 ft at Halls Crossroads (USGS site file) — a low-gradient valley creek across Union/Knox counties with no documented cold-water source. The Norris Dam cold tailwater reaches the Clinch, not this tributary."
+  },
+  "summerTemperature": [
+    { "celsius": 19.4, "monthObserved": 6, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.0, "monthObserved": 7, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 8, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 7, "year": 1977, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 26.0, "monthObserved": 7, "year": 1980, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 23.5, "monthObserved": 7, "year": 1985, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 7, "year": 1986, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 25.5, "monthObserved": 8, "year": 1988, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 24.0, "monthObserved": 8, "year": 2002, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 22.6, "monthObserved": 7, "year": 2004, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.8, "monthObserved": 6, "year": 2003, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": false,
+    "detail": "No trout presence of any kind is documented — Bullrun Creek has no stocking program to hold over from. TWRA's 2026 trout stocking workbook contains zero rows for Bullrun/Bull Run Creek (the only similarly-named rows in the state are 'North/South Indian Creek' in Unicoi and 'Buffalo Creek' in Grainger — different waters), and it carries no trout regulation entry.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No wild trout documentation. Bullrun Creek is absent from the TWRA Trout Management Plan 2017-2027 wild trout waters list and from its hatchery-supported stream program (plan text searched; 'Bullrun'/'Bull Run' zero hits). The measured thermal regime (below) matches a warmwater stream fish community.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "Thirty-five Jun-Sep grab samples at USGS 03535000 (1976-2004) run 17.0-26.0 C with July readings up to 26 C — classic warmwater thermal regime — and TWRA has never stocked it or listed any trout fishery on it.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03535000&characteristicName=Temperature%2C%20water&mimeType=csv (77 temperature results 1975-2004 at Halls Crossroads; 35 summer values 17.0-26.0 C)",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03534927,03535000&siteOutput=expanded&format=rdb (gauge identity/elevation verification: 03534927 Union Co. 1,160 ft; 03535000 Knox Co. 854 ft, 68.5 sq mi, HUC 06010207)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (no Bullrun entry)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt: 'Bullrun'/'Bull Run' zero hits)",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03535000,03499510&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json (zero timeseries — no recent instantaneous temperature feed at the Bullrun gauge)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (zero Bullrun/Bull Run rows in 616-row workbook)",
+    "repo-local: notes/habitat-batch5/_tmp_g4_stations_union.csv (TDEC Bullrun Creek stations BULLR029.6UN/031.1UN/032.2UN/034.1UN and North Fork Bullrun stations, Union Co., HUC 06010207)",
+    "docs/research/2026-09-15-wave-ledgers/SOURCES-LEDGER-WAVE2-RIVERS-PONDS.md (URL leads only; confirms 03535000 rejected as off-reach Holston probe)"
+  ]
+}

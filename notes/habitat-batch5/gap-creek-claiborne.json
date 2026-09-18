@@ -1,0 +1,68 @@
+{
+  "slug": "gap-creek-claiborne",
+  "segment": {
+    "description": "Gap Creek in Claiborne County, Tennessee — the stocked trout creek that rises at Cumberland Gap and runs southeast through Cumberland Gap National Historical Park and the town of Cumberland Gap down the Powell Valley toward the Powell River near Arthur. TWRA's Norris Reservoir regulation text uses 'Gap Creek confluence' as the upstream boundary of the Norris pool on the Powell River arm, corroborating this identity (catalog: 'TWRA spring-stocked creek in the Norris watershed fringe').",
+    "boundaries": "Full named length per catalog ('runs its full named length down toward the upper Clinch' drainage). Temperature evidence spans the upper reach — five NPS monitoring points within Cumberland Gap NHP / town of Cumberland Gap (CUGA_CPSU_GC3, GC4, GC5, GC7, TD1; WQP) sampled 1990-1996 — and the lower reach — TVA historical samples at USGS 03532050 'GAP CREEK NEAR ARTHUR, TN' (HUC 06010206, Claiborne Co.) sampled 1976. USGS 03532012 'GAP CREEK AT CUMBERLAND GAP, TN' (0.7 sq mi drainage) anchors the upper end."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": null
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "No dam anywhere on the creek. The stream drains the Cumberland Gap notch of Cumberland Mountain through a protected park corridor (NPS monitoring stations sit inside Cumberland Gap NHP), which gives the upper reach permanent riparian cover; the 1,300-ft gap elevation context is inferred from the USGS station name 'AT CUMBERLAND GAP' only — no agency elevation figure captured. Cool summer grab samples at five separate park stations (below) are consistent with a shaded, upland-gradient creek, but no agency page states a spring or groundwater source."
+  },
+  "summerTemperature": [
+    { "celsius": 15.1, "monthObserved": 7, "year": 1990, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC7&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.3, "monthObserved": 7, "year": 1990, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC7&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.9, "monthObserved": 6, "year": 1992, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC7&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.4, "monthObserved": 7, "year": 1993, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC7&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.5, "monthObserved": 8, "year": 1995, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC7&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 14.3, "monthObserved": 7, "year": 1994, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC3&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.0, "monthObserved": 7, "year": 1992, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC3&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 21.6, "monthObserved": 7, "year": 1993, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_GC4&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 20.7, "monthObserved": 7, "year": 1995, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CPSU_TD1&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 16.8, "monthObserved": 6, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03532050&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 18.3, "monthObserved": 7, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03532050&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 19.0, "monthObserved": 8, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03532050&characteristicName=Temperature%2C%20water&mimeType=csv" },
+    { "celsius": 17.8, "monthObserved": 9, "year": 1976, "sourceType": "study", "evidenceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03532050&characteristicName=Temperature%2C%20water&mimeType=csv" }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No site-specific holdover documentation found. TWRA's documented program is three spring Seasonal stockings (Feb 15, Mar 15, Apr 12, 2026; Rainbow Trout) with no delayed-harvest season, so there is no program mechanism that requires or documents carry-over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No wild trout record found for Gap Creek (Claiborne). The TWRA Trout Management Plan 2017-2027 wild trout stream list does not include it (plan text searched; 'Gap Creek' appears only in an unrelated GSMNP context), and the STMP class statement describes hatchery-supported streams as primarily warmwater. NPS fish-community documentation for the park's Gap Creek was not located in this pass.",
+    "evidenceUrl": "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "Five NPS monitoring points on Gap Creek in Cumberland Gap NHP logged 255 Jun-Sep grab samples across 1990-1996 at 12.6-21.6 C (plus 1976 TVA lower-reach samples 16.8-19.0 C at the near-Arthur gauge) — summer temperatures cold enough for trout survival on the upper park reach — but no recent continuous data and no holdover/wild-fish documentation exist for the stocked reach as a whole.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_CMRC_GC10&siteid=11NPSWRD_WQX-CUGA_CMRC_GC5&siteid=11NPSWRD_WQX-CUGA_CPSU_GC3&siteid=11NPSWRD_WQX-CUGA_CPSU_GC4&siteid=11NPSWRD_WQX-CUGA_CPSU_GC5&siteid=11NPSWRD_WQX-CUGA_CPSU_GC7&siteid=11NPSWRD_WQX-CUGA_CPSU_TD1&siteid=USGS-03532012&characteristicName=Temperature%2C%20water&mimeType=csv (709 temperature results; five stations with 1990-1997 series incl. 62 summer values at GC7, 62 at GC3, 62 at TD1, 45 at GC4, 24 at GC5)",
+    "https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03532050&characteristicName=Temperature%2C%20water&mimeType=csv (TVA historical series 1975-1977 at Gap Creek near Arthur; 5 summer values 1976)",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html (Powell River entry: 'Gap Creek confluence upstream to the state line' smallmouth regs — ties Gap Creek to the Powell/Norris boundary)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (STMP via pre-extracted text notes/habitat-batch5/_tmp_g4_stmp.txt)",
+    "repo-local: packages/content/data/twra-stocking-schedule.json (Claiborne/'Gap Creek': Seasonal rainbow rows 2/15, 3/15, 4/12/2026)",
+    "repo-local: notes/habitat-batch5/_tmp_g4_stations_claiborne.csv (USGS 03532012 and 03532050 Gap Creek stations, county 025, HUC 06010206; seven 11NPSWRD_WQX CUGA station names with Middlesboro South 7.5' quadrangle descriptions)",
+    "WebSearch (rate-limited 429 on first queries; not retried — WQP/NPS data already sufficient)"
+  ]
+}

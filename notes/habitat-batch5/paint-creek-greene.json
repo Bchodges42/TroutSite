@@ -1,0 +1,42 @@
+{
+  "slug": "paint-creek-greene",
+  "segment": {
+    "description": "Paint Creek (Greene County) — the Cherokee National Forest creek whose catalog entry covers the stocked/Delayed-Harvest lower corridor and the designated wild-trout upper reach. TWRA's regulation text defines both reaches explicitly: the wild trout reach runs 'from the USFS campground upstream to the USFS Boundary line south of Highway 70 near Munday Gap (Greene County)', and the Delayed Harvest reach runs 'Paint Creek Campground downstream to the mouth at the French Broad River'. Identity verified from the catalog (Greene County qualifier, GNIS 01296658, HUC 06010105); Paint Creek is NOT on TDEC's 2026 303(d) impairment list.",
+    "boundaries": "French Broad River mouth (Delayed Harvest lower boundary) upstream through the Cherokee NF corridor to the USFS boundary near Munday Gap (wild trout upper boundary)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Cherokee National Forest mountain stream (Blue Ridge coldwater province — TWRA's STMP places over 600 miles of Tennessee wild trout habitat and ~70% of it in the 625,000-acre CNF). Agency designation itself is the coldwater evidence: TWRA lists the campground-to-Munday-Gap reach among its wild trout waters, i.e., water able to carry a naturally reproducing trout population year-round. No gauge exists on the creek; no numeric summer temperature record located. Absence from the 2026 303(d) list means no temperature or sediment impairment is recorded."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover study found; not needed here — the upstream reach carries a wild trout population by agency designation, which is direct year-round survival evidence.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA's wild trout waters list: 'Paint Creek and tributaries from the USFS campground upstream to the USFS Boundary line south of Highway 70 near Munday Gap (Greene County)' — an agency-designated wild trout stream (naturally reproducing population) verified verbatim on the trout regulations page. The Delayed Harvest and seasonal stockings apply to the downstream reaches, below/outside the wild reach.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "both", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "The only water in this group with an agency-designated wild trout population — TWRA's wild trout waters list names the USFS-campground-to-Munday-Gap reach — and the lower corridor is carried year-round by complementary programs: Delayed Harvest Oct 1-Feb 28 (campground to the French Broad mouth) plus 2026 seasonal stockings every two weeks Mar 8-Jun 28 and an Oct 4 DH week in TWRA's live schedule.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html (verified verbatim: wild trout list entry AND Delayed Harvest entry 'Paint Creek: Paint Creek Campground downstream to the mouth at the French Broad River — Oct. 1 – Feb. 28')",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json (live fetch 2026-09-18: ten Greene Co 'Paint Creek' rows — Seasonal weeks 3/8, 3/22, 4/5, 4/19, 5/3, 5/17, 5/31, 6/14, 6/28/2026 + Delayed Harvest week 10/4/2026, all Rainbow Trout; identical in the owner workbook)",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf (DH areas 'established... on Paint Creek, Tellico River, Hiwassee River, and Piney River'; 'Other ADA-accessible trout fisheries include Paint Creek (USFS)')",
+    "https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx (full 65-sheet search: zero Paint Creek rows — no 2026 impairment listing)",
+    "packages/content/data/trout-calendar.json (site feed claims 'year-round' presence: 'DH Oct 1-Feb 28 + USFS summer stocking + wild reach upstream = trout all year'; the USFS-summer-stocking component could NOT be verified in any USFS/TWRA source retrieved this session — noted as an unverified feed claim, not used as evidence)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/paint-creek (404 — attempted USFS Paint Creek page)",
+    "https://digitalcommons.memphis.edu/do/search/?q=paint%20creek%20trout%20region%20IV&start=0&context=9845761 (HTTP 403 — attempted Region IV report mirror search)",
+    "https://www.fs.usda.gov/r08/cherokee/recreation/pigeon-river-0 (USFS Cherokee NF recreation pages reachable but no Paint Creek-specific fishing text found there)"
+  ]
+}
