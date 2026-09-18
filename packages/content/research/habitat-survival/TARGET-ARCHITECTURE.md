@@ -28,9 +28,26 @@ that way we can cut down on costs."
     evidence record + catalog + workbook
       → CODE CLASSIFIER (pure function)
           ├─ high/structural confidence → ACCEPT (provenance recorded)
-          └─ low/structural confidence  → ESCALATE TO JEV (the only model call)
+          └─ low/structural confidence  → ESCALATE TO JEV (one cheap call)
                 ├─ Jev agrees with code  → ACCEPT
                 └─ Jev disagrees         → OWNER BOX (automatic)
+
+WHAT JEV IS (ground truth, don't confuse it with an LLM): Jev (TypeSafe) is a
+structured-decision model — a "System One" model, not a text generator. It
+evaluates typed questions against a state composed in code and returns typed
+values with probability distributions and confidence. Primitives: Choice
+(pick from a list → choice, probabilities, confidence), Score (score state
+against a rubric), Noul (statement truth, 0-1). Questions run in parallel
+against the same state and mix in one API call. Repo integration:
+packages/content/scripts/classification/jev-classify.mjs (MODEL 'jev-latest',
+strict-whitelist state, no answer leakage). Jev never reads PDFs and never
+writes prose — unstructured sources are the research sessions' job (layer 1).
+
+The escalation maps directly onto those primitives: compose the state from
+the evidence record + catalog row + stocking row + policy rules, then ask the
+narrow Choice question over the three canonical labels plus companion Noul
+questions (e.g. "trout survive year-round in this reach") and a Score for
+evidence strength — one call, answers branched on in code.
 
 Rules:
 
@@ -43,12 +60,18 @@ Rules:
 - **Golden tests gate site wiring**: owner-approved verdicts (composite run
   boxes + future approvals) are fixtures. A rule change that would silently
   flip a golden verdict fails the build and surfaces for review.
-- **Model budget**: batch evidence gathering + escalation residue only.
-  (Measured owner spend to date: $0.26 total across all requests.) Jev
-  involvement per water is itself a thin-evidence signal, reported.
+- **Budget**: Jev cost = one cheap call per escalated water (owner's measured
+  spend to date: $0.26 total). Text-generation model spend = research batches
+  only (layer 1). Neither sits in the per-decision path except Jev-on-
+  escalation. Jev involvement per water is itself a thin-evidence signal,
+  reported.
 
-## What Jev's model run is FOR after this
+## Division of labor after this
 
-Reading new unstructured sources (fresh TWRA PDFs, changed regulation pages)
-into evidence records; summarizing conflicts for owner boxes. The provenance
-envelope (per-field sources) is plain data structure and stays regardless.
+- Research sessions (text-generation models, batch, amortized): read new
+  unstructured sources (TWRA PDFs, regulation pages) into evidence records;
+  summarize conflicts for owner boxes.
+- Jev: rate escalated classifications over composed states — typed answers,
+  no prose.
+- Code: decide, gate, branch, prove (golden tests). The provenance envelope
+  (per-field sources) is plain data structure and stays regardless.
