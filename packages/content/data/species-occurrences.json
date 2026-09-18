@@ -1,0 +1,1970 @@
+{
+  "schema": "trout/species-occurrences/1",
+  "stateId": "TN",
+  "updatedAt": "2026-09-16",
+  "collectionNote": "Static, source-backed Tennessee fish occurrence snapshot. It uses reviewed TWRA, NPS, and other agency material already cited in this repository; it does not scrape Fishbrain or any other restricted user-generated database, and it never claims a survey count where the source does not provide one.",
+  "sources": [
+    {
+      "id": "source-1",
+      "url": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "label": "TWRA — Trout Fishing & Stockings (verify current schedule officially)",
+      "retrieved": "2026-09-14",
+      "basis": "The curated water note explicitly names these trout species and describes the stocked or wild context; no species is inferred from a generic trout label."
+    },
+    {
+      "id": "source-2",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html",
+      "label": "TWRA — Boone Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-3",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html",
+      "label": "TWRA — Calderwood Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-4",
+      "url": "https://www.tn.gov/twra/fishing.html",
+      "label": "TWRA — Tennessee fishing regulations (always verify officially)",
+      "retrieved": "2026-09-14",
+      "basis": "The reviewed water summary includes a species-specific regulation or management rule; this is a regulatory association, not a survey count."
+    },
+    {
+      "id": "source-5",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/center-hill-reservoir.html",
+      "label": "TWRA — Center Hill Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-6",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html",
+      "label": "TWRA — Cherokee Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-7",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html",
+      "label": "TWRA — Chickamauga Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-8",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html",
+      "label": "TWRA — Chilhowee Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-9",
+      "url": "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+      "label": "NPS — Great Smoky Mountains National Park fishing information",
+      "retrieved": "2026-09-14",
+      "basis": "The curated water note explicitly names these trout species and describes the stocked or wild context; no species is inferred from a generic trout label."
+    },
+    {
+      "id": "source-10",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html",
+      "label": "TWRA — Dale Hollow Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-11",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html",
+      "label": "TWRA — Douglas Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-12",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+      "label": "TWRA — Duck River fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-13",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html",
+      "label": "TWRA — Fort Loudoun Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-14",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-patrick-henry.html",
+      "label": "TWRA — Fort Patrick Henry Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-15",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html",
+      "label": "TWRA — Great Falls Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-16",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html",
+      "label": "TWRA — J. Percy Priest Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-17",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html",
+      "label": "TWRA — Kentucky Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-18",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/barkley-reservoir.html",
+      "label": "TWRA — Barkley Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-19",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html",
+      "label": "TWRA — Lake Graham fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-20",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html",
+      "label": "TWRA — Melton Hill Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-21",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html",
+      "label": "TWRA — Nickajack Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-22",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html",
+      "label": "TWRA — Normandy Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-23",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html",
+      "label": "TWRA — Norris Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-24",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/old-hickory-reservoir.html",
+      "label": "TWRA — Old Hickory Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-25",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+      "label": "TWRA — Parksville Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-26",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html",
+      "label": "TWRA — Pickwick Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-27",
+      "url": "https://www.tn.gov/twra.html",
+      "label": "TWRA — Reelfoot Lake information",
+      "retrieved": "2026-09-14",
+      "basis": "The reviewed water summary includes a species-specific regulation or management rule; this is a regulatory association, not a survey count."
+    },
+    {
+      "id": "source-28",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html",
+      "label": "TWRA — South Holston Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-29",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html",
+      "label": "TWRA — Tellico Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-30",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/tims-ford-reservoir.html",
+      "label": "TWRA — Tims Ford Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-31",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html",
+      "label": "TWRA — Watauga Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-32",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html",
+      "label": "TWRA — Watts Bar Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    },
+    {
+      "id": "source-33",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html",
+      "label": "TWRA — Woods Reservoir fishing (species list)",
+      "retrieved": "2026-09-13",
+      "basis": "The reviewed water record preserves an agency-backed fishery species list; this group normalizes that evidence for app queries."
+    }
+  ],
+  "species": [
+    {
+      "id": "rainbow-trout",
+      "displayName": "Rainbow trout",
+      "scientificName": "Oncorhynchus mykiss",
+      "group": "trout"
+    },
+    {
+      "id": "brown-trout",
+      "displayName": "Brown trout",
+      "scientificName": "Salmo trutta",
+      "group": "trout"
+    },
+    {
+      "id": "brook-trout",
+      "displayName": "Brook trout",
+      "scientificName": "Salvelinus fontinalis",
+      "group": "trout"
+    },
+    {
+      "id": "largemouth-bass",
+      "displayName": "Largemouth bass",
+      "scientificName": "Micropterus salmoides",
+      "group": "bass"
+    },
+    {
+      "id": "smallmouth-bass",
+      "displayName": "Smallmouth bass",
+      "scientificName": "Micropterus dolomieu",
+      "group": "bass"
+    },
+    {
+      "id": "spotted-bass",
+      "displayName": "Spotted bass",
+      "scientificName": "Micropterus punctulatus",
+      "group": "bass"
+    },
+    {
+      "id": "crappie",
+      "displayName": "Crappie (black & white)",
+      "scientificName": "Pomoxis spp.",
+      "group": "panfish"
+    },
+    {
+      "id": "bluegill",
+      "displayName": "Bluegill",
+      "scientificName": "Lepomis macrochirus",
+      "group": "panfish"
+    },
+    {
+      "id": "channel-catfish",
+      "displayName": "Channel catfish",
+      "scientificName": "Ictalurus punctatus",
+      "group": "catfish"
+    },
+    {
+      "id": "striped-bass",
+      "displayName": "Striped bass",
+      "scientificName": "Morone saxatilis",
+      "group": "predator"
+    },
+    {
+      "id": "walleye",
+      "displayName": "Walleye",
+      "scientificName": "Sander vitreus",
+      "group": "predator"
+    },
+    {
+      "id": "sauger",
+      "displayName": "Sauger",
+      "scientificName": "Sander canadensis",
+      "group": "predator"
+    },
+    {
+      "id": "muskellunge",
+      "displayName": "Muskellunge",
+      "scientificName": "Esox masquinongy",
+      "group": "predator"
+    },
+    {
+      "id": "rock-bass",
+      "displayName": "Rock bass",
+      "scientificName": "Ambloplites rupestris",
+      "group": "bass"
+    },
+    {
+      "id": "white-bass",
+      "displayName": "White bass",
+      "scientificName": "Morone chrysops",
+      "group": "predator"
+    },
+    {
+      "id": "paddlefish",
+      "displayName": "Paddlefish",
+      "scientificName": "Polyodon spathula",
+      "group": "other"
+    },
+    {
+      "id": "redear-sunfish",
+      "displayName": "Redear sunfish",
+      "scientificName": "Lepomis microlophus",
+      "group": "panfish"
+    }
+  ],
+  "occurrences": [
+    {
+      "waterIds": [
+        "beaverdam-creek"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "beech-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "boone-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-2"
+    },
+    {
+      "waterIds": [
+        "boone-tailwater"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        12,
+        3,
+        4
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "calderwood-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-3"
+    },
+    {
+      "waterIds": [
+        "calderwood-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-3"
+    },
+    {
+      "waterIds": [
+        "calderwood-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger",
+        "muskellunge",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-3"
+    },
+    {
+      "waterIds": [
+        "cameron-brown-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "caney-fork-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "caney-fork-upper"
+      ],
+      "speciesIds": [
+        "walleye"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-4"
+    },
+    {
+      "waterIds": [
+        "center-hill-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-5"
+    },
+    {
+      "waterIds": [
+        "center-hill-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "muskellunge",
+        "paddlefish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-5"
+    },
+    {
+      "waterIds": [
+        "cherokee-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-6"
+    },
+    {
+      "waterIds": [
+        "cherokee-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-6"
+    },
+    {
+      "waterIds": [
+        "chickamauga-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-7"
+    },
+    {
+      "waterIds": [
+        "chickamauga-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger",
+        "paddlefish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-7"
+    },
+    {
+      "waterIds": [
+        "chilhowee-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-8"
+    },
+    {
+      "waterIds": [
+        "chilhowee-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-8"
+    },
+    {
+      "waterIds": [
+        "citico-creek"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout",
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "cosby-creek"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-9"
+    },
+    {
+      "waterIds": [
+        "covington-fbc-pond"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "cumberland-river"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "dale-hollow-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-10"
+    },
+    {
+      "waterIds": [
+        "dale-hollow-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "dale-hollow-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "muskellunge"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-10"
+    },
+    {
+      "waterIds": [
+        "douglas-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-11"
+    },
+    {
+      "waterIds": [
+        "douglas-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger",
+        "muskellunge"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-11"
+    },
+    {
+      "waterIds": [
+        "duck-river-lower"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-12"
+    },
+    {
+      "waterIds": [
+        "duck-river-lower"
+      ],
+      "speciesIds": [
+        "rock-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-12"
+    },
+    {
+      "waterIds": [
+        "duck-river-mouth"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-12"
+    },
+    {
+      "waterIds": [
+        "duck-river-mouth"
+      ],
+      "speciesIds": [
+        "rock-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-12"
+    },
+    {
+      "waterIds": [
+        "duck-river-tailwater"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "east-fork-stones-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "seasonMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "edmund-orgill-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "elk-river-lower"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "elk-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "fort-loudoun-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-13"
+    },
+    {
+      "waterIds": [
+        "fort-patrick-henry-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-14"
+    },
+    {
+      "waterIds": [
+        "fort-patrick-henry-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "fort-patrick-henry-lake"
+      ],
+      "speciesIds": [
+        "walleye"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-14"
+    },
+    {
+      "waterIds": [
+        "ft-patrick-henry-tailwater"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "great-falls-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-15"
+    },
+    {
+      "waterIds": [
+        "harpeth-river"
+      ],
+      "speciesIds": [
+        "smallmouth-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "harpeth-river"
+      ],
+      "speciesIds": [
+        "rock-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "hiwassee-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout",
+        "brook-trout"
+      ],
+      "evidenceType": "wild-population",
+      "confidence": "high",
+      "seasonMonths": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "j-percy-priest-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-16"
+    },
+    {
+      "waterIds": [
+        "johnson-park-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "kentucky-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-17"
+    },
+    {
+      "waterIds": [
+        "kentucky-lake"
+      ],
+      "speciesIds": [
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-17"
+    },
+    {
+      "waterIds": [
+        "lake-barkley"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-18"
+    },
+    {
+      "waterIds": [
+        "lake-graham"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-19"
+    },
+    {
+      "waterIds": [
+        "lake-graham"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "lake-graham"
+      ],
+      "speciesIds": [
+        "redear-sunfish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-19"
+    },
+    {
+      "waterIds": [
+        "laurel-fork-carter"
+      ],
+      "speciesIds": [
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "little-river"
+      ],
+      "speciesIds": [
+        "smallmouth-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "little-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-9"
+    },
+    {
+      "waterIds": [
+        "little-tennessee-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        2,
+        3,
+        4
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "martin-city-pond"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "melton-hill-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-20"
+    },
+    {
+      "waterIds": [
+        "middle-prong-little-pigeon"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-9"
+    },
+    {
+      "waterIds": [
+        "milan-city-pond"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "mississippi-river"
+      ],
+      "speciesIds": [
+        "sauger",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "nickajack-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-21"
+    },
+    {
+      "waterIds": [
+        "nickajack-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-21"
+    },
+    {
+      "waterIds": [
+        "normandy-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-22"
+    },
+    {
+      "waterIds": [
+        "normandy-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-22"
+    },
+    {
+      "waterIds": [
+        "norris-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-23"
+    },
+    {
+      "waterIds": [
+        "norris-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-23"
+    },
+    {
+      "waterIds": [
+        "obed-river"
+      ],
+      "speciesIds": [
+        "rock-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-4"
+    },
+    {
+      "waterIds": [
+        "obey-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "old-hickory-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-24"
+    },
+    {
+      "waterIds": [
+        "old-hickory-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger",
+        "paddlefish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-24"
+    },
+    {
+      "waterIds": [
+        "paris-city-park-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "parksville-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-25"
+    },
+    {
+      "waterIds": [
+        "parksville-lake"
+      ],
+      "speciesIds": [
+        "muskellunge"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-25"
+    },
+    {
+      "waterIds": [
+        "parksville-tailwater"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4,
+        5
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "pickwick-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-26"
+    },
+    {
+      "waterIds": [
+        "pickwick-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger",
+        "white-bass",
+        "paddlefish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-26"
+    },
+    {
+      "waterIds": [
+        "pigeon-river"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "powell-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "wild-population",
+      "confidence": "high",
+      "sourceId": "source-4"
+    },
+    {
+      "waterIds": [
+        "red-river-clarksville"
+      ],
+      "speciesIds": [
+        "walleye",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "reelfoot-lake"
+      ],
+      "speciesIds": [
+        "paddlefish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-27"
+    },
+    {
+      "waterIds": [
+        "roaring-fork"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-9"
+    },
+    {
+      "waterIds": [
+        "sequatchie-river"
+      ],
+      "speciesIds": [
+        "rock-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "shelby-farms-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "south-fork-cumberland"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "wild-population",
+      "confidence": "high",
+      "sourceId": "source-4"
+    },
+    {
+      "waterIds": [
+        "south-holston-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-28"
+    },
+    {
+      "waterIds": [
+        "south-holston-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-28"
+    },
+    {
+      "waterIds": [
+        "south-holston-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brown-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "stones-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "tellico-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-29"
+    },
+    {
+      "waterIds": [
+        "tellico-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        2,
+        3,
+        4
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "tellico-river"
+      ],
+      "speciesIds": [
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "tennessee-river"
+      ],
+      "speciesIds": [
+        "walleye",
+        "sauger"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "tims-ford-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-30"
+    },
+    {
+      "waterIds": [
+        "tims-ford-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-30"
+    },
+    {
+      "waterIds": [
+        "union-city-reelfoot-pond"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "valentine-park-pond"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "watauga-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-31"
+    },
+    {
+      "waterIds": [
+        "watauga-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "watauga-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "watts-bar-lake"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish",
+        "striped-bass"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-32"
+    },
+    {
+      "waterIds": [
+        "watts-bar-lake"
+      ],
+      "speciesIds": [
+        "walleye",
+        "white-bass"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-32"
+    },
+    {
+      "waterIds": [
+        "west-fork-stones-river"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "west-prong-little-pigeon"
+      ],
+      "speciesIds": [
+        "rainbow-trout",
+        "brook-trout"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-9"
+    },
+    {
+      "waterIds": [
+        "wilbur-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceId": "source-1"
+    },
+    {
+      "waterIds": [
+        "woods-reservoir"
+      ],
+      "speciesIds": [
+        "largemouth-bass",
+        "smallmouth-bass",
+        "spotted-bass",
+        "crappie",
+        "bluegill",
+        "channel-catfish"
+      ],
+      "evidenceType": "agency-fishery-list",
+      "confidence": "high",
+      "sourceId": "source-33"
+    },
+    {
+      "waterIds": [
+        "woods-reservoir"
+      ],
+      "speciesIds": [
+        "rock-bass",
+        "white-bass",
+        "redear-sunfish"
+      ],
+      "evidenceType": "regulation",
+      "confidence": "medium",
+      "sourceId": "source-33"
+    },
+    {
+      "waterIds": [
+        "yale-road-park-lake"
+      ],
+      "speciesIds": [
+        "rainbow-trout"
+      ],
+      "evidenceType": "stocking-record",
+      "confidence": "high",
+      "seasonMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "sourceId": "source-1"
+    }
+  ]
+}

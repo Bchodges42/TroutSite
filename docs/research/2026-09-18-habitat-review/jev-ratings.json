@@ -1,0 +1,890 @@
+{
+  "ratedAt": "2026-09-18T15:30:35.819Z",
+  "model": "jev-latest",
+  "results": [
+    {
+      "slug": "duck-river-tailwater",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims year-round but the documented stocking program is cold-season only (Duck-tailwater pattern) — decisive fact unresolved",
+        "catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.68,
+        "probabilities": {
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.76,
+          "trout-stream-year-round": 0.24,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.17,
+        "evidenceStrength": 0.27
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "boone-tailwater",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.68,
+        "probabilities": {
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.75,
+          "trout-stream-year-round": 0.24,
+          "warmwater-no-trout": 0.01
+        },
+        "yearRoundSurvival": 0.21,
+        "evidenceStrength": 0.99
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "ft-patrick-henry-tailwater",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.63,
+        "probabilities": {
+          "none": 0,
+          "trout-stream-year-round": 0.27,
+          "warmwater-yearly-stocked-winter-trout": 0.72,
+          "warmwater-no-trout": 0.01
+        },
+        "yearRoundSurvival": 0.21,
+        "evidenceStrength": 0.97
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "wilbur-lake",
+      "codeLabel": "trout-stream-year-round",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "trout-stream-year-round",
+        "choiceConfidence": 0.61,
+        "probabilities": {
+          "none": 0.05,
+          "trout-stream-year-round": 0.71,
+          "warmwater-yearly-stocked-winter-trout": 0.1,
+          "warmwater-no-trout": 0.14
+        },
+        "yearRoundSurvival": 0.65,
+        "evidenceStrength": 1
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "parksville-tailwater",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.92,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "none": 0,
+          "trout-stream-year-round": 0.06,
+          "warmwater-yearly-stocked-winter-trout": 0.94
+        },
+        "yearRoundSurvival": 0.08,
+        "evidenceStrength": 0.81
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "elk-river-lower",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)",
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.38,
+        "probabilities": {
+          "warmwater-no-trout": 0.45,
+          "warmwater-yearly-stocked-winter-trout": 0.54,
+          "none": 0.01,
+          "trout-stream-year-round": 0
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.9
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "powell-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "warmwater-no-trout": 1,
+          "warmwater-yearly-stocked-winter-trout": 0,
+          "none": 0,
+          "trout-stream-year-round": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.26
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "east-fork-stones-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)",
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.76,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.01,
+          "warmwater-no-trout": 0.82,
+          "none": 0.02,
+          "trout-stream-year-round": 0.15
+        },
+        "yearRoundSurvival": 0.09,
+        "evidenceStrength": 1
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "parksville-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.67,
+        "probabilities": {
+          "none": 0,
+          "trout-stream-year-round": 0.22,
+          "warmwater-no-trout": 0.03,
+          "warmwater-yearly-stocked-winter-trout": 0.75
+        },
+        "yearRoundSurvival": 0.19,
+        "evidenceStrength": 0.84
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "reedy-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.91,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.05,
+          "warmwater-no-trout": 0.93,
+          "trout-stream-year-round": 0.01,
+          "none": 0.01
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.3
+      },
+      "resolution": {
+        "resolution": "owner-box",
+        "reason": "code and Jev disagree: code=warmwater-yearly-stocked-winter-trout, jev=warmwater-no-trout"
+      }
+    },
+    {
+      "slug": "south-fork-cumberland",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "catalog documents a trout/wild fishery but no program row or survival facet resolves it — internally unresolved catalog (east-fork-stones-river owner-box pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "trout-stream-year-round",
+        "choiceConfidence": 0.53,
+        "probabilities": {
+          "warmwater-no-trout": 0.26,
+          "trout-stream-year-round": 0.65,
+          "none": 0.04,
+          "warmwater-yearly-stocked-winter-trout": 0.05
+        },
+        "yearRoundSurvival": 0.16,
+        "evidenceStrength": 0.95
+      },
+      "resolution": {
+        "resolution": "owner-box",
+        "reason": "code and Jev disagree: code=warmwater-no-trout, jev=trout-stream-year-round"
+      }
+    },
+    {
+      "slug": "melton-hill-lake",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.65,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.17,
+          "warmwater-no-trout": 0.74,
+          "trout-stream-year-round": 0.08,
+          "none": 0.01
+        },
+        "yearRoundSurvival": 0.1,
+        "evidenceStrength": 0.94
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "red-river-clarksville",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.74,
+        "probabilities": {
+          "none": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0.19,
+          "warmwater-yearly-stocked-winter-trout": 0.81
+        },
+        "yearRoundSurvival": 0.08,
+        "evidenceStrength": 0.96
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "tellico-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.38
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "fort-patrick-henry-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)",
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.67,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.75,
+          "trout-stream-year-round": 0.25,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.21,
+        "evidenceStrength": 0.85
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "emory-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.76,
+        "probabilities": {
+          "warmwater-no-trout": 0.82,
+          "warmwater-yearly-stocked-winter-trout": 0.08,
+          "none": 0.09,
+          "trout-stream-year-round": 0.01
+        },
+        "yearRoundSurvival": 0.07,
+        "evidenceStrength": 0.99
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "wolf-river-fentress",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.99,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.99,
+          "warmwater-no-trout": 0.01,
+          "trout-stream-year-round": 0,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.22
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "piney-river-rhea",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims year-round but the documented stocking program is seasonal with no survival facet (Boone-tailwater pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.83,
+        "probabilities": {
+          "none": 0,
+          "trout-stream-year-round": 0.13,
+          "warmwater-yearly-stocked-winter-trout": 0.87,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.08,
+        "evidenceStrength": 0.58
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "sequatchie-river",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.66,
+        "probabilities": {
+          "warmwater-no-trout": 0.2,
+          "warmwater-yearly-stocked-winter-trout": 0.75,
+          "trout-stream-year-round": 0,
+          "none": 0.05
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.91
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "harpeth-river",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0,
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.05,
+        "evidenceStrength": 0.13
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "little-pigeon-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)",
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.65,
+        "probabilities": {
+          "warmwater-yearly-stocked-winter-trout": 0.74,
+          "warmwater-no-trout": 0.11,
+          "trout-stream-year-round": 0.14,
+          "none": 0.01
+        },
+        "yearRoundSurvival": 0.13,
+        "evidenceStrength": 1
+      },
+      "resolution": {
+        "resolution": "owner-box",
+        "reason": "code and Jev disagree: code=warmwater-no-trout, jev=warmwater-yearly-stocked-winter-trout"
+      }
+    },
+    {
+      "slug": "little-tennessee-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 0.54,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 0.66,
+          "trout-stream-year-round": 0.34
+        },
+        "yearRoundSurvival": 0.38,
+        "evidenceStrength": 0.89
+      },
+      "resolution": {
+        "resolution": "owner-box",
+        "reason": "code and Jev disagree: code=warmwater-no-trout, jev=warmwater-yearly-stocked-winter-trout"
+      }
+    },
+    {
+      "slug": "ocoee-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "trout-stream-year-round",
+        "choiceConfidence": 0.32,
+        "probabilities": {
+          "trout-stream-year-round": 0.49,
+          "none": 0.04,
+          "warmwater-yearly-stocked-winter-trout": 0.28,
+          "warmwater-no-trout": 0.19
+        },
+        "yearRoundSurvival": 0.15,
+        "evidenceStrength": 1
+      },
+      "resolution": {
+        "resolution": "owner-box",
+        "reason": "code and Jev disagree: code=warmwater-no-trout, jev=trout-stream-year-round"
+      }
+    },
+    {
+      "slug": "north-chickamauga-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "none": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.83
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "station-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.3
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "hurricane-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.27
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "standing-rock-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.23
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "white-oak-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.49,
+      "conflicts": [
+        "catalog claims a stocking program but no program row resolved and no survival facet documented (holston-river / little-tennessee-river owner-box pattern)"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.26
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "roaring-river",
+      "codeLabel": "warmwater-no-trout",
+      "codeConfidence": 0.4,
+      "conflicts": [
+        "angler-catch discovery of trout (Fishbrain, provisional) with no stocking program and no survival facet — who put the trout there?"
+      ],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-no-trout",
+        "choiceConfidence": 0.9,
+        "probabilities": {
+          "none": 0.02,
+          "warmwater-no-trout": 0.93,
+          "warmwater-yearly-stocked-winter-trout": 0.02,
+          "trout-stream-year-round": 0.02
+        },
+        "yearRoundSurvival": 0.08,
+        "evidenceStrength": 0.95
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "salt-lick-creek",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0
+        },
+        "yearRoundSurvival": 0.06,
+        "evidenceStrength": 0.81
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "edmund-orgill-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.12
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "johnson-park-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "none": 0,
+          "warmwater-no-trout": 0,
+          "trout-stream-year-round": 0,
+          "warmwater-yearly-stocked-winter-trout": 1
+        },
+        "yearRoundSurvival": 0.03,
+        "evidenceStrength": 0.18
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "paris-city-park-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.77
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "valentine-park-pond",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "warmwater-no-trout": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "trout-stream-year-round": 0,
+          "none": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.11
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    },
+    {
+      "slug": "yale-road-park-lake",
+      "codeLabel": "warmwater-yearly-stocked-winter-trout",
+      "codeConfidence": 0.5,
+      "conflicts": [],
+      "jev": {
+        "decision": "jev-rated",
+        "backend": "jev",
+        "model": "jev-1.13.0",
+        "choice": "warmwater-yearly-stocked-winter-trout",
+        "choiceConfidence": 1,
+        "probabilities": {
+          "trout-stream-year-round": 0,
+          "none": 0,
+          "warmwater-yearly-stocked-winter-trout": 1,
+          "warmwater-no-trout": 0
+        },
+        "yearRoundSurvival": 0.04,
+        "evidenceStrength": 0.1
+      },
+      "resolution": {
+        "resolution": "accept"
+      }
+    }
+  ]
+}
