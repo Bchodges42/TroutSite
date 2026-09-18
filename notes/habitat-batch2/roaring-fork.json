@@ -1,0 +1,52 @@
+{
+  "slug": "roaring-fork",
+  "segment": {
+    "description": "Roaring Fork, Sevier County — Great Smoky Mountains National Park stream draining the north slope of Mount Le Conte, paralleled by the Roaring Fork Motor Nature Trail near Gatlinburg (GNIS 01299568, HUC 06010107). Catalog note describes steep cascading park water with wild rainbows and brook trout.",
+    "boundaries": "Catalog covers the park stream along the Motor Nature Trail corridor; no formal reach boundaries documented. Park-wide NPS fishing regulations apply."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-source documentation found specific to Roaring Fork. Park context: NPS describes ~2,900 stream miles of wild trout habitat in the park (https://www.nps.gov/grsm/planyourvisit/fishing.htm); the TWRA Trout Management Plan notes the Tennessee portion of GSMNP (Cocke, Sevier, Blount counties) contains another 245 miles of wild trout streams (https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover-specific evidence found. Holdover is moot if the reach is unstocked wild water, as NPS policy (no stocking since 1975) and the absence of any Roaring Fork rows in the TWRA 2026 stocking schedule suggest.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "Park-wide agency evidence: NPS states stocking ended in 1975 and monitoring shows healthy wild trout densities of 2,000-4,000 fish/mile across ~2,900 park stream miles, with brook, brown and rainbow trout present (fishing page), and NPS confirms brook trout as one of the three trout species in the Smokies (fish page). TWRA Trout Management Plan corroborates 245 miles of wild trout streams in the Tennessee portion of GSMNP including Sevier County. No stream-specific agency document naming Roaring Fork trout was found in searches; stream-specific wild-rainbow/brook claims come from angling guides (leads only, not cited as evidence). DISCREPANCY to flag: the catalog note claims 'TWRA listing spring stocking for the Roaring Fork area', but the TWRA 2026 stocking schedule supplied with the repo contains ZERO rows for Roaring Fork (searched all name variants) — consistent with NPS no-stocking policy.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "The stream lies wholly inside GSMNP, where NPS policy since 1975 maintains entirely wild, self-sustaining trout populations (2,000-4,000 fish/mile) with year-round fishing and no stocking — and the TWRA 2026 schedule lists no Roaring Fork stocking at all.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+    "https://www.nps.gov/grsm/learn/nature/fish.htm",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.flyfishingsmokymountains.com (guide lead only, not cited)",
+    "https://www.gatlinburg.com (lead only)",
+    "https://www.neonscience.org (LeConte Creek NEON site — adjacent drainage, NOT Roaring Fork; not cited)"
+  ]
+}

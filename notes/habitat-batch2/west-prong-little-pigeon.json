@@ -1,0 +1,63 @@
+{
+  "slug": "west-prong-little-pigeon",
+  "segment": {
+    "description": "West Prong Little Pigeon River, Sevier County: the park reach draining the Chimneys corridor above Gatlinburg (USGS 03469251 'West Prong Little Pigeon R nr Gatlinburg', gauge altitude 1,352.77 ft) plus the lower out-of-park reach through Pigeon Forge/Gatlinburg. GSMNP waters have had no trout stocking since 1975; the TWRA stocking workbook rows for this water are all 'W. Prong Little Pigeon R. (Pigeon Forge)' (Jan-May and Oct 2026, rainbow trout), i.e. the out-of-park lower reach.",
+    "boundaries": "Park reach above Gatlinburg (wild) and out-of-park Pigeon Forge reach (TWRA seasonal stockings); gauge 03469251 sits at the park end near Gatlinburg"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1353,
+    "notes": "elevationFt is the USGS gauge altitude (1,352.77 ft NAVD88) at station 03469251 near Gatlinburg, the park end of the reach (USGS site service)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable inside the park (wild resident trout; GSMNP has stocked no non-native trout since 1975). No holdover reports found for the out-of-park Pigeon Forge stocking reach.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975; fishing is open year-round in all park streams. No stream-specific wild-population study for the West Prong itself was found in sources consulted.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+    },
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "The park reach sits in NPS-documented wild trout habitat (no stocking since 1975, trout densities of 2,000-4,000 fish/mile in many park streams), while TWRA rainbow stockings are confined to the out-of-park Pigeon Forge reach.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+    "https://www.nps.gov/grsm/learn/nature/fish.htm",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03469251&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03469251&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03469251&parameterCd=00010&startDT=2024-07-01&endDT=2024-07-31&format=json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  ]
+}

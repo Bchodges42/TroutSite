@@ -1,0 +1,50 @@
+{
+  "slug": "cosby-creek",
+  "segment": {
+    "description": "Cosby Creek, Cocke County — Great Smoky Mountains National Park stream draining the Cosby area (GNIS 01327978, HUC 06010106). Catalog note describes wild rainbows and brook trout upstream with park-wide NPS regulations.",
+    "boundaries": "Catalog covers the creek generically; no sub-reach boundaries documented. TWRA 2026 stocking schedule lists 'Cosby Creek' (Cocke County) seasonally without specifying stocked access points relative to the park boundary."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-source documentation found specific to Cosby Creek. Park context only: NPS states the park safeguards 'one of the last remaining wild trout habitats in the eastern United States' across ~2,900 stream miles (https://www.nps.gov/grsm/planyourvisit/fishing.htm)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover-specific evidence sought/found. Holdover is largely moot here because NPS has not stocked the park since 1975 — trout present are resident wild fish, not seasonal stockers.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "NPS: stocking of non-native trout in GSMNP ended in 1975 as 'inconsistent with NPS policies' (restoration stocking only for native non-game species); monitoring shows healthy wild trout densities of 2,000-4,000 fish/mile park-wide. Stream-specific: NPS brook trout research names Cosby Creek directly ('a brook trout caught at Cosby Creek is still classified the same species of fish as a brook trout caught at Lynn Camp Prong'), and the TWRA Trout Management Plan 2017-2027 names Cosby Creek as a potential donor stream for native brook trout restoration. CONFLICT to flag: the TWRA 2026 stocking schedule (packages/content/data/twra-stocking-schedule.json, sourced from tn.gov) lists 'Cosby Creek', Cocke County, seasonal Rainbow Trout weeks 3/1-6/21/2026 — while NPS says the park does not stock. The stocked location relative to the park boundary is not documented in sources consulted; both facts stand as recorded.",
+    "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+  },
+  "troutSpecies": [
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+    },
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "NPS has managed the park's streams as unstocked wild trout water since 1975 and agency sources (NPS and TWRA) document brook trout in Cosby Creek itself — a self-sustaining resident population by definition.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+    "https://www.nps.gov/grsm/learn/nature/fish.htm",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+    "https://www.flyfishingsmokymountains.com (guide lead only, not cited)",
+    "https://perfectflystore.com (guide lead only, not cited)"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "powell-river",
+  "segment": {
+    "description": "Powell River, Tennessee — Cumberland (Norris Lake) drainage river from the Virginia line down to the Norris Lake arm, Claiborne/Union counties. Agency framing and TWRA regulation structure describe it as a warmwater smallmouth bass river; no trout program on the Tennessee reach was found in any source consulted.",
+    "boundaries": "Tennessee reach, Claiborne/Union counties; USGS 03532000 'Powell River near Arthur, TN' (verified via waterservices.usgs.gov site service: 36.5425, -83.6300, Claiborne County, HUC 06010206, altitude 1043.24 ft). TWRA regulation exception reach: 'Gap Creek confluence upstream to the state line'."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1043,
+    "notes": "Elevation is the USGS gauge altitude near Arthur (1043.24 ft, from the waterservices.usgs.gov expanded site output). No cold-water source documented for this reach; the Norris Lake trout fishery TWRA documents is on the Clinch River below Norris Dam, a different water."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found and no stocking signal to hold over: the TWRA stocking dataset contains no Powell River rows of any season, and TWRA's trout stockings page lists no Powell River program.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No agency documentation of trout in the Tennessee Powell River was found. Direct agency framing is warmwater: TWRA's statewide regulation exceptions page sets a smallmouth bass rule on the Powell River ('Gap Creek confluence upstream to the state line' — Black Bass 5/day combination; Smallmouth 13-17 in PLR, one over 17 in/day). The TWRA Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee mountain waters (Regions 3/4, GSMNP), not this river. The catalog's editorial note claiming wild rainbow and brown trout in upper reaches could not be verified in any agency source consulted; the only upper-Powell trout claims found were non-agency (town tourism page, fishing-app listings).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA regulates and frames the Powell River as a smallmouth bass river, the stocking dataset has no Powell rows, and no agency source documenting trout on the Tennessee reach was found — a warmwater/no-trout case.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03532000&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03532000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterdata.usgs.gov/monitoring-location/03532000/",
+    "https://www.townofcumberlandgap.com",
+    "https://www.tn.gov/twra/fishing.html"
+  ]
+}

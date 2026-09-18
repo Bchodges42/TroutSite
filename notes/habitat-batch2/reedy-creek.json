@@ -1,0 +1,38 @@
+{
+  "slug": "reedy-creek",
+  "segment": {
+    "description": "Reedy Creek — small urban creek through Kingsport, Sullivan County (HUC 06010102), cataloged as a warmwater water with no trout program. Catalog correction (2026-09-15) states agency sources document a warmwater fishery with no trout program, 303(d) listed, zero trout rows in the TWRA 2026 schedule.",
+    "boundaries": "Catalog covers the creek through Kingsport; no formal reach boundaries documented. USGS monitoring locations 03487600 ('Reedy Creek at Kingsport') and 03487602 ('Reedy Creek ab Clinchfield RR at Kingsport'), both Sullivan County, verified via USGS site service."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No cold-water source documentation found. Catalog notes 'spring-fed pockets' but no agency citation was located."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable as documented: there is no trout stocking program on this creek — the TWRA 2026 stocking schedule contains zero rows for Reedy Creek (checked the repo copy of the TWRA schedule across all name variants), so there are no stocked trout to hold over.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No evidence of any trout population found. Zero rows in the TWRA 2026 stocking schedule; no TWRA/USGS/TDEC trout reference located in searches. TDEC maintains a water-quality monitoring segment on the creek (TDECWPC REEDY000.1SU in Sullivan County via waterqualitydata.us) consistent with standard warmwater stream assessment; EPA ATTAINS status could not be re-queried here (API key required). Catalog treats the creek as warmwater 303(d) listed.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "No trout program and no trout records of any kind: zero rows in the TWRA 2026 stocking schedule and no agency trout documentation — the creek is monitored as an ordinary warmwater urban stream.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterdata.usgs.gov/monitoring-location/03487602/",
+    "https://waterdata.usgs.gov/monitoring-location/03487600/",
+    "https://www.waterqualitydata.us (TDEC monitoring site REEDY000.1SU, Sullivan County)",
+    "https://attains.epa.gov/attains-public/api/waterbodies?state=TN&waterbodyName=Reedy%20Creek (MISS: requires api.data.gov key)",
+    "https://www.tn.gov/environment/program-areas/wr-water-resources/water-quality-rules-reports-and-publications.html (303(d) list pointer; segment status not individually verified)"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "leconte-creek",
+  "segment": {
+    "description": "LeConte Creek, a small Great Smoky Mountains National Park stream near Gatlinburg, Sevier County, under heavy canopy pocket water. The park reach is wild trout water (GSMNP has stocked no non-native trout since 1975); NPS names LeConte Creek as a brook trout restoration stream. Note: the current TWRA stocking workbook (checked 2026-09-18) contains no LeConte Creek row, so the catalog's 'TWRA spring stocking listed' note could not be confirmed against the current schedule.",
+    "boundaries": "Park reach above the Gatlinburg city boundary; no gauge; Gatlinburg city permit waters begin where the creek reaches city waters"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": null
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable as normally framed: the park reach holds wild resident trout (GSMNP has stocked no non-native trout since 1975), so no stocking-based holdover question arises inside the park.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "Stream-specific: NPS documents brook trout restoration on this creek - 'Restoration projects at Lynn Camp Prong and LeConte Creek sourced brook trout from several nearby streams in the park to strengthen brook trout populations at these sites.' Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975.",
+    "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+  },
+  "troutSpecies": [
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+    },
+    {
+      "species": "rainbow",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "NPS names LeConte Creek a brook trout restoration stream (wild self-sustaining park population) and GSMNP park streams have carried wild trout with no stocking since 1975.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+    "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+    "https://www.nps.gov/grsm/learn/nature/fish.htm",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout.htm",
+    "https://www.nps.gov/grsm/learn/nature/brooktrout.htm",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-restoration.htm"
+  ]
+}

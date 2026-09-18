@@ -1,0 +1,61 @@
+{
+  "slug": "south-holston-lake",
+  "segment": {
+    "description": "Entire South Holston Lake (TVA reservoir, 7,580 ac at full pool), a deep storage impoundment of the South Fork Holston River above Bristol; about 1,250 acres lie in Virginia (Washington County, VA) with the remainder in Sullivan County, TN. This record covers the LAKE only — the famous South Holston tailwater below the dam is a separate catalog entry and facts do not transfer.",
+    "boundaries": "South Holston Dam upstream ~23-24 miles of reservoir to the headwaters; crosses the Tennessee-Virginia state line (per TWRA reservoir page and VA DWR 2020 report)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "South Holston Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/sholston.htm"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 1729,
+    "notes": "Full pool 1,729 ft, maximum depth 245 ft, 7,580 ac (VA DWR 2020 fisheries report, https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf). TVA: earth-and-rockfill dam 285 ft high; weir below dam added 1991 to oxygenate non-generating releases; winter drawdown ~25-30 ft (TVA/VA DWR; TWRA says levels can drop 40 ft below summer pool). Deep-intake/bottom-draw release is widely described but I found no acceptable agency source stating intake depth, hence releaseType unknown. The tailwater facts (weir, turbine releases) describe the DISCHARGE below the dam, not lake habitat itself."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "TWRA's reservoir page documents a summer lake trout fishery: trolling tips for summer rainbows/browns at 30-50 ft and Lake Trout at 90 ft, creel of 7 trout/day with only 2 Lake Trout; TWRA states the water is 'cool enough and has adequate dissolved oxygen to support trout' but summer DO 'can sometimes fall below optimum levels... limiting the success of the fishery, especially Lake Trout.' A maintained lake-trout component implies multi-year survival of stocked fish in the hypolimnion.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No documentation of natural trout reproduction in the lake found; VA DWR 2020 states annual stockings maintain the trout (and walleye) populations — i.e., not self-sustaining.",
+    "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+    },
+    {
+      "species": "lake",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA states South Holston's water is cool enough with adequate DO to support trout and stocks Lake + Rainbow trout in it under its program of reservoirs stocked 'to provide year-round trout fishing opportunities,' and VA DWR confirms both states stock trout annually to maintain the population in this 245-ft-deep reservoir — with documented summer low-DO as the main seasonal limiter.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html",
+    "https://dwr.virginia.gov/wp-content/uploads/media/South-Holston-Reservoir-2020-Popular-Report.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://lakeinfo.tva.gov/web/sites/sholston.htm",
+    "https://www.tva.com/environment/lake-levels/south-holston",
+    "https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/South-Holston-Tailwater-Trout-Fishery-Management-Plan.pdf",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03476500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://dwr.virginia.gov/waterbody/south-holston-reservoir/"
+  ]
+}

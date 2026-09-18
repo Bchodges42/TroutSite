@@ -1,0 +1,41 @@
+{
+  "slug": "trail-fork-big-creek",
+  "segment": {
+    "description": "Trail Fork of Big Creek, Cocke County, Tennessee (French Broad watershed, Bald Mountains) — a small TWRA-stocked trout stream; TWRA also documents a wild rainbow trout population in its upper reaches, and since 2021 it is an active native brook trout reintroduction site above a natural waterfall barrier.",
+    "boundaries": "Cocke County; TWRA stocks the stream as 'Trail Fork Big Creek' (same 2026 stocking group as Gulf Fork Big Creek in the Bald Mountain headwaters of the Big Creek drainage). Wild rainbows documented in Upper Trail Fork and headwater tributaries upstream of ~2,720 ft per TWRA's Trout Management Plan."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No gauge; no numeric elevation for the stocked reach found. TWRA's Trout Management Plan places the wild rainbow population upstream of ~2,720 ft. The catalog's 'spring-stocked' wording refers to the stocking season (spring weeks), not a spring-fed source; no spring-influence evidence was found. The brook trout restoration relies on a natural waterfall as a downstream barrier (TU/EBTJV), consistent with steep mountain headwater habitat but not by itself a temperature citation."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. TWRA's stocking is seasonal: the 2026 dataset shows rainbow trout stocking weeks of 2/22, 3/15, 4/5, 4/26 and 5/17/2026 (Feb-May), with the same stream named on TWRA's trout stockings page.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA Trout Management Plan 2017-2027 (Fisheries Report No. 17-10), proposed brook trout restoration waters (Tier 1): 'Upper Trail Fork currently has a wild Rainbow Trout population, as do some of its headwater tributaries (upstream of 2,720')'. Separately, since 2021 the stream is an active native (Southern Appalachian) brook trout reintroduction water: EBTJV project 'Improving Connectivity for Reintroduced Native Brook Trout in Trail Fork of Big Creek, Cocke County, TN' (FSR 96 culvert replacement over Wolf Creek), with brook trout releases by the Tennessee Aquarium Conservation Institute with TWRA/TU/USFWS (TU Nov 2021; USFWS 2024). Whether the reintroduced brook trout population is established is not documented.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "both", "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf" },
+    { "species": "brook", "basis": "unknown", "evidenceUrl": "https://easternbrooktrout.org/projects/2021-projects/improving-connectivity-for-reintroduced-native-brook-trout-in-trail-fork-of-big-creek-cocke-county-tn" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TWRA's own Trout Management Plan documents a wild (self-sustaining) rainbow trout population in upper Trail Fork above ~2,720 ft, and the stream is now an agency/partner brook trout reintroduction water — year-round trout survival is documented on the water, though the TWRA put-take stocking (Feb-May rainbows) is seasonal and applies to the lower stocked reach.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+    "https://easternbrooktrout.org/projects/2021-projects/improving-connectivity-for-reintroduced-native-brook-trout-in-trail-fork-of-big-creek-cocke-county-tn",
+    "https://www.tu.org/magazine/conservation/from-the-field/brookies-in-tennessee-get-a-new-improved-home",
+    "https://www.fws.gov/story/2024-06/bringing-back-brook-trout",
+    "https://www.tn.gov/twra/fishing.html"
+  ]
+}

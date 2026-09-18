@@ -1,0 +1,61 @@
+{
+  "slug": "middle-prong-little-pigeon",
+  "segment": {
+    "description": "Middle Prong Little Pigeon River in Great Smoky Mountains National Park (Tremont area), Sevier County, plus its watershed including Lynn Camp Prong, an NPS brook-trout restoration tributary. GSMNP waters have had no trout stocking since 1975; the TWRA stocking workbook lists seasonal rainbow rows under 'Mid. Prong Little Pigeon River' (Sevier County, Feb-May and late Oct-Nov 2026) whose precise put-points are not given in the workbook and which cannot be inside the park under NPS policy.",
+    "boundaries": "Park reach in the Tremont drainage; no gauge; lower out-of-park reaches near the park boundary carry the TWRA-listed stockings"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": null
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable as normally framed: the park reach holds wild resident trout (GSMNP has stocked no non-native trout since 1975), so no stocking-based holdover question arises inside the park. No holdover reports found for the out-of-park stocked reach.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975. Stream-specific: NPS documents brook trout restoration in this stream's watershed - 'Restoration projects at Lynn Camp Prong and LeConte Creek sourced brook trout from several nearby streams in the park to strengthen brook trout populations at these sites' - and 'Brook trout populations at Lynn Camp Prong are annually monitored by fisheries scientists.' Lynn Camp Prong is a tributary, not the mainstem.",
+    "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+  },
+  "troutSpecies": [
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm"
+    },
+    {
+      "species": "rainbow",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "NPS has documented self-sustaining wild trout in GSMNP streams since stocking ended in 1975 (2,000-4,000 trout/mile in many streams), including brook trout restoration and annual monitoring on Lynn Camp Prong in the Tremont/Middle Prong watershed.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+    "https://www.nps.gov/grsm/learn/nature/fish.htm",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  ]
+}

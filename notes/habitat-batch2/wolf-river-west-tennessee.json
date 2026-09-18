@@ -1,0 +1,41 @@
+{
+  "slug": "wolf-river-west-tennessee",
+  "segment": {
+    "description": "Wolf River, West Tennessee — the west-flowing lowland Wolf through Fayette and Shelby counties in the Memphis area (a different water from the Fentress County Wolf River headwaters, which IS seasonally trout-stocked by TWRA). Documented as a warmwater river with a 67-species fish assemblage and no trout program on the river.",
+    "boundaries": "West Tennessee reach, Shelby County focus; USGS 07031650 'Wolf River at Germantown, TN' (verified via waterservices.usgs.gov site service: 35.1165, -89.8015, Shelby County, HUC 08010210, altitude 235.87 ft)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 236,
+    "notes": "Elevation is the USGS gauge altitude at Germantown (235.87 ft, from the waterservices.usgs.gov expanded site output). A 236-ft Mississippi-valley floodplain river; no cold-water source documented in any source found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found and no river stocking signal: TWRA's stocking dataset contains no Wolf River rows. TWRA's Memphis-area winter rainbow trout stockings go to Shelby County park LAKES (Cameron Brown Lake, Edmund-Orgill Park, Johnson Park Lake, Shelby Farms, Yale Road Park), not the Wolf River.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout documented. The Wolf River Conservancy's fish summary reports about 67 species in 13 families known from the river (largemouth bass, bluegill, crappie, channel and flathead catfish, bullheads, redhorses, darters, etc.) and mentions no trout. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout in East Tennessee (Regions 3/4 mountains, GSMNP).",
+    "evidenceUrl": "https://www.wolfriver.org/news-press/natural-highlights-wolf-river-fishes"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "A ~236-ft West Tennessee lowland river documented with a 67-species warmwater fish assemblage listing no trout, with TWRA's regional trout stockings confined to Shelby County park lakes rather than the river.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.wolfriver.org/news-press/natural-highlights-wolf-river-fishes",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=07031650&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=07031650&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterdata.usgs.gov/monitoring-location/07031650/",
+    "https://www.tn.gov/twra/fishing.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html",
+    "https://www.tnwatchablewildlife.org"
+  ]
+}

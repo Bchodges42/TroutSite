@@ -1,0 +1,43 @@
+{
+  "slug": "melton-hill-lake",
+  "segment": {
+    "description": "Entire Melton Hill Lake, a ~5,690 ac (TWRA) run-of-river TVA reservoir on the Clinch River between Norris Dam and Melton Hill Dam (Clinch River mile 23.1), in Anderson/Roane counties near Oak Ridge. The Norris tailwater (Clinch River) runs the length of this pool; this record covers the LAKE/pool itself, not the clinch-river tailwater catalog entry upstream.",
+    "boundaries": "Melton Hill Dam upstream ~38 miles of Clinch River to Clinton (per TVA); TWRA reservoir regulation text extends striped-bass waters 'including Clinch River upstream to Highway 61 bridge in Clinton.'"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Norris Dam (upstream cold inflow); pool impounded by Melton Hill Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA: 'Melton Hill is a cool water reservoir with relatively low productivity... The cold water released through Norris Dam negatively impacts warm water fish species like Largemouth Bass and Bluegill, causing slow growth and limited reproduction. The cool flowing water, however, guarantees that dissolved oxygen levels remain good throughout the summer.' No lake temperature profile or release-draw documentation found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No lake trout survival documentation found. TWRA's stocking workbook and 2026 schedule show NO Melton Hill lake row; the reservoir is absent from TWRA's list of reservoirs stocked 'to provide year-round trout fishing opportunities.' The adjacent stocking is 'Norris Tailwater / Clinch River' (Anderson County; Rainbow, Brown; months M, A, M, J, J, A, S) — that is the tailwater reach that terminates at the upper (Clinton/Hwy 61) end of this pool per Clinch River TU; a fact about the tailwater does not establish lake stocking.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No documentation found of natural trout reproduction in the reservoir.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TWRA's own reservoir page documents trout-grade habitat — cold Norris Dam releases make Melton Hill a 'cool water reservoir' that suppresses warmwater bass and keeps summer dissolved oxygen good — but TWRA does not stock the lake with trout, excludes it from its year-round reservoir trout program, and documents no lake trout fishery, so a year-round trout fishery is unproven.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://lakeinfo.tva.gov/web/sites/meltonhill.htm",
+    "https://www.crctu.org/fishing",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03535912&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tva.com/environment/lake-levels/melton-hill"
+  ]
+}

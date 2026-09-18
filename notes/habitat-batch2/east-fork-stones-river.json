@@ -1,0 +1,41 @@
+{
+  "slug": "east-fork-stones-river",
+  "segment": {
+    "description": "East Fork Stones River, upper reach in Rutherford County, Tennessee (plateau-headwater reach above and around Murfreesboro; the catalog claims a modest wild rainbow population here). Not to be confused with TWRA's stocked Stones River reaches: the West Fork Stones River greenway at Manson Pike Trailhead (Rutherford) and the J. Percy Priest tailwater / Stones River (Davidson), which are separate waters in TWRA's stocking data.",
+    "boundaries": "Rutherford County upper East Fork; USGS 03427500 'East Fork Stones River near Lascassas, TN' (verified via waterservices.usgs.gov site service: 35.9184, -86.3339, Rutherford County, HUC 05130203, altitude 507.63 ft)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 508,
+    "notes": "Elevation is the USGS gauge altitude near Lascassas (507.63 ft, from the waterservices.usgs.gov expanded site output). No cold-water source documented for this reach in any source found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found and no stocking signal on this reach: TWRA's stocking dataset contains no East Fork Stones River rows. The Stones River system stockings in TWRA's 2026 data are winter rainbows at W. Fork Stones River - Manson Pike Trailhead (Rutherford) and J. Percy Priest TW / Stones River (Davidson) — different reaches.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "Unresolved conflict. The catalog's editorial note claims a modest wild rainbow population in the upper East Fork, but no agency documentation of trout on the East Fork Stones River was found. TWRA's Trout Management Plan 2017-2027 places Tennessee's wild trout resources in East Tennessee (about 600 stream miles in Regions 3/4 plus GSMNP), and TWRA's own plan names the WEST Fork Stones River greenway in Murfreesboro as its hatchery-supported Stones River example — not the East Fork. Only single community-app catch reports (Fishidy/Fishbrain) exist, which are not acceptable as sole evidence.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Conflicting picture: the catalog asserts uncited wild rainbows in the upper East Fork, but no agency documentation, no stocking row for this reach (stockings are on the West Fork and Percy Priest tailwater instead), and no temperature data were found — read left unknown.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03427500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03427500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterdata.usgs.gov/monitoring-location/03427500/",
+    "https://www.wkrn.com",
+    "https://www.fishidy.com",
+    "https://www.onwaterapp.com",
+    "https://www.tn.gov/twra/fishing.html"
+  ]
+}

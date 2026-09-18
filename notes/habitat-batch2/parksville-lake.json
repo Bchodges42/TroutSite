@@ -1,0 +1,48 @@
+{
+  "slug": "parksville-lake",
+  "segment": {
+    "description": "Entire Parksville Lake (also Ocoee Lake / Ocoee Lake No. 1), a 1,930 ac TVA impoundment of the Ocoee River formed by Ocoee Dam No. 1 (built 1911 by Tennessee Electric Power Co., acquired by TVA 1939) in Polk County. This record covers the LAKE only — the Parksville tailwater (Ocoee River below the dam) is a separate catalog entry.",
+    "boundaries": "Ocoee Dam No. 1 at the pool's west edge upstream along the Ocoee River arm (receives the upper Ocoee below Ocoee No. 3)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Ocoee Dam No. 1 (Parksville Dam)",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/parksville.htm"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TVA's reservoir page describes recreation (Cherokee National Forest campgrounds, whitewater outfitting) but publishes no depth or thermal-stratification figures on the page fetched; 'shallow/warm' characterization could not be pinned to an agency citation, so it is NOT asserted here. The dam draws for whitewater/hydro operations; no intake-depth documentation found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. TWRA's stocking workbook shows no Parksville lake row (only 'Parksville(Ocoee #1) TW / Ocoee River' tailwater — Rainbow; months M, A, M); yet the live TWRA trout page lists 'Region II, Parksville - Rainbow' among reservoirs stocked 'to provide year-round trout fishing opportunities', and TWRA's reservoir page notes the reservoir 'has been stocked by TWRA with bluegill, redear sunfish, black crappie, muskie, walleye, and trout' while characterizing the fishery as warmwater ('Parksville Reservoir contains various types of warmwater fish species').",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No documentation found of natural trout reproduction in the reservoir.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Conflicting agency signals: TWRA lists Parksville Reservoir (Rainbow) among reservoirs it stocks 'to provide year-round trout fishing opportunities', yet TWRA's own reservoir page frames the pool as a warmwater fishery, the stocking workbook pins no lake stocking dates (only the Mar-Apr-May tailwater row), and no thermal or holdover data exists — per owner rules this conflict reads as unknown.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://lakeinfo.tva.gov/web/sites/parksville.htm",
+    "https://www.tva.com/environment/lake-levels",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03564500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

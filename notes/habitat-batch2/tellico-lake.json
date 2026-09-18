@@ -1,0 +1,51 @@
+{
+  "slug": "tellico-lake",
+  "segment": {
+    "description": "TVA Tellico Reservoir (Tellico Lake), impounded by Tellico Dam near Lenoir City in Loudon, Monroe, and Blount counties. Per TWRA, at full pool the reservoir extends 33 miles up the Little Tennessee River to Chilhowee Dam and 20 miles up the Tellico River. The free-flowing Tellico River above the pool is a separate catalog entry (tellico-river).",
+    "boundaries": "Tellico Dam (Little Tennessee River mile ~23) upstream to Chilhowee Dam on the Little Tennessee and 20 miles up the Tellico River arm, per TWRA"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Tellico Dam",
+      "operator": "TVA",
+      "releaseType": null,
+      "evidenceUrl": "https://www.tva.com/environment/lake-levels/tellico"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": null,
+    "notes": "TWRA: 'Tellico is a cool water impoundment due to the cold water inflows from Chilhowee Reservoir and the Tellico River' and it has 'cool water temperatures and good oxygen levels throughout the summer.' TVA's Tellico lake page documents TVA operation of Tellico Dam; the dam's release draw type is not documented in sources consulted. TVA notes there is no tailwater gage at Tellico Dam."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover reports found. TWRA documents the trout fishery as seasonal put-and-take: 'About 4,500 catchable Rainbow Trout are released there in the late winter and early spring annually,' and the current TWRA stocking workbook contains no Tellico Lake/Reservoir row (nearest reservoir row is Chilhowee Reservoir, a different waterbody upstream).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No evidence of wild (self-sustaining) trout in the reservoir found in sources consulted. TWRA frames the rainbow trout fishery as stocked catchables; the TWRA reservoir species list is otherwise warmwater/coolwater (largemouth, smallmouth, spotted, crappie, bluegill, walleye, catfish, striped/hybrid bass).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TWRA calls Tellico a cool-water impoundment with cool temperatures and good oxygen throughout the summer (cold inflows from Chilhowee Reservoir and the Tellico River) and stocks ~4,500 catchable rainbows each late winter, but no summer temperature numbers or holdover evidence were found.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html",
+    "https://www.tva.com/environment/lake-levels/tellico",
+    "https://en.wikipedia.org/wiki/Tellico_Reservoir",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tellicowater.org"
+  ]
+}

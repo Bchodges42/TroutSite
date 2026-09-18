@@ -1,0 +1,43 @@
+{
+  "slug": "red-river-clarksville",
+  "segment": {
+    "description": "Red River at Clarksville, Montgomery County, Tennessee — warmwater Clarksville-area river (bass and catfish water, mud-prone watershed). Catalog entry is the Montgomery County reach near the Port Royal gauge.",
+    "boundaries": "Montgomery County, TN reach; USGS 03436100 'Red River at Port Royal, TN' (verified via waterservices.usgs.gov site service: 36.5547, -87.1419, Montgomery County, HUC 05130206, altitude 376.25 ft)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 376,
+    "notes": "Elevation is the USGS gauge altitude at Port Royal (376.25 ft, from the waterservices.usgs.gov expanded site output). No cold-water source documented for this reach in any source found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. TWRA's stocking dataset contains no Red River rows; the only Montgomery County trout stocking in TWRA's data is winter rainbow trout at Billy Dunlop Park in Clarksville (2/18/2026 and TBD 12/2026 in the 2026 workbook; also listed on TWRA's trout stockings page). Billy Dunlop Park is a city park on the Red River, but whether the fish go into the river channel or a park pond is not stated in the agency sources consulted — local news (ClarksvilleNow, Dec 2016) and Visit Clarksville describe the stocking at the park and Red River trout fishing without resolving pond-vs-river.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No agency documentation of wild trout in the Red River (Montgomery County) was found. The TWRA Trout Management Plan 2017-2027 places Tennessee's wild trout resources in East Tennessee (approximately 600 stream miles in TWRA Regions 3 and 4 plus GSMNP), not Middle/West Tennessee streams like this one. The catalog's own correction note (2026-09-15) states agency sources document a warmwater fishery with no trout program or trout record.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "stocked-only", "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "TWRA's only trout program in Montgomery County is the winter put-take stocking at Billy Dunlop Park (site-on-river but pond-vs-river ambiguous); the Red River reach itself has no trout program, no trout documentation, and is a warmwater muddy river at ~376 ft elevation.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03436100&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03436100&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterdata.usgs.gov/monitoring-location/03436100/",
+    "https://clarksvillenow.com/local/twra-stocks-billy-dunlop-park-with-winter-trout/",
+    "https://www.visitclarksvilletn.com",
+    "https://www.tn.gov/twra/fishing.html",
+    "https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html"
+  ]
+}

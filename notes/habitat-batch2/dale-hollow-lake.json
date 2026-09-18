@@ -1,0 +1,54 @@
+{
+  "slug": "dale-hollow-lake",
+  "segment": {
+    "description": "Entire Dale Hollow Reservoir (USACE Obey River impoundment; 25,519 ac total per KDFWR, with 6,614 ac in Kentucky), at the Kentucky line in Clay, Pickett, Overton (and Fentress) counties, TN and Clinton/Cumberland counties, KY. This record covers the LAKE only — the Dale Hollow tailwater (Obey River below the dam) is a separate catalog entry and its year-round trout stocking does not transfer to the lake.",
+    "boundaries": "Dale Hollow Dam upstream on the Obey River and impounded arms; Kentucky-Tennessee line crosses the lower pool near the dam."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Dale Hollow Dam",
+      "operator": "USACE",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TWRA: 'The operating authority is the U.S. Corps of Engineers' (dam completed 1943 on the Obey River). USACE Nashville District water-control documentation lists normal pool 651.0 ft msl (verified only via search snippet of the USACE Dale Hollow water control manual; full URL not captured, so elevation left null). Adjacent USFWS Dale Hollow NFH exists to mitigate federal-dam impacts by 'stocking rainbow, brown, lake, and brook trout in waters impacted by federal dams' — i.e., primarily the cold tailwaters below the dam, not the lake."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": true,
+    "detail": "TWRA's reservoir page documents persistence across seasons: 'Rainbow trout are typically stocked annually into Dale Hollow Reservoir during the wintertime,' and anglers 'begin trolling for trout in deeper water near the dam in May,' June is best (downriggers, spoons in 30-50 ft), with trout also caught 'in the summer months at night' — winter-stocked trout documented in the creel guidance through early summer. Composition conflict (flagged by catalog owner): the live TWRA page describes wintertime rainbow stocking, while the TWRA stocking workbook row reads 'Dale Hollow Reservoir / Reservoir / April / Brown Trout', and the TWRA program list reads 'Region II, Dale Hollow, - Rainbow'.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No documentation found of natural trout reproduction in the reservoir; fisheries rely on annual stocking (TWRA page; USFWS hatchery program).",
+    "evidenceUrl": "https://www.fws.gov/fish-hatchery/dale-hollow"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=99"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA documents winter stocking of rainbow trout into the reservoir AND a summer deep-water fishery for them (trolling near the dam from May, best in June, summer night fishing), and lists Dale Hollow among reservoirs stocked 'to provide year-round trout fishing opportunities' — multi-season survival of stocked trout is documented by the managing agency itself.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.fws.gov/fish-hatchery/dale-hollow",
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=99",
+    "https://www.lrd.usace.army.mil/Missions/Civil-Works/Recreation/Dale-Hollow-Lake/",
+    "https://www.lrn-wc.usace.army.mil/"
+  ]
+}

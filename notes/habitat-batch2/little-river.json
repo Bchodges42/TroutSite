@@ -1,0 +1,85 @@
+{
+  "slug": "little-river",
+  "segment": {
+    "description": "Little River from the Great Smoky Mountains National Park headwaters (Elkmont corridor) down to the Fort Loudoun Lake embayment near Maryville/Alcoa, Blount County. Park reach is wild trout water (GSMNP has stocked no non-native trout since 1975); TWRA stocking workbook rows under 'Little River' (Blount County, Feb-May and late Oct-Nov 2026, rainbow trout) apply to the lower out-of-park reaches near Walland/Maryville. USGS 03497300 'Little River above Townsend' (gauge altitude 1,106.92 ft) sits at the park boundary; 03498500 'Little River near Maryville' is the lower out-of-park gauge.",
+    "boundaries": "GSMNP headwaters to Fort Loudoun Lake embayment; two verified gauges bracket the reach (Townsend boundary and Maryville)"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 1107,
+    "notes": "elevationFt is the USGS gauge altitude (1,106.92 ft) at station 03497300, Little River above Townsend - the downstream (park-boundary) end of the park reach, not the headwaters (USGS site service)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 21.4,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    },
+    {
+      "celsius": 24.6,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    },
+    {
+      "celsius": 18.4,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "Not applicable inside the park (wild resident trout; GSMNP has stocked no non-native trout since 1975). No holdover reports found for the out-of-park TWRA-stocked reaches near Walland/Maryville.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "Park-wide: NPS states GSMNP protects one of the last remaining wild trout habitats in the eastern US (~2,900 miles of streams) with many streams at trout densities of 2,000-4,000 fish per mile, and that the park stopped stocking non-native trout in 1975; brook, rainbow, and brown trout are the documented park trout species. July 2025 USGS temperatures at the Townsend boundary gauge (median 21.4 C, max 24.6 C, min 18.4 C) show summer conditions at the lower end of the park reach.",
+    "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm"
+    },
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://www.nps.gov/grsm/learn/nature/fish.htm"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "NPS documents self-sustaining wild trout (brook/rainbow/brown) in GSMNP streams with no stocking since 1975, and USGS gauge 03497300 recorded July 2025 water temperatures of 18.4-24.6 C (median 21.4 C) at the park boundary, consistent with a headwater-to-boundary wild trout gradient.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
+    "https://www.nps.gov/grsm/learn/nature/fish.htm",
+    "https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03497300,03498500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03497300&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03498500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "boone-lake",
+  "segment": {
+    "description": "Entire Boone Lake (TVA reservoir, ~4,400 ac surface) on the South Fork Holston and Watauga rivers in Sullivan/Washington counties; TWRA's reservoir definition runs from Boone Dam upstream to the Hwy. 390 Bridge at Bluff City on the South Fork Holston arm and to the new Austin Springs Bridge on the Watauga arm. The lake receives the South Holston and Wilbur (Watauga) dam tailwaters at its upper arms; this record covers the LAKE only, not those tailwaters or the Boone tailwater below Boone Dam.",
+    "boundaries": "Boone Dam upstream to Hwy. 390 Bridge (SF Holston arm) and new Austin Springs Bridge (Watauga arm), per TWRA Boone Reservoir regulations text."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Boone Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://tva.com/newsroom/boone-dam-project"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TVA's Boone Dam Project page (verified via search snippet; tva.com blocks direct fetch) documents the 2014 sinkhole/seepage discovery, the multi-year drawdown, and completion of the seven-year repair on May 25, 2022 with return to normal pool; the Community Q&A states the reservoir was held ~10 ft below normal winter pool during the work. No thermal-stratification or release-depth documentation found for the lake."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover or lake trout survival documentation found. The TWRA stocking workbook shows NO Boone Reservoir lake row — only 'Boone TW / S. Fork Holston River' (tailwater below Boone Dam; Rainbow, Brown; months M, A, N, D) — and Boone Reservoir is absent from TWRA's live list of reservoirs stocked 'to provide year-round trout fishing opportunities.'",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No documentation found of natural trout reproduction in the reservoir.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "TWRA stocks the Boone tailwater but excludes Boone Reservoir from its year-round reservoir trout program and lists no trout among the reservoir's fishery species — yet trout regulations (7/day with a 16-22 in PLR) extend into the lake's Watauga arm to the 11E bridge, indicating tailwater-origin trout occur there; no lake stocking, thermal, or holdover evidence was found to resolve persistence.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://tva.com/newsroom/boone-dam-project",
+    "https://tva.com/newsroom/boone-dam-project/boone-community-q-a",
+    "https://lakeinfo.tva.gov/web/sites/boone.htm",
+    "https://tva.com/environment/lake-levels/boone",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03486810&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "slug": "south-fork-cumberland",
+  "segment": {
+    "description": "South Fork (Big South Fork) Cumberland River within Big South Fork National River & Recreation Area, Scott County, Tennessee — free-flowing mainstem in the New River/Clear Fork confluence country down to the Kentucky line; Leatherwood Ford area. This is a Cumberland Plateau river, NOT the tailwater Cumberland River below Lake Cumberland in Kentucky.",
+    "boundaries": "Tennessee reach, Scott County; USGS 03410210 'South Fk Cumberland River at Leatherwood Ford, TN' sits on this reach (site verified via waterservices.usgs.gov site service: 36.4774, -84.6694, Scott County, HUC 05130104, altitude 861.65 ft); catalog describes the reach as running from the New River/Clear Fork confluence country to the Kentucky line."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": 862,
+    "notes": "Elevation is the USGS gauge altitude at Leatherwood Ford (861.65 ft, NAVD88, from the waterservices.usgs.gov expanded site output). NPS Natural Resource Condition Assessment: TDEC stream-use classification table lists the Big South Fork Cumberland River 'from KY-TN line to origin' as designated uses including TS (trout stream); in the same sub-basin, the only reach marked 'naturally reproducing trout stream' is Laurel Fork of Station Camp Creek (upper ~3 km), not the mainstem. NPS game-fish brochure states brown trout are limited to tributary streams within the park and are not typically found in the main Big South Fork River."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. There is also no current-stocking signal to hold over: the TWRA stocking dataset in this repo (2026 schedule) contains no rows for the South Fork/Big South Fork Cumberland River (only Oneida City Park Lake, a Scott County lake, and Kentucky's Rock Creek per KDFWR, neither of which is this reach). No gauge temperature record exists at 03410210 (waterservices USGS iv/dv queries for parameter 00010, July 2025, returned no series).",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "Mixed evidence, honestly unresolved. Trout presence in the drainage is agency-documented: the NPS Natural Resource Condition Assessment fish list reports Rainbow Trout (non-native; reported by Scott 2010 and earlier surveys) and Brown Trout (Scott 2010; Comiskey & Etnier 1972) in the BSF watershed, and TDEC designates the TN mainstem a trout stream (TS). But self-sustaining reproduction on the cataloged TN mainstem is NOT documented by sources found: the only 'naturally reproducing trout stream' designation in the sub-basin belongs to a tributary (Laurel Fork of Station Camp Creek), and the NPS brochure places browns in park tributaries rather than the mainstem. A single 1940-era brook trout record is attributed to hatchery introductions.",
+    "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf"
+  },
+  "troutSpecies": [
+    { "species": "rainbow", "basis": "unknown", "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf" },
+    { "species": "brown", "basis": "unknown", "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf" },
+    { "species": "brook", "basis": "unknown", "evidenceUrl": "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf" }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unknown",
+    "oneLineWhy": "Agency sources document trout presence and a TDEC trout-stream (TS) designation on the TN mainstem, but the naturally-reproducing designation belongs only to a Laurel Fork tributary, there is no current TWRA stocking row, and no summer temperature data exists for the reach — the year-round mainstem survival question is unresolved.",
+    "confidence": "low"
+  },
+  "sourcesChecked": [
+    "https://www.govinfo.gov/content/pkg/GOVPUB-I29-PURL-gpo142281/pdf/GOVPUB-I29-PURL-gpo142281.pdf",
+    "https://www.nps.gov/biso/learn/nature/fish.htm",
+    "https://npshistory.com/publications/biso/brochures/game-fish.pdf",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03410210&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03410210&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterdata.usgs.gov/monitoring-location/03410210/",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://seafwa.org/journal?page=52",
+    "https://www.nps.gov/biso/planyourvisit/fishing.htm",
+    "https://fw.ky.gov/Education/Pages/Big-South-Fork.aspx",
+    "https://www.tn.gov/twra/fishing.html"
+  ]
+}

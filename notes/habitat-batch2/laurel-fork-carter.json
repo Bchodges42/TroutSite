@@ -1,0 +1,69 @@
+{
+  "slug": "laurel-fork-carter",
+  "segment": {
+    "description": "Laurel Fork, Carter County — mountain creek in the Watauga HUC (06010103) near Hampton/Dennis Cove, mostly within Cherokee National Forest; tributary of the Doe River drainage. TWRA Region IV Trout Fisheries Report 2018 describes it as flowing through a mountainous, forested watershed with low-gradient upper sections despite elevations above 915 m (3,000 ft).",
+    "boundaries": "Wild-trout water: 'Laurel Fork and tributaries beginning at the cable crossing 0.5 mile upstream from the USFS Dennis Cove' (TWRA special trout regulations, wild trout streams table) — 5 trout/day, no length limit, single-hook artificials only. Downstream of the cable crossing: statewide trout rules. TWRA stocks adult rainbow trout in the Dennis Cove area only."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "No dam or spring source documented. TWRA 2018 monitoring stations sat at 2,660 ft and 2,880 ft in the upper (wild) reach (https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4)."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 18.4,
+      "monthObserved": 9,
+      "year": 2018,
+      "sourceType": "study",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    {
+      "celsius": 17.4,
+      "monthObserved": 9,
+      "year": 2018,
+      "sourceType": "study",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover-specific evidence found. The decisive currency here is the documented resident wild trout population (below) rather than stocked-fish survival; Dennis Cove-area rainbows are stocked March-June (~3,700 adults per TWRA 2018 report; biweekly seasonal rows through 6/7/2026 in the TWRA 2026 schedule).",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA Region IV Trout Fisheries Report 2018: 'Laurel Fork is one of the few Tennessee streams where wild Brown Trout dominate'; 'the upper portion of Laurel Fork and nine of its tributaries currently support Brook Trout'; abundance/growth/production/movement of wild brown and brook trout in upper Laurel Fork documented by Strange et al. (2000); stream monitored annually since 1991 (primary species BNT). Designated wild-trout water above the Dennis Cove cable crossing under special regulations (single-hook artificials, 5/day).",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+  },
+  "troutSpecies": [
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://www.eregulations.com/tennessee/fishing/trout-regulations"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA's own monitoring documents a resident wild population — wild brown trout dominating with brook trout in the upper reach and nine tributaries — in a designated wild-trout water; September 2018 sampling temperatures of 17.4-18.4 C at 2,660-2,880 ft are consistent with year-round trout habitat.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+    "https://www.gameandfishmag.com (guide/magazine lead only, not cited)",
+    "https://www.onwaterapp.com (app lead only, not cited)"
+  ]
+}

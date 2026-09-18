@@ -1,0 +1,53 @@
+{
+  "slug": "fort-patrick-henry-lake",
+  "segment": {
+    "description": "Entire Fort Patrick Henry Lake, a small (~895 ac per TWRA; 872 ac per some TVA material) run-of-river TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County), extending ~10 miles from Fort Patrick Henry Dam upstream to Boone Dam. It receives the Boone tailwater at its upper arm; this record covers the LAKE only, not the Fort Patrick Henry tailwater below the dam.",
+    "boundaries": "Fort Patrick Henry Dam upstream to Boone Dam (per TVA reservoir description)."
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": "Fort Patrick Henry Dam",
+      "operator": "TVA",
+      "releaseType": "unknown",
+      "evidenceUrl": "https://lakeinfo.tva.gov/web/sites/fortpatrickhenry.htm"
+    },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "TVA: run-of-river reservoir ('water is passed through the reservoir without being stored long term'), normal pool 1,258-1,263 ft, dam 95 ft high; reservoir extends 10 miles upstream to Boone Dam. Its cold input is the inflowing Boone Dam tailwater rather than a deep storage hypolimnion; no lake thermal-profile documentation found."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover documentation found. TWRA's stocking workbook shows no Fort Patrick Henry lake row (only the tailwater row 'Ft. Patrick Henry TW / S. Fork Holston River' — Rainbow, Brown; months M, A, D), but TWRA's live trout page lists Fort Patrick Henry Reservoir (Region IV — Brown and Rainbow) among reservoirs it stocks 'to provide year-round trout fishing opportunities'; stocking months unpinned.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": null,
+    "detail": "No documentation found of natural trout reproduction in the reservoir.",
+    "evidenceUrl": null
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    },
+    {
+      "species": "brown",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "probably",
+    "oneLineWhy": "TWRA includes Fort Patrick Henry in its reservoir trout-stocking program stated to 'provide year-round trout fishing opportunities' (Brown and Rainbow), and TVA's own reservoir page calls it 'a popular site for fishing, particularly rainbow trout' — but no lake stocking months, thermal data, or holdover evidence pins persistence outside the program's stated intent.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-patrick-henry.html",
+    "https://lakeinfo.tva.gov/web/sites/fortpatrickhenry.htm",
+    "https://tva.com/energy/our-power-system/hydroelectric/fort-patrick-henry",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03487010&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  ]
+}

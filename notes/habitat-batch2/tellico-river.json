@@ -1,0 +1,57 @@
+{
+  "slug": "tellico-river",
+  "segment": {
+    "description": "Free-flowing upper Tellico River, Monroe County, from the Tellico Plains corridor (USGS 03518500, alt 846 ft) upstream to the North Carolina state line. TWRA stocked reach with a delayed-harvest section from the mouth of North River upstream to the state line. The lower ~20 miles of the Tellico are impounded as the Tellico River arm of Tellico Lake and are covered by the separate tellico-lake entry, not this one.",
+    "boundaries": "Tellico River main stem; delayed harvest 'Mouth of North River upstream to the Tennessee - North Carolina state line' (TWRA trout regulations)"
+  },
+  "coldSource": {
+    "damTailwater": {
+      "dam": null,
+      "operator": null,
+      "releaseType": null,
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/site/?sites=03518500&siteOutput=expanded&format=rdb"
+    },
+    "springFed": {
+      "value": null,
+      "evidenceUrl": null
+    },
+    "elevationFt": 846,
+    "notes": "No dam tailwater on this reach: Tellico Dam impounds the Little Tennessee River, not the Tellico River (TWRA: at full pool Tellico Reservoir extends 20 miles up the Tellico River). elevationFt 846 is the USGS gauge altitude at Tellico Plains, the downstream end of the stocked reach. TWRA trout regulations mention 'the dam on Tellico River' upstream of Sourwood Campground, a small structure above the main stocked water whose operator is not documented in sources consulted."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No independent holdover reports found. Circumstantial only: TWRA delayed harvest (catch-and-release, artificials only) runs Oct 1 - Feb 28 on the North River mouth-to-state-line reach, and the 2026 TWRA stocking workbook lists Tellico River stockings in every month February through December, so stocked fish are carried through winter by program design. This is agency program structure, not a documented holdover observation.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA lists Tellico River tributaries North River and Bald River (Monroe County) among designated wild trout waters (5/day creel, single-hook artificials). Wild trout in the stocked mainstem itself is not directly documented by sources consulted.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "stocked-only",
+      "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA stocks the Tellico River in every month February-December 2026 (delayed harvest Feb, weekly seasonal stockings Mar-Aug, delayed harvest Sep-Dec) and runs a catch-and-release delayed harvest Oct 1-Feb 28, with TWRA-designated wild trout tributaries (North River, Bald River) in the watershed.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://waterservices.usgs.gov/nwis/site/?sites=03518500&siteOutput=expanded&format=rdb",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03518500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterservices.usgs.gov/nwis/dv/?sites=03518500&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://waterdata.usgs.gov/monitoring-location/03518500/",
+    "https://www.tva.com/environment/lake-levels/tellico",
+    "https://hiwassee.tu.org",
+    "https://tennesseerivervalleygeotourism.org/entries/tellico-river-fishing-areas/tn013/",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r3/tellico-river.html",
+    "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html"
+  ]
+}

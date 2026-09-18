@@ -1,0 +1,64 @@
+{
+  "slug": "elk-river-lower",
+  "segment": {
+    "description": "Elk River (Prospect to state line) — the wider, warmer lower mainstem below the Tims Ford tailwater trout fishery, in the lower county reaches toward the Tennessee-Alabama line (catalog counties: Lincoln; HUC 06030003/06030004). Sibling entry elk-river.yaml covers the Tims Ford tailwater — segment discipline: facts here do not describe the tailwater reach.",
+    "boundaries": "Catalog segment runs from Prospect to the Tennessee-Alabama state line. TWRA's special trout regulation nominally extends 'Elk River: Tims Ford Dam to I-65 bridge, including tributaries' (the I-65 Elk River crossing is in Giles County roughly 4 miles north of the state line), so the head of this lower reach falls inside that regulatory boundary, but no evidence documents trout stocking or cold water this far downstream. USGS 03582000 ('Elk River above Fayetteville', verified via USGS site service, 827 sq mi drainage) sits on the mainstem upstream of the mapped reach — flow/temperature context only, per the catalog's own caveat."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Tims Ford Dam impounds the river far upstream, but no citation places a cold dam release in this reach — the nearest mainstem gauge upstream of the reach shows summer means of 21.6-25.0 C (below). Trout regulation text: https://www.eregulations.com/tennessee/fishing/trout-regulations."
+  },
+  "summerTemperature": [
+    {
+      "celsius": 21.6,
+      "monthObserved": 6,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-06-01&endDT=2025-06-30&format=json"
+    },
+    {
+      "celsius": 24.95,
+      "monthObserved": 7,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+    },
+    {
+      "celsius": 23.5,
+      "monthObserved": 8,
+      "year": 2025,
+      "sourceType": "usgs-gauge",
+      "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-08-01&endDT=2025-08-31&format=json"
+    }
+  ],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover evidence for this reach. The only Lincoln County entry in the TWRA 2026 stocking schedule is 'Stone Bridge Park' (Winter, week of 2/5/2026, Rainbow Trout) — and Stone Bridge Park Pond is a town park pond at Norris Creek and the Elk River behind Walgreens in Fayetteville (TWRA event page), i.e., a winter community-pond stocking, not mainstem stocking of the Prospect-to-state-line reach. Catalog note claims 'winter stocking in the lower county reaches'; the 2026 workbook supports only the Fayetteville pond event, and the tailwater row itself is stocked March-December (no Jan/Feb).",
+    "evidenceUrl": "https://license.gooutdoorstennessee.com/Event/ViewEvent.aspx?id=50570"
+  },
+  "wildPopulation": {
+    "documented": false,
+    "detail": "No trout records found for the Prospect-to-state-line reach. Nearest mainstem gauge (03582000, Elk River above Fayetteville — upstream of the reach) recorded a July 2025 mean of 24.95 C (max 27.8 C), June mean 21.6 C, August mean 23.5 C — warmwater mainstem conditions. Supporting (semi-authoritative tourism, not sole evidence): Tennessee River Valley Geotourism describes the tailwater transitioning into smallmouth water downstream toward Fayetteville and Prospect. The designated trout water and TWRA stocking (March-December, rainbow/brown) belong to the upstream Tims Ford tailwater segment, not this one.",
+    "evidenceUrl": "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json"
+  },
+  "troutSpecies": [],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "unlikely",
+    "oneLineWhy": "The nearest mainstem gauge just upstream of this reach averaged ~25 C (max 27.8 C) in July 2025, and the only trout stocking documented anywhere in Lincoln County in the 2026 schedule is a winter town-pond event in Fayetteville — nothing supports resident trout in the Prospect-to-state-line mainstem.",
+    "confidence": "medium"
+  },
+  "sourcesChecked": [
+    "https://waterdata.usgs.gov/monitoring-location/03582000/",
+    "https://waterservices.usgs.gov/nwis/iv/?sites=03582000&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://license.gooutdoorstennessee.com/Event/ViewEvent.aspx?id=50570",
+    "https://tennesseerivervalleygeotourism.org/entries/trout-fishing-on-the-elk-river/4cbbb127-31ce-49ae-8455-14db824d23a7 (supporting context only)",
+    "https://data.swtimes.com/bridge/tennessee/giles/i-65n-over-elk-river/47-28I00650009 (I-65 Elk River crossing location, Giles County)",
+    "https://www.fayettevilletn.com/departments/parks___recreation/parks.php (Stone Bridge Park location)",
+    "https://fishbrain.com (lead only, not cited)",
+    "https://piscamaps.com (lead only, not cited)"
+  ]
+}

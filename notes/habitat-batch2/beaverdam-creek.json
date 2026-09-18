@@ -1,0 +1,55 @@
+{
+  "slug": "beaverdam-creek",
+  "segment": {
+    "description": "Beaverdam Creek, Johnson County — northeast Tennessee spring-creek-character creek in the Watauga HUC (06010102, South Fork Holston basin), flowing through Cherokee National Forest country toward the Virginia line near Damascus. TWRA Region IV report treats it as an annually monitored wild trout stream.",
+    "boundaries": "Wild-trout water: 'Beaverdam Creek and tributaries from its confluence with Birch Branch downstream to Tank Hollow' (TWRA special trout regulations, wild trout streams table) — 5 trout/day, no length limit, single-hook artificials only. Reaches outside that designation: statewide trout rules. TWRA 2026 stocking schedule lists seasonal rainbow stocking weeks 3/1-6/21/2026 (every 4 weeks)."
+  },
+  "coldSource": {
+    "damTailwater": { "dam": null, "operator": null, "releaseType": null, "evidenceUrl": null },
+    "springFed": { "value": null, "evidenceUrl": null },
+    "elevationFt": null,
+    "notes": "Catalog calls it a spring creek but no agency text confirming spring influence was found. Elevation context from TWRA Trout Management Plan: a 2006 qualitative survey of Green Mountain Branch (a Beaverdam Creek tributary) found a relatively abundant wild Rainbow Trout population at 3,080 ft elevation along Hwy 421 (https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10)."
+  },
+  "summerTemperature": [],
+  "holdover": {
+    "documented": null,
+    "detail": "No holdover-specific evidence found. Decisive currency is the documented resident wild trout population (below); TWRA 2026 seasonal rainbow stocking (Mar-Jun) coexists with the wild fishery.",
+    "evidenceUrl": "https://www.tn.gov/twra/fishing/trout-information-stockings.html"
+  },
+  "wildPopulation": {
+    "documented": true,
+    "detail": "TWRA Region IV Trout Fisheries Report 2018: 'Beaverdam Creek is one of Tennessee's best-known wild trout streams and is on an annual monitoring schedule' — monitored since 1991 with primary species RBT/BNT; qualitative surveys found RBT and BNT at mainstem sites. Brook trout documented in Beaverdam Creek tributaries (Birch Branch listed among sympatric Brook/Rainbow waters; East Fork Beaverdam Creek listed as a potential native Brook Trout donor stream) — tributary evidence, not mainstem. TWRA Trout Management Plan 2017-2027 names Beaverdam Creek among former degraded streams that now 'provide excellent wild trout fisheries'.",
+    "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+  },
+  "troutSpecies": [
+    {
+      "species": "rainbow",
+      "basis": "both",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    {
+      "species": "brown",
+      "basis": "wild",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    },
+    {
+      "species": "brook",
+      "basis": "wild",
+      "evidenceUrl": "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4"
+    }
+  ],
+  "overallSurvivalRead": {
+    "yearRoundSurvivalLikely": "yes",
+    "oneLineWhy": "TWRA itself calls Beaverdam Creek one of Tennessee's best-known wild trout streams, annually monitored since 1991 for resident rainbow and brown trout — a self-sustaining population in a designated wild-trout water.",
+    "confidence": "high"
+  },
+  "sourcesChecked": [
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4",
+    "https://www.eregulations.com/tennessee/fishing/trout-regulations",
+    "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+    "https://digitalcommons.memphis.edu/govpubs-tn-wra-strategic-management-plans/10",
+    "https://johnsoncitypress.com/news/2166/the-reel-thing-trout-fishing-to-pick-up-with-cooler-weather (newspaper lead, supports TWRA wild-brown sampling note; not cited as sole evidence)",
+    "https://perfectflystore.com (guide lead only, not cited)",
+    "https://wellerfish.me (blog lead only, not cited)"
+  ]
+}
