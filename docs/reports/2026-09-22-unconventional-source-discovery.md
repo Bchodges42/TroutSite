@@ -69,3 +69,67 @@ The [Walker Branch long-term dataset description](https://www.ornl.gov/publicati
 [Tennessee Tech's graduate-research page](https://www.tntech.edu/cas/biology/gradstudents.php), retrieved successfully, identifies **Dalton Bonds / advisor Mark Rogers** studying striped-bass seasonal movements and predation on stocked trout in the **lower Caney Fork**, using acoustic telemetry and gastric lavage. The page describes intended research, not completed results, and gives no result date.
 
 **Why useful:** apparent trout disappearance can involve movement and predation as well as temperature. A targeted request for a completed thesis, study-reach map, sampling dates and approved summary may resolve a disputed reach better than accumulating more angler reports. Until results are obtained, do not assign a survival rate or classification from this project description.
+
+## Checkpoint 3 — additional downloadable evidence and practical priorities
+
+### USGS regional brook-trout abundance release: 1,205 Tennessee-labeled sample rows
+
+[USGS release description](https://www.usgs.gov/data/brook-trout-abundance-streams-across-southern-appalachia-1958-2021) and [stable DOI / file catalog](https://doi.org/10.5066/P9DQID6G) provide **SE_BKT_SampleCounts.csv** and a detailed FGDC XML data dictionary. Both files downloaded successfully. The regional release describes 745 sites, 10 contributing institutions and observations spanning 1958–2021. USGS marks the release CC0; metadata lists no access/use constraints and asks users to read limitations.
+
+**Actual reproduction:** the CSV contains 7,939 rows overall. Filtering State exactly equal to Tennessee gives **1,205 sample rows, 71 stream-name strings and 228 distinct coordinate pairs**, dated **December 18, 1979–August 18, 2020**. These are not 1,205 streams or necessarily 228 independently defined stations. Source values break down into 978 Great Smoky Mountain National Park, 225 Tennessee Wildlife Resources Agency and 2 Virginia Department of Wildlife Resources records. The latter two are High Trestle Branch at approximately 36.6104, -81.6509 and have missing COMID. They require state-boundary validation; a Tennessee text filter is not geographic verification. All Tennessee-labeled rows contain latitude values, but present does not mean verified accurate.
+
+Fields include source, state, stream name, coordinates, COMID, sampling date, sampled length/width, number of passes, and **observed juvenile and adult brook-trout counts for each pass**. The XML explicitly defines YOY versus age 1+ adults. Missing pass values are NA, not zero fish. Some sample dimensions and hydrography IDs are missing. Preserve those distinctions.
+
+**Why useful:** a ready-to-download historical series with methods and age classes, particularly useful for repeated occurrence and recruitment questions. **Limits:** brook trout only; historical and selected sampling; not warmwater inventory or current stocking status. Many rows originate with NPS/TWRA. Do not count the USGS compilation and its contributing agency exports as separate corroborating observations. Deduplicate by provenance, location, date and sampling event before calculating support.
+
+CSV SHA-256: `445c57856ab3b07e1c27a26b31f734c7a0542ea3faa0cfe46da4d5891391b1ae`. Reproduce using Python's csv.DictReader; filter State, parse SampleDate as month/day/year, and count distinct StreamName and (Latitude, Longitude). The [catalog JSON](https://www.sciencebase.gov/catalog/item/6439af5dd34ee8d4ade231f8?format=json) exposes the actual file URLs, avoiding brittle guessed download paths.
+
+### NPS/TVA IBI surveys: species assemblages, coordinates and field limitations
+
+[2021 IBI catalog](https://catalog.data.gov/dataset/2021-fisheries-index-of-biotic-integrity-ibi-survey-data-from-great-smoky-mountains-nation) exposes original and updated spreadsheets plus field PDFs. Downloaded [GSMNP_2021_IBI_UPDATED.xlsx](https://irma.nps.gov/DataStore/DownloadFile/699130?Reference=2302250). It contains fish-species counts and IBI metrics. The catalog describes a two-year rotation and five surveyed sites in 2021; the methods target community composition using electrofishing and seines, not complete removal of all fish.
+
+**Verified Tennessee example:** the Fish species sheet's Tennessee rows contain **18 named species totaling 1,097 fish** for **Middle Prong Little Pigeon River**, Sevier County, **July 14, 2021**, stream ID 7091/station 1. One is explicitly named **rainbow trout (Oncorhynchus mykiss), count 1**. Station fields include coordinates, river mile, drainage area and a location description. The metrics sheet says sampling began at the park boundary and worked upstream to bedrock falls. This is a bounded, dated observation; do not extend it across the entire river or infer trout abundance in 2026.
+
+An especially useful feature is the sampling caveats: the Deep Creek/Jenkins Place metrics note that no pool haul seine was performed because of difficult habitat/capture efficacy. This is exactly the evidence needed to avoid turning imperfect detection into absence. The IBI rating itself is an ecological-condition score, **not** a warmwater/coldwater classification. Publication/update date January 2024 is separate from 2021 sampling.
+
+### TVA's larger monitoring network: broad warmwater evidence to request
+
+[TVA Water Quality](https://www.tva.com/environment/environmental-stewardship/water-quality) was verified in the browser; direct HTTP returned 403. TVA says it samples **528 stream sites on a five-year rotation**, plus 69 sites across 31 reservoirs on a two-year rotation, and shares water-quality/aquatic-life data. These are TVA-system figures, not Tennessee-only coverage. The NPS IBI files above independently demonstrate the format of a TVA-associated species-count/metric export; they do not establish that all 528 sites have the same publicly available export.
+
+**Why useful:** this may address the biggest coverage gap: positive evidence of fish assemblages in streams outside prominent trout destinations. Request the stream station inventory and dated species-count/effort tables, with Tennessee locations and data-sharing terms, rather than reservoir health ratings alone. No statewide TVA raw export was acquired in this pass. Do not advertise 528 new mapped waters as an accomplished result.
+
+## What is acceptable, available and useful now?
+
+Accept **claims**, not domains wholesale. A precise old survey can be excellent evidence of historical occurrence and insufficient evidence of today's fishery. A current agency program description can identify a reliable data holder without supplying any observations.
+
+| Source route | Availability verified | Best use for this product | Remaining gate |
+|---|---|---|---|
+| EPA 2023–24 NRSA | Actual counts, sites and metadata downloaded | Recent dated trout and non-trout assemblages at selected TN sites | Validate reach joins, sampling adequacy and current relevance |
+| USGS brook-trout compilation | Actual CSV and data dictionary downloaded | Historical persistence/recruitment evidence and locating overlooked streams | Deduplicate agency sources, validate locations, obtain newer evidence |
+| NPS annual fisheries workbooks | Actual 2020 and multiyear workbooks downloaded | Historical site-level trends and age classes | Resolve catalog totals, species codes, station geometry, TN/NC separation |
+| NPS/TVA IBI | Actual updated 2021 workbook downloaded | Explicit species counts, exact sites and sampling caveats | Historical observation; obtain recent equivalents |
+| TVA broader stream network | Program confirmed; full export not obtained | Potentially substantial non-trout/mixed assemblage coverage | Station/species/effort export and sharing terms |
+| NEON | Product/site/time coverage verified; file requests returned 403 | Repeat fish samples paired with physical measurements at two streams | Obtain files through supported access and check actual coverage/QA |
+| ORNL BMAP | Methods, program and data holder verified | Small-stream assemblages, reference sites and pollution context | Obtain raw tables/current dates; assess geographic usefulness |
+| Hydropower licensing/LIHI | Specific completed study and holder identified | Dam-specific reach boundaries and fisheries effects | Obtain actual 2024 report and methods, not certification summaries |
+| Corps water-quality profiles | Monitoring program verified | Seasonal habitat constraints in releases and tailwaters | Recent profiles, station definitions and QA |
+| Tennessee Tech targeted research | Specific project and investigators verified | Explain movement/predation and identify unpublished useful studies | Completed approved results, dates and methods |
+
+**First acquisition priorities:** EPA for readily accessible, relatively recent all-species observations; TVA for potential broader warmwater coverage; NPS/USGS for detailed historical trout evidence; NEON for repeat biological/physical observations. The others resolve specific gaps rather than serving as statewide base layers. These priorities are research findings, not an implementation plan.
+
+## Better search methods demonstrated here
+
+1. Search **sampling methods and programs**: fish assemblage, three-pass depletion, IBI, NPDES biological monitoring, tailwater fish monitoring. Fishing-tourism search terms miss these records.
+2. Follow **machine-readable catalogs to real files**, then inspect fields and dates. A working landing page or catalog update is not a successful data acquisition.
+3. Search **legal/reporting identifiers**: FERC P-2169 and the exact 2024 report title are stronger leads than generic Chilhowee fishing searches.
+4. Trace **source lineage**. A USGS compilation, TVA-scored NPS workbook and original agency record may describe the same underlying sampling. More websites do not automatically mean more evidence.
+5. Seek the **negative-evidence prerequisites**: gear, passes, habitat sampled, effort and failed-sampling flags. No trout captured is weaker than repeated adequate sampling supporting a non-trout assemblage.
+6. Use project/team pages to locate **named data owners** and ask a bounded question. No outreach has been sent. The pending record requests above can be routed by the project owner after deciding which gaps matter most.
+
+For year-round versus seasonal-stocked classification, these sources should supplement current management records with repeated biological observations and seasonal habitat evidence. A summer trout record proves occurrence on that date, not year-round survival; age classes require stocking/restoration context before claiming wild reproduction. A mixed fish community is not inherently a data error. Historical evidence should remain visibly historical, and major disturbance/restoration changes require renewed validation.
+
+## Unresolved searches and stopping point
+
+The eDNA search did not produce a verified Tennessee trout eDNA dataset in this pass; it instead led to the usable USGS abundance release. A targeted search for NPS post-Helene fish-survey results did not retrieve a relevant primary result. Neither failed search establishes that such data do not exist. No post-disturbance fish outcome is asserted here.
+
+The 2024 Chilhowee report, full TVA stream export, NEON counts, current ORNL fish tables and recent Corps profiles remain unacquired. The available files are enough to substantiate the new acquisition routes; they are not enough to label every Tennessee reach. This checkpoint preserves verified downloads, limitations and exact owner requests. Only this research report was changed in the repository; no product implementation, deployment or outreach occurred.
