@@ -36,6 +36,45 @@ Retrieved the full **27-page report ORNL/SPR-2025/4073**, dated September 2025, 
 
 **Acceptance:** historical firsthand narrative, not current classification. Old parking, fence-crossing and access directions are not adopted as legal/current access guidance. Named creeks need county/basin confirmation because names repeat. The archive itself supports familiarity with these waters at the time; current residence was not established.
 
-## Research continues
+## Checkpoint 2: a national temperature archive, narrowed to usable Tennessee coverage
 
-Next checks: independent local accounts with usable dates/reach detail; club conservation/monitoring records; a second overlooked institutional source with underlying evidence. All downloaded materials are kept in the external audit archive. This report, not website code, is the only new repository artifact.
+Retrieved the [USGS 2024 data release](https://www.usgs.gov/data/compilation-multi-agency-water-temperature-observations-us-streams-1894-2022), [DOI 10.5066/P9EMWZ35](https://doi.org/10.5066/P9EMWZ35), its full `site_metadata.csv` and 224 MB `daily_stream_temperature.zip` from the [ScienceBase catalog](https://www.sciencebase.gov/catalog/item/5f60d95e82ce3550e3c23133). The decompressed daily CSV is about 2.44 GB and contains **27,026,752 national rows**. The release combines NWIS, Water Quality Portal, EcoSHEDS and NorWeST observations through **2022**; it aggregates continuous and discrete measurements to site-days and performs quality checks. Its authors expressly warn that quality issues may remain. This is an historical observation index, not a live thermal service, and recompiled NWIS/WQP rows do not constitute an independent second witness.
+
+I reproduced a Tennessee-specific screen by reading the site's coordinates from the metadata, testing them against Tennessee (`GEOID=47`) in the [Census 2024 1:500,000 state boundary file](https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_500k.zip), then streaming the entire temperature ZIP and matching site IDs. This is a state-boundary screen, **not a stream/reach match**; simplified borders and station geolocation can affect edge cases. Counts from the acquired files:
+
+| Quantity | Count | Interpretation |
+| --- | ---: | --- |
+| Tennessee-point metadata rows / unique IDs | 9,203 / 9,173 | Mostly water-quality sampling points, not 9,173 usable streams. |
+| Unique IDs with at least one daily record | 8,910 | Even one isolated measurement qualifies. |
+| Tennessee-point daily records | 213,467 | 99,353 discrete WQP rows; 114,114 continuous-source rows. |
+| IDs with any record in 2018 or later | 2,695 | Recency alone says nothing about seasonal completeness. |
+| IDs with continuous-source records in 2018 or later | **20** | An upper-screen for recent logged coverage in this archive, not 20 verified trout reaches. |
+| IDs with at least 60 / 90 distinct continuous-source days in June–August 2021 | **14 / 12** | Candidate summer records to inspect individually; June–August has 92 days. |
+
+**Acceptance:** potentially strong for measured temperature at an identified station and period after inspecting flags, sampling frequency, sensor location and reach geometry. It cannot alone classify year-round trout survival, stocking practice, angling access or conditions in 2026. Daily minima/maxima reflect observations on that day; a discrete spot sample is not a true continuous daily extreme. The narrow 20/14/12 counts make a statewide sensor-first classification implausible; the archive is much more useful for targeted checks and explicit coverage gaps.
+
+## Checkpoint 2: conservation groups preserve management history, sometimes primary observations
+
+### Trout Unlimited / TWRA: Trail Fork restoration and monitoring plans
+
+The original [November 16, 2021 Trout Unlimited account](https://www.tu.org/magazine/conservation/from-the-field/brookies-in-tennessee-get-a-new-improved-home/) names **Trail Fork of Big Creek** in Cherokee National Forest. It reports that TWRA, the Forest Service and University of Tennessee students electrofished rainbow trout out of the stretch **above a natural waterfall** over several years, then moved about two dozen brook trout from a nearby creek into it in fall 2021. Rainbows remained below the falls; a culvert was replaced with a bridge to reconnect about a mile of habitat. Local TU volunteers monitored temperature, but the article publishes no readings or time series. The projected robust brook trout fishery was a forecast, not a documented follow-up survey. This is useful evidence for a dated **management intervention and reach boundary**; current self-sustaining status remains unresolved.
+
+Acquired the full [21-slide 2025 Tennessee Coldwater Summit presentation](https://www.tctu.org/uploads/1/1/4/8/114851951/twra_-_2025_coldwater_summit_jwh2.pdf), by **Jim Habera, TWRA Region 4 Fisheries Program Manager**, hosted by Tennessee Council of TU. Text extraction and rendered-slide inspection confirm:
+
+- Slides **3–4** display TWRA historical brook/rainbow trout biomass at *upper Rocky Fork near Ft. Davie Creek* (1991–2016) and *Left Prong Hampton Creek below the barrier* (1994–2016), with flood events annotated. These are original management-chart evidence for those reaches and periods, but the deck does not supply the raw survey table or post-2016 status.
+- Slides **9–12** show the Left Prong Hampton Creek fish barrier after Helene, including a January 29, 2025 image and a repair-plan note. Barrier condition can change what fish move between reaches; this is not a current 2026 barrier inspection.
+- Slide **17** lists **planned**, not completed, 2025 brook-trout monitoring for Left Prong Hampton, Shell Creek, Right Prong Middle Branch, Briar Creek, Right Prong Rock Creek, Phillips Hollow, Trail Fork Big Creek and Little Paint Creek; other large streams were also planned. Slide **19** mentions temperature-logger volunteer opportunities. The deck supplies no results of those planned 2025 surveys or logger data.
+
+This closes an evidentiary trap: a web-search AI summary described Trail Fork monitoring “during summer 2025” as if completed, but the retrieved TWRA slide says **conduct** monitoring during summer 2025, future tense. The old 2021 TU project story plus the 2025 *plan* do not demonstrate persistence or abundance in 2025/2026. A Tennessee American Fisheries Society search hit similarly appeared under a **2026 upload path**, but its PDF filename was **`TNAFS-Winter-2021-Newsletter.pdf`**; the host returned HTTP 403 to direct retrieval. Treat its indexed stocking snippet as a historical lead, not a verified 2026 report or an acquired primary document.
+
+**Acceptance:** use original restoration descriptions for intervention timing, barriers and named reaches; use the TWRA charts only for their displayed years and the survey list as a route to ask the owner whether later results exist. Conservation-group hosting does not make planned work an observation, and source independence follows the underlying TWRA/TU project, not domain count.
+
+### Another dated personal account: Mark Trew on the Caney Fork
+
+[“Cicada Summer on the Caney Fork”](https://www.localwaters.us/cicada-summer-on-the-caney-fork/) preserves a named first-person June **2011** canoe trip by Mark Frank Trew, from Center Hill Dam toward the Cumberland River, plus the host's photos and later memorial notes. It describes rainbow and brown trout observed/caught on a hot-weather tailwater trip. The author's “near 90 degrees” is **air temperature**; “ice cold” water is a hand-feel description, not a thermometer reading. The long route lacks a dated catch coordinate for each fish. This is credible as attributed historical angler narrative and a useful counterexample to inferring stream temperature from hot summer air, but it cannot settle today's thermal condition, wild origin, continuous trout occupancy or the whole 27-mile reach. Product-store hosting neither invalidates the account nor upgrades it to a scientific survey.
+
+## Synthesis at this stopping point
+
+The newly acquired sources form three distinct evidence classes: **instrumented historical temperatures** (USGS), **dated fish-community and water measurements** (ORNL), and **reach-specific management history** (TWRA/TU). Local journals add dated encounter leads and seasonal context. The missing piece is still often a current reach-matched outcome: e.g., the 2021 Trail Fork reintroduction has no acquired follow-up population estimate, and the 2025 TWRA presentation offers plans rather than completed results. On these facts, a site should retain an explicit “unverified/current status unknown” state rather than turn an old stocking story, isolated catch or sensor value into “year-round trout.”
+
+All acquired source copies and the reproducible USGS stream-count script are in the external audit archive, separate from the website repository. This report is the only repository change; no website implementation or outreach occurred.
