@@ -55,6 +55,12 @@ function feature(overrides: {
       idealFlow: [],
       officialSources: [],
       yearRound: overrides.yearRound,
+      // ADR 0010: an out-of-season verdict needs an AUTHORED window — the
+      // Nov–Mar fallback for bare yearRound:false rows was removed. The
+      // winter-program fixture therefore carries the documented window.
+      ...(overrides.yearRound === false
+        ? { seasonMonths: [11, 12, 1, 2, 3], seasonKind: 'programmatic' as const }
+        : {}),
     },
     status: overrides.score == null ? 'no-data' : 'good',
     score: overrides.score ?? null,

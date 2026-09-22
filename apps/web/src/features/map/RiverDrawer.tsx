@@ -11,6 +11,7 @@ import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import { toWaterDecisionView, seasonalChipText, seasonalVerdict } from './waterDecision';
+import { OpportunityCard } from './OpportunityCard';
 import { FishabilityCard } from '../../components/FishabilityCard';
 import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
@@ -262,6 +263,7 @@ function WaterTab({
           />
         </div>
       </div>
+      <OpportunityCard stream={feature.stream} species={feature.species} mode={settings.speciesMode} month={month} />
       <FishabilityCard streamId={feature.stream.id} compact />
       {season && (
         <div className="season-card" data-state={season.state}>
