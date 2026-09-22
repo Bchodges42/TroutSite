@@ -406,7 +406,7 @@ export function decisionStatusText(
   // Presence-aware text outranks the generic fallbacks where the calendar speaks.
   if (view.presence) {
     if (view.presence.state === 'none') return 'Warmwater';
-    if (view.presence.state === 'absent') return 'No trout now';
+    if (view.presence.state === 'absent') return 'Out of season';
     if (view.presence.state === 'uncertain') return 'Needs data';
     if (view.presence.state === 'present' && view.presence.fresh) return 'In season · fresh';
   }

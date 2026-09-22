@@ -1029,10 +1029,11 @@ export function TennesseeMap(props: Props) {
         // assessment suffix — never an implied trout or condition claim.
         const note = labelSpeciesNote({ id: river.id, species }, { troutIds });
         const unassessedWord = note === 'Unverified' ? 'Needs data' : 'Unassessed';
-        // Season suffix (2026-09-10): an out-of-season trout water never reads
-        // as fishable-now, even while its line stays on the map.
+        // Season suffix (2026-09-10, wording ADR 0010): an out-of-season trout
+        // water never reads as fishable-now — and never claims the FISH are
+        // gone; the window is what is closed.
         const offseason = p.offseasonIds?.has(river.id) ?? false;
-        const seasonWord = offseason ? ', no trout now' : '';
+        const seasonWord = offseason ? ', out of season' : '';
         el.setAttribute(
           'aria-label',
           'Select ' +
@@ -1047,7 +1048,7 @@ export function TennesseeMap(props: Props) {
           kindWord +
           (note ? ' · ' + note : '') +
           (assessed ? '' : ' · ' + unassessedWord) +
-          (offseason ? ' · no trout now' : '');
+          (offseason ? ' · out of season' : '');
         const point = map.project(river.anchor as [number, number]);
         // Visibility + prominence: the waterDecision filter pass (visibleIds)
         // plus the pure mode-aware gate. Selected/assessed trout compete at

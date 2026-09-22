@@ -277,7 +277,7 @@ function WaterTab({
                 : season.state === 'absent'
                   ? 'Out of season'
                   : season.state === 'none'
-                    ? 'Not a trout water'
+                    ? 'No trout program documented'
                     : 'Unverified'}
             </strong>
           </div>
