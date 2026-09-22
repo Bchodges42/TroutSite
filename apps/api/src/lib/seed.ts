@@ -29,6 +29,7 @@ interface StreamRow {
   target_species: string | null;
   fishery: string | null;
   year_round: number | null;
+  opportunity: string | null;
 }
 
 interface ShopRow {
