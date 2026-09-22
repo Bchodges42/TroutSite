@@ -6,12 +6,32 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal Cleveland-area waterway in the Hiwassee basin and a locally important general-fishing creek.
+notes: Principal Cleveland-area waterway in the Hiwassee basin and a locally important
+  general-fishing creek.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01295930"]
-  huc8s: ["06020002"]
+  gnisIds:
+    - "01295930"
+  huc8s:
+    - "06020002"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for North Mouse
+    Creek (McMinn/Bradley counties, Hiwassee basin); a single community-app brown-trout entry is an
+    uncorroborated lead and the creek's fishery is undocumented in admissible sources.
+  asOf: "2026"
+  caveats:
+    - Distinct from South Mouse Creek and Little South Mouse Creek, which drain the Cleveland side
+      (Bradley County) — same-name risk within the Mouse Creek family.
+    - The nearest TWRA trout water in the area is the stocked Athens City Park Pond (a separate
+      water).
+    - Absence of community trout corroboration is never proof of trout absence.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for North Mouse Creek; whether any trout opportunity exists is unknown.
+    Next source: TWRA Region 3 sampling or a TDEC fish-community survey of the lower (Bradley
+    County) reach."

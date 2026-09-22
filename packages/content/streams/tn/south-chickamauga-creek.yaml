@@ -6,12 +6,30 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Major Chattanooga-area waterway with greenway access and regional fishing importance; distinct from North Chickamauga Creek.
+notes: Major Chattanooga-area waterway with greenway access and regional fishing importance;
+  distinct from North Chickamauga Creek.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00329763"]
-  huc8s: ["06020001"]
+  gnisIds:
+    - "00329763"
+  huc8s:
+    - "06020001"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for the Tennessee
+    reach of South Chickamauga Creek (Chattanooga-area greenway waterway); no admissible source
+    documents the creek's fishery or any trout occurrence on this reach.
+  asOf: "2026"
+  caveats:
+    - Distinct from North Chickamauga Creek, which IS a TWRA-stocked gorge stream — the 2026
+      schedule's 'N. Chickamauga Creek' rows belong to that different water.
+    - The creek drains to Nickajack Lake (a warmwater reservoir) at its mouth.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for the Tennessee reach of South Chickamauga Creek; whether any trout
+    opportunity (or any documented fishery) exists is unknown. Next source: TWRA Region 3 sampling
+    or Chattanooga water-quality program biota data."

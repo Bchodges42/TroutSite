@@ -10,14 +10,47 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
-seasonMonths: [11, 12, 1, 2, 3 ]
+seasonMonths:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
 seasonKind: programmatic
-notes: >-
-  TWRA winter put-and-take pond in Munford (Tipton County). Stocked with rainbow trout in
-  the cold months only — the fish do not hold over summer. Check the TWRA schedule for the
-  current winter window before you go.
+notes: TWRA winter put-and-take pond in Munford (Tipton County). Stocked with rainbow trout in the
+  cold months only — the fish do not hold over summer. Check the TWRA schedule for the current
+  winter window before you go.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: TWRA's winter trout program stocks the stocked lake at Munford's Valentine Park with
+    rainbow trout during the cold months (2026 rows in the December-January window; program runs
+    through February); the city describes the water as a stocked park lake in a warmwater park
+    setting - do not expect trout to hold through summer.
+  reachScope: stocked lake at Valentine Park, Munford
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 2 'Valentine Park' rows, Region 1, type Winter, Rainbow Trout - 1/15/2026 stocked and next
+        event TBD 12/2026
+    - label: Valentine Park page
+      url: https://www.munford.com/valentine-park/
+      kind: agency-assessment
+      observationPeriod: current park page
+      retrieved: 2026-09-22
+      pinpoint: Amenities include 'a stocked lake, and nature trails'
+  caveats:
+    - "Winter-window fishery: 2026 rows are the January 15 event plus a TBD December 2026 event; the
+      2025-26 program ran November-February."
+    - TWRA's plan says such warmwater hatchery-supported waters cannot support trout year round -
+      never claim trout certainly vanish out of season, but no summer fishery is documented.

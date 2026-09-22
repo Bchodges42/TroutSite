@@ -46,16 +46,18 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir near Winchester in
-  Franklin and Moore counties. Detailed angler notes are still being prepared — check TWRA and local access
-  areas in the meantime. TWRA's Tims Ford Reservoir page lists the fishery as largemouth bass, smallmouth
-  bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a
-  regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Reference waterbody from the Tennessee waterways inventory — the Elk River reservoir near
+  Winchester in Franklin and Moore counties. Detailed angler notes are still being prepared — check
+  TWRA and local access areas in the meantime. TWRA's Tims Ford Reservoir page lists the fishery as
+  largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see
+  officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
+  temperature/oxygen refuge context is not a scored input.
 
 
-  Regulations: Black Bass 5/day combo — Largemouth 15-inch min, Smallmouth 18-inch min, Spotted no limit;
-  Crappie 15/day 10-inch; Catfish — no creel ≤34 in, one >34 in/day; Striped/Hybrid 2/day 15-inch; White Bass
-  15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Black Bass 5/day combo — Largemouth 15-inch min, Smallmouth 18-inch min, Spotted no
+  limit; Crappie 15/day 10-inch; Catfish — no creel ≤34 in, one >34 in/day; Striped/Hybrid 2/day
+  15-inch; White Bass 15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules
+  with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -63,3 +65,36 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Tims Ford Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/tims-ford-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Tims Ford Lake as a warmwater black-bass/crappie/striped-bass/walleye
+    fishery with no trout program in the reservoir; the documented year-round trout water is the Elk
+    River below Tims Ford Dam - a separate catalog water.
+  reachScope: Tims Ford Reservoir itself (10,600 ac Elk River impoundment, Franklin/Moore counties).
+    Not the Elk River tailwater below Tims Ford Dam.
+  asOf: "2026"
+  sources:
+    - label: "TWRA Where to Fish: Tims Ford Reservoir"
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/tims-ford-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'What you can catch': Black Bass (largemouth/smallmouth), Crappie (white/black), Hybrid
+        and Striped Bass, Walleye; 'TVA owns and operates Tims Ford Reservoir', dam completed 1970,
+        10,600-acre impoundment; trout appears nowhere in the fishery description (verified live
+        2026-09-22)"
+    - label: Tims Ford Lake surface temperatures
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=NALMS-F1272660&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2002-2023
+      retrieved: 2026-09-22
+      pinpoint: "NALMS mid-lake: 27.3 and 28.2 C on 2002-06-24; TDEC Boiling Fork arm station: 31.0 C Jul
+        2017, 29.31 C Aug 2022, 27.7 C Jun 2023 (prior batch-6 extraction)"
+  caveats:
+    - "Reach discipline: every trout fact attached to 'Tims Ford' (the year-round '24-7-365' reach,
+      the Mar-Dec stocking, the 20-inch brown rule) belongs to the Elk River BELOW Tims Ford Dam
+      (elk-river). None of it describes the lake."
+    - The 2026 forecast's Tims Ford section (nodes n-0Qzf3q, n-xMHich) is entirely about the
+      tailwater reach.
+    - Fishbrain's 'Tims Ford Lake (Elk River)' shared page aggregates tailwater trout catches with
+      lake catches (16 rainbow) - research lead only, likely tailwater contamination.

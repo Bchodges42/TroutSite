@@ -6,12 +6,31 @@ regionId: tn-middle-nashville
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal Harpeth River fork in Williamson County with strong Nashville-area recreation and access relevance.
+notes: Principal Harpeth River fork in Williamson County with strong Nashville-area recreation and
+  access relevance.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01274197"]
-  huc8s: ["05130204"]
+  gnisIds:
+    - "01274197"
+  huc8s:
+    - "05130204"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for the West
+    Harpeth River (Williamson County); community reports describe bass/panfish fishing on the
+    Harpeth system generally, but no admissible source documents the West Fork's fishery or any
+    trout occurrence on it.
+  asOf: "2026"
+  caveats:
+    - The 'Harpeth River at Eastern Flank Battle Park' trout stocking is a mainstem site — do not
+      join it to this fork.
+    - Warmwater-focus is not claimed because no admissible fork-specific fishery source was found.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for the West Harpeth River; whether any trout opportunity (or a documented
+    fork fishery) exists is unknown. Next source: TWRA Region 2 sampling or Harpeth Conservancy
+    fork-specific biota data."

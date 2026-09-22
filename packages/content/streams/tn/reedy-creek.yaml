@@ -17,17 +17,34 @@ notes: >-
   Kingsport; flows track rain closely.
 
 
-  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — Urban
-  Kingsport creek; warmwater (303(d) listed); zero trout rows in the TWRA 2026 schedule. (retrieved
-  2026-09-14).
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or
+  record — Urban Kingsport creek; warmwater (303(d) listed); zero trout rows in the TWRA 2026
+  schedule. (retrieved 2026-09-14).
 officialSources:
-  - label: USGS Water Data — monitoring location 03487602 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03487602 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03487602/
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01299165"]
-  huc8s: ["06010102"]
-  counties: ["Sullivan"]
+  gnisIds:
+    - "01299165"
+  huc8s:
+    - "06010102"
+  counties:
+    - Sullivan
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: "No positive fishery evidence of any kind documents this urban Kingsport creek: zero rows
+    in TWRA's 2026 stocking schedule, no agency fish survey or warmwater management record found,
+    and the only trout trace is a single unreviewed community catch on a shared segment page."
+  asOf: "2026"
+  caveats:
+    - The catalog correction note ('warmwater, 303(d) listed') is a prior research lead, not
+      re-verified to a fetched source in this pass.
+    - No trout conclusion is possible in either direction.
+  unresolvedQuestion: Is there ANY dated fish-assemblage survey, agency warmwater management record,
+    or credible firsthand fishing record for Reedy Creek in Kingsport? None found.

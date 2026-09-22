@@ -13,5 +13,21 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269345"]
-  huc8s: ["06040003"]
+  gnisIds:
+    - "01269345"
+  huc8s:
+    - "06040003"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout stocking, trout record, or reach-specific fishery documentation exists for Big
+    Swan Creek (Lewis/Maury counties, Duck River basin); its trout status is undocumented.
+  asOf: "2026"
+  caveats:
+    - This is the Lewis/Maury county Duck tributary (GNIS 01269345, HUC 06040003) — NOT the Swan
+      Creek of Houston/Stewart counties (Cumberland basin).
+    - Fishbrain page (112 catches, smallmouth-led) is a research lead only, no trout rows, not
+      citable.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    found for Big Swan Creek; next source: TWRA Region 2 stream sampling or TDEC fish-community data
+    for the lower Duck tributaries."

@@ -18,14 +18,54 @@ notes: >-
   Small TWRA spring-stocked tributary near the NC line in Cocke County.
 
 
-  Regulations: statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions entry
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions
+  entry (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269381", "01328352"]
-  huc8s: ["06010105"]
-  counties: ["Cocke"]
+  gnisIds:
+    - "01269381"
+    - "01328352"
+  huc8s:
+    - "06010105"
+  counties:
+    - Cocke
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on Gulf Fork Big Creek (Cocke County): five 2026
+    rainbow stockings (Feb 22 - May 17); TWRA's Trout Management Plan separately names this stream's
+    tributaries (Middle Prong Gulf Creek, Brown Gap Creek) as a native brook trout donor source -
+    wild brook evidence for the tributaries, not the stocked main reach."
+  reachScope: Stocked main reach (spring put-and-take); wild brook evidence is tributary-level (Middle
+    Prong Gulf Creek / Brown Gap Creek)
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "5 rows: 'Gulf Fork Big Creek', Cocke Co., REGION 4, Seasonal, Rainbow Trout, weeks 2/22,
+        3/15, 4/5, 4/26, 5/17/2026"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+    - label: Tennessee Trout Management Plan 2017-2027
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+      kind: survey
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "Table 1 (Tier 1 brook trout projects): Little Paint Creek and Trail Fork Big Creek rows -
+        'Use fish from Gulf Fork tribs'; Little Paint Creek rationale: 'possibly from Gulf Fork of
+        Big Creek tributaries (Middle Prong Gulf Creek or Brown Gap Creek)'"
+  caveats:
+    - "Keep the two stories separate: spring-stocked rainbows on the main reach (Feb-May) vs native
+      brook trout in the headwater tributaries."
+    - "Same-name trap: 'Big Creek' (Hawkins Co.) and 'Trail Fork Big Creek' (sibling tributary,
+      separately cataloged) are different waters."

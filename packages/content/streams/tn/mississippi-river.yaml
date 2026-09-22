@@ -9,20 +9,49 @@ gaugeIds:
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's western
-  boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes are still being
-  prepared — check TWRA and local access areas in the meantime.
+  Reference waterbody from the Tennessee waterways inventory — the Mississippi forms Tennessee's
+  western boundary past Shelby, Tipton, Lauderdale, Dyer, and Lake counties. Detailed angler notes
+  are still being prepared — check TWRA and local access areas in the meantime.
 
 
-  Regulations: Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34, stripers 6,
-  sauger 6, white bass 30, sunfish 50); statewide catfish rule agrees (only one catfish over 34 in per day; no
-  harvest limit under 34 in) (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Mississippi River block as above (bass 10, crappie 50, catfish no-creel/1-over-34,
+  stripers 6, sauger 6, white bass 30, sunfish 50); statewide catfish rule agrees (only one catfish
+  over 34 in per day; no harvest limit under 34 in) (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01629903"]
-  huc8s: ["08010100"]
-  counties: ["Shelby"]
+  gnisIds:
+    - "01629903"
+  huc8s:
+    - "08010100"
+  counties:
+    - Shelby
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA carries a dedicated warmwater regulation block for the Mississippi River (black
+    bass, crappie, catfish, striped/hybrid bass, sauger, white bass, sunfish), documenting a managed
+    warmwater fishery on the Tennessee reach; no trout program exists anywhere on the reach and a
+    single community-app trout entry remains an uncorroborated lead.
+  reachScope: Tennessee reach of the Mississippi River mainstem (Shelby/Tipton/Lauderdale/Dyer/Lake
+    counties as cataloged)
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions — Mississippi River block
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Black Bass: 10 per day, no length limit'; 'Crappie: 50 per day, no length limit';
+        'Catfish: no creel limit, only one... fish over 34 inches in length may be harvested per
+        day'; 'Striped Bass and Hybrid Striped Bass: Six (6) per day'; 'Sauger: Six (6) per day';
+        'White Bass: 30 per day'; 'Sunfish/Bream: 50 per day'"
+  caveats:
+    - TWRA's 2026 trout schedule has no Mississippi River row.
+    - Secondary fishing press ranks this among world-class blue/flathead catfish water (lead-tier
+      corroboration, not cited as a source block).
+    - Warmwater-focus does not mean trout are biologically absent.

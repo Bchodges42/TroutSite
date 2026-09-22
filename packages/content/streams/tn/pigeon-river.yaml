@@ -14,16 +14,16 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is popular
-  whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently list the TN reach —
-  set conservatively, verify locally. It runs the Hartford corridor from the NC line down to the Douglas Lake
-  arm. TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see
-  officialSources).
+  Big-volume border river driven by upstream generation at Waterville (NC). The TN Hartford reach is
+  popular whitewater and holds trout in cooler months; TWRA’s stocking dataset does not currently
+  list the TN reach — set conservatively, verify locally. It runs the Hartford corridor from the NC
+  line down to the Douglas Lake arm. TWRA's statewide regulation exceptions carry a smallmouth/black
+  bass rule for this river. (see officialSources).
 
 
-  Regulations: Smallmouth 1/day, 20-in minimum; Walleye 15-in minimum, walleye/sauger 5/day combo, only 1
-  sauger over 16 in/day — Hwy 321 bridge at Newport upstream to NC line (the full TN reach incl. Hartford)
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Smallmouth 1/day, 20-in minimum; Walleye 15-in minimum, walleye/sauger 5/day combo,
+  only 1 sauger over 16 in/day — Hwy 321 bridge at Newport upstream to NC line (the full TN reach
+  incl. Hartford) (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03461500
     url: https://waterdata.usgs.gov/monitoring-location/03461500/
@@ -34,6 +34,43 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01014389"]
-  huc8s: ["06010106", "06010107"]
-  counties: ["Cocke"]
+  gnisIds:
+    - "01014389"
+  huc8s:
+    - "06010106"
+    - "06010107"
+  counties:
+    - Cocke
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents the Tennessee Pigeon as a quality smallmouth/walleye river (smallmouth
+    1/day, 20-inch minimum from the Hwy 321 bridge at Newport upstream to the NC line) - the full
+    Hartford corridor; the catalog's cool-month trout claim has no agency support on this reach and
+    stays unverified.
+  reachScope: NC state line (Waterville) down the Hartford corridor to the Douglas Lake arm
+  asOf: "2026"
+  sources:
+    - label: TWRA statewide fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "'Pigeon River - From the Highway 321 bridge at Newport upstream to NC state line':
+        'Smallmouth Bass: One (1) per day, 20-inch minimum length limit'; Walleye 15-in minimum;
+        walleye/sauger 5/day combo (verified live 2026-09-22)"
+    - label: TDEC 2026 303(d) list - unit TN06010106001_4000 (Pigeon River, temperature impairment, source
+        DAM OR IMPOUNDMENT)
+      url: https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx
+      kind: temperature-series
+      observationPeriod: 2026 listing cycle
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "prior batch5 lead: 5.03-mi segment impaired for TEMPERATURE (Low) with source 'DAM OR
+        IMPOUNDMENT' plus FLOW REGIME MODIFICATION - a warm-release signal, not a cold tailwater"
+  caveats:
+    - Smallmouth 1/day, 20-in minimum and walleye/sauger rules from Hwy 321 at Newport to the NC
+      line.
+    - The river is driven by upstream generation at Waterville; flows change fast - check release
+      schedules.
+    - NC upstream trout waters are a different jurisdiction; do not transfer.

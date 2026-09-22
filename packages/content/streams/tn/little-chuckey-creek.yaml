@@ -15,5 +15,20 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01326826"]
-  huc8s: ["06010108"]
+  gnisIds:
+    - "01326826"
+  huc8s:
+    - "06010108"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout stocking, trout listing, or trout record exists for Little Chuckey Creek (Little
+    Chucky Creek, Greene County Nolichucky tributary); its fishery status is undocumented.
+  asOf: "2026"
+  caveats:
+    - TDEC's 2026 303(d) list records 21.9 mi of Little Chucky Creek (unit TN06010108034) as E.
+      coli-impaired from riparian grazing (prior lead, not re-verified) — an agricultural valley
+      creek profile, offered as context only.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    found for Little Chuckey/Chucky Creek; next source: TWRA Region 4 Nolichucky drainage stream
+    files."

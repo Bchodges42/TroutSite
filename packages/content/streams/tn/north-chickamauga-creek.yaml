@@ -15,8 +15,8 @@ idealFlow:
     max: 250
     unit: cfs
 idealFlowSource: editorial
-notes: Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring stocking in
-  the valley reaches. The Mile Straight gauge helps separate rain events from baseline.
+notes: Chattanooga-area creek through the North Chickamauga Creek Gorge State Park; TWRA spring
+  stocking in the valley reaches. The Mile Straight gauge helps separate rain events from baseline.
 officialSources:
   - label: USGS Water Data — monitoring location 03566535
     url: https://waterdata.usgs.gov/monitoring-location/03566535/
@@ -25,6 +25,50 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01303788", "01314147"]
-  huc8s: ["06020001"]
-  counties: ["Hamilton"]
+  gnisIds:
+    - "01303788"
+    - "01314147"
+  huc8s:
+    - "06020001"
+  counties:
+    - Hamilton
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: "North Chickamauga Creek offers two documented fisheries: TDEC State Parks stocks rainbow
+    trout periodically in the gorge below the Blue Hole (TWRA's 2026 weeks run Feb-Apr plus
+    November) over a documented smallmouth/redeye/sunfish fishery; note the Blue Hole access area
+    was closed for construction beginning March 23, 2026."
+  reachScope: gorge and valley reaches (stockings downstream of the Blue Hole; warmwater fishery creek-wide)
+  asOf: "2026"
+  sources:
+    - label: North Chickamauga Creek Gorge State Park - Fishing
+      url: https://tnstateparks.com/parks/north-chickamauga/fishing
+      kind: agency-assessment
+      observationPeriod: current park guidance
+      retrieved: 2026-09-22
+      pinpoint: "Page (read via text extraction) names 'rainbow trout, smallmouth bass, redeye, sunfish
+        and more' and states 'Rainbow trout is periodically stocked downstream of the Blue Hole';
+        closure alert: Blue Hole Trail and Blue Hole Access closed beginning March 23, 2026 for
+        about a year"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 4 Hamilton County 'North Chickamauga Creek' Seasonal rows, Rainbow Trout - weeks 2/22,
+        3/22, 4/19 and 11/1/2026
+    - label: North Chickamauga Creek temperature records
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-NCHIC012.4HM&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2003-2004 grabs
+      retrieved: 2026-09-18
+      pinpoint: mile-12.4 station 18.8-19.3 C; mile-19.3 station 23.1-25.7 C in the same summers
+  caveats:
+    - "2026 stocking weeks: February 22, March 22, April 19 and November 1 - plus periodic park
+      stockings below the Blue Hole."
+    - Blue Hole Trail and Blue Hole Access closed beginning March 23, 2026 for roughly a year -
+      check park status before planning around the gorge stocking reach.
+    - Lower-creek summer grabs ran 23-26 C (2003-04) while the gorge station stayed 19 C - do not
+      extend the trout program's window into summer on the lower reaches.

@@ -6,12 +6,31 @@ regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Named headwater fork of the Obey River above Dale Hollow Lake and an important local Highland Rim water.
+notes: Named headwater fork of the Obey River above Dale Hollow Lake and an important local Highland
+  Rim water.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01304467"]
-  huc8s: ["05130105"]
+  gnisIds:
+    - "01304467"
+  huc8s:
+    - "05130105"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, temperature record, or agency fishery documentation of
+    any kind was found for the West Fork Obey River (Overton County headwater fork above Dale Hollow
+    Lake); the famous Obey trout fishing is the Dale Hollow Dam tailwater — a different water.
+  asOf: "2026"
+  caveats:
+    - The stocked 'Obey River' is the Dale Hollow Dam tailwater (hatchery below the dam) and the
+      Dale Hollow Reservoir — separate catalog waters; the East Fork special regulation (Compton
+      ramp to Hwy 52 bridge) is also a different reach.
+    - American Whitewater documents a ~6-mile West Fork float run (TN 85 bridge to the lake) —
+      paddling access, not a fishery record.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    of any kind was found for the West Fork Obey River — the evidence base is empty rather than
+    positive either way. Next source: TWRA Region 3 stream sampling covering the fork."

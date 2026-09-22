@@ -16,13 +16,13 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Wild rainbow and brook trout water in the park’s Chimneys/Tremont corridor, with TWRA spring stocking on
-  lower reaches. Steep, flashy watershed — check the gauge before committing.
+  Wild rainbow and brook trout water in the park’s Chimneys/Tremont corridor, with TWRA spring
+  stocking on lower reaches. Steep, flashy watershed — check the gauge before committing.
 
 
-  Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round;
-  special permit required for Gatlinburg city waters at the park boundary (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait,
+  year-round; special permit required for Gatlinburg city waters at the park boundary (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03469251
     url: https://waterdata.usgs.gov/monitoring-location/03469251/
@@ -33,6 +33,55 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01274222", "01275649"]
-  huc8s: ["06010107"]
-  counties: ["Sevier"]
+  gnisIds:
+    - "01274222"
+    - "01275649"
+  huc8s:
+    - "06010107"
+  counties:
+    - Sevier
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "The West Prong Little Pigeon offers documented year-round trout fishing: wild rainbow
+    and brook trout in the national park reach, and TWRA's forecast documents a year-round stocked
+    fishery through Gatlinburg (delayed harvest Dec 1-Mar 31, permit required), with the Spur reach
+    between Gatlinburg and Pigeon Forge unstocked in the July-September heat."
+  reachScope: park reach above Gatlinburg (wild) and the Gatlinburg stocked reach (park boundary to
+    Gnatty Branch); the Spur reach pauses stockings in midsummer
+  asOf: "2026"
+  sources:
+    - label: Great Smoky Mountains National Park - Fishing
+      url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+      kind: survey
+      observationPeriod: current park guidance
+      retrieved: 2026-09-22
+      pinpoint: Wild brook/rainbow/brown trout park-wide at 2,000-4,000 fish per mile in many streams;
+        'Fishing is permitted year-round in open waters'; non-native stocking ended 1975; special
+        permits required for Gatlinburg waters
+    - label: TWRA trout forecast StoryMap - Gatlinburg waters block
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: schedule-table
+      observationPeriod: 2026 forecast
+      retrieved: 2026-09-22
+      pinpoint: "n-ZH7DtI: Gatlinburg stocks the WPLP ~5 miles to Gnatty Branch; n-nB5U6I 'Stocking:
+        Year-Round'; n-ONYvQy: the Spur is not stocked July-September (reduced numbers Aug-Sep);
+        n-xfcoID: Dec 1-Mar 31 catch-and-release; n-NtmGZT: Apr 1-Nov 30 general streams 5/day;
+        n-ZoMci9: Gatlinburg permit required year-round"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 62 rows under the WPLP alias set - 'W. Prong Little Pigeon R. (Pigeon Forge)' Seasonal
+        Jan-May and Oct 2026 plus Gatlinburg-area Delayed Harvest/Weekly rows across all months,
+        Rainbow Trout
+  caveats:
+    - "Park reach: wild rainbows and brook trout, year-round, NPS rules (artificials only); no
+      stocking since 1975."
+    - "Gatlinburg reach (park boundary to Gnatty Branch): stocked year-round by the city program;
+      catch-and-release Dec 1-Mar 31; Gatlinburg permit required year-round; Thursday is
+      stocking/closure day."
+    - The Spur between Gatlinburg and Pigeon Forge is not stocked in July-September heat (reduced
+      numbers Aug-Sep) - do not promise midsummer limits on that segment.

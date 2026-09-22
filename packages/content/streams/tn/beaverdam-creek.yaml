@@ -14,16 +14,57 @@ idealFlow:
     max: 60
     unit: cfs
 idealFlowSource: editorial
-notes: Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite small-water
-  rainbow stop on the Shatley Springs road corridor. The reach from the Birch Branch confluence down to Tank
-  Hollow Road is a designated TWRA wild-trout water — open year-round, single-hook artificials only. No USGS
-  gauge — plan on recent-rain judgment.
+notes: Johnson County spring creek with cold, steady water and TWRA spring stocking; a favorite
+  small-water rainbow stop on the Shatley Springs road corridor. The reach from the Birch Branch
+  confluence down to Tank Hollow Road is a designated TWRA wild-trout water — open year-round,
+  single-hook artificials only. No USGS gauge — plan on recent-rain judgment.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01481571"]
-  huc8s: ["06010102"]
-  counties: ["Johnson"]
+  gnisIds:
+    - "01481571"
+  huc8s:
+    - "06010102"
+  counties:
+    - Johnson
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "A documented year-round trout water: TWRA designates the Birch Branch-to-Tank Hollow
+    reach a wild trout water and TWRA's in-force Trout Management Plan says Beaverdam Creek today
+    'provide[s] excellent wild trout fisheries'; a seasonal spring rainbow stocking (Mar-Jun 2026)
+    coexists with the wild fishery."
+  reachScope: Designated wild-trout reach (Birch Branch confluence downstream to Tank Hollow Rd/USFS
+    300) for the year-round wild fishery; the hatchery-supported spring stocking (Mar-Jun) applies
+    to the stocked reach
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Regulations
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+    - label: Tennessee Trout Management Plan 2017-2027
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+      kind: agency-assessment
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "wild-trout chapter: \"several of Tennessee's larger coldwater streams including Beaverdam
+        Creek, Doe Creek, and Tellico River had poor water quality... Today, these streams, along
+        with many others, provide excellent wild trout fisheries.\""
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "5 rows: 'Beaverdam Creek', Johnson Co., REGION 4, Seasonal, Rainbow Trout, weeks 3/1,
+        3/29, 4/26, 5/24, 6/21/2026"
+  caveats:
+    - "Reach discipline: the year-round claim is anchored on the designated wild-trout reach (Birch
+      Branch confluence to Tank Hollow Rd); conditions on the lowest private reaches toward the
+      state line are not separately documented."
+    - The catalog note's regulation summary (single-hook artificials on the wild reach) was not
+      re-verified this pass; confirm current rules with TWRA before you go.

@@ -22,6 +22,31 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01270380"]
-  huc8s: ["05130201"]
-  counties: ["Wilson"]
+  gnisIds:
+    - "01270380"
+  huc8s:
+    - "05130201"
+  counties:
+    - Wilson
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's winter program stocks rainbow trout at the Don Fox Community Park reach of this
+    karst creek in Lebanon (Feb 11 and a TBD December 2026 date in the 2026 schedule) - a winter
+    put-and-take fishery added to the program in winter 2021-22 after a local petition.
+  reachScope: Don Fox Community Park reach, Lebanon (Wilson County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 2 / Wilson / 'Don Fox Park Community Park' / Winter / Rainbow Trout /
+        2/11/2026 and TBD 12/2026"
+  caveats:
+    - Winter-only put-and-take (program added winter 2021-22; fish stocked when temperatures reach
+      optimal winter levels per prior reporting).
+    - TWRA's page lists the site under the park name; 'Sinking Creek' never appears on it - cite the
+      site string carefully.
+    - No wild-trout or special-regulation listing exists for this creek.

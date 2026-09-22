@@ -26,5 +26,34 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01648169"]
-  huc8s: ["05130206"]
+  gnisIds:
+    - "01648169"
+  huc8s:
+    - "05130206"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's winter program stocks catchable rainbow trout in Sulphur Fork Creek, Robertson
+    County (Feb 4, Feb 26, and a TBD December 2026 date in the 2026 schedule) - a winter
+    put-and-take fishery through Springfield with no documented summer carryover.
+  reachScope: Springfield-area reach, Robertson County (greenway corridor per local reporting)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 2 / Robertson / 'Sulphur Fork Creek' / Winter / Rainbow Trout / 02/04/2026,
+        02/26/2026, TBD 12/2026"
+    - label: Sulphur Fork temperature grabs (multi-station)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03435770&siteid=TDECWPC-SFORK000.1RN&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1980-2009
+      retrieved: 2026-09-22
+      pinpoint: "prior batch6 lead: 149 results through 2009; summer grabs 25-28.4 C"
+  caveats:
+    - Winter put-and-take only; a developed-edge warmwater Red River tributary outside the stocked
+      season.
+    - "Spelling: USGS/TDEC use 'Sulphur Fork'; the catalog uses 'Sulfur Fork' - same water (HUC
+      05130206, Robertson Co.)."

@@ -6,12 +6,45 @@ regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Upper Cumberland river through the Burgess Falls corridor to Center Hill Lake; valued for recreation as well as fishing.
+notes: Upper Cumberland river through the Burgess Falls corridor to Center Hill Lake; valued for
+  recreation as well as fishing.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01313768"]
-  huc8s: ["05130108"]
+  gnisIds:
+    - "01313768"
+  huc8s:
+    - "05130108"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: The Burgess Falls State Park reach of the Falling Water River offers documented
+    bank-and-pier fishing for largemouth and smallmouth bass and bream; no trout program or trout
+    record exists on the river.
+  reachScope: Burgess Falls State Park reach (below the Burgess Falls Dam waterfall and at the park
+    fishing pier); upstream headwater reaches near Cookeville are not covered
+  asOf: "2026"
+  sources:
+    - label: Burgess Falls State Park — place page
+      url: https://cumberlandriverbasin.org/place/burgess-falls-state-park
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'Visitors are permitted to fish along the river and can catch largemouth and smallmouth
+        bass, as well as bream'; 'The best fishing in the park is located below the dam main
+        waterfall and at the park's fishing pier'"
+    - label: 2026 trout stocking schedule (live datatable feed)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'falling water': 0 rows"
+  caveats:
+    - The only dam on the reach (Burgess Falls Dam, impounding Cookeville City Lake) is a
+      decommissioned municipal hydro (closed 1944) with no documented cold release (prior lead, not
+      re-verified).
+    - Fishbrain page (126 catches, redeye/rock/smallmouth-led, no trout rows) is a research lead
+      only, not citable.

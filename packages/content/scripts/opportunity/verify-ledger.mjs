@@ -156,6 +156,16 @@ for (const [id, doc] of catalogById) {
   } else {
     check(Boolean(block.unresolvedQuestion), `${id}: unresolved catalog block without unresolvedQuestion`);
   }
+  // No contradictory year-round/season representation (work order §7).
+  if (block.trout === 'seasonal-stocked-trout' && doc.yearRound === true) {
+    errors.push(`${id}: seasonal-stocked-trout headline contradicts catalog yearRound:true`);
+  }
+  if (block.trout === 'warmwater-focus' && doc.yearRound === true) {
+    errors.push(`${id}: warmwater-focus headline contradicts catalog yearRound:true`);
+  }
+  if (block.trout === 'year-round-trout' && doc.yearRound === false) {
+    errors.push(`${id}: year-round-trout headline contradicts catalog yearRound:false`);
+  }
   for (const s of block.sources ?? []) {
     check(DATE_RE.test(String(s.retrieved)), `${id}: catalog opportunity source retrieved "${s.retrieved}" must be YYYY-MM-DD`);
   }

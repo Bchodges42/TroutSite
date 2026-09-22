@@ -15,20 +15,40 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Big South Fork National River & Recreation Area water with wild browns and rainbows around Leatherwood Ford.
-  Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New River/Clear Fork confluence
-  country up to the Kentucky line.
+  Big South Fork National River & Recreation Area water with wild browns and rainbows around
+  Leatherwood Ford. Beautiful and isolated — plan bail-outs. The Tennessee reach runs from the New
+  River/Clear Fork confluence country up to the Kentucky line.
 
 
-  Regulations: NPS: "follows the same rules and regulations set forth by the Tennessee Wildlife Resources
-  Agency and the Kentucky Department of Fish and Wildlife Resources"; (retrieved 2026-09-14; verify current
-  rules with TWRA before you go).
+  Regulations: NPS: "follows the same rules and regulations set forth by the Tennessee Wildlife
+  Resources Agency and the Kentucky Department of Fish and Wildlife Resources"; (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03410210
     url: https://waterdata.usgs.gov/monitoring-location/03410210/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00515542"]
-  huc8s: ["05130104"]
-  counties: ["Scott"]
+  gnisIds:
+    - "00515542"
+  huc8s:
+    - "05130104"
+  counties:
+    - Scott
+opportunity:
+  trout: unresolved
+  evidenceState: conflicting
+  statement: "Trout are documented in the Big South Fork watershed (rainbow and brown in NPS fish
+    lists), but main-stem presence is NOT established: the NPS places browns in park tributaries
+    rather than the main river, the only naturally-reproducing designation in the sub-basin belongs
+    to Laurel Fork (a tributary), and no stocking row exists. Unresolved - both sides preserved."
+  reachScope: Big South Fork main stem, Scott County (Leatherwood Ford reach context)
+  asOf: "2026"
+  caveats:
+    - NPS rules follow TWRA (TN) and KDFWR (KY) regulations on this water.
+    - Beautiful and isolated water - plan bail-outs; no gauge temperature record exists at
+      Leatherwood Ford.
+    - Do not confuse with the Kentucky tailwater Cumberland River below Lake Cumberland - a
+      different water.
+  unresolvedQuestion: Does the cataloged Tennessee main stem itself hold trout (wild or stocked), as
+    opposed to its tributaries? No main-stem survey, stocking row, or temperature record was found.

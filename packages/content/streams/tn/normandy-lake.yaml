@@ -41,15 +41,16 @@ speciesEvidence:
     url: https://www.tva.com/environment/lake-levels
     retrieved: 2026-09-13
 notes: >-
-  TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater catalog
-  reach begins at the dam; this reservoir is the water the Duck backs up into upstream of it. TWRA's Normandy
-  Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill,
-  catfish (see officialSources).
+  TVA impoundment of the Duck River above Normandy Dam (Bedford County). The duck-river-tailwater
+  catalog reach begins at the dam; this reservoir is the water the Duck backs up into upstream of
+  it. TWRA's Normandy Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted
+  bass, crappie, bluegill, catfish (see officialSources).
 
 
-  Regulations: Largemouth 15-in min; smallmouth 18-in min; 5 black bass/day combined; spotted no limit;
-  crappie 15/day 10-in min; walleye 5/day 16-in min; catfish unlimited ≤34 in with 1 fish/day over 34 in;
-  white bass 15/day; jug/noodle rules (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Largemouth 15-in min; smallmouth 18-in min; 5 black bass/day combined; spotted no
+  limit; crappie 15/day 10-in min; walleye 5/day 16-in min; catfish unlimited ≤34 in with 1 fish/day
+  over 34 in; white bass 15/day; jug/noodle rules (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: TVA — Normandy Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels
@@ -57,3 +58,29 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Normandy Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Normandy Reservoir as a warmwater black-bass/crappie/walleye/catfish
+    fishery; the region's trout program is the Duck River below the dam - a separate catalog water -
+    and no trout program exists on the reservoir.
+  reachScope: Normandy Reservoir itself (3,048 ac TVA impoundment, mostly Coffee County). Not the Duck
+    River tailwater below Normandy Dam.
+  asOf: "2026"
+  sources:
+    - label: "TWRA Where to Fish: Normandy Reservoir"
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/normandy-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: Black bass fishery (largemouth/spotted/smallmouth), blacknose crappie dominant ('98
+        percent of the crappie catch'), walleye, channel/flathead catfish; 'TVA owns and operates
+        Normandy Reservoir', 3,048 ac, dam completed 1976; Normandy Hatchery stocks crappie and
+        walleye fingerlings annually; trout appears nowhere in the fishery description (verified
+        live 2026-09-22)
+  caveats:
+    - "Reach discipline: 'Normandy TW / Duck River' schedule rows and every forecast node about
+      trout belong to the river BELOW the dam (duck-river-tailwater), never to the reservoir."
+    - The reservoir backs up the Duck River headwaters; full pool 875 ft MSL per TVA (prior lead,
+      not re-verified).
+    - No Fishbrain page found for the reservoir in the seed pass (matchStatus not-found) - no
+      community catch signal either way.

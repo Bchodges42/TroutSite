@@ -6,12 +6,38 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Long West Tennessee fork through the Jackson and lowland corridor; one of the region’s principal fishable rivers.
+notes: Long West Tennessee fork through the Jackson and lowland corridor; one of the region’s
+  principal fishable rivers.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01270865"]
-  huc8s: ["08010205"]
+  gnisIds:
+    - "01270865"
+  huc8s:
+    - "08010205"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no
+    length limit), documenting a managed warmwater fishery on the South Fork; no trout program and
+    no trout record exists for this fork, and no reach-specific fishery survey was found.
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+    - label: South Fork Forked Deer River temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07027800&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS
+      kind: temperature-series
+      observationPeriod: summer grabs 1986-2001 (26.0-29.0 C)
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 29.0 C July 1986 near Gates; 27.5 C August 1988 at Jackson"
+  caveats:
+    - Warmwater-focus does not mean trout are biologically absent.

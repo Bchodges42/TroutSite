@@ -5,11 +5,11 @@
  *
  *   node packages/content/scripts/opportunity/merge-verdicts.mjs
  *
- * Every catalog id MUST have a verdict file under evidence-work/adj/lane-*/
- * (except seed entries explicitly marked not-adjudicated, which fail loudly
- * in --strict mode). The seed's identity/backbone blocks are preserved;
- * headline/claims/unresolvedQuestion/qualifications/flags come from the
- * verdict.
+ * Every catalog id MUST have a verdict file under evidence-work/adj/lane-N
+ * directories (except seed entries explicitly marked not-adjudicated, which
+ * fail loudly in --strict mode). The seed's identity/backbone blocks are
+ * preserved; headline/claims/unresolvedQuestion/qualifications/flags come
+ * from the verdict.
  */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

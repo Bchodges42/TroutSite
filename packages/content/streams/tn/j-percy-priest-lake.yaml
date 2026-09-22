@@ -44,13 +44,12 @@ speciesEvidence:
     kind: agency
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
-notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Stones River
-  reservoir southeast of Nashville in Davidson, Rutherford, and Wilson counties.
-  Detailed angler notes are still being prepared — check TWRA and local access
-  areas in the meantime.
-  TWRA's J. Percy Priest Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+notes: Reference waterbody from the Tennessee waterways inventory — the Stones River reservoir
+  southeast of Nashville in Davidson, Rutherford, and Wilson counties. Detailed angler notes are
+  still being prepared — check TWRA and local access areas in the meantime. TWRA's J. Percy Priest
+  Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie,
+  bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or
+  hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -58,3 +57,32 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — J. Percy Priest Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents J. Percy Priest Reservoir as a warmwater lake — its 'best fishing
+    opportunities' list is all warmwater species — and confines the associated rainbow trout program
+    to the tailwater below the dam, not the lake.
+  reachScope: the USACE reservoir pool itself (Davidson, Rutherford, Wilson counties); the Stones
+    River tailwater below the dam is a separate catalog water
+  asOf: "2026"
+  sources:
+    - label: J. Percy Priest Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'The best fishing opportunities are for Largemouth Bass, Crappie, Hybrid Striped Bass
+        (Cherokee' bass), White Bass, Yellow Bass, and Channel Catfish.'; no trout anywhere on the
+        page"
+    - label: Cheatham Reservoir — Where to Fish (cross-reference)
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html
+      kind: schedule-table
+      observationPeriod: annual winter program (first Friday in December start; January and February events)
+      retrieved: 2026-09-22
+      pinpoint: "'Beginning on the first Friday in December, the Dale Hollow National Fish Hatchery stocks
+        catchable-size Rainbow Trout below J. Percy Priest Dam' — 2,000 fish per Jan/Feb event,
+        7/day creel, type 022 supplemental license"
+  caveats:
+    - USACE host (lrn.usace.army.mil) remained unreachable this session (certificate/edge rejection,
+      prior lead) — TVA/USACE release type stays unknown.
+    - Catalog striped-bass species tag is regulatory/hybrid evidence per catalog notes.

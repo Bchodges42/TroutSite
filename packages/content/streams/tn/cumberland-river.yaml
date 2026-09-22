@@ -9,20 +9,56 @@ gaugeIds:
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main stem across
-  Davidson to Stewart counties; the South Fork Cumberland River is a separate water. Detailed angler notes are
-  still being prepared — check TWRA and local access areas in the meantime.
+  Reference waterbody from the Tennessee waterways inventory — the Nashville-to-Lake Barkley main
+  stem across Davidson to Stewart counties; the South Fork Cumberland River is a separate water.
+  Detailed angler notes are still being prepared — check TWRA and local access areas in the
+  meantime.
 
 
-  Regulations: Black bass 5/day combined (Largemouth 14" min, Smallmouth 18" min, Spotted no limit); Crappie
-  30/day combined 10" min; Sauger 10/day 15" min; Striped/hybrid 2/day combined 15" min; White Bass 15/day;
-  Walleye 5/day 16" min; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Black bass 5/day combined (Largemouth 14" min, Smallmouth 18" min, Spotted no limit);
+  Crappie 30/day combined 10" min; Sauger 10/day 15" min; Striped/hybrid 2/day combined 15" min;
+  White Bass 15/day; Walleye 5/day 16" min; (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00517018"]
-  huc8s: ["05130202"]
-  counties: ["Davidson"]
+  gnisIds:
+    - "00517018"
+  huc8s:
+    - "05130202"
+  counties:
+    - Davidson
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents the Nashville-reach Cumberland (Cheatham Lake pool) as a warmwater
+    riverine fishery — black bass, crappie, catfish, white/striped bass and a December-March sauger
+    run below Old Hickory Dam; no trout program exists on the Tennessee main stem itself.
+  reachScope: "Cheatham Lake pool: Old Hickory Dam downstream to Cheatham Dam/Ashland City (the
+    Nashville reach of the catalog's Nashville-to-Lake Barkley main stem); the free-flowing
+    Cumberland below Cheatham Dam to Lake Barkley is not covered by the supporting source"
+  asOf: "2026"
+  sources:
+    - label: Cheatham Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'a 7,450-acre riverine impoundment that meanders through Nashville and downstream to
+        Ashland City, Tennessee'; sauger concentrate below dams December-March; species list
+        largemouth/spotted/smallmouth bass, crappie, sauger, walleye, catfish, white/yellow/striped
+        bass, paddlefish"
+    - label: TWRA Trout Stocking Locations (MASTER points layer)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(Site_Name)%20LIKE%20%27%25SHELBY%25%27%20OR%20UPPER(Site_Name)%20LIKE%20%27%25CEDAR%20HILL%25%27&outFields=Site_Name,StreamName,County,StockingProgram,Species,Latitude,Longitude&returnGeometry=true&outSR=4326&f=json
+      kind: schedule-table
+      observationPeriod: 2026 program (Winter, rainbow)
+      retrieved: 2026-09-22
+      pinpoint: "'Shelby Bottoms Park' → StreamName 'Sevier Lake', DAVIDSON, Winter, rainbow,
+        36.1678/-86.7315; 'Cedar Hill Park' → 'Cedar Hill Park Pond', DAVIDSON, Winter, rainbow"
+  caveats:
+    - The catalog notes' trout creel line applies only to stocked sites; no open-main-stem trout
+      fishery is documented.
+    - Live 2026 feed's 'Cumberland' rows are Cumberland County park waters (Cumberland Mountain
+      State Park) and the Sequatchie River — different waters.

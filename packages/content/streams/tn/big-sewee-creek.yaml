@@ -6,12 +6,28 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Regional Watts Bar tributary in Rhea and Meigs County country, promoted as a substantial order-5 named stream.
+notes: Regional Watts Bar tributary in Rhea and Meigs County country, promoted as a substantial
+  order-5 named stream.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269344"]
-  huc8s: ["06020001"]
+  gnisIds:
+    - "01269344"
+  huc8s:
+    - "06020001"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: A recurring secondary claim puts Sewee Creek (Meigs County) in TWRA's winter trout
+    program, but no citable schedule row exists in TWRA's live 2026 feed; with no trout survey or
+    dated observation either, the creek's trout status stays unresolved.
+  asOf: "2026"
+  caveats:
+    - GNIS name is 'Big Sewee Creek'; the gauged station is named 'SEWEE CREEK NEAR DECATUR' — same
+      water, watch for naming splits in any future source.
+  unresolvedQuestion: "Was Sewee Creek ever a published TWRA winter trout water (a dated citable
+    schedule row), and does any reach-specific trout survey or dated observation exist? Next source:
+    TWRA Region 3 archive schedules or a dated news schedule listing."

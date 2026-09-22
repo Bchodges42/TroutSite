@@ -10,14 +10,48 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
-seasonMonths: [11, 12, 1, 2, 3 ]
+seasonMonths:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
 seasonKind: programmatic
-notes: >-
-  TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in
-  the cold months only — the fish do not hold over summer. Check the TWRA schedule for the
-  current winter window before you go.
+notes: TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in the
+  cold months only — the fish do not hold over summer. Check the TWRA schedule for the current
+  winter window before you go.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: Shelby Farms Park documents trout stocked in Jones Pond every December and January under
+    TWRA's winter program, over a park of warmwater lakes (catfish, crappie, bream, largemouth bass)
+    - a cold-months trout fishery on a warmwater park water.
+  reachScope: Jones Pond, Shelby Farms Park
+  asOf: "2026"
+  sources:
+    - label: Shelby Farms Park - Fishing
+      url: https://www.shelbyfarmspark.org/fishing
+      kind: schedule-table
+      observationPeriod: current park guidance
+      retrieved: 2026-09-22
+      pinpoint: "'Trout are stocked in Jones Pond every December and January.'; 'The lakes are home to
+        catfish, crappie, bream and largemouth bass.'"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 2 'Shelby Farms' rows, Region 1 (Shelby County), type Winter, Rainbow Trout - 1/13/2026
+        stocked and next event TBD 12/2026
+  caveats:
+    - "Trout window: December-January stockings (TWRA rows: Jan 13, 2026 and TBD Dec 2026); the
+      2025-26 program ran through February."
+    - The park's lakes are warmwater (catfish, crappie, bream, largemouth bass); TWRA's plan classes
+      such hatchery-supported waters as unable to support trout year round - never claim summer
+      trout, but absence is not proven either.

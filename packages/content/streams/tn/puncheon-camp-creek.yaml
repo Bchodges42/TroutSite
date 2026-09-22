@@ -26,6 +26,31 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01298693"]
-  huc8s: ["06010205"]
-  counties: ["Campbell"]
+  gnisIds:
+    - "01298693"
+  huc8s:
+    - "06010205"
+  counties:
+    - Campbell
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's 2026 spring program stocks this tiny Grainger County creek with rainbow trout on
+    four dates (weeks of Feb 8, Mar 1, Mar 22 and Apr 12) - a short put-and-take season; the
+    catalog's Dec/Jan/Feb winter months are contradicted by the schedule.
+  reachScope: "Stocked creek reaches #1-#7, Grainger County (Clinch/Norris side)"
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 4 / Grainger / 'Puncheon Camp Creek' / Seasonal / Rainbow Trout / weeks 2/8,
+        3/1, 3/22, 4/12/2026"
+  caveats:
+    - Spring put-and-take only (Feb-Apr 2026); no delayed-harvest, winter, or summer rows exist.
+    - "IDENTITY CAUTION: the catalog hydroIdentity tags Campbell County while the catalog notes, the
+      TWRA workbook, and WQP station metadata all say Grainger County - every fact here is
+      attributed to the GRAINGER creek; resolve the Campbell tag with the geometry team."
+    - Tiny close-to-home water; access is at unnamed road crossings per the GIS points.

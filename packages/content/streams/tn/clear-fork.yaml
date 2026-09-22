@@ -12,16 +12,31 @@ idealFlow:
     max: 250
     unit: cfs
 idealFlowSource: editorial
-notes: >-
-  The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve your
-  wading to stable flows.
-
+notes: The New River system’s wild branch near the Big South Fork boundary. Remote gorges; conserve
+  your wading to stable flows.
 officialSources:
   - label: USGS Water Data — monitoring location 03409500
     url: https://waterdata.usgs.gov/monitoring-location/03409500/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01278344", "01303731", "01305959"]
-  huc8s: ["05130104"]
-  counties: ["Scott"]
+  gnisIds:
+    - "01278344"
+    - "01303731"
+    - "01305959"
+  huc8s:
+    - "05130104"
+  counties:
+    - Scott
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout program, trout record, or fish survey exists for the Scott County Clear Fork
+    (New River system); a 2026 warm gauge reading argues against summer trout habitat but cannot
+    settle occupancy.
+  asOf: "2026"
+  caveats:
+    - Fishbrain page is a shared 'Clear Fork River' page (67 catches, smallmouth-led, no trout rows)
+      — research lead only, segment unreviewed.
+  unresolvedQuestion: No reach-specific trout survey, completed-release record, or dated observation
+    found for the Scott County Clear Fork; remote gorges remain unassessed.

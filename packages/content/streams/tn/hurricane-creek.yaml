@@ -26,6 +26,41 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01300832", "01306597"]
-  huc8s: ["06040003", "06040005"]
-  counties: ["Houston", "Humphreys"]
+  gnisIds:
+    - "01300832"
+    - "01306597"
+  huc8s:
+    - "06040003"
+    - "06040005"
+  counties:
+    - Houston
+    - Humphreys
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Two different Tennessee creeks named Hurricane Creek carry TWRA spring rainbow programs,
+    and this catalog entry spans both: the Houston County creek (3 stocking weeks in 2026) and the
+    Humphreys County creek at Hurricane Mills (2 stocking weeks) - late-winter/spring put-and-take
+    on each, not a year-round fishery on either."
+  reachScope: "Two distinct same-name creeks are covered: the Houston County creek and the Humphreys
+    County creek at Hurricane Mills"
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "5 rows: 3 x 'Hurricane Creek' Houston Co. (weeks 2/22, 3/22, 3/29/2026) + 2 x 'Hurricane
+        Creek' Humphreys Co. (weeks 2/22, 3/29/2026), REGION 1, Seasonal, Rainbow Trout"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Geometry caveat: the cataloged feature spans TWO distinct creeks (different HUC-8s per the
+      seed); temperature evidence in the seed covers only the Houston County creek - do not transfer
+      conditions between them."
+    - No wild-trout listing, special regulation, or holdover documentation for either creek (prior
+      research; consistent with this pass's checks).

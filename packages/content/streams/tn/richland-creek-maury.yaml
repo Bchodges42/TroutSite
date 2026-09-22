@@ -8,12 +8,32 @@ regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Long order-6 Duck River tributary through Giles and Maury counties. The county qualifier prevents collisions with other Tennessee Richland Creeks.
+notes: Long order-6 Duck River tributary through Giles and Maury counties. The county qualifier
+  prevents collisions with other Tennessee Richland Creeks.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01299358"]
-  huc8s: ["06030004"]
+  gnisIds:
+    - "01299358"
+  huc8s:
+    - "06030004"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for the
+    Giles/Maury County Richland Creek (Elk River tributary); community reports describe small-stream
+    bass/panfish fishing, but no admissible source documents the creek's fishery or any trout
+    occurrence.
+  asOf: "2026"
+  caveats:
+    - Not the Nashville-area Richland Creek (Davidson/Williamson) nor any other Tennessee Richland —
+      identity verified via GNIS 01299358 / HUC 06030004.
+    - The Maury County winter trout water McCutcheon Creek is a separate small water and does not
+      bind to this creek.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for the Giles/Maury Richland Creek; whether any trout opportunity (or any
+    documented fishery) exists is unknown. Next source: TWRA Region 2 sampling or TDEC biomonitoring
+    fish data."

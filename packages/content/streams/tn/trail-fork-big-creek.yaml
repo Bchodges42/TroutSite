@@ -18,14 +18,56 @@ notes: >-
   Tiny TWRA spring-stocked headwater in Cocke County near the Big Creek trail system.
 
 
-  Regulations: statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions entry
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: statewide trout — 7/day, no size limit; not on wild-trout named list, no exceptions
+  entry (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01328182"]
-  huc8s: ["06010105"]
-  counties: ["Cocke"]
+  gnisIds:
+    - "01328182"
+  huc8s:
+    - "06010105"
+  counties:
+    - Cocke
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: A small TWRA-stocked rainbow trout water (five spring stockings Feb-May 2026), with a
+    documented wild rainbow population in the upper reaches and a 2021 brook trout reintroduction
+    above the waterfall barrier whose persistence is NOT established - 2025 monitoring was planned,
+    and no 2026 persistence claim is made.
+  reachScope: TWRA-stocked reach of Trail Fork of Big Creek (Cocke County, 'Trail Fork Big Creek'
+    stocking group); wild rainbows documented upstream of ~2,720 ft; 2021 brook trout reintroduction
+    is above the waterfall barrier.
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: 5 rows, Region 4, Cocke, 'Trail Fork Big Creek', Seasonal, weeks 2/22, 3/15, 4/5, 4/26,
+        5/17/2026, Rainbow Trout (capture captures/twra-schedule.json); GIS points corroborate six
+        named stocking locations on the stream
+    - label: Tennessee Trout Management Plan 2017-2027 (Fisheries Report No. 17-10)
+      url: https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf
+      kind: survey
+      observationPeriod: 2017-2027 plan horizon
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "'Upper Trail Fork currently has a wild Rainbow Trout population, as do some of its
+        headwater tributaries (upstream of 2,720')' (prior batch-2 extraction of the plan text)"
+  caveats:
+    - "Reach boundary preserved: the brook trout reintroduction sits ABOVE the natural waterfall
+      barrier; the TWRA put-take rainbow stocking applies to the lower stocked reach - do not merge
+      the two stories."
+    - Headline is the documented seasonal stocked fishery; the wild-rainbow and brook-reintroduction
+      material stays as historical/unresolved supporting claims, never as the visitor-facing
+      promise.
+    - "Name discipline: TWRA's stocking name is 'Trail Fork Big Creek' (same stocking group as Gulf
+      Fork Big Creek in the Bald Mountain headwaters of the Big Creek drainage); 'Big Creek' alone
+      is a common name in Cocke County."
+    - No gauge, no temperature record, and no post-2025 survey were located for this stream.

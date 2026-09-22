@@ -1,0 +1,450 @@
+[
+  {
+    "id": "big-rock-creek",
+    "correction": "None required: species trout/stocked with winter seasonMonths (12,1,2) is consistent with the Winter-type schedule rows."
+  },
+  {
+    "id": "boiling-fork-creek",
+    "correction": "None required: species trout/stocked, seasonMonths 12/1/2 consistent with Winter-type rows."
+  },
+  {
+    "id": "boone-lake",
+    "correction": "Catalog speciesEvidence (bass/crappie/bluegill/catfish/striped bass, agency-kind) is consistent with TWRA's live page; no species additions warranted. Catalog stockingProgram:false is correct (no trout program; the page documents non-trout stocking). Do not add yearRound or trout species to this lake."
+  },
+  {
+    "id": "boone-tailwater",
+    "correction": "Catalog seasonMonths [12,3,4] matches only the static trout-page calendar (Mar/Apr/Dec); the live schedule adds Nov and the 2026 forecast swaps in Jun — surface the conflict rather than a single month set. Catalog yearRound:true is supported by the 2026 forecast ('smallest year round trout fishing tailwater'). Prior lead's 'unknown' summer-survival read is superseded by TWRA's explicit year-round label plus documented holdover rainbows."
+  },
+  {
+    "id": "brush-creek-cocke",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: TWRA's 2026 schedule stocks this water only in March-May Seasonal weeks and has no winter rows; correct to [3,4,5] (or null) - the Dec-Feb window contradicts the schedule."
+  },
+  {
+    "id": "buffalo-creek-grainger",
+    "correction": "catalogFields.yearRound=true is WRONG - set yearRound=false. seasonMonths [12,1,2] is WRONG: the documented program is weekly stocking Feb-Aug plus the Oct 1-Jan 31 DH window (seasonMonths [2,3,4,5,6,7,8] + [10,11,12,1] as program months). Stocking program=true is correct."
+  },
+  {
+    "id": "calderwood-lake",
+    "correction": "catalogFields.yearRound=false is contradicted by TWRA's year-round reservoir list and reservoir page - set yearRound=true. Species should note Brook, Brown and Rainbow per the list (schedule row names only Rainbow)."
+  },
+  {
+    "id": "caney-fork-upper",
+    "correction": "catalogFields.fishery is null - evidence supports 'warmwater' for this reach (TWRA Great Falls Reservoir page, verified 2026-09-22). stockingProgram=false is correct; species=null is correct."
+  },
+  {
+    "id": "center-hill-lake",
+    "correction": "catalog species 'warmwater' and stockingProgram=false are correct. Recommend the notes explicitly carry the unresolved lake-trout question so the tailwater's cold-water facts are never quoted against this water."
+  },
+  {
+    "id": "cherokee-lake",
+    "correction": "Catalog species 'warmwater' and stockingProgram:false are CORRECT and now live-verified. No changes."
+  },
+  {
+    "id": "chilhowee-lake",
+    "correction": "catalogFields.yearRound=false is contradicted by TWRA's year-round reservoir list and the live reservoir page - set yearRound=true. Stocking months Feb/Nov/Dec are schedule events, not the fishing window."
+  },
+  {
+    "id": "clear-creek-obed",
+    "correction": "None: catalog species=warmwater is confirmed; headline upgraded from unresolved to warmwater-focus on the verified NPS page."
+  },
+  {
+    "id": "clinch-river",
+    "correction": "Catalog seasonMonths [3,4,5,6,7,8] matches the static table (Mar-Aug); schedule/forecast say Mar-Sep — recommend Mar-Sep with conflict note. yearRound:true supported. Catalog notes describing the tailwater running 'through Melton Hill Lake down to the Clinch mouth' overstate the trout reach; TWRA's documented trout water ends at Hwy 61 (Clinton)."
+  },
+  {
+    "id": "cosby-creek",
+    "correction": "yearRound=false understates the park reach: NPS permits year-round fishing on all park streams and documents a wild (brook) trout population in Cosby Creek; set yearRound=true with the stocked/private-land lower segments kept seasonal, or scope the field to the park reach."
+  },
+  {
+    "id": "daddys-creek",
+    "correction": "None: catalog species=warmwater confirmed; headline upgraded from unresolved to warmwater-focus on the verified NPS page."
+  },
+  {
+    "id": "dale-hollow-lake",
+    "correction": "Catalog yearRound:null should be true (TWRA live year-round reservoir list + documented multi-season fishery). Catalog note 'TWRA stocks brown trout here each spring' presents one side of a live conflict (page/list say wintertime rainbow) — present as conflict. seasonMonths: none published coherently; keep null with conflict note rather than [4]."
+  },
+  {
+    "id": "doe-creek-johnson",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-May Seasonal weeks with no winter rows; correct to [3,4,5] (or null)."
+  },
+  {
+    "id": "doe-river",
+    "correction": "seasonMonths [12,1,2] (programmatic) understates the stated DH window: TWRA states the catch-and-release season as Oct 1 - Feb 28, so correct to [10,11,12,1,2] (or tie the field to the DH window explicitly)."
+  },
+  {
+    "id": "duck-river-tailwater",
+    "correction": "catalogFields.yearRound=true is WRONG: TWRA's current assessment says the river is suitable ~8 months with a Nov-Jun seasonal stocking program ('Seasonal Trout Fishing') - set yearRound=false. seasonMonths [11,12,1,2,3,4,5,6] matches the forecast summary; note the schedule-workbook months (J,F,M,N,D) conflict."
+  },
+  {
+    "id": "east-fork-shoal-creek",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this water only in Feb-May Seasonal weeks with no winter rows; correct to [2,3,5] (or null)."
+  },
+  {
+    "id": "east-fork-stones-river",
+    "correction": "Catalog species=trout / fishery=wild for this water is unsupported by any agency source found - recommend reclassifying to unresolved or warmwater pending a real survey; the seasonMonths 12/1/2-3 'programmatic wild' claim has no program behind it."
+  },
+  {
+    "id": "edmund-orgill-lake",
+    "correction": "species and fishery fields are empty while the stocked-rainbow program is documented by TWRA's schedule and GIS layer for this water; populate species='trout', fishery='stocked'."
+  },
+  {
+    "id": "elk-river-lower",
+    "correction": "catalog species 'trout', fishery 'stocked', and stockingProgram=true are NOT supported for this reach: the 2026 schedule's only Lincoln County rows are Fayetteville pond events, and no assessment documents trout here. Recommend species=null (trout question unresolved), stockingProgram=false for this reach, and a note that the catalog's 'winter stocking in lower county reaches' claim traced only to the Fayetteville pond event."
+  },
+  {
+    "id": "elk-river",
+    "correction": "catalog yearRound=true is correct but must be reach-scoped to the first ~11 miles. seasonMonths [3-12] matches stocking months. Gauge note: the tailwater has NO temperature gauge; catalog's 03578000 is Elk River near Pelham, an upstream headwater gauge (prior lead) - do not use it for tailwater conditions."
+  },
+  {
+    "id": "fletchers-fork",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the documented 2026 program runs Feb-Aug (schedule weeks 2/15-8/23; iSportsman events Feb 12, Apr 7, Jun 25, Jul 22, Aug 26); correct to [2,4,5,6,7,8] (or null)."
+  },
+  {
+    "id": "forge-creek-johnson",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-May Seasonal weeks with no winter rows; correct to [3,4,5] (or null)."
+  },
+  {
+    "id": "fort-patrick-henry-lake",
+    "correction": "Catalog yearRound:false is WRONG per TWRA's live year-round reservoir list — set yearRound:true (program-level) with the thin-evidence caveat. Catalog fishery 'stocked' is right; species 'trout' should specify brown and rainbow. seasonMonths null stays (none published)."
+  },
+  {
+    "id": "french-broad-river",
+    "correction": "None: catalog species=warmwater confirmed; headline upgraded from unresolved to warmwater-focus."
+  },
+  {
+    "id": "ft-patrick-henry-tailwater",
+    "correction": "Catalog seasonMonths [3,4] matches the static table/forecast but not the weekly schedule (adds Dec) or the observed Sep 2026 release — present as conflict. yearRound:true is supported by the forecast '(year-round fishing)'."
+  },
+  {
+    "id": "goforth-creek",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-April Seasonal weeks with no winter rows; correct to [3,4] (or null)."
+  },
+  {
+    "id": "greasy-creek-polk",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-April Seasonal weeks with no winter rows; correct to [3,4] (or null)."
+  },
+  {
+    "id": "harpeth-river",
+    "correction": "speciesEvidence for smallmouth-bass cites the USGS monitoring-location page 03432350, which contains no fish data (verified live 2026-09-22) - a monitoring-location page does not document a fishery; replace with a positive dated warmwater source or drop the citation."
+  },
+  {
+    "id": "hiwassee-river",
+    "correction": "catalog yearRound=true is supported but ONLY with TWRA's 'limited year-round fishing' qualifier carried prominently; seasonMonths [10,11,12,1,2,3,4,5,6,7] approximates the stocking footprint (schedule rows Feb-Aug + Feb/Oct/Nov vs forecast Jan-Jul + Oct-Dec)."
+  },
+  {
+    "id": "holston-river",
+    "correction": "Catalog seasonMonths [11,12,1,2,3,4] matches the documented Nov-Apr stocking window — correct as stocking months. Catalog yearRound:false is defensible for the stocking program but TWRA labels the fishery 'limited year-round fishing'; recommend yearRound=true with the summer-thermal qualification, or an explicit 'limited year-round' marker. Catalog fishery 'stocked' should note the reach scope (Cherokee Dam tailwater only)."
+  },
+  {
+    "id": "indian-creek-claiborne",
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in Feb-Apr Seasonal weeks with no winter rows; correct to [2,3,4] (or null)."
+  },
+  {
+    "id": "johnson-park-lake",
+    "correction": "catalog note locates the lake 'in Memphis (Shelby County)': TWRA's stocking layer records City = Collierville (W.C. Johnson Park, 419 W.C. Johnson Park Dr per prior research on TWRA's license-event page); correct the city attribution to Collierville, Shelby County."
+  },
+  {
+    "id": "lake-graham",
+    "correction": "speciesEvidence entries for largemouth-bass/crappie/bluegill cite TWRA's trout stocking page (trout-information-stockings.html), which documents trout programs, not this lake's warmwater species; the correct citation is TWRA's Lake Graham page (verified live 2026-09-22: 'Largemouth bass - crappie - bluegill - redear sunfish - blue & channel catfish')."
+  },
+  {
+    "id": "leconte-creek",
+    "correction": "Catalog note 'TWRA spring stocking listed' understates the program: the documented program is year-round (DH + weekly rainbow stocking). yearRound=true is supported; fishery=stocked is half right - the park reach is wild water."
+  },
+  {
+    "id": "little-buffalo-river",
+    "correction": "seasonMonths [12,1,2] (programmatic winter) is wrong: the 2026 schedule and the GIS 'Spring' program label put the events in March-May; set stocking months to Mar/May. Catalog note ('spring-stocked') is correct."
+  },
+  {
+    "id": "little-pigeon-river",
+    "correction": "species=trout + stockingProgram=true for the Sevierville main stem is unverified by any agency dataset; recommend carrying warmwater-focus as documented and the stocking claim as unresolved until a row or agency statement appears."
+  },
+  {
+    "id": "little-river",
+    "correction": "catalog fishery 'stocked' is wrong/incomplete: the feature is predominantly year-round wild-trout water in the park reach with a seasonal stocked lower reach - recommend fishery 'wild+stocked (reach-split)' and yearRound=true scoped to the upper/park reach. seasonMonths null is fine; stocking months are Feb-May + Oct-Nov if populated."
+  },
+  {
+    "id": "little-sequatchie-river",
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in March and May; set stocking months to Mar/May."
+  },
+  {
+    "id": "little-tennessee-river",
+    "correction": "Catalog species=trout/stocked with seasonMonths 2/3/4 is directionally right (late winter/early spring documented); keep the seasonal claim tied to the Chilhowee-tailwater arm, not the whole main stem."
+  },
+  {
+    "id": "little-west-fork-creek",
+    "correction": "seasonMonths [12,1,2] is WRONG vs documented Feb-Aug 2026 stocking months (TWRA schedule + post program page); correct to the Feb-Aug program window. species trout/stocked stands (rainbow, plus brown in the April event)."
+  },
+  {
+    "id": "loosahatchie-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie as a managed species. No trout field is supported."
+  },
+  {
+    "id": "melton-hill-lake",
+    "correction": "Catalog speciesEvidence (bass/crappie/bluegill/catfish/striped bass) plus the live page's musky documentation are consistent; consider adding musky to the species picture. Catalog notes' phrase 'giving year-round cold-water fishing' is unverified agency-wise — remove or qualify it. Catalog species:null and stockingProgram:false are correct for trout."
+  },
+  {
+    "id": "middle-fork-forked-deer-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "middle-fork-obion-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "middle-prong-little-pigeon",
+    "correction": "catalog yearRound=false is wrong for the park reach: NPS documents wild trout and year-round fishing there (set yearRound true with reach scope). fishery='stocked' misdescribes the park reach, which is wild; stocking applies only below the park."
+  },
+  {
+    "id": "mill-creek-overton",
+    "correction": "seasonMonths null should carry the observed stocking months Mar/Apr. Separately, regionId tn-middle-caney-fork mismatches the creek's HUC 05130106 (Obey/Cordell Hull) - owner-visible catalog geography item."
+  },
+  {
+    "id": "mississippi-river",
+    "correction": "species is UNSET; the TWRA regulation block supports a warmwater/striped bass species set. No trout field is supported."
+  },
+  {
+    "id": "new-river",
+    "correction": "species=warmwater is plausible but not positively documented in this pass - the catalog should carry the warmwater claim as unverified until a real source lands."
+  },
+  {
+    "id": "nickajack-lake",
+    "correction": "catalog speciesEvidence cites the USGS monitoring-location page 03570525 as 'agency' evidence for fish species; the actual agency source is TWRA's Nickajack Reservoir page (species list verified there 2026-09-22). species field itself is UNSET and could be populated with the TWRA warmwater list."
+  },
+  {
+    "id": "nolichucky-river",
+    "correction": "catalog note 'upstream reaches hold scattered wild fish' is agency-unverified and should not be presented as documented; species is UNSET — the TWRA smallmouth PLR supports listing smallmouth bass."
+  },
+  {
+    "id": "normandy-lake",
+    "correction": "catalog species=null with warmwater speciesEvidence tags is consistent with TWRA's page. Recommend fishery field 'warmwater' if populated. stockingProgram=false is correct."
+  },
+  {
+    "id": "norris-lake",
+    "correction": "Catalog species 'warmwater' and stockingProgram:false are CORRECT and now live-verified. No changes."
+  },
+  {
+    "id": "north-chickamauga-creek",
+    "correction": "seasonMonths null should carry the observed stocking months Feb/Mar/Apr/Nov."
+  },
+  {
+    "id": "north-fork-forked-deer-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "north-fork-holston-river",
+    "correction": "None: catalog species=warmwater confirmed; headline upgraded from unresolved to warmwater-focus on the verified exceptions entry."
+  },
+  {
+    "id": "north-fork-obion-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "north-prong-barren-fork",
+    "correction": "seasonMonths [12,1,2] is contradicted by the schedule capture (spring weeks 3/22 + 4/26) - correct the catalog to spring seasonal."
+  },
+  {
+    "id": "obed-river",
+    "correction": "None: catalog species=warmwater confirmed; headline upgraded from unresolved to warmwater-focus on the verified NPS page."
+  },
+  {
+    "id": "obey-river",
+    "correction": "Catalog yearRound:true and 12-month stocking match TWRA's schedule and forecast. Catalog species 'trout' should read rainbow+brown (per schedule and 2026 forecast); the static table's brook entry is the conflicting side of a preserved dispute. Catalog 'stocked by TWRA every month of the year' is supported."
+  },
+  {
+    "id": "obion-river",
+    "correction": "None: catalog species=warmwater confirmed; headline upgraded from unresolved to warmwater-focus on the verified crappie-rule entry."
+  },
+  {
+    "id": "old-hickory-lake",
+    "correction": "species is UNSET; evidence supports TWRA's warmwater species list (verified 2026-09-22). No trout or year-round-trout field is supported."
+  },
+  {
+    "id": "paint-creek-greene",
+    "correction": "catalog yearRound=false understates the documented case: the wild-trout reach is a year-round opportunity and the DH corridor is documented Oct-Jun. If the catalog keeps a single season field, tie year-round to the wild reach."
+  },
+  {
+    "id": "parksville-lake",
+    "correction": "catalogFields.stockingProgram=false is WRONG (TWRA stocks the lake with trout: year-round list + reservoir page) - set stockingProgram=true. yearRound null should be true (list-scoped). species null should include rainbow trout (stocked)."
+  },
+  {
+    "id": "parksville-tailwater",
+    "correction": "catalog seasonMonths [3,4,5] describes stocking months; keep but label as stocking months. yearRound=false is supported by the documented program. The catalog's 'display: featured' weight is unsupported by evidence depth (limited evidenceState) - reviewer may consider."
+  },
+  {
+    "id": "pickwick-lake",
+    "correction": "species is UNSET; evidence supports TWRA's warmwater species list (verified 2026-09-22). No trout field is supported."
+  },
+  {
+    "id": "pigeon-river",
+    "correction": "catalog species=trout is unsupported by agency evidence on the Tennessee reach; recommend carrying warmwater-focus (documented) with the cool-month trout claim as unresolved."
+  },
+  {
+    "id": "pine-creek-dekalb",
+    "correction": "seasonMonths null should carry the observed stocking months Feb/Mar."
+  },
+  {
+    "id": "piney-river-rhea",
+    "correction": "catalog yearRound=true is wrong: documented program is Oct/Nov-Feb DH plus Feb-Apr seasonal stockings; set yearRound false."
+  },
+  {
+    "id": "powell-river",
+    "correction": "catalog species=trout / fishery=wild is unsupported by any agency source found (and contradicted at the one sampled site); recommend reclassifying to warmwater with the wild-trout claim as unresolved."
+  },
+  {
+    "id": "puncheon-camp-creek",
+    "correction": "seasonMonths [12,1,2] is WRONG vs the schedule (spring weeks 2/8-4/12/2026); correct to spring seasonal. The catalog note 'TWRA spring-stocked Grainger County creek' is right; the counties:[Campbell] field likely wrong."
+  },
+  {
+    "id": "red-river-clarksville",
+    "correction": "catalog species=warmwater for the RIVER is plausible but not positively documented in this pass; the DOCUMENTED trout opportunity is the winter stocked reach at Billy Dunlop Park. Recommend display/season follow the winter program (Dec-Feb), not a year-round trout flag."
+  },
+  {
+    "id": "reedy-creek",
+    "correction": "catalog species=warmwater is carried without positive evidence - keep as unverified; do not display any trout program for this creek."
+  },
+  {
+    "id": "reelfoot-lake",
+    "correction": "species is UNSET; evidence supports TWRA's warmwater species list (verified 2026-09-22). No trout field is supported."
+  },
+  {
+    "id": "richardson-byrd-creek",
+    "correction": "seasonMonths [12,1,2] (winter) is wrong: all 2026 rows are Seasonal Feb-Apr; set stocking months to Feb/Mar/Apr."
+  },
+  {
+    "id": "roaring-fork",
+    "correction": "catalog note 'TWRA listing spring stocking for the Roaring Fork area' understates the program - the documented program is year-round (DH + weekly). yearRound=true is supported; fishery=stocked is half right - the park reach is wild water."
+  },
+  {
+    "id": "rocky-river",
+    "correction": "seasonMonths null should carry the observed stocking months Mar/Apr/May."
+  },
+  {
+    "id": "rutherford-fork-obion-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "salt-lick-creek",
+    "correction": "seasonMonths [12,1,2] (winter) is wrong: schedule rows are March (with a possible January event in the prior live read); set stocking months to Mar (Jan unconfirmed). Catalog note 'spring-stocked' is correct."
+  },
+  {
+    "id": "sequatchie-river",
+    "correction": "seasonMonths null should carry the observed stocking months Mar/May."
+  },
+  {
+    "id": "shoal-creek",
+    "correction": "catalog species=trout / fishery=stocked / stockingProgram=true is NOT supported for 2026 (zero schedule rows) - recommend unresolved or seasonal-stocked only if a completed-release record or agency statement surfaces; seasonMonths has no documented window."
+  },
+  {
+    "id": "sinking-creek-wilson",
+    "correction": "None required on species/fishery (trout/stocked winter program documented); seasonMonths has no documented window beyond the winter program design (catalog carries none)."
+  },
+  {
+    "id": "south-fork-cumberland",
+    "correction": "catalog species=trout / fishery=wild is unverified at main-stem resolution - the documented trout evidence is watershed/tributary level; recommend unresolved with the catalog claim preserved."
+  },
+  {
+    "id": "south-fork-forked-deer-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "south-fork-obion-river",
+    "correction": "species is UNSET; the crappie rule supports listing crappie. No trout field is supported."
+  },
+  {
+    "id": "south-holston-lake",
+    "correction": "Catalog yearRound:null should be true (TWRA live year-round reservoir list). Catalog species 'trout' should specify rainbow, brown, lake. seasonMonths null is correct (no published window; program-level year-round)."
+  },
+  {
+    "id": "south-holston-river",
+    "correction": "Catalog seasonMonths [3,4,5,6,7,8,9] matches the schedule/forecast/static Mar-Sep stocking season — correct. yearRound:true supported. Catalog 'species: trout' should specify rainbow (stocked) and brown (wild, not stocked)."
+  },
+  {
+    "id": "spring-creek-polk",
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Feb/Mar/Apr and Nov; set stocking months accordingly."
+  },
+  {
+    "id": "standing-rock-creek",
+    "correction": "seasonMonths [12,1,2] is wrong (rows are Feb/Mar); regionId tn-upper-cumberland is wrong - the creek is in the Tennessee River/Kentucky Lake drainage (HUC 06040005)."
+  },
+  {
+    "id": "station-creek",
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Feb-Apr; set stocking months accordingly."
+  },
+  {
+    "id": "stoney-creek-carter",
+    "correction": "seasonMonths null should carry the observed stocking months Mar/May."
+  },
+  {
+    "id": "sulfur-fork-creek",
+    "correction": "None required: species trout/stocked with winter seasonMonths (12,1,2) is consistent with the Winter-type rows."
+  },
+  {
+    "id": "tellico-lake",
+    "correction": "catalogFields.yearRound=false is contradicted by TWRA's year-round reservoir list ('Tellico (Upper) - Rainbow') - set yearRound=true reach-scoped to the upper arm. species 'trout' ok; seasonMonths [2,3,4] should be labeled stocking months, not the fishing window."
+  },
+  {
+    "id": "tellico-river",
+    "correction": "catalog yearRound=true is supported but reach-limited to the upper/higher-elevation water; fishery 'stocked' understates the documented wild reproduction above North River - recommend 'stocked+wild' with reach qualifier."
+  },
+  {
+    "id": "tennessee-river",
+    "correction": "species is UNSET; evidence supports TWRA's warmwater list for the Kentucky Lake pool (verified 2026-09-22). No trout field is supported."
+  },
+  {
+    "id": "tims-ford-lake",
+    "correction": "catalog species 'warmwater' and stockingProgram=false are correct. Recommend the notes carry the lake-vs-tailwater boundary explicitly so the tailwater's year-round trout claims are never quoted against the reservoir."
+  },
+  {
+    "id": "trail-fork-big-creek",
+    "correction": "catalog fishery 'stocked' is acceptable for the stocked reach but understates the documented wild-rainbow upper reach and overstates nothing else; stockingProgram=true correct; yearRound=false correct. Recommend notes carry the waterfall-barrier boundary and the planned-2025-monitoring status."
+  },
+  {
+    "id": "tumbling-creek",
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Mar/Apr; set stocking months accordingly."
+  },
+  {
+    "id": "upper-hills-creek",
+    "correction": "seasonMonths [12,1,2] is wrong: the 2026 row is a single March week; set stocking months to Mar."
+  },
+  {
+    "id": "upper-roan-creek",
+    "correction": "seasonMonths [12,1,2] (winter) is wrong: the 2026 schedule shows March-June stockings; set stocking months to Mar-Jun."
+  },
+  {
+    "id": "watauga-lake",
+    "correction": "Catalog yearRound:false is WRONG — TWRA's live list names Watauga for year-round reservoir trout fishing; set yearRound:true with the deep-water summer qualification. Catalog species 'trout' should specify rainbow, brown, lake (lake trout is the signature fishery). seasonMonths should be null (no seasonal window — the fishery is year-round with a deep-water summer pattern)."
+  },
+  {
+    "id": "watauga-river-wilbur-reach",
+    "correction": "Catalog fishery 'tailwater' and seasonMonths [3,4,5,6,7] are unsupported for THIS reach — the Mar-Jul months mirror the Wilbur Reservoir row and the 'tailwater' label mirrors the below-Wilbur-Dam water. Recommend fishery null / seasonMonths null until reach-specific evidence exists; keep the water in the catalog as a connector reach."
+  },
+  {
+    "id": "watauga-river",
+    "correction": "Catalog seasonMonths [3,4,5,6,7,8,9,10] matches no single source: schedule/forecast say Mar-Sep, static table says Mar-Dec. Recommend Mar-Sep (two of three sources) with the conflict noted, or an explicit conflict marker. yearRound:true is supported (forecast 'year-round angling opportunities' + '(year-round fishing)')."
+  },
+  {
+    "id": "watts-bar-lake",
+    "correction": "species is UNSET; evidence supports TWRA's warmwater species list plus the four stocked warmwater programs (verified 2026-09-22). No trout field is supported."
+  },
+  {
+    "id": "white-oak-creek",
+    "correction": "seasonMonths [12,1,2] is WRONG vs the schedule (spring weeks 2/22-3/29/2026); correct to spring seasonal. species trout/stocked stands."
+  },
+  {
+    "id": "wilbur-lake",
+    "correction": "Catalog fields are correct as set: species trout (rainbow), fishery stocked, yearRound:false, seasonMonths [3,4,5,6,7] matches the documented March-July window, stockingProgram:true. Keep the Wilbur-Tailwater row out of this water's data."
+  },
+  {
+    "id": "wolf-river-fentress",
+    "correction": "seasonMonths null should carry the observed stocking months Mar-May."
+  },
+  {
+    "id": "wolf-river-west-tennessee",
+    "correction": "species is UNSET; evidence supports a warmwater assemblage (bass, crappie, catfish, sunfish) per the 2022 Conservancy summary and TWRA crappie rule. No trout field is supported."
+  },
+  {
+    "id": "woods-reservoir",
+    "correction": "species is UNSET; evidence supports TWRA's warmwater species list (verified 2026-09-22). No trout field is supported."
+  }
+]

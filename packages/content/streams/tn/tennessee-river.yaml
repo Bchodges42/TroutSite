@@ -8,24 +8,62 @@ gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates. Within
-  Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River mile 424)
-  upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the Holston/French Broad
-  confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to the Kentucky line — the river
-  legitimately leaves the state between mile 424 and Pickwick. Warm main-stem water — the trout fishing lives
-  in the cold tailwaters below the dams, and the moving reaches are smallmouth water.
+  One main-stem river shown in both East and West Tennessee, not a pair of east/west duplicates.
+  Within Tennessee the main stem has two natural reaches: the AL line at Shellmound (Tennessee River
+  mile 424) upstream through Nickajack, Chickamauga, Watts Bar, and Fort Loudoun pools to the
+  Holston/French Broad confluence at Knoxville, and the West Tennessee reach from Pickwick Lake to
+  the Kentucky line — the river legitimately leaves the state between mile 424 and Pickwick. Warm
+  main-stem water — the trout fishing lives in the cold tailwaters below the dams, and the moving
+  reaches are smallmouth water.
 
 
-  Regulations: Sauger 10/day, 15-in min; Walleye 5/day, 16-in min; black bass 5/day combined — 15-in min
-  largemouth/smallmouth, no length limit spotted; crappie 20/day, 10-in min (reservoir-specific); catfish no
-  limit under 34 in, only 1 over 34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: Sauger 10/day, 15-in min; Walleye 5/day, 16-in min; black bass 5/day combined — 15-in
+  min largemouth/smallmouth, no length limit spotted; crappie 20/day, 10-in min
+  (reservoir-specific); catfish no limit under 34 in, only 1 over 34 in/day; (retrieved 2026-09-14;
+  verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00517033"]
-  huc8s: ["06040001"]
-  counties: ["Hardin"]
+  gnisIds:
+    - "00517033"
+  huc8s:
+    - "06040001"
+  counties:
+    - Hardin
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents the Tennessee River's West Tennessee reach (the Kentucky Lake pool) as a
+    warmwater main-stem fishery whose signature cold-season fishery is the December-March sauger run
+    below TVA dams; no trout program exists anywhere on the main stem, and the trout fishing lives
+    in the separate cold tailwaters.
+  reachScope: "Kentucky Lake pool of the Tennessee River: Pickwick Lake to the Kentucky state line
+    (the catalog's West Tennessee reach, Hardin County)"
+  asOf: "2026"
+  sources:
+    - label: Kentucky Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'Kentucky Reservoir is a Tennessee Valley Authority (TVA) mainstream reservoir' (52,083
+        ac KY + 108,217 ac TN; pool 354-359 ft); species: largemouth/smallmouth/spotted bass,
+        bluegill, redear, catfish (channel/blue/flathead), white & black crappie, sauger,
+        white/yellow bass, walleye, saugeye, paddlefish, warmouth; zero trout mentions"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: Zero Kentucky/Pickwick/Tennessee River trout rows in the schedule capture; main-stem
+        reservoirs absent from the Trout Management Plan's nine-reservoir trout list
+  caveats:
+    - The seed's forecast node n-o3jBKs matched 'tennessee river' inside a Tellico River passage —
+      it is a text-match false positive and is not evidence for this water.
+    - Warm main-stem water; the trout fishing lives in the separate cold tailwaters below dams (each
+      cataloged separately).
+    - Warmwater-focus does not mean trout are biologically absent.

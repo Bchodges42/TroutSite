@@ -29,14 +29,15 @@ seasonMonths:
   - 12
 seasonKind: programmatic
 notes: >-
-  Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow management, and
-  long drift-boat runs toward Elizabethton. Wade windows open when TVA drops releases; two gauges bracket the
-  dam and town. It runs from Wilbur Dam down to the Boone Lake Watauga-arm head.
+  Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow
+  management, and long drift-boat runs toward Elizabethton. Wade windows open when TVA drops
+  releases; two gauges bracket the dam and town. It runs from Wilbur Dam down to the Boone Lake
+  Watauga-arm head.
 
 
-  Regulations: Statewide 7-trout creel except the Quality Trout Fishing Area, Smallings bridge downstream to
-  CSX railroad bridges: 14-in minimum, 2-trout creel, bait prohibited, trout less than 14 in may not be
-  possessed (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Statewide 7-trout creel except the Quality Trout Fishing Area, Smallings bridge
+  downstream to CSX railroad bridges: 14-in minimum, 2-trout creel, bait prohibited, trout less than
+  14 in may not be possessed (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03486000
     url: https://waterdata.usgs.gov/monitoring-location/03486000/
@@ -47,6 +48,45 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01327321"]
-  huc8s: ["06010103"]
-  counties: ["Carter"]
+  gnisIds:
+    - "01327321"
+  huc8s:
+    - "06010103"
+  counties:
+    - Carter
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast describes the Watauga River below Wilbur Dam as one of the
+    Southeast's premier tailwaters with coldwater releases providing year-round angling, an entirely
+    wild brown-trout population, and stocked rainbows — 2025 sampling found ongoing natural
+    reproduction of both species.
+  reachScope: Watauga River below Wilbur Dam (Wilbur Tailwater), Carter County downstream ~16 miles
+    toward the Boone Lake Watauga-arm head; Quality Trout Fishing Area from Smallings Bridge to the
+    CSX railroad bridges
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), Wilbur Tailwater section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition
+      retrieved: 2026-09-22
+      pinpoint: "node n-agReBt: \"The coldwater releases from the Wilbur Dam provide the perfect
+        environment for year-round angling opportunities.\" and \"Along with the South Holston, the
+        Watauga is one of Tennessee's two tailwaters that has an entirely wild population of Brown
+        Trout.\" Capture: captures/twra-forecast-text.md; verified live 2026-09-22."
+    - label: TWRA published trout stocking schedule (2026) + recently stocked report
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule; completed release 2026-09-03
+      retrieved: 2026-09-22
+      pinpoint: 'Schedule row: REGION 4, Carter/Washington, "Wilbur Tailwater / Watauga River", Tailwater,
+        STOCKING MONTHS "M, A, M, J, J, A, S", SPECIES "Rainbow Trout". Recent-release row: {Region
+        4, Destination "Wilbur TW", Stocking Date 09/03/2026}. Both verified live 2026-09-22.'
+  caveats:
+    - Latest agency sampling is March 2025 (2026 survey cancelled for low flows) — the fishery
+      assessment is current TWRA text, but fish-population numbers are as-of 2025.
+    - Brown trout here are entirely wild (TWRA); rainbow fishing is substantially
+      put-and-take/put-grow-take on March-September stocking.
+    - Flow is TVA-driven from Wilbur Dam; wade windows open when releases stop — check the TVA
+      Wilbur Dam schedule.

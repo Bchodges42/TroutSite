@@ -26,5 +26,37 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01295933", "01305521"]
-  huc8s: ["05130107"]
+  gnisIds:
+    - "01295933"
+    - "01305521"
+  huc8s:
+    - "05130107"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: limited
+  statement: "TWRA stocks this Warren County prong twice in spring 2026 ('N Barren Fork Creek': weeks
+    of Mar 22 and Apr 26, rainbow) - a thin seasonal put-and-take program with no stated fishing
+    window beyond the stocking weeks; the catalog's Dec/Jan/Feb winter claim is contradicted by the
+    schedule."
+  reachScope: "North Prong of the Barren Fork, Warren County (site: Petigap Rd bridge crossing)"
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 3 / Warren / 'N Barren Fork Creek' / Seasonal / Rainbow Trout / weeks
+        3/22/2026 and 4/26/2026; separate 'Barren Fork River' rows (3/15, 3/22, 5/10) are the
+        MAINSTEM - a different water"
+    - label: North Prong Barren Fork temperatures (USGS-03420470; TDECWR_WQX-TNW000004552)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420470%3BTDECWR_WQX-TNW000004552&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1985-2024
+      retrieved: 2026-09-22
+      pinpoint: "prior batch6 lead: TDEC 2023 summer maxima 17.9-19.8 C; USGS 1985 19.0-23.5 C - coolest
+        of the Caney Fork headwater group"
+  caveats:
+    - Spring program only (Mar-Apr) - do not carry the catalog's winter months.
+    - Do not confuse with the 'Barren Fork River' mainstem rows in the same schedule (weeks 3/15,
+      3/22, 5/10).

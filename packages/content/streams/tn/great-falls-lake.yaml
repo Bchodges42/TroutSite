@@ -40,12 +40,11 @@ speciesEvidence:
     kind: agency
     url: https://www.tva.com/environment/lake-levels
     retrieved: 2026-09-13
-notes: >-
-  TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island
-  (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper
-  catalog reach passes through this pool, so paddlers and anglers can follow the water
-  through the impoundment.
-  TWRA's Great Falls Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+notes: TVA impoundment of the Caney Fork and Collins River above Great Falls Dam at Rock Island
+  (Warren/White county line), immediately upstream of Center Hill Lake. The caney-fork-upper catalog
+  reach passes through this pool, so paddlers and anglers can follow the water through the
+  impoundment. TWRA's Great Falls Reservoir page lists the fishery as largemouth bass, smallmouth
+  bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 officialSources:
   - label: TVA — Great Falls Dam release schedule (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
@@ -53,3 +52,31 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Great Falls Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Great Falls Reservoir as a warmwater bass/crappie lake with a muskellunge
+    fishery in its upper arms — and no trout fishery; the trout-bearing Caney Fork tailwater is
+    below Center Hill Dam, a different reach.
+  reachScope: entire reservoir (Caney Fork/Collins River impoundment, Warren/White county line at Rock Island)
+  asOf: "2026"
+  sources:
+    - label: Great Falls Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/great-falls-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "Species list: largemouth/spotted/smallmouth bass, white crappie (dominant), bluegill,
+        channel/flathead catfish, muskellunge; 'The highest abundance of musky within Great Falls
+        can be found in the upper reaches of the reservoir, such as the Calfkiller and Collins
+        Rivers'; no trout anywhere on the page"
+    - label: 2026 trout stocking schedule (live datatable feed)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'great falls': 0 rows"
+  caveats:
+    - Catalog map feature is a manual approximation — geometry flag for access/reach questions.
+    - Fishbrain page (26 catches, bluegill/largemouth-led, no trout rows) is a research lead only,
+      not citable.

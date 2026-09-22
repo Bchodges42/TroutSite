@@ -8,15 +8,26 @@ gaugeIds:
   - tva:OCCT1
 stockingProgram: false
 idealFlow: []
-notes: >-
-  Small (≈550 acre) impoundment of the Ocoee River in Polk County upstream of
-  Parksville Lake, created by TVA's Ocoee Dam No. 3. The upper Ocoee
-  (ocoee-river) enters from the Copperhill end and resumes below the dam toward
-  Parksville Lake. TWRA records this same pool under the historical name
-  "Hiwassee Lake" (443 ac) — that label does not refer to the Hiwassee Lake in
-  North Carolina.
+notes: Small (≈550 acre) impoundment of the Ocoee River in Polk County upstream of Parksville Lake,
+  created by TVA's Ocoee Dam No. 3. The upper Ocoee (ocoee-river) enters from the Copperhill end and
+  resumes below the dam toward Parksville Lake. TWRA records this same pool under the historical
+  name "Hiwassee Lake" (443 ac) — that label does not refer to the Hiwassee Lake in North Carolina.
 officialSources:
   - label: TVA — Ocoee No. 3 dam & powerhouse
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout program or trout record of any kind resolves for Ocoee Number Three Lake (TVA
+    Ocoee Dam No. 3 impoundment, Polk County); even the claimed TWRA alias 'Hiwassee Lake (443 ac)'
+    could not be verified, so the pool's fishery is undocumented.
+  asOf: "2026"
+  caveats:
+    - This small TVA diversion pool is flushed on selected generation/recreation days; no
+      temperature or depth profile exists.
+    - Do not transfer Parksville Lake (year-round trout reservoir list) facts to this pool.
+  unresolvedQuestion: "What fishery, if any, exists in Ocoee Number Three Lake — and is it the water
+    TWRA anywhere records as 'Hiwassee Lake (443 ac)'? Next source: TWRA Region 3 records or USFS
+    Cherokee National Forest lake inventory."

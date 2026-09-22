@@ -19,8 +19,8 @@ notes: >-
 
 
   Regulations: Fort Campbell special regulations under CAM Regulation 200-4 (source:
-  https://ftcampbell.isportsman.net/Fishing.aspx — QC citation correction: CAM 200-4 appears there, not on the
-  TWRA regs page); (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  https://ftcampbell.isportsman.net/Fishing.aspx — QC citation correction: CAM 200-4 appears there,
+  not on the TWRA regs page); (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -32,5 +32,41 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01284476"]
-  huc8s: ["05130206"]
+  gnisIds:
+    - "01284476"
+  huc8s:
+    - "05130206"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Fort Campbell put-and-take trout program on Fletchers Fork (Montgomery Co.): TWRA's 2026
+    schedule runs 'Fort Campbell Streams' rainbow stockings Feb-Aug, and Fort Campbell's own 2026
+    events put brown+rainbow trout in Fletchers Fork (Apr 7) under CAM Regulation 200-4 - a Feb-Aug
+    stocked fishery requiring a post permit, not a year-round fishery."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "6 rows: 'Fort Campbell Streams', Montgomery Co., REGION 2, Seasonal, Rainbow Trout,
+        weekly-of 2/15, 4/19, 5/17, 6/21, 7/12, 8/23/2026 (program-level rows)"
+    - label: Fort Campbell Fishing page
+      url: https://ftcampbell.isportsman.net/Fishing.aspx
+      kind: schedule-table
+      observationPeriod: 2026 stocking events
+      retrieved: 2026-09-22
+      pinpoint: "Apr 7, 2026 KDFWR event: 'Fletchers Fork: 750 Brown Trout & 240 Rainbow Trout'; TWRA
+        events Jun 25, Jul 22, Aug 26, 2026; 'Refer to CAM Regulation 200-4 for rules pertaining to
+        fishing'"
+    - label: Tennessee Trout Regulations
+      url: https://www.eregulations.com/tennessee/fishing/trout-regulations
+      kind: agency-assessment
+      retrieved: 2026-09-22
+  caveats:
+    - Access requires a Fort Campbell post fishing permit (plus state license and trout license) and
+      is subject to training-area closures via iSportsman.
+    - "Species documented: rainbow AND brown trout (April event); the program runs Feb-Aug, so the
+      catalog's implied Dec-Feb window is wrong."

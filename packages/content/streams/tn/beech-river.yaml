@@ -6,12 +6,30 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Regional Tennessee River tributary in Henderson and Decatur counties, distinct from nearby Beech Lake.
+notes: Regional Tennessee River tributary in Henderson and Decatur counties, distinct from nearby
+  Beech Lake.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01305068"]
-  huc8s: ["06040001"]
+  gnisIds:
+    - "01305068"
+  huc8s:
+    - "06040001"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout fishery is documented for the Beech River main stem in Henderson and Decatur
+    counties, and no reach-specific fishery documentation was found either way; the TWRA trout
+    program in this watershed attaches to Beech Lake, a separate water.
+  asOf: "2026"
+  caveats:
+    - The nearby Beech River Watershed Lakes (Beech, Pin Oak, Redbud, Cedar) receive winter rainbow
+      stockings — those are lake programs, not the river.
+    - No trout record of any kind was found for the river; this is absence of documentation, not
+      documented absence.
+  unresolvedQuestion: "No reach-specific fishery documentation (species assemblage, survey, or dated
+    angling record) exists for the Beech River main stem; next source: TWRA Region 1 where-to-fish /
+    Beech River WMA page or a dated guide report."

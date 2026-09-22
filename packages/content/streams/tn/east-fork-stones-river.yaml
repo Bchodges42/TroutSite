@@ -15,12 +15,12 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset
-  lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.
+  The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking
+  dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.
 
 
-  Regulations: Trout — statewide 7/day any combination, no minimum length, no closed season on this water
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Trout — statewide 7/day any combination, no minimum length, no closed season on this
+  water (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03427500
     url: https://waterdata.usgs.gov/monitoring-location/03427500/
@@ -36,6 +36,22 @@ seasonMonths:
 seasonKind: programmatic
 yearRound: false
 hydroIdentity:
-  gnisIds: ["01283369"]
-  huc8s: ["05130203"]
-  counties: ["Rutherford"]
+  gnisIds:
+    - "01283369"
+  huc8s:
+    - "05130203"
+  counties:
+    - Rutherford
+opportunity:
+  trout: unresolved
+  evidenceState: conflicting
+  statement: "The catalog's wild-rainbow claim for the upper East Fork could not be verified in any
+    agency source: TWRA stocks no row on this reach, and a 2023 EPA survey on the lower East Fork
+    found a warmwater assemblage with zero trout. Both sides preserved; the water is unresolved."
+  asOf: "2026"
+  caveats:
+    - TWRA's Stones River stockings are on the WEST Fork greenway (Manson Pike Trailhead, winter
+      rainbows) and the J. Percy Priest tailwater (Davidson) - different reaches.
+    - Statewide trout rules (7/day, no length limit) apply; no special regulation names this reach.
+  unresolvedQuestion: Does the upper East Fork Stones River actually hold a wild rainbow population,
+    as the catalog asserts without citation? No agency survey or stocking row addresses this reach.

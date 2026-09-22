@@ -134,9 +134,15 @@ export function toWaterDecisionView(
   const reasons = feature.snapshot?.score.reasons ?? [];
   // 1-based months; authored windows carry their regulatory/programmatic kind.
   // NO fallback synthesis: no authored window = no seasonal verdict.
+  // ADR 0010: on a yearRound:true water the window is the STOCKING calendar,
+  // never a presence window — September must not read "out of season"/"likely
+  // absent" on a year-round tailwater (the exact contradiction the evidence
+  // audit flagged). Presence is always open there; the stocking window still
+  // shows via the ledger caveats and the season box.
   const seasonMonths = feature.stream.seasonMonths ?? undefined;
   const seasonKind = feature.stream.seasonKind ?? undefined;
-  const inSeason = month === undefined || seasonMonths === undefined || seasonMonths.includes(month);
+  const yearRoundFishery = feature.stream.yearRound === true;
+  const inSeason = yearRoundFishery || month === undefined || seasonMonths === undefined || seasonMonths.includes(month);
   const seasonal =
     feature.species === 'trout' && seasonMonths !== undefined
       ? inSeason

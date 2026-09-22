@@ -14,8 +14,8 @@ idealFlow:
     max: 50
     unit: cfs
 idealFlowSource: editorial
-notes: Not to be confused with Carter County’s Doe River — this is the TWRA spring-stocked Johnson County
-  creek. Pocket water with roadside access.
+notes: Not to be confused with Carter County’s Doe River — this is the TWRA spring-stocked Johnson
+  County creek. Pocket water with roadside access.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -27,6 +27,47 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01328063"]
-  huc8s: ["06010103"]
-  counties: ["Johnson"]
+  gnisIds:
+    - "01328063"
+  huc8s:
+    - "06010103"
+  counties:
+    - Johnson
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on Doe Creek (Johnson County, Roan Creek tributary):
+    seven 2026 rainbow stockings (Mar 8 - May 31); TWRA's statewide plan also counts a 'Doe Creek'
+    among streams that today provide excellent wild trout fisheries - a wild component implied but
+    not confirmed for this exact creek by a current survey."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "7 rows: 'Doe Creek', Johnson Co., REGION 4, Seasonal, Rainbow Trout, weeks 3/8, 3/22,
+        4/5, 4/19, 5/3, 5/17, 5/31/2026"
+    - label: Tennessee Trout Management Plan 2017-2027
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+      kind: survey
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "wild-trout chapter: \"several of Tennessee's larger coldwater streams including Beaverdam
+        Creek, Doe Creek, and Tellico River had poor water quality... Today, these streams, along
+        with many others, provide excellent wild trout fisheries.\""
+    - label: Fisheries Report, Region IV Trout Fisheries Report 2017 (repo item 18-01)
+      url: https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/5/
+      kind: survey
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: repository landing page verified (title/year); internal quotes from prior research lead
+  caveats:
+    - "Same-name risk: this is the Johnson County Doe Creek (Roan Creek tributary) - not the Carter
+      County Doe River and not other states' Doe Creeks; the Fishbrain 'Doe Creek' page (candidate
+      match, research lead only) needs segment review."
+    - The stocked program is spring put-and-take (Mar-May); a wild component implies year-round
+      presence but no current designation or monitoring currency is established.
+    - Statewide trout rules apply; verify current regulations with TWRA before you go.

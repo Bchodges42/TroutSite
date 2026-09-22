@@ -26,5 +26,35 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01303791"]
-  huc8s: ["06040005"]
+  gnisIds:
+    - "01303791"
+  huc8s:
+    - "06040005"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's program stocks this Stewart County creek with catchable rainbow trout on three
+    late-winter/early-spring stocking weeks (February-March 2026); historic summer grabs ran 21-26 C
+    and no year-round trout fishery is documented.
+  reachScope: Stewart County creek at the Standing Rock Spring Trout Site
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 'Standing Rock Creek' rows, Stewart County, Seasonal, Rainbow Trout - weeks 2/22, 3/22,
+        3/29/2026 (observed months Feb/Mar)
+    - label: Standing Rock Creek near Forthenry temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03606020&siteid=USGS-03606125&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1984-1988 grabs
+      retrieved: 2026-09-18
+      pinpoint: 21-26 C summer values, 25-26 C in June-July
+  caveats:
+    - "2026 stocking weeks: February 22, March 22 and March 29 - fish soon after releases."
+    - No holdover or wild-trout documentation; 1984-1988 summer grabs at the site ran 21-26 C.
+    - "Geography note: despite the catalog region tag, this is a Tennessee River/Kentucky Lake
+      drainage creek in Stewart County (West Tennessee), not an Upper Cumberland water."

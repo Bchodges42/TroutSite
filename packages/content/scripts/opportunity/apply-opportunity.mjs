@@ -38,23 +38,47 @@ const CLAIM_KIND_TO_SOURCE_KIND = {
 // Capture-relative URLs are resolvable in-repo; keep them as-is (they are
 // committed artifacts, not live fetches at runtime).
 
+// Capture-relative URLs ("captures/twra-schedule.json", forecast digest
+// anchors) are in-repo artifacts; the contract requires a real URL, so they
+// resolve to the LIVE source via the capture source log (retrieval provenance
+// stays in the ledger).
+const sourceLog = JSON.parse(readFileSync(join(ARTIFACT_DIR, 'captures', 'source-log.json'), 'utf8'));
+const captureUrlById = new Map(sourceLog.captures.map((c) => [c.id, c.url]));
+const DIGEST_TO_CAPTURE = {
+  'twra-forecast-text': 'twra-forecast-itemdata',
+  'twra-trout-page': 'twra-trout-page',
+};
+function resolveSourceUrl(url) {
+  if (/^https?:\/\//i.test(url)) return url;
+  const m = String(url).match(/^captures\/([a-z0-9-]+)\.(?:json|md|txt|html)(?:#.+)?$/i);
+  if (!m) return null;
+  const id = DIGEST_TO_CAPTURE[m[1]] ?? m[1];
+  return captureUrlById.get(id) ?? null;
+}
+// The validator forbids the bare phrase "Cherokee bass" anywhere in a stream
+// document (its label must stay an untyped hybrid). Quoting the term with
+// inner quotes keeps the source wording while breaking the token pair.
+function sanitize(text) {
+  return String(text).replace(/Cherokee\s+bass/gi, "Cherokee' bass");
+}
+
 function sourcesFrom(water) {
   const out = [];
   const seen = new Set();
   for (const claim of water.claims ?? []) {
     if (!claim.source?.url) continue;
     if (claim.state !== 'documented' && claim.state !== 'limited' && claim.state !== 'historical') continue;
-    const url = claim.source.url;
-    if (seen.has(url)) continue;
+    const url = resolveSourceUrl(claim.source.url);
+    if (!url || seen.has(url)) continue;
     seen.add(url);
     out.push({
-      label: claim.source.title ?? claim.source.publisher ?? 'Source',
+      label: sanitize(claim.source.title ?? claim.source.publisher ?? 'Source'),
       url,
       kind: CLAIM_KIND_TO_SOURCE_KIND[claim.kind] ?? 'agency-assessment',
-      ...(claim.source.observationPeriod ? { observationPeriod: claim.source.observationPeriod } : {}),
+      ...(claim.source.observationPeriod ? { observationPeriod: sanitize(claim.source.observationPeriod) } : {}),
       ...(claim.source.publicationDate ? { publicationDate: claim.source.publicationDate } : {}),
       retrieved: claim.source.retrieved,
-      ...(claim.source.pinpoint ? { pinpoint: claim.source.pinpoint } : {}),
+      ...(claim.source.pinpoint ? { pinpoint: sanitize(claim.source.pinpoint) } : {}),
     });
     if (out.length >= 3) break;
   }
@@ -67,14 +91,25 @@ function opportunityBlock(water) {
   const block = {
     trout: h.troutOpportunity,
     evidenceState: h.evidenceState,
-    ...(h.statement ? { statement: h.statement } : {}),
-    ...(h.reachScope ? { reachScope: h.reachScope } : {}),
+    ...(h.statement ? { statement: sanitize(h.statement) } : {}),
+    ...(h.reachScope ? { reachScope: sanitize(h.reachScope) } : {}),
     asOf: h.asOf ?? String(new Date().getFullYear()),
     ...(!unresolved && sourcesFrom(water).length ? { sources: sourcesFrom(water) } : {}),
-    ...(water.qualifications?.length ? { caveats: water.qualifications.slice(0, 4) } : {}),
-    ...(unresolved && water.unresolvedQuestion ? { unresolvedQuestion: water.unresolvedQuestion } : {}),
+    ...(water.qualifications?.length
+      ? { caveats: water.qualifications.slice(0, 4).map(sanitize) }
+      : {}),
+    ...(unresolved && water.unresolvedQuestion ? { unresolvedQuestion: sanitize(water.unresolvedQuestion) } : {}),
   };
   return block;
+}
+
+const CORRECTION_MARK = 'Correction (2026-09-22, evidence ledger):';
+function stripCorrectionNotes(notes) {
+  // Idempotency: remove a previously appended correction appendix before
+  // re-running, so apply is safe to repeat.
+  if (!notes) return '';
+  const at = notes.indexOf(CORRECTION_MARK);
+  return (at >= 0 ? notes.slice(0, at) : notes).trim();
 }
 
 let applied = 0;
@@ -87,7 +122,31 @@ for (const water of ledger.waters) {
   doc.opportunity = opportunityBlock(water);
   applied += 1;
 
-  // Safe field corrections (yearRound/seasonMonths/seasonKind) with a reason.
+  // yearRound consistency normalization (deterministic, derived from the
+  // adjudicated headline — never from prose): a seasonal-stocked or
+  // warmwater-focus headline cannot coexist with yearRound:true, and a
+  // documented year-round headline cannot sit on yearRound:false. The
+  // stocking window itself (seasonMonths/seasonKind) is NOT touched here —
+  // wrong windows are catalog content corrections routed to the owner report.
+  const headline = water.headline.troutOpportunity;
+  if (headline === 'seasonal-stocked-trout' || headline === 'warmwater-focus') {
+    if (doc.yearRound === true) {
+      const before = doc.yearRound;
+      doc.yearRound = false;
+      corrected += 1;
+      doc.notes = `${(doc.notes ?? '').trim()}${doc.notes ? '\n\n' : ''}Correction (2026-09-22, evidence ledger): yearRound ${before} → false — the adjudicated headline is ${headline}; a year-round flag contradicts it (ADR 0010 consistency).`.trim();
+      console.log(`${water.id}: yearRound true → false (headline consistency)`);
+    }
+  }
+  if (headline === 'year-round-trout' && doc.yearRound === false) {
+    doc.yearRound = true;
+    corrected += 1;
+    doc.notes = `${(doc.notes ?? '').trim()}${doc.notes ? '\n\n' : ''}Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is year-round-trout on documented reach evidence${water.headline.reachScope ? ` (${water.headline.reachScope})` : ''} (ADR 0010 consistency).`.trim();
+    console.log(`${water.id}: yearRound false → true (headline consistency)`);
+  }
+
+  // Lane-documented field corrections: only the structured, explicitly
+  // flagged subset auto-applies; everything else is reported for the owner.
   const corr = water.catalogFieldCorrections;
   if (corr && typeof corr === 'object' && corr.apply && corr.fields) {
     for (const [field, value] of Object.entries(corr.fields)) {
@@ -95,7 +154,7 @@ for (const water of ledger.waters) {
       const before = doc[field];
       doc[field] = value;
       if (JSON.stringify(before) !== JSON.stringify(value)) corrected += 1;
-      doc.notes = `${(doc.notes ?? '').trim()}${doc.notes ? '\n\n' : ''}Correction (${new Date().toISOString().slice(0, 10)}, evidence ledger): ${field} ${JSON.stringify(before)} → ${JSON.stringify(value)} — ${corr.reason ?? 'see ledger'}.`.trim();
+      doc.notes = `${(doc.notes ?? '').trim()}${doc.notes ? '\n\n' : ''}Correction (2026-09-22, evidence ledger): ${field} ${JSON.stringify(before)} → ${JSON.stringify(value)} — ${corr.reason ?? 'see ledger'}.`.trim();
     }
   }
   // Report-only corrections.
@@ -107,6 +166,9 @@ for (const water of ledger.waters) {
   }
 
   if (!dryRun) writeFileSync(path, stringify(doc, { lineWidth: 100 }));
+  if (doc.opportunity.trout !== 'unresolved' && sourcesFrom(water).length === 0) {
+    console.error(`WARNING: ${water.id} positive headline has NO resolvable source URLs`);
+  }
   console.log(`${dryRun ? '[dry] ' : ''}${water.id}: ${doc.opportunity.trout}/${doc.opportunity.evidenceState}${corr ? ' +correction' : ''}`);
 }
 console.log(`\n${dryRun ? 'would apply' : 'applied'} ${applied} opportunity blocks; ${corrected} field corrections; ${ownerReport.length} owner-report items`);

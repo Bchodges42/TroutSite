@@ -26,5 +26,41 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01293235"]
-  huc8s: ["06040003"]
+  gnisIds:
+    - "01293235"
+  huc8s:
+    - "06040003"
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: TWRA's winter trout program stocks McCutcheon Creek (Maury County) with rainbow trout in
+    the cold months (January-February 2026 rows plus a TBD December 2026 event); the rest of the
+    year it is a warm suburban creek and no summer trout fishery is documented.
+  reachScope: Maury County creek at the Spring Hill-area stocking site
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 'McCutcheon Creek' rows, Maury County, type Winter, Rainbow Trout - 1/23/2026,
+        2/20/2026, TBD 12/2026
+    - label: TWRA Trout Stocking Locations GIS layer (Maury County)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27MAURY%27
+      kind: schedule-table
+      retrieved: 2026-09-18
+      pinpoint: "'Mccutcheon Creek' site, program Winter, species rainbow, Maury County"
+    - label: McCutcheon Creek temperature records
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599967&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1986-2019 grabs
+      retrieved: 2026-09-18
+      pinpoint: June 1986 29.0 C (USGS) vs mild recent TDEC grabs 21.61-23.17 C (2016/2019)
+  caveats:
+    - "Winter-window fishery: 2026 events are January 23, February 20 and a TBD December 2026 date."
+    - No holdover documentation exists; a 1986 29 C grab and mild 2016-2019 grabs leave summer
+      survival unresolved in both directions.
+    - This is the Maury County (Spring Hill area) creek - Montgomery County's winter sites are
+      different waters and carry no McCutcheon row.

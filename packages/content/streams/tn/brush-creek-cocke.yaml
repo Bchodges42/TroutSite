@@ -18,8 +18,9 @@ notes: >-
   TWRA spring-stocked Cocke County creek in the Big Creek corridor.
 
 
-  Regulations: statewide trout — 7/day, no size limit; Brush Creek (Cocke) is NOT on the TWRA wild-trout named
-  list and has no exceptions entry (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: statewide trout — 7/day, no size limit; Brush Creek (Cocke) is NOT on the TWRA
+  wild-trout named list and has no exceptions entry (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -31,6 +32,35 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01278672"]
-  huc8s: ["06010105"]
-  counties: ["Cocke"]
+  gnisIds:
+    - "01278672"
+  huc8s:
+    - "06010105"
+  counties:
+    - Cocke
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on Brush Creek in the Big Creek corridor, Cocke
+    County: five 2026 rainbow stockings (weeks of Mar 8 - May 3); a seasonal program, not a
+    year-round fishery."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "5 rows: 'Brush Creek', Cocke Co., REGION 4, Seasonal, Rainbow Trout, weeks 3/8, 3/22,
+        4/5, 4/19, 5/3/2026"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - Not on TWRA's Wild Trout Streams or delayed-harvest lists (per prior research lead, consistent
+      with the regulations checks this lane ran for other waters); statewide trout rules otherwise -
+      verify with TWRA before you go.
+    - A separately promoted Brush Creek exists in Greene County (different water); it carries no
+      rows in the 2026 schedule capture.

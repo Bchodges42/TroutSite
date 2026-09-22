@@ -10,14 +10,48 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
-seasonMonths: [11, 12, 1, 2, 3 ]
+seasonMonths:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
 seasonKind: programmatic
-notes: >-
-  TWRA winter put-and-take lake in Lexington (Henderson County). Stocked with rainbow trout
-  in the cold months only — the fish do not hold over summer. Check the TWRA schedule for
-  the current winter window before you go.
+notes: TWRA winter put-and-take lake in Lexington (Henderson County). Stocked with rainbow trout in
+  the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current
+  winter window before you go.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Winter put-and-take rainbow program on Beech Lake at Lexington (Henderson Co.): TWRA's
+    2026 schedule lists a Winter stocking on Jan 14, 2026 and the next one TBD Dec 2026 - a
+    cold-month program, not a year-round trout fishery."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "2 rows: 'Beech Lake', Henderson Co., REGION 1, TYPE Winter, Rainbow Trout, days 1/14/2026
+        and 'TBD 12/2026'"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Winter program design: TWRA's Trout Management Plan (Winter Trout Program section, verified
+      first-hand this pass) says the program 'provides trout angling opportunity during the winter
+      months' and describes hatchery-supported lakes as primarily warmwater habitats that cannot
+      support trout year round; do not expect a documented summer trout fishery, but absence after
+      winter is not biologically proven either."
+    - Underlying fishery is warmwater (bass/bream-type lake per program context); a positive
+      warmwater assemblage document was not verified for this lake this pass.
+    - Daily creel is 7 trout statewide (5 at Community Lakes Fishing Program locations); a trout
+      license is needed in addition to the fishing license.

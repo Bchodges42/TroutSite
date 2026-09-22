@@ -30,16 +30,16 @@ seasonMonths:
   - 7
 seasonKind: programmatic
 notes: >-
-  The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength rainbow,
-  brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally). A winter
-  catch-and-release season (Oct 1–Feb 28) keeps the river fishable all year. Two- and four-turbine releases
-  swing flow hard — the Reliance gauge is the call. The tailwater runs from the Appalachia Dam release water
-  at the NC line through Reliance to the Chickamauga Lake head.
+  The Southeast’s big tailwater: TWRA-managed delayed-harvest-free trophy water with wild-strength
+  rainbow, brown and some brook trout, and famous summer evening hatches (White Fly, Yellow Sally).
+  A winter catch-and-release season (Oct 1–Feb 28) keeps the river fishable all year. Two- and
+  four-turbine releases swing flow hard — the Reliance gauge is the call. The tailwater runs from
+  the Appalachia Dam release water at the NC line through Reliance to the Chickamauga Lake head.
 
 
-  Regulations: Appalachia Powerhouse downstream to L&N Railroad Bridge: Mar 1–Sep 30 — 7-trout creel, only 2
-  may be brown trout; Catch-and-Release season Oct 1–Feb 28 (artificial lures only, no harvest/possession)
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Appalachia Powerhouse downstream to L&N Railroad Bridge: Mar 1–Sep 30 — 7-trout
+  creel, only 2 may be brown trout; Catch-and-Release season Oct 1–Feb 28 (artificial lures only, no
+  harvest/possession) (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03556590
     url: https://waterdata.usgs.gov/monitoring-location/03556590/
@@ -52,6 +52,57 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01328447"]
-  huc8s: ["06020002"]
-  counties: ["Polk"]
+  gnisIds:
+    - "01328447"
+  huc8s:
+    - "06020002"
+  counties:
+    - Polk
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "TWRA documents year-round stocked trout fishing on the Hiwassee tailwater, but
+    explicitly as 'limited year-round fishing': elevated summer water temperatures prevent many
+    trout from holding over, so the year-round label carries a real summer limitation."
+  reachScope: Hiwassee tailwater trout water from Apalachia Powerhouse to Patty Bridge Access (~17
+    miles; most productive 5 miles Powerhouse to Reliance). The ~8 miles of riverbed between
+    Apalachia Dam and the powerhouse are bypassed by pipeline and are not the trout water.
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Fishing Forecast - Hiwassee River (2026 edition)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 edition
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "node n-yvZdyL: 'Stocking: January-July and October- December (limited year-round
+        fishing)'; node n-xvoeOU: 'The Hiwassee River provides 17 miles of trout water from
+        Apalachia Powerhouse to Patty Bridge Access... Elevated water temperatures in the summer
+        prevent many trout from holding over' (verified live 2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 3, Polk, 'Apalachia TW / Hiwassee River*', Tailwater, months M,A,M,J,J,A,
+        Rainbow+Brown; same water, Delayed Harvest, months F,O,N, Rainbow (capture
+        captures/twra-schedule.json)"
+    - label: Hiwassee River above Reliance - July 2025 water temperature
+      url: https://waterservices.usgs.gov/nwis/iv/?sites=03556590&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json
+      kind: temperature-series
+      observationPeriod: July 2025
+      retrieved: 2026-09-22
+      pinpoint: 23.8 C peak in July 2025 with 11 days at or above 22 C (prior batch-1 extraction)
+  caveats:
+    - "SUMMER LIMITATION (prominent, per TWRA's own label): 'limited year-round fishing'; 'Elevated
+      water temperatures in the summer prevent many trout from holding over' - fish the summer
+      season on fresh stockings and evening flows, not on expectations of a large resident
+      population."
+    - "Reach discipline: cold trout water begins at Apalachia POWERHOUSE - the release water tunnels
+      ~8 miles through mountains, bypassing the first stretch of riverbed below the dam; the trout
+      reach runs ~17 miles from the Powerhouse to Patty Bridge, with the best 5 miles Powerhouse to
+      Reliance."
+    - Two- and four-turbine generation swings are severe; TVA recreational releases run Memorial Day
+      to Labor Day (node n-SfEsRH).
+    - "Species note: the forecast lists Brook, Brown, Cutthroat and Rainbow as species caught; brood
+      brook trout (2-3 lb) were stocked in winter per the 2026 biologist report."

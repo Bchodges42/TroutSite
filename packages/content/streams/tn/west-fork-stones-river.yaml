@@ -16,13 +16,13 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting, December–February.
-  Gauge at Murfreesboro.
+  Murfreesboro’s winter-trout water — TWRA-stocked rainbows in an urban greenway setting,
+  December–February. Gauge at Murfreesboro.
 
 
-  Regulations: statewide trout (7/day, no min) at the stocked site; warmwater statewide — black bass 5/day no
-  min; crappie 15/day 10-in (Region 2 default); catfish only 1 over 34 in/day. (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  Regulations: statewide trout (7/day, no min) at the stocked site; warmwater statewide — black bass
+  5/day no min; crappie 15/day 10-in (Region 2 default); catfish only 1 over 34 in/day. (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03428200
     url: https://waterdata.usgs.gov/monitoring-location/03428200/
@@ -37,6 +37,47 @@ seasonMonths:
   - 3
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01304469"]
-  huc8s: ["05130203"]
-  counties: ["Rutherford"]
+  gnisIds:
+    - "01304469"
+  huc8s:
+    - "05130203"
+  counties:
+    - Rutherford
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: TWRA's winter trout program stocks the West Fork Stones River greenway at Manson Pike
+    Trailhead (and Nice Mill) with rainbow trout in the cold months (February 2026 rows plus a TBD
+    December 2026 event); TWRA separately documents the forks as a warmwater white/yellow bass
+    spring-run fishery - a cold-months trout window on a warmwater urban river.
+  reachScope: Murfreesboro greenway reach (Manson Pike Trailhead and Nice Mill sites)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: Winter rows 'W. Fork Stones River - Manson Pike Trailhead' (and Nice Mill GIS site),
+        Rutherford County, Rainbow Trout - 2/4/2026, 2/27/2026, TBD 12/2026
+    - label: TWRA J. Percy Priest Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/percy-priest-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current guidance
+      retrieved: 2026-09-22
+      pinpoint: "'Productive fishing spots include the East and West Forks of the Stones River, as well as
+        Stewart Creek.' (white bass/yellow bass spring run); no trout content on the page"
+    - label: West Fork Stones River temperature records
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03428200&characteristicName=Temperature%2C+water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1975-2024
+      retrieved: 2026-09-18
+      pinpoint: summer grabs 28-30 C (NPS battlefield stations 2003-2024; USGS 30.0 C Aug 1988)
+  caveats:
+    - "Winter-window fishery: 2026 rows are February 4, February 27 and a TBD December 2026 event at
+      the greenway sites."
+    - TWRA documents the West Fork as a white/yellow bass spring-run fishery; on-reach summer
+      monitoring reads 28-30 C. Do not represent the trout program as year-round.
+    - "Identity: this is the WEST Fork in Rutherford County - not the Davidson County main stem
+      below Percy Priest Dam and not the East Fork."

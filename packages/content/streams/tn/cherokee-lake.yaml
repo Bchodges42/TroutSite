@@ -46,19 +46,20 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03493510/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Holston River northeast of Knoxville across Grainger, Hamblen, Hawkins, and Jefferson
-  counties, impounded by Cherokee Dam (USGS 03493510 tailwater gauge, 36.16620/-83.49934). Receives the
-  Holston River main stem (holston-river); its dam releases the Holston Cherokee tailwater that runs to Fort
-  Loudoun Lake. TWRA maps the pool at 27,029 ac; TVA at 30,300 ac at full pool. TWRA's Cherokee Reservoir page
-  lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped
-  bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
-  temperature/oxygen refuge context is not a scored input.
+  TVA reservoir on the Holston River northeast of Knoxville across Grainger, Hamblen, Hawkins, and
+  Jefferson counties, impounded by Cherokee Dam (USGS 03493510 tailwater gauge, 36.16620/-83.49934).
+  Receives the Holston River main stem (holston-river); its dam releases the Holston Cherokee
+  tailwater that runs to Fort Loudoun Lake. TWRA maps the pool at 27,029 ac; TVA at 30,300 ac at
+  full pool. TWRA's Cherokee Reservoir page lists the fishery as largemouth bass, smallmouth bass,
+  spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a
+  regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a
+  scored input.
 
 
-  Regulations: Largemouth/Smallmouth 5/day combined, Largemouth 15-in min; Smallmouth Jun 1–Oct 15 = 1/day
-  18-in min, Oct 16–May 31 = 5/day 15-in min; Spotted/Alabama 15/day no limit; Crappie 15/day 10-in;
-  Striper/hybrid 2/day 15-in; Walleye/Sauger/Saugeye 10/day 15-in; (retrieved 2026-09-14; verify current rules
-  with TWRA before you go).
+  Regulations: Largemouth/Smallmouth 5/day combined, Largemouth 15-in min; Smallmouth Jun 1–Oct 15 =
+  1/day 18-in min, Oct 16–May 31 = 5/day 15-in min; Spotted/Alabama 15/day no limit; Crappie 15/day
+  10-in; Striper/hybrid 2/day 15-in; Walleye/Sauger/Saugeye 10/day 15-in; (retrieved 2026-09-14;
+  verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03493510
     url: https://waterdata.usgs.gov/monitoring-location/03493510/
@@ -70,3 +71,32 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Cherokee Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Cherokee Reservoir as a warmwater fishery — largemouth, smallmouth,
+    striped and Cherokee' bass, crappie, walleye, saugeye — with summer stratification that leaves
+    deep water oxygen-poor; no trout fishery is documented for the lake, and TWRA's trout program on
+    this system is the tailwater below the dam.
+  reachScope: Cherokee Lake (Cherokee Reservoir) pool — TVA impoundment of the Holston River across
+    Grainger/Hamblen/Hawkins/Jefferson counties; excludes the Cherokee Dam tailwater below the dam
+    (the stocked trout reach, catalog holston-river)
+  asOf: "2026"
+  sources:
+    - label: TWRA Cherokee Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html
+      kind: agency-assessment
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: Fishery text names "Largemouth Bass, Smallmouth Bass, Striped Bass, Cherokee' bass,
+        Crappie, Walleye, and Saugeye as the primary gamefish species."; stripers "must be
+        maintained by stocking" and "do not normally grow big in Cherokee Reservoir, due to low
+        summer dissolved oxygen levels and high temperatures." The word "trout" appears nowhere in
+        the fishery body (verified 2026-09-22).
+  caveats:
+    - Warmwater-focus is a documentation statement, not a biological absence claim.
+    - The nearest documented trout water is the Cherokee Dam TAILWATER ~20 miles below the dam on
+      the Holston River (catalog holston-river, Nov-Apr stocking, 'limited year-round fishing') — it
+      is a different water and never transfers to the lake.
+    - Even the striped-bass fishery here is documented as DO-limited in summer; the lake is a
+      warmwater/coolwater system, not a trout refuge.

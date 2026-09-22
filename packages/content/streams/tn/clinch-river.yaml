@@ -24,14 +24,15 @@ seasonMonths:
   - 8
 seasonKind: programmatic
 notes: >-
-  One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below Norris Dam,
-  and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the dam is the wade-window
-  truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake down to the Clinch mouth at
-  Kingston / Watts Bar Lake.
+  One of the East’s classic tailwaters: big sulphur hatches, special-regulation trophy water below
+  Norris Dam, and a famous mid-river sandbar flats scene. Flow is TVA-driven; the gauge below the
+  dam is the wade-window truth-teller. The tailwater runs from Norris Dam through Melton Hill Lake
+  down to the Clinch mouth at Kingston / Watts Bar Lake.
 
 
-  Regulations: Norris Dam downstream to Hwy 61 bridge (incl. tributaries): 14–20 in PLR on all trout; 7-trout
-  creel, only 1 over 20 in (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Norris Dam downstream to Hwy 61 bridge (incl. tributaries): 14–20 in PLR on all
+  trout; 7-trout creel, only 1 over 20 in (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
@@ -40,6 +41,47 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01307258"]
-  huc8s: ["06010207"]
-  counties: ["Anderson"]
+  gnisIds:
+    - "01307258"
+  huc8s:
+    - "06010207"
+  counties:
+    - Anderson
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast calls the Clinch River below Norris Dam one of Tennessee's premier
+    trout destinations — ~14 miles of year-round water with documented natural reproduction plus
+    annual brook/brown/rainbow stocking — and late-February 2026 electrofishing found catch rates at
+    10-year averages with strong natural recruitment.
+  reachScope: Clinch River below Norris Dam (Norris Tailwater), Anderson County — approximately 14
+    miles from Norris Dam to the Hwy 61 Bridge at Clinton; downstream of Hwy 61 the river impounds
+    into Melton Hill Lake (separate catalog water)
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), Norris Tailwater section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition
+      retrieved: 2026-09-22
+      pinpoint: 'node n-uhmiDO: "This Clinch River has become one of the premier trout fishing
+        destinations in Tennessee... the Norris Tailwater provides approximately 14 miles of trout
+        water from the dam down to the Highway 61 Bridge"; node n-XN6S6h: "Stocking: March through
+        September (year-round fishing)". Capture: captures/twra-forecast-text.md; verified live
+        2026-09-22.'
+    - label: TWRA published trout stocking schedule (2026) + recently stocked report
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule; completed release 2026-08-25
+      retrieved: 2026-09-22
+      pinpoint: 'Schedule row: REGION 4, Anderson, "Norris Tailwater / Clinch River", Tailwater, STOCKING
+        MONTHS "M, A, M, J, J, A, S", SPECIES "Rainbow, Brown Trout". Recent-release row: {Region 4,
+        "Norris TW", 08/25/2026}. Both verified live 2026-09-22.'
+  caveats:
+    - The documented trout water is the ~14 miles from Norris Dam to the Hwy 61 Bridge at Clinton;
+      below Hwy 61 the Clinch impounds into Melton Hill Lake — do not extend the tailwater trout
+      claim lake-wide.
+    - Trout water downstream of the weir/dam reach warms toward Kingston; TWRA's own reach
+      definition ends at Hwy 61.
+    - Stocking months differ by one month between current TWRA publications (Mar-Aug vs Mar-Sep);
+      stocking months are not the fishing window (TWRA labels it year-round fishing).

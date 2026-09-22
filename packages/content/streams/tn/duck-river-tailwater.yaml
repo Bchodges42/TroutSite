@@ -6,21 +6,34 @@ display: featured
 regionId: tn-middle-duck-elk
 gaugeIds:
   - "03597860"
-  - "tva:NRMT1"
+  - tva:NRMT1
 stockingProgram: true
 species: trout
 fishery: tailwater
-yearRound: true
+yearRound: false
 idealFlow:
   - min: 100
     max: 800
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [11, 12, 1, 2, 3, 4, 5, 6 ]
+seasonMonths:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
 seasonKind: programmatic
-notes: Cold releases below Normandy Dam give the Duck its trout identity — TWRA stocks this
-  tailwater with rainbow trout year-round (owner confirmation, September 2026). Release-dependent;
-  verify schedules before wading.
+notes: >-
+  Cold releases below Normandy Dam give the Duck its trout identity — TWRA stocks this tailwater
+  with rainbow trout year-round (owner confirmation, September 2026). Release-dependent; verify
+  schedules before wading.
+
+
+  Correction (2026-09-22, evidence ledger): yearRound true → false — the adjudicated headline is
+  seasonal-stocked-trout; a year-round flag contradicts it (ADR 0010 consistency).
 officialSources:
   - label: USGS Water Data — monitoring location 03597860 (Duck River at Shelbyville)
     url: https://waterdata.usgs.gov/monitoring-location/03597860/
@@ -29,6 +42,53 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269541"]
-  huc8s: ["06040002"]
-  counties: ["Bedford"]
+  gnisIds:
+    - "01269541"
+  huc8s:
+    - "06040002"
+  counties:
+    - Bedford
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "A seasonal TWRA stocked rainbow trout fishery: TWRA says the river is suitable for trout
+    about 8 months a year, with good catches of 10-14 inch rainbows in the first 9 miles during the
+    November-June stocking season - not a year-round trout water."
+  reachScope: Duck River below Normandy Dam - good trout catches in the first ~9 miles during the
+    stocking season
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Fishing Forecast - Normandy Tailwater (2026 edition)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: program-description
+      observationPeriod: 2026 edition; 2025 biologist report
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "node n-I7NFwN: 'the river is only suitable for trout 8 months out of the year. During the
+        stocking season, you can find good catches of 10\"-14\" Rainbow Trout in the first 9 miles
+        of river'; node n-u8GwZU: 'Stocking: November through June (Seasonal Trout Fishing)'; node
+        n-mnmU5E (2025): 'Trout stocking numbers remain similar to previous years with good reports
+        from anglers' (verified live 2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "row: Region 2, Coffee/Bedford, 'Normandy TW / Duck River', Tailwater, months J,F,M,N,D,
+        Rainbow Trout (capture captures/twra-schedule.json)"
+    - label: Normandy tailwater creel survey 2000
+      url: https://duckriveragency.org/_assets_/plugins/Annotated%20Bibliography/NormandyTW2000CreelSurvey.pdf
+      kind: temperature-series
+      observationPeriod: "2000"
+      publicationDate: "2001"
+      retrieved: 2026-09-22
+      pinpoint: Aug 2000 dam-area temperature 27 C ('highest recorded in any Tennessee tailwater managed
+        for trout' for Sep-Oct 2000); 1998 electrofishing found few rainbows holding over one season
+        to the next
+  caveats:
+    - "Window vs schedule: the ~8 suitable months are a suitability window; Nov-Jun is the stocking
+      season. They are separate claims and must not be merged into 'year-round'."
+    - No hydropower turbines at Normandy Dam, but releases above 200 cfs and deep holes still demand
+      caution (forecast nodes n-s36nvJ, n-AWNsgh).
+    - "Excellent public access: dam and Normandy Town Bridge, hatchery trail, Dement Bridge and 3
+      Forks Bridge (renovated by TVA); Cortner Mill is private (node n-I7NFwN)."

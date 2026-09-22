@@ -9,14 +9,44 @@ gaugeIds:
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West Tennessee).
-  Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline best fished by boat; check
-  TWRA guides for the commercial fishing and boating rules that apply on this lake.
+  Shallow natural oxbow lake formed by the 1811-12 New Madrid earthquakes (Obion County, West
+  Tennessee). Tennessee's premier crappie and bluegill water, with a cypress-tree shoreline best
+  fished by boat; check TWRA guides for the commercial fishing and boating rules that apply on this
+  lake.
 
 
-  Regulations: LMB 5/day 15-in; spotted bass no length limit; crappie 20/day combo 10-in (regulatory table —
-  page narrative separately says 30/day; internal discrepancy noted, see DISPUTES); catfish 34-in rule;
-  paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: LMB 5/day 15-in; spotted bass no length limit; crappie 20/day combo 10-in (regulatory
+  table — page narrative separately says 30/day; internal discrepancy noted, see DISPUTES); catfish
+  34-in rule; paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: TWRA — Reelfoot Lake information
     url: https://www.tn.gov/twra.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Reelfoot Lake (10,427-acre natural lake, Lake/Obion counties) as one of
+    Tennessee's premier warmwater fisheries — 'famous for its bluegill and crappie fishery, both of
+    which rank among the best in the state'; no trout program is documented.
+  asOf: "2026"
+  sources:
+    - label: Reelfoot Lake — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/reelfoot-lake.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'Reelfoot is famous for its bluegill and crappie fishery, both of which rank among the
+        best in the state'; 'White crappie is the most harvested fish'; 10,427 acres, 'Approximately
+        68% of the lake has a depth of 3.0 feet or less'; zero trout mentions on the page"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "Only 'Reelfoot' rows: 'Union City Reelfoot Packing Site' (Obion County, Winter rainbow) —
+        the separate Union City winter-trout pond, not the lake"
+  caveats:
+    - Warmwater-focus does not mean trout are biologically absent.
+    - The crappie creel discrepancy (30/day narrative vs 20/day table) must be resolved with current
+      TWRA rules before publishing a number.

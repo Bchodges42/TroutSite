@@ -6,7 +6,7 @@ display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03430200"
-  - "usace:JPPT1"
+  - usace:JPPT1
 stockingProgram: true
 species: trout
 fishery: stocked
@@ -16,11 +16,14 @@ idealFlow:
     max: 400
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [12, 1, 2, 3 ]
+seasonMonths:
+  - 12
+  - 1
+  - 2
+  - 3
 seasonKind: programmatic
-notes: TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from
-  roughly December through February. The Donelson gauge (below Percy Priest) is the flow
-  reference.
+notes: TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from roughly
+  December through February. The Donelson gauge (below Percy Priest) is the flow reference.
 officialSources:
   - label: USGS Water Data — monitoring location 03430200
     url: https://waterdata.usgs.gov/monitoring-location/03430200/
@@ -29,6 +32,49 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01271506"]
-  huc8s: ["05130203"]
-  counties: ["Davidson"]
+  gnisIds:
+    - "01271506"
+  huc8s:
+    - "05130203"
+  counties:
+    - Davidson
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: TWRA's winter trout program stocks catchable rainbow trout below J. Percy Priest Dam on
+    the Stones River beginning the first Friday in December with January and February events; TWRA
+    states the fish will not survive the warm summer water, so this is a cold-months put-and-take
+    over a warmwater river fishery.
+  reachScope: J. Percy Priest Dam tailwater reach (Davidson County, Donelson gauge area)
+  asOf: "2026"
+  sources:
+    - label: TWRA Cheatham Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/cheatham-reservoir.html
+      kind: schedule-table
+      observationPeriod: current guidance
+      retrieved: 2026-09-22
+      pinpoint: "'the Dale Hollow National Fish Hatchery stocks catchable-size Rainbow Trout below J.
+        Percy Priest Dam' beginning the first Friday in December, with stockings in January and
+        February; 'Anglers are encouraged to harvest their catch, as Rainbow Trout are good to eat
+        and will not survive the warm summer water temperatures.'"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "3 Winter rows, Davidson County - 'J. Percy Priest TW / Stones River': 1/9/2026,
+        2/13/2026, TBD 12/2026, Rainbow Trout"
+    - label: Stones River at Donelson July 2025 continuous temperature
+      url: https://waterservices.usgs.gov/nwis/iv/?sites=03430200&parameterCd=00010&startDT=2025-07-01&endDT=2025-07-31&format=json
+      kind: temperature-series
+      observationPeriod: July 2025
+      retrieved: 2026-09-18
+      pinpoint: min 22.5 / mean 25.0 / max 28.2 C across ~2,974 readings
+  caveats:
+    - "Documented trout window: stockings start the first Friday in December and run through
+      February (TWRA's table note extends the fishery description to March); harvest is encouraged."
+    - TWRA states outright that trout will not survive the warm summer water here - July 2025 mean
+      was 25 C at Donelson. Do not represent this as a year-round trout fishery.
+    - This is the Davidson County main stem below Percy Priest Dam - distinct from the West Fork
+      (Murfreesboro winter program) and East Fork catalog entries.

@@ -8,12 +8,36 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Major Memphis-area drainage flowing through Fayette, Tipton, and Shelby counties. Much of the mapped main channel is officially named Loosahatchie River Canal.
+notes: Major Memphis-area drainage flowing through Fayette, Tipton, and Shelby counties. Much of the
+  mapped main channel is officially named Loosahatchie River Canal.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01292059"]
-  huc8s: ["08010209"]
+  gnisIds:
+    - "01292059"
+  huc8s:
+    - "08010209"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Loosahatchie River under a West Tennessee crappie rule (30/day, no
+    length limit), documenting a managed warmwater fishery on the river; no trout program and no
+    trout record exists for this lowland Memphis-area drainage, and no reach-specific fishery survey
+    was found.
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+  caveats:
+    - Much of the mapped main channel is officially named Loosahatchie River Canal (catalog note).
+    - TWRA's Memphis-area winter rainbow sites are park lakes (Cameron Brown, Edmund-Orgill, etc.),
+      not this river.
+    - Warmwater-focus does not mean trout are biologically absent.

@@ -234,6 +234,7 @@ function WaterTab({
   const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
   return (
     <>
+      <OpportunityCard stream={feature.stream} species={feature.species} mode={settings.speciesMode} month={month} />
       <div
         className="assessment"
         data-status={warm ? 'warmwater' : unverified || outOfSeason || feature.status === 'no-data' ? 'no-data' : feature.status}
@@ -263,7 +264,6 @@ function WaterTab({
           />
         </div>
       </div>
-      <OpportunityCard stream={feature.stream} species={feature.species} mode={settings.speciesMode} month={month} />
       <FishabilityCard streamId={feature.stream.id} compact />
       {season && (
         <div className="season-card" data-state={season.state}>

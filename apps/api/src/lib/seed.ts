@@ -49,17 +49,17 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
   const insertStream = db.prepare(`
     INSERT INTO streams (id, name, aliases, state_id, waterbody_type, region_id, display, gauge_ids,
                          hydro_identity, stocking_program, ideal_flow, ideal_flow_source, season_months, season_kind,
-                         species_evidence, notes, official_sources, species, target_species, fishery, year_round)
+                         species_evidence, notes, official_sources, species, target_species, fishery, year_round, opportunity)
     VALUES (@id, @name, @aliases, @state_id, @waterbody_type, @region_id, @display, @gauge_ids,
             @hydro_identity, @stocking_program, @ideal_flow, @ideal_flow_source, @season_months, @season_kind,
-            @species_evidence, @notes, @official_sources, @species, @target_species, @fishery, @year_round)
+            @species_evidence, @notes, @official_sources, @species, @target_species, @fishery, @year_round, @opportunity)
     ON CONFLICT(id) DO UPDATE SET
       name=@name, aliases=@aliases, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
       display=@display, gauge_ids=@gauge_ids, hydro_identity=@hydro_identity, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
       ideal_flow_source=@ideal_flow_source, season_months=@season_months, season_kind=@season_kind,
       species_evidence=@species_evidence,
       notes=@notes, official_sources=@official_sources, species=@species, target_species=@target_species,
-      fishery=@fishery, year_round=@year_round
+      fishery=@fishery, year_round=@year_round, opportunity=@opportunity
   `);
   const insertShop = db.prepare(`
     INSERT INTO shops (id, name, state_id, town, website_url, reports_enabled)
@@ -100,6 +100,7 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
       target_species: s.targetSpecies ? JSON.stringify(s.targetSpecies) : null,
       fishery: s.fishery ?? null,
       year_round: s.yearRound == null ? null : s.yearRound ? 1 : 0,
+      opportunity: s.opportunity ? JSON.stringify(s.opportunity) : null,
     };
     insertStream.run(row);
     streams += 1;
