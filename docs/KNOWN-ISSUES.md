@@ -386,6 +386,33 @@ after; then neutral swaps to species-colored comfort + activity.
   evidence-strength labels; raw per-water evidence (`/v1/evidence/waters.json`) one
   click deeper; no tracking, no main-app changes.
 
+## NEW WORKSTREAM — Evidence-backed fishery opportunities (ADR 0010, 2026-09-22)
+
+The 2026-09-21/22 evidence audits (branch `codex/evidence-methods-audit-20260921`)
+reproduced that prior classification layers could not certify their labels
+(synthetic Nov–Mar seasons, unchecked-string no-trout gates, lake/tailwater
+inheritance). ADR 0010 adds the authored `opportunity` block (headline
+year-round-trout / seasonal-stocked-trout / warmwater-focus / mixed /
+unresolved + claim-specific sources), removes the seasonal fallback, and makes
+unresolved a first-class visitor-facing state. The 190-water evidence ledger
+lives at `docs/research/2026-09-22-fishery-opportunities/` with its seed,
+captures + source log, adjudication brief, and verify checks
+(`packages/content/scripts/opportunity/verify-ledger.mjs --final`).
+
+- [x] **OPP-1** — Contract, decision model, UI card, prerender wording, fallback removal (this lane).
+- [ ] **OPP-2 (owner)** — Review the adjudication verdicts, especially the owner boxes in
+  `docs/research/2026-09-22-fishery-opportunities/owner-corrections-report.json`
+  (species strips/claims NOT auto-applied; wrong seasonMonths/yearRound fields
+  found on duck-river-tailwater, buffalo-creek-grainger, piney-river-rhea, and
+  nine spring-program creeks; region tags on standing-rock + mill-creek-overton).
+- [ ] **OPP-3 (owner/data holders)** — Unresolved waters' next sources: TWRA completed-release
+  history beyond the 10-row rolling window; TVA stream station export; the
+  2025 planned Coldwater-Summit survey results; Paris City Park pond identity;
+  Fishbrain production-reuse permission.
+- [ ] **OPP-4** — Opportunistic follow-ups: wire the ledger's unresolvedQuestion into the
+  marketing "our data & sources" page (T2-54 extension); consider a
+  ledger-diff review surface for future re-adjudications.
+
 ## REGRESSION TESTS TO ADD ALONGSIDE THE FIXES
 
 Conditional HEAD on every static mount (T0-1) · deploy-failure → rollback path (T0-2) ·
