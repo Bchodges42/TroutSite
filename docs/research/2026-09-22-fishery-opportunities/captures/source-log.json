@@ -1,0 +1,64 @@
+{
+  "captures": [
+    {
+      "id": "twra-trout-page",
+      "url": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "status": 200,
+      "bytes": 87592,
+      "sha256": "7880a1be91c44fd53f7292fda5079bb6e79c3efcd772a21e6a0eb1ecfb1543ff",
+      "retrievedAt": "2026-09-22T21:24:03.758Z",
+      "note": "TWRA trout information page: reservoir year-round list, program descriptions, links to schedule/release report/forecast",
+      "file": "evidence-work/captures/twra-trout-page.html"
+    },
+    {
+      "id": "twra-schedule",
+      "url": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json",
+      "status": 200,
+      "bytes": 108620,
+      "sha256": "278c1b51420fb1571d4e88b62e9af22ff97c535ea86c800f476cbc0366c96669",
+      "retrievedAt": "2026-09-22T21:24:03.802Z",
+      "note": "TWRA published stocking SCHEDULE (a plan, not completed releases)",
+      "file": "evidence-work/captures/twra-schedule.json"
+    },
+    {
+      "id": "twra-recent-releases",
+      "url": "https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable.exceldriven.json",
+      "status": 200,
+      "bytes": 779,
+      "sha256": "87cd13a2f5626f869e04639a5efc7d77dfa84869a039853b7f44b1d49d584146",
+      "retrievedAt": "2026-09-22T21:24:03.851Z",
+      "note": "TWRA recently stocked report (rolling window, not a complete event history)",
+      "file": "evidence-work/captures/twra-recent-releases.json"
+    },
+    {
+      "id": "twra-forecast-itemdata",
+      "url": "https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json",
+      "status": 200,
+      "bytes": 91004,
+      "sha256": "86d4c1ea5cbf21a5c7c5b26963aa0a95314ad2511b9f46da69e6b1e99941ba30",
+      "retrievedAt": "2026-09-22T21:24:04.124Z",
+      "note": "TWRA annual trout forecast StoryMap full item data (reach-specific assessments, sampling reports)",
+      "file": "evidence-work/captures/twra-forecast-itemdata.json"
+    },
+    {
+      "id": "twra-stock-locations-meta",
+      "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0?f=pjson",
+      "status": 200,
+      "bytes": 24003,
+      "sha256": "a615809d809f2ef7bb17d3d51673f4f10197090f6d7dba99a390d390d910033c",
+      "retrievedAt": "2026-09-22T21:24:04.642Z",
+      "note": "Stocking-location GIS layer schema (points are neither release events nor complete stocked reaches)",
+      "file": "evidence-work/captures/twra-stock-locations-meta.json"
+    },
+    {
+      "id": "twra-stock-locations",
+      "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000",
+      "status": 200,
+      "bytes": 513600,
+      "sha256": "1a9233db18ec01283762a557368420be4c9a927ee7926677b2d95c1ff5333b36",
+      "retrievedAt": "2026-09-22T21:24:04.950Z",
+      "note": "Stocking-location point records (mapped locations, no event dates in published schema)",
+      "file": "evidence-work/captures/twra-stock-locations.json"
+    }
+  ]
+}
