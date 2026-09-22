@@ -8,6 +8,8 @@ September 22, 2026. Research assessment only; no implementation, outreach, or ne
 
 The decisive choice is the meaning of the warmwater label. **“Warmwater fishing focus”** can be supported by positive bass/panfish/catfish or management evidence and can coexist with seasonal trout. **“No trout”** is an exclusion claim that most public data cannot prove, especially for tributaries, lake arms, seasonal stocking and undocumented catches. Allowing `unresolved` is a requirement for truthful complete *catalog* coverage, even if every water has a page.
 
+**Inventory correction, checked against `origin/main` at `d1e48d1`:** `packages/content/streams/tn/` contains **190 YAML files** and `apps/web/public/atlas/rivers.geojson` contains **190 selectable features**, all with unique one-to-one matching IDs (147 MultiLineStrings, 21 MultiPolygons, 22 Polygons). The README's “~148 Tennessee waters” status line is stale. Having 190 catalog/geometry pairs means all 190 can be accounted for; it says nothing about how many fishery claims are verified.
+
 ## What the current evidence actually covers
 
 | Existing evidence | Reproduced coverage / example | What it cannot establish |
