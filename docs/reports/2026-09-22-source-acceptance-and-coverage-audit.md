@@ -62,3 +62,52 @@ Public pages retrieved successfully September 22 UTC (September 21 evening local
 | [Fly South](https://www.flysouth.net/) and [The Hatch](https://www.thehatchoutfitters.com/) | Reachable business/guiding pages | Potential partners; current water reports not yet established. |
 | [Eastern Fly Outfitters catalog URL](https://easternflyoutfitters.com/) | HTTP 200 but extracted page only a privacy/advertising shell | Cannot accept as a verified fishing source from HTTP success alone. |
 | [Tim's Flies and Lies](https://timsfliesandlies.com/) | Legacy frameset; separate frame content required | A simple text scraper would incorrectly treat this as empty. Further inspection needed before source judgement. |
+
+## Checkpoint 4 — dated reports, hidden contradictions, and scientific occurrence sources
+
+- [The Fly Box August report](https://www.theflyboxtn.com/riverreports//august-south-holston-watauga-river-fishing-report), linked from its homepage with a September 2, 2026 publication date, distinguishes upper and lower South Holston fishing and covers Watauga. Useful dated seasonal opportunity evidence. Statements about TVA rainfall/flows remain derivative of TVA; guide observations have a different origin.
+- [Trophy Water reports](https://trophywaterguideservice.com/reports/) displayed April 8, 2025 as the report date. A working guide business and a current report feed are separate questions.
+- Tellico's newest inspected [individual entry](https://www.tellicooutfitters.com/fishing-reports/2026/8/4/7292026) is titled **7.29.2026**, while HTML publication/update dates say **August 4, 2026**. Store report-period and publication date separately. Do not assign August 4 to every fishing observation in its index.
+- Tim's frames resolve to [undated trip descriptions](https://timsfliesandlies.com/trips.html) mentioning Elk and Duck trout water. Useful partner/geographic lead, not current conditions or proof of year-round survival.
+
+### Orvis: useful current guide reports, but field-level contradictions
+
+The [Tennessee index](https://fishingreports.orvis.com/southeast/tennessee) exposes four water links: Hiwassee, South Holston, Holston Proper, and Tellico. Two were sampled directly:
+
+| Report | Dated firsthand guidance | Conflicting or insufficiently scoped field |
+|---|---|---|
+| [Hiwassee](https://fishingreports.orvis.com/southeast/tennessee/hiwassee-river), Dane Law, September 14, 2026 | Some upper-river afternoon trout fishing; guide trips resume October 15 | Generic “Available Year round” and constant-temperature description. Also states October–March delayed harvest, which must not replace current TWRA's specific dates/reach. |
+| [Holston Proper](https://fishingreports.orvis.com/southeast/tennessee/holston-proper), Dane Law, September 21, 2026 | “We have finished trout fishing here for the summer”; now looking for smallmouth | “Available year round” for trout/smallmouth; displayed temperature lacks measurement time/site in inspected text. |
+
+This does not prove no trout remain: a guide's decision to stop trout trips is an **operational observation**, not a population census. It does prove that a page-wide fresh date cannot safely validate all template fields. A source can be acceptable for its dated report and unacceptable for a particular generic claim.
+
+### Official weekly page is a collection of different evidence types
+
+[TWRA weekly fishing report](https://www.tn.gov/twra/fishing/weekly-fishing-report.html) verified in the browser after two direct HTTP connection resets. Displayed regional reports: Cordell Hull August 26, 2026 (Will Schibig, Region III Creel Clerk), Fort Loudoun and Melton Hill August 28, 2026 (Sydney Feistner, Region 4 Creel Clerk). It also hosts public catch photos, invites submissions, and links the annual biological survey StoryMap.
+
+Accept named, dated creel observations as local fishery context; distinguish them from contributor photos and electrofishing surveys. The Cordell Hull text mentions trout **as bait for striped bass**. A keyword extractor must not turn that into trout occurrence evidence. A “weekly” page last showing August reports is not a current September measurement. Browser verification is recorded here; browser file export was unsupported.
+
+### University of Tennessee Etnier collection: verifiable historical specimens
+
+[Collection owner](https://tennfish.utk.edu/) explicitly describes a repository including TVA/TWRA survey holdings. [Catalog](https://tennfish.utk.edu/catalog/) supports taxon, drainage, locality, state, county, collector searches.
+
+Reproduced a useful search failure: genus Salvelinus plus state **Tennessee** returned zero; genus alone returned **48 records** across multiple states/species. Inspected records encode states as TN/NC. Thus a literal state-name search can create false absence. The 48 is not a Tennessee brook-trout count.
+
+- [Record 31.465](https://tennfish.utk.edu/view-record/?ID=130639): Salvelinus fontinalis; collected October 11, 1989; TN, Monroe County; Brookshire Creek; collector TWRA; named determiner and specimen sizes. Strong historical occurrence, not contemporary survival.
+- [Record 31.123](https://tennfish.utk.edu/view-record/?ID=16966): September 6, 1989, **NC** Oconaluftee; the displayed longitude is positive despite its North Carolina locality. Demonstrates why drainage-name matching and unvalidated coordinates are insufficient, even for a university collection.
+
+The [Tennessee Tech Stream Fish Ecology Lab research page](https://www.tntechstreamfishecology.org/research) describes stream/spring fish assemblage research around Arnold Air Force Base. This establishes a potential data holder for Middle Tennessee; it does not establish a downloadable trout dataset. Request/export availability remains unverified.
+
+### iNaturalist and GBIF: real observation dates, with specific constraints
+
+The public [iNaturalist query](https://api.inaturalist.org/v1/observations?place_id=45&taxon_name=Salvelinus%20fontinalis&quality_grade=research&per_page=5) returned total_results **138** at capture, with five sampled records. Tennessee place ID 45 was verified with the places autocomplete API. These are query counts, not populations or necessarily distinct streams.
+
+Sampled records contained observed_on dates in July–September 2026, taxon identification, photos, research quality grade, location-accuracy fields, and separate observation/photo licences. Two were obscured; one obscured record still had positional_accuracy 4. Therefore **geoprivacy must be checked independently of the numeric accuracy field**. Never snap an obscured point to the nearest stream. Some licences were CC-BY-NC; others null, and one photo licence differed from the observation licence. Public access does not make all reuse equivalent. Photos/identifications have not been independently reviewed in this audit.
+
+Accept as dated **reported occurrence candidates**, promoting individual observations only after identity, wild/captive status, date, locality, and reuse checks. A summer fish supports presence on that date; it alone proves neither recruitment nor interstock survival. A research-grade label is a community identification status, not a systematic population survey.
+
+The [GBIF query](https://api.gbif.org/v1/occurrence/search?stateProvince=Tennessee&scientificName=Salvelinus%20fontinalis&limit=5) returned count **121**. All five sampled records were HUMAN_OBSERVATION entries whose occurrenceID links to iNaturalist; uncertainty ranged from 4 m to approximately 28.6 km. **GBIF and iNaturalist cannot be counted as independent support for those records.** Different totals may reflect index/filter/publication differences; this audit does not establish the reason. GBIF is a discovery/indexing layer; inspect the original dataset and record basis before assigning evidentiary weight.
+
+### Community forum availability
+
+[East Tennessee Fishing forums](https://www.easttennesseefishing.com/forums/) was publicly readable without login, with water-specific categories and a trout category. The sampled [Caney Fork index](https://www.easttennesseefishing.com/forums/caney-fork.43/) displayed old threads (newest visible activity October 2013). Useful historical leads; not an established current feed. A forum category's existence is not evidence of recent observations. Search snippets for Facebook/TNDeer are discovery leads only; no biological claims were accepted from snippets.
