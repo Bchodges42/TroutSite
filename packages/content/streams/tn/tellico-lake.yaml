@@ -46,18 +46,25 @@ speciesEvidence:
     url: https://www.tva.com/environment/lake-levels
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount counties, impounded by Tellico Dam
-  at Lenoir City. Receives the Little Tennessee River (little-tennessee-river) below Chilhowee Dam, the
-  Tellico River (tellico-river), and Citico Creek; discharges to Fort Loudoun Lake through the dam and the
-  connecting canal. TWRA maps the reservoir at 15,788 ac. Aliases: Tellico Reservoir. TWRA's Tellico Reservoir
-  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish,
-  striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
-  temperature/oxygen refuge context is not a scored input.
+  TVA reservoir on the Little Tennessee River in Loudon, Monroe, and Blount counties, impounded by
+  Tellico Dam at Lenoir City. Receives the Little Tennessee River (little-tennessee-river) below
+  Chilhowee Dam, the Tellico River (tellico-river), and Citico Creek; discharges to Fort Loudoun
+  Lake through the dam and the connecting canal. TWRA maps the reservoir at 15,788 ac. Aliases:
+  Tellico Reservoir. TWRA's Tellico Reservoir page lists the fishery as largemouth bass, smallmouth
+  bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass
+  is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a
+  scored input.
 
 
-  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
-  2026-09-14) — TMP trout reservoir — upper Little Tennessee arm below Chilhowee Dam; ~4,500 rainbows late
-  winter/early spring.
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass
+  (retrieved 2026-09-14) — TMP trout reservoir — upper Little Tennessee arm below Chilhowee Dam;
+  ~4,500 rainbows late winter/early spring.
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (Tellico Reservoir's upper Little Tennessee arm
+  below Chilhowee Dam - the water TWRA lists as 'Tellico (Upper)'. Not the free-flowing Tellico
+  River (tellico-river).) (ADR 0010 consistency).
 officialSources:
   - label: TVA — Tellico Reservoir lake levels
     url: https://www.tva.com/environment/lake-levels
@@ -69,9 +76,45 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 seasonMonths:
   - 2
   - 3
   - 4
 seasonKind: programmatic
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA places Tellico (Upper) in its year-round reservoir trout stocking program and
+    documents ~4,500 catchable rainbow trout released annually in the late-winter/early-spring
+    window in the cool upper arm below Chilhowee Dam, over a predominantly warmwater reservoir
+    fishery.
+  reachScope: Tellico Reservoir's upper Little Tennessee arm below Chilhowee Dam - the water TWRA
+    lists as 'Tellico (Upper)'. Not the free-flowing Tellico River (tellico-river).
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page - Reservoir Trout Stocking Information
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities' - list includes 'Region IV, Tellico (Upper) - Rainbow' (capture
+        captures/twra-trout-page.txt, captured 2026-09-22)"
+    - label: "TWRA Where to Fish: Tellico Reservoir"
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html
+      kind: schedule-table
+      retrieved: 2026-09-22
+      pinpoint: "'About 4,500 catchable Rainbow Trout are released there in the late winter and early
+        spring annually'; 'Rainbow Trout are stocked in the upper reaches of the reservoir below
+        [Chilhowee] Dam'; 'Tellico is a cool water impoundment due to the cold water inflows from
+        Chilhowee Reservoir and the Tellico River' with 'cool water temperatures and good oxygen
+        levels throughout the summer'; Rainbow Trout listed among the most common game fish
+        (verified live 2026-09-22)"
+  caveats:
+    - "Identity discipline: 'Tellico (Upper)' on TWRA's reservoir list is the upper arm of Tellico
+      Reservoir; the Tellico River's stockings, delayed harvest, and wild trout are a different
+      catalog water (tellico-river). Never transfer between them."
+    - Stocking is late winter/early spring; the catalog's seasonMonths [2,3,4] describes stocking
+      months, not the extent of the fishing window.
+    - Fishbrain's 'Tellico Reservoir (Tennessee River)' page is shared with the mainstem Tennessee
+      River (7 rainbow trout among 1,794 catches) - research lead only.

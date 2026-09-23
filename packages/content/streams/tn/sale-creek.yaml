@@ -13,5 +13,23 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01300534"]
-  huc8s: ["06020001"]
+  gnisIds:
+    - "01300534"
+  huc8s:
+    - "06020001"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for Sale Creek
+    (Hamilton County Chickamauga Lake tributary); community reports describe bass/panfish fishing
+    near the embayment, but no admissible source documents the creek's fishery or any trout
+    occurrence.
+  asOf: "2026"
+  caveats:
+    - The lower creek is an embayment of Chickamauga Lake (a separately managed warmwater reservoir)
+      — reach discipline applies.
+    - "Same-name risk: 'Sale Creek' is also the Hamilton County community name; water-specific
+      results are sparse."
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for Sale Creek; whether any trout opportunity (or any documented creek
+    fishery) exists is unknown. Next source: TWRA Region 3 stream sampling covering the creek."

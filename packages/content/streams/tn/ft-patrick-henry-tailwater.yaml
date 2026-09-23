@@ -20,14 +20,15 @@ seasonMonths:
   - 4
 seasonKind: programmatic
 notes: >-
-  Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked rainbow
-  and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the Kingsport
-  confluence, where the Holston main stem forms.
+  Compact urban tailwater below Fort Patrick Henry Dam with a reliable cold release and TWRA-stocked
+  rainbow and brown trout. Wadeable at low generation; rises quickly. It runs from the dam to the
+  Kingsport confluence, where the Holston main stem forms.
 
 
-  Regulations: "Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive": 16–22 in PLR for rainbow
-  and brown; 7-trout creel (all species combined), only 1 over 22 in (TWRA Fort Patrick Henry where-to-fish
-  page repeats this rule verbatim) (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: "Boone Dam downstream to Louis Milhorn Bridge on Beulah Church Drive": 16–22 in PLR
+  for rainbow and brown; 7-trout creel (all species combined), only 1 over 22 in (TWRA Fort Patrick
+  Henry where-to-fish page repeats this rule verbatim) (retrieved 2026-09-14; verify current rules
+  with TWRA before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
@@ -36,6 +37,46 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01327068"]
-  huc8s: ["06010102", "06010104"]
-  counties: ["Sullivan"]
+  gnisIds:
+    - "01327068"
+  huc8s:
+    - "06010102"
+    - "06010104"
+  counties:
+    - Sullivan
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast describes the Fort Patrick Henry Tailwater as a short urban
+    tailwater producing some of the state's largest holdover rainbow trout, labeled year-round
+    fishing and confirmed by March 2026 electrofishing — though overall catch rates are at their
+    lowest since monitoring began trending in 2017.
+  reachScope: South Fork Holston River below Fort Patrick Henry Dam (Fort Patrick Henry Tailwater),
+    Sullivan County — dam downstream to the Kingsport confluence; public angling concentrated Hwy 36
+    to the Wesley Road corridor boat ramp
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), Fort Patrick Henry Tailwater section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition
+      retrieved: 2026-09-22
+      pinpoint: 'node n-UZZmg7: "Not many folks know of the Fort Patrick Henry Tailwater... yet it
+        produces some of the largest holdover Rainbow Trout across the state."; node n-91m9Ou:
+        "Stocking: March and April (year-round fishing)". Capture: captures/twra-forecast-text.md;
+        verified live 2026-09-22.'
+    - label: TWRA published trout stocking schedule (2026) + recently stocked report
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule; completed release 2026-09-03
+      retrieved: 2026-09-22
+      pinpoint: 'Schedule row: REGION 4, Sullivan, "Ft. Patrick Henry TW / S. Fork Holston River",
+        Tailwater, STOCKING MONTHS "M, A, D", SPECIES "Rainbow, Brown Trout". Recent-release row:
+        {Region 4, "Ft. Patrick Henry TW", 09/03/2026}. Both verified live 2026-09-22.'
+  caveats:
+    - Abundance is in a documented multi-year decline (lowest catch rates since the trend began in
+      2017, per TWRA March 2026 sampling) even though trophy-size fish remain common.
+    - "Extremely dangerous flow swings: the river rises almost immediately when generators come on —
+      check the TVA Fort Patrick Henry Dam schedule."
+    - Stocking months are a documented conflict between current TWRA sources (Mar/Apr vs
+      Mar/Apr/Dec, with a September 2026 completed release).

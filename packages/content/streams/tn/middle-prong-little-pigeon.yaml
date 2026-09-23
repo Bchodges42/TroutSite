@@ -8,19 +8,24 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 idealFlow:
   - min: 15
     max: 120
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking noted by TWRA on the
-  Middle Prong. No gauge; recent-rain judgment applies.
+  Tremont’s classic pocket water — wild rainbows and brook trout, TWRA spring stocking noted by TWRA
+  on the Middle Prong. No gauge; recent-rain judgment applies.
 
 
-  Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait,
+  year-round (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (GSMNP park reach (Tremont drainage, including the
+  Lynn Camp Prong watershed)) (ADR 0010 consistency).
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
@@ -29,6 +34,51 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01306406", "01306746"]
-  huc8s: ["06010107"]
-  counties: ["Sevier"]
+  gnisIds:
+    - "01306406"
+    - "01306746"
+  huc8s:
+    - "06010107"
+  counties:
+    - Sevier
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: The park reach of the Middle Prong Little Pigeon holds documented wild rainbow and brook
+    trout with year-round fishing under NPS rules; TWRA's seasonal stocking rows for this stream
+    apply to reaches below/outside the park boundary, where put points are not published.
+  reachScope: GSMNP park reach (Tremont drainage, including the Lynn Camp Prong watershed)
+  asOf: "2026"
+  sources:
+    - label: Great Smoky Mountains National Park - Fishing
+      url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+      kind: survey
+      observationPeriod: current park guidance
+      retrieved: 2026-09-22
+      pinpoint: Park safeguards 'one of the last remaining wild trout habitats in the eastern United
+        States'; brook/rainbow/brown trout at densities of 2,000-4,000 fish per mile in many
+        streams; 'Fishing is permitted year-round in open waters'; non-native trout stocking ended
+        in 1975
+    - label: NPS brook trout pages - GSMNP restoration
+      url: https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm
+      kind: survey
+      observationPeriod: restoration documentation
+      retrieved: 2026-09-18
+      pinpoint: "'Restoration projects at Lynn Camp Prong and LeConte Creek sourced brook trout from
+        several nearby streams in the park'; 'Brook trout populations at Lynn Camp Prong are
+        annually monitored'"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 10 Sevier County 'Mid. Prong Little Pigeon River' Seasonal rows, Rainbow Trout, observed
+        months Feb-May and Oct-Nov 2026
+  caveats:
+    - "Inside the park: wild rainbow and brook trout, year-round fishing, artificial lures only per
+      NPS rules - no stocking since 1975."
+    - "Below the park: TWRA's seasonal rainbow rows (Feb-May, Oct-Nov 2026) are release-window
+      fishing; exact put points are not published."
+    - Do not credit the TWRA stocking rows to the park reach - NPS ended trout stocking there in
+      1975.

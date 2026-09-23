@@ -28,13 +28,14 @@ seasonMonths:
   - 12
 seasonKind: programmatic
 notes: >-
-  A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and winter
-  stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam and near Pelham)
-  bracket the fishery.
+  A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and
+  winter stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam
+  and near Pelham) bracket the fishery.
 
 
-  Regulations: Tims Ford Dam to I-65 bridge (incl. tributaries): Brown Trout 20-in minimum, 1/day; total creel
-  all trout species combined 7 (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Tims Ford Dam to I-65 bridge (incl. tributaries): Brown Trout 20-in minimum, 1/day;
+  total creel all trout species combined 7 (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03578000
     url: https://waterdata.usgs.gov/monitoring-location/03578000/
@@ -43,6 +44,50 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00117929"]
-  huc8s: ["06030003", "06030004"]
-  counties: ["Franklin"]
+  gnisIds:
+    - "00117929"
+  huc8s:
+    - "06030003"
+    - "06030004"
+  counties:
+    - Franklin
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA documents trout available '24-7-365' in the first 11 miles below Tims Ford Dam, with
+    a Mar-Dec rainbow/brown stocking program - browns persisting in multiple year classes while
+    rainbows are largely annual put-take fish.
+  reachScope: First ~11 miles of Elk River below Tims Ford Dam (Hwy 50 Bridge to about Farris Creek;
+    Old Dam Ford, a few miles below Farris Creek, holds trout only in winter). Does NOT extend to
+    the whole Elk River.
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Fishing Forecast - Elk River / Tims Ford (2026 edition)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 edition
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "node n-0Qzf3q: 'The deep and cold water release from Tims Ford Dam maintains suitable
+        habitat for trout year round... today trout can be found \"24-7-365\" in the first 11 miles
+        of tailwater'; node n-yxFIZJ: Old Dam Ford 'has trout only in the winter' (verified live
+        2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "row: Region 2, Franklin/Moore, 'Tims Ford TW / Elk River', Tailwater, months
+        M,A,M,J,J,A,S,O,N,D, Rainbow+Brown (capture captures/twra-schedule.json). Completed release:
+        'Tims Ford TW' stocked 9/10/2026 in the rolling release report
+        (captures/twra-recent-releases.json)"
+  caveats:
+    - "Species distinction preserved: browns = documented multi-year persistence/trophy component;
+      rainbows = largely fall-winter stocked put-take with little multi-year holdover (TWRA 2026
+      survey)."
+    - "Reach boundary: trout are '24-7-365' only in the first ~11 miles; Old Dam Ford (a few miles
+      below Farris Creek) is winter-only, and the river transitions to smallmouth water below - the
+      year-round claim never extends to the lower Elk (elk-river-lower)."
+    - Only two public access points on the year-round reach (Hwy 50 Bridge, Farris Creek Bridge, ~9
+      miles apart); float dam-to-Farris Creek takes a full day (node n-yxFIZJ).
+    - Generation swings from Tims Ford Dam require the TVA schedule (node n-oNtwQp).

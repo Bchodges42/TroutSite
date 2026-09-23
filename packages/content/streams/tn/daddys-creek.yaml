@@ -14,18 +14,18 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms. It runs its
-  full named length to the Obed confluence.
+  Gorge water in the Obed system. Check the Hebbertsburg gauge — it moves quickly after storms. It
+  runs its full named length to the Obed confluence.
 
 
-  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
-  Obed-system creek; warmwater (TWRA stocks musky here; smallmouth mercury advisory); zero salmonids in NPS
-  records. (retrieved 2026-09-14).
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or
+  record — Obed-system creek; warmwater (TWRA stocks musky here; smallmouth mercury advisory); zero
+  salmonids in NPS records. (retrieved 2026-09-14).
 
 
-  Regulations: Obed WSR park waters — current TN fishing license + rod and reel (NPS); statewide TWRA trout
-  rules (7/day, no length) outside park; not on TWRA Wild Trout Streams list (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  Regulations: Obed WSR park waters — current TN fishing license + rod and reel (NPS); statewide
+  TWRA trout rules (7/day, no length) outside park; not on TWRA Wild Trout Streams list (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03539600
     url: https://waterdata.usgs.gov/monitoring-location/03539600/
@@ -34,6 +34,41 @@ officialSources:
   - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
     url: https://www.nps.gov/obed/planyourvisit/fishing-at-the-obed.htm
 hydroIdentity:
-  gnisIds: ["01306252"]
-  huc8s: ["06010208"]
-  counties: ["Cumberland"]
+  gnisIds:
+    - "01306252"
+  huc8s:
+    - "06010208"
+  counties:
+    - Cumberland
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: The NPS documents a warmwater smallmouth-bass fishery on this Obed gorge water -
+    smallmouth is the most common game fish anglers land on Clear Creek, Daddy's Creek and the Obed
+    River - with no trout program or trout record; summer water reached 30.0 C in July-August 2026.
+  reachScope: Full named length to the Obed confluence; lower reach inside Obed WSR
+  asOf: "2026"
+  sources:
+    - label: Obed Wild & Scenic River fish page
+      url: https://www.nps.gov/obed/learn/nature/fish.htm
+      kind: agency-assessment
+      observationPeriod: current page, live check
+      retrieved: 2026-09-22
+      pinpoint: "'The most common game fish caught at the Obed WSR is the Smallmouth Bass'; 'Most anglers
+        on Clear Creek, Daddy's Creek, and the Obed River will land one during peak season'"
+    - label: USGS 03539600 Daddy's Creek near Hebbertsburg - July-August 2026 water temperature
+      url: https://waterservices.usgs.gov/nwis/iv/?sites=03539600&parameterCd=00010&startDT=2026-07-01&endDT=2026-08-31&format=json
+      kind: temperature-series
+      observationPeriod: Jul 1 - Aug 31, 2026
+      retrieved: 2026-09-22
+      pinpoint: "re-verified live 2026-09-22: 5,782 readings, max 30.0 C, min 21.8 C"
+    - label: "Obed NRCA (Russ 2006: two Daddy's Creek locations, 19 species, no salmonids)"
+      url: https://npshistory.com/publications/obed/nrr-2017-1554.pdf
+      kind: agency-assessment
+      observationPeriod: 2006-2010 sampling
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: prior batch3 lead; not re-verified this pass
+  caveats:
+    - "Obed WSR park waters: current TN fishing license plus rod-and-reel only (NPS)."
+    - Not on TWRA's wild-trout list; no trout stocking row exists for this creek.

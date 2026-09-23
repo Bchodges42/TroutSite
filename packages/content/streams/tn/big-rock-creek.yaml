@@ -26,5 +26,34 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01305230"]
-  huc8s: ["06040002"]
+  gnisIds:
+    - "01305230"
+  huc8s:
+    - "06040002"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's winter program stocks catchable rainbow trout at the Big Rock Greenway reach of
+    Big Rock Creek in Lewisburg (Jan 15, Feb 27, and a TBD December 2026 date in the 2026 schedule)
+    - a winter put-and-take fishery with no documented carryover into summer.
+  reachScope: Big Rock Greenway reach at Lewisburg (Marshall County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 2 / Marshall / 'Big Rock Greenway' / Winter / Rainbow Trout / 1/15/2026,
+        2/27/2026, TBD 12/2026"
+    - label: Big Rock Creek temperature grabs (USGS-03599000 at Lewisburg)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03599000&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1966-2025
+      retrieved: 2026-09-22
+      pinpoint: "prior batch6 lead: 91 Jun-Sep grabs 1966-2025, 25.3-32.0 C at the in-town gauge nearest
+        the stocking site"
+  caveats:
+    - Winter put-and-take only; the creek is a warmwater Duck River tributary outside the stocked
+      season.
+    - Verify the TBD December 2026 date on TWRA's live schedule before you go.

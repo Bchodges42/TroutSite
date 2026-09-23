@@ -9,9 +9,17 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 idealFlow: []
-notes: Cherokee National Forest creek with seasonal and delayed-harvest trout stocking. The county qualifier distinguishes it from other Tennessee Paint Creeks.
+notes: >-
+  Cherokee National Forest creek with seasonal and delayed-harvest trout stocking. The county
+  qualifier distinguishes it from other Tennessee Paint Creeks.
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (wild-trout reach: USFS campground upstream to USFS
+  boundary near Munday Gap; lower corridor (campground to French Broad mouth) documented Oct 1-Jun
+  under DH + seasonal programs) (ADR 0010 consistency).
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
@@ -20,6 +28,43 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01296658"]
-  huc8s: ["06010105"]
-  counties: ["Greene"]
+  gnisIds:
+    - "01296658"
+  huc8s:
+    - "06010105"
+  counties:
+    - Greene
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "Paint Creek carries a documented year-round trout opportunity: the upper reach is on
+    TWRA's wild-trout waters list, while the lower corridor runs a documented cycle of delayed
+    harvest (Oct 1-Feb 28 catch-and-release) plus spring-summer stockings (biweekly March-June
+    2026)."
+  reachScope: "wild-trout reach: USFS campground upstream to USFS boundary near Munday Gap; lower
+    corridor (campground to French Broad mouth) documented Oct 1-Jun under DH + seasonal programs"
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations - Wild Trout Streams
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: legal-designation
+      observationPeriod: current regulations page
+      retrieved: 2026-09-22
+      pinpoint: "'Paint Creek and tributaries from the USFS campground upstream to the USFS Boundary line
+        south of Highway 70 near Munday Gap (Greene County)'"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 10 Greene County 'Paint Creek' rows - Seasonal weeks 3/8 through 6/28/2026 biweekly plus
+        Delayed Harvest week 10/4/2026, Rainbow Trout
+  caveats:
+    - "Upper reach (campground upstream to Munday Gap): designated wild-trout water - fish it
+      year-round under statewide trout rules."
+    - "Lower corridor: DH catch-and-release Oct 1-Feb 28 with an early-October stocking; harvest
+      window follows with biweekly stockings March-June 2026."
+    - July-September on the lower corridor has no documented stocking program; a site-feed claim of
+      'USFS summer stocking' could not be verified in any USFS/TWRA source (batch-pass check) - do
+      not rely on it.

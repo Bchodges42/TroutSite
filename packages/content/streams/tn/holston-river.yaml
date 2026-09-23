@@ -8,21 +8,29 @@ gaugeIds: []
 stockingProgram: true
 idealFlow: []
 notes: >-
-  The main Holston below the North/South Fork confluence at Kingsport through Hawkins, Grainger, Jefferson,
-  and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake; the South Fork Holston
-  tailwaters are separate catalog features (south-holston-river, boone-tailwater, ft-
-  patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake lies mid- stem,
-  with the river continuing through the pool. TWRA's statewide regulation exceptions set a smallmouth bass
-  rule on this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
+  The main Holston below the North/South Fork confluence at Kingsport through Hawkins, Grainger,
+  Jefferson, and Knox counties to the French Broad confluence at the head of Fort Loudoun Lake; the
+  South Fork Holston tailwaters are separate catalog features (south-holston-river, boone-tailwater,
+  ft- patrick-henry-tailwater), the northern fork is north-fork-holston-river, and Cherokee Lake
+  lies mid- stem, with the river continuing through the pool. TWRA's statewide regulation exceptions
+  set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day.
+  (see officialSources).
 
 
-  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
-  2026-09-14) — Cherokee Dam tailwater reach of the main-stem Holston carries Nov–Apr stocked trout (wave-2).
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass
+  (retrieved 2026-09-14) — Cherokee Dam tailwater reach of the main-stem Holston carries Nov–Apr
+  stocked trout (wave-2).
 
 
-  Regulations: Black bass 5/day combo; smallmouth 13–17 in PLR, only 1/day over 17 in (Cherokee Dam to I-40
-  bridge); trout statewide — 7 trout/day any combination, no minimum length (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  Regulations: Black bass 5/day combo; smallmouth 13–17 in PLR, only 1/day over 17 in (Cherokee Dam
+  to I-40 bridge); trout statewide — 7 trout/day any combination, no minimum length (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (Cherokee Dam tailwater reach of the Holston River
+  main stem — approximately 20 miles below Cherokee Dam (Jefferson/Grainger counties); the rest of
+  the Kingsport-to-French-Broad main stem is NOT covered by trout evidence) (ADR 0010 consistency).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -32,7 +40,7 @@ officialSources:
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 seasonMonths:
   - 11
   - 12
@@ -42,6 +50,62 @@ seasonMonths:
   - 4
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01303469", "01487063"]
-  huc8s: ["06010104", "06010201"]
-  counties: ["Jefferson"]
+  gnisIds:
+    - "01303469"
+    - "01487063"
+  huc8s:
+    - "06010104"
+    - "06010201"
+  counties:
+    - Jefferson
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast documents a ~20-mile trout fishery on the Holston River below
+    Cherokee Dam with November-April stocking labeled 'limited year-round fishing' — trout fishing
+    that is seasonal in character because late-summer water often gets too warm, yet with some
+    holdover fish possible.
+  reachScope: Cherokee Dam tailwater reach of the Holston River main stem — approximately 20 miles
+    below Cherokee Dam (Jefferson/Grainger counties); the rest of the Kingsport-to-French-Broad main
+    stem is NOT covered by trout evidence
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), Cherokee Tailwater section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition
+      retrieved: 2026-09-22
+      pinpoint: 'node n-CTnirE: "...the Holston River below Cherokee Dam provides trout fishing
+        opportunities for approximately 20 miles. Water temperatures in late summer and early fall
+        often get too warm to support trout in the majority of the tailwater, but some fish do find
+        enough coldwater to hold over"; node n-e8bCkZ: "Stocking: November through April (limited
+        year-round fishing)". Capture: captures/twra-forecast-text.md; verified live 2026-09-22.'
+    - label: TWRA published trout stocking schedule (2026)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule
+      retrieved: 2026-09-22
+      pinpoint: 'Row: REGION 4, Jefferson/Grainger, "Cherokee TW / Holston River", Tailwater, STOCKING
+        MONTHS "J, F, M, A, N, D", SPECIES "Rainbow, Brown Trout". Static table concurs: "Cherokee
+        Dam, Holston River -Brown, Rainbow - November through April- Statewide Regulations". Both
+        verified live 2026-09-22.'
+    - label: Discrete water temperature, Holston River at Cherokee Dam TW
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03493510&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1975-1979 discrete samples
+      retrieved: 2026-09-22
+      pinpoint: "Seed prior lead: summer rows show June release temps 12-13.5 C but 25-26 C by Aug-Sep.
+        Prior research lead, not re-verified this pass."
+  caveats:
+    - "SUMMER LIMITATION (mandatory): TWRA states water temperatures in late summer and early fall
+      often get too warm to support trout in the majority of the tailwater; the fishery is strongest
+      from the November-April stocking season into spring."
+    - This verdict covers ONLY the ~20-mile Cherokee Dam tailwater reach (Jefferson/Grainger). The
+      Holston main stem above the reach (Kingsport to Cherokee Dam) and below it have no trout
+      evidence in this pass and remain separately unresolved; Cherokee LAKE upstream of the dam is a
+      separate catalog water with a documented warmwater fishery.
+    - Access is limited to a few locations (ramps below the dam and at Nances Ferry); the river is
+      best fished from a boat.
+    - The repo site feed's 'warmwater fishery, no trout program' line for holston-river is
+      contradicted by TWRA's live schedule, static table, and 2026 forecast — the trout program is
+      real and reach-pinned to the Cherokee tailwater.

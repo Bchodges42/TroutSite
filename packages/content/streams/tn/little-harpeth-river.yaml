@@ -6,12 +6,30 @@ regionId: tn-middle-nashville
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Named Nashville-area Harpeth tributary promoted for regional access and fishing relevance rather than size alone.
+notes: Named Nashville-area Harpeth tributary promoted for regional access and fishing relevance
+  rather than size alone.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269738"]
-  huc8s: ["05130204"]
+  gnisIds:
+    - "01269738"
+  huc8s:
+    - "05130204"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout program, trout listing, or dated trout record exists for the Little Harpeth
+    River — TWRA's Harpeth-system winter stockings are on the MAIN Harpeth at Eastern Flank Battle
+    Park (Franklin), a different water — and a rumored wild-rainbow population could not be sourced.
+  asOf: "2026"
+  caveats:
+    - Metro Parks' 'Fishing in Metro Parks' page (nashville.gov, Sep 26 2025 per search snippet)
+      names several fishing holes along the Little Harpeth in Edwin Warner Park — general fishing
+      documentation with no species list surfaced; the direct page URL 404'd this session.
+  unresolvedQuestion: "Does a trout occurrence (stocked escapees from the main-Harpeth program, or a
+    small wild population) exist in the Little Harpeth? No dated observation or survey found; next
+    source: TWRA Region 2 stream sampling or Metro Parks fish survey data for the Edwin Warner Park
+    reach."

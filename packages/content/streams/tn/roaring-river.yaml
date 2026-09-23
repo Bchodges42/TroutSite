@@ -6,12 +6,46 @@ regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal Cordell Hull Lake tributary in Jackson and Overton counties and an important local fishing river.
+notes: Principal Cordell Hull Lake tributary in Jackson and Overton counties and an important local
+  fishing river.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01299571"]
-  huc8s: ["05130106"]
+  gnisIds:
+    - "01299571"
+  huc8s:
+    - "05130106"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: A dated restoration record (American Rivers, 2018) documents the Roaring River
+    (Overton/Jackson counties Cordell Hull tributary) as warmwater native fish habitat — the 2017
+    dam removal reconnected white bass and redhorse populations — and TWRA carries no trout program
+    for it; the fishery itself is agency-undocumented.
+  asOf: "2026"
+  sources:
+    - label: Fish Swim Free in Roaring River, Tennessee (2018-05-14)
+      url: https://www.americanrivers.org/2018/05/fish-swim-free-in-roaring-river-tennessee
+      kind: agency-assessment
+      observationPeriod: dam removal August 2017; article 2018-05-14
+      publicationDate: 2018-05-14
+      retrieved: 2026-09-22
+      pinpoint: "'Species such as white bass, redhorse, and the Eastern hellbender are expected to benefit
+        by reconnecting populations above and below the dam'; the 1976 dam was built 'to limit rough
+        fish from moving upstream from a large reservoir in the Roaring River watershed'; 'a
+        Tennessee state scenic river'; removal 'connects 250 miles of main stem and tributary river
+        miles'"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: Zero 'Roaring' rows in the schedule capture and trout page; the forecast's 'Roaring Fork,
+        Leconte Creek, Dudley Creek' node is a GSMNP/Sevier County passage — a different water
+  caveats:
+    - The 20.5-mile scenic-river reach (designated 1968) carries no trout regulation or program.
+    - Warmwater-focus does not mean trout are biologically absent.

@@ -6,12 +6,39 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal northern fork of the Forked Deer system and one of northwest Tennessee’s major fishable rivers.
+notes: Principal northern fork of the Forked Deer system and one of northwest Tennessee’s major
+  fishable rivers.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01295887"]
-  huc8s: ["08010204"]
+  gnisIds:
+    - "01295887"
+  huc8s:
+    - "08010204"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no
+    length limit), documenting a managed warmwater fishery on the North Fork; no trout program
+    exists on this fork, and a single community-app trout entry remains an uncorroborated lead.
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+    - label: North Fork Forked Deer River at Dyersburg temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07029100&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS
+      kind: temperature-series
+      observationPeriod: July grabs 1980-2004 (24.0-32.0 C)
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 32.0 C July 1980; 30.5 C July 1986; 30.0 C July 1981"
+  caveats:
+    - TWRA's West Tennessee winter rainbow program stocks park ponds, not this river.
+    - Warmwater-focus does not mean trout are biologically absent.

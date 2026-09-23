@@ -8,23 +8,26 @@ gaugeIds: []
 stockingProgram: true
 idealFlow: []
 notes: >-
-  Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River in Carter
-  County. Receives Watauga Dam releases via the short riverine reach (watauga-river-wilbur-reach) and
-  discharges through Wilbur Dam (USGS 03484000, 36.34411/-82.12956) into the Watauga River (Wilbur tailwater).
-  Also shown on TWRA's waterways map (72 ac).
+  Small (~72 acre) TVA regulating pond between Watauga Dam and Wilbur Dam on the Watauga River in
+  Carter County. Receives Watauga Dam releases via the short riverine reach
+  (watauga-river-wilbur-reach) and discharges through Wilbur Dam (USGS 03484000, 36.34411/-82.12956)
+  into the Watauga River (Wilbur tailwater). Also shown on TWRA's waterways map (72 ac).
 
 
-  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
-  2026-09-14) — TMP trout reservoir; "Watauga Dam, Wilbur Reservoir — Rainbow — March through July" schedule
-  row (wave-1 dispute resolved).
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass
+  (retrieved 2026-09-14) — TMP trout reservoir; "Watauga Dam, Wilbur Reservoir — Rainbow — March
+  through July" schedule row (wave-1 dispute resolved).
 
 
-  Regulations: Statewide Regulations per the schedule row — 7 trout/day any combination, no minimum length
-  limit, only 2 may be Lake Trout (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Statewide Regulations per the schedule row — 7 trout/day any combination, no minimum
+  length limit, only 2 may be Lake Trout (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
-  - label: USGS Water Data — monitoring location 03484000 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03484000 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03484000/
-  - label: USGS Water Data — monitoring location 03483980 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03483980 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03483980/
   - label: TVA — Watauga/Wilbur dam release schedule
     url: https://www.tva.com/environment/lake-levels
@@ -42,3 +45,50 @@ seasonMonths:
   - 6
   - 7
 seasonKind: programmatic
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's live stocking table documents a rainbow trout program for Wilbur Reservoir from
+    March through July under statewide regulations — a seasonal stocked fishery on a small, cold,
+    dam-fed pool; it is not on TWRA's year-round reservoir trout list and no year-round fishery is
+    documented.
+  reachScope: Wilbur Lake (Wilbur Reservoir), the ~72-acre TVA regulating pool between Watauga Dam and
+    Wilbur Dam, Carter County — the reservoir pool only
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page — static stocking table row for Wilbur Reservoir
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: program-description
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"Watauga Dam, Wilbur Reservoir - Rainbow - March through July - Statewide Regulations" —
+        verified live 2026-09-22; capture captures/twra-trout-page.txt.'
+    - label: TWRA weekly stocking schedule (2026) — absence check + recent-releases window
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule
+      retrieved: 2026-09-22
+      pinpoint: Live 616-row weekly schedule contains NO Wilbur Reservoir row (only 'Wilbur Tailwater /
+        Watauga River', the river below the dam). The live recent-releases window (Aug-Sep 2026)
+        contains no Wilbur Reservoir row either. The year-round reservoir trout list (8 entries)
+        omits Wilbur.
+    - label: Wilbur Tailwater Trout Fishery Management Plan 2022-2027 — Watauga Dam turbine venting /
+        Wilbur Dam release DO
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Wilbur-Tailwater-Trout-Fishery-Management-Plan.pdf
+      kind: temperature-series
+      observationPeriod: 2022-2027 plan
+      retrieved: 2026-09-22
+      pinpoint: "Seed prior lead: Watauga Dam turbine-vented discharges feed Wilbur Reservoir; Wilbur Dam
+        bottom releases meet TVA's 6.0 mg/L DO target. Prior research lead, not re-verified this
+        pass."
+  caveats:
+    - Seasonal program (March-July) — TWRA does not claim a year-round fishery here; Wilbur is
+      absent from TWRA's live year-round reservoir trout list even though the older statewide
+      management plan counted it among nine reservoir trout fisheries (documentation drift worth
+      reviewer attention).
+    - "SIBLING TRAP (audit hard case): this verdict is the ~72-acre POOL. The Wilbur TAILWATER below
+      Wilbur Dam (catalog watauga-river) has the year-round wild-brown verdict; the riverine reach
+      above the pool is watauga-river-wilbur-reach. The 'Wilbur Tailwater / Watauga River' schedule
+      row belongs to the river — never join it to this lake."
+    - No agency holdover, survey, or temperature record specific to the reservoir was verified this
+      pass.

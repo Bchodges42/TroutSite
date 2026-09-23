@@ -11,7 +11,8 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
-notes: Hamilton County creek with seasonal and delayed-harvest trout stocking and strong local blueway relevance. It is also locally known as Soddy Creek.
+notes: Hamilton County creek with seasonal and delayed-harvest trout stocking and strong local
+  blueway relevance. It is also locally known as Soddy Creek.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
@@ -20,5 +21,38 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01303712"]
-  huc8s: ["06020001"]
+  gnisIds:
+    - "01303712"
+  huc8s:
+    - "06020001"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast describes Big Soddy Creek (Soddy-Daisy, Hamilton Co.) as a new 7-8
+    month trout fishery - 'not cold enough to support trout year-round' - with stocking Oct-May and
+    a delayed-harvest catch-and-release reach upstream of Back Valley Road.
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "9 rows: 'Big Soddy Creek', Hamilton Co., REGION 3 - 4 Delayed Harvest (weeks 2/8, 2/22,
+        10/25, 11/29/2026) + 5 Seasonal (3/8, 3/22 x2, 4/19, 4/26/2026), Rainbow Trout"
+    - label: TWRA Trout Fishing Forecast (StoryMap, 2026 edition text nodes)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: schedule-table
+      observationPeriod: 2026 forecast edition
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "nodes n-AUzrGW ('Catch Trout at Big Soddy Creek Gulf... TWRA has partnered with the City
+        of Soddy-Daisey') and n-9uOdOe ('Stocking: October through May')"
+  caveats:
+    - The delayed-harvest rules (catch-and-release, artificials-only during C&R) apply upstream of
+      Back Valley Road only; other reaches follow statewide rules.
+    - The forecast's flow-gauge link is on North Chickamauga Creek (USGS 03566535), a different
+      creek used as a rise/fall reference - it does not measure Big Soddy Creek.
+    - Verify the current C&R start date (Oct 1 vs Nov 1) with TWRA Region 3 before fishing the C&R
+      season.

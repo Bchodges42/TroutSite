@@ -8,15 +8,16 @@ gaugeIds: []
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — a west-flowing river through the West Tennessee
-  Hatchie corridor (Hardeman, Haywood, Tipton, and Lauderdale counties). Detailed angler notes are still being
-  prepared — check TWRA and local access areas in the meantime. TWRA's statewide regulation exceptions include
-  this river in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+  Reference waterbody from the Tennessee waterways inventory — a west-flowing river through the West
+  Tennessee Hatchie corridor (Hardeman, Haywood, Tipton, and Lauderdale counties). Detailed angler
+  notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's
+  statewide regulation exceptions include this river in the shared West Tennessee crappie rule: 30
+  per day, no length limit. (see officialSources).
 
 
-  Regulations: Crappie 30/day, no length limit (Hatchie incl. tributaries, per exceptions page); statewide
-  black bass 5/day, catfish 34-in rule otherwise (retrieved 2026-09-14; verify current rules with TWRA before
-  you go).
+  Regulations: Crappie 30/day, no length limit (Hatchie incl. tributaries, per exceptions page);
+  statewide black bass 5/day, catfish 34-in rule otherwise (retrieved 2026-09-14; verify current
+  rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -25,5 +26,42 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01306552"]
-  huc8s: ["08010208"]
+  gnisIds:
+    - "01306552"
+  huc8s:
+    - "08010208"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TDEC documents the Hatchie as a free-flowing swamp river supporting more than 100 fish
+    species including 11 catfish species, with 10 TWRA boat launches, and TWRA manages it under the
+    West Tennessee crappie rule — a documented warmwater river with no trout program or trout
+    record.
+  reachScope: whole Tennessee river (202.8 designated scenic miles,
+    McNairy/Hardeman/Madison/Haywood/Tipton/Lauderdale counties)
+  asOf: "2026"
+  sources:
+    - label: Tennessee Scenic Rivers — Hatchie
+      url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/hatchie.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'more than 100 species of fish including 11 species of catfish, which is possibly the
+        most of any North American River'; 'There are 10 TWRA Public boat launch areas along the
+        river'"
+    - label: Tennessee Fishing Regulations — Exceptions to Statewide Regulations
+      url: https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations
+      kind: agency-assessment
+      observationPeriod: annual regulation
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion and Wolf Rivers (includes tributaries)' —
+        'Crappie: 30 per day, no length limit.'"
+    - label: Discrete water temperature, Hatchie River gauges
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027500;USGS-07028500;USGS-07029000;USGS-07029100;USGS-07029500&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS
+      kind: temperature-series
+      observationPeriod: 1976-2005 grab samples
+      retrieved: 2026-09-22
+      pinpoint: 88 summer samples at Bolivar; maxima 31.0 C (Jul 1986), 29.5 C (1980), 28.5 C (Aug 2005)
+        (prior lead, not re-verified this session)
+  caveats:
+    - The river is TDEC-documented as a rain/backwater-fed swamp system — no cold-water mechanism
+      documented anywhere (prior lead).

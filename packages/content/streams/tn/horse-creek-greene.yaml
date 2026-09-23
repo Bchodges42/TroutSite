@@ -19,15 +19,55 @@ notes: >-
   bank-and-boulder small water running down to the Nolichucky.
 
 
-  Regulations: "Horse Creek: Greene County, U.S. Forest Service Boundary Line upstream to the junction of
-  Squibb Creek. Daily limit: Seven (7) trout per day, except from May 1– Sep. 30 daily limit is two (2)
-  trout." (special trout regulation; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: "Horse Creek: Greene County, U.S. Forest Service Boundary Line upstream to the
+  junction of Squibb Creek. Daily limit: Seven (7) trout per day, except from May 1– Sep. 30 daily
+  limit is two (2) trout." (special trout regulation; (retrieved 2026-09-14; verify current rules
+  with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01328490"]
-  huc8s: ["06010108"]
-  counties: ["Greene"]
+  gnisIds:
+    - "01328490"
+  huc8s:
+    - "06010108"
+  counties:
+    - Greene
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA stocks Horse Creek (Greene County, Cherokee NF) weekly in spring-early summer (eight
+    2026 weeks, Mar 1 - Jun 7) with a special trout regulation on the national-forest reach (7/day,
+    dropping to 2/day May 1 - Sep 30 above the USFS boundary); TWRA's plan also lists the creek's
+    upper watershed as holding wild rainbows and a potential brook-trout restoration candidate.
+  reachScope: Stocked reach runs down the Cherokee NF valley to the Nolichucky; the special limit
+    applies above the USFS boundary to Squibb Creek junction
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "8 rows: 'Horse Creek', Greene Co., REGION 4, Seasonal, Rainbow Trout, weekly 3/1/2026 -
+        6/7/2026"
+    - label: Tennessee Trout Regulations
+      url: https://www.eregulations.com/tennessee/fishing/trout-regulations
+      kind: agency-assessment
+      retrieved: 2026-09-22
+    - label: Tennessee Trout Management Plan 2017-2027
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+      kind: survey
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "Table 1 (Tier 1 brook trout projects): 'Horse Creek, Nolichucky, RBT [species present],
+        TBD... Remove RBT if barrier exists; otherwise move to Tier 2'; rationale references Horse
+        Creek brook restoration upstream of the Sarvis Cove confluence"
+  caveats:
+    - "Same-name risk: the Fishbrain 'Horse Creek' page (needs segment review) is a research lead
+      only; this entry is the Greene County Cherokee NF water."
+    - No holdover documentation for the stocked reach; the 2/day May 1 - Sep 30 rule above the USFS
+      boundary is a harvest limit, not evidence of fish presence through summer.

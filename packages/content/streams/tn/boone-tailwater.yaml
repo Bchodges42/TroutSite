@@ -21,13 +21,13 @@ seasonMonths:
   - 4
 seasonKind: programmatic
 notes: >-
-  Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and brown trout. Flow
-  swings hard with TVA generation; treat the ideal band as a guideline and verify releases.
+  Short, flashy reach below Boone Dam near Kingsport carrying TWRA-stocked rainbow and brown trout.
+  Flow swings hard with TVA generation; treat the ideal band as a guideline and verify releases.
 
 
-  Regulations: Managed under the Fort Patrick Henry Reservoir rule — "Boone Dam downstream to Louis Milhorn
-  Bridge on Beulah Church Drive": 16–22 in PLR rainbow/brown; 7-trout creel (all species combined), only 1
-  over 22 in (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Managed under the Fort Patrick Henry Reservoir rule — "Boone Dam downstream to Louis
+  Milhorn Bridge on Beulah Church Drive": 16–22 in PLR rainbow/brown; 7-trout creel (all species
+  combined), only 1 over 22 in (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
@@ -36,6 +36,47 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01327068"]
-  huc8s: ["06010102"]
-  counties: ["Sullivan"]
+  gnisIds:
+    - "01327068"
+  huc8s:
+    - "06010102"
+  counties:
+    - Sullivan
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 trout forecast calls the Boone Tailwater Tennessee's smallest year-round
+    trout-fishing tailwater — a short, boat-oriented reach with a modest rainbow/brown population
+    that regularly produces trophy fish, confirmed by March 2026 electrofishing.
+  reachScope: South Fork Holston River below Boone Dam (Boone Tailwater), Sullivan County — from Boone
+    Dam downstream to the head of Fort Patrick Henry Lake; special trout regs apply from the dam to
+    Louis Milhorn Bridge on Beulah Church Drive
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), Boone Tailwater section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition (current assessment text)
+      retrieved: 2026-09-22
+      pinpoint: "node n-Q2FuhI: \"The South Holston River below Boone Dam is Tennessee's smallest year
+        round trout fishing tailwater.\" and \"...produces some of the largest holdover Rainbow
+        Trout across the state.\" Capture: captures/twra-forecast-text.md; verified live
+        2026-09-22."
+    - label: TWRA published trout stocking schedule (2026), weekly program table
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule
+      retrieved: 2026-09-22
+      pinpoint: 'Row: REGION 4, COUNTY Sullivan/Washington, LOCATION "Boone TW / S. Fork Holston River",
+        TYPE Tailwater, STOCKING MONTHS "M, A, N, D", SPECIES "Rainbow, Brown Trout". Capture:
+        captures/twra-schedule.json (616 rows).'
+  caveats:
+    - TWRA's own 2026 sampling shows abundance at the low end of the 2008-2026 series even though
+      large-fish rates are among the state's best — expect a tough, trophy-oriented fishery, not
+      fast action.
+    - Access is very limited; the forecast recommends fishing it by boat at one generator, launching
+      at Smith Shoals off Beulah Church Drive.
+    - TVa generation can raise the water several feet quickly; check the TVA Boone Dam schedule
+      before wading or floating.
+    - Stocking months shown anywhere on the site are a documented three-way conflict between current
+      TWRA sources and are not the fishing window.

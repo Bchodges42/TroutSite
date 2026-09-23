@@ -41,22 +41,31 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03483950/
     retrieved: 2026-09-13
 notes: >-
-  TVA reservoir on the Watauga River in the mountains of Carter and Johnson counties, impounded by Watauga Dam
-  (between USGS 03483450 above and 03483950 below; tailwater gauge 36.33011/-82.12596). One of the highest
-  reservoirs in the TVA system; its tailwater and Wilbur Lake carry the famous Watauga trout fishery
-  downstream. Outflow runs via the short Watauga River reach (watauga-river-wilbur-reach) into Wilbur Lake.
-  The pool runs all the way to the dam at its west end. Aliases: Watauga Reservoir. TWRA's Watauga Reservoir
-  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see
-  officialSources).
+  TVA reservoir on the Watauga River in the mountains of Carter and Johnson counties, impounded by
+  Watauga Dam (between USGS 03483450 above and 03483950 below; tailwater gauge 36.33011/-82.12596).
+  One of the highest reservoirs in the TVA system; its tailwater and Wilbur Lake carry the famous
+  Watauga trout fishery downstream. Outflow runs via the short Watauga River reach
+  (watauga-river-wilbur-reach) into Wilbur Lake. The pool runs all the way to the dam at its west
+  end. Aliases: Watauga Reservoir. TWRA's Watauga Reservoir page lists the fishery as largemouth
+  bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
 
 
-  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
-  2026-09-14) — TMP trout reservoir ("Region IV, Watauga — Lake and Rainbow"); months unpinned.
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass
+  (retrieved 2026-09-14) — TMP trout reservoir ("Region IV, Watauga — Lake and Rainbow"); months
+  unpinned.
 
 
-  Regulations: "There is no size limit for either species, but there is a daily limit of 7; only two of which
-  can be lake trout" (page) — matches statewide trout regs: 7 trout/day any combination, no minimum length,
-  only 2 may be Lake Trout (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: "There is no size limit for either species, but there is a daily limit of 7; only two
+  of which can be lake trout" (page) — matches statewide trout regs: 7 trout/day any combination, no
+  minimum length, only 2 may be Lake Trout (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (Watauga Lake (Watauga Reservoir) pool,
+  Carter/Johnson counties — the reservoir impounded by Watauga Dam; excludes the
+  Watauga-Dam-to-Wilbur reach, Wilbur Lake, and the Wilbur tailwater downstream) (ADR 0010
+  consistency).
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/
@@ -68,4 +77,44 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA names Watauga among the reservoirs it stocks 'to provide year-round trout fishing
+    opportunities' (lake trout and rainbow), and its reservoir page documents a cold,
+    well-oxygenated lake trout fishery whose summer fishing is deep water — 90 to 120 feet for lake
+    trout.
+  reachScope: Watauga Lake (Watauga Reservoir) pool, Carter/Johnson counties — the reservoir impounded
+    by Watauga Dam; excludes the Watauga-Dam-to-Wilbur reach, Wilbur Lake, and the Wilbur tailwater
+    downstream
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page — reservoirs stocked to provide year-round trout fishing
+        opportunities
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities." List line: "Region IV, Watauga - Lake and Rainbow". Capture:
+        captures/twra-trout-page.txt; verified live 2026-09-22.'
+    - label: TWRA Watauga Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html
+      kind: schedule-table
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"TWRA has stocked rainbow, brown, and lake trout in the reservoir."; "Lake trout... is a
+        non-native species selected for stocking because of the cold, well-oxygenated, habitat
+        present." Verified live 2026-09-22.'
+  caveats:
+    - "SUMMER FISHING IS DEEP WATER: TWRA directs summer anglers to troll 30-50 ft for rainbow/brown
+      and 90-120 ft for lake trout (best lake-trout water between Watauga Point and Butler Bridge).
+      This is a boat fishery in summer — nothing here promises bank or shoreline fishing."
+    - Water levels can fluctuate up to 44 feet between summer full pool and winter drawdown — access
+      and fish location shift with the pool.
+    - This verdict is for the LAKE. The famous Watauga River trout water begins below Wilbur Dam
+      (separate catalog water); the reservoir list supports the lake, the forecast supports the
+      river — never cross-assign them.
+    - Reservoir trout fisheries are trout FISHERIES, not trout streams — wording on any published
+      surface must follow rule 6.

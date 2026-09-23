@@ -45,17 +45,19 @@ speciesEvidence:
     url: https://waterdata.usgs.gov/monitoring-location/03566510/
     retrieved: 2026-09-13
 notes: >-
-  Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge, 35.10313/-85.22968) across
-  Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar Dam and receiving the Hiwassee River
-  (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA publishes 35,400 ac. TWRA's Chickamauga Reservoir
-  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish,
-  striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
-  temperature/oxygen refuge context is not a scored input.
+  Tennessee River reservoir above Chickamauga Dam (USGS 03566510 tailwater gauge,
+  35.10313/-85.22968) across Hamilton, Bradley, Meigs, and Rhea counties, extending up to Watts Bar
+  Dam and receiving the Hiwassee River (hiwassee-river). TWRA maps the pool at 33,973 ac; TVA
+  publishes 35,400 ac. TWRA's Chickamauga Reservoir page lists the fishery as largemouth bass,
+  smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge
+  context is not a scored input.
 
 
-  Regulations: black bass 5/day combined, largemouth 15-in min; crappie 15/day, 10-in min; catfish no limit
-  ≤34 in, only 1/day >34 in; striped/hybrid 2/day, 15-in min; walleye 5/day 16-in, sauger 10/day 15-in;
-  paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: black bass 5/day combined, largemouth 15-in min; crappie 15/day, 10-in min; catfish
+  no limit ≤34 in, only 1/day >34 in; striped/hybrid 2/day, 15-in min; walleye 5/day 16-in, sauger
+  10/day 15-in; paddlefish 2/day Apr 24–May 31; (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03566510
     url: https://waterdata.usgs.gov/monitoring-location/03566510/
@@ -65,3 +67,25 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Chickamauga Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Chickamauga Lake as a major warmwater reservoir
+    (largemouth/smallmouth/spotted bass, crappie, bluegill, catfish, striped bass) and stocks only
+    striped bass, walleye, and Florida largemouth — no trout fishery is documented.
+  reachScope: entire reservoir, Watts Bar Dam downstream to Chickamauga Dam (Hamilton, Bradley, Meigs,
+    Rhea counties)
+  asOf: "2026"
+  sources:
+    - label: Chickamauga Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "Species list: largemouth/smallmouth/spotted bass, striped bass, black and white crappie,
+        white/yellow bass, bluegill/redear/warmouth, walleye, sauger, blue/channel/flathead catfish,
+        paddlefish, rock bass; no trout anywhere on the page"
+  caveats:
+    - The stocked 'N. Chickamauga Creek' in TWRA's schedule is a separate tributary creek, not the
+      reservoir — adjacency trap.
+    - Historical tailwater grabs at 03566510 reached 27.5 C in August (1977; prior lead, not
+      re-verified) — warm releases, no cold plume documented.

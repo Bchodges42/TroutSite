@@ -6,7 +6,7 @@ display: featured
 regionId: tn-se-hiwassee
 gaugeIds:
   - "03564500"
-  - "tva:OCAT1"
+  - tva:OCAT1
 stockingProgram: true
 species: trout
 fishery: tailwater
@@ -16,11 +16,14 @@ idealFlow:
     max: 800
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [3, 4, 5 ]
+seasonMonths:
+  - 3
+  - 4
+  - 5
 seasonKind: programmatic
-notes: TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow), stocked
-  March through May. The reach below Parksville Dam mixes whitewater recreation schedules with
-  cold releases — verify TVA’s Ocoee No. 1 flow before you go.
+notes: TWRA lists the Parksville Lake Tailwater in its Tailwater program (rainbow), stocked March
+  through May. The reach below Parksville Dam mixes whitewater recreation schedules with cold
+  releases — verify TVA’s Ocoee No. 1 flow before you go.
 officialSources:
   - label: USGS Water Data — monitoring location 03564500
     url: https://waterdata.usgs.gov/monitoring-location/03564500/
@@ -31,6 +34,42 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01326965"]
-  huc8s: ["06020003"]
-  counties: ["Polk"]
+  gnisIds:
+    - "01326965"
+  huc8s:
+    - "06020003"
+  counties:
+    - Polk
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: limited
+  statement: TWRA's tailwater program stocks rainbow trout in this Ocoee No. 1 reach in March, April,
+    and May; TWRA publishes no assessment of how long the fishery holds beyond the stocking months,
+    so the documented window is the stocked season itself.
+  reachScope: "Ocoee River immediately below Parksville Dam (Ocoee Dam No. 1) - the 'Parksville(Ocoee
+    #1) TW' reach. Not Parksville Lake."
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "row: Region 3, Polk, 'Parksville(Ocoee #1) TW / Ocoee River', Tailwater, months M,A,M,
+        Rainbow Trout (capture captures/twra-schedule.json); trout-page tailwater section: 'Ocoee
+        Dam #1 - Parksville, Ocoee River - Rainbow - March through May - Statewide Regulations'"
+    - label: TWRA trout information page - tailwater section
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: program-description
+      retrieved: 2026-09-22
+      pinpoint: "'Ocoee Dam #1 - Parksville, Ocoee River - Rainbow - March through May - Statewide
+        Regulations' (capture captures/twra-trout-page.txt)"
+  caveats:
+    - "Never transfer between the TAILWATER and the LAKE: Parksville Lake carries TWRA's year-round
+      reservoir list entry; this reach carries only a March-May tailwater program. Neither claim
+      describes the other."
+    - "Recreation-flow context: the reach mixes whitewater recreation schedules with dam releases;
+      check TVA Ocoee No. 1 flows before fishing."
+    - Prior habitat research found no cold-storage mechanism documented for this release (Parksville
+      is a shallow warmwater pool managed for walleye) - summer trout persistence is unevidenced,
+      not disproven.

@@ -8,7 +8,7 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 idealFlow: []
 targetSpecies:
   - largemouth-bass
@@ -38,16 +38,24 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing.html
     retrieved: 2026-09-13
 notes: >-
-  Small reservoir on the Little Tennessee River along the North Carolina line in Blount County, impounded by
-  Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges into Chilhowee Lake.
-  TWRA stocks the reservoir with rainbow trout in November and December. TWRA lists this pool as "Little
-  Calderwood Reservoir" (458 ac) — that name is an alias here. TWRA's Calderwood Reservoir page lists the
-  fishery as largemouth bass, smallmouth bass, crappie, bluegill, catfish (see officialSources).
+  Small reservoir on the Little Tennessee River along the North Carolina line in Blount County,
+  impounded by Calderwood Dam. Receives Little Tennessee flow from Fontana Lake (NC) and discharges
+  into Chilhowee Lake. TWRA stocks the reservoir with rainbow trout in November and December. TWRA
+  lists this pool as "Little Calderwood Reservoir" (458 ac) — that name is an alias here. TWRA's
+  Calderwood Reservoir page lists the fishery as largemouth bass, smallmouth bass, crappie,
+  bluegill, catfish (see officialSources).
 
 
-  Regulations: Trout 7/day, no length limit, only 2 may be lake trout; black bass 5/day combined, only 2 under
-  14"; crappie 20/day combined 8" min; white bass 10/day 14" min; sauger 8/day 15" min; muskellunge 1/day 42"
-  min; walleye 8/day no limit; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Trout 7/day, no length limit, only 2 may be lake trout; black bass 5/day combined,
+  only 2 under 14"; crappie 20/day combined 8" min; white bass 10/day 14" min; sauger 8/day 15" min;
+  muskellunge 1/day 42" min; walleye 8/day no limit; (retrieved 2026-09-14; verify current rules
+  with TWRA before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (Calderwood Reservoir itself (541 ac, 8-mile deep
+  cold impoundment of the Little Tennessee, Blount/Monroe counties on the NC line; TWRA also lists
+  it as 'Little Calderwood').) (ADR 0010 consistency).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
@@ -55,3 +63,45 @@ officialSources:
     url: https://www.tn.gov/twra.html
   - label: TWRA — Calderwood Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA places Calderwood in its year-round reservoir trout stocking program for Brook,
+    Brown and Rainbow trout and documents stocked trout doing well all year in the reservoir's cold,
+    oxygenated water - access is the practical constraint, with boat access only from North
+    Carolina.
+  reachScope: Calderwood Reservoir itself (541 ac, 8-mile deep cold impoundment of the Little
+    Tennessee, Blount/Monroe counties on the NC line; TWRA also lists it as 'Little Calderwood').
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page - Reservoir Trout Stocking Information
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities' - list includes 'Region IV, Calderwood - Brook, Brown and Rainbow' (capture
+        captures/twra-trout-page.txt, captured 2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "row: Region 4, Blount/Monroe, 'Calderwood Reservoir', Reservoir, months N,D, Rainbow
+        Trout (capture captures/twra-schedule.json)"
+    - label: "TWRA Where to Fish: Calderwood Reservoir"
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/calderwood-lake.html
+      kind: survey
+      retrieved: 2026-09-22
+      pinpoint: "'Trout are stocked on an annual basis and do well all year in the cold, oxygenated
+        water'; 'a small, 541-acre reservoir' / 'deep, 8-mile-long, cold water reservoir'; trout
+        among the primary game fish with a 7/day creel ('only two can be Lake Trout') (verified live
+        2026-09-22)"
+  caveats:
+    - "Reservoir wording: a trout FISHERY on a reservoir, never a 'trout stream'."
+    - "Access: 'the only boat access is located in North Carolina' (TWRA page); bank anglers need
+      the license of the state where they fish; TN/NC reciprocal agreement covers boat fishing and
+      Slickrock Creek."
+    - "Species: the year-round list carries Brook, Brown and Rainbow; the schedule row names only
+      Rainbow; the reservoir page's creel rule mentions lake trout (only 2 may be lake trout).
+      Record all three as written."
+    - Do not conflate with Chilhowee Reservoir downstream or Cheoah Reservoir upstream.

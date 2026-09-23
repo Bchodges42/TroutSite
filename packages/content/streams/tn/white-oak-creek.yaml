@@ -26,5 +26,36 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01304549"]
-  huc8s: ["06040005"]
+  gnisIds:
+    - "01304549"
+  huc8s:
+    - "06040005"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's 2026 spring program stocks this Houston County creek with rainbow trout on three
+    dates (weeks of Feb 22, Mar 22 and Mar 29), and a completed 4/30/2026 release was reported on
+    TWRA's live stocking-report page in the prior pass - a short spring put-and-take season; the
+    catalog's Dec/Jan/Feb winter months are contradicted by the schedule.
+  reachScope: "'White Oak Creek Spring Trout Site', Houston County (mid-creek, ~36.259,-87.872)"
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 1 / Houston / 'Whiteoak Creek' / Seasonal / Rainbow Trout / weeks 2/22,
+        3/22, 03/29/2026"
+    - label: Whiteoak Creek near Concord summer grabs (USGS-03605968)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03605968&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1984-1985
+      retrieved: 2026-09-22
+      pinpoint: "prior batch3 lead: 28 C July 1985; 21 C June; 23 C September - upper reach, upstream of
+        the stocking site"
+  caveats:
+    - Spring program only (Feb-Mar 2026) - do not carry the catalog's winter months.
+    - "Same-name hazard: White Oak creeks exist in Macon, Scott and Morgan counties with no trout
+      program - this verdict is the HOUSTON COUNTY creek only."
+    - Near Land Between the Lakes' eastern edge; drains to Kentucky Lake.

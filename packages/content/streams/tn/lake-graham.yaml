@@ -40,15 +40,16 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in the cold months
-  only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you
-  go. TWRA's Lake Graham page lists the fishery as largemouth bass, crappie, bluegill, catfish (see
-  officialSources).
+  TWRA winter put-and-take lake in Jackson (Madison County). Stocked with rainbow trout in the cold
+  months only — the fish do not hold over summer. Check the TWRA schedule for the current winter
+  window before you go. TWRA's Lake Graham page lists the fishery as largemouth bass, crappie,
+  bluegill, catfish (see officialSources).
 
 
-  Regulations: largemouth no creel/length limit but only one fish >18 in may be kept per day; bluegill none;
-  redear 20/day; crappie (all) none; blue + channel catfish 5/day combined; trout 7/day no length limit;
-  statewide rules otherwise (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: largemouth no creel/length limit but only one fish >18 in may be kept per day;
+  bluegill none; redear 20/day; crappie (all) none; blue + channel catfish 5/day combined; trout
+  7/day no length limit; statewide rules otherwise (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -56,3 +57,37 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Lake Graham fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: "A TWRA-owned warmwater lake near Jackson (Madison Co.) - largemouth bass, crappie,
+    bluegill, redear and catfish per TWRA's lake page - that also carries a winter put-and-take
+    rainbow trout program (Jan 8, 2026 stocking; next TBD Dec 2026): a documented warmwater fishery
+    with an added winter trout season, not a trout lake."
+  asOf: "2026"
+  sources:
+    - label: Lake Graham - TWRA Where to Fish (Region 1)
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-graham.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "fishery list: 'Largemouth bass - crappie - bluegill - redear sunfish - blue & channel
+        catfish'"
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "2 rows: 'Lake Graham', Madison Co., REGION 1, TYPE Winter, Rainbow Trout, days 1/8/2026
+        and 'TBD 12/2026'"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Winter program only: TWRA's plan (Winter Trout Program section, verified first-hand) frames
+      the program as winter-months opportunity and classes hatchery-supported lakes as primarily
+      warmwater habitats that cannot support trout year round - absence after winter is not
+      biologically proven, but no agency document promises summer trout."
+    - "Reservoir wording: this is a 500-acre warmwater reservoir with a winter trout program; do not
+      present it as a trout lake or trout stream."

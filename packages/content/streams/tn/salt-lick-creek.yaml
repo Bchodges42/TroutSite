@@ -26,6 +26,41 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01269923"]
-  huc8s: ["05110002"]
-  counties: ["Macon", "Jackson", "Putnam"]
+  gnisIds:
+    - "01269923"
+  huc8s:
+    - "05110002"
+  counties:
+    - Macon
+    - Jackson
+    - Putnam
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's program stocks the Macon County Salt Lick Creek with catchable rainbow trout on
+    early-spring stocking weeks (March 2026 in the current schedule; a prior pass also recorded a
+    January 7, 2026 event row); no year-round trout fishery is documented.
+  reachScope: Macon County reach in the Dale Hollow fringe
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 2 'Salt Lick Creek' rows, Macon County, Region 2, Seasonal, Rainbow Trout - weeks 3/1 and
+        3/22/2026 (observed month March)
+    - label: NWIS station inventory - Salt Lick Creek stations
+      url: https://waterservices.usgs.gov/nwis/site/?stateCd=tn&siteOutput=expanded&format=rdb&siteType=ST
+      kind: temperature-series
+      retrieved: 2026-09-18
+      pinpoint: Stations 03312255/03312259/03312280 mark the Macon County drainage; no temperature series
+        located
+  caveats:
+    - 2026 schedule shows March 1 and March 22 stocking weeks; a January 7, 2026 event appears in
+      the prior pass's live-table read - verify on TWRA's live schedule.
+    - No holdover, wild-trout, or summer-temperature documentation exists; do not extend the fishery
+      past the stocking weeks.
+    - The Fishbrain 'Salt Lick Creek' page (bass/crappie/sauger dominated) needs segment review and
+      is a lead only.

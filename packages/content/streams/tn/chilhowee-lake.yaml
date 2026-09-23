@@ -8,7 +8,7 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 idealFlow: []
 targetSpecies:
   - largemouth-bass
@@ -43,13 +43,18 @@ speciesEvidence:
     url: https://www.tva.com/environment/lake-levels
     retrieved: 2026-09-13
 notes: >-
-  Reservoir on the Little Tennessee River in Blount County below the
-  Chilhowee Mountains, impounded by Chilhowee Dam. Receives the Little
-  Tennessee River from Calderwood Lake and discharges into Tellico Lake. TWRA stocks the
-  reservoir with rainbow trout in February, November, and December.
-  TWRA maps the reservoir at 1,738 ac.
-  TWRA's Chilhowee Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
-  The live trout list carries rainbow trout while an older plan snapshot differs; use the live list with the dated conflict noted in the source record.
+  Reservoir on the Little Tennessee River in Blount County below the Chilhowee Mountains, impounded
+  by Chilhowee Dam. Receives the Little Tennessee River from Calderwood Lake and discharges into
+  Tellico Lake. TWRA stocks the reservoir with rainbow trout in February, November, and December.
+  TWRA maps the reservoir at 1,738 ac. TWRA's Chilhowee Reservoir page lists the fishery as
+  largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  The live trout list carries rainbow trout while an older plan snapshot differs; use the live list
+  with the dated conflict noted in the source record.
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (Chilhowee Reservoir itself (Blount/Monroe counties,
+  Little Tennessee River between Calderwood and Chilhowee dams).) (ADR 0010 consistency).
 officialSources:
   - label: TVA — reservoir information (verify lake levels officially)
     url: https://www.tva.com/environment/lake-levels
@@ -57,3 +62,44 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Chilhowee Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA places Chilhowee in its year-round reservoir trout stocking program (Rainbow) and
+    documents stocked trout thriving in the reservoir's cool, well-oxygenated water, over a
+    bass/panfish fishery.
+  reachScope: Chilhowee Reservoir itself (Blount/Monroe counties, Little Tennessee River between
+    Calderwood and Chilhowee dams).
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page - Reservoir Trout Stocking Information
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities' - list includes 'Region IV, Chilhowee - Rainbow' (capture
+        captures/twra-trout-page.txt, captured 2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "row: Region 4, Blount/Monroe, 'Chilhowee Reservoir', Reservoir, months F,N,D, Rainbow
+        Trout (capture captures/twra-schedule.json)"
+    - label: "TWRA Where to Fish: Chilhowee Reservoir"
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/chilhowee-reservoir.html
+      kind: survey
+      retrieved: 2026-09-22
+      pinpoint: "'Trout are stocked on an annual basis and thrive in the cool, clear water'; 'The cool
+        water and good dissolved oxygen levels create an ideal habitat'; species list includes
+        trout; 'Lake Trout have been stocked in the past, but not recently' (verified live
+        2026-09-22)"
+  caveats:
+    - "Reservoir wording: this is a trout FISHERY on a reservoir, never a 'trout stream'."
+    - "Summer pattern: when surface water exceeds ~70 F, TWRA advises trout suspend or hold below 20
+      ft - deep-water presentation qualifies any summer expectation."
+    - "Species conflict note: an older plan snapshot differs from the live trout list; the live
+      sources (2026-09-22) carry Rainbow, with lake trout explicitly 'stocked in the past, but not
+      recently'."
+    - Do not conflate with the Chilhowee Dam TAILWATER reach below the dam or with Tellico Reservoir
+      downstream - both are different waters.

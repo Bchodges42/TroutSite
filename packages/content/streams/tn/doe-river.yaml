@@ -16,13 +16,14 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks upper and lower
-  sections in spring. Gentle gradient, easy wading, town access.
+  A clear Carter County mountain creek that joins the Watauga at Elizabethton; TWRA stocks upper and
+  lower sections in spring. Gentle gradient, easy wading, town access.
 
 
-  Regulations: Delayed harvest: "Doe River: Roan Mountain State Park boundaries. • Catch-and-release season is
-  Oct. 1– Feb 28." General DH rules: harvest/possession prohibited during C&R season, only artificial lures
-  permitted, bait prohibited; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Delayed harvest: "Doe River: Roan Mountain State Park boundaries. • Catch-and-release
+  season is Oct. 1– Feb 28." General DH rules: harvest/possession prohibited during C&R season, only
+  artificial lures permitted, bait prohibited; (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03485500
     url: https://waterdata.usgs.gov/monitoring-location/03485500/
@@ -36,6 +37,46 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01328065"]
-  huc8s: ["06010103"]
-  counties: ["Carter"]
+  gnisIds:
+    - "01328065"
+  huc8s:
+    - "06010103"
+  counties:
+    - Carter
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "A documented year-round trout fishery on the Carter County Doe River: TWRA schedules
+    spring-summer rainbow stockings (Mar-Jun 2026), a fall delayed-harvest stocking (week of Oct 4),
+    and states a catch-and-release season Oct 1 - Feb 28 between the Roan Mountain State Park
+    boundaries - a stated fishery component in every season - plus a documented (2017 report) wild
+    trout population."
+  reachScope: Roan Mountain State Park boundaries reach for the delayed-harvest window; the stocking
+    program spans the main stem (upper/lower sections and Valley Forge)
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Regulations
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+    - label: Tennessee Trout Regulations
+      url: https://www.eregulations.com/tennessee/fishing/trout-regulations
+      kind: agency-assessment
+      retrieved: 2026-09-22
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "9 Carter Co. rows: 8 Seasonal (weeks 3/1 - 6/7/2026) + 1 Delayed Harvest (week
+        10/4/2026), Rainbow Trout"
+  caveats:
+    - "Reach discipline: the forecast node the seed matched (n-y1OLAh) is the WILBUR/Watauga
+      tailwater's 2025 biologist report - the Doe River appears there only as the confluence
+      landmark dividing the tailwater's lower/upper sections. It is NOT a Doe River assessment; do
+      not borrow tailwater conclusions."
+    - "The lowermost Elizabethton reach is historically the warm part (prior temperature lead:
+      July-Aug gauge samples to ~24.5 C); summer fish presence there is not separately documented."
+    - "Same-name risk: the Johnson County Doe Creek is a different water; several claims (and some
+      fishing-media content) conflate the two."

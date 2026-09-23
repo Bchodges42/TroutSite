@@ -977,7 +977,7 @@ export function RiverMapPage() {
                 : coverageUnavailable
                   ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
                   : species === 'all'
-                    ? 'Blue outlines mark trout waters, amber marks warmwater; dimmed dashed waters hold no trout right now.'
+                    ? 'Blue outlines mark trout waters, amber marks warmwater; dimmed dashed waters are out of season.'
                     : 'Bright lines hold trout now. Dimmed dashed lines are trout waters out of season. Unclassified waters say so instead of guessing.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>

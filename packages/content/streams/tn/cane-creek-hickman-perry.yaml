@@ -17,15 +17,45 @@ idealFlow:
     max: 180
     unit: cfs
 idealFlowSource: editorial
-notes: Cane Creek in the Buffalo River system, with stocked reaches in Hickman and Perry
-  Counties. The downstream receiving-water relationship is confirmed as Buffalo River.
+notes: Cane Creek in the Buffalo River system, with stocked reaches in Hickman and Perry Counties.
+  The downstream receiving-water relationship is confirmed as Buffalo River.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01307376"]
-  huc8s: ["06040004"]
-  counties: ["Hickman", "Perry"]
+  gnisIds:
+    - "01307376"
+  huc8s:
+    - "06040004"
+  counties:
+    - Hickman
+    - Perry
   receivingWater: Buffalo River
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on the Buffalo-River-system Cane Creek: six 2026
+    rainbow stockings across its Hickman and Perry County reaches (weeks of Feb 22, Mar 22 and Apr
+    26) - a late-winter/spring program, not a year-round fishery."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "6 rows: 3 x 'Cane Creek' Perry Co. (REGION 1) + 3 x 'Cane Creek' Hickman Co. (REGION 2),
+        Seasonal, Rainbow Trout, weeks 2/22, 3/22, 4/26/2026"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - This entry covers the Hickman/Perry (Buffalo River system) Cane Creek only - the Van
+      Buren/Bledsoe Cane Creek (Caney Fork system), the Putnam 'Cane Creek Park' winter lake and the
+      adjacent Hickman Mill Creek stocking rows are different waters.
+    - No wild-trout listing or special regulation exists for this water (prior research; consistent
+      with this pass's regulations checks for other waters).

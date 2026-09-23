@@ -10,16 +10,35 @@ species: trout
 fishery: stocked
 yearRound: false
 idealFlow: []
-seasonMonths: [11, 12, 1, 2, 3 ]
+seasonMonths:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
 seasonKind: programmatic
-notes: >-
-  TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the
-  cold months only — the fish do not hold over summer. TWRA lists the site as Paris City
-  Park; the mapped water is the city-run Green Acres Lake (aka Williams Lake) — the
-  secondary Eiffel Tower Park pond is a different water. Check the TWRA schedule for the
-  current winter window before you go.
+notes: TWRA winter put-and-take lake in Paris (Henry County). Stocked with rainbow trout in the cold
+  months only — the fish do not hold over summer. TWRA lists the site as Paris City Park; the mapped
+  water is the city-run Green Acres Lake (aka Williams Lake) — the secondary Eiffel Tower Park pond
+  is a different water. Check the TWRA schedule for the current winter window before you go.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
+opportunity:
+  trout: unresolved
+  evidenceState: limited
+  statement: "TWRA's winter program stocks a 'Paris City Park' pond with rainbow trout (2026 rows:
+    January 14 and TBD December 2026), but which Paris pond that is - the catalog's mapped Green
+    Acres/Williams Lake or the locally reported Eiffel Tower Park trout pond - is not settled by
+    available sources."
+  asOf: "2026"
+  caveats:
+    - Which pond does TWRA stock - the city-run Green Acres/Williams Lake the catalog maps, or the
+      Eiffel Tower Park Extended trout pond local reporting describes? The 12/10/2025 date matches
+      TWRA's 'Paris City Park' row, suggesting the Eiffel Tower pond.
+    - "Whatever the pond, the program is winter put-and-take: 2025-26 stockings ran
+      November-February with spring stocking starting March 1."
+  unresolvedQuestion: Which Paris pond is TWRA's 'Paris City Park' stocking site - the catalog's
+    mapped Green Acres/Williams Lake or the Eiffel Tower Park Extended trout pond?

@@ -15,8 +15,8 @@ idealFlow:
     max: 400
     unit: cfs
 idealFlowSource: editorial
-notes: Lawrence County’s spring-fed Shoal Creek with TWRA spring stocking — the southern
-  Highland Rim’s nicest surprise. Gauge at Iron City reads the groundwater mood.
+notes: Lawrence County’s spring-fed Shoal Creek with TWRA spring stocking — the southern Highland
+  Rim’s nicest surprise. Gauge at Iron City reads the groundwater mood.
 officialSources:
   - label: USGS Water Data — monitoring location 03588500
     url: https://waterdata.usgs.gov/monitoring-location/03588500/
@@ -25,6 +25,25 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00153439"]
-  huc8s: ["06030005"]
-  counties: ["Lawrence"]
+  gnisIds:
+    - "00153439"
+  huc8s:
+    - "06030005"
+  counties:
+    - Lawrence
+opportunity:
+  trout: unresolved
+  evidenceState: conflicting
+  statement: "The catalog's spring-stocked-trout claim for Shoal Creek conflicts with TWRA's current
+    program: the verified 2026 schedule has zero rows for Shoal Creek (only East Fork Shoal Creek, a
+    different water), while newspaper-era reports describe historical winter plants at Lawrenceburg
+    parks. Unresolved - both sides preserved."
+  asOf: "2026"
+  caveats:
+    - Do not confuse with East Fork Shoal Creek (stocked 5 spring weeks 2026) - a different catalog
+      water.
+    - The catalog's 'spring-fed' note has no agency documentation found.
+    - No wild-trout, delayed-harvest, or special-regulation listing exists for this creek.
+  unresolvedQuestion: Does TWRA currently (any recent year) stock the Shoal Creek main stem at
+    Lawrenceburg - and if so, when and at which parks? The current 2026 schedule says no; historical
+    reporting says yes.

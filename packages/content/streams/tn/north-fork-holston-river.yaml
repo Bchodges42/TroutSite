@@ -9,19 +9,19 @@ stockingProgram: false
 species: warmwater
 idealFlow: []
 notes: >-
-  The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence with the
-  South Fork Holston at Kingsport — the point where the Holston River main stem (holston-river) begins. The
-  Tennessee reach is short (the fork forms the state line for its final miles); Virginia water upstream is out
-  of scope. TWRA recognizes it as a separate named river. Renowned smallmouth water in Virginia; verify
-  regulations and any consumption advisories before eating fish from this reach. TWRA's statewide regulation
-  exceptions set a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per
-  day. (see officialSources).
+  The northern fork of the Holston, entering Tennessee from Virginia shortly before its confluence
+  with the South Fork Holston at Kingsport — the point where the Holston River main stem
+  (holston-river) begins. The Tennessee reach is short (the fork forms the state line for its final
+  miles); Virginia water upstream is out of scope. TWRA recognizes it as a separate named river.
+  Renowned smallmouth water in Virginia; verify regulations and any consumption advisories before
+  eating fish from this reach. TWRA's statewide regulation exceptions set a smallmouth bass rule on
+  this water: 13–17 in protected length range, one over 17 in per day. (see officialSources).
 
 
-  Regulations: Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day — TN reach from
-  the state line downstream to the confluence with the South Fork Holston (identical smallmouth rule also
-  applies on the Holston main stem "John Sevier Dam upstream t… (retrieved 2026-09-14; verify current rules
-  with TWRA before you go).
+  Regulations: Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day — TN
+  reach from the state line downstream to the confluence with the South Fork Holston (identical
+  smallmouth rule also applies on the Holston main stem "John Sevier Dam upstream t… (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
@@ -30,6 +30,38 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01487063"]
-  huc8s: ["06010101", "06010102", "06010104"]
-  counties: ["Sullivan"]
+  gnisIds:
+    - "01487063"
+  huc8s:
+    - "06010101"
+    - "06010102"
+    - "06010104"
+  counties:
+    - Sullivan
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA manages the short Tennessee reach of the North Fork Holston as a smallmouth fishery
+    (13-17 inch protected range, one over 17 in/day, state line to the South Fork Holston
+    confluence); no trout program or trout record exists for the Tennessee reach.
+  reachScope: State line downstream to the South Fork Holston confluence at Kingsport (Sullivan County)
+  asOf: "2026"
+  sources:
+    - label: TWRA statewide fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "'North Fork Holston River - Confluence with the South Fork Holston River upstream to the
+        state line': 'Black Bass: Five (5) per day in combination; 13-17 inch PLR for Smallmouth
+        bass... only one (1) Smallmouth bass over 17 inches per day' (verified live 2026-09-22)"
+    - label: North Fork Holston temperature grabs (USGS-03490090; TDECWPC-NFHOL004.6SU)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03490090&siteid=TDECWPC-NFHOL004.6SU&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1995-2008
+      retrieved: 2026-09-22
+      pinpoint: "prior batch6 lead: July grabs 22.7-29.5 C across 1995-2008"
+  caveats:
+    - Check fish-consumption advisories before eating fish from this reach.
+    - Statewide black bass rules (5/day combination) plus the smallmouth protected length range
+      above.

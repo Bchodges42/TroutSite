@@ -26,5 +26,44 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01291406"]
-  huc8s: ["06040004"]
+  gnisIds:
+    - "01291406"
+  huc8s:
+    - "06040004"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's spring program stocks catchable rainbow trout in Little Buffalo River (Lawrence
+    County) during March-May stocking weeks; the agency documents no year-round trout fishery here,
+    so plan trips around releases.
+  reachScope: stocked Lawrence County course (roughly RM 10.4-6.5, NE of Lawrenceburg)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 4 'Little Buffalo River' rows, Lawrence County, Seasonal, Rainbow Trout, Region 2 -
+        stocking weeks 3/8, 3/22, 5/10, 5/31/2026 (observed months Mar/May)
+    - label: TWRA Trout Stocking Locations GIS layer
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%3D%27LITTLE%20BUFFALO%20RIVER%27&outFields=Site_Name%2CStreamName%2CCounty%2CStockingProgram%2CSpecies%2CLATITUDE%2CLONGITUDE&returnGeometry=false&f=pjson
+      kind: schedule-table
+      retrieved: 2026-09-18
+      pinpoint: 4 sites, all Lawrence County, program 'Spring', species rainbow, clustered on ~6 km of the
+        Lawrence County course
+    - label: Little Buffalo River near Hohenwald temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603693&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2001 grabs
+      retrieved: 2026-09-18
+      pinpoint: 21.5 C on 2001-08-21 and 22.0 C on 2001-05-02 (lower reach); stocked Lawrence reach has
+        May 18.6 C but no June-September values
+  caveats:
+    - Stocking weeks in 2026 are March 8, March 22, May 10 and May 31 - expect the best fishing
+      immediately after releases.
+    - TWRA documents no holdover, cold source, or wild trout for this creek; do not assume trout
+      persist between or after stockings.
+    - The Buffalo Creek (Grainger County) trout water in TWRA regulations is a different stream; so
+      is the Buffalo River main stem.

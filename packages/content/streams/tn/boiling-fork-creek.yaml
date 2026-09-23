@@ -26,5 +26,32 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01269369"]
-  huc8s: ["06030003"]
+  gnisIds:
+    - "01269369"
+  huc8s:
+    - "06030003"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's winter program stocks catchable rainbow trout at Cowan City Park on this creek
+    (Jan 20, Feb 19, and a TBD December 2026 date in the 2026 schedule) - a winter put-and-take
+    fishery near Cowan, with no documented carryover into summer.
+  reachScope: Cowan City Park reach, Cowan (Franklin County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 2 / Franklin / 'Cowan City Park' / Winter / Rainbow Trout / 1/20/2026,
+        2/19/2026, TBD 12/2026"
+    - label: Boiling Fork Creek temperature grabs (TDECWR_WQX-TNW000000389)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000389&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2012-2023
+      retrieved: 2026-09-22
+      pinpoint: "prior batch6 lead: Jun-Sep grabs 27.7-31 C in 2017/2022/2023"
+  caveats:
+    - Winter put-and-take only; a warmwater Elk River drainage creek.
+    - The 2026 schedule is the plan - confirm dates before you go.

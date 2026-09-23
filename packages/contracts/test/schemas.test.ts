@@ -84,6 +84,92 @@ describe('StreamSchema', () => {
   });
 });
 
+describe('OpportunitySchema (ADR 0010)', () => {
+  const documentedSource = {
+    label: 'TWRA trout forecast — Boone Tailwater',
+    url: 'https://storymaps.arcgis.com/stories/dbb92bdf718f4fd7839bf4b08fb82747',
+    kind: 'agency-assessment' as const,
+    observationPeriod: 'March 2026 electrofishing',
+    publicationDate: '2026',
+    retrieved: '2026-09-22',
+    pinpoint: 'node n-Q2FuhI',
+  };
+
+  it('accepts a documented year-round opportunity with claim-specific sources', () => {
+    const stream = makeStream({
+      opportunity: {
+        trout: 'year-round-trout',
+        evidenceState: 'documented',
+        asOf: '2026',
+        sources: [documentedSource],
+        caveats: ['Published stocking calendars disagree; check the latest report.'],
+      },
+    });
+    expect(StreamSchema.parse(stream).opportunity?.trout).toBe('year-round-trout');
+  });
+
+  it('accepts an unresolved opportunity that states the missing proposition', () => {
+    const stream = makeStream({
+      opportunity: {
+        trout: 'unresolved',
+        evidenceState: 'unresolved',
+        asOf: '2026',
+        unresolvedQuestion: 'No reach-specific trout survey or completed-release record found; next source: TWRA Region 3 biologist.',
+      },
+    });
+    expect(StreamSchema.parse(stream).opportunity?.trout).toBe('unresolved');
+  });
+
+  it('requires a missing proposition on an unresolved headline', () => {
+    const stream = makeStream({
+      opportunity: { trout: 'unresolved', evidenceState: 'unresolved', asOf: '2026' },
+    });
+    expect(() => StreamSchema.parse(stream)).toThrow(/missing proposition/);
+  });
+
+  it('requires claim-specific sources for any positive headline', () => {
+    const base = { trout: 'seasonal-stocked-trout' as const, evidenceState: 'documented' as const, asOf: '2026' };
+    expect(() => StreamSchema.parse(makeStream({ opportunity: base }))).toThrow(/sources/);
+  });
+
+  it('forbids warmwater-focus resting on unresolved evidence', () => {
+    const stream = makeStream({
+      opportunity: {
+        trout: 'warmwater-focus',
+        evidenceState: 'unresolved',
+        asOf: '2026',
+        sources: [documentedSource],
+      },
+    });
+    expect(() => StreamSchema.parse(stream)).toThrow(/positive claim/);
+  });
+
+  it('rejects a malformed retrieval date and keeps dates distinct fields', () => {
+    const stream = makeStream({
+      opportunity: {
+        trout: 'year-round-trout',
+        evidenceState: 'documented',
+        asOf: '2026',
+        sources: [{ ...documentedSource, retrieved: 'September 2026' }],
+      },
+    });
+    expect(() => StreamSchema.parse(stream)).toThrow(/retrieved/);
+  });
+
+  it('allows reach-scoped headlines for partial-reach evidence', () => {
+    const stream = makeStream({
+      opportunity: {
+        trout: 'year-round-trout',
+        evidenceState: 'documented',
+        reachScope: 'first ~11 miles below Tims Ford Dam',
+        asOf: '2026',
+        sources: [documentedSource],
+      },
+    });
+    expect(StreamSchema.parse(stream).opportunity?.reachScope).toContain('11 miles');
+  });
+});
+
 describe('GaugeReadingSchema', () => {
   it('accepts a full reading', () => {
     expect(GaugeReadingSchema.parse(makeReading())).toBeDefined();

@@ -8,12 +8,10 @@ gaugeIds:
   - "03604000"
 stockingProgram: false
 idealFlow: []
-notes: >-
-  Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck
-  River tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River
-  is a separate water. USGS 03604000 provides verified flow, stage, and temperature context.
-  Detailed angler notes are still being prepared — check TWRA and
-  local access areas in the meantime.
+notes: Reference waterbody from the Tennessee waterways inventory — a north-flowing Duck River
+  tributary through Lewis, Perry, and Humphreys counties; Little Buffalo River is a separate water.
+  USGS 03604000 provides verified flow, stage, and temperature context. Detailed angler notes are
+  still being prepared — check TWRA and local access areas in the meantime.
 officialSources:
   - label: USGS Water Data — monitoring location 03604000
     url: https://waterdata.usgs.gov/monitoring-location/03604000/
@@ -22,5 +20,41 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01295866", "01305509"]
-  huc8s: ["06040004"]
+  gnisIds:
+    - "01295866"
+    - "01305509"
+  huc8s:
+    - "06040004"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TDEC documents the Buffalo River — the longest un-impounded river in Middle Tennessee —
+    as float-and-wade warmwater water supporting nearly 85 fish species, with a TWRA access at
+    Henryville and outfitter float fishing throughout the Lewis-Perry-Humphreys corridor.
+  asOf: "2026"
+  sources:
+    - label: Tennessee Scenic Rivers — Buffalo
+      url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/buffalo.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'The Buffalo River is the longest un-impounded river in middle Tennessee and the longest
+        tributary of the Duck River'; supports 'a diversity of wildlife including nearly 85 species
+        of fish'; canoe/kayak popular with 'fishing opportunities'; TWRA access below the headwaters
+        at Henryville"
+    - label: 2026 trout stocking schedule (live datatable feed)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'buffalo': 34 rows, all Little Buffalo River (Lawrence Co.) or Buffalo Creek
+        (Grainger Co.); zero Buffalo River rows"
+    - label: Discrete water temperature, Buffalo River near Flat Woods
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03604000&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1998-2005 grab samples
+      retrieved: 2026-09-22
+      pinpoint: Jun-Sep values 23.8-27.0 C
+  caveats:
+    - "Same-name watch: Little Buffalo River (Lawrence Co., stocked Seasonal rainbow) and Buffalo
+      Creek (Grainger Co., Seasonal + delayed-harvest) are separate catalog waters."

@@ -15,21 +15,60 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Remote Carter County headwaters with TWRA stocking and native brook trout upstream. The reach above the
-  Dennis Cove cable crossing is a designated TWRA wild-trout water — open year-round. Steep, brushy, and
-  rain-flashy.
+  Remote Carter County headwaters with TWRA stocking and native brook trout upstream. The reach
+  above the Dennis Cove cable crossing is a designated TWRA wild-trout water — open year-round.
+  Steep, brushy, and rain-flashy.
 
 
-  Regulations: Wild stream reach (above cable crossing near Dennis Cove): daily creel 5 trout, no length
-  limit, single-hook artificial lures only, bait/multiple-hook lures prohibited; below the cable crossing:
-  statewide (7 trout/day, no length limit) (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: Wild stream reach (above cable crossing near Dennis Cove): daily creel 5 trout, no
+  length limit, single-hook artificial lures only, bait/multiple-hook lures prohibited; below the
+  cable crossing: statewide (7 trout/day, no length limit) (retrieved 2026-09-14; verify current
+  rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01326947"]
-  huc8s: ["06010103"]
-  counties: ["Carter"]
+  gnisIds:
+    - "01326947"
+  huc8s:
+    - "06010103"
+  counties:
+    - Carter
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "A documented year-round trout water: TWRA designates Laurel Fork above the Dennis Cove
+    cable crossing a wild trout water (single-hook artificials) with no seasonal closure listed, and
+    TWRA's 2018 Region IV report documents wild brown trout dominating the stream with brook trout
+    in the upper reach and nine tributaries; the lower reach additionally carries a Mar-Jun rainbow
+    stocking program (eight 2026 weeks)."
+  reachScope: Designated wild-trout reach above the Dennis Cove cable crossing (year-round); the lower
+    stocked reach is a Mar-Jun put-and-take program
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Regulations
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "8 rows: 'Laurel Fork', Carter Co., REGION 4, Seasonal, Rainbow Trout, weeks 3/1 -
+        6/7/2026 (the Campbell Co. 'Laurel Fork' rows are a different water)"
+    - label: Fisheries Report, Region IV Trout Fisheries Report 2018
+      url: https://digitalcommons.memphis.edu/govpubs-tn-wra-region-iv-stream-reports/4/
+      kind: survey
+      publicationDate: "2018"
+      retrieved: 2026-09-22
+      pinpoint: repository landing page verified (title/year); internal quotes from prior research lead
+  caveats:
+    - "Two fisheries in one feature: the designated wild reach above the cable crossing (year-round,
+      artificials) vs the Mar-Jun stocked reach below (Dennis Cove area) - do not mix their
+      windows."
+    - "Same-name risk: a Campbell County 'Laurel Fork' also appears in the 2026 schedule (different
+      water); the Fishbrain 'Laurel Fork' page needs segment review and is a research lead only."

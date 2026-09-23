@@ -21,6 +21,36 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01285143"]
-  huc8s: ["06010206"]
-  counties: ["Claiborne"]
+  gnisIds:
+    - "01285143"
+  huc8s:
+    - "06010206"
+  counties:
+    - Claiborne
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on Gap Creek (Claiborne County, Cumberland Gap to the
+    Powell Valley): three 2026 rainbow stockings (weeks of Feb 15, Mar 15 and Apr 12) - a
+    late-winter/spring program, not a year-round fishery."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "3 rows: 'Gap Creek', Claiborne Co., REGION 4, Seasonal, Rainbow Trout, weeks 2/15, 3/15,
+        4/12/2026"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Same-name risk: 'Gap Creek' is a common name (the Fishbrain page needs segment review and is
+      a research lead only); this entry is the Claiborne County water rising at Cumberland Gap,
+      corroborated by the seed's Norris-pool boundary text ('Gap Creek confluence' on the Powell
+      River arm - prior research lead)."
+    - Prior research found cool summer temperatures on the upper (park) reach but no holdover or
+      wild-trout documentation; do not infer year-round fish.

@@ -14,8 +14,8 @@ idealFlow:
     max: 60
     unit: cfs
 idealFlowSource: editorial
-notes: Cold Johnson County water near the Virginia line, TWRA spring-stocked. Good early-season option when
-  bigger rivers are high. This catalog reach covers the upper creek.
+notes: Cold Johnson County water near the Virginia line, TWRA spring-stocked. Good early-season
+  option when bigger rivers are high. This catalog reach covers the upper creek.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -27,6 +27,39 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01639615"]
-  huc8s: ["06010103"]
-  counties: ["Johnson"]
+  gnisIds:
+    - "01639615"
+  huc8s:
+    - "06010103"
+  counties:
+    - Johnson
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA stocks the upper Roan Creek weekly-to-biweekly across spring and early summer
+    (March-June 2026 stocking weeks); the nearest gauge below the headwater forks once grabbed 17 C
+    in July, but no year-round trout fishery is documented and the catalog's winter season label
+    contradicts the schedule.
+  reachScope: upper (headwater) reach of Roan Creek, Johnson County
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 4 'Upper Roan Creek' rows, Johnson County, Seasonal, Rainbow Trout - weeks 3/22, 4/19,
+        5/17, 6/14/2026 (observed months Mar-Jun)
+    - label: Roan Creek temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03482000&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1975-1988 and 2006 grabs
+      retrieved: 2026-09-18
+      pinpoint: 17.0 C (Jul 1988) near Neva below the forks; lower main stem 18.9-26.1 C (1975-76)
+  caveats:
+    - "2026 stocking weeks: March 22, April 19, May 17 and June 14 - fish soon after releases."
+    - The special trout regulation on Roan Creek (Mountain Lake Estates Bridge downstream to Doe
+      Creek) applies to the LOWER main stem - a different reach from this catalog entry.
+    - Roan Creek (any reach) is absent from TWRA's wild-trout list; no wild population is documented
+      for the upper creek.

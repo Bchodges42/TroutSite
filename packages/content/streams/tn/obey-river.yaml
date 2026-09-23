@@ -5,7 +5,7 @@ waterbodyType: tailrace
 display: featured
 regionId: tn-upper-cumberland
 gaugeIds:
-  - "usace:DHTT1"
+  - usace:DHTT1
 stockingProgram: true
 species: trout
 fishery: tailwater
@@ -15,16 +15,71 @@ idealFlow:
     max: 1000
     unit: cfs
 idealFlowSource: editorial
-seasonMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+seasonMonths:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
 seasonKind: programmatic
-notes: Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery stocked by TWRA every month of the year
-  below the dam. Release-dependent wade windows — the below-dam gauge tells the story.
+notes: Cold Dale Hollow releases support a solid put-grow-take rainbow, brown, and brook fishery
+  stocked by TWRA every month of the year below the dam. Release-dependent wade windows — the
+  below-dam gauge tells the story.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01306853"]
-  huc8s: ["05130105", "05130106"]
-  counties: ["Clay"]
+  gnisIds:
+    - "01306853"
+  huc8s:
+    - "05130105"
+    - "05130106"
+  counties:
+    - Clay
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast calls the Obey River below Dale Hollow Dam fantastic year-round
+    trout fishing — water cold enough to hold trout all year with some holdover to large sizes —
+    stocked roughly year-round with TWRA-and-federal-hatchery rainbows and browns, and 2026 sampling
+    was the best in several years.
+  reachScope: Obey River below Dale Hollow Dam (Dale Hollow tailwater), Clay County — 7.5 miles from
+    the dam to the Cumberland River at Celina; majority of trout fishing concentrated dam to Moody's
+    Bend Boat Ramp
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), Dale Hollow Tailwater / Obey River
+        section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition
+      retrieved: 2026-09-22
+      pinpoint: 'node n-lOBQXx: "The Obey River, located below the Dale Hollow Dam offers fantastic year
+        round trout fishing." and "The water is cold enough to support trout year round and some
+        trout hold over to reach larger sizes." Capture: captures/twra-forecast-text.md; verified
+        live 2026-09-22.'
+    - label: TWRA published trout stocking schedule (2026) + recently stocked report
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule; completed release 2026-09-18
+      retrieved: 2026-09-22
+      pinpoint: 'Schedule row: REGION 3, Clay, "Dale Hollow TW / Obey River", Tailwater, STOCKING MONTHS
+        "J, F, M, A, M, J, J, A, S, O, N, D", SPECIES "Rainbow, Brown Trout". Recent-release row:
+        {Region 3, "Dale Hollow TW", 09/18/2026}. Forecast node n-iEFrfT: "Stocking: January through
+        December (year-round fishing)". All verified live 2026-09-22.'
+  caveats:
+    - Most fishing concentrates from the dam down to Moody's Bend Boat Ramp; trout can be found
+      throughout the 7.5-mile tailwater but it warms toward the Cumberland confluence.
+    - This is the Obey River (Dale Hollow tailwater) — never the Obed River; the near-identical name
+      is a recurring confusion.
+    - Hatchery Creek (tributary near the hatchery) receives weekly stockings year-round per TWRA and
+      is a separate stocked water.

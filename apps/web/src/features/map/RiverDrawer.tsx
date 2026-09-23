@@ -11,6 +11,7 @@ import { riverWorkflowUrl } from '../../lib/riverContext';
 import { activityLabel } from '../../lib/hatchActivity';
 import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import { toWaterDecisionView, seasonalChipText, seasonalVerdict } from './waterDecision';
+import { OpportunityCard } from './OpportunityCard';
 import { FishabilityCard } from '../../components/FishabilityCard';
 import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
@@ -233,6 +234,7 @@ function WaterTab({
   const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
   return (
     <>
+      <OpportunityCard stream={feature.stream} species={feature.species} mode={settings.speciesMode} month={month} />
       <div
         className="assessment"
         data-status={warm ? 'warmwater' : unverified || outOfSeason || feature.status === 'no-data' ? 'no-data' : feature.status}
@@ -275,7 +277,7 @@ function WaterTab({
                 : season.state === 'absent'
                   ? 'Out of season'
                   : season.state === 'none'
-                    ? 'Not a trout water'
+                    ? 'No trout program documented'
                     : 'Unverified'}
             </strong>
           </div>

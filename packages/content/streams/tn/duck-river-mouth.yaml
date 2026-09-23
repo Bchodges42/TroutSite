@@ -36,17 +36,16 @@ speciesEvidence:
     kind: agency
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
     retrieved: 2026-09-14
-notes: The reach the catalog was missing — roughly 100 river miles from Columbia (Maury Co)
-  down through the Western Highland Rim to the Tennessee River confluence near
-  New Johnsonville (Humphreys Co). Same agency-documented warmwater fishery as the rest of
-  the Duck — TWRA documents largemouth/smallmouth/spotted bass, rock bass and catfish with
-  150+ fish species river-wide; gauge drainage grows from ~1,030 sq mi above Columbia to
-  2,557 sq mi at Hurricane Mills, so the editorial flow band is deliberately wide. The
-  2026 scenic river amendment designates this reach (Class II Pastoral segments below
-  Columbia). Float-fish country — TWRA lists ~30 fee-free access sites river-wide; on this
-  reach the USGS gauge crossings (Hwy 100 at Centerville, Hurricane Mills) are the
-  documented public anchors, and the TWRA boating/fishing access map carries the full
-  ramp list.
+notes: The reach the catalog was missing — roughly 100 river miles from Columbia (Maury Co) down
+  through the Western Highland Rim to the Tennessee River confluence near New Johnsonville
+  (Humphreys Co). Same agency-documented warmwater fishery as the rest of the Duck — TWRA documents
+  largemouth/smallmouth/spotted bass, rock bass and catfish with 150+ fish species river-wide; gauge
+  drainage grows from ~1,030 sq mi above Columbia to 2,557 sq mi at Hurricane Mills, so the
+  editorial flow band is deliberately wide. The 2026 scenic river amendment designates this reach
+  (Class II Pastoral segments below Columbia). Float-fish country — TWRA lists ~30 fee-free access
+  sites river-wide; on this reach the USGS gauge crossings (Hwy 100 at Centerville, Hurricane Mills)
+  are the documented public anchors, and the TWRA boating/fishing access map carries the full ramp
+  list.
 officialSources:
   - label: USGS Water Data — monitoring location 03601600 (near Shady Grove)
     url: https://waterdata.usgs.gov/monitoring-location/03601600/
@@ -61,6 +60,50 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269541"]
-  huc8s: ["06040003", "06040005"]
-  counties: ["Maury", "Hickman", "Humphreys"]
+  gnisIds:
+    - "01269541"
+  huc8s:
+    - "06040003"
+    - "06040005"
+  counties:
+    - Maury
+    - Hickman
+    - Humphreys
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents the lower Duck River as a premier warmwater float river — 'among the best
+    for catfish in middle Tennessee' from Columbia to Centerville and trophy smallmouth and flathead
+    water from Centerville to the mouth — with no trout program on the reach.
+  reachScope: Columbia to the Tennessee River confluence near New Johnsonville
+    (Maury/Hickman/Humphreys counties)
+  asOf: "2026"
+  sources:
+    - label: Duck River — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+      kind: agency-assessment
+      observationPeriod: survey-derived abundance figures quoted (catfish/hour)
+      retrieved: 2026-09-22
+      pinpoint: "'If you are looking to balance numbers and size, this stretch of the Duck River is among
+        the best for catfish in middle Tennessee'; '53.2 catfish/hour'; Centerville-to-mouth habitat
+        'dominated by large pools, snags and trees, sand bars, and long wide shoals'; channel
+        catfish '38.8/hour, averaging 13\"'; 'trophy smallmouth and flathead catfish'"
+    - label: Tennessee Scenic Rivers — Duck
+      url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/duck.html
+      kind: legal-designation
+      retrieved: 2026-09-22
+      pinpoint: River 'flows through seven middle Tennessee counties before reaching its confluence with
+        the Tennessee River near New Johnsonville' (prior lead quoting the TDEC page; page not
+        re-fetched this session)
+    - label: Discrete water temperature, Duck River at Centerville / above Hurricane Mills
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03603000&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1966-2005 grab samples
+      retrieved: 2026-09-22
+      pinpoint: Centerville summer maxima ~29.0 C (2001-2005); Hurricane Mills maxima 33.5 C (1984-08-14),
+        30.0 C (1990-07-09)
+  caveats:
+    - The shared Fishbrain Duck River page (217 rainbow rows) is river-wide; its trout content
+      reflects the upstream Normandy tailwater and is a research lead only.
+    - Seasonal rainbow programs in the same counties (Cane Creek, Mill Creek — Hickman; Hurricane
+      Creek — Humphreys) are separate small creeks.

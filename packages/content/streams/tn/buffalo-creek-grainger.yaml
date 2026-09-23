@@ -8,19 +8,24 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: true
+yearRound: false
 idealFlow:
   - min: 5
     max: 50
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows track rain.
+  TWRA spring-stocked Grainger County creek. Distinct from Buffalo Creek at Norris; flows track
+  rain.
 
 
-  Regulations: (1) Special: Buffalo Creek and tributaries within the WMA boundary (Grainger County) — from the
-  mill dam upstream closed year-round to all fishing, bait harvest prohibited; (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  Regulations: (1) Special: Buffalo Creek and tributaries within the WMA boundary (Grainger County)
+  — from the mill dam upstream closed year-round to all fishing, bait harvest prohibited; (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound true → false — the adjudicated headline is
+  seasonal-stocked-trout; a year-round flag contradicts it (ADR 0010 consistency).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -32,6 +37,56 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01278907"]
-  huc8s: ["06010104"]
-  counties: ["Grainger"]
+  gnisIds:
+    - "01278907"
+  huc8s:
+    - "06010104"
+  counties:
+    - Grainger
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "A maintained stocked rainbow trout fishery: TWRA stocks weekly February through August
+    and runs an Oct 1-Jan 31 delayed-harvest catch-and-release season on the WMA-boundary reach;
+    cool discrete summer temperatures support the program's plausibility, but a continuous summer
+    envelope and any reproduction are NOT established - no year-round claim is made."
+  reachScope: Buffalo Creek (Grainger County) from the mill dam downstream through the Buffalo Springs
+    WMA reach toward Tampico; upstream of the mill dam is closed to all fishing year-round.
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "30 rows, Region 4, Grainger, 'Buffalo Creek': Seasonal weekly 2/8/2026 through 8/23/2026
+        (29 rows) plus Delayed Harvest 10/4/2026 - all Rainbow Trout (capture
+        captures/twra-schedule.json). Completed release: 'Buffalo Creek' stocked 8/27/2026 in the
+        rolling release report (captures/twra-recent-releases.json)"
+    - label: TWRA fishing regulation exceptions - Buffalo Creek (Grainger County)
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: program-description
+      retrieved: 2026-09-22
+      pinpoint: "'Delayed Harvest season from Oct. 1- Jan. 31' with harvest/possession prohibited and
+        artificial lures only (bait possession banned); statewide trout rules apply 'from Feb.
+        1-Sept. 30'; 'From the mill dam upstream - closed year-round to all fishing'; below the dam
+        open year-round rod-and-reel only (verified live 2026-09-22)"
+    - label: Buffalo Creek at Tampico Rd - water temperature series
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000000754&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2010-06-15 through 2025-06-12 (29 results)
+      retrieved: 2026-09-22
+      pinpoint: "29 temperature results verified live; summer values 15.1-19.2 C across 2010-2025 (e.g.,
+        17.9 C Jun 2010; 15.76-17.62 C Jul 2014; 16.57-18.05 C Jul-Sep 2019; 17.49-19.16 C 2024);
+        July 17, 2024: 19.16 C at 11:10 EST, Final/Actual, no depth or qualifier flags"
+  caveats:
+    - Seasonal-stocked-trout is the honest headline; a year-round-leaning claim would rest on
+      discrete grab samples plus program structure and would be evidenceState limited at best - it
+      is not made.
+    - "Reach boundary: 'from the mill dam upstream - closed year-round to all fishing'; the trout
+      water is the reach below the mill dam (WMA boundary reach), open year-round to rod-and-reel."
+    - "Wild reproduction: none documented; TWRA's Trout Management Plan treats this as a
+      hatchery-supported stream (plan citation is a prior lead, not re-verified)."
+    - "Name collision: Buffalo Springs HATCHERY is on this WMA - 'Buffalo' there refers to the
+      spring/hatchery, not a wild trout stream; and Buffalo Creek at Norris (Anderson Co., USGS
+      03534500) is a different stream."

@@ -8,18 +8,24 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
 idealFlow:
   - min: 10
     max: 80
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA lists spring stocking. No gauge.
+  Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA lists spring stocking.
+  No gauge.
 
 
-  Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait, year-round
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait,
+  year-round (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (GSMNP park reach (year-round wild fishery); TWRA
+  stocking rows/GIS sites target lower private-land segments) (ADR 0010 consistency).
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
@@ -28,6 +34,47 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01327978"]
-  huc8s: ["06010106"]
-  counties: ["Cocke"]
+  gnisIds:
+    - "01327978"
+  huc8s:
+    - "06010106"
+  counties:
+    - Cocke
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "A documented year-round wild trout fishery on the park reach: the National Park Service
+    permits fishing year-round in all park streams and has not stocked park waters since 1975, and
+    both NPS and TWRA's Trout Management Plan name Cosby Creek as a brook trout water; TWRA's
+    separate 2026 schedule rows for lower Cosby Creek are private-land segments outside the park."
+  reachScope: GSMNP park reach (year-round wild fishery); TWRA stocking rows/GIS sites target lower
+    private-land segments
+  asOf: "2026"
+  sources:
+    - label: Fishing - Great Smoky Mountains National Park
+      url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'Fishing is permitted year-round in open waters from 30 minutes before official sunrise
+        to 30 minutes after official sunset'; 'The park allows fishing in all streams'; 5-fish
+        creel, 7-inch minimum"
+    - label: Tennessee Trout Management Plan 2017-2027
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+      kind: survey
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "Little Paint Creek rationale: brook trout donor source 'from Great Smoky Mountains
+        National (GSMNP) streams (e.g., Cosby Creek or Toms Creek)'"
+    - label: Brook Trout Morphology - GSMNP
+      url: https://www.nps.gov/grsm/learn/nature/brook-trout-morphology.htm
+      kind: survey
+      retrieved: 2026-09-22
+      pinpoint: "'a brook trout caught at Cosby Creek is still classified the same species of fish as a
+        brook trout caught at Lynn Camp Prong'"
+  caveats:
+    - "Never describe the park reach as stocked: NPS ended park trout stocking in 1975; the trout in
+      the park reach are wild fish."
+    - The TWRA-stocked segments are mapped on private land - public access is not documented by the
+      layer; Contact TWRA Region 4 for access.
+    - The catalog's 'wild rainbows and brook trout upstream' note is supported for brook trout (NPS
+      + TWRA plan); a specific wild-rainbow assessment for this creek was not verified this pass.

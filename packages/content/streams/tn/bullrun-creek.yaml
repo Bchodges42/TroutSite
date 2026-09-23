@@ -8,12 +8,29 @@ regionId: tn-east-clinch
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Long Clinch River tributary through Union and Knox County country and a substantial regional waterway.
+notes: Long Clinch River tributary through Union and Knox County country and a substantial regional
+  waterway.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269403"]
-  huc8s: ["06010207"]
+  gnisIds:
+    - "01269403"
+  huc8s:
+    - "06010207"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout stocking, trout regulation, or reach-specific fishery documentation exists for
+    Bullrun Creek (Union/Knox counties, Clinch tributary); its trout status is undocumented.
+  asOf: "2026"
+  caveats:
+    - Fishbrain page (787 catches, largemouth/white bass-led, no trout rows) is a research lead
+      only, not citable.
+    - No relation to Bull Run Creek waters in other states; the prior wave ledger's USGS 03535000
+      'Holston probe' rejection is identity history, not evidence.
+  unresolvedQuestion: "No reach-specific trout survey or agency fishery documentation found for
+    Bullrun Creek; next source: TWRA Region 4 stream sampling or TVA Clinch-tributary fish community
+    data."

@@ -17,14 +17,14 @@ idealFlow:
 idealFlowSource: editorial
 notes: >-
   Heavy TWRA stocking in the Tellico Plains corridor (stocked roughly February–December) plus a
-  delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the headwaters.
-  Rain-flashy mountain river — check the gauge.
+  delayed-harvest catch-and-release season Oct 1–Feb 28 per TWRA, and wild brook trout in the
+  headwaters. Rain-flashy mountain river — check the gauge.
 
 
-  Regulations: DELAYED HARVEST — "Tellico River: Mouth of North River upstream to the Tennessee - North
-  Carolina state line"; catch-and-release Oct 1 - Feb 28 (harvest/possession of trout prohibited; only
-  artificial lures permitted; use or possession of bait prohibited) (retrieved 2026-09-14; verify current
-  rules with TWRA before you go).
+  Regulations: DELAYED HARVEST — "Tellico River: Mouth of North River upstream to the Tennessee -
+  North Carolina state line"; catch-and-release Oct 1 - Feb 28 (harvest/possession of trout
+  prohibited; only artificial lures permitted; use or possession of bait prohibited) (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03518500
     url: https://waterdata.usgs.gov/monitoring-location/03518500/
@@ -33,6 +33,62 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01648176"]
-  huc8s: ["06010204"]
-  counties: ["Monroe"]
+  gnisIds:
+    - "01648176"
+  huc8s:
+    - "06010204"
+  counties:
+    - Monroe
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA intensively manages 13 miles of the Tellico River with heavy stocking and a
+    delayed-harvest season, and documents year-round trout water at higher elevations (wild rainbow
+    and brown reproduction above the North River confluence); the lower stocked river is seasonal,
+    depending on elevation.
+  reachScope: "Year-round reach: North River confluence upstream to the TN/NC state line (higher
+    elevations; wild rainbow/brown reproduction documented there). The lower mainstem (Turkey
+    Creek/North River corridor, incl. Green Cove downstream of Bald River) is a seasonal stocked
+    fishery: weekly stockings Mar-Jul/Aug, permit season ends Aug 15."
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Fishing Forecast - Tellico River (2026 edition)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 edition
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "node n-o3jBKs: 'The water is cold enough to support trout year-round at higher
+        elevations. There is natural reproduction of wild Rainbow Trout and Brown Trout above the
+        confluence of North River'; node n-IqahXN: 'Stocking: October through July (excellent
+        year-round fishing depending on elevation)' (verified live 2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "32 rows, Monroe County 'Tellico River': Delayed Harvest 2/8 + 2/22, Seasonal weekly 3/1
+        through 8/9, Delayed Harvest 9/27, 10/11, 10/25, 11/8, 11/22, 12/6 - all Rainbow Trout
+        (capture captures/twra-schedule.json). Forecast node n-o3jBKs: weekly quality/trophy
+        Rainbow, Albino Rainbow AND Brown trout Mar-Jul, up to 120 locations weekly; DH trophy
+        Rainbows and Browns"
+    - label: Tellico Outfitters fishing reports (entries dated 3.27.2026-7.29.2026, published Aug 4 2026)
+      url: https://www.tellicooutfitters.com/fishing-reports
+      kind: survey
+      observationPeriod: March-July 2026 report periods (published 2026-08-04)
+      publicationDate: 2026-08-04
+      retrieved: 2026-09-22
+      pinpoint: "4.16.2026 entry: 'Water temps are cool and trout can be found throughout the entire
+        length of the Tellico River.' 7.09.2026 entry: 'The Tellico River from North River
+        confluence upstream to the state line will have cool enough temps to support trout through
+        the summer'; lower river 'relies solely on stocking to support a temporary trout fishery'.
+        7.29.2026 entry: 'Stocking has ended for the put and take season.'"
+  caveats:
+    - "Reach structure (per TWRA and dated shop reports): upper river above the North River
+      confluence = year-round cold water with wild rainbow/brown reproduction; Bald River
+      Falls/Green Cove corridor and lower mainstem = seasonal stocked fishery whose permit season
+      ends Aug 15 and whose summer viability fades below Bald River."
+    - "Free-flowing rain-flashy mountain river: wading difficult above ~300 cfs on the USGS 03518500
+      Tellico Plains gauge (node n-eJ7NRx)."
+    - "Do not conflate with Tellico Lake: the reservoir's 'Tellico (Upper)' trout program is a
+      separate catalog water (tellico-lake)."
