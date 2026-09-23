@@ -20,9 +20,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout regulation, or trout record exists for Candies Creek (Bradley
-    County, Hiwassee tributary near Cleveland); a single 1988 cool grab sample is too thin to
-    characterize the creek either way.
+  statement: A single cool 1988 grab sample is too thin to characterize Candies Creek (Bradley County,
+    Hiwassee tributary). The cited sources do not establish a trout program or dated trout
+    observation, so trout status remains unresolved.
   asOf: "2026"
   caveats:
     - Fishbrain page (219 catches, largemouth/catfish/crappie-led, no trout rows) is a research lead

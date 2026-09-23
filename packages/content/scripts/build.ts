@@ -47,14 +47,6 @@ const files: Record<string, string> = {
   // F2 species reference (comfort + activity bands, every value cited) — the
   // fishability scorer's data source once contracts v2 lands (Session A).
   'species.json': JSON.stringify({ species: [...species.entries()].map(([id, ref]) => ({ id, ...ref })) }),
-  // Per-water trout calendar (research lane 2026-09-10): months each water
-  // plausibly holds trout + stocking-event months, cited per row in
-  // docs/research/SPECIES-CLASSIFICATION.md. Passed through verbatim — the
-  // research row set is the source of truth, presence stays honest to it.
-  'trout-calendar.json': readFileSync(
-    resolve(import.meta.dirname, '..', 'data', 'trout-calendar.json'),
-    'utf8',
-  ),
 };
 
 for (const [rid, charts] of hatch) {

@@ -39,12 +39,12 @@ hydroIdentity:
   counties:
     - Davidson
 opportunity:
-  trout: mixed
+  trout: seasonal-stocked-trout
   evidenceState: documented
-  statement: TWRA's winter trout program stocks catchable rainbow trout below J. Percy Priest Dam on
-    the Stones River beginning the first Friday in December with January and February events; TWRA
-    states the fish will not survive the warm summer water, so this is a cold-months put-and-take
-    over a warmwater river fishery.
+  statement: TWRA documents a winter rainbow trout stocking program below J. Percy Priest Dam on the
+    Stones River, beginning the first Friday in December with January and February events. TWRA says
+    stocked trout will not survive the warm summer water; this is a seasonal stocking opportunity,
+    not evidence of year-round trout occupancy.
   reachScope: J. Percy Priest Dam tailwater reach (Davidson County, Donelson gauge area)
   asOf: "2026"
   sources:

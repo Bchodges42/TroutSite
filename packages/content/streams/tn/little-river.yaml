@@ -15,14 +15,7 @@ idealFlow:
   - min: 50
     max: 350
     unit: cfs
-targetSpecies:
-  - smallmouth-bass
 idealFlowSource: editorial
-speciesEvidence:
-  - species: smallmouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03497300/
-    retrieved: 2026-09-13
 notes: >-
   The Smokies’ marquee water: wild rainbow and brown trout inside the park, with TWRA spring
   stocking on the lower, out-of-park reaches near Walland and Maryville. The Townsend gauge is the

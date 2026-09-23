@@ -55,11 +55,10 @@ function resolveSourceUrl(url) {
   const id = DIGEST_TO_CAPTURE[m[1]] ?? m[1];
   return captureUrlById.get(id) ?? null;
 }
-// The validator forbids the bare phrase "Cherokee bass" anywhere in a stream
-// document (its label must stay an untyped hybrid). Quoting the term with
-// inner quotes keeps the source wording while breaking the token pair.
 function sanitize(text) {
-  return String(text).replace(/Cherokee\s+bass/gi, "Cherokee' bass");
+  // Preserve exact quoted source wording. Typed targetSpecies are checked
+  // separately; changing a quotation to evade a validator destroys evidence.
+  return String(text);
 }
 
 function sourcesFrom(water) {
@@ -93,7 +92,7 @@ function opportunityBlock(water) {
     evidenceState: h.evidenceState,
     ...(h.statement ? { statement: sanitize(h.statement) } : {}),
     ...(h.reachScope ? { reachScope: sanitize(h.reachScope) } : {}),
-    asOf: h.asOf ?? String(new Date().getFullYear()),
+    asOf: h.asOf,
     ...(!unresolved && sourcesFrom(water).length ? { sources: sourcesFrom(water) } : {}),
     ...(water.qualifications?.length
       ? { caveats: water.qualifications.slice(0, 4).map(sanitize) }
@@ -148,6 +147,19 @@ for (const water of ledger.waters) {
   // Lane-documented field corrections: only the structured, explicitly
   // flagged subset auto-applies; everything else is reported for the owner.
   const corr = water.catalogFieldCorrections;
+  // The adjudication explicitly rejected these inherited winter templates.
+  // Their schedule weeks are useful in the opportunity statement, but they
+  // cannot serve as a fishing season or a current-presence calendar.
+  const invalidProgrammaticWindow =
+    typeof corr === 'string' && /seasonMonths[^.]{0,40}\bwrong\b/i.test(corr);
+  if (invalidProgrammaticWindow) {
+    if (doc.seasonMonths !== undefined || doc.seasonKind !== undefined) {
+      delete doc.seasonMonths;
+      delete doc.seasonKind;
+      corrected += 1;
+      console.log(`${water.id}: removed unsupported programmatic season window`);
+    }
+  }
   if (corr && typeof corr === 'object' && corr.apply && corr.fields) {
     for (const [field, value] of Object.entries(corr.fields)) {
       if (!['yearRound', 'seasonMonths', 'seasonKind'].includes(field)) continue;
@@ -162,7 +174,13 @@ for (const water of ledger.waters) {
     ownerReport.push({ id: water.id, correction: corr });
   }
   if (corr && typeof corr === 'string') {
-    ownerReport.push({ id: water.id, correction: corr });
+    ownerReport.push({
+      id: water.id,
+      correction: corr,
+      ...(invalidProgrammaticWindow
+        ? { repair: 'Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review.' }
+        : {}),
+    });
   }
 
   if (!dryRun) writeFileSync(path, stringify(doc, { lineWidth: 100 }));
@@ -172,7 +190,7 @@ for (const water of ledger.waters) {
   console.log(`${dryRun ? '[dry] ' : ''}${water.id}: ${doc.opportunity.trout}/${doc.opportunity.evidenceState}${corr ? ' +correction' : ''}`);
 }
 console.log(`\n${dryRun ? 'would apply' : 'applied'} ${applied} opportunity blocks; ${corrected} field corrections; ${ownerReport.length} owner-report items`);
-if (ownerReport.length) {
+if (ownerReport.length && !dryRun) {
   writeFileSync(join(ARTIFACT_DIR, 'owner-corrections-report.json'), JSON.stringify(ownerReport, null, 2));
   console.log('owner-corrections-report.json written (NOT auto-applied)');
 }

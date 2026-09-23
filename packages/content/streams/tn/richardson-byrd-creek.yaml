@@ -26,11 +26,6 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
   gnisIds:
     - "01269411"

@@ -13,7 +13,6 @@ import { itemsForWater, useFishingInfo } from '../../lib/fishingInfo';
 import { toWaterDecisionView, seasonalChipText, seasonalVerdict } from './waterDecision';
 import { OpportunityCard } from './OpportunityCard';
 import { FishabilityCard } from '../../components/FishabilityCard';
-import type { TroutPresenceNow } from '../../lib/troutCalendar';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
@@ -24,8 +23,6 @@ type Tab = (typeof TABS)[number];
 const TIMES = { am: 'Morning', midday: 'Midday', pm: 'Afternoon', evening: 'Evening' };
 interface Props {
   feature: RiverMapFeature | null;
-  /** Season-aware trout presence for the selected water (trout calendar). */
-  season?: TroutPresenceNow | null;
   tab: Tab;
   onTab: (t: Tab) => void;
   onClose: () => void;
@@ -43,7 +40,6 @@ interface Props {
 }
 export function RiverDrawer({
   feature,
-  season,
   tab,
   onTab,
   onClose,
@@ -161,7 +157,7 @@ export function RiverDrawer({
         role="tabpanel"
         aria-labelledby={'river-tab-' + TABS.indexOf(tab)}
       >
-        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} season={season} />}
+        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
         {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
         {tab === 'Stocking' && (
           <StockingTab feature={feature} month={modeMonth} error={feedErrors?.stocking} />
@@ -176,12 +172,10 @@ function WaterTab({
   feature,
   month,
   live,
-  season,
 }: {
   feature: RiverMapFeature;
   month: number;
   live: boolean;
-  season?: TroutPresenceNow | null;
 }) {
   const { settings } = useSettingsContext();
   const pack = useContentPack();
@@ -198,14 +192,10 @@ function WaterTab({
   // No catalog species: say so explicitly (H3). The water keeps its gauge
   // readings below, but never trout-assessment language or a score disc.
   const unverified = feature.species == null;
-  // T1-18/19: the decision model owns seasonal applicability — a
-  // yearRound:false trout water out of its winter window never wears trout
-  // language, and the seasonal state shows as a first-class chip.
-  // 2026-09-10 refinement (kept): the assessment stays BROAD (flow-based
-  // conditions) and first; trout-season status renders in its own section below.
+  // The evidence decision owns the seasonal label. A stocking month alone
+  // cannot establish current fish presence or a completed release.
   const decision = toWaterDecisionView(feature, settings.speciesMode, month, feature.fishability);
   const verdict = seasonalVerdict(decision);
-  const outOfSeason = decision.troutApplicability === 'seasonal-likely-absent';
   const title = warm
     ? 'Warmwater fishery'
     : unverified
@@ -237,7 +227,7 @@ function WaterTab({
       <OpportunityCard stream={feature.stream} species={feature.species} mode={settings.speciesMode} month={month} />
       <div
         className="assessment"
-        data-status={warm ? 'warmwater' : unverified || outOfSeason || feature.status === 'no-data' ? 'no-data' : feature.status}
+        data-status={warm ? 'warmwater' : decision.displayMetric !== 'trout-condition' ? 'no-data' : feature.status}
       >
         <div className="assessment-top">
           <div>
@@ -265,25 +255,6 @@ function WaterTab({
         </div>
       </div>
       <FishabilityCard streamId={feature.stream.id} compact />
-      {season && (
-        <div className="season-card" data-state={season.state}>
-          <div className="season-head">
-            <span className="eyebrow">Trout season</span>
-            <strong>
-              {season.state === 'present'
-                ? season.fresh
-                  ? 'In season · freshly stocked'
-                  : 'In season now'
-                : season.state === 'absent'
-                  ? 'Out of season'
-                  : season.state === 'none'
-                    ? 'No trout program documented'
-                    : 'Unverified'}
-            </strong>
-          </div>
-          <p>{season.note}</p>
-        </div>
-      )}
       <div className="metrics">
         <div className="metric">
           <span className="metric-label">
@@ -317,7 +288,7 @@ function WaterTab({
           </small>
         </div>
       </div>
-      {!warm && !outOfSeason && (
+      {decision.displayMetric === 'trout-condition' && (
         <div className="hatch-preview">
           <span className="eyebrow">
             <BugIcon size={16} />
@@ -591,12 +562,7 @@ function StockingTab({ feature, error, month }: { feature: RiverMapFeature; erro
             month: 'long',
             year: 'numeric',
           })}
-          {event.count != null
-            ? // T2-32: a coarse date is a schedule, not an observed stocking.
-              event.datePrecision && event.datePrecision !== 'day'
-              ? ' · ' + event.count.toLocaleString() + ' fish scheduled'
-              : ' · ' + event.count.toLocaleString() + ' fish'
-            : ''}
+          {event.count != null ? ' · ' + event.count.toLocaleString() + ' fish scheduled' : ''}
         </p>
       </div>
       <div className="empty-note">

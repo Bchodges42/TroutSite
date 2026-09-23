@@ -25,20 +25,20 @@ idealFlowSource: editorial
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03597860/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03597860/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03597860/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-22
   - species: channel-catfish
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03597860/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html
+    retrieved: 2026-09-22
 notes: >-
   Below Shelbyville the Duck trends warm and its fishery shifts — trout linger in the upper TWRA's
   Duck River page lists the fishery as largemouth bass, smallmouth bass, spotted bass, catfish (see

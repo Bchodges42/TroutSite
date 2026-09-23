@@ -21,8 +21,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout listing, or trout record exists for Dumplin Creek
-    (Jefferson/Sevier counties, Douglas Lake tributary); its fishery status is undocumented.
+  statement: The cited sources do not establish a trout program, dated observation, or reach-specific
+    fishery for Dumplin Creek (Jefferson/Sevier counties, Douglas Lake tributary). Trout status
+    remains unresolved.
   asOf: "2026"
   caveats:
     - The creek's only temperature readings on file are non-summer (9.0 C Dec 2004 USGS 03470215;

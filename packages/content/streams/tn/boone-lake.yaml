@@ -13,46 +13,36 @@ targetSpecies:
   - smallmouth-bass
   - spotted-bass
   - crappie
-  - bluegill
-  - channel-catfish
   - striped-bass
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
-  - species: bluegill
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html
+    retrieved: 2026-09-22
 notes: >-
   TVA reservoir on the South Fork Holston River northeast of Johnson City (Sullivan/Washington
-  counties), impounded by Boone Dam (USGS 03486810, 36.44066/-82.43792). Two arms: the South Fork
-  Holston arm fed by the South Holston Dam tailwater (south-holston-river) and the Watauga arm fed
-  by the Wilbur Dam tailwater (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down
-  to Fort Patrick Henry Lake. Aliases: Boone Reservoir. TWRA's Boone Reservoir page lists the
-  fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped
-  bass (see officialSources).
+  counties), impounded by Boone Dam. Two arms: the South Fork Holston arm fed by the South Holston
+  Dam tailwater (south-holston-river) and the Watauga arm fed by the Wilbur Dam tailwater
+  (watauga-river). Outflow is the Boone tailwater (boone-tailwater) down to Fort Patrick Henry Lake.
+  Aliases: Boone Reservoir. TWRA's Boone Reservoir page lists the fishery as largemouth bass,
+  smallmouth bass, spotted bass, crappie, catfish, and striped bass (see officialSources). The TWRA
+  page does not establish channel catfish specifically.
 
   Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge
   context is not a scored input.
@@ -62,9 +52,6 @@ notes: >-
   combined 10" min; striped/hybrid 2/day combined (1 striped max; 36" min striped, 15" min hybrid);
   (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
-  - label: USGS Water Data — monitoring location 03486810 (static site provenance; no current IV catalog
-      entry)
-    url: https://waterdata.usgs.gov/monitoring-location/03486810/
   - label: TVA — Boone Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels
   - label: TWRA — Tennessee fishing regulations (always verify officially)

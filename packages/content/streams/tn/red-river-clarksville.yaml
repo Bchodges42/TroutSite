@@ -6,7 +6,7 @@ display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03436100"
-stockingProgram: false
+stockingProgram: true
 species: warmwater
 idealFlow:
   - min: 60
@@ -18,9 +18,10 @@ notes: >-
   gauge after any rain.
 
 
-  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or
-  record — Warmwater river (smallmouth/largemouth/spotted bass, white bass, catfish); no TWRA trout
-  stocking row or trout record. (retrieved 2026-09-14).
+  Correction (2026-09-22): the broad river is a warmwater fishery, but TWRA's 2026 schedule lists
+  winter rainbow trout stocking at Billy Dunlop Park on the Clarksville reach. The earlier
+  no-trout-program note was contradicted by that named stocking site. No river-wide trout presence
+  is established by the park schedule.
 
 
   Regulations: no Red River exception listed on TWRA's exceptions page — statewide rules govern:

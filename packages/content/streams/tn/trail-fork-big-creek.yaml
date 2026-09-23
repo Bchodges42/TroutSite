@@ -35,13 +35,12 @@ hydroIdentity:
 opportunity:
   trout: seasonal-stocked-trout
   evidenceState: documented
-  statement: A small TWRA-stocked rainbow trout water (five spring stockings Feb-May 2026), with a
-    documented wild rainbow population in the upper reaches and a 2021 brook trout reintroduction
-    above the waterfall barrier whose persistence is NOT established - 2025 monitoring was planned,
-    and no 2026 persistence claim is made.
-  reachScope: TWRA-stocked reach of Trail Fork of Big Creek (Cocke County, 'Trail Fork Big Creek'
-    stocking group); wild rainbows documented upstream of ~2,720 ft; 2021 brook trout reintroduction
-    is above the waterfall barrier.
+  statement: TWRA schedules five spring rainbow stockings on lower Trail Fork in 2026. A 2017 plan
+    recorded wild rainbows upstream, but Trout Unlimited reports rainbow removal above the waterfall
+    before a 2021 brook trout transfer; current upper-reach brook trout persistence is unverified.
+  reachScope: Lower TWRA-stocked reach of Trail Fork of Big Creek (Cocke County); above the waterfall
+    is the historical rainbow-removal and 2021 brook trout transfer reach, with current occupancy
+    unverified.
   asOf: "2026"
   sources:
     - label: TWRA 2026 trout stocking schedule (published plan)
@@ -52,6 +51,14 @@ opportunity:
       pinpoint: 5 rows, Region 4, Cocke, 'Trail Fork Big Creek', Seasonal, weeks 2/22, 3/15, 4/5, 4/26,
         5/17/2026, Rainbow Trout (capture captures/twra-schedule.json); GIS points corroborate six
         named stocking locations on the stream
+    - label: Brookies in Tennessee get a new, improved home
+      url: https://www.tu.org/magazine/conservation/from-the-field/brookies-in-tennessee-get-a-new-improved-home/
+      kind: survey
+      observationPeriod: rainbow removal before fall 2021 brook trout transfer
+      publicationDate: 2021-11-16
+      retrieved: 2026-09-22
+      pinpoint: TWRA, USFS and UT used electrofishing gear to remove all rainbows from above the falls;
+        wild rainbows remained below the waterfall
     - label: Tennessee Trout Management Plan 2017-2027 (Fisheries Report No. 17-10)
       url: https://digitalcommons.memphis.edu/context/govpubs-tn-wra-strategic-management-plans/article/1009/viewcontent/Tennessee_Trout_Management_Plan_2017_2027.pdf
       kind: survey

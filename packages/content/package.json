@@ -8,7 +8,7 @@
     "./pack/*": "./dist/pack/*"
   },
   "scripts": {
-    "validate": "tsx scripts/validate.ts",
+    "validate": "tsx scripts/validate.ts && node scripts/opportunity/verify-captures.mjs && node scripts/opportunity/verify-ledger.mjs --final",
     "build": "tsx scripts/build.ts",
     "report": "tsx scripts/report.ts",
     "test": "vitest run",

@@ -15,24 +15,17 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
-targetSpecies:
-  - smallmouth-bass
 idealFlowSource: editorial
-speciesEvidence:
-  - species: smallmouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03432350/
-    retrieved: 2026-09-13
 notes: >-
-  Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches near
-  Franklin with catchable trout each December (the winter put-and-take season runs
-  December–February; check the TWRA schedule for the current window). Two gauges bracket the stocked
-  corridor; summer water is smallmouth country.
+  TWRA’s winter program schedules catchable trout at Eastern Flank Battle Park in Franklin. The 2026
+  schedule lists January and February days and a tentative December day; these are planned stocking
+  dates, not proof of a legal fishing season or current trout presence. Two gauges bracket the
+  corridor. A prior smallmouth claim lacked species-specific primary evidence and was removed from
+  the typed species list.
 
 
   Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA winter program
-  stocks the Harpeth at Eastern Flank Battle Park (Franklin) — December runs per the official
-  schedule.
+  schedules the Harpeth at Eastern Flank Battle Park (Franklin) for winter stocking.
 
 
   Regulations: Statewide warmwater — black bass 5/day any combination, no length limit; crappie

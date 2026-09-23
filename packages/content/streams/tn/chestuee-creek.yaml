@@ -21,8 +21,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout regulation, trout record, or water-temperature record exists for
-    Chestuee Creek (McMinn County, Hiwassee tributary); its fishery status is undocumented.
+  statement: The cited sources do not establish a trout program, dated observation, reach-specific
+    fish survey, or useful temperature series for Chestuee Creek (McMinn County, Hiwassee
+    tributary). Fishery status remains unresolved.
   asOf: "2026"
   caveats:
     - Gauge datums 778 ft (upper, Zion Hill) and 723 ft (lower, Dentville) mark a low-to-mid

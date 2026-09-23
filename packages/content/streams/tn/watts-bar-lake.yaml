@@ -18,32 +18,32 @@ targetSpecies:
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: channel-catfish
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
   Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328;
   Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea,

@@ -3485,7 +3485,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout record, or reach-specific fishery documentation exists for Big Bigby Creek (Maury County, Duck River basin); its trout status is undocumented.",
+        "statement": "The cited sources do not establish a trout program, dated trout observation, or reach-specific fishery for Big Bigby Creek (Maury County, Duck River basin). Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -4002,7 +4002,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": "Big Sandy River embayment arm at Kentucky Reservoir (Benton/Henry county reach); the free-flowing upstream river reaches are not covered by the supporting source",
-        "statement": "TWRA manages the Big Sandy embayment of Kentucky Reservoir as a warmwater fishery (crappie/bass/catfish rules and dewatering-unit closures); no trout program or trout record exists anywhere on the river.",
+        "statement": "TWRA manages the Big Sandy embayment of Kentucky Reservoir as a warmwater fishery (crappie/bass/catfish rules and dewatering-unit closures).",
         "asOf": "2026"
       },
       "claims": [
@@ -4796,7 +4796,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout record, or reach-specific fishery documentation exists for Big Swan Creek (Lewis/Maury counties, Duck River basin); its trout status is undocumented.",
+        "statement": "The cited sources do not establish a trout program, dated trout observation, or reach-specific fishery for Big Swan Creek (Lewis/Maury counties, Duck River basin). Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -5017,7 +5017,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": null,
-        "statement": "TDEC's scenic-river profile documents Blackburn Fork (Jackson County) as a wade-fishing smallmouth bass stream through Cummins Falls country; no trout program or trout record exists for the stream.",
+        "statement": "TDEC's scenic-river profile documents Blackburn Fork (Jackson County) as a wade-fishing smallmouth bass stream through Cummins Falls country.",
         "asOf": "2026"
       },
       "claims": [
@@ -6116,7 +6116,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "Bradley Creek (Franklin/Coffee County, above AEDC Woods Reservoir) has a genuinely cool gauged temperature record for the region, but no trout stocking program, trout survey, or dated trout observation exists — its trout status is undocumented.",
+        "statement": "Bradley Creek (Franklin/Coffee counties, above Woods Reservoir) has a cool gauged temperature record, but the cited sources do not establish a trout program, survey, or dated trout observation for the reach. Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -7415,7 +7415,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout regulation, or reach-specific fishery documentation exists for Bullrun Creek (Union/Knox counties, Clinch tributary); its trout status is undocumented.",
+        "statement": "The cited sources do not establish a trout program, dated observation, or reach-specific fishery for Bullrun Creek (Union/Knox counties, Clinch tributary). Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -8456,7 +8456,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout regulation, or trout record exists for Candies Creek (Bradley County, Hiwassee tributary near Cleveland); a single 1988 cool grab sample is too thin to characterize the creek either way.",
+        "statement": "A single cool 1988 grab sample is too thin to characterize Candies Creek (Bradley County, Hiwassee tributary). The cited sources do not establish a trout program or dated trout observation, so trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -9584,7 +9584,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Free-flowing upper Caney Fork from the Cumberland County headwaters through the Great Falls Reservoir pool at Rock Island to the slackwater above Center Hill Dam. Does NOT include the Center Hill Dam tailwater.",
-        "statement": "TWRA documents this upper Caney Fork reach as warmwater bass/crappie/catfish/musky water with a winter walleye run; no trout program, trout designation, or trout stocking exists anywhere on this reach - the celebrated trout water begins below Center Hill Dam (a separate catalog water).",
+        "statement": "TWRA documents this upper Caney Fork reach as warmwater bass/crappie/catfish/musky water with a winter walleye run.",
         "asOf": "2026"
       },
       "claims": [
@@ -10480,7 +10480,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Cherokee Lake (Cherokee Reservoir) pool — TVA impoundment of the Holston River across Grainger/Hamblen/Hawkins/Jefferson counties; excludes the Cherokee Dam tailwater below the dam (the stocked trout reach, catalog holston-river)",
-        "statement": "TWRA documents Cherokee Reservoir as a warmwater fishery — largemouth, smallmouth, striped and Cherokee bass, crappie, walleye, saugeye — with summer stratification that leaves deep water oxygen-poor; no trout fishery is documented for the lake, and TWRA's trout program on this system is the tailwater below the dam.",
+        "statement": "TWRA documents Cherokee Reservoir as a warmwater fishery with largemouth, smallmouth, striped and hybrid striped bass (locally called Cherokee bass), crappie, walleye, and saugeye. Its trout program on this system is documented below the dam, on a separate tailwater reach; lake-wide trout opportunity remains undocumented.",
         "asOf": "2026"
       },
       "claims": [
@@ -10734,7 +10734,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout regulation, trout record, or water-temperature record exists for Chestuee Creek (McMinn County, Hiwassee tributary); its fishery status is undocumented.",
+        "statement": "The cited sources do not establish a trout program, dated observation, reach-specific fish survey, or useful temperature series for Chestuee Creek (McMinn County, Hiwassee tributary). Fishery status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -12052,7 +12052,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout program, trout record, or fish survey exists for the Scott County Clear Fork (New River system); a 2026 warm gauge reading argues against summer trout habitat but cannot settle occupancy.",
+        "statement": "A 2026 warm gauge reading on the Scott County Clear Fork argues against summer trout habitat at that point but cannot settle occupancy. No reach-specific trout survey was found in the cited sources; trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -13737,7 +13737,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout program, trout record, or fish survey exists for Crab Orchard Creek (Cumberland/Morgan county Emory River tributary); historical grabs show warm summer water at the gauged upper reach.",
+        "statement": "Historical temperature grabs on Crab Orchard Creek (Cumberland/Morgan counties, Emory tributary) indicate warm summer water at the gauged upper reach, but the cited sources do not settle trout occupancy elsewhere. Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -13945,7 +13945,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Cheatham Lake pool: Old Hickory Dam downstream to Cheatham Dam/Ashland City (the Nashville reach of the catalog's Nashville-to-Lake Barkley main stem); the free-flowing Cumberland below Cheatham Dam to Lake Barkley is not covered by the supporting source",
-        "statement": "TWRA documents the Nashville-reach Cumberland (Cheatham Lake pool) as a warmwater riverine fishery — black bass, crappie, catfish, white/striped bass and a December-March sauger run below Old Hickory Dam; no trout program exists on the Tennessee main stem itself.",
+        "statement": "TWRA documents the Nashville-reach Cumberland (Cheatham Lake pool) as a warmwater riverine fishery — black bass, crappie, catfish, white/striped bass and a December-March sauger run below Old Hickory Dam.",
         "asOf": "2026"
       },
       "claims": [
@@ -16836,7 +16836,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout listing, or trout record exists for Dumplin Creek (Jefferson/Sevier counties, Douglas Lake tributary); its fishery status is undocumented.",
+        "statement": "The cited sources do not establish a trout program, dated observation, or reach-specific fishery for Dumplin Creek (Jefferson/Sevier counties, Douglas Lake tributary). Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -16983,7 +16983,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Compton Boat Ramp upstream to the Highway 52 bridge (TWRA's regulated walleye-run reach); headwater reaches above Hwy 52 are not covered",
-        "statement": "TWRA regulates a January 1-April 15 walleye spawning run on a named reach of the East Fork Obey River — documented cool/warmwater sportfish management; no trout program or trout record exists on the fork.",
+        "statement": "TWRA regulates a January 1-April 15 walleye spawning run on a named reach of the East Fork Obey River — documented cool/warmwater sportfish management.",
         "asOf": "2026"
       },
       "claims": [
@@ -18533,7 +18533,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Emory River main stem / Watts Bar arm (Oakdale-Harriman country downstream to the embayment head); NPS survey evidence covers only the upper park reach inside Obed WSR",
-        "statement": "TWRA documents the Emory as preferred muskellunge habitat in the Watts Bar system — a warmwater river with species-specific regulations — and no trout program or trout record exists for it.",
+        "statement": "TWRA documents the Emory as preferred muskellunge habitat in the Watts Bar system — a warmwater river with species-specific regulations.",
         "asOf": "2026"
       },
       "claims": [
@@ -18760,7 +18760,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": "Burgess Falls State Park reach (below the Burgess Falls Dam waterfall and at the park fishing pier); upstream headwater reaches near Cookeville are not covered",
-        "statement": "The Burgess Falls State Park reach of the Falling Water River offers documented bank-and-pier fishing for largemouth and smallmouth bass and bream; no trout program or trout record exists on the river.",
+        "statement": "The Burgess Falls State Park reach of the Falling Water River offers documented bank-and-pier fishing for largemouth and smallmouth bass and bream.",
         "asOf": "2026"
       },
       "claims": [
@@ -19560,7 +19560,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": "main stem below the confluence of the North, Middle, and South forks (HUC 08010202), covered river-wide by the West Tennessee crappie rule",
-        "statement": "TWRA manages the Forked Deer under a named West Tennessee warmwater rule (crappie 30/day, no length limit, with Hatchie/Loosahatchie/Obion/Wolf); no trout program or trout record exists on the river, and no species survey documents the ungaged main stem.",
+        "statement": "TWRA manages the Forked Deer under a named West Tennessee warmwater rule (crappie 30/day, no length limit, with Hatchie/Loosahatchie/Obion/Wolf).",
         "asOf": "2026"
       },
       "claims": [
@@ -20400,7 +20400,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Douglas Dam downstream to the Holston confluence (Sevier County)",
-        "statement": "The Tennessee reach below Douglas Dam is documented warmwater water: TWRA sets a quality smallmouth rule (5/day, 18-inch minimum from Hwy 168 to Douglas Dam) on the river and documents Douglas as a largemouth/crappie/sauger fishery - no trout program or trout record exists for this reach.",
+        "statement": "The Tennessee reach below Douglas Dam is documented warmwater water: TWRA sets a quality smallmouth rule (5/day, 18-inch minimum from Hwy 168 to Douglas Dam) on the river and documents Douglas as a largemouth/crappie/sauger fishery.",
         "asOf": "2026"
       },
       "claims": [
@@ -27330,7 +27330,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout stocking, trout listing, or trout record exists for Little Chuckey Creek (Little Chucky Creek, Greene County Nolichucky tributary); its fishery status is undocumented.",
+        "statement": "The cited sources do not establish a trout program, dated observation, or reach-specific fishery for Little Chuckey Creek (Greene County, Nolichucky tributary). Trout status remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -27478,7 +27478,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No trout program, trout listing, or dated trout record exists for the Little Harpeth River — TWRA's Harpeth-system winter stockings are on the MAIN Harpeth at Eastern Flank Battle Park (Franklin), a different water — and a rumored wild-rainbow population could not be sourced.",
+        "statement": "TWRA's documented Harpeth-system winter stockings are on the main Harpeth at Eastern Flank Battle Park, a different water. A rumored Little Harpeth wild-rainbow population could not be sourced; trout status for the Little Harpeth remains unresolved.",
         "asOf": "2026"
       },
       "claims": [
@@ -29048,7 +29048,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Loosahatchie River under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the river; no trout program and no trout record exists for this lowland Memphis-area drainage, and no reach-specific fishery survey was found.",
+        "statement": "TWRA manages the Loosahatchie River under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the river.",
         "asOf": "2026"
       },
       "claims": [
@@ -29457,11 +29457,11 @@
         "notes": "TWRA winter-stocked Maury County creek — a Columbia-area close-to-home trout stop."
       },
       "headline": {
-        "troutOpportunity": "mixed",
-        "warmwaterFocus": true,
+        "troutOpportunity": "seasonal-stocked-trout",
+        "warmwaterFocus": false,
         "evidenceState": "documented",
         "reachScope": "Maury County creek at the Spring Hill-area stocking site",
-        "statement": "TWRA's winter trout program stocks McCutcheon Creek (Maury County) with rainbow trout in the cold months (January-February 2026 rows plus a TBD December 2026 event); the rest of the year it is a warm suburban creek and no summer trout fishery is documented.",
+        "statement": "TWRA schedules winter rainbow trout stocking on McCutcheon Creek (Maury County): January and February 2026 rows plus a tentative December event. The cited temperature samples are too sparse to establish a separate warmwater fishery or summer trout survival.",
         "asOf": "2026"
       },
       "claims": [
@@ -29990,7 +29990,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the Middle Fork; no trout program and no trout record exists for this fork, and no reach-specific fishery survey was found.",
+        "statement": "TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the Middle Fork.",
         "asOf": "2026"
       },
       "claims": [
@@ -30219,7 +30219,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the Middle Fork Obion; no trout program exists and no trout record of any kind was found on this channelized lowland fork.",
+        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the Middle Fork Obion.",
         "asOf": "2026"
       },
       "claims": [
@@ -31267,7 +31267,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": "Tennessee reach of the Mississippi River mainstem (Shelby/Tipton/Lauderdale/Dyer/Lake counties as cataloged)",
-        "statement": "TWRA carries a dedicated warmwater regulation block for the Mississippi River (black bass, crappie, catfish, striped/hybrid bass, sauger, white bass, sunfish), documenting a managed warmwater fishery on the Tennessee reach; no trout program exists anywhere on the reach and a single community-app trout entry remains an uncorroborated lead.",
+        "statement": "TWRA carries a dedicated warmwater regulation block for the Mississippi River (black bass, crappie, catfish, striped/hybrid bass, sauger, white bass, sunfish), documenting a managed warmwater fishery on the Tennessee reach.",
         "asOf": "2026"
       },
       "claims": [
@@ -31764,7 +31764,7 @@
         "warmwaterFocus": null,
         "evidenceState": "unresolved",
         "reachScope": null,
-        "statement": "No acceptable positive evidence documents the fishery of this Scott County New River: the smallmouth reputation comes from tourism/app sources, no agency assemblage survey was found, and no trout record exists. Unresolved - absence of trout records never establishes a warmwater-only fishery.",
+        "statement": "The cited sources do not establish the fishery of this Scott County New River: the smallmouth reputation comes from tourism and community reports, and no agency assemblage survey was found. Trout status remains unresolved; missing trout records do not establish a warmwater-only fishery.",
         "asOf": "2026"
       },
       "claims": [
@@ -32262,7 +32262,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": "TWRA special smallmouth rule covers 'ENKA Dam upstream to the state line includes Davy Crockett Lake'; lower reach under Douglas Reservoir rules",
-        "statement": "TWRA carries a special smallmouth-bass regulation on the Nolichucky (13-17 in protected range, ENKA Dam to the state line), documenting a managed warmwater smallmouth fishery; no trout program exists on the main stem, and agency trout evidence is limited to Nolichucky-watershed headwater tributaries — main-stem trout occurrence remains undocumented.",
+        "statement": "TWRA carries a special smallmouth-bass regulation on the Nolichucky (13-17 in protected range, ENKA Dam to the state line), documenting a managed warmwater smallmouth fishery.",
         "asOf": "2026"
       },
       "claims": [
@@ -32767,7 +32767,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Normandy Reservoir itself (3,048 ac TVA impoundment, mostly Coffee County). Not the Duck River tailwater below Normandy Dam.",
-        "statement": "TWRA documents Normandy Reservoir as a warmwater black-bass/crappie/walleye/catfish fishery; the region's trout program is the Duck River below the dam - a separate catalog water - and no trout program exists on the reservoir.",
+        "statement": "TWRA documents Normandy Reservoir as a warmwater black-bass/crappie/walleye/catfish fishery; the region's trout program is the Duck River below the dam - a separate catalog water.",
         "asOf": "2026"
       },
       "claims": [
@@ -32995,7 +32995,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Norris Lake (Norris Reservoir) pool — TVA impoundment of the Clinch and Powell rivers across Anderson/Campbell/Claiborne/Grainger/Union counties; excludes the Clinch River Norris tailwater below Norris Dam (catalog clinch-river)",
-        "statement": "TWRA documents Norris Reservoir as a warmwater fishery — smallmouth and largemouth bass, striped bass, crappie, walleye — with heavy non-trout stocking (~103,000 striper and ~103,000 crappie fingerlings, ~240,000 walleye annually) and no trout anywhere in its fishery documentation; the trout fishery TWRA manages on this system is the tailwater below the dam.",
+        "statement": "TWRA documents Norris Reservoir as a warmwater fishery with smallmouth and largemouth bass, striped bass, crappie, and walleye, and describes substantial non-trout stocking. The cited reservoir fishery page does not document a lake trout program; TWRA documents a separate trout fishery below Norris Dam.",
         "asOf": "2026"
       },
       "claims": [
@@ -33598,7 +33598,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the North Fork; no trout program exists on this fork, and a single community-app trout entry remains an uncorroborated lead.",
+        "statement": "TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the North Fork.",
         "asOf": "2026"
       },
       "claims": [
@@ -33845,7 +33845,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "State line downstream to the South Fork Holston confluence at Kingsport (Sullivan County)",
-        "statement": "TWRA manages the short Tennessee reach of the North Fork Holston as a smallmouth fishery (13-17 inch protected range, one over 17 in/day, state line to the South Fork Holston confluence); no trout program or trout record exists for the Tennessee reach.",
+        "statement": "TWRA manages the short Tennessee reach of the North Fork Holston as a smallmouth fishery (13-17 inch protected range, one over 17 in/day, state line to the South Fork Holston confluence).",
         "asOf": "2026"
       },
       "claims": [
@@ -34067,7 +34067,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the North Fork Obion; no trout program exists and no trout record of any kind was found on this channelized lowland fork.",
+        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the North Fork Obion.",
         "asOf": "2026"
       },
       "claims": [
@@ -35343,7 +35343,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Main stem, northwest Tennessee (documented gaged reaches near Kenton, Rives, and at Hwy 51 near Obion)",
-        "statement": "TWRA manages the Obion River as a warmwater crappie/bass river (30-per-day crappie rule incl. tributaries) and no trout program or trout record exists for it; the fish fauna is a documented warmwater lowland assemblage.",
+        "statement": "TWRA manages the Obion River as a warmwater crappie/bass river (30-per-day crappie rule incl. tributaries).",
         "asOf": "2026"
       },
       "claims": [
@@ -41298,7 +41298,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the Rutherford Fork Obion; no trout program exists and no trout record of any kind was found on this channelized Gibson County fork.",
+        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the Rutherford Fork Obion.",
         "asOf": "2026"
       },
       "claims": [
@@ -42309,11 +42309,11 @@
         "notes": "TWRA winter put-and-take lake in Memphis (Shelby County). Stocked with rainbow trout in the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current winter window before you go."
       },
       "headline": {
-        "troutOpportunity": "mixed",
-        "warmwaterFocus": true,
+        "troutOpportunity": "seasonal-stocked-trout",
+        "warmwaterFocus": false,
         "evidenceState": "documented",
         "reachScope": "Jones Pond, Shelby Farms Park",
-        "statement": "Shelby Farms Park documents trout stocked in Jones Pond every December and January under TWRA's winter program, over a park of warmwater lakes (catfish, crappie, bream, largemouth bass) - a cold-months trout fishery on a warmwater park water.",
+        "statement": "Shelby Farms Park and TWRA document winter rainbow trout stocking in Jones Pond (December and January schedule entries). The park also describes warmwater fishing across its lakes, but the cited sources do not establish a separate warmwater fishery specifically in Jones Pond.",
         "asOf": "2026"
       },
       "claims": [
@@ -43435,7 +43435,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the South Fork; no trout program and no trout record exists for this fork, and no reach-specific fishery survey was found.",
+        "statement": "TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the South Fork.",
         "asOf": "2026"
       },
       "claims": [
@@ -43678,7 +43678,7 @@
         "warmwaterFocus": true,
         "evidenceState": "limited",
         "reachScope": null,
-        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the South Fork Obion; no trout program exists and no trout record of any kind was found on this channelized lowland fork.",
+        "statement": "TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule (30/day, no length limit), documenting a managed warmwater fishery on the South Fork Obion.",
         "asOf": "2026"
       },
       "claims": [
@@ -45735,11 +45735,11 @@
         "notes": "TWRA’s winter trout program reaches the Nashville metro here — urban rainbows from roughly December through February. The Donelson gauge (below Percy Priest) is the flow reference."
       },
       "headline": {
-        "troutOpportunity": "mixed",
-        "warmwaterFocus": true,
+        "troutOpportunity": "seasonal-stocked-trout",
+        "warmwaterFocus": false,
         "evidenceState": "documented",
         "reachScope": "J. Percy Priest Dam tailwater reach (Davidson County, Donelson gauge area)",
-        "statement": "TWRA's winter trout program stocks catchable rainbow trout below J. Percy Priest Dam on the Stones River beginning the first Friday in December with January and February events; TWRA states the fish will not survive the warm summer water, so this is a cold-months put-and-take over a warmwater river fishery.",
+        "statement": "TWRA documents a winter rainbow trout stocking program below J. Percy Priest Dam on the Stones River, beginning the first Friday in December with January and February events. TWRA says stocked trout will not survive the warm summer water; this is a seasonal stocking opportunity, not evidence of year-round trout occupancy.",
         "asOf": "2026"
       },
       "claims": [
@@ -47214,7 +47214,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Kentucky Lake pool of the Tennessee River: Pickwick Lake to the Kentucky state line (the catalog's West Tennessee reach, Hardin County)",
-        "statement": "TWRA documents the Tennessee River's West Tennessee reach (the Kentucky Lake pool) as a warmwater main-stem fishery whose signature cold-season fishery is the December-March sauger run below TVA dams; no trout program exists anywhere on the main stem, and the trout fishing lives in the separate cold tailwaters.",
+        "statement": "TWRA documents the Tennessee River's West Tennessee reach (the Kentucky Lake pool) as a warmwater main-stem fishery whose signature cold-season fishery is the December-March sauger run below TVA dams.",
         "asOf": "2026"
       },
       "claims": [
@@ -47811,8 +47811,8 @@
         "troutOpportunity": "seasonal-stocked-trout",
         "warmwaterFocus": false,
         "evidenceState": "documented",
-        "reachScope": "TWRA-stocked reach of Trail Fork of Big Creek (Cocke County, 'Trail Fork Big Creek' stocking group); wild rainbows documented upstream of ~2,720 ft; 2021 brook trout reintroduction is above the waterfall barrier.",
-        "statement": "A small TWRA-stocked rainbow trout water (five spring stockings Feb-May 2026), with a documented wild rainbow population in the upper reaches and a 2021 brook trout reintroduction above the waterfall barrier whose persistence is NOT established - 2025 monitoring was planned, and no 2026 persistence claim is made.",
+        "reachScope": "Lower TWRA-stocked reach of Trail Fork of Big Creek (Cocke County); above the waterfall is the historical rainbow-removal and 2021 brook trout transfer reach, with current occupancy unverified.",
+        "statement": "TWRA schedules five spring rainbow stockings on lower Trail Fork in 2026. A 2017 plan recorded wild rainbows upstream, but Trout Unlimited reports rainbow removal above the waterfall before a 2021 brook trout transfer; current upper-reach brook trout persistence is unverified.",
         "asOf": "2026"
       },
       "claims": [
@@ -47834,6 +47834,25 @@
           "statement": "TWRA's 2026 plan stocks Trail Fork Big Creek with rainbow trout in five spring weeks (late February through mid-May).",
           "qualification": "Stocking weeks are events, not a fishing window; no TWRA assessment documents how long stocked fish persist after May.",
           "nextQuestion": null
+        },
+        {
+          "kind": "trout-observation",
+          "state": "historical",
+          "species": "rainbow-trout",
+          "appliesToReach": "above the Trail Fork waterfall barrier",
+          "source": {
+            "url": "https://www.tu.org/magazine/conservation/from-the-field/brookies-in-tennessee-get-a-new-improved-home/",
+            "publisher": "Trout Unlimited",
+            "title": "Brookies in Tennessee get a new, improved home",
+            "method": "partner field report",
+            "observationPeriod": "rainbow removal before fall 2021 brook trout transfer",
+            "publicationDate": "2021-11-16",
+            "retrieved": "2026-09-22",
+            "pinpoint": "TWRA, USFS and UT used electrofishing gear to remove all rainbows from above the falls; wild rainbows remained below the waterfall"
+          },
+          "statement": "Project partners reported removing all rainbow trout above the waterfall before the 2021 brook trout transfer; the 2017 upper-reach rainbow statement is historical, not evidence of current upper-reach occupancy.",
+          "qualification": "A 2021 field report does not establish brook trout persistence in 2026 or exclude subsequent recolonization.",
+          "nextQuestion": "Obtain post-transfer monitoring results for the upper reach."
         },
         {
           "kind": "trout-observation",
@@ -52426,7 +52445,7 @@
         "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "West Tennessee Wolf River through Fayette and Shelby counties (the cataloged water)",
-        "statement": "The West Tennessee Wolf River is a documented warmwater fishery: TWRA manages it under a shared West Tennessee crappie rule, and the Wolf River Conservancy's 2022 fish summary reports about 67 species in 13 families with no trout among them; no trout program exists on this river.",
+        "statement": "The West Tennessee Wolf River has a documented warmwater fishery: TWRA manages it under a shared West Tennessee crappie rule, and the Wolf River Conservancy reported about 67 fish species in 13 families in its 2022 summary.",
         "asOf": "2026"
       },
       "claims": [

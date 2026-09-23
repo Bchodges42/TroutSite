@@ -397,14 +397,19 @@ unresolved + claim-specific sources), removes the seasonal fallback, and makes
 unresolved a first-class visitor-facing state. The 190-water evidence ledger
 lives at `docs/research/2026-09-22-fishery-opportunities/` with its seed,
 captures + source log, adjudication brief, and verify checks
-(`packages/content/scripts/opportunity/verify-ledger.mjs --final`).
+(`packages/content/scripts/opportunity/verify-ledger.mjs --final`). The follow-up
+repair audit is `docs/reports/2026-09-22-evidence-branch-repair.md`.
 
-- [x] **OPP-1** — Contract, decision model, UI card, prerender wording, fallback removal (this lane).
+- [x] **OPP-1** — Contract, decision model, UI card, prerender wording, fallback removal.
+  The follow-up removed the old trout-calendar presence card and generated asset,
+  and prevents scheduled stocking months from earning a current trout-condition score.
 - [ ] **OPP-2 (owner)** — Review the adjudication verdicts, especially the owner boxes in
   `docs/research/2026-09-22-fishery-opportunities/owner-corrections-report.json`
-  (species strips/claims NOT auto-applied; wrong seasonMonths/yearRound fields
-  found on duck-river-tailwater, buffalo-creek-grainger, piney-river-rhea, and
-  nine spring-program creeks; region tags on standing-rock + mill-creek-overton).
+  (22 demonstrably wrong programmatic month windows have been removed; other
+  yearRound/season fields, species claims, and region tags still need owner review).
+  Current opportunity counts after the repair audit: 29 year-round, 61 seasonal,
+  55 warmwater focus, 10 mixed, 35 unresolved. Do not use the superseded counts
+  in the first implementation report.
 - [ ] **OPP-3 (owner/data holders)** — Unresolved waters' next sources: TWRA completed-release
   history beyond the 10-row rolling window; TVA stream station export; the
   2025 planned Coldwater-Summit survey results; Paris City Park pond identity;

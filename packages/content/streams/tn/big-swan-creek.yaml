@@ -20,8 +20,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout record, or reach-specific fishery documentation exists for Big
-    Swan Creek (Lewis/Maury counties, Duck River basin); its trout status is undocumented.
+  statement: The cited sources do not establish a trout program, dated trout observation, or
+    reach-specific fishery for Big Swan Creek (Lewis/Maury counties, Duck River basin). Trout status
+    remains unresolved.
   asOf: "2026"
   caveats:
     - This is the Lewis/Maury county Duck tributary (GNIS 01269345, HUC 06040003) — NOT the Swan

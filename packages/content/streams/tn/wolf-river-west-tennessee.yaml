@@ -40,10 +40,9 @@ hydroIdentity:
 opportunity:
   trout: warmwater-focus
   evidenceState: documented
-  statement: "The West Tennessee Wolf River is a documented warmwater fishery: TWRA manages it under a
-    shared West Tennessee crappie rule, and the Wolf River Conservancy's 2022 fish summary reports
-    about 67 species in 13 families with no trout among them; no trout program exists on this
-    river."
+  statement: "The West Tennessee Wolf River has a documented warmwater fishery: TWRA manages it under
+    a shared West Tennessee crappie rule, and the Wolf River Conservancy reported about 67 fish
+    species in 13 families in its 2022 summary."
   reachScope: West Tennessee Wolf River through Fayette and Shelby counties (the cataloged water)
   asOf: "2026"
   sources:

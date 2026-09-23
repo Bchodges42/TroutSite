@@ -13,38 +13,28 @@ targetSpecies:
   - smallmouth-bass
   - spotted-bass
   - crappie
-  - bluegill
-  - channel-catfish
   - striped-bass
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
-  - species: bluegill
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03533000/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
   TVA reservoir on the Clinch River north of Knoxville across Anderson, Campbell, Claiborne,
   Grainger, and Union counties, impounded by Norris Dam (USGS 03533000 tailwater gauge). Receives
@@ -78,10 +68,10 @@ officialSources:
 opportunity:
   trout: warmwater-focus
   evidenceState: documented
-  statement: TWRA documents Norris Reservoir as a warmwater fishery — smallmouth and largemouth bass,
-    striped bass, crappie, walleye — with heavy non-trout stocking (~103,000 striper and ~103,000
-    crappie fingerlings, ~240,000 walleye annually) and no trout anywhere in its fishery
-    documentation; the trout fishery TWRA manages on this system is the tailwater below the dam.
+  statement: TWRA documents Norris Reservoir as a warmwater fishery with smallmouth and largemouth
+    bass, striped bass, crappie, and walleye, and describes substantial non-trout stocking. The
+    cited reservoir fishery page does not document a lake trout program; TWRA documents a separate
+    trout fishery below Norris Dam.
   reachScope: Norris Lake (Norris Reservoir) pool — TVA impoundment of the Clinch and Powell rivers
     across Anderson/Campbell/Claiborne/Grainger/Union counties; excludes the Clinch River Norris
     tailwater below Norris Dam (catalog clinch-river)

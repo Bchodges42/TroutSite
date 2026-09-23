@@ -20,7 +20,6 @@ import {
   decisionColorToken,
   toWaterDecisionView,
 } from './waterDecision';
-import { troutPresenceNow, useTroutCalendar } from '../../lib/troutCalendar';
 import { Segmented } from '../../components/ui/Segmented';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { useSettingsContext } from '../../lib/settings';
@@ -67,16 +66,7 @@ export function RiverMapPage() {
   const qaOn = params.get('qa') === '1';
   const [qaOpen, setQaOpen] = useState(true);
   const data = useRiverMapData({ month, focusSpecies: species === 'all' ? focusSpecies : null });
-  // Trout calendar (research lane): presentation-only presence notes for the
-  // drawer season card. It does NOT gate scores or visibility — authored
-  // seasonMonths own seasonality in the decision model (reconciled 2026-09-14).
-  // null = no calendar in this bundle — every surface then falls back to
-  // catalog-only behavior, never invented seasonality.
-  const calendarQuery = useTroutCalendar();
-  const calendar = calendarQuery.data?.data ?? null;
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
-  const selectedSeason =
-    selected && calendar ? troutPresenceNow(calendar.waters[selected.stream.id]) : null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
   const [expanded, setExpanded] = useState(false);
   const [layers, setLayers] = useState(false);
@@ -426,8 +416,8 @@ export function RiverMapPage() {
   // Class outlines (2026-09-10): the map must SHOW the trout/warmwater split,
   // not only filter on it. Unclassified waters get no outline at all.
   const classOutlines = useMemo(
-    () => new Map(data.features.map((f) => [f.stream.id, classOutline(f, calendar)] as const)),
-    [data.features, calendar],
+    () => new Map(data.features.map((f) => [f.stream.id, classOutline(f)] as const)),
+    [data.features],
   );
   const hatchActive = useMemo(
     () =>
@@ -630,7 +620,6 @@ export function RiverMapPage() {
             </button>
             <RiverDrawer
               feature={selected}
-              season={selectedSeason}
               tab={tab}
               onTab={(t) => {
                 update({ tab: t });
@@ -977,8 +966,8 @@ export function RiverMapPage() {
                 : coverageUnavailable
                   ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
                   : species === 'all'
-                    ? 'Blue outlines mark trout waters, amber marks warmwater; dimmed dashed waters are out of season.'
-                    : 'Bright lines hold trout now. Dimmed dashed lines are trout waters out of season. Unclassified waters say so instead of guessing.'}{' '}
+                    ? 'Blue outlines mark trout opportunities, amber marks warmwater focus; dimmed dashed waters have a closed documented regulatory window.'
+                    : 'Bright lines mark trout opportunities, not confirmed fish presence today. Dimmed dashed lines have a closed documented regulatory window. Unclassified waters say so instead of guessing.'}{' '}
             <Link to="/about">Sources & privacy ↗</Link>
           </p>
         </div>

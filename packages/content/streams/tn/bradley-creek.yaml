@@ -21,9 +21,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: Bradley Creek (Franklin/Coffee County, above AEDC Woods Reservoir) has a genuinely cool
-    gauged temperature record for the region, but no trout stocking program, trout survey, or dated
-    trout observation exists — its trout status is undocumented.
+  statement: Bradley Creek (Franklin/Coffee counties, above Woods Reservoir) has a cool gauged
+    temperature record, but the cited sources do not establish a trout program, survey, or dated
+    trout observation for the reach. Trout status remains unresolved.
   asOf: "2026"
   caveats:
     - The Fishbrain page is flagged needs-segment-review (99 catches, rock bass/smallmouth-led, no

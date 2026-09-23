@@ -31,9 +31,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout program, trout record, or fish survey exists for the Scott County Clear Fork
-    (New River system); a 2026 warm gauge reading argues against summer trout habitat but cannot
-    settle occupancy.
+  statement: A 2026 warm gauge reading on the Scott County Clear Fork argues against summer trout
+    habitat at that point but cannot settle occupancy. No reach-specific trout survey was found in
+    the cited sources; trout status remains unresolved.
   asOf: "2026"
   caveats:
     - Fishbrain page is a shared 'Clear Fork River' page (67 catches, smallmouth-led, no trout rows)

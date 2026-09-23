@@ -17,11 +17,13 @@
   },
   {
     "id": "brush-creek-cocke",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: TWRA's 2026 schedule stocks this water only in March-May Seasonal weeks and has no winter rows; correct to [3,4,5] (or null) - the Dec-Feb window contradicts the schedule."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: TWRA's 2026 schedule stocks this water only in March-May Seasonal weeks and has no winter rows; correct to [3,4,5] (or null) - the Dec-Feb window contradicts the schedule.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "buffalo-creek-grainger",
-    "correction": "catalogFields.yearRound=true is WRONG - set yearRound=false. seasonMonths [12,1,2] is WRONG: the documented program is weekly stocking Feb-Aug plus the Oct 1-Jan 31 DH window (seasonMonths [2,3,4,5,6,7,8] + [10,11,12,1] as program months). Stocking program=true is correct."
+    "correction": "catalogFields.yearRound=true is WRONG - set yearRound=false. seasonMonths [12,1,2] is WRONG: the documented program is weekly stocking Feb-Aug plus the Oct 1-Jan 31 DH window (seasonMonths [2,3,4,5,6,7,8] + [10,11,12,1] as program months). Stocking program=true is correct.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "calderwood-lake",
@@ -65,7 +67,8 @@
   },
   {
     "id": "doe-creek-johnson",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-May Seasonal weeks with no winter rows; correct to [3,4,5] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-May Seasonal weeks with no winter rows; correct to [3,4,5] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "doe-river",
@@ -77,7 +80,8 @@
   },
   {
     "id": "east-fork-shoal-creek",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this water only in Feb-May Seasonal weeks with no winter rows; correct to [2,3,5] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this water only in Feb-May Seasonal weeks with no winter rows; correct to [2,3,5] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "east-fork-stones-river",
@@ -97,11 +101,13 @@
   },
   {
     "id": "fletchers-fork",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the documented 2026 program runs Feb-Aug (schedule weeks 2/15-8/23; iSportsman events Feb 12, Apr 7, Jun 25, Jul 22, Aug 26); correct to [2,4,5,6,7,8] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the documented 2026 program runs Feb-Aug (schedule weeks 2/15-8/23; iSportsman events Feb 12, Apr 7, Jun 25, Jul 22, Aug 26); correct to [2,4,5,6,7,8] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "forge-creek-johnson",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-May Seasonal weeks with no winter rows; correct to [3,4,5] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-May Seasonal weeks with no winter rows; correct to [3,4,5] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "fort-patrick-henry-lake",
@@ -117,11 +123,13 @@
   },
   {
     "id": "goforth-creek",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-April Seasonal weeks with no winter rows; correct to [3,4] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-April Seasonal weeks with no winter rows; correct to [3,4] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "greasy-creek-polk",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-April Seasonal weeks with no winter rows; correct to [3,4] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in March-April Seasonal weeks with no winter rows; correct to [3,4] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "harpeth-river",
@@ -137,7 +145,8 @@
   },
   {
     "id": "indian-creek-claiborne",
-    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in Feb-Apr Seasonal weeks with no winter rows; correct to [2,3,4] (or null)."
+    "correction": "seasonMonths [12,1,2] (programmatic) is wrong: the 2026 schedule stocks this creek only in Feb-Apr Seasonal weeks with no winter rows; correct to [2,3,4] (or null).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "johnson-park-lake",
@@ -153,7 +162,8 @@
   },
   {
     "id": "little-buffalo-river",
-    "correction": "seasonMonths [12,1,2] (programmatic winter) is wrong: the 2026 schedule and the GIS 'Spring' program label put the events in March-May; set stocking months to Mar/May. Catalog note ('spring-stocked') is correct."
+    "correction": "seasonMonths [12,1,2] (programmatic winter) is wrong: the 2026 schedule and the GIS 'Spring' program label put the events in March-May; set stocking months to Mar/May. Catalog note ('spring-stocked') is correct.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "little-pigeon-river",
@@ -165,7 +175,8 @@
   },
   {
     "id": "little-sequatchie-river",
-    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in March and May; set stocking months to Mar/May."
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in March and May; set stocking months to Mar/May.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "little-tennessee-river",
@@ -173,7 +184,8 @@
   },
   {
     "id": "little-west-fork-creek",
-    "correction": "seasonMonths [12,1,2] is WRONG vs documented Feb-Aug 2026 stocking months (TWRA schedule + post program page); correct to the Feb-Aug program window. species trout/stocked stands (rainbow, plus brown in the April event)."
+    "correction": "seasonMonths [12,1,2] is WRONG vs documented Feb-Aug 2026 stocking months (TWRA schedule + post program page); correct to the Feb-Aug program window. species trout/stocked stands (rainbow, plus brown in the April event).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "loosahatchie-river",
@@ -293,7 +305,8 @@
   },
   {
     "id": "puncheon-camp-creek",
-    "correction": "seasonMonths [12,1,2] is WRONG vs the schedule (spring weeks 2/8-4/12/2026); correct to spring seasonal. The catalog note 'TWRA spring-stocked Grainger County creek' is right; the counties:[Campbell] field likely wrong."
+    "correction": "seasonMonths [12,1,2] is WRONG vs the schedule (spring weeks 2/8-4/12/2026); correct to spring seasonal. The catalog note 'TWRA spring-stocked Grainger County creek' is right; the counties:[Campbell] field likely wrong.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "red-river-clarksville",
@@ -309,7 +322,8 @@
   },
   {
     "id": "richardson-byrd-creek",
-    "correction": "seasonMonths [12,1,2] (winter) is wrong: all 2026 rows are Seasonal Feb-Apr; set stocking months to Feb/Mar/Apr."
+    "correction": "seasonMonths [12,1,2] (winter) is wrong: all 2026 rows are Seasonal Feb-Apr; set stocking months to Feb/Mar/Apr.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "roaring-fork",
@@ -325,7 +339,8 @@
   },
   {
     "id": "salt-lick-creek",
-    "correction": "seasonMonths [12,1,2] (winter) is wrong: schedule rows are March (with a possible January event in the prior live read); set stocking months to Mar (Jan unconfirmed). Catalog note 'spring-stocked' is correct."
+    "correction": "seasonMonths [12,1,2] (winter) is wrong: schedule rows are March (with a possible January event in the prior live read); set stocking months to Mar (Jan unconfirmed). Catalog note 'spring-stocked' is correct.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "sequatchie-river",
@@ -361,15 +376,18 @@
   },
   {
     "id": "spring-creek-polk",
-    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Feb/Mar/Apr and Nov; set stocking months accordingly."
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Feb/Mar/Apr and Nov; set stocking months accordingly.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "standing-rock-creek",
-    "correction": "seasonMonths [12,1,2] is wrong (rows are Feb/Mar); regionId tn-upper-cumberland is wrong - the creek is in the Tennessee River/Kentucky Lake drainage (HUC 06040005)."
+    "correction": "seasonMonths [12,1,2] is wrong (rows are Feb/Mar); regionId tn-upper-cumberland is wrong - the creek is in the Tennessee River/Kentucky Lake drainage (HUC 06040005).",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "station-creek",
-    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Feb-Apr; set stocking months accordingly."
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Feb-Apr; set stocking months accordingly.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "stoney-creek-carter",
@@ -401,15 +419,18 @@
   },
   {
     "id": "tumbling-creek",
-    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Mar/Apr; set stocking months accordingly."
+    "correction": "seasonMonths [12,1,2] is wrong: 2026 rows fall in Mar/Apr; set stocking months accordingly.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "upper-hills-creek",
-    "correction": "seasonMonths [12,1,2] is wrong: the 2026 row is a single March week; set stocking months to Mar."
+    "correction": "seasonMonths [12,1,2] is wrong: the 2026 row is a single March week; set stocking months to Mar.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "upper-roan-creek",
-    "correction": "seasonMonths [12,1,2] (winter) is wrong: the 2026 schedule shows March-June stockings; set stocking months to Mar-Jun."
+    "correction": "seasonMonths [12,1,2] (winter) is wrong: the 2026 schedule shows March-June stockings; set stocking months to Mar-Jun.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "watauga-lake",
@@ -429,7 +450,8 @@
   },
   {
     "id": "white-oak-creek",
-    "correction": "seasonMonths [12,1,2] is WRONG vs the schedule (spring weeks 2/22-3/29/2026); correct to spring seasonal. species trout/stocked stands."
+    "correction": "seasonMonths [12,1,2] is WRONG vs the schedule (spring weeks 2/22-3/29/2026); correct to spring seasonal. species trout/stocked stands.",
+    "repair": "Unsupported seasonMonths and seasonKind removed from the catalog; other details in this correction still require review."
   },
   {
     "id": "wilbur-lake",

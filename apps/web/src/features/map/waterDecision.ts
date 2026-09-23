@@ -1,6 +1,5 @@
 import type { RiverMapFeature } from './riverMapSelectors';
 import type { EvidenceState, FishabilityScore, OpportunityHeadline, SpeciesKey } from '@trout/contracts';
-import type { TroutCalendar, TroutPresenceNow } from '../../lib/troutCalendar';
 import { monthWindowLabel } from '../../lib/troutCalendar';
 
 /**
@@ -35,12 +34,9 @@ export type FishabilityFocus = {
  * `feature.species`. The catalog's own words stay the source of truth —
  * missing `species` is UNKNOWN, never trout, and is never "fixed" by guessing.
  *
- * Seasonality (2026-09-10, owner direction; reconciled 2026-09-14): the
- * water's authored seasonMonths decide whether it holds trout this month. A
- * documented trout water that is out of season (a winter put-and-take pond in
- * July) never wears a condition score — there are no fish to score — and stays
- * visible but de-emphasized. Uncertainty is surfaced, never smoothed:
- * unclassified waters read "needs data" and stay scoreless.
+ * An authored programmatic month list describes stocking plans, not current
+ * trout presence or a legal fishing season. Only a regulatory window can
+ * close a season in this view. Uncertainty stays visible and scoreless.
  */
 export type WaterDecisionView = {
   waterId: string;
@@ -56,13 +52,9 @@ export type WaterDecisionView = {
   /** Catalog `yearRound`, carried for surfaces that phrase the seasonal verdict
    *  (a year-round programmatic water must never read winter-only). */
   yearRound?: boolean;
-  /** The EFFECTIVE season window the applicability decision used — authored
-   *  seasonMonths, or the legacy Nov–Mar fallback for yearRound:false rows. */
+  /** Authored regulatory or stocking months; the latter are never presence evidence. */
   seasonMonths?: number[];
-  /** True when the water carries an authored season window and the current
-   *  month is inside it — the seasonal chip still renders, but the water's
-   *  own score wears through (2026-09-14: in-season tailwaters must not read
-   *  unassessed just because an authored window exists). */
+  /** Set only for a regulatory season; a stocking plan cannot establish it. */
   inSeason?: boolean;
   displayMetric: 'trout-condition' | 'fishability' | 'unassessed';
   fishability?: 'good' | 'fair' | 'poor' | 'unknown';
@@ -71,9 +63,6 @@ export type WaterDecisionView = {
    * ONLY from the authored `opportunity` block — undefined when the water
    * has not been adjudicated, which is an honest "not yet", not a negative. */
   opportunity?: OpportunityView;
-  /** Month-level trout presence from a calendar bundle. Authored seasonMonths
-   * drive seasonality today, so this stays null until such a bundle ships. */
-  presence: TroutPresenceNow | null;
   reasons: string[];
   cautions: string[];
 };
@@ -114,10 +103,9 @@ export const FEATURED_WARMWATER_CONTEXT = false;
  *     (owner refinement 2026-09-10).
  *   - confirmed trout waters without an assessment render `unassessed` — a
  *     missing assessment is never presented as an assessment.
- *   - authored seasonMonths are the ONLY calendar window used for seasonal
- *     applicability. The former legacy Nov–Mar fallback for yearRound:false
- *     rows was REMOVED (ADR 0010): an unevidenced window must not read as a
- *     documented season — those waters simply carry no seasonal chip.
+ *   - authored regulatory seasonMonths can establish an open/closed season.
+ *     Programmatic months are a schedule, never a presence or closure claim.
+ *     The former legacy Nov–Mar fallback was removed by ADR 0010.
  */
 export function toWaterDecisionView(
   feature: Pick<
@@ -142,16 +130,23 @@ export function toWaterDecisionView(
   const seasonMonths = feature.stream.seasonMonths ?? undefined;
   const seasonKind = feature.stream.seasonKind ?? undefined;
   const yearRoundFishery = feature.stream.yearRound === true;
-  const inSeason = yearRoundFishery || month === undefined || seasonMonths === undefined || seasonMonths.includes(month);
+  const regulatoryWindow = seasonKind === 'regulatory' && !yearRoundFishery && seasonMonths !== undefined;
+  const inSeason = regulatoryWindow
+    ? month === undefined || seasonMonths.includes(month)
+    : undefined;
+  const opportunityBlock = feature.stream.opportunity;
+  // A verified seasonal stocking program remains seasonal when a misleading
+  // catalog month window has been removed. The schedule alone cannot earn a
+  // live trout-condition score.
+  const adjudicatedSeasonal = opportunityBlock?.trout === 'seasonal-stocked-trout' || opportunityBlock?.trout === 'mixed';
   const seasonal =
-    feature.species === 'trout' && seasonMonths !== undefined
-      ? inSeason
-        ? ('seasonal-uncertain' as const)
-        : ('seasonal-likely-absent' as const)
+    feature.species === 'trout' && (seasonMonths !== undefined || adjudicatedSeasonal) && !yearRoundFishery
+      ? regulatoryWindow && inSeason === false
+        ? ('seasonal-likely-absent' as const)
+        : ('seasonal-uncertain' as const)
       : null;
   // ADR 0010: the adjudicated opportunity refines applicability for waters
   // whose species field is absent or ambiguous. It never creates a negative.
-  const opportunityBlock = feature.stream.opportunity;
   const opportunity: OpportunityView | undefined = opportunityBlock
     ? {
         trout: opportunityBlock.trout,
@@ -169,7 +164,11 @@ export function toWaterDecisionView(
       opportunityBlock.trout === 'seasonal-stocked-trout' ||
       opportunityBlock.trout === 'mixed');
   const opportunityWarmwaterFocus = opportunityBlock?.trout === 'warmwater-focus';
-  const troutApplicability = seasonal ?? (warmwater || opportunityWarmwaterFocus
+  const troutApplicability = opportunityBlock?.trout === 'unresolved'
+    ? ('unknown' as const)
+    : opportunityWarmwaterFocus
+      ? ('not-trout' as const)
+      : seasonal ?? (warmwater
     ? ('not-trout' as const)
     : speciesUnknown
       ? opportunityTroutDocumented
@@ -213,8 +212,8 @@ export function toWaterDecisionView(
     waterId: feature.stream.id,
     visibility,
     troutApplicability,
-    ...(seasonal ? { seasonKind, yearRound: feature.stream.yearRound, seasonMonths, inSeason } : {}),
-    inSeason: seasonal ? inSeason : undefined,
+    ...(seasonal ? { seasonKind, yearRound: feature.stream.yearRound, seasonMonths } : {}),
+    inSeason,
     opportunity,
     // Only a CONFIRMED, in-season trout water with a real assessment may wear
     // the trout metric; authored-window waters wear it while their window is
@@ -238,9 +237,6 @@ export function toWaterDecisionView(
         assessed
         ? (feature.snapshot?.readings.length ? 'high' : 'medium')
         : 'low',
-    // A per-water trout calendar bundle may yet drive month-level presence;
-    // authored seasonMonths drive seasonality today, so this stays null.
-    presence: null,
     reasons,
     cautions: reasons.filter((r) => /dangerously|avoid stressing|heat|flushing|do not fish|stress begins/i.test(r)),
   };
@@ -248,10 +244,8 @@ export function toWaterDecisionView(
 
 /**
  * The catalog's seasonal fact, phrased for the surface the visitor is on.
- * Derived ONLY from the water's own season fields (seasonKind, yearRound,
- * seasonMonths) — a year-round programmatic water (Caney Fork: window Mar–Dec,
- * stocked most of the year) must never read as a winter-only fishery, so the
- * window itself is spoken instead of a hardcoded season shape.
+ * Derived from the water's own season fields. Programmatic months are a
+ * stocking calendar, never a month-level finding that trout are present.
  */
 export function seasonalChipText(
   view: Pick<WaterDecisionView, 'troutApplicability' | 'seasonKind' | 'inSeason' | 'yearRound' | 'seasonMonths'>,
@@ -288,18 +282,23 @@ export function seasonalVerdict(
   if (view.troutApplicability !== 'seasonal-likely-absent' && view.troutApplicability !== 'seasonal-uncertain') {
     return null;
   }
+  if (!view.seasonMonths?.length) return null;
   const kindWord = view.seasonKind === 'regulatory' ? ('regulatory' as const) : ('programmatic' as const);
   const kindLabel = kindWord.toUpperCase() as SeasonalVerdict['kindLabel'];
   const outOfSeason = view.troutApplicability === 'seasonal-likely-absent';
   const yearRound = view.yearRound === true;
   const windowLabel = monthWindowLabel(view.seasonMonths ?? []);
+  if (kindWord === 'programmatic') {
+    const title = yearRound ? 'PROGRAMMATIC — year-round fishery' : 'PROGRAMMATIC — stocking schedule';
+    const prose = `The catalog lists ${windowLabel} stocking months. A stocking schedule is a plan, not a record that fish were released or are present now. Check TWRA for current releases and fishing rules.`;
+    const note = `Listed stocking months: ${windowLabel}. Dates do not establish current trout presence or a legal fishing season.`;
+    return { kindWord, kindLabel, outOfSeason: false, yearRound, windowLabel, title, prose, chip: title, note };
+  }
   if (outOfSeason) {
     const title = `${kindLabel} — out of season`;
     const prose =
-      kindWord === 'regulatory'
-        ? `The catalog documents a regulatory trout season here (${windowLabel}); the window is closed now. The gauge readings below still describe flow and temperature — verify the season with the official source.`
-        : `The catalog documents a ${kindWord} stocking program here (${windowLabel}); the window is closed now, so stocked trout are unlikely to be present. The gauge readings below still describe flow and temperature — verify the season with the official source.`;
-    const note = `This water's documented trout window is ${windowLabel}; it is closed now. The regional hatch calendar below the surface still describes insect activity, but the fishery is likely absent until the window reopens.`;
+      `The catalog documents a regulatory trout season here (${windowLabel}); the window is closed now. The gauge readings below still describe flow and temperature — verify current rules with the official source.`;
+    const note = `This water's documented regulatory trout window is ${windowLabel}; it is closed now. The regional hatch calendar describes insect activity, not permission to fish or trout presence.`;
     return { kindWord, kindLabel, outOfSeason, yearRound, windowLabel, title, prose, chip: title, note };
   }
   const title = yearRound ? `${kindLabel} — year-round program` : `${kindLabel} — in season`;
@@ -396,7 +395,7 @@ export function decisionStatusText(
           : 'Unassessed';
   }
   if (view.troutApplicability === 'seasonal-likely-absent') return 'Out of season';
-  if (view.troutApplicability === 'seasonal-uncertain') return 'Seasonal';
+  if (view.troutApplicability === 'seasonal-uncertain') return opportunityStatusLabel(view) ?? 'Seasonal';
   // Adjudicated opportunity outranks the generic fallbacks on lists (ADR
   // 0010) — an unresolved verdict must stay visible as unresolved, and a
   // documented headline must not hide behind "Unassessed".
@@ -408,13 +407,6 @@ export function decisionStatusText(
     if (!fishability || !fishability.comfort.assessed) return 'No data';
     const b = fishability.comfort.value;
     return b >= 70 ? 'Good' : b >= 40 ? 'Fair' : 'Poor';
-  }
-  // Presence-aware text outranks the generic fallbacks where the calendar speaks.
-  if (view.presence) {
-    if (view.presence.state === 'none') return 'Warmwater';
-    if (view.presence.state === 'absent') return 'Out of season';
-    if (view.presence.state === 'uncertain') return 'Needs data';
-    if (view.presence.state === 'present' && view.presence.fresh) return 'In season · fresh';
   }
   return feature.species === 'warmwater'
     ? 'Warmwater'
@@ -463,27 +455,23 @@ export function decisionColorToken(
  */
 export function classOutline(
   feature: Pick<RiverMapFeature, 'stream' | 'species'>,
-  calendar: TroutCalendar | null | undefined,
 ): 'trout' | 'warmwater' | null {
-  if (feature.species === 'warmwater') return 'warmwater';
-  // ADR 0010: the adjudicated opportunity earns the outline for waters whose
-  // species field hasn't been authored — a documented class is a documented
-  // class. warmwater-focus is a positive warmwater claim; unresolved earns
-  // nothing (no outline = unassessed, never a negative).
+  // The adjudicated opportunity controls the outline when it conflicts with
+  // an older broad species tag. A reach-specific trout program on an otherwise
+  // warmwater river (Red River/Billy Dunlop Park) does not recolor the whole
+  // river trout. Unresolved waters earn no fishery-class outline.
   const opp = feature.stream.opportunity;
-  if (feature.species !== 'trout' && opp) {
-    if (opp.trout === 'year-round-trout' || opp.trout === 'seasonal-stocked-trout' || opp.trout === 'mixed') return 'trout';
+  if (opp) {
     if (opp.trout === 'warmwater-focus') return 'warmwater';
-    return null;
+    if (opp.trout === 'unresolved') return null;
+    if (feature.species === 'warmwater' && opp.trout === 'seasonal-stocked-trout' && opp.reachScope) return 'warmwater';
+    return 'trout';
   }
+  if (feature.species === 'warmwater') return 'warmwater';
   if (feature.species === 'trout') {
     // Uncertain calendar presence still gets the trout outline — the CLASS is
     // documented; the outline is about fishery class, not this month's fish.
     return 'trout';
   }
-  // Undocumented species: the calendar's research classification may speak.
-  const cls = calendar?.waters[feature.stream.id]?.classification;
-  if (cls === 'trout-wild' || cls === 'trout-stocked' || cls === 'tailwater-trout') return 'trout';
-  if (cls === 'warmwater') return 'warmwater';
   return null;
 }

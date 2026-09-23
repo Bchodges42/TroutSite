@@ -21,9 +21,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout program, trout record, or fish survey exists for Crab Orchard Creek
-    (Cumberland/Morgan county Emory River tributary); historical grabs show warm summer water at the
-    gauged upper reach.
+  statement: Historical temperature grabs on Crab Orchard Creek (Cumberland/Morgan counties, Emory
+    tributary) indicate warm summer water at the gauged upper reach, but the cited sources do not
+    settle trout occupancy elsewhere. Trout status remains unresolved.
   asOf: "2026"
   caveats:
     - USGS 'near Crab Orchard' stations (03539498/03539500) are on Byrd Creek and Daddys Creek —

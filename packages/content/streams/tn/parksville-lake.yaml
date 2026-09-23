@@ -16,20 +16,20 @@ targetSpecies:
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03564500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03564500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03564500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03564500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
   Ocoee River impoundment (TVA Ocoee Dam No. 1, "Parksville Dam") in Polk County southeast of
   Benton; the dam sits at the pool's west edge. Receives the upper Ocoee River (ocoee-river) below

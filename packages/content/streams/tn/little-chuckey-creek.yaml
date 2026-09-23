@@ -22,8 +22,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout listing, or trout record exists for Little Chuckey Creek (Little
-    Chucky Creek, Greene County Nolichucky tributary); its fishery status is undocumented.
+  statement: The cited sources do not establish a trout program, dated observation, or reach-specific
+    fishery for Little Chuckey Creek (Greene County, Nolichucky tributary). Trout status remains
+    unresolved.
   asOf: "2026"
   caveats:
     - TDEC's 2026 303(d) list records 21.9 mi of Little Chucky Creek (unit TN06010108034) as E.

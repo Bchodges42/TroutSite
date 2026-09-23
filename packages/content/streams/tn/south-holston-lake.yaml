@@ -13,33 +13,23 @@ targetSpecies:
   - smallmouth-bass
   - spotted-bass
   - crappie
-  - bluegill
-  - channel-catfish
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
-  - species: bluegill
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
   TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and
   Washington County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge,

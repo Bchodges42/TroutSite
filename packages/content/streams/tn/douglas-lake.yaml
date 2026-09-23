@@ -13,37 +13,32 @@ targetSpecies:
   - spotted-bass
   - crappie
   - bluegill
-  - channel-catfish
   - striped-bass
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03468510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
   TVA reservoir on the French Broad River east of Knoxville across Cocke, Jefferson, Sevier, and
   Hamblen counties, impounded by Douglas Dam (USGS 03468510 tailwater gauge, 35.96120/-83.53878).

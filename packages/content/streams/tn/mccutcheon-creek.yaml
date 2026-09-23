@@ -31,11 +31,11 @@ hydroIdentity:
   huc8s:
     - "06040003"
 opportunity:
-  trout: mixed
+  trout: seasonal-stocked-trout
   evidenceState: documented
-  statement: TWRA's winter trout program stocks McCutcheon Creek (Maury County) with rainbow trout in
-    the cold months (January-February 2026 rows plus a TBD December 2026 event); the rest of the
-    year it is a warm suburban creek and no summer trout fishery is documented.
+  statement: "TWRA schedules winter rainbow trout stocking on McCutcheon Creek (Maury County): January
+    and February 2026 rows plus a tentative December event. The cited temperature samples are too
+    sparse to establish a separate warmwater fishery or summer trout survival."
   reachScope: Maury County creek at the Spring Hill-area stocking site
   asOf: "2026"
   sources:

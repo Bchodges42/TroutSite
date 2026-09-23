@@ -42,9 +42,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: "No acceptable positive evidence documents the fishery of this Scott County New River:
-    the smallmouth reputation comes from tourism/app sources, no agency assemblage survey was found,
-    and no trout record exists. Unresolved - absence of trout records never establishes a
+  statement: "The cited sources do not establish the fishery of this Scott County New River: the
+    smallmouth reputation comes from tourism and community reports, and no agency assemblage survey
+    was found. Trout status remains unresolved; missing trout records do not establish a
     warmwater-only fishery."
   asOf: "2026"
   caveats:

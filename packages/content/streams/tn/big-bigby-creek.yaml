@@ -21,8 +21,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout record, or reach-specific fishery documentation exists for Big
-    Bigby Creek (Maury County, Duck River basin); its trout status is undocumented.
+  statement: The cited sources do not establish a trout program, dated trout observation, or
+    reach-specific fishery for Big Bigby Creek (Maury County, Duck River basin). Trout status
+    remains unresolved.
   asOf: "2026"
   caveats:
     - The stocked Maury County winter-trout water is McCutcheon Creek in Columbia — a different

@@ -21,9 +21,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout program, trout listing, or dated trout record exists for the Little Harpeth
-    River — TWRA's Harpeth-system winter stockings are on the MAIN Harpeth at Eastern Flank Battle
-    Park (Franklin), a different water — and a rumored wild-rainbow population could not be sourced.
+  statement: TWRA's documented Harpeth-system winter stockings are on the main Harpeth at Eastern
+    Flank Battle Park, a different water. A rumored Little Harpeth wild-rainbow population could not
+    be sourced; trout status for the Little Harpeth remains unresolved.
   asOf: "2026"
   caveats:
     - Metro Parks' 'Fishing in Metro Parks' page (nashville.gov, Sep 26 2025 per search snippet)

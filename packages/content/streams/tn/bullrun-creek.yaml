@@ -23,8 +23,9 @@ hydroIdentity:
 opportunity:
   trout: unresolved
   evidenceState: unresolved
-  statement: No trout stocking, trout regulation, or reach-specific fishery documentation exists for
-    Bullrun Creek (Union/Knox counties, Clinch tributary); its trout status is undocumented.
+  statement: The cited sources do not establish a trout program, dated observation, or reach-specific
+    fishery for Bullrun Creek (Union/Knox counties, Clinch tributary). Trout status remains
+    unresolved.
   asOf: "2026"
   caveats:
     - Fishbrain page (787 catches, largemouth/white bass-led, no trout rows) is a research lead

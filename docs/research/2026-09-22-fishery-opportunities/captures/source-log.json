@@ -4,11 +4,13 @@
       "id": "twra-trout-page",
       "url": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
       "status": 200,
-      "bytes": 87592,
-      "sha256": "7880a1be91c44fd53f7292fda5079bb6e79c3efcd772a21e6a0eb1ecfb1543ff",
+      "bytes": 87169,
+      "sha256": "60f92815db306449d6ee3c841ae844310a314dcc3a56e993aabdf56477686f50",
       "retrievedAt": "2026-09-22T21:24:03.758Z",
-      "note": "TWRA trout information page: reservoir year-round list, program descriptions, links to schedule/release report/forecast",
-      "file": "evidence-work/captures/twra-trout-page.html"
+      "note": "TWRA trout information page: reservoir year-round list, program descriptions, links to schedule/release report/forecast; committed capture differs from response bytes (Git text normalization or capture processing); sha256 verifies committed bytes",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-trout-page.html",
+      "responseBytes": 87592,
+      "responseSha256": "7880a1be91c44fd53f7292fda5079bb6e79c3efcd772a21e6a0eb1ecfb1543ff"
     },
     {
       "id": "twra-schedule",
@@ -18,7 +20,7 @@
       "sha256": "278c1b51420fb1571d4e88b62e9af22ff97c535ea86c800f476cbc0366c96669",
       "retrievedAt": "2026-09-22T21:24:03.802Z",
       "note": "TWRA published stocking SCHEDULE (a plan, not completed releases)",
-      "file": "evidence-work/captures/twra-schedule.json"
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-schedule.json"
     },
     {
       "id": "twra-recent-releases",
@@ -28,7 +30,7 @@
       "sha256": "87cd13a2f5626f869e04639a5efc7d77dfa84869a039853b7f44b1d49d584146",
       "retrievedAt": "2026-09-22T21:24:03.851Z",
       "note": "TWRA recently stocked report (rolling window, not a complete event history)",
-      "file": "evidence-work/captures/twra-recent-releases.json"
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-recent-releases.json"
     },
     {
       "id": "twra-forecast-itemdata",
@@ -38,17 +40,19 @@
       "sha256": "86d4c1ea5cbf21a5c7c5b26963aa0a95314ad2511b9f46da69e6b1e99941ba30",
       "retrievedAt": "2026-09-22T21:24:04.124Z",
       "note": "TWRA annual trout forecast StoryMap full item data (reach-specific assessments, sampling reports)",
-      "file": "evidence-work/captures/twra-forecast-itemdata.json"
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-forecast-itemdata.json"
     },
     {
       "id": "twra-stock-locations-meta",
       "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0?f=pjson",
       "status": 200,
-      "bytes": 24003,
-      "sha256": "a615809d809f2ef7bb17d3d51673f4f10197090f6d7dba99a390d390d910033c",
+      "bytes": 23154,
+      "sha256": "846894f60b0dc8af147e0e2a30bc1f3cf0959f3b4aba2e12736521523dd24a9f",
       "retrievedAt": "2026-09-22T21:24:04.642Z",
-      "note": "Stocking-location GIS layer schema (points are neither release events nor complete stocked reaches)",
-      "file": "evidence-work/captures/twra-stock-locations-meta.json"
+      "note": "Stocking-location GIS layer schema (points are neither release events nor complete stocked reaches); committed capture differs from response bytes (Git text normalization or capture processing); sha256 verifies committed bytes",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-meta.json",
+      "responseBytes": 24003,
+      "responseSha256": "a615809d809f2ef7bb17d3d51673f4f10197090f6d7dba99a390d390d910033c"
     },
     {
       "id": "twra-stock-locations",
@@ -58,7 +62,157 @@
       "sha256": "1a9233db18ec01283762a557368420be4c9a927ee7926677b2d95c1ff5333b36",
       "retrievedAt": "2026-09-22T21:24:04.950Z",
       "note": "Stocking-location point records (mapped locations, no event dates in published schema)",
-      "file": "evidence-work/captures/twra-stock-locations.json"
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations.json"
+    },
+    {
+      "id": "twra-boone-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/boone-lake.html",
+      "status": 200,
+      "bytes": 67753,
+      "sha256": "796534d798088f47dccc2e037096edf5053b4873bd5acc5576ac78adee694132",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA Boone Reservoir page; names bass, crappie, striped bass and catfish, but does not specifically establish channel catfish; retained as exact response bytes",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-boone-lake.html"
+    },
+    {
+      "id": "tu-trail-fork-2021",
+      "url": "https://www.tu.org/magazine/conservation/from-the-field/brookies-in-tennessee-get-a-new-improved-home/",
+      "status": 200,
+      "bytes": 262085,
+      "sha256": "3ea555b98c86f35c2970f28bbb9f9fed9f79ff19159a6bc2820c8b20fdbf0cb8",
+      "retrievedAt": "2026-09-23",
+      "note": "Trout Unlimited partner account of rainbow removal above the waterfall and 2021 brook trout transfer; historical evidence, not a current occupancy survey",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/tu-trail-fork-2021.html"
+    },
+    {
+      "id": "twra-fishery-cherokee-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/cherokee-reservoir.html",
+      "status": 200,
+      "bytes": 75125,
+      "sha256": "babbef1b4a2a093aaebd9251c04d0cf5062a6ac83787709d874564ba6e44d743",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-cherokee-lake.html"
+    },
+    {
+      "id": "twra-fishery-chickamauga-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/chickamauga-reservoir.html",
+      "status": 200,
+      "bytes": 82575,
+      "sha256": "7ae4981475bc87ab73e4b08c16a03200b89118e4f9b9ef17a3b25444812b3b42",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-chickamauga-lake.html"
+    },
+    {
+      "id": "twra-fishery-douglas-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html",
+      "status": 200,
+      "bytes": 70332,
+      "sha256": "3bc58c23bddfaa7f7674f92eefe3b39506b0a72867a94f5293d2d60e4e976554",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-douglas-lake.html"
+    },
+    {
+      "id": "twra-fishery-duck-river-lower",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/duck-river.html",
+      "status": 200,
+      "bytes": 70280,
+      "sha256": "93150c5d6d724b6c62d253366074d8e800d108a6f4066fd6b468471541b33f36",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-duck-river-lower.html"
+    },
+    {
+      "id": "twra-fishery-fort-loudoun-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html",
+      "status": 200,
+      "bytes": 69930,
+      "sha256": "85a18bfef718790a6df49ff8d16237e1a33489018648b1474377f70b4b31c09d",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-fort-loudoun-lake.html"
+    },
+    {
+      "id": "twra-fishery-fort-patrick-henry-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-patrick-henry.html",
+      "status": 200,
+      "bytes": 59847,
+      "sha256": "a5f91109a9d8ba1f0ff4ef980bd8d78f1cefe90f6e49e60d8f975ba43f77ac67",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-fort-patrick-henry-lake.html"
+    },
+    {
+      "id": "twra-fishery-melton-hill-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/melton-hill-reservoir.html",
+      "status": 200,
+      "bytes": 69833,
+      "sha256": "874e1b35fb64a10416cf2b977ead083356411c12f6fae8b31d9dab7734164064",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-melton-hill-lake.html"
+    },
+    {
+      "id": "twra-fishery-nickajack-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html",
+      "status": 200,
+      "bytes": 77193,
+      "sha256": "7d65fd49c3b7f1fa2449756f5b672d3e18d3483cf339e9ecc6dc20af1e1ed068",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-nickajack-lake.html"
+    },
+    {
+      "id": "twra-fishery-norris-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/norris-reservoir.html",
+      "status": 200,
+      "bytes": 71795,
+      "sha256": "fe23cbe33c47674e5dc32aea2acabc7177ce3ac337527c1e3b4376f6e79fa897",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-norris-lake.html"
+    },
+    {
+      "id": "twra-fishery-parksville-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/parksville-reservoir.html",
+      "status": 200,
+      "bytes": 74428,
+      "sha256": "c82d4010f4665bc03f5d47973033a55bf24d9ada4850905252d9c129d5731d93",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-parksville-lake.html"
+    },
+    {
+      "id": "twra-fishery-south-holston-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html",
+      "status": 200,
+      "bytes": 68595,
+      "sha256": "725a4bb9397cfe804f83584941acd470c8e827d6bf095fdcf8ed1006d41f3f6d",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-south-holston-lake.html"
+    },
+    {
+      "id": "twra-fishery-watauga-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/watauga-reservoir.html",
+      "status": 200,
+      "bytes": 69323,
+      "sha256": "da814efc3a81c5e7cdaf0e9258afd21bfd6cae4464984791ad8862eff5cb5d42",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-watauga-lake.html"
+    },
+    {
+      "id": "twra-fishery-watts-bar-lake",
+      "url": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html",
+      "status": 200,
+      "bytes": 87595,
+      "sha256": "e95e47844b87ef8e19bb11c6f293275b92a7b5b3698f75a8ef212a70d615d946",
+      "retrievedAt": "2026-09-23",
+      "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-watts-bar-lake.html"
     }
   ]
 }

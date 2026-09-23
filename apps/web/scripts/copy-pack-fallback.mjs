@@ -21,18 +21,20 @@
  * without a content package keep working — the fallback is then absent and
  * behavior is unchanged. Fresh pack: pnpm --filter @trout/content build
  */
-import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
-import { basename, dirname, join, resolve } from 'node:path';
+import { copyFileSync, existsSync, mkdirSync, rmSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const webRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = resolve(webRoot, '..', '..');
 const outDir = join(webRoot, 'public', 'content-pack');
-// Every pack file the app should be able to serve when the host feed is down.
-const packFiles = ['streams.json', 'trout-calendar.json'];
-const packPaths = packFiles.map((f) => join(repoRoot, 'packages', 'content', 'dist', 'pack', f));
+const packName = 'streams.json';
+const packPath = join(repoRoot, 'packages', 'content', 'dist', 'pack', packName);
+// A prior build may have left the retired presence calendar in public. Vite
+// copies public verbatim, so prune this exact obsolete file on every build.
+rmSync(join(outDir, 'trout-calendar.json'), { force: true });
 
-if (!existsSync(packPaths[0])) {
+if (!existsSync(packPath)) {
   console.log(
     '[pack-fallback] content pack not built — no bundled catalog fallback this build ' +
       '(run: pnpm --filter @trout/content build)',
@@ -40,7 +42,5 @@ if (!existsSync(packPaths[0])) {
   process.exit(0);
 }
 mkdirSync(outDir, { recursive: true });
-for (const p of packPaths) {
-  if (existsSync(p)) copyFileSync(p, join(outDir, basename(p)));
-}
-console.log(`[pack-fallback] bundled catalog fallback ready: ${outDir} (${packFiles.join(', ')})`);
+copyFileSync(packPath, join(outDir, packName));
+console.log(`[pack-fallback] bundled catalog fallback ready: ${outDir} (${packName})`);

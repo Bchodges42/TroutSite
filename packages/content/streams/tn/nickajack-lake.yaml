@@ -13,37 +13,32 @@ targetSpecies:
   - spotted-bass
   - crappie
   - bluegill
-  - channel-catfish
   - striped-bass
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
   Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles
   through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;

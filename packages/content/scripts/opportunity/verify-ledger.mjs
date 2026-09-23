@@ -3,17 +3,17 @@
  * verify-ledger — the machine checks for the 190-water evidence ledger and
  * the catalog opportunity blocks authored from it (work order §7).
  *
- *   node packages/content/scripts/opportunity/verify-ledger.mjs [--final]
+ *   node packages/content/scripts/opportunity/verify-ledger.mjs [--seed]
  *
- * --final checks ledger.json (the merged, reviewed ledger); the default
- * checks ledger.seed.json so the checks are runnable at every checkpoint.
+ * The reviewed ledger is the default. --seed checks only the structural
+ * starter inventory; its 190 unresolved placeholders were never adjudicated.
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
 import { ARTIFACT_DIR, CATALOG_DIR, REPO_ROOT } from './lib.mjs';
 
-const finalMode = process.argv.includes('--final');
+const finalMode = !process.argv.includes('--seed');
 const errors = [];
 const warnings = [];
 const check = (ok, message) => {
@@ -66,6 +66,7 @@ for (const w of waters) {
   const h = w.headline ?? {};
   check(HEADLINES.includes(h.troutOpportunity), `${w.id}: headline troutOpportunity "${h.troutOpportunity}" not in vocabulary`);
   check(STATES.includes(h.evidenceState), `${w.id}: evidenceState "${h.evidenceState}" not in vocabulary`);
+  if (finalMode) check(/^\d{4}(?:-\d{2})?$/.test(String(h.asOf ?? '')), `${w.id}: headline must carry a sourced asOf year or month`);
   if (h.troutOpportunity && h.troutOpportunity !== 'unresolved') {
     const claims = w.claims ?? [];
     const supporting = claims.filter(
@@ -82,10 +83,26 @@ for (const w of waters) {
     if (h.troutOpportunity === 'warmwater-focus') {
       check(h.evidenceState !== 'unresolved', `${w.id}: warmwater-focus cannot rest on unresolved evidence`);
     }
+    if (h.troutOpportunity === 'mixed') {
+      check(
+        claims.some((c) => ['stocking-program', 'seasonal-stocked-opportunity'].includes(c.kind) && ['documented', 'limited'].includes(c.state)),
+        `${w.id}: mixed headline lacks a current trout stocking claim`,
+      );
+      check(
+        claims.some((c) => c.kind === 'warmwater-fishery' && ['documented', 'limited'].includes(c.state)),
+        `${w.id}: mixed headline lacks a water-specific warmwater fishery claim`,
+      );
+    }
   }
-  if (h.troutOpportunity === 'unresolved' || h.evidenceState === 'unresolved') {
+  if (finalMode && (h.troutOpportunity === 'unresolved' || h.evidenceState === 'unresolved')) {
     check(Boolean(w.unresolvedQuestion), `${w.id}: unresolved must state the missing proposition`);
   }
+  // A missing schedule row or an unsuccessful literature search is scoped
+  // evidence, not proof that no trout program or record exists anywhere.
+  check(
+    !/\bno trout\b[^.!?]{0,180}\b(?:exists|anywhere)\b/i.test(h.statement ?? ''),
+    `${w.id}: headline makes an unscoped absolute trout-absence claim`,
+  );
   for (const c of w.claims ?? []) {
     if (c.source?.retrieved != null) check(DATE_RE.test(String(c.source.retrieved)), `${w.id}: claim retrieved date "${c.source.retrieved}" must be YYYY-MM-DD`);
     check(STATES.includes(c.state), `${w.id}: claim state "${c.state}" not in vocabulary`);
@@ -96,9 +113,8 @@ for (const w of waters) {
   }
 }
 
-// --- 3. No "no-trout" label exists anywhere ------------------------------
+// --- 3. No absolute "no-trout" verdict -------------------------------
 const serialized = JSON.stringify(waters);
-check(!/no[- ]?trout/i.test(serialized.replace(/no trout opportunity|never means trout are absent|not prove|cannot prove/g, '')) === false ? true : true, ''); // vocabulary-level guard below
 check(!/"no-trout"/.test(serialized) && !/'no-trout'/.test(serialized), 'ledger contains an absolute "no-trout" verdict (must be unresolved/warmwater-focus)');
 
 // --- 4. Sibling waters must not share one decisive pinpoint --------------
@@ -139,7 +155,7 @@ for (const [a, b] of SIBLINGS) {
 }
 
 // --- 5. Catalog opportunity blocks agree with the ledger -----------------
-for (const [id, doc] of catalogById) {
+if (finalMode) for (const [id, doc] of catalogById) {
   const block = doc.opportunity;
   const w = waters.find((x) => x.id === id);
   if (!block) {
@@ -150,6 +166,11 @@ for (const [id, doc] of catalogById) {
   if (w) {
     check(block.trout === w.headline.troutOpportunity, `${id}: catalog opportunity.trout "${block.trout}" != ledger headline "${w.headline.troutOpportunity}"`);
     check(block.evidenceState === w.headline.evidenceState, `${id}: catalog evidenceState "${block.evidenceState}" != ledger "${w.headline.evidenceState}"`);
+    check(block.statement === w.headline.statement, `${id}: catalog statement differs from the reviewed ledger statement`);
+    check((block.reachScope ?? null) === (w.headline.reachScope ?? null), `${id}: catalog reach scope differs from the reviewed ledger`);
+    if (typeof w.catalogFieldCorrections === 'string' && /seasonMonths[^.]{0,40}\bwrong\b/i.test(w.catalogFieldCorrections)) {
+      check(doc.seasonMonths === undefined && doc.seasonKind === undefined, `${id}: known-wrong programmatic month window still appears in catalog`);
+    }
   }
   if (block.trout !== 'unresolved') {
     check(Array.isArray(block.sources) && block.sources.length > 0, `${id}: positive catalog headline without sources`);

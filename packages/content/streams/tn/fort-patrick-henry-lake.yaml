@@ -8,52 +8,15 @@ gaugeIds:
   - tva:FPHT1
 stockingProgram: true
 idealFlow: []
-targetSpecies:
-  - largemouth-bass
-  - smallmouth-bass
-  - spotted-bass
-  - crappie
-  - bluegill
-  - channel-catfish
-  - striped-bass
-speciesEvidence:
-  - species: largemouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: smallmouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: spotted-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: crappie
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: bluegill
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: striped-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
 notes: >-
   Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County),
   impounded by Fort Patrick Henry Dam (USGS 03487010, 36.49816/-82.50904). Receives the Boone
   tailwater (boone-tailwater) at its upper arm and discharges through the dam into the Fort Patrick
   Henry tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston River to form the
   Holston main stem at Kingsport. Aliases: FPH Lake, Fort Patrick Henry Reservoir. TWRA's Fort
-  Patrick Henry Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass,
-  crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or
-  hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+  Patrick Henry Reservoir page lists harvest rules for multiple fish groups but provides no
+  reservoir species survey or descriptive fishery assessment. Those rules alone are not used as
+  species-presence evidence here; reservoir temperature/oxygen refuge context is not a scored input.
 
 
   Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass

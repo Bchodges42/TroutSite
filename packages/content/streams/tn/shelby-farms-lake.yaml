@@ -26,11 +26,11 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 opportunity:
-  trout: mixed
+  trout: seasonal-stocked-trout
   evidenceState: documented
-  statement: Shelby Farms Park documents trout stocked in Jones Pond every December and January under
-    TWRA's winter program, over a park of warmwater lakes (catfish, crappie, bream, largemouth bass)
-    - a cold-months trout fishery on a warmwater park water.
+  statement: Shelby Farms Park and TWRA document winter rainbow trout stocking in Jones Pond (December
+    and January schedule entries). The park also describes warmwater fishing across its lakes, but
+    the cited sources do not establish a separate warmwater fishery specifically in Jones Pond.
   reachScope: Jones Pond, Shelby Farms Park
   asOf: "2026"
   sources:
