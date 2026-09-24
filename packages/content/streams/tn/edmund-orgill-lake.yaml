@@ -15,9 +15,14 @@ seasonMonths:
   - 2
   - 3
 seasonKind: programmatic
-notes: TWRA winter put-and-take lake in Millington (Shelby County). Stocked with rainbow trout in
-  the cold months only — the fish do not hold over summer. Check the TWRA schedule for the current
+notes: >-
+  TWRA winter put-and-take lake in Millington (Shelby County). Stocked with rainbow trout in the
+  cold months only — the fish do not hold over summer. Check the TWRA schedule for the current
   winter window before you go.
+
+
+  Triage apply (2026-09-24): species → 'trout', fishery → 'stocked' — schedule rows + GIS stocking
+  point document the stocked-rainbow program (captures, 2026-09-22)
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -49,3 +54,4 @@ opportunity:
       lakes as primarily warmwater habitats that cannot support trout year round; absence after
       winter is not biologically proven."
     - No site-level holdover documentation exists for this lake.
+fishery: stocked

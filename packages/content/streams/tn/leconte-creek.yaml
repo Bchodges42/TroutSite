@@ -7,7 +7,7 @@ regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
 species: trout
-fishery: stocked
+fishery: wild+stocked
 yearRound: true
 idealFlow:
   - min: 10
@@ -15,13 +15,17 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Small park creek near Gatlinburg with wild fish and TWRA spring stocking listed. Pocket water
-  under heavy canopy.
+  Small park creek near Gatlinburg with wild fish and TWRA year-round program (Gatlinburg DH +
+  weekly rainbows to the park boundary); the park reach is wild. Pocket water under heavy canopy.
 
 
   Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait,
   year-round; special Gatlinburg permit needed once the creek reaches Gatlinburg city waters
   (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+
+  Triage apply (2026-09-24): fishery → 'wild+stocked' (ADR 0011): wild park reach + TWRA year-round
+  Gatlinburg program (DH + weekly rainbows stocked to the park boundary)
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm

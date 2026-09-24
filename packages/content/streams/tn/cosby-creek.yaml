@@ -7,7 +7,7 @@ regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
 species: trout
-fishery: stocked
+fishery: wild+stocked
 yearRound: true
 idealFlow:
   - min: 10
@@ -15,8 +15,8 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA lists spring stocking.
-  No gauge.
+  Quiet eastern-park option with wild rainbows and brook trout upstream; TWRA stocking rows and GIS
+  sites target the lower private-land segments; the park reach is wild. No gauge.
 
 
   Regulations: park-wide NPS rules — 5 fish combo, 7 in min, single-hook artificials, no bait,
@@ -26,6 +26,10 @@ notes: >-
   Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
   year-round-trout on documented reach evidence (GSMNP park reach (year-round wild fishery); TWRA
   stocking rows/GIS sites target lower private-land segments) (ADR 0010 consistency).
+
+
+  Triage apply (2026-09-24): fishery → 'wild+stocked' (ADR 0011): wild park reach (rainbows + brook
+  trout, NPS year-round fishing) + TWRA rows/GIS sites on lower private-land segments
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm

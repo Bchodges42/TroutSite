@@ -29,15 +29,21 @@ seasonMonths:
 seasonKind: programmatic
 notes: >-
   A compact, cold Tims Ford release with put-grow-take rainbows stocked March through December and
-  winter stocking in the lower county reaches — a quiet Middle TN favorite. Two gauges (below dam
-  and near Pelham) bracket the fishery.
+  winter pond stocking at Stone Bridge Park in Fayetteville (a different water) — a quiet Middle TN
+  favorite. The tailwater gauge (tva:TMFT1) is the release truth-teller; USGS 03578000 sits far
+  upstream above Fayetteville and is headwater context only.
 
 
   Regulations: Tims Ford Dam to I-65 bridge (incl. tributaries): Brown Trout 20-in minimum, 1/day;
   total creel all trout species combined 7 (retrieved 2026-09-14; verify current rules with TWRA
   before you go).
+
+
+  Triage apply (2026-09-24): the only documented Lincoln County winter trout events are the Stone
+  Bridge Park pond stockings in Fayetteville — not lower-river reaches; gauge text corrected
+  (03578000 is upstream headwater context, not a tailwater gauge)
 officialSources:
-  - label: USGS Water Data — monitoring location 03578000
+  - label: USGS Water Data — Elk River above Fayetteville (upstream headwater context, not the tailwater)
     url: https://waterdata.usgs.gov/monitoring-location/03578000/
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

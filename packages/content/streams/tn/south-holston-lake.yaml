@@ -48,6 +48,9 @@ notes: >-
   min; spotted no creel/length; crappie 15/day 10-in; walleye 5/day 18-in (incl. tributaries); white
   bass no harvest; catfish 20/day with 34-in rule; (retrieved 2026-09-14; verify current rules with
   TWRA before you go).
+
+
+  Triage apply (2026-09-24): yearRound → true — named in TWRA's live year-round reservoir list
 officialSources:
   - label: USGS Water Data — monitoring location 03476500 (static site provenance; no current IV catalog
       entry)
@@ -99,3 +102,4 @@ opportunity:
       the dam and is a separate catalog water — findings never transfer in either direction.
     - The reservoir crosses into Virginia (~1,250 ac per prior lead, not re-verified); the mapped
       feature covers the full pool while TWRA's program statement is Tennessee's.
+yearRound: true

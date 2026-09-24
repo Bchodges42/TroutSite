@@ -8,7 +8,7 @@ gaugeIds:
   - "03518500"
 stockingProgram: true
 species: trout
-fishery: stocked
+fishery: wild+stocked
 yearRound: true
 idealFlow:
   - min: 100
@@ -25,6 +25,10 @@ notes: >-
   North Carolina state line"; catch-and-release Oct 1 - Feb 28 (harvest/possession of trout
   prohibited; only artificial lures permitted; use or possession of bait prohibited) (retrieved
   2026-09-14; verify current rules with TWRA before you go).
+
+
+  Triage apply (2026-09-24): fishery → 'wild+stocked' (ADR 0011): wild reproduction above North
+  River (forecast-documented) + the TWRA-stocked corridor and DH program
 officialSources:
   - label: USGS Water Data — monitoring location 03518500
     url: https://waterdata.usgs.gov/monitoring-location/03518500/

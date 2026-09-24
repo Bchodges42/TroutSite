@@ -65,6 +65,10 @@ notes: >-
   year-round-trout on documented reach evidence (Tellico Reservoir's upper Little Tennessee arm
   below Chilhowee Dam - the water TWRA lists as 'Tellico (Upper)'. Not the free-flowing Tellico
   River (tellico-river).) (ADR 0010 consistency).
+
+
+  Triage apply (2026-09-24): removed stale seasonMonths [2,3,4]/programmatic block — same class as
+  the repaired 22 (year-round reservoir-list program; no published fishing window)
 officialSources:
   - label: TVA — Tellico Reservoir lake levels
     url: https://www.tva.com/environment/lake-levels
@@ -77,11 +81,6 @@ officialSources:
 species: trout
 fishery: stocked
 yearRound: true
-seasonMonths:
-  - 2
-  - 3
-  - 4
-seasonKind: programmatic
 opportunity:
   trout: year-round-trout
   evidenceState: documented

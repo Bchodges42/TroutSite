@@ -24,6 +24,11 @@ notes: >-
   season is Oct. 1– Feb 28." General DH rules: harvest/possession prohibited during C&R season, only
   artificial lures permitted, bait prohibited; (retrieved 2026-09-14; verify current rules with TWRA
   before you go).
+
+
+  Triage apply (2026-09-24): seasonMonths re-authored as the documented REGULATORY delayed-harvest
+  C&R window (Oct 1–Feb 28, TWRA regs, live-verified 2026-09-22) — the Mar–Jun stocking weeks are
+  events, not the season
 officialSources:
   - label: USGS Water Data — monitoring location 03485500
     url: https://waterdata.usgs.gov/monitoring-location/03485500/
@@ -32,10 +37,12 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 seasonMonths:
+  - 10
+  - 11
   - 12
   - 1
   - 2
-seasonKind: programmatic
+seasonKind: regulatory
 hydroIdentity:
   gnisIds:
     - "01328065"

@@ -9,7 +9,7 @@ gaugeIds:
   - "03498500"
 stockingProgram: true
 species: trout
-fishery: stocked
+fishery: wild+stocked
 yearRound: true
 idealFlow:
   - min: 50
@@ -33,6 +33,10 @@ notes: >-
   river mile 33.0 (TDEC's NRTS reach): year-round wild trout water. Lower reach - river miles 0-33
   (Townsend/Walland/Maryville corridor, out of the park): seasonal TWRA rainbow stocking over
   warmwater smallmouth water.) (ADR 0010 consistency).
+
+
+  Triage apply (2026-09-24): fishery → 'wild+stocked' (ADR 0011): wild park reach (TDEC NRTS above
+  RM 33.0) + TWRA-stocked lower reaches near Walland/Maryville
 officialSources:
   - label: USGS Water Data — monitoring location 03497300
     url: https://waterdata.usgs.gov/monitoring-location/03497300/
