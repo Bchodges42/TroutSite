@@ -53,3 +53,18 @@ You asked to SEE these before deciding. The Middle Tennessee Fly Fishers Elk pag
 | **harpeth-river** | trout + smallmouth tag | Winter stocking at Eastern Flank is real (documented); the *smallmouth* tag has no source (page 404s; Region 2 index has no entry) | A TWRA species page/statement |
 
 **My recommendation stands:** strip to neutral (the display already runs on adjudicated verdicts, so visitors see no change) except keep harpeth's `species: trout` (its winter program is documented) and only drop its smallmouth tag. But this is exactly the judgment you wanted eyes on — say the word per water or as a batch, and it's a five-minute apply.
+
+
+## Addendum — owner rulings applied same day (2026-09-24)
+
+Four further rulings (recorded verbatim-intent in
+`docs/research/2026-09-22-fishery-opportunities/OWNER-RULINGS-2026-09-24.md`,
+applied by `apply-owner-rulings.mjs`, ledger headlines updated in the same
+pass so every gate stays consistent):
+
+1. **Harpeth River** → `mixed`/documented: species `warmwater` + the documented Dec–Feb winter trout program side by side; smallmouth tag retained.
+2. **East Fork Stones River** → `mixed`/limited: species `warmwater`, stockingProgram `true`, winter window per the ruling — with the TENSION preserved (zero published rows name this fork; TWRA question recorded).
+3. **Little Pigeon River** → `year-round-trout`/limited, fishery `wild+stocked`: weekly Gatlinburg-program stocking + wild trout per the ruling; the documented weekly program is the West Prong (which also gains `wild+stocked`); main-stem extent rests on the ruling.
+4. **Smallmouth policy** → ambient-presence listing (smallmouth + common TN warmwater suite) no longer requires per-water citation hunts. Implemented as a narrow, documented validator exemption (`AMBIENT_TN_SPECIES` in `lib.ts`, ruling reference in-code); presence-listing only — never abundance/quality claims, never trout.
+
+Reviewed counts after rulings: **30 year-round / 60 seasonal / 54 warmwater-focus / 12 mixed / 34 unresolved** (190). Remaining legacy-tag waters awaiting the owner's strip/hold call: elk-river-lower, pigeon-river, powell-river, south-fork-cumberland, new-river, reedy-creek (harpeth, east-fork-stones, and little-pigeon resolved by these rulings).

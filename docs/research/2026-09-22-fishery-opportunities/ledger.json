@@ -17470,11 +17470,11 @@
         "notes": "The upper East Fork holds a modest wild rainbow population well above the city; TWRA’s stocking dataset lists the West Fork and Davidson reaches instead. Rain-flashy plateau headwaters.\n\nRegulations: Trout — statewide 7/day any combination, no minimum length, no closed season on this water (retrieved 2026-09-14; verify current rules with TWRA before you go)."
       },
       "headline": {
-        "troutOpportunity": "unresolved",
-        "warmwaterFocus": null,
-        "evidenceState": "conflicting",
+        "troutOpportunity": "mixed",
+        "warmwaterFocus": true,
+        "evidenceState": "limited",
         "reachScope": null,
-        "statement": "The catalog's wild-rainbow claim for the upper East Fork could not be verified in any agency source: TWRA stocks no row on this reach, and a 2023 EPA survey on the lower East Fork found a warmwater assemblage with zero trout. Both sides preserved; the water is unresolved.",
+        "statement": "A warmwater river with a winter/seasonal trout program (owner ruling 2026-09-24). No published TWRA row names this fork under the names searched — the winter claim rests on the ruling and the area's winter-program pattern.",
         "asOf": "2026"
       },
       "claims": [
@@ -17534,9 +17534,25 @@
           "statement": "A single research-grade 2021 rainbow trout observation exists in the Stones River corridor near Murfreesboro.",
           "qualification": "Coordinates sit closer to the West Fork/main Stones geography than the cataloged upper East Fork; segment ambiguity unresolved; single 2021 observation is thin. Community observation used as a lead only.",
           "nextQuestion": "Is point 35.9408,-86.4642 on the East Fork main stem or the West Fork/main Stones? Verify against NHD geometry before any reuse."
+        },
+        {
+          "kind": "seasonal-stocked-opportunity",
+          "state": "limited",
+          "appliesToReach": "whole feature",
+          "source": {
+            "url": "OWNER-RULINGS-2026-09-24.md",
+            "publisher": "Owner (interview)",
+            "title": "Owner ruling 2",
+            "method": "owner ruling",
+            "retrieved": "2026-09-24",
+            "pinpoint": "warmwater, stocked winter/seasonally"
+          },
+          "statement": "Owner rules the East Fork warmwater with winter/seasonal trout stocking.",
+          "qualification": "Zero published rows found for this fork — ruling exceeds current public data; tension preserved. Water-specific warmwater presence per the ambient policy (ruling 4).",
+          "nextQuestion": "Identify the TWRA rows/locations for this stocking."
         }
       ],
-      "unresolvedQuestion": "Does the upper East Fork Stones River actually hold a wild rainbow population, as the catalog asserts without citation? No agency survey or stocking row addresses this reach.",
+      "unresolvedQuestion": "Which published TWRA rows/locations constitute the East Fork Stones winter stocking?",
       "qualifications": [
         "TWRA's Stones River stockings are on the WEST Fork greenway (Manson Pike Trailhead, winter rainbows) and the J. Percy Priest tailwater (Davidson) - different reaches.",
         "Statewide trout rules (7/day, no length limit) apply; no special regulation names this reach."
@@ -22520,11 +22536,11 @@
         "notes": "Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches near Franklin with catchable trout each December (the winter put-and-take season runs December–February; check the TWRA schedule for the current window). Two gauges bracket the stocked corridor; summer water is smallmouth country.\n\nStocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA winter program stocks the Harpeth at Eastern Flank Battle Park (Franklin) — December runs per the official schedule.\n\nRegulations: Statewide warmwater — black bass 5/day any combination, no length limit; crappie 15/day, 10-in minimum; catfish no limit under 34 in, 1/day over 34 in; rock bass 20/day (retrieved 2026-09-14; verify current rules with TWRA before you go)."
       },
       "headline": {
-        "troutOpportunity": "seasonal-stocked-trout",
-        "warmwaterFocus": false,
+        "troutOpportunity": "mixed",
+        "warmwaterFocus": true,
         "evidenceState": "documented",
         "reachScope": "Harpeth River at Eastern Flank Battle Park, Franklin (the schedule's stocked reach) only",
-        "statement": "TWRA's winter program stocks a single reach of the Williamson County Harpeth - at Eastern Flank Battle Park in Franklin - with catchable rainbow trout (2026 rows: Jan 23, Feb 20, and TBD Dec 2026); the rest of the river is not part of any trout program.",
+        "statement": "A warmwater river (owner ruling 2026-09-24) with a documented TWRA winter trout program (December–February stockings at Eastern Flank Battle Park, Franklin) — bass and panfish coexist with the seasonal trout stocking.",
         "asOf": "2026"
       },
       "claims": [
@@ -22583,6 +22599,22 @@
           },
           "statement": "Catalog's speciesEvidence for smallmouth bass (USGS monitoring-location 03432350) does not document a fishery: the live page holds station metadata and hydrologic data categories only, with no fish species, survey, or fishery content; the river's warmwater fishery therefore remains positively undocumented this pass.",
           "qualification": "A monitoring-location page does not document a fishery; the Harpeth's warmwater fishery was not re-verified from a positive source this pass, so warmwaterFocus is left false despite the river's warmwater character.",
+          "nextQuestion": null
+        },
+        {
+          "kind": "warmwater-fishery",
+          "state": "documented",
+          "appliesToReach": "whole feature",
+          "source": {
+            "url": "OWNER-RULINGS-2026-09-24.md",
+            "publisher": "Owner (interview)",
+            "title": "Owner ruling 1 + 4",
+            "method": "owner ruling (ambient-presence policy)",
+            "retrieved": "2026-09-24",
+            "pinpoint": "warmwater river; smallmouth ambient statewide"
+          },
+          "statement": "Owner rules the Harpeth a warmwater river; smallmouth/warmwater presence is ambient per the statewide policy.",
+          "qualification": "Product decision recorded with date, distinguishable from measured evidence.",
           "nextQuestion": null
         }
       ],
@@ -27687,11 +27719,11 @@
         "notes": "A consistent trout water below the Smokies — TWRA stocks the Sevierville reach TWRA's statewide regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources). regularly (confirmed by the owner against local knowledge, September 2026, supplementing the TWRA dataset, which does not list the reach), and the upper park reaches hold wild fish. Verify current schedules with TWRA before you go.\n\nRegulations: Smallmouth bass 1/day, 20-in minimum (mouth upstream to GSMNP boundary, incl. West Prong and East Fork); statewide rules otherwise (black bass 5/day combo, crappie 15 @ 10 in, catfish 34-in rule) (retrieved 2026-09-14; verify current rules with TWRA before you go)."
       },
       "headline": {
-        "troutOpportunity": "warmwater-focus",
-        "warmwaterFocus": true,
-        "evidenceState": "documented",
-        "reachScope": "Main stem, GSMNP boundary downstream through Pigeon Forge/Sevierville to the Douglas Lake head",
-        "statement": "TWRA documents this Sevierville-corridor river as a quality smallmouth fishery (1/day, 20-inch minimum from the mouth to the park boundary, including the prongs); a TWRA trout-stocking row for the Sevierville main stem could NOT be verified - the owner-reported stocking program remains unconfirmed.",
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "limited",
+        "reachScope": "Little Pigeon corridor at/above Sevierville (Gatlinburg program reach; see west-prong-little-pigeon for the documented weekly-stocked water)",
+        "statement": "Trout water with wild trout present and weekly Gatlinburg-program stocking (owner ruling 2026-09-24). The documented weekly program is the West Prong through Gatlinburg (forecast node n-4U71UT + Gatlinburg Streams rows); main-stem-specific published rows were not found.",
         "asOf": "2026"
       },
       "claims": [
@@ -27751,9 +27783,25 @@
           "statement": "Community aggregates show substantial rainbow catch volume on the Little Pigeon system.",
           "qualification": "Research lead only - no reuse rights, no dates; segments likely include the stocked prongs and Gatlinburg reaches; cited for nothing.",
           "nextQuestion": null
+        },
+        {
+          "kind": "owner-ruling",
+          "state": "limited",
+          "appliesToReach": "Little Pigeon corridor at/above Sevierville",
+          "source": {
+            "url": "OWNER-RULINGS-2026-09-24.md",
+            "publisher": "Owner (interview)",
+            "title": "Owner ruling 3",
+            "method": "owner ruling",
+            "retrieved": "2026-09-24",
+            "pinpoint": "stocked every week in Gatlinburg; wild trout present"
+          },
+          "statement": "Owner rules the Little Pigeon weekly-stocked (Gatlinburg program) with wild trout present.",
+          "qualification": "Documented weekly program is the West Prong; main-stem rows absent — ruling carries the main-stem extent.",
+          "nextQuestion": null
         }
       ],
-      "unresolvedQuestion": "Does TWRA stock the Sevierville main stem (owner-confirmed local knowledge vs zero dataset rows)? No agency document resolves it.",
+      "unresolvedQuestion": null,
       "qualifications": [
         "Smallmouth 1/day, 20-in minimum mouth-to-park-boundary (incl. West Prong and East Fork); statewide rules otherwise.",
         "The prong stockings (Mid Prong; W Prong at Pigeon Forge) are sibling catalog waters - their schedule rows do not join this main stem.",
