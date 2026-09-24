@@ -213,6 +213,26 @@
       "retrievedAt": "2026-09-23",
       "note": "TWRA water-specific fishery page, re-opened for species citation review; exact UTC capture time not recorded",
       "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-watts-bar-lake.html"
+    },
+    {
+      "id": "twra-recent-releases-2024-06-07-wayback",
+      "url": "https://web.archive.org/web/20240607134309id_/https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_panel_348017491_c/content/tn_complex_datatable.exceldriven.json?_=1717767789374",
+      "status": 200,
+      "bytes": 4142,
+      "sha256": "b017587697347d062b743a67229cf9eb0ab0e2a5cd1a17b3a0bf28f3b44e8df6",
+      "retrievedAt": "2026-09-24",
+      "note": "Internet Archive replay of TWRA's recent-stocking JSON captured 2024-06-07; 54 last-stocked destination rows, not a complete event history",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-recent-releases-2024-06-07-wayback.json"
+    },
+    {
+      "id": "twra-recent-report-page-2024-06-07-wayback",
+      "url": "https://web.archive.org/web/20240607134307id_/https://www.tn.gov/twra/fishing/trout-information-stockings.html",
+      "status": 200,
+      "bytes": 107942,
+      "sha256": "b3abfd16b1f50a6faa4afff84948f17a4e03c8a311338288b94f5ac80e56a073",
+      "retrievedAt": "2026-09-24",
+      "note": "Internet Archive replay of TWRA's page captured 2024-06-07; documents that the report covers waters recently stocked and dates represent last stocking as information is available; hidden wordcloud is not treated as structured event data",
+      "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-recent-report-page-2024-06-07-wayback.html"
     }
   ]
 }
