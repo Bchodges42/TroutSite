@@ -53,17 +53,14 @@ By waterbody type:
 
 | Type | Year-round | Seasonal | Warmwater | Mixed | Unresolved |
 |---|---:|---:|---:|---:|---:|
-| creek (49) | 10 | 41 | 2 | 4 | 21 |
-| lake (34) | 8 | 5 | 20 | 0 | 1 |
-| pond (13) | 0 | 9 | 1 | 3 | 0 |
-| reservoir (18) | 4 | 0 | 14 | 0 | 0 |
 | river (56) | 2 | 8 | 32 | 2 | 12 |
-| tailrace (13) | 5 | 0 | 1 | 4 | 1 |
-| stream (7) | 0 | 2 | 0 | 0 | 5 |
+| creek (78) | 10 | 41 | 2 | 4 | 21 |
+| lake (38) | 8 | 5 | 20 | 3 | 2 |
+| tailrace (12) | 9 | 2 | 1 | 0 | 0 |
+| pond (5) | 0 | 1 | 0 | 4 | 0 |
+| spring (1) | 0 | 1 | 0 | 0 | 0 |
 
-(One lake carries the residual unresolved; ponds/reservoirs resolved almost
-entirely because TWRA documents those programs explicitly; the unresolved
-tail is dominated by small creeks and unprogramed rivers.)
+(No water is typed `reservoir` or `stream` in this catalog — still waters are `lake`/`pond`; the one `spring` is `spring-creek-polk`. The unresolved tail sits mainly in unprogramed creeks and rivers; lakes/ponds resolved almost entirely because TWRA documents those programs explicitly.)
 
 ## What the adjudication found on the audit's hard cases
 
