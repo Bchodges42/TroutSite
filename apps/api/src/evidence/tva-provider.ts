@@ -206,6 +206,17 @@ export interface TvaPredictedRow {
   AverageOutflow?: string | number;
 }
 
+/**
+ * The release-forecast contract promises nonnegative values. TVA legitimately
+ * publishes negative AverageInflow during reservoir drawdowns; rather than
+ * publishing the negative (contract-breaking) or clamping to 0 (a fabricated
+ * reading), the field is omitted — missing stays missing.
+ */
+function nonnegativeForecastValue(raw: string | number | undefined): number | undefined {
+  const n = parseTvaNumber(raw);
+  return n !== undefined && n >= 0 ? n : undefined;
+}
+
 /** Pure parser for TVA predicted-data/{LocationID}; missing fields stay missing. */
 export function parseTvaPredictedData(payload: unknown): ReleaseForecastRow[] {
   if (!Array.isArray(payload)) return [];
@@ -217,9 +228,9 @@ export function parseTvaPredictedData(payload: unknown): ReleaseForecastRow[] {
     const date = `${dateMatch[3]}-${dateMatch[1].padStart(2, '0')}-${dateMatch[2].padStart(2, '0')}`;
     const candidate = {
       date,
-      ...(parseTvaNumber(row.AverageInflow) !== undefined ? { averageInflowCfs: parseTvaNumber(row.AverageInflow) } : {}),
-      ...(parseTvaNumber(row.MidnightElevation) !== undefined ? { midnightElevationFt: parseTvaNumber(row.MidnightElevation) } : {}),
-      ...(parseTvaNumber(row.AverageOutflow) !== undefined ? { averageOutflowCfs: parseTvaNumber(row.AverageOutflow) } : {}),
+      ...(nonnegativeForecastValue(row.AverageInflow) !== undefined ? { averageInflowCfs: nonnegativeForecastValue(row.AverageInflow) } : {}),
+      ...(nonnegativeForecastValue(row.MidnightElevation) !== undefined ? { midnightElevationFt: nonnegativeForecastValue(row.MidnightElevation) } : {}),
+      ...(nonnegativeForecastValue(row.AverageOutflow) !== undefined ? { averageOutflowCfs: nonnegativeForecastValue(row.AverageOutflow) } : {}),
     };
     return Object.keys(candidate).length > 1 ? [candidate] : [];
   });

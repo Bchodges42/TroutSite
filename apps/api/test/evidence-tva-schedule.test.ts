@@ -5,6 +5,7 @@ import {
   parseTvaGenerationReleases,
   parseTvaPredictedData,
 } from '../src/evidence/tva-provider.js';
+import { ReleaseScheduleSchema } from '@trout/contracts';
 import { readFixture } from './helpers.js';
 
 const releases = JSON.parse(readFixture('TVA/generation-releases-NRST1-2026-09-13.json'));
@@ -60,5 +61,35 @@ describe('TVA release and forecast parsers', () => {
       'https://tva.test/RestApi/generation-releases/NRST1',
       'https://tva.test/RestApi/predicted-data/NRST1',
     ]);
+  });
+
+  // Regression (2026-09-29 production incident): TVA publishes negative
+  // AverageInflow during reservoir drawdowns; the release-forecast contract is
+  // nonnegative, and one such row aborted the entire gauges ingest.
+  it('omits negative/non-finite forecast values instead of breaking the contract', () => {
+    const drawdownPayload = [
+      { Day: '09/28/2026', AverageInflow: '1,234', MidnightElevation: '1011.49', AverageOutflow: '1,962' },
+      { Day: '09/29/2026', AverageInflow: '-4,021', MidnightElevation: '1011.55', AverageOutflow: '-75' },
+      { Day: '09/30/2026', AverageInflow: 'NaN', MidnightElevation: '1011.6', AverageOutflow: '2,100' },
+    ];
+    const rows = parseTvaPredictedData(drawdownPayload);
+    expect(rows).toEqual([
+      { date: '2026-09-28', averageInflowCfs: 1234, midnightElevationFt: 1011.49, averageOutflowCfs: 1962 },
+      { date: '2026-09-29', midnightElevationFt: 1011.55 },
+      { date: '2026-09-30', midnightElevationFt: 1011.6, averageOutflowCfs: 2100 },
+    ]);
+    // The whole point: what the provider emits must now clear the contract
+    // schema that killed the 2026-09-29 gauges job at forecasts[2].
+    expect(() =>
+      ReleaseScheduleSchema.parse({
+        waterId: 'norris-tailwater',
+        locationId: 'NRST1',
+        retrievedAt: '2026-09-29T02:00:00.000Z',
+        sourceUrl: 'https://www.tva.com/portal/lakeinfo/NRST1',
+        status: 'available',
+        releases: [],
+        forecasts: rows,
+      }),
+    ).not.toThrow();
   });
 });

@@ -217,16 +217,35 @@ export async function runConditionsReadingsJob(
           ? `${error}; predicted data: ${(err as Error).message}`
           : `predicted data: ${(err as Error).message}`;
       }
-      const schedule = ReleaseScheduleSchema.parse({
-        waterId,
-        locationId: monitor.locationId,
-        retrievedAt: new Date().toISOString(),
-        sourceUrl: tvaSourceUrl(monitor.locationId),
-        status: error ? 'unavailable' : releases.length === 0 ? 'empty' : 'available',
-        releases,
-        forecasts,
-        ...(error ? { error } : {}),
-      });
+      let schedule: ReleaseSchedule;
+      try {
+        schedule = ReleaseScheduleSchema.parse({
+          waterId,
+          locationId: monitor.locationId,
+          retrievedAt: new Date().toISOString(),
+          sourceUrl: tvaSourceUrl(monitor.locationId),
+          status: error ? 'unavailable' : releases.length === 0 ? 'empty' : 'available',
+          releases,
+          forecasts,
+          ...(error ? { error } : {}),
+        });
+      } catch (err) {
+        // One malformed upstream row must never abort the whole gauges job —
+        // degrade this monitor to an unavailable schedule and keep ingesting.
+        errors += 1;
+        const validationError = `schedule validation failed: ${(err as Error).message}`;
+        warnings.push(`TVA schedule ${monitor.locationId} (${waterId}) ${validationError}`);
+        schedule = ReleaseScheduleSchema.parse({
+          waterId,
+          locationId: monitor.locationId,
+          retrievedAt: new Date().toISOString(),
+          sourceUrl: tvaSourceUrl(monitor.locationId),
+          status: 'unavailable',
+          releases: [],
+          forecasts: [],
+          error: validationError,
+        });
+      }
       scheduleRows.push(schedule);
       if (error) warnings.push(`TVA schedule ${monitor.locationId} (${waterId}) unavailable: ${error}`);
     }
