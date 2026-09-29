@@ -78,6 +78,11 @@ describe('StreamSchema', () => {
     expect(() => StreamSchema.parse({ ...stream, hydroIdentity: { ...stream.hydroIdentity!, huc8s: ['05130108', '05130108'] } })).toThrow(/duplicates/);
   });
 
+  it('accepts the ADR 0011 reach-split fishery value wild+stocked', () => {
+    const stream = makeStream({ fishery: 'wild+stocked' });
+    expect(StreamSchema.parse(stream).fishery).toBe('wild+stocked');
+  });
+
   it('does not require hydrography identity for still water', () => {
     const { hydroIdentity: _identity, ...stillWater } = makeStream({ waterbodyType: 'pond' as never });
     expect(StreamSchema.parse(stillWater).waterbodyType).toBe('pond');

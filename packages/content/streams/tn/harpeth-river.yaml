@@ -8,7 +8,7 @@ gaugeIds:
   - "03432350"
   - "03433500"
 stockingProgram: true
-species: trout
+species: warmwater
 fishery: stocked
 yearRound: false
 idealFlow:
@@ -31,6 +31,10 @@ notes: >-
   Regulations: Statewide warmwater — black bass 5/day any combination, no length limit; crappie
   15/day, 10-in minimum; catfish no limit under 34 in, 1/day over 34 in; rock bass 20/day (retrieved
   2026-09-14; verify current rules with TWRA before you go).
+
+
+  Owner ruling (2026-09-24): warmwater river with a documented seasonal trout program (see
+  OWNER-RULINGS-2026-09-24.md); smallmouth tag retained under the ambient-presence policy.
 officialSources:
   - label: USGS Water Data — monitoring location 03432350
     url: https://waterdata.usgs.gov/monitoring-location/03432350/
@@ -53,30 +57,29 @@ hydroIdentity:
   counties:
     - Williamson
 opportunity:
-  trout: seasonal-stocked-trout
+  trout: mixed
   evidenceState: documented
-  statement: "TWRA's winter program stocks a single reach of the Williamson County Harpeth - at
-    Eastern Flank Battle Park in Franklin - with catchable rainbow trout (2026 rows: Jan 23, Feb 20,
-    and TBD Dec 2026); the rest of the river is not part of any trout program."
-  reachScope: Harpeth River at Eastern Flank Battle Park, Franklin (the schedule's stocked reach) only
+  statement: A warmwater river (owner ruling 2026-09-24) with a documented TWRA winter trout program
+    (December–February stockings at Eastern Flank Battle Park, Franklin) — bass and panfish coexist
+    with the seasonal trout stocking.
   asOf: "2026"
   sources:
-    - label: 2026 Trout Stocking Schedule (published table)
-      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
-      kind: program-description
-      observationPeriod: 2026 stocking weeks (week-of Sundays)
-      publicationDate: 2026 edition
-      retrieved: 2026-09-22
-      pinpoint: "3 rows: 'Harpeth River at Eastern Flank Battle Park', Williamson Co., REGION 2, TYPE
-        Winter, Rainbow Trout, days 1/23/2026, 2/20/2026, 'TBD 12/2026'"
-    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
-      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+    - label: TWRA trout stocking schedule — Harpeth River at Eastern Flank Battle Park
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
       kind: schedule-table
+      observationPeriod: 2026 stocking year
       retrieved: 2026-09-22
+      pinpoint: 'rows: "Harpeth River at Eastern Flank Battle Park" (Williamson), Winter program, Dec–Feb
+        weeks, Rainbow Trout'
+    - label: Owner ruling 2026-09-24 — warmwater river, seasonally stocked
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: program-description
+      retrieved: 2026-09-24
+      pinpoint: OWNER-RULINGS-2026-09-24.md ruling 1 + ruling 4 (ambient smallmouth policy)
   caveats:
-    - "Winter program only (Dec-Feb on the park reach): TWRA's plan frames the winter program as
-      winter-months opportunity and classifies hatchery-supported waters as primarily warmwater
-      habitats that cannot support trout year round; the Harpeth at Franklin runs warm in summer -
-      but absence of trout after winter is not biologically proven."
-    - The catalog's 'mostly a warmwater river' description is consistent with the winter-only
-      program but was not documented from a positive warmwater source this pass.
+    - Winter trout window only — the stocking months are not a survival window.
+    - Warmwater species presence per the owner's statewide ambient policy (smallmouth and the common
+      TN warmwater suite), not a per-water survey.
+  reachScope: Harpeth River at Eastern Flank Battle Park, Franklin (the schedule's stocked reach) only
+targetSpecies:
+  - smallmouth-bass

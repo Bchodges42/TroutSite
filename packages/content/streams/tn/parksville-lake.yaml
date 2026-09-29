@@ -6,7 +6,7 @@ display: standard
 regionId: tn-se-hiwassee
 gaugeIds:
   - tva:OCAT1
-stockingProgram: false
+stockingProgram: true
 idealFlow: []
 targetSpecies:
   - largemouth-bass
@@ -44,6 +44,10 @@ notes: >-
   live transport of black bass away from reservoir; crappie 15/day combo 10-in; muskie 1/day 36-in;
   catfish 34-in rule; trout 7/day no length limit; (retrieved 2026-09-14; verify current rules with
   TWRA before you go).
+
+
+  Triage apply (2026-09-24): stockingProgram → true + yearRound → true — TWRA year-round reservoir
+  list ("Region II, Parksville - Rainbow") + captured fishery page + reservoir GIS points
 officialSources:
   - label: USGS Water Data — monitoring location 03564500
     url: https://waterdata.usgs.gov/monitoring-location/03564500/
@@ -86,3 +90,4 @@ opportunity:
       adjudication reads them as complementary - a warmwater-focused fishery with a documented
       year-round trout stocking program - per the current TWRA list text.
     - "Aliases: Ocoee Lake, Ocoee Lake No. 1, Parksville Reservoir - same pool."
+yearRound: true

@@ -15,9 +15,16 @@ idealFlow:
     max: 1000
     unit: cfs
 idealFlowSource: editorial
-notes: Wider, warmer Elk below the tailwater with TWRA winter rainbow stocking in Lincoln County
-  reaches. USGS 03582000 is upstream of the mapped lower reach, so use it as flow context and not as
-  a point measurement for every access area.
+notes: >-
+  Wider, warmer Elk below the tailwater with the only documented Lincoln County trout stockings are
+  the Stone Bridge Park pond events in Fayetteville (winter program) — not this river reach. USGS
+  03582000 is upstream of the mapped lower reach, so use it as flow context and not as a point
+  measurement for every access area.
+
+
+  Triage apply (2026-09-24): false stocking claim corrected — schedule's only Lincoln County rows
+  are the Fayetteville pond events; species/fishery/stockingProgram tags await the owner's
+  legacy-tag decision
 officialSources:
   - label: USGS Water Data — monitoring location 03582000 (upstream reach; provenance)
     url: https://waterdata.usgs.gov/monitoring-location/03582000/

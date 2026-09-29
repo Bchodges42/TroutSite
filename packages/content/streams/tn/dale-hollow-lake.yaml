@@ -55,6 +55,10 @@ notes: >-
   Rd bridge); largemouth 15-in min; black bass 5/day combined, max 2 smallmouth; crappie 15/day,
   10-in min; walleye 5/day, 16-in min; muskellunge 1/day, 50-in min; (retrieved 2026-09-14; verify
   current rules with TWRA before you go).
+
+
+  Triage apply (2026-09-24): yearRound → true — TWRA year-round reservoir list (live 2026-09-22/24);
+  the April schedule row's Brown-Trout vs list/page Rainbow conflict stays preserved in the ledger
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -104,3 +108,4 @@ opportunity:
       regulations.
     - Catalog's 'TWRA stocks brown trout here each spring (put-grow-take)' note matches only the
       weekly-schedule side of a documented conflict — reword to present both sides.
+yearRound: true

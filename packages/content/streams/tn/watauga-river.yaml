@@ -24,9 +24,6 @@ seasonMonths:
   - 7
   - 8
   - 9
-  - 10
-  - 11
-  - 12
 seasonKind: programmatic
 notes: >-
   Cold, green tailwater below Wilbur Dam famous for sulphur and caddis hatches, trophy rainbow
@@ -38,6 +35,11 @@ notes: >-
   Regulations: Statewide 7-trout creel except the Quality Trout Fishing Area, Smallings bridge
   downstream to CSX railroad bridges: 14-in minimum, 2-trout creel, bait prohibited, trout less than
   14 in may not be possessed (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+
+  Triage apply (2026-09-24): seasonMonths [3..12]→[3..9] — schedule + forecast say Mar–Sep; the
+  static table alone says Mar–Dec (conflict preserved in the ledger; the field previously
+  contradicted its own Mar–Sep caveat)
 officialSources:
   - label: USGS Water Data — monitoring location 03486000
     url: https://waterdata.usgs.gov/monitoring-location/03486000/

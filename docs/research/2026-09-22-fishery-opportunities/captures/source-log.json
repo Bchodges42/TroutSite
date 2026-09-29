@@ -4,13 +4,15 @@
       "id": "twra-trout-page",
       "url": "https://www.tn.gov/twra/fishing/trout-information-stockings.html",
       "status": 200,
-      "bytes": 87169,
-      "sha256": "60f92815db306449d6ee3c841ae844310a314dcc3a56e993aabdf56477686f50",
+      "bytes": 87592,
+      "sha256": "7880a1be91c44fd53f7292fda5079bb6e79c3efcd772a21e6a0eb1ecfb1543ff",
       "retrievedAt": "2026-09-22T21:24:03.758Z",
-      "note": "TWRA trout information page: reservoir year-round list, program descriptions, links to schedule/release report/forecast; committed capture differs from response bytes (Git text normalization or capture processing); sha256 verifies committed bytes",
+      "note": "TWRA trout information page: reservoir year-round list, program descriptions, links to schedule/release report/forecast; committed capture differs from response bytes (Git text normalization or capture processing); sha256 verifies committed bytes 2026-09-24: original response bytes re-committed raw (CRLF); earlier blob was EOL-normalized (priorCommitted* fields).",
       "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-trout-page.html",
       "responseBytes": 87592,
-      "responseSha256": "7880a1be91c44fd53f7292fda5079bb6e79c3efcd772a21e6a0eb1ecfb1543ff"
+      "responseSha256": "7880a1be91c44fd53f7292fda5079bb6e79c3efcd772a21e6a0eb1ecfb1543ff",
+      "priorCommittedBytes": 87169,
+      "priorCommittedSha256": "60f92815db306449d6ee3c841ae844310a314dcc3a56e993aabdf56477686f50"
     },
     {
       "id": "twra-schedule",
@@ -46,13 +48,15 @@
       "id": "twra-stock-locations-meta",
       "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0?f=pjson",
       "status": 200,
-      "bytes": 23154,
-      "sha256": "846894f60b0dc8af147e0e2a30bc1f3cf0959f3b4aba2e12736521523dd24a9f",
+      "bytes": 24003,
+      "sha256": "a615809d809f2ef7bb17d3d51673f4f10197090f6d7dba99a390d390d910033c",
       "retrievedAt": "2026-09-22T21:24:04.642Z",
-      "note": "Stocking-location GIS layer schema (points are neither release events nor complete stocked reaches); committed capture differs from response bytes (Git text normalization or capture processing); sha256 verifies committed bytes",
+      "note": "Stocking-location GIS layer schema (points are neither release events nor complete stocked reaches); committed capture differs from response bytes (Git text normalization or capture processing); sha256 verifies committed bytes 2026-09-24: original response bytes re-committed raw (CRLF); earlier blob was EOL-normalized (priorCommitted* fields).",
       "file": "docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-meta.json",
       "responseBytes": 24003,
-      "responseSha256": "a615809d809f2ef7bb17d3d51673f4f10197090f6d7dba99a390d390d910033c"
+      "responseSha256": "a615809d809f2ef7bb17d3d51673f4f10197090f6d7dba99a390d390d910033c",
+      "priorCommittedBytes": 23154,
+      "priorCommittedSha256": "846894f60b0dc8af147e0e2a30bc1f3cf0959f3b4aba2e12736521523dd24a9f"
     },
     {
       "id": "twra-stock-locations",

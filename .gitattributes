@@ -8,3 +8,8 @@ docs/research/2026-09-22-fishery-opportunities/captures/twra-boone-lake.html -te
 docs/research/2026-09-22-fishery-opportunities/captures/tu-trail-fork-2021.html -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-fishery-*.html -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-recent-report-page-2024-06-07-wayback.html -text -whitespace
+# Original TWRA captures from the evidence lane — committed pre-protection and
+# CRLF-normalized; worktree round-trip restored the exact original response
+# bytes (sha == responseSha256), re-committed raw on 2026-09-24.
+docs/research/2026-09-22-fishery-opportunities/captures/twra-trout-page.html -text -whitespace
+docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-meta.json -text -whitespace

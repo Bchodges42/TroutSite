@@ -7,7 +7,7 @@ regionId: tn-east-smokies
 gaugeIds: []
 stockingProgram: true
 species: trout
-fishery: stocked
+fishery: wild+stocked
 yearRound: true
 idealFlow:
   - min: 15
@@ -26,6 +26,10 @@ notes: >-
   Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
   year-round-trout on documented reach evidence (GSMNP park reach (Tremont drainage, including the
   Lynn Camp Prong watershed)) (ADR 0010 consistency).
+
+
+  Triage apply (2026-09-24): fishery → 'wild+stocked' (ADR 0011): wild park reach (NPS; stocking
+  ended park-wide in 1975) + TWRA rows stocking sites outside the park
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm

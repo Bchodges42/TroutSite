@@ -7,19 +7,17 @@ regionId: tn-northeast-watauga
 gaugeIds: []
 stockingProgram: false
 species: trout
-fishery: tailwater
 idealFlow: []
-seasonMonths:
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
-seasonKind: programmatic
-notes: The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS 03483950 below-dam
-  gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600) and Wilbur Lake in Carter County. Cold,
-  clear release water that closes the Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur
-  tailwater) chain; the celebrated trophy water begins below Wilbur Dam as watauga-river.
+notes: >-
+  The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS 03483950 below-dam gauge,
+  36.33011/-82.12596; spillway-tunnel gauge 03483600) and Wilbur Lake in Carter County. Cold, clear
+  release water that closes the Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur tailwater)
+  chain; the celebrated trophy water begins below Wilbur Dam as watauga-river.
+
+
+  Triage apply (2026-09-24): removed seasonMonths [3,4,5,6,7] and seasonKind — those months mirror
+  the Wilbur RESERVOIR static-table row and the fishery: tailwater label mirrored the
+  below-Wilbur-Dam water (watauga-river); neither belongs to this reach
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/

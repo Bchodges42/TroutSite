@@ -24,6 +24,10 @@ notes: >-
   Regulations: Smallmouth bass 1/day, 20-in minimum (mouth upstream to GSMNP boundary, incl. West
   Prong and East Fork); statewide rules otherwise (black bass 5/day combo, crappie 15 @ 10 in,
   catfish 34-in rule) (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+
+  Owner ruling (2026-09-24): wild trout present + weekly Gatlinburg-program stocking per
+  OWNER-RULINGS-2026-09-24.md ruling 3; fishery wild+stocked (ADR 0011).
 officialSources:
   - label: USGS Water Data — monitoring location 03470000
     url: https://waterdata.usgs.gov/monitoring-location/03470000/
@@ -43,33 +47,30 @@ hydroIdentity:
   counties:
     - Sevier
 opportunity:
-  trout: warmwater-focus
-  evidenceState: documented
-  statement: TWRA documents this Sevierville-corridor river as a quality smallmouth fishery (1/day,
-    20-inch minimum from the mouth to the park boundary, including the prongs); a TWRA
-    trout-stocking row for the Sevierville main stem could NOT be verified - the owner-reported
-    stocking program remains unconfirmed.
-  reachScope: Main stem, GSMNP boundary downstream through Pigeon Forge/Sevierville to the Douglas Lake head
+  trout: year-round-trout
+  evidenceState: limited
+  statement: Trout water with wild trout present and weekly Gatlinburg-program stocking (owner ruling
+    2026-09-24). The documented weekly program is the West Prong through Gatlinburg (forecast node
+    n-4U71UT + Gatlinburg Streams rows); main-stem-specific published rows were not found.
+  reachScope: Little Pigeon corridor at/above Sevierville (Gatlinburg program reach; see
+    west-prong-little-pigeon for the documented weekly-stocked water)
   asOf: "2026"
   sources:
-    - label: TWRA statewide fishing regulation exceptions
-      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+    - label: TWRA trout forecast — Gatlinburg streams stocked year-round to the park boundary (node
+        n-4U71UT)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
       kind: agency-assessment
       publicationDate: "2026"
       retrieved: 2026-09-22
-      pinpoint: "'Little Pigeon River - From the mouth upstream to the Great Smoky Mountains National Park
-        boundary, [including] the West Prong and East Fork': 'Smallmouth Bass: One (1) per day,
-        20-inch minimum length limit' (verified live 2026-09-22)"
-    - label: Little Pigeon River Fishbrain page
-      url: https://fishbrain.com/fishing-waters/bCkmtYvV/little-pigeon-river
-      kind: survey
-      publicationDate: 2026-09-17
-      retrieved: 2026-09-22
-      pinpoint: 128 rainbow of 811 logged catches (needs-segment-review)
+      pinpoint: 'node n-4U71UT: Gatlinburg streams "Stocking: Year-Round", stocked Thursdays to the
+        national park boundary'
+    - label: Owner ruling 2026-09-24 — stocked weekly, wild trout present
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: firsthand-report
+      retrieved: 2026-09-24
+      pinpoint: OWNER-RULINGS-2026-09-24.md ruling 3
   caveats:
-    - Smallmouth 1/day, 20-in minimum mouth-to-park-boundary (incl. West Prong and East Fork);
-      statewide rules otherwise.
-    - The prong stockings (Mid Prong; W Prong at Pigeon Forge) are sibling catalog waters - their
-      schedule rows do not join this main stem.
-    - If the main-stem stocking is ever confirmed by a row or agency statement, the water likely
-      becomes mixed; today the documented evidence is warmwater management only.
+    - Main-stem-specific schedule rows were not found in the committed captures — the main-stem
+      extent rests on the owner ruling.
+yearRound: true
+fishery: wild+stocked

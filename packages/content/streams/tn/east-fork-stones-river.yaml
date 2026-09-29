@@ -6,9 +6,8 @@ display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03427500"
-stockingProgram: false
-species: trout
-fishery: wild
+stockingProgram: true
+species: warmwater
 idealFlow:
   - min: 50
     max: 400
@@ -21,6 +20,10 @@ notes: >-
 
   Regulations: Trout — statewide 7/day any combination, no minimum length, no closed season on this
   water (retrieved 2026-09-14; verify current rules with TWRA before you go).
+
+
+  Owner ruling (2026-09-24): warmwater with a winter/seasonal trout program per
+  OWNER-RULINGS-2026-09-24.md ruling 2; no published rows name this fork — TWRA question open.
 officialSources:
   - label: USGS Water Data — monitoring location 03427500
     url: https://waterdata.usgs.gov/monitoring-location/03427500/
@@ -32,7 +35,6 @@ seasonMonths:
   - 12
   - 1
   - 2
-  - 3
 seasonKind: programmatic
 yearRound: false
 hydroIdentity:
@@ -43,15 +45,20 @@ hydroIdentity:
   counties:
     - Rutherford
 opportunity:
-  trout: unresolved
-  evidenceState: conflicting
-  statement: "The catalog's wild-rainbow claim for the upper East Fork could not be verified in any
-    agency source: TWRA stocks no row on this reach, and a 2023 EPA survey on the lower East Fork
-    found a warmwater assemblage with zero trout. Both sides preserved; the water is unresolved."
+  trout: mixed
+  evidenceState: limited
+  statement: A warmwater river with a winter/seasonal trout program (owner ruling 2026-09-24). No
+    published TWRA row names this fork under the names searched — the winter claim rests on the
+    ruling and the area's winter-program pattern.
   asOf: "2026"
+  unresolvedQuestion: Which published TWRA rows/locations constitute the East Fork Stones winter
+    stocking? (asked of the owner/TWRA; zero rows found in the committed schedule/GIS captures)
+  sources:
+    - label: Owner ruling 2026-09-24 — warmwater, stocked winter/seasonally
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: program-description
+      retrieved: 2026-09-24
+      pinpoint: OWNER-RULINGS-2026-09-24.md ruling 2
   caveats:
-    - TWRA's Stones River stockings are on the WEST Fork greenway (Manson Pike Trailhead, winter
-      rainbows) and the J. Percy Priest tailwater (Davidson) - different reaches.
-    - Statewide trout rules (7/day, no length limit) apply; no special regulation names this reach.
-  unresolvedQuestion: Does the upper East Fork Stones River actually hold a wild rainbow population,
-    as the catalog asserts without citation? No agency survey or stocking row addresses this reach.
+    - The prior trout/wild tags carried no agency source; one NRSA site visit (2023, lower reach,
+      zero salmonids) is a single sample, not trout absence.

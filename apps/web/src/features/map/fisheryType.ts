@@ -13,8 +13,11 @@ export type FisheryType = 'tailwater' | 'wild' | 'stocked' | 'other' | 'unknown'
 
 /** Only the catalog fields the classification reads. */
 export type FisheryTypeFields = {
-  /** Canonical catalog classification (session-1 attribute) — wins when set. */
-  fishery?: 'wild' | 'stocked' | 'tailwater' | null;
+  /** Canonical catalog classification (session-1 attribute) — wins when set.
+   *  'wild+stocked' (ADR 0011) is a reach-split fishery; it buckets as
+   *  'stocked' here (the stocking is the programmatic fact; the wild reach
+   *  is stated in the water's notes). */
+  fishery?: 'wild' | 'stocked' | 'tailwater' | 'wild+stocked' | null;
   waterbodyType?: string | null;
   species?: 'trout' | 'warmwater' | null;
   stockingProgram?: boolean | null;
@@ -38,6 +41,7 @@ export function fisheryType(fields: FisheryTypeFields): FisheryType {
   // The catalog's own classification is authoritative when the evidence has
   // reached; the derived rules below only serve waters it has not yet covered.
   if (fishery === 'tailwater' || fishery === 'wild' || fishery === 'stocked') return fishery;
+  if (fishery === 'wild+stocked') return 'stocked';
   if (waterbodyType === 'tailrace') return 'tailwater';
   // Both parts must be explicit: a missing stockingProgram is never read as
   // "wild", and a missing species is never read as trout.

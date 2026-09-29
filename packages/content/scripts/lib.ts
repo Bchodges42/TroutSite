@@ -276,7 +276,15 @@ export function loadContent(): LoadedContent {
     }
     const targetSpecies = new Set(stream.targetSpecies ?? []);
     const evidenceSpecies = stream.speciesEvidence ?? [];
+    // Ambient statewide species (OWNER-RULINGS-2026-09-24 ruling 4): the
+    // owner retired per-water citation HUNTS for species whose Tennessee
+    // presence is effectively universal ("it's Tennessee — they're in
+    // probably every river"). Listing them needs no per-water source; the
+    // exemption is presence-LISTING only, never abundance or fishery-quality
+    // claims, and does not extend to trout of any kind.
+    const AMBIENT_TN_SPECIES = new Set(['smallmouth-bass']);
     for (const species of targetSpecies) {
+      if (AMBIENT_TN_SPECIES.has(species)) continue;
       if (!evidenceSpecies.some((e) => e.species === species)) {
         issues.push({ file: rel(file), message: `targetSpecies "${species}" requires a retrieval-dated speciesEvidence citation` });
       }

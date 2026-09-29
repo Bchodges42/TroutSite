@@ -178,9 +178,12 @@ export const StreamSchema = z.object({
   targetSpecies: z.array(SpeciesKeySchema).optional(),
   /** Trout-fishery identity: 'tailwater' = dam-controlled release fishery;
    *  'stocked' = put-and-take stocking without dam control;
-   *  'wild' = naturally reproducing (self-sustaining) fishery.
+   *  'wild' = naturally reproducing (self-sustaining) fishery;
+   *  'wild+stocked' = reach-split fishery — a documented wild reach plus a
+   *  TWRA-stocked reach on the same named water (ADR 0011); the reach note
+   *  in `notes` states the split.
    *  Absent = evidence does not reach — never guessed. */
-  fishery: z.enum(['wild', 'stocked', 'tailwater']).optional(),
+  fishery: z.enum(['wild', 'stocked', 'tailwater', 'wild+stocked']).optional(),
   /** The trout fishery (opportunity to catch trout, stocking season + regs/wild
    *  backbone combined) is viable year-round — not merely that stocking happens
    *  sometime during the year. Absent = undetermined. */

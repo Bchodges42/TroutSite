@@ -583,3 +583,11 @@ describe('ADR 0010 — adjudicated opportunity in the decision model', () => {
     expect(opportunityEvidenceText(view)).toBe('Documented · 2026');
   });
 });
+
+describe('ADR 0011 — wild+stocked reach-split fishery', () => {
+  it('schema-valid value buckets as stocked for the legend while the field carries the split', async () => {
+    const { fisheryType } = await import('../src/features/map/fisheryType');
+    expect(fisheryType({ fishery: 'wild+stocked', waterbodyType: 'creek', species: 'trout', stockingProgram: true })).toBe('stocked');
+    expect(fisheryType({ fishery: 'wild', waterbodyType: 'creek', species: 'trout', stockingProgram: false })).toBe('wild');
+  });
+});

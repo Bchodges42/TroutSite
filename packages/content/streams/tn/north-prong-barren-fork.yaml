@@ -14,17 +14,18 @@ idealFlow:
     max: 70
     unit: cfs
 idealFlowSource: editorial
-notes: TWRA spring-stocked upper Barren Fork water.
+notes: >-
+  TWRA spring-stocked upper Barren Fork water.
+
+
+  Triage apply (2026-09-24): removed stale seasonMonths [12,1,2]/programmatic — the committed TWRA
+  schedule holds only spring weeks (3/22 + 4/26, "N Barren Fork Creek"); the repair's 22-item sweep
+  missed this one
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
   gnisIds:
     - "01295933"
