@@ -16,20 +16,62 @@ idealFlow:
 idealFlowSource: editorial
 notes: >-
   Cherokee National Forest creek with TWRA stocking roughly February–July (the Forest Service's
-  catchable-rainbow window upstream of Little Citico runs March 15–September 15) and wild brown, rainbow, and
-  brook trout in the tributaries. Remote, brushy, rain-flashy.
+  catchable-rainbow window upstream of Little Citico runs March 15–September 15) and wild brown,
+  rainbow, and brook trout in the tributaries. Remote, brushy, rain-flashy.
 
 
-  Regulations: Tellico-Citico Permit Area "from Little Citico Creek confluence upstream to the North/South
-  Fork junction": permit required Mar 1–Aug 15; closed Thu & Fri (holidays excepted); creel 7 trout, no size
-  limit; one rod; sunrise–sunset fishing only (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: Tellico-Citico Permit Area "from Little Citico Creek confluence upstream to the
+  North/South Fork junction": permit required Mar 1–Aug 15; closed Thu & Fri (holidays excepted);
+  creel 7 trout, no size limit; one rod; sunrise–sunset fishing only (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01269464", "01270855"]
-  huc8s: ["06010204"]
-  counties: ["Monroe"]
+  gnisIds:
+    - "01269464"
+    - "01270855"
+  huc8s:
+    - "06010204"
+  counties:
+    - Monroe
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA stocks Citico Creek's main stem weekly through the Tellico-Citico program (22
+    consecutive 2026 weeks, Feb 22 - Jul 19) with a Tellico-Citico permit required Mar 1 - Aug 15; a
+    headwater tributary (Falls Branch) holds a documented wild brook trout population - a seasonal
+    stocked fishery plus wild headwaters, not a single year-round stocked fishery.
+  reachScope: Stocked main stem (Tellico-Citico permit area) vs wild-brook headwater tributary (Falls Branch)
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "22 rows: 'Citico Creek', Monroe Co., REGION 3, Seasonal, Rainbow Trout, weekly 2/22/2026
+        - 7/19/2026"
+    - label: Tennessee Trout Management Plan 2017-2027
+      url: https://www.tn.gov/content/dam/tn/twra/documents/fishing/Tennessee-Trout-Management-Plan-2017-2027.pdf
+      kind: schedule-table
+      publicationDate: "2017"
+      retrieved: 2026-09-22
+      pinpoint: "hatcheries chapter: Tellico Hatchery 10-12 inch rainbows 'stocked frequently into the
+        Tellico River, Citico Creek, and Green Cove Pond... a special Tellico-Citico permit is
+        required to fish these waters.'"
+    - label: Tennessee Trout Regulations
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+  caveats:
+    - "The cataloged feature spans the stocked main stem AND wild headwater forks - keep the two
+      stories separate: weekly stocked rainbows Feb-Jul on the permit-area main stem, wild brook
+      trout on Falls Branch."
+    - The permit-free Aug 16 - end-of-February window is a regulation, not evidence of trout
+      presence in the main stem in winter; no holdover documentation exists for the stocked reach.
+    - Permit/closure details (closed Thu-Fri Mar 1-Aug 15) apply per the Tellico-Citico program;
+      verify current rules before you go.

@@ -13,53 +13,49 @@ targetSpecies:
   - spotted-bass
   - crappie
   - bluegill
-  - channel-catfish
   - striped-bass
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03570525/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
-  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles through
-  Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake; below the dam the
-  main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA lists the reservoir at about
-  10,700 acres — a scenic gorge reach below the dam and a wide, urban Chattanooga reach above it. Verify TVA
-  release schedules before paddling the gorge. TWRA's Nickajack Reservoir page lists the fishery as largemouth
-  bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Tennessee River impoundment from Nickajack Dam (USGS 03570525 tailwater gauge) upstream 46 miles
+  through Chattanooga to Chickamauga Dam (Marion/Hamilton counties). Downstream of Chickamauga Lake;
+  below the dam the main stem continues toward Guntersville Lake in Alabama as tennessee-river. TVA
+  lists the reservoir at about 10,700 acres — a scenic gorge reach below the dam and a wide, urban
+  Chattanooga reach above it. Verify TVA release schedules before paddling the gorge. TWRA's
+  Nickajack Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass,
+  crappie, bluegill, catfish, striped bass (see officialSources).
 
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not
-  a scored input.
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge
+  context is not a scored input.
 
 
-  Regulations: black bass 5/day in combination; largemouth 15-in min; smallmouth/spotted/Alabama no minimum,
-  only one over 16 in/day; crappie 15/day 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid
-  2/day 15-in min; white bass 15/day; walleye 5/day 16-in; (retrieved 2026-09-14; verify current rules with
-  TWRA before you go).
+  Regulations: black bass 5/day in combination; largemouth 15-in min; smallmouth/spotted/Alabama no
+  minimum, only one over 16 in/day; crappie 15/day 10-in min; catfish no creel ≤34 in, one >34
+  in/day; striped/hybrid 2/day 15-in min; white bass 15/day; walleye 5/day 16-in; (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03570525
     url: https://waterdata.usgs.gov/monitoring-location/03570525/
@@ -69,3 +65,40 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Nickajack Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Nickajack Reservoir (10,370 acres, Marion/Hamilton counties) as a
+    warmwater bass/crappie/sunfish/catfish/striped-bass fishery; no trout program is documented here
+    and any trout presence is undocumented.
+  asOf: "2026"
+  sources:
+    - label: Nickajack Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/nickajack-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'What you can catch' species list: largemouth/smallmouth/spotted bass, crappie (black and
+        white), redear sunfish, bluegill, sauger, walleye, catfish (blue/channel/flathead), white
+        bass, striped bass; page states the reservoir 'covers an area of 10,370 acres while claiming
+        192 miles of shoreline'; zero trout mentions on the page"
+    - label: Tennessee River at Nickajack Dam (Tailwater) temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03570525&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1974-2008 summer grabs (23.0-30.56 C)
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 100 grabs 1974-2008; summer range 23.0-30.56 C"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'Nickajack': zero rows; also absent from the Trout Management Plan's nine-reservoir
+        trout list (Dale Hollow, Parksville, South Holston, Wilbur, Watauga, Fort Patrick Henry,
+        Calderwood, Chilhowee, Tellico)"
+  caveats:
+    - No trout stocking program is documented for this reservoir in TWRA's 2026 schedule,
+      stocking-point GIS layer, or Trout Management Plan reservoir list.
+    - Warmwater-focus does not mean trout are biologically absent — it means no trout opportunity is
+      documented.

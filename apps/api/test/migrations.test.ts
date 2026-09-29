@@ -64,7 +64,8 @@ describe('migrations', () => {
     //   selectable-river expansion; renumbered from the expansion's 008 —
     //   main already used 008 for target species).
     // + 016_stream_hydro_identity (GNIS/HUC identity for selectable lines).
-    expect(applied).toHaveLength(16);
+    // + 017_stream_opportunity (ADR 0010 authored fishery-opportunity block).
+    expect(applied).toHaveLength(17);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -77,6 +78,7 @@ describe('migrations', () => {
     expect(applied[13]!.name).toMatch(/^014_/);
     expect(applied[14]!.name).toMatch(/^015_/);
     expect(applied[15]!.name).toMatch(/^016_/);
+    expect(applied[16]!.name).toMatch(/^017_/);
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

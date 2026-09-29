@@ -13,5 +13,39 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01300357"]
-  huc8s: ["08010203"]
+  gnisIds:
+    - "01300357"
+  huc8s:
+    - "08010203"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule
+    (30/day, no length limit), documenting a managed warmwater fishery on the Rutherford Fork Obion.
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+    - label: Survey of the Obion River system fish fauna
+      url: https://trace.tennessee.edu/utk_gradthes/8225
+      kind: agency-assessment
+      observationPeriod: 1973 collections
+      publicationDate: "1973"
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: verified 100 fish species with collections from the system's
+        principal streams and forks; no salmonids listed"
+    - label: Rutherford Fork Obion River temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-RFOBI024.4GI;TDECWPC-RFOBI029.9GI&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: August 2001 grabs (22.1-22.6 C)
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 22.6 C and 22.1 C August 2001"
+  caveats:
+    - The 'Rutherford' rows in TWRA's trout schedule (Nice Mill, W. Fork Stones River) are
+      Rutherford COUNTY middle-Tennessee sites — unrelated to this fork despite the shared name.
+    - Warmwater-focus does not mean trout are biologically absent.

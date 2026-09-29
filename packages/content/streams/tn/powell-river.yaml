@@ -15,15 +15,16 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown trout in
-  its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from the VA line down
-  to the Norris Lake arm. TWRA's statewide regulation exceptions set a smallmouth bass rule on this water:
-  13–17 in protected length range, one over 17 in per day. (see officialSources).
+  A wild-trout Highland Rim/ridge-and-valley river holding naturally reproducing rainbow and brown
+  trout in its upper reaches. Rain-flashy — the gauge near Arthur is essential reading. It runs from
+  the VA line down to the Norris Lake arm. TWRA's statewide regulation exceptions set a smallmouth
+  bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see
+  officialSources).
 
 
   Regulations: Powell River "Gap Creek confluence upstream to the state line" — Black Bass 5/day in
-  combination; Smallmouth 13–17 in PLR, only one smallmouth over 17 in/day (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  combination; Smallmouth 13–17 in PLR, only one smallmouth over 17 in/day (retrieved 2026-09-14;
+  verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03532000
     url: https://waterdata.usgs.gov/monitoring-location/03532000/
@@ -32,5 +33,41 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01306921"]
-  huc8s: ["06010206"]
+  gnisIds:
+    - "01306921"
+  huc8s:
+    - "06010206"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: "The Tennessee Powell River is documented warmwater water: TWRA sets a smallmouth
+    protected-length rule on the upper reach and EPA's June 2024 survey at the upper-river site
+    found a smallmouth/panfish assemblage with zero salmonids; the catalog's wild-rainbow/brown
+    claim has no agency support."
+  reachScope: Tennessee reach, Claiborne/Union counties; regulation reach 'Gap Creek confluence
+    upstream to the state line'
+  asOf: "2026"
+  sources:
+    - label: TWRA statewide fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "'Powell River - Gap Creek confluence upstream to the state line': 'Black Bass: Five (5)
+        per day in combination; 13-17 inch PLR for Smallmouth Bass', only one over 17 in/day
+        (verified live 2026-09-22)"
+    - label: EPA NRSA 2023-24 fish counts - site NRS23_TN_10068 (Powell River, Hancock Co.)
+      url: https://www.epa.gov/system/files/other-files/2026-06/nrsa2324_fishcount.csv
+      kind: agency-assessment
+      observationPeriod: 2024-06-16
+      publicationDate: 2026-06-01
+      retrieved: 2026-09-22
+      pinpoint: "siteinfo: GNIS 'Powell River', HUC10 'Wallen Creek-Powell River', boatable, 1,385 km2
+        watershed, elev 353 m; fishcount 6/16/2024: 14 taxa - Mimic Shiner 42, Redbreast Sunfish 11,
+        Smallmouth Bass 8, Rock Bass 6 - ZERO salmonids"
+  caveats:
+    - Smallmouth 13-17 in PLR (one over 17 in/day) from Gap Creek confluence to the state line;
+      statewide black bass rules below.
+    - Rain-flashy river - the gauge near Arthur is essential reading before going.
+    - Absence of trout records never establishes 'no trout'; the catalog claim is preserved but
+      unverified.

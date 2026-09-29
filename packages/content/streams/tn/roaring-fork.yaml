@@ -15,12 +15,14 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and brook trout, with
-  TWRA listing spring stocking for the Roaring Fork area. No gauge; treat flows as rain events.
+  Steep, cascading park water off the Roaring Fork Motor Nature Trail — wild rainbows and brook
+  trout, with TWRA listing spring stocking for the Roaring Fork area. No gauge; treat flows as rain
+  events.
 
 
-  Regulations: park-wide NPS rules — 5 fish combo, 7 in min trout/bass, single-hook artificials only, no
-  bait/scent, year-round (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: park-wide NPS rules — 5 fish combo, 7 in min trout/bass, single-hook artificials
+  only, no bait/scent, year-round (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: NPS — Great Smoky Mountains National Park fishing information
     url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
@@ -29,6 +31,50 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01299568"]
-  huc8s: ["06010107"]
-  counties: ["Sevier"]
+  gnisIds:
+    - "01299568"
+  huc8s:
+    - "06010107"
+  counties:
+    - Sevier
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: "Roaring Fork carries a documented year-round trout opportunity on two reaches: TWRA's
+    forecast names it a stocked Gatlinburg stream (rainbows from the West Prong confluence to the
+    park boundary, 'Stocking: Year-Round'), and the steep park reach above holds wild trout under
+    NPS no-stocking-since-1975 policy."
+  reachScope: "Two reaches: (1) Gatlinburg city reach - WPLP confluence to park boundary, stocked
+    rainbows; (2) GSMNP park reach along the Motor Nature Trail - wild trout"
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout fishing forecast StoryMap (verbatim node text)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "node n-4U71UT: 'Roaring Fork, Leconte Creek, Dudley Creek... These three streams are all
+        stocked from their confluences with West Prong Little Pigeon to the national park boundary';
+        Stocking: Year-Round = node n-nB5U6I; Species Caught: Rainbow Trout = node n-7ucj9o;
+        seasonal forecast nodes n-nOKLOl/n-ZAPwbf/n-ONYvQy cover Jan-Dec"
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 4 / Sevier / 'Gatlinburg Streams' / Delayed Harvest + Weekly rainbow, Jan 1
+        - Dec 24, 2026; the stocking-locations GIS layer also carries a Spring rainbow point matched
+        to Roaring Fork by name (Sevier Co.)"
+    - label: NPS GSMNP fishing page (park-wide wild trout assessment)
+      url: https://www.nps.gov/grsm/planyourvisit/fishing.htm
+      kind: survey
+      observationPeriod: current page, live-check basis per prior pass
+      retrieved: 2026-09-22
+      pinpoint: "prior batch2 pass: NPS states stocking ended in 1975 and park streams hold wild trout at
+        2,000-4,000 fish/mile across ~2,900 stream miles; TWRA Trout Management Plan corroborates
+        245 wild-trout miles in the TN portion incl. Sevier County"
+  caveats:
+    - Delayed harvest (catch-and-release) applies to Gatlinburg waters until April 1.
+    - "Park reach: NPS rules - 5 fish combo, 7-in min, single-hook artificials only, no bait,
+      year-round."
+    - No gauge; treat flows as rain events on this steep cascade water.

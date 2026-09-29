@@ -13,5 +13,20 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01305657"]
-  huc8s: ["06020002"]
+  gnisIds:
+    - "01305657"
+  huc8s:
+    - "06020002"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: A single cool 1988 grab sample is too thin to characterize Candies Creek (Bradley County,
+    Hiwassee tributary). The cited sources do not establish a trout program or dated trout
+    observation, so trout status remains unresolved.
+  asOf: "2026"
+  caveats:
+    - Fishbrain page (219 catches, largemouth/catfish/crappie-led, no trout rows) is a research lead
+      only, not citable.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    found for Candies Creek; next source: TWRA Region 3 stream sampling or TVA Hiwassee-tributary
+    fish community data."

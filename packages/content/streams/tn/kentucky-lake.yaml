@@ -45,18 +45,18 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through West
-  Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Detailed angler notes are still being
-  prepared — check TWRA and local access areas in the meantime. TWRA's Kentucky Reservoir page lists the
-  fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see
-  officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen
-  refuge context is not a scored input.
+  Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir through
+  West Tennessee's Hardin, Decatur, Benton, Houston, and Stewart counties. Detailed angler notes are
+  still being prepared — check TWRA and local access areas in the meantime. TWRA's Kentucky
+  Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie,
+  bluegill, catfish, striped bass (see officialSources). Striped bass is a regulatory or
+  hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
 
 
-  Regulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum (spotted none); crappie
-  20/day, 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid "Five (2) per day in
-  combination," 15-in min (page typo); white bass 15/day; (retrieved 2026-09-14; verify current rules with
-  TWRA before you go).
+  Regulations: black bass 5/day in combination, largemouth & smallmouth 15-in minimum (spotted
+  none); crappie 20/day, 10-in min; catfish no creel ≤34 in, one >34 in/day; striped/hybrid "Five
+  (2) per day in combination," 15-in min (page typo); white bass 15/day; (retrieved 2026-09-14;
+  verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -64,3 +64,24 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Kentucky Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Kentucky Reservoir as a major warmwater mainstem reservoir — black bass,
+    crappie, bluegill/redear, catfish, white/yellow bass, striped/hybrid bass, sauger/walleye,
+    paddlefish — with no trout fishery documented.
+  reachScope: "Tennessee portion of Kentucky Reservoir (catalog: Hardin, Decatur, Benton, Houston,
+    Stewart counties)"
+  asOf: "2026"
+  sources:
+    - label: Kentucky Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "Species list: largemouth/smallmouth/spotted bass, black and white crappie,
+        bluegill/redear/warmouth, channel/blue/flathead catfish, white/yellow bass, striped/hybrid
+        bass, sauger/walleye/saugeye, paddlefish; no trout anywhere on the page"
+  caveats:
+    - Historical pool grabs at Savannah (03593500) read 28.6-30.5 C in July-August 1997-1999 (prior
+      lead, not re-verified) — a warm mainstem pool with no cold refuge described.
+    - The documented winter fishery below Kentucky Dam is SAUGER, not trout.

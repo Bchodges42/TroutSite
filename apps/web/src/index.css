@@ -252,7 +252,7 @@ a {
 .header-search {
   display: flex;
   flex: 1 1 360px;
-  min-width: 180px;
+  min-width: 0;
   justify-content: center;
 }
 .header-search .search-wrap {
@@ -276,6 +276,9 @@ a {
   align-items: center;
   gap: 14px;
   margin-left: auto;
+  /* The actions cluster never shrinks — a squeezed fish-mode toggle clipped
+     its labels to fragments ("Trout" → "t"). The search field absorbs. */
+  flex-shrink: 0;
 }
 .privacy-note {
   display: flex;
@@ -308,6 +311,8 @@ a {
   font-size: 12px;
   font-weight: 600;
   color: var(--ui-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .species-mode-toggle button[aria-pressed='true'] {
   background: var(--ui-subtle);
@@ -986,6 +991,55 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   border-left-width: 3px;
   font-size: 12.5px;
   line-height: 1.45;
+}
+
+/* Fishery-opportunity card (ADR 0010): the documented angling-opportunity
+   headline. Same quiet card family as .season-card; the left border carries
+   the evidence state, never a trout/no-trout verdict. */
+.opportunity-card {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #33494a);
+  border-left-width: 3px;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.opportunity-card .season-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.opportunity-card strong { font-size: 13px; display: block; }
+.opportunity-card p { margin: 4px 0 0; color: inherit; opacity: 0.85; }
+.opportunity-card .opportunity-evidence {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.opportunity-card .opportunity-caveats {
+  margin: 6px 0 0;
+  padding-left: 16px;
+  opacity: 0.85;
+}
+.opportunity-card .opportunity-sources { font-size: 11.5px; }
+.opportunity-card .opportunity-sources a { color: var(--ui-accent); }
+.opportunity-card[data-state='documented'] {
+  border-left-color: rgb(35 113 85 / 0.9);
+}
+.opportunity-card[data-state='limited'] {
+  border-left-color: rgb(196 145 58 / 0.9);
+}
+.opportunity-card[data-state='historical'],
+.opportunity-card[data-state='conflicting'] {
+  border-left-color: rgb(170 90 60 / 0.9);
+}
+.opportunity-card[data-state='unresolved'] {
+  border-left-color: rgb(120 130 140 / 0.9);
 }
 .season-card .season-head {
   display: flex;
@@ -1749,8 +1803,17 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
     padding-top: 34px;
   }
 }
+.privacy-note {
+  white-space: nowrap;
+}
+@media (max-width: 1439px) {
+  /* Squeezed here, the privacy tagline left-clipped mid-word ("…ur device.")
+     at common laptop widths — it stays a wide-screen affordance only. */
+  .privacy-note {
+    display: none;
+  }
+}
 @media (max-width: 1240px) {
-  .privacy-note,
   .brand-caption {
     display: none;
   }
@@ -1987,6 +2050,14 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   }
   .river-context a {
     font-size: 13px;
+  }
+}
+@media (max-width: 640px) {
+  .header-search {
+    display: none;
+  }
+  .header-actions {
+    gap: 10px;
   }
 }
 @media (max-width: 360px) {

@@ -6,12 +6,47 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal West Tennessee river below the confluence of its major forks, flowing toward the Mississippi. General fishing water; verify current access and regulations.
+notes: Principal West Tennessee river below the confluence of its major forks, flowing toward the
+  Mississippi. General fishing water; verify current access and regulations.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01306450"]
-  huc8s: ["08010202"]
+  gnisIds:
+    - "01306450"
+  huc8s:
+    - "08010202"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Forked Deer under a named West Tennessee warmwater rule (crappie 30/day,
+    no length limit, with Hatchie/Loosahatchie/Obion/Wolf).
+  reachScope: main stem below the confluence of the North, Middle, and South forks (HUC 08010202),
+    covered river-wide by the West Tennessee crappie rule
+  asOf: "2026"
+  sources:
+    - label: Tennessee Fishing Regulations — Exceptions to Statewide Regulations
+      url: https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations
+      kind: agency-assessment
+      observationPeriod: annual regulation
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion and Wolf Rivers (includes tributaries)' —
+        'Crappie: 30 per day, no length limit.'"
+    - label: 2026 trout stocking schedule (live datatable feed)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'forked deer': 0 rows"
+    - label: Discrete water temperature, Forked Deer fork gauges
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07027800;USGS-07028000;USGS-07028005;USGS-07028200;USGS-07029040&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS
+      kind: temperature-series
+      observationPeriod: historical grab samples
+      retrieved: 2026-09-22
+      pinpoint: Fork grabs 27.0-32.0 C in summer (prior lead, not re-verified this session)
+  caveats:
+    - Warmwater management is documented; the fishery's composition on the main stem itself is
+      undocumented.

@@ -13,16 +13,16 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking dataset
-  does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the Embreeville gauge
-  matters. It runs from the NC line to its Douglas Lake confluence. TWRA's statewide regulation exceptions set
-  a smallmouth bass rule on this water: 13–17 in protected length range, one over 17 in per day. (see
-  officialSources).
+  Freestone river draining NC mountains — clear and cold in spring, warm by August. TWRA’s stocking
+  dataset does not currently list it; upstream reaches hold scattered wild fish. Rain-flashy; the
+  Embreeville gauge matters. It runs from the NC line to its Douglas Lake confluence. TWRA's
+  statewide regulation exceptions set a smallmouth bass rule on this water: 13–17 in protected
+  length range, one over 17 in per day. (see officialSources).
 
 
-  Regulations: Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day ("ENKA Dam
-  upstream to the state line includes Davy Crockett Lake"); lower reach under Douglas Reservoir rules to ENKA
-  Dam (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Black Bass 5/day in combination; Smallmouth 13–17 in PLR, only 1 over 17 in/day
+  ("ENKA Dam upstream to the state line includes Davy Crockett Lake"); lower reach under Douglas
+  Reservoir rules to ENKA Dam (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03465500
     url: https://waterdata.usgs.gov/monitoring-location/03465500/
@@ -33,6 +33,39 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01326897"]
-  huc8s: ["06010108"]
-  counties: ["Washington"]
+  gnisIds:
+    - "01326897"
+  huc8s:
+    - "06010108"
+  counties:
+    - Washington
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA carries a special smallmouth-bass regulation on the Nolichucky (13-17 in protected
+    range, ENKA Dam to the state line), documenting a managed warmwater smallmouth fishery.
+  reachScope: TWRA special smallmouth rule covers 'ENKA Dam upstream to the state line includes Davy
+    Crockett Lake'; lower reach under Douglas Reservoir rules
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions — Nolichucky River
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'ENKA Dam upstream to the state line includes Davy Crockett Lake.' — 'Black Bass: Five
+        (5) per day in combination; 13-17 inch PLR for Smallmouth bass, only one (1) Smallmouth bass
+        over 17 inches per day.'"
+    - label: Nolichucky River at Embreeville temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03465500&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: grabs 1976-2004 (summer maxima 24-30 C)
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 27.7 C June 2001; 26.9 C July 2002; 30 C July 1977"
+  caveats:
+    - TWRA stocks nothing into the river (zero rows in the 2026 schedule capture and no stocking
+      point in the trout GIS layer).
+    - The 'ENKA Dam upstream to the state line' regulation reach includes Davy Crockett Lake per the
+      rule text.
+    - Warmwater-focus does not mean trout are biologically absent, and the upper-river temperature
+      regime is unmeasured.

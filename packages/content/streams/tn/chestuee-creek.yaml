@@ -6,12 +6,29 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Long named Hiwassee River tributary in southeast Tennessee and one of the region’s principal stream systems.
+notes: Long named Hiwassee River tributary in southeast Tennessee and one of the region’s principal
+  stream systems.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01327906"]
-  huc8s: ["06020002"]
+  gnisIds:
+    - "01327906"
+  huc8s:
+    - "06020002"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: The cited sources do not establish a trout program, dated observation, reach-specific
+    fish survey, or useful temperature series for Chestuee Creek (McMinn County, Hiwassee
+    tributary). Fishery status remains unresolved.
+  asOf: "2026"
+  caveats:
+    - Gauge datums 778 ft (upper, Zion Hill) and 723 ft (lower, Dentville) mark a low-to-mid
+      elevation Valley-and-Ridge tributary (prior lead, not re-verified).
+    - Fishbrain page (6 catches, no trout rows) is a research lead only, not citable.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    found for Chestuee Creek; next source: TWRA Region 3 stream sampling or TDEC fish-community data
+    for the Hiwassee/Chickamauga-arm tributaries."

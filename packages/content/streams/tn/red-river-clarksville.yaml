@@ -6,7 +6,7 @@ display: standard
 regionId: tn-middle-nashville
 gaugeIds:
   - "03436100"
-stockingProgram: false
+stockingProgram: true
 species: warmwater
 idealFlow:
   - min: 60
@@ -14,19 +14,20 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Warmwater Clarksville river (bass and catfish water). Mud-prone watershed — check the Port Royal gauge after
-  any rain.
+  Warmwater Clarksville river (bass and catfish water). Mud-prone watershed — check the Port Royal
+  gauge after any rain.
 
 
-  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
-  Warmwater river (smallmouth/largemouth/spotted bass, white bass, catfish); no TWRA trout stocking row or
-  trout record. (retrieved 2026-09-14).
+  Correction (2026-09-22): the broad river is a warmwater fishery, but TWRA's 2026 schedule lists
+  winter rainbow trout stocking at Billy Dunlop Park on the Clarksville reach. The earlier
+  no-trout-program note was contradicted by that named stocking site. No river-wide trout presence
+  is established by the park schedule.
 
 
-  Regulations: no Red River exception listed on TWRA's exceptions page — statewide rules govern: black bass
-  5/day any combination, no minimum; crappie 15/day, 10-in minimum; walleye 5/day, 16-in minimum; catfish no
-  limit under 34 in with only 1 over 34 in/day; (retrieved 2026-09-14; verify current rules with TWRA before
-  you go).
+  Regulations: no Red River exception listed on TWRA's exceptions page — statewide rules govern:
+  black bass 5/day any combination, no minimum; crappie 15/day, 10-in minimum; walleye 5/day, 16-in
+  minimum; catfish no limit under 34 in with only 1 over 34 in/day; (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03436100
     url: https://waterdata.usgs.gov/monitoring-location/03436100/
@@ -35,6 +36,40 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00501672"]
-  huc8s: ["05130206"]
-  counties: ["Montgomery"]
+  gnisIds:
+    - "00501672"
+  huc8s:
+    - "05130206"
+  counties:
+    - Montgomery
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's winter program stocks rainbow trout at Billy Dunlop Park on this river (Feb 18 and
+    a TBD December 2026 date in the 2026 schedule), and research-grade community observations
+    documented rainbows in the Red River corridor near Clarksville Nov 2023-Mar 2024 - a winter
+    put-and-take fishery; the river itself is documented nowhere as more than a warmwater
+    bass/catfish stream in this pass.
+  reachScope: Billy Dunlop Park reach, Clarksville (Montgomery County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (live datatable capture, 616 rows)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 2 / Montgomery / 'Billy Dunlop Park' / Winter / Rainbow Trout / 02/18/2026
+        and TBD 12/2026"
+    - label: Rainbow trout observations, Red River corridor, Nov 2023 - Mar 2024 (11 observations)
+      url: https://www.inaturalist.org/observations/203416165
+      kind: survey
+      observationPeriod: 2023-11-30 to 2024-03-21
+      retrieved: 2026-09-22
+      pinpoint: 11 O. mykiss observations, 10 research-grade / 1 casual, dates clustering Nov 30 2023 -
+        Mar 21 2024; all by one observer (tncreekwanderer); geoprivacy OBSCURED - coordinates are
+        cell-randomized, so the point scatter does NOT indicate distinct river locations
+  caveats:
+    - Winter put-and-take only (Dec-Feb program design); no summer carryover documentation.
+    - No Red River exception exists on TWRA's exceptions page - statewide rules govern.
+    - The iNat series is one observer's work with obscured coordinates; treat as corroboration, not
+      a census.

@@ -6,12 +6,28 @@ regionId: tn-cumberland-plateau
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal Scott County tributary of the New River and an important local Cumberland Plateau waterway.
+notes: Principal Scott County tributary of the New River and an important local Cumberland Plateau
+  waterway.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01278397"]
-  huc8s: ["05130104"]
+  gnisIds:
+    - "01278397"
+  huc8s:
+    - "05130104"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: Brimstone Creek (Scott County, New River system) has no TWRA trout program row, no
+    wild-trout listing, and no fish survey or dated trout record — its fishery, trout or otherwise,
+    is undocumented.
+  asOf: "2026"
+  caveats:
+    - No active USGS gauge; the only historic station (03408200 near Robbins) holds 1965-1983-era
+      discrete samples only (prior lead, not re-verified).
+  unresolvedQuestion: "Has any reach-specific trout survey, completed release, or dated observation
+    ever documented fish (trout or warmwater) in Brimstone Creek? Next source: TWRA Region 3 stream
+    files or NPS Big South Fork fisheries records for the New River drainage."

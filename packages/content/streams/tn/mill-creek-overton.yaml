@@ -18,14 +18,53 @@ notes: >-
   TWRA spring-stocked Overton County creek on the plateau’s eastern rim.
 
 
-  Regulations: Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout Streams list
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout
+  Streams list (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01303503"]
-  huc8s: ["05130106"]
-  counties: ["Overton"]
+  gnisIds:
+    - "01303503"
+  huc8s:
+    - "05130106"
+  counties:
+    - Overton
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA and Standing Stone State Park stock this Overton County Mill Creek with catchable
+    rainbow trout on two spring stocking weeks (late March and late April 2026); no year-round trout
+    fishery is documented, and July-August park monitoring has read up to 28 C.
+  reachScope: Standing Stone State Park reach (three stocking sites at 36.4709-36.4727, -85.4183 to -85.4208)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 2 'Mill Creek (Standing Stone State Park)' rows, Overton County, Seasonal, Rainbow Trout -
+        weeks 3/22 and 4/26/2026
+    - label: TWRA Trout Stocking Locations GIS layer (Overton County)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27OVERTON%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=100
+      kind: schedule-table
+      retrieved: 2026-09-18
+      pinpoint: 3 'Mill Creek (Standing Stone State Park)' sites at Allons, 250 rainbow each, Spring, TDEC
+        management
+    - label: Mill Creek at Standing Stone State Park temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000004167&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2016-2026
+      retrieved: 2026-09-18
+      pinpoint: 28.02 C in July 2025, 26.7 C in August 2025, 22.1 C in September 2025
+  caveats:
+    - "2026 stocking weeks: March 22 and April 26 only - fish soon after releases."
+    - TDEC reads at the park reach hit 28 C in July 2025; no summer or year-round fishery is
+      documented.
+    - This is the Overton County park creek, not the Hickman County Mill Creek TWRA stocks
+      separately; the catalog's Caney Fork region tag also mismatches the creek's Obey/Cordell Hull
+      basin.

@@ -16,8 +16,8 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: Wider, warmer Elk below the tailwater with TWRA winter rainbow stocking in Lincoln County
-  reaches. USGS 03582000 is upstream of the mapped lower reach, so use it as flow context and not
-  as a point measurement for every access area.
+  reaches. USGS 03582000 is upstream of the mapped lower reach, so use it as flow context and not as
+  a point measurement for every access area.
 officialSources:
   - label: USGS Water Data — monitoring location 03582000 (upstream reach; provenance)
     url: https://waterdata.usgs.gov/monitoring-location/03582000/
@@ -26,6 +26,34 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00117929"]
-  huc8s: ["06030003", "06030004"]
-  counties: ["Lincoln"]
+  gnisIds:
+    - "00117929"
+  huc8s:
+    - "06030003"
+    - "06030004"
+  counties:
+    - Lincoln
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: "No documented trout fishery exists for the Prospect-to-state-line Elk: the year-round
+    tailwater water ends ~11 miles below Tims Ford Dam far upstream, no stocking row targets this
+    mainstem, and the nearest upstream gauge shows warm summer water - but absence is not provable,
+    so the trout question stays honestly unresolved."
+  reachScope: Elk River mainstem from Prospect to the Tennessee-Alabama state line (Lincoln County).
+  asOf: "2026"
+  caveats:
+    - The year-round trout reach TWRA documents ('24-7-365', first 11 miles) is far upstream below
+      Tims Ford Dam (elk-river); TWRA's forecast explicitly ends the story at Old Dam Ford
+      (winter-only) before the river becomes smallmouth water.
+    - USGS 03582000 (Elk River above Fayetteville) is UPSTREAM context for this reach, not a point
+      measurement of it - never quote it as the reach's temperature.
+    - Old Dam Ford - the one winter-trout point TWRA maps in Lincoln County - sits ~12 miles below
+      the dam, well upstream of Prospect; it belongs to the tailwater story, not this reach.
+    - Warmwater likelihood (smallmouth transition water) is supported only by semi-authoritative
+      tourism description and shared Fishbrain aggregates - research leads, not citable claims - so
+      warmwater-focus is NOT asserted.
+  unresolvedQuestion: Does any trout opportunity (stocked margin, winter event, or residual fish)
+    exist on the Elk River mainstem from Prospect to the state line? No stocking row, no
+    reach-specific assessment, and warm upstream summer temperatures argue against a fishery, but
+    absence is not provable - unresolved.

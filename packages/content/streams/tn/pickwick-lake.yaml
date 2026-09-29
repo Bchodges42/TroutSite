@@ -45,17 +45,19 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at Pickwick
-  Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the north. Detailed angler
-  notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Pickwick
-  Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill,
-  catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here;
-  reservoir temperature/oxygen refuge context is not a scored input.
+  Reference waterbody from the Tennessee waterways inventory — the Tennessee River reservoir at
+  Pickwick Landing in Hardin County; distinct from Kentucky Lake, whose polygon ends well to the
+  north. Detailed angler notes are still being prepared — check TWRA and local access areas in the
+  meantime. TWRA's Pickwick Reservoir page lists the fishery as largemouth bass, smallmouth bass,
+  spotted bass, crappie, bluegill, catfish, striped bass (see officialSources). Striped bass is a
+  regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a
+  scored input.
 
 
-  Regulations: black bass 5/day combo 15-in (spotted no length); crappie 30/day combo 9-in; striped/hybrid
-  2/day 15-in; white bass 15/day; walleye 5/day 16-in; sauger 10/day 15-in; paddlefish 2/day Apr 24–May 31, no
-  culling; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: black bass 5/day combo 15-in (spotted no length); crappie 30/day combo 9-in;
+  striped/hybrid 2/day 15-in; white bass 15/day; walleye 5/day 16-in; sauger 10/day 15-in;
+  paddlefish 2/day Apr 24–May 31, no culling; (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -63,3 +65,39 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Pickwick Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Pickwick Reservoir (43,100 acres, ~6,159 in Tennessee) as a warmwater
+    fishery famous for trophy smallmouth bass; no trout program or trout fishery is documented for
+    the reservoir.
+  asOf: "2026"
+  sources:
+    - label: Pickwick Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/pickwick-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'Major sport species harvested by anglers include largemouth bass, smallmouth bass,
+        spotted bass, bluegill, redear sunfish, and catfish'; trophy smallmouth: 'has produced
+        trophy smallies for years and rivals Dale Hollow for sizes of fish caught'; 43,100 acres
+        with ~6,159 in Tennessee; zero trout mentions on the page"
+    - label: Kentucky Reservoir — Where to Fish (sauger section)
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'December to March is the prime fishing timeframe and the most popular areas are located
+        on the downstream side of TVA dams like Pickwick Dam.'"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'Pickwick': zero rows; reservoir absent from the Trout Management Plan's
+        nine-reservoir trout list"
+  caveats:
+    - Pickwick is on no TWRA trout document checked (2026 schedule, GIS stocking layer, Trout
+      Management Plan reservoir list).
+    - Warmwater-focus does not mean trout are biologically absent.

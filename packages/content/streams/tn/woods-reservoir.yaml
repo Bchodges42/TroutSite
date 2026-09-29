@@ -40,16 +40,46 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing.html
     retrieved: 2026-09-13
 notes: >-
-  AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and Manchester
-  (Franklin County), open to public fishing. TWRA's Woods Reservoir page lists the fishery as largemouth bass,
-  smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  AEDC (Arnold Engineering Development Complex) reservoir on Bradley Creek near Tullahoma and
+  Manchester (Franklin County), open to public fishing. TWRA's Woods Reservoir page lists the
+  fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see
+  officialSources).
 
 
-  Regulations: Black bass 5/day in combination; Smallmouth 18-in min; Largemouth/Spotted no length limit;
-  Crappie 15/day, 10-in min; Catfish no creel ≤34-in (one >34-in/day); White bass 15/day; Rock bass 20/day;
-  Redear 20/day (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Black bass 5/day in combination; Smallmouth 18-in min; Largemouth/Spotted no length
+  limit; Crappie 15/day, 10-in min; Catfish no creel ≤34-in (one >34-in/day); White bass 15/day;
+  Rock bass 20/day; Redear 20/day (retrieved 2026-09-14; verify current rules with TWRA before you
+  go).
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Woods Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Woods Reservoir (3,660-acre AEDC impoundment, Franklin County) as a
+    warmwater fishery — 'the best fishing opportunities are for Largemouth Bass, Crappie, White
+    Bass, Yellow Bass, and Channel Catfish'; no trout program is documented.
+  asOf: "2026"
+  sources:
+    - label: Woods Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/middle-tennessee-r2/woods-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'The best fishing opportunities are for Largemouth Bass, Crappie, White Bass, Yellow
+        Bass, and Channel Catfish'; 3,660-acre impoundment mostly in Franklin County; ten TWRA fish
+        attractor sites; zero trout mentions in the page body (all 'trout' hits were sitewide
+        navigation)"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'Woods': zero trout rows (Franklin County rows are Cowan City Park winter rainbows —
+        a separate water)"
+  caveats:
+    - A PCB health advisory applies to catfish consumption from Woods Reservoir (TWRA page).
+    - Warmwater-focus does not mean trout are biologically absent.

@@ -15,13 +15,14 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows track rain
-  and groundwater closely.
+  A newer addition to TWRA’s winter trout program (Jefferson County). Small farmland creek; flows
+  track rain and groundwater closely.
 
 
-  Regulations: statewide trout — 7/day, no size limit; Mossy Creek (Jefferson) is NOT on the wild-trout named
-  list and has no exceptions entry [QC: the cited regs pages carry no 'Community Lakes 5-fish' clause; that
-  parenthetical claim was withdrawn] (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: statewide trout — 7/day, no size limit; Mossy Creek (Jefferson) is NOT on the
+  wild-trout named list and has no exceptions entry [QC: the cited regs pages carry no 'Community
+  Lakes 5-fish' clause; that parenthetical claim was withdrawn] (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -33,6 +34,48 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01294514"]
-  huc8s: ["06010104"]
-  counties: ["Jefferson"]
+  gnisIds:
+    - "01294514"
+  huc8s:
+    - "06010104"
+  counties:
+    - Jefferson
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: TWRA's winter trout program is back on Mossy Creek in Jefferson City for 2025-26 -
+    hundreds of rainbow trout stocked on the Carson-Newman campus reach in late November with more
+    through January - while the creek is otherwise a small, impaired warmwater farm creek with no
+    documented summer trout fishery.
+  reachScope: Jefferson City reach (Carson-Newman University campus segment and greenway sites)
+  asOf: "2026"
+  sources:
+    - label: Campus onlookers brave weather, find something fishy at Mossy Creek
+      url: https://www.cn.edu/campus-onlookers-brave-weather-find-something-fishy-at-mossy-creek/
+      kind: schedule-table
+      observationPeriod: November 21, 2025 event
+      retrieved: 2026-09-22
+      pinpoint: 300 Rainbow Trout released Nov 21, 2025, from TWRA's Buffalo Springs Hatchery; ~600 more
+        planned through December and January; 'Not since the 1980s has TWRA stocked Rainbow Trout
+        into Mossy Creek'
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 Jefferson County 'Mossy Creek (NEW)' Winter rows, Rainbow Trout - 1/14/2026 stocked, TBD
+        11/2026 and TBD 12/2026
+    - label: 2026 303(d) list - Mossy Creek (TN06010104004T_2600)
+      url: https://www.tn.gov/content/dam/tn/environment/water/watershed-planning/wr_wq_303d-2026-final.xlsx
+      kind: agency-assessment
+      observationPeriod: 2026 list
+      retrieved: 2026-09-18
+      pinpoint: "9.08 mi impaired: sedimentation High, riparian alteration Medium, nutrients Low, E. coli"
+  caveats:
+    - "New winter program: stocked January 14, 2026, with TBD November and December 2026 events -
+      check TWRA's live schedule before going."
+    - The trout program is cold-months only; the creek is 303(d)-listed for sedimentation and E.
+      coli and TWRA's plan classes such waters as unable to support trout year round.
+    - The Fishbrain 'Mossy Creek' page (blue catfish/striped bass dominated) needs segment review
+      and is a lead only - do not read it as this creek's fishery.

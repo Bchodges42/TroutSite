@@ -9,14 +9,17 @@ stockingProgram: false
 species: trout
 fishery: tailwater
 idealFlow: []
-seasonMonths: [3, 4, 5, 6, 7 ]
+seasonMonths:
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
 seasonKind: programmatic
-notes: >-
-  The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS
-  03483950 below-dam gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600)
-  and Wilbur Lake in Carter County. Cold, clear release water that closes the
-  Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur tailwater) chain; the
-  celebrated trophy water begins below Wilbur Dam as watauga-river.
+notes: The short (~1.5 mile) riverine Watauga River between Watauga Dam (USGS 03483950 below-dam
+  gauge, 36.33011/-82.12596; spillway-tunnel gauge 03483600) and Wilbur Lake in Carter County. Cold,
+  clear release water that closes the Watauga Lake -> Wilbur Lake -> Watauga River (Wilbur
+  tailwater) chain; the celebrated trophy water begins below Wilbur Dam as watauga-river.
 officialSources:
   - label: USGS Water Data — monitoring location 03483950
     url: https://waterdata.usgs.gov/monitoring-location/03483950/
@@ -27,6 +30,31 @@ officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
 hydroIdentity:
-  gnisIds: ["01327321"]
-  huc8s: ["06010103"]
-  counties: ["Carter"]
+  gnisIds:
+    - "01327321"
+  huc8s:
+    - "06010103"
+  counties:
+    - Carter
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: "No reach-specific fishery evidence exists for the short Watauga River segment between
+    Watauga Dam and Wilbur Lake: TWRA's year-round reservoir list names Watauga LAKE above the dam,
+    the celebrated Wilbur tailwater assessment begins below Wilbur Dam, and the nearest stocking row
+    names Wilbur Reservoir at this reach's downstream end — the reach itself is documented only by
+    decades-old release-water temperatures."
+  reachScope: Watauga River between Watauga Dam and Wilbur Lake (Wilbur Reservoir), Carter County —
+    the ~1.5-3 mile riverine dam-to-dam reach only
+  asOf: "2026"
+  caveats:
+    - "SIBLING TRAP (audit hard case): this verdict covers ONLY the Watauga-Dam-to-Wilbur-Lake
+      segment. The famous Wilbur TAILWATER below Wilbur Dam (catalog watauga-river) has its own
+      year-round verdict; Watauga Lake above the dam and Wilbur Lake below the reach each have their
+      own verdicts. Nothing transfers across the dams."
+    - The reach is short, cold (by inference from historic release temperatures), and
+      generation-dependent; no public-access documentation was verified this pass.
+    - Catalog's fishery 'tailwater' label and seasonMonths [3,4,5,6,7] for this reach match no
+      source — the Mar-Jul months appear to be borrowed from the Wilbur Reservoir row.
+  unresolvedQuestion: Does a fishable trout opportunity exist IN this ~1.5-3 mile riverine reach (no
+    agency assessment, stocking row, survey, or current access description names it)?

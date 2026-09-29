@@ -13,23 +13,26 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Warmwater river below Douglas Dam — smallmouth and crappie country. Flow is TVA-scheduled; verify releases.
-  The river enters from North Carolina and runs through Douglas Lake down to the Holston confluence. TWRA's
-  statewide regulation exceptions set smallmouth bass rules on this water: 18 in minimum on one reach, 13–17
-  in protected length range upstream. (see officialSources).
+  Warmwater river below Douglas Dam — smallmouth and crappie country. Flow is TVA-scheduled; verify
+  releases. The river enters from North Carolina and runs through Douglas Lake down to the Holston
+  confluence. TWRA's statewide regulation exceptions set smallmouth bass rules on this water: 18 in
+  minimum on one reach, 13–17 in protected length range upstream. (see officialSources).
 
 
-  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record — The
-  Tennessee reach below Douglas Dam is a warmwater smallmouth/crappie fishery; TWRA stocks no trout row; trout
-  mentions belong to the NC headwaters. (retrieved 2026-09-14).
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or
+  record — The Tennessee reach below Douglas Dam is a warmwater smallmouth/crappie fishery; TWRA
+  stocks no trout row; trout mentions belong to the NC headwaters. (retrieved 2026-09-14).
 
 
-  Regulations: Smallmouth 5/day, 18-in minimum (Hwy 168 to Douglas Dam); statewide bass/crappie/catfish rules
-  otherwise (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Smallmouth 5/day, 18-in minimum (Hwy 168 to Douglas Dam); statewide
+  bass/crappie/catfish rules otherwise (retrieved 2026-09-14; verify current rules with TWRA before
+  you go).
 officialSources:
-  - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03468510 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03468510/
-  - label: USGS Water Data — monitoring location 03469000 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03469000 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03469000/
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
@@ -42,6 +45,38 @@ officialSources:
   - label: Agency fishery source — wave-ledger sourcing (retrieved 2026-09-14)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
 hydroIdentity:
-  gnisIds: ["01306463"]
-  huc8s: ["06010107", "06010201"]
-  counties: ["Sevier"]
+  gnisIds:
+    - "01306463"
+  huc8s:
+    - "06010107"
+    - "06010201"
+  counties:
+    - Sevier
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: "The Tennessee reach below Douglas Dam is documented warmwater water: TWRA sets a quality
+    smallmouth rule (5/day, 18-inch minimum from Hwy 168 to Douglas Dam) on the river and documents
+    Douglas as a largemouth/crappie/sauger fishery."
+  reachScope: Douglas Dam downstream to the Holston confluence (Sevier County)
+  asOf: "2026"
+  sources:
+    - label: TWRA statewide fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "'French Broad River - Hwy. 168 to Douglas Dam: Smallmouth bass: Five (5) fish limit,
+        18-inch minimum length limit' (verified live 2026-09-22)"
+    - label: TWRA Douglas Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/douglas-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page, live check
+      retrieved: 2026-09-22
+      pinpoint: "live 2026-09-22: 'Largemouth bass, crappie, bluegill, and catfish are the most popular
+        game fish for Douglas anglers'; sauger/walleye/white bass runs; zero trout mention anywhere
+        on the page"
+  caveats:
+    - TWRA stocks no trout row anywhere on the Douglas/French Broad system in the 2026 schedule.
+    - Flow is TVA-scheduled; check releases before going.
+    - The NC headwater trout fishery is a different jurisdiction and does not transfer.

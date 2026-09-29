@@ -29,14 +29,14 @@ seasonMonths:
   - 12
 seasonKind: programmatic
 notes: >-
-  Middle Tennessee’s signature tailwater: TWRA-stocked rainbows (stocking runs March through December) plus a
-  celebrated winter/spring trophy brown trout program below Center Hill Dam. Generation swings are dramatic —
-  Stonewall and at-dam gauges are your wade-window planners.
+  Middle Tennessee’s signature tailwater: TWRA-stocked rainbows (stocking runs March through
+  December) plus a celebrated winter/spring trophy brown trout program below Center Hill Dam.
+  Generation swings are dramatic — Stonewall and at-dam gauges are your wade-window planners.
 
 
-  Regulations: Center Hill Dam to Cumberland River: total trout creel 5; Rainbow/Brook/Cutthroat 5/day with
-  14–20 in PLR, only 1 over 20 in; Brown Trout 1/day, 24-in minimum (retrieved 2026-09-14; verify current
-  rules with TWRA before you go).
+  Regulations: Center Hill Dam to Cumberland River: total trout creel 5; Rainbow/Brook/Cutthroat
+  5/day with 14–20 in PLR, only 1 over 20 in; Brown Trout 1/day, 24-in minimum (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03424860
     url: https://waterdata.usgs.gov/monitoring-location/03424860/
@@ -47,6 +47,48 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01326386"]
-  huc8s: ["05130108", "05130201"]
-  counties: ["DeKalb"]
+  gnisIds:
+    - "01326386"
+  huc8s:
+    - "05130108"
+    - "05130201"
+  counties:
+    - DeKalb
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA documents a year-round stocked trout tailwater below Center Hill Dam, strongest in
+    the upper ~9 miles; note the documented summer/fall 2025 water-quality problems and
+    generation-driven flow swings before you go.
+  reachScope: Center Hill Dam tailwater of the Caney Fork River (~15 miles of trout water to
+    Stonewall; best year-round fishing in the upper ~9 miles). Does NOT include Center Hill Lake.
+  asOf: "2026"
+  sources:
+    - label: Tennessee Trout Fishing Forecast (StoryMap, 2026 edition)
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 edition; biologist survey reporting through early 2026
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "node n-oROWU2: 'the water is cold enough to support trout year round' ... 'the best year
+        round fishing is in the upper 9 miles of the river' (verified live in item data 2026-09-22)"
+    - label: TWRA 2026 trout stocking schedule (published plan)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking schedule
+      retrieved: 2026-09-22
+      pinpoint: "row: Region 3, DeKalb/Smith, 'Center Hill TW / Caney Fork River', Tailwater, months
+        M,A,M,J,J,A,S,O,N,D, Rainbow+Brown (captured 2026-09-22 to captures/twra-schedule.json).
+        Completed-release corroboration: 'Center Hill TW' stocked 9/11/2026 in rolling release
+        report (captures/twra-recent-releases.json)"
+  caveats:
+    - TWRA states there is no natural reproduction in the river - the fishery is entirely
+      stocking-supported (put-grow-take), with browns documented to hold over to large sizes.
+    - Summer/fall 2025 brought 'some of the worst oxygen and temperature conditions in several
+      years' (2025 observation, reported in the 2026 forecast); early-2026 overwinter abundance was
+      down ~30% from early 2025, though the 2026 survey ran double the 2020-2023 average and
+      trophy-class fish fared better.
+    - "Year-round strength is reach-dependent: TWRA names the upper 9 miles as the best year-round
+      water within the ~15-mile trout reach."
+    - Generation swings below Center Hill Dam are dramatic; check the TVA Center Hill schedule (node
+      n-694pXX) before wading.

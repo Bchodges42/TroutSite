@@ -8,11 +8,26 @@ gaugeIds:
   - "03578500"
 stockingProgram: false
 idealFlow: []
-notes: Franklin County creek near Tullahoma and Manchester that drains through AEDC Woods Reservoir into the
-  Elk River system. Open to public fishing; not a stocked trout fishery.
+notes: Franklin County creek near Tullahoma and Manchester that drains through AEDC Woods Reservoir
+  into the Elk River system. Open to public fishing; not a stocked trout fishery.
 officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01305382"]
-  huc8s: ["06030003"]
+  gnisIds:
+    - "01305382"
+  huc8s:
+    - "06030003"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: Bradley Creek (Franklin/Coffee counties, above Woods Reservoir) has a cool gauged
+    temperature record, but the cited sources do not establish a trout program, survey, or dated
+    trout observation for the reach. Trout status remains unresolved.
+  asOf: "2026"
+  caveats:
+    - The Fishbrain page is flagged needs-segment-review (99 catches, rock bass/smallmouth-led, no
+      trout rows); aggregates are research leads only.
+  unresolvedQuestion: "Does the cool upper-creek thermal regime actually support trout presence? No
+    survey, regulation listing, or dated trout observation exists; next source: TWRA Region 2/3
+    stream sampling on the Elk River tributaries."

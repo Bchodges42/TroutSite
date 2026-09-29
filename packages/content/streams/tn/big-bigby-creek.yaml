@@ -6,12 +6,30 @@ regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Major Maury County tributary in the Duck River basin and a locally significant general-fishing water.
+notes: Major Maury County tributary in the Duck River basin and a locally significant
+  general-fishing water.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01305201"]
-  huc8s: ["06040003"]
+  gnisIds:
+    - "01305201"
+  huc8s:
+    - "06040003"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: The cited sources do not establish a trout program, dated trout observation, or
+    reach-specific fishery for Big Bigby Creek (Maury County, Duck River basin). Trout status
+    remains unresolved.
+  asOf: "2026"
+  caveats:
+    - The stocked Maury County winter-trout water is McCutcheon Creek in Columbia — a different
+      water; adjacency trap noted.
+    - Fishbrain page (72 catches, smallmouth-led) is a research lead only, no trout rows, not
+      citable.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation found for Big Bigby Creek; next source: TWRA Region 2 stream sampling or TDEC
+    fish-community data for the Duck River tributaries."

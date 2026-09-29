@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
+  classOutline,
   decisionColorToken,
   decisionStatusText,
   metricLabel,
+  opportunityEvidenceText,
+  opportunityHeadlineText,
+  opportunityStatusLabel,
   seasonalChipText,
   seasonalVerdict,
   toWaterDecisionView,
@@ -68,17 +72,13 @@ describe('WaterDecisionView compatibility adapter', () => {
     } as never;
   }
 
-  it('de-emphasizes a winter-stocked trout water in trout mode in the off-season (Stones River in September)', () => {
-    // Owner refine 2026-09-10: "I don't want them completely gone but MUCH
-    // easier to distinguish" — off-season waters stay visible, dimmed + labeled.
-    // Reconciled 2026-09-14: the authored seasonMonths window owns this, not
-    // the calendar bundle (which is drawer-presentation only now).
+  it('keeps a winter-stocked trout water visible without inferring absence from planned months', () => {
     const f = feature({ id: 'stones-river', score: 80, seasonMonths: [12, 1, 2] });
-    expect(toWaterDecisionView(f, 'trout', 9).visibility).toBe('deemphasize');
-    // ...and it stays discoverable in all-fish mode.
+    expect(toWaterDecisionView(f, 'trout', 9).visibility).toBe('include');
     const allFish = toWaterDecisionView(f, 'all', 9);
     expect(allFish.visibility).toBe('include');
-    expect(allFish.troutApplicability).toBe('seasonal-likely-absent');
+    expect(allFish.troutApplicability).toBe('seasonal-uncertain');
+    expect(allFish.inSeason).toBeUndefined();
   });
 
   it('keeps an unclassified-species water discoverable but never trout-labeled (H3, reconciled 2026-09-14)', () => {
@@ -232,7 +232,9 @@ describe('WaterDecisionView compatibility adapter', () => {
 
 describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
   // beech-lake shape: a catalog trout water with an honest winter-only program.
-  function seasonalFeature(overrides: { score?: number | null; assessed?: boolean; yearRound?: boolean; species?: 'trout' | 'warmwater' | undefined } = {}) {
+  // ADR 0010: the window must be AUTHORED (seasonMonths) — yearRound:false
+  // alone no longer synthesizes a Nov–Mar window (removed fallback).
+  function seasonalFeature(overrides: { score?: number | null; assessed?: boolean; yearRound?: boolean; species?: 'trout' | 'warmwater' | undefined; withWindow?: boolean } = {}) {
     const f = feature({
       score: overrides.score ?? 82,
       assessed: overrides.assessed,
@@ -240,48 +242,61 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     });
     return {
       ...f,
-      stream: { ...f.stream, yearRound: overrides.yearRound ?? false },
+      stream: {
+        ...f.stream,
+        yearRound: overrides.yearRound ?? false,
+        ...(overrides.withWindow === false
+          ? {}
+          : { seasonMonths: [11, 12, 1, 2, 3], seasonKind: 'programmatic' as const }),
+      },
     };
   }
 
-  it('a yearRound:false trout water in a summer month is seasonal-likely-absent and never wears the trout metric', () => {
+  it('stocking months never prove a summer absence or earn a trout condition score', () => {
     const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout', 7);
-    expect(view.troutApplicability).toBe('seasonal-likely-absent');
+    expect(view.troutApplicability).toBe('seasonal-uncertain');
     expect(view.displayMetric).toBe('unassessed');
     expect(view.confidence).toBe('low');
-    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — out of season');
-    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Out of season');
+    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — stocking schedule');
+    expect(seasonalVerdict(view)?.prose).toMatch(/not a record that fish were released/);
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Seasonal');
   });
 
-  it('the same water inside the winter window is seasonal-uncertain but wears its real in-window score', () => {
-    // 2026-09-14: authored-window waters in season wear the trout metric (the
-    // window chip still renders) — they are stocked, gauged, and open, never
-    // "unassessed" merely for having a window.
+  it('stocking months do not prove current presence even during a planned month', () => {
     const view = toWaterDecisionView(seasonalFeature({ score: 82 }), 'trout', 1);
     expect(view.troutApplicability).toBe('seasonal-uncertain');
-    expect(view.inSeason).toBe(true);
-    expect(view.displayMetric).toBe('trout-condition');
-    expect(view.confidence).toBe('high');
-    // 2026-09-16 (D3): the verdict derives from the window itself — an
-    // open window reads "in season", never a hardcoded winter-only shape.
-    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — in season');
-    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Good');
+    expect(view.inSeason).toBeUndefined();
+    expect(view.displayMetric).toBe('unassessed');
+    expect(view.confidence).toBe('low');
+    expect(seasonalChipText(view)).toBe('PROGRAMMATIC — stocking schedule');
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Seasonal');
+  });
+
+  it('ADR 0010 — yearRound:false with NO authored window carries no seasonal verdict (the Nov–Mar fallback is gone)', () => {
+    // The audited hazard: a synthetic Nov–Mar window turned an unevidenced
+    // season into "likely absent" for 80 catalog rows. Without authored
+    // months the water keeps its documented-trout read and never claims a
+    // season — in or out.
+    for (const month of [7, 1, undefined] as const) {
+      const view = toWaterDecisionView(seasonalFeature({ score: 82, withWindow: false }), 'trout', month);
+      expect(view.troutApplicability).toBe('confirmed-current');
+      expect(view.seasonMonths).toBeUndefined();
+      expect(seasonalChipText(view)).toBeNull();
+      expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Good');
+    }
   });
 
   it('a year-round programmatic water (caney-fork shape) never reads winter-only', () => {
-    // caney-fork-river: yearRound true, window Mar–Dec, programmatic stocking —
-    // in September it is in season and the verdict must say so.
+    // A year-round fishery cannot be closed by its stocking months.
     const f = feature({ score: 82 });
     const caney = {
       ...f,
       stream: { ...f.stream, yearRound: true, seasonMonths: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12], seasonKind: 'programmatic' as const },
     };
     const view = toWaterDecisionView(caney, 'trout', 9);
-    expect(view.troutApplicability).toBe('seasonal-uncertain');
-    expect(view.inSeason).toBe(true);
-    expect(seasonalVerdict(view)?.title).toBe('PROGRAMMATIC — year-round program');
-    expect(seasonalVerdict(view)?.windowLabel).toBe('Mar–Dec');
-    expect(seasonalVerdict(view)?.prose).not.toMatch(/winter|cold months/);
+    expect(view.troutApplicability).toBe('confirmed-current');
+    expect(view.inSeason).toBeUndefined();
+    expect(seasonalVerdict(view)).toBeNull();
     expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Good');
   });
 
@@ -291,7 +306,9 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
   });
 
   it('a yearRound:true (or unset) trout water keeps confirmed-current behavior', () => {
-    const yearRound = toWaterDecisionView(seasonalFeature({ score: 82, yearRound: true }), 'trout', 7);
+    // A year-round water has no seasonal window (or an all-month window);
+    // here: no authored window, so no seasonal verdict applies.
+    const yearRound = toWaterDecisionView(seasonalFeature({ score: 82, yearRound: true, withWindow: false }), 'trout', 7);
     expect(yearRound.troutApplicability).toBe('confirmed-current');
     expect(yearRound.displayMetric).toBe('trout-condition');
     const unset = toWaterDecisionView(feature({ score: 82 }), 'trout', 7);
@@ -299,11 +316,24 @@ describe('T1-18/19 — seasonal applicability (yearRound + month)', () => {
     expect(unset.displayMetric).toBe('trout-condition');
   });
 
-  it('an unassessed seasonal water stays out-of-season with no fabricated band', () => {
+  it('an unassessed seasonal water stays uncertain with no fabricated band', () => {
     const view = toWaterDecisionView(seasonalFeature({ score: null }), 'trout', 7);
-    expect(view.troutApplicability).toBe('seasonal-likely-absent');
+    expect(view.troutApplicability).toBe('seasonal-uncertain');
     expect(view.displayMetric).toBe('unassessed');
-    expect(decisionStatusText(view, { species: 'trout', status: 'no-data' })).toBe('Out of season');
+    expect(decisionStatusText(view, { species: 'trout', status: 'no-data' })).toBe('Seasonal');
+  });
+
+  it('a regulatory window can close an opportunity without claiming trout are absent', () => {
+    const base = seasonalFeature({ score: 82 });
+    const f = { ...base, stream: { ...base.stream, seasonKind: 'regulatory' as const } };
+    const closed = toWaterDecisionView(f, 'trout', 7);
+    expect(closed.troutApplicability).toBe('seasonal-likely-absent');
+    expect(closed.inSeason).toBe(false);
+    expect(seasonalVerdict(closed)?.prose).toMatch(/regulatory trout season/);
+    expect(seasonalVerdict(closed)?.prose).not.toMatch(/fishery is likely absent|trout are unlikely/);
+    const open = toWaterDecisionView(f, 'trout', 1);
+    expect(open.inSeason).toBe(true);
+    expect(open.displayMetric).toBe('trout-condition');
   });
 
   it('seasonal state never reaches warmwater or unknown-species waters', () => {
@@ -372,5 +402,184 @@ describe('F6 TASK 3 — fishability displayMetric from real snapshot data', () =
     // The water still wears the focus species' real score — the metric comes
     // from the snapshot, not a species guess.
     expect(view.displayMetric).toBe('fishability');
+  });
+});
+
+describe('ADR 0010 — adjudicated opportunity in the decision model', () => {
+  function oppFeature(overrides: {
+    id?: string;
+    species?: 'trout' | 'warmwater' | undefined;
+    waterbodyType?: string;
+    score?: number | null;
+    opportunity?: Record<string, unknown> | null;
+  } = {}) {
+    return {
+      stream: {
+        id: overrides.id ?? 'test-water',
+        name: 'Test Water',
+        waterbodyType: overrides.waterbodyType ?? 'river',
+        species: overrides.species,
+        ...(overrides.opportunity !== null && overrides.opportunity !== undefined
+          ? { opportunity: overrides.opportunity }
+          : {}),
+      },
+      status: overrides.score != null ? ('good' as const) : ('no-data' as const),
+      score: overrides.score ?? null,
+      snapshot: undefined,
+      species: overrides.species,
+    } as never;
+  }
+
+  const yearRoundBoone = {
+    trout: 'year-round-trout',
+    evidenceState: 'documented',
+    statement: "TWRA's current forecast documents year-round fishing and holdover.",
+    asOf: '2026',
+    sources: [{ label: 'TWRA trout forecast', url: 'https://example.com/forecast', kind: 'agency-assessment', retrieved: '2026-09-22' }],
+    caveats: ['Published stocking calendars disagree; check the latest report.'],
+  };
+
+  it('a documented year-round tailwater (Boone shape) exposes the opportunity view with its caveats', () => {
+    const view = toWaterDecisionView(oppFeature({ id: 'boone-tailwater', species: 'trout', score: 64, opportunity: yearRoundBoone }), 'trout', 7);
+    expect(view.opportunity?.trout).toBe('year-round-trout');
+    expect(view.opportunity?.evidenceState).toBe('documented');
+    expect(view.opportunity?.caveats).toHaveLength(1);
+  });
+
+  it('a seasonal opportunity without catalog months cannot borrow a live trout-condition score', () => {
+    const view = toWaterDecisionView(oppFeature({
+      id: 'brush-creek-cocke', species: 'trout', score: 82,
+      opportunity: { ...yearRoundBoone, trout: 'seasonal-stocked-trout' },
+    }), 'trout', 5);
+    expect(view.troutApplicability).toBe('seasonal-uncertain');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(seasonalVerdict(view)).toBeNull();
+    expect(opportunityHeadlineText(view)).toBe('Seasonal stocked trout opportunity');
+  });
+
+  it('an UNADJUDICATED water (no opportunity block) is unknown — never a negative', () => {
+    const view = toWaterDecisionView(oppFeature({ species: undefined, opportunity: null }), 'trout', 7);
+    expect(view.opportunity).toBeUndefined();
+    expect(view.troutApplicability).toBe('unknown');
+    expect(opportunityStatusLabel(view)).toBeNull();
+    expect(opportunityHeadlineText(view)).toBeNull();
+  });
+
+  it('an unresolved verdict stays visible as unresolved, never hidden and never negative', () => {
+    const view = toWaterDecisionView(
+      oppFeature({
+        species: undefined,
+        opportunity: {
+          trout: 'unresolved',
+          evidenceState: 'unresolved',
+          asOf: '2026',
+          unresolvedQuestion: 'No reach-specific trout survey or completed-release record found.',
+        },
+      }),
+      'trout',
+      7,
+    );
+    expect(opportunityStatusLabel(view)).toBe('Unresolved');
+    expect(opportunityHeadlineText(view)).toBe('Trout status unresolved');
+    expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe('Unresolved');
+    // Discoverable in trout mode — unresolved is not exclusion.
+    expect(view.visibility).toBe('include');
+  });
+
+  it('warmwater-focus is a positive claim — it never reads "no trout"', () => {
+    const view = toWaterDecisionView(
+      oppFeature({
+        species: undefined,
+        waterbodyType: 'river',
+        opportunity: {
+          trout: 'warmwater-focus',
+          evidenceState: 'documented',
+          asOf: '2025',
+          sources: [{ label: 'TWRA region page', url: 'https://example.com/region', kind: 'agency-assessment', retrieved: '2026-09-22' }],
+        },
+      }),
+      'trout',
+      7,
+    );
+    expect(opportunityHeadlineText(view)).toBe('Warmwater fishing focus');
+    expect(decisionStatusText(view, { species: undefined, status: 'no-data' })).toBe('Warmwater focus');
+    // Plain warmwater-focus is excluded from trout mode exactly like plain
+    // warmwater — but the WORDS stay positive on every surface it appears.
+    expect(view.visibility).toBe('exclude');
+  });
+
+  it('lake vs tailwater never share a verdict: an unresolved lake beside a year-round tailwater', () => {
+    const lakeFeature = oppFeature({ id: 'center-hill-lake', species: undefined, waterbodyType: 'lake', opportunity: {
+      trout: 'unresolved',
+      evidenceState: 'unresolved',
+      asOf: '2026',
+      unresolvedQuestion: 'Bottom-release evidence explains the tailwater below the dam, not the reservoir; no lake-specific trout assessment found.',
+    } });
+    const tailwaterFeature = oppFeature({ id: 'caney-fork-river', species: 'trout', score: 70, opportunity: yearRoundBoone });
+    const lake = toWaterDecisionView(lakeFeature, 'trout', 7);
+    const tailwater = toWaterDecisionView(tailwaterFeature, 'trout', 7);
+    expect(lake.opportunity?.trout).toBe('unresolved');
+    expect(tailwater.opportunity?.trout).toBe('year-round-trout');
+    // The lake must NOT inherit the tailwater's class outline.
+    expect(classOutline(lakeFeature)).toBeNull();
+    expect(classOutline(tailwaterFeature)).toBe('trout');
+  });
+
+  it('the class outline follows the adjudicated opportunity for unauthored-species waters', () => {
+    const documented = oppFeature({ species: undefined, opportunity: yearRoundBoone });
+    const warm = oppFeature({ species: undefined, opportunity: {
+      trout: 'warmwater-focus', evidenceState: 'documented', asOf: '2025',
+      sources: [{ label: 's', url: 'https://example.com', kind: 'agency-assessment', retrieved: '2026-09-22' }],
+    } });
+    expect(classOutline(documented)).toBe('trout');
+    expect(classOutline(warm)).toBe('warmwater');
+  });
+
+  it('a new warmwater verdict overrides a stale trout tag, while a park program does not recolor a whole warmwater river', () => {
+    const warm = oppFeature({ species: 'trout', opportunity: {
+      trout: 'warmwater-focus', evidenceState: 'documented', asOf: '2026',
+    } });
+    const park = oppFeature({ species: 'warmwater', opportunity: {
+      trout: 'seasonal-stocked-trout', evidenceState: 'documented', asOf: '2026',
+      reachScope: 'Billy Dunlop Park reach',
+    } });
+    expect(classOutline(warm)).toBe('warmwater');
+    expect(classOutline(park)).toBe('warmwater');
+  });
+
+  it('an unresolved verdict cannot inherit a legacy trout score or season chip', () => {
+    const oldTag = oppFeature({ species: 'trout', score: 80, opportunity: {
+      trout: 'unresolved', evidenceState: 'unresolved', asOf: '2026',
+      unresolvedQuestion: 'The named stocking site cannot yet be matched to this water.',
+    } });
+    const view = toWaterDecisionView({
+      ...oldTag, stream: { ...oldTag.stream, seasonMonths: [12, 1, 2], seasonKind: 'programmatic' },
+    } as never, 'trout', 1);
+    expect(view.troutApplicability).toBe('unknown');
+    expect(view.displayMetric).toBe('unassessed');
+    expect(decisionStatusText(view, { species: 'trout', status: 'good' })).toBe('Unresolved');
+    expect(seasonalVerdict(view)).toBeNull();
+    expect(classOutline(oldTag)).toBeNull();
+  });
+
+  it('a seasonal stocked headline with reach scope shows in lists and keeps stocking separate', () => {
+    const view = toWaterDecisionView(
+      oppFeature({
+        species: 'trout',
+        opportunity: {
+          trout: 'seasonal-stocked-trout',
+          evidenceState: 'documented',
+          statement: 'Winter put-and-take program on a warm water.',
+          asOf: '2026',
+          sources: [{ label: 'TWRA schedule', url: 'https://example.com/schedule', kind: 'schedule-table', retrieved: '2026-09-22' }],
+          caveats: ['Stocking months are not a survival window; bass and panfish coexist.'],
+        },
+      }),
+      'trout',
+      7,
+    );
+    expect(opportunityStatusLabel(view)).toBe('Seasonal stocked');
+    expect(decisionStatusText(view, { species: 'trout', status: 'no-data' })).toBe('Seasonal stocked');
+    expect(opportunityEvidenceText(view)).toBe('Documented · 2026');
   });
 });

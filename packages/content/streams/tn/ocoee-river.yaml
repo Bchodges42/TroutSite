@@ -14,15 +14,15 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring. TWRA’s
-  stocking dataset lists the Parksville tailwater below the dam, not this reach — set conservatively. Verify
-  TVA release schedules before planning. It runs from Copperhill through Ocoee Number Three Lake and the No.
-  3/No. 2 gorge to the Parksville Lake head.
+  TVA’s flume-and-recreation river; the Copperhill reach above Parksville Lake runs cold in spring.
+  TWRA’s stocking dataset lists the Parksville tailwater below the dam, not this reach — set
+  conservatively. Verify TVA release schedules before planning. It runs from Copperhill through
+  Ocoee Number Three Lake and the No. 3/No. 2 gorge to the Parksville Lake head.
 
 
-  Regulations: no TWRA regulation-exception entry for the Ocoee; statewide rules apply (trout: "Daily Limit:
-  seven (7)", "Minimum Length Limit: None") (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: no TWRA regulation-exception entry for the Ocoee; statewide rules apply (trout:
+  "Daily Limit: seven (7)", "Minimum Length Limit: None") (retrieved 2026-09-14; verify current
+  rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03559500
     url: https://waterdata.usgs.gov/monitoring-location/03559500/
@@ -33,6 +33,27 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00330011", "01326965"]
-  huc8s: ["06020003"]
-  counties: ["Polk"]
+  gnisIds:
+    - "00330011"
+    - "01326965"
+  huc8s:
+    - "06020003"
+  counties:
+    - Polk
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: "No trout opportunity is documented for the upper Ocoee (Copperhill/Ocoee No. 3 reach):
+    the only Ocoee-named TWRA stocking binds to the Parksville tailwater below Ocoee Dam No. 1, a
+    different reach, and no agency survey or dated trout observation covers this reach."
+  asOf: "2026"
+  caveats:
+    - The Parksville tailwater stocking (Mar-May rainbows) is a different catalog water and must not
+      be transferred to this reach.
+    - TVA's tunnel diversion at Ocoee Dam No. 3 makes flow release-dependent; no temperature record
+      exists for the reach.
+    - Fishbrain trout counts on the shared 'Ocoee River' page cannot be attributed to this reach.
+  unresolvedQuestion: "Is there any trout opportunity (stocked or wild) on the upper Ocoee
+    Copperhill/Ocoee No. 3 reach? No reach-specific survey, stocking record, or dated observation
+    was found; next source: Cherokee National Forest (USFS) fisheries survey of the Ocoee above Dam
+    No. 1, or TWRA Coldwater Summit materials."

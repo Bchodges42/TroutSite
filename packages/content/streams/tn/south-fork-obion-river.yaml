@@ -6,12 +6,45 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: One of the principal Obion River forks in West Tennessee and a locally important general-fishing water.
+notes: One of the principal Obion River forks in West Tennessee and a locally important
+  general-fishing water.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01270879"]
-  huc8s: ["08010203"]
+  gnisIds:
+    - "01270879"
+  huc8s:
+    - "08010203"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Obion rivers and their tributaries under a West Tennessee crappie rule
+    (30/day, no length limit), documenting a managed warmwater fishery on the South Fork Obion.
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+    - label: Survey of the Obion River system fish fauna
+      url: https://trace.tennessee.edu/utk_gradthes/8225
+      kind: agency-assessment
+      observationPeriod: 1973 collections
+      publicationDate: "1973"
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: verified 100 fish species with collections from the principal forks
+        including the South Fork; no salmonids listed"
+    - label: South Fork Obion River near Greenfield temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07024500&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: grabs 1980-2005 (24.5-30.0 C summer)
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 30.0 C July 1980; 28.0 C August 1980; 26.5 C June 2002"
+  caveats:
+    - Warmwater-focus does not mean trout are biologically absent.

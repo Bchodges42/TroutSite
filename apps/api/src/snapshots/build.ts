@@ -72,6 +72,7 @@ interface StreamRow {
   target_species: string | null;
   fishery: string | null;
   year_round: number | null;
+  opportunity: string | null;
   notes: string | null;
   official_sources: string;
 }
@@ -121,6 +122,7 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       ...(r.species_evidence ? { speciesEvidence: JSON.parse(r.species_evidence) } : {}),
       ...(r.fishery ? { fishery: r.fishery as 'wild' | 'stocked' | 'tailwater' } : {}),
       ...(r.year_round == null ? {} : { yearRound: r.year_round === 1 }),
+      ...(r.opportunity ? { opportunity: JSON.parse(r.opportunity) } : {}),
       officialSources: JSON.parse(r.official_sources),
     });
   });

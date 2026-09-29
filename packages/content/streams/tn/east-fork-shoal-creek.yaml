@@ -20,11 +20,38 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01283364"]
-  huc8s: ["06030004"]
+  gnisIds:
+    - "01283364"
+  huc8s:
+    - "06030004"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA stocks 'East Fork Shoal Creek' in Lawrence County with five 2026 spring rainbow
+    stockings (Feb 15 - May 31); TWRA's own GIS layer names the stocked stream 'East Fork Shoal
+    Creek' with two Lawrenceburg sites - a spring put-and-take program, not a year-round fishery.
+  reachScope: TWRA's stocked reach is the East Fork Shoal Creek at Lawrenceburg (Lawrence Co.), per
+    TWRA's own layer; the catalog feature's downstream Giles County geometry needs review
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "5 rows: 'East Fork Shoal Creek', Lawrence Co., REGION 2, Seasonal, Rainbow Trout, weeks
+        2/15, 3/8, 3/22, 5/10, 5/31/2026"
+    - label: TWRA Trout Stocking Locations FeatureServer (live query)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=UPPER(StreamName)%20LIKE%20%27%25EAST%20FORK%20SHOAL%25%27&outFields=*&returnGeometry=false&f=json
+      kind: schedule-table
+      retrieved: 2026-09-22
+      pinpoint: "2 features: 'Park' and 'Water Plant', StreamName 'East Fork Shoal Creek', LAWRENCE,
+        Lawrenceburg, Spring, rainbow, stream"
+  caveats:
+    - The schedule join itself is clean (exact name + Lawrence County, matching the catalog's
+      'Lawrence County tributary' note); what remains open is the catalog feature's geometry vs the
+      stocked sites.
+    - No wild-trout listing or special regulation exists for this water (prior research; consistent
+      with this pass's checks).

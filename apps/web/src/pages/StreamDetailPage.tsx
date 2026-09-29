@@ -27,6 +27,7 @@ import { ScorePill } from '../components/ScorePill';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
+import { OpportunityCard } from '../features/map/OpportunityCard';
 import { FishabilityCard } from '../components/FishabilityCard';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
@@ -167,8 +168,10 @@ export function StreamDetailPage() {
           nextExpectedAt={snapshot ? Date.parse(snapshot.nextExpectedUpdate) : null} />
       </div>
 
+      <OpportunityCard stream={stream} species={stream.species} mode={decisionMode} month={month} />
+
       {/* T2-37: mobile leads with the decision — state, observation age, flow,
-      temp, and one next action. Desktop keeps the full card flow below. */}
+      temp, and one next action. */}
       <div className="mobile-decision-header" data-testid="mobile-decision-header">
         <dl className="mobile-decision-grid">
           <div>

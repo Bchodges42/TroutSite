@@ -18,15 +18,52 @@ notes: >-
   TWRA spring-stocked Van Buren County creek. Karst-influenced flows can change quickly.
 
 
-  Regulations: Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout Streams
-  list; the Caney Fork 14-20" PLR special regs apply only to the tailwater below Center Hill Dam, not this
-  tributary (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Statewide trout — 7/day any combination, no minimum length; not on TWRA Wild Trout
+  Streams list; the Caney Fork 14-20" PLR special regs apply only to the tailwater below Center Hill
+  Dam, not this tributary (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01299930"]
-  huc8s: ["05130108"]
-  counties: ["Van Buren"]
+  gnisIds:
+    - "01299930"
+  huc8s:
+    - "05130108"
+  counties:
+    - Van Buren
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's spring program stocks the Van Buren County Rocky River with about 1,100 catchable
+    rainbow trout per event across three spring stocking weeks (March-May 2026); summer grabs at the
+    stocked crossing have run to 24.5-26.5 C, and no year-round trout fishery is documented.
+  reachScope: stocked reach at the Rocky River Rd bridge crossing near Campaign
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 'Rocky River' rows, Van Buren County, Seasonal, Rainbow Trout - weeks 3/8, 4/12, 5/17/2026
+    - label: TWRA Trout Stocking Locations GIS layer (Van Buren County)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27VANBUREN%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=200
+      kind: schedule-table
+      retrieved: 2026-09-18
+      pinpoint: "'Rocky River Rd. Bridge Crossing (S1)' 35.7010,-85.5779, NumStocked 1100, Spring,
+        rainbow, Private Land/Region 3"
+    - label: Rocky River at Riverview temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420116&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1979-1988 grabs
+      retrieved: 2026-09-18
+      pinpoint: August maxima 24.5 C (1986) and 26.5 C (1988); typical July 17-22.5 C
+  caveats:
+    - "2026 stocking weeks: March 8, April 12 and May 17 - fish soon after releases."
+    - No holdover or wild-trout documentation; August grabs at the stocked crossing reached
+      24.5-26.5 C.
+    - TWRA's muskellunge rule for 'Above Center Hill Dam and tributaries' covers this creek; the
+      Caney Fork tailwater trout PLR does not.

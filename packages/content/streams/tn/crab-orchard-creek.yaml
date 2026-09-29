@@ -6,12 +6,27 @@ regionId: tn-cumberland-plateau
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Substantial Emory River tributary in Cumberland and Morgan County country, promoted for regional fishing importance.
+notes: Substantial Emory River tributary in Cumberland and Morgan County country, promoted for
+  regional fishing importance.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01281521"]
-  huc8s: ["06010208"]
+  gnisIds:
+    - "01281521"
+  huc8s:
+    - "06010208"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: Historical temperature grabs on Crab Orchard Creek (Cumberland/Morgan counties, Emory
+    tributary) indicate warm summer water at the gauged upper reach, but the cited sources do not
+    settle trout occupancy elsewhere. Trout status remains unresolved.
+  asOf: "2026"
+  caveats:
+    - USGS 'near Crab Orchard' stations (03539498/03539500) are on Byrd Creek and Daddys Creek —
+      different waters; identity trap noted.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    found for Crab Orchard Creek; next source: TWRA Region 3 Emory/Obed drainage stream files."

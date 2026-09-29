@@ -8,12 +8,31 @@ regionId: tn-middle-nashville
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Large lower Cumberland tributary in Houston and Dickson counties. The county qualifier distinguishes it from other Yellow Creeks.
+notes: Large lower Cumberland tributary in Houston and Dickson counties. The county qualifier
+  distinguishes it from other Yellow Creeks.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01275277"]
-  huc8s: ["05130205"]
+  gnisIds:
+    - "01275277"
+  huc8s:
+    - "05130205"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for Yellow Creek
+    (Houston/Dickson counties, lower Cumberland tributary); community reports describe warmwater
+    bass/panfish fishing, but no admissible source documents the creek's fishery or any trout
+    occurrence.
+  asOf: "2026"
+  caveats:
+    - The county qualifier distinguishes this from other Tennessee Yellow Creeks (including the
+      Pickwick embayment of the same name).
+    - Community warmwater species lists are leads, not documented-fishery evidence.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for Yellow Creek; whether any trout opportunity (or any documented
+    fishery) exists is unknown. Next source: TWRA Region 2 sampling or TDEC biomonitoring fish
+    data."

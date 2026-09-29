@@ -14,25 +14,43 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  Acid-buffered plateau freestone and a recognized smallmouth run. Coal-country history means check local
-  access notices; flows are rain-driven. It runs its full named length (Scott/Anderson counties) down to the
-  Clear Fork confluence country.
+  Acid-buffered plateau freestone and a recognized smallmouth run. Coal-country history means check
+  local access notices; flows are rain-driven. It runs its full named length (Scott/Anderson
+  counties) down to the Clear Fork confluence country.
 
 
-  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or record —
-  Agency sources document a warmwater smallmouth fishery (Jul 2026 max 27.4 °C at 03408500); no TWRA trout
-  program. (retrieved 2026-09-14).
+  Correction (2026-09-15): agency sources document a warmwater fishery with no trout program or
+  record — Agency sources document a warmwater smallmouth fishery (Jul 2026 max 27.4 °C at
+  03408500); no TWRA trout program. (retrieved 2026-09-14).
 
 
-  Regulations: Statewide black bass rules apply (5 black bass/day any combination, no minimum length); no New
-  River/Clear Fork exception exists on TWRA's exceptions page (retrieved 2026-09-14; verify current rules with
-  TWRA before you go).
+  Regulations: Statewide black bass rules apply (5 black bass/day any combination, no minimum
+  length); no New River/Clear Fork exception exists on TWRA's exceptions page (retrieved 2026-09-14;
+  verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03408500
     url: https://waterdata.usgs.gov/monitoring-location/03408500/
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01295631"]
-  huc8s: ["05130104"]
-  counties: ["Scott"]
+  gnisIds:
+    - "01295631"
+  huc8s:
+    - "05130104"
+  counties:
+    - Scott
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: "The cited sources do not establish the fishery of this Scott County New River: the
+    smallmouth reputation comes from tourism and community reports, and no agency assemblage survey
+    was found. Trout status remains unresolved; missing trout records do not establish a
+    warmwater-only fishery."
+  asOf: "2026"
+  caveats:
+    - "Same-name hazard: the West Virginia New River dominates search results - identity discipline
+      required."
+    - No TWRA trout program, wild-trout listing, or special regulation exists for this river;
+      absence of trout records does NOT mean 'no trout'.
+  unresolvedQuestion: Is there positive dated evidence (agency assemblage survey, TWRA management
+    record, or credible dated firsthand fishing record) for the Scott County New River? None found.

@@ -18,46 +18,47 @@ targetSpecies:
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: channel-catfish
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03543005/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
-  Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328; Tennessee
-  River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea, and Loudon counties —
-  including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the Emory River arm. Discharges
-  through Watts Bar Dam into Chickamauga Lake. TVA lists the reservoir at 39,090 ac at full pool. TWRA's Watts
-  Bar Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill,
-  catfish, striped bass (see officialSources). Striped bass is a regulatory or hybrid-evidence tag here;
-  reservoir temperature/oxygen refuge context is not a scored input.
+  Tennessee River reservoir from Watts Bar Dam (USGS 03543005 tailwater gauge, 35.62035/-84.78328;
+  Tennessee River mile 529.9) upstream 72.4 miles to Fort Loudoun Dam, across Roane, Meigs, Rhea,
+  and Loudon counties — including the Clinch arm up to Melton Hill Dam (melton-hill-lake) and the
+  Emory River arm. Discharges through Watts Bar Dam into Chickamauga Lake. TVA lists the reservoir
+  at 39,090 ac at full pool. TWRA's Watts Bar Reservoir page lists the fishery as largemouth bass,
+  smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
+  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge
+  context is not a scored input.
 
 
-  Regulations: Black Bass 5/day 15-inch; Crappie 15/day 10-inch; Catfish 34-inch rule; Striped Bass/Hybrid —
-  Apr 1-Oct 31: 2/day 15-inch, Nov 1-Mar 31: 2/day only one striped bass (15-inch hybrid / 36-inch striper
-  Nov-Mar); White Bass 15/day; Walleye 5/day 16-inch; (retrieved 2026-09-14; verify current rules with TWRA
-  before you go).
+  Regulations: Black Bass 5/day 15-inch; Crappie 15/day 10-inch; Catfish 34-inch rule; Striped
+  Bass/Hybrid — Apr 1-Oct 31: 2/day 15-inch, Nov 1-Mar 31: 2/day only one striped bass (15-inch
+  hybrid / 36-inch striper Nov-Mar); White Bass 15/day; Walleye 5/day 16-inch; (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03543005
     url: https://waterdata.usgs.gov/monitoring-location/03543005/
@@ -69,3 +70,32 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Watts Bar Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Watts Bar Reservoir (39,600 acres, Fort Loudoun Dam to Watts Bar Dam) as a
+    warmwater fishery actively stocked with striped bass, black crappie, walleye and Florida
+    largemouth bass; no trout program or trout fishery is documented.
+  asOf: "2026"
+  sources:
+    - label: Watts Bar Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current page content
+      retrieved: 2026-09-22
+      pinpoint: "'Watts Bar offers great opportunities for a multitude of game fish'; 'The Tennessee
+        Wildlife Resources Agency (TWRA) also stocks several gamefish in Watts Bar on an annual
+        basis, including striped bass, black crappie, walleye, and Florida largemouth bass'; 39,600
+        acres / 722 miles of shoreline; FLMB program since 2015, walleye since 2011; zero trout
+        mentions on the page"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'Watts Bar': zero rows; live feed re-verified by prior wave 2026-09-18"
+  caveats:
+    - TWRA stocks striped bass, crappie, walleye and Florida largemouth — no trout — per the
+      reservoir page verified 2026-09-22.
+    - Warmwater-focus does not mean trout are biologically absent.

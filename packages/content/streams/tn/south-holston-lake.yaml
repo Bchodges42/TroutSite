@@ -13,52 +13,44 @@ targetSpecies:
   - smallmouth-bass
   - spotted-bass
   - crappie
-  - bluegill
-  - channel-catfish
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
-  - species: bluegill
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03476500/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+    retrieved: 2026-09-22
 notes: >-
-  TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and Washington
-  County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge, 36.52356/-82.09726).
-  Discharges the South Holston tailwater (south-holston-river) toward Boone Lake. The lake crosses the state
-  line into Virginia, so the mapped water covers the full reservoir. TWRA maps the Tennessee portion at 6,019
-  ac; TVA publishes 7,580 ac at full pool. TWRA's South Holston Reservoir page lists the fishery as largemouth
-  bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  TVA reservoir on the South Fork Holston River above Bristol (Sullivan County, Tennessee, and
+  Washington County, Virginia), impounded by South Holston Dam (USGS 03476500 tailwater gauge,
+  36.52356/-82.09726). Discharges the South Holston tailwater (south-holston-river) toward Boone
+  Lake. The lake crosses the state line into Virginia, so the mapped water covers the full
+  reservoir. TWRA maps the Tennessee portion at 6,019 ac; TVA publishes 7,580 ac at full pool.
+  TWRA's South Holston Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted
+  bass, crappie, bluegill, catfish (see officialSources).
 
 
-  Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA annually stocks trout in the
-  reservoir (lake + lake trout named); stocking months unpinned — left unset.
+  Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA annually stocks
+  trout in the reservoir (lake + lake trout named); stocking months unpinned — left unset.
 
 
-  Regulations: trout 7/day, only 2 may be Lake Trout; largemouth no length limit; smallmouth 15-in min;
-  spotted no creel/length; crappie 15/day 10-in; walleye 5/day 18-in (incl. tributaries); white bass no
-  harvest; catfish 20/day with 34-in rule; (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: trout 7/day, only 2 may be Lake Trout; largemouth no length limit; smallmouth 15-in
+  min; spotted no creel/length; crappie 15/day 10-in; walleye 5/day 18-in (incl. tributaries); white
+  bass no harvest; catfish 20/day with 34-in rule; (retrieved 2026-09-14; verify current rules with
+  TWRA before you go).
 officialSources:
-  - label: USGS Water Data — monitoring location 03476500 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03476500 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03476500/
   - label: TVA — South Holston Reservoir lake levels & release schedule
     url: https://www.tva.com/environment/lake-levels
@@ -69,3 +61,41 @@ officialSources:
   - label: TWRA — South Holston Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
 fishery: stocked
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA names South Holston among the reservoirs it stocks 'to provide year-round trout
+    fishing opportunities' (lake trout and rainbow), and its reservoir page documents a deep, cool
+    trout fishery — with the caveat that summer dissolved oxygen can fall below optimum and limit
+    success, especially for lake trout.
+  reachScope: South Holston Lake (South Holston Reservoir) pool above South Holston Dam — Tennessee
+    portion (Sullivan County) plus the Virginia portion of the impoundment; excludes the South
+    Holston tailwater below the dam (separate catalog water)
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page — reservoirs stocked to provide year-round trout fishing
+        opportunities
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities." List line: "Region IV, South Holston - Lake and Rainbow". Capture:
+        captures/twra-trout-page.txt; verified live 2026-09-22.'
+    - label: TWRA South Holston Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/south-holston-reservoir.html
+      kind: schedule-table
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"TWRA annually stocks good numbers of trout and many of them are harvested by anglers.";
+        summer tips: "troll spoons at 30 to 50 feet deep for rainbows and browns and 90 feet deep
+        for Lake Trout." Verified live 2026-09-22.'
+  caveats:
+    - "SUMMER FISHING IS DEEP WATER: TWRA's summer guidance is trolling 30-50 ft for rainbows/browns
+      and 90 ft for lake trout. Nothing here promises bank or shoreline fishing."
+    - Summer dissolved oxygen can fall below optimum and limit the fishery, especially lake trout
+      (TWRA's own caveat).
+    - This verdict is for the LAKE above South Holston Dam. The famous wild-brown tailwater is below
+      the dam and is a separate catalog water — findings never transfer in either direction.
+    - The reservoir crosses into Virginia (~1,250 ac per prior lead, not re-verified); the mapped
+      feature covers the full pool while TWRA's program statement is Tennessee's.

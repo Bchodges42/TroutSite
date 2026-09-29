@@ -9,22 +9,24 @@ stockingProgram: true
 species: trout
 idealFlow: []
 notes: >-
-  Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the Calderwood and
-  Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake features; no tailwater condition
-  scoring is applied across a reservoir) to its mouth at the Tennessee River in Fort Loudoun Lake below
-  Tellico Dam. The 33-mile dam-to-dam corridor is the Little T of TVA's main- stem sequence; the trout-stocked
-  upper water is the reach below Chilhowee Dam — verify current TWRA schedules. Distinct from the Tellico
-  River (tellico-river), a different tributary near Tellico Plains. USGS 03519750 (Little Tennessee River at
-  Davis Ferry) sits mid-pool.
+  Main-stem river entering Tennessee from North Carolina below Fontana Dam, flowing through the
+  Calderwood and Chilhowee pools and Tellico Lake (impounded reaches are carried by the lake
+  features; no tailwater condition scoring is applied across a reservoir) to its mouth at the
+  Tennessee River in Fort Loudoun Lake below Tellico Dam. The 33-mile dam-to-dam corridor is the
+  Little T of TVA's main- stem sequence; the trout-stocked upper water is the reach below Chilhowee
+  Dam — verify current TWRA schedules. Distinct from the Tellico River (tellico-river), a different
+  tributary near Tellico Plains. USGS 03519750 (Little Tennessee River at Davis Ferry) sits
+  mid-pool.
 
 
   Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — Trout water is the
-  Chilhowee-tailwater reach (upper Little Tennessee arm); late-winter/early-spring rainbow plants per TWRA.
+  Chilhowee-tailwater reach (upper Little Tennessee arm); late-winter/early-spring rainbow plants
+  per TWRA.
 
 
-  Regulations: Tellico Lake Chota Refuge Unit (Little Tennessee River Miles 26.0 upstream to 29.7) closed to
-  all forms of use and trespass Nov 15–Feb 28 except in designated observation areas (retrieved 2026-09-14;
-  verify current rules with TWRA before you go).
+  Regulations: Tellico Lake Chota Refuge Unit (Little Tennessee River Miles 26.0 upstream to 29.7)
+  closed to all forms of use and trespass Nov 15–Feb 28 except in designated observation areas
+  (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03519750
     url: https://waterdata.usgs.gov/monitoring-location/03519750/
@@ -44,6 +46,34 @@ seasonMonths:
   - 4
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01013036"]
-  huc8s: ["06010204"]
-  counties: ["Blount", "Monroe"]
+  gnisIds:
+    - "01013036"
+  huc8s:
+    - "06010204"
+  counties:
+    - Blount
+    - Monroe
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "TWRA documents a seasonal stocked trout fishery in the Little Tennessee Arm of Tellico
+    Reservoir below Chilhowee Dam: about 4,500 catchable rainbow trout are released there in the
+    late winter and early spring each year, where cold, well-oxygenated Chilhowee releases can
+    support trout."
+  reachScope: Little Tennessee Arm of Tellico Reservoir below Chilhowee Dam (upper arm)
+  asOf: "2026"
+  sources:
+    - label: TWRA Tellico Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html
+      kind: schedule-table
+      observationPeriod: current page, live check
+      retrieved: 2026-09-22
+      pinpoint: "verified live 2026-09-22: 'The upper reaches of Tellico Reservoir in the Little Tennessee
+        Arm below Chilhowee Dam can support trout'; 'About 4,500 catchable Rainbow Trout are
+        released there in the late winter and early spring annually'; 'General trout regulations
+        apply at Tellico with a seven-fish daily creel limit and no minimum size limit'"
+  caveats:
+    - This is an impounded-arm reservoir trout fishery - never a trout stream.
+    - General trout regs (7/day, no length) apply at Tellico.
+    - The Calderwood and Chilhowee pools and the lower river to Tellico Dam are separate questions
+      with no trout documentation found.

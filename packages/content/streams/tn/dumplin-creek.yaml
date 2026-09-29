@@ -6,12 +6,31 @@ regionId: tn-east-pigeon-frenchbroad
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Douglas Lake tributary near growing population centers in Jefferson and Sevier counties; promoted for regional importance and access.
+notes: Douglas Lake tributary near growing population centers in Jefferson and Sevier counties;
+  promoted for regional importance and access.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01283130"]
-  huc8s: ["06010107"]
+  gnisIds:
+    - "01283130"
+  huc8s:
+    - "06010107"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: The cited sources do not establish a trout program, dated observation, or reach-specific
+    fishery for Dumplin Creek (Jefferson/Sevier counties, Douglas Lake tributary). Trout status
+    remains unresolved.
+  asOf: "2026"
+  caveats:
+    - The creek's only temperature readings on file are non-summer (9.0 C Dec 2004 USGS 03470215;
+      16.4 C Nov 2015 TDEC station — prior leads, not re-verified), so summer suitability cannot be
+      evaluated from evidence.
+    - The creek terminates in Douglas Lake, a documented warmwater reservoir (separate catalog
+      water).
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated observation
+    found for Dumplin Creek; next source: TWRA Region 4 stream files for the Douglas Lake
+    headwaters."

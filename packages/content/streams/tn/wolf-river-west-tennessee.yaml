@@ -9,17 +9,18 @@ gaugeIds:
 stockingProgram: false
 idealFlow: []
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf through Fayette and
-  Shelby counties; a different water from the Fentress County headwaters of the same name. USGS 07031650
-  provides flow and stage context for the western reach. Detailed angler notes are still being prepared —
-  check TWRA and local access areas in the meantime. TWRA's statewide regulation exceptions include this river
-  in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+  Reference waterbody from the Tennessee waterways inventory — the west-flowing Wolf through Fayette
+  and Shelby counties; a different water from the Fentress County headwaters of the same name. USGS
+  07031650 provides flow and stage context for the western reach. Detailed angler notes are still
+  being prepared — check TWRA and local access areas in the meantime. TWRA's statewide regulation
+  exceptions include this river in the shared West Tennessee crappie rule: 30 per day, no length
+  limit. (see officialSources).
 
 
-  Regulations: Crappie 30/day, no length limit (Wolf River incl. tributaries, west TN); statewide defaults
-  apply otherwise — black bass 5/day any combination no min length, only 1 catfish over 34 in per day, trout
-  7/day all species combined no size limit (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: Crappie 30/day, no length limit (Wolf River incl. tributaries, west TN); statewide
+  defaults apply otherwise — black bass 5/day any combination no min length, only 1 catfish over 34
+  in per day, trout 7/day all species combined no size limit (retrieved 2026-09-14; verify current
+  rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 07031650
     url: https://waterdata.usgs.gov/monitoring-location/07031650/
@@ -30,6 +31,46 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["00695208"]
-  huc8s: ["08010210"]
-  counties: ["Shelby"]
+  gnisIds:
+    - "00695208"
+  huc8s:
+    - "08010210"
+  counties:
+    - Shelby
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: "The West Tennessee Wolf River has a documented warmwater fishery: TWRA manages it under
+    a shared West Tennessee crappie rule, and the Wolf River Conservancy reported about 67 fish
+    species in 13 families in its 2022 summary."
+  reachScope: West Tennessee Wolf River through Fayette and Shelby counties (the cataloged water)
+  asOf: "2026"
+  sources:
+    - label: "Natural Highlights: Wolf River Fishes (published 2022-03-28)"
+      url: https://www.wolfriver.org/news-press/natural-highlights-wolf-river-fishes
+      kind: agency-assessment
+      observationPeriod: assemblage summary published 2022-03-28
+      publicationDate: 2022-03-28
+      retrieved: 2026-09-22
+      pinpoint: "'There are about 67 species of fish which are known to occur in the Wolf River' across 13
+        families; gamefish named: largemouth bass, bluegill, crappie, channel catfish, flathead
+        catfish, bullheads; trout not mentioned anywhere"
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+    - label: TWRA trout stocking schedule 2026 (audit capture 2026-09-22)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: The only 'Wolf River' schedule rows are REGION 3 / COUNTY Fentress, TYPE Seasonal — the
+        East Tennessee Wolf River headwaters, a different water
+  caveats:
+    - TWRA's Memphis-area winter rainbow stockings go to Shelby County park lakes (Cameron Brown,
+      Edmund-Orgill, etc.), not the Wolf River.
+    - Warmwater-focus does not mean trout are biologically absent.

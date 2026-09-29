@@ -14,19 +14,49 @@ idealFlow:
     max: 200
     unit: cfs
 idealFlowSource: editorial
-notes: Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by Highland Rim
-  standards.
+notes: Marion County spring-influenced stream with TWRA spring stocking. Modest, steady flows by
+  Highland Rim standards.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01277559", "01300944", "01301116", "01303489"]
-  huc8s: ["06020004"]
-  counties: ["Marion"]
+  gnisIds:
+    - "01277559"
+    - "01300944"
+    - "01301116"
+    - "01303489"
+  huc8s:
+    - "06020004"
+  counties:
+    - Marion
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's spring program stocks catchable rainbow trout in the Marion County Little
+    Sequatchie River during March-May stocking weeks; no year-round trout fishery is documented, so
+    time visits around releases.
+  reachScope: Marion County lower river (Camp Glancey stocking reach)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 Region 3 'Little Sequatchie River' rows, Marion County, Seasonal, Rainbow Trout - weeks
+        3/15, 3/22, 5/10/2026
+    - label: Little Sequatchie River at Sequatchie temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03571500&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1965-1981 grabs
+      retrieved: 2026-09-18
+      pinpoint: July 1980 max 28.0 C; Aug 1981 22.0 C; TDEC near-mouth station July 2001 22.0 C
+  caveats:
+    - "2026 stocking weeks: March 15, March 22 and May 10 - fish soon after releases."
+    - No holdover, wild-trout, or agency summer-temperature evidence supports a warm-season fishery;
+      lower-river July grabs reached 28 C (1980).
+    - "Not the Sequatchie River main stem: the headwaters water TWRA stocks is in Cumberland County
+      and is cataloged separately."

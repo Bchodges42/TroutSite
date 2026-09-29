@@ -18,19 +18,49 @@ notes: >-
   TWRA spring-stocked Montgomery County creek.
 
 
-  Regulations: Fort Campbell special regulations under CAM Regulation 200-4; Post Fishing Permit required in
-  addition to a valid TN fishing license and trout stamp; not on TWRA Wild Trout Streams list (retrieved
-  2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Fort Campbell special regulations under CAM Regulation 200-4; Post Fishing Permit
+  required in addition to a valid TN fishing license and trout stamp; not on TWRA Wild Trout Streams
+  list (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["00499492", "01291707"]
-  huc8s: ["05130206"]
+  gnisIds:
+    - "00499492"
+    - "01291707"
+  huc8s:
+    - "05130206"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Little West Fork Creek is one of Fort Campbell's stocked trout streams: the post's 2026
+    program plants rainbow (and brown) trout February through August - KDFWR on Feb 12 and Apr 7,
+    TWRA on Jun 25, Jul 22 and Aug 26 - under CAM Regulation 200-4 with post permit requirements."
+  reachScope: Stocked reaches of the creek on the Fort Campbell reservation (Pumphouse, Mabry Rd,
+    McNair Rd, Patrol Fence Road sites)
+  asOf: "2026"
+  sources:
+    - label: Fort Campbell fishing page - 2026 trout stocking program
+      url: https://ftcampbell.isportsman.net/Fishing.aspx
+      kind: schedule-table
+      observationPeriod: Feb 12 - Aug 26, 2026 events (stocking within five days after each date)
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "verified live 2026-09-22: KDFWR Feb 12 (1,200 rainbow) and Apr 7 (4,450 rainbow+brown,
+        all sites); TWRA Jun 25 (1,012), Jul 22 (1,024), Aug 26 (1,008) rainbow; sites incl.
+        Pumphouse Rd, Mabry Rd, McNair Rd, Patrol Fence Rd"
+    - label: TWRA 2026 trout stocking schedule (616-row capture)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "rows: Region 2 / Montgomery / 'Fort Campbell Streams' / Seasonal / Rainbow Trout /
+        weekly-of 2/15, 4/19, 5/17, 6/21, 7/12, 8/23/2026"
+  caveats:
+    - "Put-and-take military-post fishery: TN/KY state license plus post permit requirements under
+      CAM Reg 200-4."
+    - Documented stocking months are February-August 2026 - the catalog's Dec/Jan/Feb season is
+      contradicted by both TWRA's schedule and the post's program.
+    - Stocking happens within five days after each listed date.

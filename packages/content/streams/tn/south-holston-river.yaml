@@ -25,16 +25,17 @@ seasonMonths:
   - 9
 seasonKind: programmatic
 notes: >-
-  A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest tailwaters:
-  dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band spans typical one- to
-  two-turbine generation; the river is comfortably wadeable only below roughly 1,000 cfs — always check the
-  TVA release schedule first. The tailwater runs from South Holston Dam down to the Boone Lake arm head.
+  A weir dam evens out TVA releases below South Holston Dam, giving one of the East’s richest
+  tailwaters: dense wild brown and rainbow populations plus TWRA-stocked rainbows. Ideal-flow band
+  spans typical one- to two-turbine generation; the river is comfortably wadeable only below roughly
+  1,000 cfs — always check the TVA release schedule first. The tailwater runs from South Holston Dam
+  down to the Boone Lake arm head.
 
 
-  Regulations: "South Holston Dam to Boone, including Boone Reservoir upstream to the Hwy 11E Bridge": 16–22
-  in PLR on all trout; 7-trout creel, only 1 over 22 in; closed to ALL fishing Nov 1–Jan 31 (Hickory Tree
-  Bridge upstream to Bottom Creek confluence; (retrieved 2026-09-14; verify current rules with TWRA before you
-  go).
+  Regulations: "South Holston Dam to Boone, including Boone Reservoir upstream to the Hwy 11E
+  Bridge": 16–22 in PLR on all trout; 7-trout creel, only 1 over 22 in; closed to ALL fishing Nov
+  1–Jan 31 (Hickory Tree Bridge upstream to Bottom Creek confluence; (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: TVA — lake levels & dam release schedules (verify before you wade)
     url: https://www.tva.com/environment/lake-levels
@@ -43,6 +44,44 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01327068"]
-  huc8s: ["06010102"]
-  counties: ["Sullivan"]
+  gnisIds:
+    - "01327068"
+  huc8s:
+    - "06010102"
+  counties:
+    - Sullivan
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA's 2026 forecast ranks the South Holston Tailwater among the best trout waters in the
+    Southeast — ~20 miles of year-round water with a very abundant wild brown trout population and
+    annual rainbow stocking — with the newest agency sampling from March 2025.
+  reachScope: South Fork Holston River below South Holston Dam (South Holston Tailwater), Sullivan
+    County — dam down to Boone Reservoir (~20 mi); special regs from the dam to the Hwy 37 Bridge at
+    Bluff City
+  asOf: "2026"
+  sources:
+    - label: TWRA Trout Fishing Forecast StoryMap (2026 edition), South Holston Tailwater section
+      url: https://www.arcgis.com/sharing/rest/content/items/dbb92bdf718f4fd7839bf4b08fb82747/data?f=json
+      kind: agency-assessment
+      observationPeriod: 2026 forecast edition
+      retrieved: 2026-09-22
+      pinpoint: 'node n-58oxjC: "The South Holston rivals any trout fishing destination in the United
+        States..."; "...flows nearly 20 miles from South Holston Dam to Boone Reservoir. It supports
+        a very abundant wild Brown Trout population and is also stocked with Rainbow Trout
+        annually."; node n-nSMmpC: "Stocking: March through September (year-round fishing)".
+        Capture: captures/twra-forecast-text.md; verified live 2026-09-22.'
+    - label: TWRA published trout stocking schedule (2026)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule
+      retrieved: 2026-09-22
+      pinpoint: 'Row: REGION 4, Sullivan, "S. Holston TW / S. Fork Holston River", Tailwater, STOCKING
+        MONTHS "M, A, M, J, J, A, S", SPECIES "Rainbow Trout". Static table concurs: "South Holston
+        Dam, South Fork Holston River - Rainbow - March through September - Special Trout
+        Regulations". Both verified live 2026-09-22.'
+  caveats:
+    - Newest population data are from March 2025; TWRA could not sample in 2026 due to low flows.
+    - Two sections (Hickory Tree Bridge to Bottom Creek; Boy's Island area) are closed to all
+      fishing Nov 1-Jan 31.
+    - Generation-dependent wading; check the TVA South Holston Dam schedule before going.

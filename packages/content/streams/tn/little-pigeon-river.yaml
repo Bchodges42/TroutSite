@@ -14,15 +14,16 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  A consistent trout water below the Smokies — TWRA stocks the Sevierville reach TWRA's statewide regulation
-  exceptions carry a smallmouth/black bass rule for this river. (see officialSources). regularly (confirmed by
-  the owner against local knowledge, September 2026, supplementing the TWRA dataset, which does not list the
-  reach), and the upper park reaches hold wild fish. Verify current schedules with TWRA before you go.
+  A consistent trout water below the Smokies — TWRA stocks the Sevierville reach TWRA's statewide
+  regulation exceptions carry a smallmouth/black bass rule for this river. (see officialSources).
+  regularly (confirmed by the owner against local knowledge, September 2026, supplementing the TWRA
+  dataset, which does not list the reach), and the upper park reaches hold wild fish. Verify current
+  schedules with TWRA before you go.
 
 
-  Regulations: Smallmouth bass 1/day, 20-in minimum (mouth upstream to GSMNP boundary, incl. West Prong and
-  East Fork); statewide rules otherwise (black bass 5/day combo, crappie 15 @ 10 in, catfish 34-in rule)
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Smallmouth bass 1/day, 20-in minimum (mouth upstream to GSMNP boundary, incl. West
+  Prong and East Fork); statewide rules otherwise (black bass 5/day combo, crappie 15 @ 10 in,
+  catfish 34-in rule) (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03470000
     url: https://waterdata.usgs.gov/monitoring-location/03470000/
@@ -33,6 +34,42 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01306406", "01306695", "01306746"]
-  huc8s: ["06010107"]
-  counties: ["Sevier"]
+  gnisIds:
+    - "01306406"
+    - "01306695"
+    - "01306746"
+  huc8s:
+    - "06010107"
+  counties:
+    - Sevier
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents this Sevierville-corridor river as a quality smallmouth fishery (1/day,
+    20-inch minimum from the mouth to the park boundary, including the prongs); a TWRA
+    trout-stocking row for the Sevierville main stem could NOT be verified - the owner-reported
+    stocking program remains unconfirmed.
+  reachScope: Main stem, GSMNP boundary downstream through Pigeon Forge/Sevierville to the Douglas Lake head
+  asOf: "2026"
+  sources:
+    - label: TWRA statewide fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "'Little Pigeon River - From the mouth upstream to the Great Smoky Mountains National Park
+        boundary, [including] the West Prong and East Fork': 'Smallmouth Bass: One (1) per day,
+        20-inch minimum length limit' (verified live 2026-09-22)"
+    - label: Little Pigeon River Fishbrain page
+      url: https://fishbrain.com/fishing-waters/bCkmtYvV/little-pigeon-river
+      kind: survey
+      publicationDate: 2026-09-17
+      retrieved: 2026-09-22
+      pinpoint: 128 rainbow of 811 logged catches (needs-segment-review)
+  caveats:
+    - Smallmouth 1/day, 20-in minimum mouth-to-park-boundary (incl. West Prong and East Fork);
+      statewide rules otherwise.
+    - The prong stockings (Mid Prong; W Prong at Pigeon Forge) are sibling catalog waters - their
+      schedule rows do not join this main stem.
+    - If the main-stem stocking is ever confirmed by a row or agency statement, the water likely
+      becomes mixed; today the documented evidence is warmwater management only.

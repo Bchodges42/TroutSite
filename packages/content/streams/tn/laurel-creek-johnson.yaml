@@ -14,8 +14,8 @@ idealFlow:
     max: 50
     unit: cfs
 idealFlowSource: editorial
-notes: Spring-stocked Johnson County creek listed by TWRA for both Johnson and Van Buren county access points.
-  Small pocket water.
+notes: Spring-stocked Johnson County creek listed by TWRA for both Johnson and Van Buren county
+  access points. Small pocket water.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -27,6 +27,36 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01290727"]
-  huc8s: ["06010102"]
-  counties: ["Johnson"]
+  gnisIds:
+    - "01290727"
+  huc8s:
+    - "06010102"
+  counties:
+    - Johnson
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on Laurel Creek (Johnson County, Laurel Bloomery
+    area): five 2026 rainbow stockings (Mar 1 - Jun 21) - a seasonal program; unverified fly-shop
+    claims of wild rainbows are not evidence."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "5 rows: 'Laurel Creek', Johnson Co., REGION 4, Seasonal, Rainbow Trout, weeks 3/1, 3/29,
+        4/26, 5/24, 6/21/2026"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Same-name risk: Van Buren County also has a stocked 'Laurel Creek' in the same schedule, and
+      the Carter County wild-trout 'Laurel Fork' is a different water; the creek continues into
+      Virginia (Washington Co. VA monitoring per seed). Joins are county-checked."
+    - Fly-shop/web claims of wild rainbow trout between Laurel Bloomery and Damascus are
+      content-farm leads excluded by the evidence rules and are NOT corroborated by any agency
+      source - do not assert wild trout here.

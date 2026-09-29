@@ -6,12 +6,42 @@ regionId: tn-west
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Major northwest Tennessee tributary entering Kentucky Lake near Big Sandy; a principal regional fishing river.
+notes: Major northwest Tennessee tributary entering Kentucky Lake near Big Sandy; a principal
+  regional fishing river.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01277382"]
-  huc8s: ["06040005"]
+  gnisIds:
+    - "01277382"
+  huc8s:
+    - "06040005"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Big Sandy embayment of Kentucky Reservoir as a warmwater fishery
+    (crappie/bass/catfish rules and dewatering-unit closures).
+  reachScope: Big Sandy River embayment arm at Kentucky Reservoir (Benton/Henry county reach); the
+    free-flowing upstream river reaches are not covered by the supporting source
+  asOf: "2026"
+  sources:
+    - label: Kentucky Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/kentucky-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: Names Big Sandy one of the 'three major river embayments (Duck River, Beech River, and Big
+        Sandy River)'; 'The dewatering areas are closed to fishing five (5) days prior to and during
+        the late waterfowl season' (West Sandy/Big Sandy dewatering areas); crappie rule includes
+        all dewatering areas
+    - label: 2026 trout stocking schedule (live datatable feed)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'big sandy': 0 rows"
+  caveats:
+    - Warmwater-focus is a positive claim about the documented fishery and does not assert that
+      trout are absent.

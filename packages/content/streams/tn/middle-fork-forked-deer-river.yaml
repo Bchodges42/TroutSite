@@ -13,5 +13,37 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01293673"]
-  huc8s: ["08010204"]
+  gnisIds:
+    - "01293673"
+  huc8s:
+    - "08010204"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: limited
+  statement: TWRA manages the Forked Deer rivers under a West Tennessee crappie rule (30/day, no
+    length limit), documenting a managed warmwater fishery on the Middle Fork.
+  asOf: "2026"
+  sources:
+    - label: Fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      observationPeriod: current regulation year
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers ( includes tributaries) •
+        Crappie: 30 per day, no length limit.'"
+    - label: Middle Fork Bottoms State Park
+      url: https://tnstateparks.com/parks/middle-fork-bottoms
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "page render verified via reader: 'fishing areas, paddle craft access on Middle Fork
+        Lake... five lakes (four of which are fishable)'; direct fetches return HTTP 403"
+    - label: Middle Fork Forked Deer River near Alamo temperature grabs
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07029000&characteristicName=Temperature%2C%20water&mimeType=csv&providers=NWIS
+      kind: temperature-series
+      observationPeriod: July 1988 grab 28.0 C
+      retrieved: 2026-09-22
+      pinpoint: "prior batch record: 28.0 C July 1988 at the Alamo gage"
+  caveats:
+    - Middle Fork Bottoms State Park's fishable waters are park lakes plus river access — a distinct
+      question from the river fishery itself.
+    - Warmwater-focus does not mean trout are biologically absent.

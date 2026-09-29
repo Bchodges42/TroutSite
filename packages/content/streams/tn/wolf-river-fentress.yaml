@@ -15,10 +15,11 @@ idealFlow:
     max: 100
     unit: cfs
 idealFlowSource: editorial
-notes: "TWRA spring-stocked headwaters of the Wolf River that feeds Dale Hollow Reservoir (Obey River system,
-  Upper Cumberland) — not to be confused with the West Tennessee Wolf River that runs to Memphis. Small riffly
-  water high on the plateau; no gauge this far up. TWRA's statewide regulation exceptions set a smallmouth
-  bass rule on this water: 2 per day within a 16–21 in protected length range. (see officialSources)."
+notes: "TWRA spring-stocked headwaters of the Wolf River that feeds Dale Hollow Reservoir (Obey
+  River system, Upper Cumberland) — not to be confused with the West Tennessee Wolf River that runs
+  to Memphis. Small riffly water high on the plateau; no gauge this far up. TWRA's statewide
+  regulation exceptions set a smallmouth bass rule on this water: 2 per day within a 16–21 in
+  protected length range. (see officialSources)."
 officialSources:
   - label: TWRA — Dale Hollow Reservoir (the impoundment this Wolf River feeds)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html
@@ -29,6 +30,46 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["00507027", "01282319"]
-  huc8s: ["05130105"]
-  counties: ["Fentress", "Fentress County headwaters"]
+  gnisIds:
+    - "00507027"
+    - "01282319"
+  huc8s:
+    - "05130105"
+  counties:
+    - Fentress
+    - Fentress County headwaters
+opportunity:
+  trout: mixed
+  evidenceState: documented
+  statement: "The Fentress County Wolf River pairs two documented fisheries: TWRA's spring rainbow
+    stockings on the headwaters (March-May 2026 weeks) over a TWRA-documented warmwater
+    spotted/smallmouth bass fishery on the managed reach - the trout program is put-and-take with no
+    year-round documentation."
+  reachScope: Fentress County headwaters reach (Wolf River Loop / York Farm / Delk Creek sites)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 'Wolf River' rows, Fentress County (name+county join), Seasonal, Rainbow Trout - weeks
+        3/8, 4/12, 5/10/2026 (observed months Mar-May)
+    - label: TWRA Dale Hollow Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html
+      kind: agency-assessment
+      observationPeriod: current guidance
+      retrieved: 2026-09-22
+      pinpoint: "'anglers often report catching spotted bass in the upper portions of the Wolf River';
+        smallmouth rule 'Includes Wolf River upstream to South Ford Road bridge' (2/day, 16-21 in
+        protected range)"
+  caveats:
+    - "2026 trout stocking weeks: March 8, April 12 and May 10 - put-and-take; no summer or winter
+      trout program exists."
+    - TWRA documents spotted bass 'in the upper portions of the Wolf River' and a special smallmouth
+      rule upstream to the South Ford Road bridge - a warmwater fishery coexists with the trout
+      program.
+    - "Same-name check: this is the Fentress County headwaters feeding Dale Hollow (HUC 05130105),
+      not the Memphis-area Wolf River; the shared Fishbrain page (largemouth/catfish dominated)
+      needs segment review."

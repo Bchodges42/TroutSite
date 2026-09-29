@@ -8,12 +8,32 @@ regionId: tn-upper-cumberland
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: State scenic-river and recreation water in the Upper Cumberland. It is promoted for regional fishing importance despite its smaller size.
+notes: State scenic-river and recreation water in the Upper Cumberland. It is promoted for regional
+  fishing importance despite its smaller size.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01305269"]
-  huc8s: ["05130106"]
+  gnisIds:
+    - "01305269"
+  huc8s:
+    - "05130106"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TDEC's scenic-river profile documents Blackburn Fork (Jackson County) as a wade-fishing
+    smallmouth bass stream through Cummins Falls country.
+  asOf: "2026"
+  sources:
+    - label: Tennessee Scenic Rivers — Blackburn Fork
+      url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/blackburn-fork.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'Smallmouth bass are a favorite catch for anglers who wade the river or fish from rocky
+        banks.'"
+  caveats:
+    - A state-park guided-fishing listing ('trout stamp not needed'; smallmouth/bluegill expected)
+      was a prior research lead and was not re-verified; it is consistent with, not evidence for,
+      the headline.

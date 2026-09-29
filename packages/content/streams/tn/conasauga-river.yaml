@@ -6,12 +6,47 @@ regionId: tn-se-hiwassee
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Principal southeast Tennessee border river in the Coosa basin. This entry focuses on the Tennessee reaches.
+notes: Principal southeast Tennessee border river in the Coosa basin. This entry focuses on the
+  Tennessee reaches.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["00327507"]
-  huc8s: ["06020002"]
+  gnisIds:
+    - "00327507"
+  huc8s:
+    - "06020002"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TDEC documents the Tennessee reach of the Conasauga as a state scenic river supporting
+    more than 90 native fish species; no trout fishery is documented on the Tennessee reach.
+  reachScope: "Tennessee reach: Polk County segment upstream of the Highway 411 bridge (state scenic
+    river reach, ~10.1 mi)"
+  asOf: "2026"
+  sources:
+    - label: Tennessee Scenic Rivers — Conasauga
+      url: https://www.tn.gov/environment/natural-areas/tn-scenic-rivers/conasauga.html
+      kind: legal-designation
+      retrieved: 2026-09-22
+      pinpoint: "'The entire segment of the river in Polk County, upstream from the Highway 411 bridge';
+        designated April 23, 1969; 'one of two Tennessee Scenic Rivers located in the Cherokee
+        National Forest'"
+    - label: 2026 trout stocking schedule (live datatable feed)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking year
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "grep 'conasauga': 0 rows"
+    - label: Discrete water temperature, Conasauga River at US 411
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-02384000&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1957-2001 grab samples
+      retrieved: 2026-09-22
+      pinpoint: Jun-Sep values 20.0-24.0 C (Jun 1996 24.0, Sep 1996 22.0, Sep 1957 20.0)
+  caveats:
+    - Catalog map feature is a tiger-linear approximation — geometry flag for reach questions.
+    - The famous rare-species work and GA's 2015 ONRW designation apply to Georgia reaches only.

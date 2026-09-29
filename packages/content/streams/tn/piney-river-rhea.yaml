@@ -8,22 +8,63 @@ gaugeIds: []
 stockingProgram: true
 species: trout
 fishery: stocked
-yearRound: true
+yearRound: false
 idealFlow:
   - min: 30
     max: 200
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the trout
-  reach — rain judgment required. It runs down to the Watts Bar embayment head.
+  TWRA spring-stocked Cumberland Plateau stream in the Spring City corridor. No USGS gauge on the
+  trout reach — rain judgment required. It runs down to the Watts Bar embayment head.
 
+
+  Correction (2026-09-22, evidence ledger): yearRound true → false — the adjudicated headline is
+  seasonal-stocked-trout; a year-round flag contradicts it (ADR 0010 consistency).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01297625", "01297651"]
-  huc8s: ["06010201"]
-  counties: ["Rhea"]
+  gnisIds:
+    - "01297625"
+    - "01297651"
+  huc8s:
+    - "06010201"
+  counties:
+    - Rhea
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "The Rhea County Piney River runs a documented trout cycle: a late-October
+    delayed-harvest stocking supports catch-and-release through the winter (season through Feb 28),
+    then spring stockings (February-April 2026) carry the fishery - no year-round trout fishery is
+    documented on this ungaged river."
+  reachScope: "Delayed Harvest reach: Cumberland Trail State Park downstream to Highway 27 Bridge"
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations - Delayed Harvest
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: schedule-table
+      observationPeriod: current regulations page
+      retrieved: 2026-09-22
+      pinpoint: "'Piney River: Cumberland Trail State Park downstream to Highway 27 Bridge' -
+        catch-and-release season listed through Feb. 28 (the 2026-09-18 batch read recorded Nov. 1
+        as the start; this re-read read the Oct. 1 block - start date kept as a minor discrepancy)"
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 4 Rhea County 'Piney River' rows - Seasonal weeks Feb-Apr 2026 plus Delayed Harvest week
+        of 10/25/2026, Rainbow Trout; GIS sites at Piney Falls State Natural Area
+  caveats:
+    - "Documented window: late-October DH stocking through winter catch-and-release, then
+      February-April 2026 seasonal stockings and spring harvest."
+    - No temperature, holdover, or wild-population evidence exists for summer on this ungaged river;
+      the catalog's year-round flag is not supported.
+    - DH catch-and-release start recorded as Nov 1 in the 2026-09-18 verification and Oct 1 in the
+      2026-09-22 re-read - confirm the exact date on the current regs page before keeping vs
+      releasing.

@@ -20,11 +20,38 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01287839"]
-  huc8s: ["05130107"]
+  gnisIds:
+    - "01287839"
+  huc8s:
+    - "05130107"
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA stocks the upper reach of Hills Creek (site label 'Upper Hills Creek') near Irving
+    College with catchable rainbow trout on a single spring stocking week (March 22, 2026); the USGS
+    grab record includes 28 C July water and no year-round fishery is documented.
+  reachScope: stocked upper reach of Hills Creek near Irving College (Warren County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 1 'Upper Hills Creek' row, Warren County, Seasonal, Rainbow Trout - week 3/22/2026
+        (observed month March)
+    - label: Hills Creek near Irving College temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-03420260&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1979-1981 grabs
+      retrieved: 2026-09-18
+      pinpoint: 28.0 C (Jul 1980), 22.0 C (Sep 1979), 19.0 C (Aug 1981)
+  caveats:
+    - "One 2026 stocking week: March 22 - fish it promptly after the release or plan for the
+      following year."
+    - No holdover or wild-trout documentation; a 28 C July grab (1980) sits in the record at Irving
+      College.
+    - "Same-name care: the White/Van Buren County Hills Creeks are different waters with no rows
+      here."

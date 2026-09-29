@@ -18,41 +18,40 @@ targetSpecies:
 speciesEvidence:
   - species: largemouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
   - species: smallmouth-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
   - species: spotted-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
   - species: crappie
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
   - species: bluegill
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
   - species: channel-catfish
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
   - species: striped-bass
     kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03499510/
-    retrieved: 2026-09-13
-notes: >-
-  TVA reservoir at Knoxville across Knox, Blount, and Loudon counties,
-  impounded by Fort Loudoun Dam (USGS 03499510 tailwater gauge,
-  35.79174/-84.24325; Tennessee River mile 602.3). Formed by the Holston and
-  French Broad main stems and the Little Tennessee arm (Tellico Lake joins via
-  the canal); discharges into Watts Bar Lake. TVA lists the reservoir at
-  14,600 ac at normal summer pool. Aliases: Fort Loudoun Reservoir.
-  TWRA's Fort Loudoun Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see officialSources).
-  Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen refuge context is not a scored input.
+    url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+    retrieved: 2026-09-22
+notes: "TVA reservoir at Knoxville across Knox, Blount, and Loudon counties, impounded by Fort
+  Loudoun Dam (USGS 03499510 tailwater gauge, 35.79174/-84.24325; Tennessee River mile 602.3).
+  Formed by the Holston and French Broad main stems and the Little Tennessee arm (Tellico Lake joins
+  via the canal); discharges into Watts Bar Lake. TVA lists the reservoir at 14,600 ac at normal
+  summer pool. Aliases: Fort Loudoun Reservoir. TWRA's Fort Loudoun Reservoir page lists the fishery
+  as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see
+  officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir
+  temperature/oxygen refuge context is not a scored input."
 officialSources:
   - label: USGS Water Data — monitoring location 03499510
     url: https://waterdata.usgs.gov/monitoring-location/03499510/
@@ -64,3 +63,22 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Fort Loudoun Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Fort Loudoun Lake as a shallow mainstem Tennessee River reservoir with an
+    entirely warmwater fishery — black bass, crappie, bluegill, catfish, striped/hybrid bass — and
+    no trout fishery is documented.
+  reachScope: entire reservoir, Fort Loudoun Dam upstream 55 miles to the Holston/French Broad
+    confluence (Knox, Blount, Loudon counties)
+  asOf: "2026"
+  sources:
+    - label: Fort Loudoun Reservoir — Where to Fish
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-loudoun-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'Fort Loudoun contains 14,600 acres and was created by the Tennessee Valley Authority in
+        1943'; 'The most commonly harvested fish are largemouth, smallmouth, and white bass.
+        Bluegill, crappie, and catfish are also present.'; no trout anywhere on the page"
+  caveats:
+    - Tellico Lake joins via the canal — a separate water with its own trout record; do not transfer.

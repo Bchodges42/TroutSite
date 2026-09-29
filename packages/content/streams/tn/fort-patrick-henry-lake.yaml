@@ -8,65 +8,35 @@ gaugeIds:
   - tva:FPHT1
 stockingProgram: true
 idealFlow: []
-targetSpecies:
-  - largemouth-bass
-  - smallmouth-bass
-  - spotted-bass
-  - crappie
-  - bluegill
-  - channel-catfish
-  - striped-bass
-speciesEvidence:
-  - species: largemouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: smallmouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: spotted-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: crappie
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: bluegill
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: channel-catfish
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
-  - species: striped-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03487010/
-    retrieved: 2026-09-13
 notes: >-
-  Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County), impounded by
-  Fort Patrick Henry Dam (USGS 03487010, 36.49816/-82.50904). Receives the Boone tailwater (boone-tailwater)
-  at its upper arm and discharges through the dam into the Fort Patrick Henry tailwater
-  (ft-patrick-henry-tailwater), which joins the North Fork Holston River to form the Holston main stem at
-  Kingsport. Aliases: FPH Lake, Fort Patrick Henry Reservoir. TWRA's Fort Patrick Henry Reservoir page lists
-  the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish, striped bass (see
-  officialSources). Striped bass is a regulatory or hybrid-evidence tag here; reservoir temperature/oxygen
-  refuge context is not a scored input.
+  Small (~860 acre) TVA reservoir on the South Fork Holston River at Kingsport (Sullivan County),
+  impounded by Fort Patrick Henry Dam (USGS 03487010, 36.49816/-82.50904). Receives the Boone
+  tailwater (boone-tailwater) at its upper arm and discharges through the dam into the Fort Patrick
+  Henry tailwater (ft-patrick-henry-tailwater), which joins the North Fork Holston River to form the
+  Holston main stem at Kingsport. Aliases: FPH Lake, Fort Patrick Henry Reservoir. TWRA's Fort
+  Patrick Henry Reservoir page lists harvest rules for multiple fish groups but provides no
+  reservoir species survey or descriptive fishery assessment. Those rules alone are not used as
+  species-presence evidence here; reservoir temperature/oxygen refuge context is not a scored input.
 
 
-  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass (retrieved
-  2026-09-14) — TMP nine-trout-reservoir list ("Region IV, Fort Patrick Henry — Brown and Rainbow"); stocking
-  months unpinned.
+  Stocked trout fishery documented by agency sources in the 2026-09 wave-ledger sourcing pass
+  (retrieved 2026-09-14) — TMP nine-trout-reservoir list ("Region IV, Fort Patrick Henry — Brown and
+  Rainbow"); stocking months unpinned.
 
 
-  Regulations: reservoir table (statewide otherwise): LM 5/day no length, SM 15-in min; spotted 15/day;
-  crappie 15/day 10-in; catfish ≤34-in unlimited, one >34-in/day; striped/hybrid 2/day 15-in; walleye 5/day
-  18-in. Trout: statewide 7/day, no length limit; (retrieved 2026-09-14; verify current rules with TWRA before
-  you go).
+  Regulations: reservoir table (statewide otherwise): LM 5/day no length, SM 15-in min; spotted
+  15/day; crappie 15/day 10-in; catfish ≤34-in unlimited, one >34-in/day; striped/hybrid 2/day
+  15-in; walleye 5/day 18-in. Trout: statewide 7/day, no length limit; (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
+
+
+  Correction (2026-09-22, evidence ledger): yearRound false → true — the adjudicated headline is
+  year-round-trout on documented reach evidence (Fort Patrick Henry Lake (Fort Patrick Henry
+  Reservoir) pool, Sullivan County — run-of-river impoundment from Fort Patrick Henry Dam upstream
+  to Boone Dam; excludes the Fort Patrick Henry tailwater below the dam) (ADR 0010 consistency).
 officialSources:
-  - label: USGS Water Data — monitoring location 03487010 (static site provenance; no current IV catalog entry)
+  - label: USGS Water Data — monitoring location 03487010 (static site provenance; no current IV catalog
+      entry)
     url: https://waterdata.usgs.gov/monitoring-location/03487010/
   - label: TVA — Fort Patrick Henry Dam release schedule
     url: https://www.tva.com/environment/lake-levels
@@ -78,4 +48,54 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
 species: trout
 fishery: stocked
-yearRound: false
+yearRound: true
+opportunity:
+  trout: year-round-trout
+  evidenceState: limited
+  statement: "TWRA's live trout page names Fort Patrick Henry among the reservoirs it stocks 'to
+    provide year-round trout fishing opportunities' (brown and rainbow) — a real but thin
+    program-level documentation: the reservoir's own TWRA page carries no fishery description or
+    summer depth guidance, and no stocking months are published."
+  reachScope: Fort Patrick Henry Lake (Fort Patrick Henry Reservoir) pool, Sullivan County —
+    run-of-river impoundment from Fort Patrick Henry Dam upstream to Boone Dam; excludes the Fort
+    Patrick Henry tailwater below the dam
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page — reservoirs stocked to provide year-round trout fishing
+        opportunities
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities." List line: "Region IV, Fort Patrick Henry - Brown and Rainbow". Capture:
+        captures/twra-trout-page.txt; verified live 2026-09-22.'
+    - label: TWRA published trout stocking schedule (2026) — absence check
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 schedule
+      retrieved: 2026-09-22
+      pinpoint: "Live 616-row table contains NO Fort Patrick Henry Reservoir lake row (only the tailwater
+        row 'Ft. Patrick Henry TW'); GIS stocking points include two Reservoir-program points in
+        Sullivan County (one at Warrior's Path State Park). Program species from the trout-page
+        list: Brown and Rainbow."
+    - label: TWRA Fort Patrick Henry Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/fort-patrick-henry.html
+      kind: agency-assessment
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: Regulations list covers largemouth/smallmouth bass, spotted bass, crappie, catfish,
+        striped/hybrid bass, white bass, walleye, rock bass, redear sunfish, bluegill/warmouth;
+        created 1953 with Ft. Patrick Henry Dam. The page has NO descriptive fishery narrative; its
+        single trout line is the 16-22 in PLR rule for 'Boone Dam downstream to Louis Milhorn
+        Bridge' — the BOONE TAILWATER reach upstream of this lake.
+  caveats:
+    - "Evidence is intentionally marked limited: the year-round label is TWRA's program list
+      (documented), but there is no reservoir fishery narrative, no stocking months, no depth
+      guidance, and no lake survey — do not oversell."
+    - Summer fishing character is undocumented for this water; TWRA provides no depth guidance here
+      (unlike Watauga/South Holston). Never promise bank fishing.
+    - The trout regulation shown on TWRA's reservoir page (Boone Dam to Louis Milhorn Bridge 16-22
+      in PLR) belongs to the BOONE TAILWATER upstream — not to this lake's fishery.
+    - The 2026 forecast 'largest holdover Rainbow Trout' finding is about the tailwater BELOW Fort
+      Patrick Henry Dam and does not describe this lake.

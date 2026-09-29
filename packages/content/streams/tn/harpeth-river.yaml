@@ -15,28 +15,22 @@ idealFlow:
   - min: 50
     max: 400
     unit: cfs
-targetSpecies:
-  - smallmouth-bass
 idealFlowSource: editorial
-speciesEvidence:
-  - species: smallmouth-bass
-    kind: agency
-    url: https://waterdata.usgs.gov/monitoring-location/03432350/
-    retrieved: 2026-09-13
 notes: >-
-  Mostly a warmwater river — TWRA’s winter program stocks its Williamson County reaches near Franklin with
-  catchable trout each December (the winter put-and-take season runs December–February; check the TWRA
-  schedule for the current window). Two gauges bracket the stocked corridor; summer water is smallmouth
-  country.
+  TWRA’s winter program schedules catchable trout at Eastern Flank Battle Park in Franklin. The 2026
+  schedule lists January and February days and a tentative December day; these are planned stocking
+  dates, not proof of a legal fishing season or current trout presence. Two gauges bracket the
+  corridor. A prior smallmouth claim lacked species-specific primary evidence and was removed from
+  the typed species list.
 
 
-  Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA winter program stocks the
-  Harpeth at Eastern Flank Battle Park (Franklin) — December runs per the official schedule.
+  Stocked trout fishery confirmed by agency sources (retrieved 2026-09-14) — TWRA winter program
+  schedules the Harpeth at Eastern Flank Battle Park (Franklin) for winter stocking.
 
 
-  Regulations: Statewide warmwater — black bass 5/day any combination, no length limit; crappie 15/day, 10-in
-  minimum; catfish no limit under 34 in, 1/day over 34 in; rock bass 20/day (retrieved 2026-09-14; verify
-  current rules with TWRA before you go).
+  Regulations: Statewide warmwater — black bass 5/day any combination, no length limit; crappie
+  15/day, 10-in minimum; catfish no limit under 34 in, 1/day over 34 in; rock bass 20/day (retrieved
+  2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: USGS Water Data — monitoring location 03432350
     url: https://waterdata.usgs.gov/monitoring-location/03432350/
@@ -52,6 +46,37 @@ seasonMonths:
   - 2
 seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01303466"]
-  huc8s: ["05130204"]
-  counties: ["Williamson"]
+  gnisIds:
+    - "01303466"
+  huc8s:
+    - "05130204"
+  counties:
+    - Williamson
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "TWRA's winter program stocks a single reach of the Williamson County Harpeth - at
+    Eastern Flank Battle Park in Franklin - with catchable rainbow trout (2026 rows: Jan 23, Feb 20,
+    and TBD Dec 2026); the rest of the river is not part of any trout program."
+  reachScope: Harpeth River at Eastern Flank Battle Park, Franklin (the schedule's stocked reach) only
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "3 rows: 'Harpeth River at Eastern Flank Battle Park', Williamson Co., REGION 2, TYPE
+        Winter, Rainbow Trout, days 1/23/2026, 2/20/2026, 'TBD 12/2026'"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Winter program only (Dec-Feb on the park reach): TWRA's plan frames the winter program as
+      winter-months opportunity and classifies hatchery-supported waters as primarily warmwater
+      habitats that cannot support trout year round; the Harpeth at Franklin runs warm in summer -
+      but absence of trout after winter is not biologically proven."
+    - The catalog's 'mostly a warmwater river' description is consistent with the winter-only
+      program but was not documented from a positive warmwater source this pass.

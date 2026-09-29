@@ -20,12 +20,41 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01327083"]
-  huc8s: ["06020002"]
-  counties: ["Polk"]
+  gnisIds:
+    - "01327083"
+  huc8s:
+    - "06020002"
+  counties:
+    - Polk
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA stocks this Polk County Spring Creek (the Coker Creek-area tributary entering the
+    Hiwassee at Reliance) with catchable rainbow trout across six cool-season stocking weeks in 2026
+    (February-April plus November); summer grabs at the Reliance reach have run 24-25 C and no
+    year-round fishery is documented.
+  reachScope: Reliance-area stocked reach (campground and Spring Creek Rd sites)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 6 Polk County 'Spring Creek' rows, Region 3, Seasonal, Rainbow Trout - weeks 2/1, 3/1,
+        3/29, 4/26, 11/1, 11/29/2026
+    - label: Spring Creek temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000005903&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2013-2023
+      retrieved: 2026-09-18
+      pinpoint: 25.07 C in July 2022, 23.94 C in August 2017, 22.55 C in June 2023
+  caveats:
+    - "2026 stocking weeks: February 1, March 1, March 29, April 26, November 1 and November 29 -
+      two windows, spring and late fall."
+    - No holdover or wild-trout documentation; July-August grabs at the Reliance reach ran 24-25 C
+      (2017-2022).
+    - "Identity trap: the shared Fishbrain 'Spring Creek' page (largemouth-dominated, zero trout) is
+      almost certainly a different creek - segment review required, lead only."

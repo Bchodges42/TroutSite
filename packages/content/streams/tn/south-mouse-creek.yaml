@@ -13,5 +13,25 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01270901"]
-  huc8s: ["06020002"]
+  gnisIds:
+    - "01270901"
+  huc8s:
+    - "06020002"
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for South Mouse
+    Creek (Cleveland, Bradley County); community reports describe a warmwater bass/panfish creek
+    along the Cleveland Greenway, but no admissible source documents the fishery or any trout
+    occurrence.
+  asOf: "2026"
+  caveats:
+    - Distinct from the McMinn County North Mouse Creek system (same-name risk within the Mouse
+      Creek family).
+    - USGS station 03566039 ('BL SEWAGE PLANT BL CLEVELAND') documents a wastewater discharge point
+      on the urban reach.
+    - Community warmwater reports (redeye bass, bluegill) are leads, not documented-fishery evidence.
+  unresolvedQuestion: "No reach-specific trout survey, completed-release record, or dated trout
+    observation was found for South Mouse Creek; whether any trout opportunity (or any documented
+    fishery) exists is unknown. Next source: TDEC or TWRA fish-community data for the Cleveland
+    reach."

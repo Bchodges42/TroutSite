@@ -20,12 +20,37 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01328320"]
-  huc8s: ["06020003"]
-  counties: ["Polk"]
+  gnisIds:
+    - "01328320"
+  huc8s:
+    - "06020003"
+  counties:
+    - Polk
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: "Scheduled TWRA spring put-and-take on Greasy Creek (Polk County, Ocoee drainage near
+    Coker Creek): three 2026 rainbow stockings (weeks of Mar 1, Mar 29 and Apr 26) - a short spring
+    program, not a year-round fishery."
+  asOf: "2026"
+  sources:
+    - label: 2026 Trout Stocking Schedule (published table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: program-description
+      observationPeriod: 2026 stocking weeks (week-of Sundays)
+      publicationDate: 2026 edition
+      retrieved: 2026-09-22
+      pinpoint: "3 rows: 'Greasy Creek', Polk Co., REGION 3, Seasonal, Rainbow Trout, weeks 3/1, 3/29,
+        4/26/2026"
+    - label: TWRA Trout Stocking Locations layer (GIS points, no dates)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=2000
+      kind: schedule-table
+      retrieved: 2026-09-22
+  caveats:
+    - "Same-name risk: a Warren County (Collins River drainage) Greasy Creek appears in some
+      flattened schedule tables per prior research; this entry is the Polk/Ocoee water (USGS
+      Archville gauge and TDEC stations per seed pin the identity). The 2026 schedule capture
+      contains only the Polk rows."
+    - No creek-specific wild-trout documentation; prior 1970s gauge temperatures were trout-viable
+      but the record is short and old - no year-round inference.

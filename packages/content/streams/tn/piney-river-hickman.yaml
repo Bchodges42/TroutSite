@@ -8,13 +8,35 @@ regionId: tn-middle-duck-elk
 gaugeIds: []
 stockingProgram: false
 idealFlow: []
-notes: Duck River tributary and paddling/fishing corridor in Hickman County. This is a different river from the existing Rhea County Piney River.
+notes: Duck River tributary and paddling/fishing corridor in Hickman County. This is a different
+  river from the existing Rhea County Piney River.
 officialSources:
   - label: USGS — National Hydrography Dataset
     url: https://www.usgs.gov/national-hydrography/national-hydrography-dataset
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01306897"]
-  huc8s: ["06040003"]
-  counties: ["Hickman"]
+  gnisIds:
+    - "01306897"
+  huc8s:
+    - "06040003"
+  counties:
+    - Hickman
+opportunity:
+  trout: unresolved
+  evidenceState: unresolved
+  statement: No trout survey, stocking record, or dated trout observation was found for the Hickman
+    County Piney River (Duck River tributary); a forum-level claim that the Piney system is
+    trout-stocked conflicts with TWRA's own documents, which carry trout rows only for the Rhea
+    County Piney — a different river.
+  asOf: "2026"
+  caveats:
+    - The trout-regulations page's only 'Piney River' entry — 'Cumberland Trail State Park
+      downstream to Highway 27 Bridge' — is the RHEA County water, not this one.
+    - The 2026 TDEC Class II Pastoral scenic-river designation (West/East Piney confluence in
+      Dickson Co. to the Duck River confluence) is a conservation status, not a fishery designation.
+    - Community smallmouth/rock-bass reports on the shared 'Piney River' page are leads needing
+      segment review.
+  unresolvedQuestion: "Was the Hickman/Dickson Piney River ever trout-stocked (the forum claim), and
+    does any trout opportunity exist today? TWRA's current documents show no program; next source:
+    TWRA historical stocking archives and the tndeer.com thread itself."

@@ -9,15 +9,17 @@ stockingProgram: false
 species: warmwater
 idealFlow: []
 notes: >-
-  Warmwater river — agency sources document crappie/bass fishing and no TWRA trout row (retrieved 2026-09-14).
-  Reference waterbody from the Tennessee waterways inventory — a west-flowing river through Northwest
-  Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Detailed angler notes are still being
-  prepared — check TWRA and local access areas in the meantime. TWRA's statewide regulation exceptions include
-  this river in the shared West Tennessee crappie rule: 30 per day, no length limit. (see officialSources).
+  Warmwater river — agency sources document crappie/bass fishing and no TWRA trout row (retrieved
+  2026-09-14). Reference waterbody from the Tennessee waterways inventory — a west-flowing river
+  through Northwest Tennessee's Obion, Dyer, and Lake counties, north of the Hatchie. Detailed
+  angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's
+  statewide regulation exceptions include this river in the shared West Tennessee crappie rule: 30
+  per day, no length limit. (see officialSources).
 
 
-  Regulations: Crappie 30 per day, no length limit ("Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf
-  Rivers (includes tributaries)") (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Crappie 30 per day, no length limit ("Forked Deer, Hatchie, Loosahatchie, Obion, and
+  Wolf Rivers (includes tributaries)") (retrieved 2026-09-14; verify current rules with TWRA before
+  you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -26,6 +28,45 @@ officialSources:
   - label: TWRA — Statewide fishing regulation exceptions (species rule)
     url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
 hydroIdentity:
-  gnisIds: ["01296225"]
-  huc8s: ["08010202", "08010203"]
-  counties: ["Obion"]
+  gnisIds:
+    - "01296225"
+  huc8s:
+    - "08010202"
+    - "08010203"
+  counties:
+    - Obion
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA manages the Obion River as a warmwater crappie/bass river (30-per-day crappie rule
+    incl. tributaries).
+  reachScope: Main stem, northwest Tennessee (documented gaged reaches near Kenton, Rives, and at Hwy
+    51 near Obion)
+  asOf: "2026"
+  sources:
+    - label: TWRA statewide fishing regulation exceptions
+      url: https://www.tn.gov/twra/fishing-regs/fishing-regulation-exceptions.html
+      kind: agency-assessment
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: "'Forked Deer, Hatchie, Loosahatchie, Obion, and Wolf Rivers (includes tributaries)':
+        'Crappie: 30 per day, no length limit' (verified live 2026-09-22)"
+    - label: 1973 UT survey of the Obion River system (183 collections, 100 species verified; no
+        salmonids)
+      url: https://trace.tennessee.edu/utk_gradthes/8225
+      kind: agency-assessment
+      observationPeriod: "1973"
+      publicationDate: "1973"
+      retrieved: 2026-09-22
+      pinpoint: prior batch4 lead; not re-verified this pass
+    - label: Obion River summer temperature grabs (07025900; 07026040)
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=USGS-07025900;USGS-07026040&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 1991-2005
+      retrieved: 2026-09-22
+      pinpoint: "prior batch4 lead: 30.6 C Jul 1991; 29.5 C Aug 1995; 26.7-27.5 C 2005"
+  caveats:
+    - Channelized bottomland river through Obion/Dyer/Lake counties - a warmwater fishery, never a
+      trout water on current evidence.
+    - TWRA's nearest trout stocking is the Union City Reelfoot Packing Site (winter program, Obion
+      County) - a pond-type site, not the river.

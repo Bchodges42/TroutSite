@@ -18,19 +18,47 @@ notes: >-
   TWRA spring-stocked Claiborne County creek. Small pocket water near the Powell River corridor.
 
 
-  Regulations: TWRA statewide trout limits (7 trout, no size limit) on stocked reaches outside the park;
-  (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: TWRA statewide trout limits (7 trout, no size limit) on stocked reaches outside the
+  park; (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01271281", "01475093"]
-  huc8s: ["06010206"]
-  counties: ["Claiborne"]
+  gnisIds:
+    - "01271281"
+    - "01475093"
+  huc8s:
+    - "06010206"
+  counties:
+    - Claiborne
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's spring program stocks this Claiborne County Station Creek with catchable rainbow
+    trout across five February-April stocking weeks in 2026; NPS monitoring on the lower creek
+    (2004-2006) mostly read 16-22 C in summer, but no holdover or wild-trout evidence documents fish
+    outside the stocking season.
+  reachScope: Claiborne County creek near Cumberland Gap
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 5 'Station Creek' rows, Region 4, Seasonal, Rainbow Trout - weeks 2/15, 3/1, 3/15, 3/29,
+        4/12/2026 (observed months Feb-Apr)
+    - label: Cumberland Gap NHP Station Creek temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=11NPSWRD_WQX-CUGA_PM_ST10&characteristicName=Temperature%2C%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2003-2006
+      retrieved: 2026-09-18
+      pinpoint: summer values 15.8-22.4 C with a single 23.95 C peak (Aug 2006)
+  caveats:
+    - "2026 stocking weeks: February 15 through April 12 (five events) - fish soon after releases."
+    - Inside Cumberland Gap NHP, fishing is permitted on this creek with no special restriction
+      (Davis Branch is the closed one); statewide trout rules otherwise.
+    - No holdover or wild-trout documentation; summer NPS grabs (2003-2006) peaked at 24 C once.

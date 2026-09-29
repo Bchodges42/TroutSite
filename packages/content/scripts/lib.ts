@@ -285,9 +285,9 @@ export function loadContent(): LoadedContent {
       if (!targetSpecies.has(evidence.species)) {
         issues.push({ file: rel(file), message: `speciesEvidence "${evidence.species}" is not present in targetSpecies` });
       }
-    }
-    if (/cherokee\s+bass/i.test(JSON.stringify(data))) {
-      issues.push({ file: rel(file), message: 'Cherokee bass is a hybrid local name and must not be tokenized as spotted-bass or striped-bass' });
+      if (/waterdata\.usgs\.gov\/(?:monitoring-location|nwis)\//i.test(evidence.url)) {
+        issues.push({ file: rel(file), message: `speciesEvidence "${evidence.species}" cites a water-monitoring station, not a fish-species source` });
+      }
     }
     // Fishery/yearRound cross-checks (session-1 catalog lane): advisory only — these flag
     // attribute combinations that contradict the water's own flags/notes, they never fail the gate.

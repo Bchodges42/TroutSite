@@ -41,15 +41,17 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Caney Fork reservoir east of Smithville
-  across DeKalb, Putnam, White, and Warren counties. Detailed angler notes are still being prepared — check
-  TWRA and local access areas in the meantime. TWRA's Center Hill Reservoir page lists the fishery as
-  largemouth bass, smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources).
+  Reference waterbody from the Tennessee waterways inventory — the Caney Fork reservoir east of
+  Smithville across DeKalb, Putnam, White, and Warren counties. Detailed angler notes are still
+  being prepared — check TWRA and local access areas in the meantime. TWRA's Center Hill Reservoir
+  page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie, bluegill,
+  catfish (see officialSources).
 
 
-  Regulations: Black bass 5/day combined; largemouth 15" min; smallmouth 18" min; spotted no limit; crappie
-  15/day combined 10" min; walleye 5/day 16" min; muskellunge 1/day 50" min; paddlefish closed; catfish no
-  creel ≤34", one >34"/day; (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: Black bass 5/day combined; largemouth 15" min; smallmouth 18" min; spotted no limit;
+  crappie 15/day combined 10" min; walleye 5/day 16" min; muskellunge 1/day 50" min; paddlefish
+  closed; catfish no creel ≤34", one >34"/day; (retrieved 2026-09-14; verify current rules with TWRA
+  before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -57,3 +59,36 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Center Hill Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/center-hill-reservoir.html
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA documents Center Hill Lake as a warmwater bass/crappie/walleye/bluegill/catfish
+    fishery; whether any trout fishery exists in the reservoir itself is unresolved - the famous
+    bottom-release trout water is the Caney Fork below the dam, a different catalog water.
+  reachScope: Center Hill Reservoir itself (18,220 ac impoundment across DeKalb, Putnam, Warren, White
+    counties). Not the tailwater below Center Hill Dam and not the upper free-flowing Caney Fork.
+  asOf: "2026"
+  sources:
+    - label: "TWRA Where to Fish: Center Hill Reservoir"
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/center-hill-reservoir.html
+      kind: agency-assessment
+      retrieved: 2026-09-22
+      pinpoint: "'What you can catch': Largemouth/Smallmouth/Spotted Bass, Crappie (Black and White),
+        Bluegill, Walleye, Catfish, Muskellunge; 18,220 surface acres; 'The United States Army Corps
+        of Engineers is the operating authority'; annual walleye and crappie fingerling stockings;
+        trout appears nowhere in the fishery description (verified live 2026-09-22)"
+    - label: Center Hill near-dam reservoir temperature station
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001091&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: July 2012 (single reading)
+      retrieved: 2026-09-22
+      pinpoint: "one surface reading: 31.63 C, July 2012"
+  caveats:
+    - "Reach discipline: the hypolimnial (bottom-draw) release evidence, the ~120-ft orifice gate
+      (June 2024), and every Caney Fork trout assessment apply to the tailwater below Center Hill
+      Dam - never to the reservoir above it."
+    - The lake is absent from TWRA's year-round reservoir trout stocking list and has zero trout
+      schedule rows.
+    - Fishbrain's 'Center Hill Lake (Caney Fork River)' page aggregates tailwater catches with lake
+      catches (18 rainbow trout among 1,825 catches) - research lead only, likely tailwater
+      contamination, not citable.

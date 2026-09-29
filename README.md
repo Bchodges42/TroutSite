@@ -12,7 +12,7 @@ on-the-water decision tool** that works with no signal and doesn't want your dat
 ## Status
 
 Live in production (self-deploying, self-healing — see `infra/RUNBOOK.md` §9). The
-catalog covers ~148 Tennessee waters (rivers, tailwaters, lakes, West-TN winter ponds);
+catalog covers 190 Tennessee waters (rivers, tailwaters, lakes, West-TN winter ponds);
 conditions score from USGS + TVA + USACE gauges; hatch charts cover all 12 regions × 12
 months; 555 routes are prerendered for SEO. Open items live in
 [`docs/KNOWN-ISSUES.md`](docs/KNOWN-ISSUES.md); the doc map is

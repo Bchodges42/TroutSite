@@ -13,5 +13,27 @@ officialSources:
   - label: TWRA — Tennessee fishing regulations
     url: https://www.tn.gov/twra/fishing.html
 hydroIdentity:
-  gnisIds: ["01303447"]
-  huc8s: ["05130105"]
+  gnisIds:
+    - "01303447"
+  huc8s:
+    - "05130105"
+opportunity:
+  trout: warmwater-focus
+  evidenceState: documented
+  statement: TWRA regulates a January 1-April 15 walleye spawning run on a named reach of the East
+    Fork Obey River — documented cool/warmwater sportfish management.
+  reachScope: Compton Boat Ramp upstream to the Highway 52 bridge (TWRA's regulated walleye-run
+    reach); headwater reaches above Hwy 52 are not covered
+  asOf: "2026"
+  sources:
+    - label: Tennessee Fishing Regulations — Exceptions to Statewide Regulations
+      url: https://www.eregulations.com/tennessee/fishing/exceptions-to-statewide-regulations
+      kind: agency-assessment
+      observationPeriod: annual regulation (Jan 1-Apr 15 restriction window)
+      retrieved: 2026-09-22
+      pinpoint: "East Fork Obey entry: one-single-point-hook restriction and max three rods Jan 1-Apr 15
+        from Compton Boat Ramp upstream to the Hwy 52 bridge; walleye 'five (5) per day, 16 inch
+        minimum', only one over 20 inches"
+  caveats:
+    - Fishbrain page (149 catches, spotted/largemouth bass-led, no trout rows) is a research lead
+      only, not citable.

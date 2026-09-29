@@ -42,18 +42,19 @@ speciesEvidence:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
     retrieved: 2026-09-13
 notes: >-
-  Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the Kentucky line
-  in Clay, Pickett, and Overton counties. TWRA stocks brown trout here each spring (put-grow-take). Detailed
-  angler notes are still being prepared — check TWRA and local access areas in the meantime. TWRA's Dale
-  Hollow Reservoir page lists the fishery as largemouth bass, smallmouth bass, spotted bass, crappie,
-  bluegill, catfish (see officialSources). Live TWRA stocking composition lists rainbow trout; the repository
-  snapshot says brown trout, so the composition remains an owner-review conflict as of 2026-09-14.
+  Reference waterbody from the Tennessee waterways inventory — the Obey River reservoir at the
+  Kentucky line in Clay, Pickett, and Overton counties. TWRA stocks brown trout here each spring
+  (put-grow-take). Detailed angler notes are still being prepared — check TWRA and local access
+  areas in the meantime. TWRA's Dale Hollow Reservoir page lists the fishery as largemouth bass,
+  smallmouth bass, spotted bass, crappie, bluegill, catfish (see officialSources). Live TWRA
+  stocking composition lists rainbow trout; the repository snapshot says brown trout, so the
+  composition remains an owner-review conflict as of 2026-09-14.
 
 
-  Regulations: smallmouth 2/day, 16–21 in protected length limit (Wolf River upstream to South Ford Rd
-  bridge); largemouth 15-in min; black bass 5/day combined, max 2 smallmouth; crappie 15/day, 10-in min;
-  walleye 5/day, 16-in min; muskellunge 1/day, 50-in min; (retrieved 2026-09-14; verify current rules with
-  TWRA before you go).
+  Regulations: smallmouth 2/day, 16–21 in protected length limit (Wolf River upstream to South Ford
+  Rd bridge); largemouth 15-in min; black bass 5/day combined, max 2 smallmouth; crappie 15/day,
+  10-in min; walleye 5/day, 16-in min; muskellunge 1/day, 50-in min; (retrieved 2026-09-14; verify
+  current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
@@ -61,3 +62,45 @@ officialSources:
     url: https://www.tn.gov/twra/fishing.html
   - label: TWRA — Dale Hollow Reservoir fishing (species list)
     url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA names Dale Hollow among the reservoirs it stocks 'to provide year-round trout
+    fishing opportunities', and its reservoir page documents wintertime rainbow stocking with a
+    deep-water summer fishery (trolling near the dam from May, best in June at 30-50 ft, plus summer
+    night fishing) — though the stocked species/months conflict across TWRA's own sources.
+  reachScope: Dale Hollow Lake (Dale Hollow Reservoir) pool — USACE impoundment of the Obey River at
+    the Kentucky line (Clay/Pickett/Overton counties TN plus Kentucky portion); excludes the Obey
+    River tailwater below Dale Hollow Dam
+  asOf: "2026"
+  sources:
+    - label: TWRA trout information page — reservoirs stocked to provide year-round trout fishing
+        opportunities
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+      kind: agency-assessment
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: '"TWRA stocks the following reservoirs with trout to provide year-round trout fishing
+        opportunities." List line: "Region II, Dale Hollow, - Rainbow". Capture:
+        captures/twra-trout-page.txt; verified live 2026-09-22.'
+    - label: TWRA Dale Hollow Reservoir where-to-fish page
+      url: https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/dale-hollow-reservoir.html
+      kind: schedule-table
+      observationPeriod: 2026 (live page)
+      retrieved: 2026-09-22
+      pinpoint: "\"Rainbow trout are typically stocked annually into Dale Hollow Reservoir during the
+        wintertime.\"; tips: \"Fishermen begin trolling for trout in deeper water near the dam in
+        May.\"; \"June seems to be the best time to fish for trout using downriggers with spoons in
+        30 to 50 feet of water.\"; anglers successful \"in the summer months at night\". \"Rainbow
+        Trout\" appears in the page's species list. Verified live 2026-09-22."
+  caveats:
+    - "SUMMER FISHING IS DEEP WATER: TWRA's guidance is trolling near the dam from May, best in June
+      at 30-50 ft with downriggers, plus summer night fishing with lights. Nothing here promises
+      bank fishing."
+    - This verdict is for the LAKE. The Obey River tailwater below the dam (year-round 12-month
+      stocking, 2026 'best survey in years') is a separate catalog water — findings never transfer
+      in either direction.
+    - The reservoir crosses the Kentucky line; the lower pool near the dam is under Kentucky
+      regulations.
+    - Catalog's 'TWRA stocks brown trout here each spring (put-grow-take)' note matches only the
+      weekly-schedule side of a documented conflict — reword to present both sides.

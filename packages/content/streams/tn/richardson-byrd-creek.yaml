@@ -15,23 +15,51 @@ idealFlow:
     unit: cfs
 idealFlowSource: editorial
 notes: >-
-  TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. It runs down to the upper Clinch
-  River above the Norris pool.
+  TWRA spring-stocked Hancock County creek. Narrow, wooded, rain-flashy. It runs down to the upper
+  Clinch River above the Norris pool.
 
 
-  Regulations: TWRA statewide trout limits — 7 trout any combination, no size limit; water is NOT in TWRA
-  special-regulation list (retrieved 2026-09-14; verify current rules with TWRA before you go).
+  Regulations: TWRA statewide trout limits — 7 trout any combination, no size limit; water is NOT in
+  TWRA special-regulation list (retrieved 2026-09-14; verify current rules with TWRA before you go).
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["01269411", "01299343", "01299344"]
-  huc8s: ["06010205"]
-  counties: ["Hancock"]
+  gnisIds:
+    - "01269411"
+    - "01299343"
+    - "01299344"
+  huc8s:
+    - "06010205"
+  counties:
+    - Hancock
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's spring program stocks Richardson 'Byrd' Creek (Hancock County) with catchable
+    rainbow trout on four February-April stocking weeks in 2026; no year-round trout fishery is
+    documented on this narrow, rain-flashy Clinch tributary.
+  reachScope: whole stocked creek (Hancock County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 4 'Richardson 'Byrd' Creek' rows, Hancock County (Region 4), Seasonal, Rainbow Trout -
+        weeks 2/8, 3/1, 3/22, 4/12/2026; no Winter rows
+    - label: TWRA Trout Stocking Locations GIS layer (Hancock County)
+      url: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=upper(County)%3D%27HANCOCK%27
+      kind: schedule-table
+      retrieved: 2026-09-18
+      pinpoint: "Richardson 'Byrd' Creek sites #1-#4 (plus one removed site), program Spring, rainbow"
+  caveats:
+    - "2026 stocking weeks: February 8, March 1, March 22 and April 12 - fish soon after releases."
+    - "Spring-only put-and-take: no holdover or wild-trout documentation exists; TWRA's plan classes
+      hatchery-supported streams like this as unable to support trout year round."
+    - No Byrd/Richardson entry appears on TWRA's special-regulation lists; statewide trout rules
+      apply.

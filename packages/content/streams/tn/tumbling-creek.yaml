@@ -20,12 +20,39 @@ officialSources:
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations (always verify officially)
     url: https://www.tn.gov/twra/fishing.html
-seasonMonths:
-  - 12
-  - 1
-  - 2
-seasonKind: programmatic
 hydroIdentity:
-  gnisIds: ["00330062"]
-  huc8s: ["06020003"]
-  counties: ["Polk"]
+  gnisIds:
+    - "00330062"
+  huc8s:
+    - "06020003"
+  counties:
+    - Polk
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA's spring program stocks this Polk County Tumbling Creek with catchable rainbow trout
+    across three March-April stocking weeks in 2026; the shaded Cherokee NF creek has run cool in
+    the only available grabs (Aug 20.8 C / Sep 18.2 C), but no year-round fishery is documented.
+  reachScope: stocked reach past the USFS Tumbling Creek Campground (Polk County)
+  asOf: "2026"
+  sources:
+    - label: TWRA 2026 trout stocking schedule (audit capture of the live stocking table)
+      url: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json
+      kind: schedule-table
+      observationPeriod: 2026 stocking program
+      publicationDate: "2026"
+      retrieved: 2026-09-22
+      pinpoint: 3 Polk County 'Tumbling Creek' rows, Region 3, Seasonal, Rainbow Trout - weeks 3/1, 3/29,
+        4/26/2026 (observed months Mar/Apr)
+    - label: Tumbling Creek temperature record
+      url: https://www.waterqualitydata.us/data/Result/search?siteid=TDECWPC-TUMBL000.9PO&characteristicName=Temperature,%20water&mimeType=csv
+      kind: temperature-series
+      observationPeriod: 2006-2007
+      retrieved: 2026-09-18
+      pinpoint: 20.8 C (Aug 2006), 18.21 C (Sep 2006)
+  caveats:
+    - "2026 stocking weeks: March 1, March 29 and April 26 - fish soon after releases."
+    - No holdover or wild-trout documentation; the creek has zero 'Tumbling' entries on TWRA's
+      regulation lists.
+    - Shared Fishbrain 'Tumbling Creek' page needs segment review (namesakes in other states); lead
+      only.

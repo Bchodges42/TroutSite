@@ -1,0 +1,64 @@
+# red-river-clarksville.md — Red River, Clarksville reach (Montgomery County) / Billy Dunlop Park winter program
+
+Ledger verdict under test: `seasonal-stocked-trout`, months not pinned.
+Research pass: 2026-09-25 (all retrieval dates 2026-09-25 unless noted). Internal classification research only.
+
+## 1. Identity / reach / coordinates
+
+- Ledger water: Red River (Clarksville reach, Montgomery County, TN), Cumberland-drainage tributary. Main-stem GNIS name "Red River", GNIS ID 00501672.
+- Trout stocking destination on this ledger: **Billy Dunlop Park**, City of Clarksville park, 1930 E Boy Scout Rd, Clarksville TN 37040 (30 acres; fishing + Red River Blueway launch; dawn–dusk). City facility page: https://www.clarksvilletn.gov/Facilities/Facility/Details/Billy-Dunlop-Park-17
+- TWRA GIS stocking-site row (TWRA_Trout_Stocking_Locations FeatureServer, OBJECTID 666): Site_Name "Billy Dunlop Park", StreamName "Red River", Region 2, County MONTGOMERY, City Clarksville, StockingProgram "Winter", WaterClass "stream", Species "rainbow", NumStocked 1,700, Management "City", lat/long **36.6086759, -87.3676625**.
+  URL: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=1%3D1&outFields=*&f=json (local frozen copy `tmp/research/completion/arcgis_all.json`)
+- **Reach geometry (NHD, The National Map hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6, queried 2026-09-25):** the flowline passing THROUGH the TWRA park coordinates (0.00 km distance) is the **West Fork Red River** (GNIS ID 01269347, reachcode 05130206000215, FType 558 StreamRiver); the "Little West Fork" (GNIS 01291707) is also within 1.5 km. The main-stem Red River (GNIS 00501672) has no flowline near the park. The West Fork's southernmost (mouth-end) vertex is ~**36.5434, -87.3501**, where main-stem "Red River" flowlines are co-located = the West Fork–Red River confluence in Clarksville. So the stocked park water is the **West Fork Red River, ~7 river miles above its mouth**, i.e., a Red River tributary reach inside Clarksville — TWRA's "StreamName: Red River" label (and local "Red River" usage, e.g., city Blueway pages and the "Red River West Bend" kayak-launch naming) is imprecise but refers to the same West Fork corridor at the park.
+- Broad-river context: main-stem Red River from Port Royal State Historic Park NW through Clarksville to the Cumberland confluence (Trice Landing Park area) — no trout stocking site exists on it (see §3).
+
+## 2. Source-by-source evidence — Billy Dunlop Park winter stocking month-by-month
+
+All TWRA schedule rows below are PLANNED, date-level, Rainbow Trout, Clarksville/Montgomery, Region 2 winter program. Retrieval 2026-09-25; PDFs read from local copies (pages rendered to PNG where column layout garbled pdftotext).
+
+| Season | December date | Second date (Jan/Feb) | Months | Source (local file / URL) |
+|---|---|---|---|---|
+| 2012-13 | 12/12/2012 | 2/7/2013 | 12, 2 | state.tn.us "TWRA – Stocked Trout" page, monthly lists; Wayback captures 20130110152607, 20130110153610, 20150115023756, 20150412064001 (identical frozen 2012-13 schedule; `completion/st-*.html`; https://web.archive.org/web/20130110152607/http://www.state.tn.us/twra/fish/StreamRiver/stockedtrout/… ) |
+| 2013-14 | 12/11/2013 | 2/6/2014 | 12, 2 | "Winter Trout Stocking — Tentative dates 2013/2014, UPDATED 12/04/13" PDF; Wayback 20140112202400 (local `~/wintertrout2014.pdf` + rendered pages) |
+| 2014-15 | — | — | gap | no schedule recovered (Wayback captures not retrievable this pass) |
+| 2015-16 | — | — | gap | no schedule recovered |
+| 2016-17 | 12/7/2016 | 2/2/2017 | 12, 2 | TWRA news 2016-12-07 "2016-17 TWRA Winter Trout Stocking Underway" + 2017-01-05 "…Has Resumed" (local `~/news_2016_12_7*.html`, `~/news_2017_1_5*.html`; https://www.tn.gov/twra/news/2016/12/7/2016-17-twra-winter-trout-stocking-underway.html) |
+| 2017-18 | 12/6/2017 | 2/1/2018 | 12, 2 | TWRA news 2017-11-28 "…Schedule Set" + 2018-01-05 "…Winter Trout Stocking" (local `~/news_2017_11_28*.html`, `~/news_2018_1_5*.html`) |
+| 2018-19 | 12/5/2018 | 1/31/2019 | 12, 1 | TWRA news 2018-11-21 + 2019-01-08; "Winter Trout Stocking (2018-2019)" PDF (local `completion/winter_trout_2018.pdf`, pages 1-2 rendered: 12/5/2018 and 1/31/2019 rows; NO Feb 2019 row) |
+| 2019-20 | 12/11/2019 | 2/6/2020 | 12, 2 | "Winter Trout Stocking (2019-2020)" PDF (local `_work/winter-trout-stocking-report.pdf`; PDF metadata: author Brandon Simcox, created 2019-10-21; 12/11/2019 and 2/6/2020 rows; March 2020 table has NO Dunlop row) + TWRA news 2020-01-02 (lists 2/6/2020 and a tentative 3/20/2020 that the updated schedule dropped; March 2020 stockings were subsequently curtailed (COVID era)) |
+| 2020-21 | — | — | gap | page captures (2020-12-18, 2021-01-17) show only the spring-grid PDFs; no winter schedule recovered |
+| 2021-22 | 12/8/2021 | 2/3/2022 | 12, 2 | "winter-trout-schedule.pdf"; Wayback 20211220040958 (local `~/wtr_20211220040958.pdf`) — news releases of this era no longer carried site tables |
+| 2022-23 | 12/7/2022 | 2/2/2023 | 12, 2 | same PDF path; Wayback 20221217132301 (local `~/wtr_20221217132301.pdf`) |
+| 2023-24 | 12/6/2023 | 2/1/2024 | 12, 2 | same PDF path; Wayback 20231214082920 (local `~/wtr_20231214082920.pdf`) |
+| 2024-25 | 12/11/2024 | 2/6/2025 | 12, 2 | "TWRA-Winter-Trout-Schedule.pdf" titled "Winter Trout Stocking Program (2024-2025)" (PDF created 2025-02-21); Wayback 20251125225441 (local `~/wtr_2025_26.pdf`; note this capture still hosted the 2024-25 document in Nov 2025) |
+| 2025-26 | (not recovered) | (2026 calendar rows below) | 2 (+12 implied) | Dec 2025 row not recovered; Jan/Feb 2026 captures of the stockings page list Billy Dunlop Park among winter destinations (date pairing scrambled — destination-level) |
+| 2026 | TBD 12/2026 | 02/18/2026 | 12, 2 | TWRA 2026 trout stocking schedule JSON (616 rows; live tn.gov; local `completion/trout_2026_live.json`, text `schedule2026-jina.txt`): REGION 2 / Montgomery / Billy Dunlop Park / TYPE Winter / Rainbow Trout — 02/18/2026 and "TBD 12/2026". URL: https://www.tn.gov/twra/fishing/trout-information-stockings/_jcr_content/contentFullWidth/tn_complex_datatable_1990410459.exceldriven.json |
+
+Month summary across the 11 recovered seasons: **December in 11/11** (always the program's first wave); **February in 10/11** (2018-19's second event fell 1/31/2019 instead); **January** supported once (that 1/31/2019 event); **never November, never March** (the sole March item, 3/20/2020, was tentative and dropped). Program context: TWRA Trout Management Plan 2017-2027 (created 2017-11-02; Wayback copy of https://www.tn.gov/content/dam/tn/twra/documents/fishing/trout/Tennessee-Trout-Management-Plan-2017-2027.pdf , local `~/twra_tmp_2017_2027.pdf`, p.16): winter trout program "has grown to include 40 locations across the state **since 1999**… especially in urban areas in Regions 1, 2, and 3"; 93,000+ trout stocked in 2015-16. Billy Dunlop Park is one of the 40 sites. 2003–2011 Dunlop-level rows not recovered (Wayback/internet-archive was intermittently offline for older state.tn.us captures this pass) — gap noted; the 2012-13 season is the earliest direct evidence.
+
+### Completed-level and community corroboration
+- **iNaturalist observation 18851308** (research grade, Oncorhynchus mykiss), observed **2018-12-05** at "1930 E Boy Scout Rd, Clarksville, TN 37040" (±198 m of the park; -87.36432, 36.61072), description "Caught a few today." — same day as the planned 12/5/2018 stocking. URL: https://www.inaturalist.org/observations/18851308 (API query 2026-09-25). Completed-level corroboration of the December event. Type: community, MEDIUM-HIGH.
+- TWRA stockings page live captures 2026-01-06 and 2026-02-07 (Wayback; local `~/twp_2026*.html`) list "Billy Dunlop Park" in the winter destination block — destination-level completed evidence (page renders dates via AJAX; pairing scrambled). Same for cached Sept-2026 live copy (`completion/stockings-live.html.txt`).
+- TWRA coldwater completed reports (Jan 2019–Sept 2025 captures, `completion/scheds/cp-*.txt`, `_work/Cold-Water-Stocking.pdf`): no Billy Dunlop rows — these reports cover tailwater/spring streams, not the park program (negative that does not contradict).
+
+## 3. Broad Red River = warmwater (no trout)
+
+- **Zero trout on the main stem:** TWRA 2026 schedule JSON (616 rows) has NO "Red River" row of any type; annual spring grids 2010–2025 (local `completion/scheds/sched10-15*.txt`, `cp-20250208215445.txt` = "Trout Stocking (2025)", `complete2020.pdf` = 2021 grid) have no Montgomery stream row except "Fort Campbell Streams" (spring, 2025) — and the ArcGIS layer's Montgomery spring sites are on **Little West Fork Creek** (OBJECTIDs 8, 9, 10, 13), **Fletchers Fork** (12) and **Kinzer Pond** (14) — separate Fort Campbell waters (sibling logs exist), NOT the Red River. The 730-feature stocking layer contains no main-stem Red River trout site.
+- Warmwater/river fishery: Visit Clarksville, "The O-Fish-al Guide to Clarksville's Waterways" (retrieved 2026-09-25, https://www.visitclarksvilletn.com/blog-home/blog/stories/fishing-guide): Trice Landing Park "near the convergence of the Cumberland and Red Rivers" (boat ramp); TWRA-sourced angling text targets **catfish in the Red River from Port Royal to Clarksville**; local reports describe largemouth/smallmouth bass, channel/flathead catfish around the Red–Cumberland junction (ClarksvilleNow, ClarksvilleBiz — aggregator level). "Saugeye" in the Red could not be confirmed from an agency source (angler-level mentions only) — treat as unverified; sauger/walleye occur in the connected Cumberland system.
+- Community data: iNat (2026-09-25 API): zero Micropterus dolomieu within 5 km of the park (iNat bass coverage is sparse — weak negative); GBIF occurrence search (taxon O. mykiss, 10 km of park): 0 records. One iNat rainbow trout (123903447, 2022-06-27, "second trout I caught today… released") at 36.5298, -87.3595 in southern Clarksville ~8 km from the park — an isolated June holdover/relocation outlier on private water, not evidence of a river fishery.
+- The 2015-16 statement in the Trout Management Plan — winter program trout "will not survive the warm summer water temperatures" (echoed on TWRA's Cheatham page) — is TWRA's standing holdover position for winter-program sites.
+
+## 4. Contradictions / caveats
+- TWRA GIS StreamName "Red River" vs NHD GNIS "West Fork Red River" at the same point (agency label imprecise; geometry resolved via NHD — see §1).
+- 2018-19 season shifted the second event to Jan 31 (no Feb row) — months must include January for that season.
+- 2019-20: tentative 3/20/2020 date in the Jan-2020 news release was dropped from the updated schedule's March table.
+- 2014-15, 2015-16, 2020-21 and the Dec-2025 row are unrecovered gaps (not negative evidence); internet-archive.org was intermittently offline during this pass.
+- Local naming ("Red River" for the park's water; "Red River West Bend" launches) vs formal GNIS West Fork — reach discipline required: the stocked destination is the park reach of the West Fork Red River, not the broad main stem.
+
+## 5. Searches run (Red River — 10+)
+WebSearch: (1) "Billy Dunlop Park" trout stocking Clarksville; (2) "West Fork Red River" Clarksville Tennessee (rate-limited); (3) Red River Tennessee smallmouth bass fishery Clarksville TWRA (rate-limited); (4) "Billy Dunlop" trout stocking 2021/2022/2023 Clarksville winter; (5) Red River Clarksville saugeye smallmouth catfish fishery Tennessee; (6) newschannel9 winter trout schedule 2025 Billy Dunlop; (7) foxchattanooga winter trout 70,000 forty locations; (8) "Billy Dunlop Park" Clarksville fishing West Fork/Red River address; (9) "Red River" Clarksville catfish bass fishing boat ramp. Fallback engine/API queries: DuckDuckGo lite ×2, Mojeek, Bing (all bot-blocked), Wayback CDX ×4 (page, DAM tree, stockedtrout URLs), Wayback availability ×4. Direct data fetches: NHD MapServer ×4, TWRA ArcGIS FeatureServer (cached 730-row dump), iNaturalist API ×3, GBIF API ×1, jina reader ×1.
+
+## 6. Recommendation
+- Keep verdict `seasonal-stocked-trout` for the Red River ledger water, but scope it: the stocked entity is the **Billy Dunlop Park reach of the West Fork Red River in Clarksville** (TWRA OBJECTID 666); the broad main-stem Red River is unstocked warmwater (catfish/bass) and should not inherit trout months.
+- Pin months **[12, 1, 2]**: December universal (11/11 seasons), February near-universal (10/11), January only via the 1/31/2019 event. Do NOT pin November or March.
+- Catalog note should read: winter-stocked park reach (West Fork Red River at Billy Dunlop Park, Clarksville) within an otherwise warmwater Red River; Program Type Winter; species rainbow; ~1,700/season; management City of Clarksville; holdover not expected (TWRA harvest-encouragement stance for the winter program).
