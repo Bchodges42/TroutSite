@@ -103,6 +103,20 @@ else
   echo "[deploy] ingest script not present in apps/api yet — skipping"
 fi
 
+echo "[deploy] ingest stocking events (TWRA schedule feed)"
+# 2026-09-29 incident: the prerender gate refuses to publish when the stocking
+# snapshot is absent, but nothing below ever ingested stocking — so a database
+# without stocking rows (fresh host, wiped table) wedged EVERY deploy at
+# prerender with "feeds that would fall back to fixtures: stocking". Ingest it
+# here, same non-fatal contract as gauges: last-known rows survive a failure.
+if grep -q '"ingest"' apps/api/package.json; then
+  if ! pnpm --filter api ingest --job=stocking; then
+    echo "[deploy] WARN — stocking ingestion failed; publishing last-known stocking data"
+  fi
+else
+  echo "[deploy] ingest script not present in apps/api yet — skipping"
+fi
+
 echo "[deploy] regenerate snapshots"
 # ROLE 3 owns the real snapshot builder: v1/** (from the DB) + content/**
 # (from the built content pack). If this is skipped or fails, /v1/streams
