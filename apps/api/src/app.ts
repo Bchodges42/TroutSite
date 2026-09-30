@@ -10,7 +10,7 @@ import type { Db } from './db.js';
 import { latestJobRuns, jobDegradation } from './jobs/run.js';
 import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
-import { createGaugeNowCache, type GaugeNowCache } from './lib/gauge-now.js';
+import { createGaugeNowCache, GaugeNowBusyError, type GaugeNowCache } from './lib/gauge-now.js';
 
 export interface BuildAppOptions {
   logger?: boolean;
@@ -180,7 +180,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   // Map gauge layer: one live reading per tapped gauge. The gauge catalog is a
   // static asset (/atlas/gauges-tn.geojson); only the tapped gauge is fetched,
   // cached (TTL + negative + in-flight dedupe) and served stale if USGS is
-  // down — an upstream blip degrades, never 500s the map. On-demand route,
+  // down — an upstream blip degrades, never 500s the map. F14: the cache also
+  // bounds upstream fan-out (global concurrency cap + bounded wait queue);
+  // overflow answers 503 busy instead of piling up. On-demand route,
   // deliberately not part of the frozen /v1 snapshot surface.
   const gaugeNow = options.gaugesNow ?? createGaugeNowCache();
   app.get('/v1/gauges/:gaugeId/now', async (req, reply) => {
@@ -199,6 +201,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
         fetchedAt: new Date(entry.fetchedAt).toISOString(),
       };
     } catch (err) {
+      if (err instanceof GaugeNowBusyError) {
+        return reply.code(503).send({ error: 'gauge service busy, retry shortly' });
+      }
       req.log.warn({ err }, 'gauge-now: USGS fetch failed');
       return reply.code(502).send({ error: 'gauge source unavailable' });
     }
