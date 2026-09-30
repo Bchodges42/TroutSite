@@ -62,6 +62,9 @@ const TripsPage = lazy(() =>
 const CorrectionsPage = lazy(() =>
   import('./pages/CorrectionsPage').then((m) => ({ default: m.CorrectionsPage })),
 );
+const CorrectionsReviewPage = lazy(() =>
+  import('./pages/CorrectionsReviewPage').then((m) => ({ default: m.CorrectionsReviewPage })),
+);
 const SettingsPage = lazy(() =>
   import('./pages/SettingsPage').then((m) => ({ default: m.SettingsPage })),
 );
@@ -108,6 +111,8 @@ export function App() {
           <Route path="compare" element={<ComparePage />} />
           <Route path="trips" element={<TripsPage />} />
           <Route path="corrections" element={<CorrectionsPage />} />
+          {/* Moderator-only surface: token-gated per session, deliberately unlisted */}
+          <Route path="corrections/review" element={<CorrectionsReviewPage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="about" element={<AboutPrivacyPage />} />
           <Route path="fishing-info" element={<FishingInfoPage />} />

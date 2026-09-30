@@ -193,7 +193,7 @@ describe('F5 fishability emission', () => {
     expect(postTotal).toBeLessThan(90); // reduced vs no-spawn counterfactual
   }, 30_000);
 
-  function readSmallmouth(): FishabilitySnapshot['bySpecies'][string] {
+  function readSmallmouth(): NonNullable<FishabilitySnapshot['bySpecies']['smallmouth-bass']> {
     const snapshot = JSON.parse(
       readFileSync(join(env.snapshotsDir, 'v1', 'fishability', 'watauga-river.json'), 'utf8'),
     ) as FishabilitySnapshot;
@@ -342,8 +342,7 @@ describe('F5 fishability emission', () => {
 
     // /healthz gates ok on the fishability verdict (C1 semantics extended).
     const app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
-    return app
-      .ready()
+    return Promise.resolve(app.ready())
       .then(() => app.inject({ method: 'GET', url: '/healthz' }))
       .then((res) => {
         const body = res.json();

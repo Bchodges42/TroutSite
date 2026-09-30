@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import http from 'node:http';
+import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { buildApp } from '../src/app.js';
@@ -60,7 +61,7 @@ describe('conditional HEAD on static mounts (T0-1)', () => {
         webDistDir: join(dir, 'dist'),
       });
       await app.listen({ port: 0, host: '127.0.0.1' });
-      baseUrl = `http://127.0.0.1:${app.server.address().port}`;
+      baseUrl = `http://127.0.0.1:${(app.server.address() as AddressInfo).port}`;
 
       const get = await request('GET', path);
       expect(get.status).toBe(200);
@@ -89,7 +90,7 @@ describe('conditional HEAD on static mounts (T0-1)', () => {
       webDistDir: join(dir, 'dist'),
     });
     await app.listen({ port: 0, host: '127.0.0.1' });
-    baseUrl = `http://127.0.0.1:${app.server.address().port}`;
+    baseUrl = `http://127.0.0.1:${(app.server.address() as AddressInfo).port}`;
 
     for (const path of mounts) {
       const head = await request('HEAD', path);

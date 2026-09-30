@@ -9,6 +9,7 @@ import {
   StreamSchema,
   StockingEventSchema,
   scoreConditions,
+  type FishabilitySnapshot,
 } from '@trout/contracts';
 import { buildSnapshots, publishReportFeed, recentReports } from '../src/snapshots/build.js';
 import { runGaugesJob } from '../src/ingest/usgs.js';
@@ -88,7 +89,7 @@ describe('buildSnapshots', () => {
     const cutoff = new Date(NOW.getTime() - 90 * 86_400_000).toISOString().slice(0, 10);
     for (const e of recentStocking) expect(e.date >= cutoff).toBe(true);
     for (let i = 1; i < recentStocking.length; i += 1) {
-      expect(recentStocking[i - 1].date >= recentStocking[i].date).toBe(true);
+      expect(recentStocking[i - 1]!.date >= recentStocking[i]!.date).toBe(true);
     }
     expect(result.stockingRecentByState.TN).toBe(recentStocking.length);
 
@@ -610,7 +611,7 @@ describe('pressure context freshness (F48)', () => {
       );
   }
 
-  function readFishability(): FishabilitySnapshotSchema['_output'] {
+  function readFishability(): FishabilitySnapshot {
     return FishabilitySnapshotSchema.parse(
       JSON.parse(readFileSync(join(env.snapshotsDir, 'v1', 'fishability', 'watauga-river.json'), 'utf8')),
     );

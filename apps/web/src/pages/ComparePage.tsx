@@ -90,7 +90,7 @@ export function ComparePage() {
 
   // Same catalog authority every other surface uses (live feed → Dexie → pack).
   const streamsQ = useStreamsCatalog(60 * 24);
-  const streams = (streamsQ.data?.data ?? []) as Stream[];
+  const streams = useMemo(() => (streamsQ.data?.data ?? []) as Stream[], [streamsQ.data]);
   const conditionsQ = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsSchema, 60);
   const stockingQ = useSnapshotQuery(snapshotUrls.stocking('TN'), StockingSchema, 60 * 24);
 
@@ -100,7 +100,7 @@ export function ComparePage() {
     return m;
   }, [conditionsQ.data]);
 
-  const stockingEvents = stockingQ.data?.data ?? [];
+  const stockingEvents = useMemo(() => stockingQ.data?.data ?? [], [stockingQ.data]);
   const stockingByStream = useMemo(() => {
     if (!streams.length) return new Map<string, StockingEvent[]>();
     return matchStocking(streams, stockingEvents).byStream;

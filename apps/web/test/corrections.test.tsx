@@ -11,12 +11,10 @@ import {
 } from '../src/features/corrections/correctionSchema';
 import type { CorrectionSubmission } from '../src/features/corrections/correctionSchema';
 import {
-  CorrectionForm,
   CorrectionTransportUnavailable,
   defaultPostCorrection,
 } from '../src/features/corrections/CorrectionForm';
 import {
-  CorrectionStatus,
   RECEIPT_CODE_RE,
   defaultFetchCorrectionStatus,
   normalizeReceiptCode,

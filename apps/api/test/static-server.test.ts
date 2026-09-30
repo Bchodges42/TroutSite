@@ -1,4 +1,8 @@
-import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
+import { spawn, type ChildProcessByStdio } from 'node:child_process';
+import type { Readable } from 'node:stream';
+
+/** spawn with stdio ['ignore','pipe','pipe'] — stdin is null by construction. */
+type StaticServerProcess = ChildProcessByStdio<null, Readable, Readable>;
 import http from 'node:http';
 import { createServer } from 'node:net';
 import { fileURLToPath } from 'node:url';
@@ -24,7 +28,7 @@ async function freePort(): Promise<number> {
 async function startStaticServer(
   distDir: string,
   args: string[] = [],
-): Promise<{ child: ChildProcessWithoutNullStreams; port: number }> {
+): Promise<{ child: StaticServerProcess; port: number }> {
   const port = await freePort();
   const child = spawn(process.execPath, [staticServer, distDir, String(port), ...args], {
     cwd: repoRoot,
@@ -47,7 +51,7 @@ async function startStaticServer(
 
 describe('secondary-origin static server path safety', () => {
   let tempDir: string | undefined;
-  let child: ChildProcessWithoutNullStreams | undefined;
+  let child: StaticServerProcess | undefined;
 
   afterEach(() => {
     child?.kill();
@@ -116,7 +120,7 @@ function isTerminalReset(err: NodeJS.ErrnoException): boolean {
 
 describe('portal proxy body limits (T2-45)', () => {
   let tempDir: string | undefined;
-  let child: ChildProcessWithoutNullStreams | undefined;
+  let child: StaticServerProcess | undefined;
   let upstream: ReturnType<typeof createUpstreamSpy> | undefined;
 
   function createUpstreamSpy() {

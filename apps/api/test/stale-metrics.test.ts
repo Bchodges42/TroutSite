@@ -65,9 +65,9 @@ describe('T1-6: stale gauge metrics must not wear a fresh timestamp', () => {
 
   it('does the same for the evidence bridge (TVA/USACE observations)', () => {
     const obs: WaterObservation[] = [
-      { metric: 'discharge-cfs', value: 150, observedAt: MONTH_AGO },
-      { metric: 'temperature-c', value: 12, observedAt: MONTH_AGO },
-      { metric: 'stage-ft', value: 2, observedAt: NOW_ISO },
+      { metric: 'discharge-cfs', value: 150, observedAt: MONTH_AGO, sourceUrl: 'https://www.tva.com/environment/lake-levels', sourceId: 'tva:NRST1' },
+      { metric: 'temperature-c', value: 12, observedAt: MONTH_AGO, sourceUrl: 'https://www.tva.com/environment/lake-levels', sourceId: 'tva:NRST1' },
+      { metric: 'stage-ft', value: 2, observedAt: NOW_ISO, sourceUrl: 'https://www.tva.com/environment/lake-levels', sourceId: 'tva:NRST1' },
     ];
     const built = buildConditionsReading('tva:NRST1', 'tva-restapi', obs);
     expect(built).not.toBeNull();

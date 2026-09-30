@@ -45,9 +45,11 @@ describe('App.tsx lazy route boundaries (source level)', () => {
 
   it('wraps every route page in lazy(() => import(…))', () => {
     const lazyCount = [...appSource.matchAll(/=\s*lazy\(\(\)\s*=>/g)].length;
-    // 18 routes in App: 16 unique page components (FishingInfoPage is reused
-    // by /fishing-info and /regulations) + MapPage + BrowsePage.
-    expect(lazyCount).toBe(16);
+    // 23 routes in App: 21 unique page components (FishingInfoPage is reused
+    // by /fishing-info and /regulations; the site-improvement line adds
+    // MyWaters, Compare, Trips, Corrections, CorrectionsReview) + MapPage +
+    // BrowsePage.
+    expect(lazyCount).toBe(21);
     expect(appSource).toContain('<Suspense fallback={<RouteFallback />}>');
   });
 

@@ -206,6 +206,16 @@ describe('scoreFishability properties (seeded, deterministic)', () => {
   }
 
   function isBandOrderValid(b: SpeciesComfortBands): boolean {
+    if (
+      b.lethalLow === undefined ||
+      b.avoidanceLow === undefined ||
+      b.optimalLow === undefined ||
+      b.optimalHigh === undefined ||
+      b.avoidanceHigh === undefined ||
+      b.lethalHigh === undefined
+    ) {
+      return false;
+    }
     return (
       b.lethalLow < b.avoidanceLow &&
       b.avoidanceLow < b.optimalLow &&
