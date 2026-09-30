@@ -29,11 +29,22 @@ import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
 import { OpportunityCard } from '../features/map/OpportunityCard';
 import { FishabilityCard } from '../components/FishabilityCard';
+import { buildSurfaceOverview } from '../features/waters/buildSurfaceOverview';
+import { WaterOverviewCard } from '../features/waters/WaterOverviewCard';
+import { ReleasesPanel } from '../features/waters/ReleasesPanel';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
 const CONDITIONS_TTL_MIN = 60;
+
+/** Newest observed discharge for the releases panel's separate observed series. */
+function deriveLatestFlow(snapshot: ConditionSnapshot | null | undefined): { valueCfs: number; observedAt: string } | null {
+  const withCfs = (snapshot?.readings ?? []).filter((r) => typeof r.cfs === 'number');
+  const newest = [...withCfs].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+  if (!newest || typeof newest.cfs !== 'number') return null;
+  return { valueCfs: newest.cfs, observedAt: newest.timestamp };
+}
 
 /** Stream detail (scope 4): readings, score + reasons, what changed, official links. */
 export function StreamDetailPage() {
@@ -139,6 +150,26 @@ export function StreamDetailPage() {
     : null;
   const seasonal = decision ? seasonalChipText(decision) : null;
 
+  // Water Overview (ADR 0013): the same composed overview the map inspector
+  // leads with, built from the data this page already holds.
+  const overviewSurface = buildSurfaceOverview({
+    stream,
+    snapshot: snapshot ?? null,
+    status,
+    score: snapshot ? snapshot.score.value : null,
+    species: stream.species,
+    mode: decisionMode,
+    month,
+    live: conditionsQuery.data?.live ?? false,
+    nowMs: Date.now(),
+    lastStockingEvent: stockingEvents[0]
+      ? { date: stockingEvents[0].date, species: stockingEvents[0].species }
+      : undefined,
+  });
+
+  // Newest observed discharge for the releases panel's separate observed series.
+  const latestObservedFlow = deriveLatestFlow(snapshot);
+
   return (
     <main className="page">
       <RiverContextBar />
@@ -167,6 +198,21 @@ export function StreamDetailPage() {
           observedAt={newestReadingAt(snapshot?.readings ?? [])}
           nextExpectedAt={snapshot ? Date.parse(snapshot.nextExpectedUpdate) : null} />
       </div>
+
+      <WaterOverviewCard
+        overview={overviewSurface.overview}
+        variant="full"
+        decisionContext={{ species: stream.species, status }}
+        className="mt-4"
+      />
+
+      {overviewSurface.overview.releases.applicable && (
+        <ReleasesPanel
+          streamId={stream.id}
+          latestFlow={latestObservedFlow}
+          className="mt-4"
+        />
+      )}
 
       <OpportunityCard stream={stream} species={stream.species} mode={decisionMode} month={month} />
 

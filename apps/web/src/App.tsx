@@ -10,6 +10,8 @@ import { StreamDetailPage } from './pages/StreamDetailPage';
 import { StockingPage } from './pages/StockingPage';
 import { ShopsPage } from './pages/ShopsPage';
 import { LogbookPage } from './pages/LogbookPage';
+import { MyWatersPage } from './pages/MyWatersPage';
+import { ComparePage } from './pages/ComparePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AboutPrivacyPage } from './pages/AboutPrivacyPage';
 import { FishingInfoPage } from './pages/FishingInfoPage';
@@ -35,6 +37,8 @@ export function App() {
         <Route path="stocking" element={<StockingPage />} />
         <Route path="shops" element={<ShopsPage />} />
         <Route path="logbook" element={<LogbookPage />} />
+        <Route path="my-waters" element={<MyWatersPage />} />
+        <Route path="compare" element={<ComparePage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="about" element={<AboutPrivacyPage />} />
         <Route path="fishing-info" element={<FishingInfoPage />} />

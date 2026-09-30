@@ -15,6 +15,8 @@ import { OpportunityCard } from './OpportunityCard';
 import { FishabilityCard } from '../../components/FishabilityCard';
 import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
+import { buildSurfaceOverview } from '../waters/buildSurfaceOverview';
+import { WaterOverviewCard } from '../waters/WaterOverviewCard';
 import { db } from '../../lib/db';
 import { firstPartyPhotoUrl } from '../../lib/media';
 import { BookIcon, BugIcon, CloseIcon, WavesIcon } from '../../components/icons';
@@ -222,8 +224,37 @@ function WaterTab({
             'Assessment based on the available gauge readings.');
   const dominant = feature.hatchDominant;
   const taxon = pack.data?.taxa.find((t) => t.id === dominant?.taxonId);
+  // Water Overview (ADR 0013): the same composed overview the detail page
+  // leads with, built here from the data this tab already holds.
+  const surface = buildSurfaceOverview({
+    stream: feature.stream,
+    snapshot: feature.snapshot ?? null,
+    status: feature.status,
+    score: feature.score,
+    species: feature.stream.species,
+    mode: settings.speciesMode,
+    month,
+    live,
+    nowMs: Date.now(),
+    fishability: feature.fishability,
+    lastStockingEvent: feature.stocking
+      ? { date: feature.stocking.date, species: feature.stocking.species }
+      : undefined,
+  });
   return (
     <>
+      <WaterOverviewCard
+        overview={surface.overview}
+        variant="compact"
+        decisionContext={{
+          species: feature.species,
+          status: feature.status,
+          fishability: feature.fishability,
+        }}
+        hatchHref={riverWorkflowUrl('/hatch-key', feature.stream, month)}
+        logbookHref={riverWorkflowUrl('/logbook', feature.stream, month)}
+        className="mb-3"
+      />
       <OpportunityCard stream={feature.stream} species={feature.species} mode={settings.speciesMode} month={month} />
       <div
         className="assessment"

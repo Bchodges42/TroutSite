@@ -88,10 +88,11 @@ describe('T2-37/38 — mobile-first water detail and dense browse rows', () => {
 
   it('gauge history renders in a mobile disclosure and a desktop table block', { timeout: 20_000 }, async () => {
     page(<DetailRoutes />, '/conditions/harpeth-river');
-    await screen.findByText('Harpeth River');
+    // Scope to the page h1 — the Water Overview card also shows the water name.
+    await screen.findByRole('heading', { level: 1, name: 'Harpeth River' });
     // Both the mobile disclosure and the desktop block render in the DOM
-    // (CSS hides one) — wait on the live table, not on ambiguous text.
-    await screen.findByText('Harpeth River', {}, { timeout: 12_000 });
+    // (CSS hides one); the waitFor below polls the live table, and the
+    // overview card's own "Gauge readings" label makes text waits ambiguous.
     const disclosure = await waitFor(
         () => {
           const el = document.querySelector('details.gauge-disclosure');

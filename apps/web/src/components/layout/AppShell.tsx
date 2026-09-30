@@ -15,10 +15,12 @@ import { SPRING } from '../motion/atlas-motion';
 import {
   BookIcon,
   BugIcon,
+  ChartIcon,
   CloseIcon,
   FishIcon,
   GearIcon,
   ListIcon,
+  LocationIcon,
   MenuIcon,
   ShieldIcon,
   ShopIcon,
@@ -34,8 +36,10 @@ import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
 // Logbook) — the session-3 promotion: it answers "can I fish this legally"
 // before the utility pages below it.
 const moreLinks = [
+  { to: '/my-waters', label: 'My Waters', Icon: LocationIcon },
   { to: '/regulations', label: 'Regulations', Icon: ListIcon },
   { to: '/conditions', label: 'Conditions', Icon: WavesIcon },
+  { to: '/compare', label: 'Compare waters', Icon: ChartIcon },
   { to: '/charts', label: 'Hatch calendar', Icon: BugIcon },
   { to: '/stocking', label: 'Stocking schedules', Icon: FishIcon },
   { to: '/shops', label: 'Shops & reports', Icon: ShopIcon },
