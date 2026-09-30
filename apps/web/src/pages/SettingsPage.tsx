@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card } from '@trout/ui';
+import { Button, Card, Chip } from '@trout/ui';
 import { useSettingsContext } from '../lib/settings';
 import { SPECIES_LABELS } from '../lib/fishability';
 import { clearCachedSnapshots } from '../lib/db';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { useTheme } from '../theme/ThemeProvider';
 import { colorValue, customColorControls, themes, type CustomColorKey } from '../theme/themes';
+import { usePackManager, useStorageEstimate } from '../features/downloads/usePackManager';
+import { PackStatus } from '../features/downloads/PackStatus';
+import { DownloadButton } from '../features/downloads/DownloadButton';
 
 function CustomColorField({
   theme,
@@ -33,12 +36,16 @@ function CustomColorField({
   );
 }
 
-/** Settings (scope 8): units, appearance, default state, and reduce-motion. */
+/** Settings (scope 8): units, appearance, default state, reduce-motion,
+ *  and — since the packs lane — the downloaded offline packs (ADR 0012). */
 export function SettingsPage() {
   const { theme, setTheme, customColors, setCustomColor, resetCustomColors } = useTheme();
   const { settings, update } = useSettingsContext();
   const { canInstall, installed, promptInstall } = useInstallPrompt();
   const [cleared, setCleared] = useState(false);
+  const packs = usePackManager();
+  const estimate = useStorageEstimate();
+  const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
 
   return (
     <main className="page">
@@ -247,6 +254,64 @@ export function SettingsPage() {
             </span>
           )}
         </div>
+      </Card>
+
+      <h2 className="section-title">Downloaded packs</h2>
+      <Card>
+        <p className="text-sm">
+          Offline packs pin a water&apos;s or a trip&apos;s guides, conditions, hatch chart, and map
+          tiles in this browser so they open in airplane mode. Download them from a trip or a saved
+          water; this page verifies and removes them. Removing a pack deletes only its downloaded
+          copies — your logbook, saved waters, trips, and photos are never touched.
+        </p>
+        {estimate && (
+          <p className="muted mt-2 text-sm" data-testid="pack-storage-estimate">
+            This device uses {Math.round(estimate.usage / 1e6)} MB of about{' '}
+            {Math.round(estimate.quota / 1e6)} MB offered to this site.
+          </p>
+        )}
+        {offline && (
+          <p className="muted mt-2 text-sm" role="status">
+            You are offline — downloading needs a connection, but verifying and removing do not.
+          </p>
+        )}
+        {packs.manifests === undefined ? (
+          <p className="muted mt-3 text-sm" role="status">
+            Loading packs…
+          </p>
+        ) : packs.manifests.length === 0 ? (
+          <p className="muted mt-3 text-sm">
+            No packs downloaded yet — open a trip or a saved water and choose Download.
+          </p>
+        ) : (
+          <ul className="mt-3 flex flex-col gap-4" aria-label="Downloaded packs">
+            {packs.manifests.map((manifest) => (
+              <li
+                key={manifest.id}
+                className="flex flex-col gap-2 border-t pt-3 first:border-0 first:pt-0"
+                style={{ borderColor: 'var(--trout-color-border)' }}
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <strong className="text-sm">{manifest.label}</strong>
+                  <Chip>{manifest.kind === 'trip' ? 'Trip pack' : 'Water pack'}</Chip>
+                  <div className="ml-auto">
+                    <DownloadButton
+                      manifest={manifest}
+                      busy={packs.busyId === manifest.id}
+                      progress={packs.progress}
+                      offline={offline}
+                      onDownload={() => void packs.redownload(manifest)}
+                      onRedownload={() => void packs.redownload(manifest)}
+                      onVerify={() => void packs.verifyPack(manifest)}
+                      onRemove={() => void packs.removePack(manifest)}
+                    />
+                  </div>
+                </div>
+                <PackStatus manifest={manifest} />
+              </li>
+            ))}
+          </ul>
+        )}
       </Card>
 
       <p className="mt-6 text-sm">

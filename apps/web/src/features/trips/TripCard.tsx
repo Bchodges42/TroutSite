@@ -12,8 +12,12 @@ import {
   updateTrip,
 } from '../../lib/trips';
 import { shortDate } from '../../lib/time';
+import { tripManifestId } from '../../lib/downloadManifests';
 import type { MyWatersSharedData } from '../myWaters/useMyWatersData';
 import { TripWaterLine } from './TripWaterLine';
+import { DownloadButton } from '../downloads/DownloadButton';
+import { PackStatus } from '../downloads/PackStatus';
+import { usePackManager } from '../downloads/usePackManager';
 import {
   buildTripCopyText,
   packChip,
@@ -50,10 +54,16 @@ export function TripCard({
   conditionsLoading,
 }: TripCardProps) {
   const [open, setOpen] = useState(false);
+  const manager = usePackManager();
   const timing = tripTiming(trip.date);
   const done = trip.checklist.filter((i) => i.done).length;
   const chip = packChip(pack);
   const logbookHref = trip.waterIds[0] ? `/logbook?stream=${trip.waterIds[0]}` : '/logbook';
+  const manifest = manager.manifests?.find((m) => m.id === tripManifestId(trip.id));
+  const busy = manager.busyId === tripManifestId(trip.id);
+  const tripStreams = trip.waterIds
+    .map((id) => streamsById.get(id))
+    .filter((s): s is Stream => s !== undefined);
 
   const copyPlan = () => {
     if (!navigator.clipboard) {
@@ -141,21 +151,38 @@ export function TripCard({
             )}
           </section>
 
-          {pack.hasManifest && (
-            <section>
-              <h4 className={sectionTitle}>Offline packs</h4>
-              <ul className="mt-1 flex flex-col gap-1" aria-label={`Offline packs for ${trip.title}`}>
-                {pack.manifests.map((m) => (
-                  <li key={m.id} className="text-sm">
-                    <strong>{m.label}</strong> — {packSectionText(m.readiness)}
-                  </li>
-                ))}
-              </ul>
-              <p className="muted mt-1 text-sm">
-                Display only — pack downloads arrive in a later update.
-              </p>
-            </section>
-          )}
+          <section>
+            <h4 className={sectionTitle}>Offline packs</h4>
+            <div className="mt-1">
+              <DownloadButton
+                manifest={manifest}
+                busy={busy}
+                progress={manager.progress}
+                offline={typeof navigator !== 'undefined' && navigator.onLine === false}
+                onDownload={() => void manager.downloadTrip(trip, tripStreams)}
+                onRedownload={manifest ? () => void manager.downloadTrip(trip, tripStreams) : undefined}
+                onVerify={manifest ? () => void manager.verifyPack(manifest) : undefined}
+                onRemove={manifest ? () => void manager.removePack(manifest) : undefined}
+              />
+            </div>
+            <ul className="mt-1 flex flex-col gap-1" aria-label={`Offline packs for ${trip.title}`}>
+              {pack.manifests.map((m) => (
+                <li key={m.id} className="text-sm">
+                  <strong>{m.label}</strong> — {packSectionText(m.readiness)}
+                </li>
+              ))}
+            </ul>
+            {manifest && (
+              <div className="mt-2">
+                <PackStatus manifest={manifest} />
+              </div>
+            )}
+            <p className="muted mt-1 text-sm">
+              A pack pins the waters&apos; guides, conditions, hatch charts, and map tiles in this
+              browser. Your notes and checklist stay private, and removing a pack never touches
+              them.
+            </p>
+          </section>
 
           <ChecklistSection trip={trip} />
           <PlanEditor trip={trip} />

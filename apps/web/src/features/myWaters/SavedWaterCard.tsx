@@ -13,6 +13,9 @@ import { ageMinutes } from '../../lib/time';
 import { formatFlow, formatHeight, formatTemp } from '../../lib/units';
 import { buildWaterOverview } from '../../lib/waterOverview';
 import { setWaterGroups, unsaveWater } from '../../lib/savedWaters';
+import { waterManifestId } from '../../lib/downloadManifests';
+import { DownloadButton } from '../downloads/DownloadButton';
+import { usePackManager } from '../downloads/usePackManager';
 import type { MyWatersSharedData } from './useMyWatersData';
 
 export interface SavedWaterCardProps {
@@ -56,6 +59,7 @@ export function SavedWaterCard({
   speciesMode,
 }: SavedWaterCardProps) {
   const [editingGroups, setEditingGroups] = useState(false);
+  const manager = usePackManager();
   const found = catalogState === 'found' && stream !== undefined;
   const retired = catalogState === 'missing';
 
@@ -97,6 +101,9 @@ export function SavedWaterCard({
 
   const memberOf = groups.filter((g) => saved.groupIds.includes(g.id));
   const displayName = overview?.identity.name ?? saved.nameSnapshot;
+  const waterPack = found
+    ? manager.manifests?.find((m) => m.id === waterManifestId(saved.waterId))
+    : undefined;
 
   const toggleGroup = (groupId: string, member: boolean) => {
     void setWaterGroups(
@@ -205,6 +212,18 @@ export function SavedWaterCard({
         >
           {editingGroups ? 'Close groups' : 'Edit groups'}
         </button>
+        {found && stream && (
+          <DownloadButton
+            manifest={waterPack}
+            busy={manager.busyId === waterManifestId(saved.waterId)}
+            progress={manager.progress}
+            offline={typeof navigator !== 'undefined' && navigator.onLine === false}
+            onDownload={() => void manager.downloadWater(stream)}
+            onRedownload={waterPack ? () => void manager.downloadWater(stream) : undefined}
+            onVerify={waterPack ? () => void manager.verifyPack(waterPack) : undefined}
+            onRemove={waterPack ? () => void manager.removePack(waterPack) : undefined}
+          />
+        )}
         <ConfirmButton
           label="Remove"
           confirmLabel="Remove from My Waters"
