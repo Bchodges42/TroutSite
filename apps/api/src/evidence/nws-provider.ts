@@ -63,11 +63,20 @@ export interface NwsPressurePoint {
   hPa: number;
 }
 
+/** NWS quantitative-value object — the live shape for every measured field. */
+interface NwsQuantityJson {
+  value?: number | null;
+  unitCode?: string;
+  qualityControl?: string;
+}
+
 interface NwsObservationPropertiesJson {
   timestamp?: string;
-  barometricPressure?: { value?: number | null; unitCode?: string };
-  seaLevelPressure?: { value?: number | null; unitCode?: string };
-  precipitationLast3Hours?: number | null;
+  barometricPressure?: NwsQuantityJson;
+  seaLevelPressure?: NwsQuantityJson;
+  /** F37: the live field is a quantitative-value OBJECT ({unitCode,value}) or
+   *  null — never the bare scalar an earlier unit test invented. */
+  precipitationLast3Hours?: NwsQuantityJson | null;
 }
 
 interface NwsObservationsJson {
@@ -118,18 +127,42 @@ export interface NwsPrecipitationPoint {
   precipitationMm: number;
 }
 
-/** Parse NWS's measured rolling three-hour precipitation field (mm). */
+/**
+ * Parse NWS's measured rolling three-hour precipitation field (mm).
+ *
+ * F37: the live field is a quantitative-value object — the official KBNA
+ * observation shows precipitationLast3Hours={unitCode:'wmoUnit:mm',value:null,
+ * qualityControl:'Z'} — so the value and unit are read from the OBJECT. A null
+ * value means no measurement this window (absent stays absent — never
+ * zero-filled); documented units are accepted and converted (wmoUnit:mm kept,
+ * wmoUnit:in → ×25.4) and anything else is skipped rather than guessed.
+ */
 export function parseNwsPrecipitation(payload: unknown): NwsPrecipitationPoint[] {
   const features = (payload as NwsObservationsJson)?.features ?? [];
   const byTime = new Map<string, NwsPrecipitationPoint>();
   for (const f of features) {
     const p = f?.properties;
     const ts = p?.timestamp;
-    const value = p?.precipitationLast3Hours;
-    if (typeof ts !== 'string' || typeof value !== 'number' || !Number.isFinite(value) || value < 0) continue;
-    if (!Number.isNaN(Date.parse(ts))) byTime.set(ts, { observedAt: ts, precipitationMm: value });
+    if (typeof ts !== 'string' || Number.isNaN(Date.parse(ts))) continue;
+    const q = p?.precipitationLast3Hours;
+    if (!q || typeof q !== 'object') continue;
+    const value = q.value;
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) continue;
+    let mm: number;
+    if (typeof q.unitCode === 'string' && /^(wmo)?unit:mm$/i.test(q.unitCode)) {
+      mm = value;
+    } else if (typeof q.unitCode === 'string' && /^(wmo)?unit:in$/i.test(q.unitCode)) {
+      mm = value * 25.4;
+    } else {
+      continue; // undocumented unit — missing stays missing, never guessed
+    }
+    byTime.set(ts, { observedAt: ts, precipitationMm: Math.round(mm * 10) / 10 });
   }
-  return [...byTime.values()].sort((a, b) => a.observedAt.localeCompare(b.observedAt));
+  // Instant order (the Wave-1 F34 discipline): never localeCompare on mixed
+  // offsets, even though live NWS stamps are uniform Z.
+  return [...byTime.values()].sort(
+    (a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt),
+  );
 }
 
 export type PressureTrendDirection = 'rising' | 'falling' | 'stable';

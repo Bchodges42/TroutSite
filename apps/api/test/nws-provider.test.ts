@@ -36,15 +36,30 @@ describe('parseNwsPressure', () => {
     expect(parseNwsPressure(undefined)).toEqual([]);
   });
 
-  it('parses the verified precipitationLast3Hours field as measured millimetres', () => {
+  it('parses the authentic quantitative-value precipitation object (F37): mm kept, documented in converted, null = no-data', () => {
+    // F37 reproduction: the LIVE field is a quantitative-value object — the
+    // official KBNA response shows precipitationLast3Hours=
+    // {unitCode:'wmoUnit:mm', value:null, qualityControl:'Z'} — and the old
+    // scalar-only parser returned [] for a measured 4.2 in exactly that shape.
+    expect(parseNwsPrecipitation(JSON.parse(readFixture('NWS/observations-kbna.json')))).toEqual([
+      // 0.1 in documented in wmoUnit:in → 2.54 mm → 2.5 (rounded to 0.1 mm)
+      { observedAt: '2026-09-12T15:00:00+00:00', precipitationMm: 2.5 },
+      { observedAt: '2026-09-12T16:00:00+00:00', precipitationMm: 4.2 },
+    ]);
+    // The 13:00/17:00 null-value windows stay absent (no-data is never zero-filled).
+  });
+
+  it('skips non-object, negative and undocumented-unit precipitation values (missing stays missing)', () => {
     expect(
       parseNwsPrecipitation({
         features: [
-          { properties: { timestamp: '2026-09-12T16:00:00Z', precipitationLast3Hours: 4.2 } },
-          { properties: { timestamp: '2026-09-12T17:00:00Z', precipitationLast3Hours: null } },
+          { properties: { timestamp: '2026-09-12T14:00:00Z', precipitationLast3Hours: 4.2 } },
+          { properties: { timestamp: '2026-09-12T15:00:00Z', precipitationLast3Hours: { unitCode: 'wmoUnit:mm', value: -1 } } },
+          { properties: { timestamp: '2026-09-12T16:00:00Z', precipitationLast3Hours: { unitCode: 'wmoUnit:degC', value: 20 } } },
+          { properties: { timestamp: '2026-09-12T17:00:00Z', precipitationLast3Hours: { value: 1 } } },
         ],
       }),
-    ).toEqual([{ observedAt: '2026-09-12T16:00:00Z', precipitationMm: 4.2 }]);
+    ).toEqual([]);
   });
 });
 
@@ -145,6 +160,32 @@ describe('runPressureJob', () => {
     expect(row.pressure_hpa).toBe(1014.5);
     expect(row.trend_hpa_3h).toBe(-2.5);
     expect(row.trend_direction).toBe('falling');
+    expect(row.station).toBe('KGKT');
+    // ktys fixture carries no precipitation — rain stays absent, never zeroed.
+    expect(result.rainStored).toBe(0);
+  });
+
+  it('stores the newest measured rain window per region and skips null-value windows (F37)', async () => {
+    const stations: Record<string, { status: number; body: string }> = {};
+    for (const { station } of Object.values(NWS_PRESSURE_STATIONS)) {
+      stations[station] = { status: 200, body: readFixture('NWS/observations-kbna.json') };
+    }
+    const f = serving(stations);
+    const result = await runPressureJob(env.db, {
+      userAgent: 'trout-test/1.0 (test@example.com)',
+      fetchImpl: f.fetchImpl,
+      now: NOW,
+    });
+    // 16:00Z (65 min old at NOW) is the newest MEASURED window; the newer
+    // 17:00Z null window must not blank it, and every region gets the row.
+    expect(result.rainStored).toBe(Object.keys(NWS_PRESSURE_STATIONS).length);
+    const row = env.db.prepare('SELECT * FROM region_precipitation WHERE region_id = ?').get('tn-east-smokies') as {
+      observed_at: string;
+      precipitation_mm: number;
+      station: string;
+    };
+    expect(row.observed_at).toBe('2026-09-12T16:00:00+00:00');
+    expect(row.precipitation_mm).toBe(4.2);
     expect(row.station).toBe('KGKT');
   });
 
