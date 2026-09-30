@@ -454,11 +454,15 @@ export function RiverMapPage() {
     <div className="filter-row" aria-label="Filter waters">
       {/* T2-23: species and assessed are INDEPENDENT dimensions — each chip
       toggles only its own URL param, so "assessed-only warmwater" is
-      expressible and no chip silently resets the other. */}
+      expressible and no chip silently resets the other. F43: a Trout press
+      writes an EXPLICIT species=trout override — deleting the param would
+      fall back to the saved speciesMode and leave the saved All-fish
+      preference unoverridable. Only the site-wide header toggle returns to
+      the saved default by removing the param. */}
       <button
         className="filter-chip"
         aria-pressed={species === 'trout'}
-        onClick={() => update({ species: null })}
+        onClick={() => update({ species: 'trout' })}
       >
         Trout
       </button>
@@ -871,7 +875,7 @@ export function RiverMapPage() {
               <button
                 className="map-tool"
                 aria-pressed={species === 'trout'}
-                onClick={() => update({ species: null })}
+                onClick={() => update({ species: 'trout' })}
               >
                 Trout
               </button>
@@ -908,7 +912,9 @@ export function RiverMapPage() {
                 ariaLabel="Species"
                 size="sm"
                 value={species}
-                onChange={(s) => update({ species: s === 'all' ? 'all' : null })}
+                // F43: Trout is an explicit URL override, never a param
+                // deletion that would fall back to the saved speciesMode.
+                onChange={(s) => update({ species: s })}
                 options={[
                   { value: 'trout', label: 'Trout' },
                   { value: 'all', label: 'All fish' },
