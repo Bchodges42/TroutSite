@@ -2,11 +2,18 @@
 // Shapes and status codes mirror the contract surface: GET /v1/portal/me (additive, Role 4),
 // POST /v1/portal/reports (the only live write route), GET /v1/reports/recent.json (snapshot).
 import { HttpResponse, http } from 'msw';
-import { ShopReportSchema } from '@trout/contracts';
+import { ShopReportSchema, type ShopReport } from '@trout/contracts';
 import { PORTAL_ME, ShopReportInputSchema } from '../api/client.js';
 import { FIXTURE_OTHER_SHOP_REPORT, FIXTURE_SHOP, FIXTURE_SHOP_REPORTS } from './fixtures.js';
 
 let reportCounter = 0;
+
+// F15/F02: the dev mock mirrors the real API's idempotency contract — the first
+// acceptance of an Idempotency-Key returns 201; replaying the SAME key returns
+// 200 { report, idempotentReplay: true } without creating a second report.
+const acceptedKeys = new Map<string, ShopReport>();
+/** Every Idempotency-Key observed on POST /v1/portal/reports, in order (test aid). */
+export const recordedIdempotencyKeys: string[] = [];
 
 export const handlers = [
   // Token → shop identity
@@ -27,6 +34,13 @@ export const handlers = [
     if (!token.startsWith(`v1.${FIXTURE_SHOP.id}.`)) {
       return HttpResponse.json({ error: 'invalid token' }, { status: 401 });
     }
+    const idempotencyKey = request.headers.get('Idempotency-Key') ?? undefined;
+    if (idempotencyKey) recordedIdempotencyKeys.push(idempotencyKey);
+    const replay = idempotencyKey ? acceptedKeys.get(idempotencyKey) : undefined;
+    if (replay) {
+      // Real API contract: 200 replay of the stored report — NOT a second report.
+      return HttpResponse.json({ report: replay, idempotentReplay: true }, { status: 200 });
+    }
     const raw = await request.json();
     const parsed = ShopReportInputSchema.safeParse(raw);
     if (!parsed.success) {
@@ -43,6 +57,7 @@ export const handlers = [
       publishedAt: new Date().toISOString().replace(/\.\d+Z$/, 'Z'),
     });
     FIXTURE_SHOP_REPORTS.unshift(report);
+    if (idempotencyKey) acceptedKeys.set(idempotencyKey, report);
     // Real API wire format (Role 3): the 201 body wraps the report.
     return HttpResponse.json({ report }, { status: 201 });
   }),

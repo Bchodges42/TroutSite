@@ -1,10 +1,12 @@
-// OWNER: ROLE 4. "My reports": locally-stored drafts (editable until published) + published
-// reports (read-only, from the public attributed feed filtered to this shop). Honest empty states.
+// OWNER: ROLE 4. "My reports": locally-stored drafts scoped to the signed-in shop (F16,
+// editable until published) + published reports (read-only, from the public attributed feed
+// filtered to this shop). Quarantined legacy drafts get an explicit one-time disclosure/clear
+// path — never auto-claimed, never displayed. Honest empty states throughout.
 import { useCallback, useEffect, useState } from 'react';
 import { Button, Card, Chip, ConfirmButton, EmptyState } from '@trout/ui';
 import type { Shop, ShopReport } from '@trout/contracts';
 import { fetchRecentReports } from '../api/client.js';
-import { deleteDraft, listDrafts, type ReportDraft } from '../state/drafts.js';
+import { clearLegacyDrafts, countLegacyDrafts, deleteDraft, listDrafts, type ReportDraft } from '../state/drafts.js';
 
 export function HistoryView({
   shop,
@@ -16,10 +18,16 @@ export function HistoryView({
   onEditDraft: (draft: ReportDraft) => void;
 }) {
   const [drafts, setDrafts] = useState<ReportDraft[]>([]);
+  const [legacyCount, setLegacyCount] = useState(0);
   const [published, setPublished] = useState<ShopReport[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const reloadDrafts = useCallback(() => setDrafts(listDrafts()), []);
+  const reloadDrafts = useCallback(() => {
+    // Only this shop's namespace is readable here — another shop's unpublished
+    // notes are unreachable by construction (F16).
+    setDrafts(listDrafts(shop.id));
+    setLegacyCount(countLegacyDrafts());
+  }, [shop.id]);
 
   useEffect(() => {
     reloadDrafts();
@@ -45,6 +53,29 @@ export function HistoryView({
     <div className="portal-history">
       <Card>
         <h2>Drafts (stored in this browser)</h2>
+        {legacyCount > 0 ? (
+          <div className="portal-list__item" role="note">
+            <p className="portal-muted">
+              This browser holds {legacyCount} unfinished report{legacyCount === 1 ? '' : 's'} from
+              an older version of the portal. They were saved without a shop attribution, so they
+              are not shown, claimed, or editable by {shop.name} — or any shop. You can clear them
+              permanently.
+            </p>
+            <ConfirmButton
+              label="Clear old unattributed drafts"
+              confirmLabel="Permanently clear"
+              cancelLabel="Keep them"
+              onConfirm={() => {
+                try {
+                  clearLegacyDrafts();
+                } catch {
+                  // Storage refusal must not break the page; the disclosure simply stays.
+                }
+                reloadDrafts();
+              }}
+            />
+          </div>
+        ) : null}
         {drafts.filter((d) => d.body.trim().length > 0).length === 0 ? (
           <EmptyState
             icon="📝"
@@ -73,7 +104,7 @@ export function HistoryView({
                       confirmLabel="Delete draft"
                       cancelLabel="Keep"
                       onConfirm={() => {
-                        deleteDraft(d.id);
+                        deleteDraft(shop.id, d.id);
                         reloadDrafts();
                       }}
                     />

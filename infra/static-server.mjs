@@ -10,9 +10,12 @@
  *
  * Zero dependencies (Node http/fs). Used for:
  *   - the shop portal (apps/admin/dist, :8788) — with the proxy flag, so the
- *     portal's two live routes (/v1/portal/me, /v1/portal/reports) are forwarded
+ *     portal's live routes (/v1/portal/me, /v1/portal/reports) are forwarded
  *     to the Fastify API and the portal build stays environment-neutral
- *     (same-origin fetches, no CORS anywhere);
+ *     (same-origin fetches, no CORS anywhere). The public reports feed
+ *     GET /v1/reports/recent.json ("My reports") is forwarded too (F06,
+ *     2026-09-29 audit): the admin reads it same-origin, and without the
+ *     forwarding it 404s on this origin even though login/publish work;
  *   - the marketing site (apps/marketing/dist, :8789) — static only.
  *
  * SPA fallback: unknown paths serve index.html (both apps are SPAs / static
@@ -35,6 +38,15 @@ function parseProxy(spec) {
   const url = new URL(target);
   return { prefix, hostname: url.hostname, port: url.port || 80 };
 }
+
+/**
+ * F06 (2026-09-29 audit): public read endpoints the portal fetches same-origin
+ * even though they live on the API origin. When a proxy is configured, these
+ * exact paths are forwarded to the SAME upstream — GET/HEAD only (they are
+ * reads; writes stay on /v1/portal). Keeping the list explicit means the
+ * static server never becomes a general-purpose open proxy for this origin.
+ */
+const PROXIED_PUBLIC_READS = new Set(['/v1/reports/recent.json']);
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -177,6 +189,17 @@ const server = http.createServer((req, res) => {
   const url = new URL(req.url ?? '/', 'http://localhost');
 
   if (PROXY && url.pathname.startsWith(PROXY.prefix)) {
+    proxyRequest(req, res, url);
+    return;
+  }
+
+  // F06: the portal's public history read, forwarded to the same upstream
+  // (GET/HEAD only — anything else falls through to the static handling below).
+  if (
+    PROXY &&
+    PROXIED_PUBLIC_READS.has(url.pathname) &&
+    (req.method === 'GET' || req.method === 'HEAD')
+  ) {
     proxyRequest(req, res, url);
     return;
   }

@@ -16,6 +16,7 @@ import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
+import http from 'node:http';
 
 const SCRIPT = resolve(import.meta.dirname, 'static-server.mjs');
 
@@ -104,5 +105,144 @@ test('traversal into the .json fallback is refused', async () => {
     const res = await get(base + '/..%2Ftrout-static-secret', 'application/json');
     assert.equal(res.status, 404);
     assert.doesNotMatch(res.body, /TOO_SECRET/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// F06 (2026-09-29 audit): with a proxy configured, the portal's public history
+// read GET /v1/reports/recent.json must be forwarded to the same upstream —
+// the admin fetches it same-origin, and before the fix it 404'd on this
+// origin while login/publish worked.
+// ---------------------------------------------------------------------------
+
+/** Minimal stand-in for the API origin: records every request it receives. */
+async function withUpstream(fn) {
+  const hits = [];
+  const upstream = http.createServer((req, res) => {
+    const pathOnly = (req.url ?? '/').split('?')[0];
+    hits.push({ method: req.method, path: req.url });
+    if (req.method === 'GET' && pathOnly === '/v1/reports/recent.json') {
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify([{ id: 'rep-upstream-1', body: 'upstream feed' }]));
+      return;
+    }
+    if (req.method === 'GET' && pathOnly === '/v1/portal/me') {
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ shop: { id: 's' } }));
+      return;
+    }
+    res.writeHead(404, { 'content-type': 'application/json' });
+    res.end(JSON.stringify({ error: `upstream not found: ${req.url}` }));
+  });
+  await new Promise((r) => upstream.listen(0, '127.0.0.1', r));
+  const port = upstream.address().port;
+  try {
+    await fn(`http://127.0.0.1:${port}`, hits);
+  } finally {
+    await new Promise((r) => upstream.close(r));
+  }
+}
+
+async function withProxiedServer(upstreamPort, fn, proxySpec = `v1/portal=http://127.0.0.1:${upstreamPort}`) {
+  const root = makeFixture();
+  const child = spawn(process.execPath, [SCRIPT, root, '0', '--proxy', proxySpec], {
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  const port = await new Promise((resolvePort, reject) => {
+    let buf = '';
+    child.stdout.on('data', (d) => {
+      buf += String(d);
+      const m = buf.match(/127\.0\.0\.1:(\d+)/);
+      if (m) resolvePort(Number(m[1]));
+    });
+    setTimeout(() => reject(new Error('server did not report a port')), 4000);
+  });
+  try {
+    await fn(`http://127.0.0.1:${port}`);
+  } finally {
+    child.kill();
+  }
+}
+
+test('F06: public reports feed is forwarded to the API upstream', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    const upstreamPort = new URL(upstreamBase).port;
+    await withProxiedServer(upstreamPort, async (base) => {
+      const res = await get(`${base}/v1/reports/recent.json`, 'application/json');
+      assert.equal(res.status, 200);
+      assert.match(res.body, /rep-upstream-1/);
+      assert.ok(hits.some((h) => h.method === 'GET' && h.path === '/v1/reports/recent.json'));
+    });
+  });
+});
+
+test('F06: query strings on the forwarded read reach the upstream', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    const upstreamPort = new URL(upstreamBase).port;
+    await withProxiedServer(upstreamPort, async (base) => {
+      const res = await fetch(`${base}/v1/reports/recent.json?limit=1`);
+      assert.equal(res.status, 200);
+      assert.ok(hits.some((h) => h.path.startsWith('/v1/reports/recent.json') && h.path.includes('limit=1')));
+    });
+  });
+});
+
+test('F06: only GET/HEAD of the listed read is forwarded (POST stays local)', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    const upstreamPort = new URL(upstreamBase).port;
+    await withProxiedServer(upstreamPort, async (base) => {
+      const post = await fetch(`${base}/v1/reports/recent.json`, { method: 'POST', body: '{}' });
+      assert.equal(post.status, 405); // static server's method gate, NOT the upstream
+      assert.equal(hits.some((h) => h.method === 'POST'), false);
+    });
+  });
+});
+
+test('F06: unlisted /v1/reports paths are NOT forwarded', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    const upstreamPort = new URL(upstreamBase).port;
+    await withProxiedServer(upstreamPort, async (base) => {
+      const res = await get(`${base}/v1/reports/other.json`, 'application/json');
+      assert.equal(res.status, 404); // local 404, upstream untouched
+      assert.equal(hits.some((h) => h.path === '/v1/reports/other.json'), false);
+    });
+  });
+});
+
+test('F06: /v1/portal proxy keeps working alongside the public read', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    const upstreamPort = new URL(upstreamBase).port;
+    await withProxiedServer(upstreamPort, async (base) => {
+      const res = await get(`${base}/v1/portal/me`, 'application/json');
+      assert.equal(res.status, 200);
+      assert.match(res.body, /"shop"/);
+    });
+  });
+});
+
+test('F06: without --proxy nothing is forwarded (static posture unchanged)', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    const upstreamPort = new URL(upstreamBase).port;
+    // Spawn with a proxy spec pointing at a DEAD port? No — spawn WITHOUT --proxy.
+    const root = makeFixture();
+    const child = spawn(process.execPath, [SCRIPT, root, '0'], {
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    const port = await new Promise((resolvePort, reject) => {
+      let buf = '';
+      child.stdout.on('data', (d) => {
+        buf += String(d);
+        const m = buf.match(/127\.0\.0\.1:(\d+)/);
+        if (m) resolvePort(Number(m[1]));
+      });
+      setTimeout(() => reject(new Error('server did not report a port')), 4000);
+    });
+    try {
+      const res = await get(`http://127.0.0.1:${port}/v1/reports/recent.json`, 'application/json');
+      assert.equal(res.status, 404);
+      assert.equal(hits.length, 0);
+    } finally {
+      child.kill();
+    }
   });
 });
