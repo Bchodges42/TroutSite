@@ -1,5 +1,7 @@
 import { useMemo, useState, useRef, useEffect, useId } from 'react';
 import { regionName } from '../../data/regions';
+import { waterTypeLabel } from '../../lib/presentation';
+import { buildEntries, match } from '../search/searchIndex';
 /** True when the element is actually rendered (walks hidden ancestors). */
 function isRendered(el: HTMLElement): boolean {
   let node: HTMLElement | null = el;
@@ -17,7 +19,29 @@ interface SearchStream {
   name: string;
   aliases?: string[];
   regionId: string;
+  /** Full catalog rows carry these; lightweight fixture rows may not. */
+  species?: 'trout' | 'warmwater';
+  waterbodyType?: string;
+  hydroIdentity?: { counties?: string[] } & Record<string, unknown>;
 }
+
+/**
+ * Water search (offline): the index is rebuilt at RUNTIME from the precached
+ * catalog in a useMemo (features/search/searchIndex.ts) — the bundled catalog
+ * already IS the offline index, so there is no generated index file to drift.
+ *
+ * Fish scope: results default to the trout scope (everything the catalog does
+ * not positively mark warmwater — catalog silence is never a negative). When
+ * the trout scope has zero results but warmwater-only waters match, ONE
+ * explicit "Search all fish" action widens the scope; widening is sticky for
+ * the instance (an explicit choice is never silently re-narrowed) and the
+ * scope is NEVER switched automatically. Every water stays reachable.
+ *
+ * Enter never silently picks a guess: it commits the highlighted result only
+ * when the top result is an exact/prefix match (tiers 1-2) or the visitor
+ * moved the highlight themselves (arrow keys). Fuzzy/word-prefix-only result
+ * sets require an explicit click or ↓+Enter.
+ */
 export function RiverSearch({
   streams = [],
   onSelect,
@@ -38,33 +62,53 @@ export function RiverSearch({
   const lastShortcutHandledAt = useRef(0);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+  /** True once the visitor moved the highlight themselves (ArrowUp/Down) —
+   *  the keyboard-explicit signal that lets Enter commit any tier. */
+  const navigated = useRef(false);
+  /** Trout scope by default; widened only by the explicit "Search all fish"
+   *  action, then sticky (never auto-narrowed behind the visitor's back). */
+  const [allFish, setAllFish] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const wrap = useRef<HTMLDivElement>(null);
   const id = useId();
-  const normalize = (s: string) =>
-    s
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, ' ')
-      .trim();
-  const matches = useMemo(
+  const entries = useMemo(
     () =>
-      streams
-        .filter((s) =>
-          normalize([s.name, ...(s.aliases ?? []), regionName(s.regionId)].join(' ')).includes(
-            normalize(query),
-          ),
-        )
-        .sort(
-          (a, b) =>
-            Number(normalize(b.name).includes(normalize(query))) -
-              Number(normalize(a.name).includes(normalize(query))) || a.name.localeCompare(b.name),
-        )
-        .slice(0, 30),
-    [streams, query],
+      buildEntries(
+        streams.map((s) => ({
+          id: s.id,
+          name: s.name,
+          aliases: s.aliases,
+          regionId: s.regionId,
+          regionLabel: regionName(s.regionId),
+          counties: s.hydroIdentity?.counties,
+          waterbodyType: s.waterbodyType,
+          allFishOnly: s.species === 'warmwater',
+        })),
+      ),
+    [streams],
   );
+  const matches = useMemo(() => {
+    const scope = allFish ? entries : entries.filter((e) => !e.allFishOnly);
+    return match(query, scope);
+  }, [entries, query, allFish]);
+  const visible = useMemo(() => matches.slice(0, 30), [matches]);
+  // Widening candidates exist ONLY when the current scope found nothing —
+  // this is the explicit "Search all fish" escape hatch, never an auto-switch.
+  const widerMatches = useMemo(() => {
+    if (allFish || matches.length > 0) return [];
+    return match(query, entries).filter((m) => m.entry.allFishOnly);
+  }, [entries, query, allFish, matches.length]);
+  // Disambiguation: when two+ visible results share a base name (Duck River,
+  // Cane Creek, Piney River…), each row gains a "counties · type" line.
+  const repeated = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const m of visible)
+      counts.set(m.entry.baseName, (counts.get(m.entry.baseName) ?? 0) + 1);
+    return counts;
+  }, [visible]);
   useEffect(() => {
     setActive(0);
-  }, [query, matches.length]);
+  }, [query, visible.length]);
   useEffect(() => {
     if (!shortcut) return;
     const key = (e: KeyboardEvent) => {
@@ -97,6 +141,7 @@ export function RiverSearch({
   const choose = (river: string) => {
     setOpen(false);
     setQuery('');
+    navigated.current = false;
     onSelect(river);
   };
   return (
@@ -131,7 +176,7 @@ export function RiverSearch({
           aria-expanded={open}
           aria-controls={open ? id : undefined}
           aria-autocomplete="list"
-          aria-activedescendant={open && matches[active] ? id + '-option-' + active : undefined}
+          aria-activedescendant={open && visible[active] ? id + '-option-' + active : undefined}
           placeholder={placeholder}
           value={query}
           onFocus={() => {
@@ -142,21 +187,29 @@ export function RiverSearch({
           }}
           onChange={(e) => {
             setQuery(e.target.value);
+            navigated.current = false;
             setOpen(true);
           }}
           onKeyDown={(e) => {
             if (e.key === 'ArrowDown') {
               e.preventDefault();
+              navigated.current = true;
               setOpen(true);
-              setActive((i) => Math.min(i + 1, Math.max(0, matches.length - 1)));
+              setActive((i) => Math.min(i + 1, Math.max(0, visible.length - 1)));
             }
             if (e.key === 'ArrowUp') {
               e.preventDefault();
+              navigated.current = true;
               setActive((i) => Math.max(0, i - 1));
             }
-            if (e.key === 'Enter' && open && matches[active]) {
+            if (e.key === 'Enter' && open && visible[active]) {
               e.preventDefault();
-              choose(matches[active]!.id);
+              // Hard rule: never silently select a different water. Enter
+              // commits only an exact/prefix top result, or a highlight the
+              // visitor moved themselves; fuzzy/word-prefix-only sets require
+              // an explicit click or ↓+Enter.
+              const topExact = visible[0] !== undefined && visible[0].tier <= 2;
+              if (topExact || navigated.current) choose(visible[active]!.entry.id);
             }
             if (e.key === 'Escape') {
               e.preventDefault();
@@ -173,30 +226,68 @@ export function RiverSearch({
       </div>
       {open && (
         <div id={id} role="listbox" aria-label="River results" className="search-results">
-          {matches.length === 0 && (
+          {visible.length === 0 && widerMatches.length > 0 && (
+            <button
+              type="button"
+              className="search-note text-action"
+              onClick={() => {
+                setAllFish(true);
+                setOpen(true);
+              }}
+            >
+              No trout waters match “{query}” — search all fish ({widerMatches.length}{' '}
+              {widerMatches.length === 1 ? 'match' : 'matches'})
+            </button>
+          )}
+          {visible.length === 0 && widerMatches.length === 0 && (
             <p className="search-note">
               {streams.length
                 ? 'No waters match. Try another name or region.'
                 : 'River catalog is loading or unavailable. Browse the list for details.'}
             </p>
           )}
-          {matches.map((s, i) => (
-            <button
-              key={s.id}
-              id={id + '-option-' + i}
-              tabIndex={-1}
-              type="button"
-              role="option"
-              aria-selected={i === active}
-              className="search-option"
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => choose(s.id)}
-              onMouseEnter={() => setActive(i)}
-            >
-              <strong>{s.name}</strong>
-              <small>{regionName(s.regionId)}</small>
-            </button>
-          ))}
+          {visible[0] && visible[0].tier > 2 && (
+            <p className="search-note">
+              No exact name match — these are similar or partial results. Choose one explicitly
+              (click, or ↓ then Enter).
+            </p>
+          )}
+          {visible.map((m, i) => {
+            const why =
+              m.reason === 'exact-alias'
+                ? 'alias'
+                : m.reason === 'fuzzy'
+                  ? 'similar'
+                  : undefined;
+            const disambig =
+              (repeated.get(m.entry.baseName) ?? 0) > 1
+                ? [
+                    m.entry.counties.length ? m.entry.counties.join(', ') : undefined,
+                    m.entry.waterbodyType ? waterTypeLabel(m.entry.waterbodyType) : undefined,
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')
+                : undefined;
+            const meta = [why, disambig].filter(Boolean).join(' · ');
+            return (
+              <button
+                key={m.entry.id}
+                id={id + '-option-' + i}
+                tabIndex={-1}
+                type="button"
+                role="option"
+                aria-selected={i === active}
+                className="search-option"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => choose(m.entry.id)}
+                onMouseEnter={() => setActive(i)}
+              >
+                <strong>{m.entry.name}</strong>
+                <small>{regionName(m.entry.regionId ?? '')}</small>
+                {meta && <small>{meta}</small>}
+              </button>
+            );
+          })}
           <div className="search-note">
             {streams.length} waters · ↑ ↓ to explore · Enter to select
           </div>
