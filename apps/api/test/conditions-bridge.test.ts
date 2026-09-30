@@ -139,6 +139,33 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
     expect(result?.reading.heightFt).toBeUndefined();
     expect(result?.reading.timestamp).toBe('2026-09-08T15:00:00-04:00');
   });
+
+  it('F34: anchors the merge on the newest INSTANT when offsets differ (DST repeated hour)', () => {
+    // Discharge 01:45-05:00 = 06:45Z; temperature 01:15-06:00 = 07:15Z — the
+    // temperature is the newer observation even though its local text sorts first.
+    const result = buildConditionsReading('tva:WL', 'tva-restapi', [
+      obs({ metric: 'discharge-cfs', value: 100, observedAt: '2026-11-01T01:45:00-05:00' }),
+      obs({ metric: 'temperature-c', value: 12, observedAt: '2026-11-01T01:15:00-06:00' }),
+    ]);
+    expect(result?.reading.cfs).toBe(100);
+    expect(result?.reading.tempC).toBe(12);
+    expect(result?.reading.timestamp).toBe('2026-11-01T01:15:00-06:00');
+    // The discharge keeps its own observation time for freshness gates.
+    expect(result?.reading.metricTimes).toMatchObject({ 'discharge-cfs': '2026-11-01T01:45:00-05:00' });
+  });
+
+  it('F01: preserves per-metric observation times in the reading and payload', () => {
+    const result = buildConditionsReading('tva:WL', 'tva-restapi', [
+      obs({ metric: 'discharge-cfs', value: 300, observedAt: '2026-09-08T15:00:00-04:00' }),
+      obs({ metric: 'temperature-c', value: 12, observedAt: '2026-09-08T14:00:00-04:00' }),
+    ]);
+    expect(result?.reading.timestamp).toBe('2026-09-08T15:00:00-04:00');
+    expect(result?.reading.metricTimes).toMatchObject({ 'temperature-c': '2026-09-08T14:00:00-04:00' });
+    const payload = JSON.parse(result?.payload ?? '{}') as {
+      metricTimes?: Record<string, string>;
+    };
+    expect(payload.metricTimes).toMatchObject({ 'temperature-c': '2026-09-08T14:00:00-04:00' });
+  });
 });
 
 describe('runConditionsReadingsJob (TVA + USACE → gauge_readings_raw)', () => {

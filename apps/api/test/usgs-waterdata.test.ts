@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { scoreFishability } from '@trout/contracts';
 import {
   fetchWaterDataReadings,
   parseWaterDataResponse,
@@ -70,5 +71,64 @@ describe('USGS Water Data OGC API', () => {
   it('warns loudly when keyless development mode is used', async () => {
     const result = await fetchWaterDataReadings([], { userAgent: 'trout-test/1.0' });
     expect(result.warnings[0]).toMatch(/API key is not configured/i);
+  });
+});
+
+describe('F01: per-metric observation time (default Water Data parser)', () => {
+  const site = (parameter_code: string, time: string, value: number) => ({
+    properties: { monitoring_location_id: 'USGS-1', parameter_code, time, value },
+  });
+
+  it('audit probe: a month-old temperature must NOT wear the fresh flow timestamp', () => {
+    // Flow reported 2026-09-29 12:00Z, temperature last reported 2026-08-29 12:00Z
+    // (31 days earlier). The old parser stamped BOTH with 12:00Z, so the scorer
+    // accepted obsolete temperature as a 5-minute-old reading.
+    const rows = parseWaterDataResponse({
+      features: [site('00060', '2026-09-29T12:00:00Z', 100), site('00010', '2026-08-29T12:00:00Z', 22)],
+    });
+    expect(rows).toEqual([{ gaugeId: '1', cfs: 100, timestamp: '2026-09-29T12:00:00.000Z' }]);
+  });
+
+  it('keeps each metric\'s own observation time via metricTimes when they differ within the window', () => {
+    const rows = parseWaterDataResponse({
+      features: [
+        site('00060', '2026-09-29T12:00:00Z', 100),
+        site('00010', '2026-09-29T11:00:00Z', 22), // 1 h behind flow — inside the 3 h window
+      ],
+    });
+    expect(rows).toEqual([
+      {
+        gaugeId: '1',
+        cfs: 100,
+        tempC: 22,
+        timestamp: '2026-09-29T12:00:00.000Z',
+        metricTimes: { tempC: '2026-09-29T11:00:00.000Z' },
+      },
+    ]);
+  });
+
+  it('end to end: fresh flow cannot renew temperature freshness (comfort cannot-assess)', () => {
+    const readings = parseWaterDataResponse({
+      features: [site('00060', '2026-09-29T12:00:00Z', 100), site('00010', '2026-08-29T12:00:00Z', 22)],
+    });
+    const score = scoreFishability(
+      readings,
+      'smallmouth-bass',
+      {
+        species: 'smallmouth-bass',
+        unit: 'degC',
+        lethalLow: 0,
+        avoidanceLow: 10,
+        optimalLow: 18,
+        optimalHigh: 26,
+        avoidanceHigh: 30,
+        lethalHigh: 33,
+      },
+      Date.parse('2026-09-29T12:05:00Z'), // 5 minutes after the flow observation
+    );
+    // Before the fix this produced comfort 90, assessed:true, ageMinutes=5 from
+    // 31-day-old water. The honest answer is "cannot assess temperature".
+    expect(score.assessed).toBe(false);
+    expect(score.freshness).toBeNull();
   });
 });

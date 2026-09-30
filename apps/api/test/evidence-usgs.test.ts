@@ -124,4 +124,23 @@ describe('evidence: USGS provider parsing', () => {
     expect(obs).toHaveLength(1);
     expect(obs[0]?.qualifier).toBe('P');
   });
+
+  it('F34: picks the newest INSTANT across mixed DST offsets, not the text-greatest dateTime', () => {
+    // The repeated daylight-saving hour: 01:45-05:00 = 06:45Z vs 01:15-06:00 = 07:15Z.
+    // Text ordering calls 01:45 newer; the instant truth is 01:15-06:00.
+    const payload = {
+      value: {
+        timeSeries: [
+          series('03432350', '00060', [
+            { value: '100', dateTime: '2026-11-01T01:45:00.000-05:00', qualifiers: ['P'] },
+            { value: '200', dateTime: '2026-11-01T01:15:00.000-06:00', qualifiers: ['P'] },
+          ]),
+        ],
+      },
+    };
+    const obs = parseUsgsObservations(payload);
+    expect(obs).toHaveLength(1);
+    expect(obs[0]?.value).toBe(200);
+    expect(obs[0]?.observedAt).toBe('2026-11-01T01:15:00.000-06:00');
+  });
 });

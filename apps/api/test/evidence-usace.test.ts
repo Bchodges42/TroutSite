@@ -97,6 +97,25 @@ describe('evidence: USACE provider parsing', () => {
     expect(observation?.value).toBe(20);
   });
 
+  it('F34: newest INSTANT wins when points carry different UTC offsets', () => {
+    // Defensive ordering: A2W publishes Z-normalized stamps, but the selector
+    // must not regress to text order if an offset ever appears.
+    const { observation, point } = parseUsaceSeries(
+      {
+        key: 'X',
+        unit: 'cfs',
+        values: [
+          ['2026-11-01T01:45:00-05:00', 100], // 06:45Z
+          ['2026-11-01T01:15:00-06:00', 200], // 07:15Z — newer instant
+        ],
+      },
+      { tsid: 'X', metric: 'discharge-cfs' },
+    );
+    expect(observation?.value).toBe(200);
+    expect(observation?.observedAt).toBe('2026-11-01T01:15:00-06:00');
+    expect(point).toEqual(['2026-11-01T01:15:00-06:00', 200]);
+  });
+
   it('registry integrity: stations ↔ TSIDs ↔ monitor map stay consistent', () => {
     for (const [station, series] of Object.entries(USACE_TAILWATER_SERIES)) {
       expect(series.flow).toContain(`${station}-`);

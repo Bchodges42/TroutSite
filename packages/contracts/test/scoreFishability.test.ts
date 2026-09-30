@@ -92,6 +92,50 @@ describe('scoreFishability boundaries', () => {
     expect(score.freshness?.observedAt).toBe(new Date(NOW - 30 * 60_000).toISOString());
   });
 
+  it('F01: metricTimes.tempC overrides the merged timestamp for temperature freshness', () => {
+    // A merged reading stamped with the fresh flow time must not launder a
+    // month-old temperature: the per-metric time is the only freshness truth.
+    const tempObservedAt = new Date(NOW - 30 * 86_400_000).toISOString();
+    const score = scoreFishability(
+      [
+        {
+          gaugeId: '01234500',
+          cfs: 100,
+          tempC: 22,
+          timestamp: new Date(NOW - 5 * 60_000).toISOString(),
+          metricTimes: { tempC: tempObservedAt },
+        },
+      ],
+      'smallmouth-bass',
+      smallmouthBands,
+      NOW,
+    );
+    expect(score.assessed).toBe(false);
+    expect(score.freshness).toBeNull();
+    expect(score.reasons.join(' ')).toMatch(/minutes old/);
+  });
+
+  it('F01: a within-window metricTimes.tempC drives the reported freshness', () => {
+    const tempObservedAt = new Date(NOW - 45 * 60_000).toISOString();
+    const score = scoreFishability(
+      [
+        {
+          gaugeId: '01234500',
+          cfs: 100,
+          tempC: 22,
+          timestamp: new Date(NOW - 5 * 60_000).toISOString(),
+          metricTimes: { tempC: tempObservedAt },
+        },
+      ],
+      'smallmouth-bass',
+      smallmouthBands,
+      NOW,
+    );
+    expect(score.assessed).toBe(true);
+    expect(score.freshness?.observedAt).toBe(tempObservedAt);
+    expect(score.freshness?.ageMinutes).toBe(45);
+  });
+
   it('cannot-assess when bands are for a different species', () => {
     const score = scoreFishability([reading({ tempC: 22 })], 'bluegill', smallmouthBands, NOW);
     expect(score).toMatchObject({ species: 'bluegill', value: 0, assessed: false, freshness: null });
