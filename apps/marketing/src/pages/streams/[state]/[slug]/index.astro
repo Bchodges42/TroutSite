@@ -17,7 +17,7 @@ import {
   getTaxon,
   hasFishabilitySnapshot,
 } from '../../../../data/load';
-import { formatDate, monthName } from '../../../../lib/format';
+import { formatDate, monthName, stockingPrecisionDate, stockingStatusLabel, type StockingPrecision } from '../../../../lib/format';
 import { breadcrumbLd, datasetLd } from '../../../../lib/seo';
 import { featureClaims, waterPageDescription, waterPageTitle } from '../../../../lib/waterCopy';
 
@@ -118,34 +118,53 @@ function flowReadsAs(range: { min: number; max: number; unit: string }): string 
   <h2>Stocking history</h2>
   {
     stocking.length > 0 ? (
-      <table class="data-table">
-        <caption>{state.agency.short} stockings of {stream.name} (verify officially)</caption>
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Species</th>
-            <th class="num" scope="col">Count</th>
-            <th scope="col">Source</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stocking
-            .slice()
-            .sort((a, b) => b.date.localeCompare(a.date))
-            .map((e) => (
-              <tr>
-                <td>{formatDate(e.date)}</td>
-                <td>{e.species}</td>
-                <td class="num">{e.count?.toLocaleString('en-US') ?? '—'}</td>
-                <td>
-                  <a href={e.sourceUrl} rel="nofollow">
-                    official ↗
-                  </a>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <>
+        <table class="data-table">
+          <caption>
+            {state.agency.short} published stocking entries for {stream.name} — a schedule is a
+            plan, not a confirmed release (verify officially)
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Species</th>
+              <th class="num" scope="col">Count</th>
+              <th scope="col">Status</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stocking
+              .slice()
+              .sort((a, b) => b.date.localeCompare(a.date))
+              .map((e) => (
+                <tr>
+                  <td>
+                    {stockingPrecisionDate(e.date, e.datePrecision as StockingPrecision | undefined)}
+                  </td>
+                  <td>{e.species}</td>
+                  <td class="num">{e.count?.toLocaleString('en-US') ?? '—'}</td>
+                  <td>
+                    {stockingStatusLabel(
+                      e.date,
+                      e.datePrecision as StockingPrecision | undefined,
+                      new Date().toISOString().slice(0, 10),
+                    )}
+                  </td>
+                  <td>
+                    <a href={e.sourceUrl} rel="nofollow">
+                      official ↗
+                    </a>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+        <p class="asof">
+          These rows mirror {state.agency.short}'s published schedule — the feed carries no
+          completed-release confirmation, so no entry is presented as a reported stocking.
+        </p>
+      </>
     ) : (
       <p>No stocking events recorded for this water in the current feed.</p>
     )

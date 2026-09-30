@@ -174,15 +174,29 @@ if (fixtureFeeds.size > 0) {
 }
 const stockingFromFixtures = fixtureFeeds.has('stocking');
 
-/** datePrecision-aware stocking wording: day-precision rows are reported
- * releases; week/month rows are scheduled events and must say so. */
+/**
+ * Evidence-aware stocking wording (F08, 2026-09-29 audit). Every row in the
+ * feed is a PUBLISHED SCHEDULE entry — StockingEvent carries no completed-
+ * release status, so no row is ever worded as a TWRA release record: an
+ * exact-day row whose date has passed is "past-scheduled", NOT "reported
+ * released" (a date — past or future — is not a release report). Week/month
+ * windows keep their published precision. Vocabulary mirrors StockingPage
+ * `stockingEventState` and the marketing site's stockingStatusLabel — change
+ * all three together.
+ */
 const monthYear = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+const PRERENDER_TODAY = new Date().toISOString().slice(0, 10);
 function stockingWhen(r) {
   const [y, m, d] = String(r.date ?? '').split('-').map(Number);
   const day = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-  if (r.datePrecision === 'month') return `scheduled for ${monthYear.format(new Date(Date.UTC(y, m - 1, 1)))}`;
-  if (r.datePrecision === 'week') return `scheduled for the week of ${day}`;
-  return `reported released ${day}`;
+  const future = day >= PRERENDER_TODAY;
+  if (r.datePrecision === 'month') {
+    return `${future ? 'scheduled for' : 'past-scheduled for'} ${monthYear.format(new Date(Date.UTC(y, m - 1, 1)))}`;
+  }
+  if (r.datePrecision === 'week') {
+    return `${future ? 'scheduled for the week of' : 'past-scheduled for the week of'} ${day}`;
+  }
+  return `${future ? 'scheduled for' : 'past-scheduled for'} ${day}`;
 }
 
 /* ------------------------------------------------------- shell injection */
