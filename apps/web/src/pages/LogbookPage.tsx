@@ -1,38 +1,82 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Button, Card, Chip, ConfirmButton, Dialog, EmptyState, toast } from '@trout/ui';
-import { useStreamsCatalog } from '../lib/useStreamsCatalog';
-import { shortDate } from '../lib/time';
+import { Button, Card, Dialog, EmptyState, toast } from '@trout/ui';
+import { ConditionSnapshotSchema } from '@trout/contracts';
 import { AnimatedNumber } from '../components/ui/AnimatedNumber';
 import { SPRING } from '../components/motion/atlas-motion';
 import { RiverContextBar, useRiverContext } from '../lib/riverContext';
+import { snapshotUrls } from '../lib/endpoints';
+import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import {
-  addEntry,
   buildExport,
-  deleteEntry,
+  buildFullBackup,
+  conditionsCaptureFrom,
+  deleteEntryAndPhotos,
   downloadExport,
+  downloadFullBackup,
+  filterEntries,
   importFromExport,
   listEntries,
   LOGBOOK_NOTE,
+  sweepUnattachedPhotos,
+  summarizeEntries,
+  type EntryFilter,
 } from '../lib/logbook';
+import { EntryCard } from '../features/logbook/EntryCard';
+import { EntryForm } from '../features/logbook/EntryForm';
+import { LogbookFilters } from '../features/logbook/LogbookFilters';
+import { SummaryCards } from '../features/logbook/SummaryCards';
 
 /**
  * Logbook (scope 7): entries live ONLY in this browser's IndexedDB (Dexie).
  * JSON export/import for backup — no accounts, no sync, no server. Ever.
+ * Photo blobs travel only in the explicitly labeled full backup.
  */
+
+const CONDITIONS_TTL_MIN = 60;
 
 export function LogbookPage() {
   const context = useRiverContext();
+  const [params] = useSearchParams();
+  // Drawer/other-surface prefill: /logbook?stream=<catalogId> (falls back to the ?river= context param).
+  const prefillStreamId = params.get('stream') ?? context.riverId ?? '';
   const entries = useLiveQuery(() => listEntries(), [], undefined);
 
-  const [adding, setAdding] = useState(Boolean(context.riverId));
+  const [adding, setAdding] = useState(Boolean(prefillStreamId));
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [filter, setFilter] = useState<EntryFilter>({});
   const [importError, setImportError] = useState<{ message: string } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  // Same per-water conditions the rest of the site reads (offline-first): the
+  // snapshot is frozen at SAVE time and a later refresh never rewrites it.
+  const conditionsQuery = useSnapshotQuery(
+    snapshotUrls.conditionsLatest,
+    ConditionSnapshotSchema.array(),
+    CONDITIONS_TTL_MIN,
+    true,
+  );
+  const captureFor = (streamId?: string) => {
+    if (!streamId) return undefined;
+    const snapshot = conditionsQuery.data?.data.find((s) => s.streamId === streamId);
+    return snapshot ? conditionsCaptureFrom(snapshot) : undefined;
+  };
+
+  // Staged-but-never-saved photos would otherwise pile up in the photos store.
+  useEffect(() => {
+    void sweepUnattachedPhotos();
+  }, []);
 
   const exportJson = async () => {
     downloadExport(await buildExport());
     toast.success('Backup exported. Keep the file somewhere safe.');
+  };
+
+  const exportFullBackup = async () => {
+    downloadFullBackup(await buildFullBackup());
+    toast.success('Full backup exported — entries and photos, still private to this device.');
   };
 
   const importJson = async (file: File) => {
@@ -41,6 +85,9 @@ export function LogbookPage() {
     if (imported === 0) throw new Error('No valid entries found in that file');
     return imported;
   };
+
+  const visible = useMemo(() => filterEntries(entries ?? [], filter), [entries, filter]);
+  const speciesOptions = useMemo(() => summarizeEntries(entries ?? []).speciesTally.map((t) => t.species), [entries]);
 
   return (
     <main className="page">
@@ -56,12 +103,17 @@ export function LogbookPage() {
         {LOGBOOK_NOTE}
       </p>
 
+      {entries !== undefined && entries.length > 0 && <SummaryCards entries={entries} />}
+
       <div className="mt-3 flex flex-wrap gap-2">
         <Button onClick={() => setAdding((v) => !v)} className="focus-ring">
           {adding ? 'Close form' : '+ Add entry'}
         </Button>
         <Button variant="secondary" onClick={() => void exportJson()} className="focus-ring">
           Export JSON
+        </Button>
+        <Button variant="secondary" onClick={() => void exportFullBackup()} className="focus-ring">
+          Full backup (with photos)
         </Button>
         <Button variant="secondary" onClick={() => fileRef.current?.click()} className="focus-ring">
           Import JSON
@@ -104,17 +156,28 @@ export function LogbookPage() {
 
       {adding && (
         <Card className="mt-4">
-          <NewEntryForm
-            initialStreamId={context.riverId ?? ''}
+          <EntryForm
+            initialStreamId={prefillStreamId}
+            captureFor={captureFor}
             onDone={() => {
               setAdding(false);
               toast.success('Entry saved privately on this device.');
             }}
+            onCancel={() => setAdding(false)}
           />
         </Card>
       )}
 
-      <h2 className="section-title">Entries</h2>
+      {entries !== undefined && entries.length > 0 && (
+        <LogbookFilters filter={filter} onChange={setFilter} speciesOptions={speciesOptions} />
+      )}
+
+      <h2 className="section-title">
+        Entries
+        {visible.length !== (entries?.length ?? 0) && entries !== undefined && entries.length > 0
+          ? ` (${visible.length} of ${entries.length})`
+          : ''}
+      </h2>
       {entries === undefined || entries.length === 0 ? (
         <EmptyState
           icon="📖"
@@ -126,170 +189,54 @@ export function LogbookPage() {
             </Button>
           }
         />
+      ) : visible.length === 0 ? (
+        <EmptyState
+          icon="🔍"
+          title="No entries match those filters"
+          description="Every entry is still here — clear the filters to see the whole book."
+        />
       ) : (
         <ul className="flex flex-col gap-3">
-          {entries.map((entry, i) => (
+          {visible.map((entry, i) => (
             <motion.li
               key={entry.id}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...SPRING.soft, delay: Math.min(i, 8) * 0.035 }}
             >
-              <Card>
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-extrabold">{entry.streamName}</h3>
-                  <Chip tone="accent">{shortDate(entry.date)}</Chip>
-                  <ConfirmButton
-                    label="Delete"
-                    confirmLabel="Delete entry"
-                    cancelLabel="Keep"
-                    className="focus-ring ml-auto"
-                    title="Export a backup first if you want to keep this entry."
-                    onConfirm={() => {
-                      if (entry.id === undefined) return;
-                      void deleteEntry(entry.id).then(() =>
-                        toast.success('Entry deleted', {
-                          description: 'Export a backup anytime from this page.',
-                        }),
-                      );
+              {editingId !== null && editingId === entry.id ? (
+                <Card>
+                  <EntryForm
+                    initial={entry}
+                    captureFor={captureFor}
+                    onDone={() => {
+                      setEditingId(null);
+                      toast.success('Entry updated — still private to this device.');
                     }}
+                    onCancel={() => setEditingId(null)}
                   />
-                </div>
-                {entry.flies.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {entry.flies.map((f) => (
-                      <Chip key={f}>{f}</Chip>
-                    ))}
-                  </div>
-                )}
-                {entry.notes && <p className="mt-2 whitespace-pre-wrap text-sm">{entry.notes}</p>}
-              </Card>
+                </Card>
+              ) : (
+                <EntryCard
+                  entry={entry}
+                  onEdit={() => {
+                    setAdding(false);
+                    setEditingId(entry.id ?? null);
+                  }}
+                  onDelete={() => {
+                    if (entry.id === undefined) return;
+                    void deleteEntryAndPhotos(entry.id).then(() =>
+                      toast.success('Entry deleted', {
+                        description: 'Export a backup anytime from this page.',
+                      }),
+                    );
+                  }}
+                />
+              )}
             </motion.li>
           ))}
         </ul>
       )}
     </main>
-  );
-}
-
-function NewEntryForm({
-  onDone,
-  initialStreamId = '',
-}: {
-  onDone: () => void;
-  initialStreamId?: string;
-}) {
-  const streamsQuery = useStreamsCatalog(60 * 24, true);
-  const streams = streamsQuery.data?.data ?? [];
-
-  const [streamId, setStreamId] = useState(initialStreamId);
-  const [saveError, setSaveError] = useState('');
-  const [customName, setCustomName] = useState('');
-  const [date, setDate] = useState(() => {
-    // Local calendar day — toISOString() is UTC and can shift the day near midnight.
-    const d = new Date();
-    const pad = (n: number) => String(n).padStart(2, '0');
-    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-  });
-  const [flies, setFlies] = useState('');
-  const [notes, setNotes] = useState('');
-
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-    const name = streamId
-      ? (streams.find((s) => s.id === streamId)?.name ?? customName.trim()) || 'Unknown water'
-      : customName.trim() || 'Unknown water';
-    await addEntry({
-      streamId: streamId || undefined,
-      streamName: name,
-      date,
-      notes: notes.trim(),
-      flies: flies
-        .split(',')
-        .map((f) => f.trim())
-        .filter(Boolean),
-    });
-    onDone();
-  };
-
-  return (
-    <form
-      className="flex flex-col gap-3"
-      onSubmit={(e) =>
-        void submit(e).catch(() =>
-          setSaveError('Could not save this entry. Check available browser storage and try again.'),
-        )
-      }
-    >
-      {saveError && <p role="alert">{saveError}</p>}
-      <label className="text-sm">
-        <span className="mb-1 block font-bold">Stream (from the catalog)</span>
-        <select
-          className="focus-ring min-h-[48px] w-full rounded-lg border px-3"
-          style={{ borderColor: 'var(--trout-color-border)' }}
-          value={streamId}
-          onChange={(e) => setStreamId(e.target.value)}
-        >
-          <option value="">— Other / not listed —</option>
-          {streams.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      {!streamId && (
-        <label className="text-sm">
-          <span className="mb-1 block font-bold">Water name</span>
-          <input
-            className="focus-ring min-h-[48px] w-full rounded-lg border px-3"
-            style={{ borderColor: 'var(--trout-color-border)' }}
-            value={customName}
-            onChange={(e) => setCustomName(e.target.value)}
-            placeholder="e.g. Little River, GSMNP"
-          />
-        </label>
-      )}
-      <label className="text-sm">
-        <span className="mb-1 block font-bold">Date</span>
-        <input
-          type="date"
-          className="focus-ring min-h-[48px] w-full rounded-lg border px-3"
-          style={{ borderColor: 'var(--trout-color-border)' }}
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          required
-        />
-      </label>
-      <label className="text-sm">
-        <span className="mb-1 block font-bold">Flies used (comma-separated)</span>
-        <input
-          className="focus-ring min-h-[48px] w-full rounded-lg border px-3"
-          style={{ borderColor: 'var(--trout-color-border)' }}
-          value={flies}
-          onChange={(e) => setFlies(e.target.value)}
-          placeholder="Sulphur Parachute #16, Pheasant Tail #18"
-        />
-      </label>
-      <label className="text-sm">
-        <span className="mb-1 block font-bold">Notes</span>
-        <textarea
-          className="focus-ring w-full rounded-lg border px-3 py-2"
-          style={{ borderColor: 'var(--trout-color-border)' }}
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          rows={3}
-          placeholder="Flow, weather, what worked…"
-        />
-      </label>
-      <div className="flex items-center gap-2">
-        <Button type="submit" size="lg" className="focus-ring">
-          Save entry
-        </Button>
-        <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
-          {LOGBOOK_NOTE}
-        </span>
-      </div>
-    </form>
   );
 }
