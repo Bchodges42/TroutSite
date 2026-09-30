@@ -108,3 +108,25 @@ describe('touch and click handlers share the routine (F45 wiring pin)', () => {
     expect(click).not.toMatch(/latest\.current\.onSelect\(/);
   });
 });
+
+describe('overlay popups survive the synthesized post-tap click (F45 residual pin)', () => {
+  // Wave-4 verification: the F45 dispatch fix made a touch tap on a gauge dot
+  // open the gauge popup, but MapLibre popups default closeOnClick:true and
+  // the browser synthesizes a click after EVERY touch tap — the popup
+  // flash-closed ~18 ms after opening and a touch user never saw the reading.
+  // The popup constructors bind inside the map 'load' closure (no WebGL in
+  // unit tests), so pin the option at source level like the wiring pins above.
+  const source = readFileSync(resolve(process.cwd(), 'src/features/map/TennesseeMap.tsx'), 'utf8');
+  const popupArgs = [...source.matchAll(/new maplibregl\.Popup\(\{([\s\S]*?)\}\)/g)].map(
+    (m) => m[1] ?? '',
+  );
+  it('every shared overlay popup (gauge + stocking/attractor) sets closeOnClick:false', () => {
+    // The two shared reading-surface popups must both exist…
+    expect(popupArgs.length).toBeGreaterThanOrEqual(2);
+    // …and every one of them must opt out of close-on-click.
+    for (const args of popupArgs) expect(args).toContain('closeOnClick: false');
+  });
+  it('the close button stays (the explicit dismissal path)', () => {
+    for (const args of popupArgs) expect(args).toContain('closeButton: true');
+  });
+});
