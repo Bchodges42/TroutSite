@@ -6,6 +6,29 @@ import { FISHERY_TYPE_LABELS, type FisheryType, type FisheryTypeCounts } from '.
 
 const OPEN_KEY = 'trout:legendOpen';
 
+/**
+ * F18: the legend open/closed preference is decoration, so a refused storage
+ * read (private mode raises SecurityError on Storage.getItem) must never take
+ * the map entry page down with it — the unguarded initializer used to throw and
+ * blank the whole home map. Same contract as the theme storage code
+ * (themes.ts initialTheme): try storage, fall back to in-memory defaults.
+ */
+function readLegendOpen(): boolean {
+  try {
+    return localStorage.getItem(OPEN_KEY) === '1';
+  } catch {
+    return false; // collapsed chip until the visitor expands it this session
+  }
+}
+
+function writeLegendOpen(value: boolean): void {
+  try {
+    localStorage.setItem(OPEN_KEY, value ? '1' : '0');
+  } catch {
+    /* storage refused the write — the choice simply lasts for this session */
+  }
+}
+
 /** Row order for the water-class grouping: named classes first, residual last. */
 const FISHERY_ROW_ORDER: FisheryType[] = ['tailwater', 'wild', 'stocked', 'other', 'unknown'];
 
@@ -69,11 +92,12 @@ export function MapLegend({
   /** Water-class counts across the loaded catalog (fisheryTypeCounts). */
   fisheryCounts?: FisheryTypeCounts;
 }) {
-  const [open, setOpen] = useState<boolean>(() => localStorage.getItem(OPEN_KEY) === '1');
+  const [open, setOpen] = useState<boolean>(readLegendOpen);
   const toggle = () =>
     setOpen((v) => {
-      localStorage.setItem(OPEN_KEY, v ? '0' : '1');
-      return !v;
+      const next = !v;
+      writeLegendOpen(next);
+      return next;
     });
 
   const grouping = mode === 'conditions' && !hasAssessedConditions;
@@ -99,7 +123,16 @@ export function MapLegend({
         : 'Trout conditions';
 
   return (
-    <div className="relative">
+    // F25: this slot lives in .map-bottom, an absolutely positioned
+    // shrink-to-fit container that is as wide as its sibling help paragraph
+    // (866px measured in the audit). As a plain relative block it stretched to
+    // that width, and `.map-bottom > * { pointer-events: auto }` turned the
+    // invisible expanse into a hit area that swallowed clicks meant for the
+    // map's bottom-right zoom control. The index.css `.map-bottom >
+    // .map-legend-slot` rule (higher specificity, later in the cascade) sizes
+    // the slot to its contents and keeps it click-through; only the actual
+    // chip/panel re-enable pointer events.
+    <div className="map-legend-slot">
       <AnimatePresence initial={false} mode="popLayout">
         {open ? (
           <motion.div
@@ -112,13 +145,13 @@ export function MapLegend({
             aria-label={panelLabel}
           >
             <div className="flex items-center gap-2">
-              <p className="font-bold text-[#EAF2ED]">{panelTitle}</p>
+              <p className="font-bold text-[color:var(--ui-text)]">{panelTitle}</p>
               <button
                 type="button"
                 onClick={toggle}
                 aria-expanded={open}
                 aria-label="Hide legend"
-                className="atlas-chip ml-auto h-7 w-7 rounded-full text-[#9FB5AA]"
+                className="atlas-chip ml-auto h-7 w-7 rounded-full text-[color:var(--ui-muted)]"
               >
                 <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" aria-hidden focusable="false"><path d="m6 9 6 6 6-6" /></svg>
               </button>
@@ -126,8 +159,12 @@ export function MapLegend({
             {mode === 'hatches' ? (
               <>
                 {/* T2-29: the halo marks ANY charted regional guidance (the
-                map help says the same) — no "dominant hatch" claim. */}
-                <p className="mt-1 text-[#9FB5AA]">
+                map help says the same) — no "dominant hatch" claim. F20: the
+                night-palette hexes read 1.13–2.17:1 on the Daybreak glass
+                surface; every text/divider below uses the shared theme
+                tokens, which pass 4.5:1 in all five presets (pinned in
+                map-legend.test.tsx). */}
+                <p className="mt-1 text-[color:var(--ui-muted)]">
                   Amber halo = the water's region has hatch guidance for the selected month
                 </p>
                 <div className="mt-1.5 flex gap-2">
@@ -137,7 +174,7 @@ export function MapLegend({
               </>
             ) : grouping ? (
               <>
-                <p className="mt-1 text-[#9FB5AA]">
+                <p className="mt-1 text-[color:var(--ui-muted)]">
                   Every mapped water, by fishery class. Blue halo = trout-class water, amber = warmwater.
                 </p>
                 <ul className="mt-1.5 space-y-1" aria-label="Water classes">
@@ -148,26 +185,26 @@ export function MapLegend({
                       ) : (
                         <CorridorGlyph color={atlas.troutOutline} />
                       )}
-                      <span className="text-[#EAF2ED]">{FISHERY_TYPE_LABELS[t]}</span>
+                      <span className="text-[color:var(--ui-text)]">{FISHERY_TYPE_LABELS[t]}</span>
                       {fisheryCounts && (
-                        <span className="ml-auto text-[#9FB5AA]">{fisheryCounts[t]}</span>
+                        <span className="ml-auto text-[color:var(--ui-muted)]">{fisheryCounts[t]}</span>
                       )}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-2 text-[#9FB5AA]">
+                <p className="mt-2 text-[color:var(--ui-muted)]">
                   Zoom in — regional waters appear around z7½, local creeks alongside the fine
                   stream network near z9½. Only headline waters show statewide.
                 </p>
                 {species === 'all' && (
-                  <p className="mt-2 border-t pt-2 text-[#9FB5AA]" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                  <p className="mt-2 border-t pt-2 text-[color:var(--ui-muted)]" style={{ borderColor: 'var(--ui-border)' }}>
                     Bass &amp; panfish waters sit under Other fish waters.
                   </p>
                 )}
               </>
             ) : (
               <>
-                <p className="mt-1 text-[#9FB5AA]">Flow + temp → 0–100 · Good ≥70 · Fair ≥40</p>
+                <p className="mt-1 text-[color:var(--ui-muted)]">Flow + temp → 0–100 · Good ≥70 · Fair ≥40</p>
                 <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1">
                   <LegendSwatch color={atlas.good} label="Good" />
                   <LegendSwatch color={atlas.fair} label="Fair" />
@@ -177,7 +214,7 @@ export function MapLegend({
               </>
             )}
             {mode === 'conditions' && hasAssessedConditions && species === 'all' && (
-              <div className="mt-2 border-t pt-2" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+              <div className="mt-2 border-t pt-2" style={{ borderColor: 'var(--ui-border)' }}>
                 <LegendSwatch color={atlas.warmwater} label="Warmwater — bass & panfish" />
               </div>
             )}
@@ -196,7 +233,7 @@ export function MapLegend({
             transition={SPRING.snappy}
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
-            className="atlas-glass atlas-chip h-10 gap-2 px-3 text-xs font-bold text-[#EAF2ED]"
+            className="atlas-glass atlas-chip h-10 gap-2 px-3 text-xs font-bold text-[color:var(--ui-text)]"
           >
             <span className="flex gap-1" aria-hidden>
               {grouping ? (

@@ -567,13 +567,15 @@ test('hatch and pattern workflows retain river and month', async ({ page }) => {
   );
 });
 
-// Documented skip (F10 wave): the zoom-preservation half of the original
-// scenario cannot run until F25 lands — an invisible oversized legend wrapper
-// intercepts the desktop zoom-button click on this exact inspected-water flow
-// (docs/reports/2026-09-29-senior-code-audit.md, F25; reproduced here: the
-// click lands on DIV.relative inside .map-bottom and Playwright times out).
-// The app-side fix is scoped in F25; restore the zoom step there.
-test.fixme('zoom level survives the pattern round-trip once F25 fixes the zoom control', async ({ page }) => {
+// F25 restored (wave-3 UI lane): this was a test.fixme because an invisible
+// oversized legend wrapper intercepted the desktop zoom-button click on this
+// exact inspected-water flow (docs/reports/2026-09-29-senior-code-audit.md,
+// F25; reproduced: the click landed on the DIV.relative inside .map-bottom —
+// 866px wide — and Playwright timed out). MapLegend now sizes its wrapper to
+// its contents and confines pointer events to the actual controls
+// (.map-bottom > .map-legend-slot), so the click reaches the button and the
+// zoom level must survive the pattern round-trip.
+test('zoom level survives the pattern round-trip now that F25 fixed the zoom control', async ({ page }) => {
   await page.goto('/?river=caney-fork-river&tab=Hatch&month=5');
   const pattern = page.locator('.hatch-patterns a').first();
   await expect(pattern).toBeVisible();
@@ -644,10 +646,11 @@ for (const width of [768, 390, 320]) {
       // Focus returns to the visible search surface where one exists.
       await expect(headerSearch(page)).toBeFocused();
     } else {
-      // Below the tablet breakpoint the header search is hidden, so restore
-      // lands on the page body; closing the inspector returns to the plain
-      // map view (the ?atlas=1 index is a deliberate re-open), and the page
-      // must stay usable — no sheet, no overflow.
+      // F17 reflow: the header search is now visible at phone widths too (it
+      // takes its own full-width row), but the ?atlas=1 path never opens the
+      // header search, so this branch only asserts the sheet actually closed,
+      // the plain map view returned, and the page stayed usable — no
+      // horizontal overflow (the F17 header regression guard at 320/390px).
       await expect(page.locator('.river-sheet')).toHaveCount(0);
       await expect(page.getByTestId('river-map')).toBeVisible();
       await noOverflow(page);
