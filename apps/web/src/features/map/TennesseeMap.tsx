@@ -577,7 +577,16 @@ export function TennesseeMap(props: Props) {
     // React's tree). The reading fetches from /v1/gauges/:id/now on open; in
     // DEV_FIXTURES dev mode that endpoint is absent and the card says so —
     // never a console-breaking or map-breaking surface.
-    const gaugePopup = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' });
+    // closeOnClick:false (F45 residual): the browser synthesizes a click after
+    // EVERY touch tap, and MapLibre's default closeOnClick:true closed the
+    // popup ~18 ms after the touchend dispatch opened it — a touch user never
+    // saw the reading. These popups are reading surfaces: they stay open until
+    // explicitly dismissed (close button, another overlay tap, overlay off).
+    const gaugePopup = new maplibregl.Popup({
+      closeButton: true,
+      closeOnClick: false,
+      maxWidth: '280px',
+    });
     gaugePopupRef.current = gaugePopup;
     const openGaugePopup = (feature: maplibregl.MapGeoJSONFeature, lngLat: maplibregl.LngLat) => {
       const p = feature.properties ?? {};
@@ -659,8 +668,13 @@ export function TennesseeMap(props: Props) {
     };
     // TWRA overlay popups (feat/tn-gauge-layer) — attractor structures and
     // trout stocking sites, same imperative pattern; the data is static TWRA
-    // registry context, never a live call.
-    const overlayPopup = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' });
+    // registry context, never a live call. closeOnClick:false for the same
+    // touch-flash reason as the gauge popup above (shared tap mechanism).
+    const overlayPopup = new maplibregl.Popup({
+      closeButton: true,
+      closeOnClick: false,
+      maxWidth: '280px',
+    });
     const popupCard = (titleText: string, metaText: string) => {
       const el = document.createElement('div');
       el.style.cssText =
