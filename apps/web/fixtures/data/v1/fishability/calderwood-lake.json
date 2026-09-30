@@ -1,6 +1,6 @@
 {
   "streamId": "calderwood-lake",
-  "fetchedAt": "2026-09-30T05:02:09Z",
+  "fetchedAt": "2026-09-30T05:54:45Z",
   "bySpecies": {
     "largemouth-bass": {
       "comfort": {
@@ -11,7 +11,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:27:09Z",
+          "observedAt": "2026-09-30T05:19:45Z",
           "ageMinutes": 67
         }
       },
@@ -29,7 +29,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:27:09Z",
+          "observedAt": "2026-09-30T05:19:45Z",
           "ageMinutes": 67
         }
       },

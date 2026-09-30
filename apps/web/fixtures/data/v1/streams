@@ -1,7 +1,7 @@
 [
   {
     "id": "south-holston-river",
-    "name": "South Holston River",
+    "name": "South Fork Holston River (South Holston tailwater)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-east-holston",
@@ -90,7 +90,7 @@
   },
   {
     "id": "watauga-river",
-    "name": "Watauga River",
+    "name": "Watauga River (Wilbur tailwater)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-northeast-watauga",
@@ -184,7 +184,7 @@
   },
   {
     "id": "hiwassee-river",
-    "name": "Hiwassee River",
+    "name": "Hiwassee River (Appalachia tailwater / Reliance)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-se-hiwassee",
@@ -296,7 +296,7 @@
   },
   {
     "id": "caney-fork-river",
-    "name": "Caney Fork River",
+    "name": "Caney Fork River (Center Hill tailwater)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-middle-caney-fork",
@@ -396,7 +396,7 @@
   },
   {
     "id": "elk-river",
-    "name": "Elk River",
+    "name": "Elk River (Tims Ford tailwater)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-middle-duck-elk",
@@ -491,7 +491,7 @@
   },
   {
     "id": "clinch-river",
-    "name": "Clinch River",
+    "name": "Clinch River (Norris tailwater)",
     "stateId": "TN",
     "waterbodyType": "tailrace",
     "regionId": "tn-east-clinch",

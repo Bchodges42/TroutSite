@@ -1,4 +1,3 @@
-/* global console */
 /**
  * ROLE 2 fixture generator — writes the fixture tree mirroring the frozen
  * ENDPOINTS surface (§ scope 9) plus the /content content-pack convention.
@@ -297,6 +296,10 @@ let speciesFromPack = 0;
 for (const s of streams) {
   const pack = packById.get(s.id);
   if (!pack) continue;
+  // Reviewed identity: production serves the pack's name (renames like
+  // 'Caney Fork River (Center Hill tailwater)' live only here — the atlas
+  // geometry properties lag) and its search aliases (overlaid below).
+  if (pack.name) s.name = pack.name;
   if (pack.species) { s.species = pack.species; speciesFromPack += 1; }
   else delete s.species;
   if (pack.notes) s.notes = pack.notes;

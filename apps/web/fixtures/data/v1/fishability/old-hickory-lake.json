@@ -1,6 +1,6 @@
 {
   "streamId": "old-hickory-lake",
-  "fetchedAt": "2026-09-30T05:02:09Z",
+  "fetchedAt": "2026-09-30T05:54:45Z",
   "bySpecies": {
     "largemouth-bass": {
       "comfort": {
@@ -11,7 +11,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:30:09Z",
+          "observedAt": "2026-09-30T05:22:45Z",
           "ageMinutes": 64
         }
       },
@@ -29,7 +29,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:30:09Z",
+          "observedAt": "2026-09-30T05:22:45Z",
           "ageMinutes": 64
         }
       },
@@ -107,7 +107,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:30:09Z",
+          "observedAt": "2026-09-30T05:22:45Z",
           "ageMinutes": 64
         }
       },

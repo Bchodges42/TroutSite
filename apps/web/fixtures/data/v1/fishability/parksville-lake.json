@@ -1,6 +1,6 @@
 {
   "streamId": "parksville-lake",
-  "fetchedAt": "2026-09-30T05:02:09Z",
+  "fetchedAt": "2026-09-30T05:54:45Z",
   "bySpecies": {
     "largemouth-bass": {
       "comfort": {
@@ -11,7 +11,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:24:09Z",
+          "observedAt": "2026-09-30T05:16:45Z",
           "ageMinutes": 70
         }
       },
@@ -43,7 +43,7 @@
           "magnitude": 2,
           "confidence": "derived",
           "evidenceUrl": "https://www.tva.com/environment/lake-levels",
-          "observedAt": "2026-09-30T04:24:09Z",
+          "observedAt": "2026-09-30T05:16:45Z",
           "label": "Flow trend: falling (2 cfs change; context only)"
         }
       }

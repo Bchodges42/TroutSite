@@ -1,6 +1,6 @@
 {
   "streamId": "harpeth-river",
-  "fetchedAt": "2026-09-30T05:02:09Z",
+  "fetchedAt": "2026-09-30T05:54:45Z",
   "bySpecies": {
     "smallmouth-bass": {
       "comfort": {
@@ -11,7 +11,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:56:09Z",
+          "observedAt": "2026-09-30T05:48:45Z",
           "ageMinutes": 38
         }
       },
@@ -43,7 +43,7 @@
           "magnitude": 15,
           "confidence": "derived",
           "evidenceUrl": "https://waterdata.usgs.gov/monitoring-location/03432350",
-          "observedAt": "2026-09-30T04:56:09Z",
+          "observedAt": "2026-09-30T05:48:45Z",
           "label": "Flow trend: rising (15 cfs change; context only)"
         }
       }

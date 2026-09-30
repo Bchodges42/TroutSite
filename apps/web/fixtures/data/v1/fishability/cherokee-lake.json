@@ -1,6 +1,6 @@
 {
   "streamId": "cherokee-lake",
-  "fetchedAt": "2026-09-30T05:02:09Z",
+  "fetchedAt": "2026-09-30T05:54:45Z",
   "bySpecies": {
     "largemouth-bass": {
       "comfort": {
@@ -11,7 +11,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:25:09Z",
+          "observedAt": "2026-09-30T05:17:45Z",
           "ageMinutes": 69
         }
       },
@@ -29,7 +29,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:25:09Z",
+          "observedAt": "2026-09-30T05:17:45Z",
           "ageMinutes": 69
         }
       },
@@ -92,7 +92,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:25:09Z",
+          "observedAt": "2026-09-30T05:17:45Z",
           "ageMinutes": 69
         }
       },

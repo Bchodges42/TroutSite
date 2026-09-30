@@ -1,6 +1,6 @@
 {
   "streamId": "watts-bar-lake",
-  "fetchedAt": "2026-09-30T05:02:09Z",
+  "fetchedAt": "2026-09-30T05:54:45Z",
   "bySpecies": {
     "largemouth-bass": {
       "comfort": {
@@ -11,7 +11,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:26:09Z",
+          "observedAt": "2026-09-30T05:18:45Z",
           "ageMinutes": 68
         }
       },
@@ -29,7 +29,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:26:09Z",
+          "observedAt": "2026-09-30T05:18:45Z",
           "ageMinutes": 68
         }
       },
@@ -107,7 +107,7 @@
         ],
         "assessed": true,
         "freshness": {
-          "observedAt": "2026-09-30T04:26:09Z",
+          "observedAt": "2026-09-30T05:18:45Z",
           "ageMinutes": 68
         }
       },

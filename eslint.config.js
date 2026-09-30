@@ -67,6 +67,11 @@ export default tseslint.config(
       '**/.astro/**',
       '**/data/**',
       '**/backups/**',
+      // Generated Playwright outputs (HTML report assets, traces, error
+      // contexts) — build artifacts, not source; a failing local run writes
+      // them under e2e/ and would otherwise turn the lint gate red.
+      '**/playwright-report/**',
+      '**/test-results/**',
       'pnpm-lock.yaml',
     ],
   },
@@ -90,12 +95,12 @@ export default tseslint.config(
     },
   },
   {
-    // The two selectable-river atlas scripts are the only Node scripts that run
-    // without the per-file `eslint-disable no-undef` header the other scripts
-    // carry; declare the runtime instead of suppressing the rule.
+    // Node-run scripts that declare their runtime instead of carrying the
+    // per-file `eslint-disable no-undef` header the other scripts use.
     files: [
       'apps/web/scripts/audit-selectable-rivers.mjs',
       'apps/web/scripts/build-selectable-river-additions.mjs',
+      'apps/web/scripts/generate-fixtures.mjs',
     ],
     languageOptions: { globals: nodeRuntimeGlobals },
   },
