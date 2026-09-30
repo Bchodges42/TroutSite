@@ -1,5 +1,5 @@
 import index from '../features/map/riverIndex.json';
-import { solarWindows } from '../lib/solar';
+import { civilDate, solarWindowsForCivilDate } from '../lib/solar';
 
 interface IndexEntry {
   id: string;
@@ -28,7 +28,10 @@ function clockTime(ms: number): string {
 export function SolarWindowsCard({ streamId }: { streamId: string }) {
   const anchor = anchorFor(streamId);
   if (!anchor) return null;
-  const windows = solarWindows(Date.now(), anchor[1], anchor[0]);
+  // F12: "today" is the visitor's LOCAL civil date, not the UTC calendar day
+  // (an evening visitor must not be shown tomorrow's windows). Time
+  // acquisition stays here at the caller; the math stays pure.
+  const windows = solarWindowsForCivilDate(civilDate(Date.now()), anchor[1], anchor[0]);
   if (!windows.dawnWindow || !windows.duskWindow) return null;
   return (
     <div className="detail-section solar-windows">

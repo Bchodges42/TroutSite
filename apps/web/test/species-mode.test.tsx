@@ -57,9 +57,9 @@ describe('SpeciesModeToggle — persisted site-wide species mode', () => {
       'aria-pressed',
       'true',
     );
-    await user.click(screen.getByRole('button', { name: 'All-fish mode' }));
+    await user.click(screen.getByRole('button', { name: 'All fish mode' }));
     await vi.waitFor(() => {
-      expect(screen.getByRole('button', { name: 'All-fish mode' })).toHaveAttribute(
+      expect(screen.getByRole('button', { name: 'All fish mode' })).toHaveAttribute(
         'aria-pressed',
         'true',
       );

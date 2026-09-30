@@ -9,6 +9,7 @@ import {
   listDrafts,
   saveDraft,
   emptyDraft,
+  todayIso,
 } from '../src/state/drafts.js';
 
 const SHOP_A = 'little-river-outfitters';
@@ -85,6 +86,17 @@ describe('draft store (localStorage only, scoped per shop — F16)', () => {
     } finally {
       vi.useRealTimers();
     }
+  });
+
+  it('todayIso uses the LOCAL civil date, not the UTC day (F12)', () => {
+    // Sept 30, 01:00 UTC = Sept 29, 8:00 p.m. America/Chicago (CDT) — the
+    // audit's scenario: an evening report must be dated today, not tomorrow.
+    // The test machine's timezone is not forced; assert via the same local
+    // getters the implementation must use.
+    const instant = new Date(Date.UTC(2026, 8, 30, 1, 0, 0));
+    const expected = `${instant.getFullYear()}-${String(instant.getMonth() + 1).padStart(2, '0')}-${String(instant.getDate()).padStart(2, '0')}`;
+    expect(todayIso(instant)).toBe(expected);
+    expect(expected).not.toBe(instant.toISOString().slice(0, 10)); // guard: this instant differs west of UTC
   });
 });
 
